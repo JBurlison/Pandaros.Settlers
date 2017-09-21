@@ -55,7 +55,7 @@
     <Compile Include="PandaLogger.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Chance\SettelerEvaluation.cs" />
-    <Compile Include="SettleReason.cs" />
+    <Compile Include="SettlerReasoning.cs" />
     <Compile Include="SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializableDictionary.cs" />

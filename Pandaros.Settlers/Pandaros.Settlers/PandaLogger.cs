@@ -9,7 +9,7 @@ namespace Pandaros.Settlers
     {
         internal static void Log(string message)
         {
-            ServerLog.LogAsyncMessage(new Pipliz.LogMessage(string.Format("[{0}]<Pandaros => Settlers> {1}", DateTime.Now, message), UnityEngine.LogType.Log));
+            ServerLog.LogAsyncMessage(new Pipliz.LogMessage(GetFormattedMessage(message), UnityEngine.LogType.Log));
         }
 
         internal static void LogError(string message, Exception e)

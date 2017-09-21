@@ -48,7 +48,7 @@ namespace Pandaros.Settlers
                         retVal = (SerializableDictionary<string, ColonyState>)xmlserializer.Deserialize(reader);
                 }
                 else
-                    PandaLogger.Log("Unable to find existing config file. Creating new file.");
+                    PandaLogger.Log("Unable to find existing state file. Creating new file.");
 
                 if (retVal == null)
                 {
@@ -57,7 +57,7 @@ namespace Pandaros.Settlers
                 }
                 else
                 {
-                    PandaLogger.Log("Stock Loaded from Config file.");
+                    PandaLogger.Log("State Loaded from Config file.");
 
                     foreach (var world in retVal)
                     {

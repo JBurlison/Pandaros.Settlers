@@ -26,6 +26,12 @@ namespace Pandaros.Settlers.Entities
         public int ColonistCount { get; set; }
 
         [XmlIgnore]
+        public Dictionary<NPC.NPCBase, double> KnownLaborers { get; set; }
+
+        [XmlIgnore]
+        public double NeedsABed { get; set; }
+
+        [XmlIgnore]
         public int MaxPerSpawn
         {
             get
@@ -34,10 +40,8 @@ namespace Pandaros.Settlers.Entities
 
                 if (ColonistCount > SettlerManager.MAX_BUYABLE)
                 {
-                    var minAdd = (int)Math.Ceiling(ColonistCount / (decimal)10);
-                    var maxAdd = (int)Math.Ceiling(ColonistCount / (decimal)7);
-
-                    max += Rand.Next(minAdd, maxAdd);
+                    var maxAdd = (int)Math.Ceiling(ColonistCount / (decimal)10);
+                    max += Rand.Next(0, maxAdd);
                 }
 
                 return max;
@@ -46,7 +50,9 @@ namespace Pandaros.Settlers.Entities
 
         public PlayerState()
         {
-            Rand = new Random(); 
+            Rand = new Random();
+            KnownLaborers = new Dictionary<NPC.NPCBase, double>();
+            NeedsABed = 0;
         }
     }
 }

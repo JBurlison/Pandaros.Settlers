@@ -13,13 +13,13 @@ namespace Pandaros.Settlers.Chance
 
         public double SpawnChance(Players.Player p, Colony c, PlayerState state)
         {
-            double chance = .4;
-            var remainingBeds = state.ColonistCount - BedBlockTracker.GetCount(p);
+            double chance = .5;
+            var remainingBeds =  BedBlockTracker.GetCount(p) - state.ColonistCount;
 
             if (remainingBeds < 1)
                 chance -= 0.1;
 
-            if (remainingBeds > state.MaxPerSpawn)
+            if (remainingBeds >= state.MaxPerSpawn)
                 chance += 0.1;
 
             var hoursofFood = Stockpile.GetStockPile(p).TotalFood / c.FoodUsePerHour;
@@ -31,6 +31,13 @@ namespace Pandaros.Settlers.Chance
 
             if (JobTracker.GetCount(p) > SettlerManager.MIN_PERSPAWN)
                 chance += .4;
+            else
+                chance -= .2;
+
+            if (c.InSiegeMode || 
+                c.LastSiegeModeSpawn != 0 &&
+                Pipliz.Time.SecondsSinceStartDouble - c.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
+                chance -= 0.4;
 
             return chance;
         }
