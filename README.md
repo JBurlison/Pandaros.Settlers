@@ -1,6 +1,8 @@
 # Pandaros.Settlers
 A colony survival settlers mod that introduces natural progression to the game. This mod disables buying of colonists after 10 colonists. After 10 has been reached the mod will kill off any aditional. Every morning the mod will evaluate your colony on how attractive it is to settle there and send you more colonists.
 
+Setterlers will leave if there is not enough beds or jobs! Tweaked seller spawn rate.
+
 ## To install:
 Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releases) and grab the latest version.
 
