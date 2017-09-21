@@ -1,0 +1,8 @@
+﻿{
+  "assemblies": [
+    {
+      "path": "Pandaros.Settlers.dll",
+      "enabled": true
+    }
+  ]
+}
