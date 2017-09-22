@@ -26,6 +26,7 @@ namespace Pandaros.Settlers
         private static double _nextGenTime = TimeCycle.TotalTime + _r.Next(6, 18);
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
+        private static float _baseFoodPerHour;
 
         public static ColonyState CurrentColonyState
         {
@@ -55,6 +56,7 @@ namespace Pandaros.Settlers
             _worldLoaded = true;
             PandaLogger.Log("World load detected. Starting monitor...");
             CheckWorld();
+            _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
 
             RegisterEvaluator(new Chance.SettelerEvaluation());
         }
@@ -84,13 +86,14 @@ namespace Pandaros.Settlers
                     PlayerState state = GetPlayerState(p, colony);
                    
                     while (colony.FollowerCount > MAX_BUYABLE && 
-                           state.ColonistCount != colony.FollowerCount) // if we have the expected number of colonists, we skip.
+                           state.ColonistCount < colony.FollowerCount) // if we have the expected number of colonists, we skip.
                     {
                         Chat.Send(p, string.Format("<color=red>You are not allowed to recruit over {0} colonists. If you build it... they will come.</color>", MAX_BUYABLE));
                         KillColonist(colony);
                     }
 
-                    if (colony.FollowerCount <= MAX_BUYABLE)
+                    if (colony.FollowerCount <= MAX_BUYABLE ||
+                        state.ColonistCount > colony.FollowerCount)
                     {
                         state.ColonistCount = colony.FollowerCount; 
                     }
@@ -189,8 +192,7 @@ namespace Pandaros.Settlers
                                 }
 
                                 state.ColonistCount += (int)addCount;
-
-                                colony.SendUpdate();
+                                Update(colony);
                             }
 
                         }
@@ -200,6 +202,12 @@ namespace Pandaros.Settlers
                 _nextGenTime = TimeCycle.TotalTime + _r.Next(4, 18);
                 SaveManager.SaveState(CurrentStates);
             }
+        }
+
+        private static void Update(Colony colony)
+        {
+            //ServerManager.ServerVariables.NPCFoodUsePerHour = _baseFoodPerHour + ((colony.FollowerCount / _r.Next(40, 60)) * _baseFoodPerHour);
+            colony.SendUpdate();
         }
 
         private static void EvaluateLaborers()
@@ -247,7 +255,7 @@ namespace Pandaros.Settlers
                                 state.KnownLaborers.Remove(npc);
 
                         if (unTrack.Count != 0)
-                            colony.SendUpdate();
+                            Update(colony);
                     }
                 });
 
@@ -270,13 +278,10 @@ namespace Pandaros.Settlers
                             Colony colony = Colony.Get(p);
                             PlayerState state = GetPlayerState(p, colony);
                             PandaLogger.Log("Evaluating Beds for " + p.Name);
-
-                            PandaLogger.Log("Number of Beds: " + BedBlockTracker.GetCount(p));
-                            PandaLogger.Log("Number of Colonists: " + state.ColonistCount);
                             var remainingBeds = BedBlockTracker.GetCount(p) - state.ColonistCount;
                             int left = 0;
 
-                            if (remainingBeds > 0)
+                            if (remainingBeds >= 0)
                                 state.NeedsABed = 0;
                             else
                             {
@@ -301,7 +306,7 @@ namespace Pandaros.Settlers
                                 {
                                     Chat.Send(p, string.Concat("<color=red>", SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.</color>", left)));
                                     state.ColonistCount -= left;
-                                    colony.SendUpdate();
+                                    Update(colony);
                                 }
                             }
                         }
