@@ -5,6 +5,15 @@ Settlers will leave if there is not enough beds or jobs!
 Food use now increases as colony size goes up to simulate waste.
 Food use fluxuates depending on how hungry your colonists are!
 
+#Game Difficulties
+
+The game defaults to meduim. Depending on the difficulty the food use, and chance of getting settlers will be modified, forcing you to meet the goals of getting settlers. (see Tips)
+
+* /difficulty easy
+* /difficulty medium
+* /difficulty hard
+
+
 ## To install:
 Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releases) and grab the latest version.
 
