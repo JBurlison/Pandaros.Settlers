@@ -264,8 +264,8 @@ namespace Pandaros.Settlers
                     {
                         ServerManager.Variables serverVariables = ServerManager.ServerVariables;
                         var food = System.Math.Round(ps.CurrentFoodPerHour * colony.FollowerCount * 24f, 1);
-                        byteBuilder.Write(22);
-                        byteBuilder.Write(food);
+                        byteBuilder.Write((ushort)General.Networking.ClientMessageType.DataFoodUsage);
+                        byteBuilder.Write((float)food);
                         byteBuilder.Write((!colony.InSiegeMode) ? 1f : serverVariables.NPCfoodUseMultiplierSiegeMode);
                         NetworkWrapper.Send(byteBuilder.ToArray(), player, NetworkMessageReliability.ReliableWithBuffering);
                     }
