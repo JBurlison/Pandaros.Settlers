@@ -21,7 +21,7 @@ namespace Pandaros.Settlers
                 var stringWriter = new StringWriter();
 
                 XmlSerializer xmlserializer = new XmlSerializer(CollectionType);
-                using (var writer = XmlWriter.Create(stringWriter))
+                using (var writer = XmlWriter.Create(stringWriter, new XmlWriterSettings() { Indent = true }))
                 {
                     xmlserializer.Serialize(writer, states);
                     File.WriteAllText(CONFIG_PATH, stringWriter.ToString());

@@ -21,10 +21,34 @@ namespace Pandaros.Settlers.Entities
 
     public class PlayerState
     {
+        [XmlIgnore]
         public Random Rand { get; set; }
 
         [XmlElement]
         public int ColonistCount { get; set; }
+
+        [XmlElement]
+        public string DifficultyStr
+        {
+            get
+            {
+                if (Difficulty == null)
+                    Difficulty = GameDifficulty.Medium;
+
+                return Difficulty.Name;
+            }
+
+            set
+            {
+                if (!GameDifficulty.GameDifficulties.ContainsKey(value))
+                    Difficulty = GameDifficulty.Medium;
+                else
+                    Difficulty = GameDifficulty.GameDifficulties[value];
+            }
+        }
+
+        [XmlIgnore]
+        public GameDifficulty Difficulty { get; set; }
 
         [XmlIgnore]
         public float CurrentFoodPerHour { get; set; }
@@ -69,6 +93,7 @@ namespace Pandaros.Settlers.Entities
             Rand = new Random();
             KnownLaborers = new Dictionary<NPC.NPCBase, double>();
             NeedsABed = 0;
+            Difficulty = GameDifficulty.Medium;
         }
     }
 }

@@ -21,6 +21,8 @@ namespace Pandaros.Settlers
         public const double BED_LEAVE_HOURS = 5;
 
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
+        public static GameDifficulty Difficulty { get; set; }
+
         private static Dictionary<string, ISpawnSettlerEvaluator> _deciders = new Dictionary<string, ISpawnSettlerEvaluator>();
         private static bool _worldLoaded = false;
         private static System.Random _r = new System.Random();
@@ -29,7 +31,7 @@ namespace Pandaros.Settlers
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
-
+        
         public static ColonyState CurrentColonyState
         {
             get
@@ -46,6 +48,7 @@ namespace Pandaros.Settlers
         public static void AfterStartup()
         {
             PandaLogger.Log("Active.", ChatColor.lime);
+            ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             CurrentStates = SaveManager.LoadState();
 
             if (CurrentStates == null)
@@ -68,8 +71,13 @@ namespace Pandaros.Settlers
         {
             if (p.IsConnected)
             {
-                PandaChat.Send(p, string.Format("You are not allowed to recruit over {0} colonists. If you build it... they will come.", MAX_BUYABLE), ChatColor.red);
-                Update(Colony.Get(p));
+                Colony colony = Colony.Get(p);
+                PlayerState state = GetPlayerState(p, colony);
+                PandaChat.Send(p, string.Format("You are not allowed to recruit over {0} colonists. If you build it... they will come.", MAX_BUYABLE), ChatColor.grey);
+                PandaChat.Send(p, string.Format("Game difficulty set to {0}", state.Difficulty), ChatColor.grey);
+                GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
+                Update(colony);
+                SendFoodUsage();
             }
         }
 
@@ -84,6 +92,8 @@ namespace Pandaros.Settlers
 
             if (update)
                 Players.PlayerDatabase.ForeachValue(p => Update(Colony.Get(p)));
+            else
+                SendFoodUsage();
         }
 
         private static bool CheckIfColonistsWhereBought()
@@ -194,7 +204,7 @@ namespace Pandaros.Settlers
 
                         if (colony.FollowerCount >= MAX_BUYABLE)
                         {
-                            double chance = 0.2;
+                            double chance = 0.2 + state.Difficulty.AdditionalChance;
 
                             lock (_deciders)
                                 foreach (var d in _deciders)
@@ -232,16 +242,17 @@ namespace Pandaros.Settlers
             return update;
         }
 
-        private static void Update(Colony colony)
+        public static void Update(Colony colony)
         {
             if (colony.Owner.IsConnected)
             {
                 if (colony.FollowerCount > MAX_BUYABLE)
                 {
-                    var food = _baseFoodPerHour + ((colony.FollowerCount / _r.Next(190, 250)) * _baseFoodPerHour);
                     var ps = GetPlayerState(colony.Owner, colony);
+                    var food = _baseFoodPerHour + ((colony.FollowerCount / _r.Next(190, 240)) * _baseFoodPerHour);
+                    food = food * ps.Difficulty.FoodMultiplier;
                     ps.CurrentFoodPerHour = food;
-                    PandaChat.Send(colony.Owner, "New food per day: " + System.Math.Round(food * colony.FollowerCount * 24, 1), ChatColor.silver);
+                    //PandaChat.Send(colony.Owner, "New food per day: " + System.Math.Round(food * colony.FollowerCount * 24, 1), ChatColor.silver);
                     ps.ColonyInterface.FoodPerHourField = food;
                 }
 

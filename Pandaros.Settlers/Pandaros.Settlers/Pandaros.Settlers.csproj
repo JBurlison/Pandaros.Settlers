@@ -53,6 +53,7 @@
     <Compile Include="Entities\ColonyPrivates.cs" />
     <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Chance\ISpawnSettlerChance.cs" />
+    <Compile Include="GameDifficulty.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="SaveManager.cs" />

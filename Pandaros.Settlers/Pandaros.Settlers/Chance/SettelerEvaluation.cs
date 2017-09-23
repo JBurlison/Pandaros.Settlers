@@ -34,7 +34,8 @@ namespace Pandaros.Settlers.Chance
             else
                 chance -= .2;
 
-            if (c.InSiegeMode || 
+            if (state.Difficulty != GameDifficulty.Easy)
+                if (c.InSiegeMode || 
                 c.LastSiegeModeSpawn != 0 &&
                 Pipliz.Time.SecondsSinceStartDouble - c.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
                 chance -= 0.4;
