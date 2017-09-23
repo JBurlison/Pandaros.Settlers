@@ -24,12 +24,12 @@ namespace Pandaros.Settlers.Chance
 
             var hoursofFood = Stockpile.GetStockPile(p).TotalFood / c.FoodUsePerHour;
 
-            if (hoursofFood < 24)
+            if (hoursofFood < 48)
                 chance -= 0.4;
             else
                 chance += 0.2;
 
-            if (JobTracker.GetCount(p) > SettlerManager.MIN_PERSPAWN)
+            if (JobTracker.GetCount(p) > state.MaxPerSpawn)
                 chance += .4;
             else
                 chance -= .2;
