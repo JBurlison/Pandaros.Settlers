@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Pandaros.Settlers
+{
+    public static class ColonyItems
+    {
+        public const string air = "air";
+        public const string grass = "grass";
+        public const string grasstemperate = "grasstemperate";
+        public const string sappling = "sappling";
+        public const string grasstundra = "grasstundra";
+        public const string grasstaiga = "grasstaiga";
+        public const string grasssavanna = "grasssavanna";
+        public const string grassrainforest = "grassrainforest";
+        public const string water = "water";
+        public const string sand = "sand";
+        public const string snow = "snow";
+        public const string banner = "banner";
+        public const string dirt = "dirt";
+        public const string stoneblock = "stoneblock";
+        public const string stonebricks = "stonebricks";
+        public const string planks = "planks";
+        public const string redplanks = "redplanks";
+        public const string blackplanks = "blackplanks";
+        public const string bricks = "bricks";
+        public const string clay = "clay";
+        public const string log = "log";
+        public const string logtemperate = "logtemperate";
+        public const string logtaiga = "logtaiga";
+        public const string leaves = "leaves";
+        public const string leavestemperate = "leavestemperate";
+        public const string leavestaiga = "leavestaiga";
+        public const string cherryblossom = "cherryblossom";
+        public const string cherrysapling = "cherrysapling";
+        public const string quiver = "quiver";
+        public const string torch = "torch";
+        public const string crate = "crate";
+        public const string coatedplanks = "coatedplanks";
+        public const string adobe = "adobe";
+        public const string workbench = "workbench";
+        public const string tailorshop = "tailorshop";
+        public const string technologisttable = "technologisttable";
+        public const string sciencelab = "sciencelab";
+        public const string mint = "mint";
+        public const string shop = "shop";
+        public const string grindstone = "grindstone";
+        public const string plasterblock = "plasterblock";
+        public const string furnace = "furnace";
+        public const string oven = "oven";
+        public const string goldore = "goldore";
+        public const string ironore = "ironore";
+        public const string gypsum = "gypsum";
+        public const string coalore = "coalore";
+        public const string flax = "flax";
+        public const string straw = "straw";
+        public const string wheat = "wheat";
+        public const string carpet = "carpet";
+        public const string carpetyellow = "carpetyellow";
+        public const string carpetblue = "carpetblue";
+        public const string carpetred = "carpetred";
+        public const string linseedoil = "linseedoil";
+        public const string berry = "berry";
+        public const string flour = "flour";
+        public const string bread = "bread";
+        public const string arrow = "arrow";
+        public const string linen = "linen";
+        public const string linenbag = "linenbag";
+        public const string sciencebagbasic = "sciencebagbasic";
+        public const string sciencebaglife = "sciencebaglife";
+        public const string clothing = "clothing";
+        public const string ironingot = "ironingot";
+        public const string goldingot = "goldingot";
+        public const string goldcoin = "goldcoin";
+        public const string bow = "bow";
+        public const string pickaxe = "pickaxe";
+        public const string axe = "axe";
+        public const string bed = "bed";
+    }
+}

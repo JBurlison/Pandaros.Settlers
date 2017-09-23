@@ -19,9 +19,12 @@ namespace Pandaros.Settlers
         public const int ABSOLUTE_MAX_PERSPAWN = 40;
         public const double LOABOROR_LEAVE_HOURS = 14;
         public const double BED_LEAVE_HOURS = 5;
-
+        
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
         public static GameDifficulty Difficulty { get; set; }
+
+        public const string ICON_FOLDER = "../../mods/Padaros/settelers/icons/";
+        public const string SCIENCE_NAMESPACE = "Pandaros.Settlers.Research";
 
         private static Dictionary<string, ISpawnSettlerEvaluator> _deciders = new Dictionary<string, ISpawnSettlerEvaluator>();
         private static bool _worldLoaded = false;
