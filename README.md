@@ -1,5 +1,5 @@
 # Settlers!
-A colony survival settlers mod that introduces natural progression to the game. This mod disables buying of colonists after 10 colonists. After 10 has been reached the mod will kill off any aditional. Every morning the mod will evaluate your colony on how attractive it is to settle there and send you more colonists.
+A colony survival settlers mod that introduces natural progression to the game. This mod disables buying of colonists after 10 colonists. After 10 has been reached the mod will kill off any aditional. Settlers will occationally find your colony and settle there!
 
 Settlers will leave if there is not enough beds or jobs! 
 Food use now increases as colony size goes up to simulate waste.
@@ -14,7 +14,7 @@ Food use fluxuates depending on how hungry your colonists are!
 
 ## Game Difficulties
 
-The game defaults to meduim. Depending on the difficulty the food use, and chance of getting settlers will be modified, forcing you to meet the goals of getting settlers. (see Tips)
+The game defaults to meduim. Difficulty effects food consumption/waste and requirements for settlers, forcing you to meet the goals of getting settlers. (see Tips)
 
 * /difficulty easy
 * /difficulty medium
