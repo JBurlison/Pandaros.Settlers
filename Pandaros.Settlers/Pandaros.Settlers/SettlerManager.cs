@@ -1,6 +1,7 @@
 ﻿using NPC;
 using Pandaros.Settlers.Chance;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.Chatting;
 using System;
@@ -19,12 +20,10 @@ namespace Pandaros.Settlers
         public const int ABSOLUTE_MAX_PERSPAWN = 40;
         public const double LOABOROR_LEAVE_HOURS = 14;
         public const double BED_LEAVE_HOURS = 5;
-        
+        public static readonly Version MOD_VER = new Version(0, 4, 0, 0);
+
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
         public static GameDifficulty Difficulty { get; set; }
-
-        public const string ICON_FOLDER = "../../mods/Padaros/settelers/icons/";
-        public const string SCIENCE_NAMESPACE = "Pandaros.Settlers.Research";
 
         private static Dictionary<string, ISpawnSettlerEvaluator> _deciders = new Dictionary<string, ISpawnSettlerEvaluator>();
         private static bool _worldLoaded = false;
@@ -50,7 +49,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterStartup, "Pandaros.Settlers.AfterStartup")]
         public static void AfterStartup()
         {
-            PandaLogger.Log("Active.", ChatColor.lime);
+            PandaLogger.Log(ChatColor.lime, "Active. Version {0}", MOD_VER);
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             CurrentStates = SaveManager.LoadState();
 
@@ -62,11 +61,11 @@ namespace Pandaros.Settlers
         public static void AfterWorldLoad()
         {
             _worldLoaded = true;
-            PandaLogger.Log("World load detected. Starting monitor...", ChatColor.lime);
+            PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
             CheckWorld();
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
 
-            RegisterEvaluator(new Chance.SettelerEvaluation());
+            RegisterEvaluator(new Chance.SettlerEvaluation());
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, "Pandaros.Settlers.OnPlayerConnectedLate")]
@@ -87,11 +86,19 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, "Pandaros.Settlers.OnUpdate")]
         public static void OnUpdate()
         {
-            bool update = 
-            CheckIfColonistsWhereBought() ||
-            EvaluateSettelers() ||
-            EvaluateLaborers() ||
-            EvaluateBeds();
+            bool update = false;
+
+            if (CheckIfColonistsWhereBought())
+                update = true;
+
+            if (EvaluateSettlers())
+                update = true;
+
+            if (EvaluateLaborers())
+                update = true; 
+
+            if (EvaluateBeds())
+                update = true;
 
             if (update)
                 Players.PlayerDatabase.ForeachValue(p => Update(Colony.Get(p)));
@@ -192,7 +199,7 @@ namespace Pandaros.Settlers
             return null;
         }
 
-        public static bool EvaluateSettelers()
+        public static bool EvaluateSettlers()
         {
             bool update = false;
 
@@ -207,7 +214,7 @@ namespace Pandaros.Settlers
 
                         if (colony.FollowerCount >= MAX_BUYABLE)
                         {
-                            double chance = 0.2 + state.Difficulty.AdditionalChance;
+                            float chance = p.GetTemporaryValue<float>(SettlerChance.TEMP_VAL_KEY) + state.Difficulty.AdditionalChance;
 
                             lock (_deciders)
                                 foreach (var d in _deciders)
@@ -227,6 +234,7 @@ namespace Pandaros.Settlers
                                 for (int i = 0; i < addCount; i++)
                                 {
                                     NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.Get(p).KeyLocation.Vector, colony);
+                                   
                                     colony.RegisterNPC(newGuy);
                                 }
 
@@ -238,7 +246,7 @@ namespace Pandaros.Settlers
                 }
                 });
 
-                _nextGenTime = TimeCycle.TotalTime + _r.Next(4, 18);
+                _nextGenTime = TimeCycle.TotalTime + _r.Next(4, 14);
                 SaveManager.SaveState(CurrentStates);
             }
 
@@ -249,15 +257,16 @@ namespace Pandaros.Settlers
         {
             if (colony.Owner.IsConnected)
             {
-                if (colony.FollowerCount > MAX_BUYABLE)
-                {
-                    var ps = GetPlayerState(colony.Owner, colony);
-                    var food = _baseFoodPerHour + ((colony.FollowerCount / _r.Next(190, 240)) * _baseFoodPerHour);
+                var ps = GetPlayerState(colony.Owner, colony);
+                var multiplier = (colony.FollowerCount / _r.Next(190, 240)) - colony.Owner.GetTemporaryValue<float>(Research.ReducedWaste.TEMP_VAL_KEY);
+                
+                var food = _baseFoodPerHour + (multiplier * _baseFoodPerHour);
+
+                if (colony.FollowerCount >= MAX_BUYABLE)
                     food = food * ps.Difficulty.FoodMultiplier;
-                    ps.CurrentFoodPerHour = food;
-                    //PandaChat.Send(colony.Owner, "New food per day: " + System.Math.Round(food * colony.FollowerCount * 24, 1), ChatColor.silver);
-                    ps.ColonyInterface.FoodPerHourField = food;
-                }
+
+                ps.CurrentFoodPerHour = food;
+                ps.ColonyInterface.FoodPerHourField = food;
 
                 Colony.SendColonistCount(colony.Owner);
                 Colony.SendLaborerCount(colony.Owner);
@@ -373,7 +382,7 @@ namespace Pandaros.Settlers
                                 if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalTime)
                                 {
                                     var toRemove = remainingBeds * -1;
-                                    PandaLogger.Log("Could not get colonists refrence.", ChatColor.red);
+                                    PandaLogger.Log(ChatColor.red, "Could not get colonists refrence.");
 
                                     for (int i = 0; i < toRemove; i++)
                                     {

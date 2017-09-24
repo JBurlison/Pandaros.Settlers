@@ -1,0 +1,146 @@
+{
+	"Pandaros": {
+    "Settlers": {
+      "SettlerChance1": {
+        "name": "Settler Chance I",
+        "description": "Increases chance for settlers to find your colony."
+      },
+      "SettlerChance2": {
+        "name": "Settler Chance II",
+        "description": "Increases chance for settlers to find your colony."
+      },
+      "SettlerChance3": {
+        "name": "Settler Chance III",
+        "description": "Increases chance for settlers to find your colony."
+      },
+      "SettlerChance4": {
+        "name": "Settler Chance IV",
+        "description": "Increases chance for settlers to find your colony."
+      },
+      "SettlerChance5": {
+        "name": "Settler Chance V",
+        "description": "Increases chance for settlers to find your colony."
+      },
+      "MaxSettlers1": {
+        "name": "Max Settler I",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers2": {
+        "name": "Max Settler II",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers3": {
+        "name": "Max Settler III",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers4": {
+        "name": "Max Settler IV",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers5": {
+        "name": "Max Settler V",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers6": {
+        "name": "Max Settler VI",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers7": {
+        "name": "Max Settler VII",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers8": {
+        "name": "Max Settler VIII",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers9": {
+        "name": "Max Settler IX",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MaxSettlers10": {
+        "name": "Max Settler X",
+        "description": "Increases maximum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers1": {
+        "name": "Min Settler I",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers2": {
+        "name": "Min Settler II",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers3": {
+        "name": "Min Settler III",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers4": {
+        "name": "Min Settler IV",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers5": {
+        "name": "Min Settler V",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers6": {
+        "name": "Min Settler VI",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers7": {
+        "name": "Min Settler VII",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers8": {
+        "name": "Min Settler VIII",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers9": {
+        "name": "Min Settler IX",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "MinSettlers10": {
+        "name": "Min Settler X",
+        "description": "Increases minimum number of potential settlers received when they find your colony."
+      },
+      "ReducedWaste1": {
+        "name": "Reduced Food Waste I",
+        "description": "Reduces food waste in your colony."
+      },
+      "ReducedWaste2": {
+        "name": "Reduced Food Waste II",
+        "description": "Reduces food waste in your colony."
+      },
+      "ReducedWaste3": {
+        "name": "Reduced Food Waste III",
+        "description": "Reduces food waste in your colony."
+      },
+      "ReducedWaste4": {
+        "name": "Reduced Food Waste IV",
+        "description": "Reduces food waste in your colony."
+      },
+      "ReducedWaste5": {
+        "name": "Reduced Food Waste V",
+        "description": "Reduces food waste in your colony."
+      },
+      "TimeBetween1": {
+        "name": "Reduced Time Between I",
+        "description": "Reduces time between chances for settlers to join your colony."
+      },
+      "TimeBetween2": {
+        "name": "Reduced Time Between II",
+        "description": "Reduces time between chances for settlers to join your colony."
+      },
+      "TimeBetween3": {
+        "name": "Reduced Time Between III",
+        "description": "Reduces time between chances for settlers to join your colony."
+      },
+      "TimeBetween4": {
+        "name": "Reduced Time Between IV",
+        "description": "Reduces time between chances for settlers to join your colony."
+      },
+      "TimeBetween5": {
+        "name": "Reduced Time Between V",
+        "description": "Reduces time between chances for settlers to join your colony."
+      }
+    }
+	}
+}

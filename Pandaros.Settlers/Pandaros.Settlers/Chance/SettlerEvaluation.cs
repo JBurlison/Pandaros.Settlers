@@ -7,38 +7,38 @@ using NPC;
 
 namespace Pandaros.Settlers.Chance
 {
-    public class SettelerEvaluation : ISpawnSettlerEvaluator
+    public class SettlerEvaluation : ISpawnSettlerEvaluator
     {
-        public string Name => "SettelerEvaluation";
+        public string Name => "SettlerEvaluation";
 
-        public double SpawnChance(Players.Player p, Colony c, PlayerState state)
+        public float SpawnChance(Players.Player p, Colony c, PlayerState state)
         {
-            double chance = .5;
+            float chance = .3f;
             var remainingBeds =  BedBlockTracker.GetCount(p) - state.ColonistCount;
 
             if (remainingBeds < 1)
-                chance -= 0.1;
+                chance -= 0.1f;
 
             if (remainingBeds >= state.MaxPerSpawn)
-                chance += 0.1;
+                chance += 0.1f;
 
             var hoursofFood = Stockpile.GetStockPile(p).TotalFood / c.FoodUsePerHour;
 
             if (hoursofFood < 48)
-                chance -= 0.4;
+                chance -= 0.4f;
             else
-                chance += 0.2;
+                chance += 0.2f;
 
-            if (JobTracker.GetCount(p) > state.MaxPerSpawn)
-                chance += .4;
+            if (JobTracker.GetCount(p) > SettlerManager.MIN_PERSPAWN)
+                chance += .4f;
             else
-                chance -= .2;
+                chance -= .2f;
 
             if (state.Difficulty != GameDifficulty.Easy)
                 if (c.InSiegeMode || 
                 c.LastSiegeModeSpawn != 0 &&
                 Pipliz.Time.SecondsSinceStartDouble - c.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
-                chance -= 0.4;
+                chance -= 0.4f;
 
             return chance;
         }

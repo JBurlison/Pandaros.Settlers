@@ -7,122 +7,122 @@ using System.Text;
 
 namespace Pandaros.Settlers.Research
 {
-    public class SettlerChance
+    public class TimeBetween
     {
-        public static readonly string TEMP_VAL_KEY = GameLoader.NAMESPACE + ".SettlerChance";
+        public static readonly string TEMP_VAL_KEY = GameLoader.NAMESPACE + ".TimeBetween";
         
         [AutoLoadedResearchable]
-        public class SettlerChance1 : BaseResearchable
+        public class TimeBetween1 : BaseResearchable
         {
-            public SettlerChance1()
+            public TimeBetween1()
             {
                 key = TEMP_VAL_KEY + "1";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance1.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\TimeBetween1.png";
                 PandaLogger.Log("chance 1:" + icon);
                 iterationCount = 20;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 10);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 20);
-                AddIterationRequirement(ColonyItems.torch, 10);
-                AddIterationRequirement(ColonyItems.stonebricks, 20);
-                AddIterationRequirement(ColonyItems.bread, 5);
+                AddIterationRequirement(ColonyItems.carpetblue, 10);
+                AddIterationRequirement(ColonyItems.bed, 20);
+                AddIterationRequirement(ColonyItems.carpetred, 5);
                 AddIterationRequirement(ColonyItems.goldcoin, 250);
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
             {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.1f);
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 1);
             }
         }
 
         [AutoLoadedResearchable]
-        public class SettlerChance2 : BaseResearchable
+        public class TimeBetween2 : BaseResearchable
         {
-            public SettlerChance2()
+            public TimeBetween2()
             {
                 key = TEMP_VAL_KEY + "2";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance2.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\TimeBetween2.png";
                 iterationCount = 25;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 20);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 40);
-                AddIterationRequirement(ColonyItems.torch, 20);
-                AddIterationRequirement(ColonyItems.stonebricks, 40);
-                AddIterationRequirement(ColonyItems.bread, 5);
+                AddIterationRequirement(ColonyItems.carpetblue, 20);
+                AddIterationRequirement(ColonyItems.bed, 40);
+                AddIterationRequirement(ColonyItems.carpetred, 5);
                 AddIterationRequirement(ColonyItems.goldcoin, 500);
                 AddDependency(TEMP_VAL_KEY + "1");
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
             {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.2f);
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 2);
             }
         }
 
         [AutoLoadedResearchable]
-        public class SettlerChance3 : BaseResearchable
+        public class TimeBetween3 : BaseResearchable
         {
-            public SettlerChance3()
+            public TimeBetween3()
             {
                 key = TEMP_VAL_KEY + "3";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance3.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\TimeBetween3.png";
                 iterationCount = 30;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 40);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 80);
-                AddIterationRequirement(ColonyItems.torch, 40);
-                AddIterationRequirement(ColonyItems.stonebricks, 80);
-                AddIterationRequirement(ColonyItems.bread, 10);
+                AddIterationRequirement(ColonyItems.carpetblue, 40);
+                AddIterationRequirement(ColonyItems.bed, 80);
+                AddIterationRequirement(ColonyItems.carpetred, 10);
                 AddIterationRequirement(ColonyItems.goldcoin, 1000);
                 AddDependency(TEMP_VAL_KEY + "2");
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
             {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.3f);
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 3);
             }
         }
 
         [AutoLoadedResearchable]
-        public class SettlerChance4 : BaseResearchable
+        public class TimeBetween4 : BaseResearchable
         {
-            public SettlerChance4()
+            public TimeBetween4()
             {
                 key = TEMP_VAL_KEY + "4";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance4.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\TimeBetween4.png";
                 iterationCount = 35;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 80);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 160);
-                AddIterationRequirement(ColonyItems.torch, 80);
-                AddIterationRequirement(ColonyItems.stonebricks, 160);
-                AddIterationRequirement(ColonyItems.bread, 10);
+                AddIterationRequirement(ColonyItems.carpetblue, 80);
+                AddIterationRequirement(ColonyItems.bed, 160);
+                AddIterationRequirement(ColonyItems.carpetred, 10);
                 AddIterationRequirement(ColonyItems.goldcoin, 2000);
                 AddDependency(TEMP_VAL_KEY + "3");
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
             {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.4f);
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 4);
             }
         }
 
         [AutoLoadedResearchable]
-        public class SettlerChance5 : BaseResearchable
+        public class TimeBetween5 : BaseResearchable
         {
-            public SettlerChance5()
+            public TimeBetween5()
             {
                 key = TEMP_VAL_KEY + "5";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance5.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\TimeBetween5.png";
                 iterationCount = 40;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 160);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 340);
-                AddIterationRequirement(ColonyItems.torch, 160);
-                AddIterationRequirement(ColonyItems.stonebricks, 340);
-                AddIterationRequirement(ColonyItems.bread, 15);
+                AddIterationRequirement(ColonyItems.carpetblue, 160);
+                AddIterationRequirement(ColonyItems.straw, 340);
+                AddIterationRequirement(ColonyItems.carpetred, 15);
                 AddIterationRequirement(ColonyItems.goldcoin, 4000);
                 AddDependency(TEMP_VAL_KEY + "4");
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
             {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.5f);
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 5);
             }
         }
     }

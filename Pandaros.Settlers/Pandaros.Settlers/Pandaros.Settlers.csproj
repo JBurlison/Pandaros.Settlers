@@ -55,17 +55,26 @@
     <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Chance\ISpawnSettlerChance.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="GameLoader.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
+    <Compile Include="Research\ColonyBuiltIn.cs" />
+    <Compile Include="Research\MinSettlers.cs" />
+    <Compile Include="Research\MaxSettlers.cs" />
+    <Compile Include="Research\TimeBetween.cs" />
+    <Compile Include="Research\ReducedWaste.cs" />
     <Compile Include="Research\SettlerChance.cs" />
     <Compile Include="SaveManager.cs" />
-    <Compile Include="Chance\SettelerEvaluation.cs" />
+    <Compile Include="Chance\SettlerEvaluation.cs" />
     <Compile Include="SettlerReasoning.cs" />
     <Compile Include="SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="localization\en-US\localization.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="modinfo.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -205,6 +214,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\SkilledLaborer5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\TimeBetween1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\TimeBetween2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\TimeBetween3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\TimeBetween4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\TimeBetween5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

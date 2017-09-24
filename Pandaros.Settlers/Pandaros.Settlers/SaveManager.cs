@@ -11,7 +11,7 @@ namespace Pandaros.Settlers
 {
     public static class SaveManager
     {
-        const string CONFIG_PATH = "gamedata/mods/Pandaros/Settlers/State.xml";
+        static string CONFIG_PATH = Path.Combine(GameLoader.MOD_FOLDER, "State.xml");
         public static Type CollectionType = typeof(SerializableDictionary<string, ColonyState>);
 
         public static void SaveState(SerializableDictionary<string, ColonyState> states)

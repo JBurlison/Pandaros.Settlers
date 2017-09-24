@@ -7,25 +7,48 @@ using System.Text;
 
 namespace Pandaros.Settlers.Research
 {
-    public class SettlerChance
+    public class ReducedWaste
     {
-        public static readonly string TEMP_VAL_KEY = GameLoader.NAMESPACE + ".SettlerChance";
+        public static readonly string TEMP_VAL_KEY = GameLoader.NAMESPACE + ".ReducedWaste";
         
         [AutoLoadedResearchable]
-        public class SettlerChance1 : BaseResearchable
+        public class ReducedWaste1 : BaseResearchable
         {
-            public SettlerChance1()
+            public ReducedWaste1()
             {
                 key = TEMP_VAL_KEY + "1";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance1.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\ReducedWaste1.png";
                 PandaLogger.Log("chance 1:" + icon);
                 iterationCount = 20;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 10);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 20);
-                AddIterationRequirement(ColonyItems.torch, 10);
-                AddIterationRequirement(ColonyItems.stonebricks, 20);
+                AddIterationRequirement(ColonyItems.berry, 10);
+                AddIterationRequirement(ColonyItems.linseedoil, 20);
                 AddIterationRequirement(ColonyItems.bread, 5);
                 AddIterationRequirement(ColonyItems.goldcoin, 250);
+            }
+
+            public override void OnResearchComplete(ScienceManagerPlayer manager)
+            {
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.05f);
+            }
+        }
+
+        [AutoLoadedResearchable]
+        public class ReducedWaste2 : BaseResearchable
+        {
+            public ReducedWaste2()
+            {
+                key = TEMP_VAL_KEY + "2";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\ReducedWaste2.png";
+                iterationCount = 25;
+                AddIterationRequirement(ColonyItems.sciencebagbasic, 20);
+                AddIterationRequirement(ColonyItems.sciencebaglife, 40);
+                AddIterationRequirement(ColonyItems.berry, 20);
+                AddIterationRequirement(ColonyItems.linseedoil, 40);
+                AddIterationRequirement(ColonyItems.bread, 5);
+                AddIterationRequirement(ColonyItems.goldcoin, 500);
+                AddDependency(TEMP_VAL_KEY + "1");
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
@@ -35,20 +58,43 @@ namespace Pandaros.Settlers.Research
         }
 
         [AutoLoadedResearchable]
-        public class SettlerChance2 : BaseResearchable
+        public class ReducedWaste3 : BaseResearchable
         {
-            public SettlerChance2()
+            public ReducedWaste3()
             {
-                key = TEMP_VAL_KEY + "2";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance2.png";
-                iterationCount = 25;
-                AddIterationRequirement(ColonyItems.sciencebagbasic, 20);
-                AddIterationRequirement(ColonyItems.sciencebaglife, 40);
-                AddIterationRequirement(ColonyItems.torch, 20);
-                AddIterationRequirement(ColonyItems.stonebricks, 40);
-                AddIterationRequirement(ColonyItems.bread, 5);
-                AddIterationRequirement(ColonyItems.goldcoin, 500);
-                AddDependency(TEMP_VAL_KEY + "1");
+                key = TEMP_VAL_KEY + "3";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\ReducedWaste3.png";
+                iterationCount = 30;
+                AddIterationRequirement(ColonyItems.sciencebagbasic, 40);
+                AddIterationRequirement(ColonyItems.sciencebaglife, 80);
+                AddIterationRequirement(ColonyItems.berry, 40);
+                AddIterationRequirement(ColonyItems.linseedoil, 80);
+                AddIterationRequirement(ColonyItems.bread, 10);
+                AddIterationRequirement(ColonyItems.goldcoin, 1000);
+                AddDependency(TEMP_VAL_KEY + "2");
+            }
+
+            public override void OnResearchComplete(ScienceManagerPlayer manager)
+            {
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.15f);
+            }
+        }
+
+        [AutoLoadedResearchable]
+        public class ReducedWaste4 : BaseResearchable
+        {
+            public ReducedWaste4()
+            {
+                key = TEMP_VAL_KEY + "4";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\ReducedWaste4.png";
+                iterationCount = 35;
+                AddIterationRequirement(ColonyItems.sciencebagbasic, 80);
+                AddIterationRequirement(ColonyItems.sciencebaglife, 160);
+                AddIterationRequirement(ColonyItems.berry, 80);
+                AddIterationRequirement(ColonyItems.linseedoil, 160);
+                AddIterationRequirement(ColonyItems.bread, 10);
+                AddIterationRequirement(ColonyItems.goldcoin, 2000);
+                AddDependency(TEMP_VAL_KEY + "3");
             }
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
@@ -58,63 +104,17 @@ namespace Pandaros.Settlers.Research
         }
 
         [AutoLoadedResearchable]
-        public class SettlerChance3 : BaseResearchable
+        public class ReducedWaste5 : BaseResearchable
         {
-            public SettlerChance3()
-            {
-                key = TEMP_VAL_KEY + "3";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance3.png";
-                iterationCount = 30;
-                AddIterationRequirement(ColonyItems.sciencebagbasic, 40);
-                AddIterationRequirement(ColonyItems.sciencebaglife, 80);
-                AddIterationRequirement(ColonyItems.torch, 40);
-                AddIterationRequirement(ColonyItems.stonebricks, 80);
-                AddIterationRequirement(ColonyItems.bread, 10);
-                AddIterationRequirement(ColonyItems.goldcoin, 1000);
-                AddDependency(TEMP_VAL_KEY + "2");
-            }
-
-            public override void OnResearchComplete(ScienceManagerPlayer manager)
-            {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.3f);
-            }
-        }
-
-        [AutoLoadedResearchable]
-        public class SettlerChance4 : BaseResearchable
-        {
-            public SettlerChance4()
-            {
-                key = TEMP_VAL_KEY + "4";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance4.png";
-                iterationCount = 35;
-                AddIterationRequirement(ColonyItems.sciencebagbasic, 80);
-                AddIterationRequirement(ColonyItems.sciencebaglife, 160);
-                AddIterationRequirement(ColonyItems.torch, 80);
-                AddIterationRequirement(ColonyItems.stonebricks, 160);
-                AddIterationRequirement(ColonyItems.bread, 10);
-                AddIterationRequirement(ColonyItems.goldcoin, 2000);
-                AddDependency(TEMP_VAL_KEY + "3");
-            }
-
-            public override void OnResearchComplete(ScienceManagerPlayer manager)
-            {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.4f);
-            }
-        }
-
-        [AutoLoadedResearchable]
-        public class SettlerChance5 : BaseResearchable
-        {
-            public SettlerChance5()
+            public ReducedWaste5()
             {
                 key = TEMP_VAL_KEY + "5";
-                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\SettlerChance5.png";
+                icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\ReducedWaste5.png";
                 iterationCount = 40;
                 AddIterationRequirement(ColonyItems.sciencebagbasic, 160);
                 AddIterationRequirement(ColonyItems.sciencebaglife, 340);
-                AddIterationRequirement(ColonyItems.torch, 160);
-                AddIterationRequirement(ColonyItems.stonebricks, 340);
+                AddIterationRequirement(ColonyItems.berry, 160);
+                AddIterationRequirement(ColonyItems.linseedoil, 340);
                 AddIterationRequirement(ColonyItems.bread, 15);
                 AddIterationRequirement(ColonyItems.goldcoin, 4000);
                 AddDependency(TEMP_VAL_KEY + "4");
@@ -122,7 +122,7 @@ namespace Pandaros.Settlers.Research
 
             public override void OnResearchComplete(ScienceManagerPlayer manager)
             {
-                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.5f);
+                manager.Player.SetTemporaryValue(TEMP_VAL_KEY, 0.25f);
             }
         }
     }

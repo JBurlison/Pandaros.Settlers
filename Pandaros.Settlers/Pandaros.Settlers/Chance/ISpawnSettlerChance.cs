@@ -10,6 +10,6 @@ namespace Pandaros.Settlers.Chance
     {
         string Name { get; }
 
-        double SpawnChance(Players.Player p, Colony c, PlayerState state);
+        float SpawnChance(Players.Player p, Colony c, PlayerState state);
     }
 }

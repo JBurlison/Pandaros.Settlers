@@ -7,7 +7,7 @@ namespace Pandaros.Settlers
 {
     internal class PandaLogger
     {
-        internal static void Log(string message, ChatColor color, params object[] args)
+        internal static void Log(ChatColor color, string message, params object[] args)
         {
             ServerLog.LogAsyncMessage(new Pipliz.LogMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args)), color), UnityEngine.LogType.Log));
         }

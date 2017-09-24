@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Pandaros.Settlers")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Colony Survival mod")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Pandaros.Settlers")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017 Jim Burlison")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

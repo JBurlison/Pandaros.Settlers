@@ -69,14 +69,14 @@ namespace Pandaros.Settlers.Entities
             {
                 var max = SettlerManager.MIN_PERSPAWN;
 
-                if (ColonistCount > SettlerManager.MAX_BUYABLE)
+                if (ColonistCount >= SettlerManager.MAX_BUYABLE)
                 {
                     var maxAdd = (int)Math.Ceiling(ColonistCount / (decimal)10);
 
                     if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
                         maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
 
-                    max += Rand.Next(0, maxAdd);
+                    max += Rand.Next(0 + ColonyInterface.Colony.Owner.GetTemporaryValue<int>(Research.MinSettlers.TEMP_VAL_KEY), maxAdd + ColonyInterface.Colony.Owner.GetTemporaryValue<int>(Research.MaxSettlers.TEMP_VAL_KEY));
                 }
 
                 return max;
