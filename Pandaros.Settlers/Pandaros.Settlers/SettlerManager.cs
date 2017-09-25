@@ -29,7 +29,6 @@ namespace Pandaros.Settlers
         private static bool _worldLoaded = false;
         private static System.Random _r = new System.Random();
         private static DateTime _nextfoodSendTime = DateTime.MinValue;
-        private static double _nextGenTime = TimeCycle.TotalTime + _r.Next(6, 18);
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
@@ -102,8 +101,8 @@ namespace Pandaros.Settlers
 
             if (update)
                 Players.PlayerDatabase.ForeachValue(p => Update(Colony.Get(p)));
-            else
-                SendFoodUsage();
+
+            SendFoodUsage();
         }
 
         private static bool CheckIfColonistsWhereBought()
@@ -203,25 +202,29 @@ namespace Pandaros.Settlers
         {
             bool update = false;
 
-            if (TimeCycle.TotalTime > _nextGenTime)
-            {
-                Players.PlayerDatabase.ForeachValue(p =>
-                {
-                    if (p.IsConnected)
-                    { 
-                        Colony colony = Colony.Get(p);
-                        PlayerState state = GetPlayerState(p, colony);
 
+            Players.PlayerDatabase.ForeachValue(p =>
+            {
+                if (p.IsConnected)
+                {
+                    Colony colony = Colony.Get(p);
+                    PlayerState state = GetPlayerState(p, colony);
+
+                    if (state.NextGenTime == 0)
+                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(TimeBetween.TEMP_VAL_KEY, 0));
+
+                    if (TimeCycle.TotalTime > state.NextGenTime)
+                    {
                         if (colony.FollowerCount >= MAX_BUYABLE)
                         {
-                            float chance = p.GetTemporaryValue<float>(SettlerChance.TEMP_VAL_KEY) + state.Difficulty.AdditionalChance;
+                            float chance = p.GetTemporaryValueOrDefault<float>(SettlerChance.TEMP_VAL_KEY, 0f) + state.Difficulty.AdditionalChance;
 
                             lock (_deciders)
                                 foreach (var d in _deciders)
                                     chance += d.Value.SpawnChance(p, colony, state);
 
                             chance = chance / _deciders.Count;
-                            
+
                             var rand = state.Rand.Next(1, 100);
 
                             if (chance > 0 && chance * 100 > rand)
@@ -234,21 +237,24 @@ namespace Pandaros.Settlers
                                 for (int i = 0; i < addCount; i++)
                                 {
                                     NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.Get(p).KeyLocation.Vector, colony);
-                                   
+
                                     colony.RegisterNPC(newGuy);
                                 }
 
                                 state.ColonistCount += (int)addCount;
                                 update = true;
+                                state.FoodDivider = 0;
                             }
 
                         }
-                }
-                });
 
-                _nextGenTime = TimeCycle.TotalTime + _r.Next(4, 14);
+                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(TimeBetween.TEMP_VAL_KEY, 0));
+                    }
+                }
+            });
+
+            if (update)
                 SaveManager.SaveState(CurrentStates);
-            }
 
             return update;
         }
@@ -257,20 +263,8 @@ namespace Pandaros.Settlers
         {
             if (colony.Owner.IsConnected)
             {
-                var ps = GetPlayerState(colony.Owner, colony);
-                var multiplier = (colony.FollowerCount / _r.Next(190, 240)) - colony.Owner.GetTemporaryValue<float>(Research.ReducedWaste.TEMP_VAL_KEY);
-                
-                var food = _baseFoodPerHour + (multiplier * _baseFoodPerHour);
-
-                if (colony.FollowerCount >= MAX_BUYABLE)
-                    food = food * ps.Difficulty.FoodMultiplier;
-
-                ps.CurrentFoodPerHour = food;
-                ps.ColonyInterface.FoodPerHourField = food;
-
                 Colony.SendColonistCount(colony.Owner);
                 Colony.SendLaborerCount(colony.Owner);
-                SendFoodUsage();
             }
         }
 
@@ -283,12 +277,25 @@ namespace Pandaros.Settlers
                     Colony colony = Colony.Get(player);
                     var ps = GetPlayerState(colony.Owner, colony);
 
+                    if (ps.FoodDivider == 0)
+                        ps.FoodDivider = _r.Next(190, 240);
+
+                    var multiplier = (colony.FollowerCount / ps.FoodDivider) - colony.Owner.GetTemporaryValueOrDefault<float>(Research.ReducedWaste.TEMP_VAL_KEY, 0f);
+
+                    var food = _baseFoodPerHour + (multiplier * _baseFoodPerHour);
+
+                    if (colony.FollowerCount >= MAX_BUYABLE)
+                        food = food * ps.Difficulty.FoodMultiplier;
+
+                    ps.CurrentFoodPerHour = food;
+                    ps.ColonyInterface.FoodPerHourField = food;
+
                     using (ByteBuilder byteBuilder = ByteBuilder.Get())
                     {
                         ServerManager.Variables serverVariables = ServerManager.ServerVariables;
-                        var food = System.Math.Round(ps.CurrentFoodPerHour * colony.FollowerCount * 24f, 1);
+                        var foodperDay = System.Math.Round(food * colony.FollowerCount * 24f, 1);
                         byteBuilder.Write((ushort)General.Networking.ClientMessageType.DataFoodUsage);
-                        byteBuilder.Write((float)food);
+                        byteBuilder.Write((float)foodperDay);
                         byteBuilder.Write((!colony.InSiegeMode) ? 1f : serverVariables.NPCfoodUseMultiplierSiegeMode);
                         NetworkWrapper.Send(byteBuilder.ToArray(), player, NetworkMessageReliability.ReliableWithBuffering);
                     }
