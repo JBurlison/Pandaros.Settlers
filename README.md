@@ -22,6 +22,8 @@ The game defaults to meduim. Difficulty effects food consumption/waste and requi
 * /difficulty hard
 * /difficulty insane
 
+To see your current difficulty level type /difficulty
+
 ## To install:
 Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releases) and grab the latest version.
 
