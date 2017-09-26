@@ -16,10 +16,13 @@ Food use fluxuates depending on how hungry your colonists are!
 
 The game defaults to meduim. Difficulty effects food consumption/waste and requirements for settlers, forcing you to meet the goals of getting settlers. (see Tips)
 
+* /difficulty normal (Normal food use)
 * /difficulty easy
 * /difficulty medium
 * /difficulty hard
+* /difficulty insane
 
+To see your current difficulty level type /difficulty
 
 ## To install:
 Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releases) and grab the latest version.
