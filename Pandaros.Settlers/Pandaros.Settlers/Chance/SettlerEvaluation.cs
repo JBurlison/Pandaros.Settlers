@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Chance
             else
                 chance += 0.2f;
 
-            if (JobTracker.GetCount(p) > SettlerManager.MIN_PERSPAWN)
+            if (JobTracker.GetCount(p) > state.MaxPerSpawn)
                 chance += .4f;
             else
                 chance -= .2f;

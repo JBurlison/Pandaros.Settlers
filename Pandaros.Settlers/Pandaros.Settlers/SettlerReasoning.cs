@@ -11,23 +11,23 @@ namespace Pandaros.Settlers
 
         public static string GetSettleReason()
         {
-            return _settleReasons[rnd.Next(0, _settleReasons.Count - 1)];
+            return _settleReasons[rnd.Next(0, _settleReasons.Count)];
         }
 
         public static string GetNoJobReason()
         {
-            return _noJob[rnd.Next(0, _noJob.Count - 1)];
+            return _noJob[rnd.Next(0, _noJob.Count)];
         }
 
         public static string GetNoBed()
         {
-            return _noBed[rnd.Next(0, _noBed.Count - 1)];
+            return _noBed[rnd.Next(0, _noBed.Count)];
         }
 
 
         public static string GetNeedBed()
         {
-            return _needBed[rnd.Next(0, _needBed.Count - 1)];
+            return _needBed[rnd.Next(0, _needBed.Count)];
         }
 
 

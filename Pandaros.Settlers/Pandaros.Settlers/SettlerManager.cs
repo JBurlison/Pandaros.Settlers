@@ -272,20 +272,28 @@ namespace Pandaros.Settlers
         {
             Players.PlayerDatabase.ForeachValue(player =>
             {
-                if (player.IsConnected)
+                if (player.ID.type != NetworkID.IDType.Server)
                 {
                     Colony colony = Colony.Get(player);
                     var ps = GetPlayerState(colony.Owner, colony);
 
-                    if (ps.FoodDivider == 0)
-                        ps.FoodDivider = _r.Next(190, 240);
+                    var food = _baseFoodPerHour;
 
-                    var multiplier = (colony.FollowerCount / ps.FoodDivider) - colony.Owner.GetTemporaryValueOrDefault<float>(Research.ReducedWaste.TEMP_VAL_KEY, 0f);
+                    if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > 0)
+                    {
+                        if (ps.FoodDivider == 0)
+                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 3.50f), colony.FollowerCount * 4);
 
-                    var food = _baseFoodPerHour + (multiplier * _baseFoodPerHour);
+                        var multiplier = (ps.FoodDivider / colony.FollowerCount) - colony.Owner.GetTemporaryValueOrDefault<float>(Research.ReducedWaste.TEMP_VAL_KEY, 0f);
 
-                    if (colony.FollowerCount >= MAX_BUYABLE)
-                        food = food * ps.Difficulty.FoodMultiplier;
+                        food += (_baseFoodPerHour * multiplier);
+
+                        if (colony.FollowerCount >= MAX_BUYABLE)
+                            food = food * ps.Difficulty.FoodMultiplier;
+                    }
+
+                    if (colony.InSiegeMode)
+                        food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
 
                     ps.CurrentFoodPerHour = food;
                     ps.ColonyInterface.FoodPerHourField = food;

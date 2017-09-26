@@ -13,6 +13,7 @@ namespace Pandaros.Settlers
     {
         public static Dictionary<string, GameDifficulty> GameDifficulties { get; private set; }
 
+        public static GameDifficulty Normal { get; private set; }
         public static GameDifficulty Easy { get; private set; }
         public static GameDifficulty Medium { get; private set; }
         public static GameDifficulty Hard { get; private set; }
@@ -20,9 +21,11 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Easy = new GameDifficulty("Easy", 0.75f, 0.5f);
+            Normal = new GameDifficulty("Normal", 0f, 0f);
+            Easy = new GameDifficulty("Easy", 0.50f, 0.4f);
             Medium = new GameDifficulty("Medium", 1f, 0f);
             Hard = new GameDifficulty("Hard", 1.25f, -0.2f);
+            new GameDifficulty("Insane", 1.75f, -0.4f);
         }
 
         [XmlElement]
@@ -63,6 +66,14 @@ namespace Pandaros.Settlers
                 return true;
             
             string[] array = CommandManager.SplitCommand(chat);
+            Colony colony = Colony.Get(player);
+            PlayerState state = SettlerManager.GetPlayerState(player, colony);
+
+            if (array.Length == 1)
+            {
+                PandaChat.Send(player, "Settelers! Mod difficulty is set to {0}.", ChatColor.green, state.Difficulty.Name);
+                return true;
+            }
 
             if (array.Length < 2)
             {
@@ -76,13 +87,11 @@ namespace Pandaros.Settlers
                 return true;
             }
 
-            Colony colony = Colony.Get(player);
-            PlayerState state = SettlerManager.GetPlayerState(player, colony);
-
             state.Difficulty = GameDifficulty.GameDifficulties[array[1].Trim()];
 
-            PandaChat.Send(player, "Settelers! Mod difficulty to {0}.", ChatColor.green, state.Difficulty.Name);
+            PandaChat.Send(player, "Settelers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
             SettlerManager.Update(Colony.Get(player));
+            SaveManager.SaveState(SettlerManager.CurrentStates);
 
             return true;
         }
