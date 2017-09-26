@@ -4,6 +4,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.Chatting;
+using Server.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
