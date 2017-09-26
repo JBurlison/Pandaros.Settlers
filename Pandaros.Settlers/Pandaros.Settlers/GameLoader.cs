@@ -10,7 +10,7 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
-        public static string ICON_FOLDER_PANDA_REL = @"..\..\mods\Pandaros\settlers\icons";
+        public static string ICON_FOLDER_PANDA_REL = @"gamedata\mods\Pandaros\settlers\icons";
         public static string LOCALIZATION_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\localization";
         public static string MOD_FOLDER = @"gamedata\mods\Pandaros";
 
