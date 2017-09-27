@@ -15,17 +15,10 @@ namespace Pandaros.Settlers.Entities
         public PlayerColonyInterface(Colony c)
         {
             Colony = c;
-            _foodPerHourFieldRef = typeof(Colony).GetField("foodUsePerHour", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             _followersRef = typeof(Colony).GetField("followers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         }
 
         public Colony Colony { get; private set; }
-
-        public float FoodPerHourField
-        {
-            get { return (float)_foodPerHourFieldRef.GetValue(Colony); }
-            set { _foodPerHourFieldRef.SetValue(Colony, value); }
-        }
 
         public List<NPCBase> Followers
         {

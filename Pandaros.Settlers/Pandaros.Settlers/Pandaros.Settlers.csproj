@@ -59,11 +59,7 @@
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
-    <Compile Include="Research\MinSettlers.cs" />
-    <Compile Include="Research\MaxSettlers.cs" />
-    <Compile Include="Research\TimeBetween.cs" />
-    <Compile Include="Research\ReducedWaste.cs" />
-    <Compile Include="Research\SettlerChance.cs" />
+    <Compile Include="Research\PandaResearch.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Chance\SettlerEvaluation.cs" />
     <Compile Include="SettlerReasoning.cs" />
@@ -72,7 +68,7 @@
     <Compile Include="SerializableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="localization\en-US\localization.json">
+    <None Include="localization\en-US\translation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="modinfo.json">

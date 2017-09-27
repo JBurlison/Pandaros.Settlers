@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pandaros.Settlers.Research;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -54,9 +55,6 @@ namespace Pandaros.Settlers.Entities
         public int FoodDivider { get; set; }
 
         [XmlIgnore]
-        public float CurrentFoodPerHour { get; set; }
-
-        [XmlIgnore]
         public double NextGenTime { get; set; }
 
         [XmlIgnore]
@@ -77,12 +75,13 @@ namespace Pandaros.Settlers.Entities
 
                 if (ColonistCount >= SettlerManager.MAX_BUYABLE)
                 {
-                    var maxAdd = (int)Math.Ceiling(ColonistCount / (decimal)10);
+                    var maxAdd = (int)Math.Ceiling(ColonistCount * 0.05f);
 
                     if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
                         maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
 
-                    max += Rand.Next(0 + ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault<int>(Research.MinSettlers.TEMP_VAL_KEY, 0), maxAdd + ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault<int>(Research.MaxSettlers.TEMP_VAL_KEY, 0));
+                    max += Rand.Next(ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault<int>(PandaResearch.GetTempValueKey(PandaResearch.MinSettlers), 0), 
+                                     maxAdd + ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault<int>(PandaResearch.GetTempValueKey(PandaResearch.MaxSettlers), 0));
                 }
 
                 return max;

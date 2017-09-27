@@ -18,10 +18,11 @@ namespace Pandaros.Settlers
     {
         public const int MAX_BUYABLE = 10;
         public const int MIN_PERSPAWN = 5;
-        public const int ABSOLUTE_MAX_PERSPAWN = 40;
-        public const double LOABOROR_LEAVE_HOURS = 14;
+        public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
-        public static readonly Version MOD_VER = new Version(0, 4, 0, 0);
+        public static readonly Version MOD_VER = new Version(0, 5, 0, 0);
+        public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
+        private static Thread _foodThread = new Thread(() => UpdateFoodUse());
 
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
         public static GameDifficulty Difficulty { get; set; }
@@ -33,7 +34,8 @@ namespace Pandaros.Settlers
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
-        
+        public static bool RUNNING = false;
+
         public static ColonyState CurrentColonyState
         {
             get
@@ -46,18 +48,35 @@ namespace Pandaros.Settlers
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterStartup, "Pandaros.Settlers.AfterStartup")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".AfterStartup")]
         public static void AfterStartup()
         {
             PandaLogger.Log(ChatColor.lime, "Active. Version {0}", MOD_VER);
+            RUNNING = true;
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
+            
             CurrentStates = SaveManager.LoadState();
 
             if (CurrentStates == null)
                 CurrentStates = new SerializableDictionary<string, ColonyState>();
+
+            _foodThread.IsBackground = true;
+            _foodThread.Start();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, "Pandaros.Settlers.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AfterItemTypesDefined")]
+        public static void AfterItemTypesDefined()
+        {
+            PandaResearch.Register();
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + "OnQuitLate")]
+        public static void OnQuitLate()
+        {
+            RUNNING = false;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             _worldLoaded = true;
@@ -68,7 +87,7 @@ namespace Pandaros.Settlers
             RegisterEvaluator(new Chance.SettlerEvaluation());
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, "Pandaros.Settlers.OnPlayerConnectedLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
             if (p.IsConnected)
@@ -76,14 +95,13 @@ namespace Pandaros.Settlers
                 Colony colony = Colony.Get(p);
                 PlayerState state = GetPlayerState(p, colony);
                 PandaChat.Send(p, string.Format("You are not allowed to recruit over {0} colonists. If you build it... they will come.", MAX_BUYABLE), ChatColor.grey);
-                PandaChat.Send(p, string.Format("Game difficulty set to {0}", state.Difficulty), ChatColor.grey);
+                PandaChat.Send(p, string.Format("Game difficulty set to {0}", state.Difficulty), ChatColor.maroon);
                 GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
                 Update(colony);
-                SendFoodUsage();
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, "Pandaros.Settlers.OnUpdate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".OnUpdate")]
         public static void OnUpdate()
         {
             bool update = false;
@@ -102,8 +120,6 @@ namespace Pandaros.Settlers
 
             if (update)
                 Players.PlayerDatabase.ForeachValue(p => Update(Colony.Get(p)));
-
-            SendFoodUsage();
         }
 
         private static bool CheckIfColonistsWhereBought()
@@ -212,13 +228,13 @@ namespace Pandaros.Settlers
                     PlayerState state = GetPlayerState(p, colony);
 
                     if (state.NextGenTime == 0)
-                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(TimeBetween.TEMP_VAL_KEY, 0));
+                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(PandaResearch.GetTempValueKey(PandaResearch.TimeBetween), 0));
 
                     if (TimeCycle.TotalTime > state.NextGenTime)
                     {
                         if (colony.FollowerCount >= MAX_BUYABLE)
                         {
-                            float chance = p.GetTemporaryValueOrDefault<float>(SettlerChance.TEMP_VAL_KEY, 0f) + state.Difficulty.AdditionalChance;
+                            float chance = p.GetTemporaryValueOrDefault<float>(PandaResearch.GetTempValueKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
 
                             lock (_deciders)
                                 foreach (var d in _deciders)
@@ -249,7 +265,7 @@ namespace Pandaros.Settlers
 
                         }
 
-                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(TimeBetween.TEMP_VAL_KEY, 0));
+                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(PandaResearch.GetTempValueKey(PandaResearch.TimeBetween), 0));
                     }
                 }
             });
@@ -269,47 +285,41 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static void SendFoodUsage()
+        public static void UpdateFoodUse()
         {
-            Players.PlayerDatabase.ForeachValue(player =>
+            while (RUNNING)
             {
-                if (player.ID.type != NetworkID.IDType.Server)
+                Players.PlayerDatabase.ForeachValue(player =>
                 {
-                    Colony colony = Colony.Get(player);
-                    var ps = GetPlayerState(colony.Owner, colony);
-
-                    var food = _baseFoodPerHour;
-
-                    if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > 0)
+                    if (player.ID.type != NetworkID.IDType.Server)
                     {
-                        if (ps.FoodDivider == 0)
-                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 3.50f), colony.FollowerCount * 4);
+                        Colony colony = Colony.Get(player);
+                        var ps = GetPlayerState(colony.Owner, colony);
 
-                        var multiplier = (ps.FoodDivider / colony.FollowerCount) - colony.Owner.GetTemporaryValueOrDefault<float>(Research.ReducedWaste.TEMP_VAL_KEY, 0f);
+                        var food = _baseFoodPerHour;
 
-                        food += (_baseFoodPerHour * multiplier);
+                        if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > 0)
+                        {
+                            if (ps.FoodDivider == 0)
+                                ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 3.50f), colony.FollowerCount * 4);
 
-                        if (colony.FollowerCount >= MAX_BUYABLE)
-                            food = food * ps.Difficulty.FoodMultiplier;
+                            var multiplier = (ps.FoodDivider / colony.FollowerCount) - colony.Owner.GetTemporaryValueOrDefault<float>(PandaResearch.GetTempValueKey(PandaResearch.ReducedWaste), 0f);
+
+                            food += (_baseFoodPerHour * multiplier);
+
+                            if (colony.FollowerCount >= MAX_BUYABLE)
+                                food = food * ps.Difficulty.FoodMultiplier;
+                        }
+
+                        if (colony.InSiegeMode)
+                            food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
+
+                        colony.FoodUsePerHour = food;
                     }
+                });
 
-                    if (colony.InSiegeMode)
-                        food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
-
-                    ps.CurrentFoodPerHour = food;
-                    ps.ColonyInterface.FoodPerHourField = food;
-
-                    using (ByteBuilder byteBuilder = ByteBuilder.Get())
-                    {
-                        ServerManager.Variables serverVariables = ServerManager.ServerVariables;
-                        var foodperDay = System.Math.Round(food * colony.FollowerCount * 24f, 1);
-                        byteBuilder.Write((ushort)General.Networking.ClientMessageType.DataFoodUsage);
-                        byteBuilder.Write((float)foodperDay);
-                        byteBuilder.Write((!colony.InSiegeMode) ? 1f : serverVariables.NPCfoodUseMultiplierSiegeMode);
-                        NetworkWrapper.Send(byteBuilder.ToArray(), player, NetworkMessageReliability.ReliableWithBuffering);
-                    }
-                }
-            });
+                System.Threading.Thread.Sleep(1000);
+            }
         }
 
         private static bool EvaluateLaborers()

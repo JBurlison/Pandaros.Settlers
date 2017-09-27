@@ -9,6 +9,8 @@ namespace Pandaros.Settlers.Chance
 {
     public class SettlerEvaluation : ISpawnSettlerEvaluator
     {
+        private static readonly double _minFoodHours = TimeSpan.FromDays(3).TotalHours;
+
         public string Name => "SettlerEvaluation";
 
         public float SpawnChance(Players.Player p, Colony c, PlayerState state)
@@ -20,19 +22,23 @@ namespace Pandaros.Settlers.Chance
                 chance -= 0.1f;
 
             if (remainingBeds >= state.MaxPerSpawn)
-                chance += 0.1f;
+                chance += 0.3f;
+            else if (remainingBeds > SettlerManager.MIN_PERSPAWN)
+                chance += 0.15f;
 
             var hoursofFood = Stockpile.GetStockPile(p).TotalFood / c.FoodUsePerHour;
 
-            if (hoursofFood < 48)
-                chance -= 0.4f;
-            else
+            if (hoursofFood > _minFoodHours)
                 chance += 0.2f;
 
-            if (JobTracker.GetCount(p) > state.MaxPerSpawn)
-                chance += .4f;
+            var jobCount = JobTracker.GetCount(p);
+
+            if (jobCount > state.MaxPerSpawn)
+                chance += 0.4f;
+            else if (jobCount > SettlerManager.MIN_PERSPAWN)
+                chance += 0.1f;
             else
-                chance -= .2f;
+                chance -= 0.2f;
 
             if (state.Difficulty != GameDifficulty.Easy)
                 if (c.InSiegeMode || 

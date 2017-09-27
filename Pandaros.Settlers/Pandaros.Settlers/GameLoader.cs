@@ -12,7 +12,7 @@ namespace Pandaros.Settlers
     {
         public static string ICON_FOLDER_PANDA_REL = @"gamedata\mods\Pandaros\settlers\icons";
         public static string LOCALIZATION_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\localization";
-        public static string MOD_FOLDER = @"gamedata\mods\Pandaros";
+        public static string MOD_FOLDER = @"gamedata\mods\Pandaros\settlers";
 
         public const string NAMESPACE = "Pandaros.Settlers";
 
@@ -22,6 +22,7 @@ namespace Pandaros.Settlers
             MOD_FOLDER = Path.GetDirectoryName(path);
             PandaLogger.Log(string.Format("Found mod in {0}", MOD_FOLDER));
             LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization");
+            ICON_FOLDER_PANDA_REL = Path.Combine(MOD_FOLDER, "icons");
             Localize();
         }
 
@@ -32,9 +33,7 @@ namespace Pandaros.Settlers
             {
                 string[] array = new string[]
                 {
-                    "types.json",
-                    "typeuses.json",
-                    "localization.json"
+                    "translation.json"
                 };
                 for (int i = 0; i < array.Length; i++)
                 {
@@ -86,7 +85,7 @@ namespace Pandaros.Settlers
                     foreach (KeyValuePair<string, JSONNode> modNode in jsonFromMod.LoopObject())
                     {
                         PandaLogger.Log(string.Format("localization '{0}' added to '{1}'. This will apply AFTER next restart!!!", modNode.Key, Path.Combine(locName, locFilename)));
-                        jSONNode[modNode.Key] = modNode.Value;
+                        jSONNode["sentences"][modNode.Key] = modNode.Value;
                     }
 
                     JSON.Serialize(text, jSONNode, 2);
