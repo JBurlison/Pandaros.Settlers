@@ -22,9 +22,28 @@ namespace Pandaros.Settlers
             ServerLog.LogAsyncMessage(new Pipliz.LogMessage(GetFormattedMessage(message), UnityEngine.LogType.Log));
         }
 
-        internal static void LogError(string message, Exception e)
+        internal static void LogError(Exception e, string message)
         {
             ServerLog.LogAsyncExceptionMessage(new Pipliz.LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(message), ChatColor.red), e));
+
+            if (e.InnerException != null)
+                LogError(e.InnerException);
+        }
+
+        internal static void LogError(Exception e, string message, params object[] args)
+        {
+            ServerLog.LogAsyncExceptionMessage(new Pipliz.LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(message), ChatColor.red), e));
+
+            if (e.InnerException != null)
+                LogError(e.InnerException);
+        }
+
+        internal static void LogError(Exception e)
+        {
+            ServerLog.LogAsyncExceptionMessage(new Pipliz.LogExceptionMessage(PandaChat.BuildMessage("Exception", ChatColor.red), e));
+
+            if(e.InnerException != null)
+                LogError(e.InnerException);
         }
 
         private static string GetFormattedMessage(string message)

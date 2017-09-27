@@ -29,7 +29,7 @@ namespace Pandaros.Settlers
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError("SaveState", ex);
+                PandaLogger.LogError(ex, "SaveState");
             }
         }
 
@@ -74,7 +74,7 @@ namespace Pandaros.Settlers
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError("LoadState", ex);
+                PandaLogger.LogError(ex, "LoadState");
             }
 
             return retVal;

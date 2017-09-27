@@ -71,7 +71,7 @@ namespace Pandaros.Settlers
 
             if (array.Length == 1)
             {
-                PandaChat.Send(player, "Settelers! Mod difficulty is set to {0}.", ChatColor.green, state.Difficulty.Name);
+                PandaChat.Send(player, "Settlers! Mod difficulty is set to {0}.", ChatColor.green, state.Difficulty.Name);
                 return true;
             }
 
@@ -89,7 +89,7 @@ namespace Pandaros.Settlers
 
             state.Difficulty = GameDifficulty.GameDifficulties[array[1].Trim()];
 
-            PandaChat.Send(player, "Settelers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
+            PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
             SettlerManager.Update(Colony.Get(player));
             SaveManager.SaveState(SettlerManager.CurrentStates);
 

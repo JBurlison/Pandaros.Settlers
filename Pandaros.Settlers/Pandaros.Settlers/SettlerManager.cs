@@ -435,10 +435,7 @@ namespace Pandaros.Settlers
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError("EvaluateBeds", ex);
-
-                if (ex.InnerException != null)
-                    PandaLogger.LogError("EvaluateBeds inner ex", ex.InnerException);
+                PandaLogger.LogError(ex, "EvaluateBeds");
             }
 
             return update;

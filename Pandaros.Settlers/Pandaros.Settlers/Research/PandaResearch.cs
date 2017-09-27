@@ -1,4 +1,5 @@
-﻿using Pipliz.APIProvider.Science;
+﻿using BlockTypes.Builtin;
+using Pipliz.APIProvider.Science;
 using Server.Science;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Pandaros.Settlers.Research
         private int _level = 1;
         private float _value = 0;
 
-        public PandaResearch(Dictionary<string, int> requiredItems, int level, string name, float baseValue)
+        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue)
         {
             _value = baseValue * _level;
             _level = level;
@@ -36,9 +37,10 @@ namespace Pandaros.Settlers.Research
 
                 if (level > 1)
                     for (int i = 1; i <= level; i++)
-                        val = val * 2;
-
-                val = (int)System.Math.Ceiling(val / (double)level);
+                        if (i % 3 == 0)
+                            val = val * 2;
+                        else
+                            val += kvp.Value * level;
 
                 AddIterationRequirement(kvp.Key, val);
             }
@@ -59,7 +61,7 @@ namespace Pandaros.Settlers.Research
 
         public static void Register()
         {
-            var researchDic = new Dictionary<string, int>();
+            var researchDic = new Dictionary<ushort, int>();
 
             AddMaxSettlers(researchDic);
             AddMinSettlers(researchDic);
@@ -68,70 +70,70 @@ namespace Pandaros.Settlers.Research
             AddTimeBetween(researchDic);
         }
 
-        private static void AddMaxSettlers(Dictionary<string, int> researchDic)
+        private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)
         {
-            researchDic.Add(ColonyItems.sciencebagbasic, 2);
-            researchDic.Add(ColonyItems.sciencebaglife, 4);
-            researchDic.Add(ColonyItems.plasterblock, 5);
-            researchDic.Add(ColonyItems.ironingot, 5);
-            researchDic.Add(ColonyItems.bread, 5);
-            researchDic.Add(ColonyItems.goldcoin, 20);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.PlasterBlock, 5);
+            researchDic.Add(BuiltinBlocks.IronIngot, 5);
+            researchDic.Add(BuiltinBlocks.Bed, 10);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
             for (int i = 1; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MaxSettlers, 1f));
         }
 
-        private static void AddMinSettlers(Dictionary<string, int> researchDic)
+        private static void AddMinSettlers(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(ColonyItems.sciencebagbasic, 2);
-            researchDic.Add(ColonyItems.sciencebaglife, 4);
-            researchDic.Add(ColonyItems.bricks, 5);
-            researchDic.Add(ColonyItems.coatedplanks, 5);
-            researchDic.Add(ColonyItems.bread, 5);
-            researchDic.Add(ColonyItems.goldcoin, 20);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.Bricks, 5);
+            researchDic.Add(BuiltinBlocks.CoatedPlanks, 5);
+            researchDic.Add(BuiltinBlocks.Clothing, 5);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
             for (int i = 1; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MinSettlers, 1f));
         }
 
-        private static void AddReducedWaste(Dictionary<string, int> researchDic)
+        private static void AddReducedWaste(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(ColonyItems.sciencebagbasic, 6);
-            researchDic.Add(ColonyItems.sciencebaglife, 10);
-            researchDic.Add(ColonyItems.berry, 20);
-            researchDic.Add(ColonyItems.linseedoil, 10);
-            researchDic.Add(ColonyItems.bread, 5);
-            researchDic.Add(ColonyItems.goldcoin, 100);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 6);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 10);
+            researchDic.Add(BuiltinBlocks.Berry, 20);
+            researchDic.Add(BuiltinBlocks.LinseedOil, 10);
+            researchDic.Add(BuiltinBlocks.Bread, 5);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 100);
 
             for (int i = 1; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, ReducedWaste, 0.5f));
         }
 
-        private static void AddSettlerChance(Dictionary<string, int> researchDic)
+        private static void AddSettlerChance(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(ColonyItems.sciencebagbasic, 6);
-            researchDic.Add(ColonyItems.sciencebaglife, 10);
-            researchDic.Add(ColonyItems.torch, 5);
-            researchDic.Add(ColonyItems.stonebricks, 10);
-            researchDic.Add(ColonyItems.bread, 5);
-            researchDic.Add(ColonyItems.goldcoin, 100);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 6);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 10);
+            researchDic.Add(BuiltinBlocks.Torch, 5);
+            researchDic.Add(BuiltinBlocks.StoneBricks, 10);
+            researchDic.Add(BuiltinBlocks.Bed, 5);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 100);
 
             for (int i = 1; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SettlerChance, 0.1f));
         }
 
-        private static void AddTimeBetween(Dictionary<string, int> researchDic)
+        private static void AddTimeBetween(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(ColonyItems.sciencebagbasic, 6);
-            researchDic.Add(ColonyItems.sciencebaglife, 10);
-            researchDic.Add(ColonyItems.carpetblue, 5);
-            researchDic.Add(ColonyItems.bed, 10);
-            researchDic.Add(ColonyItems.carpetred, 5);
-            researchDic.Add(ColonyItems.goldcoin, 100);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 6);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 10);
+            researchDic.Add(BuiltinBlocks.CarpetBlue, 5);
+            researchDic.Add(BuiltinBlocks.Bed, 10);
+            researchDic.Add(BuiltinBlocks.CarpetRed, 5);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 100);
 
             for (int i = 1; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, TimeBetween, 1f));
