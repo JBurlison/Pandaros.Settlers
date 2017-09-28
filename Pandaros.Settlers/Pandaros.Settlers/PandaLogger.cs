@@ -32,7 +32,7 @@ namespace Pandaros.Settlers
 
         internal static void LogError(Exception e, string message, params object[] args)
         {
-            ServerLog.LogAsyncExceptionMessage(new Pipliz.LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(message), ChatColor.red), e));
+            ServerLog.LogAsyncExceptionMessage(new Pipliz.LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args)), ChatColor.red), e));
 
             if (e.InnerException != null)
                 LogError(e.InnerException);

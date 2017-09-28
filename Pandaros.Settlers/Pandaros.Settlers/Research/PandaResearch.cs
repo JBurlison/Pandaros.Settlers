@@ -27,7 +27,7 @@ namespace Pandaros.Settlers.Research
             _tmpValueKey = GetTempValueKey(name);
 
             key = _tmpValueKey + level;
-            icon = GameLoader.ICON_FOLDER_PANDA_REL + "\\" + name + level + ".png";
+            icon = GameLoader.ICON_FOLDER_PANDA + "\\" + name + level + ".png";
 
             iterationCount = 20 + (5 * level);
 
