@@ -51,8 +51,12 @@ namespace Pandaros.Settlers
                             if (JSON.Deserialize(text2, out jsonFromMod, false))
                             {
                                 string name = Directory.GetParent(text2).Name;
-                                PandaLogger.Log("Found mod localization file for '{0}' localization", name);
-                                localize(name, text, jsonFromMod);
+
+                                if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(text))
+                                {
+                                    PandaLogger.Log("Found mod localization file for '{0}' localization", name);
+                                    localize(name, text, jsonFromMod);
+                                }
                             }
                         }
                         catch (Exception ex)

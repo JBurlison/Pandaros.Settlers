@@ -247,8 +247,6 @@ namespace Pandaros.Settlers
                             if (chance > 0 && chance * 100 > rand)
                             {
                                 var addCount = System.Math.Floor(state.MaxPerSpawn * chance);
-
-                                PandaLogger.Log("Adding " + addCount + " settlers to " + p.Name);
                                 PandaChat.Send(p, string.Format(SettlerReasoning.GetSettleReason(), addCount), ChatColor.magenta);
 
                                 for (int i = 0; i < addCount; i++)
