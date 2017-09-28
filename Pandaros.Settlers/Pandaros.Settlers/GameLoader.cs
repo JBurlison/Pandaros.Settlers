@@ -88,7 +88,6 @@ namespace Pandaros.Settlers
                             if (jsn != null)
                             {
                                 jsn["sentences"][modNode.Key] = modNode.Value;
-                                JSON.Serialize(MOD_FOLDER + @"\" + modNode.Key + ".json", jsn, 5);
                             }
                             else
                                 PandaLogger.Log("Unable to localize. Localization '{0}' not found and is null.", locName);
