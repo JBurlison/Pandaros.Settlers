@@ -79,6 +79,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
+            GameLoader.Localize();
             _worldLoaded = true;
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
             CheckWorld();

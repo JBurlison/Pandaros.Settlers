@@ -7,7 +7,6 @@ using System.Text;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManager]
     public static class GameLoader
     {
         public static string ICON_FOLDER_PANDA_REL = @"gamedata\mods\Pandaros\settlers\icons";
@@ -23,12 +22,6 @@ namespace Pandaros.Settlers
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
             LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization");
             ICON_FOLDER_PANDA_REL = Path.Combine(MOD_FOLDER, "icons");
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, "Pandaros.Settlers.AfterWorldLoad")]
-        public static void AfterWorldLoad()
-        {
-            Localize();
         }
 
         public static void Localize()
