@@ -80,8 +80,8 @@ namespace Pandaros.Settlers.Entities
                     if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
                         maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
 
-                    max += Rand.Next(ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault<int>(PandaResearch.GetTempValueKey(PandaResearch.MinSettlers), 0), 
-                                     maxAdd + ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault<int>(PandaResearch.GetTempValueKey(PandaResearch.MaxSettlers), 0));
+                    max += Rand.Next((int)ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MinSettlers), 0f), 
+                                     maxAdd + (int)ColonyInterface.Colony.Owner.GetTemporaryValueOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MaxSettlers), 0f));
                 }
 
                 return max;
