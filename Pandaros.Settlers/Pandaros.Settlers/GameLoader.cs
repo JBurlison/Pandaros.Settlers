@@ -16,7 +16,7 @@ namespace Pandaros.Settlers
 
         public const string NAMESPACE = "Pandaros.Settlers";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, "Pandaros.Settlers.OnAssemblyLoaded")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
             MOD_FOLDER = Path.GetDirectoryName(path);
@@ -25,7 +25,7 @@ namespace Pandaros.Settlers
             ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, "Localize")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, NAMESPACE + ".Localize")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.localization.waitforloading")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.localization.convert")]
         public static void Localize()
