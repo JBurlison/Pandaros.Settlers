@@ -165,8 +165,8 @@ namespace Pandaros.Settlers
             }
             else
             {
-                var colonists = GetPlayerState(colony.Owner, colony).ColonyInterface.Followers;
-
+                var colonists = colony.Followers;
+                
                 if (colonists.Count > 0)
                     KillColonist(colonists[_r.Next(0, colonists.Count)]);
             }
@@ -210,7 +210,7 @@ namespace Pandaros.Settlers
                     colony.PlayerStates[playerId].ColonistCount = c.FollowerCount;
 
                 return colony.PlayerStates[playerId];
-            }
+            } 
 
             return null;
         }
