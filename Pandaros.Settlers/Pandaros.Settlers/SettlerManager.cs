@@ -228,13 +228,13 @@ namespace Pandaros.Settlers
                     PlayerState state = GetPlayerState(p, colony);
 
                     if (state.NextGenTime == 0)
-                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(PandaResearch.GetTempValueKey(PandaResearch.TimeBetween), 0));
+                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - state.TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.TimeBetween), 0));
 
                     if (TimeCycle.TotalTime > state.NextGenTime)
                     {
                         if (colony.FollowerCount >= MAX_BUYABLE)
                         {
-                            float chance = p.GetTemporaryValueOrDefault<float>(PandaResearch.GetTempValueKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
+                            float chance = state.TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
 
                             lock (_deciders)
                                 foreach (var d in _deciders)
@@ -263,7 +263,7 @@ namespace Pandaros.Settlers
 
                         }
 
-                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTemporaryValueOrDefault(PandaResearch.GetTempValueKey(PandaResearch.TimeBetween), 0));
+                        state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - state.TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.TimeBetween), 0));
                     }
                 }
             });
@@ -301,7 +301,7 @@ namespace Pandaros.Settlers
                             if (ps.FoodDivider == 0)
                                 ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 3.50f), colony.FollowerCount * 4);
 
-                            var multiplier = (ps.FoodDivider / colony.FollowerCount) - colony.Owner.GetTemporaryValueOrDefault<float>(PandaResearch.GetTempValueKey(PandaResearch.ReducedWaste), 0f);
+                            var multiplier = (ps.FoodDivider / colony.FollowerCount) - ps.TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.ReducedWaste), 0f);
 
                             food += (_baseFoodPerHour * multiplier);
 
