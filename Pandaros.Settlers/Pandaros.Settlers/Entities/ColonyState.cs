@@ -30,6 +30,12 @@ namespace Pandaros.Settlers.Entities
         public int ColonistCount { get; set; }
 
         [XmlElement]
+        public bool CallToArmsEnabled { get; set; }
+
+        [XmlIgnore]
+        public BoxedDictionary TempValues { get; set; }
+
+        [XmlElement]
         public string DifficultyStr
         {
             get
@@ -51,9 +57,6 @@ namespace Pandaros.Settlers.Entities
 
         [XmlIgnore]
         public GameDifficulty Difficulty { get; set; }
-
-        [XmlIgnore]
-        public BoxedDictionary TempValues { get; set; }
 
         [XmlIgnore]
         public int FoodDivider { get; set; }
@@ -84,8 +87,8 @@ namespace Pandaros.Settlers.Entities
                     if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
                         maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
 
-                    max += Rand.Next((int)TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MinSettlers), 0f), 
-                                     maxAdd + (int)TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MaxSettlers), 0f));
+                    max += Rand.Next((int)TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MinSettlers), 0f),
+                               maxAdd + (int)TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MaxSettlers), 0f));
                 }
 
                 return max;

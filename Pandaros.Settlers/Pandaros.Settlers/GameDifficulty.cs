@@ -57,7 +57,7 @@ namespace Pandaros.Settlers
     {
         public bool IsCommand(string chat)
         {
-            return chat.StartsWith("/difficulty");
+            return chat.StartsWith("/difficulty", StringComparison.OrdinalIgnoreCase);
         }
 
         public bool TryDoCommand(Players.Player player, string chat)

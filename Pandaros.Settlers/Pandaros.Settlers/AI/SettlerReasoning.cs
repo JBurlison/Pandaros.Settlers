@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Pandaros.Settlers
+namespace Pandaros.Settlers.AI
 {
     public static class SettlerReasoning
     {

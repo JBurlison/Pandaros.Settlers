@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Research
         private int _level = 1;
         private float _value = 0;
 
-        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue)
+        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null)
         {
             _value = baseValue * _level;
             _level = level;
@@ -47,6 +47,10 @@ namespace Pandaros.Settlers.Research
 
             if (level != 1)
                 AddDependency(_tmpValueKey + (level - 1));
+
+            if (dependancies != null)
+                foreach (var dep in dependancies)
+                    AddDependency(dep);
         }
 
         public override void OnResearchComplete(ScienceManagerPlayer manager)
@@ -78,7 +82,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.IronIngot, 5);
             researchDic.Add(BuiltinBlocks.Bed, 10);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
-
+            
             for (int i = 1; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MaxSettlers, 1f));
         }

@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="Entities\ColonyPrivates.cs" />
     <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Chance\ISpawnSettlerChance.cs" />
@@ -61,7 +62,7 @@
     <Compile Include="Research\PandaResearch.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Chance\SettlerEvaluation.cs" />
-    <Compile Include="SettlerReasoning.cs" />
+    <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializableDictionary.cs" />
@@ -228,4 +229,8 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

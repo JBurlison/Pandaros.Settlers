@@ -1,4 +1,5 @@
 ﻿using NPC;
+using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Chance;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;

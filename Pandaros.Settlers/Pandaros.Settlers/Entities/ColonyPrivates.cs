@@ -10,7 +10,6 @@ namespace Pandaros.Settlers.Entities
     public class PlayerColonyInterface
     {
         FieldInfo _followersRef;
-        FieldInfo _foodPerHourFieldRef;
 
         public PlayerColonyInterface(Colony c)
         {
