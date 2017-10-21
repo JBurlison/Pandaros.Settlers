@@ -29,6 +29,9 @@ namespace Pandaros.Settlers.Entities
         [XmlElement]
         public int ColonistCount { get; set; }
 
+        [XmlElement]
+        public List<string> BannersAwarded { get; set; } = new List<string>();
+
         [XmlIgnore]
         public bool CallToArmsEnabled { get; set; }
 

@@ -11,6 +11,7 @@ namespace Pandaros.Settlers.Research
 {
     public class PandaResearch : BaseResearchable
     {
+        public static readonly string Settlement = "Settlement";
         public static readonly string MaxSettlers = "MaxSettlers";
         public static readonly string MinSettlers = "MinSettlers";
         public static readonly string ReducedWaste = "ReducedWaste";
@@ -21,7 +22,7 @@ namespace Pandaros.Settlers.Research
         private int _level = 1;
         private float _value = 0;
 
-        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null)
+        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null, int baseIterationCount = 20, bool addLevelToName = true)
         {
             _value = baseValue * _level;
             _level = level;
@@ -30,7 +31,10 @@ namespace Pandaros.Settlers.Research
             key = _tmpValueKey + level;
             icon = GameLoader.ICON_FOLDER_PANDA + "\\" + name + level + ".png";
 
-            iterationCount = 20 + (5 * level);
+            if (!addLevelToName)
+                icon = GameLoader.ICON_FOLDER_PANDA + "\\" + name + ".png";
+
+            iterationCount = baseIterationCount + (2 * level);
 
             foreach (var kvp in requiredItems)
             {
@@ -38,10 +42,7 @@ namespace Pandaros.Settlers.Research
 
                 if (level > 1)
                     for (int i = 1; i <= level; i++)
-                        if (i % 3 == 0)
-                            val = val * 2;
-                        else
-                            val += kvp.Value * level;
+                        val += kvp.Value * level;
 
                 AddIterationRequirement(kvp.Key, val);
             }
@@ -58,6 +59,12 @@ namespace Pandaros.Settlers.Research
         {
             var state = SettlerManager.GetPlayerState(manager.Player);
             state.TempValues.Set(_tmpValueKey, _value);
+
+            if (!state.BannersAwarded.Contains(_tmpValueKey))
+            {
+                state.BannersAwarded.Add(_tmpValueKey);
+                Stockpile.GetStockPile(manager.Player).Add(BuiltinBlocks.Banner);
+            }
         }
 
         public static string GetTempValueKey(string researchName)
@@ -74,6 +81,21 @@ namespace Pandaros.Settlers.Research
             AddReducedWaste(researchDic);
             AddSettlerChance(researchDic);
             AddTimeBetween(researchDic);
+            AddBanner(researchDic);
+        }
+
+        private static void AddBanner(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagColony, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 10);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 40);
+
+            for (int i = 1; i <= 20; i++)
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, Settlement, 1f, null, 30, false));
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)

@@ -140,6 +140,86 @@
       "TimeBetween5": {
         "name": "Reduced Time Between V",
         "description": "Reduces time between chances for settlers to join your colony."
+      },
+      "Settlement1": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement2": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement3": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement4": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement5": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement6": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement7": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement8": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement9": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement10": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement11": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement12": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement13": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement14": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement15": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement16": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement17": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement18": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement19": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "Settlement20": {
+        "name": "Settlement - Additional Banner",
+        "description": "When researched, gives you an additional banner to place in your stockpile."
       }
     }
   }

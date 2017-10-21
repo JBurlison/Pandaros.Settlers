@@ -18,10 +18,12 @@ namespace Pandaros.Settlers.AI
     [ModLoader.ModManager]
     public class CalltoArmsJob : NPC.Job
     {
+        const int CALL_RAD = 100;
+
         static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
         static List<GuardBaseJob.GuardSettings> _weapons = new List<GuardBaseJob.GuardSettings>();
-
+       
         static NPCTypeStandardSettings _callToArmsNPCSettings = new NPCTypeStandardSettings()
         {
             type = NPCTypeID.GetNextID(),
@@ -73,12 +75,13 @@ namespace Pandaros.Settlers.AI
                 }
                 else
                 {
-                    _target = MonsterTracker.Find(currentPos, 50);
+                    _target = MonsterTracker.Find(currentPos, CALL_RAD);
 
                     if (_target != null)
                     {
                         PandaLogger.Log("Found New Target");
                         var ranged = _weapon.range - 5;
+                        position = new Vector3Int(_target.Position).Add(ranged, ranged, 0);
                         return new Vector3Int(_target.Position).Add(ranged, ranged, 0);
                     }
                     else
@@ -107,11 +110,11 @@ namespace Pandaros.Settlers.AI
         {
             if (CheckTime())
             {
-                position = new Vector3Int(usedNPC.Position);
+                var currentposition = new Vector3Int(usedNPC.Position);
                 _hadAmmo.Clear();
 
                 if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(usedNPC.Position, _target.Position))
-                    _target = MonsterTracker.Find(position, _weapon.range);
+                    _target = MonsterTracker.Find(currentposition, _weapon.range); 
 
                 if (_target != null && General.Physics.Physics.CanSee(usedNPC.Position, _target.Position))
                 {
@@ -211,6 +214,8 @@ namespace Pandaros.Settlers.AI
 
         public override bool NeedsItems => _weapon == null;
 
+        public override Vector3Int KeyLocation => position;
+
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             if (_weapon == null)
@@ -227,7 +232,9 @@ namespace Pandaros.Settlers.AI
 
         public bool IsCommand(string chat)
         {
-            return chat.StartsWith("/arms", StringComparison.OrdinalIgnoreCase);
+            return chat.StartsWith("/arms", StringComparison.OrdinalIgnoreCase) ||
+                   chat.StartsWith("/cta", StringComparison.OrdinalIgnoreCase) ||
+                   chat.StartsWith("/call", StringComparison.OrdinalIgnoreCase);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
