@@ -1,4 +1,5 @@
 ﻿using BlockTypes.Builtin;
+using Pandaros.Settlers.Entities;
 using Pipliz.APIProvider.Science;
 using Server.Science;
 using System;
@@ -55,7 +56,8 @@ namespace Pandaros.Settlers.Research
 
         public override void OnResearchComplete(ScienceManagerPlayer manager)
         {
-            manager.Player.SetTemporaryValue(_tmpValueKey, _value);
+            var state = SettlerManager.GetPlayerState(manager.Player);
+            state.TempValues.Set(_tmpValueKey, _value);
         }
 
         public static string GetTempValueKey(string researchName)

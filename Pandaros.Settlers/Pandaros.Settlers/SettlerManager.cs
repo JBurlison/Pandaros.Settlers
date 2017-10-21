@@ -55,7 +55,8 @@ namespace Pandaros.Settlers
             PandaLogger.Log(ChatColor.lime, "Active. Version {0}", MOD_VER);
             RUNNING = true;
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-            
+            ChatCommands.CommandManager.RegisterCommand(new CalltoArms());
+
             CurrentStates = SaveManager.LoadState();
 
             if (CurrentStates == null)
@@ -65,13 +66,13 @@ namespace Pandaros.Settlers
             _foodThread.Start();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AfterItemTypesDefined")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AfterItemTypesDefined"), ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void AfterItemTypesDefined()
         {
             PandaResearch.Register();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + "OnQuitLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + ".OnQuitLate")]
         public static void OnQuitLate()
         {
             RUNNING = false;
@@ -190,6 +191,11 @@ namespace Pandaros.Settlers
             if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
                 !CurrentStates.ContainsKey(ServerManager.WorldName))
                 CurrentStates.Add(ServerManager.WorldName, new ColonyState());
+        }
+
+        public static PlayerState GetPlayerState(Players.Player p)
+        {
+            return GetPlayerState(p, Colony.Get(p));
         }
 
         public static PlayerState GetPlayerState(Players.Player p, Colony c)

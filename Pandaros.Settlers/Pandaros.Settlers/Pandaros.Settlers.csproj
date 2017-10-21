@@ -36,6 +36,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="BlockNPCs">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pipliz\BlockNPCs\BlockNPCs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,8 +57,11 @@
     <Compile Include="Entities\ColonyPrivates.cs" />
     <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Chance\ISpawnSettlerChance.cs" />
+    <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="GameLoader.cs" />
+    <Compile Include="Monsters\MonsterSpawner.cs" />
+    <Compile Include="Monsters\PandaZombie.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
