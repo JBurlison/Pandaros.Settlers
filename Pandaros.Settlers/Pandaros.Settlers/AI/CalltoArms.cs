@@ -47,6 +47,7 @@ namespace Pandaros.Settlers.AI
         PlayerState _playerState;
         Stockpile _stock;
         IMonster _target;
+        int _waitingFor;
 
         public override bool ToSleep => false;
 
@@ -56,21 +57,21 @@ namespace Pandaros.Settlers.AI
         {
             _tmpVals = npc.GetTempValues(true);
             _colony = npc.Colony;
-            _playerState = SettlerManager.GetPlayerState(_colony.Owner, _colony);
+            _playerState = PlayerState.GetPlayerState(_colony.Owner, _colony);
             _stock = Stockpile.GetStockPile(_colony.Owner);
             base.OnAssignedNPC(npc);
         }
 
         public override Vector3Int GetJobLocation()
         {
+            var currentPos = new Vector3Int(usedNPC.Position);
+
             if (_playerState.CallToArmsEnabled && _weapon != null)
             {
-                var currentPos = new Vector3Int(usedNPC.Position);
                 _target = MonsterTracker.Find(currentPos, _weapon.range);
 
                 if (_target != null)
                 {
-                    PandaLogger.Log("Within Range");
                     return currentPos;
                 }
                 else
@@ -79,17 +80,35 @@ namespace Pandaros.Settlers.AI
 
                     if (_target != null)
                     {
-                        PandaLogger.Log("Found New Target");
                         var ranged = _weapon.range - 5;
-                        position = new Vector3Int(_target.Position).Add(ranged, ranged, 0);
-                        return new Vector3Int(_target.Position).Add(ranged, ranged, 0);
+                        position = new Vector3Int(_target.Position).Add(ranged, 0, ranged);
+                        position = Server.AI.AIManager.ClosestPosition(position, currentPos);
+
+                        if (!Server.AI.AIManager.CanStandAt(position))
+                        {
+                            _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
+                            _waitingFor++;
+                        }
+                        else
+                            return position;
                     }
                     else
-                        _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownSearchingTarget);
+                    {
+                        _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
+                        _waitingFor++;
+                    }
                 }
             }
 
-            return base.GetJobLocation();
+            if (_waitingFor > 10)
+            {
+                var banner = BannerManager.GetClosestBanner(usedNPC.Colony.Owner, currentPos);
+
+                if (banner != null)
+                    return banner.KeyLocation;
+            }
+
+            return currentPos;
         }
 
         public static GuardBaseJob.GuardSettings GetWeapon(NPC.NPCBase npc)
@@ -114,11 +133,10 @@ namespace Pandaros.Settlers.AI
                 _hadAmmo.Clear();
 
                 if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(usedNPC.Position, _target.Position))
-                    _target = MonsterTracker.Find(currentposition, _weapon.range); 
+                    _target = MonsterTracker.Find(currentposition, _weapon.range);
 
                 if (_target != null && General.Physics.Physics.CanSee(usedNPC.Position, _target.Position))
                 {
-                    PandaLogger.Log("Monster found.");
                     foreach (var projectile in _weapon.shootItem)
                     {
                         _hadAmmo[projectile] = false;
@@ -136,7 +154,6 @@ namespace Pandaros.Settlers.AI
                     if (!_hadAmmo.Any(a => !a.Value))
                     {
                         state.SetIndicator(NPCIndicatorType.Crafted, _weapon.cooldownShot, _weapon.shootItem[0].Type);
-                        PandaLogger.Log("we have ammo.");
                         foreach (var ammo in _hadAmmo)
                         {
                             if (usedNPC.Inventory.Contains(ammo.Key))
@@ -159,6 +176,7 @@ namespace Pandaros.Settlers.AI
 
                         _target.OnHit(_weapon.shootDamage);
                         _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownShot);
+                        _waitingFor = 0;
                     }
                     else
                     {
@@ -167,7 +185,10 @@ namespace Pandaros.Settlers.AI
                     }
                 }
                 else
+                {
+                    state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, Monsters.MonsterSpawner.MissingMonster_Icon);
                     _target = null;
+                }
             }
         }
 
@@ -176,17 +197,17 @@ namespace Pandaros.Settlers.AI
             if (_weapon != null)
                 return;
 
-            if (GuardBowJobDay.CachedSettings != null && !_weapons.Contains(GuardBowJobDay.CachedSettings))
-                _weapons.Add(GuardBowJobDay.CachedSettings);
+            if (!_weapons.Contains(GuardBowJobDay.GetGuardSettings()))
+                _weapons.Add(GuardBowJobDay.GetGuardSettings());
 
-            if (GuardCrossbowJobDay.CachedSettings != null && !_weapons.Contains(GuardCrossbowJobDay.CachedSettings))
-                _weapons.Add(GuardCrossbowJobDay.CachedSettings);
+            if (!_weapons.Contains(GuardCrossbowJobDay.GetGuardSettings()))
+                _weapons.Add(GuardCrossbowJobDay.GetGuardSettings());
 
-            if (GuardMatchlockJobDay.CachedSettings != null && !_weapons.Contains(GuardMatchlockJobDay.CachedSettings))
-                _weapons.Add(GuardMatchlockJobDay.CachedSettings);
+            if (!_weapons.Contains(GuardMatchlockJobDay.GetGuardSettings()))
+                _weapons.Add(GuardMatchlockJobDay.GetGuardSettings());
 
-            if (GuardSlingerJobDay.CachedSettings != null && !_weapons.Contains(GuardSlingerJobDay.CachedSettings))
-                _weapons.Add(GuardSlingerJobDay.CachedSettings);
+            if (!_weapons.Contains(GuardSlingerJobDay.GetGuardSettings()))
+                _weapons.Add(GuardSlingerJobDay.GetGuardSettings());
 
             _weapons = _weapons.OrderBy(w => w.shootDamage).ToList();
 
@@ -241,7 +262,7 @@ namespace Pandaros.Settlers.AI
         public void OnPlayerDisconnected(Players.Player p)
         {
             Colony c = Colony.Get(p);
-            PlayerState state = SettlerManager.GetPlayerState(p);
+            PlayerState state = PlayerState.GetPlayerState(p);
 
             state.CallToArmsEnabled = false;
 
@@ -256,7 +277,7 @@ namespace Pandaros.Settlers.AI
 
             string[] array = CommandManager.SplitCommand(chat);
             Colony colony = Colony.Get(player);
-            PlayerState state = SettlerManager.GetPlayerState(player, colony);
+            PlayerState state = PlayerState.GetPlayerState(player, colony);
             state.CallToArmsEnabled = !state.CallToArmsEnabled;
 
             if (state.CallToArmsEnabled)

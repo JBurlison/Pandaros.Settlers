@@ -17,6 +17,8 @@ namespace Pandaros.Settlers.Research
         public static readonly string ReducedWaste = "ReducedWaste";
         public static readonly string SettlerChance = "SettlerChance";
         public static readonly string TimeBetween = "TimeBetween";
+        public static readonly string NumberSkilledLaborer = "NumberSkilledLaborer";
+        public static readonly string SkilledLaborer = "SkilledLaborer";
 
         private string _tmpValueKey = string.Empty;
         private int _level = 1;
@@ -57,12 +59,12 @@ namespace Pandaros.Settlers.Research
 
         public override void OnResearchComplete(ScienceManagerPlayer manager)
         {
-            var state = SettlerManager.GetPlayerState(manager.Player);
+            var state = PlayerState.GetPlayerState(manager.Player);
             state.TempValues.Set(_tmpValueKey, _value);
 
-            if (!state.BannersAwarded.Contains(_tmpValueKey))
+            if (_tmpValueKey.Contains(Settlement) && !state.BannersAwarded.Contains(_level))
             {
-                state.BannersAwarded.Add(_tmpValueKey);
+                state.BannersAwarded.Add(_level);
                 Stockpile.GetStockPile(manager.Player).Add(BuiltinBlocks.Banner);
             }
         }
@@ -82,6 +84,8 @@ namespace Pandaros.Settlers.Research
             AddSettlerChance(researchDic);
             AddTimeBetween(researchDic);
             AddBanner(researchDic);
+            AddSkilledLaborer(researchDic);
+            AddNumberSkilledLaborer(researchDic);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
@@ -96,6 +100,50 @@ namespace Pandaros.Settlers.Research
 
             for (int i = 1; i <= 20; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, Settlement, 1f, null, 30, false));
+        }
+
+        private static void AddSkilledLaborer(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 40);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 40);
+            researchDic.Add(BuiltinBlocks.CopperTools, 50);
+            researchDic.Add(BuiltinBlocks.IronBlock, 50);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 30);
+
+            var requirements = new List<string>()
+            {
+                GetTempValueKey(SettlerChance) + "2",
+                GetTempValueKey(ReducedWaste) + "2",
+                GetTempValueKey(TimeBetween) + "1"
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 1f, requirements));
+
+            for (int i = 2; i <= 5; i++)
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 1f));
+        }
+
+        private static void AddNumberSkilledLaborer(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 40);
+            researchDic.Add(BuiltinBlocks.ScienceBagColony, 40);
+            researchDic.Add(BuiltinBlocks.CopperParts, 50);
+            researchDic.Add(BuiltinBlocks.CopperNails, 50);
+            researchDic.Add(BuiltinBlocks.Tin, 50);
+            researchDic.Add(BuiltinBlocks.IronRivet, 50);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 30);
+
+            var requirements = new List<string>()
+            {
+                GetTempValueKey(SkilledLaborer) + "1"
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, NumberSkilledLaborer, 1f, requirements));
+
+            for (int i = 2; i <= 10; i++)
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, NumberSkilledLaborer, 1f));
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)

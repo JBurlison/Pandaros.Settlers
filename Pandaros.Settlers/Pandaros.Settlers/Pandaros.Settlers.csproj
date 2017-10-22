@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
+    <Compile Include="BannerManager.cs" />
     <Compile Include="Entities\ColonyPrivates.cs" />
     <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Chance\ISpawnSettlerChance.cs" />
@@ -141,6 +142,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\MinSettlers9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\NoMonster.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\NumberSkilledLaborer1.png">

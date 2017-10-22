@@ -19,5 +19,20 @@ namespace Pandaros.Settlers.Research
         public const string healthregenspeed2 = "pipliz.baseresearch.healthregenspeed2";
         public const string healthregenspeed3 = "pipliz.baseresearch.healthregenspeed3";
         public const string healthregenspeed4 = "pipliz.baseresearch.healthregenspeed4";
+        public const string Bloomery = "pipliz.baseresearch.bloomery";
+        public const string BronzeAnvil = "pipliz.baseresearch.bronzeanvil";
+        public const string CrossBow = "pipliz.baseresearch.crossbow";
+        public const string CrossBowBolt = "pipliz.baseresearch.crossbowbolt";
+        public const string FineryForge = "pipliz.baseresearch.fineryforge";
+        public const string GunPowder = "pipliz.baseresearch.gunpowder";
+        public const string GunSmithShop = "pipliz.baseresearch.gunsmithshop";
+        public const string MatchlockGun = "pipliz.baseresearch.matchlockgun";
+        public const string ScienceBagAdvanced = "pipliz.baseresearch.sciencebagadvanced";
+        public const string ScienceBagBasic = "pipliz.baseresearch.sciencebagbasic";
+        public const string ScienceBagColony = "pipliz.baseresearch.sciencebagcolony";
+        public const string ScienceBagLife = "pipliz.baseresearch.sciencebaglife";
+        public const string ScienceBagMilitary = "pipliz.baseresearch.sciencebagmilitary";
+        public const string TailorShop = "pipliz.baseresearch.tailorshop";
+        public const string TechnologistTable = "pipliz.baseresearch.technologisttable";
     }
 }

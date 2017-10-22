@@ -25,6 +25,17 @@ namespace Pandaros.Settlers
             ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons");
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
+        public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        {
+            var monsterNode = new JSONNode();
+            monsterNode["icon"] = new JSONNode(ICON_FOLDER_PANDA.Replace("\\", "/") + "/NoMonster.png");
+
+            var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
+            Monsters.MonsterSpawner.MissingMonster_Icon = monster.ItemIndex;
+            items.Add(NAMESPACE + ".Monster", monster);
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, NAMESPACE + ".Localize")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.localization.waitforloading")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.localization.convert")]

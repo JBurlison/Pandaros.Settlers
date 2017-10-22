@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Entities
         public int ColonistCount { get; set; }
 
         [XmlElement]
-        public List<string> BannersAwarded { get; set; } = new List<string>();
+        public List<int> BannersAwarded { get; set; } = new List<int>();
 
         [XmlIgnore]
         public bool CallToArmsEnabled { get; set; }
@@ -110,6 +110,35 @@ namespace Pandaros.Settlers.Entities
             KnownLaborers = new Dictionary<NPC.NPCBase, double>();
             NeedsABed = 0;
             Difficulty = GameDifficulty.Medium;
+        }
+
+        public static PlayerState GetPlayerState(Players.Player p)
+        {
+            return GetPlayerState(p, Colony.Get(p));
+        }
+
+        public static PlayerState GetPlayerState(Players.Player p, Colony c)
+        {
+            var colony = SettlerManager.CurrentColonyState;
+
+            if (colony != null)
+            {
+                string playerId = p.ID.ToString();
+
+                if (!colony.PlayerStates.ContainsKey(playerId))
+                    colony.PlayerStates.Add(playerId, new PlayerState());
+
+                if (colony.PlayerStates[playerId].ColonyInterface == null)
+                    colony.PlayerStates[playerId].SetupColonyRefrences(c);
+
+                if (colony.PlayerStates[playerId].ColonistCount == 0 &&
+                    c.FollowerCount != 0)
+                    colony.PlayerStates[playerId].ColonistCount = c.FollowerCount;
+
+                return colony.PlayerStates[playerId];
+            }
+
+            return null;
         }
     }
 }

@@ -220,6 +220,66 @@
       "Settlement20": {
         "name": "Settlement - Additional Banner",
         "description": "When researched, gives you an additional banner to place in your stockpile."
+      },
+      "SkilledLaborer1": {
+        "name": "Skilled Laborer I",
+        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+      },
+      "SkilledLaborer2": {
+        "name": "Skilled Laborer II",
+        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+      },
+      "SkilledLaborer3": {
+        "name": "Skilled Laborer III",
+        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+      },
+      "SkilledLaborer4": {
+        "name": "Skilled Laborer IV",
+        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+      },
+      "SkilledLaborer5": {
+        "name": "Skilled Laborer V",
+        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+      },
+      "NumberSkilledLaborer1": {
+        "name": "Number of Skilled Laborer I",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer2": {
+        "name": "Number of Skilled Laborer II",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer3": {
+        "name": "Number of Skilled Laborer III",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer4": {
+        "name": "Number of Skilled Laborer IV",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer5": {
+        "name": "Number of Skilled Laborer V",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer6": {
+        "name": "Number of Skilled Laborer VI",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer7": {
+        "name": "Number of Skilled Laborer VII",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer8": {
+        "name": "Number of Skilled Laborer VIII",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer9": {
+        "name": "Number of Skilled Laborer IX",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "NumberSkilledLaborer10": {
+        "name": "Number of Skilled Laborer X",
+        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
       }
     }
   }
