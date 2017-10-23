@@ -14,5 +14,10 @@ namespace Pandaros.Settlers
         {
             typeof(BlockJobBase).GetField("followers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(job, Pipliz.Time.SecondsSinceStartDouble + time);
         }
+
+        public static double GetJobTime(this BlockJobBase job)
+        {
+            return (double)typeof(BlockJobBase).GetField("followers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job);
+        }
     }
 }
