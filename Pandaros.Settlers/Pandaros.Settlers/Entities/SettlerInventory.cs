@@ -15,6 +15,8 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<string, float> JobSkills { get; set; } = new Dictionary<string, float>();
 
+        public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
+
         public SettlerInventory(int id)
         {
             SettlerId = id;
@@ -29,11 +31,14 @@ namespace Pandaros.Settlers.Entities
 
                 baseNode.TryGetAs<string>(nameof(SettlerName), out var name);
                 SettlerName = name;
+ 
+                if (baseNode.TryGetAs(nameof(JobSkills), out JSONNode skills))
+                    foreach (var skill in skills.LoopObject())
+                        JobSkills[skill.Key] = skill.Value.GetAs<float>();
 
-                var skills = baseNode[nameof(JobSkills)];
-
-                foreach (var skill in skills.LoopObject())
-                    JobSkills[skill.Key] = skill.Value.GetAs<float>();
+                if (baseNode.TryGetAs(nameof(JobItteration), out JSONNode itterations))
+                    foreach (var skill in itterations.LoopObject())
+                        JobItteration[skill.Key] = skill.Value.GetAs<int>();
             }
         }
 
@@ -50,6 +55,13 @@ namespace Pandaros.Settlers.Entities
                 skills[job.Key] = new JSONNode(job.Value);
 
             baseNode[nameof(JobSkills)] = skills;
+            
+            var itterations = new JSONNode();
+
+            foreach (var job in JobItteration)
+                itterations[job.Key] = new JSONNode(job.Value);
+
+            baseNode[nameof(itterations)] = itterations;
 
             return baseNode;
         }

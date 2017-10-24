@@ -4,6 +4,7 @@ using Pandaros.Settlers.Chance;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;
 using Pipliz;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.Chatting;
 using Pipliz.JSON;
 using Server.NPCs;
@@ -22,6 +23,7 @@ namespace Pandaros.Settlers.Managers
         public const int MIN_PERSPAWN = 5;
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
+        private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
         public static readonly Version MOD_VER = new Version(0, 5, 0, 0);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
 
@@ -32,6 +34,7 @@ namespace Pandaros.Settlers.Managers
         private static bool _worldLoaded = false;
         private static System.Random _r = new System.Random();
         private static DateTime _nextfoodSendTime = DateTime.MinValue;
+        private static DateTime _nextworkerEvalTime = DateTime.MinValue;
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
@@ -104,6 +107,7 @@ namespace Pandaros.Settlers.Managers
                 EvaluateLaborers(p);
                 EvaluateBeds(p);
                 UpdateFoodUse(p);
+                EvaluateJobs(p);
                 Update(Colony.Get(p));
             });
         }
@@ -226,6 +230,68 @@ namespace Pandaros.Settlers.Managers
             if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
                 !CurrentStates.ContainsKey(ServerManager.WorldName))
                 CurrentStates.Add(ServerManager.WorldName, new ColonyState());
+        }
+
+        public static void EvaluateJobs(Players.Player p)
+        {
+            if (DateTime.Now > _nextworkerEvalTime)
+            {
+                PlayerState state = PlayerState.GetPlayerState(p);
+                Colony colony = Colony.Get(p);
+
+                foreach (var npc in colony.Followers)
+                {
+                    if (npc.Job != null)
+                    {
+                        var job = npc.Job as BlockJobBase;
+
+                        if (job == null)
+                            continue;
+
+                        var tmpVals = npc.GetTempValues();
+
+                        if (!tmpVals.TryGet(GameLoader.SETTLER_INV, out SettlerInventory inv))
+                            inv = new SettlerInventory(npc.ID);
+
+                        var jobName = npc.Job.NPCType.ToString();
+
+                        var time = job.GetJobTime();
+                        var lastKnownTime = tmpVals.GetOrDefault(LAST_KNOWN_JOB_TIME_KEY, (double)0);
+                        double timeNow = Time.SecondsSinceStartDouble;
+
+                        if (!inv.JobItteration.ContainsKey(jobName))
+                            inv.JobItteration.Add(jobName, 0);
+
+                        if (!inv.JobSkills.ContainsKey(jobName))
+                            inv.JobSkills.Add(jobName, 0f);
+
+                        if (inv.JobSkills[jobName] != 0.5 && timeNow > lastKnownTime)
+                        {
+                            inv.JobItteration[jobName]++;
+                            var nextSkillLevel = (inv.JobSkills[jobName] * 1000) + 10;
+
+                            if (inv.JobItteration[jobName] > nextSkillLevel)
+                            {
+                                inv.JobItteration[jobName] = 0;
+                                inv.JobSkills[jobName] += 0.01f;
+                                PandaChat.Send(p, $"{inv.SettlerName} has gotten better at {jobName}! They are now {inv.JobSkills[jobName] * 100}% faster!", ChatColor.orange);
+                            }
+
+                            if (inv.JobSkills[jobName] != 0)
+                            {
+                                var origTime = time;
+                                time = System.Math.Round(time - (time * inv.JobSkills[jobName]), 2);
+
+                                PandaLogger.Log($"{inv.SettlerName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]}");
+                                tmpVals.Set(LAST_KNOWN_JOB_TIME_KEY, time);
+                                job.SetJobTime(time);
+                            }
+                        }
+                    }
+                }
+
+                _nextworkerEvalTime = DateTime.Now + TimeSpan.FromMilliseconds(500);
+            }
         }
 
         public static bool EvaluateSettlers(Players.Player p)

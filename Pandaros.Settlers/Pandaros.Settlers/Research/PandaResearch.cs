@@ -74,7 +74,7 @@ namespace Pandaros.Settlers.Research
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".PandaResearch.AfterItemTypesDefined"), ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".PandaResearch.OnAddResearchables")]
         public static void Register()
         {
             var researchDic = new Dictionary<ushort, int>();
@@ -119,10 +119,10 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(TimeBetween) + "1"
             };
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.1f, requirements));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.02f, requirements));
 
             for (int i = 2; i <= 10; i++)
-                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.1f));
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.02f));
         }
 
         private static void AddNumberSkilledLaborer(Dictionary<ushort, int> researchDic)

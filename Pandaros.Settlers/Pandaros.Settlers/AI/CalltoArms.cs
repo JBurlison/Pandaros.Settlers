@@ -35,7 +35,9 @@ namespace Pandaros.Settlers.AI
         };
         public static NPCType CallToArmsNPCType;
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".CalltoArms.Init")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".CalltoArms.Init"), 
+            ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes"),
+            ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
         {
             NPCType.AddSettings(_callToArmsNPCSettings);
@@ -188,6 +190,7 @@ namespace Pandaros.Settlers.AI
                 else
                 {
                     state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, Monsters.MonsterSpawner.MissingMonster_Icon);
+                    _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
                     _target = null;
                 }
             }

@@ -59,7 +59,8 @@ namespace Pandaros.Settlers.Managers
                 var ps = PlayerState.GetPlayerState(p.Key);
                 var numberOfBanners = p.Key.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Settlement), 0f) + 1f;
                 var inv = Inventory.GetInventory(p.Key);
-               
+                var sockBanner = Stockpile.GetStockPile(p.Key).AmountContained(BuiltinBlocks.Banner);
+
                 var inventoryBanners = 0;
 
                 if (inv != null)
@@ -72,12 +73,16 @@ namespace Pandaros.Settlers.Managers
                             inventoryBanners = item.Amount;
                 }
 
-                PandaLogger.Log($"Number of research banners: {numberOfBanners}");
-                PandaLogger.Log($"Number of banners: {p.Value}");
-                PandaLogger.Log($"Number of stockpile banners: {Stockpile.GetStockPile(p.Key).AmountContained(BuiltinBlocks.Banner)}");
-                PandaLogger.Log($"Number of Inventory banners: {inventoryBanners}");
+                var totalBanners = p.Value + sockBanner + inventoryBanners;
 
-                if (p.Value + Stockpile.GetStockPile(p.Key).AmountContained(BuiltinBlocks.Banner) + inventoryBanners < numberOfBanners)
+                //PandaLogger.Log($"Number of research banners: {numberOfBanners}");
+                //PandaLogger.Log($"Number of banners: {p.Value}");
+                //PandaLogger.Log($"Number of stockpile banners: {sockBanner}");
+                //PandaLogger.Log($"Number of Inventory banners: {inventoryBanners}");
+                //PandaLogger.Log($"Total banners: {totalBanners}");
+                //PandaLogger.Log($"Add Banner: {totalBanners < numberOfBanners}");
+
+                if (totalBanners < numberOfBanners)
                     Stockpile.GetStockPile(p.Key).Add(BuiltinBlocks.Banner);
             }
         }

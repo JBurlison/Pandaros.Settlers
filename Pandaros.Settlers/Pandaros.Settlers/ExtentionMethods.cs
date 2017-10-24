@@ -13,12 +13,12 @@ namespace Pandaros.Settlers
     {
         public static void SetJobTime(this BlockJobBase job, double time)
         {
-            typeof(BlockJobBase).GetField("followers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(job, Pipliz.Time.SecondsSinceStartDouble + time);
+            typeof(BlockJobBase).GetField("timeJob", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(job, Pipliz.Time.SecondsSinceStartDouble + time);
         }
 
         public static double GetJobTime(this BlockJobBase job)
         {
-            return (double)typeof(BlockJobBase).GetField("followers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job);
+            return (double)typeof(BlockJobBase).GetField("timeJob", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job);
         }
 
         public static List<InventoryItem> GetInventory(this Inventory inv)
