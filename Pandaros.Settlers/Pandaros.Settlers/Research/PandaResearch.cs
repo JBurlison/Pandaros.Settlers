@@ -1,5 +1,6 @@
 ﻿using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Managers;
 using Pipliz.APIProvider.Science;
 using Server.Science;
 using System;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Research
 {
+    [ModLoader.ModManager]
     public class PandaResearch : BaseResearchable
     {
         public static readonly string Settlement = "Settlement";
@@ -28,7 +30,7 @@ namespace Pandaros.Settlers.Research
         {
             _value = baseValue * _level;
             _level = level;
-            _tmpValueKey = GetTempValueKey(name);
+            _tmpValueKey = GetResearchKey(name);
 
             key = _tmpValueKey + level;
             icon = GameLoader.ICON_FOLDER_PANDA + "\\" + name + level + ".png";
@@ -60,20 +62,19 @@ namespace Pandaros.Settlers.Research
         public override void OnResearchComplete(ScienceManagerPlayer manager)
         {
             var state = PlayerState.GetPlayerState(manager.Player);
-            state.TempValues.Set(_tmpValueKey, _value);
-
-            if (_tmpValueKey.Contains(Settlement) && !state.BannersAwarded.Contains(_level))
-            {
-                state.BannersAwarded.Add(_level);
-                Stockpile.GetStockPile(manager.Player).Add(BuiltinBlocks.Banner);
-            }
+            manager.Player.GetTempValues(true).Set(_tmpValueKey, _value);
+            PandaLogger.Log($"Research Complete: {_tmpValueKey} - {_value}");
+           
+            if (_tmpValueKey.Equals(GetResearchKey(Settlement)))
+                BannerManager.EvaluateBanners();
         }
 
-        public static string GetTempValueKey(string researchName)
+        public static string GetResearchKey(string researchName)
         {
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".PandaResearch.AfterItemTypesDefined"), ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var researchDic = new Dictionary<ushort, int>();
@@ -113,15 +114,15 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                GetTempValueKey(SettlerChance) + "2",
-                GetTempValueKey(ReducedWaste) + "2",
-                GetTempValueKey(TimeBetween) + "1"
+                GetResearchKey(SettlerChance) + "2",
+                GetResearchKey(ReducedWaste) + "2",
+                GetResearchKey(TimeBetween) + "1"
             };
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 1f, requirements));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.1f, requirements));
 
-            for (int i = 2; i <= 5; i++)
-                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 1f));
+            for (int i = 2; i <= 10; i++)
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.1f));
         }
 
         private static void AddNumberSkilledLaborer(Dictionary<ushort, int> researchDic)
@@ -137,12 +138,12 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                GetTempValueKey(SkilledLaborer) + "1"
+                GetResearchKey(SkilledLaborer) + "1"
             };
 
             ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, NumberSkilledLaborer, 1f, requirements));
 
-            for (int i = 2; i <= 10; i++)
+            for (int i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, NumberSkilledLaborer, 1f));
         }
 

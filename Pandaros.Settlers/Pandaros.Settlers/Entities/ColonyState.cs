@@ -1,4 +1,6 @@
-﻿using Pandaros.Settlers.Research;
+﻿using Pandaros.Settlers.AI;
+using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Research;
 using Pipliz.Collections;
 using System;
 using System.Collections.Generic;
@@ -34,9 +36,6 @@ namespace Pandaros.Settlers.Entities
 
         [XmlIgnore]
         public bool CallToArmsEnabled { get; set; }
-
-        [XmlIgnore]
-        public BoxedDictionary TempValues { get; set; }
 
         [XmlElement]
         public string DifficultyStr
@@ -74,6 +73,9 @@ namespace Pandaros.Settlers.Entities
         public PlayerColonyInterface ColonyInterface { get; private set; }
 
         [XmlIgnore]
+        public Players.Player Player { get; set; }
+
+        [XmlIgnore]
         public double NeedsABed { get; set; }
 
         [XmlIgnore]
@@ -90,8 +92,8 @@ namespace Pandaros.Settlers.Entities
                     if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
                         maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
 
-                    max += Rand.Next((int)TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MinSettlers), 0f),
-                               maxAdd + (int)TempValues.GetOrDefault(PandaResearch.GetTempValueKey(PandaResearch.MaxSettlers), 0f));
+                    max += Rand.Next((int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
+                               maxAdd + (int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MaxSettlers), 0f));
                 }
 
                 return max;
@@ -101,7 +103,7 @@ namespace Pandaros.Settlers.Entities
         public void SetupColonyRefrences(Colony c)
         {
             ColonyInterface = new PlayerColonyInterface(c);
-            TempValues = c.Owner.GetTempValues();
+            Player = c.Owner;
         }
 
         public PlayerState()

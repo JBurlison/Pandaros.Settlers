@@ -15,6 +15,8 @@ namespace Pandaros.Settlers
         public static string MOD_FOLDER = @"gamedata\mods\Pandaros\settlers";
 
         public const string NAMESPACE = "Pandaros.Settlers";
+        public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
+        public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)

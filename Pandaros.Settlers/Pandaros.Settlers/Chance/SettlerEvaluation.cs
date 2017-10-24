@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Pandaros.Settlers.Entities;
 using NPC;
+using Pandaros.Settlers.AI;
+using Pandaros.Settlers.Managers;
 
 namespace Pandaros.Settlers.Chance
 {

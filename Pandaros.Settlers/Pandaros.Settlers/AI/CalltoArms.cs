@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using NPC;
 using Pipliz.Collections;
+using Pandaros.Settlers.Managers;
 
 namespace Pandaros.Settlers.AI
 {
@@ -37,8 +38,8 @@ namespace Pandaros.Settlers.AI
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".CalltoArms.Init")]
         public static void Init()
         {
-            CallToArmsNPCType = new NPCType(_callToArmsNPCSettings.Type);
-            NPCType.NPCTypes.Add(CallToArmsNPCType, _callToArmsNPCSettings);
+            NPCType.AddSettings(_callToArmsNPCSettings);
+            CallToArmsNPCType = NPCType.GetByKeyNameOrDefault(_callToArmsNPCSettings.keyName);
         }
 
         GuardBaseJob.GuardSettings _weapon;

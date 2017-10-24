@@ -1,4 +1,5 @@
 ﻿using NPC;
+using Pandaros.Settlers.Entities;
 using Pipliz.APIProvider.Jobs;
 using Server.NPCs;
 using System;
@@ -18,6 +19,11 @@ namespace Pandaros.Settlers
         public static double GetJobTime(this BlockJobBase job)
         {
             return (double)typeof(BlockJobBase).GetField("followers", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job);
+        }
+
+        public static List<InventoryItem> GetInventory(this Inventory inv)
+        {
+            return typeof(Inventory).GetField("items", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(inv) as List<InventoryItem>;
         }
     }
 }
