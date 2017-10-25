@@ -81,8 +81,8 @@ namespace Pandaros.Settlers.Research
             AddSettlerChance(researchDic);
             AddTimeBetween(researchDic);
             AddBanner(researchDic);
-            AddSkilledLaborer(researchDic);
-            AddNumberSkilledLaborer(researchDic);
+            //AddSkilledLaborer(researchDic);
+            //AddNumberSkilledLaborer(researchDic);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)

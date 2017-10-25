@@ -112,7 +112,7 @@ namespace Pandaros.Settlers.Managers
                 EvaluateLaborers(p);
                 EvaluateBeds(p);
                 UpdateFoodUse(p);
-                EvaluateJobs(p);
+                //EvaluateJobs(p);
                 Update(Colony.Get(p));
             });
         }
@@ -242,11 +242,13 @@ namespace Pandaros.Settlers.Managers
             if (DateTime.Now > _nextWorkerEvalTime)
             {
                 PlayerState state = PlayerState.GetPlayerState(p);
-                Colony colony = Colony.Get(p);
+            Colony colony = Colony.Get(p);
 
-                foreach (var npc in colony.Followers)
+            foreach (var npc in colony.Followers)
+            {
+                if (npc.Job != null)
                 {
-                    if (npc.Job != null)
+                    try
                     {
                         var job = npc.Job as BlockJobBase;
 
@@ -288,18 +290,24 @@ namespace Pandaros.Settlers.Managers
                             if (inv.JobSkills[jobName] != 0)
                             {
                                 var origTime = time;
-                                time = System.Math.Round(time - (time * inv.JobSkills[jobName]), 2);
+                                var timeDiff = time - lastKnownTime;
+                                time = System.Math.Round(time - (timeDiff * inv.JobSkills[jobName]), 2);
 
                                 if (time < Time.SecondsSinceStartDouble)
                                     time = origTime;
 
-                                PandaLogger.Log($"{inv.SettlerName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]} Next Level: {nextSkillLevel}");
+                                PandaLogger.Log($"{inv.SettlerName} for {jobName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]} Next Level: {nextSkillLevel}");
                                 tmpVals.Set(LAST_KNOWN_JOB_TIME_KEY, time);
                                 job.SetJobTime(time);
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        PandaLogger.LogError(ex);
+                    }
                 }
+            }
 
                 _nextWorkerEvalTime = DateTime.Now + TimeSpan.FromMilliseconds(100);
             }
