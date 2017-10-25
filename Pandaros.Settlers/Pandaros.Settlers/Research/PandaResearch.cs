@@ -95,7 +95,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 10);
             researchDic.Add(BuiltinBlocks.GoldCoin, 40);
 
-            for (int i = 1; i <= 20; i++)
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.BannerRadius3
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, Settlement, 1f, requirements, 30, false));
+
+            for (int i = 2; i <= 20; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, Settlement, 1f, null, 30, false));
         }
 
@@ -115,10 +122,10 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(TimeBetween) + "1"
             };
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.02f, requirements));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.1f, requirements));
 
             for (int i = 2; i <= 10; i++)
-                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.02f));
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.1f));
         }
 
         private static void AddNumberSkilledLaborer(Dictionary<ushort, int> researchDic)
@@ -151,8 +158,15 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.IronIngot, 5);
             researchDic.Add(BuiltinBlocks.Bed, 10);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
-            
-            for (int i = 1; i <= 10; i++)
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(SettlerChance) + "1"
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MaxSettlers, 1f, requirements));
+
+            for (int i = 2; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MaxSettlers, 1f));
         }
 
@@ -166,7 +180,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Clothing, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            for (int i = 1; i <= 10; i++)
+            var requirements = new List<string>()
+            {
+                GetResearchKey(MaxSettlers) + "3"
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MinSettlers, 1f, requirements));
+
+            for (int i = 2; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MinSettlers, 1f));
         }
 
@@ -194,7 +215,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Bed, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 100);
 
-            for (int i = 1; i <= 5; i++)
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.BannerRadius2
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SettlerChance, 0.1f, requirements));
+
+            for (int i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SettlerChance, 0.1f));
         }
 

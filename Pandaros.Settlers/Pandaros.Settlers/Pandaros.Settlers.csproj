@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="APIProvider">
@@ -63,6 +64,7 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="GameLoader.cs" />
+    <Compile Include="MethodUtil.cs" />
     <Compile Include="Monsters\MonsterSpawner.cs" />
     <Compile Include="Monsters\PandaZombie.cs" />
     <Compile Include="PandaChat.cs" />
