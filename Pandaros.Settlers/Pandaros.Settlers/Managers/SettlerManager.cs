@@ -282,7 +282,7 @@ namespace Pandaros.Settlers.Managers
                             {
                                 inv.JobItteration[jobName] = 0;
                                 inv.JobSkills[jobName] += 0.01f;
-                                PandaChat.Send(p, $"{inv.SettlerName} has become a more skilled {jobName}! They are now {inv.JobSkills[jobName] * 100}% faster!", ChatColor.orange);
+                                PandaChat.Send(p, $"{inv.SettlerName} has become a better skilled {jobName}! They are now {inv.JobSkills[jobName] * 100}% faster!", ChatColor.orange);
                             }
 
                             //if (inv.JobSkills[jobName] != 0)
