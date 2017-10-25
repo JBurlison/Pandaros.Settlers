@@ -189,7 +189,7 @@ namespace Pandaros.Settlers.AI
                 }
                 else
                 {
-                    state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, Monsters.MonsterSpawner.MissingMonster_Icon);
+                    state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
                     _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
                     _target = null;
                 }

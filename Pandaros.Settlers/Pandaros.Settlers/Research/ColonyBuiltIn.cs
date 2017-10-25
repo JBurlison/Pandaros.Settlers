@@ -7,11 +7,11 @@ namespace Pandaros.Settlers.Research
 {
     public static class ColonyBuiltIn
     {
-        public const string BannerRadius1 = "pipliz.baseresearch.BannerRadius1";
-        public const string BannerRadius2 = "pipliz.baseresearch.BannerRadius2";
-        public const string BannerRadius3 = "pipliz.baseresearch.BannerRadius3";
-        public const string BannerRadius4 = "pipliz.baseresearch.BannerRadius4";
-        public const string BannerRadius5 = "pipliz.baseresearch.BannerRadius5";
+        public const string BannerRadius1 = "pipliz.baseresearch.bannerradius1";
+        public const string BannerRadius2 = "pipliz.baseresearch.bannerradius2";
+        public const string BannerRadius3 = "pipliz.baseresearch.bannerradius3";
+        public const string BannerRadius4 = "pipliz.baseresearch.bannerradius4";
+        public const string BannerRadius5 = "pipliz.baseresearch.bannerradius5";
         public const string healthsize1 = "pipliz.baseresearch.healthsize1";
         public const string healthsize2 = "pipliz.baseresearch.healthsize2";
         public const string healthsize3 = "pipliz.baseresearch.healthsize3";

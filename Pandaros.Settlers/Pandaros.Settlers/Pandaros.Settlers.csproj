@@ -66,7 +66,6 @@
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="MethodUtil.cs" />
-    <Compile Include="Monsters\MonsterSpawner.cs" />
     <Compile Include="Monsters\PandaZombie.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />

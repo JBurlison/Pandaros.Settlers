@@ -325,63 +325,59 @@ namespace Pandaros.Settlers.Managers
                 if (state.NextGenTime == 0)
                     state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
 
-                if (TimeCycle.TotalTime > state.NextGenTime)
+                if (TimeCycle.TotalTime > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
-                    if (colony.FollowerCount >= MAX_BUYABLE)
+                    float chance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
+
+                    lock (_deciders)
+                        foreach (var d in _deciders)
+                            chance += d.Value.SpawnChance(p, colony, state);
+
+                    chance = chance / _deciders.Count;
+
+                    var rand = state.Rand.Next(1, 100);
+
+                    if (chance > 0 && chance * 100 > rand)
                     {
-                        float chance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
-
-                        lock (_deciders)
-                            foreach (var d in _deciders)
-                                chance += d.Value.SpawnChance(p, colony, state);
-
-                        chance = chance / _deciders.Count;
-
-                        var rand = state.Rand.Next(1, 100);
-
-                        if (chance > 0 && chance * 100 > rand)
-                        {
-                            var addCount = System.Math.Floor(state.MaxPerSpawn * chance);
+                        var addCount = System.Math.Floor(state.MaxPerSpawn * chance);
                             
 
-                            var skillChance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
-                            int numbSkilled = 0;
-                            skillChance += .1f;
+                        var skillChance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
+                        int numbSkilled = 0;
+                        skillChance += .1f;
 
-                            rand = state.Rand.Next(1, 100);
+                        rand = state.Rand.Next(1, 100);
 
-                            if (skillChance * 100 > rand)
-                                numbSkilled = state.Rand.Next(1, 2 + p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.NumberSkilledLaborer), 0));
+                        if (skillChance * 100 > rand)
+                            numbSkilled = state.Rand.Next(1, 2 + p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.NumberSkilledLaborer), 0));
 
-                            var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
+                        var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
 
-                            if (numbSkilled > 0)
-                                if (numbSkilled == 1)
-                                    reason += string.Format(" {0} of them is skilled!", numbSkilled);
-                                else
-                                    reason += string.Format(" {0} of them are skilled!", numbSkilled);
+                        if (numbSkilled > 0)
+                            if (numbSkilled == 1)
+                                reason += string.Format(" {0} of them is skilled!", numbSkilled);
+                            else
+                                reason += string.Format(" {0} of them are skilled!", numbSkilled);
 
-                            PandaChat.Send(p, reason, ChatColor.magenta);
+                        PandaChat.Send(p, reason, ChatColor.magenta);
 
-                            for (int i = 0; i < addCount; i++)
-                            {
-                                NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.Get(p).KeyLocation.Vector, colony);
+                        for (int i = 0; i < addCount; i++)
+                        {
+                            NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.Get(p).KeyLocation.Vector, colony);
                      
-                                if (i <= numbSkilled)
-                                {
-                                    var npcTemp = newGuy.GetTempValues(true);
-                                    npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.01f);
-                                }
-
-                                colony.RegisterNPC(newGuy);
-                                ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+                            if (i <= numbSkilled)
+                            {
+                                var npcTemp = newGuy.GetTempValues(true);
+                                npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.01f);
                             }
 
-                            state.ColonistCount += (int)addCount;
-                            update = true;
-                            state.FoodDivider = 0;
+                            colony.RegisterNPC(newGuy);
+                            ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
                         }
 
+                        state.ColonistCount += (int)addCount;
+                        update = true;
+                        state.FoodDivider = 0;
                     }
 
                     state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));

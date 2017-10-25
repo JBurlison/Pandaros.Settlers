@@ -20,6 +20,8 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
+        public static ushort MissingMonster_Icon { get; private set; }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
@@ -36,7 +38,7 @@ namespace Pandaros.Settlers
             monsterNode["icon"] = new JSONNode(ICON_FOLDER_PANDA.Replace("\\", "/") + "/NoMonster.png");
 
             var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
-            Monsters.MonsterSpawner.MissingMonster_Icon = monster.ItemIndex;
+            MissingMonster_Icon = monster.ItemIndex;
             items.Add(NAMESPACE + ".Monster", monster);
         }
 
