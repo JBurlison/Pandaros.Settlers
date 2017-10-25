@@ -285,15 +285,18 @@ namespace Pandaros.Settlers.Managers
                                 PandaChat.Send(p, $"{inv.SettlerName} has become a better skilled {jobName}! They are now {inv.JobSkills[jobName] * 100}% faster!", ChatColor.orange);
                             }
 
-                            //if (inv.JobSkills[jobName] != 0)
-                            //{
-                            //    var origTime = time;
-                            //    time = System.Math.Round(time - (time * inv.JobSkills[jobName]), 2);
+                            if (inv.JobSkills[jobName] != 0)
+                            {
+                                var origTime = time;
+                                time = System.Math.Round(time - (time * inv.JobSkills[jobName]), 2);
 
-                            //    PandaLogger.Log($"{inv.SettlerName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]} Next Level: {nextSkillLevel}");
-                            //    tmpVals.Set(LAST_KNOWN_JOB_TIME_KEY, time);
-                            //    job.SetJobTime(time);
-                            //}
+                                if (time < Time.SecondsSinceStartDouble)
+                                    time = origTime;
+
+                                PandaLogger.Log($"{inv.SettlerName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]} Next Level: {nextSkillLevel}");
+                                tmpVals.Set(LAST_KNOWN_JOB_TIME_KEY, time);
+                                job.SetJobTime(time);
+                            }
                         }
                     }
                 }

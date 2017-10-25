@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
+    <Compile Include="Entities\BlockJobBaseExtender.cs" />
     <Compile Include="Managers\BannerManager.cs" />
     <Compile Include="AI\NameGenerator.cs" />
     <Compile Include="Entities\ColonyPrivates.cs" />
