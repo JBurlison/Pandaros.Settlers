@@ -123,7 +123,7 @@ namespace Pandaros.Settlers.Entities
         {
             var colony = SettlerManager.CurrentColonyState;
 
-            if (colony != null)
+            if (colony != null && c != null && p != null)
             {
                 string playerId = p.ID.ToString();
 

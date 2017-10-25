@@ -37,7 +37,11 @@ namespace Pandaros.Settlers.Managers
 
         public static void EvaluateBanners()
         {
+            if (!SettlerManager.RUNNING || TimeCycle.TotalTime < _nextBannerTime)
+                return;
+
             _bannerCounts.Clear();
+
             var banners = BannerTracker.GetBanners();
 
             if (banners != null)
@@ -57,6 +61,10 @@ namespace Pandaros.Settlers.Managers
             foreach (var p in _bannerCounts)
             {
                 var ps = PlayerState.GetPlayerState(p.Key);
+
+                if (ps == null)
+                    continue;
+
                 var numberOfBanners = p.Key.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Settlement), 0f) + 1f;
                 var inv = Inventory.GetInventory(p.Key);
                 var sockBanner = Stockpile.GetStockPile(p.Key).AmountContained(BuiltinBlocks.Banner);

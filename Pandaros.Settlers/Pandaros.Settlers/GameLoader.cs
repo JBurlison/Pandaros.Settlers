@@ -1,8 +1,10 @@
-﻿using Pipliz.JSON;
+﻿using Pipliz.APIProvider.Jobs;
+using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Pandaros.Settlers

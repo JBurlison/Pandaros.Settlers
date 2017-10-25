@@ -61,12 +61,8 @@ namespace Pandaros.Settlers.Research
 
         public override void OnResearchComplete(ScienceManagerPlayer manager)
         {
-            var state = PlayerState.GetPlayerState(manager.Player);
             manager.Player.GetTempValues(true).Set(_tmpValueKey, _value);
             PandaLogger.Log($"Research Complete: {_tmpValueKey} - {_value}");
-           
-            if (_tmpValueKey.Equals(GetResearchKey(Settlement)))
-                BannerManager.EvaluateBanners();
         }
 
         public static string GetResearchKey(string researchName)

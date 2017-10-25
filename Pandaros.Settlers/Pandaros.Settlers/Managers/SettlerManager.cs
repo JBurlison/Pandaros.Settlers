@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Managers
         private static bool _worldLoaded = false;
         private static System.Random _r = new System.Random();
         private static DateTime _nextfoodSendTime = DateTime.MinValue;
-        private static DateTime _nextworkerEvalTime = DateTime.MinValue;
+        private static DateTime _nextWorkerEvalTime = DateTime.MinValue;
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
@@ -60,6 +60,11 @@ namespace Pandaros.Settlers.Managers
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new CalltoArms());
 
+            LoadState();
+        }
+
+        internal static void LoadState()
+        {
             CurrentStates = SaveManager.LoadState();
 
             if (CurrentStates == null)
@@ -234,7 +239,7 @@ namespace Pandaros.Settlers.Managers
 
         public static void EvaluateJobs(Players.Player p)
         {
-            if (DateTime.Now > _nextworkerEvalTime)
+            if (DateTime.Now > _nextWorkerEvalTime)
             {
                 PlayerState state = PlayerState.GetPlayerState(p);
                 Colony colony = Colony.Get(p);
@@ -268,32 +273,35 @@ namespace Pandaros.Settlers.Managers
                         if (inv.JobSkills[jobName] != 0.5 && timeNow > lastKnownTime)
                         {
                             inv.JobItteration[jobName]++;
-                            var nextSkillLevel = (inv.JobSkills[jobName] * 1000) + 10;
+                            var nextSkillLevel = 10;
+
+                            if (inv.JobSkills[jobName] != 0)
+                                nextSkillLevel += Pipliz.Math.FloorToInt(inv.JobSkills[jobName] * 1000);
 
                             if (inv.JobItteration[jobName] > nextSkillLevel)
                             {
                                 inv.JobItteration[jobName] = 0;
                                 inv.JobSkills[jobName] += 0.01f;
-                                PandaChat.Send(p, $"{inv.SettlerName} has gotten better at {jobName}! They are now {inv.JobSkills[jobName] * 100}% faster!", ChatColor.orange);
+                                PandaChat.Send(p, $"{inv.SettlerName} has become a more skilled {jobName}! They are now {inv.JobSkills[jobName] * 100}% faster!", ChatColor.orange);
                             }
 
-                            if (inv.JobSkills[jobName] != 0)
-                            {
-                                var origTime = time;
-                                time = System.Math.Round(time - (time * inv.JobSkills[jobName]), 2);
+                            //if (inv.JobSkills[jobName] != 0)
+                            //{
+                            //    var origTime = time;
+                            //    time = System.Math.Round(time - (time * inv.JobSkills[jobName]), 2);
 
-                                PandaLogger.Log($"{inv.SettlerName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]}");
-                                tmpVals.Set(LAST_KNOWN_JOB_TIME_KEY, time);
-                                job.SetJobTime(time);
-                            }
+                            //    PandaLogger.Log($"{inv.SettlerName} next work time: {time} original time: {origTime} at skill: {inv.JobSkills[jobName]} Itteration: {inv.JobItteration[jobName]} Next Level: {nextSkillLevel}");
+                            //    tmpVals.Set(LAST_KNOWN_JOB_TIME_KEY, time);
+                            //    job.SetJobTime(time);
+                            //}
                         }
                     }
                 }
 
-                _nextworkerEvalTime = DateTime.Now + TimeSpan.FromMilliseconds(500);
+                _nextWorkerEvalTime = DateTime.Now + TimeSpan.FromMilliseconds(100);
             }
         }
-
+        
         public static bool EvaluateSettlers(Players.Player p)
         {
             bool update = false;
