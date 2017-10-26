@@ -1,4 +1,5 @@
-﻿using Pipliz.APIProvider.Jobs;
+﻿using BlockTypes.Builtin;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
+        public const string JOB_METALSMITH = "pipliz.metalsmithjob";
+
         public static ushort MissingMonster_Icon { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
@@ -39,7 +42,35 @@ namespace Pandaros.Settlers
 
             var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
             MissingMonster_Icon = monster.ItemIndex;
+            
             items.Add(NAMESPACE + ".Monster", monster);
+
+            var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
+            var carpet = new InventoryItem(BuiltinBlocks.Carpet, 1);
+
+            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
+            var copper = new InventoryItem(BuiltinBlocks.Copper, 5);
+
+            var bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
+            var bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
+
+            var ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
+            var iron = new InventoryItem(BuiltinBlocks.IronIngot, 5);
+
+            var steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
+            var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
+
+            var copperChestName = NAMESPACE + ".CopperChest";
+            var copperChestNode = new JSONNode();
+            copperChestNode["icon"] = new JSONNode(ICON_FOLDER_PANDA.Replace("\\", "/") + "/CopperChest.png");
+
+            var copperChest = new ItemTypesServer.ItemTypeRaw(copperChestName, copperChestNode);
+            items.Add(copperChestName, copperChest);
+
+            var copperChestInvItem = new InventoryItem(copperChest.ItemIndex);
+
+            RecipeStorage.AddDefaultLimitTypeRecipe(JOB_METALSMITH, new Recipe(copperChestName, new List<InventoryItem>() { copper, copperParts, coppertools, carpet }, copperChestInvItem));
+
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, NAMESPACE + ".Localize")]
