@@ -63,13 +63,12 @@ namespace Pandaros.Settlers.Research
         public override void OnResearchComplete(ScienceManagerPlayer manager)
         {
             manager.Player.GetTempValues(true).Set(_tmpValueKey, _value);
-            PandaLogger.Log($"Research Complete: {_tmpValueKey} - {_value}");
 
             if (_tmpValueKey.Contains(ArmorSmithing))
             {
                 List<Items.Armor.ArmorMetadata> armor = new List<Items.Armor.ArmorMetadata>();
 
-                switch (_value)
+                switch (_level)
                 {
                     case 1:
                         armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Copper));
@@ -183,25 +182,25 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CopperParts, 3);
             researchDic.Add(BuiltinBlocks.CopperNails, 5);
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, ArmorSmithing, 1f, null, 20));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, ArmorSmithing, 1f));
 
             researchDic.Remove(BuiltinBlocks.CopperParts);
             researchDic.Remove(BuiltinBlocks.CopperNails);
             researchDic.Add(BuiltinBlocks.BronzePlate, 3);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 5);
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 2, ArmorSmithing, 1f, null, 20));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 2, ArmorSmithing, 1f));
 
             researchDic.Add(BuiltinBlocks.IronRivet, 3);
             researchDic.Add(BuiltinBlocks.IronSword, 1);
             researchDic.Remove(BuiltinBlocks.BronzePlate);
             researchDic.Remove(BuiltinBlocks.BronzeCoin);
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 3, ArmorSmithing, 1f, null, 20));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 3, ArmorSmithing, 1f));
 
             researchDic.Add(BuiltinBlocks.SteelParts, 3);
             researchDic.Add(BuiltinBlocks.SteelIngot, 1);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
             researchDic.Remove(BuiltinBlocks.IronRivet);
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 4, ArmorSmithing, 1f, null, 20));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 4, ArmorSmithing, 1f));
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)
