@@ -184,7 +184,7 @@ namespace Pandaros.Settlers.Items
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var carpet = new InventoryItem(BuiltinBlocks.Carpet, 1);
+            var carpet = new InventoryItem(BuiltinBlocks.CarpetBlue, 1);
 
             var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
             var copper = new InventoryItem(BuiltinBlocks.Copper, 5);
