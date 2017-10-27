@@ -155,31 +155,31 @@ namespace Pandaros.Settlers.Items
                     {
                         var inv = SettlerInventory.GetSettlerInventory(npc);
 
-                        foreach (ArmorSlot armorType in ArmorSlotEnum)
+                        foreach (ArmorSlot slot in ArmorSlotEnum)
                         {
-                            var bestArmor = GetBestArmorFromStockpile(stockpile, armorType);
+                            var bestArmor = GetBestArmorFromStockpile(stockpile, slot);
 
                             if (bestArmor != default(ushort))
                             {
                                 // Check if we need one or if there is an upgrade.
-                                if (inv.Armor[armorType].IsEmpty())
+                                if (inv.Armor[slot].IsEmpty())
                                 {
                                     stockpile.TryRemove(bestArmor);
-                                    inv.Armor[armorType].Id = bestArmor;
-                                    inv.Armor[armorType].Durability = ArmorLookup[bestArmor].Durability;
+                                    inv.Armor[slot].Id = bestArmor;
+                                    inv.Armor[slot].Durability = ArmorLookup[bestArmor].Durability;
                                 }
                                 else
                                 {
-                                    var currentArmor = ArmorLookup[inv.Armor[armorType].Id];
+                                    var currentArmor = ArmorLookup[inv.Armor[slot].Id];
                                     var stockpileArmor = ArmorLookup[bestArmor];
-
+                                  
                                     if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
                                     {
                                         // Upgrade armor.
                                         stockpile.TryRemove(bestArmor);
-                                        stockpile.Add(inv.Armor[armorType].Id);
-                                        inv.Armor[armorType].Id = bestArmor;
-                                        inv.Armor[armorType].Durability = stockpileArmor.Durability;
+                                        stockpile.Add(inv.Armor[slot].Id);
+                                        inv.Armor[slot].Id = bestArmor;
+                                        inv.Armor[slot].Durability = stockpileArmor.Durability;
                                     }
                                 }
                             }
@@ -199,8 +199,8 @@ namespace Pandaros.Settlers.Items
             {
                 if (s.Contains(armor.Key))
                 {
-                    best = armor.Key;
-                    break;
+                    if (best == default(ushort) || armor.Value.ArmorRating > ArmorLookup[best].ArmorRating)
+                        best = armor.Key;
                 }
             }
 
@@ -219,7 +219,7 @@ namespace Pandaros.Settlers.Items
 
             if (armor != 0)
             {
-                box.item1 = box.item1 - (box.item1 * armor);
+                box.Set(box.item1 - (box.item1 * armor));
 
                 var hitLocation = _rand.Next(1, 100);
 
@@ -253,7 +253,7 @@ namespace Pandaros.Settlers.Items
             var bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 5);
 
             var ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
-            var iron = new InventoryItem(BuiltinBlocks.IronIngot, 5);
+            var iron = new InventoryItem(BuiltinBlocks.IronWrought, 5);
 
             var steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
             var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);

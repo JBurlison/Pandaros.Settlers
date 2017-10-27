@@ -148,7 +148,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 10);
             researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
             researchDic.Add(BuiltinBlocks.CopperTools, 20);
-            researchDic.Add(BuiltinBlocks.IronBlock, 10);
+            researchDic.Add(BuiltinBlocks.IronBlock, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 30);
 
             var requirements = new List<string>()

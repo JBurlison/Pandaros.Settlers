@@ -402,7 +402,7 @@ namespace Pandaros.Settlers.Managers
 
         public static void UpdateFoodUse(Players.Player p)
         {
-            if (RUNNING)
+            if (WorldLoaded)
             {
                 if (p.ID.type != NetworkID.IDType.Server)
                 {
