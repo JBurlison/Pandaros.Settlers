@@ -59,7 +59,7 @@ namespace Pandaros.Settlers.Managers
             RUNNING = true;
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new CalltoArms());
-
+            ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
             LoadState();
         }
 
@@ -331,18 +331,13 @@ namespace Pandaros.Settlers.Managers
                     if (chance > 0 && chance * 100 > rand)
                     {
                         var addCount = System.Math.Floor(state.MaxPerSpawn * chance);
-                        var massacre = string.Empty;
 
                         // if we lost alot of colonists add extra to help build back up.
-                        if (state.ColonistCount != state.HighestColonistCount)
+                        if (state.ColonistCount < state.HighestColonistCount)
                         {
-                            var diff = state.HighestColonistCount - colony.FollowerCount;
-                            var percentLost = state.HighestColonistCount / diff;
+                            var diff = state.HighestColonistCount - state.ColonistCount;
 
                             addCount += System.Math.Floor(diff * .25);
-
-                            if (percentLost > 50)
-                                massacre = string.Format(SettlerReasoning.GetMassacre(), addCount);
                         }
                             
                         var skillChance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
@@ -362,10 +357,7 @@ namespace Pandaros.Settlers.Managers
                             else
                                 reason += string.Format(" {0} of them are skilled!", numbSkilled);
 
-                        if (!string.IsNullOrEmpty(massacre))
-                            PandaChat.Send(p, massacre, ChatColor.magenta);
-                        else
-                            PandaChat.Send(p, reason, ChatColor.magenta);
+                        PandaChat.Send(p, reason, ChatColor.magenta);
               
 
                         for (int i = 0; i < addCount; i++)

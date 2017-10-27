@@ -1,4 +1,5 @@
 ﻿using BlockTypes.Builtin;
+using ChatCommands;
 using Pandaros.Settlers.Entities;
 using Pipliz.JSON;
 using Server.NPCs;
@@ -9,6 +10,63 @@ using System.Text;
 
 namespace Pandaros.Settlers.Items
 {
+    public class ArmorCommand : IChatCommand
+    {
+        public bool IsCommand(string chat)
+        {
+            return chat.StartsWith("/armor", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public bool TryDoCommand(Players.Player player, string chat)
+        {
+            var colony = Colony.Get(player);
+            Dictionary<Armor.MetalType, Dictionary<Armor.ArmorSlot, int>> counts = new Dictionary<Armor.MetalType, Dictionary<Armor.ArmorSlot, int>>();
+            Dictionary<Armor.ArmorSlot, int> slots = new Dictionary<Armor.ArmorSlot, int>();
+
+            slots.Add(Armor.ArmorSlot.Helm, 0);
+            slots.Add(Armor.ArmorSlot.Chest, 0);
+            slots.Add(Armor.ArmorSlot.Gloves, 0);
+            slots.Add(Armor.ArmorSlot.Legs, 0);
+            slots.Add(Armor.ArmorSlot.Boots, 0);
+
+            counts.Add(Armor.MetalType.Copper, new Dictionary<Armor.ArmorSlot, int>(slots));
+            counts.Add(Armor.MetalType.Bronze, new Dictionary<Armor.ArmorSlot, int>(slots));
+            counts.Add(Armor.MetalType.Iron, new Dictionary<Armor.ArmorSlot, int>(slots));
+            counts.Add(Armor.MetalType.Steel, new Dictionary<Armor.ArmorSlot, int>(slots));
+
+            foreach (var npc in colony.Followers)
+            {
+                var inv = SettlerInventory.GetSettlerInventory(npc);
+
+                foreach (var item in inv.Armor)
+                {
+                    if (!item.Value.IsEmpty())
+                    {
+                        var armor = Armor.ArmorLookup[item.Value.Id];
+                        counts[armor.Metal][armor.Slot]++;
+                    }
+                }
+            }
+
+            PandaChat.Send(player, "Colonist Equipt Armor");
+
+            foreach (var type in counts)
+            {
+                PandaChat.Send(player, $"--------{type.Key}--------");
+                StringBuilder sb = new StringBuilder();
+                sb.Append("|");
+                foreach (var slot in type.Value)
+                {
+                    sb.Append($" {slot.Key}: {slot.Value} |");
+                }
+
+                PandaChat.Send(player, sb.ToString());
+            }
+
+            return true;
+        }
+    }
+
     [ModLoader.ModManager]
     public static class Armor
     {
