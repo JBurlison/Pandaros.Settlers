@@ -166,7 +166,7 @@ namespace Pandaros.Settlers.AI
                             }
 
                             if (_stock.Contains(ammo.Key))
-                                _stock.Remove(ammo.Key);
+                                _stock.TryRemove(ammo.Key);
                         }
 
                         usedNPC.LookAt(_target.Position);
@@ -225,7 +225,7 @@ namespace Pandaros.Settlers.AI
                     {
                         if (_stock.Contains(w.recruitmentItem))
                         {
-                            _stock.Remove(w.recruitmentItem);
+                            _stock.TryRemove(w.recruitmentItem);
                             usedNPC.Inventory.Add(w.recruitmentItem);
                             _weapon = w;
                             break;
@@ -292,6 +292,7 @@ namespace Pandaros.Settlers.AI
                 {
                     var job = follower.Job;
                     _Jobs[follower] = job;
+                    job.OnAssignedNPC(null);
                     follower.ClearJob();
                     follower.TakeJob(new CalltoArmsJob());
                 }
@@ -302,7 +303,10 @@ namespace Pandaros.Settlers.AI
 
                 foreach (var follower in colony.Followers)
                     if (_Jobs.ContainsKey(follower))
+                    {
+                        _Jobs[follower].OnAssignedNPC(follower);
                         follower.TakeJob(_Jobs[follower]);
+                    }
                     else
                         follower.ClearJob();
 

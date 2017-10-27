@@ -1,4 +1,48 @@
 {
+  "types": {
+    "Pandaros.Settlers.CopperHelm": "Copper Helm",
+    "Pandaros.Settlers.CopperChest": "Copper Breastplate",
+    "Pandaros.Settlers.CopperGloves": "Copper Gauntlets",
+    "Pandaros.Settlers.CopperLegs": "Copper Leggings",
+    "Pandaros.Settlers.CopperBoots": "Copper Greaves",
+    "Pandaros.Settlers.BronzeHelm": "Bronze Helm",
+    "Pandaros.Settlers.BronzeChest": "Bronze Breastplate",
+    "Pandaros.Settlers.BronzeGloves": "Bronze Gauntlets",
+    "Pandaros.Settlers.BronzeLegs": "Bronze Leggings",
+    "Pandaros.Settlers.BronzeBoots": "Bronze Greaves",
+    "Pandaros.Settlers.IronHelm": "Iron Helm",
+    "Pandaros.Settlers.IronChest": "Iron Breastplate",
+    "Pandaros.Settlers.IronGloves": "Iron Gauntlets",
+    "Pandaros.Settlers.IronLegs": "Iron Leggings",
+    "Pandaros.Settlers.IronBoots": "Iron Greaves",
+    "Pandaros.Settlers.SteelHelm": "Steel Helm",
+    "Pandaros.Settlers.SteelChest": "Steel Breastplate",
+    "Pandaros.Settlers.SteelGloves": "Steel Gauntlets",
+    "Pandaros.Settlers.SteelLegs": "Steel Leggings",
+    "Pandaros.Settlers.SteelBoots": "Steel Greaves"
+  },
+  "typeuses": {
+    "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
+    "Pandaros.Settlers.CopperChest": "Provides 10% damage reduction.",
+    "Pandaros.Settlers.CopperGloves": "Provides 2.5% damage reduction.",
+    "Pandaros.Settlers.CopperLegs": "Provides 7% damage reduction.",
+    "Pandaros.Settlers.CopperBoots": "Provides 2.5% damage reduction.",
+    "Pandaros.Settlers.BronzeHelm": "Provides 7% damage reduction.",
+    "Pandaros.Settlers.BronzeChest": "Provides 15% damage reduction.",
+    "Pandaros.Settlers.BronzeGloves": "Provides 4% damage reduction.",
+    "Pandaros.Settlers.BronzeLegs": "Provides 9% damage reduction.",
+    "Pandaros.Settlers.BronzeBoots": "Provides 4% damage reduction.",
+    "Pandaros.Settlers.IronHelm": "Provides 9% damage reduction.",
+    "Pandaros.Settlers.IronChest": "Provides 20% damage reduction.",
+    "Pandaros.Settlers.IronGloves": "Provides 5.5% damage reduction.",
+    "Pandaros.Settlers.IronLegs": "Provides 11% damage reduction.",
+    "Pandaros.Settlers.IronBoots": "Provides 5.5% damage reduction.",
+    "Pandaros.Settlers.SteelHelm": "Provides 11% damage reduction.",
+    "Pandaros.Settlers.SteelChest": "Provides 30% damage reduction.",
+    "Pandaros.Settlers.SteelGloves": "Provides 7% damage reduction.",
+    "Pandaros.Settlers.SteelLegs": "Provides 13% damage reduction.",
+    "Pandaros.Settlers.SteelBoots": "Provides 7% damage reduction."
+  },
   "Pandaros": {
     "Settlers": {
       "SettlerChance1": {
@@ -280,6 +324,22 @@
       "NumberSkilledLaborer5": {
         "name": "Number of Skilled Laborer V",
         "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+      },
+      "ArmorSmithing1": {
+        "name": "Armor Smithing I - Copper",
+        "description": "Allows crafting of copper armors for your colonists."
+      },
+      "ArmorSmithing2": {
+        "name": "Armor Smithing II - Bronze",
+        "description": "Allows crafting of bronze armors for your colonists."
+      },
+      "ArmorSmithing3": {
+        "name": "Armor Smithing III - Iron",
+        "description": "Allows crafting of iron armors for your colonists."
+      },
+      "ArmorSmithing4": {
+        "name": "Armor Smithing IV - Steel",
+        "description": "Allows crafting of steel armors for your colonists."
       }
     }
   }

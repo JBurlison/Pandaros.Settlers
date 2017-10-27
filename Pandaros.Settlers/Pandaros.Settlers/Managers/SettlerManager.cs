@@ -120,7 +120,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPC.NPCBase npc)
         {
-            npc.GetTempValues(true).Set(GameLoader.SETTLER_INV, new SettlerInventory(npc.ID));
+            SettlerInventory.GetSettlerInventory(npc);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
@@ -131,10 +131,7 @@ namespace Pandaros.Settlers.Managers
             if (npc.Job != null && !npc.Job.NPCType.IsLaborer)
             {
                 var skilled = tmpVals.GetOrDefault(GameLoader.ALL_SKILLS, 0f);
-
-                if (!tmpVals.TryGet(GameLoader.SETTLER_INV, out SettlerInventory inv))
-                    inv = new SettlerInventory(npc.ID);
-
+                var inv = SettlerInventory.GetSettlerInventory(npc);
                 var jobName = npc.Job.NPCType.ToString();
 
                 if (!inv.JobSkills.ContainsKey(jobName))
@@ -146,19 +143,13 @@ namespace Pandaros.Settlers.Managers
         public static void OnNPCLoaded(NPC.NPCBase npc, JSONNode node)
         {
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
-            {
-                var inv = npc.GetTempValues(true);
-                inv.Set(GameLoader.SETTLER_INV, new SettlerInventory(invNode));
-            }
+                npc.GetTempValues(true).Set(GameLoader.SETTLER_INV, new SettlerInventory(invNode));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCSaved, GameLoader.NAMESPACE + ".SettlerManager.OnNPCSaved")]
         public static void OnNPCSaved(NPC.NPCBase npc, JSONNode node)
         {
-            var inv = npc.GetTempValues(true);
-
-            if (inv.TryGet(GameLoader.SETTLER_INV, out SettlerInventory si))
-                node.SetAs(GameLoader.SETTLER_INV, si.ToJsonNode());
+            node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
         }
 
         private static bool CheckIfColonistsWhereBought(Players.Player p)
@@ -340,11 +331,23 @@ namespace Pandaros.Settlers.Managers
                     if (chance > 0 && chance * 100 > rand)
                     {
                         var addCount = System.Math.Floor(state.MaxPerSpawn * chance);
-                            
+                        var massacre = string.Empty;
 
+                        // if we lost alot of colonists add extra to help build back up.
+                        if (state.ColonistCount != state.HighestColonistCount)
+                        {
+                            var diff = state.HighestColonistCount - colony.FollowerCount;
+                            var percentLost = state.HighestColonistCount / diff;
+
+                            addCount += System.Math.Floor(diff * .25);
+
+                            if (percentLost > 50)
+                                massacre = string.Format(SettlerReasoning.GetMassacre(), addCount);
+                        }
+                            
                         var skillChance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
                         int numbSkilled = 0;
-                        skillChance += .1f;
+                        //skillChance += .1f;
 
                         rand = state.Rand.Next(1, 100);
 
@@ -359,12 +362,17 @@ namespace Pandaros.Settlers.Managers
                             else
                                 reason += string.Format(" {0} of them are skilled!", numbSkilled);
 
-                        PandaChat.Send(p, reason, ChatColor.magenta);
+                        if (!string.IsNullOrEmpty(massacre))
+                            PandaChat.Send(p, massacre, ChatColor.magenta);
+                        else
+                            PandaChat.Send(p, reason, ChatColor.magenta);
+              
 
                         for (int i = 0; i < addCount; i++)
                         {
                             NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.Get(p).KeyLocation.Vector, colony);
-                     
+                            SettlerInventory.GetSettlerInventory(newGuy);
+
                             if (i <= numbSkilled)
                             {
                                 var npcTemp = newGuy.GetTempValues(true);
@@ -376,6 +384,10 @@ namespace Pandaros.Settlers.Managers
                         }
 
                         state.ColonistCount += (int)addCount;
+
+                        if (state.ColonistCount > state.HighestColonistCount)
+                            state.HighestColonistCount = state.ColonistCount;
+
                         update = true;
                         state.FoodDivider = 0;
                     }
@@ -406,7 +418,7 @@ namespace Pandaros.Settlers.Managers
 
                     var food = _baseFoodPerHour;
 
-                    if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > 0)
+                    if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
                     {
                         if (ps.FoodDivider == 0)
                             ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 2.50f), colony.FollowerCount * 3);
@@ -510,9 +522,20 @@ namespace Pandaros.Settlers.Managers
                                 var toRemove = remainingBeds * -1;
                                 PandaLogger.Log(ChatColor.red, "Could not get colonists refrence.");
 
+                                foreach (var follower in colony.Followers)
+                                {
+                                    if (follower.GetBed() == null)
+                                    {
+                                        toRemove--;
+                                        left++;
+                                        KillColonist(follower);
+                                    }
+                                }
+
                                 for (int i = 0; i < toRemove; i++)
                                 {
                                     left++;
+
                                     KillLaborerOrRandomColonist(colony);
                                 }
                                     

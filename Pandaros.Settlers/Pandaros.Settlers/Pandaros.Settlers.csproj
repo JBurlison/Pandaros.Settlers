@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="Entities\BlockJobBaseExtender.cs" />
+    <Compile Include="Items\Armor.cs" />
     <Compile Include="Managers\BannerManager.cs" />
     <Compile Include="AI\NameGenerator.cs" />
     <Compile Include="Entities\ColonyPrivates.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="MethodUtil.cs" />
-    <Compile Include="Monsters\PandaZombie.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
@@ -92,9 +92,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Monsters\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="icons\BronzeBoots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ArmorSmithing2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\BronzeChest.png">
@@ -112,6 +117,9 @@
     <Content Include="icons\CopperBoots.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\ArmorSmithing1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\CopperChest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -125,6 +133,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\IronBoots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ArmorSmithing3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\IronChest.png">
@@ -281,6 +292,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Steelboots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ArmorSmithing4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\SteelChest.png">

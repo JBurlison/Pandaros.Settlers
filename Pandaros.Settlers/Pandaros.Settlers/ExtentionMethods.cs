@@ -25,5 +25,10 @@ namespace Pandaros.Settlers
         {
             return typeof(Inventory).GetField("items", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(inv) as List<InventoryItem>;
         }
+
+        public static BedBlock GetBed(this NPCBase job)
+        {
+            return typeof(NPCBase).GetField("bed", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job) as BedBlock;
+        }
     }
 }

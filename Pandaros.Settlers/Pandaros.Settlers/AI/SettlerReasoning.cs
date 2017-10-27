@@ -30,6 +30,15 @@ namespace Pandaros.Settlers.AI
             return _needBed[rnd.Next(0, _needBed.Count)];
         }
 
+        public static string GetMassacre()
+        {
+            return _massacre[rnd.Next(0, _massacre.Count)];
+        }
+
+        static List<string> _massacre = new List<string>()
+        {
+            "We heard about the massacre here. We are here to help to rebuild! {0} settlers have joined your colony."
+        };
 
         static List<string> _noJob = new List<string>()
         {

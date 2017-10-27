@@ -32,6 +32,9 @@ namespace Pandaros.Settlers.Entities
         public int ColonistCount { get; set; }
 
         [XmlElement]
+        public int HighestColonistCount { get; set; }
+
+        [XmlElement]
         public List<int> BannersAwarded { get; set; } = new List<int>();
 
         [XmlIgnore]

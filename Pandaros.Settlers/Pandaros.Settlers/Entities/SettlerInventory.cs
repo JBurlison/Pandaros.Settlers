@@ -9,6 +9,40 @@ namespace Pandaros.Settlers.Entities
 {
     public class SettlerInventory
     {
+        public class ArmorState
+        {
+            public ushort Id { get; set; }
+
+            public int Durability { get; set; }
+
+            public bool IsEmpty()
+            {
+                return Id == default(ushort);
+            }
+
+            public void FromJsonNode(string nodeName, JSONNode node)
+            {
+                if (node.TryGetAs(nodeName, out JSONNode stateNode))
+                {
+                    if (stateNode.TryGetAs(nameof(Id), out ushort id))
+                        Id = id;
+
+                    if (stateNode.TryGetAs(nameof(Durability), out int durablility))
+                        Durability = durablility;
+                }
+            }
+
+            public JSONNode ToJsonNode()
+            {
+                var baseNode = new JSONNode();
+
+                baseNode[nameof(Id)] = new JSONNode(Id);
+                baseNode[nameof(Durability)] = new JSONNode(Durability);
+
+                return baseNode;
+            }
+        }
+
         public int SettlerId { get; set; }
 
         public string SettlerName { get; set; }
@@ -17,16 +51,20 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
 
+        public Dictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ArmorState>();
+
         public SettlerInventory(int id)
         {
             SettlerId = id;
             SettlerName = NameGenerator.GetName();
+            SetupArmor();
         }
 
         public SettlerInventory(JSONNode baseNode)
         {
             if (baseNode.TryGetAs<int>(nameof(SettlerId), out var settlerId))
             {
+                SetupArmor();
                 SettlerId = settlerId;
 
                 baseNode.TryGetAs<string>(nameof(SettlerName), out var name);
@@ -39,7 +77,16 @@ namespace Pandaros.Settlers.Entities
                 if (baseNode.TryGetAs(nameof(JobItteration), out JSONNode itterations))
                     foreach (var skill in itterations.LoopObject())
                         JobItteration[skill.Key] = skill.Value.GetAs<int>();
+
+                foreach (Items.Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+                    Armor[armorType].FromJsonNode(armorType.ToString(), baseNode);
             }
+        }
+
+        private void SetupArmor()
+        {
+            foreach (Items.Armor.ArmorSlot armorType in Enum.GetValues(typeof(Items.Armor.ArmorSlot)))
+                Armor.Add(armorType, new ArmorState());
         }
 
         public JSONNode ToJsonNode()
@@ -63,7 +110,21 @@ namespace Pandaros.Settlers.Entities
 
             baseNode[nameof(itterations)] = itterations;
 
+            foreach (Items.Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+                baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();
+
             return baseNode;
+        }
+
+        public static SettlerInventory GetSettlerInventory(NPC.NPCBase npc)
+        {
+            var tempVals = npc.GetTempValues(true);
+            if (!tempVals.TryGet(GameLoader.SETTLER_INV, out SettlerInventory inv))
+            {
+                inv = new SettlerInventory(npc.ID);
+                tempVals.Set(GameLoader.SETTLER_INV, inv);
+            }
+            return inv;
         }
     }
 }

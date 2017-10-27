@@ -13,14 +13,15 @@ namespace Pandaros.Settlers.Research
     [ModLoader.ModManager]
     public class PandaResearch : BaseResearchable
     {
-        public static readonly string Settlement = "Settlement";
-        public static readonly string MaxSettlers = "MaxSettlers";
-        public static readonly string MinSettlers = "MinSettlers";
-        public static readonly string ReducedWaste = "ReducedWaste";
-        public static readonly string SettlerChance = "SettlerChance";
-        public static readonly string TimeBetween = "TimeBetween";
-        public static readonly string NumberSkilledLaborer = "NumberSkilledLaborer";
-        public static readonly string SkilledLaborer = "SkilledLaborer";
+        public const string Settlement = "Settlement";
+        public const string MaxSettlers = "MaxSettlers";
+        public const string MinSettlers = "MinSettlers";
+        public const string ReducedWaste = "ReducedWaste";
+        public const string SettlerChance = "SettlerChance";
+        public const string TimeBetween = "TimeBetween";
+        public const string NumberSkilledLaborer = "NumberSkilledLaborer";
+        public const string SkilledLaborer = "SkilledLaborer";
+        public const string ArmorSmithing = "ArmorSmithing";
 
         private string _tmpValueKey = string.Empty;
         private int _level = 1;
@@ -63,6 +64,30 @@ namespace Pandaros.Settlers.Research
         {
             manager.Player.GetTempValues(true).Set(_tmpValueKey, _value);
             PandaLogger.Log($"Research Complete: {_tmpValueKey} - {_value}");
+
+            if (_tmpValueKey.Contains(ArmorSmithing))
+            {
+                List<Items.Armor.ArmorMetadata> armor = new List<Items.Armor.ArmorMetadata>();
+
+                switch (_value)
+                {
+                    case 1:
+                        armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Copper));
+                        break;
+                    case 2:
+                        armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Bronze));
+                        break;
+                    case 3:
+                        armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Iron));
+                        break;
+                    case 4:
+                        armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Steel));
+                        break;
+                }
+
+                foreach (var item in armor)
+                    RecipeStorage.GetPlayerStorage(manager.Player).SetRecipeAvailability(item.ItemType.name, true, Items.Armor.JOB_METALSMITH);
+            }
         }
 
         public static string GetResearchKey(string researchName)
@@ -81,6 +106,7 @@ namespace Pandaros.Settlers.Research
             AddSettlerChance(researchDic);
             AddTimeBetween(researchDic);
             AddBanner(researchDic);
+            AddArmorSmithing(researchDic);
             //AddSkilledLaborer(researchDic);
             //AddNumberSkilledLaborer(researchDic);
         }
@@ -148,6 +174,34 @@ namespace Pandaros.Settlers.Research
 
             for (int i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, NumberSkilledLaborer, 1f));
+        }
+
+        private static void AddArmorSmithing(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 5);
+            researchDic.Add(BuiltinBlocks.CopperParts, 3);
+            researchDic.Add(BuiltinBlocks.CopperNails, 5);
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, ArmorSmithing, 1f, null, 20));
+
+            researchDic.Remove(BuiltinBlocks.CopperParts);
+            researchDic.Remove(BuiltinBlocks.CopperNails);
+            researchDic.Add(BuiltinBlocks.BronzePlate, 3);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, 5);
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 2, ArmorSmithing, 1f, null, 20));
+
+            researchDic.Add(BuiltinBlocks.IronRivet, 3);
+            researchDic.Add(BuiltinBlocks.IronSword, 1);
+            researchDic.Remove(BuiltinBlocks.BronzePlate);
+            researchDic.Remove(BuiltinBlocks.BronzeCoin);
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 3, ArmorSmithing, 1f, null, 20));
+
+            researchDic.Add(BuiltinBlocks.SteelParts, 3);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 1);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Remove(BuiltinBlocks.IronRivet);
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 4, ArmorSmithing, 1f, null, 20));
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)

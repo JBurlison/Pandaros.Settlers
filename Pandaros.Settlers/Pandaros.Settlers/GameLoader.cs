@@ -21,8 +21,6 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public const string JOB_METALSMITH = "pipliz.metalsmithjob";
-
         public static ushort MissingMonster_Icon { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
@@ -44,33 +42,6 @@ namespace Pandaros.Settlers
             MissingMonster_Icon = monster.ItemIndex;
             
             items.Add(NAMESPACE + ".Monster", monster);
-
-            var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var carpet = new InventoryItem(BuiltinBlocks.Carpet, 1);
-
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
-            var copper = new InventoryItem(BuiltinBlocks.Copper, 5);
-
-            var bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
-            var bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-
-            var ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
-            var iron = new InventoryItem(BuiltinBlocks.IronIngot, 5);
-
-            var steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
-            var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
-
-            var copperChestName = NAMESPACE + ".CopperChest";
-            var copperChestNode = new JSONNode();
-            copperChestNode["icon"] = new JSONNode(ICON_FOLDER_PANDA.Replace("\\", "/") + "/CopperChest.png");
-
-            var copperChest = new ItemTypesServer.ItemTypeRaw(copperChestName, copperChestNode);
-            items.Add(copperChestName, copperChest);
-
-            var copperChestInvItem = new InventoryItem(copperChest.ItemIndex);
-
-            RecipeStorage.AddDefaultLimitTypeRecipe(JOB_METALSMITH, new Recipe(copperChestName, new List<InventoryItem>() { copper, copperParts, coppertools, carpet }, copperChestInvItem));
-
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, NAMESPACE + ".Localize")]
@@ -139,7 +110,18 @@ namespace Pandaros.Settlers
                         {
                             if (jsn != null)
                             {
-                                jsn["sentences"][modNode.Key] = modNode.Value;
+                                if (modNode.Key.Equals("types"))
+                                {
+                                    foreach (var tnode in modNode.Value.LoopObject())
+                                      jsn["types"][tnode.Key] = tnode.Value;
+                                }
+                                else if (modNode.Key.Equals("typeuses"))
+                                {
+                                    foreach (var tnode in modNode.Value.LoopObject())
+                                        jsn["typeuses"][tnode.Key] = tnode.Value;
+                                }
+                                else
+                                    jsn["sentences"][modNode.Key] = modNode.Value;
                             }
                             else
                                 PandaLogger.Log("Unable to localize. Localization '{0}' not found and is null.", locName);
