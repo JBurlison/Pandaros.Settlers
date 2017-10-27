@@ -197,12 +197,12 @@ namespace Pandaros.Settlers.Items
 
             var steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
             var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
-            
-            var items = new List<InventoryItem>();
+
+            List<InventoryItem> items;
 
             foreach (var a in ArmorLookup)
             {
-                items.Clear();
+                items = new List<InventoryItem>();
 
                 // ----------------------------------------
                 // Copper
