@@ -83,12 +83,14 @@ namespace Pandaros.Settlers.Managers
 
                 var totalBanners = p.Value + sockBanner + inventoryBanners;
 
+#if Debug
                 PandaLogger.Log($"Number of research banners: {numberOfBanners}");
                 PandaLogger.Log($"Number of banners: {p.Value}");
                 PandaLogger.Log($"Number of stockpile banners: {sockBanner}");
                 PandaLogger.Log($"Number of Inventory banners: {inventoryBanners}");
                 PandaLogger.Log($"Total banners: {totalBanners}");
                 PandaLogger.Log($"Add Banner: {totalBanners < numberOfBanners}");
+#endif
 
                 if (totalBanners < numberOfBanners)
                     Stockpile.GetStockPile(p.Key).Add(BuiltinBlocks.Banner);
