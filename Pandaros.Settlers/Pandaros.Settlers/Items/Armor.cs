@@ -164,6 +164,7 @@ namespace Pandaros.Settlers.Items
                                 // Check if we need one or if there is an upgrade.
                                 if (inv.Armor[armorType].IsEmpty())
                                 {
+                                    stockpile.TryRemove(bestArmor);
                                     inv.Armor[armorType].Id = bestArmor;
                                     inv.Armor[armorType].Durability = ArmorLookup[bestArmor].Durability;
                                 }
@@ -175,6 +176,7 @@ namespace Pandaros.Settlers.Items
                                     if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
                                     {
                                         // Upgrade armor.
+                                        stockpile.TryRemove(bestArmor);
                                         stockpile.Add(inv.Armor[armorType].Id);
                                         inv.Armor[armorType].Id = bestArmor;
                                         inv.Armor[armorType].Durability = stockpileArmor.Durability;
@@ -195,7 +197,7 @@ namespace Pandaros.Settlers.Items
 
             foreach (var armor in ArmorLookup.Where(a => a.Value.Slot == slot))
             {
-                if (s.TryRemove(armor.Key))
+                if (s.Contains(armor.Key))
                 {
                     best = armor.Key;
                     break;

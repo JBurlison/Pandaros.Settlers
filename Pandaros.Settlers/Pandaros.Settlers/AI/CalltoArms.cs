@@ -265,13 +265,10 @@ namespace Pandaros.Settlers.AI
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
         public void OnPlayerDisconnected(Players.Player p)
         {
-            Colony c = Colony.Get(p);
             PlayerState state = PlayerState.GetPlayerState(p);
 
-            state.CallToArmsEnabled = false;
-
-            foreach (var follower in c.Followers)
-                follower.ClearJob();
+            if (state.CallToArmsEnabled)
+                TryDoCommand(p, "");
         }
 
         public bool TryDoCommand(Players.Player player, string chat)
