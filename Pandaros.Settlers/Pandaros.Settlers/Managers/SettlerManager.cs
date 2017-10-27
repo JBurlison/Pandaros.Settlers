@@ -28,17 +28,18 @@ namespace Pandaros.Settlers.Managers
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
 
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
-        public static GameDifficulty Difficulty { get; set; }
 
         private static Dictionary<string, ISpawnSettlerEvaluator> _deciders = new Dictionary<string, ISpawnSettlerEvaluator>();
-        private static bool _worldLoaded = false;
+        
         private static System.Random _r = new System.Random();
         private static DateTime _nextfoodSendTime = DateTime.MinValue;
         private static DateTime _nextWorkerEvalTime = DateTime.MinValue;
         private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
         private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
-        public static bool RUNNING = false;
+
+        public static bool RUNNING { get; private set; }
+        public static bool WorldLoaded { get; private set; }
 
         public static ColonyState CurrentColonyState
         {
@@ -80,7 +81,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            _worldLoaded = true;
+            WorldLoaded = true;
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
             CheckWorld();
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
@@ -156,7 +157,7 @@ namespace Pandaros.Settlers.Managers
         {
             bool update = false;
 
-            if (_worldLoaded)
+            if (WorldLoaded)
             {
                 CheckWorld();
 
@@ -413,7 +414,7 @@ namespace Pandaros.Settlers.Managers
                     if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
                     {
                         if (ps.FoodDivider == 0)
-                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 2.50f), colony.FollowerCount * 3);
+                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 1.50f), Pipliz.Math.CeilToInt(colony.FollowerCount * 2.5f));
 
                         var multiplier = (ps.FoodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
 
