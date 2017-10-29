@@ -71,6 +71,7 @@
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
     <Compile Include="Research\PandaResearch.cs" />
+    <Compile Include="Research\PandaResearchCommand.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Chance\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
@@ -113,6 +114,21 @@
     </Content>
     <Content Include="icons\BronzeLegs.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ColonistHealth1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ColonistHealth2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ColonistHealth3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ColonistHealth4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ColonistHealth5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\CopperBoots.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

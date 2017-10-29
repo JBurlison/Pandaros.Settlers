@@ -58,6 +58,7 @@ namespace Pandaros.Settlers.AI
 
         public override void OnAssignedNPC(NPCBase npc)
         {
+            owner = npc.Colony.Owner;
             _tmpVals = npc.GetTempValues(true);
             _colony = npc.Colony;
             _playerState = PlayerState.GetPlayerState(_colony.Owner, _colony);
@@ -213,7 +214,7 @@ namespace Pandaros.Settlers.AI
             if (!_weapons.Contains(GuardSlingerJobDay.GetGuardSettings()))
                 _weapons.Add(GuardSlingerJobDay.GetGuardSettings());
 
-            _weapons = _weapons.OrderBy(w => w.shootDamage).ToList();
+            _weapons = _weapons.OrderBy(w => w.shootDamage).Reverse().ToList();
 
             if (_playerState.CallToArmsEnabled && _weapons.Count != 0)
             {
@@ -287,28 +288,54 @@ namespace Pandaros.Settlers.AI
 
                 foreach (var follower in colony.Followers)
                 {
-                    var job = follower.Job;
-                    _Jobs[follower] = job;
-                    job.OnAssignedNPC(null);
-                    follower.ClearJob();
-                    follower.TakeJob(new CalltoArmsJob());
+                    try
+                    {
+                        var job = follower.Job;
+
+                        if (job != null)
+                        {
+                            _Jobs[follower] = job;
+                            job.OnRemovedNPC();
+                            follower.ClearJob();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        PandaLogger.LogError(ex);
+                    }
+
+                    var armsJob = new CalltoArmsJob();
+                    armsJob.OnAssignedNPC(follower);
+                    follower.TakeJob(armsJob);
                 }
             }
             else
             {
                 PandaChat.Send(player, "Call to arms deactivated.", ChatColor.green, ChatStyle.bold);
+                List<NPCBase> assignedWorkers = new List<NPCBase>();
 
                 foreach (var follower in colony.Followers)
-                    if (_Jobs.ContainsKey(follower))
-                    {
-                        _Jobs[follower].OnAssignedNPC(follower);
-                        follower.TakeJob(_Jobs[follower]);
-                    }
-                    else
+                {
+                   
+                    var job = follower.Job;
+
+                    if (job != null)
                         follower.ClearJob();
+
+                    if (_Jobs.ContainsKey(follower) && _Jobs[follower].NeedsNPC)
+                    {
+                        assignedWorkers.Add(follower);
+                        follower.TakeJob(_Jobs[follower]);
+                        _Jobs[follower].OnAssignedNPC(follower);
+                        JobTracker.Remove(player, _Jobs[follower].KeyLocation);
+                    }
+                }
 
                 _Jobs.Clear();
             }
+
+            JobTracker.Update();
+            Colony.SendColonistCount(player);
 
             return true;
         }

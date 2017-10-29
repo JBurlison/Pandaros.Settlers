@@ -9,6 +9,7 @@ namespace Pandaros.Settlers.Entities
 {
     public class SettlerInventory
     {
+        [Serializable]
         public class ArmorState
         {
             public ushort Id { get; set; }
@@ -85,7 +86,7 @@ namespace Pandaros.Settlers.Entities
 
         private void SetupArmor()
         {
-            foreach (Items.Armor.ArmorSlot armorType in Enum.GetValues(typeof(Items.Armor.ArmorSlot)))
+            foreach (Items.Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
                 Armor.Add(armorType, new ArmorState());
         }
 

@@ -340,6 +340,26 @@
       "ArmorSmithing4": {
         "name": "Armor Smithing IV - Steel",
         "description": "Allows crafting of steel armors for your colonists."
+      },
+      "ColonistHealth1": {
+        "name": "Increased Colonist Health I",
+        "description": "Increases colonist health by 10."
+      },
+      "ColonistHealth2": {
+        "name": "Increased Colonist Health II",
+        "description": "Increases colonist health by 20."
+      },
+      "ColonistHealth3": {
+        "name": "Increased Colonist Health III",
+        "description": "Increases colonist health by 30."
+      },
+      "ColonistHealth4": {
+        "name": "Increased Colonist Health IV",
+        "description": "Increases colonist health by 40."
+      },
+      "ColonistHealth5": {
+        "name": "Increased Colonist Health V",
+        "description": "Increases colonist health by 50."
       }
     }
   }

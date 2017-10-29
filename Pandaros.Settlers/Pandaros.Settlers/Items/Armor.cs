@@ -48,8 +48,20 @@ namespace Pandaros.Settlers.Items
                 }
             }
 
-            PandaChat.Send(player, "Colonist Equipt Armor");
+            PandaChat.Send(player, "Player Equipt Armor");
+            var state = PlayerState.GetPlayerState(player, colony);
+            StringBuilder psb = new StringBuilder();
+            psb.Append("|");
 
+            foreach (var armor in state.Armor)
+                if (armor.Value.IsEmpty())
+                    psb.Append($" {armor.Key}: None |");
+                else
+                    psb.Append($" {armor.Key}: {Armor.ArmorLookup[armor.Value.Id].Metal} | ");
+
+            PandaChat.Send(player, psb.ToString());
+
+            PandaChat.Send(player, "Colonist Equipt Armor");
             foreach (var type in counts)
             {
                 PandaChat.Send(player, $"--------{type.Key}--------");
@@ -149,7 +161,39 @@ namespace Pandaros.Settlers.Items
                 Players.PlayerDatabase.ForeachValue(p =>
                 {
                     var colony = Colony.Get(p);
+                    var state = PlayerState.GetPlayerState(p, colony);
                     var stockpile = Stockpile.GetStockPile(p);
+
+                    /// Load up player first.
+                    foreach (ArmorSlot slot in ArmorSlotEnum)
+                    {
+                        var bestArmor = GetBestArmorFromStockpile(stockpile, slot);
+
+                        if (bestArmor != default(ushort))
+                        {
+                            // Check if we need one or if there is an upgrade.
+                            if (state.Armor[slot].IsEmpty())
+                            {
+                                stockpile.TryRemove(bestArmor);
+                                state.Armor[slot].Id = bestArmor;
+                                state.Armor[slot].Durability = ArmorLookup[bestArmor].Durability;
+                            }
+                            else
+                            {
+                                var currentArmor = ArmorLookup[state.Armor[slot].Id];
+                                var stockpileArmor = ArmorLookup[bestArmor];
+
+                                if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
+                                {
+                                    // Upgrade armor.
+                                    stockpile.TryRemove(bestArmor);
+                                    stockpile.Add(state.Armor[slot].Id);
+                                    state.Armor[slot].Id = bestArmor;
+                                    state.Armor[slot].Durability = stockpileArmor.Durability;
+                                }
+                            }
+                        }
+                    }
 
                     foreach (var npc in colony.Followers)
                     {

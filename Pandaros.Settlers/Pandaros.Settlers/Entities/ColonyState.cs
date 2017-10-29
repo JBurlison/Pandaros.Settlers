@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
+using static Pandaros.Settlers.Entities.SettlerInventory;
 
 namespace Pandaros.Settlers.Entities
 {
@@ -81,6 +82,9 @@ namespace Pandaros.Settlers.Entities
         [XmlIgnore]
         public double NeedsABed { get; set; }
 
+        [XmlElement]
+        public SerializableDictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new SerializableDictionary<Items.Armor.ArmorSlot, ArmorState>();
+
         [XmlIgnore]
         public int MaxPerSpawn
         {
@@ -115,6 +119,13 @@ namespace Pandaros.Settlers.Entities
             KnownLaborers = new Dictionary<NPC.NPCBase, double>();
             NeedsABed = 0;
             Difficulty = GameDifficulty.Medium;
+            SetupArmor();
+        }
+
+        private void SetupArmor()
+        {
+            foreach (Items.Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+                Armor.Add(armorType, new ArmorState());
         }
 
         public static PlayerState GetPlayerState(Players.Player p)

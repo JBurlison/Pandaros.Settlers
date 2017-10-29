@@ -61,6 +61,9 @@ namespace Pandaros.Settlers.Managers
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new CalltoArms());
             ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
+#if Debug
+            ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
+#endif
             LoadState();
         }
 
@@ -414,7 +417,7 @@ namespace Pandaros.Settlers.Managers
                     if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
                     {
                         if (ps.FoodDivider == 0)
-                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 1.50f), Pipliz.Math.CeilToInt(colony.FollowerCount * 2.5f));
+                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 1.75f), Pipliz.Math.CeilToInt(colony.FollowerCount * 2f));
 
                         var multiplier = (ps.FoodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
 
