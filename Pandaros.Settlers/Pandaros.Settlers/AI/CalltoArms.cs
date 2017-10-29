@@ -316,7 +316,6 @@ namespace Pandaros.Settlers.AI
 
                 foreach (var follower in colony.Followers)
                 {
-                   
                     var job = follower.Job;
 
                     if (job != null)

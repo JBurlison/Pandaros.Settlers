@@ -633,7 +633,7 @@ namespace Pandaros.Settlers.Items
 
                 var steelHelm = new ItemTypesServer.ItemTypeRaw(steelHelmName, steelHelmNode);
                 items.Add(steelHelmName, steelHelm);
-                ArmorLookup.Add(steelHelm.ItemIndex, new ArmorMetadata(0.11f, 60, MetalType.Steel, steelHelm, ArmorSlot.Helm));
+                ArmorLookup.Add(steelHelm.ItemIndex, new ArmorMetadata(0.11f, 40, MetalType.Steel, steelHelm, ArmorSlot.Helm));
 
                 // Chest
                 var steelChestName = GameLoader.NAMESPACE + ".SteelChest";
@@ -643,7 +643,7 @@ namespace Pandaros.Settlers.Items
 
                 var steelChest = new ItemTypesServer.ItemTypeRaw(steelChestName, steelChestNode);
                 items.Add(steelChestName, steelChest);
-                ArmorLookup.Add(steelChest.ItemIndex, new ArmorMetadata(.3f, 80, MetalType.Steel, steelChest, ArmorSlot.Chest));
+                ArmorLookup.Add(steelChest.ItemIndex, new ArmorMetadata(.3f, 50, MetalType.Steel, steelChest, ArmorSlot.Chest));
 
                 // Gloves
                 var steelGlovesName = GameLoader.NAMESPACE + ".SteelGloves";
@@ -653,7 +653,7 @@ namespace Pandaros.Settlers.Items
 
                 var steelGloves = new ItemTypesServer.ItemTypeRaw(steelGlovesName, steelGlovesNode);
                 items.Add(steelGlovesName, steelGloves);
-                ArmorLookup.Add(steelGloves.ItemIndex, new ArmorMetadata(0.07f, 50, MetalType.Steel, steelGloves, ArmorSlot.Gloves));
+                ArmorLookup.Add(steelGloves.ItemIndex, new ArmorMetadata(0.07f, 35, MetalType.Steel, steelGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var steelLegsName = GameLoader.NAMESPACE + ".SteelLegs";
@@ -663,7 +663,7 @@ namespace Pandaros.Settlers.Items
 
                 var steelLegs = new ItemTypesServer.ItemTypeRaw(steelLegsName, steelLegsNode);
                 items.Add(steelLegsName, steelLegs);
-                ArmorLookup.Add(steelLegs.ItemIndex, new ArmorMetadata(0.13f, 60, MetalType.Steel, steelLegs, ArmorSlot.Legs));
+                ArmorLookup.Add(steelLegs.ItemIndex, new ArmorMetadata(0.13f, 40, MetalType.Steel, steelLegs, ArmorSlot.Legs));
 
                 // Boots
                 var steelBootsName = GameLoader.NAMESPACE + ".SteelBoots";
@@ -673,7 +673,7 @@ namespace Pandaros.Settlers.Items
 
                 var steelBoots = new ItemTypesServer.ItemTypeRaw(steelBootsName, steelBootsNode);
                 items.Add(steelBootsName, steelBoots);
-                ArmorLookup.Add(steelBoots.ItemIndex, new ArmorMetadata(0.07f, 50, MetalType.Steel, steelBoots, ArmorSlot.Boots));
+                ArmorLookup.Add(steelBoots.ItemIndex, new ArmorMetadata(0.07f, 35, MetalType.Steel, steelBoots, ArmorSlot.Boots));
 
                 ArmorLookup = ArmorLookup.OrderBy(kvp => kvp.Value.Metal).ThenBy(kvp => kvp.Value.ArmorRating).ToDictionary(k => k.Key, v => v.Value);
             }
