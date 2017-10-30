@@ -251,15 +251,27 @@ namespace Pandaros.Settlers.Items
             return best;
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Armor.OnPlayerHit")]
+        public static void OnPlayerHit(Players.Player player, Pipliz.Box<float> box)
+        {
+            var state = PlayerState.GetPlayerState(player);
+            DeductArmor(box, state.Armor, player, "Your");
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
         public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
         {
             var inv = SettlerInventory.GetSettlerInventory(npc);
+            DeductArmor(box, inv.Armor, npc.Colony.Owner, inv.SettlerName);
+        }
+
+        private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> armorcache, Players.Player player, string name)
+        {
             float armor = 0;
 
             foreach (ArmorSlot armorType in ArmorSlotEnum)
-                if (!inv.Armor[armorType].IsEmpty())
-                    armor += ArmorLookup[inv.Armor[armorType].Id].ArmorRating;
+                if (!armorcache[armorType].IsEmpty())
+                    armor += ArmorLookup[armorcache[armorType].Id].ArmorRating;
 
             if (armor != 0)
             {
@@ -268,15 +280,15 @@ namespace Pandaros.Settlers.Items
                 var hitLocation = _rand.Next(1, 100);
 
                 foreach (var loc in _hitChance)
-                    if (!inv.Armor[loc.Key].IsEmpty() && loc.Value < hitLocation)
+                    if (!armorcache[loc.Key].IsEmpty() && loc.Value < hitLocation)
                     {
-                        inv.Armor[loc.Key].Durability--;
+                        armorcache[loc.Key].Durability--;
 
-                        if (inv.Armor[loc.Key].Durability <= 0)
+                        if (armorcache[loc.Key].Durability <= 0)
                         {
-                            inv.Armor[loc.Key].Durability = 0;
-                            inv.Armor[loc.Key].Id = default(ushort);
-                            PandaChat.Send(npc.Colony.Owner, $"{inv.SettlerName}'s {loc.Key} broke!", ChatColor.white);
+                            armorcache[loc.Key].Durability = 0;
+                            armorcache[loc.Key].Id = default(ushort);
+                            PandaChat.Send(player, $"{name} {loc.Key} broke! If you have a spare one it will be automatically equipt within 30 seconds.", ChatColor.white);
                         }
 
                         break;
@@ -510,6 +522,16 @@ namespace Pandaros.Settlers.Items
                 copperBootsNode["isPlaceable"] = new JSONNode(false);
 
                 var copperBoots = new ItemTypesServer.ItemTypeRaw(copperBootsName, copperBootsNode);
+                items.Add(copperBootsName, copperBoots);
+                ArmorLookup.Add(copperBoots.ItemIndex, new ArmorMetadata(0.025f, 10, MetalType.Copper, copperBoots, ArmorSlot.Boots));
+
+                // Boots
+                var copperSwordAndShieldName = GameLoader.NAMESPACE + ".CopperBoots";
+                var copperSwordAndShieldNode = new JSONNode();
+                copperSwordAndShieldNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/CopperBoots.png");
+                copperSwordAndShieldNode["isPlaceable"] = new JSONNode(true);
+
+                var copperSwordAndShield = new ItemTypesServer.ItemTypeRaw(copperSwordAndShieldName, copperSwordAndShieldNode);
                 items.Add(copperBootsName, copperBoots);
                 ArmorLookup.Add(copperBoots.ItemIndex, new ArmorMetadata(0.025f, 10, MetalType.Copper, copperBoots, ArmorSlot.Boots));
 
