@@ -69,7 +69,7 @@ Armor has duribility! When hit a colonist will take a point of duribility damage
 
 ## Call to Arms!
 ![GitHub Logo](https://i.imgur.com/713Gqcp.png)
-In trouble? Use onhe of the following commands:
+In trouble? Use one of the following commands:
 
 * /call
 * /arms
