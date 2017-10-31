@@ -133,6 +133,16 @@ namespace Pandaros.Settlers.Items
             { ArmorSlot.Boots, 100 }
         };
 
+        static Dictionary<ArmorSlot, int> _hitChanceShield = new Dictionary<ArmorSlot, int>()
+        {
+            { ArmorSlot.Helm, 10 },
+            { ArmorSlot.Chest, 30 },
+            { ArmorSlot.Gloves, 35 },
+            { ArmorSlot.Legs, 45 },
+            { ArmorSlot.Boots, 50 },
+            { ArmorSlot.Shield, 100 }
+        };
+
         static Random _rand = new Random();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Armor.ModifyMonsters"), ModLoader.ModCallbackProvidesFor("pipliz.server.monsterspawner.fetchnpctypes")]
@@ -144,7 +154,7 @@ namespace Pandaros.Settlers.Items
                 {
                     // add more damage to account for armor.
                     if (setObj is NPCTypeMonsterSettings settings)
-                        settings.punchDamage += 70;
+                        settings.punchDamage += 60;
                 }
             }
         }
@@ -267,13 +277,18 @@ namespace Pandaros.Settlers.Items
             DeductArmor(box, inv.Armor, npc.Colony.Owner, inv.SettlerName);
         }
 
-        private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> armorcache, Players.Player player, string name)
+        private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> entityArmor, Players.Player player, string name)
         {
             float armor = 0;
 
-            foreach (ArmorSlot armorType in ArmorSlotEnum)
-                if (!armorcache[armorType].IsEmpty())
-                    armor += ArmorLookup[armorcache[armorType].Id].ArmorRating;
+            foreach (ArmorSlot armorSlot in ArmorSlotEnum)
+            {
+                if (!entityArmor.ContainsKey(armorSlot))
+                    entityArmor.Add(armorSlot, new SettlerInventory.ArmorState());
+
+                if (!entityArmor[armorSlot].IsEmpty())
+                    armor += ArmorLookup[entityArmor[armorSlot].Id].ArmorRating;
+            }
 
             if (armor != 0)
             {
@@ -281,15 +296,20 @@ namespace Pandaros.Settlers.Items
 
                 var hitLocation = _rand.Next(1, 100);
 
-                foreach (var loc in _hitChance)
-                    if (!armorcache[loc.Key].IsEmpty() && loc.Value < hitLocation)
-                    {
-                        armorcache[loc.Key].Durability--;
+                var dic = _hitChance;
 
-                        if (armorcache[loc.Key].Durability <= 0)
+                if (!entityArmor[ArmorSlot.Shield].IsEmpty())
+                    dic = _hitChanceShield;
+
+                foreach (var loc in dic)
+                    if (!entityArmor[loc.Key].IsEmpty() && loc.Value < hitLocation)
+                    {
+                        entityArmor[loc.Key].Durability--;
+
+                        if (entityArmor[loc.Key].Durability <= 0)
                         {
-                            armorcache[loc.Key].Durability = 0;
-                            armorcache[loc.Key].Id = default(ushort);
+                            entityArmor[loc.Key].Durability = 0;
+                            entityArmor[loc.Key].Id = default(ushort);
                             PandaChat.Send(player, $"{name} {loc.Key} broke! If you have a spare one it will be automatically equipt within 30 seconds.", ChatColor.white);
                         }
 
