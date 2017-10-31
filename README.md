@@ -5,6 +5,8 @@ Settlers will leave if there is not enough beds or jobs!
 Food use now increases as colony size goes up to simulate waste.
 Food use fluxuates depending on how hungry your colonists are!
 
+**NOTE: With the release of 0.4.0 Only servers needs mods**
+
 ## Research!
 ![GitHub Logo](https://i.imgur.com/bvNSvcf.png)
 * Increased colony discovery rate by settlers
