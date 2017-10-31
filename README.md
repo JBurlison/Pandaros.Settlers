@@ -90,7 +90,7 @@ The mod should be in \Steam\steamapps\common\Colony Survival\gamedata\mods\Panda
 
 ## Tips!
 
-To maxize the number you get and the chance to get them in the morning make sure of the following:
+To maxize the number you get and the chance to get them throughout the day, make sure of the following:
 * Have jobs available! Everyone loves a Job!
 * Make sure new commers have somewhere to sleep!
 * Ensure you have plenty of food to go around!
