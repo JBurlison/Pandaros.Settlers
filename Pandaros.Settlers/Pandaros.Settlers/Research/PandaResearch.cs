@@ -187,7 +187,6 @@ namespace Pandaros.Settlers.Research
         private static void AddArmorSmithing(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 5);
             researchDic.Add(BuiltinBlocks.CopperParts, 3);
             researchDic.Add(BuiltinBlocks.CopperNails, 5);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 5);
@@ -201,6 +200,7 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Add(BuiltinBlocks.IronRivet, 3);
             researchDic.Add(BuiltinBlocks.IronSword, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 5);
             researchDic.Remove(BuiltinBlocks.BronzePlate);
             researchDic.Remove(BuiltinBlocks.BronzeAxe);
             RegisterArmorSmithng(researchDic, 3);
