@@ -1,5 +1,5 @@
 # Settlers!
-A colony survival settlers mod that introduces natural progression to the game. This mod disables buying of colonists after 10 colonists. After 10 has been reached the mod will kill off any aditional. Settlers will occationally find your colony and settle there!
+A colony survival settlers mod that introduces natural progression to the game. This mod disables buying of colonists after 10 colonists. Settlers will occationally find your colony and settle there!
 
 Settlers will leave if there is not enough beds or jobs! 
 Food use now increases as colony size goes up to simulate waste.
