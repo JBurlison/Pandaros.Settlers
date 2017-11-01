@@ -5,6 +5,8 @@ Settlers will leave if there is not enough beds or jobs!
 Food use now increases as colony size goes up to simulate waste.
 Food use fluxuates depending on how hungry your colonists are!
 
+**NOTE: With the release of 0.4.0 Only servers needs mods**
+
 ## Research!
 ![GitHub Logo](https://i.imgur.com/bvNSvcf.png)
 * Increased colony discovery rate by settlers
@@ -88,7 +90,7 @@ The mod should be in \Steam\steamapps\common\Colony Survival\gamedata\mods\Panda
 
 ## Tips!
 
-To maxize the number you get and the chance to get them in the morning make sure of the following:
+To maxize the number you get and the chance to get them throughout the day, make sure of the following:
 * Have jobs available! Everyone loves a Job!
 * Make sure new commers have somewhere to sleep!
 * Ensure you have plenty of food to go around!
