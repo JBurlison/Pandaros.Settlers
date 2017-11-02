@@ -23,7 +23,11 @@
     "Pandaros.Settlers.SteelGloves": "Steel Gauntlets",
     "Pandaros.Settlers.SteelLegs": "Steel Leggings",
     "Pandaros.Settlers.SteelBoots": "Steel Greaves",
-    "Pandaros.Settlers.SteelShield": "Steel Shield"
+    "Pandaros.Settlers.SteelShield": "Steel Shield",
+    "Pandaros.Settlers.CopperSword": "Copper Sword",
+    "Pandaros.Settlers.BronzeSword": "Bronze Sword",
+    "Pandaros.Settlers.IronSword": "Iron Sword",
+    "Pandaros.Settlers.SteelSword": "Steel Sword"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -49,7 +53,11 @@
     "Pandaros.Settlers.SteelGloves": "Provides 7% damage reduction.",
     "Pandaros.Settlers.SteelLegs": "Provides 13% damage reduction.",
     "Pandaros.Settlers.SteelBoots": "Provides 7% damage reduction.",
-    "Pandaros.Settlers.SteelShield": "Provides 12% damage reduction."
+    "Pandaros.Settlers.SteelShield": "Provides 12% damage reduction.",
+    "Pandaros.Settlers.CopperSword": "Bonafide back scratcher.",
+    "Pandaros.Settlers.BronzeSword": "For taking care of small problems.",
+    "Pandaros.Settlers.IronSword": "Great for beheadings!",
+    "Pandaros.Settlers.SteelSword": "Tis but a flesh wound."
   },
   "Pandaros": {
     "Settlers": {
@@ -368,6 +376,22 @@
       "ColonistHealth5": {
         "name": "Increased Colonist Health V",
         "description": "Increases colonist health by 50."
+      },
+      "SwordSmithing1": {
+        "name": "Sword Smithing I - Copper",
+        "description": "Allows crafting of copper swords for you and your colonists."
+      },
+      "SwordSmithing2": {
+        "name": "Sword Smithing II - Bronze",
+        "description": "Allows crafting of bronze swords for you and your colonists."
+      },
+      "SwordSmithing3": {
+        "name": "Sword Smithing III - Iron",
+        "description": "Allows crafting of iron swords for you and your colonists."
+      },
+      "SwordSmithing4": {
+        "name": "Sword Smithing IV - Steel",
+        "description": "Allows crafting of steel swords for you and your colonists."
       }
     }
   }

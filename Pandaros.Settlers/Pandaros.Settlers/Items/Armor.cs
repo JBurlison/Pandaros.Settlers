@@ -21,16 +21,14 @@ namespace Pandaros.Settlers.Items
         public bool TryDoCommand(Players.Player player, string chat)
         {
             var colony = Colony.Get(player);
-            Dictionary<Armor.MetalType, Dictionary<Armor.ArmorSlot, int>> counts = new Dictionary<Armor.MetalType, Dictionary<Armor.ArmorSlot, int>>();
+            Dictionary<MetalType, Dictionary<Armor.ArmorSlot, int>> counts = new Dictionary<MetalType, Dictionary<Armor.ArmorSlot, int>>();
             Dictionary<Armor.ArmorSlot, int> slots = new Dictionary<Armor.ArmorSlot, int>();
 
             foreach (Armor.ArmorSlot slot in Armor.ArmorSlotEnum)
                 slots.Add(slot, 0);
 
-            counts.Add(Armor.MetalType.Copper, new Dictionary<Armor.ArmorSlot, int>(slots));
-            counts.Add(Armor.MetalType.Bronze, new Dictionary<Armor.ArmorSlot, int>(slots));
-            counts.Add(Armor.MetalType.Iron, new Dictionary<Armor.ArmorSlot, int>(slots));
-            counts.Add(Armor.MetalType.Steel, new Dictionary<Armor.ArmorSlot, int>(slots));
+            foreach (MetalType metal in Enum.GetValues(typeof(MetalType)))
+                counts.Add(metal, new Dictionary<Armor.ArmorSlot, int>(slots));
 
             foreach (var npc in colony.Followers)
             {
@@ -77,14 +75,6 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public static class Armor
     {
-        public enum MetalType
-        {
-            Copper,
-            Bronze,
-            Iron,
-            Steel
-        }
-
         public enum ArmorSlot
         {
             Helm,
@@ -178,7 +168,7 @@ namespace Pandaros.Settlers.Items
                         if (bestArmor != default(ushort))
                         {
                             if (!state.Armor.ContainsKey(slot))
-                                state.Armor.Add(slot, new ArmorState());
+                                state.Armor.Add(slot, new ItemState());
 
                             // Check if we need one or if there is an upgrade.
                             if (state.Armor[slot].IsEmpty())
@@ -215,7 +205,7 @@ namespace Pandaros.Settlers.Items
                             if (bestArmor != default(ushort))
                             {
                                 if (!inv.Armor.ContainsKey(slot))
-                                    inv.Armor.Add(slot, new ArmorState());
+                                    inv.Armor.Add(slot, new ItemState());
 
                                 // Check if we need one or if there is an upgrade.
                                 if (inv.Armor[slot].IsEmpty())
@@ -277,14 +267,14 @@ namespace Pandaros.Settlers.Items
             DeductArmor(box, inv.Armor, npc.Colony.Owner, inv.SettlerName);
         }
 
-        private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> entityArmor, Players.Player player, string name)
+        private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ItemState> entityArmor, Players.Player player, string name)
         {
             float armor = 0;
 
             foreach (ArmorSlot armorSlot in ArmorSlotEnum)
             {
                 if (!entityArmor.ContainsKey(armorSlot))
-                    entityArmor.Add(armorSlot, new SettlerInventory.ArmorState());
+                    entityArmor.Add(armorSlot, new SettlerInventory.ItemState());
 
                 if (!entityArmor[armorSlot].IsEmpty())
                     armor += ArmorLookup[entityArmor[armorSlot].Id].ArmorRating;

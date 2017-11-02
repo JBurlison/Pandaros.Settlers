@@ -35,6 +35,7 @@ namespace Pandaros.Settlers.Research
         public const string NumberSkilledLaborer = "NumberSkilledLaborer";
         public const string SkilledLaborer = "SkilledLaborer";
         public const string ArmorSmithing = "ArmorSmithing";
+        public const string SwordSmithing = "SwordSmithing";
         public const string ColonistHealth = "ColonistHealth";
 
         public string TmpValueKey { get; private set; } = string.Empty;
@@ -115,6 +116,7 @@ namespace Pandaros.Settlers.Research
             AddBanner(researchDic);
             AddArmorSmithing(researchDic);
             AddColonistHealth(researchDic);
+            AddSwordSmithing(researchDic);
             //AddSkilledLaborer(researchDic);
             //AddNumberSkilledLaborer(researchDic);
         }
@@ -200,7 +202,7 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Add(BuiltinBlocks.IronRivet, 3);
             researchDic.Add(BuiltinBlocks.IronSword, 1);
-            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 5);
+            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 1);
             researchDic.Remove(BuiltinBlocks.BronzePlate);
             researchDic.Remove(BuiltinBlocks.BronzeAxe);
             RegisterArmorSmithng(researchDic, 3);
@@ -226,20 +228,79 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Copper));
+                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Copper));
                     break;
                 case 2:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Bronze));
+                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Bronze));
                     break;
                 case 3:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Iron));
+                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Iron));
                     break;
                 case 4:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.Armor.MetalType.Steel));
+                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Steel));
                     break;
             }
 
             foreach (var item in armor)
+                RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.ItemType.name, true, Items.Armor.JOB_METALSMITH);
+        }
+
+        private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.CopperParts, 3);
+            researchDic.Add(BuiltinBlocks.CopperNails, 5);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, 5);
+            RegisterSwordmithng(researchDic, 1);
+
+            researchDic.Remove(BuiltinBlocks.CopperParts);
+            researchDic.Remove(BuiltinBlocks.CopperNails);
+            researchDic.Add(BuiltinBlocks.BronzePlate, 3);
+            researchDic.Add(BuiltinBlocks.BronzeAxe, 1);
+            RegisterSwordmithng(researchDic, 2);
+
+            researchDic.Add(BuiltinBlocks.IronRivet, 3);
+            researchDic.Add(BuiltinBlocks.IronSword, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 1);
+            researchDic.Remove(BuiltinBlocks.BronzePlate);
+            researchDic.Remove(BuiltinBlocks.BronzeAxe);
+            RegisterSwordmithng(researchDic, 3);
+
+            researchDic.Add(BuiltinBlocks.SteelParts, 3);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 1);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Remove(BuiltinBlocks.IronRivet);
+            RegisterSwordmithng(researchDic, 4);
+        }
+
+        private static void RegisterSwordmithng(Dictionary<ushort, int> researchDic, int level)
+        {
+            var research = new PandaResearch(researchDic, level, SwordSmithing, 1f);
+            research.ResearchComplete += SwordResearch_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void SwordResearch_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            List<Items.WeaponMetadata> sword = new List<Items.WeaponMetadata>();
+
+            switch (e.Research.Level)
+            {
+                case 1:
+                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Copper));
+                    break;
+                case 2:
+                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Bronze));
+                    break;
+                case 3:
+                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Iron));
+                    break;
+                case 4:
+                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Steel));
+                    break;
+            }
+
+            foreach (var item in sword)
                 RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.ItemType.name, true, Items.Armor.JOB_METALSMITH);
         }
 

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Entities
     public class SettlerInventory
     {
         [Serializable]
-        public class ArmorState
+        public class ItemState
         {
             public ushort Id { get; set; }
 
@@ -52,7 +52,9 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
 
-        public Dictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ArmorState>();
+        public Dictionary<Items.Armor.ArmorSlot, ItemState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ItemState>();
+
+        public ItemState Weapon { get; set; } = new ItemState();
 
         public SettlerInventory(int id)
         {
@@ -87,7 +89,7 @@ namespace Pandaros.Settlers.Entities
         private void SetupArmor()
         {
             foreach (Items.Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
-                Armor.Add(armorType, new ArmorState());
+                Armor.Add(armorType, new ItemState());
         }
 
         public JSONNode ToJsonNode()
