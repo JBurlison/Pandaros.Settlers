@@ -46,8 +46,8 @@ To see equipt armor use the /armor command!
 |Greaves|2.5%|4%|5.5%|7%|
 |Shield|5%|7%|10%|12%|
 
-Armor has duribility! When hit a colonist will take a point of duribility damage.
-#### Duribility Hit Chance:
+Armor has durability! When hit a colonist will take a point of durability damage.
+#### Durability Hit Chance:
 ||W\O Shield|W\Shield|
 |---|---|---|
 |Helm|10%|10%|
@@ -57,7 +57,7 @@ Armor has duribility! When hit a colonist will take a point of duribility damage
 |Greaves|10%|5%|
 |Shield||50%|
 
-#### Duribility:
+#### Durability:
 ||Copper|Bronze|Iron|Steel|
 |---|---|---|---|---|
 |Helm|15|20|30|40|
@@ -75,8 +75,8 @@ Once crafted YOU and your colonists can wield weapons! Currently these weapons a
 |---|---|---|---|---|
 |Sword|50|100|250|500|
 
-Weapons have duribility. Each attack takes 1 point of duribility damage.
-#### Duribility:
+Weapons have durability. Each attack takes 1 point of duribility damage.
+#### Durability:
 ||Copper|Bronze|Iron|Steel|
 |---|---|---|---|---|
 |Sword|50|75|100|150|
