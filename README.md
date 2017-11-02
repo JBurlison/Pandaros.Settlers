@@ -69,6 +69,20 @@ Armor has duribility! When hit a colonist will take a point of duribility damage
 |Greaves|10|15|25|35|
 |Shield|30|40|50|60|
 
+## Weapons!
+Once crafted YOU and your colonists can wield weapons! Currently these weapons are only used by colonists during call to arms. 
+
+#### Damage:
+||Copper|Bronze|Iron|Steel|
+|---|---|---|---|---|
+|Sword|50|100|250|500|
+
+Weapons have duribility. Each attack takes 1 point of duribility damage.
+#### Duribility:
+||Copper|Bronze|Iron|Steel|
+|---|---|---|---|---|
+|Sword|50|75|100|150|
+
 ## Call to Arms!
 ![GitHub Logo](https://i.imgur.com/713Gqcp.png)
 In trouble? Use one of the following commands:
