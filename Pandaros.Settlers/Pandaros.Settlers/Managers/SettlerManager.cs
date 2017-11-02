@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        public static readonly Version MOD_VER = new Version(0, 5, 0, 0);
+        public static readonly Version MOD_VER = new Version(0, 5, 1, 0);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
 
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
@@ -417,11 +417,11 @@ namespace Pandaros.Settlers.Managers
                     if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
                     {
                         if (ps.FoodDivider == 0)
-                            ps.FoodDivider = _r.Next(Pipliz.Math.CeilToInt(colony.FollowerCount * 1.75f), Pipliz.Math.CeilToInt(colony.FollowerCount * 2f));
+                            ps.FoodDivider = _r.NextDouble(colony.FollowerCount * 1.10, colony.FollowerCount * 1.2);
 
                         var multiplier = (ps.FoodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
 
-                        food += (_baseFoodPerHour * multiplier);
+                        food += (float)(_baseFoodPerHour * multiplier);
 
                         if (colony.FollowerCount >= MAX_BUYABLE)
                             food = food * ps.Difficulty.FoodMultiplier;

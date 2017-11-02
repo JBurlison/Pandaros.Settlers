@@ -1,5 +1,7 @@
 ﻿using NPC;
 using Pandaros.Settlers.Entities;
+using Pipliz.APIProvider.Jobs;
+using Pipliz.BlockNPCs.Implementations;
 using Server.Monsters;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,38 @@ namespace Pandaros.Settlers.Items
     public static class ItemFactory
     {
         public static Dictionary<ushort, WeaponMetadata> WeaponLookup { get; private set; } = new Dictionary<ushort, WeaponMetadata>();
+        public static List<GuardBaseJob.GuardSettings> WeaponGuardSettings = new List<GuardBaseJob.GuardSettings>();
+
+        public static void RefreshGuardSettings()
+        {
+            if (!WeaponGuardSettings.Contains(GuardBowJobDay.GetGuardSettings()))
+                WeaponGuardSettings.Add(GuardBowJobDay.GetGuardSettings());
+
+            if (!WeaponGuardSettings.Contains(GuardCrossbowJobDay.GetGuardSettings()))
+                WeaponGuardSettings.Add(GuardCrossbowJobDay.GetGuardSettings());
+
+            if (!WeaponGuardSettings.Contains(GuardMatchlockJobDay.GetGuardSettings()))
+                WeaponGuardSettings.Add(GuardMatchlockJobDay.GetGuardSettings());
+
+            if (!WeaponGuardSettings.Contains(GuardSlingerJobDay.GetGuardSettings()))
+                WeaponGuardSettings.Add(GuardSlingerJobDay.GetGuardSettings());
+
+            foreach (var weap in WeaponLookup)
+                WeaponGuardSettings.Add(new GuardBaseJob.GuardSettings()
+                {
+                    cooldownMissingItem = 1.5f,
+                    cooldownSearchingTarget = 0.5f,
+                    cooldownShot = 3f,
+                    range = 1,
+                    recruitmentItem = new InventoryItem(weap.Key, 1),
+                    shootItem = new List<InventoryItem>(),
+                    shootDamage = weap.Value.Damage,
+                    OnShootAudio = "sling",
+                    OnHitAudio = "fleshHit"
+                });
+
+            WeaponGuardSettings = WeaponGuardSettings.OrderBy(w => w.shootDamage).Reverse().ToList();
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.GetWeapon")]
         public static void GetWeapon()
@@ -47,10 +81,9 @@ namespace Pandaros.Settlers.Items
                 click.clickType == Shared.PlayerClickedData.ClickType.Left)
             {
                 long millisecondsSinceStart = Pipliz.Time.MillisecondsSinceStart;
-                Players.LastPunches[player] = millisecondsSinceStart;
 
                 if (state.Weapon.IsEmpty() || state.Weapon.Id != click.typeSelected)
-                    state.Weapon = new SettlerInventory.ItemState()
+                    state.Weapon = new SettlerInventory.ArmorState()
                     {
                         Id = click.typeSelected,
                         Durability = WeaponLookup[click.typeSelected].Durability
@@ -61,12 +94,12 @@ namespace Pandaros.Settlers.Items
                     return;
                 }
 
+                Players.LastPunches[player] = millisecondsSinceStart;
                 boxedData.item1.consumedType = Shared.PlayerClickedData.ConsumedType.UsedByMod;
 
                 if (ZombieID.IsZombieID(rayCastHit.hitNPCID))
                 {
-                    IMonster monster;
-                    if (MonsterTracker.TryGetMonsterByID(rayCastHit.hitNPCID, out monster))
+                    if (MonsterTracker.TryGetMonsterByID(rayCastHit.hitNPCID, out IMonster monster))
                     {
                         monster.OnHit(ItemFactory.WeaponLookup[click.typeSelected].Damage);
                         state.Weapon.Durability--;
@@ -75,14 +108,14 @@ namespace Pandaros.Settlers.Items
                 }
                 else if (NPCTracker.TryGetNPC(rayCastHit.hitNPCID, out NPCBase nPCBase))
                 {
-                    nPCBase.OnHit(ItemFactory.WeaponLookup[click.typeSelected].Damage);
+                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage);
                     state.Weapon.Durability--;
                     ServerManager.SendAudio(nPCBase.Position, "punch");
                 }
 
                 if (state.Weapon.Durability <= 0)
                 {
-                    state.Weapon = new SettlerInventory.ItemState();
+                    state.Weapon = new SettlerInventory.ArmorState();
                     var inv = Inventory.GetInventory(player).GetInventory();
                     var item = inv.FirstOrDefault(i => i.Type == click.typeSelected);
 

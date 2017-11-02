@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.AI
 
         static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
-        static List<GuardBaseJob.GuardSettings> _weapons = new List<GuardBaseJob.GuardSettings>();
+        
        
         static NPCTypeStandardSettings _callToArmsNPCSettings = new NPCTypeStandardSettings()
         {
@@ -118,9 +118,10 @@ namespace Pandaros.Settlers.AI
         public static GuardBaseJob.GuardSettings GetWeapon(NPC.NPCBase npc)
         {
             GuardBaseJob.GuardSettings weapon = null;
+            var inv = SettlerInventory.GetSettlerInventory(npc);
 
-            foreach (var w in _weapons)
-                if (npc.Inventory.Contains(w.recruitmentItem))
+            foreach (var w in Items.ItemFactory.WeaponGuardSettings)
+                if (npc.Inventory.Contains(w.recruitmentItem) || inv.Weapon.Id == w.recruitmentItem.Type)
                 {
                     weapon = w;
                     break;
@@ -202,27 +203,13 @@ namespace Pandaros.Settlers.AI
             if (_weapon != null)
                 return;
 
-            if (!_weapons.Contains(GuardBowJobDay.GetGuardSettings()))
-                _weapons.Add(GuardBowJobDay.GetGuardSettings());
-
-            if (!_weapons.Contains(GuardCrossbowJobDay.GetGuardSettings()))
-                _weapons.Add(GuardCrossbowJobDay.GetGuardSettings());
-
-            if (!_weapons.Contains(GuardMatchlockJobDay.GetGuardSettings()))
-                _weapons.Add(GuardMatchlockJobDay.GetGuardSettings());
-
-            if (!_weapons.Contains(GuardSlingerJobDay.GetGuardSettings()))
-                _weapons.Add(GuardSlingerJobDay.GetGuardSettings());
-
-            _weapons = _weapons.OrderBy(w => w.shootDamage).Reverse().ToList();
-
-            if (_playerState.CallToArmsEnabled && _weapons.Count != 0)
+            if (_playerState.CallToArmsEnabled && Items.ItemFactory.WeaponGuardSettings.Count != 0)
             {
                 _weapon = GetWeapon(usedNPC);
 
                 if (_weapon == null)
                 {
-                    foreach (var w in _weapons)
+                    foreach (var w in Items.ItemFactory.WeaponGuardSettings)
                     {
                         if (_stock.Contains(w.recruitmentItem))
                         {

@@ -24,10 +24,10 @@ namespace Pandaros.Settlers
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
             Normal = new GameDifficulty("Normal", 0f, 0f);
-            Easy = new GameDifficulty("Easy", 0.70f, 0.4f);
+            Easy = new GameDifficulty("Easy", 0.75f, 0.4f);
             Medium = new GameDifficulty("Medium", 1.0f, 0f);
             Hard = new GameDifficulty("Hard", 1.25f, -0.2f);
-            new GameDifficulty("Insane", 1.75f, -0.4f);
+            new GameDifficulty("Insane", 1.50f, -0.4f);
         }
 
         [XmlElement]

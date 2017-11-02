@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.Entities
         public GameDifficulty Difficulty { get; set; }
 
         [XmlIgnore]
-        public int FoodDivider { get; set; }
+        public double FoodDivider { get; set; }
 
         [XmlIgnore]
         public double NextGenTime { get; set; }
@@ -83,10 +83,10 @@ namespace Pandaros.Settlers.Entities
         public double NeedsABed { get; set; }
 
         [XmlElement]
-        public SerializableDictionary<Items.Armor.ArmorSlot, ItemState> Armor { get; set; } = new SerializableDictionary<Items.Armor.ArmorSlot, ItemState>();
+        public SerializableDictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new SerializableDictionary<Items.Armor.ArmorSlot, ArmorState>();
 
         [XmlElement]
-        public ItemState Weapon { get; set; }
+        public ArmorState Weapon { get; set; } = new ArmorState();
 
         [XmlIgnore]
         public int MaxPerSpawn
@@ -127,10 +127,10 @@ namespace Pandaros.Settlers.Entities
 
         private void SetupArmor()
         {
-            Weapon = new ItemState();
+            Weapon = new ArmorState();
 
             foreach (Items.Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
-                Armor.Add(armorType, new ItemState());
+                Armor.Add(armorType, new ArmorState());
         }
 
         public static PlayerState GetPlayerState(Players.Player p)

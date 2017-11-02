@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Items
     public static class Sword
     {
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Armor.RegisterRecipes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Sword.RegisterRecipes")]
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
@@ -87,6 +87,8 @@ namespace Pandaros.Settlers.Items
 
                 RecipeStorage.AddOptionalLimitTypeRecipe(Armor.JOB_METALSMITH, recipe);
             }
+
+            ItemFactory.RefreshGuardSettings();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Sword.AddSwords"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
@@ -108,7 +110,7 @@ namespace Pandaros.Settlers.Items
 
             var bronzeSword = new ItemTypesServer.ItemTypeRaw(bronzeSwordName, bronzeSwordNode);
             items.Add(bronzeSwordName, bronzeSword);
-            ItemFactory.WeaponLookup.Add(bronzeSword.ItemIndex, new WeaponMetadata(100f, 75, MetalType.Copper, WeaponType.Sword, bronzeSword));
+            ItemFactory.WeaponLookup.Add(bronzeSword.ItemIndex, new WeaponMetadata(100f, 75, MetalType.Bronze, WeaponType.Sword, bronzeSword));
 
             var IronSwordName = GameLoader.NAMESPACE + ".IronSword";
             var IronSwordNode = new JSONNode();
@@ -117,7 +119,7 @@ namespace Pandaros.Settlers.Items
 
             var IronSword = new ItemTypesServer.ItemTypeRaw(IronSwordName, IronSwordNode);
             items.Add(IronSwordName, IronSword);
-            ItemFactory.WeaponLookup.Add(IronSword.ItemIndex, new WeaponMetadata(100f, 100, MetalType.Copper, WeaponType.Sword, IronSword));
+            ItemFactory.WeaponLookup.Add(IronSword.ItemIndex, new WeaponMetadata(250f, 100, MetalType.Iron, WeaponType.Sword, IronSword));
 
             var steelSwordName = GameLoader.NAMESPACE + ".SteelSword";
             var steelSwordNode = new JSONNode();
@@ -126,7 +128,7 @@ namespace Pandaros.Settlers.Items
 
             var steelSword = new ItemTypesServer.ItemTypeRaw(steelSwordName, steelSwordNode);
             items.Add(steelSwordName, steelSword);
-            ItemFactory.WeaponLookup.Add(steelSword.ItemIndex, new WeaponMetadata(100f, 150, MetalType.Copper, WeaponType.Sword, steelSword));
+            ItemFactory.WeaponLookup.Add(steelSword.ItemIndex, new WeaponMetadata(500f, 150, MetalType.Steel, WeaponType.Sword, steelSword));
         }
     }
 }
