@@ -15,11 +15,9 @@ Food use fluxuates depending on how hungry your colonists are!
 * Decreased food waste
 * Increased Settler Health (All colonists)
 * Additional Banners
-* Armor!
-  * Copper
-  * Bronze
-  * Iron
-  * Steel
+* Armorsmithing
+* Swordsmithing
+ 
  
 ## Game Difficulties!
 
