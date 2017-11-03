@@ -81,6 +81,15 @@ Weapons have durability. Each attack takes 1 point of duribility damage.
 |---|---|---|---|---|
 |Sword|50|75|100|150|
 
+## Food!
+More end-game foods to help feed your hungry colonists!
+
+#### Recipies:
+|Name|Food Value|Recipe|Produce Count|
+|---|---|---|---|
+|Berry Pancakes|4|Flour: 3, Berry: 2, Firewood|2|
+|Berry Pie|6|Flour: 4, Berry: 4, Firewood|2|
+
 ## Call to Arms!
 ![GitHub Logo](https://i.imgur.com/713Gqcp.png)
 In trouble? Use one of the following commands:
