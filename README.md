@@ -15,11 +15,9 @@ Food use fluxuates depending on how hungry your colonists are!
 * Decreased food waste
 * Increased Settler Health (All colonists)
 * Additional Banners
-* Armor!
-  * Copper
-  * Bronze
-  * Iron
-  * Steel
+* Armorsmithing
+* Swordsmithing
+ 
  
 ## Game Difficulties!
 
@@ -48,8 +46,8 @@ To see equipt armor use the /armor command!
 |Greaves|2.5%|4%|5.5%|7%|
 |Shield|5%|7%|10%|12%|
 
-Armor has duribility! When hit a colonist will take a point of duribility damage.
-#### Duribility Hit Chance:
+Armor has durability! When hit a colonist will take a point of durability damage.
+#### Durability Hit Chance:
 ||W\O Shield|W\Shield|
 |---|---|---|
 |Helm|10%|10%|
@@ -59,7 +57,7 @@ Armor has duribility! When hit a colonist will take a point of duribility damage
 |Greaves|10%|5%|
 |Shield||50%|
 
-#### Duribility:
+#### Durability:
 ||Copper|Bronze|Iron|Steel|
 |---|---|---|---|---|
 |Helm|15|20|30|40|
@@ -68,6 +66,20 @@ Armor has duribility! When hit a colonist will take a point of duribility damage
 |Leggings|20|25|35|40|
 |Greaves|10|15|25|35|
 |Shield|30|40|50|60|
+
+## Weapons!
+Once crafted YOU and your colonists can wield weapons! Currently these weapons are only used by colonists during call to arms. 
+
+#### Damage:
+||Copper|Bronze|Iron|Steel|
+|---|---|---|---|---|
+|Sword|50|100|250|500|
+
+Weapons have durability. Each attack takes 1 point of duribility damage.
+#### Durability:
+||Copper|Bronze|Iron|Steel|
+|---|---|---|---|---|
+|Sword|50|75|100|150|
 
 ## Call to Arms!
 ![GitHub Logo](https://i.imgur.com/713Gqcp.png)
