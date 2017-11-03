@@ -343,8 +343,11 @@ namespace Pandaros.Settlers.AI
                 {
                     var job = follower.Job;
 
-                    if (job != null)
+                    if (job != null && job.GetType() == typeof(CalltoArmsJob))
+                    {
                         follower.ClearJob();
+                        job.OnRemovedNPC();
+                    }
 
                     if (_Jobs.ContainsKey(follower) && _Jobs[follower].NeedsNPC)
                     {

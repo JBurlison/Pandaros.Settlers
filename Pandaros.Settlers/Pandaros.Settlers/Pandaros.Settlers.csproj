@@ -57,9 +57,11 @@
     <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="Entities\BlockJobBaseExtender.cs" />
     <Compile Include="Items\Armor.cs" />
+    <Compile Include="Items\Food\BerryPancakes.cs" />
+    <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\ItemFactory.cs" />
-    <Compile Include="Items\Sword.cs" />
-    <Compile Include="Items\WeaponMetadata.cs" />
+    <Compile Include="Items\Weapons\Sword.cs" />
+    <Compile Include="Items\Weapons\WeaponMetadata.cs" />
     <Compile Include="Jobs\Footman.cs" />
     <Compile Include="Jobs\Knight.cs" />
     <Compile Include="Jobs\Pavisers.cs" />
@@ -104,6 +106,12 @@
     <Folder Include="Monsters\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icons\BerryPancakes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BerryPie.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\BronzeBoots.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

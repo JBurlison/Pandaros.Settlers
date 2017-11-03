@@ -27,7 +27,9 @@
     "Pandaros.Settlers.CopperSword": "Copper Sword",
     "Pandaros.Settlers.BronzeSword": "Bronze Sword",
     "Pandaros.Settlers.IronSword": "Iron Sword",
-    "Pandaros.Settlers.SteelSword": "Steel Sword"
+    "Pandaros.Settlers.SteelSword": "Steel Sword",
+    "Pandaros.Settlers.BerryPancakes": "Berry Pancakes",
+    "Pandaros.Settlers.BerryPie": "Berry Pie"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -57,7 +59,9 @@
     "Pandaros.Settlers.CopperSword": "Bonafide back scratcher.",
     "Pandaros.Settlers.BronzeSword": "For taking care of small problems.",
     "Pandaros.Settlers.IronSword": "Great for beheadings!",
-    "Pandaros.Settlers.SteelSword": "Tis but a flesh wound."
+    "Pandaros.Settlers.SteelSword": "Tis but a flesh wound.",
+    "Pandaros.Settlers.BerryPancakes": "They are berry good! Food(4)",
+    "Pandaros.Settlers.BerryPie": "Berry than your mothers! Food(6)"
   },
   "Pandaros": {
     "Settlers": {

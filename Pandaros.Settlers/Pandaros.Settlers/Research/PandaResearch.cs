@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Research
 
         public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
 
-        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null, int baseIterationCount = 20, bool addLevelToName = true)
+        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null, int baseIterationCount = 10, bool addLevelToName = true)
         {
             BaseValue = baseValue;
             Value = baseValue * level;
@@ -189,9 +189,9 @@ namespace Pandaros.Settlers.Research
         private static void AddArmorSmithing(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.CopperParts, 3);
-            researchDic.Add(BuiltinBlocks.CopperNails, 5);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 5);
+            researchDic.Add(BuiltinBlocks.CopperParts, 2);
+            researchDic.Add(BuiltinBlocks.CopperNails, 3);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, 4);
             RegisterArmorSmithng(researchDic, 1);
 
             researchDic.Remove(BuiltinBlocks.CopperParts);
@@ -248,9 +248,9 @@ namespace Pandaros.Settlers.Research
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.CopperParts, 3);
-            researchDic.Add(BuiltinBlocks.CopperNails, 5);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 5);
+            researchDic.Add(BuiltinBlocks.CopperParts, 2);
+            researchDic.Add(BuiltinBlocks.CopperNails, 3);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, 2);
             RegisterSwordmithng(researchDic, 1);
 
             researchDic.Remove(BuiltinBlocks.CopperParts);
@@ -307,7 +307,7 @@ namespace Pandaros.Settlers.Research
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)
         {
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
             researchDic.Add(BuiltinBlocks.PlasterBlock, 5);
             researchDic.Add(BuiltinBlocks.IronIngot, 5);
             researchDic.Add(BuiltinBlocks.Bed, 10);
@@ -328,7 +328,7 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
             researchDic.Add(BuiltinBlocks.Bricks, 5);
             researchDic.Add(BuiltinBlocks.CoatedPlanks, 5);
             researchDic.Add(BuiltinBlocks.Clothing, 5);
@@ -349,7 +349,7 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 3);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
             researchDic.Add(BuiltinBlocks.Berry, 2);
             researchDic.Add(BuiltinBlocks.Bread, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
@@ -361,8 +361,8 @@ namespace Pandaros.Settlers.Research
         private static void AddSettlerChance(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 6);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
             researchDic.Add(BuiltinBlocks.Torch, 5);
             researchDic.Add(BuiltinBlocks.StoneBricks, 10);
             researchDic.Add(BuiltinBlocks.Bed, 5);
@@ -382,8 +382,8 @@ namespace Pandaros.Settlers.Research
         private static void AddColonistHealth(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 4);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
             researchDic.Add(BuiltinBlocks.Linen, 5);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
 
@@ -406,10 +406,10 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 6);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 10);
-            researchDic.Add(BuiltinBlocks.CarpetBlue, 5);
-            researchDic.Add(BuiltinBlocks.Bed, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
             researchDic.Add(BuiltinBlocks.CarpetRed, 5);
+            researchDic.Add(BuiltinBlocks.Bed, 10);
+            researchDic.Add(BuiltinBlocks.CarpetYellow, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
             for (int i = 1; i <= 5; i++)

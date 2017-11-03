@@ -29,6 +29,8 @@ namespace Pandaros.Settlers.Items
         public static Dictionary<ushort, WeaponMetadata> WeaponLookup { get; private set; } = new Dictionary<ushort, WeaponMetadata>();
         public static List<GuardBaseJob.GuardSettings> WeaponGuardSettings = new List<GuardBaseJob.GuardSettings>();
 
+        public const string JOB_BAKER = "pipliz.baker";
+
         public static void RefreshGuardSettings()
         {
             if (!WeaponGuardSettings.Contains(GuardBowJobDay.GetGuardSettings()))
