@@ -17,9 +17,10 @@ namespace Pandaros.Settlers.Items.Food
         {
             var flour = new InventoryItem(BuiltinBlocks.Flour, 3);
             var Berries = new InventoryItem(BuiltinBlocks.Berry, 2);
+            var firewood = new InventoryItem("firewood");
 
             var invItem = new InventoryItem(Item.ItemIndex);
-            var recipe = new Recipe(Item.name, new List<InventoryItem>() { flour, Berries }, invItem, 50);
+            var recipe = new Recipe(Item.name, new List<InventoryItem>() { flour, Berries, firewood }, invItem, 50);
 
             RecipeStorage.AddDefaultLimitTypeRecipe(ItemFactory.JOB_BAKER, recipe);
         }
