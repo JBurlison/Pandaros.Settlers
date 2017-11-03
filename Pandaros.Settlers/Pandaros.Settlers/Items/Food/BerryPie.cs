@@ -19,9 +19,10 @@ namespace Pandaros.Settlers.Items.Food
             var Berries = new InventoryItem(BuiltinBlocks.Berry, 4);
             var firewood = new InventoryItem("firewood");
 
-            var invItem = new InventoryItem(Item.ItemIndex);
-            var recipe = new Recipe(Item.name, new List<InventoryItem>() { flour, Berries, firewood }, invItem, 50);
-
+            var recipe = new Recipe(Item.name, 
+                                    new List<InventoryItem>() { flour, Berries, firewood }, 
+                                    new List<InventoryItem>() { new InventoryItem(Item.ItemIndex), new InventoryItem(Item.ItemIndex) }, 
+                                    50);
             RecipeStorage.AddDefaultLimitTypeRecipe(ItemFactory.JOB_BAKER, recipe);
         }
 
@@ -33,7 +34,7 @@ namespace Pandaros.Settlers.Items.Food
             var foodNode = new JSONNode();
             foodNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/BerryPie.png");
             foodNode["isPlaceable"] = new JSONNode(false);
-            foodNode["NutritionalValue"] = new JSONNode(6);
+            foodNode.SetAs("nutritionalValue", 6f);
 
             Item = new ItemTypesServer.ItemTypeRaw(foodName, foodNode);
             items.Add(foodName, Item);
