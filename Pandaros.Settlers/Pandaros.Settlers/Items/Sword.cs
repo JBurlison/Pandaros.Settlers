@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Items
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var carpet = new InventoryItem(BuiltinBlocks.CarpetBlue, 1);
+            var planks = new InventoryItem(BuiltinBlocks.Planks, 1);
 
             var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
             var copper = new InventoryItem(BuiltinBlocks.Copper, 5);
@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Items
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 2);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, planks });
                 }
 
                 // ----------------------------------------
@@ -57,7 +57,7 @@ namespace Pandaros.Settlers.Items
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, planks });
                 }
 
                 // ----------------------------------------
@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Items
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, planks });
                 }
 
                 // ----------------------------------------
@@ -79,7 +79,7 @@ namespace Pandaros.Settlers.Items
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, planks });
                 }
 
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);

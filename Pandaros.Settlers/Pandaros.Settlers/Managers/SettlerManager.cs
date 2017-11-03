@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        public static readonly Version MOD_VER = new Version(0, 5, 1, 0);
+        public static readonly Version MOD_VER = new Version(0, 5, 1, 1);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
 
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
