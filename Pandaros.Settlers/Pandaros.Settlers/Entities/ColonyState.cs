@@ -89,6 +89,9 @@ namespace Pandaros.Settlers.Entities
         public ArmorState Weapon { get; set; } = new ArmorState();
 
         [XmlIgnore]
+        public DateTime NextCheck { get; set; } = DateTime.MinValue;
+
+        [XmlIgnore]
         public int MaxPerSpawn
         {
             get

@@ -277,7 +277,8 @@ namespace Pandaros.Settlers.AI
     [ModLoader.ModManager]
     public class CalltoArms : IChatCommand
     {
-        static Dictionary<NPC.NPCBase, NPC.IJob> _Jobs = new Dictionary<NPC.NPCBase, NPC.IJob>();
+        Dictionary<NPC.NPCBase, NPC.IJob> _Jobs = new Dictionary<NPC.NPCBase, NPC.IJob>();
+        List<CalltoArmsJob> _callToArmsJobs = new List<CalltoArmsJob>();
 
         public bool IsCommand(string chat)
         {
@@ -330,6 +331,7 @@ namespace Pandaros.Settlers.AI
                     }
 
                     var armsJob = new CalltoArmsJob();
+                    _callToArmsJobs.Add(armsJob);
                     armsJob.OnAssignedNPC(follower);
                     follower.TakeJob(armsJob);
                 }
@@ -360,6 +362,10 @@ namespace Pandaros.Settlers.AI
                 _Jobs.Clear();
             }
 
+            foreach (var armsJob in _callToArmsJobs)
+                JobTracker.Remove(player, armsJob.KeyLocation);
+
+            _callToArmsJobs.Clear();
             JobTracker.Update();
             Colony.SendColonistCount(player);
 

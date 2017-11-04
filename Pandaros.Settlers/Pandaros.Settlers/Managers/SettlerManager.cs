@@ -26,6 +26,7 @@ namespace Pandaros.Settlers.Managers
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
         public static readonly Version MOD_VER = new Version(0, 5, 1, 2);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
+        public static readonly TimeSpan ColonistCheckTime = TimeSpan.FromSeconds(10);
 
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
 
@@ -111,13 +112,25 @@ namespace Pandaros.Settlers.Managers
         {
             Players.PlayerDatabase.ForeachValue(p =>
             {
-                EvaluateSettlers(p);
-                CheckIfColonistsWhereBought(p);
-                EvaluateLaborers(p);
-                EvaluateBeds(p);
-                UpdateFoodUse(p);
-                //EvaluateJobs(p);
-                Update(Colony.Get(p));
+                if (p.IsConnected)
+                {
+                    Colony colony = Colony.Get(p);
+                    PlayerState state = PlayerState.GetPlayerState(p, colony);
+
+
+                    if (state.NextCheck < DateTime.Now)
+                    {
+                        EvaluateSettlers(p, colony, state);
+                        CheckIfColonistsWhereBought(p, colony, state);
+                        EvaluateLaborers(p, colony, state);
+                        EvaluateBeds(p, colony, state);
+                        UpdateFoodUse(p, colony, state);
+                        //EvaluateJobs(p);
+                        Update(colony);
+
+                        state.NextCheck = DateTime.Now + ColonistCheckTime;
+                    }
+                }
             });
         }
 
@@ -156,7 +169,7 @@ namespace Pandaros.Settlers.Managers
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
         }
 
-        private static bool CheckIfColonistsWhereBought(Players.Player p)
+        private static bool CheckIfColonistsWhereBought(Players.Player p, Colony colony, PlayerState state)
         {
             bool update = false;
 
@@ -166,9 +179,6 @@ namespace Pandaros.Settlers.Managers
 
                 if (p.IsConnected)
                 {
-                    Colony colony = Colony.Get(p);
-                    PlayerState state = PlayerState.GetPlayerState(p, colony);
-
                     while (colony.FollowerCount > MAX_BUYABLE &&
                             state.ColonistCount < colony.FollowerCount) // if we have the expected number of colonists, we skip.
                     {
@@ -308,15 +318,12 @@ namespace Pandaros.Settlers.Managers
             }
         }
         
-        public static bool EvaluateSettlers(Players.Player p)
+        public static bool EvaluateSettlers(Players.Player p, Colony colony, PlayerState state)
         {
             bool update = false;
 
             if (p.IsConnected)
             {
-                Colony colony = Colony.Get(p);
-                PlayerState state = PlayerState.GetPlayerState(p, colony);
-
                 if (state.NextGenTime == 0)
                     state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
 
@@ -403,14 +410,12 @@ namespace Pandaros.Settlers.Managers
             colony.SendUpdate();
         }
 
-        public static void UpdateFoodUse(Players.Player p)
+        public static void UpdateFoodUse(Players.Player p, Colony colony, PlayerState ps)
         {
             if (WorldLoaded)
             {
                 if (p.ID.type != NetworkID.IDType.Server)
                 {
-                    Colony colony = Colony.Get(p);
-                    var ps = PlayerState.GetPlayerState(colony.Owner, colony);
 
                     var food = _baseFoodPerHour;
 
@@ -435,7 +440,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        private static bool EvaluateLaborers(Players.Player p)
+        private static bool EvaluateLaborers(Players.Player p, Colony colony, PlayerState state)
         {
             bool update = false;
 
@@ -444,8 +449,6 @@ namespace Pandaros.Settlers.Managers
                 if (p.IsConnected)
                 {
                     List<NPC.NPCBase> unTrack = new List<NPCBase>();
-                    Colony colony = Colony.Get(p);
-                    PlayerState state = PlayerState.GetPlayerState(p, colony);
 
                     for (int i = 0; i < colony.LaborerCount; i++)
                     {
@@ -488,7 +491,7 @@ namespace Pandaros.Settlers.Managers
             return update;
         }
 
-        private static bool EvaluateBeds(Players.Player p)
+        private static bool EvaluateBeds(Players.Player p, Colony colony, PlayerState state)
         {
             bool update = false;
             try
@@ -498,8 +501,6 @@ namespace Pandaros.Settlers.Managers
                     if (p.IsConnected)
                     {
                         List<NPC.NPCBase> unTrack = new List<NPCBase>();
-                        Colony colony = Colony.Get(p);
-                        PlayerState state = PlayerState.GetPlayerState(p, colony);
                         var remainingBeds = BedBlockTracker.GetCount(p) - state.ColonistCount;
                         int left = 0;
  
