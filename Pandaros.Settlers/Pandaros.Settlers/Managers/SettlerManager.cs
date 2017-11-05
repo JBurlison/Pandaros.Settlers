@@ -5,6 +5,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.APIProvider.Jobs;
+using Pipliz.BlockNPCs.Implementations;
 using Pipliz.Chatting;
 using Pipliz.JSON;
 using Server.NPCs;
@@ -24,7 +25,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        public static readonly Version MOD_VER = new Version(0, 5, 1, 2);
+        public static readonly Version MOD_VER = new Version(0, 5, 1, 3);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
         public static readonly TimeSpan ColonistCheckTime = TimeSpan.FromSeconds(10);
 
@@ -501,7 +502,10 @@ namespace Pandaros.Settlers.Managers
                     if (p.IsConnected)
                     {
                         List<NPC.NPCBase> unTrack = new List<NPCBase>();
-                        var remainingBeds = BedBlockTracker.GetCount(p) - state.ColonistCount;
+                        var remainingBeds = BedBlockTracker.GetCount(p) - (state.ColonistCount - colony.Followers.Count(f => f.GetType() == typeof(GuardBowJobNight) ||
+                                                                                                                                f.GetType() == typeof(GuardCrossbowJobNight) ||
+                                                                                                                                f.GetType() == typeof(GuardMatchlockJobNight) ||
+                                                                                                                                f.GetType() == typeof(GuardSlingerJobNight)));
                         int left = 0;
  
                         if (remainingBeds >= 0)
