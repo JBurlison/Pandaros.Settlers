@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        public static readonly Version MOD_VER = new Version(0, 5, 1, 3);
+        public static readonly Version MOD_VER = new Version(0, 5, 1, 4);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
         public static readonly TimeSpan ColonistCheckTime = TimeSpan.FromSeconds(10);
 
@@ -34,10 +34,6 @@ namespace Pandaros.Settlers.Managers
         private static Dictionary<string, ISpawnSettlerEvaluator> _deciders = new Dictionary<string, ISpawnSettlerEvaluator>();
         
         private static System.Random _r = new System.Random();
-        private static DateTime _nextfoodSendTime = DateTime.MinValue;
-        private static DateTime _nextWorkerEvalTime = DateTime.MinValue;
-        private static double _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
-        private static double _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
         private static float _baseFoodPerHour;
 
         public static bool RUNNING { get; private set; }
@@ -245,8 +241,6 @@ namespace Pandaros.Settlers.Managers
 
         public static void EvaluateJobs(Players.Player p)
         {
-            if (DateTime.Now > _nextWorkerEvalTime)
-            {
                 PlayerState state = PlayerState.GetPlayerState(p);
             Colony colony = Colony.Get(p);
 
@@ -313,9 +307,6 @@ namespace Pandaros.Settlers.Managers
                         PandaLogger.LogError(ex);
                     }
                 }
-            }
-
-                _nextWorkerEvalTime = DateTime.Now + TimeSpan.FromMilliseconds(100);
             }
         }
         
@@ -423,7 +414,7 @@ namespace Pandaros.Settlers.Managers
                     if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
                     {
                         if (ps.FoodDivider == 0)
-                            ps.FoodDivider = _r.NextDouble(colony.FollowerCount * 1.10, colony.FollowerCount * 1.2);
+                            ps.FoodDivider = _r.NextDouble(colony.FollowerCount * .3, colony.FollowerCount * .55);
 
                         var multiplier = (ps.FoodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
 
@@ -445,7 +436,7 @@ namespace Pandaros.Settlers.Managers
         {
             bool update = false;
 
-            if (TimeCycle.IsDay && TimeCycle.TotalTime > _nextLaborerTime)
+            if (TimeCycle.IsDay)
             {
                 if (p.IsConnected)
                 {
@@ -485,7 +476,6 @@ namespace Pandaros.Settlers.Managers
                     update = unTrack.Count != 0;
                 }
 
-                _nextLaborerTime = TimeCycle.TotalTime + _r.Next(2, 6);
                 SaveManager.SaveState(CurrentStates);
             }
 
@@ -497,7 +487,7 @@ namespace Pandaros.Settlers.Managers
             bool update = false;
             try
             {
-                if (!TimeCycle.IsDay && TimeCycle.TotalTime > _nextbedTime)
+                if (!TimeCycle.IsDay)
                 {
                     if (p.IsConnected)
                     {
@@ -551,8 +541,7 @@ namespace Pandaros.Settlers.Managers
                             }
                         }
                     }
-
-                    _nextbedTime = TimeCycle.TotalTime + _r.Next(1, 2);
+                    
                     SaveManager.SaveState(CurrentStates);
                 }
             }
