@@ -317,7 +317,7 @@ namespace Pandaros.Settlers.Managers
             if (p.IsConnected)
             {
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
+                    state.NextGenTime = TimeCycle.TotalTime + _r.Next(8, 16 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
 
                 if (TimeCycle.TotalTime > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
