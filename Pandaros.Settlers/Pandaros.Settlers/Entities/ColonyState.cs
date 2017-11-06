@@ -1,6 +1,7 @@
 ﻿using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Research;
+using Pipliz;
 using Pipliz.Collections;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Pandaros.Settlers.Entities
     public class PlayerState
     {
         [XmlIgnore]
-        public Random Rand { get; set; }
+        public System.Random Rand { get; set; }
 
         [XmlElement]
         public int ColonistCount { get; set; }
@@ -82,6 +83,9 @@ namespace Pandaros.Settlers.Entities
         [XmlIgnore]
         public double NeedsABed { get; set; }
 
+        [XmlIgnore]
+        public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
+
         [XmlElement]
         public SerializableDictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new SerializableDictionary<Items.Armor.ArmorSlot, ArmorState>();
 
@@ -100,7 +104,7 @@ namespace Pandaros.Settlers.Entities
 
                 if (ColonistCount >= SettlerManager.MAX_BUYABLE)
                 {
-                    var maxAdd = (int)Math.Ceiling(ColonistCount * 0.05f);
+                    var maxAdd = (int)System.Math.Ceiling(ColonistCount * 0.05f);
 
                     if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
                         maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
@@ -121,7 +125,7 @@ namespace Pandaros.Settlers.Entities
 
         public PlayerState()
         {
-            Rand = new Random();
+            Rand = new System.Random();
             KnownLaborers = new Dictionary<NPC.NPCBase, double>();
             NeedsABed = 0;
             Difficulty = GameDifficulty.Medium;

@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        public static readonly Version MOD_VER = new Version(0, 5, 1, 4);
+        public static readonly Version MOD_VER = new Version(0, 5, 2, 0);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
         public static readonly TimeSpan ColonistCheckTime = TimeSpan.FromSeconds(10);
 
@@ -38,6 +38,8 @@ namespace Pandaros.Settlers.Managers
 
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
+
+        private static Thread _foodThread = new Thread(() => UpdateFoodUse());
 
         public static ColonyState CurrentColonyState
         {
@@ -77,6 +79,7 @@ namespace Pandaros.Settlers.Managers
         public static void OnQuitLate()
         {
             RUNNING = false;
+            WorldLoaded = false;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
@@ -86,8 +89,10 @@ namespace Pandaros.Settlers.Managers
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
             CheckWorld();
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
-
             RegisterEvaluator(new Chance.SettlerEvaluation());
+
+            _foodThread.IsBackground = true;
+            _foodThread.Start();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
@@ -121,7 +126,6 @@ namespace Pandaros.Settlers.Managers
                         CheckIfColonistsWhereBought(p, colony, state);
                         EvaluateLaborers(p, colony, state);
                         EvaluateBeds(p, colony, state);
-                        UpdateFoodUse(p, colony, state);
                         //EvaluateJobs(p);
                         Update(colony);
 
@@ -402,33 +406,40 @@ namespace Pandaros.Settlers.Managers
             colony.SendUpdate();
         }
 
-        public static void UpdateFoodUse(Players.Player p, Colony colony, PlayerState ps)
+        public static void UpdateFoodUse()
         {
-            if (WorldLoaded)
+            while (WorldLoaded)
             {
-                if (p.ID.type != NetworkID.IDType.Server)
+                Players.PlayerDatabase.ForeachValue(p =>
                 {
-
-                    var food = _baseFoodPerHour;
-
-                    if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
+                    if (p.IsConnected && p.ID.type != NetworkID.IDType.Server)
                     {
-                        if (ps.FoodDivider == 0)
-                            ps.FoodDivider = _r.NextDouble(colony.FollowerCount * .3, colony.FollowerCount * .55);
+                        Colony colony = Colony.Get(p);
+                        PlayerState ps = PlayerState.GetPlayerState(p, colony);
 
-                        var multiplier = (ps.FoodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
+                        var food = _baseFoodPerHour;
 
-                        food += (float)(_baseFoodPerHour * multiplier);
+                        if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > MAX_BUYABLE)
+                        {
+                            if (ps.FoodDivider == 0)
+                                ps.FoodDivider = _r.NextDouble(colony.FollowerCount * .3, colony.FollowerCount * .55);
 
-                        if (colony.FollowerCount >= MAX_BUYABLE)
-                            food = food * ps.Difficulty.FoodMultiplier;
+                            var multiplier = (ps.FoodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
+
+                            food += (float)(_baseFoodPerHour * multiplier);
+
+                            if (colony.FollowerCount >= MAX_BUYABLE)
+                                food = food * ps.Difficulty.FoodMultiplier;
+                        }
+
+                        if (colony.InSiegeMode)
+                            food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
+
+                        colony.FoodUsePerHour = food;
                     }
+                });
 
-                    if (colony.InSiegeMode)
-                        food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
-
-                    colony.FoodUsePerHour = food;
-                }
+                Thread.Sleep(1000);
             }
         }
 

@@ -30,6 +30,7 @@ namespace Pandaros.Settlers.Items
         public static List<GuardBaseJob.GuardSettings> WeaponGuardSettings = new List<GuardBaseJob.GuardSettings>();
 
         public const string JOB_BAKER = "pipliz.baker";
+        public const string JOB_CRAFTER = "pipliz.crafter";
 
         public static void RefreshGuardSettings()
         {
@@ -118,11 +119,7 @@ namespace Pandaros.Settlers.Items
                 if (state.Weapon.Durability <= 0)
                 {
                     state.Weapon = new SettlerInventory.ArmorState();
-                    var inv = Inventory.GetInventory(player).GetInventory();
-                    var item = inv.FirstOrDefault(i => i.Type == click.typeSelected);
-
-                    if (item != null)
-                        inv.Remove(item);
+                    player.TakeItemFromInventory(click.typeSelected);
                     
                     PandaChat.Send(player, $"Your {WeaponLookup[click.typeSelected].Metal} {WeaponLookup[click.typeSelected].WeaponType} has broke!", ChatColor.orange);
                 }

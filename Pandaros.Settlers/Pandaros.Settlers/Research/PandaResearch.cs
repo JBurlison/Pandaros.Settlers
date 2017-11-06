@@ -1,7 +1,9 @@
 ﻿using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.APIProvider.Science;
+using Pipliz.BlockNPCs.Implementations;
 using Server.Science;
 using System;
 using System.Collections.Generic;
@@ -37,6 +39,11 @@ namespace Pandaros.Settlers.Research
         public const string ArmorSmithing = "ArmorSmithing";
         public const string SwordSmithing = "SwordSmithing";
         public const string ColonistHealth = "ColonistHealth";
+        public const string Knights = "Knights";
+        public const string ImprovedSling = "ImprovedSling";
+        public const string ImprovedBow = "ImprovedBow";
+        public const string ImprovedCrossbow = "ImprovedCrossbow";
+        public const string ImprovedMatchlockgun = "ImprovedMatchlockgun";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -117,6 +124,12 @@ namespace Pandaros.Settlers.Research
             AddArmorSmithing(researchDic);
             AddColonistHealth(researchDic);
             AddSwordSmithing(researchDic);
+            AddKnightResearch(researchDic);
+            AddImprovedSlings(researchDic);
+            AddImprovedBows(researchDic);
+            AddImprovedCrossbows(researchDic);
+            AddImprovedMatchlockgun(researchDic);
+
             //AddSkilledLaborer(researchDic);
             //AddNumberSkilledLaborer(researchDic);
         }
@@ -414,6 +427,172 @@ namespace Pandaros.Settlers.Research
 
             for (int i = 1; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, TimeBetween, 1f));
+        }
+
+        private static void AddKnightResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.CopperTools, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
+            researchDic.Add(BuiltinBlocks.Linen, 2);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(SwordSmithing) + "1"
+            };
+
+            var research = new PandaResearch(researchDic, 1, Knights, 1f);
+            research.ResearchComplete += Knights_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Knights_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            Jobs.PatrolTool.GivePlayerPatrolTool(e.Manager.Player);
+        }
+
+        static Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
+
+        private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.Sling, 1);
+            researchDic.Add(BuiltinBlocks.SlingBullet, 5);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.ScienceBagBasic
+            };
+
+            var research = new PandaResearch(researchDic, 1, ImprovedSling, .5f, requirements);
+            research.ResearchComplete += ImprovedSlings_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ImprovedSling, .5f);
+                research.ResearchComplete += ImprovedSlings_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ImprovedSlings_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobDay)))
+                _baseSpeed.Add(nameof(GuardSlingerJobDay), GuardSlingerJobDay.GetGuardSettings().cooldownShot);
+
+            if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobNight)))
+                _baseSpeed.Add(nameof(GuardSlingerJobNight), GuardSlingerJobDay.GetGuardSettings().cooldownShot);
+
+            GuardSlingerJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobDay)] - (_baseSpeed[nameof(GuardSlingerJobDay)] * e.Research.Value);
+            GuardSlingerJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobNight)] - (_baseSpeed[nameof(GuardSlingerJobNight)] * e.Research.Value);
+        }
+
+        private static void AddImprovedBows(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.Bow, 1);
+            researchDic.Add(BuiltinBlocks.BronzeArrow, 5);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.TailorShop
+            };
+
+            var research = new PandaResearch(researchDic, 1, ImprovedBow, .5f, requirements);
+            research.ResearchComplete += ImprovedBows_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ImprovedBow, .5f);
+                research.ResearchComplete += ImprovedBows_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ImprovedBows_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            if (!_baseSpeed.ContainsKey(nameof(GuardBowJobDay)))
+                _baseSpeed.Add(nameof(GuardBowJobDay), GuardBowJobDay.GetGuardSettings().cooldownShot);
+
+            if (!_baseSpeed.ContainsKey(nameof(GuardBowJobNight)))
+                _baseSpeed.Add(nameof(GuardBowJobNight), GuardBowJobNight.GetGuardSettings().cooldownShot);
+
+            GuardBowJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardBowJobDay)] - (_baseSpeed[nameof(GuardBowJobDay)] * e.Research.Value);
+            GuardBowJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardBowJobNight)] - (_baseSpeed[nameof(GuardBowJobNight)] * e.Research.Value);
+        }
+
+        private static void AddImprovedCrossbows(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.Crossbow, 1);
+            researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.CrossBowBolt
+            };
+
+            var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .5f, requirements);
+            research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ImprovedCrossbow, .5f);
+                research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ImprovedCrossbows_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            if (!_baseSpeed.ContainsKey(nameof(GuardCrossbowJobDay)))
+                _baseSpeed.Add(nameof(GuardCrossbowJobDay), GuardCrossbowJobDay.GetGuardSettings().cooldownShot);
+
+            if (!_baseSpeed.ContainsKey(nameof(GuardCrossbowJobNight)))
+                _baseSpeed.Add(nameof(GuardCrossbowJobNight), GuardCrossbowJobNight.GetGuardSettings().cooldownShot);
+
+            GuardCrossbowJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardCrossbowJobDay)] - (_baseSpeed[nameof(GuardCrossbowJobDay)] * e.Research.Value);
+            GuardCrossbowJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardCrossbowJobNight)] - (_baseSpeed[nameof(GuardCrossbowJobNight)] * e.Research.Value);
+        }
+
+        private static void AddImprovedMatchlockgun(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.MatchlockGun, 1);
+            researchDic.Add(BuiltinBlocks.LeadBullet, 5);
+            researchDic.Add(BuiltinBlocks.GunpowderPouch, 2);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.MatchlockGun
+            };
+
+            var research = new PandaResearch(researchDic, 1, ImprovedMatchlockgun, .5f, requirements);
+            research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ImprovedMatchlockgun, .5f);
+                research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ImprovedMatchlockguns_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            if (!_baseSpeed.ContainsKey(nameof(GuardMatchlockJobDay)))
+                _baseSpeed.Add(nameof(GuardMatchlockJobDay), GuardMatchlockJobDay.GetGuardSettings().cooldownShot);
+
+            if (!_baseSpeed.ContainsKey(nameof(GuardMatchlockJobNight)))
+                _baseSpeed.Add(nameof(GuardMatchlockJobNight), GuardMatchlockJobNight.GetGuardSettings().cooldownShot);
+
+            GuardMatchlockJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardMatchlockJobDay)] - (_baseSpeed[nameof(GuardMatchlockJobDay)] * e.Research.Value);
+            GuardMatchlockJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardMatchlockJobNight)] - (_baseSpeed[nameof(GuardMatchlockJobNight)] * e.Research.Value);
         }
     }
 }

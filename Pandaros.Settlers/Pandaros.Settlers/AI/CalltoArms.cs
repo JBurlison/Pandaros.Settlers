@@ -23,8 +23,7 @@ namespace Pandaros.Settlers.AI
 
         static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
-        
-       
+
         static NPCTypeStandardSettings _callToArmsNPCSettings = new NPCTypeStandardSettings()
         {
             type = NPCTypeID.GetNextID(),

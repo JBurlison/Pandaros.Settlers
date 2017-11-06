@@ -15,6 +15,8 @@ namespace Pandaros.Settlers
     {
         public static string ICON_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\icons";
         public static string LOCALIZATION_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\localization";
+        public static string MESH_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\Meshes";
+        public static string TEXTURE_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\Textures";
         public static string MOD_FOLDER = @"gamedata\mods\Pandaros\settlers";
 
         public const string NAMESPACE = "Pandaros.Settlers";
@@ -30,6 +32,8 @@ namespace Pandaros.Settlers
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
             LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization");
             ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons");
+            MESH_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Meshes");
+            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]

@@ -163,7 +163,7 @@ namespace Pandaros.Settlers.Items
                     /// Load up player first.
                     foreach (ArmorSlot slot in ArmorSlotEnum)
                     {
-                        var bestArmor = GetBestArmorFromStockpile(stockpile, slot);
+                        var bestArmor = GetBestArmorFromStockpile(stockpile, slot, 0);
 
                         if (bestArmor != default(ushort))
                         {
@@ -197,39 +197,7 @@ namespace Pandaros.Settlers.Items
                     foreach (var npc in colony.Followers)
                     {
                         var inv = SettlerInventory.GetSettlerInventory(npc);
-
-                        foreach (ArmorSlot slot in ArmorSlotEnum)
-                        {
-                            var bestArmor = GetBestArmorFromStockpile(stockpile, slot);
-
-                            if (bestArmor != default(ushort))
-                            {
-                                if (!inv.Armor.ContainsKey(slot))
-                                    inv.Armor.Add(slot, new ArmorState());
-
-                                // Check if we need one or if there is an upgrade.
-                                if (inv.Armor[slot].IsEmpty())
-                                {
-                                    stockpile.TryRemove(bestArmor);
-                                    inv.Armor[slot].Id = bestArmor;
-                                    inv.Armor[slot].Durability = ArmorLookup[bestArmor].Durability;
-                                }
-                                else
-                                {
-                                    var currentArmor = ArmorLookup[inv.Armor[slot].Id];
-                                    var stockpileArmor = ArmorLookup[bestArmor];
-                                  
-                                    if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
-                                    {
-                                        // Upgrade armor.
-                                        stockpile.TryRemove(bestArmor);
-                                        stockpile.Add(inv.Armor[slot].Id);
-                                        inv.Armor[slot].Id = bestArmor;
-                                        inv.Armor[slot].Durability = stockpileArmor.Durability;
-                                    }
-                                }
-                            }
-                        }
+                        GetBestArmorForNPC(stockpile, npc, inv, 4);
                     }
                 });
 
@@ -237,13 +205,49 @@ namespace Pandaros.Settlers.Items
             }
         }
 
-        public static ushort GetBestArmorFromStockpile(Stockpile s, ArmorSlot slot)
+        public static void GetBestArmorForNPC(Stockpile stockpile, NPC.NPCBase npc, SettlerInventory inv, int limit)
+        {
+            foreach (ArmorSlot slot in ArmorSlotEnum)
+            {
+                var bestArmor = GetBestArmorFromStockpile(stockpile, slot, limit);
+
+                if (bestArmor != default(ushort))
+                {
+                    if (!inv.Armor.ContainsKey(slot))
+                        inv.Armor.Add(slot, new ArmorState());
+
+                    // Check if we need one or if there is an upgrade.
+                    if (inv.Armor[slot].IsEmpty())
+                    {
+                        stockpile.TryRemove(bestArmor);
+                        inv.Armor[slot].Id = bestArmor;
+                        inv.Armor[slot].Durability = ArmorLookup[bestArmor].Durability;
+                    }
+                    else
+                    {
+                        var currentArmor = ArmorLookup[inv.Armor[slot].Id];
+                        var stockpileArmor = ArmorLookup[bestArmor];
+
+                        if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
+                        {
+                            // Upgrade armor.
+                            stockpile.TryRemove(bestArmor);
+                            stockpile.Add(inv.Armor[slot].Id);
+                            inv.Armor[slot].Id = bestArmor;
+                            inv.Armor[slot].Durability = stockpileArmor.Durability;
+                        }
+                    }
+                }
+            }
+        }
+
+        public static ushort GetBestArmorFromStockpile(Stockpile s, ArmorSlot slot, int limit)
         {
             ushort best = default(ushort);
 
             foreach (var armor in ArmorLookup.Where(a => a.Value.Slot == slot))
             {
-                if (s.Contains(armor.Key))
+                if (s.Contains(armor.Key) && s.AmountContained(armor.Key) > limit)
                 {
                     if (best == default(ushort) || armor.Value.ArmorRating > ArmorLookup[best].ArmorRating)
                         best = armor.Key;
@@ -312,7 +316,7 @@ namespace Pandaros.Settlers.Items
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var carpet = new InventoryItem(BuiltinBlocks.CarpetBlue, 1);
+            var clothing = new InventoryItem(BuiltinBlocks.Clothing, 1);
 
             var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
             var copper = new InventoryItem(BuiltinBlocks.Copper, 5);
@@ -340,37 +344,37 @@ namespace Pandaros.Settlers.Items
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 2);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Chest)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 5);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 2);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Legs)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 3);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Boots)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 2);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Shield)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
                     copper = new InventoryItem(BuiltinBlocks.Copper, 2);
-                    items.AddRange(new[] { copper, copperParts, coppertools, carpet });
+                    items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
                 // ----------------------------------------
@@ -381,37 +385,37 @@ namespace Pandaros.Settlers.Items
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Chest)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 5);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Legs)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 3);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Boots)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Shield)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
                     bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-                    items.AddRange(new[] { bronze, bronzePlate, coppertools, carpet });
+                    items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
                 // ----------------------------------------
@@ -422,37 +426,37 @@ namespace Pandaros.Settlers.Items
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Chest)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 5);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Legs)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 3);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Boots)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Shield)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
                     iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
-                    items.AddRange(new[] { iron, ironRivet, coppertools, carpet });
+                    items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
                 // ----------------------------------------
@@ -463,37 +467,37 @@ namespace Pandaros.Settlers.Items
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Chest)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Legs)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 3);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Boots)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
                 if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Shield)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
                     steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
-                    items.AddRange(new[] { steel, steelParts, coppertools, carpet });
+                    items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
