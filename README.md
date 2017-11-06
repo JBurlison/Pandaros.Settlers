@@ -13,11 +13,16 @@ Food use fluxuates depending on how hungry your colonists are!
 * Increased Maximum possible Settlers when your colony is discovered
 * Increased Minimum possible Settlers when your colony is discovered
 * Decreased food waste
-* Increased Settler Health (All colonists)
-* Additional Banners
+* Increased Settler Health (All colonists, up to 50 at level 5)
+* Additional Banners (Up to 20!)
 * Armorsmithing
 * Swordsmithing
- 
+* Knight Patrols
+* Improved Weapons (up to 25% increased reload speed at level 5)
+  * Slings
+  * Bows
+  * Crossbows
+  * Matchlockgun
  
 ## Game Difficulties!
 
@@ -31,8 +36,26 @@ The game defaults to meduim. Difficulty effects food consumption/waste and requi
 
 To see your current difficulty level type /difficulty
 
+## Knight Patrols
+Once research you can craft Patrol Banners at the workbench. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:
+
+* Left Click: Place a Patrol Flag
+* Right Click: Comfirm Patrol and start Job.
+
+To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.
+
+##### NOTE Knight patrols will only check for monsters to fight at the banners! Not while walking inbetween!
+
+#### Patrol Types:
+You may left click on a existing banner control to change the patrol type:
+
+|Type|Description|
+|---|---|
+|Round Robin|The patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will walk back to the first flag and start again. This is good for making circles.|
+|Zipper|The Patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will go backwords back to the first flag. This is good for patrolling a line.|
+
 ## Armor!
-Once crafted YOU and your colonists will automatically equipt the best armor. You will always equipt the best armor before your colonists.
+Once crafted YOU and your colonists will automatically equipt the best armor. You will always equipt the best armor before your colonists. Settlers will keep 5 sets of armor in the Stockpile for knights and will give away any extra to the colony to wear.
 
 To see equipt armor use the /armor command!
 
