@@ -36,7 +36,7 @@ The game defaults to meduim. Difficulty effects food consumption/waste and requi
 
 To see your current difficulty level type /difficulty
 
-## Knight Patrols
+## Knight Patrols!
 Once researched you can craft Patrol Banners at the workbench. Knight patrols require Swords. They will always use the best sword in the stockpile. Knights also get first pick (after the player) of armor. Knights are also tougher than other colonists and take 50% less damage before any armor is applied. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:
 
 * Left Click: Place a Patrol Flag
