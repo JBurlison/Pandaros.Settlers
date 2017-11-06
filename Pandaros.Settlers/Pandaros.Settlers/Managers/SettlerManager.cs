@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        public static readonly Version MOD_VER = new Version(0, 5, 2, 0);
+        public static readonly Version MOD_VER = new Version(0, 5, 2, 1);
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
         public static readonly TimeSpan ColonistCheckTime = TimeSpan.FromSeconds(10);
 
@@ -321,7 +321,7 @@ namespace Pandaros.Settlers.Managers
             if (p.IsConnected)
             {
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = TimeCycle.TotalTime + _r.Next(8, 16 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
+                    state.NextGenTime = TimeCycle.TotalTime + _r.Next(4, 16 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
 
                 if (TimeCycle.TotalTime > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
