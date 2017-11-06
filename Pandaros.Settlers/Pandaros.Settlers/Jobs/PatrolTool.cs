@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using Pandaros.Settlers.Research;
 using Pipliz;
+using Server.FileTable;
 
 namespace Pandaros.Settlers.Jobs
 {
@@ -36,11 +37,17 @@ namespace Pandaros.Settlers.Jobs
                                     5);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
+        }
 
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
+        public static void AddTextures()
+        {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA.Replace("\\", "/") + "/PatrolFlag.jpg";
+            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA.Replace("\\", "/") + "/PatrolFlag.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".PatrolFlag", textureMapping);
+            FileTable.Register(textureMapping.AlbedoPath, Shared.ECachedFileType.BlockTextureGamma);
         }
 
 
