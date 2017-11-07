@@ -19,66 +19,15 @@ namespace Pandaros.Settlers.Managers
     [ModLoader.ModManager]
     public class SettlerManager
     {
-        public static readonly Version MOD_VER = new Version(0, 5, 3, 0);
-
-        public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
         private static System.Random _r = new System.Random();
         private static float _baseFoodPerHour;
         private static Thread _foodThread = new Thread(() => UpdateFoodUse());
 
-        public static bool RUNNING { get; private set; }
-        public static bool WorldLoaded { get; private set; }
-
-
-        public static ColonyState CurrentColonyState
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
-                    CurrentStates.ContainsKey(ServerManager.WorldName))
-                    return CurrentStates[ServerManager.WorldName];
-
-                return null;
-            }
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".SettlerManager.AfterStartup")]
-        public static void AfterStartup()
-        {
-            PandaLogger.Log(ChatColor.lime, "Active. Version {0}", MOD_VER);
-            RUNNING = true;
-            ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-            ChatCommands.CommandManager.RegisterCommand(new CalltoArms());
-            ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
-#if Debug
-            ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
-#endif
-            LoadState();
-        }
-
-        internal static void LoadState()
-        {
-            CurrentStates = SaveManager.LoadState();
-
-            if (CurrentStates == null)
-                CurrentStates = new SerializableDictionary<string, ColonyState>();
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + ".SettlerManager.OnQuitLate")]
-        public static void OnQuitLate()
-        {
-            RUNNING = false;
-            WorldLoaded = false;
-        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            WorldLoaded = true;
-            PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
-            CheckWorld();
-
             _foodThread.IsBackground = true;
             _foodThread.Start();
         }
@@ -129,16 +78,9 @@ namespace Pandaros.Settlers.Managers
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
         }
 
-        private static void CheckWorld()
-        {
-            if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
-                !CurrentStates.ContainsKey(ServerManager.WorldName))
-                CurrentStates.Add(ServerManager.WorldName, new ColonyState());
-        }
-
         public static void UpdateFoodUse()
         {
-            while (WorldLoaded)
+            while (GameLoader.WorldLoaded)
             {
                 Players.PlayerDatabase.ForeachValue(p =>
                 {

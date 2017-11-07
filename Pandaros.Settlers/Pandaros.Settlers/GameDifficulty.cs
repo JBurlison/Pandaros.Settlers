@@ -89,7 +89,7 @@ namespace Pandaros.Settlers
 
             PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
             Colony.Get(player).SendUpdate();
-            SaveManager.SaveState(SettlerManager.CurrentStates);
+            SaveManager.SaveState(GameLoader.CurrentStates);
 
             return true;
         }

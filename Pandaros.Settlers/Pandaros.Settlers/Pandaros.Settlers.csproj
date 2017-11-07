@@ -61,6 +61,7 @@
     <Compile Include="Items\Food\BerryPancakes.cs" />
     <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\ItemFactory.cs" />
+    <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
     <Compile Include="Items\Weapons\Sword.cs" />
     <Compile Include="Items\Weapons\WeaponMetadata.cs" />

@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Entities
 
         public static PlayerState GetPlayerState(Players.Player p, Colony c)
         {
-            var colony = SettlerManager.CurrentColonyState;
+            var colony = GameLoader.CurrentColonyState;
 
             if (colony != null && c != null && p != null)
             {
