@@ -23,11 +23,11 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f);
-            Easy = new GameDifficulty("Easy", 0.75f, 0.4f);
-            Medium = new GameDifficulty("Medium", 1.0f, 0f);
-            Hard = new GameDifficulty("Hard", 1.25f, -0.2f);
-            new GameDifficulty("Insane", 1.50f, -0.4f);
+            Normal = new GameDifficulty("Normal", 0f);
+            Easy = new GameDifficulty("Easy", 0.75f);
+            Medium = new GameDifficulty("Medium", 1.0f);
+            Hard = new GameDifficulty("Hard", 1.25f);
+            new GameDifficulty("Insane", 1.50f);
         }
 
         [XmlElement]
@@ -36,16 +36,12 @@ namespace Pandaros.Settlers
         [XmlElement]
         public float FoodMultiplier { get; set; }
 
-        [XmlElement]
-        public float AdditionalChance { get; set; }
-
         public GameDifficulty() { }
 
-        public GameDifficulty(string name, float foodMultiplier, float chance)
+        public GameDifficulty(string name, float foodMultiplier)
         {
             Name = name;
             FoodMultiplier = foodMultiplier;
-            AdditionalChance = chance;
             GameDifficulties[name] = this;
         }
 
@@ -66,7 +62,7 @@ namespace Pandaros.Settlers
         {
             if (player == null || player.ID == NetworkID.Server)
                 return true;
-            
+
             string[] array = CommandManager.SplitCommand(chat);
             Colony colony = Colony.Get(player);
             PlayerState state = PlayerState.GetPlayerState(player, colony);
@@ -92,7 +88,7 @@ namespace Pandaros.Settlers
             state.Difficulty = GameDifficulty.GameDifficulties[array[1].Trim()];
 
             PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
-            SettlerManager.Update(Colony.Get(player));
+            Colony.Get(player).SendUpdate();
             SaveManager.SaveState(SettlerManager.CurrentStates);
 
             return true;

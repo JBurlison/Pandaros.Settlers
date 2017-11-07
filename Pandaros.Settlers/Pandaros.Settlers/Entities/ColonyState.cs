@@ -37,6 +37,9 @@ namespace Pandaros.Settlers.Entities
         public int HighestColonistCount { get; set; }
 
         [XmlElement]
+        public bool SettlersOn { get; set; } = false;
+
+        [XmlElement]
         public List<int> BannersAwarded { get; set; } = new List<int>();
 
         [XmlIgnore]
@@ -66,22 +69,7 @@ namespace Pandaros.Settlers.Entities
         public GameDifficulty Difficulty { get; set; }
 
         [XmlIgnore]
-        public double FoodDivider { get; set; }
-
-        [XmlIgnore]
-        public double NextGenTime { get; set; }
-
-        [XmlIgnore]
-        public Dictionary<NPC.NPCBase, double> KnownLaborers { get; set; }
-
-        [XmlIgnore]
-        public PlayerColonyInterface ColonyInterface { get; private set; }
-
-        [XmlIgnore]
         public Players.Player Player { get; set; }
-
-        [XmlIgnore]
-        public double NeedsABed { get; set; }
 
         [XmlIgnore]
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
@@ -92,43 +80,14 @@ namespace Pandaros.Settlers.Entities
         [XmlElement]
         public ArmorState Weapon { get; set; } = new ArmorState();
 
-        [XmlIgnore]
-        public DateTime NextCheck { get; set; } = DateTime.MinValue;
-
-        [XmlIgnore]
-        public int MaxPerSpawn
-        {
-            get
-            {
-                var max = SettlerManager.MIN_PERSPAWN;
-
-                if (ColonistCount >= SettlerManager.MAX_BUYABLE)
-                {
-                    var maxAdd = (int)System.Math.Ceiling(ColonistCount * 0.05f);
-
-                    if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
-                        maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
-
-                    max += Rand.Next((int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
-                               maxAdd + (int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MaxSettlers), 0f));
-                }
-
-                return max;
-            }
-        }
-
         public void SetupColonyRefrences(Colony c)
         {
-            ColonyInterface = new PlayerColonyInterface(c);
             Player = c.Owner;
         }
 
         public PlayerState()
         {
             Rand = new System.Random();
-            KnownLaborers = new Dictionary<NPC.NPCBase, double>();
-            NeedsABed = 0;
-            Difficulty = GameDifficulty.Medium;
             SetupArmor();
         }
 
@@ -155,9 +114,6 @@ namespace Pandaros.Settlers.Entities
 
                 if (!colony.PlayerStates.ContainsKey(playerId))
                     colony.PlayerStates.Add(playerId, new PlayerState());
-
-                if (colony.PlayerStates[playerId].ColonyInterface == null)
-                    colony.PlayerStates[playerId].SetupColonyRefrences(c);
 
                 if (colony.PlayerStates[playerId].ColonistCount == 0 &&
                     c.FollowerCount != 0)

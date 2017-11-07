@@ -56,32 +56,28 @@
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="Entities\BlockJobBaseExtender.cs" />
+    <Compile Include="GameDifficulty.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Food\BerryPancakes.cs" />
     <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\ItemFactory.cs" />
+    <Compile Include="Items\Machines\Miner.cs" />
     <Compile Include="Items\Weapons\Sword.cs" />
     <Compile Include="Items\Weapons\WeaponMetadata.cs" />
     <Compile Include="Jobs\Knight.cs" />
     <Compile Include="Jobs\PatrolTool.cs" />
     <Compile Include="Managers\BannerManager.cs" />
     <Compile Include="AI\NameGenerator.cs" />
-    <Compile Include="Entities\ColonyPrivates.cs" />
     <Compile Include="Entities\ColonyState.cs" />
-    <Compile Include="Chance\ISpawnSettlerChance.cs" />
     <Compile Include="Entities\SettlerInventory.cs" />
     <Compile Include="ExtentionMethods.cs" />
-    <Compile Include="GameDifficulty.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="MethodUtil.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
     <Compile Include="Research\PandaResearch.cs" />
-    <Compile Include="Research\PandaResearchCommand.cs" />
     <Compile Include="SaveManager.cs" />
-    <Compile Include="Chance\SettlerEvaluation.cs" />
-    <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="Managers\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializableDictionary.cs" />
@@ -94,6 +90,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="localization\en-US\translation.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\MiningMachine.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\PatrolFlag.obj">
@@ -198,6 +197,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\KnightPatrolTool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\MiningMachine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\PatrolFlagItem.png">
@@ -461,7 +463,7 @@
     <Content Include="icons\TimeBetween5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\PatrolFlag.jpg">
+    <Content Include="Textures\MiningMachine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\PatrolFlag.png">

@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Jobs
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
-
+        
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.RegisterPatrolTool")]
         public static void RegisterPatrolTool()
         {
@@ -43,11 +43,10 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
-            var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA.Replace("\\", "/") + "/PatrolFlag.png";
+            var flagTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
+            flagTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA.Replace("\\", "/") + "/PatrolFlag.png";
 
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".PatrolFlag", textureMapping);
-            FileTable.Register(textureMapping.AlbedoPath, Shared.ECachedFileType.BlockTextureGamma);
+            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".PatrolFlag", flagTextureMapping);
         }
 
 

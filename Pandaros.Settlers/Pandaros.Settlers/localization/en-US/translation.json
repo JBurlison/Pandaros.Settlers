@@ -31,7 +31,8 @@
     "Pandaros.Settlers.BerryPancakes": "Berry Pancakes",
     "Pandaros.Settlers.BerryPie": "Berry Pie",
     "Pandaros.Settlers.PatrolFlag": "Patrol Flag",
-    "Pandaros.Settlers.PatrolTool": "Patrol Tool"
+    "Pandaros.Settlers.PatrolTool": "Patrol Tool",
+    "Pandaros.Settlers.Miner": "Maining Machine"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -65,7 +66,8 @@
     "Pandaros.Settlers.BerryPancakes": "They are berry good!",
     "Pandaros.Settlers.BerryPie": "Berry than your mothers!",
     "Pandaros.Settlers.PatrolFlag": "Used with the Patrol Tool. Tells your knights where to keep watch!",
-    "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type."
+    "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
+    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!"
   },
   "Pandaros": {
     "Settlers": {
