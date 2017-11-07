@@ -29,6 +29,7 @@ namespace Pandaros.Settlers.Research
     public class PandaResearch : BaseResearchable
     {
         public const string Settlement = "Settlement";
+        public const string Machines = "Machines";
         public const string ReducedWaste = "ReducedWaste";
         public const string ArmorSmithing = "ArmorSmithing";
         public const string SwordSmithing = "SwordSmithing";
@@ -317,6 +318,7 @@ namespace Pandaros.Settlers.Research
         private static void Knights_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             Jobs.PatrolTool.GivePlayerPatrolTool(e.Manager.Player);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.PatrolTool.PatrolFlag.name, true, Items.ItemFactory.JOB_CRAFTER);
         }
 
         static Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
@@ -460,6 +462,29 @@ namespace Pandaros.Settlers.Research
 
             GuardMatchlockJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardMatchlockJobDay)] - (_baseSpeed[nameof(GuardMatchlockJobDay)] * e.Research.Value);
             GuardMatchlockJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardMatchlockJobNight)] - (_baseSpeed[nameof(GuardMatchlockJobNight)] * e.Research.Value);
+        }
+
+        private static void AddMachines(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.IronWrought, 1);
+            researchDic.Add(BuiltinBlocks.CopperTools, 1);
+            researchDic.Add(BuiltinBlocks.Planks, 5);
+            researchDic.Add(BuiltinBlocks.Linen, 2);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.Bloomery
+            };
+
+            var research = new PandaResearch(researchDic, 1, Machines, 1f, requirements, 20, false);
+            research.ResearchComplete += Machiness_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Machiness_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Miner.Item.name, true, Items.ItemFactory.JOB_CRAFTER);
         }
     }
 }

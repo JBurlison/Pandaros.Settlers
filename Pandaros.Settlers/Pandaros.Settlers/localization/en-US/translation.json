@@ -486,6 +486,10 @@
       "ImprovedMatchlockgun5": {
         "name": "Matchlockgun Training V",
         "description": "Decreases reload speed of Matchlockguns by 25%."
+      },
+      "Maachines1": {
+        "name": "Machines!",
+        "description": "Allows crafting of machines for crafters. Adds the machinist job."
       }
     }
   }

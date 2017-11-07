@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Jobs
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
         
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.RegisterPatrolTool")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.PatrolTool.RegisterPatrolTool")]
         public static void RegisterPatrolTool()
         {
             var planks = new InventoryItem(BuiltinBlocks.Planks, 2);
@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var flagTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.AddPatrolTool"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var patrolToolName = GameLoader.NAMESPACE + ".PatrolTool";
@@ -74,10 +74,10 @@ namespace Pandaros.Settlers.Jobs
             items.Add(patrolFlagName, PatrolFlag);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Jobs.OnPlayerConnectedLate"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerConnectedLate"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
-            if (p.IsConnected && p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Knights), 0) == 1)
+            if (p.IsConnected && p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Knights), 0f) == 1f)
                 GivePlayerPatrolTool(p);
         }
 

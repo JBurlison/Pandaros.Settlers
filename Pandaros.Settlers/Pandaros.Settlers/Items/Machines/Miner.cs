@@ -76,11 +76,16 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
         public static void RegisterMiner()
         {
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 2);
-            var carpet = new InventoryItem(BuiltinBlocks.CarpetRed, 2);
+            var rivets = new InventoryItem(BuiltinBlocks.IronRivet, 6);
+            var iron = new InventoryItem(BuiltinBlocks.IronWrought, 2);
+            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 6);
+            var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
+            var tools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
+            var planks = new InventoryItem(BuiltinBlocks.Planks, 4);
+            var sling = new InventoryItem(BuiltinBlocks.Linen, 3);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>() { planks, carpet },
+                                    new List<InventoryItem>() { planks, iron, rivets, copperParts, copperNails, tools, planks, sling },
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 

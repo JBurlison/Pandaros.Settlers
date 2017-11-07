@@ -63,12 +63,6 @@ namespace Pandaros.Settlers.Items
             WeaponGuardSettings = WeaponGuardSettings.OrderBy(w => w.shootDamage).Reverse().ToList();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.GetWeapon")]
-        public static void GetWeapon()
-        {
-            //for colonists.
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.WeaponAttack"), ModLoader.ModCallbackProvidesFor("pipliz.server.players.hitnpc")]
         public static void WeaponAttack(Players.Player player, Pipliz.Box<Shared.PlayerClickedData> boxedData)
         {
