@@ -1,4 +1,5 @@
 ﻿using BlockTypes.Builtin;
+using Pandaros.Settlers.Entities;
 using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
 using System;
@@ -23,7 +24,32 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
+        public static readonly Version MOD_VER = new Version(0, 5, 3, 0);
+        public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
+        public static bool RUNNING { get; private set; }
+        public static bool WorldLoaded { get; private set; }
+
         public static ushort MissingMonster_Icon { get; private set; }
+
+        public static ColonyState CurrentColonyState
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
+                    CurrentStates.ContainsKey(ServerManager.WorldName))
+                    return CurrentStates[ServerManager.WorldName];
+
+                return null;
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            WorldLoaded = true;
+            PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
+            CheckWorld();
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
@@ -46,6 +72,29 @@ namespace Pandaros.Settlers
             MissingMonster_Icon = monster.ItemIndex;
             
             items.Add(NAMESPACE + ".Monster", monster);
+        }
+
+       
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".AfterStartup")]
+        public static void AfterStartup()
+        {
+            PandaLogger.Log(ChatColor.lime, "Active. Version {0}", MOD_VER);
+            RUNNING = true;
+            ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
+            ChatCommands.CommandManager.RegisterCommand(new AI.CalltoArms());
+            ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
+#if Debug
+            ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
+#endif
+            LoadState();
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + ".OnQuitLate")]
+        public static void OnQuitLate()
+        {
+            RUNNING = false;
+            WorldLoaded = false;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, NAMESPACE + ".Localize")]
@@ -142,6 +191,21 @@ namespace Pandaros.Settlers
             {
                 PandaLogger.LogError(ex, "Exception while localizing {0}", Path.Combine(locName, locFilename));
             }
+        }
+
+        internal static void LoadState()
+        {
+            CurrentStates = SaveManager.LoadState();
+
+            if (CurrentStates == null)
+                CurrentStates = new SerializableDictionary<string, ColonyState>();
+        }
+
+        private static void CheckWorld()
+        {
+            if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
+                !CurrentStates.ContainsKey(ServerManager.WorldName))
+                CurrentStates.Add(ServerManager.WorldName, new ColonyState());
         }
     }
 }

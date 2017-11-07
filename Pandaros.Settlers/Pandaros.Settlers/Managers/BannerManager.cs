@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".BannerManager.OnUpdate")]
         public static void OnUpdate()
         {
-            if (SettlerManager.WorldLoaded && DateTime.Now > _nextBannerTime)
+            if (GameLoader.WorldLoaded && DateTime.Now > _nextBannerTime)
             {
                 EvaluateBanners();
                 _nextBannerTime = DateTime.Now + TimeSpan.FromSeconds(10);
@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Managers
 
         public static void EvaluateBanners()
         {
-            if (!SettlerManager.WorldLoaded)
+            if (!GameLoader.WorldLoaded)
                 return;
 
             _bannerCounts.Clear();

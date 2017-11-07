@@ -11,36 +11,27 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Miner
     {
-        public class MinerState
+        public class MinerState : MachineState
         {
             const double MINETIME = 4;
             static System.Random _rand = new System.Random();
 
-            public static int MAX_DURABILITY { get; set; } = 200;
-
-
-            public Vector3Int Position { get; private set; }
-            public int Durability { get; set; } = MAX_DURABILITY;
-
-            private ushort itemBelow;
-            
-            
+            private ushort itemMined;
             private double _nextMineTime = Time.SecondsSinceStartDouble + _rand.NextDouble(0.0, 5.0);
 
-            public MinerState(Vector3Int pos)
+            public MinerState(Vector3Int pos) : base (pos)
             {
-                Position = pos;
-                World.TryGetTypeAt(Position.Add(0, -1, 0), out itemBelow);
+                World.TryGetTypeAt(Position.Add(0, -1, 0), out itemMined);
             }
 
-            public MinerState(JSONNode baseNode)
+            public MinerState(JSONNode baseNode) : base (baseNode)
             {
 
             }
 
-            public JSONNode ToJsonNode()
+            public override JSONNode ToJsonNode()
             {
-                var baseNode = new JSONNode();
+                var baseNode = base.ToJsonNode();
 
                 return baseNode;
             }
@@ -49,18 +40,9 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 if (Time.SecondsSinceStartDouble > _nextMineTime)
                 {
-                    if (itemBelow == BuiltinBlocks.StoneBlock ||
-                        itemBelow == BuiltinBlocks.InfiniteClay ||
-                        itemBelow == BuiltinBlocks.InfiniteCoal ||
-                        itemBelow == BuiltinBlocks.InfiniteCopper ||
-                        itemBelow == BuiltinBlocks.InfiniteGalena ||
-                        itemBelow == BuiltinBlocks.InfiniteGold ||
-                        itemBelow == BuiltinBlocks.InfiniteGypsum ||
-                        itemBelow == BuiltinBlocks.InfiniteIron ||
-                        itemBelow == BuiltinBlocks.InfiniteSalpeter ||
-                        itemBelow == BuiltinBlocks.InfiniteStone ||
-                        itemBelow == BuiltinBlocks.InfiniteTin)
+                    if (CanMineBlock(itemMined))
                     {
+
                     }
 
                     _nextMineTime = Time.SecondsSinceStartDouble + MINETIME;
@@ -106,29 +88,33 @@ namespace Pandaros.Settlers.Items.Machines
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Miners", out var minersNode))
             {
-                if (!_minerLocations.ContainsKey(p))
-                    _minerLocations.Add(p, new Dictionary<Vector3Int, MinerState>());
+                lock (_minerLocations)
+                {
+                    if (!_minerLocations.ContainsKey(p))
+                        _minerLocations.Add(p, new Dictionary<Vector3Int, MinerState>());
 
-                foreach (var node in minersNode.LoopArray())
-                    _minerLocations[p][(Vector3Int)node] = new MinerState(node);
+                    foreach (var node in minersNode.LoopArray())
+                        _minerLocations[p][(Vector3Int)node] = new MinerState(node);
+                }
             }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.Miner.PatrolTool.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {
-            if (_minerLocations.ContainsKey(p))
-            {
-                if (n.HasChild(GameLoader.NAMESPACE + ".Miners"))
-                    n.RemoveChild(GameLoader.NAMESPACE + ".Miners");
+            lock (_minerLocations)
+                if (_minerLocations.ContainsKey(p))
+                {
+                    if (n.HasChild(GameLoader.NAMESPACE + ".Miners"))
+                        n.RemoveChild(GameLoader.NAMESPACE + ".Miners");
 
-                var minersNode = new JSONNode(NodeType.Array);
+                    var minersNode = new JSONNode(NodeType.Array);
 
-                foreach (var node in _minerLocations[p])
-                    minersNode.AddToArray(node.Value.ToJsonNode());
+                    foreach (var node in _minerLocations[p])
+                        minersNode.AddToArray(node.Value.ToJsonNode());
 
-                n[GameLoader.NAMESPACE + ".Miners"] = minersNode;
-            }
+                    n[GameLoader.NAMESPACE + ".Miners"] = minersNode;
+                }
         }
 
 
@@ -151,11 +137,14 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
-            if (!_minerLocations.ContainsKey(d.requestedBy))
-                _minerLocations.Add(d.requestedBy, new Dictionary<Vector3Int, MinerState>());
+            lock (_minerLocations)
+            {
+                if (!_minerLocations.ContainsKey(d.requestedBy))
+                    _minerLocations.Add(d.requestedBy, new Dictionary<Vector3Int, MinerState>());
 
-            if (d.typeTillNow == Item.ItemIndex && d.typeToBuild == BuiltinBlocks.Air && _minerLocations[d.requestedBy].ContainsKey(d.voxelHit))
-                _minerLocations[d.requestedBy].Remove(d.voxelHit);
+                if (d.typeTillNow == Item.ItemIndex && d.typeToBuild == BuiltinBlocks.Air && _minerLocations[d.requestedBy].ContainsKey(d.voxelHit))
+                    _minerLocations[d.requestedBy].Remove(d.voxelHit);
+            }
 
             if (d.typeToBuild == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
             {
@@ -163,17 +152,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                 if (World.TryGetTypeAt(below, out ushort itemBelow))
                 {
-                    if (itemBelow == BuiltinBlocks.StoneBlock ||
-                        itemBelow == BuiltinBlocks.InfiniteClay ||
-                        itemBelow == BuiltinBlocks.InfiniteCoal ||
-                        itemBelow == BuiltinBlocks.InfiniteCopper ||
-                        itemBelow == BuiltinBlocks.InfiniteGalena ||
-                        itemBelow == BuiltinBlocks.InfiniteGold ||
-                        itemBelow == BuiltinBlocks.InfiniteGypsum ||
-                        itemBelow == BuiltinBlocks.InfiniteIron ||
-                        itemBelow == BuiltinBlocks.InfiniteSalpeter ||
-                        itemBelow == BuiltinBlocks.InfiniteStone ||
-                        itemBelow == BuiltinBlocks.InfiniteTin)
+                    if (CanMineBlock(itemBelow))
                     {
                         return true;
                     }
@@ -184,6 +163,21 @@ namespace Pandaros.Settlers.Items.Machines
             }
 
             return true;
+        }
+
+        public static bool CanMineBlock(ushort itemMined)
+        {
+            return itemMined == BuiltinBlocks.StoneBlock ||
+                    itemMined == BuiltinBlocks.InfiniteClay ||
+                    itemMined == BuiltinBlocks.InfiniteCoal ||
+                    itemMined == BuiltinBlocks.InfiniteCopper ||
+                    itemMined == BuiltinBlocks.InfiniteGalena ||
+                    itemMined == BuiltinBlocks.InfiniteGold ||
+                    itemMined == BuiltinBlocks.InfiniteGypsum ||
+                    itemMined == BuiltinBlocks.InfiniteIron ||
+                    itemMined == BuiltinBlocks.InfiniteSalpeter ||
+                    itemMined == BuiltinBlocks.InfiniteStone ||
+                    itemMined == BuiltinBlocks.InfiniteTin;
         }
     }
 }
