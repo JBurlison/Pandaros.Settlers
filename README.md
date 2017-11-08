@@ -41,7 +41,7 @@ Once researched you can craft Patrol Banners at the workbench. Knight patrols re
 
 To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.
 
-##### NOTE Knight patrols will only check for monsters to fight at the banners! Not while walking inbetween!
+##### NOTE Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!
 
 |Icon|Description|
 |---|---|
