@@ -1,4 +1,5 @@
 ﻿using BlockTypes.Builtin;
+using NPC;
 using Pipliz;
 using Pipliz.JSON;
 using System;
@@ -11,49 +12,30 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Miner
     {
-        public class MinerState : MachineState
+        const double MinerCooldown = 4;
+        
+        public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Items.Machines.AfterWorldLoad"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterWorldLoad")]
+        public static void AfterWorldLoad()
         {
-            const double MINETIME = 4;
-            static System.Random _rand = new System.Random();
-
-            private ushort itemMined;
-            private double _nextMineTime = Time.SecondsSinceStartDouble + _rand.NextDouble(0.0, 5.0);
-
-            public MinerState(Vector3Int pos) : base (pos)
-            {
-                World.TryGetTypeAt(Position.Add(0, -1, 0), out itemMined);
-            }
-
-            public MinerState(JSONNode baseNode) : base (baseNode)
-            {
-
-            }
-
-            public override JSONNode ToJsonNode()
-            {
-                var baseNode = base.ToJsonNode();
-
-                return baseNode;
-            }
-
-            public void MineNode()
-            {
-                if (Time.SecondsSinceStartDouble > _nextMineTime)
-                {
-                    if (CanMineBlock(itemMined))
-                    {
-
-                    }
-
-                    _nextMineTime = Time.SecondsSinceStartDouble + MINETIME;
-                }
-            }
+            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineCallback(Repair, Refuel, DoWork));
         }
 
+        public static void Repair(NPCBase.NPCState npcState, Players.Player player, MachineState machineState)
+        {
 
+        }
 
-        public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
-        private static Dictionary<Players.Player, Dictionary<Vector3Int, MinerState>> _minerLocations = new Dictionary<Players.Player, Dictionary<Vector3Int, MinerState>>();
+        public static void Refuel(NPCBase.NPCState npcState, Players.Player player, MachineState machineState)
+        {
+
+        }
+
+        public static void DoWork(Players.Player player, MachineState machineState)
+        {
+
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
         public static void RegisterMiner()
@@ -71,7 +53,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
+            RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
@@ -83,45 +65,10 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnLoadingPlayer")]
-        public static void OnLoadingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        public static void AddMiner(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
-            if (n.TryGetChild(GameLoader.NAMESPACE + ".Miners", out var minersNode))
-            {
-                lock (_minerLocations)
-                {
-                    if (!_minerLocations.ContainsKey(p))
-                        _minerLocations.Add(p, new Dictionary<Vector3Int, MinerState>());
-
-                    foreach (var node in minersNode.LoopArray())
-                        _minerLocations[p][(Vector3Int)node] = new MinerState(node);
-                }
-            }
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.Miner.PatrolTool.OnSavingPlayer")]
-        public static void OnSavingPlayer(JSONNode n, Players.Player p)
-        {
-            lock (_minerLocations)
-                if (_minerLocations.ContainsKey(p))
-                {
-                    if (n.HasChild(GameLoader.NAMESPACE + ".Miners"))
-                        n.RemoveChild(GameLoader.NAMESPACE + ".Miners");
-
-                    var minersNode = new JSONNode(NodeType.Array);
-
-                    foreach (var node in _minerLocations[p])
-                        minersNode.AddToArray(node.Value.ToJsonNode());
-
-                    n[GameLoader.NAMESPACE + ".Miners"] = minersNode;
-                }
-        }
-
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddPatrolTool"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
-        public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
-        {
-            var minterName = GameLoader.NAMESPACE + ".Miner";
+            var minerName = GameLoader.NAMESPACE + ".Miner";
             var minerFlagNode = new JSONNode();
             minerFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/MiningMachine.png");
             minerFlagNode["isPlaceable"] = new JSONNode(true);
@@ -130,30 +77,21 @@ namespace Pandaros.Settlers.Items.Machines
             minerFlagNode.SetAs("sideall", "SELF");
             minerFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA.Replace("\\", "/") + "/MiningMachine.obj");
 
-            Item = new ItemTypesServer.ItemTypeRaw(minterName, minerFlagNode);
-            items.Add(minterName, Item);
+            Item = new ItemTypesServer.ItemTypeRaw(minerName, minerFlagNode);
+            items.Add(minerName, Item);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
-            lock (_minerLocations)
-            {
-                if (!_minerLocations.ContainsKey(d.requestedBy))
-                    _minerLocations.Add(d.requestedBy, new Dictionary<Vector3Int, MinerState>());
-
-                if (d.typeTillNow == Item.ItemIndex && d.typeToBuild == BuiltinBlocks.Air && _minerLocations[d.requestedBy].ContainsKey(d.voxelHit))
-                    _minerLocations[d.requestedBy].Remove(d.voxelHit);
-            }
-
             if (d.typeToBuild == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
             {
-                var below = d.voxelHit;
-
-                if (World.TryGetTypeAt(below, out ushort itemBelow))
+                if (World.TryGetTypeAt(d.voxelHit, out ushort itemBelow))
                 {
                     if (CanMineBlock(itemBelow))
                     {
+                        PandaChat.Send(d.requestedBy, $"{ItemTypes.IndexLookup.GetName(itemBelow).Replace("infinite", "")} ready to Mine! Ensure you have a Machinist around to run the machine!");
+                        MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.voxelHit.Add(0, 1, 0), d.requestedBy, nameof(Miner)));
                         return true;
                     }
                 }

@@ -32,7 +32,9 @@
     "Pandaros.Settlers.BerryPie": "Berry Pie",
     "Pandaros.Settlers.PatrolFlag": "Patrol Flag",
     "Pandaros.Settlers.PatrolTool": "Patrol Tool",
-    "Pandaros.Settlers.Miner": "Maining Machine"
+    "Pandaros.Settlers.Miner": "Maining Machine",
+    "Pandaros.Settlers.AdvancedCraftingTable": "Advanced Crafting Table",
+    "popup.limits.Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Limits"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -67,429 +69,441 @@
     "Pandaros.Settlers.BerryPie": "Berry than your mothers!",
     "Pandaros.Settlers.PatrolFlag": "Used with the Patrol Tool. Tells your knights where to keep watch!",
     "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
-    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!"
+    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!",
+    "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery."
   },
-  "Pandaros": {
-    "Settlers": {
-      "SettlerChance1": {
-        "name": "Settler Chance I",
-        "description": "Increases chance for settlers to find your colony."
-      },
-      "SettlerChance2": {
-        "name": "Settler Chance II",
-        "description": "Increases chance for settlers to find your colony."
-      },
-      "SettlerChance3": {
-        "name": "Settler Chance III",
-        "description": "Increases chance for settlers to find your colony."
-      },
-      "SettlerChance4": {
-        "name": "Settler Chance IV",
-        "description": "Increases chance for settlers to find your colony."
-      },
-      "SettlerChance5": {
-        "name": "Settler Chance V",
-        "description": "Increases chance for settlers to find your colony."
-      },
-      "MaxSettlers1": {
-        "name": "Max Settler I",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers2": {
-        "name": "Max Settler II",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers3": {
-        "name": "Max Settler III",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers4": {
-        "name": "Max Settler IV",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers5": {
-        "name": "Max Settler V",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers6": {
-        "name": "Max Settler VI",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers7": {
-        "name": "Max Settler VII",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers8": {
-        "name": "Max Settler VIII",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers9": {
-        "name": "Max Settler IX",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MaxSettlers10": {
-        "name": "Max Settler X",
-        "description": "Increases maximum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers1": {
-        "name": "Min Settler I",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers2": {
-        "name": "Min Settler II",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers3": {
-        "name": "Min Settler III",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers4": {
-        "name": "Min Settler IV",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers5": {
-        "name": "Min Settler V",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers6": {
-        "name": "Min Settler VI",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers7": {
-        "name": "Min Settler VII",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers8": {
-        "name": "Min Settler VIII",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers9": {
-        "name": "Min Settler IX",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "MinSettlers10": {
-        "name": "Min Settler X",
-        "description": "Increases minimum number of potential settlers received when they find your colony."
-      },
-      "ReducedWaste1": {
-        "name": "Reduced Food Waste I",
-        "description": "Reduces food waste in your colony."
-      },
-      "ReducedWaste2": {
-        "name": "Reduced Food Waste II",
-        "description": "Reduces food waste in your colony."
-      },
-      "ReducedWaste3": {
-        "name": "Reduced Food Waste III",
-        "description": "Reduces food waste in your colony."
-      },
-      "ReducedWaste4": {
-        "name": "Reduced Food Waste IV",
-        "description": "Reduces food waste in your colony."
-      },
-      "ReducedWaste5": {
-        "name": "Reduced Food Waste V",
-        "description": "Reduces food waste in your colony."
-      },
-      "TimeBetween1": {
-        "name": "Reduced Time Between I",
-        "description": "Reduces time between chances for settlers to join your colony."
-      },
-      "TimeBetween2": {
-        "name": "Reduced Time Between II",
-        "description": "Reduces time between chances for settlers to join your colony."
-      },
-      "TimeBetween3": {
-        "name": "Reduced Time Between III",
-        "description": "Reduces time between chances for settlers to join your colony."
-      },
-      "TimeBetween4": {
-        "name": "Reduced Time Between IV",
-        "description": "Reduces time between chances for settlers to join your colony."
-      },
-      "TimeBetween5": {
-        "name": "Reduced Time Between V",
-        "description": "Reduces time between chances for settlers to join your colony."
-      },
-      "Settlement1": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement2": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement3": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement4": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement5": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement6": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement7": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement8": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement9": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement10": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement11": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement12": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement13": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement14": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement15": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement16": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement17": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement18": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement19": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "Settlement20": {
-        "name": "Settlement - Additional Banner",
-        "description": "When researched, gives you an additional banner to place in your stockpile."
-      },
-      "SkilledLaborer1": {
-        "name": "Skilled Laborer I",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer2": {
-        "name": "Skilled Laborer II",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer3": {
-        "name": "Skilled Laborer III",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer4": {
-        "name": "Skilled Laborer IV",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer5": {
-        "name": "Skilled Laborer V",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer6": {
-        "name": "Skilled Laborer VI",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer7": {
-        "name": "Skilled Laborer VII",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer8": {
-        "name": "Skilled Laborer VIII",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer9": {
-        "name": "Skilled Laborer IX",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "SkilledLaborer10": {
-        "name": "Skilled Laborer X",
-        "description": "Increases chance of getting skilled laborers when settlers to find your colony."
-      },
-      "NumberSkilledLaborer1": {
-        "name": "Number of Skilled Laborer I",
-        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
-      },
-      "NumberSkilledLaborer2": {
-        "name": "Number of Skilled Laborer II",
-        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
-      },
-      "NumberSkilledLaborer3": {
-        "name": "Number of Skilled Laborer III",
-        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
-      },
-      "NumberSkilledLaborer4": {
-        "name": "Number of Skilled Laborer IV",
-        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
-      },
-      "NumberSkilledLaborer5": {
-        "name": "Number of Skilled Laborer V",
-        "description": "Increases maximum number of potential skilled settlers received when they find your colony."
-      },
-      "ArmorSmithing1": {
-        "name": "Armor Smithing I - Copper",
-        "description": "Allows crafting of copper armors for your colonists."
-      },
-      "ArmorSmithing2": {
-        "name": "Armor Smithing II - Bronze",
-        "description": "Allows crafting of bronze armors for your colonists."
-      },
-      "ArmorSmithing3": {
-        "name": "Armor Smithing III - Iron",
-        "description": "Allows crafting of iron armors for your colonists."
-      },
-      "ArmorSmithing4": {
-        "name": "Armor Smithing IV - Steel",
-        "description": "Allows crafting of steel armors for your colonists."
-      },
-      "ColonistHealth1": {
-        "name": "Increased Colonist Health I",
-        "description": "Increases colonist health by 10."
-      },
-      "ColonistHealth2": {
-        "name": "Increased Colonist Health II",
-        "description": "Increases colonist health by 20."
-      },
-      "ColonistHealth3": {
-        "name": "Increased Colonist Health III",
-        "description": "Increases colonist health by 30."
-      },
-      "ColonistHealth4": {
-        "name": "Increased Colonist Health IV",
-        "description": "Increases colonist health by 40."
-      },
-      "ColonistHealth5": {
-        "name": "Increased Colonist Health V",
-        "description": "Increases colonist health by 50."
-      },
-      "SwordSmithing1": {
-        "name": "Sword Smithing I - Copper",
-        "description": "Allows crafting of copper swords for you and your colonists."
-      },
-      "SwordSmithing2": {
-        "name": "Sword Smithing II - Bronze",
-        "description": "Allows crafting of bronze swords for you and your colonists."
-      },
-      "SwordSmithing3": {
-        "name": "Sword Smithing III - Iron",
-        "description": "Allows crafting of iron swords for you and your colonists."
-      },
-      "SwordSmithing4": {
-        "name": "Sword Smithing IV - Steel",
-        "description": "Allows crafting of steel swords for you and your colonists."
-      },
-      "Knights1": {
-        "name": "Knights",
-        "description": "Allows for placing knight patrols and crafting Patrol Flags."
-      },
-      "ImprovedSling1": {
-        "name": "Sling Training I",
-        "description": "Decreases reload speed of slings by 5%."
-      },
-      "ImprovedSling2": {
-        "name": "Sling Training II",
-        "description": "Decreases reload speed of slings by 10%."
-      },
-      "ImprovedSling3": {
-        "name": "Sling Training III",
-        "description": "Decreases reload speed of slings by 15%."
-      },
-      "ImprovedSling4": {
-        "name": "Sling Training IV",
-        "description": "Decreases reload speed of slings by 20%."
-      },
-      "ImprovedSling5": {
-        "name": "Sling Training V",
-        "description": "Decreases reload speed of slings by 25%."
-      },
-      "ImprovedBow1": {
-        "name": "Bow Training I",
-        "description": "Decreases reload speed of Bows by 5%."
-      },
-      "ImprovedBow2": {
-        "name": "Bow Training II",
-        "description": "Decreases reload speed of Bows by 10%."
-      },
-      "ImprovedBow3": {
-        "name": "Bow Training III",
-        "description": "Decreases reload speed of Bows by 15%."
-      },
-      "ImprovedBow4": {
-        "name": "Bow Training IV",
-        "description": "Decreases reload speed of Bows by 20%."
-      },
-      "ImprovedBow5": {
-        "name": "Bow Training V",
-        "description": "Decreases reload speed of Bows by 25%."
-      },
-      "ImprovedCrossbow1": {
-        "name": "Crossbow Training I",
-        "description": "Decreases reload speed of Crossbows by 5%."
-      },
-      "ImprovedCrossbow2": {
-        "name": "Crossbow Training II",
-        "description": "Decreases reload speed of Crossbows by 10%."
-      },
-      "ImprovedCrossbow3": {
-        "name": "Crossbow Training III",
-        "description": "Decreases reload speed of Crossbows by 15%."
-      },
-      "ImprovedCrossbow4": {
-        "name": "Crossbow Training IV",
-        "description": "Decreases reload speed of Crossbows by 20%."
-      },
-      "ImprovedCrossbow5": {
-        "name": "Crossbow Training V",
-        "description": "Decreases reload speed of Crossbows by 25%."
-      },
-      "ImprovedMatchlockgun1": {
-        "name": "Matchlockgun Training I",
-        "description": "Decreases reload speed of Matchlockguns by 5%."
-      },
-      "ImprovedMatchlockgun2": {
-        "name": "Matchlockgun Training II",
-        "description": "Decreases reload speed of Matchlockguns by 10%."
-      },
-      "ImprovedMatchlockgun3": {
-        "name": "Matchlockgun Training III",
-        "description": "Decreases reload speed of Matchlockguns by 15%."
-      },
-      "ImprovedMatchlockgun4": {
-        "name": "Matchlockgun Training IV",
-        "description": "Decreases reload speed of Matchlockguns by 20%."
-      },
-      "ImprovedMatchlockgun5": {
-        "name": "Matchlockgun Training V",
-        "description": "Decreases reload speed of Matchlockguns by 25%."
-      },
-      "Maachines1": {
-        "name": "Machines!",
-        "description": "Allows crafting of machines for crafters. Adds the machinist job."
+  "sentences": {
+    "popup": {
+      "limits": {
+        "Pandaros": {
+          "Settlers": {
+            "AdvancedCrafter": "Advanced Crafting Limits"
+          }
+        }
+      }
+    },
+    "Pandaros": {
+      "Settlers": {
+        "SettlerChance1": {
+          "name": "Settler Chance I",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance2": {
+          "name": "Settler Chance II",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance3": {
+          "name": "Settler Chance III",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance4": {
+          "name": "Settler Chance IV",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance5": {
+          "name": "Settler Chance V",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "MaxSettlers1": {
+          "name": "Max Settler I",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers2": {
+          "name": "Max Settler II",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers3": {
+          "name": "Max Settler III",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers4": {
+          "name": "Max Settler IV",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers5": {
+          "name": "Max Settler V",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers6": {
+          "name": "Max Settler VI",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers7": {
+          "name": "Max Settler VII",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers8": {
+          "name": "Max Settler VIII",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers9": {
+          "name": "Max Settler IX",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers10": {
+          "name": "Max Settler X",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers1": {
+          "name": "Min Settler I",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers2": {
+          "name": "Min Settler II",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers3": {
+          "name": "Min Settler III",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers4": {
+          "name": "Min Settler IV",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers5": {
+          "name": "Min Settler V",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers6": {
+          "name": "Min Settler VI",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers7": {
+          "name": "Min Settler VII",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers8": {
+          "name": "Min Settler VIII",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers9": {
+          "name": "Min Settler IX",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers10": {
+          "name": "Min Settler X",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "ReducedWaste1": {
+          "name": "Reduced Food Waste I",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste2": {
+          "name": "Reduced Food Waste II",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste3": {
+          "name": "Reduced Food Waste III",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste4": {
+          "name": "Reduced Food Waste IV",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste5": {
+          "name": "Reduced Food Waste V",
+          "description": "Reduces food waste in your colony."
+        },
+        "TimeBetween1": {
+          "name": "Reduced Time Between I",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween2": {
+          "name": "Reduced Time Between II",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween3": {
+          "name": "Reduced Time Between III",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween4": {
+          "name": "Reduced Time Between IV",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween5": {
+          "name": "Reduced Time Between V",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "Settlement1": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement2": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement3": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement4": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement5": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement6": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement7": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement8": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement9": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement10": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement11": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement12": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement13": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement14": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement15": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement16": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement17": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement18": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement19": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "Settlement20": {
+          "name": "Settlement - Additional Banner",
+          "description": "When researched, gives you an additional banner to place in your stockpile."
+        },
+        "SkilledLaborer1": {
+          "name": "Skilled Laborer I",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer2": {
+          "name": "Skilled Laborer II",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer3": {
+          "name": "Skilled Laborer III",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer4": {
+          "name": "Skilled Laborer IV",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer5": {
+          "name": "Skilled Laborer V",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer6": {
+          "name": "Skilled Laborer VI",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer7": {
+          "name": "Skilled Laborer VII",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer8": {
+          "name": "Skilled Laborer VIII",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer9": {
+          "name": "Skilled Laborer IX",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "SkilledLaborer10": {
+          "name": "Skilled Laborer X",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+        },
+        "NumberSkilledLaborer1": {
+          "name": "Number of Skilled Laborer I",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer2": {
+          "name": "Number of Skilled Laborer II",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer3": {
+          "name": "Number of Skilled Laborer III",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer4": {
+          "name": "Number of Skilled Laborer IV",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer5": {
+          "name": "Number of Skilled Laborer V",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "ArmorSmithing1": {
+          "name": "Armor Smithing I - Copper",
+          "description": "Allows crafting of copper armors for your colonists."
+        },
+        "ArmorSmithing2": {
+          "name": "Armor Smithing II - Bronze",
+          "description": "Allows crafting of bronze armors for your colonists."
+        },
+        "ArmorSmithing3": {
+          "name": "Armor Smithing III - Iron",
+          "description": "Allows crafting of iron armors for your colonists."
+        },
+        "ArmorSmithing4": {
+          "name": "Armor Smithing IV - Steel",
+          "description": "Allows crafting of steel armors for your colonists."
+        },
+        "ColonistHealth1": {
+          "name": "Increased Colonist Health I",
+          "description": "Increases colonist health by 10."
+        },
+        "ColonistHealth2": {
+          "name": "Increased Colonist Health II",
+          "description": "Increases colonist health by 20."
+        },
+        "ColonistHealth3": {
+          "name": "Increased Colonist Health III",
+          "description": "Increases colonist health by 30."
+        },
+        "ColonistHealth4": {
+          "name": "Increased Colonist Health IV",
+          "description": "Increases colonist health by 40."
+        },
+        "ColonistHealth5": {
+          "name": "Increased Colonist Health V",
+          "description": "Increases colonist health by 50."
+        },
+        "SwordSmithing1": {
+          "name": "Sword Smithing I - Copper",
+          "description": "Allows crafting of copper swords for you and your colonists."
+        },
+        "SwordSmithing2": {
+          "name": "Sword Smithing II - Bronze",
+          "description": "Allows crafting of bronze swords for you and your colonists."
+        },
+        "SwordSmithing3": {
+          "name": "Sword Smithing III - Iron",
+          "description": "Allows crafting of iron swords for you and your colonists."
+        },
+        "SwordSmithing4": {
+          "name": "Sword Smithing IV - Steel",
+          "description": "Allows crafting of steel swords for you and your colonists."
+        },
+        "Knights1": {
+          "name": "Knights",
+          "description": "Allows for placing knight patrols and crafting Patrol Flags."
+        },
+        "ImprovedSling1": {
+          "name": "Sling Training I",
+          "description": "Decreases reload speed of slings by 5%."
+        },
+        "ImprovedSling2": {
+          "name": "Sling Training II",
+          "description": "Decreases reload speed of slings by 10%."
+        },
+        "ImprovedSling3": {
+          "name": "Sling Training III",
+          "description": "Decreases reload speed of slings by 15%."
+        },
+        "ImprovedSling4": {
+          "name": "Sling Training IV",
+          "description": "Decreases reload speed of slings by 20%."
+        },
+        "ImprovedSling5": {
+          "name": "Sling Training V",
+          "description": "Decreases reload speed of slings by 25%."
+        },
+        "ImprovedBow1": {
+          "name": "Bow Training I",
+          "description": "Decreases reload speed of Bows by 5%."
+        },
+        "ImprovedBow2": {
+          "name": "Bow Training II",
+          "description": "Decreases reload speed of Bows by 10%."
+        },
+        "ImprovedBow3": {
+          "name": "Bow Training III",
+          "description": "Decreases reload speed of Bows by 15%."
+        },
+        "ImprovedBow4": {
+          "name": "Bow Training IV",
+          "description": "Decreases reload speed of Bows by 20%."
+        },
+        "ImprovedBow5": {
+          "name": "Bow Training V",
+          "description": "Decreases reload speed of Bows by 25%."
+        },
+        "ImprovedCrossbow1": {
+          "name": "Crossbow Training I",
+          "description": "Decreases reload speed of Crossbows by 5%."
+        },
+        "ImprovedCrossbow2": {
+          "name": "Crossbow Training II",
+          "description": "Decreases reload speed of Crossbows by 10%."
+        },
+        "ImprovedCrossbow3": {
+          "name": "Crossbow Training III",
+          "description": "Decreases reload speed of Crossbows by 15%."
+        },
+        "ImprovedCrossbow4": {
+          "name": "Crossbow Training IV",
+          "description": "Decreases reload speed of Crossbows by 20%."
+        },
+        "ImprovedCrossbow5": {
+          "name": "Crossbow Training V",
+          "description": "Decreases reload speed of Crossbows by 25%."
+        },
+        "ImprovedMatchlockgun1": {
+          "name": "Matchlockgun Training I",
+          "description": "Decreases reload speed of Matchlockguns by 5%."
+        },
+        "ImprovedMatchlockgun2": {
+          "name": "Matchlockgun Training II",
+          "description": "Decreases reload speed of Matchlockguns by 10%."
+        },
+        "ImprovedMatchlockgun3": {
+          "name": "Matchlockgun Training III",
+          "description": "Decreases reload speed of Matchlockguns by 15%."
+        },
+        "ImprovedMatchlockgun4": {
+          "name": "Matchlockgun Training IV",
+          "description": "Decreases reload speed of Matchlockguns by 20%."
+        },
+        "ImprovedMatchlockgun5": {
+          "name": "Matchlockgun Training V",
+          "description": "Decreases reload speed of Matchlockguns by 25%."
+        },
+        "Machines1": {
+          "name": "Machines!",
+          "description": "Allows crafting of machines for crafters. Adds the machinist job."
+        }
       }
     }
   }

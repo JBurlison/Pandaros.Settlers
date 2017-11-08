@@ -62,10 +62,13 @@
     <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
+    <Compile Include="Items\Machines\MachineManager.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
     <Compile Include="Items\Weapons\Sword.cs" />
     <Compile Include="Items\Weapons\WeaponMetadata.cs" />
+    <Compile Include="Jobs\AdvancedCrafter.cs" />
     <Compile Include="Jobs\Knight.cs" />
+    <Compile Include="Jobs\Machinist.cs" />
     <Compile Include="Jobs\PatrolTool.cs" />
     <Compile Include="Managers\BannerManager.cs" />
     <Compile Include="AI\NameGenerator.cs" />
@@ -90,6 +93,9 @@
     <None Include="AI\LastNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="AdvancedCrafter.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="localization\en-US\translation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -107,6 +113,9 @@
     <Folder Include="Monsters\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icons\AdvancedCraftingTable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\BerryPancakes.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -471,6 +480,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\PatrolFlag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\AdvancedCraftingTableTop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

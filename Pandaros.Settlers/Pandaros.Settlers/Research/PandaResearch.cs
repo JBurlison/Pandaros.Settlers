@@ -120,6 +120,7 @@ namespace Pandaros.Settlers.Research
             AddImprovedBows(researchDic);
             AddImprovedCrossbows(researchDic);
             AddImprovedMatchlockgun(researchDic);
+            AddMachines(researchDic);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
@@ -334,13 +335,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.ScienceBagBasic
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedSling, .5f, requirements);
+            var research = new PandaResearch(researchDic, 1, ImprovedSling, .05f, requirements);
             research.ResearchComplete += ImprovedSlings_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
             for (int i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedSling, .5f);
+                research = new PandaResearch(researchDic, i, ImprovedSling, .05f);
                 research.ResearchComplete += ImprovedSlings_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -369,13 +370,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.TailorShop
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedBow, .5f, requirements);
+            var research = new PandaResearch(researchDic, 1, ImprovedBow, .05f, requirements);
             research.ResearchComplete += ImprovedBows_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
             for (int i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedBow, .5f);
+                research = new PandaResearch(researchDic, i, ImprovedBow, .05f);
                 research.ResearchComplete += ImprovedBows_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -404,13 +405,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.CrossBowBolt
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .5f, requirements);
+            var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .05f, requirements);
             research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
             for (int i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedCrossbow, .5f);
+                research = new PandaResearch(researchDic, i, ImprovedCrossbow, .05f);
                 research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -440,13 +441,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.MatchlockGun
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedMatchlockgun, .5f, requirements);
+            var research = new PandaResearch(researchDic, 1, ImprovedMatchlockgun, .05f, requirements);
             research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
             for (int i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedMatchlockgun, .5f);
+                research = new PandaResearch(researchDic, i, ImprovedMatchlockgun, .05f);
                 research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -484,7 +485,9 @@ namespace Pandaros.Settlers.Research
 
         private static void Machiness_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Miner.Item.name, true, Items.ItemFactory.JOB_CRAFTER);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Miner.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.AdvancedCrafterRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.AdvancedCrafterRegister.JOB_RECIPE);
         }
     }
 }

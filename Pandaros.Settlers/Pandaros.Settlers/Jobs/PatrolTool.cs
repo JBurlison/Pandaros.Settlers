@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Jobs
             var planks = new InventoryItem(BuiltinBlocks.Planks, 2);
             var carpet = new InventoryItem(BuiltinBlocks.CarpetRed, 2);
 
-            var recipe = new Recipe(Item.name,
+            var recipe = new Recipe(PatrolFlag.name,
                                     new List<InventoryItem>() { planks, carpet },
                                     new InventoryItem(PatrolFlag.ItemIndex, 2),
                                     5);
