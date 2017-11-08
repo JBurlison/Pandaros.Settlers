@@ -487,7 +487,8 @@ namespace Pandaros.Settlers.Research
         {
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Miner.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.AdvancedCrafterRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.AdvancedCrafterRegister.JOB_RECIPE);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.MachinistRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.MachinistRegister.JOB_RECIPE);
         }
     }
 }

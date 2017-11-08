@@ -34,6 +34,7 @@
     "Pandaros.Settlers.PatrolTool": "Patrol Tool",
     "Pandaros.Settlers.Miner": "Maining Machine",
     "Pandaros.Settlers.AdvancedCraftingTable": "Advanced Crafting Table",
+    "Pandaros.Settlers.MachinistBench": "Machinist's Bench",
     "popup.limits.Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Limits"
   },
   "typeuses": {
@@ -70,7 +71,8 @@
     "Pandaros.Settlers.PatrolFlag": "Used with the Patrol Tool. Tells your knights where to keep watch!",
     "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
     "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!",
-    "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery."
+    "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery.",
+    "Pandaros.Settlers.MachinistBench": "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench."
   },
   "sentences": {
     "popup": {

@@ -96,7 +96,7 @@ namespace Pandaros.Settlers.Items
         {
             var copperSwordName = GameLoader.NAMESPACE + ".CopperSword";
             var copperSwordNode = new JSONNode();
-            copperSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/CopperSword.png");
+            copperSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperSword.png");
             copperSwordNode["isPlaceable"] = new JSONNode(false);
 
             var copperSword = new ItemTypesServer.ItemTypeRaw(copperSwordName, copperSwordNode);
@@ -105,7 +105,7 @@ namespace Pandaros.Settlers.Items
 
             var bronzeSwordName = GameLoader.NAMESPACE + ".BronzeSword";
             var bronzeSwordNode = new JSONNode();
-            bronzeSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/BronzeSword.png");
+            bronzeSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeSword.png");
             bronzeSwordNode["isPlaceable"] = new JSONNode(false);
 
             var bronzeSword = new ItemTypesServer.ItemTypeRaw(bronzeSwordName, bronzeSwordNode);
@@ -114,7 +114,7 @@ namespace Pandaros.Settlers.Items
 
             var IronSwordName = GameLoader.NAMESPACE + ".IronSword";
             var IronSwordNode = new JSONNode();
-            IronSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/IronSword.png");
+            IronSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronSword.png");
             IronSwordNode["isPlaceable"] = new JSONNode(false);
 
             var IronSword = new ItemTypesServer.ItemTypeRaw(IronSwordName, IronSwordNode);
@@ -123,7 +123,7 @@ namespace Pandaros.Settlers.Items
 
             var steelSwordName = GameLoader.NAMESPACE + ".SteelSword";
             var steelSwordNode = new JSONNode();
-            steelSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/SteelSword.png");
+            steelSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelSword.png");
             steelSwordNode["isPlaceable"] = new JSONNode(false);
 
             var steelSword = new ItemTypesServer.ItemTypeRaw(steelSwordName, steelSwordNode);

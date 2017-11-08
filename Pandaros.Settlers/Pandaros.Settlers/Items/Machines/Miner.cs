@@ -1,5 +1,6 @@
 ﻿using BlockTypes.Builtin;
 using NPC;
+using Pandaros.Settlers.Entities;
 using Pipliz;
 using Pipliz.JSON;
 using System;
@@ -16,25 +17,113 @@ namespace Pandaros.Settlers.Items.Machines
         
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Items.Machines.AfterWorldLoad"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterWorldLoad")]
-        public static void AfterWorldLoad()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Miner.RegisterJobs")]
+        [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnLoadingPlayer")]
+        public static void AfterWorldLoad(JSONNode n, Players.Player p)
         {
-            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineCallback(Repair, Refuel, DoWork));
+            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineSettings(Item.ItemIndex, Repair, Refuel, DoWork, 10, 4, 4));
         }
 
-        public static void Repair(NPCBase.NPCState npcState, Players.Player player, MachineState machineState)
+        public static ushort Repair(Players.Player player, MachineState machineState)
         {
+            var retval = GameLoader.Repairing_Icon;
 
+            if (machineState.Durability < .75f)
+            {
+                bool repaired = false;
+                List<InventoryItem> requiredForFix = new List<InventoryItem>();
+                var stockpile = Stockpile.GetStockPile(player);
+
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 2));
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+
+                if (machineState.Durability < .10f)
+                {
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
+                }
+                else if (machineState.Durability < .30f)
+                {
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
+                }
+                else if (machineState.Durability < .50f)
+                {
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+                }
+
+                if (stockpile.Contains(requiredForFix))
+                {
+                    stockpile.TryRemove(requiredForFix);
+                    repaired = true;
+                }
+                else
+                    foreach (var item in requiredForFix)
+                        if (!stockpile.Contains(item))
+                        {
+                            retval = item.Type;
+                            break;
+                        }
+
+                if (repaired)
+                    machineState.Durability = MachineState.MAX_DURABILITY;
+            }
+
+            return retval;
         }
 
-        public static void Refuel(NPCBase.NPCState npcState, Players.Player player, MachineState machineState)
+        public static ushort Refuel(Players.Player player, MachineState machineState)
         {
+            if (machineState.Fuel < .75f)
+            {
+                var stockpile = Stockpile.GetStockPile(player);
 
+                foreach (var item in MachineManager.FuelValues)
+                {
+                    while (stockpile.Contains(item.Key) && machineState.Fuel < MachineState.MAX_FUEL)
+                    {
+                        if (stockpile.TryRemove(item.Key))
+                            machineState.Fuel += item.Value;
+                    }
+
+                    if (machineState.Fuel > MachineState.MAX_FUEL)
+                        break;
+                }
+
+                if (machineState.Fuel < MachineState.MAX_FUEL)
+                    return MachineManager.FuelValues.First().Key;
+            }
+
+            return GameLoader.Refuel_Icon;
         }
 
         public static void DoWork(Players.Player player, MachineState machineState)
         {
+            if (machineState.Durability > 0 && 
+                machineState.Fuel > 0 && 
+                machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+            {
+                machineState.Durability -= 0.01f;
+                machineState.Fuel -= 0.03f;
 
+                if (machineState.Durability <= 0)
+                    PandaChat.Send(player, $"A mining machine at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
+
+                if (machineState.Fuel <= 0)
+                    PandaChat.Send(player, $"A mining machine at {machineState.Position} has run out of fuel. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
+
+                if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
+                {
+                    List<ItemTypes.ItemTypeDrops> itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
+
+                    for (int i = 0; i < itemList.Count; i++)
+                        if (Pipliz.Random.NextDouble() <= itemList[i].chance)
+                            Stockpile.GetStockPile(player).Add(itemList[i].item);
+                }
+
+                machineState.NextTimeForWork = MinerCooldown + Time.SecondsSinceStartDouble;
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
@@ -60,7 +149,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var minerTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            minerTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA.Replace("\\", "/") + "/MiningMachine.png";
+            minerTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/MiningMachine.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
@@ -70,12 +159,12 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var minerName = GameLoader.NAMESPACE + ".Miner";
             var minerFlagNode = new JSONNode();
-            minerFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA.Replace("\\", "/") + "/MiningMachine.png");
+            minerFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/MiningMachine.png");
             minerFlagNode["isPlaceable"] = new JSONNode(true);
             minerFlagNode.SetAs("onRemoveAmount", 1);
             minerFlagNode.SetAs("isSolid", true);
             minerFlagNode.SetAs("sideall", "SELF");
-            minerFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA.Replace("\\", "/") + "/MiningMachine.obj");
+            minerFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/MiningMachine.obj");
 
             Item = new ItemTypesServer.ItemTypeRaw(minerName, minerFlagNode);
             items.Add(minerName, Item);

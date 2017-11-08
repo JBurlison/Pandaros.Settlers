@@ -1,46 +1,67 @@
 ﻿using BlockTypes.Builtin;
 using NPC;
+using Pandaros.Settlers.Entities;
 using Pipliz;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Pandaros.Settlers.Items.Machines
 {
     [ModLoader.ModManager]
     public static class MachineManager
     {
-        public class MachineCallback
+        public class MachineSettings
         {
-            public Action<NPCBase.NPCState, Players.Player, MachineState> Repair { get; set; }
-            public Action<NPCBase.NPCState, Players.Player, MachineState> Refuel { get; set; }
+            public float RepairTime { get; set; }
+
+            public float RefuelTime { get; set; }
+
+            public float WorkTime { get; set; }
+
+            public ushort ItemIndex { get; set; }
+
+            public Func<Players.Player, MachineState, ushort> Repair { get; set; }
+            public Func<Players.Player, MachineState, ushort> Refuel { get; set; }
             public Action<Players.Player, MachineState> DoWork { get; set; }
 
-            public MachineCallback(Action<NPCBase.NPCState, Players.Player, MachineState> repair, Action<NPCBase.NPCState, Players.Player, MachineState> refuel, Action<Players.Player, MachineState> doWork)
+            public MachineSettings(ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, 
+                                    Action<Players.Player, MachineState> doWork, float repairTime, float refuelTime, float workTime)
             {
+                ItemIndex = itemIndex;
                 Repair = repair;
                 Refuel = refuel;
                 DoWork = doWork;
+                RepairTime = repairTime;
+                RefuelTime = refuelTime;
+                WorkTime = workTime;
             }
         }
 
         public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
         public static DateTime _nextUpdateTime;
-        public static Dictionary<string, MachineCallback> _machineCallbacks = new Dictionary<string, MachineCallback>();
+        public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
+        public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
 
-
-        public static void RegisterMachineType(string machineType, MachineCallback callback)
+        public static void RegisterMachineType(string machineType, MachineSettings callback)
         {
             _machineCallbacks[machineType] = callback;
         }
 
-        public static MachineCallback GetCallback(string machineType)
+        public static MachineSettings GetCallbacks(string machineType)
         {
             return _machineCallbacks[machineType];
         }
-           
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.SetFuelValues")]
+        public static void SetFuelValues()
+        {
+            FuelValues[BuiltinBlocks.Coalore] = .20f;
+            FuelValues[Items.ItemFactory.Firewood] = .10f;
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]
         public static void OnUpdate()
@@ -51,7 +72,7 @@ namespace Pandaros.Settlers.Items.Machines
                     foreach(var machine in Machines)
                     {
                         foreach (var state in machine.Value)
-                            state.Value.DoWork();
+                            state.Value.MachineSettings.DoWork(machine.Key, state.Value);
                     }
 
                 _nextUpdateTime = DateTime.Now + TimeSpan.FromSeconds(1);
@@ -69,9 +90,11 @@ namespace Pandaros.Settlers.Items.Machines
                         RegisterMachineState(p, new MachineState(node, p));
                 }
             }
+            else
+                PandaLogger.Log("No Machines.");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.Miner.PatrolTool.OnSavingPlayer")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.PatrolTool.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {
             lock (Machines)
@@ -85,7 +108,7 @@ namespace Pandaros.Settlers.Items.Machines
                     foreach (var node in Machines[p])
                         minersNode.AddToArray(node.Value.ToJsonNode());
 
-                    n[GameLoader.NAMESPACE + ".Miners"] = minersNode;
+                    n[GameLoader.NAMESPACE + ".Machines"] = minersNode;
                 }
         }
 
@@ -113,6 +136,22 @@ namespace Pandaros.Settlers.Items.Machines
 
                 Machines[player][state.Position] = state;
             }
+        }
+
+        public static List<Vector3Int> GetClosestMachines(Vector3Int position, Players.Player owner, int maxDistance)
+        {
+            int closest = int.MaxValue;
+            var retVal = new List<Vector3Int>();
+
+            foreach (var machine in Machines[owner])
+            {
+                var dis = Pipliz.Math.RoundToInt(Vector3.Distance(machine.Key.Vector, position.Vector));
+
+                if (dis <= maxDistance && dis <= closest)
+                    retVal.Add(machine.Key);
+            }
+
+            return retVal;
         }
     }
 }

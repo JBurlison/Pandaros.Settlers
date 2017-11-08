@@ -14,11 +14,11 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
-        public static string ICON_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\icons";
-        public static string LOCALIZATION_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\localization";
-        public static string MESH_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\Meshes";
-        public static string TEXTURE_FOLDER_PANDA = @"gamedata\mods\Pandaros\settlers\Textures";
-        public static string MOD_FOLDER = @"gamedata\mods\Pandaros\settlers";
+        public static string ICON_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/icons";
+        public static string LOCALIZATION_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/localization";
+        public static string MESH_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Meshes";
+        public static string TEXTURE_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Textures";
+        public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
 
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
@@ -30,6 +30,9 @@ namespace Pandaros.Settlers
         public static bool WorldLoaded { get; private set; }
 
         public static ushort MissingMonster_Icon { get; private set; }
+        public static ushort Repairing_Icon { get; private set; }
+        public static ushort Refuel_Icon { get; private set; }
+        public static ushort Waiting_Icon { get; private set; }
 
         public static ColonyState CurrentColonyState
         {
@@ -56,22 +59,42 @@ namespace Pandaros.Settlers
         {
             MOD_FOLDER = Path.GetDirectoryName(path);
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
-            LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization");
-            ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons");
-            MESH_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Meshes");
-            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures");
+            LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization").Replace("\\", "/");
+            ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/");
+            MESH_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/");
+            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
         public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var monsterNode = new JSONNode();
-            monsterNode["icon"] = new JSONNode(ICON_FOLDER_PANDA.Replace("\\", "/") + "/NoMonster.png");
-
+            monsterNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/NoMonster.png");
             var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
             MissingMonster_Icon = monster.ItemIndex;
             
             items.Add(NAMESPACE + ".Monster", monster);
+
+            var repairingNode = new JSONNode();
+            repairingNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Repairing.png");
+            var repairing = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Repairing", repairingNode);
+            Repairing_Icon = repairing.ItemIndex;
+
+            items.Add(NAMESPACE + ".Repairing", repairing);
+
+            var refuelNode = new JSONNode();
+            refuelNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Refuel.png");
+            var refuel = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Refuel", refuelNode);
+            Refuel_Icon = refuel.ItemIndex;
+
+            items.Add(NAMESPACE + ".Refuel", refuel);
+
+            var waitingNode = new JSONNode();
+            waitingNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Waiting.png");
+            var waiting = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Waiting", waitingNode);
+            Waiting_Icon = waiting.ItemIndex;
+
+            items.Add(NAMESPACE + ".Waiting", waiting);
         }
 
        
