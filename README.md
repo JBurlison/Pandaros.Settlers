@@ -1,7 +1,6 @@
 # Settlers!
-A colony survival settlers mod that introduces natural progression to the game. This mod disables buying of colonists after 10 colonists. Settlers will occationally find your colony and settle there!
+A colony survival settlers mod that helps you grow and manage your colony. Introduces new weapons, armor, research, difficulties, jobs and chat commands.
 
-Settlers will leave if there is not enough beds or jobs! 
 Food use now increases as colony size goes up to simulate waste.
 Food use fluxuates depending on how hungry your colonists are!
 
@@ -9,15 +8,13 @@ Food use fluxuates depending on how hungry your colonists are!
 
 ## Research!
 ![GitHub Logo](https://i.imgur.com/bvNSvcf.png)
-* Increased colony discovery rate by settlers
-* Increased Maximum possible Settlers when your colony is discovered
-* Increased Minimum possible Settlers when your colony is discovered
 * Decreased food waste
 * Increased Settler Health (All colonists, up to 50 at level 5)
 * Additional Banners (Up to 20!)
 * Armorsmithing
 * Swordsmithing
 * Knight Patrols
+* Machinery
 * Improved Weapons (up to 25% increased reload speed at level 5)
   * Slings
   * Bows
@@ -45,6 +42,11 @@ Once researched you can craft Patrol Banners at the workbench. Knight patrols re
 To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.
 
 ##### NOTE Knight patrols will only check for monsters to fight at the banners! Not while walking inbetween!
+
+|Icon|Description|
+|---|---|
+|![tool](https://imgur.com/oglGxYw.png)|Knight Patrol Tool|
+|![Flag](https://imgur.com/uprsiQI.png)|Knight Pareol Flag.|
 
 #### Patrol Types:
 You may left click on a existing banner control to change the patrol type:
@@ -113,6 +115,74 @@ More end-game foods to help feed your hungry colonists!
 |Berry Pancakes|4|Flour: 3, Berry: 2, Firewood|2|
 |Berry Pie|6|Flour: 4, Berry: 4, Firewood|2|
 
+## Machines!
+Machines help your colonists out a bit! They need to be researched to be activated. 
+
+#### Machine Types:
+|Type|Description|Fuel|
+|---|---|---|
+|![Miner](https://imgur.com/sdIwB2Q.png)|The Mining Machine. Mines at 2x the rate of a settler|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
+
+#### Machine Repairs:
+The less damaged a machine the cheaper it is to fix:
+<table>
+  <tbody>
+    <tr>
+      <th>Icon</th>
+      <th>75% or less</th>
+      <th>50% or less</th>
+      <th>30% or less</th>
+      <th>10% or less</th>
+    </tr>
+    <tr>
+      <td><img src="https://imgur.com/sdIwB2Q.png" /></td>
+      <td>
+       <ul>
+        <li>1x Iron Rivet</li>
+        <li>2x Copper Nails</li>
+        <li>1x Copper Tools</li>
+       </ul>
+      </td>
+      <td>
+       <ul>
+        <li>1x Iron Rivet</li>
+        <li>2x Copper Nails</li>
+        <li>1x Copper Tools</li>
+        <li>1x Copper Parts</li>
+       </ul>
+      </td>
+     <td>
+       <ul>
+        <li>1x Iron Rivet</li>
+        <li>2x Copper Nails</li>
+        <li>1x Copper Tools</li>
+        <li>1x Wrought Iron</li>
+        <li>2x Copper Parts</li>
+       </ul>
+      </td>
+     <td>
+       <ul>
+        <li>1x Iron Rivet</li>
+        <li>2x Copper Nails</li>
+        <li>1x Copper Tools</li>
+        <li>1x Wrought Iron</li>
+        <li>4x Copper Parts</li>
+       </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Machinists
+Machines need Machinists nearby to repair, fuel an reload your machines. A Machinists bench must be within 20 blocks of a machine in order for the machinest to operate it. Machinists will repair a machine at 50% durability or refuel a machine when it drops below 30% of fuel.
+
+#### Indicators:
+|Icon|Description|
+|---|---|
+|![Waiting](https://i.imgur.com/HF6tajn.png)|Waiting for a machine to need servicing.|
+|![Repairing](https://imgur.com/ccxc98f.png)|Repairing the machine.|
+|![Repairing](https://imgur.com/JGe8wNE.png)|Refueling the machine.|
+
 ## Call to Arms!
 ![GitHub Logo](https://i.imgur.com/713Gqcp.png)
 In trouble? Use one of the following commands:
@@ -131,11 +201,3 @@ Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releas
 unzip into mods folder in Steam\steamapps\common\Colony Survival\gamedata\mods\
 
 The mod should be in \Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\
-
-## Tips!
-
-To maxize the number you get and the chance to get them throughout the day, make sure of the following:
-* Have jobs available! Everyone loves a Job!
-* Make sure new commers have somewhere to sleep!
-* Ensure you have plenty of food to go around!
-* Ensure you are not in seige mode!
