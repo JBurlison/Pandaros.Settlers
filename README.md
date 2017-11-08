@@ -46,7 +46,7 @@ To remove a patrol simply destroy any banner in the patrol. It will return all b
 |Icon|Description|
 |---|---|
 |![tool](https://imgur.com/oglGxYw.png)|Knight Patrol Tool|
-|![Flag](https://imgur.com/uprsiQI.png)|Knight Pareol Flag.|
+|![Flag](https://imgur.com/uprsiQI.png)|Knight Patrol Flag.|
 
 #### Patrol Types:
 You may left click on a existing banner control to change the patrol type:
