@@ -45,6 +45,8 @@ namespace Pandaros.Settlers.Items.Machines
             public string OnHitAudio { get; set; }
 
             public ItemTypesServer.ItemTypeRaw TurretItem { get; set; }
+
+            public Managers.AnimationManager.AnimatedObject ProjectileAnimation { get; set; }
         }
 
         public static Dictionary<string, TurretSettings> TurretTypes = new Dictionary<string, TurretSettings>();
@@ -143,7 +145,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                 if (machineState.Load > 0)
                 {
-                    var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretTypes[machineState.MachineType].Range);
+                    var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretTypes[machineState.MachineType].Range, TurretTypes[machineState.MachineType].Damage);
                     
                     if (monster != null)
                     {
@@ -155,6 +157,7 @@ namespace Pandaros.Settlers.Items.Machines
                         if (TurretTypes[machineState.MachineType].OnHitAudio != null)
                             ServerManager.SendAudio(monster.PositionToAimFor, TurretTypes[machineState.MachineType].OnHitAudio);
 
+                        TurretTypes[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolated(machineState.Position.Vector, monster.PositionToAimFor);
                         monster.OnHit(TurretTypes[machineState.MachineType].Damage);
                     }
                 }
@@ -304,7 +307,8 @@ namespace Pandaros.Settlers.Items.Machines
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Sling, 1) } },
                     { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                }
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.SLINGBULLET]
             };
 
             TurretTypes[STONE] = turretSettings;
@@ -352,7 +356,8 @@ namespace Pandaros.Settlers.Items.Machines
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Bow, 1) } },
                     { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                }
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.ARROW]
             };
 
             TurretTypes[BRONZEARROW] = turretSettings;
@@ -400,7 +405,8 @@ namespace Pandaros.Settlers.Items.Machines
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Crossbow, 1) } },
                     { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                }
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.CROSSBOWBOLT]
             };
 
             TurretTypes[CROSSBOW] = turretSettings;
@@ -448,7 +454,8 @@ namespace Pandaros.Settlers.Items.Machines
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.MatchlockGun, 1) } },
                     { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                }
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
             };
 
             TurretTypes[MATCHLOCK] = turretSettings;

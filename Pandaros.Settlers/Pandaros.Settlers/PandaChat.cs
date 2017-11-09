@@ -68,6 +68,7 @@ namespace Pandaros.Settlers
             {
                 string messageBuilt = BuildMessage(message, color, style);
                 Pipliz.Chatting.Chat.Send(ply, messageBuilt, sender);
+                _nextSendTime[ply] = Time.SecondsSinceStartDouble + 10;
             }
         }
 

@@ -86,14 +86,6 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        public override float TimeBetweenJobs
-        {
-            get
-            {
-                return 2f;
-            }
-        }
-
         public override InventoryItem RecruitementItem
         {
             get
@@ -142,7 +134,7 @@ namespace Pandaros.Settlers.Jobs
                             {
                                 _targetMachine = machine.Value;
                                 _targetMachines.Add(machine.Value);
-                                position = Server.AI.AIManager.ClosestPosition(machine.Key, new Vector3Int(usedNPC.Position));
+                                position = Server.AI.AIManager.ClosestPosition(machine.Key, usedNPC.Position);
                                 break;
                             }
                 }
@@ -150,17 +142,16 @@ namespace Pandaros.Settlers.Jobs
 
             return position;
         }
-
-        public override void OnNPCDoJob(ref NPCBase.NPCState state)
+        public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             if (_targetMachine == null)
             {
-                state.SetIndicator(NPCIndicatorType.Crafted, this.cooldown, GameLoader.Waiting_Icon);
-                base.OverrideCooldown((double)this.cooldown);
+                state.SetIndicator(NPCIndicatorType.Crafted, cooldown, GameLoader.Waiting_Icon);
+                state.SetCooldown(cooldown);
                 return;
             }
 
-            if (3 > Vector3.Distance(_targetMachine.Position.Vector, usedNPC.Position))
+            if (3 > Vector3.Distance(_targetMachine.Position.Vector, usedNPC.Position.Vector))
             {
                 ushort status = GameLoader.Waiting_Icon;
                 float cooldown = 2f;
@@ -198,10 +189,10 @@ namespace Pandaros.Settlers.Jobs
                 else
                     state.SetIndicator(NPCIndicatorType.MissingItem, _targetMachine.MachineSettings.RepairTime, status);
 
-                base.OverrideCooldown(cooldown);
+                state.SetCooldown(cooldown);
             }
             else
-                base.OverrideCooldown(.5);
+                state.SetCooldown(.5);
         }
 
         NPCTypeStandardSettings INPCTypeDefiner.GetNPCTypeDefinition()

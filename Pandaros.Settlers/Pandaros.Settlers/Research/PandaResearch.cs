@@ -276,9 +276,18 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Linen, 5);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
 
-            for (int i = 1; i <= 5; i++)
+            var requirements = new List<string>()
             {
-                var research = new PandaResearch(researchDic, i, ColonistHealth, 10f);
+                ColonyBuiltIn.ScienceBagLife
+            };
+
+            var research = new PandaResearch(researchDic, 1, ColonistHealth, 10f, requirements);
+            research.ResearchComplete += Research_ResearchComplete1;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ColonistHealth, 10f);
                 research.ResearchComplete += Research_ResearchComplete1;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -300,7 +309,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Bread, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
 
-            for (int i = 1; i <= 5; i++)
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.ScienceBagLife
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, ReducedWaste, 0.05f, requirements));
+
+            for (int i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, ReducedWaste, 0.05f));
         }
 
@@ -510,7 +526,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                Machines + "1"
+                GetResearchKey(Machines + "1")
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedDurability, .1f, requirements);
@@ -540,7 +556,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                Machines + "1"
+                GetResearchKey(Machines + "1")
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedFuelCapacity, .1f, requirements);
@@ -570,7 +586,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                Machines + "1"
+                GetResearchKey(Machines + "1")
             };
 
             var research = new PandaResearch(researchDic, 1, IncreasedCapacity, .2f, requirements);

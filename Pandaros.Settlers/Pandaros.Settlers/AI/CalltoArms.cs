@@ -67,11 +67,11 @@ namespace Pandaros.Settlers.AI
 
         public override Vector3Int GetJobLocation()
         {
-            var currentPos = new Vector3Int(usedNPC.Position);
+            var currentPos = usedNPC.Position;
 
             if (_playerState.CallToArmsEnabled && _weapon != null)
             {
-                _target = MonsterTracker.Find(currentPos, _weapon.range);
+                _target = MonsterTracker.Find(currentPos, _weapon.range, _weapon.shootDamage);
 
                 if (_target != null)
                 {
@@ -79,7 +79,7 @@ namespace Pandaros.Settlers.AI
                 }
                 else
                 {
-                    _target = MonsterTracker.Find(currentPos, CALL_RAD);
+                    _target = MonsterTracker.Find(currentPos, CALL_RAD, _weapon.shootDamage);
 
                     if (_target != null)
                     {
@@ -131,77 +131,94 @@ namespace Pandaros.Settlers.AI
 
         public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
-            if (CheckTime())
+            try
             {
-                try
+                var currentposition =usedNPC.Position;
+                _hadAmmo.Clear();
+
+                if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(usedNPC.Position.Vector, _target.Position))
+                    _target = MonsterTracker.Find(currentposition, _weapon.range, _weapon.shootDamage);
+
+                if (_target != null && General.Physics.Physics.CanSee(usedNPC.Position.Vector, _target.Position))
                 {
-                    var currentposition = new Vector3Int(usedNPC.Position);
-                    _hadAmmo.Clear();
-
-                    if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(usedNPC.Position, _target.Position))
-                        _target = MonsterTracker.Find(currentposition, _weapon.range);
-
-                    if (_target != null && General.Physics.Physics.CanSee(usedNPC.Position, _target.Position))
+                    foreach (var projectile in _weapon.shootItem)
                     {
-                        foreach (var projectile in _weapon.shootItem)
-                        {
-                            _hadAmmo[projectile] = false;
+                        _hadAmmo[projectile] = false;
 
-                            if (usedNPC.Inventory.Contains(projectile))
+                        if (usedNPC.Inventory.Contains(projectile))
+                        {
+                            _hadAmmo[projectile] = true;
+                            continue;
+                        }
+
+                        if (_stock.Contains(projectile))
+                            _hadAmmo[projectile] = true;
+                    }
+
+                    if (!_hadAmmo.Any(a => !a.Value))
+                    {
+                        state.SetIndicator(NPCIndicatorType.Crafted, _weapon.cooldownShot, _weapon.shootItem[0].Type);
+                        foreach (var ammo in _hadAmmo)
+                        {
+                            if (usedNPC.Inventory.Contains(ammo.Key))
                             {
-                                _hadAmmo[projectile] = true;
+                                usedNPC.Inventory.TryRemove(ammo.Key);
                                 continue;
                             }
 
-                            if (_stock.Contains(projectile))
-                                _hadAmmo[projectile] = true;
+                            if (_stock.Contains(ammo.Key))
+                                _stock.TryRemove(ammo.Key);
                         }
 
-                        if (!_hadAmmo.Any(a => !a.Value))
+                        usedNPC.LookAt(_target.Position);
+
+                        if (_weapon.OnShootAudio != null)
+                            ServerManager.SendAudio(position.Vector, _weapon.OnShootAudio);
+
+                        if (_weapon.OnHitAudio != null)
+                            ServerManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
+
+                        if (_weapon.shootItem.Count > 0)
                         {
-                            state.SetIndicator(NPCIndicatorType.Crafted, _weapon.cooldownShot, _weapon.shootItem[0].Type);
-                            foreach (var ammo in _hadAmmo)
+                            foreach (var proj in _weapon.shootItem)
                             {
-                                if (usedNPC.Inventory.Contains(ammo.Key))
+                                string projName = ItemTypes.IndexLookup.GetName(proj.Type);
+
+                                if (AnimationManager.AnimatedObjects.ContainsKey(projName))
                                 {
-                                    usedNPC.Inventory.TryRemove(ammo.Key);
-                                    continue;
+                                    AnimationManager.AnimatedObjects[projName].SendMoveToInterpolated(position.Vector, _target.PositionToAimFor);
+                                    break;
                                 }
-
-                                if (_stock.Contains(ammo.Key))
-                                    _stock.TryRemove(ammo.Key);
                             }
-
-                            usedNPC.LookAt(_target.Position);
-
-                            if (_weapon.OnShootAudio != null)
-                                ServerManager.SendAudio(position.Vector, _weapon.OnShootAudio);
-
-                            if (_weapon.OnHitAudio != null)
-                                ServerManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
-
-                            _target.OnHit(_weapon.shootDamage);
-                            _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownShot);
-                            _waitingFor = 0;
                         }
-                        else
-                        {
-                            state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownMissingItem, _weapon.shootItem[0].Type);
-                            _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
-                        }
+
+                        _target.OnHit(_weapon.shootDamage);
+                        state.SetCooldown(_weapon.cooldownShot);
+                        _waitingFor = 0;
                     }
                     else
                     {
-                        state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
-                        _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
-                        _target = null;
+                        state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownMissingItem, _weapon.shootItem[0].Type);
+                        state.SetCooldown(_weapon.cooldownMissingItem);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    PandaLogger.LogError(ex);
+                    state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
+                    state.SetCooldown(_weapon.cooldownMissingItem);
+                    _target = null;
                 }
             }
+            catch (Exception ex)
+            {
+#if DEBUG
+                PandaLogger.LogError(ex);
+#endif
+                state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
+                state.SetCooldown(_weapon.cooldownMissingItem);
+                _target = null;
+            }
+
         }
 
         public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
@@ -228,8 +245,6 @@ namespace Pandaros.Settlers.AI
                 }
             }
         }
-
-        public override float TimeBetweenJobs => _weapon == null ? base.TimeBetweenJobs : _tmpVals.GetOrDefault(COOLDOWN_KEY, _weapon.cooldownSearchingTarget);
 
         public override bool NeedsItems => _weapon == null;
 

@@ -121,9 +121,9 @@ namespace Pandaros.Settlers.Jobs
 
         public Vector3Int GetJobLocation()
         {
-            var currentPos = new Vector3Int(_usedNPC.Position);
+            var currentPos = _usedNPC.Position;
 
-            _target = MonsterTracker.Find(currentPos, 1);
+            _target = MonsterTracker.Find(currentPos, 1, Items.ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
             if (_target != null)
             {
@@ -131,7 +131,7 @@ namespace Pandaros.Settlers.Jobs
             }
             else
             {
-                _target = MonsterTracker.Find(PatrolPoints[_currentPatrolPos], 10);
+                _target = MonsterTracker.Find(PatrolPoints[_currentPatrolPos], 10, Items.ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
                 if (_target != null)
                 {
@@ -222,12 +222,12 @@ namespace Pandaros.Settlers.Jobs
 
                 try
                 {
-                    var currentposition = new Vector3Int(_usedNPC.Position);
+                    var currentposition = _usedNPC.Position;
 
-                    if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(_usedNPC.Position, _target.Position))
-                        _target = MonsterTracker.Find(currentposition, 1);
+                    if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(_usedNPC.Position.Vector, _target.Position))
+                        _target = MonsterTracker.Find(currentposition, 1, Items.ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
-                    if (_target != null && General.Physics.Physics.CanSee(_usedNPC.Position, _target.Position))
+                    if (_target != null && General.Physics.Physics.CanSee(_usedNPC.Position.Vector, _target.Position))
                     {
                         state.SetIndicator(NPCIndicatorType.Crafted, COOLDOWN, _inv.Weapon.Id);
                         _usedNPC.LookAt(_target.Position);

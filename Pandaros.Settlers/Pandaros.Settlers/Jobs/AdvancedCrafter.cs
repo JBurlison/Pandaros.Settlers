@@ -75,19 +75,11 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        public override float TimeBetweenJobs
-        {
-            get
-            {
-                return 8f;
-            }
-        }
-
         public override int MaxRecipeCraftsPerHaul
         {
             get
             {
-                return 5;
+                return 1;
             }
         }
 

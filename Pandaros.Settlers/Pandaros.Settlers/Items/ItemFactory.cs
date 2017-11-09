@@ -108,7 +108,7 @@ namespace Pandaros.Settlers.Items
                 {
                     nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage);
                     state.Weapon.Durability--;
-                    ServerManager.SendAudio(nPCBase.Position, "punch");
+                    ServerManager.SendAudio(nPCBase.Position.Vector, "punch");
                 }
 
                 if (state.Weapon.Durability <= 0)
