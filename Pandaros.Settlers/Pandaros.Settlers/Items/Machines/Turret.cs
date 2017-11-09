@@ -157,7 +157,7 @@ namespace Pandaros.Settlers.Items.Machines
                         if (TurretTypes[machineState.MachineType].OnHitAudio != null)
                             ServerManager.SendAudio(monster.PositionToAimFor, TurretTypes[machineState.MachineType].OnHitAudio);
 
-                        TurretTypes[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolated(machineState.Position.Vector, monster.PositionToAimFor);
+                        TurretTypes[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
                         monster.OnHit(TurretTypes[machineState.MachineType].Damage);
                     }
                 }

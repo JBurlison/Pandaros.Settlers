@@ -19,10 +19,17 @@ namespace Pandaros.Settlers.Managers
             public string Name { get; private set; }
             
             public MeshedObjectType ObjType { get; private set; }
+            public MeshedObjectTypeSettings ObjSettings { get; private set; }
 
             public AnimatedObject(string key, string meshPath, string textureMapping)
             {
-                ObjType = MeshedObjectType.Register(new MeshedObjectTypeSettings(key, meshPath, textureMapping));
+                ObjSettings = new MeshedObjectTypeSettings(key, meshPath, textureMapping);
+                ObjType = MeshedObjectType.Register(ObjSettings);
+            }
+
+            public void SendMoveToInterpolatedOnce(Vector3 start, Vector3 end, float deltaTime = 1f)
+            {
+                ClientMeshedObject.SendMoveOnceInterpolatedPositionAutoRotation(start, end, deltaTime, ObjSettings);
             }
 
             public ClientMeshedObject SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = 1f)
