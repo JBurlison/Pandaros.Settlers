@@ -120,28 +120,28 @@ namespace Pandaros.Settlers.Jobs
             position = originalPosition;
 
             if (Items.Machines.MachineManager.Machines.ContainsKey(owner))
-            foreach (var machine in Items.Machines.MachineManager.Machines[Owner])
-            {
-                float dis = Vector3.Distance(machine.Key.Vector, position.Vector);
-
-                if (dis < 21)
+                foreach (var machine in Items.Machines.MachineManager.Machines[Owner])
                 {
-                        lock (_targetMachines)
-                            if (!_targetMachines.Contains(machine.Value) &&
-                                (machine.Value.Durability < .5f ||
-                                machine.Value.Fuel < .3f ||
-                                machine.Value.Load < .3f))
-                            {
-                                _targetMachine = machine.Value;
-                                _targetMachines.Add(machine.Value);
-                                position = Server.AI.AIManager.ClosestPosition(machine.Key, usedNPC.Position);
-                                break;
-                            }
+                    float dis = Vector3.Distance(machine.Key.Vector, position.Vector);
+
+                    if (dis <= 21)
+                    {
+                        if (!_targetMachines.Contains(machine.Value) &&
+                            (machine.Value.Durability < .5f ||
+                            machine.Value.Fuel < .3f ||
+                            machine.Value.Load < .3f))
+                        {
+                            _targetMachine = machine.Value;
+                            _targetMachines.Add(machine.Value);
+                            position = Server.AI.AIManager.ClosestPosition(machine.Key, usedNPC.Position);
+                            break;
+                        }
+                    }
                 }
-            }
 
             return position;
         }
+
         public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             if (_targetMachine == null)
@@ -175,13 +175,10 @@ namespace Pandaros.Settlers.Jobs
                 }
                 else
                 {
-                    lock (_targetMachines)
-                    {
-                        if (_targetMachines.Contains(_targetMachine))
-                            _targetMachines.Remove(_targetMachine);
+                    if (_targetMachines.Contains(_targetMachine))
+                        _targetMachines.Remove(_targetMachine);
 
-                        _targetMachine = null;
-                    }
+                    _targetMachine = null;
                 }
 
                 if (OkStatus.Contains(status) || _targetMachine == null)
@@ -193,6 +190,11 @@ namespace Pandaros.Settlers.Jobs
             }
             else
                 state.SetCooldown(.5);
+        }
+
+        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
+        {
+            return NPCBase.NPCGoal.Job;
         }
 
         NPCTypeStandardSettings INPCTypeDefiner.GetNPCTypeDefinition()

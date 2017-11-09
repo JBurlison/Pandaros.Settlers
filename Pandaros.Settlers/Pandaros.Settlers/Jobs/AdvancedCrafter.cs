@@ -67,6 +67,8 @@ namespace Pandaros.Settlers.Jobs
 
     public class AdvancedCrafterJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
     {
+        public static float StaticCraftingCooldown = 5f;
+
         public override string NPCTypeKey
         {
             get
@@ -80,6 +82,18 @@ namespace Pandaros.Settlers.Jobs
             get
             {
                 return 1;
+            }
+        }
+
+        public override float CraftingCooldown
+        {
+            get
+            {
+                return AdvancedCrafterJob.StaticCraftingCooldown;
+            }
+            set
+            {
+                AdvancedCrafterJob.StaticCraftingCooldown = value;
             }
         }
 
