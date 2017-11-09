@@ -7,7 +7,7 @@ Food use fluxuates depending on how hungry your colonists are!
 **NOTE: With the release of 0.4.0 Only servers needs mods**
 
 ## Research!
-![GitHub Logo](https://i.imgur.com/bvNSvcf.png)
+![GitHub Logo](https://i.imgur.com/6Agn5Vo.png)
 * Decreased food waste
 * Increased Settler Health (All colonists, up to 50 at level 5)
 * Additional Banners (Up to 20!)
@@ -41,12 +41,12 @@ Once researched you can craft Patrol Banners at the workbench. Knight patrols re
 
 To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.
 
-##### NOTE Knight patrols will only check for monsters to fight at the banners! Not while walking inbetween!
+##### NOTE Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!
 
 |Icon|Description|
 |---|---|
 |![tool](https://imgur.com/oglGxYw.png)|Knight Patrol Tool|
-|![Flag](https://imgur.com/uprsiQI.png)|Knight Pareol Flag.|
+|![Flag](https://imgur.com/uprsiQI.png)|Knight Patrol Flag.|
 
 #### Patrol Types:
 You may left click on a existing banner control to change the patrol type:
