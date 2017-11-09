@@ -15,6 +15,9 @@ Food use fluxuates depending on how hungry your colonists are!
 * Swordsmithing
 * Knight Patrols
 * Machinery
+  * Improved Durability
+  * Improved Fuel Capacity
+  * Increased Item Capacity
 * Improved Weapons (up to 25% increased reload speed at level 5)
   * Slings
   * Bows
@@ -122,59 +125,214 @@ Machines help your colonists out a bit! They need to be researched to be activat
 |Type|Description|Fuel|
 |---|---|---|
 |![Miner](https://imgur.com/sdIwB2Q.png)|The Mining Machine. Mines at 2x the rate of a settler|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
+|![StoneTurret](https://imgur.com/DgWcNtJ.png)|The Stone Turret. 50 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
+|![BronzeArrowTurret](https://imgur.com/e65jmAR.png)|The Bronze Arrow Turret. 100 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
+|![CrossbowTurret](https://imgur.com/3rvqDvA.png)|The Crossbow Turret. 300 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
+|![MatchlockTurret](https://imgur.com/zTrZbJf.png)|The Matchlock Turret. 500 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
 
 #### Machine Repairs:
 The less damaged a machine the cheaper it is to fix:
 <table>
-  <tbody>
-    <tr>
-      <th>Icon</th>
-      <th>75% or less</th>
-      <th>50% or less</th>
-      <th>30% or less</th>
-      <th>10% or less</th>
-    </tr>
-    <tr>
-      <td><img src="https://imgur.com/sdIwB2Q.png" /></td>
-      <td>
-       <ul>
-        <li>1x Iron Rivet</li>
-        <li>2x Copper Nails</li>
-        <li>1x Copper Tools</li>
-       </ul>
-      </td>
-      <td>
-       <ul>
-        <li>1x Iron Rivet</li>
-        <li>2x Copper Nails</li>
-        <li>1x Copper Tools</li>
-        <li>1x Copper Parts</li>
-       </ul>
-      </td>
-     <td>
-       <ul>
-        <li>1x Iron Rivet</li>
-        <li>2x Copper Nails</li>
-        <li>1x Copper Tools</li>
-        <li>1x Wrought Iron</li>
-        <li>2x Copper Parts</li>
-       </ul>
-      </td>
-     <td>
-       <ul>
-        <li>1x Iron Rivet</li>
-        <li>2x Copper Nails</li>
-        <li>1x Copper Tools</li>
-        <li>1x Wrought Iron</li>
-        <li>4x Copper Parts</li>
-       </ul>
-      </td>
-    </tr>
-  </tbody>
+    <tbody>
+        <tr>
+            <th>Icon</th>
+            <th>75% or less</th>
+            <th>50% or less</th>
+            <th>30% or less</th>
+            <th>10% or less</th>
+        </tr>
+        <tr>
+            <td><img src="https://imgur.com/sdIwB2Q.png" /></td>
+            <td>
+                <ul>
+                    <li>1x Planks</li>
+                    <li>1x Iron Rivet</li>
+                    <li>2x Copper Nails</li>
+                    <li>1x Copper Tools</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Planks</li>
+                    <li>1x Iron Rivet</li>
+                    <li>2x Copper Nails</li>
+                    <li>1x Copper Tools</li>
+                    <li>1x Copper Parts</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Planks</li>
+                    <li>1x Iron Rivet</li>
+                    <li>2x Copper Nails</li>
+                    <li>1x Copper Tools</li>
+                    <li>1x Wrought Iron</li>
+                    <li>2x Copper Parts</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Iron Rivet</li>
+                    <li>2x Copper Nails</li>
+                    <li>1x Copper Tools</li>
+                    <li>1x Wrought Iron</li>
+                    <li>4x Copper Parts</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://imgur.com/DgWcNtJ.png" /></td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>1x Copper Parts</li>
+                    <li>2x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>2x Copper Parts</li>
+                    <li>4x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>4x Copper Parts</li>
+                    <li>4x Copper Nails</li>
+                    <li>1x Sling</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>6x Copper Parts</li>
+                    <li>6x Copper Nails</li>
+                    <li>2x Sling</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://imgur.com/e65jmAR.png" /></td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>1x Copper Parts</li>
+                    <li>2x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>2x Copper Parts</li>
+                    <li>4x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>4x Copper Parts</li>
+                    <li>4x Copper Nails</li>
+                    <li>1x Bow</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>6x Copper Parts</li>
+                    <li>6x Copper Nails</li>
+                    <li>2x Bow</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://imgur.com/3rvqDvA.png" /></td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>1x Iron Rivet</li>
+                    <li>2x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>2x Iron Rivet</li>
+                    <li>4x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>4x Iron Rivet</li>
+                    <li>4x Copper Nails</li>
+                    <li>1x Crossbow</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>6x Iron Rivet</li>
+                    <li>6x Copper Nails</li>
+                    <li>2x Crossbow</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://imgur.com/zTrZbJf.png" /></td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>1x Steel Parts</li>
+                    <li>2x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>2x Steel Parts</li>
+                    <li>4x Copper Nails</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>4x Steel Parts</li>
+                    <li>4x Copper Nails</li>
+                    <li>1x Matchlock Gun</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>1x Stone Bricks</li>
+                    <li>1x Planks</li>
+                    <li>6x Steel Parts</li>
+                    <li>6x Copper Nails</li>
+                    <li>2x Matchlock Gun</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
-#### Machinists
-Machines need Machinists nearby to repair, fuel an reload your machines. A Machinists bench must be within 20 blocks of a machine in order for the machinest to operate it. Machinists will repair a machine at 50% durability or refuel a machine when it drops below 30% of fuel.
+## Machinists!
+Machines need Machinists nearby to repair, fuel an reload your machines. A Machinists bench must be within 20 blocks of a machine in order for the machinest to operate it. Machinists will repair a machine at 50% durability, refuel a machine when it drops below 30% of fuel or reload a machine when it drops below 30% of items it requires (such as ammo).
 
 #### Indicators:
 |Icon|Description|
@@ -182,6 +340,7 @@ Machines need Machinists nearby to repair, fuel an reload your machines. A Machi
 |![Waiting](https://i.imgur.com/HF6tajn.png)|Waiting for a machine to need servicing.|
 |![Repairing](https://imgur.com/ccxc98f.png)|Repairing the machine.|
 |![Repairing](https://imgur.com/JGe8wNE.png)|Refueling the machine.|
+|![Reloading](https://imgur.com/NncpHck.png)|Reloading the machine with items|
 
 ## Call to Arms!
 ![GitHub Logo](https://i.imgur.com/713Gqcp.png)
