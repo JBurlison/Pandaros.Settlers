@@ -163,17 +163,17 @@ namespace Pandaros.Settlers.Items.Machines
 
                 foreach (var item in MachineManager.FuelValues)
                 {
-                    while (stockpile.Contains(item.Key) && machineState.Fuel < MachineState.MAX_FUEL)
+                    while (stockpile.Contains(item.Key) && machineState.Fuel < MachineState.MAX_FUEL[player])
                     {
                         if (stockpile.TryRemove(item.Key))
                             machineState.Fuel += item.Value;
                     }
 
-                    if (machineState.Fuel > MachineState.MAX_FUEL)
+                    if (machineState.Fuel > MachineState.MAX_FUEL[player])
                         break;
                 }
 
-                if (machineState.Fuel < MachineState.MAX_FUEL)
+                if (machineState.Fuel < MachineState.MAX_FUEL[player])
                     return MachineManager.FuelValues.First().Key;
             }
 

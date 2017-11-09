@@ -42,6 +42,35 @@ namespace Pandaros.Settlers
 
     public static class PandaChat
     {
+        static Dictionary<Players.Player, double> _nextSendTime = new Dictionary<Players.Player, double>();
+
+        public static bool CanSendMesssage(Players.Player p)
+        {
+            if (!_nextSendTime.ContainsKey(p))
+                _nextSendTime.Add(p, 0);
+
+            return Time.SecondsSinceStartDouble > _nextSendTime[p];
+        }
+
+        public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white, params string[] args)
+        {
+            if (CanSendMesssage(ply))
+            {
+                string messageBuilt = BuildMessage(string.Format(message, args), color);
+                Pipliz.Chatting.Chat.Send(ply, messageBuilt);
+                _nextSendTime[ply] = Time.SecondsSinceStartDouble + 10;
+            }
+        }
+
+        public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white, ChatStyle style = ChatStyle.normal, Pipliz.Chatting.ChatSenderType sender = Pipliz.Chatting.ChatSenderType.Server)
+        {
+            if (CanSendMesssage(ply))
+            {
+                string messageBuilt = BuildMessage(message, color, style);
+                Pipliz.Chatting.Chat.Send(ply, messageBuilt, sender);
+            }
+        }
+
         public static void Send(Players.Player ply, string message, ChatColor color = ChatColor.white, params string[] args)
         {
             string messageBuilt = BuildMessage(string.Format(message, args), color);

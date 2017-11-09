@@ -33,6 +33,7 @@ namespace Pandaros.Settlers.Items.Machines
                 List<InventoryItem> requiredForFix = new List<InventoryItem>();
                 var stockpile = Stockpile.GetStockPile(player);
 
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 2));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
@@ -66,7 +67,7 @@ namespace Pandaros.Settlers.Items.Machines
                         }
 
                 if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY;
+                    machineState.Durability = MachineState.MAX_DURABILITY[player];
             }
 
             return retval;
@@ -87,10 +88,10 @@ namespace Pandaros.Settlers.Items.Machines
                 machineState.Fuel -= 0.03f;
 
                 if (machineState.Durability <= 0)
-                    PandaChat.Send(player, $"A mining machine at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
+                    PandaChat.SendThrottle(player, $"A mining machine at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
 
                 if (machineState.Fuel <= 0)
-                    PandaChat.Send(player, $"A mining machine at {machineState.Position} has run out of fuel. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
+                    PandaChat.SendThrottle(player, $"A mining machine at {machineState.Position} has run out of fuel. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
 
                 if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
                 {
@@ -174,6 +175,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static bool CanMineBlock(ushort itemMined)
         {
             return itemMined == BuiltinBlocks.StoneBlock ||
+                    itemMined == BuiltinBlocks.DarkStone ||
                     itemMined == BuiltinBlocks.InfiniteClay ||
                     itemMined == BuiltinBlocks.InfiniteCoal ||
                     itemMined == BuiltinBlocks.InfiniteCopper ||

@@ -39,6 +39,9 @@ namespace Pandaros.Settlers.Research
         public const string ImprovedBow = "ImprovedBow";
         public const string ImprovedCrossbow = "ImprovedCrossbow";
         public const string ImprovedMatchlockgun = "ImprovedMatchlockgun";
+        public const string ImprovedDurability = "ImprovedDurability";
+        public const string ImprovedFuelCapacity = "ImprovedFuelCapacity";
+        public const string IncreasedCapacity = "IncreasedCapacity";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -121,6 +124,9 @@ namespace Pandaros.Settlers.Research
             AddImprovedCrossbows(researchDic);
             AddImprovedMatchlockgun(researchDic);
             AddMachines(researchDic);
+            AddImprovedDuarability(researchDic);
+            AddImprovedFuelCapacity(researchDic);
+            AddIncreasedCapacity(researchDic);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
@@ -353,7 +359,7 @@ namespace Pandaros.Settlers.Research
                 _baseSpeed.Add(nameof(GuardSlingerJobDay), GuardSlingerJobDay.GetGuardSettings().cooldownShot);
 
             if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobNight)))
-                _baseSpeed.Add(nameof(GuardSlingerJobNight), GuardSlingerJobDay.GetGuardSettings().cooldownShot);
+                _baseSpeed.Add(nameof(GuardSlingerJobNight), GuardSlingerJobNight.GetGuardSettings().cooldownShot);
 
             GuardSlingerJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobDay)] - (_baseSpeed[nameof(GuardSlingerJobDay)] * e.Research.Value);
             GuardSlingerJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobNight)] - (_baseSpeed[nameof(GuardSlingerJobNight)] * e.Research.Value);
@@ -492,6 +498,96 @@ namespace Pandaros.Settlers.Research
 
             foreach (var item in Items.Machines.Turret.TurretTypes)
                 RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.Value.TurretItem.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+        }
+
+        private static void AddImprovedDuarability(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.IronBlock, 1);
+            researchDic.Add(BuiltinBlocks.Planks, 5);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 2);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+
+            var requirements = new List<string>()
+            {
+                Machines + "1"
+            };
+
+            var research = new PandaResearch(researchDic, 1, ImprovedDurability, .1f, requirements);
+            research.ResearchComplete += ImprovedDuarability_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ImprovedDurability, .1f);
+                research.ResearchComplete += ImprovedDuarability_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ImprovedDuarability_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            Items.Machines.MachineState.MAX_DURABILITY[e.Manager.Player] = Items.Machines.MachineState.DEFAULT_MAX_DURABILITY + (Items.Machines.MachineState.DEFAULT_MAX_DURABILITY * e.Research.Value);
+        }
+
+        private static void AddImprovedFuelCapacity(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.IronBlock, 1);
+            researchDic.Add(BuiltinBlocks.Planks, 5);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 2);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+
+            var requirements = new List<string>()
+            {
+                Machines + "1"
+            };
+
+            var research = new PandaResearch(researchDic, 1, ImprovedFuelCapacity, .1f, requirements);
+            research.ResearchComplete += ImprovedFuelCapacity_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ImprovedFuelCapacity, .1f);
+                research.ResearchComplete += ImprovedFuelCapacity_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ImprovedFuelCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            Items.Machines.MachineState.MAX_FUEL[e.Manager.Player] = Items.Machines.MachineState.DEFAULT_MAX_FUEL + (Items.Machines.MachineState.DEFAULT_MAX_FUEL * e.Research.Value);
+        }
+
+        private static void AddIncreasedCapacity(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.IronBlock, 1);
+            researchDic.Add(BuiltinBlocks.Planks, 5);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 2);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+
+            var requirements = new List<string>()
+            {
+                Machines + "1"
+            };
+
+            var research = new PandaResearch(researchDic, 1, IncreasedCapacity, .2f, requirements);
+            research.ResearchComplete += IncreasedCapacity_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, IncreasedCapacity, .2f);
+                research.ResearchComplete += IncreasedCapacity_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void IncreasedCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            Items.Machines.MachineState.MAX_LOAD[e.Manager.Player] = Items.Machines.MachineState.DEFAULT_MAX_LOAD + (Items.Machines.MachineState.DEFAULT_MAX_LOAD * e.Research.Value);
         }
     }
 }

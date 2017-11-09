@@ -35,7 +35,6 @@
     "Pandaros.Settlers.Miner": "Maining Machine",
     "Pandaros.Settlers.AdvancedCraftingTable": "Advanced Crafting Table",
     "Pandaros.Settlers.MachinistBench": "Machinist's Bench",
-    "popup.limits.Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Limits",
     "Pandaros.Settlers.StoneTurret": "Stone Turret",
     "Pandaros.Settlers.BronzeArrowTurret": "Bronze Arrow Turret",
     "Pandaros.Settlers.CrossbowTurret": "Crossbow Turret",
@@ -74,8 +73,7 @@
     "Pandaros.Settlers.BerryPie": "Berry than your mothers!",
     "Pandaros.Settlers.PatrolFlag": "Used with the Patrol Tool. Tells your knights where to keep watch!",
     "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
-    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!",
-    "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery.",
+    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!",  
     "Pandaros.Settlers.MachinistBench": "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench.",
     "Pandaros.Settlers.StoneTurret": "50 Damage per shot. Fires twice as fast as a Colonist.",
     "Pandaros.Settlers.BronzeArrowTurret": "100 Damage per shot. Fires twice as fast as a Colonist.",
@@ -85,13 +83,9 @@
   "sentences": {
     "popup": {
       "limits": {
-        "Pandaros": {
-          "Settlers": {
-            "AdvancedCrafter": "Advanced Crafting Limits"
-          }
+        "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery."
         }
-      }
-    },
+      },
     "Pandaros": {
       "Settlers": {
         "SettlerChance1": {
@@ -513,6 +507,66 @@
         "Machines1": {
           "name": "Machines!",
           "description": "Allows crafting of machines for crafters. Adds the machinist job."
+        },
+        "ImprovedDurability1": {
+          "name": "Improved Durability I",
+          "description": "Increases all machines durability by 10%. Machines will need repairing less often."
+        },
+        "ImprovedDurability2": {
+          "name": "Improved Durability II",
+          "description": "Increases all machines durability by 20%. Machines will need repairing less often."
+        },
+        "ImprovedDurability3": {
+          "name": "Improved Durability III",
+          "description": "Increases all machines durability by 30%. Machines will need repairing less often."
+        },
+        "ImprovedDurability4": {
+          "name": "Improved Durability IV",
+          "description": "Increases all machines durability by 40%. Machines will need repairing less often."
+        },
+        "ImprovedDurability5": {
+          "name": "Improved Durability V",
+          "description": "Increases all machines durability by 50%. Machines will need repairing less often."
+        },
+        "ImprovedFuelCapacity1": {
+          "name": "Improved Fuel Capacity I",
+          "description": "Increases all machines fuel capacity by 10%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity2": {
+          "name": "Improved Fuel Capacity II",
+          "description": "Increases all machines fuel capacity by 20%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity3": {
+          "name": "Improved Fuel Capacity III",
+          "description": "Increases all machines fuel capacity by 30%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity4": {
+          "name": "Improved Fuel Capacity IV",
+          "description": "Increases all machines fuel capacity by 40%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity5": {
+          "name": "Improved Fuel Capacity V",
+          "description": "Increases all machines fuel capacity by 50%. Machines will need refueling less often."
+        },
+        "IncreasedCapacity1": {
+          "name": "Increased Item Capacity I",
+          "description": "Increases all machines item capacity by 20%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity2": {
+          "name": "Increased Item Capacity II",
+          "description": "Increases all machines fuel capacity by 40%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity3": {
+          "name": "Increased Item Capacity III",
+          "description": "Increases all machines fuel capacity by 60%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity4": {
+          "name": "Increased Item Capacity IV",
+          "description": "Increases all machines fuel capacity by 80%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity5": {
+          "name": "Increased Item Capacity V",
+          "description": "Increases all machines fuel capacity by 100%. Machines will need ammo/items less often."
         }
       }
     }

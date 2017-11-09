@@ -12,14 +12,18 @@ namespace Pandaros.Settlers.Items.Machines
     {
         static System.Random _rand = new System.Random();
 
-        public static float MAX_DURABILITY { get; set; } = 1f;
-        public static float MAX_FUEL { get; set; } = 1f;
-        public static float MAX_LOAD { get; set; } = 1f;
+        public const float DEFAULT_MAX_DURABILITY = 1f;
+        public const float DEFAULT_MAX_FUEL = 1f;
+        public const float DEFAULT_MAX_LOAD = 1f;
+
+        public static Dictionary<Players.Player, float> MAX_DURABILITY { get; set; } = new Dictionary<Players.Player, float>();
+        public static Dictionary<Players.Player, float> MAX_FUEL { get; set; } = new Dictionary<Players.Player, float>();
+        public static Dictionary<Players.Player, float> MAX_LOAD { get; set; } = new Dictionary<Players.Player, float>();
 
         public Vector3Int Position { get; private set; }
-        public float Durability { get; set; } = MAX_DURABILITY;
-        public float Fuel { get; set; } = MAX_FUEL;
-        public float Load { get; set; } = MAX_LOAD;
+        public float Durability { get; set; } = DEFAULT_MAX_DURABILITY;
+        public float Fuel { get; set; } = DEFAULT_MAX_FUEL;
+        public float Load { get; set; } = DEFAULT_MAX_LOAD;
 
         public string MachineType { get; private set; }
         public Players.Player Owner { get; private set; }
@@ -38,6 +42,10 @@ namespace Pandaros.Settlers.Items.Machines
 
         public MachineState(JSONNode baseNode, Players.Player owner)
         {
+            MAX_DURABILITY[owner] = DEFAULT_MAX_DURABILITY;
+            MAX_FUEL[owner] = DEFAULT_MAX_FUEL;
+            MAX_LOAD[owner] = DEFAULT_MAX_LOAD;
+
             Position = (Vector3Int)baseNode[nameof(Position)];
             Durability = baseNode.GetAs<float>(nameof(Durability));
             Fuel = baseNode.GetAs<float>(nameof(Fuel));
