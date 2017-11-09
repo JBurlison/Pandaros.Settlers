@@ -172,6 +172,7 @@ The less damaged a machine the cheaper it is to fix:
             </td>
             <td>
                 <ul>
+                    <li>1x Planks</li>
                     <li>1x Iron Rivet</li>
                     <li>2x Copper Nails</li>
                     <li>1x Copper Tools</li>
