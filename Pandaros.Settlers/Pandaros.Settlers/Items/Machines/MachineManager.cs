@@ -20,16 +20,19 @@ namespace Pandaros.Settlers.Items.Machines
 
             public float RefuelTime { get; set; }
 
+            public float ReloadTime { get; set; }
+
             public float WorkTime { get; set; }
 
             public ushort ItemIndex { get; set; }
 
             public Func<Players.Player, MachineState, ushort> Repair { get; set; }
             public Func<Players.Player, MachineState, ushort> Refuel { get; set; }
+            public Func<Players.Player, MachineState, ushort> Reload { get; set; }
             public Action<Players.Player, MachineState> DoWork { get; set; }
 
-            public MachineSettings(ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, 
-                                    Action<Players.Player, MachineState> doWork, float repairTime, float refuelTime, float workTime)
+            public MachineSettings(ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, Func<Players.Player, MachineState, ushort> reload,
+                                    Action<Players.Player, MachineState> doWork, float repairTime, float refuelTime, float reloadTime, float workTime)
             {
                 ItemIndex = itemIndex;
                 Repair = repair;
@@ -38,16 +41,19 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = repairTime;
                 RefuelTime = refuelTime;
                 WorkTime = workTime;
+                Reload = reload;
+                ReloadTime = reloadTime;
             }
         }
 
         public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
-        public static DateTime _nextUpdateTime;
+        public static double _nextUpdateTime;
         public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
 
         public static void RegisterMachineType(string machineType, MachineSettings callback)
         {
+            PandaLogger.Log(machineType + " Registered as a Machine Type!");
             _machineCallbacks[machineType] = callback;
         }
 
@@ -66,17 +72,12 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]
         public static void OnUpdate()
         {
-            if (GameLoader.WorldLoaded && DateTime.Now > _nextUpdateTime)
-            {
-                lock(Machines)
-                    foreach(var machine in Machines)
-                    {
-                        foreach (var state in machine.Value)
-                            state.Value.MachineSettings.DoWork(machine.Key, state.Value);
-                    }
-
-                _nextUpdateTime = DateTime.Now + TimeSpan.FromSeconds(1);
-            }
+            lock(Machines)
+                foreach(var machine in Machines)
+                {
+                    foreach (var state in machine.Value)
+                        state.Value.MachineSettings.DoWork(machine.Key, state.Value);
+                }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnLoadingPlayer")]
@@ -120,7 +121,7 @@ namespace Pandaros.Settlers.Items.Machines
                 if (!Machines.ContainsKey(d.requestedBy))
                     Machines.Add(d.requestedBy, new Dictionary<Vector3Int, MachineState>());
 
-                if (d.typeToBuild == BuiltinBlocks.Air && Machines[d.requestedBy].ContainsKey(d.voxelHit))
+                if (Machines[d.requestedBy].ContainsKey(d.voxelHit))
                     Machines[d.requestedBy].Remove(d.voxelHit);
             }
 
@@ -152,6 +153,31 @@ namespace Pandaros.Settlers.Items.Machines
             }
 
             return retVal;
+        }
+
+        public static ushort Refuel(Players.Player player, MachineState machineState)
+        {
+            if (machineState.Fuel < .75f)
+            {
+                var stockpile = Stockpile.GetStockPile(player);
+
+                foreach (var item in MachineManager.FuelValues)
+                {
+                    while (stockpile.Contains(item.Key) && machineState.Fuel < MachineState.MAX_FUEL)
+                    {
+                        if (stockpile.TryRemove(item.Key))
+                            machineState.Fuel += item.Value;
+                    }
+
+                    if (machineState.Fuel > MachineState.MAX_FUEL)
+                        break;
+                }
+
+                if (machineState.Fuel < MachineState.MAX_FUEL)
+                    return MachineManager.FuelValues.First().Key;
+            }
+
+            return GameLoader.Refuel_Icon;
         }
     }
 }

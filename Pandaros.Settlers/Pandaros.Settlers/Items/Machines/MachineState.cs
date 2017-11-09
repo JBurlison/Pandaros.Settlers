@@ -14,10 +14,12 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static float MAX_DURABILITY { get; set; } = 1f;
         public static float MAX_FUEL { get; set; } = 1f;
+        public static float MAX_LOAD { get; set; } = 1f;
 
         public Vector3Int Position { get; private set; }
         public float Durability { get; set; } = MAX_DURABILITY;
         public float Fuel { get; set; } = MAX_FUEL;
+        public float Load { get; set; } = MAX_LOAD;
 
         public string MachineType { get; private set; }
         public Players.Player Owner { get; private set; }
@@ -41,6 +43,9 @@ namespace Pandaros.Settlers.Items.Machines
             Fuel = baseNode.GetAs<float>(nameof(Fuel));
             MachineType = baseNode.GetAs<string>(nameof(MachineType));
 
+            if (baseNode.TryGetAs<float>(nameof(Load), out var load))
+                Load = load;
+
             MachineSettings = MachineManager.GetCallbacks(MachineType);
         }
 
@@ -51,6 +56,7 @@ namespace Pandaros.Settlers.Items.Machines
             baseNode.SetAs(nameof(Position), (JSONNode)Position);
             baseNode.SetAs(nameof(Durability), Durability);
             baseNode.SetAs(nameof(Fuel), Fuel);
+            baseNode.SetAs(nameof(Load), Load);
             baseNode.SetAs(nameof(MachineType), MachineType);
 
             return baseNode;

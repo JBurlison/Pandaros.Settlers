@@ -24,7 +24,7 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 5, 3, 0);
+        public static readonly Version MOD_VER = new Version(0, 5, 3, 1);
         public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
@@ -33,6 +33,7 @@ namespace Pandaros.Settlers
         public static ushort Repairing_Icon { get; private set; }
         public static ushort Refuel_Icon { get; private set; }
         public static ushort Waiting_Icon { get; private set; }
+        public static ushort Reload_Icon { get; private set; }
 
         public static ColonyState CurrentColonyState
         {
@@ -95,10 +96,23 @@ namespace Pandaros.Settlers
             Waiting_Icon = waiting.ItemIndex;
 
             items.Add(NAMESPACE + ".Waiting", waiting);
+
+            var reloadNode = new JSONNode();
+            reloadNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Reload.png");
+            var reload = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Reload", reloadNode);
+            Reload_Icon = reload.ItemIndex;
+
+            items.Add(NAMESPACE + ".Reload", reload);
+
+            Jobs.MachinistJob.OkStatus = new List<uint>()
+            {
+                Refuel_Icon,
+                Reload_Icon,
+                Repairing_Icon,
+                Waiting_Icon
+            };
         }
-
-       
-
+        
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".AfterStartup")]
         public static void AfterStartup()
         {

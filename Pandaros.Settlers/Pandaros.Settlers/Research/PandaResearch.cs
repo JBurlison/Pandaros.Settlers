@@ -489,6 +489,9 @@ namespace Pandaros.Settlers.Research
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.AdvancedCrafterRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.MachinistRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
             RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.MachinistRegister.JOB_RECIPE);
+
+            foreach (var item in Items.Machines.Turret.TurretTypes)
+                RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.Value.TurretItem.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
         }
     }
 }

@@ -74,6 +74,10 @@ namespace Pandaros.Settlers.Jobs
         Items.Machines.MachineState _targetMachine;
         Vector3Int originalPosition;
 
+        public static List<Items.Machines.MachineState> _targetMachines = new List<Items.Machines.MachineState>();
+
+        public static List<uint> OkStatus;
+
         public override string NPCTypeKey
         {
             get
@@ -94,9 +98,11 @@ namespace Pandaros.Settlers.Jobs
         {
             get
             {
-                return new InventoryItem(BuiltinBlocks.BronzePickaxe, 1);
+                return new InventoryItem(BuiltinBlocks.CopperTools, 1);
             }
         }
+
+        public override bool ToSleep => false;
 
         public override ITrackableBlock InitializeFromJSON(Players.Player player, JSONNode node)
         {
@@ -128,13 +134,17 @@ namespace Pandaros.Settlers.Jobs
 
                 if (dis < 21)
                 {
-                    if (machine.Value.Durability < .3f ||
-                        machine.Value.Fuel < .3f)
-                    {
-                        _targetMachine = machine.Value;
-                        position = Server.AI.AIManager.ClosestPosition(machine.Key, new Vector3Int(usedNPC.Position));
-                        break;
-                    }
+                        lock (_targetMachines)
+                            if (!_targetMachines.Contains(machine.Value) &&
+                                (machine.Value.Durability < .5f ||
+                                machine.Value.Fuel < .3f ||
+                                machine.Value.Load < .3f))
+                            {
+                                _targetMachine = machine.Value;
+                                _targetMachines.Add(machine.Value);
+                                position = Server.AI.AIManager.ClosestPosition(machine.Key, new Vector3Int(usedNPC.Position));
+                                break;
+                            }
                 }
             }
 
@@ -152,21 +162,43 @@ namespace Pandaros.Settlers.Jobs
 
             if (3 > Vector3.Distance(_targetMachine.Position.Vector, usedNPC.Position))
             {
-                if (_targetMachine.Durability < .3f)
+                ushort status = GameLoader.Waiting_Icon;
+                float cooldown = 2f;
+
+                usedNPC.LookAt(_targetMachine.Position.Vector);
+
+                if (_targetMachine.Durability < .50f)
                 {
-                    state.SetIndicator(NPCIndicatorType.Crafted, _targetMachine.MachineSettings.RepairTime, _targetMachine.MachineSettings.Repair(Owner, _targetMachine));
-                    base.OverrideCooldown(_targetMachine.MachineSettings.RepairTime);
+                    status = _targetMachine.MachineSettings.Repair(Owner, _targetMachine);
+                    cooldown = _targetMachine.MachineSettings.RepairTime;
                 }
                 else if (_targetMachine.Fuel < .3f)
                 {
-                    state.SetIndicator(NPCIndicatorType.Crafted, _targetMachine.MachineSettings.RepairTime, _targetMachine.MachineSettings.Refuel(Owner, _targetMachine));
-                    base.OverrideCooldown(_targetMachine.MachineSettings.RefuelTime);
+                    status = _targetMachine.MachineSettings.Refuel(Owner, _targetMachine);
+                    cooldown = _targetMachine.MachineSettings.RefuelTime;
+                }
+                else if (_targetMachine.Load < .3f)
+                {
+                    status = _targetMachine.MachineSettings.Reload(Owner, _targetMachine);
+                    cooldown = _targetMachine.MachineSettings.ReloadTime;
                 }
                 else
                 {
-                    _targetMachine = null;
-                    base.OverrideCooldown(.5);
+                    lock (_targetMachines)
+                    {
+                        if (_targetMachines.Contains(_targetMachine))
+                            _targetMachines.Remove(_targetMachine);
+
+                        _targetMachine = null;
+                    }
                 }
+
+                if (OkStatus.Contains(status) || _targetMachine == null)
+                    state.SetIndicator(NPCIndicatorType.Crafted, cooldown, status);
+                else
+                    state.SetIndicator(NPCIndicatorType.MissingItem, _targetMachine.MachineSettings.RepairTime, status);
+
+                base.OverrideCooldown(cooldown);
             }
             else
                 base.OverrideCooldown(.5);

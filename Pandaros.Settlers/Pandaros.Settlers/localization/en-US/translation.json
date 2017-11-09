@@ -35,7 +35,11 @@
     "Pandaros.Settlers.Miner": "Maining Machine",
     "Pandaros.Settlers.AdvancedCraftingTable": "Advanced Crafting Table",
     "Pandaros.Settlers.MachinistBench": "Machinist's Bench",
-    "popup.limits.Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Limits"
+    "popup.limits.Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Limits",
+    "Pandaros.Settlers.StoneTurret": "Stone Turret",
+    "Pandaros.Settlers.BronzeArrowTurret": "Bronze Arrow Turret",
+    "Pandaros.Settlers.CrossbowTurret": "Crossbow Turret",
+    "Pandaros.Settlers.MatchlockTurret": "Matchlock Turret"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -72,7 +76,11 @@
     "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
     "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply or wood or coal. Crank to start!",
     "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery.",
-    "Pandaros.Settlers.MachinistBench": "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench."
+    "Pandaros.Settlers.MachinistBench": "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench.",
+    "Pandaros.Settlers.StoneTurret": "50 Damage per shot. Fires twice as fast as a Colonist.",
+    "Pandaros.Settlers.BronzeArrowTurret": "100 Damage per shot. Fires twice as fast as a Colonist.",
+    "Pandaros.Settlers.CrossbowTurret": "300 Damage per shot. Fires twice as fast as a Colonist.",
+    "Pandaros.Settlers.MatchlockTurret": "500 Damage per shot. Fires twice as fast as a Colonist."
   },
   "sentences": {
     "popup": {

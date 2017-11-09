@@ -17,11 +17,10 @@ namespace Pandaros.Settlers.Items.Machines
         
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Miner.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnLoadingPlayer")]
-        public static void AfterWorldLoad(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMachines")]
+        public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
-            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineSettings(Item.ItemIndex, Repair, Refuel, DoWork, 10, 4, 4));
+            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineSettings(Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 4));
         }
 
         public static ushort Repair(Players.Player player, MachineState machineState)
@@ -72,30 +71,10 @@ namespace Pandaros.Settlers.Items.Machines
 
             return retval;
         }
-
-        public static ushort Refuel(Players.Player player, MachineState machineState)
+        
+        public static ushort Reload(Players.Player player, MachineState machineState)
         {
-            if (machineState.Fuel < .75f)
-            {
-                var stockpile = Stockpile.GetStockPile(player);
-
-                foreach (var item in MachineManager.FuelValues)
-                {
-                    while (stockpile.Contains(item.Key) && machineState.Fuel < MachineState.MAX_FUEL)
-                    {
-                        if (stockpile.TryRemove(item.Key))
-                            machineState.Fuel += item.Value;
-                    }
-
-                    if (machineState.Fuel > MachineState.MAX_FUEL)
-                        break;
-                }
-
-                if (machineState.Fuel < MachineState.MAX_FUEL)
-                    return MachineManager.FuelValues.First().Key;
-            }
-
-            return GameLoader.Refuel_Icon;
+            return GameLoader.Waiting_Icon;
         }
 
         public static void DoWork(Players.Player player, MachineState machineState)
@@ -122,7 +101,7 @@ namespace Pandaros.Settlers.Items.Machines
                             Stockpile.GetStockPile(player).Add(itemList[i].item);
                 }
 
-                machineState.NextTimeForWork = MinerCooldown + Time.SecondsSinceStartDouble;
+                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
             }
         }
 
@@ -135,10 +114,10 @@ namespace Pandaros.Settlers.Items.Machines
             var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
             var tools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
             var planks = new InventoryItem(BuiltinBlocks.Planks, 4);
-            var sling = new InventoryItem(BuiltinBlocks.Linen, 3);
+            var pickaxe = new InventoryItem(BuiltinBlocks.BronzePickaxe, 2);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>() { planks, iron, rivets, copperParts, copperNails, tools, planks, sling },
+                                    new List<InventoryItem>() { planks, iron, rivets, copperParts, copperNails, tools, planks, pickaxe },
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
