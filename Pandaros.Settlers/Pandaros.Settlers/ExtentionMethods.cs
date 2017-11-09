@@ -19,21 +19,6 @@ namespace Pandaros.Settlers
             return rng.NextDouble() * (max - min) + min;
         }
 
-        public static void SetJobTime(this BlockJobBase job, double time)
-        {
-            typeof(BlockJobBase).GetField("timeJob", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(job, Pipliz.Time.SecondsSinceStartDouble + time);
-        }
-
-        public static double GetJobTime(this BlockJobBase job)
-        {
-            return (double)typeof(BlockJobBase).GetField("timeJob", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job);
-        }
-
-        public static List<InventoryItem> GetInventory(this Inventory inv)
-        {
-            return typeof(Inventory).GetField("items", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(inv) as List<InventoryItem>;
-        }
-
         public static void Update(this List<InventoryItem> inv, Players.Player p)
         {
             NetworkWrapper.Send(inv.GetBytes(), p, NetworkMessageReliability.ReliableWithBuffering);
@@ -62,11 +47,11 @@ namespace Pandaros.Settlers
 
             if (invRef != null)
             {
-                var playerInv = invRef.GetInventory();
+                var playerInv = invRef.Items;
 
                 if (playerInv != null)
                 {
-                    for (int i = 0; i < playerInv.Count - 1; i++)
+                    for (int i = 0; i < playerInv.Length - 1; i++)
                     {
                         if (playerInv[i].Type == itemType && playerInv[i].Amount > 0)
                         {
@@ -81,7 +66,7 @@ namespace Pandaros.Settlers
                     }
 
                     if (hasItem)
-                        playerInv.Update(player);
+                        invRef.SendUpdate();
                 }
             }
 

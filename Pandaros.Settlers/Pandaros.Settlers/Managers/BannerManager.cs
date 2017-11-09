@@ -73,10 +73,7 @@ namespace Pandaros.Settlers.Managers
 
                 if (inv != null)
                 {
-                    var items = inv.GetInventory();
-
-                    if (items != null)
-                    foreach (var item in items)
+                    foreach (var item in inv.Items)
                         if (item.Type == BuiltinBlocks.Banner)
                             inventoryBanners = item.Amount;
                 }

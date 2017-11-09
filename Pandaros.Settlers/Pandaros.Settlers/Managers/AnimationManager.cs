@@ -25,9 +25,11 @@ namespace Pandaros.Settlers.Managers
                 ObjType = MeshedObjectType.Register(new MeshedObjectTypeSettings(key, meshPath, textureMapping));
             }
 
-            public void SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = 1f)
+            public ClientMeshedObject SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = 1f)
             {
-                (new ClientMeshedObject(ObjType)).SendMoveToInterpolated(start, end, deltaTime);
+                var obj = new ClientMeshedObject(ObjType);
+                obj.SendMoveToInterpolated(start, end, deltaTime);
+                return obj;
             }
         }
 

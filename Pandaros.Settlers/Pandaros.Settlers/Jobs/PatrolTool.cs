@@ -83,11 +83,10 @@ namespace Pandaros.Settlers.Jobs
 
         public static void GivePlayerPatrolTool(Players.Player p)
         {
-            var playerInv = Inventory.GetInventory(p).GetInventory();
             var playerStockpile = Stockpile.GetStockPile(p);
             bool hasTool = false;
 
-            foreach (var item in playerInv)
+            foreach (var item in Inventory.GetInventory(p).Items)
                 if (item.Type == Item.ItemIndex)
                 {
                     hasTool = true;
