@@ -156,7 +156,13 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CopperParts, 2);
             researchDic.Add(BuiltinBlocks.CopperNails, 3);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 4);
-            RegisterArmorSmithng(researchDic, 1);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.BronzeAnvil
+            };
+
+            RegisterArmorSmithng(researchDic, 1, requirements);
 
             researchDic.Remove(BuiltinBlocks.CopperParts);
             researchDic.Remove(BuiltinBlocks.CopperNails);
@@ -178,9 +184,9 @@ namespace Pandaros.Settlers.Research
             RegisterArmorSmithng(researchDic, 4);
         }
 
-        private static void RegisterArmorSmithng(Dictionary<ushort, int> researchDic, int level)
+        private static void RegisterArmorSmithng(Dictionary<ushort, int> researchDic, int level, List<string> requirements = null)
         {
-            var research = new PandaResearch(researchDic, level, ArmorSmithing, 1f);
+            var research = new PandaResearch(researchDic, level, ArmorSmithing, 1f, requirements);
             research.ResearchComplete += Research_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
         }
@@ -215,7 +221,13 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CopperParts, 2);
             researchDic.Add(BuiltinBlocks.CopperNails, 3);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 2);
-            RegisterSwordmithng(researchDic, 1);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.BronzeAnvil
+            };
+
+            RegisterSwordmithng(researchDic, 1, requirements);
 
             researchDic.Remove(BuiltinBlocks.CopperParts);
             researchDic.Remove(BuiltinBlocks.CopperNails);
@@ -237,9 +249,9 @@ namespace Pandaros.Settlers.Research
             RegisterSwordmithng(researchDic, 4);
         }
 
-        private static void RegisterSwordmithng(Dictionary<ushort, int> researchDic, int level)
+        private static void RegisterSwordmithng(Dictionary<ushort, int> researchDic, int level, List<string> requirements = null)
         {
-            var research = new PandaResearch(researchDic, level, SwordSmithing, 1f);
+            var research = new PandaResearch(researchDic, level, SwordSmithing, 1f, requirements);
             research.ResearchComplete += SwordResearch_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
         }
@@ -330,10 +342,10 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                GetResearchKey(SwordSmithing) + "1"
+                GetResearchKey(SwordSmithing + "1") 
             };
 
-            var research = new PandaResearch(researchDic, 1, Knights, 1f);
+            var research = new PandaResearch(researchDic, 1, Knights, 1f, requirements);
             research.ResearchComplete += Knights_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
         }
@@ -352,18 +364,9 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Sling, 1);
             researchDic.Add(BuiltinBlocks.SlingBullet, 5);
 
-            var requirements = new List<string>()
+            for (int i = 1; i <= 5; i++)
             {
-                ColonyBuiltIn.ScienceBagBasic
-            };
-
-            var research = new PandaResearch(researchDic, 1, ImprovedSling, .05f, requirements);
-            research.ResearchComplete += ImprovedSlings_ResearchComplete;
-            ScienceManager.RegisterResearchable(research);
-
-            for (int i = 2; i <= 5; i++)
-            {
-                research = new PandaResearch(researchDic, i, ImprovedSling, .05f);
+                var research = new PandaResearch(researchDic, i, ImprovedSling, .05f);
                 research.ResearchComplete += ImprovedSlings_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }

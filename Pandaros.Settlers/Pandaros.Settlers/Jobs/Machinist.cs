@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Machinist.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            var gold = new InventoryItem(BuiltinBlocks.GoldIngot, 2);
+            var gold = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
             var iron = new InventoryItem(BuiltinBlocks.IronWrought, 2);
             var tools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
             var stone = new InventoryItem(BuiltinBlocks.StoneBricks, 4);
@@ -209,7 +209,7 @@ namespace Pandaros.Settlers.Jobs
             {
                 keyName = this.NPCTypeKey,
                 printName = "Machinist",
-                maskColor1 = new Color32(255, 211, 53, 255),
+                maskColor1 = new Color32(242, 132, 29, 255),
                 type = NPCTypeID.GetNextID(),
                 inventoryCapacity = 1f
             };

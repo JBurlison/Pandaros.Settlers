@@ -67,6 +67,9 @@ namespace Pandaros.Settlers.Items.Machines
                             break;
                         }
 
+                if (!MachineState.MAX_DURABILITY.ContainsKey(player))
+                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
+
                 if (repaired)
                     machineState.Durability = MachineState.MAX_DURABILITY[player];
             }
@@ -85,8 +88,8 @@ namespace Pandaros.Settlers.Items.Machines
                 machineState.Fuel > 0 && 
                 machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
             {
-                machineState.Durability -= 0.01f;
-                machineState.Fuel -= 0.04f;
+                machineState.Durability -= 0.02f;
+                machineState.Fuel -= 0.05f;
 
                 if (machineState.Durability < 0)
                     machineState.Durability = 0;
@@ -107,10 +110,30 @@ namespace Pandaros.Settlers.Items.Machines
                     for (int i = 0; i < itemList.Count; i++)
                         if (Pipliz.Random.NextDouble() <= itemList[i].chance)
                             Stockpile.GetStockPile(player).Add(itemList[i].item);
+
+                    ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "MiningMachineAudio");
                 }
 
                 machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
             }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterAudio"),
+            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
+        public static void RegisterAudio()
+        {
+            var node = new JSONNode();
+            node.SetAs("clipCollectionName", GameLoader.NAMESPACE + "MiningMachineAudio");
+
+            var fileListNode = new JSONNode(NodeType.Array);
+            var audoFileNode = new JSONNode()
+                .SetAs("path", GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg")
+                .SetAs("audioGroup", "Effects");
+
+            fileListNode.AddToArray(audoFileNode);
+            node.SetAs("fileList", fileListNode);
+
+            ItemTypesServer.AudioFilesJSON.AddToArray(node);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]

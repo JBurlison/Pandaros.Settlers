@@ -19,6 +19,7 @@ namespace Pandaros.Settlers
         public static string MESH_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Meshes";
         public static string TEXTURE_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Textures";
         public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
+        public static string AUDIO_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Audio";
 
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
@@ -64,6 +65,7 @@ namespace Pandaros.Settlers
             ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/");
             MESH_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/");
             TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/");
+            AUDIO_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]

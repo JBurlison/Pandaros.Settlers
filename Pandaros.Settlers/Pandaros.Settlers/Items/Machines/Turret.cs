@@ -106,6 +106,9 @@ namespace Pandaros.Settlers.Items.Machines
         {
             ushort retval = GameLoader.Reload_Icon;
 
+            if (!MachineState.MAX_LOAD.ContainsKey(player))
+                MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
+
             if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
             {
                 var stockpile = Stockpile.GetStockPile(player);
@@ -116,7 +119,7 @@ namespace Pandaros.Settlers.Items.Machines
                         machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
                 }
 
-                if (machineState.Fuel < MachineState.MAX_FUEL[player])
+                if (machineState.Load < MachineState.MAX_LOAD[player])
                     retval = MachineManager.FuelValues.First().Key;
             }
 
@@ -248,8 +251,8 @@ namespace Pandaros.Settlers.Items.Machines
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.SlingBullet) },
                 AmmoValue = 0.05f,
                 Damage = 50f,
-                DurabilityPerDoWork = 0.002f,
-                FuelPerDoWork = 0.03f,
+                DurabilityPerDoWork = 0.003f,
+                FuelPerDoWork = 0.01f,
                 Name = STONE,
                 OnShootAudio = "sling",
                 OnHitAudio = "fleshHit",
@@ -279,8 +282,8 @@ namespace Pandaros.Settlers.Items.Machines
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.BronzeArrow) },
                 AmmoValue = 0.05f,
                 Damage = 100f,
-                DurabilityPerDoWork = 0.004f,
-                FuelPerDoWork = 0.04f,
+                DurabilityPerDoWork = 0.005f,
+                FuelPerDoWork = 0.02f,
                 Name = BRONZEARROW,
                 OnShootAudio = "bowShoot",
                 OnHitAudio = "fleshHit",
@@ -310,8 +313,8 @@ namespace Pandaros.Settlers.Items.Machines
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.CrossbowBolt) },
                 AmmoValue = 0.05f,
                 Damage = 300f,
-                DurabilityPerDoWork = 0.005f,
-                FuelPerDoWork = 0.04f,
+                DurabilityPerDoWork = 0.007f,
+                FuelPerDoWork = 0.03f,
                 Name = CROSSBOW,
                 OnShootAudio = "bowShoot",
                 OnHitAudio = "fleshHit",
@@ -342,8 +345,8 @@ namespace Pandaros.Settlers.Items.Machines
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.LeadBullet), new InventoryItem(BuiltinBlocks.GunpowderPouch) },
                 AmmoValue = 0.05f,
                 Damage = 500f,
-                DurabilityPerDoWork = 0.01f,
-                FuelPerDoWork = 0.05f,
+                DurabilityPerDoWork = 0.011f,
+                FuelPerDoWork = 0.04f,
                 Name = MATCHLOCK,
                 OnShootAudio = "matchlock",
                 OnHitAudio = "fleshHit",
