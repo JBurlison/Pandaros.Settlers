@@ -2,7 +2,7 @@
 A colony survival settlers mod that helps you grow and manage your colony. Introduces new weapons, armor, research, difficulties, jobs and chat commands.
 
 Food use now increases as colony size goes up to simulate waste.
-Food use fluxuates depending on how hungry your colonists are!
+Food use fluctuates depending on how hungry your colonists are!
 
 **NOTE: With the release of 0.4.0 Only servers needs mods**
 
