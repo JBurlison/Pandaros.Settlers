@@ -28,6 +28,8 @@ namespace Pandaros.Settlers.Items.Machines
         public string MachineType { get; private set; }
         public Players.Player Owner { get; private set; }
         public double NextTimeForWork { get; set; } = Time.SecondsSinceStartDouble + _rand.NextDouble(0, 5);
+        public bool HasMachinist { get; set; } = false;
+
 
         public MachineManager.MachineSettings MachineSettings { get; private set; }
 

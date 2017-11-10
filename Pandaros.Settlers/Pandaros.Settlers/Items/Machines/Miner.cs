@@ -85,7 +85,13 @@ namespace Pandaros.Settlers.Items.Machines
                 machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
             {
                 machineState.Durability -= 0.01f;
-                machineState.Fuel -= 0.03f;
+                machineState.Fuel -= 0.04f;
+
+                if (machineState.Durability < 0)
+                    machineState.Durability = 0;
+
+                if (machineState.Fuel <= 0)
+                    machineState.Fuel = 0;
 
                 if (machineState.Durability <= 0)
                     PandaChat.SendThrottle(player, $"A mining machine at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);

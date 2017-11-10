@@ -89,10 +89,12 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     foreach (var node in machinesNode.LoopArray())
                         RegisterMachineState(p, new MachineState(node, p));
+
+                    PandaLogger.Log(ChatColor.lime, $"{Machines[p].Count} machines loaded from save for {p.ID.steamID.m_SteamID}!");
                 }
             }
             else
-                PandaLogger.Log("No Machines.");
+                PandaLogger.Log(ChatColor.lime, $"No machines found in save for {p.ID.steamID.m_SteamID}.");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.PatrolTool.OnSavingPlayer")]
@@ -159,14 +161,17 @@ namespace Pandaros.Settlers.Items.Machines
         {
             if (machineState.Fuel < .75f)
             {
+                if (!MachineState.MAX_FUEL.ContainsKey(player))
+                    MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
+
                 var stockpile = Stockpile.GetStockPile(player);
 
                 foreach (var item in MachineManager.FuelValues)
                 {
-                    while (stockpile.Contains(item.Key) && machineState.Fuel < MachineState.MAX_FUEL[player])
+                    while (stockpile.Contains(item.Key) && machineState.Fuel <= MachineState.MAX_FUEL[player])
                     {
-                        if (stockpile.TryRemove(item.Key))
-                            machineState.Fuel += item.Value;
+                        stockpile.TryRemove(item.Key);
+                        machineState.Fuel += item.Value;
                     }
 
                     if (machineState.Fuel > MachineState.MAX_FUEL[player])

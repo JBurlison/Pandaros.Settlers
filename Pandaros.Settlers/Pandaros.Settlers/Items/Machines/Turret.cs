@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Turret
     {
-        public class TurretSettings
+        public class TurretSetting
         {
             public float RepairTime { get; set; }
 
@@ -49,7 +49,8 @@ namespace Pandaros.Settlers.Items.Machines
             public Managers.AnimationManager.AnimatedObject ProjectileAnimation { get; set; }
         }
 
-        public static Dictionary<string, TurretSettings> TurretTypes = new Dictionary<string, TurretSettings>();
+        public static Dictionary<string, TurretSetting> TurretSettings = new Dictionary<string, TurretSetting>();
+        public static Dictionary<string, ItemTypesServer.ItemTypeRaw> TurretTypes = new Dictionary<string, ItemTypesServer.ItemTypeRaw>();
 
         public const string STONE = "Stone Turret";
         public const string BRONZEARROW = "Bronze Arrow Turret";
@@ -61,25 +62,17 @@ namespace Pandaros.Settlers.Items.Machines
         public static string CROSSBOW_NAMESPACE = GameLoader.NAMESPACE + ".CrossbowTurret";
         public static string MATCHLOCK_NAMESPACE = GameLoader.NAMESPACE + ".MatchlockTurret";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterMachines")]
-        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
-        public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
-        {
-            foreach (var turret in TurretTypes)
-                MachineManager.RegisterMachineType(turret.Key, new MachineManager.MachineSettings(turret.Value.TurretItem.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, turret.Value.RepairTime, turret.Value.RefuelTime, turret.Value.ReloadTime, turret.Value.WorkTime));
-        }
-
         public static ushort Repair(Players.Player player, MachineState machineState) 
         {
             var retval = GameLoader.Repairing_Icon;
 
-            if (machineState.Durability < .75f && TurretTypes.ContainsKey(machineState.MachineType))
+            if (machineState.Durability < .75f && TurretSettings.ContainsKey(machineState.MachineType))
             {
                 bool repaired = false;
                 List<InventoryItem> requiredForFix = new List<InventoryItem>();
                 var stockpile = Stockpile.GetStockPile(player);
 
-                foreach (var durability in TurretTypes[machineState.MachineType].RequiredForFix.OrderByDescending(s => s.Key))
+                foreach (var durability in TurretSettings[machineState.MachineType].RequiredForFix.OrderByDescending(s => s.Key))
                     if (machineState.Durability < durability.Key)
                     {
                         requiredForFix = durability.Value;
@@ -93,11 +86,13 @@ namespace Pandaros.Settlers.Items.Machines
                 }
                 else
                     foreach (var item in requiredForFix)
-                        if (!stockpile.Contains(item))
+                    {
+                        if (!stockpile.Contains(item) && item.Type != 0)
                         {
                             retval = item.Type;
                             break;
                         }
+                    }
 
                 if (repaired)
                     machineState.Durability = MachineState.MAX_DURABILITY[player];
@@ -108,34 +103,42 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ushort Reload(Players.Player player, MachineState machineState)
         {
-            if (TurretTypes.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
+            ushort retval = GameLoader.Reload_Icon;
+
+            if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
             {
                 var stockpile = Stockpile.GetStockPile(player);
                 
-                while (stockpile.Contains(TurretTypes[machineState.MachineType].Ammo) && machineState.Load < MachineState.MAX_LOAD[player])
+                while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player])
                 {
-                    if (stockpile.TryRemove(TurretTypes[machineState.MachineType].Ammo))
-                        machineState.Load += TurretTypes[machineState.MachineType].AmmoValue;
+                    if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
+                        machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
                 }
 
                 if (machineState.Fuel < MachineState.MAX_FUEL[player])
-                    return MachineManager.FuelValues.First().Key;
+                    retval = MachineManager.FuelValues.First().Key;
             }
 
-            return GameLoader.Reload_Icon;
+            return retval;
         }
         
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            if (TurretTypes.ContainsKey(machineState.MachineType) &&
+            if (TurretSettings.ContainsKey(machineState.MachineType) &&
                 machineState.Durability > 0 && 
                 machineState.Fuel > 0 && 
                 machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
             {
                 var stockpile = Stockpile.GetStockPile(player);
 
-                machineState.Durability -= TurretTypes[machineState.MachineType].DurabilityPerDoWork;
-                machineState.Fuel -= TurretTypes[machineState.MachineType].FuelPerDoWork;
+                machineState.Durability -= TurretSettings[machineState.MachineType].DurabilityPerDoWork;
+                machineState.Fuel -= TurretSettings[machineState.MachineType].FuelPerDoWork;
+
+                if (machineState.Durability < 0)
+                    machineState.Durability = 0;
+
+                if (machineState.Fuel <= 0)
+                    machineState.Fuel = 0;
 
                 if (machineState.Durability <= 0)
                     PandaChat.SendThrottle(player, $"A {machineState.MachineType} at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
@@ -145,20 +148,23 @@ namespace Pandaros.Settlers.Items.Machines
 
                 if (machineState.Load > 0)
                 {
-                    var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretTypes[machineState.MachineType].Range, TurretTypes[machineState.MachineType].Damage);
+                    var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
                     
                     if (monster != null)
                     {
-                        machineState.Load -= TurretTypes[machineState.MachineType].AmmoValue;
+                        machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
 
-                        if (TurretTypes[machineState.MachineType].OnShootAudio != null)
-                            ServerManager.SendAudio(machineState.Position.Vector, TurretTypes[machineState.MachineType].OnShootAudio);
+                        if (machineState.Load < 0)
+                            machineState.Load = 0;
 
-                        if (TurretTypes[machineState.MachineType].OnHitAudio != null)
-                            ServerManager.SendAudio(monster.PositionToAimFor, TurretTypes[machineState.MachineType].OnHitAudio);
+                        if (TurretSettings[machineState.MachineType].OnShootAudio != null)
+                            ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.MachineType].OnShootAudio);
 
-                        TurretTypes[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
-                        monster.OnHit(TurretTypes[machineState.MachineType].Damage);
+                        if (TurretSettings[machineState.MachineType].OnHitAudio != null)
+                            ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
+
+                        TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
+                        monster.OnHit(TurretSettings[machineState.MachineType].Damage);
                     }
                 }
                 else
@@ -196,33 +202,166 @@ namespace Pandaros.Settlers.Items.Machines
             var gunpowder = new InventoryItem(BuiltinBlocks.GunpowderPouch, 3);
             var matchlock = new InventoryItem(BuiltinBlocks.MatchlockGun, 2);
 
+            AddStoneTurretSettings();
+            AddBronzeArrowTurretSettings();
+            AddCrossBowTurretSettings();
+            AddMatchlockTurretSettings();
+
             var stonerecipe = new Recipe(STONE_NAMESPACE,
                                     new List<InventoryItem>() { planks, copperParts, copperNails, tools, stone, sling, stoneAmmo },
-                                    new InventoryItem(TurretTypes[STONE].TurretItem.ItemIndex),
+                                    new InventoryItem(TurretSettings[STONE].TurretItem.ItemIndex),
                                     5);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, stonerecipe);
 
             var bronzeArrowrecipe = new Recipe(BRONZEARROW_NAMESPACE,
                                     new List<InventoryItem>() { planks, bronze, bronzeIngot, copperNails, tools, stone, arrow, bow },
-                                    new InventoryItem(TurretTypes[BRONZEARROW].TurretItem.ItemIndex),
+                                    new InventoryItem(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
                                     5);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
 
             var crossbowrecipe = new Recipe(CROSSBOW_NAMESPACE,
                                     new List<InventoryItem>() { planks, iron, rivets, copperNails, tools, stone, bolt, crossbow },
-                                    new InventoryItem(TurretTypes[CROSSBOW].TurretItem.ItemIndex),
+                                    new InventoryItem(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
                                     5);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
 
             var matchlockrecipe = new Recipe(MATCHLOCK_NAMESPACE,
                                     new List<InventoryItem>() { planks, steelParts, steelIngot, copperNails, tools, stone, bullet, gunpowder, matchlock },
-                                    new InventoryItem(TurretTypes[MATCHLOCK].TurretItem.ItemIndex),
+                                    new InventoryItem(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
                                     5);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
+
+            foreach (var turret in TurretSettings)
+                MachineManager.RegisterMachineType(turret.Key, new MachineManager.MachineSettings(turret.Value.TurretItem.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, turret.Value.RepairTime, turret.Value.RefuelTime, turret.Value.ReloadTime, turret.Value.WorkTime));
+        }
+
+        private static void AddStoneTurretSettings()
+        {
+            var turretSettings = new TurretSetting()
+            {
+                TurretItem = TurretTypes[STONE],
+                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.SlingBullet) },
+                AmmoValue = 0.05f,
+                Damage = 50f,
+                DurabilityPerDoWork = 0.002f,
+                FuelPerDoWork = 0.03f,
+                Name = STONE,
+                OnShootAudio = "sling",
+                OnHitAudio = "fleshHit",
+                Range = 17,
+                WorkTime = 1.5f,
+                RefuelTime = 4,
+                ReloadTime = 5,
+                RepairTime = 10,
+                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
+                {
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Sling, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Sling, 2) } },
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.SLINGBULLET]
+            };
+
+            TurretSettings[STONE] = turretSettings;
+        }
+
+        private static void AddBronzeArrowTurretSettings()
+        {
+            var turretSettings = new TurretSetting()
+            {
+                TurretItem = TurretTypes[BRONZEARROW],
+                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.BronzeArrow) },
+                AmmoValue = 0.05f,
+                Damage = 100f,
+                DurabilityPerDoWork = 0.004f,
+                FuelPerDoWork = 0.04f,
+                Name = BRONZEARROW,
+                OnShootAudio = "bowShoot",
+                OnHitAudio = "fleshHit",
+                Range = 25,
+                WorkTime = 3f,
+                RefuelTime = 5,
+                ReloadTime = 6,
+                RepairTime = 12,
+                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
+                {
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Bow, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Bow, 2) } },
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.ARROW]
+            };
+
+            TurretSettings[BRONZEARROW] = turretSettings;
+        }
+
+        private static void AddCrossBowTurretSettings()
+        {
+            var turretSettings = new TurretSetting()
+            {
+                TurretItem = TurretTypes[CROSSBOW],
+                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.CrossbowBolt) },
+                AmmoValue = 0.05f,
+                Damage = 300f,
+                DurabilityPerDoWork = 0.005f,
+                FuelPerDoWork = 0.04f,
+                Name = CROSSBOW,
+                OnShootAudio = "bowShoot",
+                OnHitAudio = "fleshHit",
+                Range = 30,
+                WorkTime = 4f,
+                RefuelTime = 6,
+                ReloadTime = 7,
+                RepairTime = 13,
+                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
+                {
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Crossbow, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Crossbow, 2) } },
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.CROSSBOWBOLT]
+            };
+
+            TurretSettings[CROSSBOW] = turretSettings;
+        }
+
+        private static void AddMatchlockTurretSettings()
+        {
+
+            var turretSettings = new TurretSetting()
+            {
+                TurretItem = TurretTypes[MATCHLOCK],
+                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.LeadBullet), new InventoryItem(BuiltinBlocks.GunpowderPouch) },
+                AmmoValue = 0.05f,
+                Damage = 500f,
+                DurabilityPerDoWork = 0.01f,
+                FuelPerDoWork = 0.05f,
+                Name = MATCHLOCK,
+                OnShootAudio = "matchlock",
+                OnHitAudio = "fleshHit",
+                Range = 35,
+                WorkTime = 6f,
+                RefuelTime = 7,
+                ReloadTime = 8,
+                RepairTime = 14,
+                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
+                {
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.MatchlockGun, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.MatchlockGun, 2) } },
+                },
+                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
+            };
+
+            TurretSettings[MATCHLOCK] = turretSettings;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
@@ -284,34 +423,7 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("npcLimit", 0);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-
-            var turretSettings = new TurretSettings()
-            {
-                TurretItem = item,
-                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.SlingBullet) },
-                AmmoValue = 0.05f,
-                Damage = 50f,
-                DurabilityPerDoWork = 0.002f,
-                FuelPerDoWork = 0.01f,
-                Name = STONE,
-                OnShootAudio = "sling",
-                OnHitAudio = "fleshHit",
-                Range = 17,
-                WorkTime = 1.5f,
-                RefuelTime = 4,
-                ReloadTime = 5,
-                RepairTime = 10,
-                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
-                {
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Sling, 2) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Sling, 1) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                },
-                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.SLINGBULLET]
-            };
-
-            TurretTypes[STONE] = turretSettings;
+            TurretTypes[STONE] = item;
             items.Add(turretName, item);
         }
 
@@ -333,34 +445,7 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("npcLimit", 0);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-
-            var turretSettings = new TurretSettings()
-            {
-                TurretItem = item,
-                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.BronzeArrow) },
-                AmmoValue = 0.05f,
-                Damage = 100f,
-                DurabilityPerDoWork = 0.004f,
-                FuelPerDoWork = 0.02f,
-                Name = BRONZEARROW,
-                OnShootAudio = "bowShoot",
-                OnHitAudio = "fleshHit",
-                Range = 25,
-                WorkTime = 3f,
-                RefuelTime = 5,
-                ReloadTime = 6,
-                RepairTime = 12,
-                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
-                {
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Bow, 2) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Bow, 1) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                },
-                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.ARROW]
-            };
-
-            TurretTypes[BRONZEARROW] = turretSettings;
+            TurretTypes[BRONZEARROW] = item;
             items.Add(turretName, item);
         }
 
@@ -382,34 +467,7 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("npcLimit", 0);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-
-            var turretSettings = new TurretSettings()
-            {
-                TurretItem = item,
-                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.CrossbowBolt) },
-                AmmoValue = 0.05f,
-                Damage = 300f,
-                DurabilityPerDoWork = 0.005f,
-                FuelPerDoWork = 0.02f,
-                Name = CROSSBOW,
-                OnShootAudio = "bowShoot",
-                OnHitAudio = "fleshHit",
-                Range = 30,
-                WorkTime = 4f,
-                RefuelTime = 6,
-                ReloadTime = 7,
-                RepairTime = 13,
-                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
-                {
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Crossbow, 2) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Crossbow, 1) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                },
-                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.CROSSBOWBOLT]
-            };
-
-            TurretTypes[CROSSBOW] = turretSettings;
+            TurretTypes[CROSSBOW] = item;
             items.Add(turretName, item);
         }
 
@@ -431,41 +489,14 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("npcLimit", 0);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-
-            var turretSettings = new TurretSettings()
-            {
-                TurretItem = item,
-                Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.LeadBullet), new InventoryItem(BuiltinBlocks.GunpowderPouch) },
-                AmmoValue = 0.05f,
-                Damage = 500f,
-                DurabilityPerDoWork = 0.01f,
-                FuelPerDoWork = 0.04f,
-                Name = MATCHLOCK,
-                OnShootAudio = "matchlock",
-                OnHitAudio = "fleshHit",
-                Range = 35,
-                WorkTime = 6f,
-                RefuelTime = 7,
-                ReloadTime = 8,
-                RepairTime = 14,
-                RequiredForFix = new Dictionary<float, List<InventoryItem>>()
-                {
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.MatchlockGun, 2) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.MatchlockGun, 1) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                },
-                ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
-            };
-
-            TurretTypes[MATCHLOCK] = turretSettings;
+            TurretTypes[MATCHLOCK] = item;
             items.Add(turretName, item);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Turret.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
-            var turret = TurretTypes.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.typeToBuild).Value;
+            var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.typeToBuild).Value;
 
             if (turret != null && d.typeTillNow == BuiltinBlocks.Air)
             {
