@@ -122,18 +122,7 @@ namespace Pandaros.Settlers.Items.Machines
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {
-            var node = new JSONNode();
-            node.SetAs("clipCollectionName", GameLoader.NAMESPACE + "MiningMachineAudio");
-
-            var fileListNode = new JSONNode(NodeType.Array);
-            var audoFileNode = new JSONNode()
-                .SetAs("path", GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg")
-                .SetAs("audioGroup", "Effects");
-
-            fileListNode.AddToArray(audoFileNode);
-            node.SetAs("fileList", fileListNode);
-
-            ItemTypesServer.AudioFilesJSON.AddToArray(node);
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "MiningMachineAudio", GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]

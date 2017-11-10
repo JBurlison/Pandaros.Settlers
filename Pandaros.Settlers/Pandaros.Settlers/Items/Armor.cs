@@ -501,7 +501,7 @@ namespace Pandaros.Settlers.Items
                 }
 
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
-                var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5);
+                var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5, false, -100);
                 RecipeStorage.AddOptionalLimitTypeRecipe(JOB_METALSMITH, recipe);
             }
         }

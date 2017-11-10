@@ -97,14 +97,14 @@ namespace Pandaros.Settlers.Jobs
         public override ITrackableBlock InitializeFromJSON(Players.Player player, JSONNode node)
         {
             originalPosition = (Vector3Int)node[nameof(originalPosition)];
-            this.InitializeJob(player, (Vector3Int)node["position"], node.GetAs<int>("npcID"));
+            InitializeJob(player, (Vector3Int)node["position"], node.GetAs<int>("npcID"));
             return this;
         }
 
         public ITrackableBlock InitializeOnAdd(Vector3Int position, ushort type, Players.Player player)
         {
             originalPosition = position;
-            this.InitializeJob(player, position, 0);
+            InitializeJob(player, position, 0);
             return this;
         }
 

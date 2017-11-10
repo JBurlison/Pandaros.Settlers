@@ -183,6 +183,22 @@ namespace Pandaros.Settlers
             }
         }
 
+        public static void AddSoundFile(string key, string fileName)
+        {
+            var node = new JSONNode();
+            node.SetAs("clipCollectionName", key);
+
+            var fileListNode = new JSONNode(NodeType.Array);
+            var audoFileNode = new JSONNode()
+                .SetAs("path", fileName)
+                .SetAs("audioGroup", "Effects");
+
+            fileListNode.AddToArray(audoFileNode);
+            node.SetAs("fileList", fileListNode);
+
+            ItemTypesServer.AudioFilesJSON.AddToArray(node);
+        }
+
         public static void localize(string locName, string locFilename, JSONNode jsonFromMod)
         {
             try

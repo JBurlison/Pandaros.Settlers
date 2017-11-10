@@ -83,8 +83,8 @@
   "sentences": {
     "popup": {
       "limits": {
-        "Pandaros.Settlers.AdvancedCraftingTable": "Used for making advanced items such as machinery."
-        }
+        "Pandaros.Settlers.AdvanceCrafter": "Used for making advanced items such as machinery."
+      }
       },
     "Pandaros": {
       "Settlers": {

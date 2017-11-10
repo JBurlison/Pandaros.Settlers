@@ -19,27 +19,6 @@ namespace Pandaros.Settlers
             return rng.NextDouble() * (max - min) + min;
         }
 
-        public static void Update(this List<InventoryItem> inv, Players.Player p)
-        {
-            NetworkWrapper.Send(inv.GetBytes(), p, NetworkMessageReliability.ReliableWithBuffering);
-        }
-
-        public static byte[] GetBytes(this List<InventoryItem> items)
-        {
-            byte[] result;
-            using (ByteBuilder byteBuilder = ByteBuilder.Get())
-            {
-                byteBuilder.Write((ushort)ClientMessageType.InventoryUpdate);
-
-                for (int i = 0; i < items.Count; i++)
-                {
-                    items[i].ToBytes(byteBuilder);
-                }
-                result = byteBuilder.ToArray();
-            }
-            return result;
-        }
-
         public static bool TakeItemFromInventory(this Players.Player player, ushort itemType)
         {
             var hasItem = false;
@@ -71,11 +50,6 @@ namespace Pandaros.Settlers
             }
 
             return hasItem;
-        }
-
-        public static BedBlock GetBed(this NPCBase job)
-        {
-            return typeof(NPCBase).GetField("bed", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(job) as BedBlock;
         }
     }
 }
