@@ -68,7 +68,7 @@
     <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
-    <Compile Include="Items\Machines\MachineManager.cs" />
+    <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
     <Compile Include="Managers\AnimationManager.cs" />

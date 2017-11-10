@@ -1,4 +1,5 @@
 ﻿using NPC;
+using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
 using System;

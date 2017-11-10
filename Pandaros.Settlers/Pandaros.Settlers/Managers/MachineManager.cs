@@ -1,6 +1,7 @@
 ﻿using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items.Machines;
 using Pipliz;
 using Pipliz.JSON;
 using System;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Items.Machines
+namespace Pandaros.Settlers.Managers
 {
     [ModLoader.ModManager]
     public static class MachineManager
@@ -90,7 +91,10 @@ namespace Pandaros.Settlers.Items.Machines
                     foreach (var node in machinesNode.LoopArray())
                         RegisterMachineState(p, new MachineState(node, p));
 
-                    PandaLogger.Log(ChatColor.lime, $"{Machines[p].Count} machines loaded from save for {p.ID.steamID.m_SteamID}!");
+                    if (Machines.ContainsKey(p))
+                        PandaLogger.Log(ChatColor.lime, $"{Machines[p].Count} machines loaded from save for {p.ID.steamID.m_SteamID}!");
+                    else
+                        PandaLogger.Log(ChatColor.lime, $"No machines found in save for {p.ID.steamID.m_SteamID}.");
                 }
             }
             else

@@ -1,6 +1,7 @@
 ﻿using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
 using System;

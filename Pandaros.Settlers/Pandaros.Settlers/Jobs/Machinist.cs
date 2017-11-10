@@ -1,5 +1,6 @@
 ﻿using BlockTypes.Builtin;
 using NPC;
+using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
@@ -118,8 +119,8 @@ namespace Pandaros.Settlers.Jobs
 
             if (_targetMachine == null)
             {
-                if (Items.Machines.MachineManager.Machines.ContainsKey(owner))
-                    foreach (var machine in Items.Machines.MachineManager.Machines[Owner].Where(m => !m.Value.HasMachinist))
+                if (MachineManager.Machines.ContainsKey(owner))
+                    foreach (var machine in MachineManager.Machines[Owner].Where(m => !m.Value.HasMachinist))
                     {
                         float dis = Vector3.Distance(machine.Key.Vector, position.Vector);
 
