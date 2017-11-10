@@ -326,10 +326,13 @@ namespace Pandaros.Settlers.AI
 
                 foreach (var follower in colony.Followers)
                 {
+                    var job = follower.Job;
+
+                    if (!CanCallToArms(job))
+                        continue;
+
                     try
                     {
-                        var job = follower.Job;
-
                         if (job != null)
                         {
                             if (job.GetType() != typeof(CalltoArmsJob))
@@ -384,6 +387,13 @@ namespace Pandaros.Settlers.AI
             Colony.SendColonistCount(player);
 
             return true;
+        }
+
+        public static bool CanCallToArms(IJob job)
+        {
+            return !(job is GuardBaseJob) &&
+                   !(job is Jobs.Knight) &&
+                   !(job is Jobs.MachinistJob);
         }
     }
 }
