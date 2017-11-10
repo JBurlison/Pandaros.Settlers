@@ -119,7 +119,7 @@ More end-game foods to help feed your hungry colonists!
 |Berry Pie|6|Flour: 4, Berry: 4, Firewood|2|
 
 ## Machines!
-![Machines](https://imgur.com/bTvRqmn.png)
+![Machines](https://imgur.com/Q78m0B9.png)
 Machines help your colonists out a bit! They need to be researched to be activated. 
 
 #### Machine Types:
