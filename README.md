@@ -7,7 +7,7 @@ Food use fluctuates depending on how hungry your colonists are!
 **NOTE: With the release of 0.4.0 Only servers needs mods**
 
 ## Research!
-![GitHub Logo](https://imgur.com/5ovugpE.png)
+![GitHub Logo](https://imgur.com/f1jN4pu.png)
 * Decreased food waste
 * Increased Settler Health (All colonists, up to 50 at level 5)
 * Additional Banners (Up to 20!)
@@ -23,6 +23,7 @@ Food use fluctuates depending on how hungry your colonists are!
   * Bows
   * Crossbows
   * Matchlockgun
+* Job Training for most crafting jobs
  
 ## Game Difficulties!
 
