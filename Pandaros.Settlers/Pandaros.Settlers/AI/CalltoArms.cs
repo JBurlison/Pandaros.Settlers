@@ -380,7 +380,7 @@ namespace Pandaros.Settlers.AI
             }
 
             foreach (var armsJob in _callToArmsJobs)
-                JobTracker.Remove(player, armsJob.KeyLocation);
+                ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(armsJob);
 
             _callToArmsJobs.Clear();
             JobTracker.Update();

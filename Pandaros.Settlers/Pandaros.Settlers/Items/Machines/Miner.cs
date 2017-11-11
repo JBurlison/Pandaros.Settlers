@@ -161,6 +161,8 @@ namespace Pandaros.Settlers.Items.Machines
             minerFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/MiningMachine.png");
             minerFlagNode["isPlaceable"] = new JSONNode(true);
             minerFlagNode.SetAs("onRemoveAmount", 1);
+            minerFlagNode.SetAs("onPlaceAudio", "stonePlace");
+            minerFlagNode.SetAs("onRemoveAudio", "stoneDelete");
             minerFlagNode.SetAs("isSolid", true);
             minerFlagNode.SetAs("sideall", "SELF");
             minerFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/MiningMachine.obj");
