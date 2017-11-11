@@ -48,10 +48,8 @@ namespace Pandaros.Settlers.Managers
         }
 
         public static Dictionary<Players.Player, List<MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, List<MachineState>>();
-        public static double _nextUpdateTime;
         public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
-        static List<MachineState> _invalidMachines = new List<MachineState>();
 
         public static void RegisterMachineType(string machineType, MachineSettings callback)
         {
@@ -82,18 +80,8 @@ namespace Pandaros.Settlers.Managers
             {
                 lock (Machines)
                     foreach (var machine in Machines)
-                    {
-                        _invalidMachines.Clear();
-
                         foreach (var state in machine.Value)
-                            if (!state.PositionIsValid())
-                                _invalidMachines.Add(state);
-                            else
-                                state.MachineSettings.DoWork(machine.Key, state);
-
-                        foreach (var m in _invalidMachines)
-                            machine.Value.Remove(m);
-                    }
+                            state.MachineSettings.DoWork(machine.Key, state);
             }
         }
 
@@ -138,17 +126,17 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
-            if (d.typeToBuild == BuiltinBlocks.Air)
-            lock (Machines)
-            {
-                if (!Machines.ContainsKey(d.requestedBy))
-                    Machines.Add(d.requestedBy, new List<MachineState>());
+            if (d.TypeNew == BuiltinBlocks.Air)
+                lock (Machines)
+                {
+                    if (!Machines.ContainsKey(d.requestedBy))
+                        Machines.Add(d.requestedBy, new List<MachineState>());
 
                     var mach = Machines[d.requestedBy].FirstOrDefault(m => m.Position == d.VoxelToChange);
-
+                    
                     if (mach != null)
                         Machines[d.requestedBy].Remove(mach);
-            }
+                }
 
             return true;
         }
@@ -167,9 +155,7 @@ namespace Pandaros.Settlers.Managers
                     Machines[player].Remove(existing);
 
                 Machines[player].Add(state);
-#if Debug
-                PandaLogger.Log($"ADD {Machines[player].Count} known machines for Player {player.ID.steamID}");
-#endif
+
             }
         }
 

@@ -74,7 +74,7 @@ namespace Pandaros.Settlers.Items.Machines
 #if Debug
                 PandaLogger.Log(ChatColor.lime, $"PositionIsValid Trt Get Failed {Position == null}.");
 #endif
-                return Position == null;
+                return Position != null;
             }
         }
 
