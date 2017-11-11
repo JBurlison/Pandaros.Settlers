@@ -366,6 +366,7 @@ namespace Pandaros.Settlers.AI
                     {
                         follower.ClearJob();
                         job.OnRemovedNPC();
+                        ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(job);
                     }
 
                     if (_Jobs.ContainsKey(follower) && _Jobs[follower].NeedsNPC)
@@ -373,7 +374,9 @@ namespace Pandaros.Settlers.AI
                         assignedWorkers.Add(follower);
                         follower.TakeJob(_Jobs[follower]);
                         _Jobs[follower].OnAssignedNPC(follower);
+                        JobTracker.Remove(player, _Jobs[follower].KeyLocation);
                     }
+
                 }
 
                 _Jobs.Clear();

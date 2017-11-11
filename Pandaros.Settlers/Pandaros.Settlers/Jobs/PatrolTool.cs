@@ -278,18 +278,25 @@ namespace Pandaros.Settlers.Jobs
 
                 foreach (var knight in Knight.Knights[d.requestedBy])
                 {
-                    if (knight.PatrolPoints.Contains(d.voxelHit))
+                    try
                     {
-                        knight.OnRemove();
+                        if (knight.PatrolPoints.Contains(d.voxelHit))
+                        {
+                            knight.OnRemove();
 
-                        foreach (var flagPoint in knight.PatrolPoints)
-                            if (flagPoint != d.voxelHit)
-                            {
-                                ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
-                                stockpile.Add(PatrolFlag.ItemIndex);
-                            }
+                            foreach (var flagPoint in knight.PatrolPoints)
+                                if (flagPoint != d.voxelHit)
+                                {
+                                    ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
+                                    stockpile.Add(PatrolFlag.ItemIndex);
+                                }
 
-                        break;
+                            break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        PandaLogger.LogError(ex);
                     }
                 }
                    
@@ -297,6 +304,10 @@ namespace Pandaros.Settlers.Jobs
                 {
                     PandaChat.Send(d.requestedBy, $"Patrol with {toRemove.PatrolPoints.Count} patrol points no longer active.", ChatColor.orange);
                     Knight.Knights[d.requestedBy].Remove(toRemove);
+
+                    if (((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(d.requestedBy)).openJobs.Contains(toRemove))
+                        ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(d.requestedBy)).openJobs.Remove(toRemove);
+
                     JobTracker.Update();
                 }
 
