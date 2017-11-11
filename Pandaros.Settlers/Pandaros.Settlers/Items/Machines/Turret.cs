@@ -144,12 +144,6 @@ namespace Pandaros.Settlers.Items.Machines
                 if (machineState.Fuel <= 0)
                     machineState.Fuel = 0;
 
-                if (machineState.Durability <= 0)
-                    PandaChat.SendThrottle(player, $"A {machineState.MachineType} at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
-
-                if (machineState.Fuel <= 0)
-                    PandaChat.SendThrottle(player, $"A {machineState.MachineType} at {machineState.Position} has run out of fuel. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
-
                 if (machineState.Load > 0)
                 {
                     var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);

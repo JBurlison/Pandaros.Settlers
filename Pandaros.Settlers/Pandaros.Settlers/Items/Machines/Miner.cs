@@ -97,12 +97,6 @@ namespace Pandaros.Settlers.Items.Machines
                 if (machineState.Fuel <= 0)
                     machineState.Fuel = 0;
 
-                if (machineState.Durability <= 0)
-                    PandaChat.SendThrottle(player, $"A mining machine at {machineState.Position} has broken down. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
-
-                if (machineState.Fuel <= 0)
-                    PandaChat.SendThrottle(player, $"A mining machine at {machineState.Position} has run out of fuel. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
-
                 if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
                 {
                     List<ItemTypes.ItemTypeDrops> itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
