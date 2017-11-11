@@ -24,7 +24,12 @@ namespace Pandaros.Settlers.Research
         public const string OvenTraining = "OvenTraining";
         public const string WoodcutterTraining = "WoodcutterTraining";
         public const string WorkBenchTraining = "WorkBenchTraining";
-        private const int COLONY_BAG_COST = 3;
+
+        private const string SCIENCEBAGREQ = ColonyBuiltIn.ScienceBagBasic;
+        private const int BAG_COST = 2;
+        private const int COIN_COST = 5;
+        private static ushort SCIENCEBAG = BuiltinBlocks.ScienceBagBasic;
+        private static ushort COIN = BuiltinBlocks.BronzeCoin;
 
         static Dictionary<string, float> _defaultValues = new Dictionary<string, float>();
 
@@ -54,12 +59,13 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(ShopJob)] = ShopJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, MerchantTraining, .05f, requirements);
@@ -85,12 +91,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.LinenBag, 3);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, TailorTraining, .05f, requirements);
@@ -116,12 +122,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.IronWrought, 3);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, BloomeryTraining, .05f, requirements);
@@ -147,12 +153,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, FineryForgeTraining, .05f, requirements);
@@ -178,12 +184,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Bricks, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, FurnaceTraining, .05f, requirements);
@@ -209,12 +215,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Flour, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, GrinderTraining, .05f, requirements);
@@ -240,12 +246,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.LeadBullet, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, GunSmithTraining, .05f, requirements);
@@ -270,13 +276,13 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(KilnJob)] = KilnJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.LeadBullet, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(BuiltinBlocks.Charcoal, 3);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, KilnTraining, .05f, requirements);
@@ -301,13 +307,13 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(MetalSmithJob)] = MetalSmithJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.BronzePlate, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(BuiltinBlocks.BronzePlate, 3);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, MetalSmithTraining, .05f, requirements);
@@ -332,13 +338,12 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(MintJob)] = MintJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 20);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, MintTraining, .05f, requirements);
@@ -363,13 +368,13 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(OvenJob)] = OvenJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.Bread, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(BuiltinBlocks.Bread, 3);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, OvenTraining, .05f, requirements);
@@ -394,13 +399,13 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(WoodcutterJob)] = WoodcutterJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.Planks, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(BuiltinBlocks.Planks, 5);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, WoodcutterTraining, .05f, requirements);
@@ -426,12 +431,12 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.WorkBench, 3);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, COLONY_BAG_COST);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(SCIENCEBAG, BAG_COST);
+            researchDic.Add(COIN, COIN_COST);
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.ScienceBagColony
+                SCIENCEBAGREQ
             };
 
             var research = new PandaResearch(researchDic, 1, WorkBenchTraining, .05f, requirements);

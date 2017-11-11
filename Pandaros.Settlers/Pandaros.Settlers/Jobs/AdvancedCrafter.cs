@@ -102,7 +102,7 @@ namespace Pandaros.Settlers.Jobs
             return new NPCTypeStandardSettings
             {
                 keyName = this.NPCTypeKey,
-                printName = "AdvancedCrafter",
+                printName = "Advanced Crafter",
                 maskColor1 = new Color32(101, 121, 123, 255),
                 type = NPCTypeID.GetNextID()
             };
