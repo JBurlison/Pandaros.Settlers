@@ -287,8 +287,11 @@ namespace Pandaros.Settlers.Jobs
                             foreach (var flagPoint in knight.PatrolPoints)
                                 if (flagPoint != d.voxelHit)
                                 {
-                                    ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
-                                    stockpile.Add(PatrolFlag.ItemIndex);
+                                    if (World.TryGetTypeAt(flagPoint, out var objType) && objType == PatrolFlag.ItemIndex)
+                                    {
+                                        ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
+                                        stockpile.Add(PatrolFlag.ItemIndex);
+                                    }
                                 }
 
                             break;

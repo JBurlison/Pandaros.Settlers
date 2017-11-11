@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Items.Machines
         public string MachineType { get; private set; }
         public Players.Player Owner { get; private set; }
         public double NextTimeForWork { get; set; } = Time.SecondsSinceStartDouble + _rand.NextDouble(0, 5);
-        public bool HasMachinist { get; set; } = false;
+        public Jobs.MachinistJob Machinist { get; set; }
 
 
         public MachineManager.MachineSettings MachineSettings { get; private set; }
@@ -58,6 +58,24 @@ namespace Pandaros.Settlers.Items.Machines
                 Load = load;
 
             MachineSettings = MachineManager.GetCallbacks(MachineType);
+        }
+
+        public bool PositionIsValid()
+        {
+            if (Position != null && World.TryGetTypeAt(Position, out var objType))
+            {
+#if Debug
+                PandaLogger.Log(ChatColor.lime, $"PositionIsValid {ItemTypes.IndexLookup.GetName(objType)}. POS {Position}");
+#endif
+                return objType == MachineSettings.ItemIndex;
+            }
+            else
+            {
+#if Debug
+                PandaLogger.Log(ChatColor.lime, $"PositionIsValid Trt Get Failed {Position == null}.");
+#endif
+                return Position == null;
+            }
         }
 
         public virtual JSONNode ToJsonNode()

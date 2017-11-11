@@ -67,12 +67,21 @@ namespace Pandaros.Settlers.Jobs
             RecipePlayer.AddOptionalRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".Machinist.OnDeath")]
+        public static void OnDeath(NPCBase nPC)
+        {
+            if (nPC.Job != null && nPC.Job.GetType() == typeof(MachinistJob) && ((MachinistJob)nPC.Job).TargetMachine != null)
+            {
+                ((MachinistJob)nPC.Job).TargetMachine.Machinist = null;
+            }
+        }
     }
 
     public class MachinistJob : BlockJobBase, IBlockJobBase, INPCTypeDefiner
     {
         protected float cooldown = 2f;
-        Items.Machines.MachineState _targetMachine;
+        public Items.Machines.MachineState TargetMachine { get; set; }
         Vector3Int originalPosition;
         public static List<uint> OkStatus;
 
@@ -115,35 +124,38 @@ namespace Pandaros.Settlers.Jobs
 
         public override Vector3Int GetJobLocation()
         {
-            position = originalPosition;
+            var pos = originalPosition;
 
-            if (_targetMachine == null)
+            if (TargetMachine == null)
             {
                 if (MachineManager.Machines.ContainsKey(owner))
-                    foreach (var machine in MachineManager.Machines[Owner].Where(m => !m.Value.HasMachinist))
+                    foreach (var machine in MachineManager.Machines[Owner].Where(m => m.Machinist == null))
                     {
-                        float dis = Vector3.Distance(machine.Key.Vector, position.Vector);
-
-                        if (dis <= 21)
+                        if (machine.PositionIsValid())
                         {
-                            if (machine.Value.Durability < .5f ||
-                                machine.Value.Fuel < .3f ||
-                                machine.Value.Load < .3f)
+                            float dis = Vector3.Distance(machine.Position.Vector, pos.Vector);
+
+                            if (dis <= 21)
                             {
-                                _targetMachine = machine.Value;
-                                _targetMachine.HasMachinist = true;
-                                position = Server.AI.AIManager.ClosestPosition(_targetMachine.Position, usedNPC.Position);
-                                break;
+                                if (machine.Durability < .5f ||
+                                    machine.Fuel < .3f ||
+                                    machine.Load < .3f)
+                                {
+                                    TargetMachine = machine;
+                                    TargetMachine.Machinist = this;
+                                    pos = Server.AI.AIManager.ClosestPosition(TargetMachine.Position, usedNPC.Position);
+                                    break;
+                                }
                             }
                         }
                     }
             }
             else
             {
-                position = Server.AI.AIManager.ClosestPosition(_targetMachine.Position, usedNPC.Position);
+                pos = Server.AI.AIManager.ClosestPosition(TargetMachine.Position, usedNPC.Position);
             }
 
-            return position;
+            return pos;
         }
 
         const float COOLDOWN = 3f;
@@ -153,33 +165,36 @@ namespace Pandaros.Settlers.Jobs
             ushort status = GameLoader.Waiting_Icon;
             float cooldown = COOLDOWN;
 
-            if (_targetMachine != null && 3 > Vector3.Distance(_targetMachine.Position.Vector, usedNPC.Position.Vector))
+            if (TargetMachine != null && 3 > Vector3.Distance(TargetMachine.Position.Vector, usedNPC.Position.Vector))
             {
-                usedNPC.LookAt(_targetMachine.Position.Vector);
+                usedNPC.LookAt(TargetMachine.Position.Vector);
 
-                if (_targetMachine.Durability < .50f)
+                if (TargetMachine.Durability < .50f)
                 {
-                    status = _targetMachine.MachineSettings.Repair(Owner, _targetMachine);
-                    cooldown = _targetMachine.MachineSettings.RepairTime;
+                    status = TargetMachine.MachineSettings.Repair(Owner, TargetMachine);
+                    cooldown = TargetMachine.MachineSettings.RepairTime;
                 }
-                else if (_targetMachine.Fuel < .3f)
+                else if (TargetMachine.Fuel < .3f)
                 {
-                    status = _targetMachine.MachineSettings.Refuel(Owner, _targetMachine);
-                    cooldown = _targetMachine.MachineSettings.RefuelTime;
+                    status = TargetMachine.MachineSettings.Refuel(Owner, TargetMachine);
+                    cooldown = TargetMachine.MachineSettings.RefuelTime;
                 }
-                else if (_targetMachine.Load < .3f)
+                else if (TargetMachine.Load < .3f)
                 {
-                    status = _targetMachine.MachineSettings.Reload(Owner, _targetMachine);
-                    cooldown = _targetMachine.MachineSettings.ReloadTime;
+                    status = TargetMachine.MachineSettings.Reload(Owner, TargetMachine);
+                    cooldown = TargetMachine.MachineSettings.ReloadTime;
                 }
                 else
                 {
-                    _targetMachine.HasMachinist = false;
-                    _targetMachine = null;
-                }   
+                    TargetMachine.Machinist = null;
+                    TargetMachine = null;
+                }
             }
 
-            if (_targetMachine == null)
+            // if the machine is gone, Abort.
+            CheckIfValidMachine();
+
+            if (TargetMachine == null)
             {
                 state.JobIsDone = true;
                 status = GameLoader.Waiting_Icon;
@@ -194,8 +209,17 @@ namespace Pandaros.Settlers.Jobs
 
             state.SetCooldown(cooldown);
 
-            if (_targetMachine == null)
+            if (TargetMachine == null)
                 state.JobIsDone = true;
+        }
+
+        private void CheckIfValidMachine()
+        {
+            if (TargetMachine != null && !TargetMachine.PositionIsValid())
+            {
+                TargetMachine.Machinist = null;
+                TargetMachine = null;
+            }
         }
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)

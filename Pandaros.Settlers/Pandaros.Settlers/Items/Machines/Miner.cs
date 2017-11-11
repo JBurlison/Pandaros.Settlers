@@ -176,12 +176,11 @@ namespace Pandaros.Settlers.Items.Machines
         {
             if (d.typeToBuild == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
             {
-                if (World.TryGetTypeAt(d.voxelHit, out ushort itemBelow))
+                if (World.TryGetTypeAt(d.VoxelToChange.Add(0, -1, 0), out ushort itemBelow))
                 {
                     if (CanMineBlock(itemBelow))
                     {
-                        PandaChat.Send(d.requestedBy, $"{ItemTypes.IndexLookup.GetName(itemBelow).Replace("infinite", "")} ready to Mine! Ensure you have a Machinist around to run the machine!");
-                        MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.voxelHit.Add(0, 1, 0), d.requestedBy, nameof(Miner)));
+                        MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.VoxelToChange, d.requestedBy, nameof(Miner)));
                         return true;
                     }
                 }

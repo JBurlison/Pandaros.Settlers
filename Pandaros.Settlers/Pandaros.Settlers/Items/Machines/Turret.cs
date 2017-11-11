@@ -500,12 +500,12 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Turret.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
-            var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.typeToBuild).Value;
-
-            if (turret != null && d.typeTillNow == BuiltinBlocks.Air)
+            if (d.typeTillNow == BuiltinBlocks.Air)
             {
-                PandaChat.Send(d.requestedBy, $"{turret.Name} is ready! Ensure you have a Machinist around to run the machine!");
-                MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.voxelHit.Add(0, 1, 0), d.requestedBy, turret.Name));
+                var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.typeToBuild).Value;
+
+                if (turret != null)
+                    MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.VoxelToChange, d.requestedBy, turret.Name));
             }
 
             return true;

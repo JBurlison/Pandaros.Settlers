@@ -51,6 +51,7 @@ namespace Pandaros.Settlers.Research
 
         public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
 
+
         public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null, int baseIterationCount = 10, bool addLevelToName = true)
         {
             BaseValue = baseValue;
@@ -108,7 +109,7 @@ namespace Pandaros.Settlers.Research
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".PandaResearch.OnAddResearchables")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()
         {
             var researchDic = new Dictionary<ushort, int>();

@@ -10,6 +10,7 @@ using Pipliz.JSON;
 using Pandaros.Settlers.Entities;
 using Server.Monsters;
 using Pipliz.Collections;
+using BlockTypes.Builtin;
 
 namespace Pandaros.Settlers.Jobs
 {
@@ -190,6 +191,25 @@ namespace Pandaros.Settlers.Jobs
                 }
 
                 currentPos = PatrolPoints[_currentPatrolPos];
+
+                // if our flag is gone, remove the job.
+                if (World.TryGetTypeAt(PatrolPoints[_currentPatrolPos], out var objType) && objType != PatrolTool.PatrolFlag.ItemIndex)
+                {
+                    var stockPile = Stockpile.GetStockPile(Owner);
+
+                    UsedNPC.ClearJob();
+                    Knights[Owner].Remove(this);
+
+                    if (((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(Owner)).openJobs.Contains(this))
+                        ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(Owner)).openJobs.Remove(this);
+                    
+                    foreach (var flagPoint in PatrolPoints)
+                        if (World.TryGetTypeAt(flagPoint, out var flagType) && flagType == PatrolTool.PatrolFlag.ItemIndex)
+                        {
+                            ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
+                            stockPile.Add(PatrolTool.PatrolFlag.ItemIndex);
+                        }
+                }
             }
 
             return currentPos;
@@ -289,7 +309,6 @@ namespace Pandaros.Settlers.Jobs
             {
                 _usedNPC.ClearJob();
                 _usedNPC = null;
-                JobTracker.Remove(Owner, KeyLocation);
             }
         }
     }

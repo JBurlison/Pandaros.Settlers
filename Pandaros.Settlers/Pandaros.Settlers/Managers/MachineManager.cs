@@ -47,10 +47,11 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
+        public static Dictionary<Players.Player, List<MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, List<MachineState>>();
         public static double _nextUpdateTime;
         public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
+        static List<MachineState> _invalidMachines = new List<MachineState>();
 
         public static void RegisterMachineType(string machineType, MachineSettings callback)
         {
@@ -66,19 +67,34 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.SetFuelValues")]
         public static void SetFuelValues()
         {
+            FuelValues[BuiltinBlocks.LeavesTemperate] = .02f;
+            FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
+            FuelValues[BuiltinBlocks.Leaves] = .02f;
             FuelValues[BuiltinBlocks.Coalore] = .20f;
-            FuelValues[Items.ItemFactory.Firewood] = .10f;
+            FuelValues[BuiltinBlocks.Firewood] = .10f;
+            FuelValues[BuiltinBlocks.Straw] = .05f;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]
         public static void OnUpdate()
         {
-            lock(Machines)
-                foreach(var machine in Machines)
-                {
-                    foreach (var state in machine.Value)
-                        state.Value.MachineSettings.DoWork(machine.Key, state.Value);
-                }
+            if (GameLoader.WorldLoaded)
+            {
+                lock (Machines)
+                    foreach (var machine in Machines)
+                    {
+                        _invalidMachines.Clear();
+
+                        foreach (var state in machine.Value)
+                            if (!state.PositionIsValid())
+                                _invalidMachines.Add(state);
+                            else
+                                state.MachineSettings.DoWork(machine.Key, state);
+
+                        foreach (var m in _invalidMachines)
+                            machine.Value.Remove(m);
+                    }
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnLoadingPlayer")]
@@ -110,38 +126,50 @@ namespace Pandaros.Settlers.Managers
                     if (n.HasChild(GameLoader.NAMESPACE + ".Machines"))
                         n.RemoveChild(GameLoader.NAMESPACE + ".Machines");
 
-                    var minersNode = new JSONNode(NodeType.Array);
+                    var machineNode = new JSONNode(NodeType.Array);
 
                     foreach (var node in Machines[p])
-                        minersNode.AddToArray(node.Value.ToJsonNode());
+                            machineNode.AddToArray(node.ToJsonNode());
 
-                    n[GameLoader.NAMESPACE + ".Machines"] = minersNode;
+                    n[GameLoader.NAMESPACE + ".Machines"] = machineNode;
                 }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
+            if (d.typeToBuild == BuiltinBlocks.Air)
             lock (Machines)
             {
                 if (!Machines.ContainsKey(d.requestedBy))
-                    Machines.Add(d.requestedBy, new Dictionary<Vector3Int, MachineState>());
+                    Machines.Add(d.requestedBy, new List<MachineState>());
 
-                if (Machines[d.requestedBy].ContainsKey(d.voxelHit))
-                    Machines[d.requestedBy].Remove(d.voxelHit);
+                    var mach = Machines[d.requestedBy].FirstOrDefault(m => m.Position == d.VoxelToChange);
+
+                    if (mach != null)
+                        Machines[d.requestedBy].Remove(mach);
             }
 
             return true;
         }
+
 
         public static void RegisterMachineState(Players.Player player, MachineState state)
         {
             lock (Machines)
             {
                 if (!Machines.ContainsKey(player))
-                    Machines.Add(player, new Dictionary<Vector3Int, MachineState>());
+                    Machines.Add(player, new List<MachineState>());
 
-                Machines[player][state.Position] = state;
+                var existing = Machines[player].FirstOrDefault(m => m.Position == state.Position);
+
+                if (existing != null)
+                    Machines[player].Remove(existing);
+
+                Machines[player].Add(state);
+#if Debug
+                PandaLogger.Log($"ADD {Machines[player].Count} known machines for Player {player.ID.steamID}");
+#endif
             }
         }
 
@@ -152,10 +180,10 @@ namespace Pandaros.Settlers.Managers
 
             foreach (var machine in Machines[owner])
             {
-                var dis = Pipliz.Math.RoundToInt(Vector3.Distance(machine.Key.Vector, position.Vector));
+                var dis = Pipliz.Math.RoundToInt(Vector3.Distance(machine.Position.Vector, position.Vector));
 
                 if (dis <= maxDistance && dis <= closest)
-                    retVal.Add(machine.Key);
+                    retVal.Add(machine.Position);
             }
 
             return retVal;
@@ -170,20 +198,19 @@ namespace Pandaros.Settlers.Managers
 
                 var stockpile = Stockpile.GetStockPile(player);
 
-                foreach (var item in MachineManager.FuelValues)
+                foreach (var item in FuelValues)
                 {
-                    while (stockpile.Contains(item.Key) && machineState.Fuel <= MachineState.MAX_FUEL[player])
+                    while ((stockpile.AmountContained(item.Key) > 100 ||
+                            item.Key == BuiltinBlocks.Firewood ||
+                            item.Key == BuiltinBlocks.Coalore)&& machineState.Fuel < MachineState.MAX_FUEL[player])
                     {
                         stockpile.TryRemove(item.Key);
                         machineState.Fuel += item.Value;
                     }
-
-                    if (machineState.Fuel > MachineState.MAX_FUEL[player])
-                        break;
                 }
 
                 if (machineState.Fuel < MachineState.MAX_FUEL[player])
-                    return MachineManager.FuelValues.First().Key;
+                    return FuelValues.First().Key;
             }
 
             return GameLoader.Refuel_Icon;
