@@ -123,6 +123,7 @@ namespace Pandaros.Settlers.Jobs
         public Vector3Int GetJobLocation()
         {
             var currentPos = _usedNPC.Position;
+            GetBestWeapon();
 
             _target = MonsterTracker.Find(currentPos, 1, Items.ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
@@ -165,30 +166,31 @@ namespace Pandaros.Settlers.Jobs
                 _timeAtPatrol = 0;
                 _waitingFor = 0;
 
-                if (PatrolType == PatrolType.RoundRobin || (_forward && PatrolType == PatrolType.Zipper))
-                {
-                    _currentPatrolPos++;
-
-                    if (_currentPatrolPos > PatrolPoints.Count - 1)
-                        if (_forward && PatrolType == PatrolType.Zipper)
-                        {
-                            _currentPatrolPos -= 2;
-                            _forward = false;
-                        }
-                        else
-                            _currentPatrolPos = 0;
-                }
-                else
-                {
-                    _currentPatrolPos--;
-                    
-                    if (_currentPatrolPos < 0)
+                if (PatrolPoints.Count > 1)
+                    if (PatrolType == PatrolType.RoundRobin || (_forward && PatrolType == PatrolType.Zipper))
                     {
-                        _currentPatrolPos = 0;
                         _currentPatrolPos++;
-                        _forward = true;
+
+                        if (_currentPatrolPos > PatrolPoints.Count - 1)
+                            if (_forward && PatrolType == PatrolType.Zipper)
+                            {
+                                _currentPatrolPos -= 2;
+                                _forward = false;
+                            }
+                            else
+                                _currentPatrolPos = 0;
                     }
-                }
+                    else
+                    {
+                        _currentPatrolPos--;
+                    
+                        if (_currentPatrolPos < 0)
+                        {
+                            _currentPatrolPos = 0;
+                            _currentPatrolPos++;
+                            _forward = true;
+                        }
+                    }
 
                 currentPos = PatrolPoints[_currentPatrolPos];
 
@@ -283,7 +285,6 @@ namespace Pandaros.Settlers.Jobs
         private bool GetBestWeapon()
         {
             bool hasItem = !_inv.Weapon.IsEmpty();
-
             Items.WeaponMetadata bestWeapon = null;
 
             if (hasItem)
