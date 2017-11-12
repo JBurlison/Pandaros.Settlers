@@ -165,8 +165,6 @@ namespace Pandaros.Settlers.Items.Machines
                         monster.OnHit(TurretSettings[machineState.MachineType].Damage);
                     }
                 }
-                else
-                    PandaChat.SendThrottle(player, $"A {machineState.MachineType} at {machineState.Position} has run out of Ammo. Consider adding more Machinist's to keep them running!", ChatColor.maroon);
 
                 machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
             }
