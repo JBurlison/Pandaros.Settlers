@@ -26,7 +26,6 @@ namespace Pandaros.Settlers
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
         public static readonly Version MOD_VER = new Version(0, 5, 4, 0);
-        public static SerializableDictionary<string, ColonyState> CurrentStates { get; private set; }
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -36,24 +35,11 @@ namespace Pandaros.Settlers
         public static ushort Waiting_Icon { get; private set; }
         public static ushort Reload_Icon { get; private set; }
 
-        public static ColonyState CurrentColonyState
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
-                    CurrentStates.ContainsKey(ServerManager.WorldName))
-                    return CurrentStates[ServerManager.WorldName];
-
-                return null;
-            }
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             WorldLoaded = true;
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
-            CheckWorld();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
@@ -126,7 +112,6 @@ namespace Pandaros.Settlers
 #if Debug
             ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
 #endif
-            LoadState();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + ".OnQuitLate")]
@@ -261,21 +246,6 @@ namespace Pandaros.Settlers
             {
                 gameJson[modNode.Key] = modNode.Value;
             }
-        }
-
-        internal static void LoadState()
-        {
-            CurrentStates = SaveManager.LoadState();
-
-            if (CurrentStates == null)
-                CurrentStates = new SerializableDictionary<string, ColonyState>();
-        }
-
-        private static void CheckWorld()
-        {
-            if (!string.IsNullOrEmpty(ServerManager.WorldName) &&
-                !CurrentStates.ContainsKey(ServerManager.WorldName))
-                CurrentStates.Add(ServerManager.WorldName, new ColonyState());
         }
     }
 }

@@ -21,6 +21,17 @@ namespace Pandaros.Settlers.Entities
                 return Id == default(ushort);
             }
 
+            public ArmorState() { }
+
+            public ArmorState(JSONNode node)
+            {
+                if (node.TryGetAs(nameof(Id), out ushort id))
+                    Id = id;
+
+                if (node.TryGetAs(nameof(Durability), out int durablility))
+                    Durability = durablility;
+            }
+
             public void FromJsonNode(string nodeName, JSONNode node)
             {
                 if (node.TryGetAs(nodeName, out JSONNode stateNode))

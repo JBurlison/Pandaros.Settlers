@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.AI
             owner = npc.Colony.Owner;
             _tmpVals = npc.GetTempValues(true);
             _colony = npc.Colony;
-            _playerState = PlayerState.GetPlayerState(_colony.Owner, _colony);
+            _playerState = PlayerState.GetPlayerState(_colony.Owner);
             _stock = Stockpile.GetStockPile(_colony.Owner);
             base.OnAssignedNPC(npc);
         }
@@ -317,7 +317,7 @@ namespace Pandaros.Settlers.AI
 
             string[] array = CommandManager.SplitCommand(chat);
             Colony colony = Colony.Get(player);
-            PlayerState state = PlayerState.GetPlayerState(player, colony);
+            PlayerState state = PlayerState.GetPlayerState(player);
             state.CallToArmsEnabled = !state.CallToArmsEnabled;
 
             if (state.CallToArmsEnabled)

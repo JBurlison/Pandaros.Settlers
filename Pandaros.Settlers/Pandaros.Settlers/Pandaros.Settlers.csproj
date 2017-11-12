@@ -80,7 +80,7 @@
     <Compile Include="Jobs\PatrolTool.cs" />
     <Compile Include="Managers\BannerManager.cs" />
     <Compile Include="AI\NameGenerator.cs" />
-    <Compile Include="Entities\ColonyState.cs" />
+    <Compile Include="Entities\PlayerState.cs" />
     <Compile Include="Entities\SettlerInventory.cs" />
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
@@ -90,10 +90,8 @@
     <Compile Include="Research\ColonyBuiltIn.cs" />
     <Compile Include="Research\JobResearch.cs" />
     <Compile Include="Research\PandaResearch.cs" />
-    <Compile Include="SaveManager.cs" />
     <Compile Include="Managers\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerializableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AI\FirstNames.csv">

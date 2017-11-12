@@ -100,7 +100,7 @@ namespace Pandaros.Settlers.Jobs
             _tmpVals = npc.GetTempValues(true);
             _colony = npc.Colony;
             _inv = SettlerInventory.GetSettlerInventory(npc);
-            _playerState = PlayerState.GetPlayerState(_colony.Owner, _colony);
+            _playerState = PlayerState.GetPlayerState(_colony.Owner);
             _stock = Stockpile.GetStockPile(_colony.Owner);
         }
 
@@ -272,28 +272,45 @@ namespace Pandaros.Settlers.Jobs
 
         public void OnNPCAtStockpile(ref NPCBase.NPCState state)
         {
-            bool hasItem = !_inv.Weapon.IsEmpty();
-
-            if (!hasItem)
-                foreach (var wep in Items.ItemFactory.WeaponLookup.Values)
-                {
-                    if (_stock.Contains(wep.ItemType.ItemIndex))
-                    {
-                        hasItem = true;
-                        _stock.TryRemove(wep.ItemType.ItemIndex);
-                        _inv.Weapon = new SettlerInventory.ArmorState()
-                        {
-                            Id = wep.ItemType.ItemIndex,
-                            Durability = wep.Durability
-                        };
-                        break;
-                    }
-                }
+            bool hasItem = GetBestWeapon();
 
             if (!hasItem)
             {
                 state.SetIndicator(NPCIndicatorType.MissingItem, COOLDOWN, Items.ItemFactory.WeaponLookup.FirstOrDefault().Key);
             }
+        }
+
+        private bool GetBestWeapon()
+        {
+            bool hasItem = !_inv.Weapon.IsEmpty();
+
+            Items.WeaponMetadata bestWeapon = null;
+
+            if (hasItem)
+                bestWeapon = Items.ItemFactory.WeaponLookup[_inv.Weapon.Id];
+
+            foreach (var wep in Items.ItemFactory.WeaponLookup.Values)
+                if ((_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null) ||
+                    (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null && bestWeapon.Damage < wep.Damage))
+                    bestWeapon = wep;
+
+            if ((bestWeapon != null && hasItem && _inv.Weapon.Id != bestWeapon.ItemType.ItemIndex) ||
+                (!hasItem && bestWeapon != null))
+            {
+                hasItem = true;
+                _stock.TryRemove(bestWeapon.ItemType.ItemIndex);
+
+                if (!_inv.Weapon.IsEmpty())
+                    _stock.Add(_inv.Weapon.Id);
+
+                _inv.Weapon = new SettlerInventory.ArmorState()
+                {
+                    Id = bestWeapon.ItemType.ItemIndex,
+                    Durability = bestWeapon.Durability
+                };
+            }
+
+            return hasItem;
         }
 
         public NPCTypeStandardSettings GetNPCTypeDefinition()

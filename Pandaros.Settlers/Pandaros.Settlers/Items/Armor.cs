@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.Items
                 }
             }
             
-            var state = PlayerState.GetPlayerState(player, colony);
+            var state = PlayerState.GetPlayerState(player);
             StringBuilder psb = new StringBuilder();
             psb.Append("Player =>");
 
@@ -157,7 +157,7 @@ namespace Pandaros.Settlers.Items
                 Players.PlayerDatabase.ForeachValue(p =>
                 {
                     var colony = Colony.Get(p);
-                    var state = PlayerState.GetPlayerState(p, colony);
+                    var state = PlayerState.GetPlayerState(p);
                     var stockpile = Stockpile.GetStockPile(p);
 
                     /// Load up player first.

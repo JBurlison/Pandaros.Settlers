@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Managers
             if (p.IsConnected)
             {
                 Colony colony = Colony.Get(p);
-                PlayerState state = PlayerState.GetPlayerState(p, colony);
+                PlayerState state = PlayerState.GetPlayerState(p);
                 GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
             }
         }
@@ -87,7 +87,7 @@ namespace Pandaros.Settlers.Managers
                     if (p.IsConnected && p.ID.type != NetworkID.IDType.Server)
                     {
                         Colony colony = Colony.Get(p);
-                        PlayerState ps = PlayerState.GetPlayerState(p, colony);
+                        PlayerState ps = PlayerState.GetPlayerState(p);
 
                         var food = _baseFoodPerHour;
 
@@ -110,7 +110,7 @@ namespace Pandaros.Settlers.Managers
                     }
                 });
 
-                Thread.Sleep(60000);
+                Thread.Sleep(10000);
             }
         }
     }
