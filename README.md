@@ -2,12 +2,11 @@
 A colony survival settlers mod that helps you grow and manage your colony. Introduces new weapons, armor, research, difficulties, jobs and chat commands.
 
 Food use now increases as colony size goes up to simulate waste.
-Food use fluctuates depending on how hungry your colonists are!
 
 **NOTE: With the release of 0.4.0 Only servers needs mods**
 
 ## Research!
-![GitHub Logo](https://imgur.com/f1jN4pu.png)
+![GitHub Logo](https://i.imgur.com/EnLRlLN.png)
 * Decreased food waste
 * Increased Settler Health (All colonists, up to 50 at level 5)
 * Additional Banners (Up to 20!)
@@ -23,7 +22,8 @@ Food use fluctuates depending on how hungry your colonists are!
   * Bows
   * Crossbows
   * Matchlockgun
-* Job Training for most crafting jobs
+* Job Training for most crafting jobs (25% reduction at 5)
+  * Master of all! End game research for an additional 30% reduction at 10)
  
 ## Game Difficulties!
 
@@ -356,6 +356,10 @@ In trouble? Use one of the following commands:
 And ALL of your colonists will take up arms defend the colony! You must have weapons and ammo available for everyone! When activated, all colonists will stop working/wake up. They will go to the nearest stockpile and grab a weapon then start hunting monsters (100 block radius).
 
 To turn it off simply type the command again and all colonists will go back to thier original jobs.
+
+## Blocks!
+#### Carpet:
+![GitHub Logo](https://i.imgur.com/Qu12g7f.png)
 
 ## To install!
 Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releases) and grab the latest version.
