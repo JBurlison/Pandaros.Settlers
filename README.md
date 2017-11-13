@@ -133,8 +133,9 @@ Machines help your colonists out a bit! They need to be researched to be activat
 |![MatchlockTurret](https://imgur.com/zTrZbJf.png)|The Matchlock Turret. 500 Damage per shot. Fires twice as fast as a Colonist.|
 
 #### Fuel:
-The machinests will use the 
-|Type|Value|Will leave in stockpile|
+The machinests will use the fuel in the order shown up to the max fuel % (100% by default 150% fully researched).
+
+|Type|Value|Will leave in Stockpile|
 |---|---|---|
 |Leaves|2%|100|
 |Coal Ore|20%|0|
