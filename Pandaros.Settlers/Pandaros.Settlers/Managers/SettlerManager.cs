@@ -19,17 +19,13 @@ namespace Pandaros.Settlers.Managers
     [ModLoader.ModManager]
     public class SettlerManager
     {
-        private static System.Random _r = new System.Random();
         private static float _baseFoodPerHour;
-        private static Thread _foodThread = new Thread(() => UpdateFoodUse());
-
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
-            _foodThread.IsBackground = true;
-            _foodThread.Start();
+            Players.PlayerDatabase.ForeachValue(p => UpdateFoodUse(p));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
@@ -40,6 +36,7 @@ namespace Pandaros.Settlers.Managers
                 Colony colony = Colony.Get(p);
                 PlayerState state = PlayerState.GetPlayerState(p);
                 GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
+                UpdateFoodUse(p);
             }
         }
 
@@ -47,6 +44,14 @@ namespace Pandaros.Settlers.Managers
         public static void OnNPCRecruited(NPC.NPCBase npc)
         {
             SettlerInventory.GetSettlerInventory(npc);
+            UpdateFoodUse(npc.Colony.Owner);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
+        public static void OnNPCDied(NPC.NPCBase npc)
+        {
+            SettlerInventory.GetSettlerInventory(npc);
+            UpdateFoodUse(npc.Colony.Owner);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
@@ -78,39 +83,29 @@ namespace Pandaros.Settlers.Managers
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
         }
 
-        public static void UpdateFoodUse()
+        public static void UpdateFoodUse(Players.Player p)
         {
-            while (GameLoader.WorldLoaded)
+            if (p.IsConnected && p.ID.type != NetworkID.IDType.Server)
             {
-                Players.PlayerDatabase.ForeachValue(p =>
+                Colony colony = Colony.Get(p);
+                PlayerState ps = PlayerState.GetPlayerState(p);
+                var food = _baseFoodPerHour;
+
+                if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > 10)
                 {
-                    if (p.IsConnected && p.ID.type != NetworkID.IDType.Server)
-                    {
-                        Colony colony = Colony.Get(p);
-                        PlayerState ps = PlayerState.GetPlayerState(p);
+                    var multiplier = (.7 / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
+                    food += (float)(_baseFoodPerHour * multiplier);
+                    food *= ps.Difficulty.FoodMultiplier;
+                }
 
-                        var food = _baseFoodPerHour;
+                if (colony.InSiegeMode)
+                    food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
 
-                        if (ps.Difficulty != GameDifficulty.Normal && colony.FollowerCount > 10)
-                        {
-                            var foodDivider = _r.NextDouble(colony.FollowerCount * .3, colony.FollowerCount * .55);
-                            var multiplier = (foodDivider / colony.FollowerCount) - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
+                if (food < _baseFoodPerHour)
+                    food = _baseFoodPerHour;
 
-                            food += (float)(_baseFoodPerHour * multiplier);
-                            food = food * ps.Difficulty.FoodMultiplier;
-                        }
-
-                        if (colony.InSiegeMode)
-                            food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
-
-                        if (food < _baseFoodPerHour)
-                            food = _baseFoodPerHour;
-
-                        colony.FoodUsePerHour = food;
-                    }
-                });
-
-                Thread.Sleep(10000);
+                colony.FoodUsePerHour = food;
+                colony.SendUpdate();
             }
         }
     }

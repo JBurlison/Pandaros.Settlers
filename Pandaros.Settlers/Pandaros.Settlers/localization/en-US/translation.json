@@ -38,7 +38,18 @@
     "Pandaros.Settlers.StoneTurret": "Stone Turret",
     "Pandaros.Settlers.BronzeArrowTurret": "Bronze Arrow Turret",
     "Pandaros.Settlers.CrossbowTurret": "Crossbow Turret",
-    "Pandaros.Settlers.MatchlockTurret": "Matchlock Turret"
+    "Pandaros.Settlers.MatchlockTurret": "Matchlock Turret",
+    "Pandaros.Settlers.carpetblack": "Black Carpet",
+    "Pandaros.Settlers.carpetgrey": "Grey Carpet",
+    "Pandaros.Settlers.carpetbrown": "Brown Carpet",
+    "Pandaros.Settlers.carpetcyan": "Cyan Carpet",
+    "Pandaros.Settlers.carpetgreen": "Green Carpet",
+    "Pandaros.Settlers.carpetlightblue": "Light Blue Carpet",
+    "Pandaros.Settlers.carpetlime": "Lime Carpet",
+    "Pandaros.Settlers.carpetmagenta": "Magenta Carpet",
+    "Pandaros.Settlers.carpetorange": "Orange Carpet",
+    "Pandaros.Settlers.carpetpink": "Pink Carpet",
+    "Pandaros.Settlers.carpetpurple": "Purple Carpet"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -827,6 +838,46 @@
         "WorkBenchTraining5": {
           "name": "WorkBench Training V",
           "description": "Decreases time to craft for WorkBench by 25%."
+        },
+        "MasterOfAll1": {
+          "name": "Master Of All I",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 3%. Stacks with training."
+        },
+        "MasterOfAll2": {
+          "name": "Master Of All II",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 6%. Stacks with training."
+        },
+        "MasterOfAll3": {
+          "name": "Master Of All III",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 9%. Stacks with training."
+        },
+        "MasterOfAll4": {
+          "name": "Master Of All IV",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 12%. Stacks with training."
+        },
+        "MasterOfAll5": {
+          "name": "Master Of All V",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 15%. Stacks with training."
+        },
+        "MasterOfAll6": {
+          "name": "Master Of All VI",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 18%. Stacks with training."
+        },
+        "MasterOfAll7": {
+          "name": "Master Of All VII",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 21%. Stacks with training."
+        },
+        "MasterOfAll8": {
+          "name": "Master Of All VIII",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 24%. Stacks with training."
+        },
+        "MasterOfAll9": {
+          "name": "Master Of All IX",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 27%. Stacks with training."
+        },
+        "MasterOfAll10": {
+          "name": "Master Of All X",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
         }
       }
     }

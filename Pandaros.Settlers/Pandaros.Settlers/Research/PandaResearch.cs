@@ -145,10 +145,10 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.BannerRadius3
             };
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, Settlement, 1f, requirements, 30, false));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, Settlement, 1f, requirements, 20, false));
 
             for (int i = 2; i <= 20; i++)
-                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, Settlement, 1f, null, 30, false));
+                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, Settlement, 1f, null, 20, false));
         }
 
         private static void AddArmorSmithing(Dictionary<ushort, int> researchDic)
@@ -326,11 +326,22 @@ namespace Pandaros.Settlers.Research
             {
                 ColonyBuiltIn.ScienceBagLife
             };
-
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, ReducedWaste, 0.05f, requirements));
+            
+            var research = new PandaResearch(researchDic, 1, ReducedWaste, 0.05f, requirements);
+            research.ResearchComplete += ReducedWaste_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
 
             for (int i = 2; i <= 5; i++)
-                ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, ReducedWaste, 0.05f));
+            {
+                research = new PandaResearch(researchDic, 1, ReducedWaste, 0.05f, requirements);
+                research.ResearchComplete += ReducedWaste_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ReducedWaste_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            Managers.SettlerManager.UpdateFoodUse(e.Manager.Player);
         }
 
         private static void AddKnightResearch(Dictionary<ushort, int> researchDic)

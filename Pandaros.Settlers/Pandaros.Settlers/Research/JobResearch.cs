@@ -24,6 +24,7 @@ namespace Pandaros.Settlers.Research
         public const string OvenTraining = "OvenTraining";
         public const string WoodcutterTraining = "WoodcutterTraining";
         public const string WorkBenchTraining = "WorkBenchTraining";
+        public const string MasterOfAll = "MasterOfAll";
 
         private const string SCIENCEBAGREQ = ColonyBuiltIn.ScienceBagBasic;
         private const int BAG_COST = 2;
@@ -32,7 +33,6 @@ namespace Pandaros.Settlers.Research
         private static ushort COIN = BuiltinBlocks.BronzeCoin;
 
         static Dictionary<string, float> _defaultValues = new Dictionary<string, float>();
-
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Research.JobResearch.OnAddResearchables"),
             ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
@@ -52,6 +52,7 @@ namespace Pandaros.Settlers.Research
             AddOvenTraining(researchDic);
             AddWoodcutterTraining(researchDic);
             AddWorkBenchTraining(researchDic);
+            AddMasterOfAll(researchDic);
         }
 
         private static void AddMerchantTraining(Dictionary<ushort, int> researchDic)
@@ -454,6 +455,67 @@ namespace Pandaros.Settlers.Research
         private static void WorkBenchTraining_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             WorkBenchJob.StaticCraftingCooldown = _defaultValues[nameof(WorkBenchJob)] - (_defaultValues[nameof(WorkBenchJob)] * e.Research.Value);
+        }
+
+        private static void AddMasterOfAll(Dictionary<ushort, int> researchDic)
+        {
+            _defaultValues[nameof(WorkBenchJob)] = WorkBenchJob.StaticCraftingCooldown;
+
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagColony, 1);
+            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 1);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
+
+            var requirements = new List<string>()
+            {
+                PandaResearch.GetResearchKey(MerchantTraining + "5"),
+                PandaResearch.GetResearchKey(TailorTraining + "5"),
+                PandaResearch.GetResearchKey(BloomeryTraining + "5"),
+                PandaResearch.GetResearchKey(FineryForgeTraining + "5"),
+                PandaResearch.GetResearchKey(FurnaceTraining + "5"),
+                PandaResearch.GetResearchKey(GrinderTraining + "5"),
+                PandaResearch.GetResearchKey(GunSmithTraining + "5"),
+                PandaResearch.GetResearchKey(KilnTraining + "5"),
+                PandaResearch.GetResearchKey(MetalSmithTraining + "5"),
+                PandaResearch.GetResearchKey(MintTraining + "5"),
+                PandaResearch.GetResearchKey(OvenTraining + "5"),
+                PandaResearch.GetResearchKey(WoodcutterTraining + "5"),
+                PandaResearch.GetResearchKey(WorkBenchTraining + "5")
+            };
+
+            var research = new PandaResearch(researchDic, 1, MasterOfAll, .03f, requirements, 200);
+            research.ResearchComplete += MasterOfAll_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 10; i++)
+            {
+                research = new PandaResearch(researchDic, i, MasterOfAll, .03f, null, 200);
+                research.ResearchComplete += MasterOfAll_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void MasterOfAll_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            var tmpValues = e.Manager.Player.GetTempValues(true);
+
+            WorkBenchJob.StaticCraftingCooldown = _defaultValues[nameof(WorkBenchJob)] - (_defaultValues[nameof(WorkBenchJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(WorkBenchTraining), 0f)));
+            WoodcutterJob.StaticCraftingCooldown = _defaultValues[nameof(WoodcutterJob)] - (_defaultValues[nameof(WoodcutterJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(WoodcutterTraining), 0f)));
+            OvenJob.StaticCraftingCooldown = _defaultValues[nameof(OvenJob)] - (_defaultValues[nameof(OvenJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(OvenTraining), 0f)));
+            MintJob.StaticCraftingCooldown = _defaultValues[nameof(MintJob)] - (_defaultValues[nameof(MintJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(MintTraining), 0f)));
+            MetalSmithJob.StaticCraftingCooldown = _defaultValues[nameof(MetalSmithJob)] - (_defaultValues[nameof(MetalSmithJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(MetalSmithTraining), 0f)));
+            KilnJob.StaticCraftingCooldown = _defaultValues[nameof(KilnJob)] - (_defaultValues[nameof(KilnJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(KilnTraining), 0f)));
+            GunSmithJob.StaticCraftingCooldown = _defaultValues[nameof(GunSmithJob)] - (_defaultValues[nameof(GunSmithJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(GunSmithTraining), 0f)));
+            GrinderJob.StaticCraftingCooldown = _defaultValues[nameof(GrinderJob)] - (_defaultValues[nameof(GrinderJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(GrinderTraining), 0f)));
+            FurnaceJob.StaticCraftingCooldown = _defaultValues[nameof(FurnaceJob)] - (_defaultValues[nameof(FurnaceJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(FurnaceTraining), 0f)));
+            FineryForgeJob.StaticCraftingCooldown = _defaultValues[nameof(FineryForgeJob)] - (_defaultValues[nameof(FineryForgeJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(FineryForgeTraining), 0f)));
+            BloomeryJob.StaticCraftingCooldown = _defaultValues[nameof(BloomeryJob)] - (_defaultValues[nameof(BloomeryJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(BloomeryTraining), 0f)));
+            TailorJob.StaticCraftingCooldown = _defaultValues[nameof(TailorJob)] - (_defaultValues[nameof(TailorJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(TailorTraining), 0f)));
+            ShopJob.StaticCraftingCooldown = _defaultValues[nameof(ShopJob)] - (_defaultValues[nameof(ShopJob)] * (e.Research.Value + tmpValues.GetOrDefault(PandaResearch.GetResearchKey(MerchantTraining), 0f)));
         }
     }
 }

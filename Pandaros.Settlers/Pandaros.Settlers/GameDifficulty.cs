@@ -24,10 +24,10 @@ namespace Pandaros.Settlers
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
             Normal = new GameDifficulty("Normal", 0f);
-            Easy = new GameDifficulty("Easy", 0.75f);
-            Medium = new GameDifficulty("Medium", 1.0f);
-            Hard = new GameDifficulty("Hard", 1.25f);
-            new GameDifficulty("Insane", 1.50f);
+            Easy = new GameDifficulty("Easy", 1.0f);
+            Medium = new GameDifficulty("Medium", 1.25f);
+            Hard = new GameDifficulty("Hard", 1.50f);
+            new GameDifficulty("Insane", 2f);
         }
 
         [XmlElement]
@@ -88,7 +88,7 @@ namespace Pandaros.Settlers
             state.Difficulty = GameDifficulty.GameDifficulties[array[1].Trim()];
 
             PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
-            Colony.Get(player).SendUpdate();
+            Managers.SettlerManager.UpdateFoodUse(player);
 
             return true;
         }
@@ -101,10 +101,15 @@ namespace Pandaros.Settlers
 
         public static void PossibleCommands(Players.Player player, ChatColor color)
         {
+            PandaChat.Send(player, "Current Difficulty: " + PlayerState.GetPlayerState(player).Difficulty.Name, color);
             PandaChat.Send(player, "Possible commands:", color);
 
+            string diffs = string.Empty;
+
             foreach (var diff in GameDifficulty.GameDifficulties)
-                PandaChat.Send(player, "/difficulty " + diff.Key, color);
+                diffs += diff.Key + " | ";
+
+            PandaChat.Send(player, "/difficulty " + diffs.Substring(0, diffs.Length - 2), color);
         }
     }
 }
