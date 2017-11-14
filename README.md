@@ -97,7 +97,7 @@ Armor has durability! When hit a colonist will take a point of durability damage
 |Shield|30|40|50|60|
 
 ## Weapons!
-Once crafted YOU and your colonists can wield weapons! Weapons can be used by you, your knights or your colonists during call to arms.
+Once crafted weapons can be used by you, your knights or your colonists during call to arms.
 
 #### Damage:
 ||Copper|Bronze|Iron|Steel|
@@ -117,7 +117,7 @@ More end-game foods to help feed your hungry colonists!
 |Name|Food Value|Recipe|Produce Count|
 |---|---|---|---|
 |Berry Pancakes|4|Flour: 3, Berry: 2, Firewood|2|
-|Berry Pie|5|Flour: 4, Berry: 4, Firewood|2|
+|Berry Pie|5.5|Flour: 4, Berry: 4, Firewood|2|
 
 ## Machines!
 ![Machines](https://imgur.com/Q78m0B9.png)
