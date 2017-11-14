@@ -92,11 +92,18 @@ namespace Pandaros.Settlers.Research
 
         public override void OnResearchComplete(ScienceManagerPlayer manager)
         {
-            manager.Player.GetTempValues(true).Set(TmpValueKey, Value);
-            manager.Player.GetTempValues(true).Set(LevelKey, Level);
+            try
+            {
+                manager.Player.GetTempValues(true).Set(TmpValueKey, Value);
+                manager.Player.GetTempValues(true).Set(LevelKey, Level);
 
-            if (ResearchComplete != null)
-                ResearchComplete(this, new ResearchCompleteEventArgs(this, manager));
+                if (ResearchComplete != null)
+                    ResearchComplete(this, new ResearchCompleteEventArgs(this, manager));
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex, $"Error OnResearchComplete for {TmpValueKey} Level: {Level}.");
+            }
         }
 
         public static string GetLevelKey(string researchName)
