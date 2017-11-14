@@ -2,6 +2,7 @@
 A colony survival settlers mod that helps you grow and manage your colony. Introduces new weapons, armor, research, difficulties, jobs and chat commands.
 
 Food use now increases as colony size goes up to simulate waste.
+Sounds added to make your colony feel alive!
 
 **NOTE: With the release of 0.4.0 Only servers needs mods**
 
