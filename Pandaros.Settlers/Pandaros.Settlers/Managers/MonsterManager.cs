@@ -22,14 +22,14 @@ namespace Pandaros.Settlers.Managers
 
                 foreach (var monster in GetAllMonsters())
                 {
-                    if (m == null || Vector3.Distance(monster.Value.Position, m.Position) > 5)
+                    if (m == null || (Vector3.Distance(monster.Value.Position, m.Position) > 10 && Pipliz.Random.NextBool()))
                     {
                         m = monster.Value;
                         ServerManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + "ZombieAudio");
                     }
                 }
 
-                _nextUpdateTime = Pipliz.Time.SecondsSinceStartDouble + 1;
+                _nextUpdateTime = Pipliz.Time.SecondsSinceStartDouble + 5;
             }
         }
 
