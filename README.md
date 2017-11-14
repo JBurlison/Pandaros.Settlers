@@ -97,7 +97,7 @@ Armor has durability! When hit a colonist will take a point of durability damage
 |Shield|30|40|50|60|
 
 ## Weapons!
-Once crafted YOU and your colonists can wield weapons! Currently these weapons are only used by colonists during call to arms. 
+Once crafted YOU and your colonists can wield weapons! Weapons can be used by you, your knights or your colonists during call to arms.
 
 #### Damage:
 ||Copper|Bronze|Iron|Steel|
