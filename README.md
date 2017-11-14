@@ -27,7 +27,7 @@ Food use now increases as colony size goes up to simulate waste.
  
 ## Game Difficulties!
 
-The game defaults to meduim. Difficulty effects food consumption/waste and requirements for settlers, forcing you to meet the goals of getting settlers. (see Tips)
+The game defaults to meduim. Difficulty effects food consumption/waste, overall machine durability/capacity/fuel, monster damage reduction.
 
 * /difficulty normal (Normal food use)
 * /difficulty easy
