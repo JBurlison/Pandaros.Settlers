@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Items.Food
             var foodNode = new JSONNode();
             foodNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BerryPie.png");
             foodNode["isPlaceable"] = new JSONNode(false);
-            foodNode.SetAs("nutritionalValue", 5f);
+            foodNode.SetAs("nutritionalValue", 5.5f);
 
             Item = new ItemTypesServer.ItemTypeRaw(foodName, foodNode);
             items.Add(foodName, Item);

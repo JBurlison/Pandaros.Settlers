@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using UnityEngine;
 
 namespace Pandaros.Settlers.Managers
 {
@@ -20,6 +21,46 @@ namespace Pandaros.Settlers.Managers
     public class SettlerManager
     {
         private static float _baseFoodPerHour;
+        private static double _updateTime;
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio"),
+            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
+        public static void RegisterAudio()
+        {
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "TalkingAudio", new List<string>()
+            {
+                GameLoader.AUDIO_FOLDER_PANDA + "/Talking1.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Talking2.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Talking3.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Talking4.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Talking5.ogg"
+            });
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
+        public static void OnUpdate()
+        {
+            if (_updateTime < Pipliz.Time.SecondsSinceStartDouble)
+            {
+                Players.PlayerDatabase.ForeachValue(p =>
+                {
+                    var colony = Colony.Get(p);
+                    NPCBase lastNPC = null;
+
+                    foreach (var follower in colony.Followers)
+                    {
+                        if (lastNPC == null || Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 10)
+                        {
+                            lastNPC = follower;
+                            ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
+                        }
+                    }
+                });
+
+                _updateTime = Pipliz.Time.SecondsSinceStartDouble + 10;
+            }
+        }
+
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()

@@ -1,5 +1,6 @@
 ﻿using BlockTypes.Builtin;
 using NPC;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.APIProvider.Jobs;
@@ -21,6 +22,26 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".MachinistBench";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.Machinist.RegisterAudio"),
+            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
+        public static void RegisterAudio()
+        {
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "HammerAudio", new List<string>()
+            {
+                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer1.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer2.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer3.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer4.ogg"
+            });
+
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "ReloadingAudio", new List<string>()
+            {
+                GameLoader.AUDIO_FOLDER_PANDA + "/Reloading1.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Reloading2.ogg",
+                GameLoader.AUDIO_FOLDER_PANDA + "/Reloading3.ogg"
+            });
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Machinist.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void RegisterJobs()
@@ -28,7 +49,7 @@ namespace Pandaros.Settlers.Jobs
             BlockJobManagerTracker.Register<MachinistJob>(JOB_ITEM_KEY);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Machinist.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.Machinist.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -39,7 +60,7 @@ namespace Pandaros.Settlers.Jobs
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "MachinistBenchTop", textureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Machinist.AfterAddingBaseTypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.Machinist.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, new JSONNode()
@@ -52,7 +73,7 @@ namespace Pandaros.Settlers.Jobs
             ));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Machinist.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.Machinist.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var gold = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
@@ -68,7 +89,7 @@ namespace Pandaros.Settlers.Jobs
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".Machinist.OnDeath")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".Jobs.Machinist.OnDeath")]
         public static void OnDeath(NPCBase nPC)
         {
             if (nPC.Job != null && nPC.Job.GetType() == typeof(MachinistJob) && ((MachinistJob)nPC.Job).TargetMachine != null)
@@ -128,6 +149,8 @@ namespace Pandaros.Settlers.Jobs
 
             if (TargetMachine == null)
             {
+                var ps = PlayerState.GetPlayerState(Owner);
+
                 if (MachineManager.Machines.ContainsKey(owner))
                     foreach (var machine in MachineManager.Machines[Owner].Where(m => m.Machinist == null))
                     {
@@ -143,7 +166,7 @@ namespace Pandaros.Settlers.Jobs
                                 {
                                     TargetMachine = machine;
                                     TargetMachine.Machinist = this;
-                                    pos = Server.AI.AIManager.ClosestPosition(TargetMachine.Position, usedNPC.Position);
+                                    pos = TargetMachine.Position.GetClosestPositionWithinY(usedNPC.Position, 3);
                                     break;
                                 }
                             }
@@ -152,7 +175,7 @@ namespace Pandaros.Settlers.Jobs
             }
             else
             {
-                pos = Server.AI.AIManager.ClosestPosition(TargetMachine.Position, usedNPC.Position);
+                pos = TargetMachine.Position.GetClosestPositionWithinY(usedNPC.Position, 3);
             }
 
             return pos;
@@ -164,6 +187,7 @@ namespace Pandaros.Settlers.Jobs
         {
             ushort status = GameLoader.Waiting_Icon;
             float cooldown = COOLDOWN;
+            bool fullyRepaired = false;
 
             if (TargetMachine != null && 3 > Vector3.Distance(TargetMachine.Position.Vector, usedNPC.Position.Vector))
             {
@@ -173,21 +197,25 @@ namespace Pandaros.Settlers.Jobs
                 {
                     status = TargetMachine.MachineSettings.Repair(Owner, TargetMachine);
                     cooldown = TargetMachine.MachineSettings.RepairTime;
+                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + "HammerAudio");
                 }
                 else if (TargetMachine.Fuel < .3f)
                 {
                     status = TargetMachine.MachineSettings.Refuel(Owner, TargetMachine);
                     cooldown = TargetMachine.MachineSettings.RefuelTime;
+                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + "ReloadingAudio");
                 }
                 else if (TargetMachine.Load < .3f)
                 {
                     status = TargetMachine.MachineSettings.Reload(Owner, TargetMachine);
                     cooldown = TargetMachine.MachineSettings.ReloadTime;
+                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + "ReloadingAudio");
                 }
                 else
                 {
                     TargetMachine.Machinist = null;
                     TargetMachine = null;
+                    fullyRepaired = true;
                 }
             }
 
@@ -198,6 +226,9 @@ namespace Pandaros.Settlers.Jobs
             {
                 state.JobIsDone = true;
                 status = GameLoader.Waiting_Icon;
+
+                if (fullyRepaired)
+                    cooldown = 0.5f;
             }
 
             if (OkStatus.Contains(status))
@@ -208,9 +239,6 @@ namespace Pandaros.Settlers.Jobs
                 state.SetIndicator(NPCIndicatorType.Crafted, cooldown, BuiltinBlocks.ErrorMissing);
 
             state.SetCooldown(cooldown);
-
-            if (TargetMachine == null)
-                state.JobIsDone = true;
         }
 
         private void CheckIfValidMachine()

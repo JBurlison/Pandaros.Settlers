@@ -25,7 +25,7 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 5, 4, 1);
+        public static readonly Version MOD_VER = new Version(0, 5, 5, 0);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -168,17 +168,22 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static void AddSoundFile(string key, string fileName)
+        public static void AddSoundFile(string key, List<string> fileNames)
         {
             var node = new JSONNode();
             node.SetAs("clipCollectionName", key);
 
             var fileListNode = new JSONNode(NodeType.Array);
-            var audoFileNode = new JSONNode()
-                .SetAs("path", fileName)
-                .SetAs("audioGroup", "Effects");
 
-            fileListNode.AddToArray(audoFileNode);
+            foreach (var fileName in fileNames)
+            {
+                var audoFileNode = new JSONNode()
+                    .SetAs("path", fileName)
+                    .SetAs("audioGroup", "Effects");
+
+                fileListNode.AddToArray(audoFileNode);
+            }
+            
             node.SetAs("fileList", fileListNode);
 
             ItemTypesServer.AudioFilesJSON.AddToArray(node);

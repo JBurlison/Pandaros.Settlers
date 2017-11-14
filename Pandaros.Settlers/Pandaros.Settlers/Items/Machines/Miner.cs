@@ -27,8 +27,9 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Repair(Players.Player player, MachineState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
+            var ps = PlayerState.GetPlayerState(player);
 
-            if (machineState.Durability < .75f)
+            if (machineState.Durability < .75f + ps.Difficulty.MachineThreashHold)
             {
                 bool repaired = false;
                 List<InventoryItem> requiredForFix = new List<InventoryItem>();
@@ -71,7 +72,7 @@ namespace Pandaros.Settlers.Items.Machines
                     MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
 
                 if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY[player];
+                    machineState.Durability = MachineState.MAX_DURABILITY[player] + ps.Difficulty.MachineThreashHold;
             }
 
             return retval;
@@ -116,7 +117,7 @@ namespace Pandaros.Settlers.Items.Machines
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "MiningMachineAudio", GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg");
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "MiningMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg" });
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]

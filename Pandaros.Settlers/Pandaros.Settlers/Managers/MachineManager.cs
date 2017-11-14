@@ -50,6 +50,7 @@ namespace Pandaros.Settlers.Managers
         public static Dictionary<Players.Player, List<MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, List<MachineState>>();
         public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
+        private static double _nextUpdate = 0;
 
         public static void RegisterMachineType(string machineType, MachineSettings callback)
         {
@@ -76,12 +77,14 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]
         public static void OnUpdate()
         {
-            if (GameLoader.WorldLoaded)
+            if (GameLoader.WorldLoaded && _nextUpdate < Pipliz.Time.SecondsSinceStartDouble)
             {
                 lock (Machines)
                     foreach (var machine in Machines)
                         foreach (var state in machine.Value)
                             state.MachineSettings.DoWork(machine.Key, state);
+
+                _nextUpdate = Pipliz.Time.SecondsSinceStartDouble + 1;
             }
         }
 
@@ -177,7 +180,9 @@ namespace Pandaros.Settlers.Managers
 
         public static ushort Refuel(Players.Player player, MachineState machineState)
         {
-            if (machineState.Fuel < .75f)
+            var ps = PlayerState.GetPlayerState(player);
+
+            if (machineState.Fuel < .75f + ps.Difficulty.MachineThreashHold)
             {
                 if (!MachineState.MAX_FUEL.ContainsKey(player))
                     MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
@@ -188,14 +193,14 @@ namespace Pandaros.Settlers.Managers
                 {
                     while ((stockpile.AmountContained(item.Key) > 100 ||
                             item.Key == BuiltinBlocks.Firewood ||
-                            item.Key == BuiltinBlocks.Coalore)&& machineState.Fuel < MachineState.MAX_FUEL[player])
+                            item.Key == BuiltinBlocks.Coalore) && machineState.Fuel < MachineState.MAX_FUEL[player] + ps.Difficulty.MachineThreashHold)
                     {
                         stockpile.TryRemove(item.Key);
                         machineState.Fuel += item.Value;
                     }
                 }
 
-                if (machineState.Fuel < MachineState.MAX_FUEL[player])
+                if (machineState.Fuel < MachineState.MAX_FUEL[player] + ps.Difficulty.MachineThreashHold)
                     return FuelValues.First().Key;
             }
 

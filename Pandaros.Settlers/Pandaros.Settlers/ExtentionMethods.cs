@@ -4,6 +4,7 @@ using NPC;
 using Pandaros.Settlers.Entities;
 using Pipliz;
 using Pipliz.APIProvider.Jobs;
+using Server.Monsters;
 using Server.NPCs;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Pandaros.Settlers
 {
     public static class ExtentionMethods
     {
+
         public static double NextDouble(this System.Random rng, double min, double max)
         {
             return rng.NextDouble() * (max - min) + min;
@@ -50,6 +52,39 @@ namespace Pandaros.Settlers
             }
 
             return hasItem;
+        }
+
+        public static Vector3Int GetClosestPositionWithinY(this Vector3Int goalPosition, Vector3Int currentPosition, int minMaxY)
+        {
+            Vector3Int pos = Server.AI.AIManager.ClosestPosition(goalPosition, currentPosition);
+
+            if (pos == Vector3Int.invalidPos)
+            {
+                int y = -1;
+                var negY = (minMaxY * -1);
+
+                while (pos == Vector3Int.invalidPos)
+                {
+                    pos = Server.AI.AIManager.ClosestPosition(goalPosition.Add(0, y, 0), currentPosition);
+
+                    if (y > 0)
+                    {
+                        y++;
+
+                        if (y > minMaxY)
+                            break;
+                    }
+                    else
+                    {
+                        y--;
+
+                        if (y < negY)
+                            y = 1;
+                    }
+                }
+            }
+
+            return pos;
         }
     }
 }

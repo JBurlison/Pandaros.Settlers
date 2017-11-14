@@ -23,26 +23,30 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f);
-            Easy = new GameDifficulty("Easy", 1.0f);
-            Medium = new GameDifficulty("Medium", 1.25f);
-            Hard = new GameDifficulty("Hard", 1.50f);
-            new GameDifficulty("Insane", 2f);
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f);
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f);
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.25f);
+            Hard = new GameDifficulty("Hard", 1.50f, -0.2f, 0.50f);
+            new GameDifficulty("Insane", 2f, -0.3f, .75f);
         }
 
-        [XmlElement]
         public string Name { get; set; }
 
-        [XmlElement]
         public float FoodMultiplier { get; set; }
+
+        public float MachineThreashHold { get; set; } = 0;
+
+        public float MonsterDamageReduction { get; set; }
 
         public GameDifficulty() { }
 
-        public GameDifficulty(string name, float foodMultiplier)
+        public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr)
         {
             Name = name;
             FoodMultiplier = foodMultiplier;
             GameDifficulties[name] = this;
+            MachineThreashHold = machineThreashHold;
+            MonsterDamageReduction = monsterDr;
         }
 
         public override string ToString()

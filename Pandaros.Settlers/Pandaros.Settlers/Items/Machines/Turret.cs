@@ -66,8 +66,8 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Repair(Players.Player player, MachineState machineState) 
         {
             var retval = GameLoader.Repairing_Icon;
-
-            if (machineState.Durability < .75f && TurretSettings.ContainsKey(machineState.MachineType))
+            var ps = PlayerState.GetPlayerState(player);
+            if (machineState.Durability < .75f + ps.Difficulty.MachineThreashHold && TurretSettings.ContainsKey(machineState.MachineType))
             {
                 bool repaired = false;
                 List<InventoryItem> requiredForFix = new List<InventoryItem>();
@@ -96,7 +96,7 @@ namespace Pandaros.Settlers.Items.Machines
                     }
 
                 if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY[player];
+                    machineState.Durability = MachineState.MAX_DURABILITY[player] + ps.Difficulty.MachineThreashHold;
             }
 
             return retval;
@@ -105,15 +105,16 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Reload(Players.Player player, MachineState machineState)
         {
             ushort retval = GameLoader.Reload_Icon;
+            var ps = PlayerState.GetPlayerState(player);
 
             if (!MachineState.MAX_LOAD.ContainsKey(player))
                 MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
 
-            if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
+            if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f + ps.Difficulty.MachineThreashHold)
             {
                 var stockpile = Stockpile.GetStockPile(player);
                 
-                while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player])
+                while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player] + ps.Difficulty.MachineThreashHold)
                 {
                     if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
                         machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
