@@ -126,7 +126,7 @@ namespace Pandaros.Settlers.Managers
 
         public static void UpdateFoodUse(Players.Player p)
         {
-            if (p.IsConnected && p.ID.type != NetworkID.IDType.Server)
+            if (p.ID.type != NetworkID.IDType.Server)
             {
                 Colony colony = Colony.Get(p);
                 PlayerState ps = PlayerState.GetPlayerState(p);
