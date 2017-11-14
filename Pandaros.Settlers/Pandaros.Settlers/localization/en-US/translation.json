@@ -437,83 +437,83 @@
         },
         "ImprovedSling1": {
           "name": "Sling Training I",
-          "description": "Decreases reload speed of slings by 5%."
+          "description": "Increases reload speed of slings by 5%."
         },
         "ImprovedSling2": {
           "name": "Sling Training II",
-          "description": "Decreases reload speed of slings by 10%."
+          "description": "Increases reload speed of slings by 10%."
         },
         "ImprovedSling3": {
           "name": "Sling Training III",
-          "description": "Decreases reload speed of slings by 15%."
+          "description": "Increases reload speed of slings by 15%."
         },
         "ImprovedSling4": {
           "name": "Sling Training IV",
-          "description": "Decreases reload speed of slings by 20%."
+          "description": "Increases reload speed of slings by 20%."
         },
         "ImprovedSling5": {
           "name": "Sling Training V",
-          "description": "Decreases reload speed of slings by 25%."
+          "description": "Increases reload speed of slings by 25%."
         },
         "ImprovedBow1": {
           "name": "Bow Training I",
-          "description": "Decreases reload speed of Bows by 5%."
+          "description": "Increases reload speed of Bows by 5%."
         },
         "ImprovedBow2": {
           "name": "Bow Training II",
-          "description": "Decreases reload speed of Bows by 10%."
+          "description": "Increases reload speed of Bows by 10%."
         },
         "ImprovedBow3": {
           "name": "Bow Training III",
-          "description": "Decreases reload speed of Bows by 15%."
+          "description": "Increases reload speed of Bows by 15%."
         },
         "ImprovedBow4": {
           "name": "Bow Training IV",
-          "description": "Decreases reload speed of Bows by 20%."
+          "description": "Increases reload speed of Bows by 20%."
         },
         "ImprovedBow5": {
           "name": "Bow Training V",
-          "description": "Decreases reload speed of Bows by 25%."
+          "description": "Increases reload speed of Bows by 25%."
         },
         "ImprovedCrossbow1": {
           "name": "Crossbow Training I",
-          "description": "Decreases reload speed of Crossbows by 5%."
+          "description": "Increases reload speed of Crossbows by 5%."
         },
         "ImprovedCrossbow2": {
           "name": "Crossbow Training II",
-          "description": "Decreases reload speed of Crossbows by 10%."
+          "description": "Increases reload speed of Crossbows by 10%."
         },
         "ImprovedCrossbow3": {
           "name": "Crossbow Training III",
-          "description": "Decreases reload speed of Crossbows by 15%."
+          "description": "Increases reload speed of Crossbows by 15%."
         },
         "ImprovedCrossbow4": {
           "name": "Crossbow Training IV",
-          "description": "Decreases reload speed of Crossbows by 20%."
+          "description": "Increases reload speed of Crossbows by 20%."
         },
         "ImprovedCrossbow5": {
           "name": "Crossbow Training V",
-          "description": "Decreases reload speed of Crossbows by 25%."
+          "description": "Increases reload speed of Crossbows by 25%."
         },
         "ImprovedMatchlockgun1": {
           "name": "Matchlockgun Training I",
-          "description": "Decreases reload speed of Matchlockguns by 5%."
+          "description": "Increases reload speed of Matchlockguns by 5%."
         },
         "ImprovedMatchlockgun2": {
           "name": "Matchlockgun Training II",
-          "description": "Decreases reload speed of Matchlockguns by 10%."
+          "description": "Increases reload speed of Matchlockguns by 10%."
         },
         "ImprovedMatchlockgun3": {
           "name": "Matchlockgun Training III",
-          "description": "Decreases reload speed of Matchlockguns by 15%."
+          "description": "Increases reload speed of Matchlockguns by 15%."
         },
         "ImprovedMatchlockgun4": {
           "name": "Matchlockgun Training IV",
-          "description": "Decreases reload speed of Matchlockguns by 20%."
+          "description": "Increases reload speed of Matchlockguns by 20%."
         },
         "ImprovedMatchlockgun5": {
           "name": "Matchlockgun Training V",
-          "description": "Decreases reload speed of Matchlockguns by 25%."
+          "description": "Increases reload speed of Matchlockguns by 25%."
         },
         "Machines1": {
           "name": "Machines!",
