@@ -1,5 +1,6 @@
 ﻿using Pandaros.Settlers.Entities;
 using Server.Monsters;
+using Server.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,20 @@ namespace Pandaros.Settlers.Managers
                 GameLoader.AUDIO_FOLDER_PANDA + "/Zombie3.ogg",
                 GameLoader.AUDIO_FOLDER_PANDA + "/Zombie4.ogg",
             });
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
+        public static void OnPlayerHit(Players.Player player, Pipliz.Box<float> box)
+        {
+            var state = PlayerState.GetPlayerState(player);
+            box.Set(box.item1 + state.Difficulty.MonsterDamage);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
+        public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
+        {
+            var state = PlayerState.GetPlayerState(npc.Colony.Owner);
+            box.Set(box.item1 + state.Difficulty.MonsterDamage);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]

@@ -40,12 +40,14 @@ namespace Pandaros.Settlers.Jobs
             KnightNPCType = NPCType.GetByKeyNameOrDefault(_knightNPCSettings.keyName);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit"), ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit"), 
+            ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit"),
+            ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
         {
             if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Jobs.Knight))
             {
-                box.Set(box.item1 - (box.item1 * .5f));
+                box.Set(box.item1 - (box.item1 * .60f));
             }
         }
 

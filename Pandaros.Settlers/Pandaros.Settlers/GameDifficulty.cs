@@ -23,11 +23,11 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f, 0f);
-            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f);
-            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.25f);
-            Hard = new GameDifficulty("Hard", 1.50f, -0.2f, 0.50f);
-            new GameDifficulty("Insane", 2f, -0.3f, .75f);
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f);
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f);
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f);
+            Hard = new GameDifficulty("Hard", 1.50f, -0.2f, 0.60f, 70f);
+            new GameDifficulty("Insane", 2f, -0.3f, .80f, 80f);
         }
 
         public string Name { get; set; }
@@ -37,16 +37,18 @@ namespace Pandaros.Settlers
         public float MachineThreashHold { get; set; } = 0;
 
         public float MonsterDamageReduction { get; set; }
+        public float MonsterDamage { get; set; }
 
         public GameDifficulty() { }
 
-        public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr)
+        public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr, float monsterDamage)
         {
             Name = name;
             FoodMultiplier = foodMultiplier;
             GameDifficulties[name] = this;
             MachineThreashHold = machineThreashHold;
             MonsterDamageReduction = monsterDr;
+            MonsterDamage = monsterDamage;
         }
 
         public override string ToString()

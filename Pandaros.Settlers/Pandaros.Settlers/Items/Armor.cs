@@ -135,20 +135,6 @@ namespace Pandaros.Settlers.Items
 
         static Random _rand = new Random();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Armor.ModifyMonsters"), ModLoader.ModCallbackProvidesFor("pipliz.server.monsterspawner.fetchnpctypes")]
-        public static void ModifyMonsters()
-        {
-            foreach (var npc in NPCType.NPCTypes)
-            {
-                if (NPCType.NPCTypes.TryGetValue(npc.Key, out INPCTypeSettings setObj))
-                {
-                    // add more damage to account for armor.
-                    if (setObj is NPCTypeMonsterSettings settings)
-                        settings.punchDamage += 60;
-                }
-            }
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Armor.GetArmor")]
         public static void GetArmor()
         {
@@ -257,14 +243,14 @@ namespace Pandaros.Settlers.Items
             return best;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Armor.OnPlayerHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Armor.OnPlayerHit"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, Pipliz.Box<float> box)
         {
             var state = PlayerState.GetPlayerState(player);
             DeductArmor(box, state.Armor, player, "Your");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
         {
             var inv = SettlerInventory.GetSettlerInventory(npc);
