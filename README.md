@@ -117,20 +117,30 @@ More end-game foods to help feed your hungry colonists!
 |Name|Food Value|Recipe|Produce Count|
 |---|---|---|---|
 |Berry Pancakes|4|Flour: 3, Berry: 2, Firewood|2|
-|Berry Pie|6|Flour: 4, Berry: 4, Firewood|2|
+|Berry Pie|5|Flour: 4, Berry: 4, Firewood|2|
 
 ## Machines!
 ![Machines](https://imgur.com/Q78m0B9.png)
 Machines help your colonists out a bit! They need to be researched to be activated. 
 
 #### Machine Types:
-|Type|Description|Fuel|
+|Type|Description|
+|---|---|
+|![Miner](https://imgur.com/sdIwB2Q.png)|The Mining Machine. Mines at 2x the rate of a settler|
+|![StoneTurret](https://imgur.com/DgWcNtJ.png)|The Stone Turret. 50 Damage per shot. Fires twice as fast as a Colonist.|
+|![BronzeArrowTurret](https://imgur.com/e65jmAR.png)|The Bronze Arrow Turret. 100 Damage per shot. Fires twice as fast as a Colonist.|
+|![CrossbowTurret](https://imgur.com/3rvqDvA.png)|The Crossbow Turret. 300 Damage per shot. Fires twice as fast as a Colonist.|
+|![MatchlockTurret](https://imgur.com/zTrZbJf.png)|The Matchlock Turret. 500 Damage per shot. Fires twice as fast as a Colonist.|
+
+#### Fuel:
+The machinests will use the fuel in the order shown up to the max fuel % (100% by default 150% fully researched).
+
+|Type|Value|Will leave in Stockpile|
 |---|---|---|
-|![Miner](https://imgur.com/sdIwB2Q.png)|The Mining Machine. Mines at 2x the rate of a settler|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
-|![StoneTurret](https://imgur.com/DgWcNtJ.png)|The Stone Turret. 50 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
-|![BronzeArrowTurret](https://imgur.com/e65jmAR.png)|The Bronze Arrow Turret. 100 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
-|![CrossbowTurret](https://imgur.com/3rvqDvA.png)|The Crossbow Turret. 300 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
-|![MatchlockTurret](https://imgur.com/zTrZbJf.png)|The Matchlock Turret. 500 Damage per shot. Fires twice as fast as a Colonist.|1 Firewood for 10% fuel or 1 coal for 20% fuel| 
+|Leaves|2%|100|
+|Coal Ore|20%|0|
+|Firewood|10%|0|
+|Straw|5%|100|
 
 #### Machine Repairs:
 The less damaged a machine the cheaper it is to fix:
