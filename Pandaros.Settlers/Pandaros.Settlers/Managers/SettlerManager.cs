@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.Managers
 
                     foreach (var follower in colony.Followers)
                     {
-                        if (lastNPC == null || Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 10)
+                        if (lastNPC == null || (Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 && Pipliz.Random.NextBool()))
                         {
                             lastNPC = follower;
                             ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
@@ -126,7 +126,9 @@ namespace Pandaros.Settlers.Managers
 
         public static void UpdateFoodUse(Players.Player p)
         {
-            if (p.ID.type != NetworkID.IDType.Server)
+            if (Server.TerrainGeneration.TerrainGenerator.UsedGenerator != null &&
+                Server.AI.AIManager.NPCPathFinder != null &&
+                p.ID.type != NetworkID.IDType.Server)
             {
                 Colony colony = Colony.Get(p);
                 PlayerState ps = PlayerState.GetPlayerState(p);
