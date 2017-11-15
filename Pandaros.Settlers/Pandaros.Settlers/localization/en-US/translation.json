@@ -565,19 +565,19 @@
         },
         "IncreasedCapacity2": {
           "name": "Increased Item Capacity II",
-          "description": "Increases all machines fuel capacity by 40%. Machines will need ammo/items less often."
+          "description": "Increases all machines item capacity by 40%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity3": {
           "name": "Increased Item Capacity III",
-          "description": "Increases all machines fuel capacity by 60%. Machines will need ammo/items less often."
+          "description": "Increases all machines item capacity by 60%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity4": {
           "name": "Increased Item Capacity IV",
-          "description": "Increases all machines fuel capacity by 80%. Machines will need ammo/items less often."
+          "description": "Increases all machines item capacity by 80%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity5": {
           "name": "Increased Item Capacity V",
-          "description": "Increases all machines fuel capacity by 100%. Machines will need ammo/items less often."
+          "description": "Increases all machines item capacity by 100%. Machines will need ammo/items less often."
         },
         "MerchantTraining1": {
           "name": "Merchant Training I",
