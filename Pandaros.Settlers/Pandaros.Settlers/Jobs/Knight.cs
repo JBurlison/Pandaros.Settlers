@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Jobs
         {
             if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Jobs.Knight))
             {
-                box.Set(box.item1 - (box.item1 * .60f));
+                box.Set(box.item1 - (box.item1 * .65f));
             }
         }
 
