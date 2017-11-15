@@ -282,7 +282,7 @@ namespace Pandaros.Settlers.Items
                     dic = _hitChanceShield;
 
                 foreach (var loc in dic)
-                    if (!entityArmor[loc.Key].IsEmpty() && loc.Value < hitLocation)
+                    if (!entityArmor[loc.Key].IsEmpty() && loc.Value >= hitLocation)
                     {
                         entityArmor[loc.Key].Durability--;
 
