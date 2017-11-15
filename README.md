@@ -12,7 +12,7 @@ Sounds added to make your colony feel alive!
 * [Food!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Food!)
 * [Machines!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Machines!)
 * [Call to Arms!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Call-to-Arms!)
-* [Decorative Blocks](https://github.com/JBurlison/Pandaros.Settlers/wiki/Decorative-Blocks)
+* [Decorative Blocks!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Decorative-Blocks)
 
 ## Jobs!
 * [Knights!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Knights!)
