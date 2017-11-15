@@ -51,8 +51,11 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, Pipliz.Box<float> box)
         {
-            var state = PlayerState.GetPlayerState(player);
-            box.Set(box.item1 + state.Difficulty.MonsterDamage);
+            if (box.item1 > 0)
+            {
+                var state = PlayerState.GetPlayerState(player);
+                box.Set(box.item1 + state.Difficulty.MonsterDamage);
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
