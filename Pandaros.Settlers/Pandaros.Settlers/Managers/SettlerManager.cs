@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
         public static void OnUpdate()
         {
-            if (_updateTime < Pipliz.Time.SecondsSinceStartDouble)
+            if (_updateTime < Pipliz.Time.SecondsSinceStartDouble && TimeCycle.IsDay)
             {
                 Players.PlayerDatabase.ForeachValue(p =>
                 {
