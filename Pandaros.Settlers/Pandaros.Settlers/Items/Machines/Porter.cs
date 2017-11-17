@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Items.Machines
             var retval = GameLoader.Repairing_Icon;
             var ps = PlayerState.GetPlayerState(player);
 
-            if (machineState.Durability < .75f + ps.Difficulty.MachineThreashHold)
+            if (machineState.Durability < .75f)
             {
                 bool repaired = false;
                 List<InventoryItem> requiredForFix = new List<InventoryItem>();
@@ -70,7 +70,7 @@ namespace Pandaros.Settlers.Items.Machines
                     MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
 
                 if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY[player] + ps.Difficulty.MachineThreashHold;
+                    machineState.Durability = MachineState.MAX_DURABILITY[player];
             }
 
             return retval;

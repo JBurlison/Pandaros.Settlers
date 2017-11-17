@@ -182,10 +182,10 @@ namespace Pandaros.Settlers.Managers
         {
             var ps = PlayerState.GetPlayerState(player);
 
-            if (machineState.Fuel < .75f + ps.Difficulty.MachineThreashHold)
+            if (machineState.Fuel < .75f)
             {
                 if (!MachineState.MAX_FUEL.ContainsKey(player))
-                    MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL + ps.Difficulty.MachineThreashHold;
+                    MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
 
                 var stockpile = Stockpile.GetStockPile(player);
 
@@ -194,14 +194,14 @@ namespace Pandaros.Settlers.Managers
                     while ((stockpile.AmountContained(item.Key) > 100 ||
                             item.Key == BuiltinBlocks.Firewood ||
                             item.Key == BuiltinBlocks.Coalore) && 
-                            machineState.Fuel < MachineState.MAX_FUEL[player] + ps.Difficulty.MachineThreashHold)
+                            machineState.Fuel < MachineState.MAX_FUEL[player])
                     {
                         stockpile.TryRemove(item.Key);
                         machineState.Fuel += item.Value;
                     }
                 }
 
-                if (machineState.Fuel < MachineState.MAX_FUEL[player] + ps.Difficulty.MachineThreashHold)
+                if (machineState.Fuel < MachineState.MAX_FUEL[player])
                     return FuelValues.First().Key;
             }
 
