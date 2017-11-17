@@ -149,45 +149,52 @@ namespace Pandaros.Settlers.Items.Machines
         
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            if (TurretSettings.ContainsKey(machineState.MachineType) &&
-                machineState.Durability > 0 && 
-                machineState.Fuel > 0 && 
-                machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+            try
             {
-                var stockpile = Stockpile.GetStockPile(player);
-
-                machineState.Durability -= TurretSettings[machineState.MachineType].DurabilityPerDoWork;
-                machineState.Fuel -= TurretSettings[machineState.MachineType].FuelPerDoWork;
-
-                if (machineState.Durability < 0)
-                    machineState.Durability = 0;
-
-                if (machineState.Fuel <= 0)
-                    machineState.Fuel = 0;
-
-                if (machineState.Load > 0)
+                if (TurretSettings.ContainsKey(machineState.MachineType) &&
+                    machineState.Durability > 0 &&
+                    machineState.Fuel > 0 &&
+                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
-                    
-                    if (monster != null)
+                    var stockpile = Stockpile.GetStockPile(player);
+
+                    machineState.Durability -= TurretSettings[machineState.MachineType].DurabilityPerDoWork;
+                    machineState.Fuel -= TurretSettings[machineState.MachineType].FuelPerDoWork;
+
+                    if (machineState.Durability < 0)
+                        machineState.Durability = 0;
+
+                    if (machineState.Fuel <= 0)
+                        machineState.Fuel = 0;
+
+                    if (machineState.Load > 0)
                     {
-                        machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
+                        var monster = MonsterTracker.Find(machineState.Position, TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
-                        if (machineState.Load < 0)
-                            machineState.Load = 0;
+                        if (monster != null)
+                        {
+                            machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
 
-                        if (TurretSettings[machineState.MachineType].OnShootAudio != null)
-                            ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.MachineType].OnShootAudio);
+                            if (machineState.Load < 0)
+                                machineState.Load = 0;
 
-                        if (TurretSettings[machineState.MachineType].OnHitAudio != null)
-                            ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
+                            if (TurretSettings[machineState.MachineType].OnShootAudio != null)
+                                ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.MachineType].OnShootAudio);
 
-                        TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
-                        monster.OnHit(TurretSettings[machineState.MachineType].Damage);
+                            if (TurretSettings[machineState.MachineType].OnHitAudio != null)
+                                ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
+
+                            TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
+                            monster.OnHit(TurretSettings[machineState.MachineType].Damage);
+                        }
                     }
-                }
 
-                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex, $"Turret shoot for {machineState.MachineType}");
             }
         }
 
