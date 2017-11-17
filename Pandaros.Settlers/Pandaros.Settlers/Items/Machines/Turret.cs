@@ -66,37 +66,49 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Repair(Players.Player player, MachineState machineState) 
         {
             var retval = GameLoader.Repairing_Icon;
-            var ps = PlayerState.GetPlayerState(player);
-            if (machineState.Durability < .75f + ps.Difficulty.MachineThreashHold && TurretSettings.ContainsKey(machineState.MachineType))
+
+            try
             {
-                bool repaired = false;
-                List<InventoryItem> requiredForFix = new List<InventoryItem>();
-                var stockpile = Stockpile.GetStockPile(player);
+                var ps = PlayerState.GetPlayerState(player);
 
-                foreach (var durability in TurretSettings[machineState.MachineType].RequiredForFix.OrderByDescending(s => s.Key))
-                    if (machineState.Durability < durability.Key)
-                    {
-                        requiredForFix = durability.Value;
-                        break;
-                    }
+                if (!MachineState.MAX_DURABILITY.ContainsKey(player))
+                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
 
-                if (stockpile.Contains(requiredForFix))
+                if (machineState.Durability < .75f + ps.Difficulty.MachineThreashHold && TurretSettings.ContainsKey(machineState.MachineType))
                 {
-                    stockpile.TryRemove(requiredForFix);
-                    repaired = true;
-                }
-                else
-                    foreach (var item in requiredForFix)
-                    {
-                        if (!stockpile.Contains(item) && item.Type != 0)
+                    bool repaired = false;
+                    List<InventoryItem> requiredForFix = new List<InventoryItem>();
+                    var stockpile = Stockpile.GetStockPile(player);
+
+                    foreach (var durability in TurretSettings[machineState.MachineType].RequiredForFix.OrderByDescending(s => s.Key))
+                        if (machineState.Durability < durability.Key)
                         {
-                            retval = item.Type;
+                            requiredForFix = durability.Value;
                             break;
                         }
-                    }
 
-                if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY[player] + ps.Difficulty.MachineThreashHold;
+                    if (stockpile.Contains(requiredForFix))
+                    {
+                        stockpile.TryRemove(requiredForFix);
+                        repaired = true;
+                    }
+                    else
+                        foreach (var item in requiredForFix)
+                        {
+                            if (!stockpile.Contains(item) && item.Type != 0)
+                            {
+                                retval = item.Type;
+                                break;
+                            }
+                        }
+
+                    if (repaired)
+                        machineState.Durability = MachineState.MAX_DURABILITY[player] + ps.Difficulty.MachineThreashHold;
+                }
+            } 
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
 
             return retval;
@@ -105,23 +117,31 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Reload(Players.Player player, MachineState machineState)
         {
             ushort retval = GameLoader.Reload_Icon;
-            var ps = PlayerState.GetPlayerState(player);
 
-            if (!MachineState.MAX_LOAD.ContainsKey(player))
-                MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
-
-            if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f + ps.Difficulty.MachineThreashHold)
+            try
             {
-                var stockpile = Stockpile.GetStockPile(player);
-                
-                while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player] + ps.Difficulty.MachineThreashHold)
-                {
-                    if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
-                        machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
-                }
+                var ps = PlayerState.GetPlayerState(player);
 
-                if (machineState.Load < MachineState.MAX_LOAD[player])
-                    retval = MachineManager.FuelValues.First().Key;
+                if (!MachineState.MAX_LOAD.ContainsKey(player))
+                    MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
+
+                if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f + ps.Difficulty.MachineThreashHold)
+                {
+                    var stockpile = Stockpile.GetStockPile(player);
+
+                    while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player] + ps.Difficulty.MachineThreashHold)
+                    {
+                        if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
+                            machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
+                    }
+
+                    if (machineState.Load < MachineState.MAX_LOAD[player])
+                        retval = MachineManager.FuelValues.First().Key;
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
 
             return retval;
@@ -256,8 +276,8 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 10,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Sling, 1) } },
                     { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Sling, 2) } },
                 },
@@ -287,8 +307,8 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 12,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Bow, 1) } },
                     { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Bow, 2) } },
                 },
@@ -318,8 +338,8 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 13,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Crossbow, 1) } },
                     { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Crossbow, 2) } },
                 },
@@ -350,8 +370,8 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 14,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
                     { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.MatchlockGun, 1) } },
                     { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.MatchlockGun, 2) } },
                 },
