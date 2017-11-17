@@ -82,7 +82,14 @@ namespace Pandaros.Settlers.Managers
                 lock (Machines)
                     foreach (var machine in Machines)
                         foreach (var state in machine.Value)
-                            state.MachineSettings.DoWork(machine.Key, state);
+                            try
+                            {
+                                state.MachineSettings.DoWork(machine.Key, state);
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.LogError(ex);
+                            }
 
                 _nextUpdate = Pipliz.Time.SecondsSinceStartDouble + 1;
             }
