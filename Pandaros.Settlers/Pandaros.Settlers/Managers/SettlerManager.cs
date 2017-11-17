@@ -95,22 +95,6 @@ namespace Pandaros.Settlers.Managers
             UpdateFoodUse(npc.Colony.Owner);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
-        public static void OnNPCJobChanged(NPC.NPCBase npc)
-        {
-            var tmpVals = npc.GetTempValues();
-
-            if (npc.Job != null && !npc.Job.NPCType.IsLaborer)
-            {
-                var skilled = tmpVals.GetOrDefault(GameLoader.ALL_SKILLS, 0f);
-                var inv = SettlerInventory.GetSettlerInventory(npc);
-                var jobName = npc.Job.NPCType.ToString();
-
-                if (!inv.JobSkills.ContainsKey(jobName))
-                    inv.JobSkills[jobName] = skilled;
-            }
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCLoaded, GameLoader.NAMESPACE + ".SettlerManager.OnNPCLoaded")]
         public static void OnNPCLoaded(NPC.NPCBase npc, JSONNode node)
         {

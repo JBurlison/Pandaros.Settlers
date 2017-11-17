@@ -4,13 +4,18 @@
       "path": "Pandaros.Settlers.dll",
       "name": "Settlers!",
       "enabled": true,
-			"compatibleversions": [
+      "compatibleversions": [
         {
           "Major": 0,
           "Minor": 4,
           "Build": 1
+        },
+        {
+          "Major": 0,
+          "Minor": 4,
+          "Build": 2
         }
-			]
+      ]
     }
   ]
 }

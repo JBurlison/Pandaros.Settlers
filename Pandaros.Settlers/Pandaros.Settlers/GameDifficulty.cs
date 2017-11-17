@@ -26,8 +26,8 @@ namespace Pandaros.Settlers
             Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f);
             Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f);
             Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f);
-            Hard = new GameDifficulty("Hard", 1.50f, -0.2f, 0.60f, 70f);
-            new GameDifficulty("Insane", 2f, -0.3f, .80f, 80f);
+            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f);
+            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f);
         }
 
         public string Name { get; set; }

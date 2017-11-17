@@ -283,6 +283,9 @@ namespace Pandaros.Settlers.Jobs
                 var state = PlayerState.GetPlayerState(d.requestedBy);
                 var stockpile = Stockpile.GetStockPile(d.requestedBy);
 
+                if (!Knight.Knights.ContainsKey(d.requestedBy))
+                    Knight.Knights.Add(d.requestedBy, new List<Knight>());
+
                 foreach (var knight in Knight.Knights[d.requestedBy])
                 {
                     try

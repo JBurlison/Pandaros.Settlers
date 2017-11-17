@@ -72,7 +72,7 @@ namespace Pandaros.Settlers.Items.Machines
                 var ps = PlayerState.GetPlayerState(player);
 
                 if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
+                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY + ps.Difficulty.MachineThreashHold;
 
                 if (machineState.Durability < .75f + ps.Difficulty.MachineThreashHold && TurretSettings.ContainsKey(machineState.MachineType))
                 {
@@ -123,7 +123,7 @@ namespace Pandaros.Settlers.Items.Machines
                 var ps = PlayerState.GetPlayerState(player);
 
                 if (!MachineState.MAX_LOAD.ContainsKey(player))
-                    MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
+                    MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD + ps.Difficulty.MachineThreashHold;
 
                 if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f + ps.Difficulty.MachineThreashHold)
                 {
@@ -135,7 +135,7 @@ namespace Pandaros.Settlers.Items.Machines
                             machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
                     }
 
-                    if (machineState.Load < MachineState.MAX_LOAD[player])
+                    if (machineState.Load < MachineState.MAX_LOAD[player] + ps.Difficulty.MachineThreashHold)
                         retval = MachineManager.FuelValues.First().Key;
                 }
             }
