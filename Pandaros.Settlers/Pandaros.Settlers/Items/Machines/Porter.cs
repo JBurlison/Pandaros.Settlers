@@ -15,6 +15,7 @@ namespace Pandaros.Settlers.Items.Machines
     public static class Porter
     {
         const double PorterCooldown = 4;
+        private const string DoorOpen = "DoorOpen";
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
@@ -91,8 +92,11 @@ namespace Pandaros.Settlers.Items.Machines
                 machineState.Fuel > 0 && 
                 machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
             {
+                if (!machineState.TempValues.Contains(DoorOpen))
+                    machineState.TempValues.Set(DoorOpen, false);
 
-                if (TimeCycle.IsDay)
+                if ((TimeCycle.IsDay && !machineState.TempValues.Get<bool>(DoorOpen)) ||
+                    (!TimeCycle.IsDay && machineState.TempValues.Get<bool>(DoorOpen)))
                 {
                     machineState.Durability -= 0.05f;
                     machineState.Fuel -= 0.10f;
@@ -103,6 +107,8 @@ namespace Pandaros.Settlers.Items.Machines
 
                     if (machineState.Fuel <= 0)
                         machineState.Fuel = 0;
+
+
                 }
                 
                 machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
@@ -113,7 +119,7 @@ namespace Pandaros.Settlers.Items.Machines
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "MiningMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg" });
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "PorterMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/CastleDoorOpen.ogg" });
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Porter.RegisterPorter")]
@@ -125,10 +131,9 @@ namespace Pandaros.Settlers.Items.Machines
             var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
             var tools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
             var planks = new InventoryItem(BuiltinBlocks.Planks, 4);
-            var pickaxe = new InventoryItem(BuiltinBlocks.BronzePickaxe, 2);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>() { planks, iron, rivets, copperParts, copperNails, tools, planks, pickaxe },
+                                    new List<InventoryItem>() { planks, iron, rivets, copperParts, copperNails, tools, planks },
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
@@ -139,7 +144,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var PorterTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            PorterTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/MiningMachine.png";
+            PorterTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/Lever.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Porter", PorterTextureMapping);
         }
@@ -149,14 +154,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var PorterName = GameLoader.NAMESPACE + ".Porter";
             var PorterFlagNode = new JSONNode();
-            PorterFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/MiningMachine.png");
+            PorterFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/Porter.png");
             PorterFlagNode["isPlaceable"] = new JSONNode(true);
             PorterFlagNode.SetAs("onRemoveAmount", 1);
             PorterFlagNode.SetAs("onPlaceAudio", "stonePlace");
             PorterFlagNode.SetAs("onRemoveAudio", "stoneDelete");
             PorterFlagNode.SetAs("isSolid", true);
             PorterFlagNode.SetAs("sideall", "SELF");
-            PorterFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/MiningMachine.obj");
+            PorterFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/Lever.obj");
 
             Item = new ItemTypesServer.ItemTypeRaw(PorterName, PorterFlagNode);
             items.Add(PorterName, Item);
@@ -167,36 +172,10 @@ namespace Pandaros.Settlers.Items.Machines
         {
             if (d.typeToBuild == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
             {
-                if (World.TryGetTypeAt(d.VoxelToChange.Add(0, -1, 0), out ushort itemBelow))
-                {
-                    if (CanMineBlock(itemBelow))
-                    {
-                        MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.VoxelToChange, d.requestedBy, nameof(Porter)));
-                        return true;
-                    }
-                }
-
-                PandaChat.Send(d.requestedBy, "The mining machine must be placed on stone or ore.", ChatColor.orange);
-                return false;
+                MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.VoxelToChange, d.requestedBy, nameof(Porter)));
             }
 
             return true;
-        }
-
-        public static bool CanMineBlock(ushort itemMined)
-        {
-            return itemMined == BuiltinBlocks.StoneBlock ||
-                    itemMined == BuiltinBlocks.DarkStone ||
-                    itemMined == BuiltinBlocks.InfiniteClay ||
-                    itemMined == BuiltinBlocks.InfiniteCoal ||
-                    itemMined == BuiltinBlocks.InfiniteCopper ||
-                    itemMined == BuiltinBlocks.InfiniteGalena ||
-                    itemMined == BuiltinBlocks.InfiniteGold ||
-                    itemMined == BuiltinBlocks.InfiniteGypsum ||
-                    itemMined == BuiltinBlocks.InfiniteIron ||
-                    itemMined == BuiltinBlocks.InfiniteSalpeter ||
-                    itemMined == BuiltinBlocks.InfiniteStone ||
-                    itemMined == BuiltinBlocks.InfiniteTin;
         }
     }
 }

@@ -220,7 +220,7 @@ namespace Pandaros.Settlers.Items.Machines
             var bow = new InventoryItem(BuiltinBlocks.Bow, 2);
 
             var bolt = new InventoryItem(BuiltinBlocks.BronzeArrow, 10);
-            var crossbow = new InventoryItem(BuiltinBlocks.Bow, 2);
+            var crossbow = new InventoryItem(BuiltinBlocks.Crossbow, 2);
 
             var bullet = new InventoryItem(BuiltinBlocks.LeadBullet, 10);
             var gunpowder = new InventoryItem(BuiltinBlocks.GunpowderPouch, 3);

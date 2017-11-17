@@ -1,6 +1,7 @@
 ﻿using NPC;
 using Pandaros.Settlers.Managers;
 using Pipliz;
+using Pipliz.Collections;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace Pandaros.Settlers.Items.Machines
         public Jobs.MachinistJob Machinist { get; set; }
 
         public MachineManager.MachineSettings MachineSettings { get; private set; }
+
+        public BoxedDictionary TempValues { get; private set; } = new BoxedDictionary();
 
         public MachineState(Vector3Int pos, Players.Player owner, string machineType)
         {
