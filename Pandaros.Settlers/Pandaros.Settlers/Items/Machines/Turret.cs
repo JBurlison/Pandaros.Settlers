@@ -169,7 +169,22 @@ namespace Pandaros.Settlers.Items.Machines
 
                     if (machineState.Load > 0)
                     {
-                        var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                        var monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                        if (monster == null)
+                            MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                        if (monster == null)
+                            MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                        if (monster == null)
+                            MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                        if (monster == null)
+                            MonsterTracker.Find(machineState.Position.Add(0, 0, 1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                        if (monster == null)
+                            MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
                         if (monster != null)
                         {
