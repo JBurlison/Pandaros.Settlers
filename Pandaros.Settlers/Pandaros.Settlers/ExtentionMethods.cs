@@ -9,13 +9,13 @@ using Server.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Pandaros.Settlers
 {
     public static class ExtentionMethods
     {
-
         public static double NextDouble(this System.Random rng, double min, double max)
         {
             return rng.NextDouble() * (max - min) + min;

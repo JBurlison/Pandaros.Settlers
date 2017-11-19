@@ -90,7 +90,12 @@ namespace Pandaros.Settlers.Managers
 #endif
 
                 if (totalBanners < numberOfBanners)
-                    Stockpile.GetStockPile(p.Key).Add(BuiltinBlocks.Banner);
+                {
+                    if (!Inventory.GetInventory(p.Key).TryAdd(BuiltinBlocks.Banner))
+                    {
+                        Stockpile.GetStockPile(p.Key).Add(BuiltinBlocks.Banner);
+                    }
+                }
             }
         }
 

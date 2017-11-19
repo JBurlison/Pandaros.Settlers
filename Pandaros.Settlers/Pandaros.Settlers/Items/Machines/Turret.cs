@@ -174,13 +174,13 @@ namespace Pandaros.Settlers.Items.Machines
 
                     if (machineState.Load > 0)
                     {
-                        var monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                        var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                        if (monster == null)
+                            monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
                         if (monster == null)
                             MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
-
-                        if (monster == null)
-                            MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
                         if (monster == null)
                             MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
@@ -289,10 +289,10 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = TurretTypes[STONE],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.SlingBullet) },
-                AmmoValue = 0.05f,
+                AmmoValue = 0.04f,
                 Damage = 50f,
-                DurabilityPerDoWork = 0.003f,
-                FuelPerDoWork = 0.01f,
+                DurabilityPerDoWork = 0.002f,
+                FuelPerDoWork = 0.005f,
                 Name = STONE,
                 OnShootAudio = "sling",
                 OnHitAudio = "fleshHit",
@@ -320,15 +320,15 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = TurretTypes[BRONZEARROW],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.BronzeArrow) },
-                AmmoValue = 0.05f,
+                AmmoValue = 0.04f,
                 Damage = 100f,
-                DurabilityPerDoWork = 0.005f,
-                FuelPerDoWork = 0.02f,
+                DurabilityPerDoWork = 0.002f,
+                FuelPerDoWork = 0.01f,
                 Name = BRONZEARROW,
                 OnShootAudio = "bowShoot",
                 OnHitAudio = "fleshHit",
                 Range = 25,
-                WorkTime = 3f,
+                WorkTime = 2f,
                 RefuelTime = 5,
                 ReloadTime = 6,
                 RepairTime = 12,
@@ -351,15 +351,15 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = TurretTypes[CROSSBOW],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.CrossbowBolt) },
-                AmmoValue = 0.05f,
+                AmmoValue = 0.04f,
                 Damage = 300f,
-                DurabilityPerDoWork = 0.007f,
-                FuelPerDoWork = 0.03f,
+                DurabilityPerDoWork = 0.005f,
+                FuelPerDoWork = 0.02f,
                 Name = CROSSBOW,
                 OnShootAudio = "bowShoot",
                 OnHitAudio = "fleshHit",
                 Range = 30,
-                WorkTime = 4f,
+                WorkTime = 3f,
                 RefuelTime = 6,
                 ReloadTime = 7,
                 RepairTime = 13,
@@ -383,15 +383,15 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = TurretTypes[MATCHLOCK],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.LeadBullet), new InventoryItem(BuiltinBlocks.GunpowderPouch) },
-                AmmoValue = 0.05f,
+                AmmoValue = 0.04f,
                 Damage = 500f,
-                DurabilityPerDoWork = 0.011f,
-                FuelPerDoWork = 0.04f,
+                DurabilityPerDoWork = 0.006f,
+                FuelPerDoWork = 0.02f,
                 Name = MATCHLOCK,
                 OnShootAudio = "matchlock",
                 OnHitAudio = "fleshHit",
                 Range = 35,
-                WorkTime = 6f,
+                WorkTime = 4f,
                 RefuelTime = 7,
                 ReloadTime = 8,
                 RepairTime = 14,
