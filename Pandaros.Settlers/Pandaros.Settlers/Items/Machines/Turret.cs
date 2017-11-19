@@ -132,7 +132,12 @@ namespace Pandaros.Settlers.Items.Machines
                     while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player])
                     {
                         if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
+                        {
                             machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
+
+                            if (TurretSettings[machineState.MachineType].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
+                                stockpile.Add(BuiltinBlocks.LinenPouch);
+                        }
                     }
 
                     if (machineState.Load < MachineState.MAX_LOAD[player])

@@ -84,6 +84,10 @@ namespace Pandaros.Settlers.AI
                     if (_target != null)
                     {
                         var ranged = _weapon.range - 5;
+
+                        if (ranged < 0)
+                            ranged = 1;
+
                         position = new Vector3Int(_target.Position).Add(ranged, 0, ranged);
                         position = Server.AI.AIManager.ClosestPosition(position, currentPos);
 

@@ -169,7 +169,7 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
-            if (d.typeToBuild == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+            if (d.TypeNew == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
             {
                 if (World.TryGetTypeAt(d.VoxelToChange.Add(0, -1, 0), out ushort itemBelow))
                 {

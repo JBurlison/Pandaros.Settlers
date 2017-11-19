@@ -49,7 +49,9 @@
     "Pandaros.Settlers.carpetmagenta": "Magenta Carpet",
     "Pandaros.Settlers.carpetorange": "Orange Carpet",
     "Pandaros.Settlers.carpetpink": "Pink Carpet",
-    "Pandaros.Settlers.carpetpurple": "Purple Carpet"
+    "Pandaros.Settlers.carpetpurple": "Purple Carpet",
+    "Pandaros.Settlers.GateLever": "Gate Lever",
+    "Pandaros.Settlers.Gate": "Iron Gate"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -84,12 +86,14 @@
     "Pandaros.Settlers.BerryPie": "Berry than your mothers!",
     "Pandaros.Settlers.PatrolFlag": "Used with the Patrol Tool. Tells your knights where to keep watch!",
     "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
-    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply of wood or coal. Crank to start!",  
+    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply of wood or coal. Crank to start!",
     "Pandaros.Settlers.MachinistBench": "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench.",
     "Pandaros.Settlers.StoneTurret": "50 Damage per shot. Fires twice as fast as a Colonist.",
     "Pandaros.Settlers.BronzeArrowTurret": "100 Damage per shot. Fires twice as fast as a Colonist.",
     "Pandaros.Settlers.CrossbowTurret": "300 Damage per shot. Fires twice as fast as a Colonist.",
-    "Pandaros.Settlers.MatchlockTurret": "500 Damage per shot. Fires twice as fast as a Colonist."
+    "Pandaros.Settlers.MatchlockTurret": "500 Damage per shot. Fires twice as fast as a Colonist.",
+    "Pandaros.Settlers.GateLever": "Opens all Iron Gates within 20 blocks of it automatically every morning, and closes them every night. Needs a Machinist to maintain it.",
+    "Pandaros.Settlers.Gate": "Iron Gate. Needs a Gate Lever to open."
   },
   "sentences": {
     "popup": {
