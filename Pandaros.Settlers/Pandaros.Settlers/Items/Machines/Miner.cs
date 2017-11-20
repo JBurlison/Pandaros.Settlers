@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 2));
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
 
                 if (machineState.Durability < .10f)

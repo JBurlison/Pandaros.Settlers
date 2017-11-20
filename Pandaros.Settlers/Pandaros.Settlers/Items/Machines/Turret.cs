@@ -303,10 +303,10 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 10,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Sling, 1) } },
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Sling, 2) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 3), new InventoryItem(BuiltinBlocks.CopperNails, 3), new InventoryItem(BuiltinBlocks.Sling, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Sling, 2) } },
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.SLINGBULLET]
             };
@@ -334,10 +334,10 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 12,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Bow, 1) } },
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Bow, 2) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 3), new InventoryItem(BuiltinBlocks.CopperNails, 3), new InventoryItem(BuiltinBlocks.Bow, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.CopperParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Bow, 2) } },
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.ARROW]
             };
@@ -365,10 +365,10 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 13,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Crossbow, 1) } },
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.Crossbow, 2) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 2), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 3), new InventoryItem(BuiltinBlocks.CopperNails, 3), new InventoryItem(BuiltinBlocks.Crossbow, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.IronRivet, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.Crossbow, 2) } },
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.CROSSBOWBOLT]
             };
@@ -397,10 +397,10 @@ namespace Pandaros.Settlers.Items.Machines
                 RepairTime = 14,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
-                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
-                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 4) } },
-                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.MatchlockGun, 1) } },
-                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 6), new InventoryItem(BuiltinBlocks.CopperNails, 6), new InventoryItem(BuiltinBlocks.MatchlockGun, 2) } },
+                    { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
+                    { 50f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 2), new InventoryItem(BuiltinBlocks.CopperNails, 2) } },
+                    { 30f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 3), new InventoryItem(BuiltinBlocks.CopperNails, 3), new InventoryItem(BuiltinBlocks.MatchlockGun, 1) } },
+                    { 10f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 1), new InventoryItem(BuiltinBlocks.Planks, 1), new InventoryItem(BuiltinBlocks.SteelParts, 4), new InventoryItem(BuiltinBlocks.CopperNails, 4), new InventoryItem(BuiltinBlocks.MatchlockGun, 2) } },
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
             };

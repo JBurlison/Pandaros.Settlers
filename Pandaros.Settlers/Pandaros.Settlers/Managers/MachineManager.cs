@@ -66,12 +66,11 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.SetFuelValues")]
         public static void SetFuelValues()
         {
-            FuelValues[BuiltinBlocks.LeavesTemperate] = .02f;
-            FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
-            FuelValues[BuiltinBlocks.Leaves] = .02f;
             FuelValues[BuiltinBlocks.Coalore] = .20f;
             FuelValues[BuiltinBlocks.Firewood] = .10f;
             FuelValues[BuiltinBlocks.Straw] = .05f;
+            FuelValues[BuiltinBlocks.LeavesTemperate] = .02f;
+            FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]

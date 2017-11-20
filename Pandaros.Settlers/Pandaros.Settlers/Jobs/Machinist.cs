@@ -101,10 +101,14 @@ namespace Pandaros.Settlers.Jobs
 
     public class MachinistJob : BlockJobBase, IBlockJobBase, INPCTypeDefiner
     {
+        const float COOLDOWN = 3f;
         protected float cooldown = 2f;
         public Items.Machines.MachineState TargetMachine { get; set; }
+        public Items.Machines.MachineState PreviousMachine { get; set; }
         Vector3Int originalPosition;
         public static List<uint> OkStatus;
+        private int _stuckCount = 0;
+
 
         public override string NPCTypeKey
         {
@@ -154,7 +158,7 @@ namespace Pandaros.Settlers.Jobs
                 if (MachineManager.Machines.ContainsKey(owner))
                     foreach (var machine in MachineManager.Machines[Owner].Where(m => m.Machinist == null))
                     {
-                        if (machine.PositionIsValid())
+                        if (machine != PreviousMachine && machine.PositionIsValid())
                         {
                             float dis = Vector3.Distance(machine.Position.Vector, pos.Vector);
 
@@ -180,8 +184,6 @@ namespace Pandaros.Settlers.Jobs
 
             return pos;
         }
-
-        const float COOLDOWN = 3f;
 
         public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
@@ -213,6 +215,7 @@ namespace Pandaros.Settlers.Jobs
                 }
                 else
                 {
+                    PreviousMachine = null;
                     TargetMachine.Machinist = null;
                     TargetMachine = null;
                     fullyRepaired = true;
@@ -222,13 +225,25 @@ namespace Pandaros.Settlers.Jobs
             // if the machine is gone, Abort.
             CheckIfValidMachine();
 
-            if (TargetMachine == null)
+            if (OkStatus.Contains(status))
+                _stuckCount = 0;
+            else if (status != 0)
+                _stuckCount++;
+
+            if (_stuckCount > 5 || TargetMachine == null)
             {
                 state.JobIsDone = true;
                 status = GameLoader.Waiting_Icon;
 
                 if (fullyRepaired)
                     cooldown = 0.5f;
+
+                if (_stuckCount > 5)
+                {
+                    PreviousMachine = TargetMachine;
+                    TargetMachine.Machinist = null;
+                    TargetMachine = null;
+                }
             }
 
             if (OkStatus.Contains(status))
