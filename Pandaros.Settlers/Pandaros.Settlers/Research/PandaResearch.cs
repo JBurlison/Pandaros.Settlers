@@ -90,7 +90,7 @@ namespace Pandaros.Settlers.Research
                     AddDependency(dep);
         }
 
-        public override void OnResearchComplete(ScienceManagerPlayer manager)
+        public override void OnResearchComplete(ScienceManagerPlayer manager, EResearchCompletionReason reason)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace Pandaros.Settlers.Research
 
             for (int i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, 1, ReducedWaste, 0.05f, requirements);
+                research = new PandaResearch(researchDic, i, ReducedWaste, 0.05f, requirements);
                 research.ResearchComplete += ReducedWaste_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }

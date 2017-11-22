@@ -99,6 +99,7 @@
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="MethodUtil.cs" />
+    <Compile Include="Monsters\PandaMonsterSpawner.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
@@ -208,9 +209,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Monsters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="icons\AdvancedCraftingTable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -259,42 +259,45 @@ namespace Pandaros.Settlers.Items
 
         private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> entityArmor, Players.Player player, string name)
         {
-            float armor = 0;
-
-            foreach (ArmorSlot armorSlot in ArmorSlotEnum)
+            if (box.item1 > 0)
             {
-                if (!entityArmor.ContainsKey(armorSlot))
-                    entityArmor.Add(armorSlot, new SettlerInventory.ArmorState());
+                float armor = 0;
 
-                if (!entityArmor[armorSlot].IsEmpty())
-                    armor += ArmorLookup[entityArmor[armorSlot].Id].ArmorRating;
-            }
+                foreach (ArmorSlot armorSlot in ArmorSlotEnum)
+                {
+                    if (!entityArmor.ContainsKey(armorSlot))
+                        entityArmor.Add(armorSlot, new SettlerInventory.ArmorState());
 
-            if (armor != 0)
-            {
-                box.Set(box.item1 - (box.item1 * armor));
+                    if (!entityArmor[armorSlot].IsEmpty())
+                        armor += ArmorLookup[entityArmor[armorSlot].Id].ArmorRating;
+                }
 
-                var hitLocation = _rand.Next(1, 100);
+                if (armor != 0)
+                {
+                    box.Set(box.item1 - (box.item1 * armor));
 
-                var dic = _hitChance;
+                    var hitLocation = _rand.Next(1, 100);
 
-                if (!entityArmor[ArmorSlot.Shield].IsEmpty())
-                    dic = _hitChanceShield;
+                    var dic = _hitChance;
 
-                foreach (var loc in dic)
-                    if (!entityArmor[loc.Key].IsEmpty() && loc.Value >= hitLocation)
-                    {
-                        entityArmor[loc.Key].Durability--;
+                    if (!entityArmor[ArmorSlot.Shield].IsEmpty())
+                        dic = _hitChanceShield;
 
-                        if (entityArmor[loc.Key].Durability <= 0)
+                    foreach (var loc in dic)
+                        if (!entityArmor[loc.Key].IsEmpty() && loc.Value >= hitLocation)
                         {
-                            entityArmor[loc.Key].Durability = 0;
-                            entityArmor[loc.Key].Id = default(ushort);
-                            PandaChat.Send(player, $"{name} {loc.Key} broke! If you have a spare one it will be automatically equipt within 30 seconds.", ChatColor.white);
-                        }
+                            entityArmor[loc.Key].Durability--;
 
-                        break;
-                    }
+                            if (entityArmor[loc.Key].Durability <= 0)
+                            {
+                                entityArmor[loc.Key].Durability = 0;
+                                entityArmor[loc.Key].Id = default(ushort);
+                                PandaChat.Send(player, $"{name} {loc.Key} broke! If you have a spare one it will be automatically equipt within 30 seconds.", ChatColor.white);
+                            }
+
+                            break;
+                        }
+                }
             }
         }
 
