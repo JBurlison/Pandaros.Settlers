@@ -141,7 +141,7 @@ namespace Pandaros.Settlers.Items.Machines
                     }
 
                     if (machineState.Load < MachineState.MAX_LOAD[player])
-                        retval = TurretSettings[machineState.MachineType].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo))?.Type;
+                        retval = TurretSettings[machineState.MachineType].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
                 }
             }
             catch (Exception ex)
