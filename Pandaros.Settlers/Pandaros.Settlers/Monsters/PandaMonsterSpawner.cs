@@ -210,10 +210,10 @@ namespace Pandaros.Settlers.Monsters
                     spawnchances[mtKvp.Key] = chance;
 
                     if (chance > maxChance)
-                        maxChance = chance + 10;
+                        maxChance = chance + 15;
 
                     if (chance < minChance)
-                        minChance = chance - 10;
+                        minChance = chance - 5;
                 }
             }
             

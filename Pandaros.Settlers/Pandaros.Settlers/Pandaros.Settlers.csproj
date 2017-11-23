@@ -81,6 +81,7 @@
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
+    <Compile Include="Jobs\HerbalistJob.cs" />
     <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="MethodUtil.cs" />
     <Compile Include="Monsters\PandaMonsterSpawner.cs" />
+    <Compile Include="Monsters\PandaZombie.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ColonyBuiltIn.cs" />
@@ -908,6 +910,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\MasterOfAll9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\herbs.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\Lever.png">
