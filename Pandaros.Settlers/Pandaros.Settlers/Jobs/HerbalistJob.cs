@@ -20,6 +20,9 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".HerbalistBench";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
         public static string HERB_NAME = GameLoader.NAMESPACE + ".Herbs";
+        public static string HERB1_NAME = HERB_NAME + "Stage1";
+        public static string HERB2_NAME = HERB_NAME + "Stage2";
+
         public static ItemTypesServer.ItemTypeRaw HerbBench;
         public static ItemTypesServer.ItemTypeRaw HerbItem;
         public static ItemTypesServer.ItemTypeRaw HerbStage1;
@@ -62,7 +65,16 @@ namespace Pandaros.Settlers.Jobs
             textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/HerbalistBench.png";
             textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/HerbalistBench.png";
 
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "HerbalistBench", textureMapping);
+            ItemTypesServer.SetTextureMapping(JOB_ITEM_KEY, textureMapping);
+            ItemTypesServer.SetTextureMapping(HERB1_NAME, new ItemTypesServer.TextureMapping(new JSONNode())
+            {
+                AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/herbs.png"
+            });
+
+            ItemTypesServer.SetTextureMapping(HERB2_NAME, new ItemTypesServer.TextureMapping(new JSONNode())
+            {
+                AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/herbs.png"
+            });
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.AfterAddingBaseTypes")]
@@ -80,11 +92,55 @@ namespace Pandaros.Settlers.Jobs
               .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "HerbalistBench.png"))
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
-              .SetAs("sideall", GameLoader.NAMESPACE + "HerbalistBench")
+              .SetAs("sideall", JOB_ITEM_KEY)
               .SetAs("npcLimit", 0)
             );
 
             itemTypes.Add(JOB_ITEM_KEY, HerbBench);
+
+            HerbStage1 = new ItemTypesServer.ItemTypeRaw(HERB1_NAME, new JSONNode()
+              .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "herbstage1.png"))
+              .SetAs("onPlaceAudio", "grassDelete")
+              .SetAs("onRemoveAudio", "grassDelete")
+              .SetAs("sideall", HERB1_NAME)
+              .SetAs("isSolid", false)
+              .SetAs("maxStackSize", 1200)
+              .SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/herbstage1.obj")
+              .SetAs("onRemove", new JSONNode(NodeType.Array)
+                                  .AddToArray(new JSONNode()
+                                              .SetAs("type", HERB1_NAME)
+                                              .SetAs("amount", 1)
+                                              .SetAs("chance", .8))
+                                  )
+            );
+
+            itemTypes.Add(JOB_ITEM_KEY, HerbStage1);
+
+            HerbStage2 = new ItemTypesServer.ItemTypeRaw(HERB2_NAME, new JSONNode()
+              .SetAs("onPlaceAudio", "grassDelete")
+              .SetAs("onRemoveAudio", "grassDelete")
+              .SetAs("sideall", HERB2_NAME)
+              .SetAs("isSolid", false)
+              .SetAs("maxStackSize", 1200)
+              .SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/herbstage2.obj")
+              .SetAs("onRemove", new JSONNode(NodeType.Array)
+                                  .AddToArray(new JSONNode()
+                                              .SetAs("type", HERB1_NAME)
+                                              .SetAs("amount", 1)
+                                              .SetAs("chance", 1)
+                                  ).AddToArray(new JSONNode()
+                                              .SetAs("type", HERB1_NAME)
+                                              .SetAs("amount", 1)
+                                              .SetAs("chance", .5)
+                                  ).AddToArray(new JSONNode()
+                                              .SetAs("type", HERB2_NAME)
+                                              .SetAs("amount", 1)
+                                              .SetAs("chance", 1)
+                                  )
+                     )
+            );
+
+            itemTypes.Add(JOB_ITEM_KEY, HerbStage1);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.AfterWorldLoad")]
@@ -244,6 +300,14 @@ namespace Pandaros.Settlers.Jobs
             int a = Pipliz.Random.Next(this.positionMin.x, this.positionMax.x + 1);
             int c = Pipliz.Random.Next(this.positionMin.z, this.positionMax.z + 1);
             this.positionSub = new Vector3Int(a, this.positionMin.y, c);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Jobs.HerbalistJob.PlaceJob")]
+        public static void PlaceJob(ModLoader.OnTryChangeBlockUserData d)
+        {
+            if (d.typeTillNow == HerbalistRegister.HerbBench.ItemIndex)
+            {
+            }
         }
     }
 }

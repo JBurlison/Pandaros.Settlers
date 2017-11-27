@@ -377,6 +377,7 @@
     <Content Include="icons\HerbalistBench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\herbstage1.png" />
     <Content Include="icons\ImprovedBow1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
