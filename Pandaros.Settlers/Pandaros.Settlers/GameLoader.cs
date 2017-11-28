@@ -168,6 +168,11 @@ namespace Pandaros.Settlers
             }
         }
 
+        public static string GetUpdatableBlocksJSONPath()
+        {
+            return string.Format("gamedata/savegames/{0}/updatableblocks.json", ServerManager.WorldName);
+        }
+
         public static void AddSoundFile(string key, List<string> fileNames)
         {
             var node = new JSONNode();
