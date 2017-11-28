@@ -27,7 +27,8 @@ namespace Pandaros.Settlers.Jobs
         public static ItemTypesServer.ItemTypeRaw HerbItem;
         public static ItemTypesServer.ItemTypeRaw HerbStage1;
         public static ItemTypesServer.ItemTypeRaw HerbStage2;
-
+        private static BlockTracker<HerbalistJob> _areaJobTracker;
+        
         static NPCTypeStandardSettings _settings;
 
         public static NPCType NPCType;
@@ -80,13 +81,13 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
-            var foodName = HERB_NAME;
-            var foodNode = new JSONNode();
-            foodNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/herb.png");
-            foodNode["isPlaceable"] = new JSONNode(false);
+            var herbName = HERB_NAME;
+            var herbNode = new JSONNode();
+            herbNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/herb.png");
+            herbNode["isPlaceable"] = new JSONNode(false);
 
-            HerbItem = new ItemTypesServer.ItemTypeRaw(foodName, foodNode);
-            itemTypes.Add(foodName, HerbItem);
+            HerbItem = new ItemTypesServer.ItemTypeRaw(herbName, herbNode);
+            itemTypes.Add(herbName, HerbItem);
 
             HerbBench = new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, new JSONNode()
               .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "HerbalistBench.png"))
@@ -157,6 +158,41 @@ namespace Pandaros.Settlers.Jobs
             RecipePlayer.AddOptionalRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.LoadUpdatables"),
+            ModLoader.ModCallbackDependsOn("pipliz.server.loadupdatableblocks")]
+        private static void LoadUpdatables()
+        {
+            if (JSON.Deserialize(GameLoader.GetUpdatableBlocksJSONPath(), out JSONNode jSONNode, false))
+            {
+                if (jSONNode.TryGetChild(Items.UpdatableBlocks.Herbs.NAME, out JSONNode array))
+                {
+                    Items.UpdatableBlocks.Herbs.Load(array);
+                }
+            }
+        }
+
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.OnTryChangeBlockUser")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
+        {
+            if (d.TypeNew == HerbStage1.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+                Items.UpdatableBlocks.Herbs.OnAdd(d.VoxelToChange, HerbStage1.ItemIndex, d.requestedBy);
+            else if (d.TypeNew == BuiltinBlocks.Air && (d.typeTillNow == HerbStage1.ItemIndex || d.typeTillNow == HerbStage2.ItemIndex))
+                Items.UpdatableBlocks.Herbs.OnRemove(d.VoxelToChange, d.typeTillNow, d.requestedBy);
+            else if (d.TypeNew == HerbBench.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+                _areaJobTracker.Add(new HerbalistJob(new Bounds(d.VoxelToChange.Vector, new Vector3(4, 0, 4)), d.requestedBy, 0));
+            else if (d.TypeNew == BuiltinBlocks.Air && d.typeTillNow == HerbBench.ItemIndex)
+                _areaJobTracker.Remove(d.VoxelToChange);
+
+            return true;
+        }
+
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.LoadHerbAreaJob"), ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpcs")]
+        private static void Load()
+        {
+            _areaJobTracker = new BlockTracker<HerbalistJob>(JOB_NAME);
+        }
     }
 
     public class HerbalistJob : AreaJob
@@ -181,8 +217,8 @@ namespace Pandaros.Settlers.Jobs
 
         public HerbalistJob(Bounds box, Players.Player player, int npcID)
         {
-            base.InitializeAreaJob(new Vector3Int(box.min), new Vector3Int(box.max), player, npcID);
-            base.SetLayer(BuiltinBlocks.Dirt, -1);
+            InitializeAreaJob(new Vector3Int(box.min), new Vector3Int(box.max), player, npcID);
+            SetLayer(BuiltinBlocks.Dirt, -1);
         }
 
         public HerbalistJob()
@@ -230,10 +266,10 @@ namespace Pandaros.Settlers.Jobs
                     }
                     else if (num == HerbalistRegister.HerbStage2.ItemIndex)
                     {
+
                         if (ServerManager.TryChangeBlock(this.positionSub, 0, ServerManager.SetBlockFlags.DefaultAudio))
-                        {
                             this.usedNPC.Inventory.Add(ItemTypes.GetType(HerbalistRegister.HerbStage2.ItemIndex).OnRemoveItems);
-                        }
+
                         state.SetCooldown(1.0);
                         this.shouldDumpInventory = false;
                     }
@@ -244,9 +280,8 @@ namespace Pandaros.Settlers.Jobs
                     }
                 }
                 else
-                {
                     state.SetCooldown((double)Pipliz.Random.NextFloat(3f, 6f));
-                }
+
                 this.positionSub = Vector3Int.invalidPos;
             }
             else
@@ -260,43 +295,49 @@ namespace Pandaros.Settlers.Jobs
             bool flag = this.usedNPC.Colony.UsedStockpile.Contains(HerbalistRegister.HerbStage1.ItemIndex, 1);
             bool flag2 = false;
             Vector3Int positionSub = Vector3Int.invalidPos;
+
             for (int i = this.positionMin.x; i <= this.positionMax.x; i++)
             {
                 int num = (!flag2) ? this.positionMin.z : this.positionMax.z;
+
                 while ((!flag2) ? (num <= this.positionMax.z) : (num >= this.positionMin.z))
                 {
                     Vector3Int vector3Int = new Vector3Int(i, this.positionMin.y, num);
                     ushort num2;
+
                     if (!AIManager.Loaded(vector3Int) || !World.TryGetTypeAt(vector3Int, out num2))
-                    {
                         return;
-                    }
+
                     if (num2 == 0)
                     {
                         if (!flag && !positionSub.IsValid)
-                        {
                             positionSub = vector3Int;
-                        }
+
                         if (flag)
                         {
                             this.positionSub = vector3Int;
                             return;
                         }
                     }
+
                     if (num2 == HerbalistRegister.HerbStage2.ItemIndex)
                     {
                         this.positionSub = vector3Int;
                         return;
                     }
+
                     num = ((!flag2) ? (num + 1) : (num - 1));
                 }
+
                 flag2 = !flag2;
             }
+
             if (positionSub.IsValid)
             {
                 this.positionSub = positionSub;
                 return;
             }
+
             int a = Pipliz.Random.Next(this.positionMin.x, this.positionMax.x + 1);
             int c = Pipliz.Random.Next(this.positionMin.z, this.positionMax.z + 1);
             this.positionSub = new Vector3Int(a, this.positionMin.y, c);

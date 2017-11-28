@@ -81,6 +81,7 @@
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
+    <Compile Include="Items\UpdatableBlocks\Herbs.cs" />
     <Compile Include="Jobs\HerbalistJob.cs" />
     <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
