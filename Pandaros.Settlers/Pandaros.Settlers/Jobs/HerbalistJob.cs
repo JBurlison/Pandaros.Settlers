@@ -155,7 +155,7 @@ namespace Pandaros.Settlers.Jobs
                     new List<InventoryItem>() { iron, tools, planks },
                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
-            RecipePlayer.AddDefaultRecipe(recipe);
+            RecipePlayer.AddOptionalRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }
 
