@@ -36,23 +36,25 @@ namespace Pandaros.Settlers.Items.Machines
                 var stockpile = Stockpile.GetStockPile(player);
 
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
 
                 if (machineState.Durability < .10f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
                 }
                 else if (machineState.Durability < .30f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
                 }
                 else if (machineState.Durability < .50f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
                 }
 
                 if (stockpile.Contains(requiredForFix))
