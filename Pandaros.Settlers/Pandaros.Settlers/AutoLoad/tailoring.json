@@ -1,0 +1,498 @@
+[
+	{
+		"results":[{"amount":1, "type":"hangingbanner"}],
+		"requires":[{"type":"vanilla.planks","amount":2},{"type":"vanilla.linen","amount":1}]
+	},
+	{
+		"results":[{"amount":1, "type":"hangingbannerrw"}],
+		"requires":[{"type":"vanilla.planks","amount":2},{"type":"vanilla.linen","amount":1}]
+	},
+	{
+		"results":[{"amount":1, "type":"hangingbannerbw"}],
+		"requires":[{"type":"vanilla.planks","amount":2},{"type":"vanilla.linen","amount":1}]
+	},
+	{
+		"results":[{"amount":1, "type":"hangingbannercb"}],
+		"requires":[{"type":"vanilla.planks","amount":2},{"type":"vanilla.linen","amount":1}]
+	},
+	{
+		"results":[{"amount":1, "type":"hangingbannerbw2"}],
+		"requires":[{"type":"vanilla.planks","amount":2},{"type":"vanilla.linen","amount":1}]
+	},
+			{
+		"results" : [
+			{
+				"type" : "blackclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "blackdye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]	
+	},
+				{
+		"results" : [
+			{
+				"type" : "yellowclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "yellowdye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "blueclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "bluedye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "brownclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "browndye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "cyanclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "cyandye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "darkblueclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "darkbluedye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "greenclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "greendye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "greyclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "greydye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "lightgreyclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "lightgreydye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "limeclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "limedye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "orangeclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "orangedye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "pinkclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "pinkdye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "purpleclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "purpledye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "redclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "reddye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "lightpinkclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "lightpinkdye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},
+				{
+		"results" : [
+			{
+				"type" : "whiteclay"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "whitedye",
+				"amount" : 2
+			},
+			{
+				"type" : "vanilla.clay",
+				"amount" : 1
+			}
+		]
+	},	
+	{
+		"results":[{"amount":4, "type":"blackclaystairs"}],
+		"requires":[{"type":"claystairs"},{"type":"blackdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"blackclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"type":"blackdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"blueclaystairs"}],
+		"requires":[{"type":"claystairs"},{"type":"bluedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"blueclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"type":"bluedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"brownclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"browndye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"brownclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"browndye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"cyanclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"cyandye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"cyanclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"cyandye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"darkblueclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"darkbluedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"darkblueclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"darkbluedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"greyclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"greydye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"greyclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"greydye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"lightgreyclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"lightgreydye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"lightgreyclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"lightgreydye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"greenclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"greendye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"greenclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"greendye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"limeclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"limedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"limeclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"limedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"pinkclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"pinkdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"pinkclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"pinkdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"lightpinkclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"lightpinkdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"lightpinkclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"lightpinkdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"redclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"reddye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"redclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"reddye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"purpleclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"purpledye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"purpleclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"purpledye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"magentaclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"magentadye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"magentaclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"magentadye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"orangeclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"orangedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"orangeclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"orangedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"yellowclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"yellowdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"yellowclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"yellowdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"whiteclaystairs"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"whitedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"whiteclaystairsu"}],
+		"requires":[{"type":"claystairs"},{"amount":1,"type":"whitedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"blackclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"blackdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"blueclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"bluedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"brownclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"browndye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"cyanclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"cyandye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"darkblueclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"darkbluedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"greyclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"greydye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"lightgreyclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"lightgreydye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"greenclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"greendye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"limeclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"limedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"pinkclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"pinkdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"lightpinkclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"lightpinkdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"redclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"reddye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"purpleclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"purpledye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"magentaclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"magentadye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"orangeclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"orangedye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"yellowclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"yellowdye"}]
+	},
+	{
+		"results":[{"amount":4, "type":"whiteclayslab"}],
+		"requires":[{"type":"clayslabbottom"},{"amount":1,"type":"whitedye"}]
+	}
+]

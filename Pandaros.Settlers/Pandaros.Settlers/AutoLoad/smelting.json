@@ -1,0 +1,49 @@
+[
+		{
+		"results" : [
+			{
+				"type" : "steelingot",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 2
+			}
+		],
+		"fuelPerCraft" : 0.4
+	},
+	{
+		"results" : [
+			{
+				"type" : "copperingot"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "copperore",
+				"amount" : 2
+			}
+		],
+		"fuelPerCraft" : 0.2
+	},
+		{
+		"results" : [
+			{
+				"type" : "bronzeingot"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "copperore",
+				"amount" : 1
+			},
+			{
+				"type" : "tinore",
+				"amount" : 1
+			}
+		],
+		"fuelPerCraft" : 0.2
+	}
+]

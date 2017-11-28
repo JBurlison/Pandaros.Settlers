@@ -1,0 +1,436 @@
+[
+	{
+		"results" : [
+			{
+				"type" : "egg",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+	{
+		"results" : [
+			{
+				"type" : "carrot",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+	{
+		"results" : [
+			{
+				"type" : "beef",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+	{
+		"results" : [
+			{
+				"type" : "cheese",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+	{
+		"results" : [
+			{
+				"type" : "milk",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "bluedye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "reddye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "lightpinkdye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "orangedye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "yellowdye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "blackdye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "browndye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "cyandye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "darkbluedye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "greendye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "greydye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "lightgreydye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "limedye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "magentadye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "pinkdye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "purpledye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "whitedye",
+				"amount" : 3
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 1
+			}
+		]
+	},
+	{
+		"results" : [
+			{
+				"type" : "infiniteemerald",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.goldcoin",
+				"amount" : 10000
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "limestone",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 2
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "rawmarble",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 2
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "sandstone",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 2
+			}
+		]
+	},
+	{
+		"results" : [
+			{
+				"type" : "chalk",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 2
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "infinitetin",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 5000
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "infinitecopper",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 5000
+			}
+		]
+	},
+		{
+		"results" : [
+			{
+				"type" : "infiniteruby",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedemerald",
+				"amount" : 20000
+			}
+		]
+	},
+			{
+		"results" : [
+			{
+				"type" : "infinitesapphire",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "refinedruby",
+				"amount" : 30000
+			}
+		]
+	}
+]

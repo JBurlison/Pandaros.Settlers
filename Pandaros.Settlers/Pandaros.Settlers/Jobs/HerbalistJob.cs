@@ -361,13 +361,5 @@ namespace Pandaros.Settlers.Jobs
             int c = Pipliz.Random.Next(positionMin.z, positionMax.z + 1);
             positionSub = new Vector3Int(a, positionMin.y, c);
         }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Jobs.HerbalistJob.PlaceJob")]
-        public static void PlaceJob(ModLoader.OnTryChangeBlockUserData d)
-        {
-            if (d.typeTillNow == HerbalistRegister.HerbBench.ItemIndex)
-            {
-            }
-        }
     }
 }

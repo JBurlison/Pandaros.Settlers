@@ -1,0 +1,398 @@
+[
+	{
+		"results" : [
+			{
+				"type" : "dirtbricks",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "vanilla.dirt",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+						{
+		"results" : [
+			{
+				"type" : "vanilla.stonebricks",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "vanilla.stoneblock",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+		{
+		"results" : [
+			{
+				"type" : "paper"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.planks"
+			}
+		],
+		"npcCraftable" : true
+	},
+				{
+		"results" : [
+			{
+				"type" : "chisel"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.planks"
+			},
+			{
+				"type" : "steelingot"
+			}
+		],
+		"npcCraftable" : true
+	},
+					{
+		"results" : [
+			{
+				"type" : "lamp"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "paper"
+			},
+			{
+				"type" : "vanilla.torch"
+			},
+			{
+				"type" : "vanilla.planks"
+			}
+		],
+		"npcCraftable" : true
+	},
+					{
+		"results" : [
+			{
+				"type" : "steelingot"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : false
+	},
+				{
+		"results" : [
+			{
+				"type" : "sledgehammer"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "steelingot",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+					{
+		"results" : [
+			{
+				"type" : "saw"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+					{
+		"results" : [
+			{
+				"type" : "hammer"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+				{
+		"results" : [
+			{
+				"type" : "vanilla.sand",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "sledgehammer",
+				"amount" : 1
+			},
+			{
+				"type" : "vanilla.stoneblock",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+			{
+		"results" : [
+			{
+				"type" : "ironbar"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+			{
+		"results" : [
+			{
+				"type" : "ironbarcorner"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+		{
+		"results" : [
+			{
+				"type" : "irondoor"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+				{
+		"results" : [
+			{
+				"type" : "altar"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.stoneblock",
+				"amount" : 2
+			},
+						{
+				"type" : "chalk",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+		{
+		"results" : [
+			{
+				"type" : "gemcutter",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.planks",
+				"amount" : 4
+			}
+		],
+		"npcCraftable" : true
+	},
+			{
+		"results" : [
+			{
+				"type" : "carpenter",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.planks",
+				"amount" : 4
+			}
+		],
+		"npcCraftable" : true
+	},
+					{
+		"results" : [
+			{
+				"type" : "knife"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.ironingot",
+				"amount" : 1
+			},
+			{
+				"type" : "vanilla.planks",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+					{
+		"results" : [
+			{
+				"type" : "woodenspoon"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.planks",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+						{
+		"results" : [
+			{
+				"type" : "book"
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.planks",
+				"amount" : 2
+			},
+			{
+				"type" : "paper",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+		{
+		"results" : [
+			{
+				"type" : "marblebricks",
+				"amount" : 4
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "marble",
+				"amount" : 1
+			}
+		],
+		"npcCraftable" : true
+	},
+	{
+		"results" : [
+			{
+				"type" : "marblepillarbase",
+				"amount" : 2
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "marble",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+	{
+		"results" : [
+			{
+				"type" : "marblepillarbody",
+				"amount" : 2
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "marble",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+	{
+		"results" : [
+			{
+				"type" : "marblepillartop",
+				"amount" : 2
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "marble",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	},
+		{
+		"results" : [
+			{
+				"type" : "marble",
+				"amount" : 2
+			}
+		],
+		"requires" : [
+			{
+				"type" : "chisel",
+				"amount" : 1
+			},
+			{
+				"type" : "rawmarble",
+				"amount" : 2
+			}
+		],
+		"npcCraftable" : true
+	}
+]

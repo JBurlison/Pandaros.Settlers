@@ -1,0 +1,40 @@
+[
+		{
+		"results" : [
+			{
+				"type" : "cake",
+				"amount" : 1
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.flour",
+				"amount" : 1
+			},
+			{
+				"type" : "egg",
+				"amount" : 1
+			},
+			{
+				"type" : "milk",
+				"amount" : 1
+			}
+		],
+		"fuelPerCraft" : 0.26
+	},
+		{
+		"results" : [
+			{
+				"type" : "glass",
+				"amount" : 2
+			}
+		],
+		"requires" : [
+			{
+				"type" : "vanilla.sand",
+				"amount" : 2
+			}
+		],
+		"fuelPerCraft" : 0.26
+	}
+]
