@@ -35,6 +35,7 @@ namespace Pandaros.Settlers.Research
         public const string SwordSmithing = "SwordSmithing";
         public const string ColonistHealth = "ColonistHealth";
         public const string Knights = "Knights";
+        public const string Herbalists = "Herbalists";
         public const string ImprovedSling = "ImprovedSling";
         public const string ImprovedBow = "ImprovedBow";
         public const string ImprovedCrossbow = "ImprovedCrossbow";
@@ -50,7 +51,7 @@ namespace Pandaros.Settlers.Research
         public string LevelKey { get; private set; } = string.Empty;
 
         public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
-
+        static Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
 
         public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null, int baseIterationCount = 10, bool addLevelToName = true)
         {
@@ -135,6 +136,7 @@ namespace Pandaros.Settlers.Research
             AddImprovedDuarability(researchDic);
             AddImprovedFuelCapacity(researchDic);
             AddIncreasedCapacity(researchDic);
+            AddHerbResearch(researchDic);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
@@ -375,7 +377,29 @@ namespace Pandaros.Settlers.Research
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.PatrolTool.PatrolFlag.name, true, Items.ItemFactory.JOB_CRAFTER);
         }
 
-        static Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
+        private static void AddHerbResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.ScienceBagAdvanced
+            };
+
+            var research = new PandaResearch(researchDic, 1, Herbalists, 1f, requirements);
+            research.ResearchComplete += Herbs_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Herbs_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.HerbalistRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.HerbalistRegister.JOB_RECIPE);
+        }
+
+        
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
         {

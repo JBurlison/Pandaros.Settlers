@@ -51,7 +51,11 @@
     "Pandaros.Settlers.carpetpink": "Pink Carpet",
     "Pandaros.Settlers.carpetpurple": "Purple Carpet",
     "Pandaros.Settlers.GateLever": "Gate Lever",
-    "Pandaros.Settlers.Gate": "Iron Gate"
+    "Pandaros.Settlers.Gate": "Iron Gate",
+    "Pandaros.Settlers.Herbs": "Herbs",
+    "Pandaros.Settlers.HerbsStage1": "Herb Seeds",
+    "Pandaros.Settlers.HerbalistBench.recipe": "Herbalist Bench",
+    "Pandaros.Settlers.HerbalistBench": "Herbalist Bench"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -93,7 +97,11 @@
     "Pandaros.Settlers.CrossbowTurret": "300 Damage per shot. Fires twice as fast as a Colonist.",
     "Pandaros.Settlers.MatchlockTurret": "500 Damage per shot. Fires twice as fast as a Colonist.",
     "Pandaros.Settlers.GateLever": "Opens all Iron Gates within 20 blocks of it automatically every morning, and closes them every night. Needs a Machinist to maintain it.",
-    "Pandaros.Settlers.Gate": "Iron Gate. Needs a Gate Lever to open."
+    "Pandaros.Settlers.Gate": "Iron Gate. Needs a Gate Lever to open.",
+    "Pandaros.Settlers.Herbs": "For the food, medicine and potion revolution!",
+    "Pandaros.Settlers.HerbsStage1": "Their kind of a big dill around here.",
+    "Pandaros.Settlers.HerbalistBench.recipe": "Herbalists use them to prepare the herbs after gathering.",
+    "Pandaros.Settlers.HerbalistBench": "Herbalists use them to prepare the herbs after gathering"
   },
   "sentences": {
     "popup": {
@@ -882,6 +890,10 @@
         "MasterOfAll10": {
           "name": "Master Of All X",
           "description": "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
+        },
+        "Herbalists1": {
+          "name": "Herbalists",
+          "description": "Herbalists grow herbs used for Medicines, Food, and Potions."
         }
       }
     }
