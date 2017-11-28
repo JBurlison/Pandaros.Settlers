@@ -205,15 +205,15 @@ namespace Pandaros.Settlers.Monsters
             {
                 var chance = mtKvp.Value.SpawnChance(followerCount, maxMonsters);
 
-                if (chance > 1)
+                if (chance > 3)
                 {
                     spawnchances[mtKvp.Key] = chance;
 
                     if (chance > maxChance)
-                        maxChance = chance + 15;
+                        maxChance = chance + (chance * .05);
 
                     if (chance < minChance)
-                        minChance = chance - 5;
+                        minChance = chance - (chance * .01);
                 }
             }
             
