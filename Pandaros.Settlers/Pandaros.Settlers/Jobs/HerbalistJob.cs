@@ -41,7 +41,7 @@ namespace Pandaros.Settlers.Jobs
                     {
                         keyName = JOB_NAME,
                         printName = "Herbalist",
-                        maskColor1 = new Color32(101, 121, 123, 255),
+                        maskColor1 = new Color32(84, 115, 37, 255),
                         type = NPCTypeID.GetNextID()
                     };
 
@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Jobs
                                   )
             );
 
-            itemTypes.Add(JOB_ITEM_KEY, HerbStage1);
+            itemTypes.Add(HERB1_NAME, HerbStage1);
 
             HerbStage2 = new ItemTypesServer.ItemTypeRaw(HERB2_NAME, new JSONNode()
               .SetAs("onPlaceAudio", "grassDelete")
@@ -132,16 +132,16 @@ namespace Pandaros.Settlers.Jobs
                                   ).AddToArray(new JSONNode()
                                               .SetAs("type", HERB1_NAME)
                                               .SetAs("amount", 1)
-                                              .SetAs("chance", .5)
+                                              .SetAs("chance", .3)
                                   ).AddToArray(new JSONNode()
-                                              .SetAs("type", HERB2_NAME)
+                                              .SetAs("type", HERB_NAME)
                                               .SetAs("amount", 1)
                                               .SetAs("chance", 1)
                                   )
                      )
             );
 
-            itemTypes.Add(JOB_ITEM_KEY, HerbStage1);
+            itemTypes.Add(HERB2_NAME, HerbStage2);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.AfterWorldLoad")]
@@ -155,7 +155,7 @@ namespace Pandaros.Settlers.Jobs
                     new List<InventoryItem>() { iron, tools, planks },
                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
-            RecipePlayer.AddOptionalRecipe(recipe);
+            RecipePlayer.AddDefaultRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }
 
@@ -181,9 +181,15 @@ namespace Pandaros.Settlers.Jobs
             else if (d.TypeNew == BuiltinBlocks.Air && (d.typeTillNow == HerbStage1.ItemIndex || d.typeTillNow == HerbStage2.ItemIndex))
                 Items.UpdatableBlocks.Herbs.OnRemove(d.VoxelToChange, d.typeTillNow, d.requestedBy);
             else if (d.TypeNew == HerbBench.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
-                _areaJobTracker.Add(new HerbalistJob(new Bounds(d.VoxelToChange.Vector, new Vector3(4, 0, 4)), d.requestedBy, 0));
+                _areaJobTracker.Add(new HerbalistJob(new Bounds(d.VoxelToChange.Vector, new Vector3(6, 0, 6)), d.requestedBy, 0));
             else if (d.TypeNew == BuiltinBlocks.Air && d.typeTillNow == HerbBench.ItemIndex)
-                _areaJobTracker.Remove(d.VoxelToChange);
+            {
+                var bounds = new Bounds(d.VoxelToChange.Vector, new Vector3(6, 0, 6));
+                var jobPos = new Vector3Int(bounds.min);
+
+                _areaJobTracker.GetList(d.requestedBy)[jobPos].OnRemove();
+                _areaJobTracker.Remove(jobPos);
+            }
 
             return true;
         }
@@ -192,6 +198,15 @@ namespace Pandaros.Settlers.Jobs
         private static void Load()
         {
             _areaJobTracker = new BlockTracker<HerbalistJob>(JOB_NAME);
+        }
+
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnQuit, GameLoader.NAMESPACE + ".Jobs.HerbalistRegister.SaveHerbAreaJob")]
+        private static void Save()
+        {
+            if (_areaJobTracker != null)
+            {
+                _areaJobTracker.Save();
+            }
         }
     }
 
@@ -211,7 +226,7 @@ namespace Pandaros.Settlers.Jobs
         {
             get
             {
-                return this.shouldDumpInventory;
+                return shouldDumpInventory;
             }
         }
 
@@ -234,7 +249,7 @@ namespace Pandaros.Settlers.Jobs
         public override void TakeItems(ref NPCBase.NPCState state)
         {
             base.TakeItems(ref state);
-            this.shouldDumpInventory = false;
+            shouldDumpInventory = false;
         }
 
         public override void OnRemove()
@@ -245,44 +260,48 @@ namespace Pandaros.Settlers.Jobs
         public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             state.JobIsDone = true;
-            if (this.positionSub.IsValid)
+            if (positionSub.IsValid)
             {
                 ushort num;
-                if (World.TryGetTypeAt(this.positionSub, out num))
+                if (World.TryGetTypeAt(positionSub, out num))
                 {
                     if (num == 0)
                     {
-                        if (state.Inventory.TryGetOneItem(HerbalistRegister.HerbStage1.ItemIndex) || this.usedNPC.Colony.UsedStockpile.TryRemove(HerbalistRegister.HerbStage1.ItemIndex, 1))
+                        if (state.Inventory.TryGetOneItem(HerbalistRegister.HerbStage1.ItemIndex) || usedNPC.Colony.UsedStockpile.TryRemove(HerbalistRegister.HerbStage1.ItemIndex, 1))
                         {
-                            ServerManager.TryChangeBlock(this.positionSub, HerbalistRegister.HerbStage1.ItemIndex, ServerManager.SetBlockFlags.DefaultAudio);
+                            ServerManager.TryChangeBlock(positionSub, HerbalistRegister.HerbStage1.ItemIndex, ServerManager.SetBlockFlags.DefaultAudio);
+                            Items.UpdatableBlocks.Herbs.OnAdd(positionSub, HerbalistRegister.HerbStage1.ItemIndex, Owner);
                             state.SetCooldown(1.0);
-                            this.shouldDumpInventory = false;
+                            shouldDumpInventory = false;
                         }
                         else
                         {
                             state.SetIndicator(NPCIndicatorType.MissingItem, 2f, HerbalistRegister.HerbStage1.ItemIndex);
-                            this.shouldDumpInventory = (state.Inventory.UsedCapacity > 0f);
+                            shouldDumpInventory = (state.Inventory.UsedCapacity > 0f);
                         }
                     }
                     else if (num == HerbalistRegister.HerbStage2.ItemIndex)
                     {
 
-                        if (ServerManager.TryChangeBlock(this.positionSub, 0, ServerManager.SetBlockFlags.DefaultAudio))
-                            this.usedNPC.Inventory.Add(ItemTypes.GetType(HerbalistRegister.HerbStage2.ItemIndex).OnRemoveItems);
+                        if (ServerManager.TryChangeBlock(positionSub, 0, ServerManager.SetBlockFlags.DefaultAudio))
+                        {
+                            usedNPC.Inventory.Add(ItemTypes.GetType(HerbalistRegister.HerbStage2.ItemIndex).OnRemoveItems);
+                            Items.UpdatableBlocks.Herbs.OnRemove(positionSub, HerbalistRegister.HerbStage2.ItemIndex, Owner);
+                        }
 
                         state.SetCooldown(1.0);
-                        this.shouldDumpInventory = false;
+                        shouldDumpInventory = false;
                     }
                     else
                     {
                         state.SetCooldown(5.0);
-                        this.shouldDumpInventory = (state.Inventory.UsedCapacity > 0f);
+                        shouldDumpInventory = (state.Inventory.UsedCapacity > 0f);
                     }
                 }
                 else
                     state.SetCooldown((double)Pipliz.Random.NextFloat(3f, 6f));
 
-                this.positionSub = Vector3Int.invalidPos;
+                positionSub = Vector3Int.invalidPos;
             }
             else
             {
@@ -292,17 +311,17 @@ namespace Pandaros.Settlers.Jobs
 
         public override void CalculateSubPosition()
         {
-            bool flag = this.usedNPC.Colony.UsedStockpile.Contains(HerbalistRegister.HerbStage1.ItemIndex, 1);
+            bool flag = usedNPC.Colony.UsedStockpile.Contains(HerbalistRegister.HerbStage1.ItemIndex, 1);
             bool flag2 = false;
-            Vector3Int positionSub = Vector3Int.invalidPos;
+            Vector3Int newSubPos = Vector3Int.invalidPos;
 
-            for (int i = this.positionMin.x; i <= this.positionMax.x; i++)
+            for (int i = positionMin.x; i <= positionMax.x; i++)
             {
-                int num = (!flag2) ? this.positionMin.z : this.positionMax.z;
+                int num = (!flag2) ? positionMin.z : positionMax.z;
 
-                while ((!flag2) ? (num <= this.positionMax.z) : (num >= this.positionMin.z))
+                while ((!flag2) ? (num <= positionMax.z) : (num >= positionMin.z))
                 {
-                    Vector3Int vector3Int = new Vector3Int(i, this.positionMin.y, num);
+                    Vector3Int vector3Int = new Vector3Int(i, positionMin.y, num);
                     ushort num2;
 
                     if (!AIManager.Loaded(vector3Int) || !World.TryGetTypeAt(vector3Int, out num2))
@@ -310,19 +329,19 @@ namespace Pandaros.Settlers.Jobs
 
                     if (num2 == 0)
                     {
-                        if (!flag && !positionSub.IsValid)
-                            positionSub = vector3Int;
+                        if (!flag && !newSubPos.IsValid)
+                            newSubPos = vector3Int;
 
                         if (flag)
                         {
-                            this.positionSub = vector3Int;
+                            positionSub = vector3Int;
                             return;
                         }
                     }
 
                     if (num2 == HerbalistRegister.HerbStage2.ItemIndex)
                     {
-                        this.positionSub = vector3Int;
+                        positionSub = vector3Int;
                         return;
                     }
 
@@ -332,15 +351,15 @@ namespace Pandaros.Settlers.Jobs
                 flag2 = !flag2;
             }
 
-            if (positionSub.IsValid)
+            if (newSubPos.IsValid)
             {
-                this.positionSub = positionSub;
+                positionSub = newSubPos;
                 return;
             }
 
-            int a = Pipliz.Random.Next(this.positionMin.x, this.positionMax.x + 1);
-            int c = Pipliz.Random.Next(this.positionMin.z, this.positionMax.z + 1);
-            this.positionSub = new Vector3Int(a, this.positionMin.y, c);
+            int a = Pipliz.Random.Next(positionMin.x, positionMax.x + 1);
+            int c = Pipliz.Random.Next(positionMin.z, positionMax.z + 1);
+            positionSub = new Vector3Int(a, positionMin.y, c);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Jobs.HerbalistJob.PlaceJob")]
