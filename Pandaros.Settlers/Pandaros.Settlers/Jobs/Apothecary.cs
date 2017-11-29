@@ -4,7 +4,6 @@ using Pipliz.JSON;
 using Server.NPCs;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -12,20 +11,20 @@ using UnityEngine;
 namespace Pandaros.Settlers.Jobs
 {
     [ModLoader.ModManager]
-    public static class AdvancedCrafterRegister
+    public static class ApothecaryRegister
     {
-        public static string JOB_NAME = GameLoader.NAMESPACE + ".AdvancedCrafter";
-        public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".AdvancedCraftingTable";
+        public static string JOB_NAME = GameLoader.NAMESPACE + ".Apothecary";
+        public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".ApothecaryTable";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void RegisterJobs()
         {
-            BlockJobManagerTracker.Register<AdvancedCrafterJob>(JOB_ITEM_KEY);
+            BlockJobManagerTracker.Register<ApothecaryJob>(JOB_ITEM_KEY);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddTextures"), ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -33,14 +32,14 @@ namespace Pandaros.Settlers.Jobs
             textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/AdvancedCraftingTableTop.png";
             textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/AdvancedCraftingTableTop.png";
 
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "AdvancedCraftingTableTop", textureMapping);
+            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTableTop", textureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterAddingBaseTypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, new JSONNode()
-              .SetAs("icon", Path.Combine(GameLoader.ICON_FOLDER_PANDA, "AdvancedCraftingTable.png"))
+              .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "ApothecaryTable.png"))
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", "planks")
@@ -49,7 +48,7 @@ namespace Pandaros.Settlers.Jobs
             ));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var iron = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
@@ -65,7 +64,7 @@ namespace Pandaros.Settlers.Jobs
         }
     }
 
-    public class AdvancedCrafterJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
+    public class ApothecaryJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
     {
         public static float StaticCraftingCooldown = 5f;
 
@@ -73,7 +72,7 @@ namespace Pandaros.Settlers.Jobs
         {
             get
             {
-                return AdvancedCrafterRegister.JOB_NAME;
+                return ApothecaryRegister.JOB_NAME;
             }
         }
 
@@ -89,11 +88,11 @@ namespace Pandaros.Settlers.Jobs
         {
             get
             {
-                return AdvancedCrafterJob.StaticCraftingCooldown;
+                return StaticCraftingCooldown;
             }
             set
             {
-                AdvancedCrafterJob.StaticCraftingCooldown = value;
+                StaticCraftingCooldown = value;
             }
         }
 
@@ -102,7 +101,7 @@ namespace Pandaros.Settlers.Jobs
             return new NPCTypeStandardSettings
             {
                 keyName = this.NPCTypeKey,
-                printName = "Advanced Crafter",
+                printName = "Apothecary",
                 maskColor1 = new Color32(101, 121, 123, 255),
                 type = NPCTypeID.GetNextID()
             };
@@ -116,7 +115,7 @@ namespace Pandaros.Settlers.Jobs
 
         protected override string GetRecipeLocation()
         {
-            return Path.Combine(GameLoader.MOD_FOLDER, "AutoLoad/AdvancedCrafter.json");
+            return System.IO.Path.Combine(GameLoader.MOD_FOLDER, "AutoLoad/Apothecary.json");
         }
     }
 }

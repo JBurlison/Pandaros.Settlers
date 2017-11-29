@@ -76,12 +76,18 @@
     <Compile Include="Entities\BlockJobBaseExtender.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="Items\Armor.cs" />
+    <Compile Include="Items\Bottle.cs" />
     <Compile Include="Items\Food\BerryPancakes.cs" />
     <Compile Include="Items\Food\BerryPie.cs" />
+    <Compile Include="Items\Healing\Anitbiotic.cs" />
+    <Compile Include="Items\Healing\Antidote.cs" />
+    <Compile Include="Items\Healing\Bandage.cs" />
+    <Compile Include="Items\Healing\TreatedBandage.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Items\UpdatableBlocks\Herbs.cs" />
+    <Compile Include="Jobs\Apothecary.cs" />
     <Compile Include="Jobs\HerbalistJob.cs" />
     <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
@@ -118,7 +124,10 @@
     <None Include="AI\LastNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="AdvancedCrafter.json">
+    <None Include="AutoLoad\Apothecary.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\AdvancedCrafter.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Audio\CastleDoorOpen.ogg">
@@ -529,7 +538,13 @@
     <Content Include="icons\AdvancedCraftingTable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Anitbiotic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\ArrowTurret.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Bandage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\BerryPancakes.png">
@@ -1199,6 +1214,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\TimeBetween5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\TreatedBandage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Waiting.png">
