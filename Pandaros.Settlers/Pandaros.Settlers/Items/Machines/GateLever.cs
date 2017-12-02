@@ -359,7 +359,7 @@ namespace Pandaros.Settlers.Items.Machines
             var gate = new Recipe(GateItem.name,
                                     new List<InventoryItem>() { iron, rivets, tools },
                                     new InventoryItem(GateItem.ItemIndex),
-                                    5);
+                                    24);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, gate);
         }

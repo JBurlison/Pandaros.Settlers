@@ -28,11 +28,11 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/AdvancedCraftingTableTop.png";
-            textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/AdvancedCraftingTableTop.png";
-            textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/AdvancedCraftingTableTop.png";
+            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/ApothecaryTable.png";
+            textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/ApothecaryTable.png";
+            textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ApothecaryTable.png";
 
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTableTop", textureMapping);
+            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTable", textureMapping);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterAddingBaseTypes")]
@@ -42,8 +42,7 @@ namespace Pandaros.Settlers.Jobs
               .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "ApothecaryTable.png"))
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
-              .SetAs("sideall", "planks")
-              .SetAs("sidey+", GameLoader.NAMESPACE + "AdvancedCraftingTableTop")
+              .SetAs("sideall", GameLoader.NAMESPACE + "ApothecaryTable")
               .SetAs("npcLimit", 0)
             ));
         }
@@ -66,7 +65,7 @@ namespace Pandaros.Settlers.Jobs
 
     public class ApothecaryJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
     {
-        public static float StaticCraftingCooldown = 5f;
+        public static float StaticCraftingCooldown = 15f;
 
         public override string NPCTypeKey
         {

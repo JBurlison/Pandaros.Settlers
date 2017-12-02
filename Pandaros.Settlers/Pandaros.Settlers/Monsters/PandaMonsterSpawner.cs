@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Monsters
         {
             // The higher the multiplier the more red zombies.
             // Maybe used for difficulty.
-            const int MULTIPLIER = 6;
+            public const int MULTIPLIER = 6;
 
             public double Power { get; set; }
             public double TotalPower { get; set; }
@@ -115,21 +115,21 @@ namespace Pandaros.Settlers.Monsters
             double powerTotal = 0;
 
             foreach (var key in monsters)
-            {
                 if (key.TryGetSettings<NPCTypeMonsterSettings>(out var settings))
-                {
-                    double power = (settings.initialHealth / 10) + settings.punchDamage + (settings.punchCooldownMS / 100) + (settings.movementSpeed * 10);
-                    powerTotal += power;
-                    Monsters[key] = new MonsterWeight(power);
-                }
-            }
-           
+                    Monsters[key] = GetMonsterWeight(settings);
+
+            foreach (var mp in Monsters)
+                powerTotal += mp.Value.Power;
+
             foreach (var monster in Monsters.OrderBy(mkvp => mkvp.Value.Power))
-            {
                 monster.Value.TotalPower = powerTotal;
-            }
 
             Monsters = Monsters.OrderBy(mkvp => mkvp.Value.Power).ToDictionary(x => x.Key, x => x.Value);
+        }
+
+        public static MonsterWeight GetMonsterWeight(NPCTypeMonsterSettings settings)
+        {
+            return new MonsterWeight((settings.initialHealth / 10) + (settings.punchDamage * MonsterWeight.MULTIPLIER) + (settings.punchCooldownMS / 100) + (settings.movementSpeed * 10));
         }
 
         public float GetMaxZombieCount(float colonistCount)
@@ -205,12 +205,12 @@ namespace Pandaros.Settlers.Monsters
             {
                 var chance = mtKvp.Value.SpawnChance(followerCount, maxMonsters);
 
-                if (chance > 3)
+                if (chance > 2)
                 {
                     spawnchances[mtKvp.Key] = chance;
 
                     if (chance > maxChance)
-                        maxChance = chance + (chance * .05);
+                        maxChance = chance + (chance * .10);
 
                     if (chance < minChance)
                         minChance = chance - (chance * .01);

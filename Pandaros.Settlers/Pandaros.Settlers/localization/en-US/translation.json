@@ -55,7 +55,12 @@
     "Pandaros.Settlers.Herbs": "Herbs",
     "Pandaros.Settlers.HerbsStage1": "Herb Seeds",
     "Pandaros.Settlers.HerbalistBench.recipe": "Herbalist Bench",
-    "Pandaros.Settlers.HerbalistBench": "Herbalist Bench"
+    "Pandaros.Settlers.HerbalistBench": "Herbalist Bench",
+    "Pandaros.Settlers.ApothecaryTable": "Apothecary Table",
+    "Pandaros.Settlers.Anitbiotic": "Anitbiotic",
+    "Pandaros.Settlers.Antidote": "Antidote",
+    "Pandaros.Settlers.Bandage": "Bandage",
+    "Pandaros.Settlers.TreatedBandage": "TreatedBandage"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -101,7 +106,12 @@
     "Pandaros.Settlers.Herbs": "For the food, medicine and potion revolution!",
     "Pandaros.Settlers.HerbsStage1": "Their kind of a big dill around here.",
     "Pandaros.Settlers.HerbalistBench.recipe": "Herbalists use them to prepare the herbs after gathering.",
-    "Pandaros.Settlers.HerbalistBench": "Herbalists use them to prepare the herbs after gathering"
+    "Pandaros.Settlers.HerbalistBench": "Herbalists use them to prepare the herbs after gathering",
+    "Pandaros.Settlers.ApothecaryTable": "Used to make medicines and bandages",
+    "Pandaros.Settlers.Anitbiotic": "Use on bandages for extra fast healing or to cure infections.",
+    "Pandaros.Settlers.Antidote": "Cures posions",
+    "Pandaros.Settlers.Bandage": "Used by Physicians (or you!) instantly heals for 20 health then heals for 50 health over 5 seconds.",
+    "Pandaros.Settlers.TreatedBandage": "Used by Physicians (or you!) instantly heals for 50 health then heals for 70 health over 5 seconds."
   },
   "sentences": {
     "popup": {
@@ -894,6 +904,14 @@
         "Herbalists1": {
           "name": "Herbalists",
           "description": "Herbalists grow herbs used for Medicines, Food, and Potions."
+        },
+        "Apothecaries1": {
+          "name": "Apothecary",
+          "description": "Apothecary creates antidotes for posion and bandages for physicians."
+        },
+        "AdvancedApothecary1": {
+          "name": "Advanced Apothecary",
+          "description": "Apothecaries learn how to make Anitbiotics for curing infections and Treated bandages for powerful healing."
         }
       }
     }

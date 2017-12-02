@@ -36,6 +36,7 @@ namespace Pandaros.Settlers.Research
         public const string ColonistHealth = "ColonistHealth";
         public const string Knights = "Knights";
         public const string Herbalists = "Herbalists";
+        public const string Apothecary = "Apothecaries";
         public const string ImprovedSling = "ImprovedSling";
         public const string ImprovedBow = "ImprovedBow";
         public const string ImprovedCrossbow = "ImprovedCrossbow";
@@ -43,6 +44,7 @@ namespace Pandaros.Settlers.Research
         public const string ImprovedDurability = "ImprovedDurability";
         public const string ImprovedFuelCapacity = "ImprovedFuelCapacity";
         public const string IncreasedCapacity = "IncreasedCapacity";
+        public const string AdvancedApothecary = "AdvancedApothecary";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -121,7 +123,7 @@ namespace Pandaros.Settlers.Research
         public static void Register()
         {
             var researchDic = new Dictionary<ushort, int>();
-
+            PandaLogger.Log("Registering Panda Research.");
             AddBanner(researchDic);
             AddReducedWaste(researchDic);
             AddArmorSmithing(researchDic);
@@ -137,6 +139,10 @@ namespace Pandaros.Settlers.Research
             AddImprovedFuelCapacity(researchDic);
             AddIncreasedCapacity(researchDic);
             AddHerbResearch(researchDic);
+            AddApocthResearch(researchDic);
+            AddAdvanceApocthResearch(researchDic);
+
+            PandaLogger.Log("Panda Research Registering Complete!");
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
@@ -399,7 +405,49 @@ namespace Pandaros.Settlers.Research
             RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.HerbalistRegister.JOB_RECIPE);
         }
 
-        
+        private static void AddApocthResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Herbalists + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, Apothecary, 1f, requirements);
+            research.ResearchComplete += Apocth_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Apocth_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.ApothecaryRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.ApothecaryRegister.JOB_RECIPE);
+        }
+
+        private static void AddAdvanceApocthResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Apothecary + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, AdvancedApothecary, 1f, requirements);
+            research.ResearchComplete += AdvanceApocth_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void AdvanceApocth_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.Anitbiotic.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.TreatedBandage.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
         {
