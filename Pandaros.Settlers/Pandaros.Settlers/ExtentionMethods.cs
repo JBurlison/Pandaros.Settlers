@@ -86,5 +86,25 @@ namespace Pandaros.Settlers
 
             return pos;
         }
+
+        public static void Heal(this NPC.NPCBase nPC, float heal)
+        {
+            nPC.health += heal;
+
+            if (nPC.health > NPC.NPCBase.MaxHealth)
+                nPC.health = NPC.NPCBase.MaxHealth;
+
+            nPC.Update();
+        }
+
+        public static void Heal(this Players.Player pc, float heal)
+        {
+            pc.Health += heal;
+
+            if (pc.Health > pc.HealthMax)
+                pc.Health = pc.HealthMax;
+
+            pc.SendHealthPacket();
+        }
     }
 }

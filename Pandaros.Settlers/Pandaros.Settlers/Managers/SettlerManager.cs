@@ -18,10 +18,12 @@ using UnityEngine;
 namespace Pandaros.Settlers.Managers
 {
     [ModLoader.ModManager]
-    public class SettlerManager
+    public static class SettlerManager
     {
         private static float _baseFoodPerHour;
         private static double _updateTime;
+
+        public static List<HealingOverTimeNPC> HealingSpells { get; private set; } = new List<HealingOverTimeNPC>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio"),
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
@@ -35,6 +37,28 @@ namespace Pandaros.Settlers.Managers
                 GameLoader.AUDIO_FOLDER_PANDA + "/Talking4.ogg",
                 GameLoader.AUDIO_FOLDER_PANDA + "/Talking5.ogg"
             });
+
+            HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;
+        }
+
+        private static void HealingOverTimeNPC_NewInstance(object sender, EventArgs e)
+        {
+            var healing = sender as HealingOverTimeNPC;
+
+            lock (HealingSpells)
+                HealingSpells.Add(healing);
+
+            healing.Complete += Healing_Complete;
+        }
+
+        private static void Healing_Complete(object sender, EventArgs e)
+        {
+            var healing = sender as HealingOverTimeNPC;
+
+            lock (HealingSpells)
+                HealingSpells.Remove(healing);
+
+            healing.Complete -= Healing_Complete;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]

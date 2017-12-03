@@ -21,6 +21,8 @@ namespace Pandaros.Settlers.Entities
 
         public System.Random Rand { get; set; }
 
+        public static List<HealingOverTimePC> HealingSpells { get; private set; } = new List<HealingOverTimePC>();
+
         public bool CallToArmsEnabled { get; set; }
 
         public string DifficultyStr
@@ -60,6 +62,28 @@ namespace Pandaros.Settlers.Entities
             Player = p;
             Rand = new System.Random();
             SetupArmor();
+
+            HealingOverTimePC.NewInstance += HealingOverTimePC_NewInstance;
+        }
+
+        private void HealingOverTimePC_NewInstance(object sender, EventArgs e)
+        {
+            var healing = sender as HealingOverTimePC;
+
+            lock (HealingSpells)
+                HealingSpells.Add(healing);
+
+            healing.Complete += Healing_Complete;
+        }
+
+        private void Healing_Complete(object sender, EventArgs e)
+        {
+            var healing = sender as HealingOverTimePC;
+
+            lock (HealingSpells)
+                HealingSpells.Remove(healing);
+
+            healing.Complete -= Healing_Complete;
         }
 
         private void SetupArmor()

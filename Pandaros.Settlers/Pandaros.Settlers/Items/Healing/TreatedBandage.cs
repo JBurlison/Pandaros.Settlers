@@ -11,6 +11,9 @@ namespace Pandaros.Settlers.Items.Healing
     public static class TreatedBandage
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
+        public const long COOLDOWN = 5000;
+
+        private static Dictionary<Players.Player, long> _coolDown = new Dictionary<Players.Player, long>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Register")]
         public static void Register()
@@ -37,6 +40,48 @@ namespace Pandaros.Settlers.Items.Healing
 
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Click")]
+        public static void Click(Players.Player player, Pipliz.Box<Shared.PlayerClickedData> boxedData)
+        {
+            bool healed = false;
+
+            if (!_coolDown.ContainsKey(player))
+                _coolDown.Add(player, 0);
+
+            if (boxedData.item1.clickType == Shared.PlayerClickedData.ClickType.Right &&
+                boxedData.item1.typeSelected == Item.ItemIndex)
+            {
+                if (Pipliz.Time.MillisecondsSinceStart > _coolDown[player])
+                {
+                    var healing = new Entities.HealingOverTimePC(player, 50f, 70f, 5);
+                    healed = true;
+                }
+            }
+            else if (boxedData.item1.clickType == Shared.PlayerClickedData.ClickType.Left &&
+                boxedData.item1.typeSelected == Item.ItemIndex &&
+                boxedData.item1.rayCastHit.rayHitType == Shared.RayHitType.NPC)
+            {
+                if (NPC.NPCTracker.TryGetNPC(boxedData.item1.rayCastHit.hitNPCID, out var npc))
+                {
+                    if (Pipliz.Time.MillisecondsSinceStart > _coolDown[player])
+                    {
+                        var heal = new Entities.HealingOverTimeNPC(npc, 50f, 70f, 5);
+                        healed = true;
+                    }
+                }
+            }
+
+            if (healed)
+            {
+                _coolDown[player] = Pipliz.Time.MillisecondsSinceStart + COOLDOWN;
+                boxedData.item1.consumedType = Shared.PlayerClickedData.ConsumedType.UsedByMod;
+                ServerManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
+
+                if (Inventory.TryGetInventory(player, out var inv))
+                    inv.TryRemove(Item.ItemIndex);
+            }
         }
     }
 }

@@ -39,5 +39,7 @@ namespace Pandaros.Settlers.Items.Healing
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);
         }
+
+
     }
 }

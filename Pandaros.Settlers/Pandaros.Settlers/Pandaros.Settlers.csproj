@@ -74,6 +74,8 @@
     <Compile Include="Cosmetics\CarpetBlack.cs" />
     <Compile Include="Cosmetics\Register.cs" />
     <Compile Include="Entities\BlockJobBaseExtender.cs" />
+    <Compile Include="Entities\HealingOverTimePC.cs" />
+    <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Bottle.cs" />
@@ -122,6 +124,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AI\LastNames.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Bandage.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AutoLoad\Apothecary.json">
