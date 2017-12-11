@@ -170,7 +170,7 @@ namespace Pandaros.Settlers.Jobs
                                 {
                                     TargetMachine = machine;
                                     TargetMachine.Machinist = this;
-                                    pos = TargetMachine.Position.GetClosestPositionWithinY(usedNPC.Position, 3);
+                                    pos = TargetMachine.Position.GetClosestPositionWithinY(usedNPC.Position, 5);
                                     break;
                                 }
                             }
@@ -191,7 +191,7 @@ namespace Pandaros.Settlers.Jobs
             float cooldown = COOLDOWN;
             bool fullyRepaired = false;
 
-            if (TargetMachine != null && 3 > Vector3.Distance(TargetMachine.Position.Vector, usedNPC.Position.Vector))
+            if (TargetMachine != null && 5 > Vector3.Distance(TargetMachine.Position.Vector, usedNPC.Position.Vector))
             {
                 usedNPC.LookAt(TargetMachine.Position.Vector);
 

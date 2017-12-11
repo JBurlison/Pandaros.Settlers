@@ -91,6 +91,11 @@
     <Compile Include="Items\UpdatableBlocks\Herbs.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
     <Compile Include="Jobs\HerbalistJob.cs" />
+    <Compile Include="Jobs\Illness\Infection.cs" />
+    <Compile Include="Jobs\Illness\ISickness.cs" />
+    <Compile Include="Jobs\Illness\Poisoned.cs" />
+    <Compile Include="Jobs\Physician.cs" />
+    <Compile Include="Jobs\Sickness.cs" />
     <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
@@ -828,6 +833,9 @@
     <Content Include="icons\IncreasedCapacity5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Infection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\KilnTraining1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -933,7 +941,13 @@
     <Content Include="icons\GateLever.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\PhysicianBench.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\pinkbottle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Poisoned.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\purplebottle.png">
@@ -1579,6 +1593,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\oreTin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\PhysicianBench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\pinkClay.png">
