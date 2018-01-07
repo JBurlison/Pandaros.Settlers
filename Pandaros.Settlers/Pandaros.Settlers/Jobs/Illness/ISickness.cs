@@ -11,6 +11,8 @@ namespace Pandaros.Settlers.Jobs.Illness
         
         float DamagePerSecond { get; }
 
-        string IndicatorIcon { get; }
+        ushort IndicatorIcon { get; }
+
+        ushort[] Cure { get; }
     }
 }

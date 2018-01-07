@@ -1,5 +1,5 @@
 ﻿using BlockTypes.Builtin;
-using Pipliz.BlockNPCs.Implementations;
+using Pipliz.Mods.BaseGame.BlockNPCs;
 using Server.Science;
 using System;
 using System.Collections.Generic;

@@ -2,8 +2,6 @@
 using ChatCommands;
 using Pandaros.Settlers.Entities;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
-using Pipliz.BlockNPCs.Implementations;
 using Server.Monsters;
 using Server.NPCs;
 using System;

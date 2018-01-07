@@ -317,6 +317,7 @@ namespace Pandaros.Settlers.Items.Machines
                                 break;
                         }
                     });
+
                     thread.IsBackground = true;
                     thread.Start();
                 }

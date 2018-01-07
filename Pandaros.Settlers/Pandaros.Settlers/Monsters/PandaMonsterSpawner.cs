@@ -13,14 +13,14 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Monsters
 {
-    [ModLoader.ModManager]
+    //[ModLoader.ModManager]
     public class PandaMonsterSpawner : IMonsterSpawner
     {
         public class MonsterWeight
         {
             // The higher the multiplier the more red zombies.
             // Maybe used for difficulty.
-            public const int MULTIPLIER = 6;
+            public const int MULTIPLIER = 5;
 
             public double Power { get; set; }
             public double TotalPower { get; set; }
@@ -180,7 +180,9 @@ namespace Pandaros.Settlers.Monsters
                                 }
                             }
 
-                            SpawnZombie(colony, banner, GetMosterType(colony.FollowerCount, zombiesMax));
+                            var state = Entities.PlayerState.GetPlayerState(colony.Owner);
+
+                            SpawnZombie(colony, banner, GetMosterType(colony.FollowerCount, zombiesMax, state.Difficulty.MonsterDiff));
                         }
                     }
                     else
@@ -195,7 +197,7 @@ namespace Pandaros.Settlers.Monsters
             }
         }
 
-        private NPCType GetMosterType(int followerCount, float maxMonsters)
+        private NPCType GetMosterType(int followerCount, float maxMonsters, float monsterDiff)
         {
             Dictionary<NPCType, double> spawnchances = new Dictionary<NPCType, double>();
             double maxChance = 0;
@@ -210,7 +212,7 @@ namespace Pandaros.Settlers.Monsters
                     spawnchances[mtKvp.Key] = chance;
 
                     if (chance > maxChance)
-                        maxChance = chance + (chance * .10);
+                        maxChance = chance + (chance * monsterDiff);
 
                     if (chance < minChance)
                         minChance = chance - (chance * .01);

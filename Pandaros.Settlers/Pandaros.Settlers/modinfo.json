@@ -1,16 +1,11 @@
-﻿{
-  "assemblies": [
-    {
-      "path": "Pandaros.Settlers.dll",
-      "name": "Settlers!",
-      "enabled": true,
-      "compatibleversions": [
-        {
-          "Major": 0,
-          "Minor": 4,
-          "Build": 3
-        }
-      ]
-    }
-  ]
-}
+﻿[
+  {
+    "dllpath": "Pandaros.Settlers.dll",
+    "name": "Pandaros.Settlers",
+    "version": "0.6.0",
+    "enabled": true,
+    "compatibleversions": [
+      "0.5.0"
+    ]
+  }
+]

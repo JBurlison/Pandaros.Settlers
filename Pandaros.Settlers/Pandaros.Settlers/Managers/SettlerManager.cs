@@ -3,8 +3,6 @@ using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
-using Pipliz.BlockNPCs.Implementations;
 using Pipliz.Chatting;
 using Pipliz.JSON;
 using Server.NPCs;

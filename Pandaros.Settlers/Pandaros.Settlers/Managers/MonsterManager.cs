@@ -61,8 +61,28 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
         {
-            var state = PlayerState.GetPlayerState(npc.Colony.Owner);
-            box.Set(box.item1 + state.Difficulty.MonsterDamage);
+            if (box.item1 > 0)
+            {
+                var state = PlayerState.GetPlayerState(npc.Colony.Owner);
+                bool infected = state.Difficulty.InfectionChance > Pipliz.Random.NextFloat();
+                bool poisioned = state.Difficulty.PosionChance > Pipliz.Random.NextFloat();
+
+                if (infected || poisioned)
+                {
+                    var ill = new List<Jobs.Illness.ISickness>();
+
+                    if (infected)
+                        ill.Add(new Jobs.Illness.Infection());
+
+                    if (poisioned)
+                        ill.Add(new Jobs.Illness.Poisoned());
+
+                    var sick = new Jobs.Sickness(npc, ill, npc.Job);
+                    npc.Job.OnRemovedNPC();
+                }
+                else
+                    box.Set(box.item1 + state.Difficulty.MonsterDamage);
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]

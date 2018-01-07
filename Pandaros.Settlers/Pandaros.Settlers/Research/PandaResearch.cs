@@ -1,9 +1,8 @@
 ﻿using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
-using Pipliz.APIProvider.Jobs;
-using Pipliz.APIProvider.Science;
-using Pipliz.BlockNPCs.Implementations;
+using Pipliz.Mods.APIProvider.Science;
+using Pipliz.Mods.BaseGame.BlockNPCs;
 using Server.Science;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,6 @@ namespace Pandaros.Settlers.Research
         public const string SwordSmithing = "SwordSmithing";
         public const string ColonistHealth = "ColonistHealth";
         public const string Knights = "Knights";
-        public const string Herbalists = "Herbalists";
         public const string Apothecary = "Apothecaries";
         public const string ImprovedSling = "ImprovedSling";
         public const string ImprovedBow = "ImprovedBow";
@@ -45,6 +43,7 @@ namespace Pandaros.Settlers.Research
         public const string ImprovedFuelCapacity = "ImprovedFuelCapacity";
         public const string IncreasedCapacity = "IncreasedCapacity";
         public const string AdvancedApothecary = "AdvancedApothecary";
+        public const string Physician = "Physician";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -138,9 +137,9 @@ namespace Pandaros.Settlers.Research
             AddImprovedDuarability(researchDic);
             AddImprovedFuelCapacity(researchDic);
             AddIncreasedCapacity(researchDic);
-            AddHerbResearch(researchDic);
             AddApocthResearch(researchDic);
             AddAdvanceApocthResearch(researchDic);
+            AddPhysicianResearch(researchDic);
 
             PandaLogger.Log("Panda Research Registering Complete!");
         }
@@ -383,28 +382,6 @@ namespace Pandaros.Settlers.Research
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.PatrolTool.PatrolFlag.name, true, Items.ItemFactory.JOB_CRAFTER);
         }
 
-        private static void AddHerbResearch(Dictionary<ushort, int> researchDic)
-        {
-            researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
-
-            var requirements = new List<string>()
-            {
-                ColonyBuiltIn.ScienceBagAdvanced
-            };
-
-            var research = new PandaResearch(researchDic, 1, Herbalists, 1f, requirements);
-            research.ResearchComplete += Herbs_ResearchComplete;
-            ScienceManager.RegisterResearchable(research);
-        }
-
-        private static void Herbs_ResearchComplete(object sender, ResearchCompleteEventArgs e)
-        {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.HerbalistRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.HerbalistRegister.JOB_RECIPE);
-        }
-
         private static void AddApocthResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
@@ -413,7 +390,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                GetResearchKey(Herbalists + "1")
+                ColonyBuiltIn.HerbFarming
             };
 
             var research = new PandaResearch(researchDic, 1, Apothecary, 1f, requirements);
@@ -447,6 +424,27 @@ namespace Pandaros.Settlers.Research
         {
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.Anitbiotic.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.TreatedBandage.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
+
+        private static void AddPhysicianResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Apothecary + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, Physician, 1f, requirements);
+            research.ResearchComplete += Physician_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Physician_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.PhysicianRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.PhysicianRegister.JOB_RECIPE);
         }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)

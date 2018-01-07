@@ -15,12 +15,13 @@ namespace Pandaros.Settlers.Items.Healing
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
         public static void Register()
         {
-            var herbs = new InventoryItem(Jobs.HerbalistRegister.HerbItem.ItemIndex, 3);
+            var herbs = new InventoryItem(BuiltinBlocks.Hollyhock, 2);
+            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 2);
             var oil = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
             var flour = new InventoryItem(BuiltinBlocks.Flour, 2);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>() { flour, oil, herbs },
+                                    new List<InventoryItem>() { flour, oil, herbs, herbs2 },
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 

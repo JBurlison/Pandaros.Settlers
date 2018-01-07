@@ -1,7 +1,7 @@
 ﻿using NPC;
 using Pandaros.Settlers.Entities;
-using Pipliz.APIProvider.Jobs;
-using Pipliz.BlockNPCs.Implementations;
+using Pipliz.Mods.APIProvider.Jobs;
+using Pipliz.Mods.BaseGame.BlockNPCs;
 using Server.Monsters;
 using System;
 using System.Collections.Generic;

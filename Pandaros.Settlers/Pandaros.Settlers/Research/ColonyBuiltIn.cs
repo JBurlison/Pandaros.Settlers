@@ -39,5 +39,6 @@ namespace Pandaros.Settlers.Research
         public const string ScienceBagMilitary = "pipliz.baseresearch.sciencebagmilitary";
         public const string TailorShop = "pipliz.baseresearch.tailorshop";
         public const string TechnologistTable = "pipliz.baseresearch.technologisttable";
+        public const string HerbFarming = "pipliz.baseresearch.herbfarming";
     }
 }

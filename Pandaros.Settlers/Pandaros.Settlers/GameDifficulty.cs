@@ -23,11 +23,11 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f);
-            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f);
-            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f);
-            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f);
-            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f);
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { PosionChance = 0f, InfectionChance = 0f, MonsterDiff = .10f };
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { PosionChance = 10f, InfectionChance = 10f, MonsterDiff = .10f };
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { PosionChance = 35f, InfectionChance = 40f, MonsterDiff = .20f };
+            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { PosionChance = 60f, InfectionChance = 60f, MonsterDiff = .30f };
+            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { PosionChance = 80f, InfectionChance = 80f, MonsterDiff = .50f };
         }
 
         public string Name { get; set; }
@@ -38,6 +38,12 @@ namespace Pandaros.Settlers
 
         public float MonsterDamageReduction { get; set; }
         public float MonsterDamage { get; set; }
+
+        public float PosionChance { get; set; }
+
+        public float InfectionChance { get; set; }
+
+        public float MonsterDiff { get; set; }
 
         public GameDifficulty() { }
 

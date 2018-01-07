@@ -1,6 +1,5 @@
 ﻿using NPC;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
 using Server.NPCs;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using Pandaros.Settlers.Entities;
 using Server.Monsters;
 using Pipliz.Collections;
 using BlockTypes.Builtin;
+using Pipliz.Mods.APIProvider.Jobs;
 
 namespace Pandaros.Settlers.Jobs
 {

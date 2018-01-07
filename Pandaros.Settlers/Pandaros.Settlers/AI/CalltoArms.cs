@@ -2,8 +2,6 @@
 using ChatCommands;
 using Pandaros.Settlers.Entities;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
-using Pipliz.BlockNPCs.Implementations;
 using Server.Monsters;
 using Server.NPCs;
 using System;
@@ -13,6 +11,7 @@ using System.Text;
 using NPC;
 using Pipliz.Collections;
 using Pandaros.Settlers.Managers;
+using Pipliz.Mods.APIProvider.Jobs;
 
 namespace Pandaros.Settlers.AI
 {
@@ -213,11 +212,8 @@ namespace Pandaros.Settlers.AI
                     _target = null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-#if DEBUG
-                PandaLogger.LogError(ex);
-#endif
                 state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
                 state.SetCooldown(_weapon.cooldownMissingItem);
                 _target = null;

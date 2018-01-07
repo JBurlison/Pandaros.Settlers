@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Healing
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Antidote.Register")]
         public static void Register()
         {
-            var herbs = new InventoryItem(Jobs.HerbalistRegister.HerbItem.ItemIndex, 4);
+            var herbs = new InventoryItem(BuiltinBlocks.Wolfsbane, 4);
             var oil = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
             var Berries = new InventoryItem(BuiltinBlocks.Berry, 4);
 

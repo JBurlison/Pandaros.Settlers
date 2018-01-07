@@ -13,7 +13,8 @@ namespace Pandaros.Settlers.Items.Healing
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         public const double COOLDOWN = 5;
-
+        public const float INITIALHEAL = 20f;
+        public const float TOTALHOT = 40f;
         private static Dictionary<Players.Player, double> _coolDown = new Dictionary<Players.Player, double>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Healing.Bandage.RegisterAudio"),
@@ -61,9 +62,9 @@ namespace Pandaros.Settlers.Items.Healing
             if (boxedData.item1.clickType == Shared.PlayerClickedData.ClickType.Right &&
                 boxedData.item1.typeSelected == Item.ItemIndex)
             {
-                //if (TimeCycle.TotalTime > _coolDown[player])
+                if (TimeCycle.TotalTime > _coolDown[player])
                 {
-                    var healing = new Entities.HealingOverTimePC(player, 20f, 40f, 5);
+                    var healing = new Entities.HealingOverTimePC(player, INITIALHEAL, TOTALHOT, 5);
                     healed = true;
                 }
             }
@@ -73,9 +74,9 @@ namespace Pandaros.Settlers.Items.Healing
             {
                 if (NPC.NPCTracker.TryGetNPC(boxedData.item1.rayCastHit.hitNPCID, out var npc))
                 {
-                    //if (TimeCycle.TotalTime > _coolDown[player])
+                    if (TimeCycle.TotalTime > _coolDown[player])
                     {
-                        var heal = new Entities.HealingOverTimeNPC(npc, 20f, 40f, 5);
+                        var heal = new Entities.HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5);
                         healed = true;
                     }
                 }

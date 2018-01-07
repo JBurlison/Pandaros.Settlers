@@ -39,12 +39,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="BaseResearch">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pipliz\BaseResearch\BaseResearch.dll</HintPath>
-    </Reference>
-    <Reference Include="BlockNPCs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pipliz\BlockNPCs\BlockNPCs.dll</HintPath>
+    <Reference Include="BaseGame">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pipliz\BaseGame\BaseGame.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,7 +69,6 @@
     <Compile Include="Cosmetics\CarpetGrey.cs" />
     <Compile Include="Cosmetics\CarpetBlack.cs" />
     <Compile Include="Cosmetics\Register.cs" />
-    <Compile Include="Entities\BlockJobBaseExtender.cs" />
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
@@ -88,9 +83,7 @@
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
-    <Compile Include="Items\UpdatableBlocks\Herbs.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
-    <Compile Include="Jobs\HerbalistJob.cs" />
     <Compile Include="Jobs\Illness\Infection.cs" />
     <Compile Include="Jobs\Illness\ISickness.cs" />
     <Compile Include="Jobs\Illness\Poisoned.cs" />
@@ -941,6 +934,9 @@
     <Content Include="icons\GateLever.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Physician1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\PhysicianBench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1676,6 +1672,9 @@
     <Content Include="Textures\albedo\yellowClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\height\PhysicianBench.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\height\ApothecaryTable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1692,6 +1691,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\AdvancedCraftingTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\PhysicianBench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\ApothecaryTable.png">
