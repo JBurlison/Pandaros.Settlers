@@ -108,16 +108,16 @@
     "Pandaros.Settlers.HerbalistBench.recipe": "Herbalists use them to prepare the herbs after gathering.",
     "Pandaros.Settlers.HerbalistBench": "Herbalists use them to prepare the herbs after gathering",
     "Pandaros.Settlers.ApothecaryTable": "Used to make medicines and bandages",
-    "Pandaros.Settlers.Anitbiotic": "Use on bandages for extra fast healing or to cure infections.",
+    "Pandaros.Settlers.Anitbiotic": "Use on bandages for extra fast healing.",
     "Pandaros.Settlers.Antidote": "Cures posions",
-    "Pandaros.Settlers.Bandage": "Used by Physicians (or you!) instantly heals for 20 health then heals for 40 health over 5 seconds.",
-    "Pandaros.Settlers.TreatedBandage": "Used by Physicians (or you!) instantly heals for 50 health then heals for 70 health over 5 seconds."
+    "Pandaros.Settlers.Bandage": "Instantly heals for 20 health then heals for 40 health over 5 seconds.",
+    "Pandaros.Settlers.TreatedBandage": "Iinstantly heals for 50 health then heals for 70 health over 5 seconds."
   },
   "sentences": {
     "popup": {
       "limits": {
         "Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Table.",
-        "Pandaros.Settlers.ApothecaryTable": "Apothecary Table"
+        "Pandaros.Settlers.ApothecaryTable": "Apothecary Table."
       }
       },
     "Pandaros": {

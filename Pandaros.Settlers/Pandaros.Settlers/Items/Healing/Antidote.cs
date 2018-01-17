@@ -7,7 +7,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items.Healing
 {
-    [ModLoader.ModManager]
+    //[ModLoader.ModManager]
     public static class Antidote
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }

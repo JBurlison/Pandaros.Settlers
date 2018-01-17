@@ -139,7 +139,7 @@ namespace Pandaros.Settlers.Research
             AddIncreasedCapacity(researchDic);
             AddApocthResearch(researchDic);
             AddAdvanceApocthResearch(researchDic);
-            AddPhysicianResearch(researchDic);
+            //AddPhysicianResearch(researchDic);
 
             PandaLogger.Log("Panda Research Registering Complete!");
         }

@@ -64,25 +64,27 @@ namespace Pandaros.Settlers.Managers
             if (box.item1 > 0)
             {
                 var state = PlayerState.GetPlayerState(npc.Colony.Owner);
-                bool infected = state.Difficulty.InfectionChance > Pipliz.Random.NextFloat();
-                bool poisioned = state.Difficulty.PosionChance > Pipliz.Random.NextFloat();
+                //bool infected = state.Difficulty.InfectionChance > Pipliz.Random.NextFloat();
+                //bool poisioned = state.Difficulty.PosionChance > Pipliz.Random.NextFloat();
 
-                if (infected || poisioned)
-                {
-                    var ill = new List<Jobs.Illness.ISickness>();
+                //if (infected || poisioned)
+                //{
+                //    var ill = new List<Jobs.Illness.ISickness>();
 
-                    if (infected)
-                        ill.Add(new Jobs.Illness.Infection());
+                //    if (infected)
+                //        ill.Add(new Jobs.Illness.Infection());
 
-                    if (poisioned)
-                        ill.Add(new Jobs.Illness.Poisoned());
+                //    if (poisioned)
+                //        ill.Add(new Jobs.Illness.Poisoned());
 
-                    var sick = new Jobs.Sickness(npc, ill, npc.Job);
-                    npc.Job.OnRemovedNPC();
-                }
-                else
-                    box.Set(box.item1 + state.Difficulty.MonsterDamage);
+                //    var sick = new Jobs.Sickness(npc, ill, npc.Job);
+                //    npc.Job.OnRemovedNPC();
+                //}
+
+                box.Set(box.item1 + state.Difficulty.MonsterDamage);
             }
+
+            
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
