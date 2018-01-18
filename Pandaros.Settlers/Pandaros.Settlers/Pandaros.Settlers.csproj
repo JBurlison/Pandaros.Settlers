@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
+    <Compile Include="AutoLoad.cs" />
     <Compile Include="Cosmetics\CarpetPurple.cs" />
     <Compile Include="Cosmetics\CarpetPink.cs" />
     <Compile Include="Cosmetics\CarpetOrange.cs" />
@@ -73,22 +74,15 @@
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="Items\Armor.cs" />
-    <Compile Include="Items\Bottle.cs" />
     <Compile Include="Items\Food\BerryPancakes.cs" />
     <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\Healing\Anitbiotic.cs" />
-    <Compile Include="Items\Healing\Antidote.cs" />
     <Compile Include="Items\Healing\Bandage.cs" />
     <Compile Include="Items\Healing\TreatedBandage.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
-    <Compile Include="Jobs\Illness\Infection.cs" />
-    <Compile Include="Jobs\Illness\ISickness.cs" />
-    <Compile Include="Jobs\Illness\Poisoned.cs" />
-    <Compile Include="Jobs\Physician.cs" />
-    <Compile Include="Jobs\Sickness.cs" />
     <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
@@ -125,6 +119,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Audio\Bandage.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\fineryforge.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\dyeing.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\gunsmith.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\kiln.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\metalsmithing.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\stonemasonry.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AutoLoad\Apothecary.json">
@@ -224,6 +236,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="localization\en-US\translation.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\ru-RU\translation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\benchleftx+.obj">
@@ -1309,39 +1324,6 @@
     <Content Include="Textures\albedo\allium.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\altarBottom.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarFront.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarSide.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarTop - lit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarTop -Unlit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarTop.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarToplit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarToprotate1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarToprotate2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarToprotate3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\altarTopUnlit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Textures\albedo\bench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1355,27 +1337,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\brownClay.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\Carpenter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\CarpenterFront.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\Carpenterrotate1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\Carpenterrotate2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\Carpenterrotate3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\CarpenterSide.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\CarpenterTop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\cratestack.png">
@@ -1397,18 +1358,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\dirtBricks.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\gemCutter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\gemCutterRotate1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\gemCutterRotate2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\gemCutterRotate3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\greenClay.png">
@@ -1448,9 +1397,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\irondoor.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\lamp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\Lever.png">
@@ -1561,13 +1507,7 @@
     <Content Include="Textures\albedo\orangeClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\oreCopper.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Textures\albedo\oreEmerald.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\oreGold.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\oreRuby.png">
@@ -1580,9 +1520,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\oreStone.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\oreTin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\PhysicianBench.png">

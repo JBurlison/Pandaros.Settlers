@@ -1,0 +1,47 @@
+[
+  {
+    "name": "refinedemerald",
+    "results": [
+      {
+        "type": "refinedemerald",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "rawemerald",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "refinedruby",
+    "results": [
+      {
+        "type": "refinedruby",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "rawruby",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "refinedsapphire",
+    "results": [
+      {
+        "type": "refinedsapphire",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "rawsapphire",
+        "amount": 1
+      }
+    ]
+  }
+]

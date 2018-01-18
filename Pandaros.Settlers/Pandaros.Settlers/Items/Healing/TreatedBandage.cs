@@ -12,7 +12,8 @@ namespace Pandaros.Settlers.Items.Healing
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public const long COOLDOWN = 5000;
-
+        public const float INITIALHEAL = 50f;
+        public const float TOTALHOT = 70f;
         private static Dictionary<Players.Player, long> _coolDown = new Dictionary<Players.Player, long>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Register")]
@@ -55,7 +56,7 @@ namespace Pandaros.Settlers.Items.Healing
             {
                 if (Pipliz.Time.MillisecondsSinceStart > _coolDown[player])
                 {
-                    var healing = new Entities.HealingOverTimePC(player, 50f, 70f, 5);
+                    var healing = new Entities.HealingOverTimePC(player, INITIALHEAL, TOTALHOT, 5);
                     healed = true;
                 }
             }
@@ -67,7 +68,7 @@ namespace Pandaros.Settlers.Items.Healing
                 {
                     if (Pipliz.Time.MillisecondsSinceStart > _coolDown[player])
                     {
-                        var heal = new Entities.HealingOverTimeNPC(npc, 50f, 70f, 5);
+                        var heal = new Entities.HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5);
                         healed = true;
                     }
                 }

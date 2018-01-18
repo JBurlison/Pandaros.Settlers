@@ -66,15 +66,47 @@ namespace Pandaros.Settlers.Managers
             {
                 Players.PlayerDatabase.ForeachValue(p =>
                 {
+                    var stockpile = Stockpile.GetStockPile(p);
                     var colony = Colony.Get(p);
                     NPCBase lastNPC = null;
+                    var hasBandages = stockpile.Contains(Items.Healing.TreatedBandage.Item.ItemIndex) ||
+                            stockpile.Contains(Items.Healing.Bandage.Item.ItemIndex);
 
                     foreach (var follower in colony.Followers)
                     {
+                        
                         if (lastNPC == null || (Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 && Pipliz.Random.NextBool()))
                         {
                             lastNPC = follower;
                             ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
+                        }
+
+                        if (hasBandages && 
+                            follower.health < NPCBase.MaxHealth && 
+                            !HealingOverTimeNPC.NPCIsBeingHealed(follower))
+                        {
+                            var missingHp = NPCBase.MaxHealth - follower.health;
+                            bool healing = false;
+
+                            if (missingHp > Items.Healing.TreatedBandage.INITIALHEAL)
+                            {
+                                if (stockpile.TryRemove(Items.Healing.TreatedBandage.Item.ItemIndex))
+                                {
+                                    healing = true;
+                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+                                    var heal = new Entities.HealingOverTimeNPC(follower, Items.Healing.TreatedBandage.INITIALHEAL, Items.Healing.TreatedBandage.TOTALHOT, 5);
+                                }
+                            }
+
+                            if (!healing && missingHp > Items.Healing.Bandage.INITIALHEAL)
+                            {
+                                if (stockpile.TryRemove(Items.Healing.Bandage.Item.ItemIndex))
+                                {
+                                    healing = true;
+                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+                                    var heal = new Entities.HealingOverTimeNPC(follower, Items.Healing.Bandage.INITIALHEAL, Items.Healing.Bandage.TOTALHOT, 5);
+                                }
+                            }
                         }
                     }
                 });

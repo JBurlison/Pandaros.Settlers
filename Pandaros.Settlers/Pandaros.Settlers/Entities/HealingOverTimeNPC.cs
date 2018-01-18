@@ -79,5 +79,10 @@ namespace Pandaros.Settlers.Entities
                 _nextUpdate = Pipliz.Time.MillisecondsSinceStart + 1000;
             }
         }
+
+        public static bool NPCIsBeingHealed(NPC.NPCBase npc)
+        {
+            return _instances.Any(a => a.Target == npc);
+        }
     }
 }

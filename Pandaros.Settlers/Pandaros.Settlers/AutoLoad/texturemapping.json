@@ -1,10 +1,4 @@
 {
-	"lamp" : {
-		"albedo" : "lamp",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
 	"infiniteemerald" : {
 		"albedo" : "oreEmerald",
 		"normal" : "neutral",

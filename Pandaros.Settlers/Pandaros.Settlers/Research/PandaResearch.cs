@@ -43,7 +43,6 @@ namespace Pandaros.Settlers.Research
         public const string ImprovedFuelCapacity = "ImprovedFuelCapacity";
         public const string IncreasedCapacity = "IncreasedCapacity";
         public const string AdvancedApothecary = "AdvancedApothecary";
-        public const string Physician = "Physician";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -424,27 +423,6 @@ namespace Pandaros.Settlers.Research
         {
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.Anitbiotic.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.TreatedBandage.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-        }
-
-        private static void AddPhysicianResearch(Dictionary<ushort, int> researchDic)
-        {
-            researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
-
-            var requirements = new List<string>()
-            {
-                GetResearchKey(Apothecary + "1")
-            };
-
-            var research = new PandaResearch(researchDic, 1, Physician, 1f, requirements);
-            research.ResearchComplete += Physician_ResearchComplete;
-            ScienceManager.RegisterResearchable(research);
-        }
-
-        private static void Physician_ResearchComplete(object sender, ResearchCompleteEventArgs e)
-        {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.PhysicianRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.PhysicianRegister.JOB_RECIPE);
         }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)

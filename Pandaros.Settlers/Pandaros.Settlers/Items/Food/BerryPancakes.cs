@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Items.Food
         {
             var flour = new InventoryItem(BuiltinBlocks.Flour, 3);
             var Berries = new InventoryItem(BuiltinBlocks.Berry, 2);
-            var firewood = new InventoryItem("firewood");
+            var firewood = new InventoryItem(BuiltinBlocks.Firewood);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>() { flour, Berries, firewood },
