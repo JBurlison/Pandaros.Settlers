@@ -17,6 +17,7 @@ Sounds added to make your colony feel alive!
 ## Jobs!
 * [Knights!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Knights!)
 * [Machinists!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Machinists!)
+* [Apothecary!](https://github.com/JBurlison/Pandaros.Settlers/wiki/Apothecary!)
 
 **NOTE: With the release of 0.4.0 Only servers needs mods**
 
