@@ -35,6 +35,7 @@ namespace Pandaros.Settlers.Items.Healing
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 
+            ItemTypesServer.LoadSortOrder(Item.name, ItemTypesServer.ORDER_FOOD);
             RecipeStorage.AddDefaultLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }
 

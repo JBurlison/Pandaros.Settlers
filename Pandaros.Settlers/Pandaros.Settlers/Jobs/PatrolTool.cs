@@ -36,6 +36,8 @@ namespace Pandaros.Settlers.Jobs
                                     new InventoryItem(PatrolFlag.ItemIndex, 2),
                                     5);
 
+            ItemTypesServer.LoadSortOrder(Item.name, ItemTypesServer.ORDER_TAILOR);
+            ItemTypesServer.LoadSortOrder(PatrolFlag.name, ItemTypesServer.ORDER_TAILOR);
             RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }
 

@@ -362,6 +362,8 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(GateItem.ItemIndex),
                                     24);
 
+            ItemTypesServer.LoadSortOrder(Item.name, ItemTypesServer.ORDER_JOBBLOCK);
+            ItemTypesServer.LoadSortOrder(GateItem.name, ItemTypesServer.ORDER_JOBBLOCK);
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, gate);
         }
 

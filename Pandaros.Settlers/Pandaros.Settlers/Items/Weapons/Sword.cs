@@ -85,6 +85,7 @@ namespace Pandaros.Settlers.Items
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5);
 
+                ItemTypesServer.LoadSortOrder(a.Value.ItemType.name, ItemTypesServer.ORDER_TAILOR);
                 RecipeStorage.AddOptionalLimitTypeRecipe(Armor.JOB_METALSMITH, recipe);
             }
 

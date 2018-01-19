@@ -86,6 +86,7 @@ namespace Pandaros.Settlers
                                 textureMapping.HeightPath = heightPath;
 
                             string realkey = MOD_PREFIX + textureEntry.Key;
+                            
                             ItemTypesServer.SetTextureMapping(realkey, textureMapping);
                         }
                         catch (Exception exception)
@@ -245,6 +246,11 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.registerrecipes")]
         public static void LoadRecipes()
         {
+            if (JSON.Deserialize(MultiPath.Combine(GameLoader.AUTOLOAD_FOLDER_PANDA, "types.json"), out JSONNode jsonTypes, false))
+                if (jsonTypes.NodeType == NodeType.Object)
+                    foreach (KeyValuePair<string, JSONNode> typeEntry in jsonTypes.LoopObject())
+                        ItemTypesServer.LoadSortOrder(MOD_PREFIX + typeEntry.Key, ItemTypesServer.ORDER_DECORATIVE);
+
             PandaLogger.Log("Loading recipes...");
 
             foreach (string[] jobAndFilename in new string[][] {

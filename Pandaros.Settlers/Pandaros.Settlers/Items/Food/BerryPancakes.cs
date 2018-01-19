@@ -23,6 +23,8 @@ namespace Pandaros.Settlers.Items.Food
                                     new List<InventoryItem>() { flour, Berries, firewood },
                                     new InventoryItem(Item.ItemIndex, 2),
                                     50);
+
+            ItemTypesServer.LoadSortOrder(Item.name, ItemTypesServer.ORDER_FOOD);
             RecipeStorage.AddDefaultLimitTypeRecipe(ItemFactory.JOB_BAKER, recipe);
         }
 

@@ -279,6 +279,12 @@ namespace Pandaros.Settlers.Items.Machines
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
 
+
+            ItemTypesServer.LoadSortOrder(STONE_NAMESPACE, ItemTypesServer.ORDER_JOBBLOCK);
+            ItemTypesServer.LoadSortOrder(BRONZEARROW_NAMESPACE, ItemTypesServer.ORDER_JOBBLOCK);
+            ItemTypesServer.LoadSortOrder(CROSSBOW_NAMESPACE, ItemTypesServer.ORDER_JOBBLOCK);
+            ItemTypesServer.LoadSortOrder(MATCHLOCK_NAMESPACE, ItemTypesServer.ORDER_JOBBLOCK);
+
             foreach (var turret in TurretSettings)
                 MachineManager.RegisterMachineType(turret.Key, new MachineManager.MachineSettings(turret.Value.TurretItem.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, turret.Value.RepairTime, turret.Value.RefuelTime, turret.Value.ReloadTime, turret.Value.WorkTime));
         }
