@@ -733,5 +733,27 @@
     "npcCraftable": true,
     "defaultLimit": 10,
     "defaultPriority": -100
+  },
+  {
+    "name": "clayslabbottom",
+    "results": [
+      {
+        "amount": 4,
+        "type": "clayslabbottom"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      },
+      {
+        "type": "chisel",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   }
 ]
