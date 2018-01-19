@@ -21,7 +21,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AfterSelectedWorld()
         {
-            PandaLogger.Log("Started loading texture mappings...");
+            PandaLogger.Log("Loading texture mappings...");
 
             if (JSON.Deserialize(MultiPath.Combine(GameLoader.AUTOLOAD_FOLDER_PANDA, "texturemapping.json"), out JSONNode jsonTextureMapping, false))
             {
@@ -67,8 +67,6 @@ namespace Pandaros.Settlers
                                                 break;
                                         }
                                     }
-
-                                    PandaLogger.Log(string.Format("Rewriting {0} texture path from '{1}' to '{2}'", textureType, textureTypeValue, realTextureTypeValue));
                                 }
                                 textureEntry.Value.SetAs(textureType, realTextureTypeValue);
                             }
@@ -107,7 +105,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".AutoLoad.addrawtypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
-            PandaLogger.Log("Started loading types...");
+            PandaLogger.Log("Loading types...");
 
             if (JSON.Deserialize(MultiPath.Combine(GameLoader.AUTOLOAD_FOLDER_PANDA, "types.json"), out JSONNode jsonTypes, false))
             {
@@ -125,8 +123,7 @@ namespace Pandaros.Settlers
                                     realicon = MultiPath.Combine("gamedata", "textures", "icons", icon.Substring(VANILLA_PREFIX.Length));
                                 else
                                     realicon = MultiPath.Combine(GameLoader.ICON_FOLDER_PANDA, icon);
-
-                                PandaLogger.Log(string.Format("Rewriting icon path from '{0}' to '{1}'", icon, realicon));
+                                
                                 typeEntry.Value.SetAs("icon", realicon);
                             }
                             
@@ -138,8 +135,7 @@ namespace Pandaros.Settlers
                                     realmesh = mesh.Substring(VANILLA_PREFIX.Length);
                                 else
                                     realmesh = MultiPath.Combine(GameLoader.MESH_FOLDER_PANDA, mesh);
-
-                                PandaLogger.Log(string.Format("Rewriting mesh path from '{0}' to '{1}'", mesh, realmesh));
+                                
                                 typeEntry.Value.SetAs("mesh", realmesh);
                             }
 
@@ -152,8 +148,7 @@ namespace Pandaros.Settlers
                                     realParentType = parentType.Substring(VANILLA_PREFIX.Length);
                                 else
                                     realParentType = MOD_PREFIX + parentType;
-
-                                PandaLogger.Log(string.Format("Rewriting parentType from '{0}' to '{1}'", parentType, realParentType));
+                                
                                 typeEntry.Value.SetAs("parentType", realParentType);
                             }
 
@@ -168,7 +163,6 @@ namespace Pandaros.Settlers
                                     else
                                         rotatablekey = MOD_PREFIX + key;
                 
-                                    PandaLogger.Log(string.Format("Rewriting rotatable key '{0}' to '{1}'", key, rotatablekey));
                                     typeEntry.Value.SetAs(rotatable, rotatablekey);
                                 }
                             }
@@ -185,8 +179,7 @@ namespace Pandaros.Settlers
                                             sidekey = key.Substring(VANILLA_PREFIX.Length);
                                         else
                                             sidekey = MOD_PREFIX + key;
-
-                                        PandaLogger.Log(string.Format("Rewriting side key from '{0}' to '{1}'", key, sidekey));
+                                        
                                         typeEntry.Value.SetAs(side, sidekey);
                                     }
                                 }
@@ -200,8 +193,7 @@ namespace Pandaros.Settlers
                                     realOnRemoveType = onRemoveType.Substring(VANILLA_PREFIX.Length);
                                 else
                                     realOnRemoveType = MOD_PREFIX + onRemoveType;
-
-                                PandaLogger.Log(string.Format("Rewriting onRemoveType from '{0}' to '{1}'", onRemoveType, realOnRemoveType));
+                                
                                 typeEntry.Value.SetAs("onRemoveType", realOnRemoveType);
                             }
 
@@ -213,8 +205,7 @@ namespace Pandaros.Settlers
                                     realOnPlaceAudio = onPlaceAudio.Substring(VANILLA_PREFIX.Length);
                                 else
                                     realOnPlaceAudio = MOD_PREFIX + onPlaceAudio;
-
-                                PandaLogger.Log(string.Format("Rewriting onPlaceAudio from '{0}' to '{1}'", onPlaceAudio, realOnPlaceAudio));
+                                
                                 typeEntry.Value.SetAs("onPlaceAudio", realOnPlaceAudio);
                             }
 
@@ -226,22 +217,14 @@ namespace Pandaros.Settlers
                                     realOnRemoveAudio = onRemoveAudio.Substring(VANILLA_PREFIX.Length);
                                 else
                                     realOnRemoveAudio = MOD_PREFIX + onRemoveAudio;
-
-                                PandaLogger.Log(string.Format("Rewriting onRemoveAudio from '{0}' to '{1}'", onRemoveAudio, realOnRemoveAudio));
+                                
                                 typeEntry.Value.SetAs("onRemoveAudio", realOnRemoveAudio);
                             }
 
                             string realkey = MOD_PREFIX + typeEntry.Key;
 
                             if (typeEntry.Value.TryGetAs("isCrate", out bool isCrate) && isCrate)
-                            {
-                                PandaLogger.Log(string.Format("Adding crate type '{0}'", realkey));
                                 crateTypeKeys.Add(realkey);
-                            }
-                            else
-                            {
-                                PandaLogger.Log(string.Format("Adding block type '{0}'", realkey));
-                            }
 
                             itemTypes.Add(realkey, new ItemTypesServer.ItemTypeRaw(realkey, typeEntry.Value));
                         }
@@ -262,7 +245,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.registerrecipes")]
         public static void LoadRecipes()
         {
-            PandaLogger.Log("Started loading recipes...");
+            PandaLogger.Log("Loading recipes...");
 
             foreach (string[] jobAndFilename in new string[][] {
                             new string[] { "pipliz.crafter", "crafting.json"},
@@ -292,22 +275,31 @@ namespace Pandaros.Settlers
                         {
                             foreach (JSONNode craftingEntry in jsonRecipes.LoopArray())
                             {
-                                foreach (string recipePart in new string[] { "results", "requires" })
+                                if (craftingEntry.TryGetAs("name", out string name))
                                 {
-                                    JSONNode jsonRecipeParts = craftingEntry.GetAs<JSONNode>(recipePart);
+                                    if (name.StartsWith(VANILLA_PREFIX))
+                                        name = name.Substring(VANILLA_PREFIX.Length);
+                                    else
+                                        name = MOD_PREFIX + name;
 
-                                    foreach (JSONNode jsonRecipePart in jsonRecipeParts.LoopArray())
+                                    craftingEntry.SetAs("name", name);
+
+                                    foreach (string recipePart in new string[] { "results", "requires" })
                                     {
-                                        string type = jsonRecipePart.GetAs<string>("type");
-                                        string realtype;
+                                        JSONNode jsonRecipeParts = craftingEntry.GetAs<JSONNode>(recipePart);
 
-                                        if (type.StartsWith(VANILLA_PREFIX))
-                                            realtype = type.Substring(VANILLA_PREFIX.Length);
-                                        else
-                                            realtype = MOD_PREFIX + type;
+                                        foreach (JSONNode jsonRecipePart in jsonRecipeParts.LoopArray())
+                                        {
+                                            string type = jsonRecipePart.GetAs<string>("type");
+                                            string realtype;
 
-                                        PandaLogger.Log(string.Format("Rewriting block recipe type from '{0}' to '{1}'", type, realtype));
-                                        jsonRecipePart.SetAs("type", realtype);
+                                            if (type.StartsWith(VANILLA_PREFIX))
+                                                realtype = type.Substring(VANILLA_PREFIX.Length);
+                                            else
+                                                realtype = MOD_PREFIX + type;
+                                            
+                                            jsonRecipePart.SetAs("type", realtype);
+                                        }
                                     }
                                 }
 
@@ -380,7 +372,6 @@ namespace Pandaros.Settlers
                 {
                     return true;
                 }
-
 
                 if (newType != userData.typeTillNow && ItemTypes.IndexLookup.TryGetName(newType, out string typename))
                 {

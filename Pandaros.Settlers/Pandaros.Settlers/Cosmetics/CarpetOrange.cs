@@ -39,7 +39,7 @@ namespace Pandaros.Settlers.Cosmetics
                     new List<InventoryItem>() { flax, planks, linen },
                     new InventoryItem(Item.ItemIndex, 1), 2);
 
-            RecipeStorage.AddDefaultLimitTypeRecipe(Register.TALIOR_JOB, recipe);
+            RecipeStorage.AddDefaultLimitTypeRecipe(Register.DYER_JOB, recipe);
         }
     }
 }

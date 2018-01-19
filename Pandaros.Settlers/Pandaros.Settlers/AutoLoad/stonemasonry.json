@@ -12,7 +12,9 @@
         "type": "rawemerald",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "refinedruby",
@@ -27,7 +29,9 @@
         "type": "rawruby",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "refinedsapphire",
@@ -42,6 +46,537 @@
         "type": "rawsapphire",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marblebricks",
+    "results": [
+      {
+        "type": "marblebricks",
+        "amount": 4
+      }
+    ],
+    "requires": [
+      {
+        "type": "chisel",
+        "amount": 1
+      },
+      {
+        "type": "marble",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marblepillarbase",
+    "results": [
+      {
+        "type": "marblepillarbase",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "chisel",
+        "amount": 1
+      },
+      {
+        "type": "marble",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marblepillarbody",
+    "results": [
+      {
+        "type": "marblepillarbody",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "chisel",
+        "amount": 1
+      },
+      {
+        "type": "marble",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marblepillartop",
+    "results": [
+      {
+        "type": "marblepillartop",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "chisel",
+        "amount": 1
+      },
+      {
+        "type": "marble",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marble",
+    "results": [
+      {
+        "type": "marble",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "chisel",
+        "amount": 1
+      },
+      {
+        "type": "rawmarble",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.sand",
+    "results": [
+      {
+        "type": "vanilla.sand",
+        "amount": 4
+      }
+    ],
+    "requires": [
+      {
+        "type": "sledgehammer",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.stoneblock",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "stonesquares",
+    "results": [
+      {
+        "amount": 6,
+        "type": "stonesquares"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.stonebricks",
+        "amount": 4
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "stonebrickslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "stonebrickslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.stonebricks",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "mossstoneslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "mossstoneslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "mossstone",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "mossstonebricksslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "mossstonebricksslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "mossstonebricks",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "mossstonesquaresslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "mossstonesquaresslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "mossstonesquares",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "stonesquaresslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "stonesquaresslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "stonesquares",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "stoneblockslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "stoneblockslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.stoneblock",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "limestoneslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "limestoneslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "limestone",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "sandstoneslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "sandstoneslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "sandstone",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "dirtbricks",
+    "results": [
+      {
+        "type": "dirtbricks",
+        "amount": 4
+      }
+    ],
+    "requires": [
+      {
+        "type": "chisel",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.dirt",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "brickslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "brickslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.bricks",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "clayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "clayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "plasterslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "plasterslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.plasterblock",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marblebricksslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "marblebricksslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "marblebricks",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "rawmarbleslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "rawmarbleslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "rawmarble",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "marbleslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "marbleslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "marble",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "dirtbrickslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "dirtbrickslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "dirtbricks",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "dirtslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "dirtslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.dirt",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "sandslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "sandslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.sand",
+        "amount": 1
+      },
+      {
+        "type": "chisel"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   }
 ]

@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Items.Healing
                 {
                     if (Pipliz.Time.MillisecondsSinceStart > _coolDown[player])
                     {
-                        var heal = new Entities.HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5);
+                        var heal = new Entities.HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5, Item.ItemIndex);
                         healed = true;
                     }
                 }

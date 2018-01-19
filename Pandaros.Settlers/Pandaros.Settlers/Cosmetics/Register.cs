@@ -9,7 +9,7 @@ namespace Pandaros.Settlers.Cosmetics
 {
     public static class Register
     {
-        public const string TALIOR_JOB = "pipliz.tailor";
+        public const string DYER_JOB = "pipliz.dyer";
 
         public static void AddCarpetTextures(string key)
         {

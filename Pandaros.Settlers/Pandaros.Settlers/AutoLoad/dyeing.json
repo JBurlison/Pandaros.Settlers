@@ -1,3 +1,818 @@
 [
 
+  {
+    "name": "blackclay",
+    "results": [
+      {
+        "type": "blackclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "yellowclay",
+    "results": [
+      {
+        "type": "yellowclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "blueclay",
+    "results": [
+      {
+        "type": "blueclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.alkanet",
+        "amount": 3
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "brownclay",
+    "results": [
+      {
+        "type": "brownclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "cyanclay",
+    "results": [
+      {
+        "type": "cyanclay"
+      }
+    ],
+    "requires": [
+      {
+        "amount": 2,
+        "type": "vanilla.alkanet"
+      },
+      {
+        "amount": 1,
+        "type": "vanilla.gypsum"
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "darkblueclay",
+    "results": [
+      {
+        "type": "darkblueclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.alkanet",
+        "amount": 6
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "greenclay",
+    "results": [
+      {
+        "type": "greenclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "magentaclay",
+    "results": [
+      {
+        "type": "magentaclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.clay"
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "greyclay",
+    "results": [
+      {
+        "type": "greyclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.gypsum",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "lightgreyclay",
+    "results": [
+      {
+        "type": "lightgreyclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.gypsum",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "limeclay",
+    "results": [
+      {
+        "type": "limeclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "orangeclay",
+    "results": [
+      {
+        "type": "orangeclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "pinkclay",
+    "results": [
+      {
+        "type": "pinkclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.gypsum",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "purpleclay",
+    "results": [
+      {
+        "type": "purpleclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.alkanet",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "redclay",
+    "results": [
+      {
+        "type": "redclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 3
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "lightpinkclay",
+    "results": [
+      {
+        "type": "lightpinkclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.gypsum",
+        "amount": 3
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "whiteclay",
+    "results": [
+      {
+        "type": "whiteclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.gypsum",
+        "amount": 3
+      },
+      {
+        "type": "vanilla.clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "blackclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "blackclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "blueclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "blueclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "amount": 3,
+        "type": "vanilla.alkanet"
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "brownclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "brownclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "cyanclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "cyanclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "amount": 2,
+        "type": "vanilla.alkanet"
+      },
+      {
+        "amount": 1,
+        "type": "vanilla.gypsum"
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "darkblueclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "darkblueclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "amount": 6,
+        "type": "vanilla.alkanet"
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "greyclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "greyclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.gypsum",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "lightgreyclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "lightgreyclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.gypsum",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "greenclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "greenclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "limeclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "limeclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "pinkclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "pinkclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.gypsum",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "lightpinkclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "lightpinkclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.gypsum",
+        "amount": 3
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "redclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "redclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "amount": 3,
+        "type": "vanilla.hollyhock"
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "purpleclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "purpleclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "magentaclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "magentaclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.alkanet",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "orangeclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "orangeclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "type": "vanilla.wolfsbane",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.hollyhock",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "yellowclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "yellowclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "amount": 2,
+        "type": "vanilla.wolfsbane"
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "whiteclayslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "whiteclayslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "clayslabbottom"
+      },
+      {
+        "amount": 3,
+        "type": "vanilla.gypsum"
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  }
 ]

@@ -64,27 +64,8 @@ namespace Pandaros.Settlers.Managers
             if (box.item1 > 0)
             {
                 var state = PlayerState.GetPlayerState(npc.Colony.Owner);
-                //bool infected = state.Difficulty.InfectionChance > Pipliz.Random.NextFloat();
-                //bool poisioned = state.Difficulty.PosionChance > Pipliz.Random.NextFloat();
-
-                //if (infected || poisioned)
-                //{
-                //    var ill = new List<Jobs.Illness.ISickness>();
-
-                //    if (infected)
-                //        ill.Add(new Jobs.Illness.Infection());
-
-                //    if (poisioned)
-                //        ill.Add(new Jobs.Illness.Poisoned());
-
-                //    var sick = new Jobs.Sickness(npc, ill, npc.Job);
-                //    npc.Job.OnRemovedNPC();
-                //}
-
                 box.Set(box.item1 + state.Difficulty.MonsterDamage);
             }
-
-            
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
@@ -92,7 +73,9 @@ namespace Pandaros.Settlers.Managers
         {
             var ps = PlayerState.GetPlayerState(monster.OriginalGoal);
             box.Set(box.item1 - (box.item1 * ps.Difficulty.MonsterDamageReduction));
-            ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + "ZombieAudio");
+
+            if (Pipliz.Random.NextFloat() > .5f)
+                ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + "ZombieAudio");
         }
 
         public static Dictionary<int, IMonster> GetAllMonsters()

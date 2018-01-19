@@ -1,3 +1,129 @@
 [
-
+  {
+    "name": "chisel",
+    "results": [
+      {
+        "type": "chisel"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot"
+      },
+      {
+        "type": "vanilla.planks"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "sledgehammer",
+    "results": [
+      {
+        "type": "sledgehammer"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot",
+        "amount": 2
+      },
+      {
+        "type": "vanilla.planks"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "saw",
+    "results": [
+      {
+        "type": "saw"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot"
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "ironbar",
+    "results": [
+      {
+        "type": "ironbar"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "ironbarcorner",
+    "results": [
+      {
+        "type": "ironbarcorner"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "irondoor",
+    "results": [
+      {
+        "type": "irondoor"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "knife",
+    "results": [
+      {
+        "type": "knife"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.ironingot",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.planks",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  }
 ]

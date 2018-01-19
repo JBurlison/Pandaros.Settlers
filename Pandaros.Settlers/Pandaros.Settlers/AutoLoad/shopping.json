@@ -12,7 +12,9 @@
         "type": "vanilla.goldcoin",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "carrot",
@@ -27,7 +29,9 @@
         "type": "vanilla.goldcoin",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "beef",
@@ -42,7 +46,9 @@
         "type": "vanilla.goldcoin",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "cheese",
@@ -57,7 +63,9 @@
         "type": "vanilla.goldcoin",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "milk",
@@ -72,7 +80,9 @@
         "type": "vanilla.goldcoin",
         "amount": 1
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "infiniteemerald",
@@ -87,7 +97,9 @@
         "type": "vanilla.goldcoin",
         "amount": 10000
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "limestone",
@@ -102,7 +114,9 @@
         "type": "refinedemerald",
         "amount": 2
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "rawmarble",
@@ -117,7 +131,9 @@
         "type": "refinedemerald",
         "amount": 2
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "sandstone",
@@ -132,7 +148,9 @@
         "type": "refinedemerald",
         "amount": 2
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "chalk",
@@ -147,7 +165,9 @@
         "type": "refinedemerald",
         "amount": 2
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "infiniteruby",
@@ -162,7 +182,9 @@
         "type": "refinedemerald",
         "amount": 20000
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "infinitesapphire",
@@ -177,6 +199,205 @@
         "type": "refinedruby",
         "amount": 30000
       }
-    ]
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+
+  {
+    "name": "mossstone",
+    "results": [ { "type": "mossstone" } ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 20
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "mossstonebricks",
+    "results": [ { "type": "mossstonebricks" } ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 40
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "mossstonesquares",
+    "results": [ { "type": "mossstonesquares" } ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 60
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.grassrainforest",
+    "results": [
+      {
+        "type": "vanilla.grassrainforest",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.grasssavanna",
+    "results": [
+      {
+        "type": "vanilla.grasssavanna",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.grasstaiga",
+    "results": [
+      {
+        "type": "vanilla.grasstaiga",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.grasstundra",
+    "results": [
+      {
+        "type": "vanilla.grasstundra",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.grasstemperate",
+    "results": [
+      {
+        "type": "vanilla.grasstemperate",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedruby",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.leavestemperate",
+    "results": [
+      {
+        "type": "vanilla.leavestemperate",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedsapphire",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.leavestaiga",
+    "results": [
+      {
+        "type": "vanilla.leavestaiga",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedsapphire",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.cherryblossom",
+    "results": [
+      {
+        "type": "vanilla.cherryblossom",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "refinedsapphire",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "vanilla.snow",
+    "results": [ { "type": "vanilla.snow" } ],
+    "requires": [
+      {
+        "type": "refinedsapphire",
+        "amount": 20
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "notwater",
+    "results": [ { "type": "notwater" } ],
+    "requires": [
+      {
+        "type": "refinedsapphire",
+        "amount": 50
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
   }
 ]

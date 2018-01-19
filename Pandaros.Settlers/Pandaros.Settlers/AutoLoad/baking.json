@@ -21,7 +21,9 @@
         "amount": 1
       }
     ],
-    "fuelPerCraft": 0.26
+    "fuelPerCraft": 0.26,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
     "name": "glass",
@@ -37,6 +39,8 @@
         "amount": 2
       }
     ],
-    "fuelPerCraft": 0.26
+    "fuelPerCraft": 0.26,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   }
 ]

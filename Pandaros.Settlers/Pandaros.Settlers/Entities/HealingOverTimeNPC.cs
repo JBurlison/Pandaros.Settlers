@@ -24,12 +24,13 @@ namespace Pandaros.Settlers.Entities
         public int TicksLeft { get; private set; }
 
         public float HealPerTic { get; private set; }
+        public ushort Indicator { get; private set; }
 
         public event EventHandler Complete;
 
         public event EventHandler Tick;
 
-        public HealingOverTimeNPC(NPC.NPCBase nPC, float initialHeal, float totalHoT, int durationSeconds)
+        public HealingOverTimeNPC(NPC.NPCBase nPC, float initialHeal, float totalHoT, int durationSeconds, ushort indicator)
         {
             HealPerTic = totalHoT / durationSeconds;
             DurationSeconds = durationSeconds;
@@ -37,12 +38,14 @@ namespace Pandaros.Settlers.Entities
             Target = nPC;
             TotalHoTTime = totalHoT;
             TicksLeft = durationSeconds;
+            Indicator = indicator;
 
             if (NewInstance != null)
                 NewInstance(this, null);
 
             _instances.Add(this);
             Target.Heal(InitialHeal);
+            Target.SetIndicatorStateOnly(NPCIndicatorType.Crafted, 1, Indicator);
             Tick += HealingOverTimeNPC_Tick;
         }
 
@@ -64,6 +67,8 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var healing in _instances)
                 {
+                    healing.Target.SetIndicatorStateOnly(NPCIndicatorType.Crafted, 1, healing.Indicator);
+
                     if (healing.Tick != null)
                         healing.Tick(healing, null);
 

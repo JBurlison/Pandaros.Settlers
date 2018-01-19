@@ -1,227 +1,46 @@
 [
   {
-    "name": "dirtbricks",
+    "name": "fence",
     "results": [
       {
-        "type": "dirtbricks",
-        "amount": 4
-      }
-    ],
-    "requires": [
-      {
-        "type": "chisel",
-        "amount": 1
-      },
-      {
-        "type": "vanilla.dirt",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "vanilla.stonebricks",
-    "results": [
-      {
-        "type": "vanilla.stonebricks",
-        "amount": 4
-      }
-    ],
-    "requires": [
-      {
-        "type": "chisel",
-        "amount": 1
-      },
-      {
-        "type": "vanilla.stoneblock",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "paper",
-    "results": [
-      {
-        "type": "paper"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.planks"
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "chisel",
-    "results": [
-      {
-        "type": "chisel"
-      }
-    ],
-    "requires": [
-      {
-        "type": "paper"
-      },
-      {
-        "type": "vanilla.torch"
-      },
-      {
-        "type": "vanilla.planks"
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "sledgehammer",
-    "results": [
-      {
-        "type": "sledgehammer"
-      }
-    ],
-    "requires": [
-      {
-        "type": "steelingot",
-        "amount": 2
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "saw",
-    "results": [
-      {
-        "type": "saw"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.ironingot",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "shammer",
-    "results": [
-      {
-        "type": "hammer"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.ironingot",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "sand",
-    "results": [
-      {
-        "type": "vanilla.sand",
-        "amount": 4
-      }
-    ],
-    "requires": [
-      {
-        "type": "sledgehammer",
-        "amount": 1
-      },
-      {
-        "type": "vanilla.stoneblock",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "ironbar",
-    "results": [
-      {
-        "type": "ironbar"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.ironingot",
-        "amount": 2
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "ironbarcorner",
-    "results": [
-      {
-        "type": "ironbarcorner"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.ironingot",
-        "amount": 2
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "irondoor",
-    "results": [
-      {
-        "type": "irondoor"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.ironingot",
-        "amount": 2
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "knife",
-    "results": [
-      {
-        "type": "knife"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.ironingot",
-        "amount": 1
-      },
-      {
-        "type": "vanilla.planks",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true
-  },
-  {
-    "name": "woodenspoon",
-    "results": [
-      {
-        "type": "woodenspoon"
+        "amount": 4,
+        "type": "fence"
       }
     ],
     "requires": [
       {
         "type": "vanilla.planks",
-        "amount": 2
+        "amount": 3
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
-    "name": "book",
+    "name": "fencecorner",
     "results": [
       {
-        "type": "book"
+        "amount": 2,
+        "type": "fencecorner"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 3
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "window",
+    "results": [
+      {
+        "amount": 2,
+        "type": "window"
       }
     ],
     "requires": [
@@ -230,110 +49,689 @@
         "amount": 2
       },
       {
-        "type": "paper",
+        "type": "glass",
         "amount": 2
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
-    "name": "marblebricks",
+    "name": "doublewindow",
     "results": [
       {
-        "type": "marblebricks",
+        "amount": 1,
+        "type": "doublewindow"
+      }
+    ],
+    "requires": [
+      {
+        "type": "window",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "woodsupport",
+    "results": [
+      {
+        "amount": 4,
+        "type": "woodsupport"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "woodsupportud",
+    "results": [
+      {
+        "amount": 4,
+        "type": "woodsupportud"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "woodsupportcube",
+    "results": [
+      {
+        "amount": 2,
+        "type": "woodsupportcube"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 2
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "simplechair",
+    "results": [
+      {
+        "type": "simplechair",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.straw",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "simpletable",
+    "results": [
+      {
+        "type": "simpletable"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 4
+      },
+      {
+        "type": "vanilla.straw",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "woodencatwalk",
+    "results": [
+      {
+        "type": "woodencatwalk",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 4
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "woodbarrel",
+    "results": [
+      {
+        "type": "woodbarrel",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "bench",
+    "results": [
+      {
+        "type": "bench",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 1
+      },
+      {
+        "type": "vanilla.ironingot",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "cratestack",
+    "results": [
+      {
+        "type": "cratestack",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "plankslab",
+    "results": [
+      {
+        "type": "plankslab",
         "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "vanilla.planks",
         "amount": 1
       },
       {
-        "type": "marble",
+        "type": "saw",
         "amount": 1
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
-    "name": "marblepillarbase",
+    "name": "redplankslab",
     "results": [
       {
-        "type": "marblepillarbase",
-        "amount": 2
+        "type": "redplankslab",
+        "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "vanilla.redplanks",
         "amount": 1
       },
       {
-        "type": "marble",
-        "amount": 2
+        "type": "saw",
+        "amount": 1
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
-    "name": "marblepillarbody",
+    "name": "blackplankslab",
     "results": [
       {
-        "type": "marblepillarbody",
-        "amount": 2
+        "amount": 4,
+        "type": "blackplankslab"
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "vanilla.blackplanks",
         "amount": 1
       },
       {
-        "type": "marble",
-        "amount": 2
+        "type": "saw",
+        "amount": 1
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
-    "name": "marblepillartop",
+    "name": "coatedplankslab",
     "results": [
       {
-        "type": "marblepillartop",
-        "amount": 2
+        "amount": 4,
+        "type": "coatedplankslab"
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "vanilla.coatedplanks",
         "amount": 1
       },
       {
-        "type": "marble",
-        "amount": 2
+        "type": "saw",
+        "amount": 1
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   },
   {
-    "name": "marble",
+    "name": "logtemperateslab",
     "results": [
       {
-        "type": "marble",
-        "amount": 2
+        "amount": 4,
+        "type": "logtemperateslab"
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "vanilla.logtemperate",
         "amount": 1
       },
       {
-        "type": "rawmarble",
-        "amount": 2
+        "type": "saw",
+        "amount": 1
       }
     ],
-    "npcCraftable": true
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "logtaigaslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "logtaigaslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.logtaiga",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "carpetredslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "carpetredslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.carpetred",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "carpetblueslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "carpetblueslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.carpetblue",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "carpetyellowslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "carpetyellowslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.carpetyellow",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "snowslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "snowslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.snow",
+        "amount": 1
+      },
+      {
+        "type": "chisel",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "strawslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "strawslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.straw",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "adobeslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "adobeslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.adobe",
+        "amount": 1
+      },
+      {
+        "type": "chisel",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "waterslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "waterslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "notwater",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "rainforestslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "rainforestslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.grassrainforest",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "savannaslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "savannaslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.grasssavanna",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "taigaslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "taigaslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.grasstaiga",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "tundraslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "tundraslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.grasstundra",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "temperateslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "temperateslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.grasstemperate",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "leavestemperateslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "leavestemperateslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.leavestemperate",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "leavestaigaslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "leavestaigaslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.leavestaiga",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "cherryblossomslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "cherryblossomslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.cherryblossom",
+        "amount": 1
+      },
+      {
+        "type": "saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
+  },
+  {
+    "name": "berrybushslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "berrybushslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.berrybush",
+        "amount": 1
+      },
+      {
+        "type": "chisel",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 10,
+    "defaultPriority": -100
   }
 ]

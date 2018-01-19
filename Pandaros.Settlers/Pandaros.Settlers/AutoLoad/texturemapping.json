@@ -131,18 +131,6 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"infinitecopper" : {
-		"albedo" : "oreCopper",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"infinitetin" : {
-		"albedo" : "oreTin",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
 	"ironbar" : {
 		"albedo" : "ironbar",
 		"normal" : "neutral",
@@ -179,48 +167,6 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"altarBottom" : {
-		"albedo" : "altarBottom",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"altarFront" : {
-		"albedo" : "altarFront",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"altarSide" : {
-		"albedo" : "altarSide",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"altarTop" : {
-		"albedo" : "altarTop",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"altarToprotate1" : {
-		"albedo" : "altarToprotate1",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"altarToprotate2" : {
-		"albedo" : "altarToprotate2",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"altarToprotate3" : {
-		"albedo" : "altarToprotate3",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
 	"dirtbricks" : {
 		"albedo" : "dirtBricks",
 		"normal" : "neutral",
@@ -245,72 +191,12 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"notwater" : {
-		"albedo" : "water",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"gemcutter" : {
-		"albedo" : "gemCutter",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"gemcutterrotate1" : {
-		"albedo" : "gemCutterRotate1",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"gemcutterrotate2" : {
-		"albedo" : "gemCutterRotate2",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"gemcutterrotate3" : {
-		"albedo" : "gemCutterRotate3",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpenterside" : {
-		"albedo" : "CarpenterSide",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpenterfront" : {
-		"albedo" : "CarpenterFront",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpenter" : {
-		"albedo" : "Carpenter",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpenterrotate1" : {
-		"albedo" : "Carpenterrotate1",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpenterrotate2" : {
-		"albedo" : "Carpenterrotate2",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpenterrotate3" : {
-		"albedo" : "Carpenterrotate3",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "notwater": {
+    "albedo": "notwater",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 		"fence" : {
 		"albedo" : "woodfence",
 		"normal" : "neutral",
@@ -425,12 +311,6 @@
 		"emissive" : "neutral",
 		"height" : "neutral"	
 	},
-	"crate" : {
-		"albedo" : "cratestack",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
 	"mossstone" : {
 		"albedo" : "mossStone",
 		"normal" : "neutral",
@@ -455,630 +335,6 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"stonebrickstairs" : {
-		"albedo" : "stoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"plankstairs" : {
-		"albedo" : "planks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brickstairs" : {
-		"albedo" : "vanilla.bricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackplankstairs" : {
-		"albedo" : "blackplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"redplankstairs" : {
-		"albedo" : "redplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"coatedplankstairs" : {
-		"albedo" : "coatedplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"claystairs" : {
-		"albedo" : "clay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"redclaystairs" : {
-		"albedo" : "redclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackclaystairs" : {
-		"albedo" : "blackclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blueclaystairs" : {
-		"albedo" : "blueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"darkblueclaystairs" : {
-		"albedo" : "darkblueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brownclaystairs" : {
-		"albedo" : "brownclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cyanclaystairs" : {
-		"albedo" : "cyanclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greenclaystairs" : {
-		"albedo" : "greenclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greyclaystairs" : {
-		"albedo" : "greyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightgreyclaystairs" : {
-		"albedo" : "lightgreyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightpinkclaystairs" : {
-		"albedo" : "lightpinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limeclaystairs" : {
-		"albedo" : "limeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"magentaclaystairs" : {
-		"albedo" : "magentaclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"orangeclaystairs" : {
-		"albedo" : "orangeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"pinkclaystairs" : {
-		"albedo" : "pinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"purpleclaystairs" : {
-		"albedo" : "purpleclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"yellowclaystairs" : {
-		"albedo" : "yellowclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"whiteclaystairs" : {
-		"albedo" : "whiteclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"plasterstairs" : {
-		"albedo" : "plasterblock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonestairs" : {
-		"albedo" : "mossstone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonebricksstairs" : {
-		"albedo" : "mossStoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonesquaresstairs" : {
-		"albedo" : "mossStoneSquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stonesquaresstairs" : {
-		"albedo" : "stonesquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblebricksstairs" : {
-		"albedo" : "marblebricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblestairs" : {
-		"albedo" : "marble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rawmarblestairs" : {
-		"albedo" : "rawmarble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstonestairs" : {
-		"albedo" : "sandStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"logtemperatestairs" : {
-		"albedo" : "logtemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limestonestairs" : {
-		"albedo" : "limeStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"logtaigastairs" : {
-		"albedo" : "logtaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtbrickstairs" : {
-		"albedo" : "dirtBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stoneblockstairs" : {
-		"albedo" : "stoneBlock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetredstairs" : {
-		"albedo" : "carpetred",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetbluestairs" : {
-		"albedo" : "carpetblue",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetyellowstairs" : {
-		"albedo" : "carpetyellow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtstairs" : {
-		"albedo" : "dirt",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstairs" : {
-		"albedo" : "sand",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"snowstairs" : {
-		"albedo" : "snow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"strawstairs" : {
-		"albedo" : "straw",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"adobestairs" : {
-		"albedo" : "adobe",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"waterstairs" : {
-		"albedo" : "notwater",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rainforeststairs" : {
-		"albedo" : "grassRainforest",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"savannastairs" : {
-		"albedo" : "grassSavanna",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"temperatestairs" : {
-		"albedo" : "grassTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"tundrastairs" : {
-		"albedo" : "grassTundra",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"taigastairs" : {
-		"albedo" : "grassTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stonebrickstairsu" : {
-		"albedo" : "stoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"plankstairsu" : {
-		"albedo" : "planks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brickstairsu" : {
-		"albedo" : "vanilla.bricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackplankstairsu" : {
-		"albedo" : "blackplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"redplankstairsu" : {
-		"albedo" : "redplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"coatedplankstairsu" : {
-		"albedo" : "coatedplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"claystairsu" : {
-		"albedo" : "clay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"redclaystairsu" : {
-		"albedo" : "redclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackclaystairsu" : {
-		"albedo" : "blackclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blueclaystairsu" : {
-		"albedo" : "blueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"darkblueclaystairsu" : {
-		"albedo" : "darkblueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brownclaystairsu" : {
-		"albedo" : "brownclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cyanclaystairsu" : {
-		"albedo" : "cyanclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greenclaystairsu" : {
-		"albedo" : "greenclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greyclaystairsu" : {
-		"albedo" : "greyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightgreyclaystairsu" : {
-		"albedo" : "lightgreyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightpinkclaystairsu" : {
-		"albedo" : "lightpinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limeclaystairsu" : {
-		"albedo" : "limeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"magentaclaystairsu" : {
-		"albedo" : "magentaclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"orangeclaystairsu" : {
-		"albedo" : "orangeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"pinkclaystairsu" : {
-		"albedo" : "pinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"purpleclaystairsu" : {
-		"albedo" : "purpleclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"yellowclaystairsu" : {
-		"albedo" : "yellowclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"whiteclaystairsu" : {
-		"albedo" : "whiteclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"plasterstairsu" : {
-		"albedo" : "plasterblock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonestairsu" : {
-		"albedo" : "mossstone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonebricksstairsu" : {
-		"albedo" : "mossStoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonesquaresstairsu" : {
-		"albedo" : "mossStoneSquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stonesquaresstairsu" : {
-		"albedo" : "stonesquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblebricksstairsu" : {
-		"albedo" : "marblebricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblestairsu" : {
-		"albedo" : "marble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rawmarblestairsu" : {
-		"albedo" : "rawmarble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstonestairsu" : {
-		"albedo" : "sandStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"logtemperatestairsu" : {
-		"albedo" : "logtemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limestonestairsu" : {
-		"albedo" : "limeStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"logtaigastairsu" : {
-		"albedo" : "logtaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtbrickstairsu" : {
-		"albedo" : "dirtBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stoneblockstairsu" : {
-		"albedo" : "stoneBlock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetredstairsu" : {
-		"albedo" : "carpetred",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetbluestairsu" : {
-		"albedo" : "carpetblue",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetyellowstairsu" : {
-		"albedo" : "carpetyellow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtstairsu" : {
-		"albedo" : "dirt",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstairsu" : {
-		"albedo" : "sand",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"snowstairsu" : {
-		"albedo" : "snow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"strawstairsu" : {
-		"albedo" : "straw",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"adobestairsu" : {
-		"albedo" : "adobe",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"waterstairsu" : {
-		"albedo" : "notwater",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rainforeststairsu" : {
-		"albedo" : "grassRainforest",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"savannastairsu" : {
-		"albedo" : "grassSavanna",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"temperatestairsu" : {
-		"albedo" : "grassTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"tundrastairsu" : {
-		"albedo" : "grassTundra",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"taigastairsu" : {
-		"albedo" : "grassTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
 	"brickslabbottom" : {
 		"albedo" : "vanilla.bricks",
 		"normal" : "neutral",
@@ -1091,24 +347,24 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"redplankslabbottom" : {
-		"albedo" : "redplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"coatedplankslabbottom" : {
-		"albedo" : "coatedplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"clayslabbottom" : {
-		"albedo" : "clay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "redplankslabbottom": {
+    "albedo": "vanilla.redplanks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "coatedplankslabbottom": {
+    "albedo": "vanilla.coatedplanks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "clayslabbottom": {
+    "albedo": "vanilla.clay",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"redclayslabbottom" : {
 		"albedo" : "redclay",
 		"normal" : "neutral",
@@ -1211,12 +467,12 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"plasterslabbottom" : {
-		"albedo" : "plasterblock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "plasterslabbottom": {
+    "albedo": "vanilla.plasterblock",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"mossstoneslabbottom" : {
 		"albedo" : "mossstone",
 		"normal" : "neutral",
@@ -1265,24 +521,24 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"logtemperateslabbottom" : {
-		"albedo" : "logtemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "logtemperateslabbottom": {
+    "albedo": "vanilla.logtemperate",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"limestoneslabbottom" : {
 		"albedo" : "limeStone",
 		"normal" : "neutral",
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"logtaigaslabbottom" : {
-		"albedo" : "logtaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "logtaigaslabbottom": {
+    "albedo": "vanilla.logtaiga",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"dirtbrickslabbottom" : {
 		"albedo" : "dirtBricks",
 		"normal" : "neutral",
@@ -1295,80 +551,80 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"carpetredslabbottom" : {
-		"albedo" : "carpetred",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetblueslabbottom" : {
-		"albedo" : "carpetblue",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetyellowslabbottom" : {
-		"albedo" : "carpetyellow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtslabbottom" : {
-		"albedo" : "dirt",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandslabbottom" : {
-		"albedo" : "sand",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"snowslabbottom" : {
-		"albedo" : "snow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"strawslabbottom" : {
-		"albedo" : "straw",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"adobeslabbottom" : {
-		"albedo" : "adobe",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "carpetredslabbottom": {
+    "albedo": "carpetred",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "carpetblueslabbottom": {
+    "albedo": "carpetblue",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "carpetyellowslabbottom": {
+    "albedo": "carpetyellow",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "dirtslabbottom": {
+    "albedo": "vanilla.dirt",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandslabbottom": {
+    "albedo": "vanilla.sand",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "snowslabbottom": {
+    "albedo": "vanilla.snow",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "strawslabbottom": {
+    "albedo": "vanilla.straw",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "adobeslabbottom": {
+    "albedo": "vanilla.adobe",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"waterslabbottom" : {
 		"albedo" : "notwater",
 		"normal" : "neutral",
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"rainforestslabbottom" : {
-		"albedo" : "grassRainforest",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"savannaslabbottom" : {
-		"albedo" : "grassSavanna",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"temperateslabbottom" : {
-		"albedo" : "grassTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "rainforestslabbottom": {
+    "albedo": "vanilla.grassRainforest",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "savannaslabbottom": {
+    "albedo": "vanilla.grassSavanna",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "temperateslabbottom": {
+    "albedo": "vanilla.grassTemperate",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"tundraslabbottom" : {
-		"albedo" : "grassTundra",
+		"albedo" : "vanilla.grassTundra",
 		"normal" : "neutral",
 		"emissive" : "neutral",
 		"height" : "neutral"
@@ -1385,30 +641,30 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"blackplankslabtop" : {
-		"albedo" : "blackplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"redplankslabtop" : {
-		"albedo" : "redplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"coatedplankslabtop" : {
-		"albedo" : "coatedplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"clayslabtop" : {
-		"albedo" : "clay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "blackplankslabtop": {
+    "albedo": "vanilla.blackplanks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "redplankslabtop": {
+    "albedo": "vanilla.redplanks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "coatedplankslabtop": {
+    "albedo": "vanilla.coatedplanks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "clayslabtop": {
+    "albedo": "vanilla.clay",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"redclayslabtop" : {
 		"albedo" : "redclay",
 		"normal" : "neutral",
@@ -1511,12 +767,12 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"plasterslabtop" : {
-		"albedo" : "plasterblock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "plasterslabtop": {
+    "albedo": "vanilla.plasterblock",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"mossstoneslabtop" : {
 		"albedo" : "mossstone",
 		"normal" : "neutral",
@@ -1565,24 +821,24 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"logtemperateslabtop" : {
-		"albedo" : "logtemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "logtemperateslabtop": {
+    "albedo": "vanilla.logtemperate",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"limestoneslabtop" : {
 		"albedo" : "limeStone",
 		"normal" : "neutral",
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"logtaigaslabtop" : {
-		"albedo" : "logtaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "logtaigaslabtop": {
+    "albedo": "vanilla.logtaiga",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"dirtbrickslabtop" : {
 		"albedo" : "dirtBricks",
 		"normal" : "neutral",
@@ -1595,186 +851,138 @@
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"carpetredslabtop" : {
-		"albedo" : "carpetred",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetblueslabtop" : {
-		"albedo" : "carpetblue",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"carpetyellowslabtop" : {
-		"albedo" : "carpetyellow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtslabtop" : {
-		"albedo" : "dirt",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandslabtop" : {
-		"albedo" : "sand",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"snowslabtop" : {
-		"albedo" : "snow",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"strawslabtop" : {
-		"albedo" : "straw",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"adobeslabtop" : {
-		"albedo" : "adobe",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "carpetredslabtop": {
+    "albedo": "carpetred",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "carpetblueslabtop": {
+    "albedo": "carpetblue",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "carpetyellowslabtop": {
+    "albedo": "carpetyellow",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "dirtslabtop": {
+    "albedo": "vanilla.dirt",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandslabtop": {
+    "albedo": "vanilla.sand",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "snowslabtop": {
+    "albedo": "vanilla.snow",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "strawslabtop": {
+    "albedo": "vanilla.straw",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "adobeslabtop": {
+    "albedo": "vanilla.adobe",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"waterslabtop" : {
 		"albedo" : "notwater",
 		"normal" : "neutral",
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"rainforestslabtop" : {
-		"albedo" : "grassRainforest",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"savannaslabtop" : {
-		"albedo" : "grassSavanna",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"temperateslabtop" : {
-		"albedo" : "grassTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "rainforestslabtop": {
+    "albedo": "vanilla.grassRainforest",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "savannaslabtop": {
+    "albedo": "vanilla.grassSavanna",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "temperateslabtop": {
+    "albedo": "vanilla.grassTemperate",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"tundraslabtop" : {
-		"albedo" : "grassTundra",
+		"albedo" : "vanilla.grassTundra",
 		"normal" : "neutral",
 		"emissive" : "neutral",
 		"height" : "neutral"
 	},
-	"taigaslabtop" : {
-		"albedo" : "grassTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cherryblossomslabtop" : {
-		"albedo" : "cherryblossom",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"berrybushslabtop" : {
-		"albedo" : "berrybush",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestemperateslabtop" : {
-		"albedo" : "leavesTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestaigaslabtop" : {
-		"albedo" : "leavesTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cherryblossomslabbottom" : {
-		"albedo" : "cherryblossom",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"berrybushslabbottom" : {
-		"albedo" : "berrybush",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestemperateslabbottom" : {
-		"albedo" : "leavesTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestaigaslabbottom" : {
-		"albedo" : "leavesTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cherryblossomstairs" : {
-		"albedo" : "cherryblossom",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"berrybushstairs" : {
-		"albedo" : "berrybush",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestemperatestairs" : {
-		"albedo" : "leavesTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestaigastairs" : {
-		"albedo" : "leavesTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cherryblossomstairsu" : {
-		"albedo" : "cherryblossom",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"berrybushstairsu" : {
-		"albedo" : "berrybush",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestemperatestairsu" : {
-		"albedo" : "vanilla.leavesTemperate",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"leavestaigastairsu" : {
-		"albedo" : "leavesTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "taigaslabtop": {
+    "albedo": "vanilla.grassTaiga",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "cherryblossomslabtop": {
+    "albedo": "vanilla.cherryblossom",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "berrybushslabtop": {
+    "albedo": "vanilla.berrybush",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "leavestemperateslabtop": {
+    "albedo": "vanilla.leavesTemperate",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "leavestaigaslabtop": {
+    "albedo": "vanilla.leavesTaiga",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "cherryblossomslabbottom": {
+    "albedo": "vanilla.cherryblossom",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "berrybushslabbottom": {
+    "albedo": "vanilla.berrybush",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "leavestemperateslabbottom": {
+    "albedo": "vanilla.leavesTemperate",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "leavestaigaslabbottom": {
+    "albedo": "vanilla.leavesTaiga",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
 	"rose" : {
 		"albedo" : "rose",
 		"normal" : "neutral",
@@ -2003,29 +1211,29 @@
     "emissive" : "neutral",
     "height" : "neutral"
   },
-  "waterslableft" : {
-    "albedo" : "water",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "waterslableft": {
+    "albedo": "notwater",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "waterslabright" : {
-    "albedo" : "water",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "waterslabright": {
+    "albedo": "notwater",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "waterslabfront" : {
-    "albedo" : "water",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "waterslabfront": {
+    "albedo": "notwater",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "waterslabback" : {
-    "albedo" : "water",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "waterslabback": {
+    "albedo": "notwater",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
  "adobeslableft" : {
     "albedo" : "vanilla.adobe",
@@ -2100,25 +1308,25 @@
     "height" : "neutral"
   },
  "tundraslableft" : {
-    "albedo" : "vanilla.grasstundra",
+    "albedo" : "vanilla.grassTundra",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "tundraslabright" : {
-    "albedo" : "vanilla.grasstundra",
+    "albedo" : "vanilla.grassTundra",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "tundraslabfront" : {
-    "albedo" : "vanilla.grasstundra",
+    "albedo" : "vanilla.grassTundra",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "tundraslabback" : {
-    "albedo" : "vanilla.grasstundra",
+    "albedo" : "vanilla.grassTundra",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
@@ -2292,73 +1500,73 @@
     "height" : "neutral"
   },
  "carpetyellowslableft" : {
-    "albedo" : "vanilla.carpetyellow",
+    "albedo" : "carpetyellow",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetyellowslabright" : {
-    "albedo" : "vanilla.carpetyellow",
+    "albedo" : "carpetyellow",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetyellowslabfront" : {
-    "albedo" : "vanilla.carpetyellow",
+    "albedo" : "carpetyellow",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetyellowslabback" : {
-    "albedo" : "vanilla.carpetyellow",
+    "albedo" : "carpetyellow",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
  "carpetblueslableft" : {
-    "albedo" : "vanilla.carpetblue",
+    "albedo" : "carpetblue",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetblueslabright" : {
-    "albedo" : "vanilla.carpetblue",
+    "albedo" : "carpetblue",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetblueslabfront" : {
-    "albedo" : "vanilla.carpetblue",
+    "albedo" : "carpetblue",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetblueslabback" : {
-    "albedo" : "vanilla.carpetblue",
+    "albedo" : "carpetblue",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
  "carpetredslableft" : {
-    "albedo" : "vanilla.carpetred",
+    "albedo" : "carpetred",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetredslabright" : {
-    "albedo" : "vanilla.carpetred",
+    "albedo" : "carpetred",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetredslabfront" : {
-    "albedo" : "vanilla.carpetred",
+    "albedo" : "carpetred",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
   },
   "carpetredslabback" : {
-    "albedo" : "vanilla.carpetred",
+    "albedo" : "carpetred",
     "normal" : "neutral",
     "emissive" : "neutral",
     "height" : "neutral"
