@@ -3070,58 +3070,5 @@
     "parentType": "blackclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
-  },
-  "rose": {
-    "isSolid": false,
-    "needsBase": true,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.grassDelete",
-    "sideall": "SELF",
-    "npcLimit": 0,
-    "mesh": "flaxstage2.obj"
-  },
-  "dandelion": {
-    "isSolid": false,
-    "needsBase": true,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.grassDelete",
-    "sideall": "SELF",
-    "npcLimit": 0,
-    "mesh": "flaxstage2.obj"
-  },
-  "lily": {
-    "isSolid": false,
-    "needsBase": true,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.grassDelete",
-    "sideall": "SELF",
-    "npcLimit": 0,
-    "mesh": "flaxstage2.obj"
-  },
-  "tulip": {
-    "isSolid": false,
-    "needsBase": true,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.grassDelete",
-    "sideall": "SELF",
-    "npcLimit": 0,
-    "mesh": "flaxstage2.obj"
-  },
-  "allium": {
-    "isSolid": false,
-    "needsBase": true,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.grassDelete",
-    "sideall": "SELF",
-    "npcLimit": 0,
-    "mesh": "flaxstage2.obj"
-  },
-  "berrybushtest": {
-    "isSolid": false,
-    "needsBase": true,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.grassDelete",
-    "sideall": "SELF",
-    "npcLimit": 0
   }
 }

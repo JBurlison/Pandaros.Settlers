@@ -37,6 +37,8 @@ namespace Pandaros.Settlers
         public static ushort Infection_Icon { get; private set; }
         public static ushort Poisoned_Icon { get; private set; }
 
+        private static ushort _itemSortIndex = 1000;
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
@@ -273,6 +275,11 @@ namespace Pandaros.Settlers
             {
                 gameJson[modNode.Key] = modNode.Value;
             }
+        }
+
+        public static ushort GetNextItemSortIndex()
+        {
+            return _itemSortIndex++;
         }
     }
 }

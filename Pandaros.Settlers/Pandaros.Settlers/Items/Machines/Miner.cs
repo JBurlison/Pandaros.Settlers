@@ -138,7 +138,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
-            ItemTypesServer.LoadSortOrder(Item.name, ItemTypesServer.ORDER_JOBBLOCK);
+            ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
