@@ -248,11 +248,11 @@ namespace Pandaros.Settlers.Jobs
             }
 
             if (OkStatus.Contains(status))
-                state.SetIndicator(NPCIndicatorType.Crafted, cooldown, status);
+                state.SetIndicator(new Shared.IndicatorState(cooldown, status));
             else if (status != 0)
-                state.SetIndicator(NPCIndicatorType.MissingItem, cooldown, status);
+                state.SetIndicator(new Shared.IndicatorState(cooldown, status, true));
             else
-                state.SetIndicator(NPCIndicatorType.Crafted, cooldown, BuiltinBlocks.ErrorMissing);
+                state.SetIndicator(new Shared.IndicatorState(cooldown, BuiltinBlocks.ErrorMissing));
 
             state.SetCooldown(cooldown);
         }

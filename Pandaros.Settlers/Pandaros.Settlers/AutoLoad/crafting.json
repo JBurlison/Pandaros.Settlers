@@ -14,7 +14,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -32,7 +32,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -54,7 +54,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -72,7 +72,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -90,7 +90,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -108,7 +108,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -130,7 +130,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -151,7 +151,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -171,7 +171,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -189,7 +189,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -207,7 +207,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -229,7 +229,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -247,7 +247,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -269,7 +269,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -291,7 +291,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -313,7 +313,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -335,7 +335,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -357,7 +357,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -379,7 +379,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -401,7 +401,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -423,7 +423,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -445,7 +445,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -467,7 +467,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -489,7 +489,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -511,7 +511,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -533,7 +533,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -555,7 +555,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -577,7 +577,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -599,7 +599,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -621,7 +621,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -643,7 +643,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -665,7 +665,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -687,7 +687,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -709,7 +709,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -731,7 +731,7 @@
       }
     ],
     "npcCraftable": true,
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   }
 ]

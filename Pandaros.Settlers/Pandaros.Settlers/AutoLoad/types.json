@@ -346,7 +346,8 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
-    "icon": "water.png"
+    "icon": "water.png",
+    "isPlaceable": false
   },
   "knife": {
     "icon": "Knife.png",

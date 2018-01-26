@@ -285,7 +285,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                     mkvp.Key.State = moveState;
                     mkvp.Key.Position = mkvp.Value;
-
+                    
                     var thread = new Thread(() =>
                     {
                         Thread.Sleep(8000);
