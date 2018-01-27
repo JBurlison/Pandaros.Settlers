@@ -259,13 +259,8 @@
     "Pandaros.Settlers.MatchlockTurret": "500 Damage per shot. Fires twice as fast as a Colonist.",
     "Pandaros.Settlers.GateLever": "Opens all Iron Gates within 20 blocks of it automatically every morning, and closes them every night. Needs a Machinist to maintain it.",
     "Pandaros.Settlers.Gate": "Iron Gate. Needs a Gate Lever to open.",
-    "Pandaros.Settlers.Herbs": "For the food, medicine and potion revolution!",
-    "Pandaros.Settlers.HerbsStage1": "Their kind of a big dill around here.",
-    "Pandaros.Settlers.HerbalistBench.recipe": "Herbalists use them to prepare the herbs after gathering.",
-    "Pandaros.Settlers.HerbalistBench": "Herbalists use them to prepare the herbs after gathering",
     "Pandaros.Settlers.ApothecaryTable": "Used to make medicines and bandages",
     "Pandaros.Settlers.Anitbiotic": "Use on bandages for extra fast healing.",
-    "Pandaros.Settlers.Antidote": "Cures posions",
     "Pandaros.Settlers.Bandage": "Instantly heals for 20 health then heals for 40 health over 5 seconds.",
     "Pandaros.Settlers.TreatedBandage": "Instantly heals for 50 health then heals for 70 health over 5 seconds.",
     "Pandaros.Settlers.AutoLoad.rawemerald": "The start to the mod.",
@@ -1106,7 +1101,7 @@
         },
         "AdvancedApothecary1": {
           "name": "Advanced Apothecary",
-          "description": "Apothecaries learn how to make Anitbiotics for curing infections and Treated bandages for powerful healing."
+          "description": "Apothecaries learn how to make Treated bandages for powerful healing."
         }
       }
     }

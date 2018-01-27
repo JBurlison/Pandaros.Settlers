@@ -102,8 +102,8 @@ namespace Pandaros.Settlers.Items.Machines
 
                 if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
                 {
-                    Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState((float)MinerCooldown, itemBelow));
                     List<ItemTypes.ItemTypeDrops> itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
+                    Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState((float)MinerCooldown, itemList.FirstOrDefault().item.Type));
 
                     for (int i = 0; i < itemList.Count; i++)
                         if (Pipliz.Random.NextDouble() <= itemList[i].chance)

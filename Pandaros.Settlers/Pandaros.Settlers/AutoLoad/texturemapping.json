@@ -193,9 +193,9 @@
 	},
   "notwater": {
     "albedo": "notwater",
-    "normal": "neutral",
+    "normal": "notwater",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "notwater"
   },
 		"fence" : {
 		"albedo" : "woodfence",
