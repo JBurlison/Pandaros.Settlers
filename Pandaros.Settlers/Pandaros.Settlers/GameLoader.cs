@@ -25,7 +25,7 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 6, 1, 0);
+        public static readonly Version MOD_VER = new Version(0, 6, 3, 0);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -34,8 +34,11 @@ namespace Pandaros.Settlers
         public static ushort Refuel_Icon { get; private set; }
         public static ushort Waiting_Icon { get; private set; }
         public static ushort Reload_Icon { get; private set; }
-        public static ushort Infection_Icon { get; private set; }
-        public static ushort Poisoned_Icon { get; private set; }
+        public static ushort Broken_Icon { get; private set; }
+        public static ushort Empty_Icon { get; private set; }
+        public static ushort NOAMMO_Icon { get; private set; }
+
+        private static ushort _itemSortIndex = 30000;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
         public static void AfterWorldLoad()
@@ -95,19 +98,26 @@ namespace Pandaros.Settlers
 
             items.Add(NAMESPACE + ".Reload", reload);
 
-            var infectionNode = new JSONNode();
-            reloadNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Infection.png");
-            var infection = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Infection", infectionNode);
-            Infection_Icon = infection.ItemIndex;
+            var brokenNode = new JSONNode();
+            brokenNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Broken.png");
+            var broken = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Broken", brokenNode);
+            Broken_Icon = broken.ItemIndex;
 
-            items.Add(NAMESPACE + ".Infection", infection);
+            items.Add(NAMESPACE + ".Broken", broken);
 
-            var poisonedNode = new JSONNode();
-            reloadNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Poisoned.png");
-            var poisoned = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Poisoned", poisonedNode);
-            Poisoned_Icon = poisoned.ItemIndex;
+            var emptyNode = new JSONNode();
+            emptyNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Empty.png");
+            var empty = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Empty", emptyNode);
+            Empty_Icon = empty.ItemIndex;
 
-            items.Add(NAMESPACE + ".Poisoned", poisoned);
+            items.Add(NAMESPACE + ".Empty", empty);
+
+            var noAmmoNode = new JSONNode();
+            noAmmoNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/NoAmmo.png");
+            var noAmmo = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".NoAmmo", emptyNode);
+            NOAMMO_Icon = noAmmo.ItemIndex;
+
+            items.Add(NAMESPACE + ".NoAmmo", noAmmo);
 
             Jobs.MachinistJob.OkStatus = new List<uint>()
             {
@@ -273,6 +283,11 @@ namespace Pandaros.Settlers
             {
                 gameJson[modNode.Key] = modNode.Value;
             }
+        }
+
+        public static ushort GetNextItemSortIndex()
+        {
+            return _itemSortIndex++;
         }
     }
 }

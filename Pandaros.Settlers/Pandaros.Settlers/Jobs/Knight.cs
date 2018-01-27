@@ -253,7 +253,7 @@ namespace Pandaros.Settlers.Jobs
 
                     if (_target != null && General.Physics.Physics.CanSee(_usedNPC.Position.Vector, _target.Position))
                     {
-                        state.SetIndicator(NPCIndicatorType.Crafted, COOLDOWN, _inv.Weapon.Id);
+                        state.SetIndicator(new Shared.IndicatorState(COOLDOWN, _inv.Weapon.Id));
                         _usedNPC.LookAt(_target.Position);
                         ServerManager.SendAudio(_target.PositionToAimFor, "punch");
 
@@ -262,7 +262,7 @@ namespace Pandaros.Settlers.Jobs
                     }
                     else
                     {
-                        state.SetIndicator(NPCIndicatorType.MissingItem, COOLDOWN, GameLoader.MissingMonster_Icon);
+                        state.SetIndicator(new Shared.IndicatorState(COOLDOWN, GameLoader.MissingMonster_Icon, true));
                         _waitingFor++;
                         _target = null;
                     }
@@ -280,7 +280,7 @@ namespace Pandaros.Settlers.Jobs
 
             if (!hasItem)
             {
-                state.SetIndicator(NPCIndicatorType.MissingItem, COOLDOWN, Items.ItemFactory.WeaponLookup.FirstOrDefault().Key);
+                state.SetIndicator(new Shared.IndicatorState(COOLDOWN, Items.ItemFactory.WeaponLookup.FirstOrDefault().Key, true));
             }
         }
 

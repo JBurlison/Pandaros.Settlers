@@ -45,7 +45,7 @@ namespace Pandaros.Settlers.Entities
 
             _instances.Add(this);
             Target.Heal(InitialHeal);
-            Target.SetIndicatorStateOnly(NPCIndicatorType.Crafted, 1, Indicator);
+            Target.SetIndicatorState(new Shared.IndicatorState(1, Indicator));
             Tick += HealingOverTimeNPC_Tick;
         }
 
@@ -67,7 +67,7 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var healing in _instances)
                 {
-                    healing.Target.SetIndicatorStateOnly(NPCIndicatorType.Crafted, 1, healing.Indicator);
+                    healing.Target.SetIndicatorState(new Shared.IndicatorState(1, healing.Indicator));
 
                     if (healing.Tick != null)
                         healing.Tick(healing, null);

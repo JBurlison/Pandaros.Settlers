@@ -58,6 +58,7 @@ namespace Pandaros.Settlers.Jobs
                     new List<InventoryItem>() { iron, tools, planks },
                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
+            ItemTypesServer.LoadSortOrder(JOB_ITEM_KEY, GameLoader.GetNextItemSortIndex());
             RecipePlayer.AddOptionalRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }

@@ -13,7 +13,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -30,7 +30,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -47,7 +47,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -64,7 +64,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -81,7 +81,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -98,7 +98,7 @@
         "amount": 10000
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -115,7 +115,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -132,7 +132,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -149,7 +149,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -166,7 +166,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -183,7 +183,7 @@
         "amount": 20000
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -200,7 +200,7 @@
         "amount": 30000
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
 
@@ -213,7 +213,7 @@
         "amount": 20
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -225,7 +225,7 @@
         "amount": 40
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -237,7 +237,7 @@
         "amount": 60
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -254,7 +254,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -271,7 +271,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -288,7 +288,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -305,7 +305,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -322,7 +322,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -339,7 +339,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -356,7 +356,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -373,7 +373,7 @@
         "amount": 5
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -385,7 +385,7 @@
         "amount": 20
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -397,7 +397,7 @@
         "amount": 50
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   }
 ]

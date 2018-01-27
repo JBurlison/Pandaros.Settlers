@@ -25,7 +25,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -45,7 +45,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -65,7 +65,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -89,7 +89,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -113,7 +113,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -133,7 +133,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -157,7 +157,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -180,7 +180,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -212,7 +212,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -244,7 +244,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -268,7 +268,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -292,7 +292,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -316,7 +316,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -340,7 +340,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -360,7 +360,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -384,7 +384,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -404,7 +404,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -432,7 +432,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -452,7 +452,7 @@
         "type": "vanilla.alkanet"
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -476,7 +476,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -500,7 +500,7 @@
         "type": "vanilla.gypsum"
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -520,7 +520,7 @@
         "type": "vanilla.alkanet"
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -552,7 +552,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -584,7 +584,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -608,7 +608,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -632,7 +632,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -656,7 +656,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -680,7 +680,7 @@
         "amount": 1
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -700,7 +700,7 @@
         "type": "vanilla.hollyhock"
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -724,7 +724,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -748,7 +748,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -772,7 +772,7 @@
         "amount": 2
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -792,7 +792,7 @@
         "type": "vanilla.wolfsbane"
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
@@ -812,7 +812,7 @@
         "type": "vanilla.gypsum"
       }
     ],
-    "defaultLimit": 10,
+    "defaultLimit": 0,
     "defaultPriority": -100
   }
 ]

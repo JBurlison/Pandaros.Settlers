@@ -285,7 +285,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                     mkvp.Key.State = moveState;
                     mkvp.Key.Position = mkvp.Value;
-
+                    
                     var thread = new Thread(() =>
                     {
                         Thread.Sleep(8000);
@@ -362,6 +362,8 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(GateItem.ItemIndex),
                                     24);
 
+            ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
+            ItemTypesServer.LoadSortOrder(GateItem.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, gate);
         }
 

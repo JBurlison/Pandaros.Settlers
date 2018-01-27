@@ -48,6 +48,8 @@ namespace Pandaros.Settlers.Managers
         }
 
         public static Dictionary<Players.Player, List<MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, List<MachineState>>();
+
+        private const int MACHINE_REFRESH = 1;
         public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
         private static double _nextUpdate = 0;
@@ -84,13 +86,23 @@ namespace Pandaros.Settlers.Managers
                             try
                             {
                                 state.MachineSettings.DoWork(machine.Key, state);
+
+                                if (state.Load <= 0)
+                                    Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Reload_Icon, true, false));
+
+                                if (state.Durability <= 0)
+                                    Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Repairing_Icon, true, false));
+
+                                if (state.Fuel <= 0)
+                                    Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Refuel_Icon, true, false));
+      
                             }
                             catch (Exception ex)
                             {
                                 PandaLogger.LogError(ex);
                             }
 
-                _nextUpdate = Pipliz.Time.SecondsSinceStartDouble + 1;
+                _nextUpdate = Pipliz.Time.SecondsSinceStartDouble + MACHINE_REFRESH;
             }
         }
 

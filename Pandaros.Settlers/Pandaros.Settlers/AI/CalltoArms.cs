@@ -160,7 +160,7 @@ namespace Pandaros.Settlers.AI
 
                     if (!_hadAmmo.Any(a => !a.Value))
                     {
-                        state.SetIndicator(NPCIndicatorType.Crafted, _weapon.cooldownShot, _weapon.shootItem[0].Type);
+                        state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownShot, _weapon.shootItem[0].Type));
                         foreach (var ammo in _hadAmmo)
                         {
                             if (usedNPC.Inventory.Contains(ammo.Key))
@@ -201,20 +201,20 @@ namespace Pandaros.Settlers.AI
                     }
                     else
                     {
-                        state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownMissingItem, _weapon.shootItem[0].Type);
+                        state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownMissingItem, _weapon.shootItem[0].Type, true));
                         state.SetCooldown(_weapon.cooldownMissingItem);
                     }
                 }
                 else
                 {
-                    state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
+                    state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
                     state.SetCooldown(_weapon.cooldownMissingItem);
                     _target = null;
                 }
             }
             catch (Exception)
             {
-                state.SetIndicator(NPCIndicatorType.MissingItem, _weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon);
+                state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
                 state.SetCooldown(_weapon.cooldownMissingItem);
                 _target = null;
             }

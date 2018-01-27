@@ -85,6 +85,7 @@ namespace Pandaros.Settlers.Jobs
                     new List<InventoryItem>() { gold, tools, stone, iron },
                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
+            ItemTypesServer.LoadSortOrder(JOB_ITEM_KEY, GameLoader.GetNextItemSortIndex());
             RecipePlayer.AddOptionalRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(Items.ItemFactory.JOB_CRAFTER, recipe);
         }
@@ -247,11 +248,11 @@ namespace Pandaros.Settlers.Jobs
             }
 
             if (OkStatus.Contains(status))
-                state.SetIndicator(NPCIndicatorType.Crafted, cooldown, status);
+                state.SetIndicator(new Shared.IndicatorState(cooldown, status));
             else if (status != 0)
-                state.SetIndicator(NPCIndicatorType.MissingItem, cooldown, status);
+                state.SetIndicator(new Shared.IndicatorState(cooldown, status, true));
             else
-                state.SetIndicator(NPCIndicatorType.Crafted, cooldown, BuiltinBlocks.ErrorMissing);
+                state.SetIndicator(new Shared.IndicatorState(cooldown, BuiltinBlocks.ErrorMissing));
 
             state.SetCooldown(cooldown);
         }
