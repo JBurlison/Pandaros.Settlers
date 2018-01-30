@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Items.Food
                                     new InventoryItem(Item.ItemIndex, 2),
                                     50, false, 100);
 
-            ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
+            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddDefaultLimitTypeRecipe(ItemFactory.JOB_BAKER, recipe);
         }
 

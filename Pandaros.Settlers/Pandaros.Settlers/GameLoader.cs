@@ -285,9 +285,9 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static ushort GetNextItemSortIndex()
-        {
-            return _itemSortIndex++;
-        }
+        //public static ushort GetNextItemSortIndex()
+        //{
+        //    return _itemSortIndex++;
+        //}
     }
 }

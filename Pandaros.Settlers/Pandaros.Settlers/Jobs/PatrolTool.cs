@@ -36,8 +36,8 @@ namespace Pandaros.Settlers.Jobs
                                     new InventoryItem(PatrolFlag.ItemIndex, 2),
                                     5);
 
-            ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
-            ItemTypesServer.LoadSortOrder(PatrolFlag.name, GameLoader.GetNextItemSortIndex());
+            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
+            //ItemTypesServer.LoadSortOrder(PatrolFlag.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }
 

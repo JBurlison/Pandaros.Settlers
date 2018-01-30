@@ -491,7 +491,8 @@ namespace Pandaros.Settlers.Items
 
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5, false, -100);
-                ItemTypesServer.LoadSortOrder(a.Value.ItemType.name, GameLoader.GetNextItemSortIndex());
+
+                //ItemTypesServer.LoadSortOrder(a.Value.ItemType.name, GameLoader.GetNextItemSortIndex());
                 RecipeStorage.AddOptionalLimitTypeRecipe(JOB_METALSMITH, recipe);
             }
         }

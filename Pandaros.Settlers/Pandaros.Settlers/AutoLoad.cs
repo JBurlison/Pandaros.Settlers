@@ -246,24 +246,24 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.registerrecipes")]
         public static void LoadRecipes()
         {
-            if (JSON.Deserialize(MultiPath.Combine(GameLoader.AUTOLOAD_FOLDER_PANDA, "types.json"), out JSONNode jsonTypes, false))
-                if (jsonTypes.NodeType == NodeType.Object)
-                    foreach (KeyValuePair<string, JSONNode> typeEntry in jsonTypes.LoopObject())
-                        if (!typeEntry.Key.EndsWith("top") &&
-                            !typeEntry.Key.EndsWith("right") &&
-                            !typeEntry.Key.EndsWith("left") &&
-                            !typeEntry.Key.EndsWith("front") &&
-                            !typeEntry.Key.EndsWith("bottom") &&
-                            !typeEntry.Key.EndsWith("back") &&
-                            !typeEntry.Key.EndsWith("walkz") &&
-                            !typeEntry.Key.EndsWith("walkx") &&
-                            !typeEntry.Key.EndsWith("z+") &&
-                            !typeEntry.Key.EndsWith("z-") &&
-                            !typeEntry.Key.EndsWith("y+") &&
-                            !typeEntry.Key.EndsWith("y-") &&
-                            !typeEntry.Key.EndsWith("x+") &&
-                            !typeEntry.Key.EndsWith("x-"))
-                        ItemTypesServer.LoadSortOrder(MOD_PREFIX + typeEntry.Key, GameLoader.GetNextItemSortIndex());
+            //if (JSON.Deserialize(MultiPath.Combine(GameLoader.AUTOLOAD_FOLDER_PANDA, "types.json"), out JSONNode jsonTypes, false))
+            //    if (jsonTypes.NodeType == NodeType.Object)
+            //        foreach (KeyValuePair<string, JSONNode> typeEntry in jsonTypes.LoopObject())
+            //            if (!typeEntry.Key.EndsWith("top") &&
+            //                !typeEntry.Key.EndsWith("right") &&
+            //                !typeEntry.Key.EndsWith("left") &&
+            //                !typeEntry.Key.EndsWith("front") &&
+            //                !typeEntry.Key.EndsWith("bottom") &&
+            //                !typeEntry.Key.EndsWith("back") &&
+            //                !typeEntry.Key.EndsWith("walkz") &&
+            //                !typeEntry.Key.EndsWith("walkx") &&
+            //                !typeEntry.Key.EndsWith("z+") &&
+            //                !typeEntry.Key.EndsWith("z-") &&
+            //                !typeEntry.Key.EndsWith("y+") &&
+            //                !typeEntry.Key.EndsWith("y-") &&
+            //                !typeEntry.Key.EndsWith("x+") &&
+            //                !typeEntry.Key.EndsWith("x-"))
+            //            ItemTypesServer.LoadSortOrder(MOD_PREFIX + typeEntry.Key, GameLoader.GetNextItemSortIndex());
 
             PandaLogger.Log("Loading recipes...");
 
