@@ -193,18 +193,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static bool CanMineBlock(ushort itemMined)
         {
-            return itemMined == BuiltinBlocks.StoneBlock ||
-                    itemMined == BuiltinBlocks.DarkStone ||
-                    itemMined == BuiltinBlocks.InfiniteClay ||
-                    itemMined == BuiltinBlocks.InfiniteCoal ||
-                    itemMined == BuiltinBlocks.InfiniteCopper ||
-                    itemMined == BuiltinBlocks.InfiniteGalena ||
-                    itemMined == BuiltinBlocks.InfiniteGold ||
-                    itemMined == BuiltinBlocks.InfiniteGypsum ||
-                    itemMined == BuiltinBlocks.InfiniteIron ||
-                    itemMined == BuiltinBlocks.InfiniteSalpeter ||
-                    itemMined == BuiltinBlocks.InfiniteStone ||
-                    itemMined == BuiltinBlocks.InfiniteTin;
+            return ItemTypes.TryGetType(itemMined, out var item) &&
+                        item.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
+                        minable;
         }
     }
 }

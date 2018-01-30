@@ -1,12 +1,12 @@
 {
   "refinedemerald": {
     "icon": "refinedemerald.png",
-    "maxStackSize": 400,
+    "maxStackSize": 600,
     "isPlaceable": false
   },
   "rawemerald": {
     "icon": "rawemerald.png",
-    "maxStackSize": 400,
+    "maxStackSize": 600,
     "isPlaceable": false
   },
   "infiniteemerald": {
@@ -17,6 +17,7 @@
     "destructionTime": 2000,
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isDestructible": true,
     "customData": {
       "minerIsMineable": true,
@@ -27,45 +28,53 @@
     "icon": "milk.png",
     "isPlaceable": false,
     "npcLimit": 0,
+    "maxStackSize": 600,
     "nutritionalValue": 1.0
   },
   "egg": {
     "icon": "egg.png",
     "isPlaceable": false,
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "cake": {
     "icon": "cake.png",
     "isPlaceable": false,
     "npcLimit": 0,
+    "maxStackSize": 600,
     "nutritionalValue": 10.0
   },
   "beef": {
     "icon": "Beef.png",
     "isPlaceable": false,
     "npcLimit": 0,
+    "maxStackSize": 600,
     "nutritionalValue": 5.0
   },
   "carrot": {
     "icon": "Carrot.png",
     "isPlaceable": false,
     "npcLimit": 0,
+    "maxStackSize": 600,
     "nutritionalValue": 0.6
   },
   "cheese": {
     "icon": "Cheese.png",
     "isPlaceable": false,
     "npcLimit": 0,
+    "maxStackSize": 600,
     "nutritionalValue": 0.6
   },
   "chisel": {
     "icon": "chisel.png",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isPlaceable": false
   },
   "blueclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "blueClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -73,6 +82,7 @@
   "magentaclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "magentaClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -80,6 +90,7 @@
   "yellowclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "yellowClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -87,6 +98,7 @@
   "lightpinkclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "lightpinkClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -94,6 +106,7 @@
   "redclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "redClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -101,6 +114,7 @@
   "orangeclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "orangeClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -108,6 +122,7 @@
   "blackclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "blackClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -115,6 +130,7 @@
   "brownclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "brownClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -122,6 +138,7 @@
   "cyanclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "cyanClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -129,6 +146,7 @@
   "darkblueclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "darkblueClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -136,6 +154,7 @@
   "greyclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "greyClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -143,6 +162,7 @@
   "lightgreyclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "lightgreyClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -150,6 +170,7 @@
   "greenclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "greenClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -157,6 +178,7 @@
   "limeclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "limeClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -164,6 +186,7 @@
   "pinkclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "pinkClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -171,6 +194,7 @@
   "purpleclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "purpleClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -178,6 +202,7 @@
   "whiteclay": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "whiteClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete"
@@ -188,6 +213,7 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "destructionTime": 600
   },
   "sandstone": {
@@ -196,6 +222,7 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "destructionTime": 600
   },
   "infiniteruby": {
@@ -206,6 +233,7 @@
     "destructionTime": 2000,
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isDestructible": true,
     "customData": {
       "minerIsMineable": true,
@@ -220,6 +248,7 @@
     "destructionTime": 2000,
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isDestructible": true,
     "customData": {
       "minerIsMineable": true,
@@ -233,6 +262,7 @@
     "onRemoveAudio": "metalPlace",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "ironbarx+",
     "rotatablex-": "ironbarx-",
@@ -261,6 +291,7 @@
     "onRemoveAudio": "metalPlace",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "ironbarcornerx+",
     "rotatablex-": "ironbarcornerx-",
@@ -289,6 +320,7 @@
     "onRemoveAudio": "metalPlace",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "irondoorx+",
     "rotatablex-": "irondoorx-",
@@ -317,6 +349,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "Marblepillarbase.obj"
   },
   "marblepillarbody": {
@@ -325,6 +358,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "Marblepillarbody.obj"
   },
   "marblepillartop": {
@@ -333,47 +367,55 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "Marblepillartop.obj"
   },
   "chalk": {
     "icon": "chalk.png",
     "isPlaceable": false,
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "notwater": {
-    "isSolid": false,
+    "isSolid": true,
     "onPlaceAudio": "waterPlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "water.png",
-    "isPlaceable": false
+    "isPlaceable": true
   },
   "knife": {
     "icon": "Knife.png",
     "isPlaceable": false,
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "glass": {
     "icon": "Glass.png",
     "isPlaceable": false,
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "sledgehammer": {
     "icon": "Sledgehammer.png",
     "isPlaceable": false,
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "saw": {
     "icon": "saw.png",
     "isPlaceable": false,
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "dirtbricks": {
     "isFertile": true,
     "icon": "dirtbricks.png",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "onRemoveAudio": "vanilla.grassDelete",
     "onPlaceAudio": "vanilla.dirtPlace"
   },
@@ -396,6 +438,7 @@
   "marble": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "marble.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete"
@@ -403,6 +446,7 @@
   "marblebricks": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "marbleBrick.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete"
@@ -410,6 +454,7 @@
   "rawmarble": {
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "icon": "rawMarble.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete"
@@ -420,6 +465,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "woodfencex+",
     "rotatablex-": "woodfencex-",
@@ -448,6 +494,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "woodfencecornerx+",
     "rotatablex-": "woodfencecornerx-",
@@ -476,6 +523,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "windowx+",
     "rotatablex-": "windowx-",
@@ -504,6 +552,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "doublewindowx+",
     "rotatablex-": "doublewindowx-",
@@ -532,6 +581,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "woodsupportx+",
     "rotatablex-": "woodsupportx-",
@@ -560,6 +610,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "woodsupportudx+",
     "rotatablex-": "woodsupportudx-",
@@ -588,6 +639,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "woodsupportcube.obj"
   },
   "hangingbanner": {
@@ -596,6 +648,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
     "rotatablex+": "hangingbannerx+",
@@ -625,6 +678,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
     "rotatablex+": "hangingbannerrwx+",
@@ -654,6 +708,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
     "rotatablex+": "hangingbannerbwx+",
@@ -683,6 +738,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
     "rotatablex+": "hangingbannercbx+",
@@ -712,6 +768,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
     "rotatablex+": "hangingbannerbw2x+",
@@ -741,6 +798,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
     "rotatablex+": "simplechairx+",
@@ -770,6 +828,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "simpletable.obj"
   },
   "woodencatwalk": {
@@ -778,6 +837,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "woodencatwalkx",
     "rotatablex-": "woodencatwalkx",
@@ -801,6 +861,7 @@
     "needsBase": true,
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "rotatablex+": "benchleftx+",
     "rotatablex-": "benchleftx-",
     "rotatablez+": "benchleftz+",
@@ -852,6 +913,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "woodbarrelx+",
     "rotatablex-": "woodbarrelx-",
@@ -880,6 +942,7 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "isRotatable": true,
     "rotatablex+": "cratestackx+",
     "rotatablex-": "cratestackx-",
@@ -908,7 +971,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "stonebrickslabtop": {
     "parentType": "stonebrickslab",
@@ -946,7 +1010,8 @@
     "mesh": "emptyframe.obj",
     "onPlaceAudio": "vanilla.woodPlace",
     "onRemoveAudio": "vanilla.woodDeleteLight",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "plankslableft": {
     "parentType": "plankslab",
@@ -984,7 +1049,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "brickslableft": {
     "parentType": "brickslab",
@@ -1022,7 +1088,8 @@
     "onPlaceAudio": "vanilla.woodPlace",
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "coatedplankslableft": {
     "parentType": "coatedplankslab",
@@ -1060,7 +1127,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "cherryblossomslableft": {
     "parentType": "cherryblossomslab",
@@ -1098,7 +1166,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "leavestemperateslableft": {
     "parentType": "leavestemperateslab",
@@ -1136,7 +1205,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "leavestaigaslableft": {
     "parentType": "leavestaigaslab",
@@ -1174,7 +1244,8 @@
     "onPlaceAudio": "waterPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "waterslableft": {
     "parentType": "waterslab",
@@ -1200,12 +1271,14 @@
     "parentType": "waterslab",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "slabtop.obj"
   },
   "waterslabbottom": {
     "parentType": "waterslab",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "slabbottom.obj"
   },
   "adobeslab": {
@@ -1214,7 +1287,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "adobeslableft": {
     "parentType": "adobeslab",
@@ -1253,7 +1327,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "rainforestslableft": {
     "parentType": "rainforestslab",
@@ -1292,7 +1367,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "temperateslableft": {
     "parentType": "temperateslab",
@@ -1331,7 +1407,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "tundraslableft": {
     "parentType": "tundraslab",
@@ -1370,7 +1447,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "taigaslableft": {
     "parentType": "taigaslab",
@@ -1409,7 +1487,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "savannaslableft": {
     "parentType": "savannaslab",
@@ -1448,7 +1527,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "strawslableft": {
     "parentType": "strawslab",
@@ -1486,7 +1566,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "berrybushslableft": {
     "parentType": "berrybushslab",
@@ -1524,7 +1605,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "snowslableft": {
     "parentType": "snowslab",
@@ -1562,7 +1644,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "sandslableft": {
     "parentType": "sandslab",
@@ -1588,12 +1671,14 @@
     "icon": "sandslab.png",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "slabtop.obj"
   },
   "sandslabbottom": {
     "icon": "sandslab.png",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "slabbottom.obj"
   },
   "dirtslab": {
@@ -1602,7 +1687,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "dirtslableft": {
     "parentType": "dirtslab",
@@ -1641,7 +1727,8 @@
     "onPlaceAudio": "vanilla.carpetyellowPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "carpetyellowslableft": {
     "parentType": "carpetyellowslab",
@@ -1679,7 +1766,8 @@
     "onPlaceAudio": "vanilla.carpetbluePlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "carpetblueslableft": {
     "parentType": "carpetblueslab",
@@ -1717,7 +1805,8 @@
     "onPlaceAudio": "vanilla.carpetredPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "carpetredslableft": {
     "parentType": "carpetredslab",
@@ -1755,7 +1844,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "stoneblockslableft": {
     "parentType": "stoneblockslab",
@@ -1793,7 +1883,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "dirtbrickslableft": {
     "parentType": "dirtbrickslab",
@@ -1832,7 +1923,8 @@
     "onPlaceAudio": "vanilla.woodPlace",
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "logtaigaslableft": {
     "parentType": "logtaigaslab",
@@ -1870,7 +1962,8 @@
     "onPlaceAudio": "vanilla.woodPlace",
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "logtemperateslableft": {
     "parentType": "logtemperateslab",
@@ -1908,7 +2001,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "sandstoneslableft": {
     "parentType": "sandstoneslab",
@@ -1934,6 +2028,7 @@
     "parentType": "sandstoneslab",
     "sideall": "SELF",
     "npcLimit": 0,
+    "maxStackSize": 600,
     "mesh": "slabtop.obj"
   },
   "sandstoneslabbottom": {
@@ -1947,7 +2042,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "limestoneslableft": {
     "parentType": "limestoneslab",
@@ -1985,7 +2081,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "marbleslableft": {
     "parentType": "marbleslab",
@@ -2023,7 +2120,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "rawmarbleslableft": {
     "parentType": "rawmarbleslab",
@@ -2061,7 +2159,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "marblebricksslableft": {
     "parentType": "marblebricksslab",
@@ -2099,7 +2198,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "stonesquaresslableft": {
     "parentType": "stonesquaresslab",
@@ -2136,14 +2236,16 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "stonesquares": {
     "icon": "stonesquares.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "mossstonesquaresslab": {
     "fullblockType": "mossstonesquaresslab",
@@ -2151,7 +2253,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "mossstonesquaresslableft": {
     "parentType": "mossstonesquaresslab",
@@ -2189,7 +2292,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "mossstonebricksslableft": {
     "parentType": "mossstonebricksslab",
@@ -2217,7 +2321,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "mossstoneslableft": {
     "parentType": "mossstoneslab",
@@ -2264,7 +2369,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
 
   "mossstonebricks": {
@@ -2272,7 +2378,8 @@
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
     "sideall": "SELF",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "plasterslab": {
     "fullblockType": "vanilla.plaster",
@@ -2280,7 +2387,8 @@
     "onRemoveAudio": "vanilla.dirtPlace",
     "onPlaceAudio": "vanilla.dirtPlace",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "plasterslableft": {
     "parentType": "plasterslab",
@@ -2318,7 +2426,8 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "clayslableft": {
     "parentType": "clayslab",
@@ -2356,7 +2465,8 @@
     "onPlaceAudio": "vanilla.woodPlace",
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "redplankslableft": {
     "parentType": "redplankslab",
@@ -2394,7 +2504,8 @@
     "onPlaceAudio": "vanilla.woodPlace",
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "blackplankslableft": {
     "parentType": "blackplankslab",
@@ -2432,7 +2543,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "whiteclayslableft": {
     "parentType": "whiteclayslab",
@@ -2470,7 +2582,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "yellowclayslableft": {
     "parentType": "yellowclayslab",
@@ -2508,7 +2621,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "orangeclayslableft": {
     "parentType": "orangeclayslab",
@@ -2546,7 +2660,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "magentaclayslableft": {
     "parentType": "magentaclayslab",
@@ -2584,7 +2699,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "purpleclayslableft": {
     "parentType": "purpleclayslab",
@@ -2622,7 +2738,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "redclayslableft": {
     "parentType": "redclayslab",
@@ -2660,7 +2777,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "lightpinkclayslableft": {
     "parentType": "lightpinkclayslab",
@@ -2698,7 +2816,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "pinkclayslableft": {
     "parentType": "pinkclayslab",
@@ -2736,7 +2855,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "limeclayslableft": {
     "parentType": "limeclayslab",
@@ -2774,7 +2894,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "greenclayslableft": {
     "parentType": "greenclayslab",
@@ -2812,7 +2933,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "lightgreyclayslableft": {
     "parentType": "lightgreyclayslab",
@@ -2850,7 +2972,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "greyclayslableft": {
     "parentType": "greyclayslab",
@@ -2888,7 +3011,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": "0.",
+    "maxStackSize": 600
   },
   "darkblueclayslableft": {
     "parentType": "darkblueclayslab",
@@ -2926,7 +3050,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "cyanclayslableft": {
     "parentType": "cyanclayslab",
@@ -2964,7 +3089,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "brownclayslableft": {
     "parentType": "brownclayslab",
@@ -3002,7 +3128,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "blueclayslableft": {
     "parentType": "blueclayslab",
@@ -3040,7 +3167,8 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "mesh": "emptyframe.obj",
-    "npcLimit": 0
+    "npcLimit": 0,
+    "maxStackSize": 600
   },
   "blackclayslableft": {
     "parentType": "blackclayslab",

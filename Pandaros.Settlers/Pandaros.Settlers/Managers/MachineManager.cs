@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Managers
         public static Dictionary<Players.Player, List<MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, List<MachineState>>();
 
         private const int MACHINE_REFRESH = 1;
-        public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>();
+        public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>(StringComparer.OrdinalIgnoreCase);
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
         private static double _nextUpdate = 0;
 
@@ -62,7 +62,13 @@ namespace Pandaros.Settlers.Managers
 
         public static MachineSettings GetCallbacks(string machineType)
         {
-            return _machineCallbacks[machineType];
+            if (_machineCallbacks.ContainsKey(machineType))
+                return _machineCallbacks[machineType];
+            else
+            {
+                PandaLogger.Log($"Unknown machine type {machineType}. Returning {nameof(Miner)}.");
+                return _machineCallbacks[nameof(Miner)];
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.SetFuelValues")]
