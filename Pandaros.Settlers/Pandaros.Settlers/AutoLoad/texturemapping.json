@@ -1,2390 +1,2396 @@
 {
-	"infiniteemerald" : {
-		"albedo" : "oreEmerald",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"orangeclay" : {
-		"albedo" : "orangeClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightpinkclay" : {
-		"albedo" : "lightpinkClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"magentaclay" : {
-		"albedo" : "magentaClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"yellowclay" : {
-		"albedo" : "yellowClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blueclay" : {
-		"albedo" : "blueClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"redclay" : {
-		"albedo" : "redClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackclay" : {
-		"albedo" : "blackClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brownclay" : {
-		"albedo" : "brownClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cyanclay" : {
-		"albedo" : "cyanClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"darkblueclay" : {
-		"albedo" : "darkblueClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greenclay" : {
-		"albedo" : "greenClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greyclay" : {
-		"albedo" : "greyClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightgreyclay" : {
-		"albedo" : "lightgreyClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limeclay" : {
-		"albedo" : "limeClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"pinkclay" : {
-		"albedo" : "pinkClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"purpleclay" : {
-		"albedo" : "purpleClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"whiteclay" : {
-		"albedo" : "whiteClay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limestone" : {
-		"albedo" : "limeStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstone" : {
-		"albedo" : "sandStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"infiniteruby" : {
-		"albedo" : "oreRuby",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"infinitesapphire" : {
-		"albedo" : "oresapphire",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"ironbar" : {
-		"albedo" : "ironbar",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"ironbarcorner" : {
-		"albedo" : "ironbar",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"irondoor" : {
-		"albedo" : "irondoor",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblepillarbase" : {
-		"albedo" : "Marblepillarbase",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblepillarbody" : {
-		"albedo" : "Marblepillarbase",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblepillartop" : {
-		"albedo" : "Marblepillartop",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dirtbricks" : {
-		"albedo" : "dirtBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marble" : {
-		"albedo" : "marble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rawmarble" : {
-		"albedo" : "rawMarble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblebricks" : {
-		"albedo" : "marblebricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "infiniteemerald": {
+    "albedo": "oreEmerald",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "orangeclay": {
+    "albedo": "orangeClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclay": {
+    "albedo": "lightpinkClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclay": {
+    "albedo": "magentaClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclay": {
+    "albedo": "yellowClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclay": {
+    "albedo": "blueClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "redclay": {
+    "albedo": "redClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclay": {
+    "albedo": "blackClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclay": {
+    "albedo": "brownClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclay": {
+    "albedo": "cyanClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclay": {
+    "albedo": "darkblueClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclay": {
+    "albedo": "greenClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclay": {
+    "albedo": "greyClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclay": {
+    "albedo": "lightgreyClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclay": {
+    "albedo": "limeClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclay": {
+    "albedo": "pinkClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclay": {
+    "albedo": "purpleClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "whiteclay": {
+    "albedo": "whiteClay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limestone": {
+    "albedo": "limeStone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandstone": {
+    "albedo": "sandStone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "infiniteruby": {
+    "albedo": "oreRuby",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "infinitesapphire": {
+    "albedo": "oresapphire",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "ironbar": {
+    "albedo": "ironbar",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "ironbarcorner": {
+    "albedo": "ironbar",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "irondoor": {
+    "albedo": "irondoor",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblepillarbase": {
+    "albedo": "Marblepillarbase",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblepillarbody": {
+    "albedo": "Marblepillarbase",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblepillartop": {
+    "albedo": "Marblepillartop",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "dirtbricks": {
+    "albedo": "dirtBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marble": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarble": {
+    "albedo": "rawMarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricks": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
   "notwater": {
     "albedo": "notwater",
     "normal": "notwater",
     "emissive": "neutral",
     "height": "notwater"
   },
-		"fence" : {
-		"albedo" : "woodfence",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"fencecorner" : {
-		"albedo" : "woodfence",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"window" : {
-		"albedo" : "window",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"doublewindow" : {
-		"albedo" : "window",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"woodsupport" : {
-		"albedo" : "woodsupport",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"woodsupportud" : {
-		"albedo" : "woodsupport",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"woodsupportcube" : {
-		"albedo" : "woodsupportcube",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"	
-	},
-	"hangingbanner" : {
-		"albedo" : "hangingbanner_ry",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"hangingbannerrw" : {
-		"albedo" : "hangingbanner_rw",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"hangingbannerbw" : {
-		"albedo" : "hangingbanner_bw",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"hangingbannercb" : {
-		"albedo" : "hangingbanner_cb",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"hangingbannerbw2" : {
-		"albedo" : "hangingbanner_bw2",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"simplechair" : {
-		"albedo" : "simplechair",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"simpletable" : {
-		"albedo" : "simpletable",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"woodencatwalk" : {
-		"albedo" : "woodencatwalk",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"bench" : {
-		"albedo" : "bench",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"benchright" : {
-		"albedo" : "bench",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"woodbarrel" : {
-		"albedo" : "woodbarrel",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cratestack" : {
-		"albedo" : "cratestack",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"	
-	},
-	"mossstone" : {
-		"albedo" : "mossStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonebricks" : {
-		"albedo" : "mossStoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonesquares" : {
-		"albedo" : "mossStoneSquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stonesquares" : {
-		"albedo" : "stoneSquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brickslabbottom" : {
-		"albedo" : "vanilla.bricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackplankslabbottom" : {
-		"albedo" : "blackplanks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-  "redplankslabbottom": {
-    "albedo": "vanilla.redplanks",
+  "fence": {
+    "albedo": "woodfence",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
+  },
+  "fencecorner": {
+    "albedo": "woodfence",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "window": {
+    "albedo": "window",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "doublewindow": {
+    "albedo": "window",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "woodsupport": {
+    "albedo": "woodsupport",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "woodsupportud": {
+    "albedo": "woodsupport",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "woodsupportcube": {
+    "albedo": "woodsupportcube",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "hangingbanner": {
+    "albedo": "hangingbanner_ry",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "hangingbannerrw": {
+    "albedo": "hangingbanner_rw",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "hangingbannerbw": {
+    "albedo": "hangingbanner_bw",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "hangingbannercb": {
+    "albedo": "hangingbanner_cb",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "hangingbannerbw2": {
+    "albedo": "hangingbanner_bw2",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "simplechair": {
+    "albedo": "simplechair",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "simpletable": {
+    "albedo": "simpletable",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "woodencatwalk": {
+    "albedo": "woodencatwalk",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "bench": {
+    "albedo": "bench",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "benchright": {
+    "albedo": "bench",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "woodbarrel": {
+    "albedo": "woodbarrel",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "cratestack": {
+    "albedo": "cratestack",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstone": {
+    "albedo": "mossStone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonebricks": {
+    "albedo": "mossStoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquares": {
+    "albedo": "mossStoneSquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquares": {
+    "albedo": "stoneSquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "brickslabbottom": {
+    "albedo": "vanilla.bricks",
+    "normal": "vanilla.bricks",
+    "emissive": "neutral",
+    "height": "vanilla.bricks"
+  },
+  "blackplankslabbottom": {
+    "albedo": "blackplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "redplankslabbottom": {
+    "albedo": "vanilla.redplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
   },
   "coatedplankslabbottom": {
     "albedo": "vanilla.coatedplanks",
-    "normal": "neutral",
+    "normal": "vanilla.planks",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.coatedplanks"
   },
   "clayslabbottom": {
     "albedo": "vanilla.clay",
-    "normal": "neutral",
+    "normal": "vanilla.clay",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.clay"
   },
-	"redclayslabbottom" : {
-		"albedo" : "redclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackclayslabbottom" : {
-		"albedo" : "blackclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blueclayslabbottom" : {
-		"albedo" : "blueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"darkblueclayslabbottom" : {
-		"albedo" : "darkblueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brownclayslabbottom" : {
-		"albedo" : "brownclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cyanclayslabbottom" : {
-		"albedo" : "cyanclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greenclayslabbottom" : {
-		"albedo" : "greenclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greyclayslabbottom" : {
-		"albedo" : "greyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightgreyclayslabbottom" : {
-		"albedo" : "lightgreyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightpinkclayslabbottom" : {
-		"albedo" : "lightpinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limeclayslabbottom" : {
-		"albedo" : "limeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"magentaclayslabbottom" : {
-		"albedo" : "magentaclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"orangeclayslabbottom" : {
-		"albedo" : "orangeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"pinkclayslabbottom" : {
-		"albedo" : "pinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"purpleclayslabbottom" : {
-		"albedo" : "purpleclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"yellowclayslabbottom" : {
-		"albedo" : "yellowclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"whiteclayslabbottom" : {
-		"albedo" : "whiteclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "redclayslabbottom": {
+    "albedo": "redclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclayslabbottom": {
+    "albedo": "blackclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclayslabbottom": {
+    "albedo": "blueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclayslabbottom": {
+    "albedo": "darkblueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclayslabbottom": {
+    "albedo": "brownclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclayslabbottom": {
+    "albedo": "cyanclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclayslabbottom": {
+    "albedo": "greenclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclayslabbottom": {
+    "albedo": "greyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclayslabbottom": {
+    "albedo": "lightgreyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclayslabbottom": {
+    "albedo": "lightpinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclayslabbottom": {
+    "albedo": "limeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclayslabbottom": {
+    "albedo": "magentaclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "orangeclayslabbottom": {
+    "albedo": "orangeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclayslabbottom": {
+    "albedo": "pinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclayslabbottom": {
+    "albedo": "purpleclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclayslabbottom": {
+    "albedo": "yellowclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "whiteclayslabbottom": {
+    "albedo": "whiteclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
   "plasterslabbottom": {
     "albedo": "vanilla.plasterblock",
+    "normal": "vanilla.plasterblock",
+    "emissive": "neutral",
+    "height": "vanilla.plasterblock"
+  },
+  "mossstoneslabbottom": {
+    "albedo": "mossstone",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"mossstoneslabbottom" : {
-		"albedo" : "mossstone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonebricksslabbottom" : {
-		"albedo" : "mossStoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonesquaresslabbottom" : {
-		"albedo" : "mossStoneSquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stonesquaresslabbottom" : {
-		"albedo" : "stonesquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblebricksslabbottom" : {
-		"albedo" : "marblebricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marbleslabbottom" : {
-		"albedo" : "marble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rawmarbleslabbottom" : {
-		"albedo" : "rawmarble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstoneslabbottom" : {
-		"albedo" : "sandStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "mossstonebricksslabbottom": {
+    "albedo": "mossStoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquaresslabbottom": {
+    "albedo": "mossStoneSquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquaresslabbottom": {
+    "albedo": "stonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricksslabbottom": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marbleslabbottom": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarbleslabbottom": {
+    "albedo": "rawmarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandstoneslabbottom": {
+    "albedo": "sandStone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
   "logtemperateslabbottom": {
     "albedo": "vanilla.logtemperate",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "limestoneslabbottom": {
+    "albedo": "limeStone",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"limestoneslabbottom" : {
-		"albedo" : "limeStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
   "logtaigaslabbottom": {
     "albedo": "vanilla.logtaiga",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "dirtbrickslabbottom": {
+    "albedo": "dirtBricks",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"dirtbrickslabbottom" : {
-		"albedo" : "dirtBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stoneblockslabbottom" : {
-		"albedo" : "stoneBlock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "stoneblockslabbottom": {
+    "albedo": "vanilla.stoneblock",
+    "normal": "vanilla.stoneblock",
+    "emissive": "neutral",
+    "height": "vanilla.stoneblock"
+  },
   "carpetredslabbottom": {
     "albedo": "carpetred",
-    "normal": "neutral",
+    "normal": "vanilla.carpet",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.carpet"
   },
   "carpetblueslabbottom": {
     "albedo": "carpetblue",
-    "normal": "neutral",
+    "normal": "vanilla.carpet",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.carpet"
   },
   "carpetyellowslabbottom": {
     "albedo": "carpetyellow",
-    "normal": "neutral",
+    "normal": "vanilla.carpet",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.carpet"
   },
   "dirtslabbottom": {
     "albedo": "vanilla.dirt",
-    "normal": "neutral",
+    "normal": "vanilla.dirt",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.dirt"
   },
   "sandslabbottom": {
     "albedo": "vanilla.sand",
-    "normal": "neutral",
+    "normal": "vanilla.sand",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.sand"
   },
   "snowslabbottom": {
     "albedo": "vanilla.snow",
-    "normal": "neutral",
+    "normal": "vanilla.snow",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.snow"
   },
   "strawslabbottom": {
     "albedo": "vanilla.straw",
-    "normal": "neutral",
+    "normal": "vanilla.straw",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.straw"
   },
   "adobeslabbottom": {
     "albedo": "vanilla.adobe",
-    "normal": "neutral",
+    "normal": "vanilla.adobe",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.adobe"
   },
-	"waterslabbottom" : {
-		"albedo" : "notwater",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "waterslab": {
+    "albedo": "notwater",
+    "normal": "notwater",
+    "emissive": "neutral",
+    "height": "notwater"
+  },
+  "waterslabbottom": {
+    "albedo": "notwater",
+    "normal": "notwater",
+    "emissive": "neutral",
+    "height": "notwater"
+  },
   "rainforestslabbottom": {
     "albedo": "vanilla.grassRainforest",
-    "normal": "neutral",
+    "normal": "vanilla.grassGeneric",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.grassGeneric"
   },
   "savannaslabbottom": {
     "albedo": "vanilla.grassSavanna",
-    "normal": "neutral",
+    "normal": "vanilla.grassGeneric",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.grassGeneric"
   },
   "temperateslabbottom": {
     "albedo": "vanilla.grassTemperate",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "tundraslabbottom": {
+    "albedo": "vanilla.grassTundra",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "taigaslabbottom": {
+    "albedo": "grassTaiga",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "brickslabtop": {
+    "albedo": "vanilla.bricks",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"tundraslabbottom" : {
-		"albedo" : "vanilla.grassTundra",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"taigaslabbottom" : {
-		"albedo" : "grassTaiga",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brickslabtop" : {
-		"albedo" : "vanilla.bricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
   "blackplankslabtop": {
     "albedo": "vanilla.blackplanks",
-    "normal": "neutral",
+    "normal": "vanilla.planks",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.coatedplanks"
   },
   "redplankslabtop": {
     "albedo": "vanilla.redplanks",
-    "normal": "neutral",
+    "normal": "vanilla.planks",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.coatedplanks"
   },
   "coatedplankslabtop": {
     "albedo": "vanilla.coatedplanks",
-    "normal": "neutral",
+    "normal": "vanilla.planks",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.coatedplanks"
   },
   "clayslabtop": {
     "albedo": "vanilla.clay",
-    "normal": "neutral",
+    "normal": "vanilla.clay",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.clay"
   },
-	"redclayslabtop" : {
-		"albedo" : "redclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blackclayslabtop" : {
-		"albedo" : "blackclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"blueclayslabtop" : {
-		"albedo" : "blueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"darkblueclayslabtop" : {
-		"albedo" : "darkblueclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"brownclayslabtop" : {
-		"albedo" : "brownclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"cyanclayslabtop" : {
-		"albedo" : "cyanclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greenclayslabtop" : {
-		"albedo" : "greenclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"greyclayslabtop" : {
-		"albedo" : "greyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightgreyclayslabtop" : {
-		"albedo" : "lightgreyclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lightpinkclayslabtop" : {
-		"albedo" : "lightpinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"limeclayslabtop" : {
-		"albedo" : "limeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"magentaclayslabtop" : {
-		"albedo" : "magentaclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"orangeclayslabtop" : {
-		"albedo" : "orangeclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"pinkclayslabtop" : {
-		"albedo" : "pinkclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"purpleclayslabtop" : {
-		"albedo" : "purpleclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"yellowclayslabtop" : {
-		"albedo" : "yellowclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"whiteclayslabtop" : {
-		"albedo" : "whiteclay",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "redclayslabtop": {
+    "albedo": "redclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclayslabtop": {
+    "albedo": "blackclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclayslabtop": {
+    "albedo": "blueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclayslabtop": {
+    "albedo": "darkblueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclayslabtop": {
+    "albedo": "brownclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclayslabtop": {
+    "albedo": "cyanclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclayslabtop": {
+    "albedo": "greenclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclayslabtop": {
+    "albedo": "greyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclayslabtop": {
+    "albedo": "lightgreyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclayslabtop": {
+    "albedo": "lightpinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclayslabtop": {
+    "albedo": "limeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclayslabtop": {
+    "albedo": "magentaclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "orangeclayslabtop": {
+    "albedo": "orangeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclayslabtop": {
+    "albedo": "pinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclayslabtop": {
+    "albedo": "purpleclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclayslabtop": {
+    "albedo": "yellowclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "whiteclayslabtop": {
+    "albedo": "whiteclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
   "plasterslabtop": {
     "albedo": "vanilla.plasterblock",
+    "normal": "vanilla.plasterblock",
+    "emissive": "neutral",
+    "height": "vanilla.plasterblock"
+  },
+  "mossstoneslabtop": {
+    "albedo": "mossstone",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"mossstoneslabtop" : {
-		"albedo" : "mossstone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonebricksslabtop" : {
-		"albedo" : "mossStoneBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"mossstonesquaresslabtop" : {
-		"albedo" : "mossStoneSquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stonesquaresslabtop" : {
-		"albedo" : "stonesquares",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marblebricksslabtop" : {
-		"albedo" : "marblebricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"marbleslabtop" : {
-		"albedo" : "marble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"rawmarbleslabtop" : {
-		"albedo" : "rawmarble",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"sandstoneslabtop" : {
-		"albedo" : "sandStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "mossstonebricksslabtop": {
+    "albedo": "mossStoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquaresslabtop": {
+    "albedo": "mossStoneSquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquaresslabtop": {
+    "albedo": "stonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricksslabtop": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marbleslabtop": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarbleslabtop": {
+    "albedo": "rawmarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandstoneslabtop": {
+    "albedo": "sandStone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
   "logtemperateslabtop": {
     "albedo": "vanilla.logtemperate",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "limestoneslabtop": {
+    "albedo": "limeStone",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"limestoneslabtop" : {
-		"albedo" : "limeStone",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
   "logtaigaslabtop": {
     "albedo": "vanilla.logtaiga",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "dirtbrickslabtop": {
+    "albedo": "dirtBricks",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"dirtbrickslabtop" : {
-		"albedo" : "dirtBricks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"stoneblockslabtop" : {
-		"albedo" : "stoneBlock",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "stoneblockslabtop": {
+    "albedo": "vanilla.stoneblock",
+    "normal": "vanilla.stoneblock",
+    "emissive": "neutral",
+    "height": "vanilla.stoneblock"
+  },
   "carpetredslabtop": {
     "albedo": "carpetred",
-    "normal": "neutral",
+    "normal": "vanilla.carpet",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.carpet"
   },
   "carpetblueslabtop": {
     "albedo": "carpetblue",
-    "normal": "neutral",
+    "normal": "vanilla.carpet",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.carpet"
   },
   "carpetyellowslabtop": {
     "albedo": "carpetyellow",
-    "normal": "neutral",
+    "normal": "vanilla.carpet",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.carpet"
   },
   "dirtslabtop": {
     "albedo": "vanilla.dirt",
-    "normal": "neutral",
+    "normal": "vanilla.dirt",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.dirt"
   },
   "sandslabtop": {
     "albedo": "vanilla.sand",
-    "normal": "neutral",
+    "normal": "vanilla.sand",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.sand"
   },
   "snowslabtop": {
     "albedo": "vanilla.snow",
-    "normal": "neutral",
+    "normal": "vanilla.snow",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.snow"
   },
   "strawslabtop": {
     "albedo": "vanilla.straw",
-    "normal": "neutral",
+    "normal": "vanilla.straw",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.straw"
   },
   "adobeslabtop": {
     "albedo": "vanilla.adobe",
-    "normal": "neutral",
+    "normal": "vanilla.adobe",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.adobe"
   },
-	"waterslabtop" : {
-		"albedo" : "notwater",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "waterslabtop": {
+    "albedo": "notwater",
+    "normal": "notwater",
+    "emissive": "neutral",
+    "height": "notwater"
+  },
   "rainforestslabtop": {
     "albedo": "vanilla.grassRainforest",
-    "normal": "neutral",
+    "normal": "vanilla.grassGeneric",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.grassGeneric"
   },
   "savannaslabtop": {
     "albedo": "vanilla.grassSavanna",
-    "normal": "neutral",
+    "normal": "vanilla.grassGeneric",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.grassGeneric"
   },
   "temperateslabtop": {
     "albedo": "vanilla.grassTemperate",
-    "normal": "neutral",
+    "normal": "vanilla.grassGeneric",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.grassGeneric"
   },
-	"tundraslabtop" : {
-		"albedo" : "vanilla.grassTundra",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
+  "tundraslabtop": {
+    "albedo": "vanilla.grassTundra",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
   "taigaslabtop": {
     "albedo": "vanilla.grassTaiga",
-    "normal": "neutral",
+    "normal": "vanilla.grassGeneric",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.grassGeneric"
   },
   "cherryblossomslabtop": {
     "albedo": "vanilla.cherryblossom",
-    "normal": "neutral",
+    "normal": "vanilla.cherryblossom",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.cherryblossom"
   },
   "berrybushslabtop": {
     "albedo": "vanilla.berrybush",
-    "normal": "neutral",
+    "normal": "vanilla.berrybush",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.berrybush"
   },
   "leavestemperateslabtop": {
     "albedo": "vanilla.leavesTemperate",
-    "normal": "neutral",
+    "normal": "vanilla.leavesTemperate",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.leavesTemperate"
   },
   "leavestaigaslabtop": {
     "albedo": "vanilla.leavesTaiga",
-    "normal": "neutral",
+    "normal": "vanilla.leavesTaiga",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.leavesTaiga"
   },
   "cherryblossomslabbottom": {
     "albedo": "vanilla.cherryblossom",
-    "normal": "neutral",
+    "normal": "vanilla.cherryblossom",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.cherryblossom"
   },
   "berrybushslabbottom": {
     "albedo": "vanilla.berrybush",
-    "normal": "neutral",
+    "normal": "vanilla.berrybush",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.berrybush"
   },
   "leavestemperateslabbottom": {
     "albedo": "vanilla.leavesTemperate",
-    "normal": "neutral",
+    "normal": "vanilla.leavesTemperate",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "vanilla.leavesTemperate"
   },
   "leavestaigaslabbottom": {
     "albedo": "vanilla.leavesTaiga",
+    "normal": "vanilla.leavesTaiga",
+    "emissive": "neutral",
+    "height": "vanilla.leavesTaiga"
+  },
+  "rose": {
+    "albedo": "rose",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
-	"rose" : {
-		"albedo" : "rose",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"dandelion" : {
-		"albedo" : "dandelion",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"lily" : {
-		"albedo" : "lily",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"tulip" : {
-		"albedo" : "tulip",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"allium" : {
-		"albedo" : "allium",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"berrybushtest" : {
-		"albedo" : "dandelionbush",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-  "stonebrickslabbottom" : {
-    "albedo" : "vanilla.stoneBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "dandelion": {
+    "albedo": "dandelion",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "stonebrickslabtop" : {
-    "albedo" : "vanilla.stoneBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "lily": {
+    "albedo": "lily",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "stonebrickslableft" : {
-    "albedo" : "vanilla.stoneBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "tulip": {
+    "albedo": "tulip",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "stonebrickslabright" : {
-    "albedo" : "vanilla.stoneBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "allium": {
+    "albedo": "allium",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "stonebrickslabfront" : {
-    "albedo" : "vanilla.stoneBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "berrybushtest": {
+    "albedo": "dandelionbush",
+    "normal": "vanilla.berrybush",
+    "emissive": "neutral",
+    "height": "vanilla.berrybush"
   },
-  "stonebrickslabback" : {
-    "albedo" : "vanilla.stoneBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "stonebrickslabbottom": {
+    "albedo": "vanilla.stoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  	"plankslabtop" : {
-		"albedo" : "vanilla.planks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-	"plankslabbottom" : {
-		"albedo" : "vanilla.planks",
-		"normal" : "neutral",
-		"emissive" : "neutral",
-		"height" : "neutral"
-	},
-  "plankslableft" : {
-    "albedo" : "vanilla.planks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "stonebrickslabtop": {
+    "albedo": "vanilla.stoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "plankslabright" : {
-    "albedo" : "vanilla.planks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "stonebrickslableft": {
+    "albedo": "vanilla.stoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "plankslabfront" : {
-    "albedo" : "vanilla.planks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "stonebrickslabright": {
+    "albedo": "vanilla.stoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "plankslabback" : {
-    "albedo" : "vanilla.planks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-   },
-  "brickslableft" : {
-    "albedo" : "vanilla.bricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "stonebrickslabfront": {
+    "albedo": "vanilla.stoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "brickslabright" : {
-    "albedo" : "vanilla.bricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "stonebrickslabback": {
+    "albedo": "vanilla.stoneBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "brickslabfront" : {
-    "albedo" : "vanilla.bricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "plankslabtop": {
+    "albedo": "vanilla.planks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.planks"
   },
-  "brickslabback" : {
-    "albedo" : "vanilla.bricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "plankslabbottom": {
+    "albedo": "vanilla.planks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.planks"
   },
-  "coatedplankslableft" : {
-    "albedo" : "vanilla.coatedplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "plankslableft": {
+    "albedo": "vanilla.planks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.planks"
   },
-  "coatedplankslabright" : {
-    "albedo" : "vanilla.coatedplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "plankslabright": {
+    "albedo": "vanilla.planks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.planks"
   },
-  "coatedplankslabfront" : {
-    "albedo" : "vanilla.coatedplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "plankslabfront": {
+    "albedo": "vanilla.planks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.planks"
   },
-  "coatedplankslabback" : {
-    "albedo" : "vanilla.coatedplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "plankslabback": {
+    "albedo": "vanilla.planks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.planks"
   },
-  "cherryblossomslableft" : {
-    "albedo" : "vanilla.cherryblossom",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "brickslableft": {
+    "albedo": "vanilla.bricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "cherryblossomslabright" : {
-    "albedo" : "vanilla.cherryblossom",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "brickslabright": {
+    "albedo": "vanilla.bricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "cherryblossomslabfront" : {
-    "albedo" : "vanilla.cherryblossom",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "brickslabfront": {
+    "albedo": "vanilla.bricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "cherryblossomslabback" : {
-    "albedo" : "vanilla.cherryblossom",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "brickslabback": {
+    "albedo": "vanilla.bricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   },
-  "leavestemperateslableft" : {
-    "albedo" : "vanilla.leavestemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "coatedplankslableft": {
+    "albedo": "vanilla.coatedplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
   },
-  "leavestemperateslabright" : {
-    "albedo" : "vanilla.leavestemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "coatedplankslabright": {
+    "albedo": "vanilla.coatedplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
   },
-  "leavestemperateslabfront" : {
-    "albedo" : "vanilla.leavestemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "coatedplankslabfront": {
+    "albedo": "vanilla.coatedplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
   },
-  "leavestemperateslabback" : {
-    "albedo" : "vanilla.leavestemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "coatedplankslabback": {
+    "albedo": "vanilla.coatedplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
   },
-  "leavestaigaslableft" : {
-    "albedo" : "vanilla.leavestaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "cherryblossomslableft": {
+    "albedo": "vanilla.cherryblossom",
+    "normal": "vanilla.cherryblossom",
+    "emissive": "neutral",
+    "height": "vanilla.cherryblossom"
   },
-  "leavestaigaslabright" : {
-    "albedo" : "vanilla.leavestaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "cherryblossomslabright": {
+    "albedo": "vanilla.cherryblossom",
+    "normal": "vanilla.cherryblossom",
+    "emissive": "neutral",
+    "height": "vanilla.cherryblossom"
   },
-  "leavestaigaslabfront" : {
-    "albedo" : "vanilla.leavestaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "cherryblossomslabfront": {
+    "albedo": "vanilla.cherryblossom",
+    "normal": "vanilla.cherryblossom",
+    "emissive": "neutral",
+    "height": "vanilla.cherryblossom"
   },
-  "leavestaigaslabback" : {
-    "albedo" : "vanilla.leavestaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "cherryblossomslabback": {
+    "albedo": "vanilla.cherryblossom",
+    "normal": "vanilla.cherryblossom",
+    "emissive": "neutral",
+    "height": "vanilla.cherryblossom"
+  },
+  "leavestemperateslableft": {
+    "albedo": "vanilla.leavestemperate",
+    "normal": "vanilla.leavestemperate",
+    "emissive": "neutral",
+    "height": "vanilla.leavestemperate"
+  },
+  "leavestemperateslabright": {
+    "albedo": "vanilla.leavestemperate",
+    "normal": "vanilla.leavestemperate",
+    "emissive": "neutral",
+    "height": "vanilla.leavestemperate"
+  },
+  "leavestemperateslabfront": {
+    "albedo": "vanilla.leavestemperate",
+    "normal": "vanilla.leavestemperate",
+    "emissive": "neutral",
+    "height": "vanilla.leavestemperate"
+  },
+  "leavestemperateslabback": {
+    "albedo": "vanilla.leavestemperate",
+    "normal": "vanilla.leavestemperate",
+    "emissive": "neutral",
+    "height": "vanilla.leavestemperate"
+  },
+  "leavestaigaslableft": {
+    "albedo": "vanilla.leavestaiga",
+    "normal": "vanilla.leavesTaiga",
+    "emissive": "neutral",
+    "height": "vanilla.leavesTaiga"
+  },
+  "leavestaigaslabright": {
+    "albedo": "vanilla.leavestaiga",
+    "normal": "vanilla.leavesTaiga",
+    "emissive": "neutral",
+    "height": "vanilla.leavesTaiga"
+  },
+  "leavestaigaslabfront": {
+    "albedo": "vanilla.leavestaiga",
+    "normal": "vanilla.leavesTaiga",
+    "emissive": "neutral",
+    "height": "vanilla.leavesTaiga"
+  },
+  "leavestaigaslabback": {
+    "albedo": "vanilla.leavestaiga",
+    "normal": "vanilla.leavesTaiga",
+    "emissive": "neutral",
+    "height": "vanilla.leavesTaiga"
   },
   "waterslableft": {
     "albedo": "notwater",
-    "normal": "neutral",
+    "normal": "notwater",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "notwater"
   },
   "waterslabright": {
     "albedo": "notwater",
-    "normal": "neutral",
+    "normal": "notwater",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "notwater"
   },
   "waterslabfront": {
     "albedo": "notwater",
-    "normal": "neutral",
+    "normal": "notwater",
     "emissive": "neutral",
-    "height": "neutral"
+    "height": "notwater"
   },
   "waterslabback": {
     "albedo": "notwater",
+    "normal": "notwater",
+    "emissive": "neutral",
+    "height": "notwater"
+  },
+  "adobeslableft": {
+    "albedo": "vanilla.adobe",
+    "normal": "vanilla.adobe",
+    "emissive": "neutral",
+    "height": "vanilla.adobe"
+  },
+  "adobeslabright": {
+    "albedo": "vanilla.adobe",
+    "normal": "vanilla.adobe",
+    "emissive": "neutral",
+    "height": "vanilla.adobe"
+  },
+  "adobeslabfront": {
+    "albedo": "vanilla.adobe",
+    "normal": "vanilla.adobe",
+    "emissive": "neutral",
+    "height": "vanilla.adobe"
+  },
+  "adobeslabback": {
+    "albedo": "vanilla.adobe",
+    "normal": "vanilla.adobe",
+    "emissive": "neutral",
+    "height": "vanilla.adobe"
+  },
+  "rainforestslableft": {
+    "albedo": "vanilla.grassrainforest",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "rainforestslabright": {
+    "albedo": "vanilla.grassrainforest",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "rainforestslabfront": {
+    "albedo": "vanilla.grassrainforest",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "rainforestslabback": {
+    "albedo": "vanilla.grassrainforest",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "temperateslableft": {
+    "albedo": "vanilla.grasstemperate",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "temperateslabright": {
+    "albedo": "vanilla.grasstemperate",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "temperateslabfront": {
+    "albedo": "vanilla.grasstemperate",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "temperateslabback": {
+    "albedo": "vanilla.grasstemperate",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "tundraslableft": {
+    "albedo": "vanilla.grassTundra",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "tundraslabright": {
+    "albedo": "vanilla.grassTundra",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "tundraslabfront": {
+    "albedo": "vanilla.grassTundra",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "tundraslabback": {
+    "albedo": "vanilla.grassTundra",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "taigaslableft": {
+    "albedo": "vanilla.grasstaiga",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "taigaslabright": {
+    "albedo": "vanilla.grasstaiga",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "taigaslabfront": {
+    "albedo": "vanilla.grasstaiga",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "taigaslabback": {
+    "albedo": "vanilla.grasstaiga",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "savannaslableft": {
+    "albedo": "vanilla.grasssavanna",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "savannaslabright": {
+    "albedo": "vanilla.grasssavanna",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "savannaslabfront": {
+    "albedo": "vanilla.grasssavanna",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "savannaslabback": {
+    "albedo": "vanilla.grasssavanna",
+    "normal": "vanilla.grassGeneric",
+    "emissive": "neutral",
+    "height": "vanilla.grassGeneric"
+  },
+  "strawslableft": {
+    "albedo": "vanilla.straw",
+    "normal": "vanilla.straw",
+    "emissive": "neutral",
+    "height": "vanilla.straw"
+  },
+  "strawslabright": {
+    "albedo": "vanilla.straw",
+    "normal": "vanilla.straw",
+    "emissive": "neutral",
+    "height": "vanilla.straw"
+  },
+  "strawslabfront": {
+    "albedo": "vanilla.straw",
+    "normal": "vanilla.straw",
+    "emissive": "neutral",
+    "height": "vanilla.straw"
+  },
+  "strawslabback": {
+    "albedo": "vanilla.straw",
+    "normal": "vanilla.straw",
+    "emissive": "neutral",
+    "height": "vanilla.straw"
+  },
+  "berrybushslableft": {
+    "albedo": "vanilla.berrybush",
+    "normal": "vanilla.berrybush",
+    "emissive": "neutral",
+    "height": "vanilla.berrybush"
+  },
+  "berrybushslabright": {
+    "albedo": "vanilla.berrybush",
+    "normal": "vanilla.berrybush",
+    "emissive": "neutral",
+    "height": "vanilla.berrybush"
+  },
+  "berrybushslabfront": {
+    "albedo": "vanilla.berrybush",
+    "normal": "vanilla.berrybush",
+    "emissive": "neutral",
+    "height": "vanilla.berrybush"
+  },
+  "berrybushslabback": {
+    "albedo": "vanilla.berrybush",
+    "normal": "vanilla.berrybush",
+    "emissive": "neutral",
+    "height": "vanilla.berrybush"
+  },
+  "snowslableft": {
+    "albedo": "vanilla.snow",
+    "normal": "vanilla.snow",
+    "emissive": "neutral",
+    "height": "vanilla.snow"
+  },
+  "snowslabright": {
+    "albedo": "vanilla.snow",
+    "normal": "vanilla.snow",
+    "emissive": "neutral",
+    "height": "vanilla.snow"
+  },
+  "snowslabfront": {
+    "albedo": "vanilla.snow",
+    "normal": "vanilla.snow",
+    "emissive": "neutral",
+    "height": "vanilla.snow"
+  },
+  "snowslabback": {
+    "albedo": "vanilla.snow",
+    "normal": "vanilla.snow",
+    "emissive": "neutral",
+    "height": "vanilla.snow"
+  },
+  "sandslableft": {
+    "albedo": "vanilla.sand",
+    "normal": "vanilla.sand",
+    "emissive": "neutral",
+    "height": "vanilla.sand"
+  },
+  "sandslabright": {
+    "albedo": "vanilla.sand",
+    "normal": "vanilla.sand",
+    "emissive": "neutral",
+    "height": "vanilla.sand"
+  },
+  "sandslabfront": {
+    "albedo": "vanilla.sand",
+    "normal": "vanilla.sand",
+    "emissive": "neutral",
+    "height": "vanilla.sand"
+  },
+  "sandslabback": {
+    "albedo": "vanilla.sand",
+    "normal": "vanilla.sand",
+    "emissive": "neutral",
+    "height": "vanilla.sand"
+  },
+  "dirtslableft": {
+    "albedo": "vanilla.dirt",
+    "normal": "vanilla.dirt",
+    "emissive": "neutral",
+    "height": "vanilla.dirt"
+  },
+  "dirtslabright": {
+    "albedo": "vanilla.dirt",
+    "normal": "vanilla.dirt",
+    "emissive": "neutral",
+    "height": "vanilla.dirt"
+  },
+  "dirtslabfront": {
+    "albedo": "vanilla.dirt",
+    "normal": "vanilla.dirt",
+    "emissive": "neutral",
+    "height": "vanilla.dirt"
+  },
+  "dirtslabback": {
+    "albedo": "vanilla.dirt",
+    "normal": "vanilla.dirt",
+    "emissive": "neutral",
+    "height": "vanilla.dirt"
+  },
+  "carpetyellowslableft": {
+    "albedo": "carpetyellow",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetyellowslabright": {
+    "albedo": "carpetyellow",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetyellowslabfront": {
+    "albedo": "carpetyellow",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetyellowslabback": {
+    "albedo": "carpetyellow",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetblueslableft": {
+    "albedo": "carpetblue",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetblueslabright": {
+    "albedo": "carpetblue",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetblueslabfront": {
+    "albedo": "carpetblue",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetblueslabback": {
+    "albedo": "carpetblue",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetredslableft": {
+    "albedo": "carpetred",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetredslabright": {
+    "albedo": "carpetred",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetredslabfront": {
+    "albedo": "carpetred",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "carpetredslabback": {
+    "albedo": "carpetred",
+    "normal": "vanilla.carpet",
+    "emissive": "neutral",
+    "height": "vanilla.carpet"
+  },
+  "stoneblockslableft": {
+    "albedo": "vanilla.stoneblock",
+    "normal": "vanilla.stoneblock",
+    "emissive": "neutral",
+    "height": "vanilla.stoneblock"
+  },
+  "stoneblockslabright": {
+    "albedo": "vanilla.stoneblock",
+    "normal": "vanilla.stoneblock",
+    "emissive": "neutral",
+    "height": "vanilla.stoneblock"
+  },
+  "stoneblockslabfront": {
+    "albedo": "vanilla.stoneblock",
+    "normal": "vanilla.stoneblock",
+    "emissive": "neutral",
+    "height": "vanilla.stoneblock"
+  },
+  "stoneblockslabback": {
+    "albedo": "vanilla.stoneblock",
+    "normal": "vanilla.stoneblock",
+    "emissive": "neutral",
+    "height": "vanilla.stoneblock"
+  },
+  "dirtbrickslableft": {
+    "albedo": "dirtBricks",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"
   },
- "adobeslableft" : {
-    "albedo" : "vanilla.adobe",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "adobeslabright" : {
-    "albedo" : "vanilla.adobe",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "adobeslabfront" : {
-    "albedo" : "vanilla.adobe",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "adobeslabback" : {
-    "albedo" : "vanilla.adobe",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "rainforestslableft" : {
-    "albedo" : "vanilla.grassrainforest",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "rainforestslabright" : {
-    "albedo" : "vanilla.grassrainforest",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "rainforestslabfront" : {
-    "albedo" : "vanilla.grassrainforest",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "rainforestslabback" : {
-    "albedo" : "vanilla.grassrainforest",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "temperateslableft" : {
-    "albedo" : "vanilla.grasstemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "temperateslabright" : {
-    "albedo" : "vanilla.grasstemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "temperateslabfront" : {
-    "albedo" : "vanilla.grasstemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "temperateslabback" : {
-    "albedo" : "vanilla.grasstemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "tundraslableft" : {
-    "albedo" : "vanilla.grassTundra",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "tundraslabright" : {
-    "albedo" : "vanilla.grassTundra",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "tundraslabfront" : {
-    "albedo" : "vanilla.grassTundra",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "tundraslabback" : {
-    "albedo" : "vanilla.grassTundra",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "taigaslableft" : {
-    "albedo" : "vanilla.grasstaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "taigaslabright" : {
-    "albedo" : "vanilla.grasstaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "taigaslabfront" : {
-    "albedo" : "vanilla.grasstaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "taigaslabback" : {
-    "albedo" : "vanilla.grasstaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "savannaslableft" : {
-    "albedo" : "vanilla.grasssavanna",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "savannaslabright" : {
-    "albedo" : "vanilla.grasssavanna",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "savannaslabfront" : {
-    "albedo" : "vanilla.grasssavanna",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "savannaslabback" : {
-    "albedo" : "vanilla.grasssavanna",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "strawslableft" : {
-    "albedo" : "vanilla.straw",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "strawslabright" : {
-    "albedo" : "vanilla.straw",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "strawslabfront" : {
-    "albedo" : "vanilla.straw",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "strawslabback" : {
-    "albedo" : "vanilla.straw",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "berrybushslableft" : {
-    "albedo" : "vanilla.berrybush",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "berrybushslabright" : {
-    "albedo" : "vanilla.berrybush",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "berrybushslabfront" : {
-    "albedo" : "vanilla.berrybush",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "berrybushslabback" : {
-    "albedo" : "vanilla.berrybush",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "snowslableft" : {
-    "albedo" : "vanilla.snow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "snowslabright" : {
-    "albedo" : "vanilla.snow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "snowslabfront" : {
-    "albedo" : "vanilla.snow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "snowslabback" : {
-    "albedo" : "vanilla.snow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "sandslableft" : {
-    "albedo" : "vanilla.sand",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "sandslabright" : {
-    "albedo" : "vanilla.sand",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "sandslabfront" : {
-    "albedo" : "vanilla.sand",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "sandslabback" : {
-    "albedo" : "vanilla.sand",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "dirtslableft" : {
-    "albedo" : "vanilla.dirt",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "dirtslabright" : {
-    "albedo" : "vanilla.dirt",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "dirtslabfront" : {
-    "albedo" : "vanilla.dirt",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "dirtslabback" : {
-    "albedo" : "vanilla.dirt",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "carpetyellowslableft" : {
-    "albedo" : "carpetyellow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetyellowslabright" : {
-    "albedo" : "carpetyellow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetyellowslabfront" : {
-    "albedo" : "carpetyellow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetyellowslabback" : {
-    "albedo" : "carpetyellow",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "carpetblueslableft" : {
-    "albedo" : "carpetblue",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetblueslabright" : {
-    "albedo" : "carpetblue",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetblueslabfront" : {
-    "albedo" : "carpetblue",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetblueslabback" : {
-    "albedo" : "carpetblue",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "carpetredslableft" : {
-    "albedo" : "carpetred",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetredslabright" : {
-    "albedo" : "carpetred",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetredslabfront" : {
-    "albedo" : "carpetred",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "carpetredslabback" : {
-    "albedo" : "carpetred",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "stoneblockslableft" : {
-    "albedo" : "vanilla.stoneblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "stoneblockslabright" : {
-    "albedo" : "vanilla.stoneblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "stoneblockslabfront" : {
-    "albedo" : "vanilla.stoneblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "stoneblockslabback" : {
-    "albedo" : "vanilla.stoneblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "dirtbrickslableft" : {
-    "albedo" : "dirtBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "dirtbrickslabright" : {
-    "albedo" : "dirtBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "dirtbrickslabfront" : {
-    "albedo" : "dirtBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "dirtbrickslabback" : {
-    "albedo" : "dirtBricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "logtaigaslableft" : {
-    "albedo" : "vanilla.logtaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "logtaigaslabright" : {
-    "albedo" : "vanilla.logtaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "logtaigaslabfront" : {
-    "albedo" : "vanilla.logtaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "logtaigaslabback" : {
-    "albedo" : "vanilla.logtaiga",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "logtemperateslableft" : {
-    "albedo" : "vanilla.logtemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "logtemperateslabright" : {
-    "albedo" : "vanilla.logtemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "logtemperateslabfront" : {
-    "albedo" : "vanilla.logtemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "logtemperateslabback" : {
-    "albedo" : "vanilla.logtemperate",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "sandstoneslableft" : {
-    "albedo" : "sandstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "sandstoneslabright" : {
-    "albedo" : "sandstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "sandstoneslabfront" : {
-    "albedo" : "sandstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "sandstoneslabback" : {
-    "albedo" : "sandstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "limestoneslableft" : {
-    "albedo" : "limestone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "limestoneslabright" : {
-    "albedo" : "limestone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "limestoneslabfront" : {
-    "albedo" : "limestone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "limestoneslabback" : {
-    "albedo" : "limestone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "marbleslableft" : {
-    "albedo" : "marble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marbleslabright" : {
-    "albedo" : "marble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marbleslabfront" : {
-    "albedo" : "marble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marbleslabback" : {
-    "albedo" : "marble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "rawmarbleslableft" : {
-    "albedo" : "rawmarble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "rawmarbleslabright" : {
-    "albedo" : "rawmarble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "rawmarbleslabfront" : {
-    "albedo" : "rawmarble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "rawmarbleslabback" : {
-    "albedo" : "rawmarble",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marblebricksslableft" : {
-    "albedo" : "marblebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marblebricksslabright" : {
-    "albedo" : "marblebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marblebricksslabfront" : {
-    "albedo" : "marblebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "marblebricksslabback" : {
-    "albedo" : "marblebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "stonesquaresslableft" : {
-    "albedo" : "stonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "stonesquaresslabright" : {
-    "albedo" : "stonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "stonesquaresslabfront" : {
-    "albedo" : "stonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "stonesquaresslabback" : {
-    "albedo" : "stonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "mossstonesquaresslableft" : {
-    "albedo" : "mossstonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstonesquaresslabright" : {
-    "albedo" : "mossstonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstonesquaresslabfront" : {
-    "albedo" : "mossstonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstonesquaresslabback" : {
-    "albedo" : "mossstonesquares",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "mossstonebricksslableft" : {
-    "albedo" : "mossstonebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstonebricksslabright" : {
-    "albedo" : "mossstonebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstonebricksslabfront" : {
-    "albedo" : "mossstonebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstonebricksslabback" : {
-    "albedo" : "mossstonebricks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "mossstoneslableft" : {
-    "albedo" : "mossstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstoneslabright" : {
-    "albedo" : "mossstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstoneslabfront" : {
-    "albedo" : "mossstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "mossstoneslabback" : {
-    "albedo" : "mossstone",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "plasterslableft" : {
-    "albedo" : "vanilla.plasterblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "plasterslabright" : {
-    "albedo" : "vanilla.plasterblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "plasterslabfront" : {
-    "albedo" : "vanilla.plasterblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "plasterslabback" : {
-    "albedo" : "vanilla.plasterblock",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "clayslableft" : {
-    "albedo" : "vanilla.clay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "clayslabright" : {
-    "albedo" : "vanilla.clay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "clayslabfront" : {
-    "albedo" : "vanilla.clay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "clayslabback" : {
-    "albedo" : "vanilla.clay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "redplankslableft" : {
-    "albedo" : "vanilla.redplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "redplankslabright" : {
-    "albedo" : "vanilla.redplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "redplankslabfront" : {
-    "albedo" : "vanilla.redplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "redplankslabback" : {
-    "albedo" : "vanilla.redplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "blackplankslableft" : {
-    "albedo" : "vanilla.blackplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blackplankslabright" : {
-    "albedo" : "vanilla.blackplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blackplankslabfront" : {
-    "albedo" : "vanilla.blackplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blackplankslabback" : {
-    "albedo" : "vanilla.blackplanks",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "whiteclayslableft" : {
-    "albedo" : "whiteclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "whiteclayslabright" : {
-    "albedo" : "whiteclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "whiteclayslabfront" : {
-    "albedo" : "whiteclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "whiteclayslabback" : {
-    "albedo" : "whiteclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "yellowclayslableft" : {
-    "albedo" : "yellowclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "yellowclayslabright" : {
-    "albedo" : "yellowclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "yellowclayslabfront" : {
-    "albedo" : "yellowclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "yellowclayslabback" : {
-    "albedo" : "yellowclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "orangeclayslableft" : {
-    "albedo" : "orangeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "orangeclayslabright" : {
-    "albedo" : "orangeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "orangeclayslabfront" : {
-    "albedo" : "orangeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "orangeclayslabback" : {
-    "albedo" : "orangeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "magentaclayslableft" : {
-    "albedo" : "magentaclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "magentaclayslabright" : {
-    "albedo" : "magentaclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "magentaclayslabfront" : {
-    "albedo" : "magentaclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "magentaclayslabback" : {
-    "albedo" : "magentaclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "purpleclayslableft" : {
-    "albedo" : "purpleclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "purpleclayslabright" : {
-    "albedo" : "purpleclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "purpleclayslabfront" : {
-    "albedo" : "purpleclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "purpleclayslabback" : {
-    "albedo" : "purpleclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "redclayslableft" : {
-    "albedo" : "redclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "redclayslabright" : {
-    "albedo" : "redclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "redclayslabfront" : {
-    "albedo" : "redclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "redclayslabback" : {
-    "albedo" : "redclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "lightpinkclayslableft" : {
-    "albedo" : "lightpinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "lightpinkclayslabright" : {
-    "albedo" : "lightpinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "lightpinkclayslabfront" : {
-    "albedo" : "lightpinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "lightpinkclayslabback" : {
-    "albedo" : "lightpinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "pinkclayslableft" : {
-    "albedo" : "pinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "pinkclayslabright" : {
-    "albedo" : "pinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "pinkclayslabfront" : {
-    "albedo" : "pinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "pinkclayslabback" : {
-    "albedo" : "pinkclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "limeclayslableft" : {
-    "albedo" : "limeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "limeclayslabright" : {
-    "albedo" : "limeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "limeclayslabfront" : {
-    "albedo" : "limeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "limeclayslabback" : {
-    "albedo" : "limeclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "greenclayslableft" : {
-    "albedo" : "greenclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "greenclayslabright" : {
-    "albedo" : "greenclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "greenclayslabfront" : {
-    "albedo" : "greenclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "greenclayslabback" : {
-    "albedo" : "greenclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "lightgreyclayslableft" : {
-    "albedo" : "lightgreyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "lightgreyclayslabright" : {
-    "albedo" : "lightgreyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "lightgreyclayslabfront" : {
-    "albedo" : "lightgreyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "lightgreyclayslabback" : {
-    "albedo" : "lightgreyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "greyclayslableft" : {
-    "albedo" : "greyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "greyclayslabright" : {
-    "albedo" : "greyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "greyclayslabfront" : {
-    "albedo" : "greyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "greyclayslabback" : {
-    "albedo" : "greyclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "darkblueclayslableft" : {
-    "albedo" : "darkblueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "darkblueclayslabright" : {
-    "albedo" : "darkblueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "darkblueclayslabfront" : {
-    "albedo" : "darkblueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "darkblueclayslabback" : {
-    "albedo" : "darkblueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "cyanclayslableft" : {
-    "albedo" : "cyanclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "cyanclayslabright" : {
-    "albedo" : "cyanclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "cyanclayslabfront" : {
-    "albedo" : "cyanclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "cyanclayslabback" : {
-    "albedo" : "cyanclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "brownclayslableft" : {
-    "albedo" : "brownclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "brownclayslabright" : {
-    "albedo" : "brownclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "brownclayslabfront" : {
-    "albedo" : "brownclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "brownclayslabback" : {
-    "albedo" : "brownclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "blueclayslableft" : {
-    "albedo" : "blueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blueclayslabright" : {
-    "albedo" : "blueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blueclayslabfront" : {
-    "albedo" : "blueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blueclayslabback" : {
-    "albedo" : "blueclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
- "blackclayslableft" : {
-    "albedo" : "blackclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blackclayslabright" : {
-    "albedo" : "blackclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blackclayslabfront" : {
-    "albedo" : "blackclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
-  },
-  "blackclayslabback" : {
-    "albedo" : "blackclay",
-    "normal" : "neutral",
-    "emissive" : "neutral",
-    "height" : "neutral"
+  "dirtbrickslabright": {
+    "albedo": "dirtBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "dirtbrickslabfront": {
+    "albedo": "dirtBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "dirtbrickslabback": {
+    "albedo": "dirtBricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "logtaigaslableft": {
+    "albedo": "vanilla.logtaiga",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtaigaslabright": {
+    "albedo": "vanilla.logtaiga",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtaigaslabfront": {
+    "albedo": "vanilla.logtaiga",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtaigaslabback": {
+    "albedo": "vanilla.logtaiga",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtemperateslableft": {
+    "albedo": "vanilla.logtemperate",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtemperateslabright": {
+    "albedo": "vanilla.logtemperate",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtemperateslabfront": {
+    "albedo": "vanilla.logtemperate",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "logtemperateslabback": {
+    "albedo": "vanilla.logtemperate",
+    "normal": "vanilla.log",
+    "emissive": "neutral",
+    "height": "vanilla.log"
+  },
+  "sandstoneslableft": {
+    "albedo": "sandstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandstoneslabright": {
+    "albedo": "sandstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandstoneslabfront": {
+    "albedo": "sandstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "sandstoneslabback": {
+    "albedo": "sandstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "limestoneslableft": {
+    "albedo": "limestone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "limestoneslabright": {
+    "albedo": "limestone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "limestoneslabfront": {
+    "albedo": "limestone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "limestoneslabback": {
+    "albedo": "limestone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marbleslableft": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marbleslabright": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marbleslabfront": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marbleslabback": {
+    "albedo": "marble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarbleslableft": {
+    "albedo": "rawmarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarbleslabright": {
+    "albedo": "rawmarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarbleslabfront": {
+    "albedo": "rawmarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rawmarbleslabback": {
+    "albedo": "rawmarble",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricksslableft": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricksslabright": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricksslabfront": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "marblebricksslabback": {
+    "albedo": "marblebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquaresslableft": {
+    "albedo": "stonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquaresslabright": {
+    "albedo": "stonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquaresslabfront": {
+    "albedo": "stonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "stonesquaresslabback": {
+    "albedo": "stonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquaresslableft": {
+    "albedo": "mossstonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquaresslabright": {
+    "albedo": "mossstonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquaresslabfront": {
+    "albedo": "mossstonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonesquaresslabback": {
+    "albedo": "mossstonesquares",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonebricksslableft": {
+    "albedo": "mossstonebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonebricksslabright": {
+    "albedo": "mossstonebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonebricksslabfront": {
+    "albedo": "mossstonebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstonebricksslabback": {
+    "albedo": "mossstonebricks",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstoneslableft": {
+    "albedo": "mossstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstoneslabright": {
+    "albedo": "mossstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstoneslabfront": {
+    "albedo": "mossstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "mossstoneslabback": {
+    "albedo": "mossstone",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "plasterslableft": {
+    "albedo": "vanilla.plasterblock",
+    "normal": "vanilla.plasterblock",
+    "emissive": "neutral",
+    "height": "vanilla.plasterblock"
+  },
+  "plasterslabright": {
+    "albedo": "vanilla.plasterblock",
+    "normal": "vanilla.plasterblock",
+    "emissive": "neutral",
+    "height": "vanilla.plasterblock"
+  },
+  "plasterslabfront": {
+    "albedo": "vanilla.plasterblock",
+    "normal": "vanilla.plasterblock",
+    "emissive": "neutral",
+    "height": "vanilla.plasterblock"
+  },
+  "plasterslabback": {
+    "albedo": "vanilla.plasterblock",
+    "normal": "vanilla.plasterblock",
+    "emissive": "neutral",
+    "height": "vanilla.plasterblock"
+  },
+  "clayslableft": {
+    "albedo": "vanilla.clay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "clayslabright": {
+    "albedo": "vanilla.clay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "clayslabfront": {
+    "albedo": "vanilla.clay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "clayslabback": {
+    "albedo": "vanilla.clay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "redplankslableft": {
+    "albedo": "vanilla.redplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "redplankslabright": {
+    "albedo": "vanilla.redplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "redplankslabfront": {
+    "albedo": "vanilla.redplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "redplankslabback": {
+    "albedo": "vanilla.redplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "blackplankslableft": {
+    "albedo": "vanilla.blackplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "blackplankslabright": {
+    "albedo": "vanilla.blackplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "blackplankslabfront": {
+    "albedo": "vanilla.blackplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "blackplankslabback": {
+    "albedo": "vanilla.blackplanks",
+    "normal": "vanilla.planks",
+    "emissive": "neutral",
+    "height": "vanilla.coatedplanks"
+  },
+  "whiteclayslableft": {
+    "albedo": "whiteclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "whiteclayslabright": {
+    "albedo": "whiteclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "whiteclayslabfront": {
+    "albedo": "whiteclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "whiteclayslabback": {
+    "albedo": "whiteclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclayslableft": {
+    "albedo": "yellowclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclayslabright": {
+    "albedo": "yellowclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclayslabfront": {
+    "albedo": "yellowclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "yellowclayslabback": {
+    "albedo": "yellowclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "orangeclayslableft": {
+    "albedo": "orangeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "orangeclayslabright": {
+    "albedo": "orangeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "orangeclayslabfront": {
+    "albedo": "orangeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "orangeclayslabback": {
+    "albedo": "orangeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclayslableft": {
+    "albedo": "magentaclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclayslabright": {
+    "albedo": "magentaclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclayslabfront": {
+    "albedo": "magentaclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "magentaclayslabback": {
+    "albedo": "magentaclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclayslableft": {
+    "albedo": "purpleclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclayslabright": {
+    "albedo": "purpleclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclayslabfront": {
+    "albedo": "purpleclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "purpleclayslabback": {
+    "albedo": "purpleclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "redclayslableft": {
+    "albedo": "redclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "redclayslabright": {
+    "albedo": "redclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "redclayslabfront": {
+    "albedo": "redclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "redclayslabback": {
+    "albedo": "redclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclayslableft": {
+    "albedo": "lightpinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclayslabright": {
+    "albedo": "lightpinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclayslabfront": {
+    "albedo": "lightpinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightpinkclayslabback": {
+    "albedo": "lightpinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclayslableft": {
+    "albedo": "pinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclayslabright": {
+    "albedo": "pinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclayslabfront": {
+    "albedo": "pinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "pinkclayslabback": {
+    "albedo": "pinkclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclayslableft": {
+    "albedo": "limeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclayslabright": {
+    "albedo": "limeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclayslabfront": {
+    "albedo": "limeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "limeclayslabback": {
+    "albedo": "limeclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclayslableft": {
+    "albedo": "greenclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclayslabright": {
+    "albedo": "greenclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclayslabfront": {
+    "albedo": "greenclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greenclayslabback": {
+    "albedo": "greenclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclayslableft": {
+    "albedo": "lightgreyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclayslabright": {
+    "albedo": "lightgreyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclayslabfront": {
+    "albedo": "lightgreyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "lightgreyclayslabback": {
+    "albedo": "lightgreyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclayslableft": {
+    "albedo": "greyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclayslabright": {
+    "albedo": "greyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclayslabfront": {
+    "albedo": "greyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "greyclayslabback": {
+    "albedo": "greyclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclayslableft": {
+    "albedo": "darkblueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclayslabright": {
+    "albedo": "darkblueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclayslabfront": {
+    "albedo": "darkblueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "darkblueclayslabback": {
+    "albedo": "darkblueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclayslableft": {
+    "albedo": "cyanclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclayslabright": {
+    "albedo": "cyanclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclayslabfront": {
+    "albedo": "cyanclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "cyanclayslabback": {
+    "albedo": "cyanclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclayslableft": {
+    "albedo": "brownclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclayslabright": {
+    "albedo": "brownclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclayslabfront": {
+    "albedo": "brownclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "brownclayslabback": {
+    "albedo": "brownclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclayslableft": {
+    "albedo": "blueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclayslabright": {
+    "albedo": "blueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclayslabfront": {
+    "albedo": "blueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blueclayslabback": {
+    "albedo": "blueclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclayslableft": {
+    "albedo": "blackclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclayslabright": {
+    "albedo": "blackclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclayslabfront": {
+    "albedo": "blackclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
+  },
+  "blackclayslabback": {
+    "albedo": "blackclay",
+    "normal": "vanilla.clay",
+    "emissive": "neutral",
+    "height": "vanilla.clay"
   }
 }

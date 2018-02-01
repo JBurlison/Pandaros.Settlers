@@ -2101,7 +2101,9 @@
     <Content Include="Textures\albedo\yellowClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\height\notwater.png" />
+    <Content Include="Textures\height\notwater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\height\PhysicianBench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2123,7 +2125,9 @@
     <Content Include="Textures\normal\AdvancedCraftingTableTop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\normal\notwater.png" />
+    <Content Include="Textures\normal\notwater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\normal\PhysicianBench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
