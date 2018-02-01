@@ -43,6 +43,7 @@ namespace Pandaros.Settlers.Research
         public const string ImprovedFuelCapacity = "ImprovedFuelCapacity";
         public const string IncreasedCapacity = "IncreasedCapacity";
         public const string AdvancedApothecary = "AdvancedApothecary";
+        public const string Mana = "Mana";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -422,6 +423,27 @@ namespace Pandaros.Settlers.Research
         {
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.Anitbiotic.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.TreatedBandage.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
+
+        private static void AddManaResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagColony, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Apothecary + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, Mana, 1f, requirements);
+            research.ResearchComplete += Mana_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Mana_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Mana.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
         }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)

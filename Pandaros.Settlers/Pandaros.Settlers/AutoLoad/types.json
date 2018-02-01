@@ -976,7 +976,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "stonebrickslabtop":{
@@ -1021,7 +1021,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "plankslableft":{
@@ -1050,7 +1050,7 @@
     "mesh": "slabtop.obj",
     "customData": {
       "useNormalMap": true,
-      "usHeightMap": true
+      "useHeightMap": true
     }
   },
   "plankslabbottom": {
@@ -1059,7 +1059,7 @@
     "mesh": "slabbottom.obj",
     "customData": {
       "useNormalMap": true,
-      "usHeightMap": true
+      "useHeightMap": true
     }
   },
    "brickslab":{
@@ -1074,7 +1074,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "brickslableft":{
@@ -1119,7 +1119,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "coatedplankslableft":{
@@ -1164,7 +1164,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "cherryblossomslableft":{
@@ -1209,7 +1209,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "leavestemperateslableft":{
@@ -1254,7 +1254,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "leavestaigaslableft":{
@@ -1290,7 +1290,7 @@
    "waterslab":{
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       },
       "icon": "waterslab.png",
       "onPlaceAudio":"waterPlace",
@@ -1347,7 +1347,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "adobeslableft":{
@@ -1393,7 +1393,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "rainforestslableft":{
@@ -1439,7 +1439,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "temperateslableft":{
@@ -1485,7 +1485,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "tundraslableft":{
@@ -1531,7 +1531,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "taigaslableft":{
@@ -1577,7 +1577,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "savannaslableft":{
@@ -1623,7 +1623,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "strawslableft":{
@@ -1668,7 +1668,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "berrybushslableft":{
@@ -1713,7 +1713,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "snowslableft":{
@@ -1758,7 +1758,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "sandslableft":{
@@ -1807,7 +1807,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "dirtslableft":{
@@ -1853,7 +1853,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "carpetyellowslableft":{
@@ -1898,7 +1898,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "carpetblueslableft":{
@@ -1943,7 +1943,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "carpetredslableft":{
@@ -1988,7 +1988,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "stoneblockslableft":{
@@ -2033,7 +2033,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "dirtbrickslableft":{
@@ -2079,7 +2079,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "logtaigaslableft":{
@@ -2124,7 +2124,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "logtemperateslableft":{
@@ -2169,7 +2169,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "sandstoneslableft":{
@@ -2216,7 +2216,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "limestoneslableft":{
@@ -2261,7 +2261,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "marbleslableft":{
@@ -2306,7 +2306,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "rawmarbleslableft":{
@@ -2351,7 +2351,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "marblebricksslableft":{
@@ -2396,7 +2396,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "stonesquaresslableft":{
@@ -2457,7 +2457,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "mossstonesquaresslableft":{
@@ -2502,7 +2502,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "mossstonebricksslableft":{
@@ -2537,7 +2537,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "mossstoneslableft":{
@@ -2608,7 +2608,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "plasterslableft":{
@@ -2653,7 +2653,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "clayslableft":{
@@ -2698,7 +2698,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "redplankslableft":{
@@ -2743,7 +2743,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "blackplankslableft":{
@@ -2788,7 +2788,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "whiteclayslableft":{
@@ -2833,7 +2833,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "yellowclayslableft":{
@@ -2878,7 +2878,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "orangeclayslableft":{
@@ -2923,7 +2923,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "magentaclayslableft":{
@@ -2968,7 +2968,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "purpleclayslableft":{
@@ -3013,7 +3013,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "redclayslableft":{
@@ -3058,7 +3058,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "lightpinkclayslableft":{
@@ -3103,7 +3103,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "pinkclayslableft":{
@@ -3148,7 +3148,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "limeclayslableft":{
@@ -3193,7 +3193,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "greenclayslableft":{
@@ -3238,7 +3238,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "lightgreyclayslableft":{
@@ -3283,7 +3283,7 @@
     ],
     "customData": {
       "useNormalMap": true,
-      "usHeightMap": true
+      "useHeightMap": true
     }
   },
    "greyclayslableft":{
@@ -3327,7 +3327,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "darkblueclayslableft":{
@@ -3372,7 +3372,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "cyanclayslableft":{
@@ -3417,7 +3417,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "brownclayslableft":{
@@ -3462,7 +3462,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "blueclayslableft":{
@@ -3507,7 +3507,7 @@
       ],
       "customData":{
          "useNormalMap":true,
-         "usHeightMap":true
+         "useHeightMap":true
       }
    },
    "blackclayslableft":{

@@ -1,0 +1,45 @@
+﻿using BlockTypes.Builtin;
+using Pipliz.JSON;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Pandaros.Settlers.Items
+{
+    [ModLoader.ModManager]
+    public static class Mana
+    {
+        public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Mana.Register")]
+        public static void Register()
+        {
+            var herbs = new InventoryItem(BuiltinBlocks.Hollyhock, 20);
+            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 20);
+            var oil = new InventoryItem(BuiltinBlocks.LinseedOil, 5);
+            var herbs3 = new InventoryItem(BuiltinBlocks.Wolfsbane, 20);
+
+            var recipe = new Recipe(Item.name,
+                                    new List<InventoryItem>() { herbs3, oil, herbs, herbs2 },
+                                    new InventoryItem(Item.ItemIndex, 1),
+                                    50);
+
+            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
+            RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
+        }
+
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Mana.Add"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        {
+            var name = GameLoader.NAMESPACE + ".Mana";
+            var node = new JSONNode();
+            node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/bluebottle.png");
+            node["isPlaceable"] = new JSONNode(false);
+
+            Item = new ItemTypesServer.ItemTypeRaw(name, node);
+            items.Add(name, Item);
+        }
+    }
+}
