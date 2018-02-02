@@ -73,6 +73,7 @@
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="Items\Machines\TeleportPad.cs" />
     <Compile Include="Items\Mana.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Food\BerryPancakes.cs" />
