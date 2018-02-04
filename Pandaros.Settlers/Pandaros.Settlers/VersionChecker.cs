@@ -118,6 +118,7 @@ namespace Pandaros.Settlers
                     if (!NewVer)
                     {
                         NewVer = true;
+                        bool error = false;
 
                         try
                         {
@@ -139,13 +140,17 @@ namespace Pandaros.Settlers
                             }
                             catch (Exception ex)
                             {
+                                error = true;
+
                                 if (Directory.Exists(bkFolder))
                                     Directory.Move(bkFolder, GameLoader.MODS_FOLDER + "/Pandaros");
 
                                 PandaLogger.LogError(ex);
+                                PandaLogger.Log(ChatColor.red, $"There was an error updating to the latest version of Settlers!");
                             }
 
-                            PandaLogger.Log(ChatColor.green, $"Settlers! update {gitVer} installed. Restart to update!");
+                            if (!error)
+                                PandaLogger.Log(ChatColor.green, $"Settlers! update {gitVer} installed. Restart to update!");
                         }
                         catch (Exception ex)
                         {

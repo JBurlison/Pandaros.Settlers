@@ -22,6 +22,7 @@ namespace Pandaros.Settlers
         public static string AUTOLOAD_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/localization";
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";
+        public static string GAME_ROOT = @"";
 
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
@@ -52,6 +53,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
+            GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")) + "/";
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length) + "/";
             MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
             MOD_FOLDER = Path.GetDirectoryName(path);
@@ -62,6 +64,21 @@ namespace Pandaros.Settlers
             TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/");
             AUDIO_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/");
             AUTOLOAD_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "AutoLoad").Replace("\\", "/");
+            bool fileWasCopied = false;
+
+            foreach (var file in Directory.GetFiles(MOD_FOLDER + "/ZipSupport"))
+            {
+                var destFile = GAME_ROOT + "colonyserver_Data/Managed/" + new FileInfo(file).Name;
+
+                if (!File.Exists(destFile))
+                {
+                    fileWasCopied = true;
+                    File.Copy(file, destFile);
+                }
+            }
+
+            if (fileWasCopied)
+                PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
