@@ -1,5 +1,5 @@
 ﻿using ChatCommands;
-using Ionic.Zip;
+using ICSharpCode.SharpZipLib.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -111,8 +111,6 @@ namespace Pandaros.Settlers
                 var newVer = GameLoader.MODS_FOLDER + $"/{gitVer}.zip";
                 var oldVer = GameLoader.MODS_FOLDER + $"/{GameLoader.MOD_VER}.zip";
 
-                PandaLogger.Log(verString);
-
                 WebClient webClient = new WebClient();
                 webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 (.NET CLR 3.5.30729)";
                 webClient.DownloadFileCompleted += (s, e) =>
@@ -136,8 +134,8 @@ namespace Pandaros.Settlers
 
                             try
                             {
-                                using (ZipFile zf = ZipFile.Read(newVer))
-                                    zf.ExtractAll(GameLoader.MODS_FOLDER);
+                                FastZip fastZip = new FastZip();
+                                fastZip.ExtractZip(newVer, GameLoader.MODS_FOLDER, null);
                             }
                             catch (Exception ex)
                             {
