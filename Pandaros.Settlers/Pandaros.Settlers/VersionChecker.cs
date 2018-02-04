@@ -13,7 +13,7 @@ namespace Pandaros.Settlers
 {
     public static class VersionChecker
     {
-        private static bool _newVer = false;
+        internal static bool NewVer = false;
         const string GIT_URL = "https://api.github.com/repos/JBurlison/Pandaros.Settlers/releases";
         const string NAME = "\"name\": \"";
         const string ASSETS = "\"assets\":";
@@ -117,9 +117,9 @@ namespace Pandaros.Settlers
                 webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 (.NET CLR 3.5.30729)";
                 webClient.DownloadFileCompleted += (s, e) =>
                 {
-                    if (!_newVer)
+                    if (!NewVer)
                     {
-                        _newVer = true;
+                        NewVer = true;
 
                         try
                         {
@@ -186,18 +186,20 @@ namespace Pandaros.Settlers
             var gitVer = VersionChecker.GetGitVerion();
             var versionCompare = GameLoader.MOD_VER.Major.CompareTo(gitVer.Major);
 
-            if (array.Length == 1)
+            PandaChat.Send(player, "Settlers! Mod version: {0}.", ChatColor.green, GameLoader.MOD_VER.ToString());
+            PandaChat.Send(player, "Settlers! Git version: {0}.", ChatColor.green, gitVer.ToString());
+
+            if (versionCompare < 0)
             {
-                PandaChat.Send(player, "Settlers! Mod version: {0}.", ChatColor.green, GameLoader.MOD_VER.ToString());
-                PandaChat.Send(player, "Settlers! Git version: {0}.", ChatColor.green, gitVer.ToString());
-
-                if (versionCompare < 0)
+                if (!VersionChecker.NewVer)
                 {
-                    PandaChat.Send(player, "Settlers! Settlers version is out of date. Please update at: https://github.com/JBurlison/Pandaros.Settlers/releases", ChatColor.red);
+                    PandaChat.Send(player, "Settlers! version is out of date. The mod will automatically update now.", ChatColor.red);
+                    VersionChecker.WriteVersionsToConsole();
                 }
+                else
+                    PandaChat.Send(player, "Settlers! Has been updated. Restart the server/game to apply.", ChatColor.red);
             }
-            
-
+ 
             return true;
         }
     }
