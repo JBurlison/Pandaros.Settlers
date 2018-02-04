@@ -20,12 +20,14 @@ namespace Pandaros.Settlers
         public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
         public static string AUDIO_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Audio";
         public static string AUTOLOAD_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/localization";
+        public static string MODS_FOLDER = @"";
+        public static string GAMEDATA_FOLDER = @"";
 
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 6, 3, 3);
+        public static readonly Version MOD_VER = new Version(0, 6, 4, 0);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -50,6 +52,8 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
+            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length) + "/";
+            MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
             MOD_FOLDER = Path.GetDirectoryName(path);
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
             LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization").Replace("\\", "/");
@@ -131,11 +135,13 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".AfterStartup")]
         public static void AfterStartup()
         {
-            PandaLogger.Log(ChatColor.lime, "Active. Version {0}", MOD_VER);
             RUNNING = true;
             ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new AI.CalltoArms());
             ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
+            ChatCommands.CommandManager.RegisterCommand(new VersionChatCommand());
+
+            VersionChecker.WriteVersionsToConsole();
 #if Debug
             ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
 #endif
