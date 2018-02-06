@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Entities
             get
             {
                 if (Difficulty == null)
-                    Difficulty = GameDifficulty.Medium;
+                    Difficulty = Configuration.DefaultDifficulty;
 
                 return Difficulty.Name;
             }
@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Entities
             set
             {
                 if (!GameDifficulty.GameDifficulties.ContainsKey(value))
-                    Difficulty = GameDifficulty.Medium;
+                    Difficulty = Configuration.DefaultDifficulty;
                 else
                     Difficulty = GameDifficulty.GameDifficulties[value];
             }
@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Entities
 
         public PlayerState(Players.Player p)
         {
-            Difficulty = GameDifficulty.Medium;
+            Difficulty = Configuration.DefaultDifficulty;
             Player = p;
             Rand = new System.Random();
             SetupArmor();

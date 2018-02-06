@@ -67,48 +67,51 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var retval = GameLoader.Repairing_Icon;
 
-            try
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                var ps = PlayerState.GetPlayerState(player);
-
-                if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
-                if (machineState.Durability < .75f && TurretSettings.ContainsKey(machineState.MachineType))
+                try
                 {
-                    bool repaired = false;
-                    List<InventoryItem> requiredForFix = new List<InventoryItem>();
-                    var stockpile = Stockpile.GetStockPile(player);
+                    var ps = PlayerState.GetPlayerState(player);
 
-                    foreach (var durability in TurretSettings[machineState.MachineType].RequiredForFix.OrderByDescending(s => s.Key))
-                        if (machineState.Durability < durability.Key)
-                        {
-                            requiredForFix = durability.Value;
-                            break;
-                        }
+                    if (!MachineState.MAX_DURABILITY.ContainsKey(player))
+                        MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
 
-                    if (stockpile.Contains(requiredForFix))
+                    if (machineState.Durability < .75f && TurretSettings.ContainsKey(machineState.MachineType))
                     {
-                        stockpile.TryRemove(requiredForFix);
-                        repaired = true;
-                    }
-                    else
-                        foreach (var item in requiredForFix)
-                        {
-                            if (!stockpile.Contains(item) && item.Type != 0)
+                        bool repaired = false;
+                        List<InventoryItem> requiredForFix = new List<InventoryItem>();
+                        var stockpile = Stockpile.GetStockPile(player);
+
+                        foreach (var durability in TurretSettings[machineState.MachineType].RequiredForFix.OrderByDescending(s => s.Key))
+                            if (machineState.Durability < durability.Key)
                             {
-                                retval = item.Type;
+                                requiredForFix = durability.Value;
                                 break;
                             }
-                        }
 
-                    if (repaired)
-                        machineState.Durability = MachineState.MAX_DURABILITY[player];
+                        if (stockpile.Contains(requiredForFix))
+                        {
+                            stockpile.TryRemove(requiredForFix);
+                            repaired = true;
+                        }
+                        else
+                            foreach (var item in requiredForFix)
+                            {
+                                if (!stockpile.Contains(item) && item.Type != 0)
+                                {
+                                    retval = item.Type;
+                                    break;
+                                }
+                            }
+
+                        if (repaired)
+                            machineState.Durability = MachineState.MAX_DURABILITY[player];
+                    }
                 }
-            } 
-            catch (Exception ex)
-            {
-                PandaLogger.LogError(ex);
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
             }
 
             return retval;
@@ -118,35 +121,38 @@ namespace Pandaros.Settlers.Items.Machines
         {
             ushort retval = GameLoader.Reload_Icon;
 
-            try
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                var ps = PlayerState.GetPlayerState(player);
-
-                if (!MachineState.MAX_LOAD.ContainsKey(player))
-                    MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
-
-                if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
+                try
                 {
-                    var stockpile = Stockpile.GetStockPile(player);
+                    var ps = PlayerState.GetPlayerState(player);
 
-                    while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player])
+                    if (!MachineState.MAX_LOAD.ContainsKey(player))
+                        MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
+
+                    if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
                     {
-                        if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
+                        var stockpile = Stockpile.GetStockPile(player);
+
+                        while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) && machineState.Load <= MachineState.MAX_LOAD[player])
                         {
-                            machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
+                            if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
+                            {
+                                machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
 
-                            if (TurretSettings[machineState.MachineType].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
-                                stockpile.Add(BuiltinBlocks.LinenPouch);
+                                if (TurretSettings[machineState.MachineType].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
+                                    stockpile.Add(BuiltinBlocks.LinenPouch);
+                            }
                         }
-                    }
 
-                    if (machineState.Load < MachineState.MAX_LOAD[player])
-                        retval = TurretSettings[machineState.MachineType].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
+                        if (machineState.Load < MachineState.MAX_LOAD[player])
+                            retval = TurretSettings[machineState.MachineType].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                PandaLogger.LogError(ex);
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
             }
 
             return retval;
@@ -154,71 +160,74 @@ namespace Pandaros.Settlers.Items.Machines
         
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            try
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                if (TurretSettings.ContainsKey(machineState.MachineType) &&
-                    machineState.Durability > 0 &&
-                    machineState.Fuel > 0 &&
-                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+                try
                 {
-                    var stockpile = Stockpile.GetStockPile(player);
-
-                    machineState.Durability -= TurretSettings[machineState.MachineType].DurabilityPerDoWork;
-                    machineState.Fuel -= TurretSettings[machineState.MachineType].FuelPerDoWork;
-
-                    if (machineState.Durability < 0)
-                        machineState.Durability = 0;
-
-                    if (machineState.Fuel <= 0)
-                        machineState.Fuel = 0;
-
-                    if (machineState.Load > 0)
+                    if (TurretSettings.ContainsKey(machineState.MachineType) &&
+                        machineState.Durability > 0 &&
+                        machineState.Fuel > 0 &&
+                        machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                     {
-                        var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                        var stockpile = Stockpile.GetStockPile(player);
 
-                        if (monster == null)
-                            monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                        machineState.Durability -= TurretSettings[machineState.MachineType].DurabilityPerDoWork;
+                        machineState.Fuel -= TurretSettings[machineState.MachineType].FuelPerDoWork;
 
-                        if (monster == null)
-                            MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                        if (machineState.Durability < 0)
+                            machineState.Durability = 0;
 
-                        if (monster == null)
-                            MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                        if (machineState.Fuel <= 0)
+                            machineState.Fuel = 0;
 
-                        if (monster == null)
-                            MonsterTracker.Find(machineState.Position.Add(0, 0, 1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
-
-                        if (monster == null)
-                            MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
-
-                        if (monster != null)
+                        if (machineState.Load > 0)
                         {
-                            machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
-                            Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, TurretSettings[machineState.MachineType].Ammo.FirstOrDefault().Type));
+                            var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
-                            if (machineState.Load < 0)
-                                machineState.Load = 0;
+                            if (monster == null)
+                                monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
-                            if (TurretSettings[machineState.MachineType].OnShootAudio != null)
-                                ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.MachineType].OnShootAudio);
+                            if (monster == null)
+                                MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
-                            if (TurretSettings[machineState.MachineType].OnHitAudio != null)
-                                ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
+                            if (monster == null)
+                                MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
 
-                            TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
-                            monster.OnHit(TurretSettings[machineState.MachineType].Damage);
+                            if (monster == null)
+                                MonsterTracker.Find(machineState.Position.Add(0, 0, 1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                            if (monster == null)
+                                MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+
+                            if (monster != null)
+                            {
+                                machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
+                                Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, TurretSettings[machineState.MachineType].Ammo.FirstOrDefault().Type));
+
+                                if (machineState.Load < 0)
+                                    machineState.Load = 0;
+
+                                if (TurretSettings[machineState.MachineType].OnShootAudio != null)
+                                    ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.MachineType].OnShootAudio);
+
+                                if (TurretSettings[machineState.MachineType].OnHitAudio != null)
+                                    ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
+
+                                TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
+                                monster.OnHit(TurretSettings[machineState.MachineType].Damage);
+                            }
+                            else
+                                Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, GameLoader.MissingMonster_Icon, true));
+
                         }
-                        else
-                            Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, GameLoader.MissingMonster_Icon, true));
 
+                        machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
                     }
-
-                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
                 }
-            }
-            catch (Exception ex)
-            {
-                PandaLogger.LogError(ex, $"Turret shoot for {machineState.MachineType}");
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex, $"Turret shoot for {machineState.MachineType}");
+                }
             }
         }
 

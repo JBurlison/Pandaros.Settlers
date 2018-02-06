@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="AutoLoad.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Cosmetics\CarpetPurple.cs" />
     <Compile Include="Cosmetics\CarpetPink.cs" />
     <Compile Include="Cosmetics\CarpetOrange.cs" />

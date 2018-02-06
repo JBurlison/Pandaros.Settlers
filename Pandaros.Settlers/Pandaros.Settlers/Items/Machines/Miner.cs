@@ -27,54 +27,58 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Repair(Players.Player player, MachineState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
-            var ps = PlayerState.GetPlayerState(player);
 
-            if (machineState.Durability < .75f)
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                bool repaired = false;
-                List<InventoryItem> requiredForFix = new List<InventoryItem>();
-                var stockpile = Stockpile.GetStockPile(player);
+                var ps = PlayerState.GetPlayerState(player);
 
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
-
-                if (machineState.Durability < .10f)
+                if (machineState.Durability < .75f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
-                }
-                else if (machineState.Durability < .30f)
-                {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
-                }
-                else if (machineState.Durability < .50f)
-                {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
-                }
+                    bool repaired = false;
+                    List<InventoryItem> requiredForFix = new List<InventoryItem>();
+                    var stockpile = Stockpile.GetStockPile(player);
 
-                if (stockpile.Contains(requiredForFix))
-                {
-                    stockpile.TryRemove(requiredForFix);
-                    repaired = true;
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
+
+                    if (machineState.Durability < .10f)
+                    {
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                    }
+                    else if (machineState.Durability < .30f)
+                    {
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                    }
+                    else if (machineState.Durability < .50f)
+                    {
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                    }
+
+                    if (stockpile.Contains(requiredForFix))
+                    {
+                        stockpile.TryRemove(requiredForFix);
+                        repaired = true;
+                    }
+                    else
+                        foreach (var item in requiredForFix)
+                            if (!stockpile.Contains(item))
+                            {
+                                retval = item.Type;
+                                break;
+                            }
+
+                    if (!MachineState.MAX_DURABILITY.ContainsKey(player))
+                        MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
+
+                    if (repaired)
+                        machineState.Durability = MachineState.MAX_DURABILITY[player];
                 }
-                else
-                    foreach (var item in requiredForFix)
-                        if (!stockpile.Contains(item))
-                        {
-                            retval = item.Type;
-                            break;
-                        }
-
-                if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
-                if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY[player];
             }
 
             return retval;
@@ -87,32 +91,35 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            if (machineState.Durability > 0 && 
-                machineState.Fuel > 0 && 
-                machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                machineState.Durability -= 0.02f;
-                machineState.Fuel -= 0.05f;
-
-                if (machineState.Durability < 0)
-                    machineState.Durability = 0;
-
-                if (machineState.Fuel <= 0)
-                    machineState.Fuel = 0;
-
-                if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
+                if (machineState.Durability > 0 &&
+                machineState.Fuel > 0 &&
+                machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    List<ItemTypes.ItemTypeDrops> itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
-                    Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState((float)MinerCooldown, itemList.FirstOrDefault().item.Type));
+                    machineState.Durability -= 0.02f;
+                    machineState.Fuel -= 0.05f;
 
-                    for (int i = 0; i < itemList.Count; i++)
-                        if (Pipliz.Random.NextDouble() <= itemList[i].chance)
-                            Stockpile.GetStockPile(player).Add(itemList[i].item);
+                    if (machineState.Durability < 0)
+                        machineState.Durability = 0;
 
-                    ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "MiningMachineAudio");
+                    if (machineState.Fuel <= 0)
+                        machineState.Fuel = 0;
+
+                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
+                    {
+                        List<ItemTypes.ItemTypeDrops> itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
+                        Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState((float)MinerCooldown, itemList.FirstOrDefault().item.Type));
+
+                        for (int i = 0; i < itemList.Count; i++)
+                            if (Pipliz.Random.NextDouble() <= itemList[i].chance)
+                                Stockpile.GetStockPile(player).Add(itemList[i].item);
+
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "MiningMachineAudio");
+                    }
+
+                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
                 }
-
-                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
             }
         }
 

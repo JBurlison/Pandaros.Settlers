@@ -102,49 +102,53 @@ namespace Pandaros.Settlers.Items.Machines
         public static ushort Repair(Players.Player player, MachineState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
-            var ps = PlayerState.GetPlayerState(player);
 
-            if (machineState.Durability < .75f)
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                bool repaired = false;
-                List<InventoryItem> requiredForFix = new List<InventoryItem>();
-                var stockpile = Stockpile.GetStockPile(player);
-                
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+                var ps = PlayerState.GetPlayerState(player);
 
-                if (machineState.Durability < .10f)
+                if (machineState.Durability < .75f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
-                }
-                else if (machineState.Durability < .30f)
-                {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 3));
-                }
-                else if (machineState.Durability < .50f)
-                {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
-                }
+                    bool repaired = false;
+                    List<InventoryItem> requiredForFix = new List<InventoryItem>();
+                    var stockpile = Stockpile.GetStockPile(player);
 
-                if (stockpile.Contains(requiredForFix))
-                {
-                    stockpile.TryRemove(requiredForFix);
-                    repaired = true;
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+
+                    if (machineState.Durability < .10f)
+                    {
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
+                    }
+                    else if (machineState.Durability < .30f)
+                    {
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 3));
+                    }
+                    else if (machineState.Durability < .50f)
+                    {
+                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
+                    }
+
+                    if (stockpile.Contains(requiredForFix))
+                    {
+                        stockpile.TryRemove(requiredForFix);
+                        repaired = true;
+                    }
+                    else
+                        foreach (var item in requiredForFix)
+                            if (!stockpile.Contains(item))
+                            {
+                                retval = item.Type;
+                                break;
+                            }
+
+                    if (!MachineState.MAX_DURABILITY.ContainsKey(player))
+                        MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
+
+                    if (repaired)
+                        machineState.Durability = MachineState.MAX_DURABILITY[player];
                 }
-                else
-                    foreach (var item in requiredForFix)
-                        if (!stockpile.Contains(item))
-                        {
-                            retval = item.Type;
-                            break;
-                        }
-
-                if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
-                if (repaired)
-                    machineState.Durability = MachineState.MAX_DURABILITY[player];
             }
 
             return retval;
@@ -152,191 +156,197 @@ namespace Pandaros.Settlers.Items.Machines
         
         public static ushort Reload(Players.Player player, MachineState machineState)
         {
-            if (!MachineState.MAX_LOAD.ContainsKey(player))
-                MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
+            {
+                if (!MachineState.MAX_LOAD.ContainsKey(player))
+                    MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
 
-            machineState.Load = MachineState.MAX_LOAD[player];
+                machineState.Load = MachineState.MAX_LOAD[player];
+            }
 
             return GameLoader.Reload_Icon;
         }
 
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            if (machineState.Durability > 0 &&
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
+            {
+                if (machineState.Durability > 0 &&
                 machineState.Fuel > 0 &&
                 machineState.Load > 0 &&
                 machineState.NextTimeForWork < Pipliz.Time.SecondsSinceStartDouble)
-            {
-                if (!machineState.TempValues.Contains(DoorOpen))
-                    machineState.TempValues.Set(DoorOpen, false);
-                
-                if (!_gatePositions.ContainsKey(player))
-                    _gatePositions.Add(player, new Dictionary<Vector3Int, GateState>());
-
-                Dictionary<GateState, Vector3Int> moveGates = new Dictionary<GateState, Vector3Int>();
-
-                foreach (var gate in _gatePositions[player])
                 {
-                    if (gate.Value.State == GatePosition.MovingClosed || gate.Value.State == GatePosition.MovingOpen)
-                        continue;
+                    if (!machineState.TempValues.Contains(DoorOpen))
+                        machineState.TempValues.Set(DoorOpen, false);
 
-                    if (World.TryGetTypeAt(gate.Key, out var gateType))
+                    if (!_gatePositions.ContainsKey(player))
+                        _gatePositions.Add(player, new Dictionary<Vector3Int, GateState>());
+
+                    Dictionary<GateState, Vector3Int> moveGates = new Dictionary<GateState, Vector3Int>();
+
+                    foreach (var gate in _gatePositions[player])
                     {
-                        if (gate.Value.Orientation == VoxelSide.None)
-                        {
-                            if (gateType == GateItemXN.ItemIndex)
-                                gate.Value.Orientation = VoxelSide.xMin;
-                            else if (gateType == GateItemXP.ItemIndex)
-                                gate.Value.Orientation = VoxelSide.xPlus;
-                            else if (gateType == GateItemZN.ItemIndex)
-                                gate.Value.Orientation = VoxelSide.zMin;
-                            else if (gateType == GateItemZP.ItemIndex)
-                                gate.Value.Orientation = VoxelSide.zPlus;
-                        }
+                        if (gate.Value.State == GatePosition.MovingClosed || gate.Value.State == GatePosition.MovingOpen)
+                            continue;
 
-                        if ((gateType != GateItem.ItemIndex &&
-                            gateType != GateItemXN.ItemIndex &&
-                            gateType != GateItemXP.ItemIndex &&
-                            gateType != GateItemZN.ItemIndex &&
-                            gateType != GateItemZP.ItemIndex))
+                        if (World.TryGetTypeAt(gate.Key, out var gateType))
                         {
-                            switch (gate.Value.Orientation)
+                            if (gate.Value.Orientation == VoxelSide.None)
                             {
-                                case VoxelSide.xMin:
-                                    ServerManager.TryChangeBlock(gate.Key, GateItemXN.ItemIndex);
-                                    break;
-                                case VoxelSide.xPlus:
-                                    ServerManager.TryChangeBlock(gate.Key, GateItemXP.ItemIndex);
-                                    break;
-                                case VoxelSide.zMin:
-                                    ServerManager.TryChangeBlock(gate.Key, GateItemZN.ItemIndex);
-                                    break;
-                                case VoxelSide.zPlus:
-                                    ServerManager.TryChangeBlock(gate.Key, GateItemZP.ItemIndex);
-                                    break;
+                                if (gateType == GateItemXN.ItemIndex)
+                                    gate.Value.Orientation = VoxelSide.xMin;
+                                else if (gateType == GateItemXP.ItemIndex)
+                                    gate.Value.Orientation = VoxelSide.xPlus;
+                                else if (gateType == GateItemZN.ItemIndex)
+                                    gate.Value.Orientation = VoxelSide.zMin;
+                                else if (gateType == GateItemZP.ItemIndex)
+                                    gate.Value.Orientation = VoxelSide.zPlus;
+                            }
 
-                                default:
-                                    ServerManager.TryChangeBlock(gate.Key, GateItemXN.ItemIndex);
-                                    break;
+                            if ((gateType != GateItem.ItemIndex &&
+                                gateType != GateItemXN.ItemIndex &&
+                                gateType != GateItemXP.ItemIndex &&
+                                gateType != GateItemZN.ItemIndex &&
+                                gateType != GateItemZP.ItemIndex))
+                            {
+                                switch (gate.Value.Orientation)
+                                {
+                                    case VoxelSide.xMin:
+                                        ServerManager.TryChangeBlock(gate.Key, GateItemXN.ItemIndex);
+                                        break;
+                                    case VoxelSide.xPlus:
+                                        ServerManager.TryChangeBlock(gate.Key, GateItemXP.ItemIndex);
+                                        break;
+                                    case VoxelSide.zMin:
+                                        ServerManager.TryChangeBlock(gate.Key, GateItemZN.ItemIndex);
+                                        break;
+                                    case VoxelSide.zPlus:
+                                        ServerManager.TryChangeBlock(gate.Key, GateItemZP.ItemIndex);
+                                        break;
+
+                                    default:
+                                        ServerManager.TryChangeBlock(gate.Key, GateItemXN.ItemIndex);
+                                        break;
+                                }
                             }
                         }
+
+                        if (TimeCycle.IsDay && gate.Value.State == GatePosition.Open)
+                            continue;
+
+                        if (!TimeCycle.IsDay && gate.Value.State == GatePosition.Closed)
+                            continue;
+
+                        float dis = Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
+
+                        if (dis <= 21)
+                        {
+                            int offset = 2;
+
+                            if (!TimeCycle.IsDay)
+                                offset = -2;
+
+                            moveGates.Add(gate.Value, gate.Key.Add(0, offset, 0));
+                        }
                     }
 
-                    if (TimeCycle.IsDay && gate.Value.State == GatePosition.Open)
-                        continue;
-
-                    if (!TimeCycle.IsDay && gate.Value.State == GatePosition.Closed)
-                        continue;
-
-                    float dis = Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
-
-                    if (dis <= 21)
+                    foreach (var mkvp in moveGates)
                     {
-                        int offset = 2;
+                        if (_gatePositions[player].ContainsKey(mkvp.Key.Position))
+                            _gatePositions[player].Remove(mkvp.Key.Position);
+                    }
+
+                    foreach (var mkvp in moveGates)
+                    {
+                        _gatePositions[player].Add(mkvp.Value, mkvp.Key);
+
+                        ServerManager.TryChangeBlock(mkvp.Key.Position, BuiltinBlocks.Air);
+
+                        int newOffset = -1;
 
                         if (!TimeCycle.IsDay)
-                            offset = -2;
-
-                        moveGates.Add(gate.Value, gate.Key.Add(0, offset, 0));
-                    }
-                }
-
-                foreach (var mkvp in moveGates)
-                {
-                    if (_gatePositions[player].ContainsKey(mkvp.Key.Position))
-                        _gatePositions[player].Remove(mkvp.Key.Position);
-                }
-
-                foreach (var mkvp in moveGates)
-                {
-                    _gatePositions[player].Add(mkvp.Value, mkvp.Key);
-
-                    ServerManager.TryChangeBlock(mkvp.Key.Position, BuiltinBlocks.Air);
-
-                    int newOffset = -1;
-
-                    if (!TimeCycle.IsDay)
-                        newOffset = 1;
-
-                    switch(mkvp.Key.Orientation)
-                    {
-                        case VoxelSide.xMin:
-                            ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateXMinusItemObjSettings);
-                            break;
-                        case VoxelSide.xPlus:
-                            ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateXPlusItemObjSettings);
-                            break;
-                        case VoxelSide.zMin:
-                            ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateZMinusItemObjSettings);
-                            break;
-                        case VoxelSide.zPlus:
-                            ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateZPlusItemObjSettings);
-                            break;
-
-                        default:
-                            ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateXMinusItemObjSettings);
-                            break;
-                    }
-
-                    var moveState = GatePosition.MovingClosed;
-
-                    if (TimeCycle.IsDay)
-                        moveState = GatePosition.MovingOpen;
-
-                    mkvp.Key.State = moveState;
-                    mkvp.Key.Position = mkvp.Value;
-                    
-                    var thread = new Thread(() =>
-                    {
-                        Thread.Sleep(8000);
-
-                        var state = GatePosition.Closed;
-
-                        if (TimeCycle.IsDay)
-                            state = GatePosition.Open;
-
-                        mkvp.Key.State = state;
+                            newOffset = 1;
 
                         switch (mkvp.Key.Orientation)
                         {
                             case VoxelSide.xMin:
-                                ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
+                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateXMinusItemObjSettings);
                                 break;
                             case VoxelSide.xPlus:
-                                ServerManager.TryChangeBlock(mkvp.Value, GateItemXP.ItemIndex);
+                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateXPlusItemObjSettings);
                                 break;
                             case VoxelSide.zMin:
-                                ServerManager.TryChangeBlock(mkvp.Value, GateItemZN.ItemIndex);
+                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateZMinusItemObjSettings);
                                 break;
                             case VoxelSide.zPlus:
-                                ServerManager.TryChangeBlock(mkvp.Value, GateItemZP.ItemIndex);
+                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateZPlusItemObjSettings);
                                 break;
 
                             default:
-                                ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
+                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector, mkvp.Value.Add(0, newOffset, 0).Vector, TravelTime, _gateXMinusItemObjSettings);
                                 break;
                         }
-                    });
 
-                    thread.IsBackground = true;
-                    thread.Start();
+                        var moveState = GatePosition.MovingClosed;
+
+                        if (TimeCycle.IsDay)
+                            moveState = GatePosition.MovingOpen;
+
+                        mkvp.Key.State = moveState;
+                        mkvp.Key.Position = mkvp.Value;
+
+                        var thread = new Thread(() =>
+                        {
+                            Thread.Sleep(8000);
+
+                            var state = GatePosition.Closed;
+
+                            if (TimeCycle.IsDay)
+                                state = GatePosition.Open;
+
+                            mkvp.Key.State = state;
+
+                            switch (mkvp.Key.Orientation)
+                            {
+                                case VoxelSide.xMin:
+                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
+                                    break;
+                                case VoxelSide.xPlus:
+                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemXP.ItemIndex);
+                                    break;
+                                case VoxelSide.zMin:
+                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemZN.ItemIndex);
+                                    break;
+                                case VoxelSide.zPlus:
+                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemZP.ItemIndex);
+                                    break;
+
+                                default:
+                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
+                                    break;
+                            }
+                        });
+
+                        thread.IsBackground = true;
+                        thread.Start();
+                    }
+
+                    if (moveGates.Count > 0)
+                    {
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "GateLeverMachineAudio");
+
+                        machineState.Durability -= 0.01f;
+                        machineState.Fuel -= 0.03f;
+
+                        if (machineState.Durability < 0)
+                            machineState.Durability = 0;
+
+                        if (machineState.Fuel <= 0)
+                            machineState.Fuel = 0;
+                    }
+
+                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Pipliz.Time.SecondsSinceStartDouble;
                 }
-
-                if (moveGates.Count > 0)
-                {
-                    ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "GateLeverMachineAudio");
-
-                    machineState.Durability -= 0.01f;
-                    machineState.Fuel -= 0.03f;
-
-                    if (machineState.Durability < 0)
-                        machineState.Durability = 0;
-
-                    if (machineState.Fuel <= 0)
-                        machineState.Fuel = 0;
-                }
-                
-                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Pipliz.Time.SecondsSinceStartDouble;
             }
         }
 

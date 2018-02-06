@@ -88,25 +88,26 @@ namespace Pandaros.Settlers.Managers
             {
                 lock (Machines)
                     foreach (var machine in Machines)
-                        foreach (var state in machine.Value)
-                            try
-                            {
-                                state.MachineSettings.DoWork(machine.Key, state);
+                        if ((!machine.Key.IsConnected && Configuration.OfflineColonies) || machine.Key.IsConnected)
+                            foreach (var state in machine.Value)
+                                try
+                                {
+                                    state.MachineSettings.DoWork(machine.Key, state);
 
-                                if (state.Load <= 0)
-                                    Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Reload_Icon, true, false));
+                                    if (state.Load <= 0)
+                                        Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Reload_Icon, true, false));
 
-                                if (state.Durability <= 0)
-                                    Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Repairing_Icon, true, false));
+                                    if (state.Durability <= 0)
+                                        Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Repairing_Icon, true, false));
 
-                                if (state.Fuel <= 0)
-                                    Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Refuel_Icon, true, false));
+                                    if (state.Fuel <= 0)
+                                        Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Refuel_Icon, true, false));
       
-                            }
-                            catch (Exception ex)
-                            {
-                                PandaLogger.LogError(ex);
-                            }
+                                }
+                                catch (Exception ex)
+                                {
+                                    PandaLogger.LogError(ex);
+                                }
 
                 _nextUpdate = Pipliz.Time.SecondsSinceStartDouble + MACHINE_REFRESH;
             }
@@ -204,29 +205,32 @@ namespace Pandaros.Settlers.Managers
 
         public static ushort Refuel(Players.Player player, MachineState machineState)
         {
-            var ps = PlayerState.GetPlayerState(player);
-
-            if (machineState.Fuel < .75f)
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                if (!MachineState.MAX_FUEL.ContainsKey(player))
-                    MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
+                var ps = PlayerState.GetPlayerState(player);
 
-                var stockpile = Stockpile.GetStockPile(player);
-
-                foreach (var item in FuelValues)
+                if (machineState.Fuel < .75f)
                 {
-                    while ((stockpile.AmountContained(item.Key) > 100 ||
-                            item.Key == BuiltinBlocks.Firewood ||
-                            item.Key == BuiltinBlocks.Coalore) && 
-                            machineState.Fuel < MachineState.MAX_FUEL[player])
-                    {
-                        stockpile.TryRemove(item.Key);
-                        machineState.Fuel += item.Value;
-                    }
-                }
+                    if (!MachineState.MAX_FUEL.ContainsKey(player))
+                        MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
 
-                if (machineState.Fuel < MachineState.MAX_FUEL[player])
-                    return FuelValues.First().Key;
+                    var stockpile = Stockpile.GetStockPile(player);
+
+                    foreach (var item in FuelValues)
+                    {
+                        while ((stockpile.AmountContained(item.Key) > 100 ||
+                                item.Key == BuiltinBlocks.Firewood ||
+                                item.Key == BuiltinBlocks.Coalore) &&
+                                machineState.Fuel < MachineState.MAX_FUEL[player])
+                        {
+                            stockpile.TryRemove(item.Key);
+                            machineState.Fuel += item.Value;
+                        }
+                    }
+
+                    if (machineState.Fuel < MachineState.MAX_FUEL[player])
+                        return FuelValues.First().Key;
+                }
             }
 
             return GameLoader.Refuel_Icon;

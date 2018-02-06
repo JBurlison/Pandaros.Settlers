@@ -150,7 +150,11 @@ namespace Pandaros.Settlers
                             }
 
                             if (!error)
+                            {
                                 PandaLogger.Log(ChatColor.green, $"Settlers! update {gitVer} installed. Restart to update!");
+                                PandaChat.SendToAll($"Settlers! update {gitVer} installed. Restart server to update!", ChatColor.maroon, ChatStyle.bolditalic);
+                            }
+
                         }
                         catch (Exception ex)
                         {

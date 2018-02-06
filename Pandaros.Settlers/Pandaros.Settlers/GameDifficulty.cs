@@ -2,6 +2,7 @@
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
+using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace Pandaros.Settlers
 {
-    [Serializable]
+    [ModLoader.ModManager]
     public class GameDifficulty
     {
         public static Dictionary<string, GameDifficulty> GameDifficulties { get; private set; }
@@ -23,14 +24,15 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { MonsterDiff = .10f };
-            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { MonsterDiff = .10f };
-            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { MonsterDiff = .20f };
-            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { MonsterDiff = .30f };
-            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { MonsterDiff = .50f };
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { Rank = 0 };
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { Rank = 1 };
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { Rank = 2 };
+            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { Rank = 3 };
+            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { Rank = 4 };
         }
 
         public string Name { get; set; }
+        public int Rank { get; set; }
 
         public float FoodMultiplier { get; set; }
 
@@ -40,9 +42,29 @@ namespace Pandaros.Settlers
 
         public float MonsterDamage { get; set; }
 
-        public float MonsterDiff { get; set; }
-
         public GameDifficulty() { }
+
+        public GameDifficulty(JSONNode node)
+        {
+            if (node.TryGetAs(nameof(Name), out string name))
+            {
+                Name = name;
+
+                if (node.TryGetAs(nameof(Rank), out int rank))
+                    Rank = rank;
+
+                if (node.TryGetAs(nameof(FoodMultiplier), out int foodMultiplier))
+                    FoodMultiplier = foodMultiplier;
+
+                if (node.TryGetAs(nameof(MachineThreashHold), out int machineThreashHold))
+                    MachineThreashHold = machineThreashHold;
+
+                if (node.TryGetAs(nameof(MonsterDamageReduction), out int monsterDamageReduction))
+                    MonsterDamageReduction = monsterDamageReduction;
+
+                GameDifficulties[Name] = this;
+            }
+        }
 
         public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr, float monsterDamage)
         {
@@ -54,9 +76,34 @@ namespace Pandaros.Settlers
             MonsterDamage = monsterDamage;
         }
 
+        public JSONNode ToJson()
+        {
+            JSONNode node = new JSONNode()
+                .SetAs(nameof(Name), Name)
+                .SetAs(nameof(Rank), Rank)
+                .SetAs(nameof(FoodMultiplier), FoodMultiplier)
+                .SetAs(nameof(MachineThreashHold), MachineThreashHold)
+                .SetAs(nameof(MonsterDamageReduction), MonsterDamageReduction)
+                .SetAs(nameof(MonsterDamage), MonsterDamage);
+
+            return node;
+        }
+
         public override string ToString()
         {
             return Name;
+        }
+        
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            foreach (var player in Players.PlayerDatabase.ValuesAsList)
+            {
+                PlayerState ps = PlayerState.GetPlayerState(player);
+
+                if (ps != null && ps.Difficulty.Rank < Configuration.MinDifficulty.Rank)
+                    ps.Difficulty = Configuration.MinDifficulty;
+            }
         }
     }
 
@@ -78,7 +125,7 @@ namespace Pandaros.Settlers
 
             if (array.Length == 1)
             {
-                PandaChat.Send(player, "Settlers! Mod difficulty is set to {0}.", ChatColor.green, state.Difficulty.Name);
+                PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
                 return true;
             }
 
@@ -88,16 +135,30 @@ namespace Pandaros.Settlers
                 return true;
             }
 
-            if (!GameDifficulty.GameDifficulties.ContainsKey(array[1].Trim()))
+            if (array.Length == 2 && Configuration.DifficutlyCanBeChanged)
             {
-                UnknownCommand(player, array[1].Trim());
-                return true;
+                if (!GameDifficulty.GameDifficulties.ContainsKey(array[1].Trim()))
+                {
+                    UnknownCommand(player, array[1].Trim());
+                    return true;
+                }
+
+                var newDiff = GameDifficulty.GameDifficulties[array[1].Trim()];
+
+                if (newDiff.Rank >= Configuration.MinDifficulty.Rank)
+                {
+                    state.Difficulty = newDiff;
+                    Managers.SettlerManager.UpdateFoodUse(player);
+                }
+                else
+                    PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.", ChatColor.green, Configuration.MinDifficulty.Name);
+
             }
 
-            state.Difficulty = GameDifficulty.GameDifficulties[array[1].Trim()];
+            if (!Configuration.DifficutlyCanBeChanged)
+                PandaChat.Send(player, "The server administrator had disabled the changing of game difficulty.", ChatColor.green);
 
             PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
-            Managers.SettlerManager.UpdateFoodUse(player);
 
             return true;
         }

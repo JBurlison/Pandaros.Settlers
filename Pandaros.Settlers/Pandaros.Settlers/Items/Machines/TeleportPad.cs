@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManager]
+    //[ModLoader.ModManager]
     public static class TeleportPad
     {
         const double TeleportPadCooldown = 4;

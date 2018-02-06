@@ -8,6 +8,7 @@ using Pipliz.JSON;
 using Server.NPCs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -130,12 +131,81 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
-            if (p.IsConnected)
+            if (p.IsConnected && !Configuration.OfflineColonies)
             {
+                string file = string.Format("{0}/savegames/{1}/players/{2}.json", GameLoader.GAMEDATA_FOLDER, ServerManager.WorldName, p.ID.steamID.ToString());
+
+                if (File.Exists(file) && JSON.Deserialize(file, out var n, false))
+                {
+                    if (n.TryGetAsOrDefault<JSONNode>(GameLoader.NAMESPACE + ".Followers", out var followersNode, null))
+                    {
+                        PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is reconnected. Restoring Colony.");
+                        foreach (var node in followersNode.LoopArray())
+                        {
+                            var npc = new NPCBase(p, node);
+                            var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
+                            ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+
+                            foreach (var job in jf.openJobs)
+                                if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
+                                {
+                                    npc.TakeJob(job);
+                                    break;
+                                }
+                        }
+                    }
+                }
+
                 Colony colony = Colony.Get(p);
                 PlayerState state = PlayerState.GetPlayerState(p);
                 GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
                 UpdateFoodUse(p);
+            }
+        }
+
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
+        public static void OnPlayerDisconnected(Players.Player p)
+        {
+            ServerManager.fileSaver.SaveData(p);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".SettlerManager.OnSavingPlayer")]
+        public static void OnSavingPlayer(JSONNode n, Players.Player p)
+        {
+            if (p == null || p.ID == NetworkID.Server)
+                return;
+
+            if (!p.IsConnected && !Configuration.OfflineColonies)
+            {
+                PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is disconnected. Clearing colony until reconnect.");
+                Colony colony = Colony.Get(p);
+                JSONNode followers = new JSONNode(NodeType.Array);
+                List<NPCBase> copyOfFollowers = new List<NPCBase>();
+
+                foreach (var follower in colony.Followers)
+                {
+                    if (follower.TryGetJSON(out var node))
+                    {
+                        var job = follower.Job;
+
+                        if (job != null && job.KeyLocation != Vector3Int.invalidPos)
+                        {
+                            node.SetAs("JobPoS", (JSONNode)job.KeyLocation);
+                        }
+
+                        ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCSaved, follower, node);
+                        followers.AddToArray(node);
+                        copyOfFollowers.Add(follower);
+                    }
+                }
+
+                n.SetAs(GameLoader.NAMESPACE + ".Followers", followers);
+
+                foreach (var deadMan in copyOfFollowers)
+                    deadMan.OnDeath();
+
+                colony.SendUpdate();
             }
         }
 
