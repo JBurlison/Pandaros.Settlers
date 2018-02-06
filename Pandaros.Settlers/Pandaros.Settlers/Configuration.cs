@@ -53,7 +53,7 @@ namespace Pandaros.Settlers
                 newConfig.SetAs(nameof(MinDifficulty), MinDifficulty.Name);
                 newConfig.SetAs(nameof(DifficutlyCanBeChanged), DifficutlyCanBeChanged);
                 newConfig.SetAs(nameof(OfflineColonies), OfflineColonies);
-                newConfig.SetAs(nameof(DefaultDifficulty), DefaultDifficulty);
+                newConfig.SetAs(nameof(DefaultDifficulty), DefaultDifficulty.Name);
 
                 JSONNode diffs = new JSONNode(NodeType.Array);
 
