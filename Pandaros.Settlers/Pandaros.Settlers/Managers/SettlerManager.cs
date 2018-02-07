@@ -128,8 +128,8 @@ namespace Pandaros.Settlers.Managers
             Players.PlayerDatabase.ForeachValue(p => UpdateFoodUse(p));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
-        public static void OnPlayerConnectedLate(Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
+        public static void OnPlayerConnectedEarly(Players.Player p)
         {
             if (p.IsConnected && !Configuration.OfflineColonies)
             {
@@ -162,28 +162,29 @@ namespace Pandaros.Settlers.Managers
                         }
                     }
                 }
-
-                Colony colony = Colony.Get(p);
-                PlayerState state = PlayerState.GetPlayerState(p);
-                GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
-                UpdateFoodUse(p);
             }
         }
 
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
+        public static void OnPlayerConnectedLate(Players.Player p)
+        {
+            GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
+            UpdateFoodUse(p);
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
-            ServerManager.fileSaver.SaveData(p);
+            SaveOffline(p);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".SettlerManager.OnSavingPlayer")]
-        public static void OnSavingPlayer(JSONNode n, Players.Player p)
+        public static void SaveOffline(Players.Player p)
         {
-            if (p == null || p.ID == NetworkID.Server)
-                return;
+            string file = string.Format("{0}/savegames/{1}/players/{2}.json", GameLoader.GAMEDATA_FOLDER, ServerManager.WorldName, p.ID.steamID.ToString());
 
-            if (!p.IsConnected && !Configuration.OfflineColonies)
+            if (!Configuration.OfflineColonies &&
+                File.Exists(file) && JSON.Deserialize(file, out var n, false))
             {
                 PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is disconnected. Clearing colony until reconnect.");
                 Colony colony = Colony.Get(p);
@@ -192,7 +193,7 @@ namespace Pandaros.Settlers.Managers
 
                 foreach (var follower in colony.Followers)
                 {
-                    if (follower.TryGetJSON(out var node))
+                    if (follower.IsValid && follower.TryGetJSON(out var node))
                     {
                         var job = follower.Job;
 
@@ -212,7 +213,7 @@ namespace Pandaros.Settlers.Managers
                 foreach (var deadMan in copyOfFollowers)
                     deadMan.OnDeath();
 
-                colony.SendUpdate();
+                JSON.Serialize(file, n);
             }
         }
 
