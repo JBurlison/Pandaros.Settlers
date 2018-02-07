@@ -219,6 +219,7 @@ namespace Pandaros.Settlers.Managers
                         deadMan.OnDeath();
 
                     JSON.Serialize(file, n);
+                    colony.SendUpdate();
                 }
             }
             catch (Exception ex)
