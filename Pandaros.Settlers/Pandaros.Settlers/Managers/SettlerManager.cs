@@ -133,37 +133,34 @@ namespace Pandaros.Settlers.Managers
         {
             if (p.IsConnected && !Configuration.OfflineColonies)
             {
-                string file = string.Format("{0}/savegames/{1}/players/{2}.json", GameLoader.GAMEDATA_FOLDER, ServerManager.WorldName, p.ID.steamID.ToString());
+                string file = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/{p.ID.steamID.ToString()}.json";
 
-                if (File.Exists(file) && JSON.Deserialize(file, out var n, false))
+                if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
                 {
-                    if (n.TryGetAsOrDefault<JSONNode>(GameLoader.NAMESPACE + ".Followers", out var followersNode, null))
+                    PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is reconnected. Restoring Colony.");
+                    foreach (var node in followersNode.LoopArray())
                     {
-                        PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is reconnected. Restoring Colony.");
-                        foreach (var node in followersNode.LoopArray())
+                        try
                         {
-                            try
-                            {
-                                var npc = new NPCBase(p, node);
-                                var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
-                                ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+                            var npc = new NPCBase(p, node);
+                            var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
+                            ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
 
-                                foreach (var job in jf.openJobs)
-                                    if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
-                                    {
-                                        npc.TakeJob(job);
-                                        break;
-                                    }
-                            }
-                            catch (Exception ex)
-                            {
-                                PandaLogger.LogError(ex);
-                            }
+                            foreach (var job in jf.openJobs)
+                                if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
+                                {
+                                    npc.TakeJob(job);
+                                    break;
+                                }
                         }
-
-                        JobTracker.Update();
-                        Colony.Get(p).SendUpdate();
+                        catch (Exception ex)
+                        {
+                            PandaLogger.LogError(ex);
+                        }
                     }
+
+                    JobTracker.Update();
+                    Colony.Get(p).SendUpdate();
                 }
             }
         }
@@ -174,6 +171,9 @@ namespace Pandaros.Settlers.Managers
         {
             GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
             UpdateFoodUse(p);
+
+            Colony.Get(p).SendUpdate();
+            JobTracker.Update();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
@@ -189,14 +189,21 @@ namespace Pandaros.Settlers.Managers
 
             try
             {
-                string file = string.Format("{0}/savegames/{1}/players/{2}.json", GameLoader.GAMEDATA_FOLDER, ServerManager.WorldName, p.ID.steamID.ToString());
+                string folder = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/";
 
-                if (!Configuration.OfflineColonies &&
-                    File.Exists(file) && JSON.Deserialize(file, out var n, false))
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+
+                string file = $"{folder}{p.ID.steamID.ToString()}.json";
+
+                if (!Configuration.OfflineColonies)
                 {
+                    if (!JSON.Deserialize(file, out var followers, false))
+                        followers = new JSONNode(NodeType.Array);
+
+                    followers.ClearChildren();
                     PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is disconnected. Clearing colony until reconnect.");
                     Colony colony = Colony.Get(p);
-                    JSONNode followers = new JSONNode(NodeType.Array);
                     List<NPCBase> copyOfFollowers = new List<NPCBase>();
 
                     foreach (var follower in colony.Followers)
@@ -215,13 +222,11 @@ namespace Pandaros.Settlers.Managers
                             copyOfFollowers.Add(follower);
                         }
                     }
-
-                    n.SetAs(GameLoader.NAMESPACE + ".Followers", followers);
-
+                    
                     foreach (var deadMan in copyOfFollowers)
                         deadMan.OnDeath();
 
-                    JSON.Serialize(file, n);
+                    JSON.Serialize(file, followers);
                     colony.SendUpdate();
                 }
             }

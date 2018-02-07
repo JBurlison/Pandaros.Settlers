@@ -16,11 +16,10 @@ namespace Pandaros.Settlers
         public static bool OfflineColonies { get; set; } = true;
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, GameLoader.NAMESPACE + ".Configuration.OnAssemblyLoaded"),
-            ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
-        public static void AfterStartup(string path)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Configuration.AfterStartup")]
+        public static void AfterStartup()
         {
-            var fileName = GameLoader.MOD_FOLDER + "/Configuration.json";
+            var fileName = $"{GameLoader.GAMEDATA_FOLDER}/{GameLoader.NAMESPACE}.json";
 
             if (File.Exists(fileName) && JSON.Deserialize(fileName, out var config))
             {
