@@ -28,7 +28,7 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 6, 5, 2);
+        public static readonly Version MOD_VER = new Version(0, 6, 5, 3);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -157,6 +157,7 @@ namespace Pandaros.Settlers
             ChatCommands.CommandManager.RegisterCommand(new AI.CalltoArms());
             ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
             ChatCommands.CommandManager.RegisterCommand(new VersionChatCommand());
+            ChatCommands.CommandManager.RegisterCommand(new ColonyArchiver());
 
             VersionChecker.WriteVersionsToConsole();
 #if Debug
