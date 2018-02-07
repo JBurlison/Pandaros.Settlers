@@ -160,6 +160,9 @@ namespace Pandaros.Settlers.Managers
                                 PandaLogger.LogError(ex);
                             }
                         }
+
+                        JobTracker.Update();
+                        Colony.Get(p).SendUpdate();
                     }
                 }
             }
