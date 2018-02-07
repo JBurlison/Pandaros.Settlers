@@ -133,6 +133,7 @@ namespace Pandaros.Settlers.Managers
         {
             if (p.IsConnected && !Configuration.OfflineColonies)
             {
+                var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
                 string file = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/{p.ID.steamID.ToString()}.json";
 
                 if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
@@ -143,7 +144,6 @@ namespace Pandaros.Settlers.Managers
                         try
                         {
                             var npc = new NPCBase(p, node);
-                            var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
                             ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
 
                             foreach (var job in jf.openJobs)
@@ -159,8 +159,7 @@ namespace Pandaros.Settlers.Managers
                         }
                     }
 
-                    JobTracker.Update();
-                    Colony.Get(p).SendUpdate();
+                    jf.Update();
                 }
             }
         }
@@ -173,7 +172,7 @@ namespace Pandaros.Settlers.Managers
             UpdateFoodUse(p);
 
             Colony.Get(p).SendUpdate();
-            JobTracker.Update();
+            Colony.SendColonistCount(p);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
@@ -222,12 +221,12 @@ namespace Pandaros.Settlers.Managers
                             copyOfFollowers.Add(follower);
                         }
                     }
-                    
-                    foreach (var deadMan in copyOfFollowers)
-                        deadMan.OnDeath();
+
 
                     JSON.Serialize(file, followers);
-                    colony.SendUpdate();
+
+                    foreach (var deadMan in copyOfFollowers)
+                        deadMan.OnDeath();
                 }
             }
             catch (Exception ex)
