@@ -142,16 +142,23 @@ namespace Pandaros.Settlers.Managers
                         PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is reconnected. Restoring Colony.");
                         foreach (var node in followersNode.LoopArray())
                         {
-                            var npc = new NPCBase(p, node);
-                            var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
-                            ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+                            try
+                            {
+                                var npc = new NPCBase(p, node);
+                                var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
+                                ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
 
-                            foreach (var job in jf.openJobs)
-                                if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
-                                {
-                                    npc.TakeJob(job);
-                                    break;
-                                }
+                                foreach (var job in jf.openJobs)
+                                    if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
+                                    {
+                                        npc.TakeJob(job);
+                                        break;
+                                    }
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.LogError(ex);
+                            }
                         }
                     }
                 }
