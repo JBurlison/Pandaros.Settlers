@@ -181,39 +181,49 @@ namespace Pandaros.Settlers.Managers
 
         public static void SaveOffline(Players.Player p)
         {
-            string file = string.Format("{0}/savegames/{1}/players/{2}.json", GameLoader.GAMEDATA_FOLDER, ServerManager.WorldName, p.ID.steamID.ToString());
+            if (p.ID == null || p.ID.steamID == null)
+                return;
 
-            if (!Configuration.OfflineColonies &&
-                File.Exists(file) && JSON.Deserialize(file, out var n, false))
+            try
             {
-                PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is disconnected. Clearing colony until reconnect.");
-                Colony colony = Colony.Get(p);
-                JSONNode followers = new JSONNode(NodeType.Array);
-                List<NPCBase> copyOfFollowers = new List<NPCBase>();
+                string file = string.Format("{0}/savegames/{1}/players/{2}.json", GameLoader.GAMEDATA_FOLDER, ServerManager.WorldName, p.ID.steamID.ToString());
 
-                foreach (var follower in colony.Followers)
+                if (!Configuration.OfflineColonies &&
+                    File.Exists(file) && JSON.Deserialize(file, out var n, false))
                 {
-                    if (follower.IsValid && follower.TryGetJSON(out var node))
+                    PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is disconnected. Clearing colony until reconnect.");
+                    Colony colony = Colony.Get(p);
+                    JSONNode followers = new JSONNode(NodeType.Array);
+                    List<NPCBase> copyOfFollowers = new List<NPCBase>();
+
+                    foreach (var follower in colony.Followers)
                     {
-                        var job = follower.Job;
-
-                        if (job != null && job.KeyLocation != Vector3Int.invalidPos)
+                        if (follower.IsValid && follower.TryGetJSON(out var node))
                         {
-                            node.SetAs("JobPoS", (JSONNode)job.KeyLocation);
+                            var job = follower.Job;
+
+                            if (job != null && job.KeyLocation != Vector3Int.invalidPos)
+                            {
+                                node.SetAs("JobPoS", (JSONNode)job.KeyLocation);
+                            }
+
+                            ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCSaved, follower, node);
+                            followers.AddToArray(node);
+                            copyOfFollowers.Add(follower);
                         }
-
-                        ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCSaved, follower, node);
-                        followers.AddToArray(node);
-                        copyOfFollowers.Add(follower);
                     }
+
+                    n.SetAs(GameLoader.NAMESPACE + ".Followers", followers);
+
+                    foreach (var deadMan in copyOfFollowers)
+                        deadMan.OnDeath();
+
+                    JSON.Serialize(file, n);
                 }
-
-                n.SetAs(GameLoader.NAMESPACE + ".Followers", followers);
-
-                foreach (var deadMan in copyOfFollowers)
-                    deadMan.OnDeath();
-
-                JSON.Serialize(file, n);
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 
