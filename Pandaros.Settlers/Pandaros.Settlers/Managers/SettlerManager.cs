@@ -151,6 +151,7 @@ namespace Pandaros.Settlers.Managers
                                 {
                                     npc.TakeJob(job);
                                     job.OnAssignedNPC(npc);
+                                    JobTracker.Remove(p, job.KeyLocation);
                                     break;
                                 }
                         }
@@ -159,6 +160,8 @@ namespace Pandaros.Settlers.Managers
                             PandaLogger.LogError(ex);
                         }
                     }
+
+                    jf.Update();
                 }
             }
         }
