@@ -159,8 +159,6 @@ namespace Pandaros.Settlers.Managers
                             PandaLogger.LogError(ex);
                         }
                     }
-
-                    jf.Update();
                 }
             }
         }
@@ -208,16 +206,24 @@ namespace Pandaros.Settlers.Managers
 
                     foreach (var follower in colony.Followers)
                     {
-                        if (follower.IsValid && follower.TryGetJSON(out var node))
+
+                        JSONNode jobloc = null;
+                        if (follower.IsValid)
                         {
                             var job = follower.Job;
 
                             if (job != null && job.KeyLocation != Vector3Int.invalidPos)
                             {
-                                node.SetAs("JobPoS", (JSONNode)job.KeyLocation);
+                                jobloc = (JSONNode)job.KeyLocation;
                                 job.OnRemovedNPC();
                                 follower.ClearJob();
                             }
+                        }
+
+                        if (follower.TryGetJSON(out var node))
+                        {
+                            if (jobloc != null)
+                                node.SetAs("JobPoS", jobloc);
 
                             ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCSaved, follower, node);
                             followers.AddToArray(node);
