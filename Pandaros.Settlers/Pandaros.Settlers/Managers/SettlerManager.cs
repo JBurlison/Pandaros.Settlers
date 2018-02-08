@@ -230,6 +230,8 @@ namespace Pandaros.Settlers.Managers
 
                     foreach (var deadMan in copyOfFollowers)
                         deadMan.OnDeath();
+
+                    Server.Monsters.MonsterTracker.KillAllZombies(p);
                 }
             }
             catch (Exception ex)
