@@ -150,6 +150,7 @@ namespace Pandaros.Settlers.Managers
                                 if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
                                 {
                                     npc.TakeJob(job);
+                                    job.OnAssignedNPC(npc);
                                     break;
                                 }
                         }
@@ -214,6 +215,8 @@ namespace Pandaros.Settlers.Managers
                             if (job != null && job.KeyLocation != Vector3Int.invalidPos)
                             {
                                 node.SetAs("JobPoS", (JSONNode)job.KeyLocation);
+                                job.OnRemovedNPC();
+                                follower.ClearJob();
                             }
 
                             ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCSaved, follower, node);
