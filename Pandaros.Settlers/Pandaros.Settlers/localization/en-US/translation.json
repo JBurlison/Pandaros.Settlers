@@ -217,7 +217,9 @@
     "Pandaros.Settlers.AutoLoad.leavestemperateslab": "Leaves Temperate Slab",
     "Pandaros.Settlers.AutoLoad.leavestaigaslab": "Leaves Taiga Slab",
     "Pandaros.Settlers.AutoLoad.cherryblossomslab": "Cherry Blossom Slab",
-    "Pandaros.Settlers.AutoLoad.berrybushslab": "Berry Bush Slab"
+    "Pandaros.Settlers.AutoLoad.berrybushslab": "Berry Bush Slab",
+    "Pandaros.Settlers.AutoLoad.lava": "Lava",
+    "Pandaros.Settlers.AutoLoad.lavaslab": "Lava Slab"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -302,7 +304,9 @@
     "Pandaros.Settlers.AutoLoad.bench": "Perfect for Parks!  And waiting rooms.",
     "Pandaros.Settlers.AutoLoad.woodbarrel": "A non-functional place to store things!",
     "Pandaros.Settlers.AutoLoad.cratestack": "A pile of non-functional crates, with imaginary storage!",
-    "Pandaros.Settlers.AutoLoad.crate": "A big block-sized crate, for non-functional storage!"
+    "Pandaros.Settlers.AutoLoad.crate": "A big block-sized crate, for non-functional storage!",
+    "Pandaros.Settlers.AutoLoad.lava": "Not so hot after all.",
+    "Pandaros.Settlers.AutoLoad.lavaslab": "About half as hot."
   },
   "sentences": {
     "popup": {

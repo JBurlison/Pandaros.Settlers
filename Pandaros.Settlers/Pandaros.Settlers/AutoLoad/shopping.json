@@ -95,7 +95,7 @@
     "requires": [
       {
         "type": "vanilla.goldcoin",
-        "amount": 10000
+        "amount": 1000
       }
     ],
     "defaultLimit": 0,
@@ -180,7 +180,7 @@
     "requires": [
       {
         "type": "refinedemerald",
-        "amount": 20000
+        "amount": 2000
       }
     ],
     "defaultLimit": 0,
@@ -197,7 +197,7 @@
     "requires": [
       {
         "type": "refinedruby",
-        "amount": 30000
+        "amount": 3000
       }
     ],
     "defaultLimit": 0,
@@ -391,6 +391,18 @@
   {
     "name": "notwater",
     "results": [ { "type": "notwater" } ],
+    "requires": [
+      {
+        "type": "refinedsapphire",
+        "amount": 50
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "lava",
+    "results": [ { "type": "lava" } ],
     "requires": [
       {
         "type": "refinedsapphire",

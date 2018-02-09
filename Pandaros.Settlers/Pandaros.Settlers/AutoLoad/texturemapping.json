@@ -2392,5 +2392,47 @@
     "normal": "vanilla.clay",
     "emissive": "neutral",
     "height": "vanilla.clay"
+  },
+  "lava": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
+  },
+  "lavaslab": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
+  },
+  "lavaslableft": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
+  },
+  "lavaslabright": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
+  },
+  "lavaslabfront": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
+  },
+  "lavaslabback": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
+  },
+  "lavaslabbottom": {
+    "albedo": "lava",
+    "normal": "lava",
+    "emissive": "lava",
+    "height": "lava"
   }
 }

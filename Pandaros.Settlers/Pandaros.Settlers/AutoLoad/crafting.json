@@ -526,9 +526,23 @@
       {
         "type": "notwater",
         "amount": 1
-      },
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "lavaslab",
+    "results": [
       {
-        "type": "saw",
+        "amount": 4,
+        "type": "lavaslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "lava",
         "amount": 1
       }
     ],

@@ -1,1049 +1,1049 @@
 {
-   "refinedemerald":{
-      "icon":"refinedemerald.png",
-      "maxStackSize":600,
-      "isPlaceable":false
-   },
-   "rawemerald":{
-      "icon":"rawemerald.png",
-      "maxStackSize":600,
-      "isPlaceable":false
-   },
-   "infiniteemerald":{
-      "icon":"infiniteemerald.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveType":"rawemerald",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "destructionTime":2000,
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isDestructible":true,
-      "customData":{
-         "minerIsMineable":true,
-         "minerMiningTime":5.0
-      }
-   },
-   "milk":{
-      "icon":"milk.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600,
-      "nutritionalValue":1.0
-   },
-   "egg":{
-      "icon":"egg.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "cake":{
-      "icon":"cake.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600,
-      "nutritionalValue":10.0
-   },
-   "beef":{
-      "icon":"Beef.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600,
-      "nutritionalValue":5.0
-   },
-   "carrot":{
-      "icon":"Carrot.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600,
-      "nutritionalValue":0.6
-   },
-   "cheese":{
-      "icon":"Cheese.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600,
-      "nutritionalValue":0.6
-   },
-   "chisel":{
-      "icon":"chisel.png",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isPlaceable":false
-   },
-   "blueclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"blueClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "magentaclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"magentaClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "yellowclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"yellowClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "lightpinkclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"lightpinkClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "redclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"redClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "orangeclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"orangeClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "blackclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"blackClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "brownclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"brownClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "cyanclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"cyanClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "darkblueclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"darkblueClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "greyclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"greyClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "lightgreyclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"lightgreyClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "greenclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"greenClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "limeclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"limeClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "pinkclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"pinkClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "purpleclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"purpleClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "whiteclay":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"whiteClay.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete"
-   },
-   "limestone":{
-      "icon":"limeStone.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "destructionTime":600
-   },
-   "sandstone":{
-      "icon":"sandStone.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "destructionTime":600
-   },
-   "infiniteruby":{
-      "icon":"infiniteruby.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveType":"rawruby",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "destructionTime":2000,
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isDestructible":true,
-      "customData":{
-         "minerIsMineable":true,
-         "minerMiningTime":5.0
-      }
-   },
-   "infinitesapphire":{
-      "icon":"infinitesapphire.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveType":"rawsapphire",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "destructionTime":2000,
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isDestructible":true,
-      "customData":{
-         "minerIsMineable":true,
-         "minerMiningTime":5.0
-      }
-   },
-   "ironbar":{
-      "icon":"ironbar.png",
-      "onPlaceAudio":"metalPlace",
-      "onRemoveAudio":"metalPlace",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"ironbarx+",
-      "rotatablex-":"ironbarx-",
-      "rotatablez+":"ironbarz+",
-      "rotatablez-":"ironbarz-"
-   },
-   "ironbarx+":{
-      "parentType":"ironbar",
-      "mesh":"ironbarx+.obj"
-   },
-   "ironbarx-":{
-      "parentType":"ironbar",
-      "mesh":"ironbarx-.obj"
-   },
-   "ironbarz+":{
-      "parentType":"ironbar",
-      "mesh":"ironbarz+.obj"
-   },
-   "ironbarz-":{
-      "parentType":"ironbar",
-      "mesh":"ironbarz-.obj"
-   },
-   "ironbarcorner":{
-      "icon":"ironbarcorner.png",
-      "onPlaceAudio":"metalPlace",
-      "onRemoveAudio":"metalPlace",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"ironbarcornerx+",
-      "rotatablex-":"ironbarcornerx-",
-      "rotatablez+":"ironbarcornerz+",
-      "rotatablez-":"ironbarcornerz-"
-   },
-   "ironbarcornerx+":{
-      "parentType":"ironbarcorner",
-      "mesh":"ironbarcornerx+.obj"
-   },
-   "ironbarcornerx-":{
-      "parentType":"ironbarcorner",
-      "mesh":"ironbarcornerx-.obj"
-   },
-   "ironbarcornerz+":{
-      "parentType":"ironbarcorner",
-      "mesh":"ironbarcornerz+.obj"
-   },
-   "ironbarcornerz-":{
-      "parentType":"ironbarcorner",
-      "mesh":"ironbarcornerz-.obj"
-   },
-   "irondoor":{
-      "onPlaceAudio":"metalPlace",
-      "icon":"irondoor.png",
-      "onRemoveAudio":"metalPlace",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"irondoorx+",
-      "rotatablex-":"irondoorx-",
-      "rotatablez+":"irondoorz+",
-      "rotatablez-":"irondoorz-"
-   },
-   "irondoorx+":{
-      "parentType":"irondoor",
-      "mesh":"irondoorx+.obj"
-   },
-   "irondoorx-":{
-      "parentType":"irondoor",
-      "mesh":"irondoorx-.obj"
-   },
-   "irondoorz+":{
-      "parentType":"irondoor",
-      "mesh":"irondoorz+.obj"
-   },
-   "irondoorz-":{
-      "parentType":"irondoor",
-      "mesh":"irondoorz-.obj"
-   },
-   "marblepillarbase":{
-      "icon":"marblepillarbase.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"Marblepillarbase.obj"
-   },
-   "marblepillarbody":{
-      "icon":"marblepillarbody.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"Marblepillarbody.obj"
-   },
-   "marblepillartop":{
-      "icon":"marblepillartop.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"Marblepillartop.obj"
-   },
-   "chalk":{
-      "icon":"chalk.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "notwater":{
-      "isSolid":true,
-      "onPlaceAudio":"waterPlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"water.png",
-      "isPlaceable":true
-   },
-   "knife":{
-      "icon":"Knife.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "glass":{
-      "icon":"Glass.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "sledgehammer":{
-      "icon":"Sledgehammer.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "saw":{
-      "icon":"saw.png",
-      "isPlaceable":false,
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "dirtbricks":{
-      "isFertile":true,
-      "icon":"dirtbricks.png",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "onRemoveAudio":"vanilla.grassDelete",
-      "onPlaceAudio":"vanilla.dirtPlace"
-   },
-   "rawruby":{
-      "icon":"rawruby.png",
-      "isPlaceable":false
-   },
-   "rawsapphire":{
-      "icon":"rawsapphire.png",
-      "isPlaceable":false
-   },
-   "refinedsapphire":{
-      "icon":"refinedsapphire.png",
-      "isPlaceable":false
-   },
-   "refinedruby":{
-      "icon":"refinedruby.png",
-      "isPlaceable":false
-   },
-   "marble":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"marble.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete"
-   },
-   "marblebricks":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"marbleBrick.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete"
-   },
-   "rawmarble":{
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "icon":"rawMarble.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete"
-   },
-   "fence":{
-      "icon":"woodfence.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"woodfencex+",
-      "rotatablex-":"woodfencex-",
-      "rotatablez+":"woodfencez+",
-      "rotatablez-":"woodfencez-"
-   },
-   "woodfencex+":{
-      "parentType":"fence",
-      "mesh":"woodfencex+.obj"
-   },
-   "woodfencex-":{
-      "parentType":"fence",
-      "mesh":"woodfencex-.obj"
-   },
-   "woodfencez+":{
-      "parentType":"fence",
-      "mesh":"woodfencez+.obj"
-   },
-   "woodfencez-":{
-      "parentType":"fence",
-      "mesh":"woodfencez-.obj"
-   },
-   "fencecorner":{
-      "icon":"woodfencecorner.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"woodfencecornerx+",
-      "rotatablex-":"woodfencecornerx-",
-      "rotatablez+":"woodfencecornerz+",
-      "rotatablez-":"woodfencecornerz-"
-   },
-   "woodfencecornerx+":{
-      "parentType":"fencecorner",
-      "mesh":"woodfencecornerx+.obj"
-   },
-   "woodfencecornerx-":{
-      "parentType":"fencecorner",
-      "mesh":"woodfencecornerx-.obj"
-   },
-   "woodfencecornerz+":{
-      "parentType":"fencecorner",
-      "mesh":"woodfencecornerz+.obj"
-   },
-   "woodfencecornerz-":{
-      "parentType":"fencecorner",
-      "mesh":"woodfencecornerz-.obj"
-   },
-   "window":{
-      "icon":"window.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"windowx+",
-      "rotatablex-":"windowx-",
-      "rotatablez+":"windowz+",
-      "rotatablez-":"windowz-"
-   },
-   "windowx+":{
-      "parentType":"window",
-      "mesh":"windowx+.obj"
-   },
-   "windowx-":{
-      "parentType":"window",
-      "mesh":"windowx-.obj"
-   },
-   "windowz+":{
-      "parentType":"window",
-      "mesh":"windowz+.obj"
-   },
-   "windowz-":{
-      "parentType":"window",
-      "mesh":"windowz-.obj"
-   },
-   "doublewindow":{
-      "icon":"window.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"doublewindowx+",
-      "rotatablex-":"doublewindowx-",
-      "rotatablez+":"doublewindowz+",
-      "rotatablez-":"doublewindowz-"
-   },
-   "doublewindowx+":{
-      "parentType":"doublewindow",
-      "mesh":"windowtwowayx.obj"
-   },
-   "doublewindowx-":{
-      "parentType":"doublewindow",
-      "mesh":"windowtwowayx.obj"
-   },
-   "doublewindowz+":{
-      "parentType":"doublewindow",
-      "mesh":"windowtwowayz.obj"
-   },
-   "doublewindowz-":{
-      "parentType":"doublewindow",
-      "mesh":"windowtwowayz.obj"
-   },
-   "woodsupport":{
-      "icon":"woodsupport.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"woodsupportx+",
-      "rotatablex-":"woodsupportx-",
-      "rotatablez+":"woodsupportz+",
-      "rotatablez-":"woodsupportz-"
-   },
-   "woodsupportx+":{
-      "parentType":"woodsupport",
-      "mesh":"woodsupportx+.obj"
-   },
-   "woodsupportx-":{
-      "parentType":"woodsupport",
-      "mesh":"woodsupportx-.obj"
-   },
-   "woodsupportz+":{
-      "parentType":"woodsupport",
-      "mesh":"woodsupportz+.obj"
-   },
-   "woodsupportz-":{
-      "parentType":"woodsupport",
-      "mesh":"woodsupportz-.obj"
-   },
-   "woodsupportud":{
-      "icon":"woodsupportud.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"woodsupportudx+",
-      "rotatablex-":"woodsupportudx-",
-      "rotatablez+":"woodsupportudz+",
-      "rotatablez-":"woodsupportudz-"
-   },
-   "woodsupportudx+":{
-      "parentType":"woodsupportud",
-      "mesh":"woodsupportudx+.obj"
-   },
-   "woodsupportudx-":{
-      "parentType":"woodsupportud",
-      "mesh":"woodsupportudx-.obj"
-   },
-   "woodsupportudz+":{
-      "parentType":"woodsupportud",
-      "mesh":"woodsupportudz+.obj"
-   },
-   "woodsupportudz-":{
-      "parentType":"woodsupportud",
-      "mesh":"woodsupportudz-.obj"
-   },
-   "woodsupportcube":{
-      "icon":"woodsupportcube.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"woodsupportcube.obj"
-   },
-   "hangingbanner":{
-      "icon":"hangingbanner.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isSolid":false,
-      "isRotatable":true,
-      "rotatablex+":"hangingbannerx+",
-      "rotatablex-":"hangingbannerx-",
-      "rotatablez+":"hangingbannerz+",
-      "rotatablez-":"hangingbannerz-"
-   },
-   "hangingbannerx+":{
-      "parentType":"hangingbanner",
-      "mesh":"hangingbannerx+.obj"
-   },
-   "hangingbannerx-":{
-      "parentType":"hangingbanner",
-      "mesh":"hangingbannerx-.obj"
-   },
-   "hangingbannerz+":{
-      "parentType":"hangingbanner",
-      "mesh":"hangingbannerz+.obj"
-   },
-   "hangingbannerz-":{
-      "parentType":"hangingbanner",
-      "mesh":"hangingbannerz-.obj"
-   },
-   "hangingbannerrw":{
-      "icon":"hangingbannerrw.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isSolid":false,
-      "isRotatable":true,
-      "rotatablex+":"hangingbannerrwx+",
-      "rotatablex-":"hangingbannerrwx-",
-      "rotatablez+":"hangingbannerrwz+",
-      "rotatablez-":"hangingbannerrwz-"
-   },
-   "hangingbannerrwx+":{
-      "parentType":"hangingbannerrw",
-      "mesh":"hangingbannerx+.obj"
-   },
-   "hangingbannerrwx-":{
-      "parentType":"hangingbannerrw",
-      "mesh":"hangingbannerx-.obj"
-   },
-   "hangingbannerrwz+":{
-      "parentType":"hangingbannerrw",
-      "mesh":"hangingbannerz+.obj"
-   },
-   "hangingbannerrwz-":{
-      "parentType":"hangingbannerrw",
-      "mesh":"hangingbannerz-.obj"
-   },
-   "hangingbannerbw":{
-      "icon":"hangingbannerbw.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isSolid":false,
-      "isRotatable":true,
-      "rotatablex+":"hangingbannerbwx+",
-      "rotatablex-":"hangingbannerbwx-",
-      "rotatablez+":"hangingbannerbwz+",
-      "rotatablez-":"hangingbannerbwz-"
-   },
-   "hangingbannerbwx+":{
-      "parentType":"hangingbannerbw",
-      "mesh":"hangingbannerx+.obj"
-   },
-   "hangingbannerbwx-":{
-      "parentType":"hangingbannerbw",
-      "mesh":"hangingbannerx-.obj"
-   },
-   "hangingbannerbwz+":{
-      "parentType":"hangingbannerbw",
-      "mesh":"hangingbannerz+.obj"
-   },
-   "hangingbannerbwz-":{
-      "parentType":"hangingbannerbw",
-      "mesh":"hangingbannerz-.obj"
-   },
-   "hangingbannercb":{
-      "icon":"hangingbannercb.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isSolid":false,
-      "isRotatable":true,
-      "rotatablex+":"hangingbannercbx+",
-      "rotatablex-":"hangingbannercbx-",
-      "rotatablez+":"hangingbannercbz+",
-      "rotatablez-":"hangingbannercbz-"
-   },
-   "hangingbannercbx+":{
-      "parentType":"hangingbannercb",
-      "mesh":"hangingbannerx+.obj"
-   },
-   "hangingbannercbx-":{
-      "parentType":"hangingbannercb",
-      "mesh":"hangingbannerx-.obj"
-   },
-   "hangingbannercbz+":{
-      "parentType":"hangingbannercb",
-      "mesh":"hangingbannerz+.obj"
-   },
-   "hangingbannercbz-":{
-      "parentType":"hangingbannercb",
-      "mesh":"hangingbannerz-.obj"
-   },
-   "hangingbannerbw2":{
-      "icon":"hangingbannerbw2.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isSolid":false,
-      "isRotatable":true,
-      "rotatablex+":"hangingbannerbw2x+",
-      "rotatablex-":"hangingbannerbw2x-",
-      "rotatablez+":"hangingbannerbw2z+",
-      "rotatablez-":"hangingbannerbw2z-"
-   },
-   "hangingbannerbw2x+":{
-      "parentType":"hangingbannerbw2",
-      "mesh":"hangingbannerx+.obj"
-   },
-   "hangingbannerbw2x-":{
-      "parentType":"hangingbannerbw2",
-      "mesh":"hangingbannerx-.obj"
-   },
-   "hangingbannerbw2z+":{
-      "parentType":"hangingbannerbw2",
-      "mesh":"hangingbannerz+.obj"
-   },
-   "hangingbannerbw2z-":{
-      "parentType":"hangingbannerbw2",
-      "mesh":"hangingbannerz-.obj"
-   },
-   "simplechair":{
-      "icon":"simplechair.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isSolid":false,
-      "isRotatable":true,
-      "rotatablex+":"simplechairx+",
-      "rotatablex-":"simplechairx-",
-      "rotatablez+":"simplechairz+",
-      "rotatablez-":"simplechairz-"
-   },
-   "simplechairx+":{
-      "parentType":"simplechair",
-      "mesh":"simplechairx+.obj"
-   },
-   "simplechairx-":{
-      "parentType":"simplechair",
-      "mesh":"simplechairx-.obj"
-   },
-   "simplechairz+":{
-      "parentType":"simplechair",
-      "mesh":"simplechairz+.obj"
-   },
-   "simplechairz-":{
-      "parentType":"simplechair",
-      "mesh":"simplechairz-.obj"
-   },
-   "simpletable":{
-      "icon":"simpletable.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"simpletable.obj"
-   },
-   "woodencatwalk":{
-      "icon":"woodencatwalk.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"woodencatwalkx",
-      "rotatablex-":"woodencatwalkx",
-      "rotatablez+":"woodencatwalkz",
-      "rotatablez-":"woodencatwalkz"
-   },
-   "woodencatwalkx":{
-      "parentType":"woodencatwalk",
-      "mesh":"woodencatwalkx.obj"
-   },
-   "woodencatwalkz":{
-      "parentType":"woodencatwalk",
-      "mesh":"woodencatwalkz.obj"
-   },
-   "bench":{
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "icon":"bench.png",
-      "isRotatable":true,
-      "isSolid":false,
-      "needsBase":true,
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "rotatablex+":"benchleftx+",
-      "rotatablex-":"benchleftx-",
-      "rotatablez+":"benchleftz+",
-      "rotatablez-":"benchleftz-"
-   },
-   "benchleftx+":{
-      "parentType":"bench",
-      "mesh":"benchleftx+.obj"
-   },
-   "benchleftx-":{
-      "parentType":"bench",
-      "mesh":"benchleftx-.obj"
-   },
-   "benchleftz+":{
-      "parentType":"bench",
-      "mesh":"benchleftz+.obj"
-   },
-   "benchleftz-":{
-      "parentType":"bench",
-      "mesh":"benchleftz-.obj"
-   },
-   "benchright":{
-      "parentType":"bench",
-      "isRotatable":true,
-      "rotatablex+":"benchrightx+",
-      "rotatablex-":"benchrightx-",
-      "rotatablez+":"benchrightz+",
-      "rotatablez-":"benchrightz-"
-   },
-   "benchrightx+":{
-      "parentType":"benchright",
-      "mesh":"benchrightx+.obj"
-   },
-   "benchrightx-":{
-      "parentType":"benchright",
-      "mesh":"benchrightx-.obj"
-   },
-   "benchrightz+":{
-      "parentType":"benchright",
-      "mesh":"benchrightz+.obj"
-   },
-   "benchrightz-":{
-      "parentType":"benchright",
-      "mesh":"benchrightz-.obj"
-   },
-   "woodbarrel":{
-      "icon":"woodbarrel.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"woodbarrelx+",
-      "rotatablex-":"woodbarrelx-",
-      "rotatablez+":"woodbarrelz+",
-      "rotatablez-":"woodbarrelz-"
-   },
-   "woodbarrelx+":{
-      "parentType":"woodbarrel",
-      "mesh":"woodbarrelx+.obj"
-   },
-   "woodbarrelx-":{
-      "parentType":"woodbarrel",
-      "mesh":"woodbarrelx-.obj"
-   },
-   "woodbarrelz+":{
-      "parentType":"woodbarrel",
-      "mesh":"woodbarrelz+.obj"
-   },
-   "woodbarrelz-":{
-      "parentType":"woodbarrel",
-      "mesh":"woodbarrelz-.obj"
-   },
-   "cratestack":{
-      "icon":"cratestack.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "isRotatable":true,
-      "rotatablex+":"cratestackx+",
-      "rotatablex-":"cratestackx-",
-      "rotatablez+":"cratestackz+",
-      "rotatablez-":"cratestackz-"
-   },
-   "cratestackx+":{
-      "parentType":"cratestack",
-      "mesh":"cratestackx+.obj"
-   },
-   "cratestackx-":{
-      "parentType":"cratestack",
-      "mesh":"cratestackx-.obj"
-   },
-   "cratestackz+":{
-      "parentType":"cratestack",
-      "mesh":"cratestackz+.obj"
-   },
-   "cratestackz-":{
-      "parentType":"cratestack",
-      "mesh":"cratestackz-.obj"
-   },
-   "stonebrickslab":{
-      "fullblockType":"vanilla.stonebricks",
-      "icon":"stonebrickslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "stonebrickslabtop":{
-      "parentType":"stonebrickslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "stonebrickslabbottom":{
-      "parentType":"stonebrickslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "stonebrickslableft":{
-      "parentType":"stonebrickslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "stonebrickslabright":{
-      "parentType":"stonebrickslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "stonebrickslabfront":{
-      "parentType":"stonebrickslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "stonebrickslabback":{
-      "parentType":"stonebrickslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "plankslab":{
-      "fullblockType":"vanilla.planks",
-      "icon":"plankslab.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "plankslableft":{
-      "parentType":"plankslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "plankslabright":{
-      "parentType":"plankslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "plankslabfront":{
-      "parentType":"plankslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "plankslabback":{
-      "parentType":"plankslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
+  "refinedemerald": {
+    "icon": "refinedemerald.png",
+    "maxStackSize": 600,
+    "isPlaceable": false
+  },
+  "rawemerald": {
+    "icon": "rawemerald.png",
+    "maxStackSize": 600,
+    "isPlaceable": false
+  },
+  "infiniteemerald": {
+    "icon": "infiniteemerald.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveType": "rawemerald",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "destructionTime": 2000,
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isDestructible": true,
+    "customData": {
+      "minerIsMineable": true,
+      "minerMiningTime": 5.0
+    }
+  },
+  "milk": {
+    "icon": "milk.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "nutritionalValue": 1.0
+  },
+  "egg": {
+    "icon": "egg.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "cake": {
+    "icon": "cake.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "nutritionalValue": 10.0
+  },
+  "beef": {
+    "icon": "Beef.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "nutritionalValue": 5.0
+  },
+  "carrot": {
+    "icon": "Carrot.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "nutritionalValue": 0.6
+  },
+  "cheese": {
+    "icon": "Cheese.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "nutritionalValue": 0.6
+  },
+  "chisel": {
+    "icon": "chisel.png",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isPlaceable": false
+  },
+  "blueclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "blueClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "magentaclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "magentaClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "yellowclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "yellowClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "lightpinkclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "lightpinkClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "redclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "redClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "orangeclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "orangeClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "blackclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "blackClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "brownclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "brownClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "cyanclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "cyanClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "darkblueclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "darkblueClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "greyclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "greyClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "lightgreyclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "lightgreyClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "greenclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "greenClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "limeclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "limeClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "pinkclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "pinkClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "purpleclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "purpleClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "whiteclay": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "whiteClay.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete"
+  },
+  "limestone": {
+    "icon": "limeStone.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "destructionTime": 600
+  },
+  "sandstone": {
+    "icon": "sandStone.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "destructionTime": 600
+  },
+  "infiniteruby": {
+    "icon": "infiniteruby.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveType": "rawruby",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "destructionTime": 2000,
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isDestructible": true,
+    "customData": {
+      "minerIsMineable": true,
+      "minerMiningTime": 5.0
+    }
+  },
+  "infinitesapphire": {
+    "icon": "infinitesapphire.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveType": "rawsapphire",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "destructionTime": 2000,
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isDestructible": true,
+    "customData": {
+      "minerIsMineable": true,
+      "minerMiningTime": 5.0
+    }
+  },
+  "ironbar": {
+    "icon": "ironbar.png",
+    "onPlaceAudio": "metalPlace",
+    "onRemoveAudio": "metalPlace",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "ironbarx+",
+    "rotatablex-": "ironbarx-",
+    "rotatablez+": "ironbarz+",
+    "rotatablez-": "ironbarz-"
+  },
+  "ironbarx+": {
+    "parentType": "ironbar",
+    "mesh": "ironbarx+.obj"
+  },
+  "ironbarx-": {
+    "parentType": "ironbar",
+    "mesh": "ironbarx-.obj"
+  },
+  "ironbarz+": {
+    "parentType": "ironbar",
+    "mesh": "ironbarz+.obj"
+  },
+  "ironbarz-": {
+    "parentType": "ironbar",
+    "mesh": "ironbarz-.obj"
+  },
+  "ironbarcorner": {
+    "icon": "ironbarcorner.png",
+    "onPlaceAudio": "metalPlace",
+    "onRemoveAudio": "metalPlace",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "ironbarcornerx+",
+    "rotatablex-": "ironbarcornerx-",
+    "rotatablez+": "ironbarcornerz+",
+    "rotatablez-": "ironbarcornerz-"
+  },
+  "ironbarcornerx+": {
+    "parentType": "ironbarcorner",
+    "mesh": "ironbarcornerx+.obj"
+  },
+  "ironbarcornerx-": {
+    "parentType": "ironbarcorner",
+    "mesh": "ironbarcornerx-.obj"
+  },
+  "ironbarcornerz+": {
+    "parentType": "ironbarcorner",
+    "mesh": "ironbarcornerz+.obj"
+  },
+  "ironbarcornerz-": {
+    "parentType": "ironbarcorner",
+    "mesh": "ironbarcornerz-.obj"
+  },
+  "irondoor": {
+    "onPlaceAudio": "metalPlace",
+    "icon": "irondoor.png",
+    "onRemoveAudio": "metalPlace",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "irondoorx+",
+    "rotatablex-": "irondoorx-",
+    "rotatablez+": "irondoorz+",
+    "rotatablez-": "irondoorz-"
+  },
+  "irondoorx+": {
+    "parentType": "irondoor",
+    "mesh": "irondoorx+.obj"
+  },
+  "irondoorx-": {
+    "parentType": "irondoor",
+    "mesh": "irondoorx-.obj"
+  },
+  "irondoorz+": {
+    "parentType": "irondoor",
+    "mesh": "irondoorz+.obj"
+  },
+  "irondoorz-": {
+    "parentType": "irondoor",
+    "mesh": "irondoorz-.obj"
+  },
+  "marblepillarbase": {
+    "icon": "marblepillarbase.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "Marblepillarbase.obj"
+  },
+  "marblepillarbody": {
+    "icon": "marblepillarbody.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "Marblepillarbody.obj"
+  },
+  "marblepillartop": {
+    "icon": "marblepillartop.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "Marblepillartop.obj"
+  },
+  "chalk": {
+    "icon": "chalk.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "notwater": {
+    "isSolid": true,
+    "onPlaceAudio": "vanilla.waterSplashFeet",
+    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "water.png",
+    "isPlaceable": true
+  },
+  "knife": {
+    "icon": "Knife.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "glass": {
+    "icon": "Glass.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "sledgehammer": {
+    "icon": "Sledgehammer.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "saw": {
+    "icon": "saw.png",
+    "isPlaceable": false,
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "dirtbricks": {
+    "isFertile": true,
+    "icon": "dirtbricks.png",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "vanilla.dirtPlace"
+  },
+  "rawruby": {
+    "icon": "rawruby.png",
+    "isPlaceable": false
+  },
+  "rawsapphire": {
+    "icon": "rawsapphire.png",
+    "isPlaceable": false
+  },
+  "refinedsapphire": {
+    "icon": "refinedsapphire.png",
+    "isPlaceable": false
+  },
+  "refinedruby": {
+    "icon": "refinedruby.png",
+    "isPlaceable": false
+  },
+  "marble": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "marble.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete"
+  },
+  "marblebricks": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "marbleBrick.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete"
+  },
+  "rawmarble": {
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "icon": "rawMarble.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete"
+  },
+  "fence": {
+    "icon": "woodfence.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "woodfencex+",
+    "rotatablex-": "woodfencex-",
+    "rotatablez+": "woodfencez+",
+    "rotatablez-": "woodfencez-"
+  },
+  "woodfencex+": {
+    "parentType": "fence",
+    "mesh": "woodfencex+.obj"
+  },
+  "woodfencex-": {
+    "parentType": "fence",
+    "mesh": "woodfencex-.obj"
+  },
+  "woodfencez+": {
+    "parentType": "fence",
+    "mesh": "woodfencez+.obj"
+  },
+  "woodfencez-": {
+    "parentType": "fence",
+    "mesh": "woodfencez-.obj"
+  },
+  "fencecorner": {
+    "icon": "woodfencecorner.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "woodfencecornerx+",
+    "rotatablex-": "woodfencecornerx-",
+    "rotatablez+": "woodfencecornerz+",
+    "rotatablez-": "woodfencecornerz-"
+  },
+  "woodfencecornerx+": {
+    "parentType": "fencecorner",
+    "mesh": "woodfencecornerx+.obj"
+  },
+  "woodfencecornerx-": {
+    "parentType": "fencecorner",
+    "mesh": "woodfencecornerx-.obj"
+  },
+  "woodfencecornerz+": {
+    "parentType": "fencecorner",
+    "mesh": "woodfencecornerz+.obj"
+  },
+  "woodfencecornerz-": {
+    "parentType": "fencecorner",
+    "mesh": "woodfencecornerz-.obj"
+  },
+  "window": {
+    "icon": "window.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "windowx+",
+    "rotatablex-": "windowx-",
+    "rotatablez+": "windowz+",
+    "rotatablez-": "windowz-"
+  },
+  "windowx+": {
+    "parentType": "window",
+    "mesh": "windowx+.obj"
+  },
+  "windowx-": {
+    "parentType": "window",
+    "mesh": "windowx-.obj"
+  },
+  "windowz+": {
+    "parentType": "window",
+    "mesh": "windowz+.obj"
+  },
+  "windowz-": {
+    "parentType": "window",
+    "mesh": "windowz-.obj"
+  },
+  "doublewindow": {
+    "icon": "window.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "doublewindowx+",
+    "rotatablex-": "doublewindowx-",
+    "rotatablez+": "doublewindowz+",
+    "rotatablez-": "doublewindowz-"
+  },
+  "doublewindowx+": {
+    "parentType": "doublewindow",
+    "mesh": "windowtwowayx.obj"
+  },
+  "doublewindowx-": {
+    "parentType": "doublewindow",
+    "mesh": "windowtwowayx.obj"
+  },
+  "doublewindowz+": {
+    "parentType": "doublewindow",
+    "mesh": "windowtwowayz.obj"
+  },
+  "doublewindowz-": {
+    "parentType": "doublewindow",
+    "mesh": "windowtwowayz.obj"
+  },
+  "woodsupport": {
+    "icon": "woodsupport.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "woodsupportx+",
+    "rotatablex-": "woodsupportx-",
+    "rotatablez+": "woodsupportz+",
+    "rotatablez-": "woodsupportz-"
+  },
+  "woodsupportx+": {
+    "parentType": "woodsupport",
+    "mesh": "woodsupportx+.obj"
+  },
+  "woodsupportx-": {
+    "parentType": "woodsupport",
+    "mesh": "woodsupportx-.obj"
+  },
+  "woodsupportz+": {
+    "parentType": "woodsupport",
+    "mesh": "woodsupportz+.obj"
+  },
+  "woodsupportz-": {
+    "parentType": "woodsupport",
+    "mesh": "woodsupportz-.obj"
+  },
+  "woodsupportud": {
+    "icon": "woodsupportud.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "woodsupportudx+",
+    "rotatablex-": "woodsupportudx-",
+    "rotatablez+": "woodsupportudz+",
+    "rotatablez-": "woodsupportudz-"
+  },
+  "woodsupportudx+": {
+    "parentType": "woodsupportud",
+    "mesh": "woodsupportudx+.obj"
+  },
+  "woodsupportudx-": {
+    "parentType": "woodsupportud",
+    "mesh": "woodsupportudx-.obj"
+  },
+  "woodsupportudz+": {
+    "parentType": "woodsupportud",
+    "mesh": "woodsupportudz+.obj"
+  },
+  "woodsupportudz-": {
+    "parentType": "woodsupportud",
+    "mesh": "woodsupportudz-.obj"
+  },
+  "woodsupportcube": {
+    "icon": "woodsupportcube.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "woodsupportcube.obj"
+  },
+  "hangingbanner": {
+    "icon": "hangingbanner.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isSolid": false,
+    "isRotatable": true,
+    "rotatablex+": "hangingbannerx+",
+    "rotatablex-": "hangingbannerx-",
+    "rotatablez+": "hangingbannerz+",
+    "rotatablez-": "hangingbannerz-"
+  },
+  "hangingbannerx+": {
+    "parentType": "hangingbanner",
+    "mesh": "hangingbannerx+.obj"
+  },
+  "hangingbannerx-": {
+    "parentType": "hangingbanner",
+    "mesh": "hangingbannerx-.obj"
+  },
+  "hangingbannerz+": {
+    "parentType": "hangingbanner",
+    "mesh": "hangingbannerz+.obj"
+  },
+  "hangingbannerz-": {
+    "parentType": "hangingbanner",
+    "mesh": "hangingbannerz-.obj"
+  },
+  "hangingbannerrw": {
+    "icon": "hangingbannerrw.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isSolid": false,
+    "isRotatable": true,
+    "rotatablex+": "hangingbannerrwx+",
+    "rotatablex-": "hangingbannerrwx-",
+    "rotatablez+": "hangingbannerrwz+",
+    "rotatablez-": "hangingbannerrwz-"
+  },
+  "hangingbannerrwx+": {
+    "parentType": "hangingbannerrw",
+    "mesh": "hangingbannerx+.obj"
+  },
+  "hangingbannerrwx-": {
+    "parentType": "hangingbannerrw",
+    "mesh": "hangingbannerx-.obj"
+  },
+  "hangingbannerrwz+": {
+    "parentType": "hangingbannerrw",
+    "mesh": "hangingbannerz+.obj"
+  },
+  "hangingbannerrwz-": {
+    "parentType": "hangingbannerrw",
+    "mesh": "hangingbannerz-.obj"
+  },
+  "hangingbannerbw": {
+    "icon": "hangingbannerbw.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isSolid": false,
+    "isRotatable": true,
+    "rotatablex+": "hangingbannerbwx+",
+    "rotatablex-": "hangingbannerbwx-",
+    "rotatablez+": "hangingbannerbwz+",
+    "rotatablez-": "hangingbannerbwz-"
+  },
+  "hangingbannerbwx+": {
+    "parentType": "hangingbannerbw",
+    "mesh": "hangingbannerx+.obj"
+  },
+  "hangingbannerbwx-": {
+    "parentType": "hangingbannerbw",
+    "mesh": "hangingbannerx-.obj"
+  },
+  "hangingbannerbwz+": {
+    "parentType": "hangingbannerbw",
+    "mesh": "hangingbannerz+.obj"
+  },
+  "hangingbannerbwz-": {
+    "parentType": "hangingbannerbw",
+    "mesh": "hangingbannerz-.obj"
+  },
+  "hangingbannercb": {
+    "icon": "hangingbannercb.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isSolid": false,
+    "isRotatable": true,
+    "rotatablex+": "hangingbannercbx+",
+    "rotatablex-": "hangingbannercbx-",
+    "rotatablez+": "hangingbannercbz+",
+    "rotatablez-": "hangingbannercbz-"
+  },
+  "hangingbannercbx+": {
+    "parentType": "hangingbannercb",
+    "mesh": "hangingbannerx+.obj"
+  },
+  "hangingbannercbx-": {
+    "parentType": "hangingbannercb",
+    "mesh": "hangingbannerx-.obj"
+  },
+  "hangingbannercbz+": {
+    "parentType": "hangingbannercb",
+    "mesh": "hangingbannerz+.obj"
+  },
+  "hangingbannercbz-": {
+    "parentType": "hangingbannercb",
+    "mesh": "hangingbannerz-.obj"
+  },
+  "hangingbannerbw2": {
+    "icon": "hangingbannerbw2.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isSolid": false,
+    "isRotatable": true,
+    "rotatablex+": "hangingbannerbw2x+",
+    "rotatablex-": "hangingbannerbw2x-",
+    "rotatablez+": "hangingbannerbw2z+",
+    "rotatablez-": "hangingbannerbw2z-"
+  },
+  "hangingbannerbw2x+": {
+    "parentType": "hangingbannerbw2",
+    "mesh": "hangingbannerx+.obj"
+  },
+  "hangingbannerbw2x-": {
+    "parentType": "hangingbannerbw2",
+    "mesh": "hangingbannerx-.obj"
+  },
+  "hangingbannerbw2z+": {
+    "parentType": "hangingbannerbw2",
+    "mesh": "hangingbannerz+.obj"
+  },
+  "hangingbannerbw2z-": {
+    "parentType": "hangingbannerbw2",
+    "mesh": "hangingbannerz-.obj"
+  },
+  "simplechair": {
+    "icon": "simplechair.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isSolid": false,
+    "isRotatable": true,
+    "rotatablex+": "simplechairx+",
+    "rotatablex-": "simplechairx-",
+    "rotatablez+": "simplechairz+",
+    "rotatablez-": "simplechairz-"
+  },
+  "simplechairx+": {
+    "parentType": "simplechair",
+    "mesh": "simplechairx+.obj"
+  },
+  "simplechairx-": {
+    "parentType": "simplechair",
+    "mesh": "simplechairx-.obj"
+  },
+  "simplechairz+": {
+    "parentType": "simplechair",
+    "mesh": "simplechairz+.obj"
+  },
+  "simplechairz-": {
+    "parentType": "simplechair",
+    "mesh": "simplechairz-.obj"
+  },
+  "simpletable": {
+    "icon": "simpletable.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "simpletable.obj"
+  },
+  "woodencatwalk": {
+    "icon": "woodencatwalk.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "woodencatwalkx",
+    "rotatablex-": "woodencatwalkx",
+    "rotatablez+": "woodencatwalkz",
+    "rotatablez-": "woodencatwalkz"
+  },
+  "woodencatwalkx": {
+    "parentType": "woodencatwalk",
+    "mesh": "woodencatwalkx.obj"
+  },
+  "woodencatwalkz": {
+    "parentType": "woodencatwalk",
+    "mesh": "woodencatwalkz.obj"
+  },
+  "bench": {
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "icon": "bench.png",
+    "isRotatable": true,
+    "isSolid": false,
+    "needsBase": true,
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "rotatablex+": "benchleftx+",
+    "rotatablex-": "benchleftx-",
+    "rotatablez+": "benchleftz+",
+    "rotatablez-": "benchleftz-"
+  },
+  "benchleftx+": {
+    "parentType": "bench",
+    "mesh": "benchleftx+.obj"
+  },
+  "benchleftx-": {
+    "parentType": "bench",
+    "mesh": "benchleftx-.obj"
+  },
+  "benchleftz+": {
+    "parentType": "bench",
+    "mesh": "benchleftz+.obj"
+  },
+  "benchleftz-": {
+    "parentType": "bench",
+    "mesh": "benchleftz-.obj"
+  },
+  "benchright": {
+    "parentType": "bench",
+    "isRotatable": true,
+    "rotatablex+": "benchrightx+",
+    "rotatablex-": "benchrightx-",
+    "rotatablez+": "benchrightz+",
+    "rotatablez-": "benchrightz-"
+  },
+  "benchrightx+": {
+    "parentType": "benchright",
+    "mesh": "benchrightx+.obj"
+  },
+  "benchrightx-": {
+    "parentType": "benchright",
+    "mesh": "benchrightx-.obj"
+  },
+  "benchrightz+": {
+    "parentType": "benchright",
+    "mesh": "benchrightz+.obj"
+  },
+  "benchrightz-": {
+    "parentType": "benchright",
+    "mesh": "benchrightz-.obj"
+  },
+  "woodbarrel": {
+    "icon": "woodbarrel.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "woodbarrelx+",
+    "rotatablex-": "woodbarrelx-",
+    "rotatablez+": "woodbarrelz+",
+    "rotatablez-": "woodbarrelz-"
+  },
+  "woodbarrelx+": {
+    "parentType": "woodbarrel",
+    "mesh": "woodbarrelx+.obj"
+  },
+  "woodbarrelx-": {
+    "parentType": "woodbarrel",
+    "mesh": "woodbarrelx-.obj"
+  },
+  "woodbarrelz+": {
+    "parentType": "woodbarrel",
+    "mesh": "woodbarrelz+.obj"
+  },
+  "woodbarrelz-": {
+    "parentType": "woodbarrel",
+    "mesh": "woodbarrelz-.obj"
+  },
+  "cratestack": {
+    "icon": "cratestack.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isRotatable": true,
+    "rotatablex+": "cratestackx+",
+    "rotatablex-": "cratestackx-",
+    "rotatablez+": "cratestackz+",
+    "rotatablez-": "cratestackz-"
+  },
+  "cratestackx+": {
+    "parentType": "cratestack",
+    "mesh": "cratestackx+.obj"
+  },
+  "cratestackx-": {
+    "parentType": "cratestack",
+    "mesh": "cratestackx-.obj"
+  },
+  "cratestackz+": {
+    "parentType": "cratestack",
+    "mesh": "cratestackz+.obj"
+  },
+  "cratestackz-": {
+    "parentType": "cratestack",
+    "mesh": "cratestackz-.obj"
+  },
+  "stonebrickslab": {
+    "fullblockType": "vanilla.stonebricks",
+    "icon": "stonebrickslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "stonebrickslabtop": {
+    "parentType": "stonebrickslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "stonebrickslabbottom": {
+    "parentType": "stonebrickslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "stonebrickslableft": {
+    "parentType": "stonebrickslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "stonebrickslabright": {
+    "parentType": "stonebrickslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "stonebrickslabfront": {
+    "parentType": "stonebrickslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "stonebrickslabback": {
+    "parentType": "stonebrickslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "plankslab": {
+    "fullblockType": "vanilla.planks",
+    "icon": "plankslab.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "plankslableft": {
+    "parentType": "plankslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "plankslabright": {
+    "parentType": "plankslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "plankslabfront": {
+    "parentType": "plankslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "plankslabback": {
+    "parentType": "plankslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
   "plankslabtop": {
     "parentType": "plankslab",
     "sideall": "SELF",
@@ -1062,2215 +1062,2215 @@
       "useHeightMap": true
     }
   },
-   "brickslab":{
-      "fullblockType":"vanilla.bricks",
-      "icon":"brickslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "brickslableft":{
-      "parentType":"brickslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "brickslabright":{
-      "parentType":"brickslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "brickslabfront":{
-      "parentType":"brickslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "brickslabback":{
-      "parentType":"brickslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "brickslabtop":{
-      "parentType":"brickslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "brickslabbottom":{
-      "parentType":"brickslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "coatedplankslab":{
-      "fullblockType":"vanilla.coatedplanks",
-      "icon":"coatedplankslab.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "coatedplankslableft":{
-      "parentType":"coatedplankslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "coatedplankslabright":{
-      "parentType":"coatedplankslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "coatedplankslabfront":{
-      "parentType":"coatedplankslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "coatedplankslabback":{
-      "parentType":"coatedplankslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "coatedplankslabtop":{
-      "parentType":"coatedplankslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "coatedplankslabbottom":{
-      "parentType":"coatedplankslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "cherryblossomslab":{
-      "fullblockType":"vanilla.cherryblossom",
-      "icon":"cherryblossomslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "cherryblossomslableft":{
-      "parentType":"cherryblossomslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "cherryblossomslabright":{
-      "parentType":"cherryblossomslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "cherryblossomslabfront":{
-      "parentType":"cherryblossomslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "cherryblossomslabback":{
-      "parentType":"cherryblossomslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "cherryblossomslabtop":{
-      "parentType":"cherryblossomslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "cherryblossomslabbottom":{
-      "parentType":"cherryblossomslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "leavestemperateslab":{
-      "fullblockType":"vanilla.leavestemperate",
-      "icon":"leavestemperateslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "leavestemperateslableft":{
-      "parentType":"leavestemperateslab",
-      "sideall":"SELF",
+  "brickslab": {
+    "fullblockType": "vanilla.bricks",
+    "icon": "brickslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "brickslableft": {
+    "parentType": "brickslab",
+    "sideall": "SELF",
     "mesh": "slableft.obj"
-   },
-   "leavestemperateslabright":{
-      "parentType":"leavestemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "leavestemperateslabfront":{
-      "parentType":"leavestemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "leavestemperateslabback":{
-      "parentType":"leavestemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "leavestemperateslabbottom":{
-      "parentType":"leavestemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "leavestemperateslabtop":{
-      "parentType":"leavestemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "leavestaigaslab":{
-      "fullblockType":"vanilla.leavestaiga",
-      "icon":"leavestaigaslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "leavestaigaslableft":{
-      "parentType":"leavestaigaslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "leavestaigaslabright":{
-      "parentType":"leavestaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "leavestaigaslabfront":{
-      "parentType":"leavestaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "leavestaigaslabback":{
-      "parentType":"leavestaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "leavestaigaslabbottom":{
-      "parentType":"leavestaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "leavestaigaslabtop":{
-      "parentType":"leavestaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "waterslab":{
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      },
-      "icon": "waterslab.png",
-      "onPlaceAudio":"waterPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ]
-   },
-   "waterslableft":{
-      "parentType":"waterslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "waterslabright":{
-      "parentType":"waterslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "waterslabfront":{
-      "parentType":"waterslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "waterslabback":{
-      "parentType":"waterslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "waterslabtop":{
-      "parentType":"waterslab",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"slabtop.obj"
-   },
-   "waterslabbottom":{
-      "parentType":"waterslab",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"slabbottom.obj"
-   },
-   "adobeslab":{
-      "fullblockType":"vanilla.adobe",
-      "icon":"adobeslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "adobeslableft":{
-      "parentType":"adobeslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "adobeslabright":{
-      "parentType":"adobeslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "adobeslabfront":{
-      "parentType":"adobeslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "adobeslabback":{
-      "parentType":"adobeslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "adobeslabtop":{
-      "parentType":"adobeslab",
-      "sideall":"SELF",
-      "isFertile":true,
-      "mesh":"slabtop.obj"
-   },
-   "adobeslabbottom":{
-      "parentType":"adobeslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "rainforestslab":{
-      "fullblockType":"vanilla.grassrainforest",
-      "icon":"grassrainforestslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "rainforestslableft":{
-      "parentType":"rainforestslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "rainforestslabright":{
-      "parentType":"rainforestslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "rainforestslabfront":{
-      "parentType":"rainforestslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "rainforestslabback":{
-      "parentType":"rainforestslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "rainforestslabtop":{
-      "parentType":"rainforestslab",
-      "sideall":"SELF",
-      "isFertile":true,
-      "mesh":"slabtop.obj"
-   },
-   "rainforestslabbottom":{
-      "parentType":"rainforestslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "temperateslab":{
-      "fullblockType":"vanilla.grasstemperate",
-      "icon":"grasstemperateslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "temperateslableft":{
-      "parentType":"temperateslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "temperateslabright":{
-      "parentType":"temperateslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "temperateslabfront":{
-      "parentType":"temperateslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "temperateslabback":{
-      "parentType":"temperateslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "temperateslabtop":{
-      "parentType":"temperateslab",
-      "sideall":"SELF",
-      "isFertile":true,
-      "mesh":"slabtop.obj"
-   },
-   "temperateslabbottom":{
-      "parentType":"temperateslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "tundraslab":{
-      "fullblockType":"vanilla.grasstundra",
-      "icon":"grasstundraslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "tundraslableft":{
-      "parentType":"tundraslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "tundraslabright":{
-      "parentType":"tundraslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "tundraslabfront":{
-      "parentType":"tundraslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "tundraslabback":{
-      "parentType":"tundraslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "tundraslabbottom":{
-      "parentType":"tundraslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "tundraslabtop":{
-      "parentType":"tundraslab",
-      "sideall":"SELF",
-      "isFertile":true,
-      "mesh":"slabtop.obj"
-   },
-   "taigaslab":{
-      "fullblockType":"vanilla.grasstaiga",
-      "icon":"grasstaigaslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "taigaslableft":{
-      "parentType":"taigaslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "taigaslabright":{
-      "parentType":"taigaslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "taigaslabfront":{
-      "parentType":"taigaslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "taigaslabback":{
-      "parentType":"taigaslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "taigaslabtop":{
-      "parentType":"taigaslab",
-      "sideall":"SELF",
-      "isFertile":true,
-      "mesh":"slabtop.obj"
-   },
-   "taigaslabbottom":{
-      "parentType":"taigaslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "savannaslab":{
-      "fullblockType":"vanilla.grasssavanna",
-      "icon":"grasssavannaslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "savannaslableft":{
-      "parentType":"savannaslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "savannaslabright":{
-      "parentType":"savannaslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "savannaslabfront":{
-      "parentType":"savannaslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "savannaslabback":{
-      "parentType":"savannaslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "savannaslabtop":{
-      "parentType":"savannaslab",
-      "sideall":"SELF",
-      "isFertile":true,
-      "mesh":"slabtop.obj"
-   },
-   "savannaslabbottom":{
-      "parentType":"savannaslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "strawslab":{
-      "fullblockType":"vanilla.straw",
-      "icon":"strawslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "strawslableft":{
-      "parentType":"strawslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "strawslabright":{
-      "parentType":"strawslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "strawslabfront":{
-      "parentType":"strawslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "strawslabback":{
-      "parentType":"strawslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "strawslabtop":{
-      "parentType":"strawslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "strawslabbottom":{
-      "parentType":"strawslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "berrybushslab":{
-      "fullblockType":"vanilla.berrybush",
-      "icon":"berrybushslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "berrybushslableft":{
-      "parentType":"berrybushslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "berrybushslabright":{
-      "parentType":"berrybushslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "berrybushslabfront":{
-      "parentType":"berrybushslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "berrybushslabback":{
-      "parentType":"berrybushslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "berrybushslabtop":{
-      "parentType":"berrybushslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "berrybushslabbottom":{
-      "parentType":"berrybushslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "snowslab":{
-      "fullblockType":"vanilla.snow",
-      "icon":"snowslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "snowslableft":{
-      "parentType":"snowslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "snowslabright":{
-      "parentType":"snowslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "snowslabfront":{
-      "parentType":"snowslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "snowslabback":{
-      "parentType":"snowslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "snowslabbottom":{
-      "parentType":"snowslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "snowslabtop":{
-      "parentType":"snowslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "sandslab":{
-      "fullblockType":"vanilla.sand",
-      "icon":"sandslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "sandslableft":{
-      "parentType":"sandslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "sandslabright":{
-      "parentType":"sandslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "sandslabfront":{
-      "parentType":"sandslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "sandslabback":{
-      "parentType":"sandslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "sandslabtop":{
-      "icon":"sandslab.png",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"slabtop.obj"
-   },
-   "sandslabbottom":{
-      "icon":"sandslab.png",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"slabbottom.obj"
-   },
-   "dirtslab":{
-      "fullblockType":"vanilla.dirt",
-      "icon":"dirtslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "dirtslableft":{
-      "parentType":"dirtslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "dirtslabright":{
-      "parentType":"dirtslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "dirtslabfront":{
-      "parentType":"dirtslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "dirtslabback":{
-      "parentType":"dirtslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "dirtslabtop":{
-      "parentType":"dirtslab",
-      "isFertile":true,
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "dirtslabbottom":{
-      "parentType":"dirtslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "carpetyellowslab":{
-      "fullblockType":"vanilla.carpetyellow",
-      "icon":"yellowcarpetslab.png",
-      "onPlaceAudio":"vanilla.carpetyellowPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "carpetyellowslableft":{
-      "parentType":"carpetyellowslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "carpetyellowslabright":{
-      "parentType":"carpetyellowslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "carpetyellowslabfront":{
-      "parentType":"carpetyellowslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "carpetyellowslabback":{
-      "parentType":"carpetyellowslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "carpetyellowslabtop":{
-      "parentType":"carpetyellowslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "carpetyellowslabbottom":{
-      "parentType":"carpetyellowslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "carpetblueslab":{
-      "fullblockType":"vanilla.carpetblue",
-      "icon":"bluecarpetslab.png",
-      "onPlaceAudio":"vanilla.carpetbluePlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "carpetblueslableft":{
-      "parentType":"carpetblueslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "carpetblueslabright":{
-      "parentType":"carpetblueslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "carpetblueslabfront":{
-      "parentType":"carpetblueslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "carpetblueslabback":{
-      "parentType":"carpetblueslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "carpetblueslabbottom":{
-      "parentType":"carpetblueslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "carpetblueslabtop":{
-      "parentType":"carpetblueslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "carpetredslab":{
-      "fullblockType":"vanilla.carpetred",
-      "icon":"redcarpetslab.png",
-      "onPlaceAudio":"vanilla.carpetredPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "carpetredslableft":{
-      "parentType":"carpetredslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "carpetredslabright":{
-      "parentType":"carpetredslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "carpetredslabfront":{
-      "parentType":"carpetredslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "carpetredslabback":{
-      "parentType":"carpetredslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "carpetredslabtop":{
-      "parentType":"carpetredslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "carpetredslabbottom":{
-      "parentType":"carpetredslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "stoneblockslab":{
-      "fullblockType":"vanilla.stoneblock",
-      "icon":"stoneblockslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "stoneblockslableft":{
-      "parentType":"stoneblockslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "stoneblockslabright":{
-      "parentType":"stoneblockslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "stoneblockslabfront":{
-      "parentType":"stoneblockslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "stoneblockslabback":{
-      "parentType":"stoneblockslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "stoneblockslabtop":{
-      "parentType":"stoneblockslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "stoneblockslabbottom":{
-      "parentType":"stoneblockslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "dirtbrickslab":{
-      "fullblockType":"dirtbrick",
-      "icon":"dirtbrickslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "dirtbrickslableft":{
-      "parentType":"dirtbrickslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "dirtbrickslabright":{
-      "parentType":"dirtbrickslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "dirtbrickslabfront":{
-      "parentType":"dirtbrickslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "dirtbrickslabback":{
-      "parentType":"dirtbrickslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "dirtbrickslabtop":{
-      "parentType":"dirtbrickslab",
-      "isFertile":true,
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "dirtbrickslabbottom":{
-      "parentType":"dirtbrickslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "logtaigaslab":{
-      "fullblockType":"vanilla.logtaiga",
-      "icon":"logtaigaslab.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "logtaigaslableft":{
-      "parentType":"logtaigaslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "logtaigaslabright":{
-      "parentType":"logtaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "logtaigaslabfront":{
-      "parentType":"logtaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "logtaigaslabback":{
-      "parentType":"logtaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "logtaigaslabtop":{
-      "parentType":"logtaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "logtaigaslabbottom":{
-      "parentType":"logtaigaslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "logtemperateslab":{
-      "fullblockType":"vanilla.logtemperate",
-      "icon":"logtemperateslab.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "logtemperateslableft":{
-      "parentType":"logtemperateslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "logtemperateslabright":{
-      "parentType":"logtemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "logtemperateslabfront":{
-      "parentType":"logtemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "logtemperateslabback":{
-      "parentType":"logtemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "logtemperateslabtop":{
-      "parentType":"logtemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "logtemperateslabbottom":{
-      "parentType":"logtemperateslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "sandstoneslab":{
-      "fullblockType":"sandstone",
-      "icon":"sandstoneslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "sandstoneslableft":{
-      "parentType":"sandstoneslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "sandstoneslabright":{
-      "parentType":"sandstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "sandstoneslabfront":{
-      "parentType":"sandstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "sandstoneslabback":{
-      "parentType":"sandstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "sandstoneslabtop":{
-      "parentType":"sandstoneslab",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "mesh":"slabtop.obj"
-   },
-   "sandstoneslabbottom":{
-      "parentType":"sandstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "limestoneslab":{
-      "fullblockType":"limestone",
-      "icon":"limestoneslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "limestoneslableft":{
-      "parentType":"limestoneslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "limestoneslabright":{
-      "parentType":"limestoneslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "limestoneslabfront":{
-      "parentType":"limestoneslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "limestoneslabback":{
-      "parentType":"limestoneslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "limestoneslabtop":{
-      "parentType":"limestoneslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "limestoneslabbottom":{
-      "parentType":"limestoneslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "marbleslab":{
-      "fullblockType":"marble",
-      "icon":"marbleslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "marbleslableft":{
-      "parentType":"marbleslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "marbleslabright":{
-      "parentType":"marbleslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "marbleslabfront":{
-      "parentType":"marbleslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "marbleslabback":{
-      "parentType":"marbleslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "marbleslabbottom":{
-      "parentType":"marbleslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "marbleslabtop":{
-      "parentType":"marbleslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "rawmarbleslab":{
-      "fullblockType":"rawmarble",
-      "icon":"rawmarbleslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "rawmarbleslableft":{
-      "parentType":"rawmarbleslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "rawmarbleslabright":{
-      "parentType":"rawmarbleslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "rawmarbleslabfront":{
-      "parentType":"rawmarbleslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "rawmarbleslabback":{
-      "parentType":"rawmarbleslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "rawmarbleslabbottom":{
-      "parentType":"rawmarbleslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "rawmarbleslabtop":{
-      "parentType":"rawmarbleslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "marblebricksslab":{
-      "fullblockType":"marblebricksslab",
-      "icon":"marblebricksslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "marblebricksslableft":{
-      "parentType":"marblebricksslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "marblebricksslabright":{
-      "parentType":"marblebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "marblebricksslabfront":{
-      "parentType":"marblebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "marblebricksslabback":{
-      "parentType":"marblebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "marblebricksslabtop":{
-      "parentType":"marblebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "marblebricksslabbottom":{
-      "parentType":"marblebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "stonesquaresslab":{
-      "fullblockType":"stonesquaresslab",
-      "icon":"stonesquaresslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "stonesquaresslableft":{
-      "parentType":"stonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "stonesquaresslabright":{
-      "parentType":"stonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "stonesquaresslabfront":{
-      "parentType":"stonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "stonesquaresslabback":{
-      "parentType":"stonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "stonesquaresslabtop":{
-      "parentType":"stonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "stonesquaresslabbottom":{
-      "parentType":"stonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "mossstonesquares":{
-      "icon":"mossstonesquares.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "stonesquares":{
-      "icon":"stonesquares.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "mossstonesquaresslab":{
-      "fullblockType":"mossstonesquaresslab",
-      "icon":"mossstonesquaresslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "mossstonesquaresslableft":{
-      "parentType":"mossstonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "mossstonesquaresslabright":{
-      "parentType":"mossstonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "mossstonesquaresslabfront":{
-      "parentType":"mossstonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "mossstonesquaresslabback":{
-      "parentType":"mossstonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "mossstonesquaresslabbottom":{
-      "parentType":"mossstonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "mossstonesquaresslabtop":{
-      "parentType":"mossstonesquaresslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "mossstonebricksslab":{
-      "fullblockType":"mossstonebricksslab",
-      "icon":"mossstonebricksslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "mossstonebricksslableft":{
-      "parentType":"mossstonebricksslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "mossstonebricksslabright":{
-      "parentType":"mossstonebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "mossstonebricksslabfront":{
-      "parentType":"mossstonebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "mossstonebricksslabback":{
-      "parentType":"mossstonebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "mossstoneslab":{
-      "fullblockType":"mossstoneslab",
-      "icon":"mossstoneslab.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "mossstoneslableft":{
-      "parentType":"mossstoneslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "mossstoneslabright":{
-      "parentType":"mossstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "mossstoneslabfront":{
-      "parentType":"mossstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "mossstoneslabback":{
-      "parentType":"mossstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "mossstoneslabbottom":{
-      "parentType":"mossstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "mossstoneslabtop":{
-      "parentType":"mossstoneslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "mossstonebricksslabbottom":{
-      "parentType":"mossstonebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "mossstonebricksslabtop":{
-      "parentType":"mossstonebricksslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "mossstone":{
-      "icon":"mossstone.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "mossstonebricks":{
-      "icon":"mossstonebricks.png",
-      "onPlaceAudio":"vanilla.stonePlace",
-      "onRemoveAudio":"vanilla.stoneDelete",
-      "sideall":"SELF",
-      "npcLimit":0,
-      "maxStackSize":600
-   },
-   "plasterslab":{
-      "fullblockType":"vanilla.plaster",
-      "icon":"plasterslab.png",
-      "onRemoveAudio":"vanilla.dirtPlace",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "plasterslableft":{
-      "parentType":"plasterslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "plasterslabright":{
-      "parentType":"plasterslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "plasterslabfront":{
-      "parentType":"plasterslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "plasterslabback":{
-      "parentType":"plasterslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "plasterslabtop":{
-      "parentType":"plasterslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "plasterslabbottom":{
-      "parentType":"plasterslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "clayslab":{
-      "fullblockType":"vanilla.clay",
-      "icon":"clayslab.png",
-      "onPlaceAudio":"vanilla.dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "clayslableft":{
-      "parentType":"clayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "clayslabright":{
-      "parentType":"clayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "clayslabfront":{
-      "parentType":"clayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "clayslabback":{
-      "parentType":"clayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "clayslabtop":{
-      "parentType":"clayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "clayslabbottom":{
-      "parentType":"clayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "redplankslab":{
-      "fullblockType":"vanilla.redplanks",
-      "icon":"redplankslab.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "redplankslableft":{
-      "parentType":"redplankslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "redplankslabright":{
-      "parentType":"redplankslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "redplankslabfront":{
-      "parentType":"redplankslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "redplankslabback":{
-      "parentType":"redplankslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "redplankslabbottom":{
-      "parentType":"redplankslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "redplankslabtop":{
-      "parentType":"redplankslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "blackplankslab":{
-      "fullblockType":"vanilla.blackplanks",
-      "icon":"blackplankslab.png",
-      "onPlaceAudio":"vanilla.woodPlace",
-      "onRemoveAudio":"vanilla.woodDeleteLight",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "blackplankslableft":{
-      "parentType":"blackplankslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "blackplankslabright":{
-      "parentType":"blackplankslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "blackplankslabfront":{
-      "parentType":"blackplankslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "blackplankslabback":{
-      "parentType":"blackplankslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "blackplankslabbottom":{
-      "parentType":"blackplankslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "blackplankslabtop":{
-      "parentType":"blackplankslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "whiteclayslab":{
-      "fullblockType":"whiteclay",
-      "icon":"whiteclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "whiteclayslableft":{
-      "parentType":"whiteclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "whiteclayslabright":{
-      "parentType":"whiteclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "whiteclayslabfront":{
-      "parentType":"whiteclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "whiteclayslabback":{
-      "parentType":"whiteclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "whiteclayslabbottom":{
-      "parentType":"whiteclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "whiteclayslabtop":{
-      "parentType":"whiteclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "yellowclayslab":{
-      "fullblockType":"yellowclay",
-      "icon":"yellowclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "yellowclayslableft":{
-      "parentType":"yellowclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "yellowclayslabright":{
-      "parentType":"yellowclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "yellowclayslabfront":{
-      "parentType":"yellowclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "yellowclayslabback":{
-      "parentType":"yellowclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "yellowclayslabbottom":{
-      "parentType":"yellowclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "yellowclayslabtop":{
-      "parentType":"yellowclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "orangeclayslab":{
-      "fullblockType":"orangeclay",
-      "icon":"orangeclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "orangeclayslableft":{
-      "parentType":"orangeclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "orangeclayslabright":{
-      "parentType":"orangeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "orangeclayslabfront":{
-      "parentType":"orangeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "orangeclayslabback":{
-      "parentType":"orangeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "orangeclayslabtop":{
-      "parentType":"orangeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "orangeclayslabbottom":{
-      "parentType":"orangeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "magentaclayslab":{
-      "fullblockType":"magentaclay",
-      "icon":"magentaclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "magentaclayslableft":{
-      "parentType":"magentaclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "magentaclayslabright":{
-      "parentType":"magentaclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "magentaclayslabfront":{
-      "parentType":"magentaclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "magentaclayslabback":{
-      "parentType":"magentaclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "magentaclayslabbottom":{
-      "parentType":"magentaclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "magentaclayslabtop":{
-      "parentType":"magentaclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "purpleclayslab":{
-      "fullblockType":"purpleclay",
-      "icon":"purpleclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "purpleclayslableft":{
-      "parentType":"purpleclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "purpleclayslabright":{
-      "parentType":"purpleclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "purpleclayslabfront":{
-      "parentType":"purpleclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "purpleclayslabback":{
-      "parentType":"purpleclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "purpleclayslabbottom":{
-      "parentType":"purpleclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "purpleclayslabtop":{
-      "parentType":"purpleclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "redclayslab":{
-      "fullblockType":"redclay",
-      "icon":"redclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "redclayslableft":{
-      "parentType":"redclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "redclayslabright":{
-      "parentType":"redclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "redclayslabfront":{
-      "parentType":"redclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "redclayslabback":{
-      "parentType":"redclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "redclayslabbottom":{
-      "parentType":"redclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "redclayslabtop":{
-      "parentType":"redclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "lightpinkclayslab":{
-      "fullblockType":"lightpinkclay",
-      "icon":"lightpinkclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "lightpinkclayslableft":{
-      "parentType":"lightpinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "lightpinkclayslabright":{
-      "parentType":"lightpinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "lightpinkclayslabfront":{
-      "parentType":"lightpinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "lightpinkclayslabback":{
-      "parentType":"lightpinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "lightpinkclayslabbottom":{
-      "parentType":"lightpinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "lightpinkclayslabtop":{
-      "parentType":"lightpinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "pinkclayslab":{
-      "fullblockType":"pinkclay",
-      "icon":"pinkclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "pinkclayslableft":{
-      "parentType":"pinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "pinkclayslabright":{
-      "parentType":"pinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "pinkclayslabfront":{
-      "parentType":"pinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "pinkclayslabback":{
-      "parentType":"pinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "pinkclayslabbottom":{
-      "parentType":"pinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "pinkclayslabtop":{
-      "parentType":"pinkclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "limeclayslab":{
-      "fullblockType":"limeclay",
-      "icon":"limeclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "limeclayslableft":{
-      "parentType":"limeclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "limeclayslabright":{
-      "parentType":"limeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "limeclayslabfront":{
-      "parentType":"limeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "limeclayslabback":{
-      "parentType":"limeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "limeclayslabbottom":{
-      "parentType":"limeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "limeclayslabtop":{
-      "parentType":"limeclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "greenclayslab":{
-      "fullblockType":"greenclay",
-      "icon":"greenclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "greenclayslableft":{
-      "parentType":"greenclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "greenclayslabright":{
-      "parentType":"greenclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "greenclayslabfront":{
-      "parentType":"greenclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "greenclayslabback":{
-      "parentType":"greenclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "greenclayslabbottom":{
-      "parentType":"greenclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "greenclayslabtop":{
-      "parentType":"greenclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "lightgreyclayslab":{
-      "fullblockType":"lightgreyclay",
-      "icon":"lightgreyclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "lightgreyclayslableft":{
-      "parentType":"lightgreyclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "lightgreyclayslabright":{
-      "parentType":"lightgreyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "lightgreyclayslabfront":{
-      "parentType":"lightgreyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "lightgreyclayslabback":{
-      "parentType":"lightgreyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "lightgreyclayslabbottom":{
-      "parentType":"lightgreyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "lightgreyclayslabtop":{
-      "parentType":"lightgreyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
+  },
+  "brickslabright": {
+    "parentType": "brickslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "brickslabfront": {
+    "parentType": "brickslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "brickslabback": {
+    "parentType": "brickslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "brickslabtop": {
+    "parentType": "brickslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "brickslabbottom": {
+    "parentType": "brickslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "coatedplankslab": {
+    "fullblockType": "vanilla.coatedplanks",
+    "icon": "coatedplankslab.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "coatedplankslableft": {
+    "parentType": "coatedplankslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "coatedplankslabright": {
+    "parentType": "coatedplankslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "coatedplankslabfront": {
+    "parentType": "coatedplankslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "coatedplankslabback": {
+    "parentType": "coatedplankslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "coatedplankslabtop": {
+    "parentType": "coatedplankslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "coatedplankslabbottom": {
+    "parentType": "coatedplankslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "cherryblossomslab": {
+    "fullblockType": "vanilla.cherryblossom",
+    "icon": "cherryblossomslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "cherryblossomslableft": {
+    "parentType": "cherryblossomslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "cherryblossomslabright": {
+    "parentType": "cherryblossomslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "cherryblossomslabfront": {
+    "parentType": "cherryblossomslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "cherryblossomslabback": {
+    "parentType": "cherryblossomslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "cherryblossomslabtop": {
+    "parentType": "cherryblossomslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "cherryblossomslabbottom": {
+    "parentType": "cherryblossomslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "leavestemperateslab": {
+    "fullblockType": "vanilla.leavestemperate",
+    "icon": "leavestemperateslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "leavestemperateslableft": {
+    "parentType": "leavestemperateslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "leavestemperateslabright": {
+    "parentType": "leavestemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "leavestemperateslabfront": {
+    "parentType": "leavestemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "leavestemperateslabback": {
+    "parentType": "leavestemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "leavestemperateslabbottom": {
+    "parentType": "leavestemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "leavestemperateslabtop": {
+    "parentType": "leavestemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "leavestaigaslab": {
+    "fullblockType": "vanilla.leavestaiga",
+    "icon": "leavestaigaslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "leavestaigaslableft": {
+    "parentType": "leavestaigaslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "leavestaigaslabright": {
+    "parentType": "leavestaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "leavestaigaslabfront": {
+    "parentType": "leavestaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "leavestaigaslabback": {
+    "parentType": "leavestaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "leavestaigaslabbottom": {
+    "parentType": "leavestaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "leavestaigaslabtop": {
+    "parentType": "leavestaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "waterslab": {
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    },
+    "icon": "waterslab.png",
+    "onPlaceAudio": "vanilla.waterSplashFeet",
+    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ]
+  },
+  "waterslableft": {
+    "parentType": "waterslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "waterslabright": {
+    "parentType": "waterslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "waterslabfront": {
+    "parentType": "waterslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "waterslabback": {
+    "parentType": "waterslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "waterslabtop": {
+    "parentType": "waterslab",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "slabtop.obj"
+  },
+  "waterslabbottom": {
+    "parentType": "waterslab",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "slabbottom.obj"
+  },
+  "adobeslab": {
+    "fullblockType": "vanilla.adobe",
+    "icon": "adobeslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "adobeslableft": {
+    "parentType": "adobeslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "adobeslabright": {
+    "parentType": "adobeslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "adobeslabfront": {
+    "parentType": "adobeslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "adobeslabback": {
+    "parentType": "adobeslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "adobeslabtop": {
+    "parentType": "adobeslab",
+    "sideall": "SELF",
+    "isFertile": true,
+    "mesh": "slabtop.obj"
+  },
+  "adobeslabbottom": {
+    "parentType": "adobeslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "rainforestslab": {
+    "fullblockType": "vanilla.grassrainforest",
+    "icon": "grassrainforestslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "rainforestslableft": {
+    "parentType": "rainforestslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "rainforestslabright": {
+    "parentType": "rainforestslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "rainforestslabfront": {
+    "parentType": "rainforestslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "rainforestslabback": {
+    "parentType": "rainforestslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "rainforestslabtop": {
+    "parentType": "rainforestslab",
+    "sideall": "SELF",
+    "isFertile": true,
+    "mesh": "slabtop.obj"
+  },
+  "rainforestslabbottom": {
+    "parentType": "rainforestslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "temperateslab": {
+    "fullblockType": "vanilla.grasstemperate",
+    "icon": "grasstemperateslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "temperateslableft": {
+    "parentType": "temperateslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "temperateslabright": {
+    "parentType": "temperateslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "temperateslabfront": {
+    "parentType": "temperateslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "temperateslabback": {
+    "parentType": "temperateslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "temperateslabtop": {
+    "parentType": "temperateslab",
+    "sideall": "SELF",
+    "isFertile": true,
+    "mesh": "slabtop.obj"
+  },
+  "temperateslabbottom": {
+    "parentType": "temperateslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "tundraslab": {
+    "fullblockType": "vanilla.grasstundra",
+    "icon": "grasstundraslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "tundraslableft": {
+    "parentType": "tundraslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "tundraslabright": {
+    "parentType": "tundraslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "tundraslabfront": {
+    "parentType": "tundraslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "tundraslabback": {
+    "parentType": "tundraslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "tundraslabbottom": {
+    "parentType": "tundraslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "tundraslabtop": {
+    "parentType": "tundraslab",
+    "sideall": "SELF",
+    "isFertile": true,
+    "mesh": "slabtop.obj"
+  },
+  "taigaslab": {
+    "fullblockType": "vanilla.grasstaiga",
+    "icon": "grasstaigaslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "taigaslableft": {
+    "parentType": "taigaslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "taigaslabright": {
+    "parentType": "taigaslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "taigaslabfront": {
+    "parentType": "taigaslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "taigaslabback": {
+    "parentType": "taigaslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "taigaslabtop": {
+    "parentType": "taigaslab",
+    "sideall": "SELF",
+    "isFertile": true,
+    "mesh": "slabtop.obj"
+  },
+  "taigaslabbottom": {
+    "parentType": "taigaslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "savannaslab": {
+    "fullblockType": "vanilla.grasssavanna",
+    "icon": "grasssavannaslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "savannaslableft": {
+    "parentType": "savannaslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "savannaslabright": {
+    "parentType": "savannaslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "savannaslabfront": {
+    "parentType": "savannaslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "savannaslabback": {
+    "parentType": "savannaslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "savannaslabtop": {
+    "parentType": "savannaslab",
+    "sideall": "SELF",
+    "isFertile": true,
+    "mesh": "slabtop.obj"
+  },
+  "savannaslabbottom": {
+    "parentType": "savannaslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "strawslab": {
+    "fullblockType": "vanilla.straw",
+    "icon": "strawslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "strawslableft": {
+    "parentType": "strawslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "strawslabright": {
+    "parentType": "strawslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "strawslabfront": {
+    "parentType": "strawslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "strawslabback": {
+    "parentType": "strawslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "strawslabtop": {
+    "parentType": "strawslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "strawslabbottom": {
+    "parentType": "strawslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "berrybushslab": {
+    "fullblockType": "vanilla.berrybush",
+    "icon": "berrybushslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "berrybushslableft": {
+    "parentType": "berrybushslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "berrybushslabright": {
+    "parentType": "berrybushslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "berrybushslabfront": {
+    "parentType": "berrybushslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "berrybushslabback": {
+    "parentType": "berrybushslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "berrybushslabtop": {
+    "parentType": "berrybushslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "berrybushslabbottom": {
+    "parentType": "berrybushslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "snowslab": {
+    "fullblockType": "vanilla.snow",
+    "icon": "snowslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "snowslableft": {
+    "parentType": "snowslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "snowslabright": {
+    "parentType": "snowslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "snowslabfront": {
+    "parentType": "snowslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "snowslabback": {
+    "parentType": "snowslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "snowslabbottom": {
+    "parentType": "snowslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "snowslabtop": {
+    "parentType": "snowslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "sandslab": {
+    "fullblockType": "vanilla.sand",
+    "icon": "sandslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "sandslableft": {
+    "parentType": "sandslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "sandslabright": {
+    "parentType": "sandslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "sandslabfront": {
+    "parentType": "sandslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "sandslabback": {
+    "parentType": "sandslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "sandslabtop": {
+    "icon": "sandslab.png",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "slabtop.obj"
+  },
+  "sandslabbottom": {
+    "icon": "sandslab.png",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "slabbottom.obj"
+  },
+  "dirtslab": {
+    "fullblockType": "vanilla.dirt",
+    "icon": "dirtslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "dirtslableft": {
+    "parentType": "dirtslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "dirtslabright": {
+    "parentType": "dirtslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "dirtslabfront": {
+    "parentType": "dirtslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "dirtslabback": {
+    "parentType": "dirtslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "dirtslabtop": {
+    "parentType": "dirtslab",
+    "isFertile": true,
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "dirtslabbottom": {
+    "parentType": "dirtslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "carpetyellowslab": {
+    "fullblockType": "vanilla.carpetyellow",
+    "icon": "yellowcarpetslab.png",
+    "onPlaceAudio": "vanilla.carpetyellowPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "carpetyellowslableft": {
+    "parentType": "carpetyellowslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "carpetyellowslabright": {
+    "parentType": "carpetyellowslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "carpetyellowslabfront": {
+    "parentType": "carpetyellowslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "carpetyellowslabback": {
+    "parentType": "carpetyellowslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "carpetyellowslabtop": {
+    "parentType": "carpetyellowslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "carpetyellowslabbottom": {
+    "parentType": "carpetyellowslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "carpetblueslab": {
+    "fullblockType": "vanilla.carpetblue",
+    "icon": "bluecarpetslab.png",
+    "onPlaceAudio": "vanilla.carpetbluePlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "carpetblueslableft": {
+    "parentType": "carpetblueslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "carpetblueslabright": {
+    "parentType": "carpetblueslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "carpetblueslabfront": {
+    "parentType": "carpetblueslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "carpetblueslabback": {
+    "parentType": "carpetblueslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "carpetblueslabbottom": {
+    "parentType": "carpetblueslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "carpetblueslabtop": {
+    "parentType": "carpetblueslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "carpetredslab": {
+    "fullblockType": "vanilla.carpetred",
+    "icon": "redcarpetslab.png",
+    "onPlaceAudio": "vanilla.carpetredPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "carpetredslableft": {
+    "parentType": "carpetredslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "carpetredslabright": {
+    "parentType": "carpetredslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "carpetredslabfront": {
+    "parentType": "carpetredslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "carpetredslabback": {
+    "parentType": "carpetredslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "carpetredslabtop": {
+    "parentType": "carpetredslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "carpetredslabbottom": {
+    "parentType": "carpetredslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "stoneblockslab": {
+    "fullblockType": "vanilla.stoneblock",
+    "icon": "stoneblockslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "stoneblockslableft": {
+    "parentType": "stoneblockslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "stoneblockslabright": {
+    "parentType": "stoneblockslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "stoneblockslabfront": {
+    "parentType": "stoneblockslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "stoneblockslabback": {
+    "parentType": "stoneblockslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "stoneblockslabtop": {
+    "parentType": "stoneblockslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "stoneblockslabbottom": {
+    "parentType": "stoneblockslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "dirtbrickslab": {
+    "fullblockType": "dirtbrick",
+    "icon": "dirtbrickslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "dirtbrickslableft": {
+    "parentType": "dirtbrickslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "dirtbrickslabright": {
+    "parentType": "dirtbrickslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "dirtbrickslabfront": {
+    "parentType": "dirtbrickslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "dirtbrickslabback": {
+    "parentType": "dirtbrickslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "dirtbrickslabtop": {
+    "parentType": "dirtbrickslab",
+    "isFertile": true,
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "dirtbrickslabbottom": {
+    "parentType": "dirtbrickslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "logtaigaslab": {
+    "fullblockType": "vanilla.logtaiga",
+    "icon": "logtaigaslab.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "logtaigaslableft": {
+    "parentType": "logtaigaslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "logtaigaslabright": {
+    "parentType": "logtaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "logtaigaslabfront": {
+    "parentType": "logtaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "logtaigaslabback": {
+    "parentType": "logtaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "logtaigaslabtop": {
+    "parentType": "logtaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "logtaigaslabbottom": {
+    "parentType": "logtaigaslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "logtemperateslab": {
+    "fullblockType": "vanilla.logtemperate",
+    "icon": "logtemperateslab.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "logtemperateslableft": {
+    "parentType": "logtemperateslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "logtemperateslabright": {
+    "parentType": "logtemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "logtemperateslabfront": {
+    "parentType": "logtemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "logtemperateslabback": {
+    "parentType": "logtemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "logtemperateslabtop": {
+    "parentType": "logtemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "logtemperateslabbottom": {
+    "parentType": "logtemperateslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "sandstoneslab": {
+    "fullblockType": "sandstone",
+    "icon": "sandstoneslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "sandstoneslableft": {
+    "parentType": "sandstoneslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "sandstoneslabright": {
+    "parentType": "sandstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "sandstoneslabfront": {
+    "parentType": "sandstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "sandstoneslabback": {
+    "parentType": "sandstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "sandstoneslabtop": {
+    "parentType": "sandstoneslab",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "slabtop.obj"
+  },
+  "sandstoneslabbottom": {
+    "parentType": "sandstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "limestoneslab": {
+    "fullblockType": "limestone",
+    "icon": "limestoneslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "limestoneslableft": {
+    "parentType": "limestoneslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "limestoneslabright": {
+    "parentType": "limestoneslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "limestoneslabfront": {
+    "parentType": "limestoneslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "limestoneslabback": {
+    "parentType": "limestoneslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "limestoneslabtop": {
+    "parentType": "limestoneslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "limestoneslabbottom": {
+    "parentType": "limestoneslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "marbleslab": {
+    "fullblockType": "marble",
+    "icon": "marbleslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "marbleslableft": {
+    "parentType": "marbleslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "marbleslabright": {
+    "parentType": "marbleslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "marbleslabfront": {
+    "parentType": "marbleslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "marbleslabback": {
+    "parentType": "marbleslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "marbleslabbottom": {
+    "parentType": "marbleslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "marbleslabtop": {
+    "parentType": "marbleslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "rawmarbleslab": {
+    "fullblockType": "rawmarble",
+    "icon": "rawmarbleslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "rawmarbleslableft": {
+    "parentType": "rawmarbleslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "rawmarbleslabright": {
+    "parentType": "rawmarbleslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "rawmarbleslabfront": {
+    "parentType": "rawmarbleslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "rawmarbleslabback": {
+    "parentType": "rawmarbleslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "rawmarbleslabbottom": {
+    "parentType": "rawmarbleslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "rawmarbleslabtop": {
+    "parentType": "rawmarbleslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "marblebricksslab": {
+    "fullblockType": "marblebricksslab",
+    "icon": "marblebricksslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "marblebricksslableft": {
+    "parentType": "marblebricksslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "marblebricksslabright": {
+    "parentType": "marblebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "marblebricksslabfront": {
+    "parentType": "marblebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "marblebricksslabback": {
+    "parentType": "marblebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "marblebricksslabtop": {
+    "parentType": "marblebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "marblebricksslabbottom": {
+    "parentType": "marblebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "stonesquaresslab": {
+    "fullblockType": "stonesquaresslab",
+    "icon": "stonesquaresslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "stonesquaresslableft": {
+    "parentType": "stonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "stonesquaresslabright": {
+    "parentType": "stonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "stonesquaresslabfront": {
+    "parentType": "stonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "stonesquaresslabback": {
+    "parentType": "stonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "stonesquaresslabtop": {
+    "parentType": "stonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "stonesquaresslabbottom": {
+    "parentType": "stonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "mossstonesquares": {
+    "icon": "mossstonesquares.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "stonesquares": {
+    "icon": "stonesquares.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "mossstonesquaresslab": {
+    "fullblockType": "mossstonesquaresslab",
+    "icon": "mossstonesquaresslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "mossstonesquaresslableft": {
+    "parentType": "mossstonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "mossstonesquaresslabright": {
+    "parentType": "mossstonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "mossstonesquaresslabfront": {
+    "parentType": "mossstonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "mossstonesquaresslabback": {
+    "parentType": "mossstonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "mossstonesquaresslabbottom": {
+    "parentType": "mossstonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "mossstonesquaresslabtop": {
+    "parentType": "mossstonesquaresslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "mossstonebricksslab": {
+    "fullblockType": "mossstonebricksslab",
+    "icon": "mossstonebricksslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "mossstonebricksslableft": {
+    "parentType": "mossstonebricksslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "mossstonebricksslabright": {
+    "parentType": "mossstonebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "mossstonebricksslabfront": {
+    "parentType": "mossstonebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "mossstonebricksslabback": {
+    "parentType": "mossstonebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "mossstoneslab": {
+    "fullblockType": "mossstoneslab",
+    "icon": "mossstoneslab.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "mossstoneslableft": {
+    "parentType": "mossstoneslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "mossstoneslabright": {
+    "parentType": "mossstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "mossstoneslabfront": {
+    "parentType": "mossstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "mossstoneslabback": {
+    "parentType": "mossstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "mossstoneslabbottom": {
+    "parentType": "mossstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "mossstoneslabtop": {
+    "parentType": "mossstoneslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "mossstonebricksslabbottom": {
+    "parentType": "mossstonebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "mossstonebricksslabtop": {
+    "parentType": "mossstonebricksslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "mossstone": {
+    "icon": "mossstone.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "mossstonebricks": {
+    "icon": "mossstonebricks.png",
+    "onPlaceAudio": "vanilla.stonePlace",
+    "onRemoveAudio": "vanilla.stoneDelete",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600
+  },
+  "plasterslab": {
+    "fullblockType": "vanilla.plaster",
+    "icon": "plasterslab.png",
+    "onRemoveAudio": "vanilla.dirtPlace",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "plasterslableft": {
+    "parentType": "plasterslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "plasterslabright": {
+    "parentType": "plasterslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "plasterslabfront": {
+    "parentType": "plasterslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "plasterslabback": {
+    "parentType": "plasterslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "plasterslabtop": {
+    "parentType": "plasterslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "plasterslabbottom": {
+    "parentType": "plasterslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "clayslab": {
+    "fullblockType": "vanilla.clay",
+    "icon": "clayslab.png",
+    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "clayslableft": {
+    "parentType": "clayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "clayslabright": {
+    "parentType": "clayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "clayslabfront": {
+    "parentType": "clayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "clayslabback": {
+    "parentType": "clayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "clayslabtop": {
+    "parentType": "clayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "clayslabbottom": {
+    "parentType": "clayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "redplankslab": {
+    "fullblockType": "vanilla.redplanks",
+    "icon": "redplankslab.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "redplankslableft": {
+    "parentType": "redplankslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "redplankslabright": {
+    "parentType": "redplankslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "redplankslabfront": {
+    "parentType": "redplankslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "redplankslabback": {
+    "parentType": "redplankslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "redplankslabbottom": {
+    "parentType": "redplankslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "redplankslabtop": {
+    "parentType": "redplankslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "blackplankslab": {
+    "fullblockType": "vanilla.blackplanks",
+    "icon": "blackplankslab.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "blackplankslableft": {
+    "parentType": "blackplankslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "blackplankslabright": {
+    "parentType": "blackplankslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "blackplankslabfront": {
+    "parentType": "blackplankslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "blackplankslabback": {
+    "parentType": "blackplankslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "blackplankslabbottom": {
+    "parentType": "blackplankslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "blackplankslabtop": {
+    "parentType": "blackplankslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "whiteclayslab": {
+    "fullblockType": "whiteclay",
+    "icon": "whiteclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "whiteclayslableft": {
+    "parentType": "whiteclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "whiteclayslabright": {
+    "parentType": "whiteclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "whiteclayslabfront": {
+    "parentType": "whiteclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "whiteclayslabback": {
+    "parentType": "whiteclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "whiteclayslabbottom": {
+    "parentType": "whiteclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "whiteclayslabtop": {
+    "parentType": "whiteclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "yellowclayslab": {
+    "fullblockType": "yellowclay",
+    "icon": "yellowclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "yellowclayslableft": {
+    "parentType": "yellowclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "yellowclayslabright": {
+    "parentType": "yellowclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "yellowclayslabfront": {
+    "parentType": "yellowclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "yellowclayslabback": {
+    "parentType": "yellowclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "yellowclayslabbottom": {
+    "parentType": "yellowclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "yellowclayslabtop": {
+    "parentType": "yellowclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "orangeclayslab": {
+    "fullblockType": "orangeclay",
+    "icon": "orangeclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "orangeclayslableft": {
+    "parentType": "orangeclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "orangeclayslabright": {
+    "parentType": "orangeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "orangeclayslabfront": {
+    "parentType": "orangeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "orangeclayslabback": {
+    "parentType": "orangeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "orangeclayslabtop": {
+    "parentType": "orangeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "orangeclayslabbottom": {
+    "parentType": "orangeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "magentaclayslab": {
+    "fullblockType": "magentaclay",
+    "icon": "magentaclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "magentaclayslableft": {
+    "parentType": "magentaclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "magentaclayslabright": {
+    "parentType": "magentaclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "magentaclayslabfront": {
+    "parentType": "magentaclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "magentaclayslabback": {
+    "parentType": "magentaclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "magentaclayslabbottom": {
+    "parentType": "magentaclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "magentaclayslabtop": {
+    "parentType": "magentaclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "purpleclayslab": {
+    "fullblockType": "purpleclay",
+    "icon": "purpleclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "purpleclayslableft": {
+    "parentType": "purpleclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "purpleclayslabright": {
+    "parentType": "purpleclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "purpleclayslabfront": {
+    "parentType": "purpleclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "purpleclayslabback": {
+    "parentType": "purpleclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "purpleclayslabbottom": {
+    "parentType": "purpleclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "purpleclayslabtop": {
+    "parentType": "purpleclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "redclayslab": {
+    "fullblockType": "redclay",
+    "icon": "redclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "redclayslableft": {
+    "parentType": "redclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "redclayslabright": {
+    "parentType": "redclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "redclayslabfront": {
+    "parentType": "redclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "redclayslabback": {
+    "parentType": "redclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "redclayslabbottom": {
+    "parentType": "redclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "redclayslabtop": {
+    "parentType": "redclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "lightpinkclayslab": {
+    "fullblockType": "lightpinkclay",
+    "icon": "lightpinkclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "lightpinkclayslableft": {
+    "parentType": "lightpinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "lightpinkclayslabright": {
+    "parentType": "lightpinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "lightpinkclayslabfront": {
+    "parentType": "lightpinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "lightpinkclayslabback": {
+    "parentType": "lightpinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "lightpinkclayslabbottom": {
+    "parentType": "lightpinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "lightpinkclayslabtop": {
+    "parentType": "lightpinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "pinkclayslab": {
+    "fullblockType": "pinkclay",
+    "icon": "pinkclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "pinkclayslableft": {
+    "parentType": "pinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "pinkclayslabright": {
+    "parentType": "pinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "pinkclayslabfront": {
+    "parentType": "pinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "pinkclayslabback": {
+    "parentType": "pinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "pinkclayslabbottom": {
+    "parentType": "pinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "pinkclayslabtop": {
+    "parentType": "pinkclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "limeclayslab": {
+    "fullblockType": "limeclay",
+    "icon": "limeclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "limeclayslableft": {
+    "parentType": "limeclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "limeclayslabright": {
+    "parentType": "limeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "limeclayslabfront": {
+    "parentType": "limeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "limeclayslabback": {
+    "parentType": "limeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "limeclayslabbottom": {
+    "parentType": "limeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "limeclayslabtop": {
+    "parentType": "limeclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "greenclayslab": {
+    "fullblockType": "greenclay",
+    "icon": "greenclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "greenclayslableft": {
+    "parentType": "greenclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "greenclayslabright": {
+    "parentType": "greenclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "greenclayslabfront": {
+    "parentType": "greenclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "greenclayslabback": {
+    "parentType": "greenclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "greenclayslabbottom": {
+    "parentType": "greenclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "greenclayslabtop": {
+    "parentType": "greenclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "lightgreyclayslab": {
+    "fullblockType": "lightgreyclay",
+    "icon": "lightgreyclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "lightgreyclayslableft": {
+    "parentType": "lightgreyclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "lightgreyclayslabright": {
+    "parentType": "lightgreyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "lightgreyclayslabfront": {
+    "parentType": "lightgreyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "lightgreyclayslabback": {
+    "parentType": "lightgreyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "lightgreyclayslabbottom": {
+    "parentType": "lightgreyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "lightgreyclayslabtop": {
+    "parentType": "lightgreyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
   "greyclayslab": {
     "fullblockType": "greyclay",
     "icon": "greyclayslab.png",
@@ -3286,258 +3286,331 @@
       "useHeightMap": true
     }
   },
-   "greyclayslableft":{
-      "parentType":"greyclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "greyclayslabright":{
-      "parentType":"greyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "greyclayslabfront":{
-      "parentType":"greyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "greyclayslabback":{
-      "parentType":"greyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "greyclayslabbottom":{
-      "parentType":"greyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "greyclayslabtop":{
-      "parentType":"greyclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "darkblueclayslab":{
-      "fullblockType":"darkblueclay",
-      "icon":"darkblueclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
+  "greyclayslableft": {
+    "parentType": "greyclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "greyclayslabright": {
+    "parentType": "greyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "greyclayslabfront": {
+    "parentType": "greyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "greyclayslabback": {
+    "parentType": "greyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "greyclayslabbottom": {
+    "parentType": "greyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "greyclayslabtop": {
+    "parentType": "greyclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "darkblueclayslab": {
+    "fullblockType": "darkblueclay",
+    "icon": "darkblueclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "darkblueclayslableft": {
+    "parentType": "darkblueclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "darkblueclayslabright": {
+    "parentType": "darkblueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "darkblueclayslabfront": {
+    "parentType": "darkblueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "darkblueclayslabback": {
+    "parentType": "darkblueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "darkblueclayslabtop": {
+    "parentType": "darkblueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "darkblueclayslabbottom": {
+    "parentType": "darkblueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "cyanclayslab": {
+    "fullblockType": "cyanclay",
+    "icon": "cyanclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "cyanclayslableft": {
+    "parentType": "cyanclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "cyanclayslabright": {
+    "parentType": "cyanclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "cyanclayslabfront": {
+    "parentType": "cyanclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "cyanclayslabback": {
+    "parentType": "cyanclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "cyanclayslabbottom": {
+    "parentType": "cyanclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "cyanclayslabtop": {
+    "parentType": "cyanclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "brownclayslab": {
+    "fullblockType": "brownclay",
+    "icon": "brownclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "brownclayslableft": {
+    "parentType": "brownclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "brownclayslabright": {
+    "parentType": "brownclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "brownclayslabfront": {
+    "parentType": "brownclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "brownclayslabback": {
+    "parentType": "brownclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "brownclayslabbottom": {
+    "parentType": "brownclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "brownclayslabtop": {
+    "parentType": "brownclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "blueclayslab": {
+    "fullblockType": "blueclay",
+    "icon": "blueclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "blueclayslableft": {
+    "parentType": "blueclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "blueclayslabright": {
+    "parentType": "blueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "blueclayslabfront": {
+    "parentType": "blueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "blueclayslabback": {
+    "parentType": "blueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "blueclayslabbottom": {
+    "parentType": "blueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "blueclayslabtop": {
+    "parentType": "blueclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "blackclayslab": {
+    "fullblockType": "blackclay",
+    "icon": "blackclayslab.png",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "vanilla.grassDelete",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true
+    }
+  },
+  "blackclayslableft": {
+    "parentType": "blackclayslab",
+    "sideall": "SELF",
+    "mesh": "slableft.obj"
+  },
+  "blackclayslabright": {
+    "parentType": "blackclayslab",
+    "sideall": "SELF",
+    "mesh": "slabright.obj"
+  },
+  "blackclayslabfront": {
+    "parentType": "blackclayslab",
+    "sideall": "SELF",
+    "mesh": "slabfront.obj"
+  },
+  "blackclayslabback": {
+    "parentType": "blackclayslab",
+    "sideall": "SELF",
+    "mesh": "slabback.obj"
+  },
+  "blackclayslabbottom": {
+    "parentType": "blackclayslab",
+    "sideall": "SELF",
+    "mesh": "slabbottom.obj"
+  },
+  "blackclayslabtop": {
+    "parentType": "blackclayslab",
+    "sideall": "SELF",
+    "mesh": "slabtop.obj"
+  },
+  "lava": {
+    "color": "#ba2203",
+    "customData": {
+      "torches": {
+        "a": {
+          "color": "#ba2203",
+          "intensity": 12.5,
+          "range": 16,
+          "volume": 0.5
+        }
       }
-   },
-   "darkblueclayslableft":{
-      "parentType":"darkblueclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "darkblueclayslabright":{
-      "parentType":"darkblueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "darkblueclayslabfront":{
-      "parentType":"darkblueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "darkblueclayslabback":{
-      "parentType":"darkblueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "darkblueclayslabtop":{
-      "parentType":"darkblueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "darkblueclayslabbottom":{
-      "parentType":"darkblueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "cyanclayslab":{
-      "fullblockType":"cyanclay",
-      "icon":"cyanclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
+    },
+    "icon": "lavaIcon.png",
+    "maxStackSize": 600,
+    "onPlaceAudio": "vanilla.waterSplashFeet",
+    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "sideall": "lava"
+  },
+  "lavaslab": {
+    "color": "#ba2203",
+    "fullblockType": "lava",
+    "icon": "lavaslab.png",
+    "onPlaceAudio": "vanilla.waterSplashFeet",
+    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "boxColliders": [
+      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+    ],
+    "customData": {
+      "useNormalMap": true,
+      "useHeightMap": true,
+      "useEmissiveMap": true,
+      "torches": {
+        "a": {
+          "color": "#ba2203",
+          "intensity": 12.5,
+          "range": 16,
+          "volume": 0.5
+        }
       }
-   },
-   "cyanclayslableft":{
-      "parentType":"cyanclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "cyanclayslabright":{
-      "parentType":"cyanclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "cyanclayslabfront":{
-      "parentType":"cyanclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "cyanclayslabback":{
-      "parentType":"cyanclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "cyanclayslabbottom":{
-      "parentType":"cyanclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "cyanclayslabtop":{
-      "parentType":"cyanclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "brownclayslab":{
-      "fullblockType":"brownclay",
-      "icon":"brownclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "brownclayslableft":{
-      "parentType":"brownclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "brownclayslabright":{
-      "parentType":"brownclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "brownclayslabfront":{
-      "parentType":"brownclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "brownclayslabback":{
-      "parentType":"brownclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "brownclayslabbottom":{
-      "parentType":"brownclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "brownclayslabtop":{
-      "parentType":"brownclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "blueclayslab":{
-      "fullblockType":"blueclay",
-      "icon":"blueclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "blueclayslableft":{
-      "parentType":"blueclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "blueclayslabright":{
-      "parentType":"blueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "blueclayslabfront":{
-      "parentType":"blueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "blueclayslabback":{
-      "parentType":"blueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "blueclayslabbottom":{
-      "parentType":"blueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "blueclayslabtop":{
-      "parentType":"blueclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   },
-   "blackclayslab":{
-      "fullblockType":"blackclay",
-      "icon":"blackclayslab.png",
-      "onPlaceAudio":"dirtPlace",
-      "onRemoveAudio":"vanilla.grassDelete",
-      "npcLimit":0,
-      "maxStackSize":600,
-      "boxColliders":[
-         "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
-      ],
-      "customData":{
-         "useNormalMap":true,
-         "useHeightMap":true
-      }
-   },
-   "blackclayslableft":{
-      "parentType":"blackclayslab",
-      "sideall":"SELF",
-      "mesh":"slableft.obj"
-   },
-   "blackclayslabright":{
-      "parentType":"blackclayslab",
-      "sideall":"SELF",
-      "mesh":"slabright.obj"
-   },
-   "blackclayslabfront":{
-      "parentType":"blackclayslab",
-      "sideall":"SELF",
-      "mesh":"slabfront.obj"
-   },
-   "blackclayslabback":{
-      "parentType":"blackclayslab",
-      "sideall":"SELF",
-      "mesh":"slabback.obj"
-   },
-   "blackclayslabbottom":{
-      "parentType":"blackclayslab",
-      "sideall":"SELF",
-      "mesh":"slabbottom.obj"
-   },
-   "blackclayslabtop":{
-      "parentType":"blackclayslab",
-      "sideall":"SELF",
-      "mesh":"slabtop.obj"
-   }
+    }
+  },
+    "lavaleft": {
+      "parentType": "lavaslab",
+      "sideall": "lava",
+      "mesh": "slableft.obj"
+    },
+    "lavaslabright": {
+      "parentType": "lavaslab",
+      "sideall": "lava",
+      "mesh": "slabright.obj"
+    },
+    "lavaslabfront": {
+      "parentType": "lavaslab",
+      "sideall": "lava",
+      "mesh": "slabfront.obj"
+    },
+    "lavaslabback": {
+      "parentType": "lavaslab",
+      "sideall": "lava",
+      "mesh": "slabback.obj"
+    },
+    "lavaslabbottom": {
+      "parentType": "lavaslab",
+      "sideall": "lava",
+      "mesh": "slabbottom.obj"
+    },
+  "lavaslabtop": {
+    "parentType": "lavaslab",
+    "sideall": "lava",
+    "mesh": "slabtop.obj"
+  }
 }

@@ -138,7 +138,7 @@ namespace Pandaros.Settlers.Managers
 
                 if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
                 {
-                    PandaLogger.Log(ChatColor.cyan, $"Player {p.Name} is reconnected. Restoring Colony.");
+                    PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is reconnected. Restoring Colony.");
                     foreach (var node in followersNode.LoopArray())
                     {
                         try
