@@ -175,7 +175,7 @@
     "Pandaros.Settlers.AutoLoad.darkblueclayslab": "Losa de arcilla azul oscuro",
     "Pandaros.Settlers.AutoLoad.greyclayslab": "Losa de arcilla gris",
     "Pandaros.Settlers.AutoLoad.lightgreyclayslab": "Losa de arcilla gris claro",
-    "Pandaros.Settlers.AutoLoad.lightpinkclayslab": "Losa de arcilla rosa claro,
+    "Pandaros.Settlers.AutoLoad.lightpinkclayslab": "Losa de arcilla rosa claro",
     "Pandaros.Settlers.AutoLoad.greenclayslab": "Losa de arcilla verde",
     "Pandaros.Settlers.AutoLoad.yellowclayslab": "Losa de arcilla amarilla",
     "Pandaros.Settlers.AutoLoad.limeclayslab": "Losa de arcilla lima",
@@ -300,7 +300,7 @@
     "Pandaros.Settlers.AutoLoad.hangingbannercb": "Un estandarte azul y negro.",
     "Pandaros.Settlers.AutoLoad.hangingbannerbw2": "Un estandarte azul y blanco.",
     "Pandaros.Settlers.AutoLoad.simpletable": "Un lugar para poner cosas.",
-    "Pandaros.Settlers.AutoLoad.woodencatwalk": Para cuando necesitas un piso pero quieres ahorrar materiales.",
+    "Pandaros.Settlers.AutoLoad.woodencatwalk": "Para cuando necesitas un piso pero quieres ahorrar materiales.",
     "Pandaros.Settlers.AutoLoad.bench": "Perfecto para parques y salas de estar.",
     "Pandaros.Settlers.AutoLoad.woodbarrel": "Un lugar no funcional para guardar cosas.",
     "Pandaros.Settlers.AutoLoad.cratestack": "Una pila de cajas. Nota: No sirve para guardar cosas.",
@@ -319,23 +319,23 @@
       "Settlers": {
         "SettlerChance1": {
           "name": "inmigrantes.",
-          "description": "Incrementa la posibilidad de que vengan inmigrantes.
+          "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance2": {
           "name": "inmigrantes.I",
-          "description": "Incrementa la posibilidad de que vengan inmigrantes.
+          "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance3": {
           "name": "inmigrantes.II",
-          "description": "Incrementa la posibilidad de que vengan inmigrantes.
+          "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance4": {
           "name": "inmigrantes.V",
-          "description": "Incrementa la posibilidad de que vengan inmigrantes.
+          "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance5": {
           "name": "inmigrantes.",
-          "description": "Incrementa la posibilidad de que vengan inmigrantes.
+          "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "MaxSettlers1": {
           "name": "Máximo de inmigrantes.",
@@ -539,43 +539,43 @@
         },
         "SkilledLaborer1": {
           "name": "Trabajadores expertos I",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer2": {
           "name": "Trabajadores expertos II",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer3": {
           "name": "Trabajadores expertos III",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer4": {
           "name": "Trabajadores expertos IV",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer5": {
           "name": "Trabajadores expertos V",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer6": {
           "name": "Trabajadores expertos VI",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer7": {
           "name": "Trabajadores expertos VII",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer8": {
           "name": "Trabajadores expertos VIII",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer9": {
           "name": "Trabajadores expertos IX",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer10": {
           "name": "Trabajadores expertos X",
-          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes.
+          "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "NumberSkilledLaborer1": {
           "name": "Máximo de trabajadores expertos I",
