@@ -4,7 +4,7 @@ A colony survival settlers mod that helps you grow and manage your colony. Intro
 Food use now increases as colony size goes up to simulate waste.
 Sounds added to make your colony feel alive!
 
-## [WEBSITE](www.settlersmod.com)
+## [WEBSITE](http://www.settlersmod.com/)
 ## [WIKI](https://github.com/JBurlison/Pandaros.Settlers/wiki)
 
 **NOTE: With the release of 0.4.0 Only servers needs mods**
