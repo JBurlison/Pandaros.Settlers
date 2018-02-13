@@ -1,5 +1,73 @@
 [
   {
+    "name": "aloe",
+    "results": [
+      {
+        "type": "aloe",
+        "amount": 3
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.goldcoin",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "tulip",
+    "results": [
+      {
+        "type": "tulip",
+        "amount": 3
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.goldcoin",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "daisy",
+    "results": [
+      {
+        "type": "daisy",
+        "amount": 3
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.goldcoin",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Flowers1",
+    "results": [
+      {
+        "type": "Flowers1",
+        "amount": 3
+      }
+    ],
+    "requires": [
+      {
+        "type": "vanilla.goldcoin",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
     "name": "egg",
     "results": [
       {

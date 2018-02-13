@@ -61,6 +61,7 @@
     "Pandaros.Settlers.Antidote": "Antidote",
     "Pandaros.Settlers.Bandage": "Bandage",
     "Pandaros.Settlers.Mana": "Mana",
+    "Pandaros.Settlers.TeleportPad": "Teleporter",
     "Pandaros.Settlers.TreatedBandage": "TreatedBandage",
     "Pandaros.Settlers.AutoLoad.rawemerald": "Raw Emerald",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "Cut Emerald",
@@ -219,7 +220,13 @@
     "Pandaros.Settlers.AutoLoad.cherryblossomslab": "Cherry Blossom Slab",
     "Pandaros.Settlers.AutoLoad.berrybushslab": "Berry Bush Slab",
     "Pandaros.Settlers.AutoLoad.lava": "Lava",
-    "Pandaros.Settlers.AutoLoad.lavaslab": "Lava Slab"
+    "Pandaros.Settlers.AutoLoad.lavaslab": "Lava Slab",
+    "Pandaros.Settlers.AutoLoad.aloe": "Aloe",
+    "Pandaros.Settlers.AutoLoad.tulip": "Tulip",
+    "Pandaros.Settlers.AutoLoad.daisy": "Daisy",
+    "Pandaros.Settlers.AutoLoad.Sunflower": "Sunflower",
+    "Pandaros.Settlers.AutoLoad.rose": "Rose",
+    "Pandaros.Settlers.AutoLoad.Flowers1": "Morning Glory"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -267,6 +274,7 @@
     "Pandaros.Settlers.Bandage": "Instantly heals for 20 health then heals for 40 health over 5 seconds.",
     "Pandaros.Settlers.TreatedBandage": "Instantly heals for 50 health then heals for 70 health over 5 seconds.",
     "Pandaros.Settlers.Mana": "Unlocks magical powers!",
+    "Pandaros.Settlers.TeleportPad": "Place 2 to link them. It's that simple! Pick one up and the other will be picked up too! Needs a Machinist to maintain at least one side.",
     "Pandaros.Settlers.AutoLoad.rawemerald": "The start to the mod.",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "The mod currency!  SHINY!",
     "Pandaros.Settlers.AutoLoad.infiniteemerald": "The start of an adventure.",
@@ -1097,17 +1105,17 @@
           "name": "Master Of All X",
           "description": "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
         },
-        "Herbalists1": {
-          "name": "Herbalists",
-          "description": "Herbalists grow herbs used for Medicines, Food, and Potions."
-        },
         "Apothecaries1": {
           "name": "Apothecary",
-          "description": "Apothecary creates antidotes for posion and bandages for physicians."
+          "description": "Apothecary creates bandages for you and your colonists."
         },
         "AdvancedApothecary1": {
           "name": "Advanced Apothecary",
           "description": "Apothecaries learn how to make Treated bandages for powerful healing."
+        },
+        "Mana": {
+          "name": "Mana!",
+          "description": "Unlocks mana that can be used for magical things!"
         }
       }
     }

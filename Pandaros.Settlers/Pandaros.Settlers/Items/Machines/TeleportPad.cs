@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    //[ModLoader.ModManager]
+    [ModLoader.ModManager]
     public static class TeleportPad
     {
         const double TeleportPadCooldown = 4;
@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterMachines")]
         public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
-            MachineManager.RegisterMachineType(nameof(TeleportPad), new MachineManager.MachineSettings(Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 4));
+            MachineManager.RegisterMachineType(nameof(TeleportPad), new MachineManager.MachineSettings(Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 10));
         }
 
         public static ushort Repair(Players.Player player, MachineState machineState)
@@ -100,8 +100,7 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     machineState.Fuel += 0.05f;
                 }
-
-
+                
                 if (machineState.Fuel < MachineState.MAX_FUEL[player])
                     return Mana.Item.ItemIndex;
             }
@@ -115,7 +114,7 @@ namespace Pandaros.Settlers.Items.Machines
                 machineState.Fuel > 0 && 
                 machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
             {
-                machineState.Durability -= 0.02f;
+                machineState.Durability -= 0.01f;
                 machineState.Fuel -= 0.05f;
 
                 if (machineState.Durability < 0)
@@ -142,12 +141,13 @@ namespace Pandaros.Settlers.Items.Machines
             var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
             var sbb = new InventoryItem(BuiltinBlocks.ScienceBagBasic, 20);
             var sbc = new InventoryItem(BuiltinBlocks.ScienceBagColony, 20);
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 5);
-            var stone = new InventoryItem(BuiltinBlocks.StoneBricks, 50);
             var sba = new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 20);
+            var crystal = new InventoryItem(BuiltinBlocks.Crystal, 5);
+            var stone = new InventoryItem(BuiltinBlocks.StoneBricks, 50);
+            var mana = new InventoryItem(Mana.Item.ItemIndex, 100);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>() { planks, steel, rivets, sbb, sbc, sba, planks, stone },
+                                    new List<InventoryItem>() { crystal, steel, rivets, sbb, sbc, sba, crystal, stone },
                                     new InventoryItem(Item.ItemIndex),
                                     6);
 
@@ -159,7 +159,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var TeleportPadTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            TeleportPadTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/pad.png";
+            TeleportPadTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/TeleportPad.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".TeleportPad", TeleportPadTextureMapping);
         }
@@ -169,14 +169,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var TeleportPadName = GameLoader.NAMESPACE + ".TeleportPad";
             var TeleportPadFlagNode = new JSONNode();
-            TeleportPadFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/TeleportPadMachine.png");
+            TeleportPadFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/TeleportPad.png");
             TeleportPadFlagNode["isPlaceable"] = new JSONNode(true);
             TeleportPadFlagNode.SetAs("onRemoveAmount", 1);
             TeleportPadFlagNode.SetAs("onPlaceAudio", "stonePlace");
             TeleportPadFlagNode.SetAs("onRemoveAudio", "stoneDelete");
-            TeleportPadFlagNode.SetAs("isSolid", true);
+            TeleportPadFlagNode.SetAs("isSolid", false);
             TeleportPadFlagNode.SetAs("sideall", "SELF");
-            TeleportPadFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/pad.obj");
+            TeleportPadFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/TeleportPad.obj");
 
             Item = new ItemTypesServer.ItemTypeRaw(TeleportPadName, TeleportPadFlagNode);
             items.Add(TeleportPadName, Item);

@@ -44,6 +44,7 @@ namespace Pandaros.Settlers.Research
         public const string IncreasedCapacity = "IncreasedCapacity";
         public const string AdvancedApothecary = "AdvancedApothecary";
         public const string Mana = "Mana";
+        public const string Teleporters = "Teleportation";
 
         public string TmpValueKey { get; private set; } = string.Empty;
         public int Level { get; private set; } = 1;
@@ -139,6 +140,7 @@ namespace Pandaros.Settlers.Research
             AddIncreasedCapacity(researchDic);
             AddApocthResearch(researchDic);
             AddAdvanceApocthResearch(researchDic);
+            AddManaResearch(researchDic);
 
             PandaLogger.Log("Panda Research Registering Complete!");
         }
@@ -444,6 +446,30 @@ namespace Pandaros.Settlers.Research
         private static void Mana_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Mana.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
+
+        private static void AddTeleporters(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(Items.Mana.Item.ItemIndex, 10);
+            researchDic.Add(BuiltinBlocks.CopperTools, 1);
+            researchDic.Add(BuiltinBlocks.Planks, 5);
+            researchDic.Add(BuiltinBlocks.Linen, 2);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Mana + "1"),
+                GetResearchKey(Machines + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, Teleporters, 1f, requirements, 20, false);
+            research.ResearchComplete += Teleporters_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Teleporters_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.TeleportPad.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
         }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
