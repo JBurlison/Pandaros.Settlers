@@ -21,6 +21,13 @@ namespace Pandaros.Settlers
         public static GameDifficulty Medium { get; private set; }
         public static GameDifficulty Hard { get; private set; }
 
+        public void Print(Players.Player player)
+        {
+            PandaChat.Send(player, $"FoodMultiplier: {FoodMultiplier}", ChatColor.green);
+            PandaChat.Send(player, $"MonsterDamage: {MonsterDamage}", ChatColor.green);
+            PandaChat.Send(player, $"MonsterDamageReduction: {MonsterDamageReduction}", ChatColor.green);
+        }
+
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
@@ -53,14 +60,17 @@ namespace Pandaros.Settlers
                 if (node.TryGetAs(nameof(Rank), out int rank))
                     Rank = rank;
 
-                if (node.TryGetAs(nameof(FoodMultiplier), out int foodMultiplier))
+                if (node.TryGetAs(nameof(FoodMultiplier), out float foodMultiplier))
                     FoodMultiplier = foodMultiplier;
 
-                if (node.TryGetAs(nameof(MachineThreashHold), out int machineThreashHold))
+                if (node.TryGetAs(nameof(MachineThreashHold), out float machineThreashHold))
                     MachineThreashHold = machineThreashHold;
 
-                if (node.TryGetAs(nameof(MonsterDamageReduction), out int monsterDamageReduction))
+                if (node.TryGetAs(nameof(MonsterDamageReduction), out float monsterDamageReduction))
                     MonsterDamageReduction = monsterDamageReduction;
+
+                if (node.TryGetAs(nameof(MonsterDamage), out float nonsterDamage))
+                    MonsterDamage = nonsterDamage;
 
                 GameDifficulties[Name] = this;
             }
@@ -149,6 +159,9 @@ namespace Pandaros.Settlers
                 {
                     state.Difficulty = newDiff;
                     Managers.SettlerManager.UpdateFoodUse(player);
+                    state.Difficulty.Print(player);
+                    PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
+                    return true;
                 }
                 else
                     PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.", ChatColor.green, Configuration.MinDifficulty.Name);
@@ -157,8 +170,6 @@ namespace Pandaros.Settlers
 
             if (!Configuration.DifficutlyCanBeChanged)
                 PandaChat.Send(player, "The server administrator had disabled the changing of game difficulty.", ChatColor.green);
-
-            PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
 
             return true;
         }
