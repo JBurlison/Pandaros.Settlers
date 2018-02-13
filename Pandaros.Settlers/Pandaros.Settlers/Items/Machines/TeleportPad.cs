@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -28,6 +29,8 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var retval = GameLoader.Repairing_Icon;
             var ps = PlayerState.GetPlayerState(player);
+
+            var paired = machineState.TempValues.GetOrDefault("PairedPad", default(MachineState));
 
             if (machineState.Durability < .75f)
             {
@@ -73,7 +76,12 @@ namespace Pandaros.Settlers.Items.Machines
                     MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
 
                 if (repaired)
+                {
                     machineState.Durability = MachineState.MAX_DURABILITY[player];
+
+                    if (paired != default(MachineState))
+                        paired.Durability = MachineState.MAX_DURABILITY[player];
+                }
             }
 
             return retval;
@@ -90,6 +98,8 @@ namespace Pandaros.Settlers.Items.Machines
 
             if (machineState.Fuel < .75f)
             {
+                var paired = machineState.TempValues.GetOrDefault("PairedPad", default(MachineState));
+
                 if (!MachineState.MAX_FUEL.ContainsKey(player))
                     MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
 
@@ -99,6 +109,7 @@ namespace Pandaros.Settlers.Items.Machines
                         machineState.Fuel < MachineState.MAX_FUEL[player])
                 {
                     machineState.Fuel += 0.05f;
+                    paired.Fuel += 0.05f;
                 }
                 
                 if (machineState.Fuel < MachineState.MAX_FUEL[player])
@@ -110,9 +121,12 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            if (machineState.Durability > 0 && 
+            var paired = machineState.TempValues.GetOrDefault("PairedPad", default(MachineState));
+
+            if (paired != default(MachineState) &&
+                machineState.Durability > 0 && 
                 machineState.Fuel > 0 && 
-                machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+                machineState.NextTimeForWork < Pipliz.Time.SecondsSinceStartDouble)
             {
                 machineState.Durability -= 0.01f;
                 machineState.Fuel -= 0.05f;
@@ -123,7 +137,7 @@ namespace Pandaros.Settlers.Items.Machines
                 if (machineState.Fuel <= 0)
                     machineState.Fuel = 0;
 
-                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Pipliz.Time.SecondsSinceStartDouble;
             }
         }
 
@@ -160,6 +174,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var TeleportPadTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
             TeleportPadTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/TeleportPad.png";
+            TeleportPadTextureMapping.EmissivePath = GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/TeleportPad.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".TeleportPad", TeleportPadTextureMapping);
         }
@@ -168,17 +183,38 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTeleportPad(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var TeleportPadName = GameLoader.NAMESPACE + ".TeleportPad";
-            var TeleportPadFlagNode = new JSONNode();
-            TeleportPadFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/TeleportPad.png");
-            TeleportPadFlagNode["isPlaceable"] = new JSONNode(true);
-            TeleportPadFlagNode.SetAs("onRemoveAmount", 1);
-            TeleportPadFlagNode.SetAs("onPlaceAudio", "stonePlace");
-            TeleportPadFlagNode.SetAs("onRemoveAudio", "stoneDelete");
-            TeleportPadFlagNode.SetAs("isSolid", false);
-            TeleportPadFlagNode.SetAs("sideall", "SELF");
-            TeleportPadFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/TeleportPad.obj");
+            var TeleportPadNode = new JSONNode();
+            TeleportPadNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/TeleportPad.png");
+            TeleportPadNode["isPlaceable"] = new JSONNode(true);
+            TeleportPadNode.SetAs("onRemoveAmount", 1);
+            TeleportPadNode.SetAs("onPlaceAudio", "stonePlace");
+            TeleportPadNode.SetAs("onRemoveAudio", "stoneDelete");
+            TeleportPadNode.SetAs("isSolid", false);
+            TeleportPadNode.SetAs("sideall", "SELF");
+            TeleportPadNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/TeleportPad.obj");
 
-            Item = new ItemTypesServer.ItemTypeRaw(TeleportPadName, TeleportPadFlagNode);
+            //var TeleportPadCollidersNode = new JSONNode(NodeType.Array);
+            //TeleportPadCollidersNode.AddToArray(new Vector3Int(-0.5, -0.5, -0.5));
+            //TeleportPadCollidersNode.AddToArray(new Vector3Int(0.5, -0.0, 0.5));
+            //TeleportPadNode.SetAs("boxColliders", TeleportPadCollidersNode);
+
+            var TeleportPadCustomNode = new JSONNode();
+            TeleportPadCustomNode.SetAs("useEmissiveMap", true);
+
+            var torchNode = new JSONNode();
+            var aTorchnode = new JSONNode();
+
+            aTorchnode.SetAs("color", "#236B94");
+            aTorchnode.SetAs("intensity", 8);
+            aTorchnode.SetAs("range", 6);
+            aTorchnode.SetAs("volume", 0.5);
+
+            torchNode.SetAs("a", aTorchnode);
+
+            TeleportPadCustomNode.SetAs("torches", torchNode);
+            TeleportPadNode.SetAs("customData", TeleportPadCustomNode);
+
+            Item = new ItemTypesServer.ItemTypeRaw(TeleportPadName, TeleportPadNode);
             items.Add(TeleportPadName, Item);
         }
     }

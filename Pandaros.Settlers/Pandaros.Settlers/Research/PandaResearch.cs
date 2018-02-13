@@ -141,6 +141,7 @@ namespace Pandaros.Settlers.Research
             AddApocthResearch(researchDic);
             AddAdvanceApocthResearch(researchDic);
             AddManaResearch(researchDic);
+            AddTeleporters(researchDic);
 
             PandaLogger.Log("Panda Research Registering Complete!");
         }
