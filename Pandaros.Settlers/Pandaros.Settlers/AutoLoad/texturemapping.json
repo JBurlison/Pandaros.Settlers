@@ -989,12 +989,6 @@
     "emissive": "neutral",
     "height": "vanilla.leavesTaiga"
   },
-  "rose": {
-    "albedo": "rose",
-    "normal": "neutral",
-    "emissive": "neutral",
-    "height": "neutral"
-  },
   "dandelion": {
     "albedo": "dandelion",
     "normal": "neutral",
@@ -1009,6 +1003,36 @@
   },
   "tulip": {
     "albedo": "tulip",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "aloe": {
+    "albedo": "aloe",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "daisy": {
+    "albedo": "daisy",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "Flowers1": {
+    "albedo": "Flowers1",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "Sunflower": {
+    "albedo": "Sunflower",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
+  },
+  "rose": {
+    "albedo": "rose",
     "normal": "neutral",
     "emissive": "neutral",
     "height": "neutral"

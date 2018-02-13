@@ -3583,34 +3583,94 @@
       }
     }
   },
-    "lavaleft": {
-      "parentType": "lavaslab",
-      "sideall": "lava",
-      "mesh": "slableft.obj"
-    },
-    "lavaslabright": {
-      "parentType": "lavaslab",
-      "sideall": "lava",
-      "mesh": "slabright.obj"
-    },
-    "lavaslabfront": {
-      "parentType": "lavaslab",
-      "sideall": "lava",
-      "mesh": "slabfront.obj"
-    },
-    "lavaslabback": {
-      "parentType": "lavaslab",
-      "sideall": "lava",
-      "mesh": "slabback.obj"
-    },
-    "lavaslabbottom": {
-      "parentType": "lavaslab",
-      "sideall": "lava",
-      "mesh": "slabbottom.obj"
-    },
+  "lavaleft": {
+    "parentType": "lavaslab",
+    "sideall": "lava",
+    "mesh": "slableft.obj"
+  },
+  "lavaslabright": {
+    "parentType": "lavaslab",
+    "sideall": "lava",
+    "mesh": "slabright.obj"
+  },
+  "lavaslabfront": {
+    "parentType": "lavaslab",
+    "sideall": "lava",
+    "mesh": "slabfront.obj"
+  },
+  "lavaslabback": {
+    "parentType": "lavaslab",
+    "sideall": "lava",
+    "mesh": "slabback.obj"
+  },
+  "lavaslabbottom": {
+    "parentType": "lavaslab",
+    "sideall": "lava",
+    "mesh": "slabbottom.obj"
+  },
   "lavaslabtop": {
     "parentType": "lavaslab",
     "sideall": "lava",
     "mesh": "slabtop.obj"
+  },
+  "aloe": {
+    "icon": "aloe.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "aloe.obj",
+    "isSolid": false
+  },
+  "tulip": {
+    "icon": "tulip.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "tulip.obj",
+    "isSolid": false
+  },
+  "daisy": {
+    "icon": "daisy.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "daisy.obj",
+    "isSolid": false
+  },
+  "Sunflower": {
+    "icon": "Sunflower.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "Sunflower.obj",
+    "isSolid": false
+  },
+  "rose": {
+    "icon": "rose.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "rose.obj",
+    "isSolid": false
+  },
+  "Flowers1": {
+    "icon": "Flowers1.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "Flowers1.obj",
+    "isSolid": false
   }
 }
