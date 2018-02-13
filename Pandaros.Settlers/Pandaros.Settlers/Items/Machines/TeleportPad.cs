@@ -193,10 +193,9 @@ namespace Pandaros.Settlers.Items.Machines
             TeleportPadNode.SetAs("sideall", "SELF");
             TeleportPadNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/TeleportPad.obj");
 
-            //var TeleportPadCollidersNode = new JSONNode(NodeType.Array);
-            //TeleportPadCollidersNode.AddToArray(new Vector3Int(-0.5, -0.5, -0.5));
-            //TeleportPadCollidersNode.AddToArray(new Vector3Int(0.5, -0.0, 0.5));
-            //TeleportPadNode.SetAs("boxColliders", TeleportPadCollidersNode);
+            var TeleportPadCollidersNode = new JSONNode(NodeType.Array);
+            TeleportPadCollidersNode.AddToArray(new JSONNode("{-0.5, -0.5, -0.5}, {0.5, -0.3, 0.5}"));
+            TeleportPadNode.SetAs("boxColliders", TeleportPadCollidersNode);
 
             var TeleportPadCustomNode = new JSONNode();
             TeleportPadCustomNode.SetAs("useEmissiveMap", true);
