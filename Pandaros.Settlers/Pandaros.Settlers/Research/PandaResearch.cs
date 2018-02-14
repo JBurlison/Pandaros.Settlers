@@ -431,15 +431,18 @@ namespace Pandaros.Settlers.Research
         private static void AddManaResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
+            researchDic.Add(BuiltinBlocks.Alkanet, 10);
+            researchDic.Add(BuiltinBlocks.Wolfsbane, 10);
+            researchDic.Add(BuiltinBlocks.Hollyhock, 10);
+            researchDic.Add(BuiltinBlocks.LinseedOil, 10);
+            researchDic.Add(BuiltinBlocks.Crystal, 10);
 
             var requirements = new List<string>()
             {
                 GetResearchKey(Apothecary + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, Mana, 1f, requirements);
+            var research = new PandaResearch(researchDic, 1, Mana, 1f, requirements, 50);
             research.ResearchComplete += Mana_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
         }
@@ -453,9 +456,11 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(Items.Mana.Item.ItemIndex, 10);
-            researchDic.Add(BuiltinBlocks.CopperTools, 1);
-            researchDic.Add(BuiltinBlocks.Planks, 5);
-            researchDic.Add(BuiltinBlocks.Linen, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagColony, 10);
+            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
+            researchDic.Add(BuiltinBlocks.StoneBricks, 20);
+            researchDic.Add(BuiltinBlocks.Crystal, 20);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
             var requirements = new List<string>()
             {
@@ -463,7 +468,7 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Machines + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, Teleporters, 1f, requirements, 20, false);
+            var research = new PandaResearch(researchDic, 1, Teleporters, 1f, requirements, 100, false);
             research.ResearchComplete += Teleporters_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
         }
