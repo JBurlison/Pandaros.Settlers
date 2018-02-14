@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class TeleportPad
     {
-        const int TeleportPadCooldown = 4;
+        const int TeleportPadCooldown = 5;
         private static Dictionary<Players.Player, Dictionary<Vector3Int, Vector3Int>> _paired = new Dictionary<Players.Player, Dictionary<Vector3Int, Vector3Int>>();
         private static Dictionary<Players.Player, int> _cooldown = new Dictionary<Players.Player, int>();
 
@@ -299,7 +299,9 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     ChatCommands.Implementations.Teleport.TeleportTo(p, paired.Position.Vector);
 
+                    ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                     ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+
                     _cooldown[p] = TeleportPadCooldown + startInt;
                 }
             }
@@ -365,8 +367,12 @@ namespace Pandaros.Settlers.Items.Machines
 
                     MachineManager.RemoveMachine(machineState.Owner, paired.Position, false);
                     ServerManager.TryChangeBlock(paired.Position, BuiltinBlocks.Air);
-                    var stockpile = Stockpile.GetStockPile(machineState.Owner);
-                    stockpile.Add(Item.ItemIndex);
+
+                    if (!Inventory.GetInventory(machineState.Owner).TryAdd(Item.ItemIndex))
+                    {
+                        var stockpile = Stockpile.GetStockPile(machineState.Owner);
+                        stockpile.Add(Item.ItemIndex);
+                    }
                 }
 
                 if (machineState.Position == ps.TeleporterPlaced)
