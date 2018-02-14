@@ -157,7 +157,7 @@ namespace Pandaros.Settlers.Jobs
                 var ps = PlayerState.GetPlayerState(Owner);
 
                 if (MachineManager.Machines.ContainsKey(owner))
-                    foreach (var machine in MachineManager.Machines[Owner].Where(m => m.Machinist == null))
+                    foreach (var machine in MachineManager.Machines[Owner].Values.Where(m => m.Machinist == null))
                     {
                         if (machine != PreviousMachine && machine.PositionIsValid())
                         {

@@ -15,6 +15,8 @@ namespace Pandaros.Settlers.Managers
     [ModLoader.ModManager]
     public static class MachineManager
     {
+        public static event EventHandler MachineRemoved;
+
         public class MachineSettings
         {
             public float RepairTime { get; set; }
@@ -47,7 +49,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        public static Dictionary<Players.Player, List<MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, List<MachineState>>();
+        public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
 
         private const int MACHINE_REFRESH = 1;
         public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>(StringComparer.OrdinalIgnoreCase);
@@ -92,16 +94,16 @@ namespace Pandaros.Settlers.Managers
                             foreach (var state in machine.Value)
                                 try
                                 {
-                                    state.MachineSettings.DoWork(machine.Key, state);
+                                    state.Value.MachineSettings.DoWork(machine.Key, state.Value);
 
-                                    if (state.Load <= 0)
-                                        Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Reload_Icon, true, false));
+                                    if (state.Value.Load <= 0)
+                                        Server.Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Reload_Icon, true, false));
 
-                                    if (state.Durability <= 0)
-                                        Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Repairing_Icon, true, false));
+                                    if (state.Value.Durability <= 0)
+                                        Server.Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Repairing_Icon, true, false));
 
-                                    if (state.Fuel <= 0)
-                                        Server.Indicator.SendIconIndicatorNear(state.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Refuel_Icon, true, false));
+                                    if (state.Value.Fuel <= 0)
+                                        Server.Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Refuel_Icon, true, false));
       
                                 }
                                 catch (Exception ex)
@@ -145,7 +147,7 @@ namespace Pandaros.Settlers.Managers
                     var machineNode = new JSONNode(NodeType.Array);
 
                     foreach (var node in Machines[p])
-                            machineNode.AddToArray(node.ToJsonNode());
+                        machineNode.AddToArray(node.Value.ToJsonNode());
 
                     n[GameLoader.NAMESPACE + ".Machines"] = machineNode;
                 }
@@ -155,35 +157,39 @@ namespace Pandaros.Settlers.Managers
         public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
         {
             if (d.TypeNew == BuiltinBlocks.Air)
-                lock (Machines)
-                {
-                    if (!Machines.ContainsKey(d.requestedBy))
-                        Machines.Add(d.requestedBy, new List<MachineState>());
-
-                    var mach = Machines[d.requestedBy].FirstOrDefault(m => m.Position == d.VoxelToChange);
-                    
-                    if (mach != null)
-                        Machines[d.requestedBy].Remove(mach);
-                }
+                RemoveMachine(d.requestedBy, d.VoxelToChange);
 
             return true;
         }
 
+        public static void RemoveMachine(Players.Player p, Vector3Int pos, bool throwEvent = true)
+        {
+            lock (Machines)
+            {
+                if (!Machines.ContainsKey(p))
+                    Machines.Add(p, new Dictionary<Vector3Int, MachineState>());
+
+
+                if (Machines[p].ContainsKey(pos))
+                {
+                    var mach = Machines[p][pos];
+
+                    Machines[p].Remove(pos);
+
+                    if (throwEvent && MachineRemoved != null)
+                        MachineRemoved(mach, new EventArgs());
+                }
+            }
+        }
 
         public static void RegisterMachineState(Players.Player player, MachineState state)
         {
             lock (Machines)
             {
                 if (!Machines.ContainsKey(player))
-                    Machines.Add(player, new List<MachineState>());
+                    Machines.Add(player, new Dictionary<Vector3Int, MachineState>());
 
-                var existing = Machines[player].FirstOrDefault(m => m.Position == state.Position);
-
-                if (existing != null)
-                    Machines[player].Remove(existing);
-
-                Machines[player].Add(state);
-
+                Machines[player][state.Position] = state;
             }
         }
 
@@ -194,10 +200,10 @@ namespace Pandaros.Settlers.Managers
 
             foreach (var machine in Machines[owner])
             {
-                var dis = Pipliz.Math.RoundToInt(Vector3.Distance(machine.Position.Vector, position.Vector));
+                var dis = Pipliz.Math.RoundToInt(Vector3.Distance(machine.Key.Vector, position.Vector));
 
                 if (dis <= maxDistance && dis <= closest)
-                    retVal.Add(machine.Position);
+                    retVal.Add(machine.Key);
             }
 
             return retVal;

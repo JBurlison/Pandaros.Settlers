@@ -1113,9 +1113,13 @@
           "name": "Advanced Apothecary",
           "description": "Apothecaries learn how to make Treated bandages for powerful healing."
         },
-        "Mana": {
+        "Mana1": {
           "name": "Mana!",
           "description": "Unlocks mana that can be used for magical things!"
+        },
+        "Teleportation1": {
+          "name": "Teleportation!",
+          "description": "Unlocks Teleporters! Can be crafted, placed in pairs. One side must be maintained by a machinist."
         }
       }
     }

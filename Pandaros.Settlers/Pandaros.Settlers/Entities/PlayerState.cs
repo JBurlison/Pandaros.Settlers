@@ -50,6 +50,7 @@ namespace Pandaros.Settlers.Entities
         public Players.Player Player { get; private set; }
 
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
+        public Vector3Int TeleporterPlaced { get; set; } = Vector3Int.invalidPos;
 
         public Dictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ArmorState>();
 
@@ -123,6 +124,9 @@ namespace Pandaros.Settlers.Entities
                     foreach (var aNode in flagsPlaced.LoopArray())
                         _playerStates[p].FlagsPlaced.Add((Vector3Int)aNode);
 
+                if (stateNode.TryGetAs("TeleporterPlaced", out JSONNode teleporterPlaced))
+                    _playerStates[p].TeleporterPlaced = (Vector3Int)teleporterPlaced;
+
                 if (stateNode.TryGetAs("Weapon", out JSONNode wepNode))
                     _playerStates[p].Weapon = new ArmorState(wepNode);
 
@@ -149,6 +153,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs("Armor", armorNode);
                 node.SetAs("Weapon", _playerStates[p].Weapon.ToJsonNode());
                 node.SetAs("FlagsPlaced", flagsPlaced);
+                node.SetAs("TeleporterPlaced", (JSONNode)_playerStates[p].TeleporterPlaced);
                 node.SetAs("Difficulty", _playerStates[p].DifficultyStr);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);

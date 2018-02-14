@@ -15,22 +15,23 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class TeleportPad
     {
-        const double TeleportPadCooldown = 4;
-        
+        const int TeleportPadCooldown = 4;
+        private static Dictionary<Players.Player, Dictionary<Vector3Int, Vector3Int>> _paired = new Dictionary<Players.Player, Dictionary<Vector3Int, Vector3Int>>();
+        private static Dictionary<Players.Player, int> _cooldown = new Dictionary<Players.Player, int>();
+
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterMachines")]
         public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
-            MachineManager.RegisterMachineType(nameof(TeleportPad), new MachineManager.MachineSettings(Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 10));
+            MachineManager.MachineRemoved += MachineManager_MachineRemoved;
+            MachineManager.RegisterMachineType(nameof(TeleportPad), new MachineManager.MachineSettings(Item.ItemIndex, Repair, Refuel, Reload, DoWork, 10, 4, 5, 10));
         }
 
         public static ushort Repair(Players.Player player, MachineState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
             var ps = PlayerState.GetPlayerState(player);
-
-            var paired = machineState.TempValues.GetOrDefault("PairedPad", default(MachineState));
 
             if (machineState.Durability < .75f)
             {
@@ -79,8 +80,12 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     machineState.Durability = MachineState.MAX_DURABILITY[player];
 
-                    if (paired != default(MachineState))
-                        paired.Durability = MachineState.MAX_DURABILITY[player];
+                    if (!_paired.ContainsKey(player))
+                        _paired.Add(player, new Dictionary<Vector3Int, Vector3Int>());
+
+                    if (_paired[player].ContainsKey(machineState.Position) &&
+                        GetPadAt(machineState.Owner, _paired[player][machineState.Position], out var ms))
+                        ms.Durability = MachineState.MAX_DURABILITY[player];
                 }
             }
 
@@ -98,7 +103,13 @@ namespace Pandaros.Settlers.Items.Machines
 
             if (machineState.Fuel < .75f)
             {
-                var paired = machineState.TempValues.GetOrDefault("PairedPad", default(MachineState));
+                MachineState paired = null;
+
+                if (!_paired.ContainsKey(player))
+                    _paired.Add(player, new Dictionary<Vector3Int, Vector3Int>());
+
+                if (_paired[player].ContainsKey(machineState.Position))
+                    GetPadAt(machineState.Owner, _paired[player][machineState.Position], out paired);
 
                 if (!MachineState.MAX_FUEL.ContainsKey(player))
                     MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
@@ -109,7 +120,9 @@ namespace Pandaros.Settlers.Items.Machines
                         machineState.Fuel < MachineState.MAX_FUEL[player])
                 {
                     machineState.Fuel += 0.05f;
-                    paired.Fuel += 0.05f;
+
+                    if (paired != null)
+                        paired.Fuel += 0.05f;
                 }
                 
                 if (machineState.Fuel < MachineState.MAX_FUEL[player])
@@ -121,9 +134,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Players.Player player, MachineState machineState)
         {
-            var paired = machineState.TempValues.GetOrDefault("PairedPad", default(MachineState));
+            if (!_paired.ContainsKey(player))
+                _paired.Add(player, new Dictionary<Vector3Int, Vector3Int>());
 
-            if (paired != default(MachineState) &&
+            if (_paired[player].ContainsKey(machineState.Position) &&
+                GetPadAt(player, _paired[player][machineState.Position], out var ms) &&
                 machineState.Durability > 0 && 
                 machineState.Fuel > 0 && 
                 machineState.NextTimeForWork < Pipliz.Time.SecondsSinceStartDouble)
@@ -145,7 +160,7 @@ namespace Pandaros.Settlers.Items.Machines
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "TeleportPadMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/TeleportPadMachine.ogg" });
+            GameLoader.AddSoundFile(GameLoader.NAMESPACE + ".TeleportPadMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/Teleport.ogg" });
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterTeleportPad")]
@@ -216,5 +231,148 @@ namespace Pandaros.Settlers.Items.Machines
             Item = new ItemTypesServer.ItemTypeRaw(TeleportPadName, TeleportPadNode);
             items.Add(TeleportPadName, Item);
         }
+
+        public static bool GetPadAt(Players.Player p, Vector3Int pos, out MachineState state)
+        {
+            lock (MachineManager.Machines)
+                if (MachineManager.Machines.ContainsKey(p) && 
+                    MachineManager.Machines[p].ContainsKey(pos))
+                    if (MachineManager.Machines[p][pos].MachineType == nameof(TeleportPad))
+                    {
+                        state = MachineManager.Machines[p][pos];
+                        return true;
+                    }
+
+            state = null;
+            return false;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnSavingPlayer")]
+        public static void OnSavingPlayer(JSONNode n, Players.Player p)
+        {
+            if (_paired.ContainsKey(p))
+            {
+                if (n.HasChild(GameLoader.NAMESPACE + ".Teleportpads"))
+                    n.RemoveChild(GameLoader.NAMESPACE + ".Teleportpads");
+
+                var teleporters = new JSONNode(NodeType.Array);
+
+                foreach (var pad in _paired[p])
+                {
+                    var kvpNode = new JSONNode();
+                    kvpNode.SetAs("Key", (JSONNode)pad.Key);
+                    kvpNode.SetAs("Value", (JSONNode)pad.Value);
+                    teleporters.AddToArray(kvpNode);
+                }
+
+                n[GameLoader.NAMESPACE + ".Teleportpads"] = teleporters;
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnLoadingPlayer")]
+        public static void OnLoadingPlayer(JSONNode n, Players.Player p)
+        {
+            if (!_paired.ContainsKey(p))
+                _paired.Add(p, new Dictionary<Vector3Int, Vector3Int>());
+
+            if (n.TryGetChild(GameLoader.NAMESPACE + ".Teleportpads", out var teleportPads))
+                foreach (var pad in teleportPads.LoopArray())
+                    _paired[p][(Vector3Int)pad.GetAs<JSONNode>("Key")] = (Vector3Int)pad.GetAs<JSONNode>("Value");
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerMoved, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerMoved")]
+        public static void OnPlayerMoved(Players.Player p)
+        {
+            var posBelow = new Vector3Int(p.Position);
+
+            if (_paired.ContainsKey(p) && 
+                GetPadAt(p, posBelow, out var machineState) &&
+                _paired[p].ContainsKey(machineState.Position) &&
+                GetPadAt(machineState.Owner, _paired[p][machineState.Position], out var paired))
+            {
+                var startInt = Pipliz.Time.SecondsSinceStartInt;
+
+                if (!_cooldown.ContainsKey(p))
+                    _cooldown.Add(p, 0);
+
+                if (_cooldown[p] <= startInt)
+                {
+                    ChatCommands.Implementations.Teleport.TeleportTo(p, paired.Position.Vector);
+
+                    ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                    _cooldown[p] = TeleportPadCooldown + startInt;
+                }
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnTryChangeBlockUser")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
+        {
+            if (d.TypeNew == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+            {
+                var ps = PlayerState.GetPlayerState(d.requestedBy);
+                var ms = new MachineState(d.VoxelToChange, d.requestedBy, nameof(TeleportPad));
+
+                if (ps.TeleporterPlaced == Vector3Int.invalidPos)
+                {
+                    ps.TeleporterPlaced = d.VoxelToChange;
+                    PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to. Placed: {d.VoxelToChange}", ChatColor.orange);
+                }
+                else
+                {
+                    if (GetPadAt(d.requestedBy, ps.TeleporterPlaced, out var machineState))
+                    {
+                        if (!_paired.ContainsKey(d.requestedBy))
+                            _paired.Add(d.requestedBy, new Dictionary<Vector3Int, Vector3Int>());
+
+                        _paired[d.requestedBy][ms.Position] = machineState.Position;
+                        _paired[d.requestedBy][machineState.Position] = ms.Position;
+                        PandaChat.Send(d.requestedBy, $"Teleportation pads linked! Placed: {d.VoxelToChange}", ChatColor.orange);
+                        ps.TeleporterPlaced = Vector3Int.invalidPos;
+                    }
+                    else
+                    {
+                        ps.TeleporterPlaced = d.VoxelToChange;
+                        PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to. Placed: {d.VoxelToChange}", ChatColor.orange);
+                    }
+                }
+
+                MachineManager.RegisterMachineState(d.requestedBy, ms);
+            }
+
+            return true;
+        }
+
+        private static void MachineManager_MachineRemoved(object sender, EventArgs e)
+        {
+            var machineState = sender as MachineState;
+
+            if (machineState.MachineType == nameof(TeleportPad))
+            {
+                var ps = PlayerState.GetPlayerState(machineState.Owner);
+
+                if (!_paired.ContainsKey(machineState.Owner))
+                    _paired.Add(machineState.Owner, new Dictionary<Vector3Int, Vector3Int>());
+
+                if (_paired[machineState.Owner].ContainsKey(machineState.Position) &&
+                    GetPadAt(machineState.Owner, _paired[machineState.Owner][machineState.Position], out var paired))
+                {
+                    if (_paired[machineState.Owner].ContainsKey(machineState.Position))
+                        _paired[machineState.Owner].Remove(machineState.Position);
+
+                    if (_paired[machineState.Owner].ContainsKey(paired.Position))
+                        _paired[machineState.Owner].Remove(paired.Position);
+
+                    MachineManager.RemoveMachine(machineState.Owner, paired.Position, false);
+                    ServerManager.TryChangeBlock(paired.Position, BuiltinBlocks.Air);
+                    var stockpile = Stockpile.GetStockPile(machineState.Owner);
+                    stockpile.Add(Item.ItemIndex);
+                }
+
+                if (machineState.Position == ps.TeleporterPlaced)
+                    ps.TeleporterPlaced = Vector3Int.invalidPos;
+            }
+        }
+
     }
 }

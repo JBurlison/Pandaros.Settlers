@@ -22,7 +22,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static Dictionary<Players.Player, float> MAX_FUEL { get; set; } = new Dictionary<Players.Player, float>();
         public static Dictionary<Players.Player, float> MAX_LOAD { get; set; } = new Dictionary<Players.Player, float>();
 
-        public Vector3Int Position { get; private set; }
+        public Vector3Int Position { get; private set; } = Vector3Int.invalidPos;
         public float Durability { get; set; } = DEFAULT_MAX_DURABILITY;
         public float Fuel { get; set; } = DEFAULT_MAX_FUEL;
         public float Load { get; set; } = DEFAULT_MAX_LOAD;
