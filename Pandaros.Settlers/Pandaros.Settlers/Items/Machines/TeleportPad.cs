@@ -46,18 +46,18 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 2));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.SteelIngot, 2));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
                 }
                 else if (machineState.Durability < .30f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.SteelIngot, 2));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
                 }
                 else if (machineState.Durability < .50f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.SteelIngot, 1));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 1));
                 }
 
                 if (stockpile.Contains(requiredForFix))
@@ -318,7 +318,7 @@ namespace Pandaros.Settlers.Items.Machines
                 if (ps.TeleporterPlaced == Vector3Int.invalidPos)
                 {
                     ps.TeleporterPlaced = d.VoxelToChange;
-                    PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to. Placed: {d.VoxelToChange}", ChatColor.orange);
+                    PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to.", ChatColor.orange);
                 }
                 else
                 {
@@ -329,13 +329,13 @@ namespace Pandaros.Settlers.Items.Machines
 
                         _paired[d.requestedBy][ms.Position] = machineState.Position;
                         _paired[d.requestedBy][machineState.Position] = ms.Position;
-                        PandaChat.Send(d.requestedBy, $"Teleportation pads linked! Placed: {d.VoxelToChange}", ChatColor.orange);
+                        PandaChat.Send(d.requestedBy, $"Teleportation pads linked!", ChatColor.orange);
                         ps.TeleporterPlaced = Vector3Int.invalidPos;
                     }
                     else
                     {
                         ps.TeleporterPlaced = d.VoxelToChange;
-                        PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to. Placed: {d.VoxelToChange}", ChatColor.orange);
+                        PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to.", ChatColor.orange);
                     }
                 }
 
