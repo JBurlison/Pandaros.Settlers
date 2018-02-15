@@ -34,23 +34,6 @@
     "defaultPriority": -100
   },
   {
-    "name": "daisy",
-    "results": [
-      {
-        "type": "daisy",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
     "name": "Flowers1",
     "results": [
       {

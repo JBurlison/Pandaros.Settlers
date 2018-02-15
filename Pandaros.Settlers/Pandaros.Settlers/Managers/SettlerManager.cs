@@ -149,9 +149,12 @@ namespace Pandaros.Settlers.Managers
                             foreach (var job in jf.openJobs)
                                 if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
                                 {
-                                    npc.TakeJob(job);
-                                    job.OnAssignedNPC(npc);
-                                    JobTracker.Remove(p, job.KeyLocation);
+                                    if (job.IsValid && job.NeedsNPC)
+                                    {
+                                        npc.TakeJob(job);
+                                        job.OnAssignedNPC(npc);
+                                        JobTracker.Remove(p, job.KeyLocation);
+                                    }
                                     break;
                                 }
                         }
