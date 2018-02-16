@@ -240,14 +240,15 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static bool GetPadAt(Players.Player p, Vector3Int pos, out MachineState state)
         {
-            lock (MachineManager.Machines)
-                if (MachineManager.Machines.ContainsKey(p) && 
-                    MachineManager.Machines[p].ContainsKey(pos))
-                    if (MachineManager.Machines[p][pos].MachineType == nameof(TeleportPad))
-                    {
-                        state = MachineManager.Machines[p][pos];
-                        return true;
-                    }
+            if (p != null && pos != null)
+                lock (MachineManager.Machines)
+                    if (MachineManager.Machines.ContainsKey(p) && 
+                        MachineManager.Machines[p].ContainsKey(pos))
+                        if (MachineManager.Machines[p][pos].MachineType == nameof(TeleportPad))
+                        {
+                            state = MachineManager.Machines[p][pos];
+                            return true;
+                        }
 
             state = null;
             return false;

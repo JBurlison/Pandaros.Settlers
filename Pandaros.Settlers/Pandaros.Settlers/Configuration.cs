@@ -15,7 +15,7 @@ namespace Pandaros.Settlers
         public static GameDifficulty DefaultDifficulty { get; private set; } = GameDifficulty.Medium;
         public static bool DifficutlyCanBeChanged { get; private set; } = true;
         public static bool OfflineColonies { get; set; } = true;
-        public static bool TeleportPadsRequireMachinists { get; set; } = true;
+        public static bool TeleportPadsRequireMachinists { get; set; } = false;
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Configuration.AfterStartup")]
