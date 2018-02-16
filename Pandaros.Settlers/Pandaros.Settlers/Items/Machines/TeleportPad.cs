@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class TeleportPad
     {
-        const int TeleportPadCooldown = 5;
+        const int TeleportPadCooldown = 30;
         private static Dictionary<Players.Player, Dictionary<Vector3Int, Vector3Int>> _paired = new Dictionary<Players.Player, Dictionary<Vector3Int, Vector3Int>>();
         private static Dictionary<Players.Player, int> _cooldown = new Dictionary<Players.Player, int>();
 
@@ -119,10 +119,10 @@ namespace Pandaros.Settlers.Items.Machines
                 while (stockpile.TryRemove(Mana.Item.ItemIndex) &&
                         machineState.Fuel < MachineState.MAX_FUEL[player])
                 {
-                    machineState.Fuel += 0.05f;
+                    machineState.Fuel += 0.20f;
 
                     if (paired != null)
-                        paired.Fuel += 0.05f;
+                        paired.Fuel += 0.20f;
                 }
                 
                 if (machineState.Fuel < MachineState.MAX_FUEL[player])
