@@ -134,25 +134,31 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Players.Player player, MachineState machineState)
         {
+            if (!Configuration.TeleportPadsRequireMachinists)
+                return;
+
             if (!_paired.ContainsKey(player))
                 _paired.Add(player, new Dictionary<Vector3Int, Vector3Int>());
 
-            if (_paired[player].ContainsKey(machineState.Position) &&
-                GetPadAt(player, _paired[player][machineState.Position], out var ms) &&
-                machineState.Durability > 0 && 
-                machineState.Fuel > 0 && 
-                machineState.NextTimeForWork < Pipliz.Time.SecondsSinceStartDouble)
+            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
             {
-                machineState.Durability -= 0.01f;
-                machineState.Fuel -= 0.05f;
+                if (_paired[player].ContainsKey(machineState.Position) &&
+                GetPadAt(player, _paired[player][machineState.Position], out var ms) &&
+                machineState.Durability > 0 &&
+                machineState.Fuel > 0 &&
+                machineState.NextTimeForWork < Pipliz.Time.SecondsSinceStartDouble)
+                {
+                    machineState.Durability -= 0.01f;
+                    machineState.Fuel -= 0.05f;
 
-                if (machineState.Durability < 0)
-                    machineState.Durability = 0;
+                    if (machineState.Durability < 0)
+                        machineState.Durability = 0;
 
-                if (machineState.Fuel <= 0)
-                    machineState.Fuel = 0;
+                    if (machineState.Fuel <= 0)
+                        machineState.Fuel = 0;
 
-                machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Pipliz.Time.SecondsSinceStartDouble;
+                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Pipliz.Time.SecondsSinceStartDouble;
+                }
             }
         }
 

@@ -10,18 +10,18 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class Configuration
     {
+        private static string _saveFileName = $"{GameLoader.GAMEDATA_FOLDER}/{GameLoader.NAMESPACE}.json";
         public static GameDifficulty MinDifficulty { get; private set; } = GameDifficulty.Normal;
         public static GameDifficulty DefaultDifficulty { get; private set; } = GameDifficulty.Medium;
         public static bool DifficutlyCanBeChanged { get; private set; } = true;
         public static bool OfflineColonies { get; set; } = true;
+        public static bool TeleportPadsRequireMachinists { get; set; } = true;
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Configuration.AfterStartup")]
         public static void AfterStartup()
         {
-            var fileName = $"{GameLoader.GAMEDATA_FOLDER}/{GameLoader.NAMESPACE}.json";
-
-            if (File.Exists(fileName) && JSON.Deserialize(fileName, out var config))
+            if (File.Exists(_saveFileName) && JSON.Deserialize(_saveFileName, out var config))
             {
                 if (config.TryGetAs(nameof(MinDifficulty), out string diffStr))
                     if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
@@ -33,6 +33,9 @@ namespace Pandaros.Settlers
 
                 if (config.TryGetAs(nameof(DifficutlyCanBeChanged), out bool diffChanged))
                     DifficutlyCanBeChanged = diffChanged;
+
+                if (config.TryGetAs(nameof(TeleportPadsRequireMachinists), out bool teleportPadsUseMana))
+                    TeleportPadsRequireMachinists = teleportPadsUseMana;
 
                 if (config.TryGetAs(nameof(OfflineColonies), out bool offlineColonies))
                     OfflineColonies = offlineColonies;
@@ -46,24 +49,28 @@ namespace Pandaros.Settlers
                     }
                 }
             }
-            else
-            {
-                JSONNode newConfig = new JSONNode();
-                newConfig.SetAs(nameof(MinDifficulty), MinDifficulty.Name);
-                newConfig.SetAs(nameof(DifficutlyCanBeChanged), DifficutlyCanBeChanged);
-                newConfig.SetAs(nameof(OfflineColonies), OfflineColonies);
-                newConfig.SetAs(nameof(DefaultDifficulty), DefaultDifficulty.Name);
 
-                JSONNode diffs = new JSONNode(NodeType.Array);
+            Save();
+        }
 
-                foreach (var diff in GameDifficulty.GameDifficulties.Values)
-                    diffs.AddToArray(diff.ToJson());
+        public static void Save()
+        {
+            JSONNode newConfig = new JSONNode();
+            newConfig.SetAs(nameof(MinDifficulty), MinDifficulty.Name);
+            newConfig.SetAs(nameof(DifficutlyCanBeChanged), DifficutlyCanBeChanged);
+            newConfig.SetAs(nameof(OfflineColonies), OfflineColonies);
+            newConfig.SetAs(nameof(DefaultDifficulty), DefaultDifficulty.Name);
+            newConfig.SetAs(nameof(TeleportPadsRequireMachinists), TeleportPadsRequireMachinists);
 
-                newConfig.SetAs("GameDifficulties", diffs);
+            JSONNode diffs = new JSONNode(NodeType.Array);
 
-                using (StreamWriter writer = File.CreateText(fileName))
-                    newConfig.Serialize(writer, 1, 1);
-            }
+            foreach (var diff in GameDifficulty.GameDifficulties.Values)
+                diffs.AddToArray(diff.ToJson());
+
+            newConfig.SetAs("GameDifficulties", diffs);
+
+            using (StreamWriter writer = File.CreateText(_saveFileName))
+                newConfig.Serialize(writer, 1, 1);
         }
     }
 }
