@@ -23,12 +23,13 @@ namespace Pandaros.Settlers
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";
         public static string GAME_ROOT = @"";
+        public static string SAVE_LOC = "";
 
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 6, 6, 3);
+        public static readonly Version MOD_VER = new Version(0, 6, 6, 4);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -43,10 +44,12 @@ namespace Pandaros.Settlers
 
         private static ushort _itemSortIndex = 30000;
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AfterWorldLoad")]
-        public static void AfterWorldLoad()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".AfterSelectedWorld")]
+        public static void AfterSelectedWorld()
         {
             WorldLoaded = true;
+            SAVE_LOC = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
+            Managers.MachineManager.MACHINE_JSON = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.Machines.json";
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
         }
 
@@ -64,6 +67,7 @@ namespace Pandaros.Settlers
             TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/");
             AUDIO_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/");
             AUTOLOAD_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "AutoLoad").Replace("\\", "/");
+ 
             bool fileWasCopied = false;
 
             foreach (var file in Directory.GetFiles(MOD_FOLDER + "/ZipSupport"))

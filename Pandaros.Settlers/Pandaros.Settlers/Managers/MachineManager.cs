@@ -16,6 +16,8 @@ namespace Pandaros.Settlers.Managers
     public static class MachineManager
     {
         public static event EventHandler MachineRemoved;
+        public static string MACHINE_JSON = "";
+
 
         public class MachineSettings
         {

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class Configuration
     {
-        private static string _saveFileName = $"{GameLoader.GAMEDATA_FOLDER}/{GameLoader.NAMESPACE}.json";
+        private static string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
         public static GameDifficulty MinDifficulty { get; private set; } = GameDifficulty.Normal;
         public static GameDifficulty DefaultDifficulty { get; private set; } = GameDifficulty.Medium;
         public static bool DifficutlyCanBeChanged { get; private set; } = true;
@@ -18,8 +18,9 @@ namespace Pandaros.Settlers
         public static bool TeleportPadsRequireMachinists { get; set; } = false;
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Configuration.AfterStartup")]
-        public static void AfterStartup()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld"),
+            ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
+        public static void AfterSelectedWorld()
         {
             if (File.Exists(_saveFileName) && JSON.Deserialize(_saveFileName, out var config))
             {
