@@ -57,10 +57,11 @@
     "Pandaros.Settlers.HerbalistBench.recipe": "Banco de herborista",
     "Pandaros.Settlers.HerbalistBench": "Banco de herborista",
     "Pandaros.Settlers.ApothecaryTable": "Mesa de apotecario",
-    "Pandaros.Settlers.Anitbiotic": "Anitbiotico",
-    "Pandaros.Settlers.Antidote": "Antidoto",
-    "Pandaros.Settlers.Bandage": "Benda",
+    "Pandaros.Settlers.Anitbiotic": "Antibiótico",
+    "Pandaros.Settlers.Antidote": "Antídoto",
+    "Pandaros.Settlers.Bandage": "Venda",
     "Pandaros.Settlers.Mana": "Mana",
+    "Pandaros.Settlers.TeleportPad": "Círculo de teletransporte",
     "Pandaros.Settlers.TreatedBandage": "Vendas avanzadas",
     "Pandaros.Settlers.AutoLoad.rawemerald": "Esmeralda",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "Esmeralda cortada",
@@ -73,7 +74,7 @@
     "Pandaros.Settlers.AutoLoad.ironbarcorner": "Esquina de barra de hierro",
     "Pandaros.Settlers.AutoLoad.infinitecopper": "Mina de cobre",
     "Pandaros.Settlers.AutoLoad.infinitetin": "Mina de estaño",
-    "Pandaros.Settlers.AutoLoad.infiniteruby": "Mina de rubis",
+    "Pandaros.Settlers.AutoLoad.infiniteruby": "Mina de rubís",
     "Pandaros.Settlers.AutoLoad.infinitesapphire": "Mina de zafiro",
     "Pandaros.Settlers.AutoLoad.sandstone": "Arenisca",
     "Pandaros.Settlers.AutoLoad.limestone": "Caliza",
@@ -95,9 +96,9 @@
     "Pandaros.Settlers.AutoLoad.magentaclay": "Arcilla magenta",
     "Pandaros.Settlers.AutoLoad.lightpinkclay": "Arcilla rosa",
     "Pandaros.Settlers.AutoLoad.irondoor": "Puerta de hierro",
-    "Pandaros.Settlers.AutoLoad.marblepillarbase": "Base de pilar de marmol",
-    "Pandaros.Settlers.AutoLoad.marblepillarbody": "Cuerpo de pilar de marmol",
-    "Pandaros.Settlers.AutoLoad.marblepillartop": "Cima de pilar de marmol",
+    "Pandaros.Settlers.AutoLoad.marblepillarbase": "Base de pilar de mármol",
+    "Pandaros.Settlers.AutoLoad.marblepillarbody": "Cuerpo de pilar de mármol",
+    "Pandaros.Settlers.AutoLoad.marblepillartop": "Cima de pilar de mármol",
     "Pandaros.Settlers.AutoLoad.browndye": "Tinte marrón",
     "Pandaros.Settlers.AutoLoad.reddye": "Tinte rojo",
     "Pandaros.Settlers.AutoLoad.cyandye": "Tinte cian",
@@ -126,13 +127,13 @@
     "Pandaros.Settlers.AutoLoad.dirtbricks": "Dirt Bricks",
     "Pandaros.Settlers.AutoLoad.steelingot": "Lingote de acero",
     "Pandaros.Settlers.AutoLoad.chalk": "Tiza",
-    "Pandaros.Settlers.AutoLoad.marble": "Marmol",
-    "Pandaros.Settlers.AutoLoad.rawmarble": "Marmol crudo",
+    "Pandaros.Settlers.AutoLoad.marble": "Mármol",
+    "Pandaros.Settlers.AutoLoad.rawmarble": "Mármol crudo",
     "Pandaros.Settlers.AutoLoad.altar": "Altar",
     "Pandaros.Settlers.AutoLoad.chisel": "Cincel",
     "Pandaros.Settlers.AutoLoad.notwater": "agua",
-    "Pandaros.Settlers.AutoLoad.marblebricks": "Ladrillos de marmol",
-    "Pandaros.Settlers.AutoLoad.sledgehammer": "Almadena",
+    "Pandaros.Settlers.AutoLoad.marblebricks": "Ladrillos de mármol",
+    "Pandaros.Settlers.AutoLoad.sledgehammer": "Almádena",
     "Pandaros.Settlers.AutoLoad.beef": "Bistec",
     "Pandaros.Settlers.AutoLoad.cheese": "Queso",
     "Pandaros.Settlers.AutoLoad.carrot": "Zanahoria",
@@ -165,9 +166,9 @@
     "Pandaros.Settlers.AutoLoad.stonebricksslab": "Cuarto de ladrillos de piedra",
     "Pandaros.Settlers.AutoLoad.plankslab": "Losa de tablones",
     "Pandaros.Settlers.AutoLoad.brickslab": "Losa de ladrillos",
-    "Pandaros.Settlers.AutoLoad.redplankslab": "Losa de tablones roja",
-    "Pandaros.Settlers.AutoLoad.blackplankslab": "Losa de tablones negra",
-    "Pandaros.Settlers.AutoLoad.coatedplankslab": "Coated Plank Slab",
+    "Pandaros.Settlers.AutoLoad.redplankslab": "Losa de tablones rojos",
+    "Pandaros.Settlers.AutoLoad.blackplankslab": "Losa de tablones negros",
+    "Pandaros.Settlers.AutoLoad.coatedplankslab": "Losa de tablones rebestidos",
     "Pandaros.Settlers.AutoLoad.clayslab": "Losa de arcilla",
     "Pandaros.Settlers.AutoLoad.blackclayslab": "Losa de arcilla negra",
     "Pandaros.Settlers.AutoLoad.redclayslab": "Losa de arcilla roja",
@@ -191,9 +192,9 @@
     "Pandaros.Settlers.AutoLoad.mossstonebricksslab": "Losa de ladrillo de piedra de musgo",
     "Pandaros.Settlers.AutoLoad.mossstonesquaresslab": "Losa de cuarto de ladrillo de piedra de musgo",
     "Pandaros.Settlers.AutoLoad.stonesquaresslab": "Losa de cuarto de piedra",
-    "Pandaros.Settlers.AutoLoad.marblebricksslab": "Losa de ladrillo de marmol",
-    "Pandaros.Settlers.AutoLoad.rawmarbleslab": "Losa de marmol cruda",
-    "Pandaros.Settlers.AutoLoad.marbleslab": "Losa de marmol",
+    "Pandaros.Settlers.AutoLoad.marblebricksslab": "Losa de ladrillo de mármol",
+    "Pandaros.Settlers.AutoLoad.rawmarbleslab": "Losa de mármol cruda",
+    "Pandaros.Settlers.AutoLoad.marbleslab": "Losa de mármol",
     "Pandaros.Settlers.AutoLoad.limestoneslab": "Losa de caliza",
     "Pandaros.Settlers.AutoLoad.sandstoneslab": "Losa de arenisca",
     "Pandaros.Settlers.AutoLoad.dirtslab": "Losa de barro",
@@ -219,7 +220,13 @@
     "Pandaros.Settlers.AutoLoad.cherryblossomslab": "Losa de flor de cerezo",
     "Pandaros.Settlers.AutoLoad.berrybushslab": "Losa de árbol de bayas",
     "Pandaros.Settlers.AutoLoad.lava": "Lava",
-    "Pandaros.Settlers.AutoLoad.lavaslab": "Losa de lava"
+    "Pandaros.Settlers.AutoLoad.lavaslab": "Losa de lava",
+    "Pandaros.Settlers.AutoLoad.aloe": "Aloe",
+    "Pandaros.Settlers.AutoLoad.tulip": "Tulipán",
+    "Pandaros.Settlers.AutoLoad.daisy": "Margarita",
+    "Pandaros.Settlers.AutoLoad.Sunflower": "Girasol",
+    "Pandaros.Settlers.AutoLoad.rose": "Rosa",
+    "Pandaros.Settlers.AutoLoad.Flowers1": "Campanillas"
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Reduce el daño un 5%.",
@@ -267,6 +274,7 @@
     "Pandaros.Settlers.Bandage": "Cura instantáneamente 20 de vida y 40 de vida en 5 segudos.",
     "Pandaros.Settlers.TreatedBandage": "Cura instantáneamente 20 de vida y 40 de vida en 5 segudos.",
     "Pandaros.Settlers.Mana": "Desbloquea los poderes mágicos.",
+	"Pandaros.Settlers.TeleportPad": "Coloca dos para enlazarlos. Es muy fácil de utilizar, pero muy difícil de comprender como funciona. Cuando recojas uno también se recogerá el que está enlazado. Necesita que un maquinista haga mantenimiento sobre al menos uno de los círculos de teletransporte enlazados.",
     "Pandaros.Settlers.AutoLoad.rawemerald": "El comienzo del mod.",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "La moneda del mod!  BRILLANTE!",
     "Pandaros.Settlers.AutoLoad.infiniteemerald": "El comienzo de la aventura.",
@@ -284,9 +292,9 @@
     "Pandaros.Settlers.AutoLoad.orangeclay": "Arcilla Naranja? ¡Enserio, es naranja!",
     "Pandaros.Settlers.AutoLoad.blueclay": "'¡Tambien es un color bonito!",
     "Pandaros.Settlers.AutoLoad.irondoor": "¡Enciérralos por siempre!",
-    "Pandaros.Settlers.AutoLoad.marblepillarbase": "Parte de abajo de un pilar de marmol.",
+    "Pandaros.Settlers.AutoLoad.marblepillarbase": "Parte de abajo de un pilar de mármol.",
     "Pandaros.Settlers.AutoLoad.marblepillarbody": "¿Cómo de alto lo quieres?",
-    "Pandaros.Settlers.AutoLoad.marblepillartop": "Parte de arriba de un pilar de marmol",
+    "Pandaros.Settlers.AutoLoad.marblepillartop": "Parte de arriba de un pilar de mármol",
     "Pandaros.Settlers.AutoLoad.notwater": "Este agua parece...rara.",
     "Pandaros.Settlers.AutoLoad.fence": "¡Hora de poner vallas! ¿Para el ganado?",
     "Pandaros.Settlers.AutoLoad.fencecorner": "¡Esquinas de vallas!",
@@ -1097,17 +1105,21 @@
           "name": "Maestros X",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 30%. adicional. Acumulable con los entrenamientos."
         },
-        "Herbalists1": {
-          "name": "Herborista",
-          "description": "Los herboristas hacen crecer plantas usadas para crear medicinas, comida y pociones."
-        },
         "Apothecaries1": {
           "name": "Apotecario",
-          "description": "Los apotecarios crean antidotos para venenos y vendas."
+          "description": "Los apotecarios crean vendas para ti y tus colonos."
         },
         "AdvancedApothecary1": {
           "name": "Apotecario avanzado",
-          "description": "Los apotecarios aprender a crear bendas avanzadas que curan mucho más."
+          "description": "Los apotecarios aprenden a crear vendas avanzadas que curan mucho más."
+        },
+        "Mana1": {
+          "name": "¡Mana!",
+          "description": "Desbloquea el mana, el cual puede ser usado para cosas mágicas!"
+        },
+        "Teleportation1": {
+          "name": "¡Teletransporte!",
+          "description": "Desbloquea los círculos de teletransporte. Deben ser colocados por parejas y por lo menos uno de los dos debe ser mantenido por un maquinista."
         }
       }
     }
