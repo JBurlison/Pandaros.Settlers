@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Managers
     {
         private static float _baseFoodPerHour;
         private static double _updateTime;
-
+        private static int _idNext = 1;
         public static List<HealingOverTimeNPC> HealingSpells { get; private set; } = new List<HealingOverTimeNPC>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio"),
@@ -143,12 +143,16 @@ namespace Pandaros.Settlers.Managers
                     {
                         try
                         {
+                            node.SetAs("id", GetAIID());
+
                             var npc = new NPCBase(p, node);
                             ModLoader.TriggerCallbacks<NPCBase, JSONNode>(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
 
                             foreach (var job in jf.openJobs)
                                 if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
                                 {
+                                    
+
                                     if (job.IsValid && job.NeedsNPC)
                                     {
                                         npc.TakeJob(job);
@@ -167,6 +171,24 @@ namespace Pandaros.Settlers.Managers
                     jf.Update();
                 }
             }
+        }
+
+        private static int GetAIID()
+        {
+            while (true)
+            {
+                if (_idNext == 1000000000)
+                {
+                    _idNext = 1;
+                }
+                if (!NPCTracker.Contains(_idNext))
+                {
+                    break;
+                }
+               _idNext++;
+            }
+
+            return _idNext++;
         }
 
 
