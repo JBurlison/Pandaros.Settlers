@@ -216,9 +216,6 @@ namespace Pandaros.Settlers.Items.Machines
                                 TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
                                 monster.OnHit(TurretSettings[machineState.MachineType].Damage);
                             }
-                            else
-                                Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, GameLoader.MissingMonster_Icon, true));
-
                         }
 
                         machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
