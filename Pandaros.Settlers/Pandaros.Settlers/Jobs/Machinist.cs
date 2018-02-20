@@ -192,7 +192,9 @@ namespace Pandaros.Settlers.Jobs
             float cooldown = COOLDOWN;
             bool fullyRepaired = false;
 
-            if (TargetMachine != null && 5 > Vector3.Distance(TargetMachine.Position.Vector, usedNPC.Position.Vector))
+            if (TargetMachine != null && 
+                usedNPC != null && 
+                5 > Vector3.Distance(TargetMachine.Position.Vector, usedNPC.Position.Vector))
             {
                 usedNPC.LookAt(TargetMachine.Position.Vector);
 

@@ -22,8 +22,8 @@ namespace Pandaros.Settlers.Managers
         public static int MaxBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 3600); } } // 1 hour
         private static Dictionary<PlayerState, IPandaBoss> _spawnedBosses = new Dictionary<PlayerState, IPandaBoss>();
         private static List<IPandaBoss> _bossList = new List<IPandaBoss>();
-        private static int _lastBossIndex = 0;
 
+        private static int _boss = 0;
         public static event EventHandler<Monsters.BossSpawnedEvent> BossSpawned;
 
         public static void AddBoss(IPandaBoss m)
@@ -38,11 +38,12 @@ namespace Pandaros.Settlers.Managers
 
             lock (_bossList)
             {
-                t = _bossList[_lastBossIndex];
-                _lastBossIndex++;
+                t = _bossList[_boss];
 
-                if (_lastBossIndex >= _bossList.Count)
-                    _lastBossIndex = 0;
+                _boss++;
+
+                if (_boss >= _bossList.Count)
+                    _boss = 0;
             }
 
             return t;
@@ -84,29 +85,33 @@ namespace Pandaros.Settlers.Managers
                 {
                     BossActive = true;
                     bossType = GetMonsterType();
-                    PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is null: {bossType == null}");
+
+                    if (Players.CountConnected != 0)
+                        PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is: {bossType.Name}");
                 }
 
                 if (BossActive)
                 {
                     bool turnOffBoss = true;
                     WorldSettings worldSettings = ServerManager.WorldSettings;
-                    int num = (!worldSettings.MonstersDoubled) ? 1 : 2;
+                    float num = (!worldSettings.MonstersDoubled) ? 1 : 2;
                     var banners = BannerTracker.GetBanners();
 
                     for (int i = 0; i < banners.Count; i++)
                     {
                         Banner bannerGoal = banners.GetValueAtIndex(i);
                         var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
+                        var colony = Colony.Get(ps.Player);
 
-                        if (ps.BossesEnabled && ps.Player.IsConnected)
+                        if (ps.BossesEnabled && 
+                            ps.Player.IsConnected && 
+                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 15))
                         {
                             if (bossType != null && 
                                 !_spawnedBosses.ContainsKey(ps) &&
                                 MonsterSpawner.TryGetSpawnLocation(bannerGoal, 200f, out var start) == MonsterSpawner.ESpawnResult.Success &&
                                 Server.AI.AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) == Server.AI.EPathFindingResult.Success)
                             {
-                                var colony = Colony.Get(ps.Player);
                                 var pandaboss = bossType.GetNewBoss(path, ps.Player);
                                 _spawnedBosses.Add(ps, pandaboss);
 
@@ -126,18 +131,29 @@ namespace Pandaros.Settlers.Managers
                                 _spawnedBosses[ps].IsValid &&
                                 _spawnedBosses[ps].CurrentHealth > 0)
                             {
-                                if (((IPandaBoss)_spawnedBosses[ps]).DoubleZombies)
-                                    num *= 2;
+                                Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_spawnedBosses[ps].Position), _spawnedBosses[ps].ID, new Shared.IndicatorState(1, GameLoader.Poisoned_Icon, false, false));
+
+                                if (_spawnedBosses[ps].ZombieMultiplier != 0)
+                                    num *= _spawnedBosses[ps].ZombieMultiplier;
 
                                 Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true);
                                 turnOffBoss = false;
                             }
+
+                            if (_spawnedBosses[ps].CurrentHealth <= 0 &&
+                                _spawnedBosses[ps].GetTempValues(true).GetOrDefault("sentDeath", false))
+                            {
+                                PandaChat.Send(ps.Player, $"[{_spawnedBosses[ps].Name}] {_spawnedBosses[ps].DeathText}", ChatColor.red);
+                                _spawnedBosses[ps].GetTempValues(true).Set("sentDeath", true);
+                            }
                         }
                     }
-
-
+                    
                     if (turnOffBoss)
                     {
+                        if (Players.CountConnected != 0)
+                            PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
+
                         BossActive = false;
                         _spawnedBosses.Clear();
                         GetNextBossSpawnTime();
@@ -150,15 +166,15 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             GetNextBossSpawnTime();
-            AddBoss(new Monsters.Bosses.Hoarder(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
+            AddBoss(new ZombieQueen(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
+            AddBoss(new Hoarder(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
+            AddBoss(new Juggernaut(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             _maxTimePerTick.Start();
         }
         
         private static void GetNextBossSpawnTime()
         {
-            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime Berfore: {_nextBossUpdateTime}");
             _nextBossUpdateTime = Pipliz.Time.SecondsSinceStartInt + Pipliz.Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
-            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime After: {_nextBossUpdateTime}");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.MonsterManager.RegisterAudio"),

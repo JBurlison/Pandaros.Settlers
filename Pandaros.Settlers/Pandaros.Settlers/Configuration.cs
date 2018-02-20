@@ -90,6 +90,7 @@ namespace Pandaros.Settlers
         public static void AfterSelectedWorld()
         {
             Reload();
+            GetorDefault("BossesCanBeDisabled", true);
         }
 
         public static void Reload()

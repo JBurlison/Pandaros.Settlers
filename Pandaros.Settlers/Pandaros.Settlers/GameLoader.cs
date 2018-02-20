@@ -41,6 +41,7 @@ namespace Pandaros.Settlers
         public static ushort Broken_Icon { get; private set; }
         public static ushort Empty_Icon { get; private set; }
         public static ushort NOAMMO_Icon { get; private set; }
+        public static ushort Poisoned_Icon { get; private set; }
 
         private static ushort _itemSortIndex = 30000;
 
@@ -144,6 +145,13 @@ namespace Pandaros.Settlers
 
             items.Add(NAMESPACE + ".NoAmmo", noAmmo);
 
+            var poisonedNode = new JSONNode();
+            poisonedNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Poisoned.png");
+            var poisoned = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Poisoned", poisonedNode);
+            Poisoned_Icon = poisoned.ItemIndex;
+
+            items.Add(NAMESPACE + ".Poisoned", poisoned);
+
             Jobs.MachinistJob.OkStatus = new List<uint>()
             {
                 Refuel_Icon,
@@ -163,6 +171,8 @@ namespace Pandaros.Settlers
             ChatCommands.CommandManager.RegisterCommand(new VersionChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new ColonyArchiver());
             ChatCommands.CommandManager.RegisterCommand(new ConfigurationChatCommand());
+            ChatCommands.CommandManager.RegisterCommand(new Monsters.BossesChatCommand());
+
 
             VersionChecker.WriteVersionsToConsole();
 #if Debug

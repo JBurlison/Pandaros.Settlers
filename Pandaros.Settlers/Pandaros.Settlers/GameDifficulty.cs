@@ -31,11 +31,11 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { Rank = 0 };
-            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { Rank = 1 };
-            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { Rank = 2 };
-            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { Rank = 3 };
-            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { Rank = 4 };
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { Rank = 0, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 30, ZombieQueenTargetTeleportCooldownSeconds = 45 };
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { Rank = 1, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 30, ZombieQueenTargetTeleportCooldownSeconds = 45 };
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { Rank = 2, ZombieQueenTargetTeleportHp = 300, BossHPPerColonist = 40, ZombieQueenTargetTeleportCooldownSeconds = 30 };
+            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { Rank = 3, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 50, ZombieQueenTargetTeleportCooldownSeconds = 20 };
+            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { Rank = 4, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 60, ZombieQueenTargetTeleportCooldownSeconds = 15 };
         }
 
         public string Name { get; set; }
@@ -48,6 +48,9 @@ namespace Pandaros.Settlers
         public float MonsterDamageReduction { get; set; }
 
         public float MonsterDamage { get; set; }
+        public float ZombieQueenTargetTeleportHp { get; set; } = 250;
+        public float ZombieQueenTargetTeleportCooldownSeconds { get; set; } = 45;
+        public float BossHPPerColonist { get; set; } = 30;
 
         public GameDifficulty() { }
 
@@ -72,6 +75,15 @@ namespace Pandaros.Settlers
                 if (node.TryGetAs(nameof(MonsterDamage), out float nonsterDamage))
                     MonsterDamage = nonsterDamage;
 
+                if (node.TryGetAs(nameof(ZombieQueenTargetTeleportHp), out float zombieQueenTargetTeleportHp))
+                    ZombieQueenTargetTeleportHp = zombieQueenTargetTeleportHp;
+
+                if (node.TryGetAs(nameof(BossHPPerColonist), out float bossHPPerColonist))
+                    BossHPPerColonist = bossHPPerColonist;
+
+                if (node.TryGetAs(nameof(ZombieQueenTargetTeleportCooldownSeconds), out float zombieQueenTargetTeleportCooldownSeconds))
+                    ZombieQueenTargetTeleportCooldownSeconds = zombieQueenTargetTeleportCooldownSeconds;
+
                 GameDifficulties[Name] = this;
             }
         }
@@ -94,6 +106,9 @@ namespace Pandaros.Settlers
                 .SetAs(nameof(FoodMultiplier), FoodMultiplier)
                 .SetAs(nameof(MachineThreashHold), MachineThreashHold)
                 .SetAs(nameof(MonsterDamageReduction), MonsterDamageReduction)
+                .SetAs(nameof(ZombieQueenTargetTeleportHp), ZombieQueenTargetTeleportHp)
+                .SetAs(nameof(BossHPPerColonist), BossHPPerColonist)
+                .SetAs(nameof(ZombieQueenTargetTeleportCooldownSeconds), ZombieQueenTargetTeleportCooldownSeconds)
                 .SetAs(nameof(MonsterDamage), MonsterDamage);
 
             return node;

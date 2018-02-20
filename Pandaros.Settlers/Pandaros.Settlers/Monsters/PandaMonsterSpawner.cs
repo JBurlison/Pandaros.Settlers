@@ -64,7 +64,7 @@ namespace Pandaros.Settlers.Monsters
             maxTimePerTick.Stop();
         }
         
-        public void SpawnForBanner(Banner valueAtIndex, bool flag, int num, double secondsSinceStartDouble, bool force)
+        public void SpawnForBanner(Banner valueAtIndex, bool flag, float num, double secondsSinceStartDouble, bool force)
         {
             if (valueAtIndex != null && valueAtIndex.KeyLocation.IsValid)
             {
@@ -113,14 +113,13 @@ namespace Pandaros.Settlers.Monsters
 
             if (force || TimeCycle.ShouldSpawnMonsters)
             {
-                NPCTypeMonsterSettings nPCTypeMonsterSettings;
-                typeToSpawn.TryGetSettings(out nPCTypeMonsterSettings);
-
-
-                if (force)
-                    maxSpawnWalkDistance = TimeCycle.NightLengthInRealSeconds * (nPCTypeMonsterSettings.movementSpeed * 0.85f) + (float)bannerGoal.SafeRadius;
-                else
-                    maxSpawnWalkDistance = TimeCycle.NightLengthLeftInRealSeconds * (nPCTypeMonsterSettings.movementSpeed * 0.85f) + (float)bannerGoal.SafeRadius;
+                if (typeToSpawn.TryGetSettings(out NPCTypeMonsterSettings nPCTypeMonsterSettings))
+                {
+                    if (force)
+                        maxSpawnWalkDistance = TimeCycle.NightLengthInRealSeconds * (nPCTypeMonsterSettings.movementSpeed * 0.85f) + (float)bannerGoal.SafeRadius;
+                    else
+                        maxSpawnWalkDistance = TimeCycle.NightLengthLeftInRealSeconds * (nPCTypeMonsterSettings.movementSpeed * 0.85f) + (float)bannerGoal.SafeRadius;
+                }
             }
 
             switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal, maxSpawnWalkDistance, out Vector3Int start))
