@@ -18,7 +18,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
         static NPCTypeMonsterSettings _mts;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder.Register"),
-            ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
+            ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
+            ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {
             JSONNode m = new JSONNode()
@@ -27,9 +28,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "albedo/Hoarder.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "normal/Hoarder.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "emissive/Hoarder.png")
+                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Hoarder.png")
+                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Hoarder.png")
+                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Hoarder.png")
                 .SetAs("initialHealth", Configuration.GetorDefault("MaxBossHP_Hoarder", 6000))
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 500)
@@ -70,6 +71,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public override bool Update()
         {
+            killedBefore = false;
             return base.Update();
         }
     }

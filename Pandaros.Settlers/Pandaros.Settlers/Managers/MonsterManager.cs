@@ -129,7 +129,6 @@ namespace Pandaros.Settlers.Managers
                         _spawnedBosses[ps].KilledBefore = false;
 
                         if (_spawnedBosses.ContainsKey(ps) &&
-                            _spawnedBosses[ps].IsValid && 
                             _spawnedBosses[ps].CurrentHealth > 0)
                         {
                             if (((IPandaBoss)_spawnedBosses[ps]).DoubleZombies)
@@ -143,6 +142,7 @@ namespace Pandaros.Settlers.Managers
 
                 if (turnOffBoss)
                 {
+                    PandaLogger.Log(ChatColor.yellow, $"No more active bosses. Getting next boss time.");
                     BossActive = false;
                     _spawnedBosses.Clear();
                     GetNextBossSpawnTime();
