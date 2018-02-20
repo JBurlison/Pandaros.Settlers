@@ -117,7 +117,9 @@ namespace Pandaros.Settlers.Managers
                                 colony.OnZombieSpawn(true);
 
                                 PandaChat.Send(ps.Player, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}", ChatColor.red);
-                                ServerManager.SendAudio(ps.Player.Position, GameLoader.NAMESPACE + "ZombieAudio");
+
+                                if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
+                                    ServerManager.SendAudio(ps.Player.Position, pandaboss.AnnouncementAudio);
                             }
 
                             if (_spawnedBosses.ContainsKey(ps) &&

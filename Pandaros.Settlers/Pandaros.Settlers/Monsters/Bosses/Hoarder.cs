@@ -56,6 +56,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
 
+        public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
+
         public Hoarder(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
