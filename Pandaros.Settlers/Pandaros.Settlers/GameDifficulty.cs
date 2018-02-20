@@ -31,11 +31,11 @@ namespace Pandaros.Settlers
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { Rank = 0, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 30, ZombieQueenTargetTeleportCooldownSeconds = 45 };
-            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { Rank = 1, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 30, ZombieQueenTargetTeleportCooldownSeconds = 45 };
-            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { Rank = 2, ZombieQueenTargetTeleportHp = 300, BossHPPerColonist = 40, ZombieQueenTargetTeleportCooldownSeconds = 30 };
-            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { Rank = 3, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 50, ZombieQueenTargetTeleportCooldownSeconds = 20 };
-            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { Rank = 4, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 60, ZombieQueenTargetTeleportCooldownSeconds = 15 };
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { Rank = 0, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 30, ZombieQueenTargetTeleportCooldownSeconds = 30 };
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { Rank = 1, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 30, ZombieQueenTargetTeleportCooldownSeconds = 30 };
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { Rank = 2, ZombieQueenTargetTeleportHp = 300, BossHPPerColonist = 40, ZombieQueenTargetTeleportCooldownSeconds = 15 };
+            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { Rank = 3, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 50, ZombieQueenTargetTeleportCooldownSeconds = 10 };
+            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { Rank = 4, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 60, ZombieQueenTargetTeleportCooldownSeconds = 5 };
         }
 
         public string Name { get; set; }

@@ -83,7 +83,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             if (_updateTime < Pipliz.Time.SecondsSinceStartDouble)
             {
                 var ps = PlayerState.GetPlayerState(OriginalGoal);
-                var monster = MonsterTracker.Find(position, 20, ps.Difficulty.BossHPPerColonist);
+                var monster = MonsterTracker.Find(position, 20, ps.Difficulty.ZombieQueenTargetTeleportHp);
                 var zombie = monster as Zombie;
 
                 if (zombie != null)
@@ -94,17 +94,18 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     {
                         ServerManager.SendAudio(zombie.Position, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                         MethodInfo setPos = zombie.GetType().GetMethod("SetPosition",  BindingFlags.NonPublic | BindingFlags.Instance);
-                        setPos.Invoke(zombie, new object[] { npc.Position });
+                        setPos.Invoke(zombie, new object[] { Server.AI.AIManager.ClosestPositionNotAt(npc.Position, npc.Position) });
                         zombie.SendUpdate();
                         MethodInfo updateChunkPosition = zombie.GetType().GetMethod("UpdateChunkPosition", BindingFlags.NonPublic | BindingFlags.Instance);
                         updateChunkPosition.Invoke(zombie, new Object[0]);
-                        MethodInfo reconsiderDecision = zombie.GetType().GetMethod("ReconsiderDecision", BindingFlags.NonPublic | BindingFlags.Instance);
-                        reconsiderDecision.Invoke(zombie, new Object[0]);
+                        var fi = zombie.GetType().GetField("decision", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+                        fi.SetValue(zombie, default(ZombieDecision));
+                        
                         ServerManager.SendAudio(npc.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                     }
                 }
 
-                _updateTime = Pipliz.Time.SecondsSinceStartDouble + 10;
+                _updateTime = Pipliz.Time.SecondsSinceStartDouble + ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
             }
 
             return base.Update();
