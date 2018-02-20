@@ -27,9 +27,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "albedo/Hoarder.jpg")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "normal/Hoarder.jpg")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "emissive/Hoarder.jpg")
+                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "albedo/Hoarder.png")
+                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "normal/Hoarder.png")
+                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "emissive/Hoarder.png")
                 .SetAs("initialHealth", Configuration.GetorDefault("MaxBossHP_Hoarder", 6000))
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 500)
@@ -52,6 +52,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string Name => "Hoarder";
 
         public override float TotalHealth => _totalHealth;
+
+        public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
 
         public Hoarder(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

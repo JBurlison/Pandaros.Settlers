@@ -231,10 +231,10 @@ namespace Pandaros.Settlers.Items.Machines
                             }
                         }
 
-                        if (TimeCycle.IsDay && gate.Value.State == GatePosition.Open)
+                        if (TimeCycle.HoursSinceSunRise > 2 && gate.Value.State == GatePosition.Open)
                             continue;
 
-                        if (!TimeCycle.IsDay && gate.Value.State == GatePosition.Closed)
+                        if (TimeCycle.TimeTillSunSet <= 2 && gate.Value.State == GatePosition.Closed)
                             continue;
 
                         float dis = Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
@@ -243,7 +243,7 @@ namespace Pandaros.Settlers.Items.Machines
                         {
                             int offset = 2;
 
-                            if (!TimeCycle.IsDay)
+                            if (TimeCycle.TimeTillSunSet <= 2)
                                 offset = -2;
 
                             moveGates.Add(gate.Value, gate.Key.Add(0, offset, 0));
@@ -264,7 +264,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         int newOffset = -1;
 
-                        if (!TimeCycle.IsDay)
+                        if (TimeCycle.TimeTillSunSet <= 2)
                             newOffset = 1;
 
                         switch (mkvp.Key.Orientation)
@@ -289,7 +289,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         var moveState = GatePosition.MovingClosed;
 
-                        if (TimeCycle.IsDay)
+                        if (TimeCycle.HoursSinceSunRise > 2)
                             moveState = GatePosition.MovingOpen;
 
                         mkvp.Key.State = moveState;
@@ -301,7 +301,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                             var state = GatePosition.Closed;
 
-                            if (TimeCycle.IsDay)
+                            if (TimeCycle.HoursSinceSunRise > 2)
                                 state = GatePosition.Open;
 
                             mkvp.Key.State = state;

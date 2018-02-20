@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Managers
         public static bool BossActive { get; private set; } = false;
         public static int MinBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MinBossSpawnTimeSeconds), 900); } } // 15 minutes
         public static int MaxBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 3600); } } // 1 hour
-        private static Dictionary<PlayerState, IMonster> _spawnedBosses = new Dictionary<PlayerState, IMonster>();
+        private static Dictionary<PlayerState, IPandaBoss> _spawnedBosses = new Dictionary<PlayerState, IPandaBoss>();
         private static List<IPandaBoss> _bossList = new List<IPandaBoss>();
         private static int _lastBossIndex = 0;
 
@@ -74,17 +74,19 @@ namespace Pandaros.Settlers.Managers
 
             IPandaBoss bossType = null;
 
-            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime: {_nextBossUpdateTime}");
-            PandaLogger.Log(ChatColor.yellow, $"secondsSinceStartDouble: {secondsSinceStartDouble}");
-            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime < secondsSinceStartDouble: {_nextBossUpdateTime < secondsSinceStartDouble}");
-            PandaLogger.Log(ChatColor.yellow, $"BossActive: {BossActive}");
+            //PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime: {_nextBossUpdateTime}");
+            //PandaLogger.Log(ChatColor.yellow, $"secondsSinceStartDouble: {secondsSinceStartDouble}");
+            //PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime < secondsSinceStartDouble: {_nextBossUpdateTime < secondsSinceStartDouble}");
+            //PandaLogger.Log(ChatColor.yellow, $"BossActive: {BossActive}");
+
+            if (_maxTimePerTick.Elapsed.TotalMilliseconds > Monsters.PandaMonsterSpawner.MonsterVariables.MSPerTick)
+                return;
 
             if (!BossActive &&
                 _nextBossUpdateTime < secondsSinceStartDouble)
             {
                 BossActive = true;
                 bossType = GetMonsterType();
-
                 PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is null: {bossType == null}");
             }
 
@@ -100,9 +102,6 @@ namespace Pandaros.Settlers.Managers
 
                 for (int i = 0; i < banners.Count; i++)
                 {
-                    if (_maxTimePerTick.Elapsed.TotalMilliseconds > Monsters.PandaMonsterSpawner.MonsterVariables.MSPerTick)
-                        break;
-
                     Banner bannerGoal = banners.GetValueAtIndex(i);
                     var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
 
@@ -127,7 +126,11 @@ namespace Pandaros.Settlers.Managers
                             ServerManager.SendAudio(ps.Player.Position, GameLoader.NAMESPACE + "ZombieAudio");
                         }
 
-                        if (_spawnedBosses[ps].IsValid && _spawnedBosses[ps].CurrentHealth > 0)
+                        _spawnedBosses[ps].KilledBefore = false;
+
+                        if (_spawnedBosses.ContainsKey(ps) &&
+                            _spawnedBosses[ps].IsValid && 
+                            _spawnedBosses[ps].CurrentHealth > 0)
                         {
                             if (((IPandaBoss)_spawnedBosses[ps]).DoubleZombies)
                                 num *= 2;
