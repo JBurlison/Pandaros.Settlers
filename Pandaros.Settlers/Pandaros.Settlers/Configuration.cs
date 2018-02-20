@@ -96,11 +96,29 @@ namespace Pandaros.Settlers
         public static void Reload()
         {
             if (File.Exists(_saveFileName) && JSON.Deserialize(_saveFileName, out var config))
+            {
                 _rootSettings = config;
+
+                if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
+                {
+                    foreach (var diff in diffs.LoopArray())
+                    {
+                        var newDiff = new GameDifficulty(diff);
+                        GameDifficulty.GameDifficulties[newDiff.Name] = newDiff;
+                    }
+                }
+            }
         }
 
         public static void Save()
         {
+            JSONNode diffs = new JSONNode(NodeType.Array);
+
+            foreach (var diff in GameDifficulty.GameDifficulties.Values)
+                diffs.AddToArray(diff.ToJson());
+
+            _rootSettings.SetAs("GameDifficulties", diffs);
+
             JSON.Serialize(_saveFileName, _rootSettings);
         }
 

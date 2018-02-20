@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Managers
         static int _nextBossUpdateTime = int.MaxValue;
         public static bool BossActive { get; private set; } = false;
         public static int MinBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MinBossSpawnTimeSeconds), 900); } } // 15 minutes
-        public static int MaxBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 3600); } } // 1 hour
+        public static int MaxBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 1800); } } // 1/2 hour
         private static Dictionary<PlayerState, IPandaBoss> _spawnedBosses = new Dictionary<PlayerState, IPandaBoss>();
         private static List<IPandaBoss> _bossList = new List<IPandaBoss>();
 
