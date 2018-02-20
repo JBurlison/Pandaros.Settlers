@@ -185,9 +185,6 @@ namespace Pandaros.Settlers
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            if (player == null || player.ID == NetworkID.Server)
-                return true;
-
             string[] array = CommandManager.SplitCommand(chat);
 
             var gitVer = VersionChecker.GetGitVerion();

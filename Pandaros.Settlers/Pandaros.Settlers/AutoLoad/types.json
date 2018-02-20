@@ -3672,5 +3672,15 @@
     "maxStackSize": 600,
     "mesh": "Flowers1.obj",
     "isSolid": false
+  },
+  "Selector": {
+    "icon": "Selector.png",
+    "onPlaceAudio": "vanilla.woodPlace",
+    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "mesh": "Selector.obj",
+    "isSolid": false
   }
 }

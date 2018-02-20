@@ -2458,5 +2458,11 @@
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
+  },
+  "Selector": {
+    "albedo": "Selector",
+    "normal": "neutral",
+    "emissive": "neutral",
+    "height": "neutral"
   }
 }

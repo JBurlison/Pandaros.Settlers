@@ -1,0 +1,17 @@
+﻿using Server.AI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Pandaros.Settlers.Monsters.Bosses
+{
+    public interface IPandaBoss : Server.Monsters.IMonster
+    {
+        string Name { get; }
+        string AnnouncementText { get; }
+        bool DoubleZombies { get; }
+
+        IPandaBoss GetNewBoss(Path path, Players.Player p);
+    }
+}

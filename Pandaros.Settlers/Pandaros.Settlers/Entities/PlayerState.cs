@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.Entities
         public Vector3Int TeleporterPlaced { get; set; } = Vector3Int.invalidPos;
 
         public Dictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ArmorState>();
-
+        public bool BossesEnabled { get; set; } = true;
 
         public ArmorState Weapon { get; set; } = new ArmorState();
 
@@ -132,6 +132,9 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs("Difficulty", out string diff))
                     _playerStates[p].DifficultyStr = diff;
+
+                if (stateNode.TryGetAs(nameof(BossesEnabled), out bool bosses))
+                    _playerStates[p].BossesEnabled = bosses;
             }
         }
 
@@ -155,6 +158,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs("FlagsPlaced", flagsPlaced);
                 node.SetAs("TeleporterPlaced", (JSONNode)_playerStates[p].TeleporterPlaced);
                 node.SetAs("Difficulty", _playerStates[p].DifficultyStr);
+                node.SetAs(nameof(BossesEnabled), _playerStates[p].BossesEnabled);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

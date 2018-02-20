@@ -1,4 +1,5 @@
-﻿using Pipliz.JSON;
+﻿using ChatCommands;
+using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,67 +12,124 @@ namespace Pandaros.Settlers
     public static class Configuration
     {
         private static string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
-        public static GameDifficulty MinDifficulty { get; private set; } = GameDifficulty.Normal;
-        public static GameDifficulty DefaultDifficulty { get; private set; } = GameDifficulty.Medium;
-        public static bool DifficutlyCanBeChanged { get; private set; } = true;
-        public static bool OfflineColonies { get; set; } = true;
-        public static bool TeleportPadsRequireMachinists { get; set; } = false;
+        private static JSONNode _rootSettings;
 
+        public static GameDifficulty MinDifficulty
+        {
+            get
+            {
+                string diffStr = GetorDefault(nameof(MinDifficulty), GameDifficulty.Normal.Name);
+
+                if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
+                    return GameDifficulty.GameDifficulties[diffStr];
+                else
+                    return GameDifficulty.Normal;
+            }
+            private set
+            {
+                SetValue(nameof(MinDifficulty), value);
+            }
+        }
+
+        public static GameDifficulty DefaultDifficulty
+        {
+            get
+            {
+                string diffStr = GetorDefault(nameof(DefaultDifficulty), GameDifficulty.Medium.Name);
+
+                if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
+                    return GameDifficulty.GameDifficulties[diffStr];
+                else
+                    return GameDifficulty.Medium;
+            }
+            private set
+            {
+                SetValue(nameof(DefaultDifficulty), value);
+            }
+        }
+
+        public static bool DifficutlyCanBeChanged
+        {
+            get
+            {
+                return GetorDefault(nameof(DifficutlyCanBeChanged), true);
+            }
+            private set
+            {
+                SetValue(nameof(DifficutlyCanBeChanged), value);
+            }
+        }
+
+        public static bool OfflineColonies
+        {
+            get
+            {
+                return GetorDefault(nameof(OfflineColonies), true);
+            }
+            private set
+            {
+                SetValue(nameof(OfflineColonies), value);
+            }
+        }
+
+        public static bool TeleportPadsRequireMachinists
+        {
+            get
+            {
+                return GetorDefault(nameof(TeleportPadsRequireMachinists), false);
+            }
+            private set
+            {
+                SetValue(nameof(TeleportPadsRequireMachinists), value);
+            }
+        }
+       
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld"),
             ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
+            Reload();
+        }
+
+        public static void Reload()
+        {
             if (File.Exists(_saveFileName) && JSON.Deserialize(_saveFileName, out var config))
-            {
-                if (config.TryGetAs(nameof(MinDifficulty), out string diffStr))
-                    if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
-                        MinDifficulty = GameDifficulty.GameDifficulties[diffStr];
-
-                if (config.TryGetAs(nameof(DefaultDifficulty), out string defdiffStr))
-                    if (GameDifficulty.GameDifficulties.ContainsKey(defdiffStr))
-                        DefaultDifficulty = GameDifficulty.GameDifficulties[defdiffStr];
-
-                if (config.TryGetAs(nameof(DifficutlyCanBeChanged), out bool diffChanged))
-                    DifficutlyCanBeChanged = diffChanged;
-
-                if (config.TryGetAs(nameof(TeleportPadsRequireMachinists), out bool teleportPadsUseMana))
-                    TeleportPadsRequireMachinists = teleportPadsUseMana;
-
-                if (config.TryGetAs(nameof(OfflineColonies), out bool offlineColonies))
-                    OfflineColonies = offlineColonies;
-
-                if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
-                {
-                    foreach (var diff in diffs.LoopArray())
-                    {
-                        var newDiff = new GameDifficulty(diff);
-                        GameDifficulty.GameDifficulties[newDiff.Name] = newDiff; 
-                    }
-                }
-            }
-
-            Save();
+                _rootSettings = config;
         }
 
         public static void Save()
         {
-            JSONNode newConfig = new JSONNode();
-            newConfig.SetAs(nameof(MinDifficulty), MinDifficulty.Name);
-            newConfig.SetAs(nameof(DifficutlyCanBeChanged), DifficutlyCanBeChanged);
-            newConfig.SetAs(nameof(OfflineColonies), OfflineColonies);
-            newConfig.SetAs(nameof(DefaultDifficulty), DefaultDifficulty.Name);
-            newConfig.SetAs(nameof(TeleportPadsRequireMachinists), TeleportPadsRequireMachinists);
+            JSON.Serialize(_saveFileName, _rootSettings);
+        }
 
-            JSONNode diffs = new JSONNode(NodeType.Array);
+        public static T GetorDefault<T>(string key, T defaultVal)
+        {
+            if (!_rootSettings.HasChild(key))
+                SetValue(key, defaultVal);
 
-            foreach (var diff in GameDifficulty.GameDifficulties.Values)
-                diffs.AddToArray(diff.ToJson());
+            return _rootSettings.GetAs<T>(key);
+        }
 
-            newConfig.SetAs("GameDifficulties", diffs);
+        public static void SetValue<T>(string key, T val)
+        {
+            _rootSettings.SetAs(key, val);
+            Save();
+        }
+    }
 
-            using (StreamWriter writer = File.CreateText(_saveFileName))
-                newConfig.Serialize(writer, 1, 1);
+    public class ConfigurationChatCommand : IChatCommand
+    {
+        public bool IsCommand(string chat)
+        {
+            return chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public bool TryDoCommand(Players.Player player, string chat)
+        {
+            Configuration.Reload();
+
+            return true;
         }
     }
 }

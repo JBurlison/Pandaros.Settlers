@@ -16,7 +16,6 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class TeleportPad
     {
-        const int TeleportPadCooldown = 30;
         private static Dictionary<Vector3Int, Vector3Int> _paired = new Dictionary<Vector3Int, Vector3Int>();
         private static Dictionary<Players.Player, int> _cooldown = new Dictionary<Players.Player, int>();
 
@@ -331,7 +330,7 @@ namespace Pandaros.Settlers.Items.Machines
                     ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                     ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
 
-                    _cooldown[p] = TeleportPadCooldown + startInt;
+                    _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
                 }
             }
         }

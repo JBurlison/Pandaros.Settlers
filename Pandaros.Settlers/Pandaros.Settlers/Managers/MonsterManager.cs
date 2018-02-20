@@ -1,8 +1,10 @@
 ﻿using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Monsters.Bosses;
 using Server.Monsters;
 using Server.NPCs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -12,12 +14,49 @@ namespace Pandaros.Settlers.Managers
     [ModLoader.ModManager]
     public static class MonsterManager
     {
+        private static Stopwatch _maxTimePerTick = new Stopwatch();
         static double _nextUpdateTime;
+        static int _nextBossUpdateTime = int.MaxValue;
+        public static bool BossActive { get; private set; } = false;
+        public static int MinBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MinBossSpawnTimeSeconds), 900); } } // 15 minutes
+        public static int MaxBossSpawnTimeSeconds { get { return Configuration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 3600); } } // 1 hour
+        private static Dictionary<PlayerState, IMonster> _spawnedBosses = new Dictionary<PlayerState, IMonster>();
+        private static List<IPandaBoss> _bossList = new List<IPandaBoss>();
+        private static int _lastBossIndex = 0;
+
+        public static event EventHandler<Monsters.BossSpawnedEvent> BossSpawned;
+
+        public static void AddBoss(IPandaBoss m)
+        {
+            lock (_bossList)
+                _bossList.Add(m);
+        }
+
+        private static IPandaBoss GetMonsterType()
+        {
+            IPandaBoss t = null;
+
+            lock (_bossList)
+            {
+                t = _bossList[_lastBossIndex];
+                _lastBossIndex++;
+
+                if (_lastBossIndex >= _bossList.Count)
+                    _lastBossIndex = 0;
+            }
+
+            return t;
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
         public static void OnUpdate()
         {
-            if (_nextUpdateTime < Pipliz.Time.SecondsSinceStartDouble)
+            if (!World.Initialized || !ServerManager.WorldSettings.ZombiesEnabled || Server.AI.AIManager.IsBusy())
+                return;
+
+            double secondsSinceStartDouble = Pipliz.Time.SecondsSinceStartDouble;
+
+            if (_nextUpdateTime < secondsSinceStartDouble)
             {
                 IMonster m = null;
 
@@ -30,10 +69,97 @@ namespace Pandaros.Settlers.Managers
                     }
                 }
 
-                _nextUpdateTime = Pipliz.Time.SecondsSinceStartDouble + 5;
+                _nextUpdateTime = secondsSinceStartDouble + 5;
+            }
+
+            IPandaBoss bossType = null;
+
+            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime: {_nextBossUpdateTime}");
+            PandaLogger.Log(ChatColor.yellow, $"secondsSinceStartDouble: {secondsSinceStartDouble}");
+            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime < secondsSinceStartDouble: {_nextBossUpdateTime < secondsSinceStartDouble}");
+            PandaLogger.Log(ChatColor.yellow, $"BossActive: {BossActive}");
+
+            if (!BossActive &&
+                _nextBossUpdateTime < secondsSinceStartDouble)
+            {
+                BossActive = true;
+                bossType = GetMonsterType();
+
+                PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is null: {bossType == null}");
+            }
+
+            if (BossActive && bossType != null)
+            {
+                bool turnOffBoss = true;
+                WorldSettings worldSettings = ServerManager.WorldSettings;
+                int num = (!worldSettings.MonstersDoubled) ? 1 : 2;
+                var banners = BannerTracker.GetBanners();
+
+                _maxTimePerTick.Reset();
+                _maxTimePerTick.Start();
+
+                for (int i = 0; i < banners.Count; i++)
+                {
+                    if (_maxTimePerTick.Elapsed.TotalMilliseconds > Monsters.PandaMonsterSpawner.MonsterVariables.MSPerTick)
+                        break;
+
+                    Banner bannerGoal = banners.GetValueAtIndex(i);
+                    var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
+
+                    if (ps.BossesEnabled && ps.Player.IsConnected)
+                    {
+                        if (!_spawnedBosses.ContainsKey(ps) &&
+                            MonsterSpawner.TryGetSpawnLocation(bannerGoal, 200f, out var start) == MonsterSpawner.ESpawnResult.Success &&
+                            Server.AI.AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) == Server.AI.EPathFindingResult.Success)
+                        {
+                            var colony = Colony.Get(ps.Player);
+                            var pandaboss = bossType.GetNewBoss(path, ps.Player);
+                            _spawnedBosses.Add(ps, pandaboss);
+                           
+                            BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new Monsters.BossSpawnedEvent(ps, pandaboss));
+                            ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, pandaboss);
+
+                            MonsterTracker.Add(pandaboss);
+                            colony.OnZombieSpawn(true);
+
+                            PandaChat.Send(ps.Player, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}", ChatColor.red);
+                            PandaLogger.Log(ChatColor.yellow, $"Boss {pandaboss.Name}, spawned for player: {ps.Player.IDString}");
+                            ServerManager.SendAudio(ps.Player.Position, GameLoader.NAMESPACE + "ZombieAudio");
+                        }
+
+                        if (_spawnedBosses[ps].IsValid && _spawnedBosses[ps].CurrentHealth > 0)
+                        {
+                            if (((IPandaBoss)_spawnedBosses[ps]).DoubleZombies)
+                                num *= 2;
+
+                            Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true);
+                            turnOffBoss = false;
+                        }
+                    }
+                }
+
+                if (turnOffBoss)
+                {
+                    BossActive = false;
+                    _spawnedBosses.Clear();
+                    GetNextBossSpawnTime();
+                }
             }
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            GetNextBossSpawnTime();
+            AddBoss(new Monsters.Bosses.Hoarder(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server))); 
+        }
+        
+        private static void GetNextBossSpawnTime()
+        {
+            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime Berfore: {_nextBossUpdateTime}");
+            _nextBossUpdateTime = Pipliz.Time.SecondsSinceStartInt + Pipliz.Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
+            PandaLogger.Log(ChatColor.yellow, $"_nextBossUpdateTime After: {_nextBossUpdateTime}");
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.MonsterManager.RegisterAudio"),
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
