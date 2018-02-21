@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
 
-        public float ZombieMultiplier => 1.25f;
+        public float ZombieMultiplier => 1.20f;
 
         public Hoarder(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
