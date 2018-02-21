@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public override float TotalHealth => _totalHealth;
         public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
-        public float ZombieMultiplier => 1.5f;
+        public float ZombieMultiplier => 0f;
 
         public Juggernaut(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
