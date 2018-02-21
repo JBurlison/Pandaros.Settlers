@@ -153,7 +153,7 @@ namespace Pandaros.Settlers.Items.Machines
 
             return retval;
         }
-        
+
         public static ushort Reload(Players.Player player, MachineState machineState)
         {
             if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
@@ -231,10 +231,10 @@ namespace Pandaros.Settlers.Items.Machines
                             }
                         }
 
-                        if (TimeCycle.HoursSinceSunRise > 2 && gate.Value.State == GatePosition.Open)
+                        if (TimeCycle.IsDay && gate.Value.State == GatePosition.Open)
                             continue;
 
-                        if (TimeCycle.TimeTillSunSet <= 2 && gate.Value.State == GatePosition.Closed)
+                        if (!TimeCycle.IsDay && gate.Value.State == GatePosition.Closed)
                             continue;
 
                         float dis = Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
@@ -243,7 +243,7 @@ namespace Pandaros.Settlers.Items.Machines
                         {
                             int offset = 2;
 
-                            if (TimeCycle.TimeTillSunSet <= 2)
+                            if (!TimeCycle.IsDay)
                                 offset = -2;
 
                             moveGates.Add(gate.Value, gate.Key.Add(0, offset, 0));
@@ -264,7 +264,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         int newOffset = -1;
 
-                        if (TimeCycle.TimeTillSunSet <= 2)
+                        if (!TimeCycle.IsDay)
                             newOffset = 1;
 
                         switch (mkvp.Key.Orientation)
@@ -289,7 +289,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         var moveState = GatePosition.MovingClosed;
 
-                        if (TimeCycle.HoursSinceSunRise > 2)
+                        if (TimeCycle.IsDay)
                             moveState = GatePosition.MovingOpen;
 
                         mkvp.Key.State = moveState;
@@ -301,7 +301,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                             var state = GatePosition.Closed;
 
-                            if (TimeCycle.HoursSinceSunRise > 2)
+                            if (TimeCycle.IsDay)
                                 state = GatePosition.Open;
 
                             mkvp.Key.State = state;
@@ -408,7 +408,7 @@ namespace Pandaros.Settlers.Items.Machines
             Item = new ItemTypesServer.ItemTypeRaw(GateLeverName, GateLeverNode);
             items.Add(GateLeverName, Item);
 
-            
+
             var GateName = GameLoader.NAMESPACE + ".Gate";
             var GateXplusName = GateName + "x+";
             var GateXminusName = GateName + "x-";
@@ -431,7 +431,7 @@ namespace Pandaros.Settlers.Items.Machines
             GateItem = new ItemTypesServer.ItemTypeRaw(GateName, GateNode);
             items.Add(GateName, GateItem);
 
-            
+
             var GateXminuNode = new JSONNode();
             GateXminuNode.SetAs("needsBase", true);
             GateXminuNode.SetAs("parentType", GateName);
@@ -439,7 +439,7 @@ namespace Pandaros.Settlers.Items.Machines
             GateItemXN = new ItemTypesServer.ItemTypeRaw(GateXminusName, GateXminuNode);
             items.Add(GateXminusName, GateItemXN);
 
-            
+
             var GateXplusNode = new JSONNode();
             GateXplusNode.SetAs("needsBase", true);
             GateXplusNode.SetAs("parentType", GateName);
@@ -447,7 +447,7 @@ namespace Pandaros.Settlers.Items.Machines
             GateItemXP = new ItemTypesServer.ItemTypeRaw(GateXplusName, GateXplusNode);
             items.Add(GateXplusName, GateItemXP);
 
-            
+
             var GateZminuNode = new JSONNode();
             GateZminuNode.SetAs("needsBase", true);
             GateZminuNode.SetAs("parentType", GateName);
@@ -455,7 +455,7 @@ namespace Pandaros.Settlers.Items.Machines
             GateItemZN = new ItemTypesServer.ItemTypeRaw(GateZminusName, GateZminuNode);
             items.Add(GateZminusName, GateItemZN);
 
-            
+
             var GateZplusNode = new JSONNode();
             GateZplusNode.SetAs("needsBase", true);
             GateZplusNode.SetAs("parentType", GateName);
@@ -521,11 +521,11 @@ namespace Pandaros.Settlers.Items.Machines
                                                             d.TypeNew == GateItemXN.ItemIndex ||
                                                             d.TypeNew == GateItemXP.ItemIndex ||
                                                             d.TypeNew == GateItemZN.ItemIndex ||
-                                                            d.TypeNew == GateItemZP.ItemIndex ))
+                                                            d.TypeNew == GateItemZP.ItemIndex))
             {
                 if (!_gatePositions.ContainsKey(d.requestedBy))
                     _gatePositions.Add(d.requestedBy, new Dictionary<Vector3Int, GateState>());
-                
+
                 _gatePositions[d.requestedBy].Add(d.VoxelToChange, new GateState(GatePosition.Closed, VoxelSide.None, d.VoxelToChange));
             }
 

@@ -3681,6 +3681,6 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Selector.obj",
-    "isSolid": false
+    "isSolid": true
   }
 }
