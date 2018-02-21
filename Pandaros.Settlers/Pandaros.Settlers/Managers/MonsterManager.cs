@@ -140,7 +140,8 @@ namespace Pandaros.Settlers.Managers
                                 turnOffBoss = false;
                             }
 
-                            if (_spawnedBosses[ps].CurrentHealth <= 0 &&
+                            if (_spawnedBosses.ContainsKey(ps) && 
+                                _spawnedBosses[ps].CurrentHealth <= 0 &&
                                 _spawnedBosses[ps].GetTempValues(true).GetOrDefault("sentDeath", false))
                             {
                                 PandaChat.Send(ps.Player, $"[{_spawnedBosses[ps].Name}] {_spawnedBosses[ps].DeathText}", ChatColor.red);
