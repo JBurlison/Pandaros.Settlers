@@ -14,9 +14,13 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class Hoarder : Zombie, IPandaBoss
     {
-        private float _totalHealth = Configuration.GetorDefault("MaxBossHP_Hoarder", 6000);
+        private float _totalHealth = 10000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder";
         static NPCTypeMonsterSettings _mts;
+        static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
+        {
+            { Items.Mana.Item.ItemIndex, 10 }
+        };
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
@@ -32,7 +36,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Hoarder.png")
                 .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Hoarder.png")
                 .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Hoarder.png")
-                .SetAs("initialHealth", Configuration.GetorDefault("MaxBossHP_Hoarder", 6000))
+                .SetAs("initialHealth", 10000)
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 500)
                 .SetAs("punchDamage", 25);
@@ -58,7 +62,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
 
-        public float ZombieMultiplier => 1.20f;
+        public float ZombieMultiplier => 1.5f;
+
+        public Dictionary<ushort, int> KillRewards => REWARDS;
 
         public Hoarder(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

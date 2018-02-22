@@ -79,7 +79,9 @@
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="Items\BuildersWand.cs" />
     <Compile Include="Items\Machines\TeleportPad.cs" />
+    <Compile Include="Items\Aether.cs" />
     <Compile Include="Items\Mana.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Food\BerryPancakes.cs" />
@@ -436,6 +438,9 @@
     <None Include="Meshes\Selector.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Meshes\Selector.ply">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Meshes\simplechairx+.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -613,6 +618,21 @@
     <Content Include="icons\berrybushslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\BetterBuildersWand1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BetterBuildersWand2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BetterBuildersWand3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BetterBuildersWand4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BetterBuildersWand5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\blackClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -629,6 +649,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Bluebonnet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BuildersWand1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BuildersWand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Mana1.png">

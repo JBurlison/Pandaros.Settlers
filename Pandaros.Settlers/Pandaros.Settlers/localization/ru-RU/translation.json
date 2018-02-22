@@ -116,8 +116,8 @@
   "sentences": {
     "popup": {
       "limits": {
-        "Pandaros.Settlers.AdvancedCrafter": "Продвинутый верстак.",
-        "Pandaros.Settlers.ApothecaryTable": "Аптекарский стол."
+        "Pandaros.Settlers.AdvancedCrafter": "Продвинутый верстак",
+        "Pandaros.Settlers.Apothecary": "Аптекарский стол"
       }
       },
     "Pandaros": {

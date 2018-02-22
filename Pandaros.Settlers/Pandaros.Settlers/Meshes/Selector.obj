@@ -1,7 +1,5 @@
-# Exported from 3D Builder
-mtllib Selector.mtl
-
-o Object.1
+# Blender v2.79 (sub 0) OBJ File: 'Selector.blend'
+# www.blender.org
 v 0.449805 -0.452800 -0.499806
 v 0.449805 -0.476401 -0.499806
 v -0.000200 -0.476001 -0.499806
@@ -552,9 +550,7 @@ v -0.449805 -0.000395 0.475006
 v -0.449805 -0.000395 0.497406
 v -0.449805 -0.000395 0.498606
 v -0.449805 -0.000395 0.473805
-
-
-usemtl None
+s off
 f 1 2 3
 f 4 5 6
 f 7 8 9

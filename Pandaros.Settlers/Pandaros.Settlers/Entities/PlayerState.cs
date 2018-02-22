@@ -1,4 +1,5 @@
-﻿using Pandaros.Settlers.AI;
+﻿using BlockTypes.Builtin;
+using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Research;
 using Pipliz;
@@ -37,7 +38,7 @@ namespace Pandaros.Settlers.Entities
 
             set
             {
-                if (!GameDifficulty.GameDifficulties.ContainsKey(value))
+                if (value != null && !GameDifficulty.GameDifficulties.ContainsKey(value))
                     Difficulty = Configuration.DefaultDifficulty;
                 else
                     Difficulty = GameDifficulty.GameDifficulties[value];
@@ -56,6 +57,12 @@ namespace Pandaros.Settlers.Entities
         public bool BossesEnabled { get; set; } = true;
 
         public ArmorState Weapon { get; set; } = new ArmorState();
+
+        public Items.BuildersWand.WandMode BuildersWandMode { get; set; }
+        public int BuildersWandCharge { get; set; } = Items.BuildersWand.DURABILITY;
+        public int BuildersWandMaxCharge { get; set; }
+        public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
+        public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
 
         public PlayerState(Players.Player p)
         {
@@ -133,8 +140,23 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs("Difficulty", out string diff))
                     _playerStates[p].DifficultyStr = diff;
 
+                if (stateNode.TryGetAs(nameof(BuildersWandMode), out string wandMode))
+                    _playerStates[p].BuildersWandMode = (Items.BuildersWand.WandMode)Enum.Parse(typeof(Items.BuildersWand.WandMode), wandMode);
+
+                if (stateNode.TryGetAs(nameof(BuildersWandCharge), out int wandCharge))
+                    _playerStates[p].BuildersWandCharge = wandCharge;
+
+                if (stateNode.TryGetAs(nameof(BuildersWandTarget), out ushort wandTarget))
+                    _playerStates[p].BuildersWandTarget = wandTarget;
+
                 if (stateNode.TryGetAs(nameof(BossesEnabled), out bool bosses))
                     _playerStates[p].BossesEnabled = bosses;
+
+                _playerStates[p].BuildersWandPreview.Clear();
+
+                if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
+                    foreach (var node in wandPreview.LoopArray())
+                        _playerStates[p].BuildersWandPreview.Add((Vector3Int)node);
             }
         }
 
@@ -146,6 +168,7 @@ namespace Pandaros.Settlers.Entities
                 var node = new JSONNode();
                 var armorNode = new JSONNode();
                 var flagsPlaced = new JSONNode(NodeType.Array);
+                var buildersWandPreview = new JSONNode(NodeType.Array);
 
                 foreach (var armor in _playerStates[p].Armor)
                     armorNode.SetAs(armor.Key.ToString(), armor.Value.ToJsonNode());
@@ -153,12 +176,19 @@ namespace Pandaros.Settlers.Entities
                 foreach (var flag in _playerStates[p].FlagsPlaced)
                     flagsPlaced.AddToArray((JSONNode)flag);
 
+                foreach (var preview in _playerStates[p].BuildersWandPreview)
+                    buildersWandPreview.AddToArray((JSONNode)preview);
+
                 node.SetAs("Armor", armorNode);
                 node.SetAs("Weapon", _playerStates[p].Weapon.ToJsonNode());
+                node.SetAs("Difficulty", _playerStates[p].DifficultyStr);
                 node.SetAs("FlagsPlaced", flagsPlaced);
                 node.SetAs("TeleporterPlaced", (JSONNode)_playerStates[p].TeleporterPlaced);
-                node.SetAs("Difficulty", _playerStates[p].DifficultyStr);
+                node.SetAs(nameof(BuildersWandPreview), buildersWandPreview);
                 node.SetAs(nameof(BossesEnabled), _playerStates[p].BossesEnabled);
+                node.SetAs(nameof(BuildersWandMode), _playerStates[p].BuildersWandMode.ToString());
+                node.SetAs(nameof(BuildersWandCharge), _playerStates[p].BuildersWandCharge);
+                node.SetAs(nameof(BuildersWandTarget), _playerStates[p].BuildersWandTarget);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

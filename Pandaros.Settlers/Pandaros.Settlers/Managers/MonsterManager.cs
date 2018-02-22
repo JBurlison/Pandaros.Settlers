@@ -139,14 +139,6 @@ namespace Pandaros.Settlers.Managers
                                 Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true);
                                 turnOffBoss = false;
                             }
-
-                            if (_spawnedBosses.ContainsKey(ps) && 
-                                _spawnedBosses[ps].CurrentHealth <= 0 &&
-                                _spawnedBosses[ps].GetTempValues(true).GetOrDefault("sentDeath", false))
-                            {
-                                PandaChat.Send(ps.Player, $"[{_spawnedBosses[ps].Name}] {_spawnedBosses[ps].DeathText}", ChatColor.red);
-                                _spawnedBosses[ps].GetTempValues(true).Set("sentDeath", true);
-                            }
                         }
                     }
                     
@@ -154,6 +146,22 @@ namespace Pandaros.Settlers.Managers
                     {
                         if (Players.CountConnected != 0)
                             PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
+
+                        foreach (var p in _spawnedBosses)
+                        {
+                            var stockpile = Stockpile.GetStockPile(p.Key.Player);
+                            PandaChat.Send(p.Key.Player, $"[{p.Value.Name}] {p.Value.DeathText}", ChatColor.red);
+
+                            foreach (var reward in p.Value.KillRewards)
+                            {
+                                stockpile.Add(reward.Key, reward.Value);
+                                if (ItemTypes.TryGetType(reward.Key, out var item))
+                                    PandaChat.Send(p.Key.Player, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.red);
+                            }
+
+                            
+                            PandaChat.Send(p.Key.Player, $"[{p.Value.Name}] {p.Value.DeathText}", ChatColor.orange);
+                        }
 
                         BossActive = false;
                         _spawnedBosses.Clear();

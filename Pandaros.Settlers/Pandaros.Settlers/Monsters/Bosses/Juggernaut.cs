@@ -14,9 +14,13 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class Juggernaut : Zombie, IPandaBoss
     {
-        private float _totalHealth = Configuration.GetorDefault("MaxBossHP_Juggernaut", 10000);
+        private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut";
         static NPCTypeMonsterSettings _mts;
+        static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
+        {
+            { Items.Mana.Item.ItemIndex, 10 }
+        };
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
@@ -32,7 +36,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Juggernaut.png")
                 .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Juggernaut.png")
                 .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Juggernaut.png")
-                .SetAs("initialHealth", Configuration.GetorDefault("MaxBossHP_Juggernaut", 10000))
+                .SetAs("initialHealth", 20000)
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 3000)
                 .SetAs("punchDamage", 100);
@@ -54,6 +58,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
         public float ZombieMultiplier => 0f;
+
+        public Dictionary<ushort, int> KillRewards => REWARDS;
 
         public Juggernaut(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

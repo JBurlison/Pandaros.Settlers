@@ -319,8 +319,8 @@
   "sentences": {
     "popup": {
       "limits": {
-        "Pandaros.Settlers.AdvancedCrafter": "Mesa de trabajo avanzada.",
-        "Pandaros.Settlers.ApothecaryTable": "Mesa de apotecario."
+        "Pandaros.Settlers.AdvancedCrafter": "Mesa de trabajo avanzada",
+        "Pandaros.Settlers.Apothecary": "Mesa de apotecario"
       }
       },
     "Pandaros": {

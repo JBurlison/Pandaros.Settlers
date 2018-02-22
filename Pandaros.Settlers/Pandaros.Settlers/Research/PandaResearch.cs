@@ -44,6 +44,8 @@ namespace Pandaros.Settlers.Research
         public const string IncreasedCapacity = "IncreasedCapacity";
         public const string AdvancedApothecary = "AdvancedApothecary";
         public const string Mana = "Mana";
+        public const string BuildersWand = "BuildersWand";
+        public const string BetterBuildersWand = "BetterBuildersWand";
         public const string Teleporters = "Teleportation";
 
         public string TmpValueKey { get; private set; } = string.Empty;
@@ -124,6 +126,7 @@ namespace Pandaros.Settlers.Research
         {
             var researchDic = new Dictionary<ushort, int>();
             PandaLogger.Log("Registering Panda Research.");
+
             AddBanner(researchDic);
             AddReducedWaste(researchDic);
             AddArmorSmithing(researchDic);
@@ -142,6 +145,8 @@ namespace Pandaros.Settlers.Research
             AddAdvanceApocthResearch(researchDic);
             AddManaResearch(researchDic);
             AddTeleporters(researchDic);
+            AddBuildersWandResearch(researchDic);
+            AddBetterBuildersWandResearch(researchDic);
 
             PandaLogger.Log("Panda Research Registering Complete!");
         }
@@ -450,6 +455,64 @@ namespace Pandaros.Settlers.Research
         private static void Mana_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Mana.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Aether.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
+
+        private static void AddBuildersWandResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(Items.Aether.Item.ItemIndex, 2);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 10);
+            researchDic.Add(BuiltinBlocks.GoldIngot, 10);
+            researchDic.Add(BuiltinBlocks.SilverIngot, 10);
+            researchDic.Add(BuiltinBlocks.Planks, 10);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Mana + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, BuildersWand, 1f, requirements, 50);
+            research.ResearchComplete += BuildersWand_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void BuildersWand_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.BuildersWand.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
+
+        private static void AddBetterBuildersWandResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(Items.Aether.Item.ItemIndex, 2);
+            researchDic.Add(BuiltinBlocks.SteelIngot, 10);
+            researchDic.Add(BuiltinBlocks.GoldIngot, 10);
+            researchDic.Add(BuiltinBlocks.SilverIngot, 10);
+            researchDic.Add(BuiltinBlocks.Planks, 10);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(BuildersWand + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, BetterBuildersWand, 250f, requirements, 50);
+            research.ResearchComplete += BetterBuildersWand_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, BetterBuildersWand, 250f, requirements, 50);
+                research.ResearchComplete += BetterBuildersWand_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void BetterBuildersWand_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            var ps = PlayerState.GetPlayerState(e.Manager.Player);
+            ps.BuildersWandMaxCharge = (int)e.Research.Value;
+            ps.BuildersWandCharge += ps.BuildersWandMaxCharge;
         }
 
         private static void AddTeleporters(Dictionary<ushort, int> researchDic)

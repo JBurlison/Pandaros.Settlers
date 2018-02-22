@@ -15,10 +15,14 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class ZombieQueen : Zombie, IPandaBoss
     {
-        private float _totalHealth = Configuration.GetorDefault("MaxBossHP_ZombieQueen", 6000);
+        private float _totalHealth = 10000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen";
         static NPCTypeMonsterSettings _mts;
         private double _updateTime;
+        static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
+        {
+            { Items.Mana.Item.ItemIndex, 10 }
+        };
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
@@ -34,7 +38,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/ZombieQueen.png")
                 .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ZombieQueen.png")
                 .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/ZombieQueen.png")
-                .SetAs("initialHealth", Configuration.GetorDefault("MaxBossHP_ZombieQueen", 6000))
+                .SetAs("initialHealth", 10000)
                 .SetAs("movementSpeed", 1.3f)
                 .SetAs("punchCooldownMS", 2000)
                 .SetAs("punchDamage", 70);
@@ -63,6 +67,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string DeathText => "I'll get you next time my pretties!";
 
+        public Dictionary<ushort, int> KillRewards => REWARDS;
+
         public ZombieQueen(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
@@ -83,26 +89,30 @@ namespace Pandaros.Settlers.Monsters.Bosses
             if (_updateTime < Pipliz.Time.SecondsSinceStartDouble)
             {
                 var ps = PlayerState.GetPlayerState(OriginalGoal);
-                var monster = MonsterTracker.Find(position, 20, ps.Difficulty.ZombieQueenTargetTeleportHp);
-                var zombie = monster as Zombie;
+                var c = Colony.Get(ps.Player);
+                List<IMonster> alreadyTeleported = new List<IMonster>();
 
-                if (zombie != null)
+                for (int i = 0; i < ps.Difficulty.Rank; i++)
                 {
-                    var c = Colony.Get(ps.Player);
+                    var monster = MonsterTracker.Find(position, 20, ps.Difficulty.ZombieQueenTargetTeleportHp);
+                    var zombie = monster as Zombie;
 
-                    if (NPCTracker.TryGetNear(Position, 30, out var npc))
+                    if (zombie != null && 
+                        NPCTracker.TryGetNear(Position, 50, out var npc) && 
+                        !alreadyTeleported.Contains(monster))
                     {
                         ServerManager.SendAudio(zombie.Position, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
-                        MethodInfo setPos = zombie.GetType().GetMethod("SetPosition",  BindingFlags.NonPublic | BindingFlags.Instance);
+                        MethodInfo setPos = zombie.GetType().GetMethod("SetPosition", BindingFlags.NonPublic | BindingFlags.Instance);
                         setPos.Invoke(zombie, new object[] { Server.AI.AIManager.ClosestPositionNotAt(npc.Position, npc.Position) });
                         zombie.SendUpdate();
                         MethodInfo updateChunkPosition = zombie.GetType().GetMethod("UpdateChunkPosition", BindingFlags.NonPublic | BindingFlags.Instance);
                         updateChunkPosition.Invoke(zombie, new Object[0]);
                         var fi = zombie.GetType().GetField("decision", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
                         fi.SetValue(zombie, default(ZombieDecision));
-                        
                         ServerManager.SendAudio(npc.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        alreadyTeleported.Add(zombie);
                     }
+                    
                 }
 
                 _updateTime = Pipliz.Time.SecondsSinceStartDouble + ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
