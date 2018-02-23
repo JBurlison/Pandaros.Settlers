@@ -63,6 +63,9 @@
     "Pandaros.Settlers.Mana": "Mana",
     "Pandaros.Settlers.TeleportPad": "Círculo de teletransporte",
     "Pandaros.Settlers.TreatedBandage": "Vendas avanzadas",
+    "Pandaros.Settlers.Aether": "Ether",
+    "Pandaros.Settlers.BuildersWand": "Varita de construcción",
+    "Pandaros.Settlers.AutoLoad.Selector": "Caja de selección,
     "Pandaros.Settlers.AutoLoad.rawemerald": "Esmeralda",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "Esmeralda cortada",
     "Pandaros.Settlers.AutoLoad.infiniteemerald": "Mina de esmeraldas",
@@ -274,7 +277,10 @@
     "Pandaros.Settlers.Bandage": "Cura instantáneamente 20 de vida y 40 de vida en 5 segudos.",
     "Pandaros.Settlers.TreatedBandage": "Cura instantáneamente 20 de vida y 40 de vida en 5 segudos.",
     "Pandaros.Settlers.Mana": "Desbloquea los poderes mágicos.",
-	"Pandaros.Settlers.TeleportPad": "Coloca dos para enlazarlos. Es muy fácil de utilizar, pero muy difícil de comprender como funciona. Cuando recojas uno también se recogerá el que está enlazado. Necesita que un maquinista haga mantenimiento sobre al menos uno de los círculos de teletransporte enlazados.",
+    "Pandaros.Settlers.Aether": "Mana concentrado. ¡Manejar con cuidado!",
+    "Pandaros.Settlers.TeleportPad": "Coloca dos para enlazarlos. Es muy fácil de utilizar, pero muy difícil de comprender como funciona. Cuando recojas uno también se recogerá el que está enlazado. Necesita que un maquinista haga mantenimiento sobre al menos uno de los círculos de teletransporte enlazados.",
+    "Pandaros.Settlers.BuildersWand": "Funciona sobre los bloques seleccionados. Debes tener los bloques en el almacén. Botón derecho para ver una vista previa, vuelve a pulsar el botón derecho para confirmar o el botón izquierdo para cancelar. Cuando no estés viendo una vista previa puedes pulsar el primer botón del ratón para cambiar de modo.",
+    "Pandaros.Settlers.AutoLoad.Selector": "Caja de selección para la varita de construcción. ¡NO UTILIZAR, puede destruir tu mundo! ¡ESTÁS AVISADO!",
     "Pandaros.Settlers.AutoLoad.rawemerald": "El comienzo del mod.",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "La moneda del mod!  BRILLANTE!",
     "Pandaros.Settlers.AutoLoad.infiniteemerald": "El comienzo de la aventura.",
@@ -1120,7 +1126,31 @@
         "Teleportation1": {
           "name": "¡Teletransporte!",
           "description": "Desbloquea los círculos de teletransporte. Deben ser colocados por parejas y por lo menos uno de los dos debe ser mantenido por un maquinista."
-        }
+        },
+        "BuildersWand1": {
+          "name": "Varita de construcción",
+          "description": "¡Desbloquea la varita de construcción! Se usa para trabajar con una gran cantidad de bloques. Permite trabajar con hasta 750 bloques antes de que se rompa"
+        },
+        "BetterBuildersWand1": {
+          "name": "Varita de construcción mejorada",
+          "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1000 bloques antes de que se rompa."
+        },
+        "BetterBuildersWand2": {
+          "name": "Varita de construcción muy mejorada",
+          "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1250 bloques antes de que se rompa."
+        },
+        "BetterBuildersWand3": {
+          "name": "Super varita de construcción",
+          "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1500 bloques antes de que se rompa."
+        },
+        "BetterBuildersWand4": {
+          "name": "Ultra varita de construcción",
+          "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1750 bloques antes de que se rompa."
+        },
+        "BetterBuildersWand5": {
+          "name": "Varita de construcción perfecta",
+          "description": "Mejora la varita de construcción para que pueda trabajar con hasta 2000 bloques antes de que se rompa."
+          }
       }
     }
   }
