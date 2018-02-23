@@ -306,25 +306,28 @@ namespace Pandaros.Settlers.Items.Machines
 
                             mkvp.Key.State = state;
 
-                            switch (mkvp.Key.Orientation)
+                            Pipliz.Threading.ThreadManager.InvokeOnMainThread(() =>
                             {
-                                case VoxelSide.xMin:
-                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
-                                    break;
-                                case VoxelSide.xPlus:
-                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemXP.ItemIndex);
-                                    break;
-                                case VoxelSide.zMin:
-                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemZN.ItemIndex);
-                                    break;
-                                case VoxelSide.zPlus:
-                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemZP.ItemIndex);
-                                    break;
+                                switch (mkvp.Key.Orientation)
+                                {
+                                    case VoxelSide.xMin:
+                                        ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
+                                        break;
+                                    case VoxelSide.xPlus:
+                                        ServerManager.TryChangeBlock(mkvp.Value, GateItemXP.ItemIndex);
+                                        break;
+                                    case VoxelSide.zMin:
+                                        ServerManager.TryChangeBlock(mkvp.Value, GateItemZN.ItemIndex);
+                                        break;
+                                    case VoxelSide.zPlus:
+                                        ServerManager.TryChangeBlock(mkvp.Value, GateItemZP.ItemIndex);
+                                        break;
 
-                                default:
-                                    ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
-                                    break;
-                            }
+                                    default:
+                                        ServerManager.TryChangeBlock(mkvp.Value, GateItemXN.ItemIndex);
+                                        break;
+                                }
+                            });
                         });
 
                         thread.IsBackground = true;

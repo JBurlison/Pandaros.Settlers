@@ -69,6 +69,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public Dictionary<ushort, int> KillRewards => REWARDS;
 
+        public float ZombieHPBonus => 0;
+
         public ZombieQueen(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {

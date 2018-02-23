@@ -112,6 +112,9 @@
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="MethodUtil.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />
+    <Compile Include="Monsters\Bosses\PutridCorpse.cs" />
+    <Compile Include="Monsters\Bosses\BulgingZombie.cs" />
+    <Compile Include="Monsters\Bosses\ZombieKing.cs" />
     <Compile Include="Monsters\Bosses\Juggernaut.cs" />
     <Compile Include="Monsters\Bosses\ZombieQueen.cs" />
     <Compile Include="Monsters\Bosses\IPandaBoss.cs" />
@@ -1929,6 +1932,9 @@
     <Content Include="Textures\albedo\brownClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\Bulging.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\carpetblue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2166,6 +2172,9 @@
     <Content Include="Textures\albedo\purpleClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\PutridCorpse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\rawMarble.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2248,6 +2257,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\yellowClay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\ZombieKing.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\ZombieQueen.png">

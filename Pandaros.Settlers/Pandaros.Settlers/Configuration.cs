@@ -12,7 +12,7 @@ namespace Pandaros.Settlers
     public static class Configuration
     {
         private static string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
-        private static JSONNode _rootSettings;
+        private static JSONNode _rootSettings = new JSONNode();
 
         public static GameDifficulty MinDifficulty
         {

@@ -109,7 +109,7 @@ namespace Pandaros.Settlers.Managers
                         {
                             if (bossType != null && 
                                 !_spawnedBosses.ContainsKey(ps) &&
-                                MonsterSpawner.TryGetSpawnLocation(bannerGoal, 200f, out var start) == MonsterSpawner.ESpawnResult.Success &&
+                                MonsterSpawner.TryGetSpawnLocation(bannerGoal, 120f, out var start) == MonsterSpawner.ESpawnResult.Success &&
                                 Server.AI.AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) == Server.AI.EPathFindingResult.Success)
                             {
                                 var pandaboss = bossType.GetNewBoss(path, ps.Player);
@@ -136,7 +136,7 @@ namespace Pandaros.Settlers.Managers
                                 if (_spawnedBosses[ps].ZombieMultiplier != 0)
                                     num *= _spawnedBosses[ps].ZombieMultiplier;
 
-                                Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true);
+                                Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true, _spawnedBosses[ps]);
                                 turnOffBoss = false;
                             }
                         }
@@ -156,11 +156,8 @@ namespace Pandaros.Settlers.Managers
                             {
                                 stockpile.Add(reward.Key, reward.Value);
                                 if (ItemTypes.TryGetType(reward.Key, out var item))
-                                    PandaChat.Send(p.Key.Player, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.red);
+                                    PandaChat.Send(p.Key.Player, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
                             }
-
-                            
-                            PandaChat.Send(p.Key.Player, $"[{p.Value.Name}] {p.Value.DeathText}", ChatColor.orange);
                         }
 
                         BossActive = false;
@@ -175,7 +172,9 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             GetNextBossSpawnTime();
+            AddBoss(new Bulging(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new ZombieQueen(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
+            AddBoss(new ZombieKing(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new Hoarder(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new Juggernaut(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             _maxTimePerTick.Start();

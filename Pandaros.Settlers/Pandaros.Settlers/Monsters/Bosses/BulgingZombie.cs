@@ -12,49 +12,71 @@ using System.Text;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class Hoarder : Zombie, IPandaBoss
+    public class Bulging : Zombie, IPandaBoss
     {
         private float _totalHealth = 10000;
-        public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder";
+        public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging";
         static NPCTypeMonsterSettings _mts;
         static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
         {
             { Items.Mana.Item.ItemIndex, 10 }
         };
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder.Register"),
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
             ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {
             JSONNode m = new JSONNode()
                .SetAs("keyName", Key)
-               .SetAs("printName", "Hoarder")
+               .SetAs("printName", "Bulging")
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Hoarder.png")
+                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Bulging.png")
                 .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Hoarder.png")
                 .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Hoarder.png")
                 .SetAs("initialHealth", 10000)
                 .SetAs("movementSpeed", .75f)
-                .SetAs("punchCooldownMS", 500)
-                .SetAs("punchDamage", 25);
+                .SetAs("punchCooldownMS", 3000)
+                .SetAs("punchDamage", 100);
 
             m.SetAs("data", ms);
             _mts = new NPCTypeMonsterSettings(m);
             NPCType.AddSettings(_mts);
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterDied, GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging.OnMonsterDied")]
+        public static void OnMonsterDied(IMonster monster)
         {
-            return new Hoarder(path, p);
+            var boss = monster as Bulging;
+
+            if (boss != null)
+            {
+                var ps = PlayerState.GetPlayerState(boss.OriginalGoal);
+                var banner = BannerTracker.Get(boss.OriginalGoal);
+                var numberToSpawn = ps.Difficulty.Rank * 10;
+                var colony = Colony.Get(boss.originalGoal);
+
+                if (numberToSpawn == 0)
+                    numberToSpawn = 10;
+
+                var pos = new Pipliz.Vector3Int(boss.Position);
+
+                for (int i = 0; i < numberToSpawn; i++)
+                    PandaMonsterSpawner.SpawnPandaZombie(colony, banner, boss, MonsterSpawner.GetTypeToSpawn(colony.FollowerCount), pos);
+            }
         }
 
-        public string AnnouncementText => "FEAR THE ZOMBIE HORDE!";
-        public string DeathText => "Gughghgugggghrrrghghgfggg......";
+        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        {
+            return new Bulging(path, p);
+        }
 
-        public string Name => "Hoarder";
+        public string AnnouncementText => "I DONT FEEL SO GOOD";
+        public string DeathText => "Boom.";
+
+        public string Name => "Bulging";
 
         public override float TotalHealth => _totalHealth;
 
@@ -62,11 +84,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
 
-        public float ZombieMultiplier => 1.25f;
+        public float ZombieMultiplier => 1.1f;
         public float ZombieHPBonus => 20;
         public Dictionary<ushort, int> KillRewards => REWARDS;
 
-        public Hoarder(Path path, Players.Player originalGoal) :
+        public Bulging(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
             Colony c = Colony.Get(originalGoal);

@@ -13,6 +13,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         string DeathText { get; }
         string AnnouncementAudio { get; }
         float ZombieMultiplier { get; }
+        float ZombieHPBonus { get; }
         bool KilledBefore { get; set; }
         Dictionary<ushort, int> KillRewards { get; }
         IPandaBoss GetNewBoss(Path path, Players.Player p);

@@ -22,7 +22,8 @@ namespace Pandaros.Settlers
 
         static VersionChecker()
         {
-            ServicePointManager.ServerCertificateValidationCallback += ValidateRemoteCertificate;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
 
             System.Threading.Thread t = new System.Threading.Thread(() =>
             {
@@ -39,14 +40,17 @@ namespace Pandaros.Settlers
         public static string GetReleases()
         {
             string releases = null;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
 
             try
             {
                 using (WebClient webClient = new WebClient())
                 {
                     // Added user agent
-                    webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 (.NET CLR 3.5.30729)";
-
+                    webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+                    webClient.Headers["Content-Type"] = "text";
+                    webClient.Headers[HttpRequestHeader.Authorization] = "Token 7b3d1cd9d45be2182e334f7a2fa73ff4c10868cc";
                     using (Stream data = webClient.OpenRead(GIT_URL))
                     using (StreamReader reader = new StreamReader(data))
                         releases = reader.ReadToEnd();
@@ -58,14 +62,6 @@ namespace Pandaros.Settlers
             }
 
             return releases;
-        }
-
-        /// <summary>
-        /// Certificate validation callback.
-        /// </summary>
-        private static bool ValidateRemoteCertificate(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors error)
-        {
-            return true;
         }
 
         public static Version GetGitVerion()
@@ -110,9 +106,12 @@ namespace Pandaros.Settlers
                 var verString = zipSub.Substring(0, iEndName);
                 var newVer = GameLoader.MODS_FOLDER + $"/{gitVer}.zip";
                 var oldVer = GameLoader.MODS_FOLDER + $"/{GameLoader.MOD_VER}.zip";
+                System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
 
                 WebClient webClient = new WebClient();
-                webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 (.NET CLR 3.5.30729)";
+                webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+                webClient.Headers["Content-Type"] = "text";
+                webClient.Headers[HttpRequestHeader.Authorization] = "Token 7b3d1cd9d45be2182e334f7a2fa73ff4c10868cc";
                 webClient.DownloadFileCompleted += (s, e) =>
                 {
                     if (!NewVer)

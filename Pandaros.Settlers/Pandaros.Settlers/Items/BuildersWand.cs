@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items
         public enum WandMode
         {
             Horizontal = 0,
-            Virtical = 1,
+            Vertical = 1,
             TopAndBottomX = 2,
             TopAndBottomZ = 3
         }
@@ -230,7 +230,7 @@ namespace Pandaros.Settlers.Items
 
                             break;
 
-                        case WandMode.Virtical:
+                        case WandMode.Vertical:
                             switch (click.VoxelSideHit)
                             {
                                 case VoxelSide.xMin:

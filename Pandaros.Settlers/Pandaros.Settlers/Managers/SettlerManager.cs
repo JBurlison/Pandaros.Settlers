@@ -195,7 +195,9 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
-            GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
+            if (Configuration.DifficutlyCanBeChanged)
+                GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
+
             UpdateFoodUse(p);
 
             Colony.Get(p).SendUpdate();
