@@ -98,7 +98,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 if (Vector3.Distance(Position, originalGoal.Position) <= 20)
                     Players.TakeHit(originalGoal, 10, true);
 
-                _nextBossUpdateTime = Pipliz.Time.SecondsSinceStartInt + 1;
+                _nextBossUpdateTime = Pipliz.Time.SecondsSinceStartInt + 5;
             }
 
 
