@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
+using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
@@ -14,16 +15,18 @@ namespace Pandaros.Settlers
     public static class VersionChecker
     {
         internal static bool NewVer = false;
-        const string GIT_URL = "https://api.github.com/repos/JBurlison/Pandaros.Settlers/releases";
+        const string GIT_URL = "http://dfghyeaqt57y56.mynetgear.com/";
         const string NAME = "\"name\": \"";
         const string ASSETS = "\"assets\":";
         const string ZIP = "\"browser_download_url\": \"";
         const int HOUR = 3600000;
-
+        public const SslProtocols _Tls12 = (SslProtocols)0x00000C00;
+        public const SecurityProtocolType Tls12 = (SecurityProtocolType)_Tls12;
+        
         static VersionChecker()
         {
             System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
+            ServicePointManager.SecurityProtocol = Tls12;
 
             System.Threading.Thread t = new System.Threading.Thread(() =>
             {
@@ -41,7 +44,7 @@ namespace Pandaros.Settlers
         {
             string releases = null;
             System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
+            ServicePointManager.SecurityProtocol = Tls12;
 
             try
             {
