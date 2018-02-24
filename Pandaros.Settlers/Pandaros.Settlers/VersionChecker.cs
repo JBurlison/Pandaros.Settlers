@@ -15,7 +15,7 @@ namespace Pandaros.Settlers
     public static class VersionChecker
     {
         internal static bool NewVer = false;
-        const string GIT_URL = "http://dfghyeaqt57y56.mynetgear.com/";
+        const string GIT_URL = "http://download.settlersmod.com/";
         const string NAME = "\"name\": \"";
         const string ASSETS = "\"assets\":";
         const string ZIP = "\"browser_download_url\": \"";

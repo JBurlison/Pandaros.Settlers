@@ -109,7 +109,7 @@ namespace Pandaros.Settlers.Managers
                         {
                             if (bossType != null && 
                                 !_spawnedBosses.ContainsKey(ps) &&
-                                MonsterSpawner.TryGetSpawnLocation(bannerGoal, 120f, out var start) == MonsterSpawner.ESpawnResult.Success &&
+                                MonsterSpawner.TryGetSpawnLocation(bannerGoal, 300f, out var start) == MonsterSpawner.ESpawnResult.Success &&
                                 Server.AI.AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) == Server.AI.EPathFindingResult.Success)
                             {
                                 var pandaboss = bossType.GetNewBoss(path, ps.Player);
@@ -144,7 +144,7 @@ namespace Pandaros.Settlers.Managers
                     
                     if (turnOffBoss)
                     {
-                        if (Players.CountConnected != 0)
+                        if (Players.CountConnected != 0 && _spawnedBosses.Count != 0)
                             PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
 
                         foreach (var p in _spawnedBosses)
