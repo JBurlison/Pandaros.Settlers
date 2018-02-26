@@ -135,96 +135,35 @@ namespace Pandaros.Settlers.Items
                             {
                                 case VoxelSide.xMin:
                                     startingPos = click.VoxelHit.Add(-1, 0, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 1, 0, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 1, 0, 0))
-                                            break;
-
+                                    zxPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xPlus:
                                     startingPos = click.VoxelHit.Add(1, 0, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, -1, 0, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, -1, 0, 0))
-                                            break;
-
+                                    zxNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
                                     startingPos = click.VoxelHit.Add(0, 0, -1);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, 1))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, 1))
-                                            break;
-
+                                    xzPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zPlus:
                                     startingPos = click.VoxelHit.Add(0, 0, 1);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, -1))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, 0, -1))
-                                            break;
+                                    xyNeg(ps, startingPos);
 
                                     break;
 
                                 case VoxelSide.yMin:
                                     startingPos = click.VoxelHit.Add(0, -1, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
-                                            break;
-
-                                    for (int i = 1; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, 1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, 1, 0))
-                                            break;
-
+                                    xyPos(ps, startingPos);
+                                    zyPos(ps, startingPos, true);
                                     break;
 
                                 case VoxelSide.yPlus:
                                     startingPos = click.VoxelHit.Add(0, 1, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
-                                            break;
-
-                                    for (int i = 1; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, -1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, -1, 0))
-                                            break;
-
+                                    xyNeg(ps, startingPos);
+                                    zyNeg(ps, startingPos, true);
                                     break;
                             }
 
@@ -235,54 +174,22 @@ namespace Pandaros.Settlers.Items
                             {
                                 case VoxelSide.xMin:
                                     startingPos = click.VoxelHit.Add(-1, 0, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, 1, 0, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, 1, 0, 0))
-                                            break;
-
+                                    yxPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xPlus:
                                     startingPos = click.VoxelHit.Add(1, 0, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, -1, 0, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, -1, 0, 0))
-                                            break;
-
+                                    yxNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
                                     startingPos = click.VoxelHit.Add(0, 0, -1);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, 1))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, 1))
-                                            break;
-
+                                    yzPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zPlus:
                                     startingPos = click.VoxelHit.Add(0, 0, 1);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, -1))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, -1))
-                                            break;
-
+                                    yzNeg(ps, startingPos);
                                     break;
 
                                 default:
@@ -296,29 +203,34 @@ namespace Pandaros.Settlers.Items
                             {
                                 case VoxelSide.yMin:
                                     startingPos = click.VoxelHit.Add(0, -1, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
-                                            break;
-
+                                    xyPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.yPlus:
                                     startingPos = click.VoxelHit.Add(0, 1, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
-                                            break;
-
+                                    xyNeg(ps, startingPos);
                                     break;
+
+                                case VoxelSide.xMin:
+                                    startingPos = click.VoxelHit.Add(-1, 0, 0);
+                                    xyNeg(ps, startingPos);
+                                    break;
+
+                                case VoxelSide.xPlus:
+                                    startingPos = click.VoxelHit.Add(1, 0, 0);
+                                    xyPos(ps, startingPos);
+                                    break;
+
+                                case VoxelSide.zMin:
+                                    startingPos = click.VoxelHit.Add(0, 0, -1);
+                                    xyNeg(ps, startingPos);
+                                    break;
+
+                                case VoxelSide.zPlus:
+                                    startingPos = click.VoxelHit.Add(0, 0, 1);
+                                    xyPos(ps, startingPos);
+                                    break;
+                                    
                                 default:
                                     PandaChat.Send(player, $"Building on top or bottom of a block not valid for wand mode: {ps.BuildersWandMode}.", ChatColor.red);
                                     break;
@@ -330,29 +242,34 @@ namespace Pandaros.Settlers.Items
                             {
                                 case VoxelSide.yMin:
                                     startingPos = click.VoxelHit.Add(0, -1, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, 1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, 1, 0))
-                                            break;
-
+                                    zyPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.yPlus:
                                     startingPos = click.VoxelHit.Add(0, 1, 0);
-
-                                    for (int i = 0; i < WAND_MAX_RANGE; i++)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, -1, 0))
-                                            break;
-
-                                    for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
-                                        if (Layout(startingPos.Add(0, 0, i), ps, 0, -1, 0))
-                                            break;
-
+                                    zyNeg(ps, startingPos);
                                     break;
+
+                                case VoxelSide.xMin:
+                                    startingPos = click.VoxelHit.Add(-1, 0, 0);
+                                    zyNeg(ps, startingPos);
+                                    break;
+
+                                case VoxelSide.xPlus:
+                                    startingPos = click.VoxelHit.Add(1, 0, 0);
+                                    zyPos(ps, startingPos);
+                                    break;
+
+                                case VoxelSide.zMin:
+                                    startingPos = click.VoxelHit.Add(0, 0, -1);
+                                    zyNeg(ps, startingPos);
+                                    break;
+
+                                case VoxelSide.zPlus:
+                                    startingPos = click.VoxelHit.Add(0, 0, 1);
+                                    zyPos(ps, startingPos);
+                                    break;
+
                                 default:
                                     PandaChat.Send(player, $"Building on top or bottom of a block not valid for wand mode: {ps.BuildersWandMode}.", ChatColor.red);
                                     break;
@@ -361,6 +278,138 @@ namespace Pandaros.Settlers.Items
                     }
                 }
             }
+        }
+
+        private static void xzNeg(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, -1))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, -1))
+                    break;
+        }
+
+        private static void xzPos(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, 1))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, 1))
+                    break;
+        }
+
+        private static void zxNeg(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, 0, i), ps, -1, 0, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, 0, i), ps, -1, 0, 0))
+                    break;
+        }
+
+        private static void yxPos(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, i, 0), ps, 1, 0, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, i, 0), ps, 1, 0, 0))
+                    break;
+        }
+
+        private static void yxNeg(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, i, 0), ps, -1, 0, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, i, 0), ps, -1, 0, 0))
+                    break;
+        }
+
+        private static void yzPos(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, 1))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, 1))
+                    break;
+        }
+
+        private static void yzNeg(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, -1))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, -1))
+                    break;
+        }
+
+        private static void zxPos(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, 0, i), ps, 1, 0, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, 0, i), ps, 1, 0, 0))
+                    break;
+        }
+
+        private static void xyNeg(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
+                    break;
+        }
+
+        private static void zyNeg(PlayerState ps, Vector3Int startingPos, bool offset = false)
+        {
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, 0, i), ps, 0, -1, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, 0, i), ps, 0, -1, 0))
+                    break;
+        }
+
+        private static void zyPos(PlayerState ps, Vector3Int startingPos, bool offset = false)
+        {
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(0, 0, i), ps, 0, 1, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(0, 0, i), ps, 0, 1, 0))
+                    break;
+        }
+
+        private static void xyPos(PlayerState ps, Vector3Int startingPos)
+        {
+            for (int i = 0; i < WAND_MAX_RANGE; i++)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
+                    break;
+
+            for (int i = -1; i > WAND_MAX_RANGE_MIN; i--)
+                if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
+                    break;
         }
 
         public static bool Layout(Vector3Int potentialPos, PlayerState ps, int x, int y, int z)

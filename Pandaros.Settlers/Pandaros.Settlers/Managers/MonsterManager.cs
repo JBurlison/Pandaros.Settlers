@@ -75,7 +75,9 @@ namespace Pandaros.Settlers.Managers
 
             IPandaBoss bossType = null;
 
-            if (_maxTimePerTick.Elapsed.TotalMilliseconds > Monsters.PandaMonsterSpawner.MonsterVariables.MSPerTick)
+            if (World.Initialized &&
+                ServerManager.WorldSettings.ZombiesEnabled &&
+                !Server.AI.AIManager.IsBusy())
             {
                 _maxTimePerTick.Reset();
                 _maxTimePerTick.Start();
@@ -99,6 +101,9 @@ namespace Pandaros.Settlers.Managers
 
                     for (int i = 0; i < banners.Count; i++)
                     {
+                        if (_maxTimePerTick.Elapsed.TotalMilliseconds > Monsters.PandaMonsterSpawner.MonsterVariables.MSPerTick)
+                            break;
+
                         Banner bannerGoal = banners.GetValueAtIndex(i);
                         var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
                         var colony = Colony.Get(ps.Player);
@@ -131,7 +136,11 @@ namespace Pandaros.Settlers.Managers
                                 _spawnedBosses[ps].IsValid &&
                                 _spawnedBosses[ps].CurrentHealth > 0)
                             {
-                                Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_spawnedBosses[ps].Position), _spawnedBosses[ps].ID, new Shared.IndicatorState(1, GameLoader.Poisoned_Icon, false, false));
+                                if (ps.Player.GetTempValues(true).GetOrDefault("BossIndicator", 0) < Pipliz.Time.SecondsSinceStartDouble)
+                                {
+                                    Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_spawnedBosses[ps].Position), _spawnedBosses[ps].ID, new Shared.IndicatorState(1, GameLoader.Poisoned_Icon, false, false));
+                                    ps.Player.GetTempValues(true).Set("BossIndicator", Pipliz.Time.SecondsSinceStartDouble + 1);
+                                }
 
                                 if (_spawnedBosses[ps].ZombieMultiplier != 0)
                                     num *= _spawnedBosses[ps].ZombieMultiplier;
@@ -149,14 +158,17 @@ namespace Pandaros.Settlers.Managers
 
                         foreach (var p in _spawnedBosses)
                         {
-                            var stockpile = Stockpile.GetStockPile(p.Key.Player);
-                            PandaChat.Send(p.Key.Player, $"[{p.Value.Name}] {p.Value.DeathText}", ChatColor.red);
-
-                            foreach (var reward in p.Value.KillRewards)
+                            if (p.Key.Player.IsConnected)
                             {
-                                stockpile.Add(reward.Key, reward.Value);
-                                if (ItemTypes.TryGetType(reward.Key, out var item))
-                                    PandaChat.Send(p.Key.Player, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
+                                var stockpile = Stockpile.GetStockPile(p.Key.Player);
+                                PandaChat.Send(p.Key.Player, $"[{p.Value.Name}] {p.Value.DeathText}", ChatColor.red);
+
+                                foreach (var reward in p.Value.KillRewards)
+                                {
+                                    stockpile.Add(reward.Key, reward.Value);
+                                    if (ItemTypes.TryGetType(reward.Key, out var item))
+                                        PandaChat.Send(p.Key.Player, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
+                                }
                             }
                         }
 
@@ -165,6 +177,8 @@ namespace Pandaros.Settlers.Managers
                         GetNextBossSpawnTime();
                     }
                 }
+
+                _maxTimePerTick.Stop();
             }
         }
 

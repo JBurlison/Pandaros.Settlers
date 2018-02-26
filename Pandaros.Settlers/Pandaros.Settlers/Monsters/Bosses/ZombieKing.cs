@@ -62,10 +62,10 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
 
-        public float ZombieMultiplier => 1.10f;
+        public float ZombieMultiplier => 1f;
         
         public Dictionary<ushort, int> KillRewards => REWARDS;
-        public float ZombieHPBonus => 200;
+        public float ZombieHPBonus => 150;
 
         public ZombieKing(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
         public float ZombieMultiplier => 0f;
-        public float ZombieHPBonus => 0;
+        public float ZombieHPBonus => 50;
 
         public Dictionary<ushort, int> KillRewards => REWARDS;
 

@@ -40,8 +40,7 @@ namespace Pandaros.Settlers.Monsters
             if (!World.Initialized || 
                 !ServerManager.WorldSettings.ZombiesEnabled || 
                 Server.AI.AIManager.IsBusy() || 
-                Managers.MonsterManager.BossActive ||
-                maxTimePerTick.Elapsed.TotalMilliseconds > MonsterVariables.MSPerTick)
+                Managers.MonsterManager.BossActive)
                 return;
 
             WorldSettings worldSettings = ServerManager.WorldSettings;
@@ -56,6 +55,9 @@ namespace Pandaros.Settlers.Monsters
 
             for (int i = 0; i < banners.Count; i++)
             {
+                if (maxTimePerTick.Elapsed.TotalMilliseconds > MonsterVariables.MSPerTick)
+                    break;
+
                 Banner valueAtIndex = banners.GetValueAtIndex(i);
                 var ps = PlayerState.GetPlayerState(valueAtIndex.Owner);
 
