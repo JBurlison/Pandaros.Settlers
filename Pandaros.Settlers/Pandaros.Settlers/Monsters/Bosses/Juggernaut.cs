@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class Juggernaut : Zombie, IPandaBoss
     {
-        private float _totalHealth = 20000;
+        private float _totalHealth = 40000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut";
         static NPCTypeMonsterSettings _mts;
         static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Juggernaut.png")
                 .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Juggernaut.png")
                 .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Juggernaut.png")
-                .SetAs("initialHealth", 20000)
+                .SetAs("initialHealth", 40000)
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 3000)
                 .SetAs("punchDamage", 100);

@@ -136,10 +136,10 @@ namespace Pandaros.Settlers.Managers
                                 _spawnedBosses[ps].IsValid &&
                                 _spawnedBosses[ps].CurrentHealth > 0)
                             {
-                                if (ps.Player.GetTempValues(true).GetOrDefault("BossIndicator", 0) < Pipliz.Time.SecondsSinceStartDouble)
+                                if (ps.Player.GetTempValues(true).GetOrDefault("BossIndicator", 0) < Pipliz.Time.SecondsSinceStartInt)
                                 {
                                     Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_spawnedBosses[ps].Position), _spawnedBosses[ps].ID, new Shared.IndicatorState(1, GameLoader.Poisoned_Icon, false, false));
-                                    ps.Player.GetTempValues(true).Set("BossIndicator", Pipliz.Time.SecondsSinceStartDouble + 1);
+                                    ps.Player.GetTempValues(true).Set("BossIndicator", Pipliz.Time.SecondsSinceStartInt + 1);
                                 }
 
                                 if (_spawnedBosses[ps].ZombieMultiplier != 0)

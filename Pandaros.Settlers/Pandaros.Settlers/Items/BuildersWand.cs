@@ -60,11 +60,10 @@ namespace Pandaros.Settlers.Items
             var selector = new JSONNode();
             selector["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/Selector.png");
             selector["isPlaceable"] = new JSONNode(false);
-            selector["isDestructible"] = new JSONNode(false);
             selector["mesh"] = new JSONNode(GameLoader.MESH_FOLDER_PANDA + "/Selector.ply");
-            selector["destructionTime"] = new JSONNode(int.MaxValue);
+            selector["destructionTime"] = new JSONNode(1);
             selector["sideall"] = new JSONNode("SELF");
-
+            selector["onRemove"] = new JSONNode(NodeType.Array);
             Selector = new ItemTypesServer.ItemTypeRaw(seclectorName, selector);
             items.Add(seclectorName, Selector);
         }
@@ -218,7 +217,7 @@ namespace Pandaros.Settlers.Items
 
                                 case VoxelSide.xPlus:
                                     startingPos = click.VoxelHit.Add(1, 0, 0);
-                                    xyPos(ps, startingPos);
+                                    xyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
@@ -228,7 +227,7 @@ namespace Pandaros.Settlers.Items
 
                                 case VoxelSide.zPlus:
                                     startingPos = click.VoxelHit.Add(0, 0, 1);
-                                    xyPos(ps, startingPos);
+                                    xyNeg(ps, startingPos);
                                     break;
                                     
                                 default:
@@ -257,7 +256,7 @@ namespace Pandaros.Settlers.Items
 
                                 case VoxelSide.xPlus:
                                     startingPos = click.VoxelHit.Add(1, 0, 0);
-                                    zyPos(ps, startingPos);
+                                    zyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
@@ -267,7 +266,7 @@ namespace Pandaros.Settlers.Items
 
                                 case VoxelSide.zPlus:
                                     startingPos = click.VoxelHit.Add(0, 0, 1);
-                                    zyPos(ps, startingPos);
+                                    zyNeg(ps, startingPos);
                                     break;
 
                                 default:

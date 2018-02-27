@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class ZombieKing : Zombie, IPandaBoss
     {
-        private float _totalHealth = 10000;
+        private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieKing";
         static NPCTypeMonsterSettings _mts;
         static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/ZombieKing.png")
                 .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ZombieQueen.png")
                 .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/ZombieQueen.png")
-                .SetAs("initialHealth", 10000)
+                .SetAs("initialHealth", 20000)
                 .SetAs("movementSpeed", 1.5f)
                 .SetAs("punchCooldownMS", 1000)
                 .SetAs("punchDamage", 80);
