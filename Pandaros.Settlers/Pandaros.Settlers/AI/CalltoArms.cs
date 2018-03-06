@@ -16,10 +16,12 @@ using Pipliz.Mods.APIProvider.Jobs;
 namespace Pandaros.Settlers.AI
 {
     [ModLoader.ModManager]
-    public class CalltoArmsJob : NPC.Job
+    public class CalltoArmsJob : IJob
     {
         const int CALL_RAD = 100;
-
+        public NPCBase usedNPC;
+        public Players.Player owner;
+        public Vector3Int position;
         static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
 
@@ -50,21 +52,22 @@ namespace Pandaros.Settlers.AI
         IMonster _target;
         int _waitingFor;
 
-        public override bool ToSleep => false;
+        public bool ToSleep => false;
 
-        public override NPCType NPCType => CallToArmsNPCType;
+        public NPCType NPCType => CallToArmsNPCType;
 
-        public override void OnAssignedNPC(NPCBase npc)
+        public void OnAssignedNPC(NPCBase npc)
         {
             owner = npc.Colony.Owner;
             _tmpVals = npc.GetTempValues(true);
             _colony = npc.Colony;
             _playerState = PlayerState.GetPlayerState(_colony.Owner);
             _stock = Stockpile.GetStockPile(_colony.Owner);
-            base.OnAssignedNPC(npc);
+            usedNPC = npc;
+            npc.TakeJob(this);
         }
 
-        public override Vector3Int GetJobLocation()
+        public Vector3Int GetJobLocation()
         {
             var currentPos = usedNPC.Position;
 
@@ -132,11 +135,11 @@ namespace Pandaros.Settlers.AI
             return weapon;
         }
 
-        public override void OnNPCAtJob(ref NPCBase.NPCState state)
+        public void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             try
             {
-                var currentposition =usedNPC.Position;
+                var currentposition = usedNPC.Position;
                 _hadAmmo.Clear();
 
                 if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(usedNPC.Position.Vector, _target.Position))
@@ -221,7 +224,7 @@ namespace Pandaros.Settlers.AI
 
         }
 
-        public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
+        public void OnNPCAtStockpile(ref NPCBase.NPCState state)
         {
             if (_weapon != null)
                 return;
@@ -246,11 +249,19 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public override bool NeedsItems => _weapon == null;
+        public bool NeedsItems => _weapon == null;
 
-        public override Vector3Int KeyLocation => position;
+        public Vector3Int KeyLocation { get; set; }
 
-        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
+        public bool IsValid { get; set; }
+
+        public Players.Player Owner => owner;
+
+        public bool NeedsNPC => usedNPC == null || !usedNPC.IsValid;
+
+        public InventoryItem RecruitementItem => throw new NotImplementedException();
+
+        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             if (_weapon == null)
                 return NPCBase.NPCGoal.Stockpile;
@@ -258,9 +269,9 @@ namespace Pandaros.Settlers.AI
             return NPCBase.NPCGoal.Job;
         }
 
-        public override void OnRemove()
+        public void OnRemove()
         {
-            isValid = false;
+            IsValid = false;
             if (usedNPC != null)
             {
                 usedNPC.ClearJob();
@@ -268,12 +279,12 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public override void OnRemovedNPC()
+        public void OnRemovedNPC()
         {
             usedNPC = null;
         }
 
-        new public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
+        public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
         {
             this.position = position;
             this.owner = owner;

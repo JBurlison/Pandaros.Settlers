@@ -177,21 +177,21 @@ namespace Pandaros.Settlers.Items.Machines
             items.Add(minerName, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.TypeNew == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
             {
-                if (World.TryGetTypeAt(d.VoxelToChange.Add(0, -1, 0), out ushort itemBelow))
+                if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out ushort itemBelow))
                 {
                     if (CanMineBlock(itemBelow))
                     {
-                        MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.VoxelToChange, d.requestedBy, nameof(Miner)));
+                        MachineManager.RegisterMachineState(d.RequestedByPlayer, new MachineState(d.Position, d.RequestedByPlayer, nameof(Miner)));
                         return true;
                     }
                 }
 
-                PandaChat.Send(d.requestedBy, "The mining machine must be placed on stone or ore.", ChatColor.orange);
+                PandaChat.Send(d.RequestedByPlayer, "The mining machine must be placed on stone or ore.", ChatColor.orange);
                 return false;
             }
 

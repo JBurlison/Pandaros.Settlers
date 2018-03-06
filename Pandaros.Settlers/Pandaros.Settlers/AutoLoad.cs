@@ -354,13 +354,13 @@ namespace Pandaros.Settlers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".AutoLoad.trychangeblock")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData userData)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".AutoLoad.trychangeblock")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {
-            if (!userData.isPrimaryAction)
+            if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
             {
-                VoxelSide side = userData.voxelHitSide;
-                ushort newType = userData.typeToBuild;
+                VoxelSide side = userData.PlayerClickedData.VoxelSideHit;
+                ushort newType = userData.TypeNew;
 
                 string suffix;
 
@@ -393,15 +393,15 @@ namespace Pandaros.Settlers
                     return true;
                 }
 
-                if (newType != userData.typeTillNow && ItemTypes.IndexLookup.TryGetName(newType, out string typename))
+                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType, out string typename))
                 {
                     string otherTypename = typename + suffix;
 
                     if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out ushort otherIndex))
                     {
-                        Vector3Int position = userData.VoxelToChange;
+                        Vector3Int position = userData.Position;
                         ThreadManager.InvokeOnMainThread(delegate () {
-                            ServerManager.TryChangeBlock(position, otherIndex, ServerManager.SetBlockFlags.DefaultAudio);
+                            ServerManager.TryChangeBlock(position, otherIndex);
                         }, 0.1f);
                     }
                 }

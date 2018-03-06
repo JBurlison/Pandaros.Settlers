@@ -155,11 +155,11 @@ namespace Pandaros.Settlers.Managers
                 }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.TypeNew == BuiltinBlocks.Air)
-                RemoveMachine(d.requestedBy, d.VoxelToChange);
+                RemoveMachine(d.RequestedByPlayer, d.Position);
 
             return true;
         }

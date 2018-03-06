@@ -972,7 +972,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1017,7 +1017,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1070,7 +1070,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1115,7 +1115,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1160,7 +1160,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1205,7 +1205,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1250,7 +1250,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1298,7 +1298,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ]
   },
   "waterslableft": {
@@ -1343,7 +1343,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1389,7 +1389,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1435,7 +1435,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1481,7 +1481,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1527,7 +1527,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1573,7 +1573,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1619,7 +1619,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1664,7 +1664,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1709,7 +1709,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1754,7 +1754,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1803,7 +1803,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1849,7 +1849,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1894,7 +1894,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1939,7 +1939,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -1984,7 +1984,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2029,7 +2029,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2075,7 +2075,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2120,7 +2120,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2165,7 +2165,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2212,7 +2212,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2257,7 +2257,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2302,7 +2302,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2347,7 +2347,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2392,7 +2392,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2453,7 +2453,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2498,7 +2498,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2533,7 +2533,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2604,7 +2604,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2649,7 +2649,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2694,7 +2694,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2739,7 +2739,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2784,7 +2784,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2829,7 +2829,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2874,7 +2874,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2919,7 +2919,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2964,7 +2964,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3009,7 +3009,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3054,7 +3054,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3099,7 +3099,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3144,7 +3144,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3189,7 +3189,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3234,7 +3234,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3279,7 +3279,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3323,7 +3323,7 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3368,7 +3368,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3413,7 +3413,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3458,7 +3458,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3503,7 +3503,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -3567,7 +3567,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "boxColliders": [
-      "{-0.5, -0.5, -0.5}, {0.5, 0.0, 0.5}"
+      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,

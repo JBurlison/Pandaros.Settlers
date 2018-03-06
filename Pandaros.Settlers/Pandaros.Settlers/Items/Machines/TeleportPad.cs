@@ -335,18 +335,18 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnTryChangeBlockUser")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.TypeNew == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
             {
-                var ps = PlayerState.GetPlayerState(d.requestedBy);
-                var ms = new MachineState(d.VoxelToChange, d.requestedBy, nameof(TeleportPad));
+                var ps = PlayerState.GetPlayerState(d.RequestedByPlayer);
+                var ms = new MachineState(d.Position, d.RequestedByPlayer, nameof(TeleportPad));
 
                 if (ps.TeleporterPlaced == Vector3Int.invalidPos)
                 {
-                    ps.TeleporterPlaced = d.VoxelToChange;
-                    PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to.", ChatColor.orange);
+                    ps.TeleporterPlaced = d.Position;
+                    PandaChat.Send(d.RequestedByPlayer, $"Place one more teleportation pad to link to.", ChatColor.orange);
                 }
                 else
                 {
@@ -354,17 +354,17 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         _paired[ms.Position] = machineState.Position;
                         _paired[machineState.Position] = ms.Position;
-                        PandaChat.Send(d.requestedBy, $"Teleportation pads linked!", ChatColor.orange);
+                        PandaChat.Send(d.RequestedByPlayer, $"Teleportation pads linked!", ChatColor.orange);
                         ps.TeleporterPlaced = Vector3Int.invalidPos;
                     }
                     else
                     {
-                        ps.TeleporterPlaced = d.VoxelToChange;
-                        PandaChat.Send(d.requestedBy, $"Place one more teleportation pad to link to.", ChatColor.orange);
+                        ps.TeleporterPlaced = d.Position;
+                        PandaChat.Send(d.RequestedByPlayer, $"Place one more teleportation pad to link to.", ChatColor.orange);
                     }
                 }
 
-                MachineManager.RegisterMachineState(d.requestedBy, ms);
+                MachineManager.RegisterMachineState(d.RequestedByPlayer, ms);
             }
 
             return true;

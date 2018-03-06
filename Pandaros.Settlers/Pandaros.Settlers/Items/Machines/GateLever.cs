@@ -513,37 +513,37 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlockUser, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockUserData d)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnTryChangeBlockUser")]
+        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.TypeNew == Item.ItemIndex && d.typeTillNow == BuiltinBlocks.Air)
+            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
             {
-                MachineManager.RegisterMachineState(d.requestedBy, new MachineState(d.VoxelToChange, d.requestedBy, nameof(GateLever)));
+                MachineManager.RegisterMachineState(d.RequestedByPlayer, new MachineState(d.Position, d.RequestedByPlayer, nameof(GateLever)));
             }
-            else if (d.typeTillNow == BuiltinBlocks.Air && (d.TypeNew == GateItem.ItemIndex ||
+            else if (d.TypeOld == BuiltinBlocks.Air && (d.TypeNew == GateItem.ItemIndex ||
                                                             d.TypeNew == GateItemXN.ItemIndex ||
                                                             d.TypeNew == GateItemXP.ItemIndex ||
                                                             d.TypeNew == GateItemZN.ItemIndex ||
                                                             d.TypeNew == GateItemZP.ItemIndex))
             {
-                if (!_gatePositions.ContainsKey(d.requestedBy))
-                    _gatePositions.Add(d.requestedBy, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(d.RequestedByPlayer))
+                    _gatePositions.Add(d.RequestedByPlayer, new Dictionary<Vector3Int, GateState>());
 
-                _gatePositions[d.requestedBy].Add(d.VoxelToChange, new GateState(GatePosition.Closed, VoxelSide.None, d.VoxelToChange));
+                _gatePositions[d.RequestedByPlayer].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
             }
 
             if (d.TypeNew == BuiltinBlocks.Air)
             {
-                if (!_gatePositions.ContainsKey(d.requestedBy))
-                    _gatePositions.Add(d.requestedBy, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(d.RequestedByPlayer))
+                    _gatePositions.Add(d.RequestedByPlayer, new Dictionary<Vector3Int, GateState>());
 
-                if (_gatePositions[d.requestedBy].ContainsKey(d.VoxelToChange))
+                if (_gatePositions[d.RequestedByPlayer].ContainsKey(d.Position))
                 {
-                    _gatePositions[d.requestedBy].Remove(d.VoxelToChange);
+                    _gatePositions[d.RequestedByPlayer].Remove(d.Position);
 
-                    if (!Inventory.GetInventory(d.requestedBy).TryAdd(GateItem.ItemIndex))
+                    if (!Inventory.GetInventory(d.RequestedByPlayer).TryAdd(GateItem.ItemIndex))
                     {
-                        Stockpile.GetStockPile(d.requestedBy).Add(GateItem.ItemIndex);
+                        Stockpile.GetStockPile(d.RequestedByPlayer).Add(GateItem.ItemIndex);
                     }
                 }
             }

@@ -2,10 +2,10 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.7.2.4",
+    "version": "0.8.0.0",
     "enabled": true,
     "compatibleversions": [
-      "0.5.3"
+      "0.6.0"
     ]
   }
 ]
