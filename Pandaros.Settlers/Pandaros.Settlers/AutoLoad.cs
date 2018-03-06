@@ -355,42 +355,42 @@ namespace Pandaros.Settlers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".AutoLoad.trychangeblock")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {
+            if (userData.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
             if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
             {
                 VoxelSide side = userData.PlayerClickedData.VoxelSideHit;
                 ushort newType = userData.TypeNew;
+                string suffix = string.Empty;
 
-                string suffix;
+                switch (side)
+                {
+                    case VoxelSide.xPlus:
+                        suffix = "right";
+                        break;
 
-                if (side == VoxelSide.xPlus)
-                {
-                    suffix = "right";
-                }
-                else if (side == VoxelSide.xMin)
-                {
-                    suffix = "left";
-                }
-                else if (side == VoxelSide.yPlus)
-                {
-                    suffix = "bottom";
-                }
-                else if (side == VoxelSide.yMin)
-                {
-                    suffix = "top";
-                }
-                else if (side == VoxelSide.zPlus)
-                {
-                    suffix = "front";
-                }
-                else if (side == VoxelSide.zMin)
-                {
-                    suffix = "back";
-                }
-                else
-                {
-                    return true;
+                    case VoxelSide.xMin:
+                        suffix = "left";
+                        break;
+
+                    case VoxelSide.yPlus:
+                        suffix = "bottom";
+                        break;
+
+                    case VoxelSide.yMin:
+                        suffix = "top";
+                        break;
+
+                    case VoxelSide.zPlus:
+                        suffix = "front";
+                        break;
+
+                    case VoxelSide.zMin:
+                        suffix = "back";
+                        break;
                 }
 
                 if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType, out string typename))
@@ -406,8 +406,6 @@ namespace Pandaros.Settlers
                     }
                 }
             }
-
-            return true;
         }
     }
 

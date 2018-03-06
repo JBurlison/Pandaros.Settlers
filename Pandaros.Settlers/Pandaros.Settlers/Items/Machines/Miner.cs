@@ -178,8 +178,11 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
             if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
             {
                 if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out ushort itemBelow))
@@ -187,15 +190,14 @@ namespace Pandaros.Settlers.Items.Machines
                     if (CanMineBlock(itemBelow))
                     {
                         MachineManager.RegisterMachineState(d.RequestedByPlayer, new MachineState(d.Position, d.RequestedByPlayer, nameof(Miner)));
-                        return true;
+                        return;
                     }
                 }
 
                 PandaChat.Send(d.RequestedByPlayer, "The mining machine must be placed on stone or ore.", ChatColor.orange);
-                return false;
+                d.CallbackState = ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled;
+                return;
             }
-
-            return true;
         }
 
         public static bool CanMineBlock(ushort itemMined)

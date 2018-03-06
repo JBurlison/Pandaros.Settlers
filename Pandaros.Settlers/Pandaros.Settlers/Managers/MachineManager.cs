@@ -156,12 +156,13 @@ namespace Pandaros.Settlers.Managers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
             if (d.TypeNew == BuiltinBlocks.Air)
                 RemoveMachine(d.RequestedByPlayer, d.Position);
-
-            return true;
         }
 
         public static void RemoveMachine(Players.Player p, Vector3Int pos, bool throwEvent = true)

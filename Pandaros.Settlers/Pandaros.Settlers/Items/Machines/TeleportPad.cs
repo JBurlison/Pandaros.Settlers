@@ -336,8 +336,11 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
             if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
             {
                 var ps = PlayerState.GetPlayerState(d.RequestedByPlayer);
@@ -366,8 +369,6 @@ namespace Pandaros.Settlers.Items.Machines
 
                 MachineManager.RegisterMachineState(d.RequestedByPlayer, ms);
             }
-
-            return true;
         }
 
         private static void MachineManager_MachineRemoved(object sender, EventArgs e)

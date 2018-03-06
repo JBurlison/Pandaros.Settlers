@@ -554,8 +554,11 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.Turret.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
             if (d.TypeOld == BuiltinBlocks.Air)
             {
                 var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.TypeNew).Value;
@@ -563,8 +566,6 @@ namespace Pandaros.Settlers.Items.Machines
                 if (turret != null)
                     MachineManager.RegisterMachineState(d.RequestedByPlayer, new MachineState(d.Position, d.RequestedByPlayer, turret.Name));
             }
-
-            return true;
         }
     }
 }

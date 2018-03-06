@@ -276,8 +276,11 @@ namespace Pandaros.Settlers.Jobs
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
-        public static bool OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
             if (d.TypeOld == PatrolFlag.ItemIndex)
             {
                 Knight toRemove = default(Knight);
@@ -334,8 +337,6 @@ namespace Pandaros.Settlers.Jobs
 
                 stockpile.Add(PatrolFlag.ItemIndex);
             }
-
-            return true;
         }
     }
 }
