@@ -161,7 +161,7 @@ namespace Pandaros.Settlers.Managers
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeNew == BuiltinBlocks.Air)
+            if (d.TypeNew == BuiltinBlocks.Air && d.RequestedByPlayer != null)
                 RemoveMachine(d.RequestedByPlayer, d.Position);
         }
 

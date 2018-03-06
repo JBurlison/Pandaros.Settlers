@@ -516,7 +516,7 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled || d.RequestedByPlayer == null)
                 return;
 
             if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)

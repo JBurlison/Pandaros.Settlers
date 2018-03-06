@@ -16,12 +16,10 @@ using Pipliz.Mods.APIProvider.Jobs;
 namespace Pandaros.Settlers.AI
 {
     [ModLoader.ModManager]
-    public class CalltoArmsJob : IJob
+    public class CalltoArmsJob : Job
     {
         const int CALL_RAD = 100;
-        public NPCBase usedNPC;
-        public Players.Player owner;
-        public Vector3Int position;
+
         static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
 
@@ -35,7 +33,7 @@ namespace Pandaros.Settlers.AI
         };
         public static NPCType CallToArmsNPCType;
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".CalltoArms.Init"), 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".CalltoArms.Init"),
             ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes"),
             ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
@@ -52,22 +50,21 @@ namespace Pandaros.Settlers.AI
         IMonster _target;
         int _waitingFor;
 
-        public bool ToSleep => false;
+        public override bool ToSleep => false;
 
-        public NPCType NPCType => CallToArmsNPCType;
+        public override NPCType NPCType => CallToArmsNPCType;
 
-        public void OnAssignedNPC(NPCBase npc)
+        public override void OnAssignedNPC(NPCBase npc)
         {
             owner = npc.Colony.Owner;
             _tmpVals = npc.GetTempValues(true);
             _colony = npc.Colony;
             _playerState = PlayerState.GetPlayerState(_colony.Owner);
             _stock = Stockpile.GetStockPile(_colony.Owner);
-            usedNPC = npc;
-            npc.TakeJob(this);
+            base.OnAssignedNPC(npc);
         }
 
-        public Vector3Int GetJobLocation()
+        public override Vector3Int GetJobLocation()
         {
             var currentPos = usedNPC.Position;
 
@@ -135,7 +132,7 @@ namespace Pandaros.Settlers.AI
             return weapon;
         }
 
-        public void OnNPCAtJob(ref NPCBase.NPCState state)
+        public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             try
             {
@@ -224,7 +221,7 @@ namespace Pandaros.Settlers.AI
 
         }
 
-        public void OnNPCAtStockpile(ref NPCBase.NPCState state)
+        public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
         {
             if (_weapon != null)
                 return;
@@ -249,19 +246,11 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public bool NeedsItems => _weapon == null;
+        public override bool NeedsItems => _weapon == null;
 
-        public Vector3Int KeyLocation { get; set; }
+        public override Vector3Int KeyLocation => position;
 
-        public bool IsValid { get; set; }
-
-        public Players.Player Owner => owner;
-
-        public bool NeedsNPC => usedNPC == null || !usedNPC.IsValid;
-
-        public InventoryItem RecruitementItem => throw new NotImplementedException();
-
-        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
+        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             if (_weapon == null)
                 return NPCBase.NPCGoal.Stockpile;
@@ -269,9 +258,9 @@ namespace Pandaros.Settlers.AI
             return NPCBase.NPCGoal.Job;
         }
 
-        public void OnRemove()
+        public override void OnRemove()
         {
-            IsValid = false;
+            isValid = false;
             if (usedNPC != null)
             {
                 usedNPC.ClearJob();
@@ -279,12 +268,12 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public void OnRemovedNPC()
+        public override void OnRemovedNPC()
         {
             usedNPC = null;
         }
 
-        public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
+        new public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
         {
             this.position = position;
             this.owner = owner;
