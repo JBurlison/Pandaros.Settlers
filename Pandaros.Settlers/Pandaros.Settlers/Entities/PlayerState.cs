@@ -55,6 +55,7 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ArmorState>();
         public bool BossesEnabled { get; set; } = true;
+        public bool MonstersEnabled { get; set; } = true;
 
         public ArmorState Weapon { get; set; } = new ArmorState();
 
@@ -152,6 +153,9 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(BossesEnabled), out bool bosses))
                     _playerStates[p].BossesEnabled = bosses;
 
+                if (stateNode.TryGetAs(nameof(MonstersEnabled), out bool monsters))
+                    _playerStates[p].MonstersEnabled = monsters;
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
@@ -186,6 +190,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs("TeleporterPlaced", (JSONNode)_playerStates[p].TeleporterPlaced);
                 node.SetAs(nameof(BuildersWandPreview), buildersWandPreview);
                 node.SetAs(nameof(BossesEnabled), _playerStates[p].BossesEnabled);
+                node.SetAs(nameof(MonstersEnabled), _playerStates[p].MonstersEnabled);
                 node.SetAs(nameof(BuildersWandMode), _playerStates[p].BuildersWandMode.ToString());
                 node.SetAs(nameof(BuildersWandCharge), _playerStates[p].BuildersWandCharge);
                 node.SetAs(nameof(BuildersWandTarget), _playerStates[p].BuildersWandTarget);

@@ -61,7 +61,8 @@ namespace Pandaros.Settlers.Monsters
                 Banner valueAtIndex = banners.GetValueAtIndex(i);
                 var ps = PlayerState.GetPlayerState(valueAtIndex.Owner);
 
-                SpawnForBanner(valueAtIndex, flag, num, secondsSinceStartDouble, false, null);
+                if (ps.MonstersEnabled)
+                    SpawnForBanner(valueAtIndex, flag, num, secondsSinceStartDouble, false, null);
             }
 
             maxTimePerTick.Stop();

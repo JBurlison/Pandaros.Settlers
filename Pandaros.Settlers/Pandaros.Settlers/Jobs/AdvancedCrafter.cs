@@ -68,6 +68,14 @@ namespace Pandaros.Settlers.Jobs
 
     public class AdvancedCrafterJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
     {
+        private static NPCTypeStandardSettings _type = new NPCTypeStandardSettings
+        {
+            keyName = AdvancedCrafterRegister.JOB_NAME,
+            printName = "Advanced Crafter",
+            maskColor1 = new Color32(101, 121, 123, 255),
+            type = NPCTypeID.GetNextID()
+        };
+
         public static float StaticCraftingCooldown = 5f;
 
         public override string NPCTypeKey
@@ -100,13 +108,7 @@ namespace Pandaros.Settlers.Jobs
 
         NPCTypeStandardSettings INPCTypeDefiner.GetNPCTypeDefinition()
         {
-            return new NPCTypeStandardSettings
-            {
-                keyName = this.NPCTypeKey,
-                printName = "Advanced Crafter",
-                maskColor1 = new Color32(101, 121, 123, 255),
-                type = NPCTypeID.GetNextID()
-            };
+            return _type;
         }
 
         protected override void OnRecipeCrafted()

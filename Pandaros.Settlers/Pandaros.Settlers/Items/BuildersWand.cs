@@ -29,14 +29,14 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.BuildersWand.Register")]
         public static void Register()
         {
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 1);
+            var elementium = new InventoryItem(Elementium.Item.ItemIndex, 1);
             var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 1);
             var gold = new InventoryItem(BuiltinBlocks.GoldIngot, 1);
             var silver = new InventoryItem(BuiltinBlocks.SilverIngot, 1);
             var aether = new InventoryItem(Aether.Item.ItemIndex, 4);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>() { planks, aether },
+                                    new List<InventoryItem>() { elementium, aether, steel, gold, silver },
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 

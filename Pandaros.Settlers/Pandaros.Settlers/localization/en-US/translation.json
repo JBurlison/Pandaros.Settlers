@@ -65,6 +65,11 @@
     "Pandaros.Settlers.TreatedBandage": "TreatedBandage",
     "Pandaros.Settlers.Aether": "Aether",
     "Pandaros.Settlers.BuildersWand": "Builders Wand",
+    "Pandaros.Settlers.Elementium": "Elementium",
+    "Pandaros.Settlers.FireStone": "FireStone",
+    "Pandaros.Settlers.AirStone": "AirStone",
+    "Pandaros.Settlers.EarthStone": "EarthStone",
+    "Pandaros.Settlers.WaterStone": "WaterStone",
     "Pandaros.Settlers.AutoLoad.Selector": "Selector Box",
     "Pandaros.Settlers.AutoLoad.rawemerald": "Raw Emerald",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "Cut Emerald",
@@ -230,7 +235,6 @@
     "Pandaros.Settlers.AutoLoad.Sunflower": "Sunflower",
     "Pandaros.Settlers.AutoLoad.rose": "Rose",
     "Pandaros.Settlers.AutoLoad.Flowers1": "Morning Glory"
-
   },
   "typeuses": {
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
@@ -281,6 +285,11 @@
     "Pandaros.Settlers.Aether": "Potent Mana. Handle with care!",
     "Pandaros.Settlers.TeleportPad": "Place 2 to link them. It's that simple! Pick one up and the other will be picked up too! Needs a Machinist to maintain at least one side.",
     "Pandaros.Settlers.BuildersWand": "Lays out the targeted block. Must have the blocks in your stockpile. Right click to preview, then right click to confirm or Left click to cancel. When not previewing Left click to change modes.",
+    "Pandaros.Settlers.Elementium": "Used to make elemental stones and magic items!",
+    "Pandaros.Settlers.FireStone": "Harness the power of fire!",
+    "Pandaros.Settlers.AirStone": "Harness the power of air!",
+    "Pandaros.Settlers.EarthStone": "Harness the power of earth!",
+    "Pandaros.Settlers.WaterStone": "Harness the power of water!",
     "Pandaros.Settlers.AutoLoad.Selector": "Selector Box for the Builders Wand. DO NOT PLACE THIS. WHY DO YOU HAVE THIS? YOU HAVE BEEN WARNED!",
     "Pandaros.Settlers.AutoLoad.rawemerald": "The start to the mod.",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "The mod currency!  SHINY!",
@@ -1151,6 +1160,10 @@
         "BetterBuildersWand5": {
           "name": "Perfect Builders Wand",
           "description": "Upgrades the Builders Wand to lay out 2000 blocks before it breaks!"
+        },
+        "Elementium1": {
+          "name": "Elementium",
+          "description": "Ulocks Elementium. Elementium is transmuted by Apothecary and is used to create powerful magic items and elemental weapons."
         }
       }
     }

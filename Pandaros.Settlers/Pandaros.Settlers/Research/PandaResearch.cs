@@ -44,6 +44,7 @@ namespace Pandaros.Settlers.Research
         public const string IncreasedCapacity = "IncreasedCapacity";
         public const string AdvancedApothecary = "AdvancedApothecary";
         public const string Mana = "Mana";
+        public const string Elementium = "Elementium";
         public const string BuildersWand = "BuildersWand";
         public const string BetterBuildersWand = "BetterBuildersWand";
         public const string Teleporters = "Teleportation";
@@ -144,6 +145,7 @@ namespace Pandaros.Settlers.Research
             AddApocthResearch(researchDic);
             AddAdvanceApocthResearch(researchDic);
             AddManaResearch(researchDic);
+            AddElementiumResearch(researchDic);
             AddTeleporters(researchDic);
             AddBuildersWandResearch(researchDic);
             AddBetterBuildersWandResearch(researchDic);
@@ -242,7 +244,6 @@ namespace Pandaros.Settlers.Research
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.CopperParts, 2);
             researchDic.Add(BuiltinBlocks.CopperNails, 3);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 2);
 
             var requirements = new List<string>()
             {
@@ -371,7 +372,6 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CopperTools, 2);
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
             researchDic.Add(BuiltinBlocks.Linen, 2);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
 
             var requirements = new List<string>()
             {
@@ -458,6 +458,36 @@ namespace Pandaros.Settlers.Research
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Aether.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
         }
 
+        private static void AddElementiumResearch(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(Items.Aether.Item.ItemIndex, 1);
+            researchDic.Add(BuiltinBlocks.Copper, 20);
+            researchDic.Add(BuiltinBlocks.IronOre, 20);
+            researchDic.Add(BuiltinBlocks.Tin, 20);
+            researchDic.Add(BuiltinBlocks.GoldOre, 20);
+            researchDic.Add(BuiltinBlocks.GalenaSilver, 20);
+            researchDic.Add(BuiltinBlocks.GalenaLead, 20);
+
+            var requirements = new List<string>()
+            {
+                GetResearchKey(Mana + "1")
+            };
+
+            var research = new PandaResearch(researchDic, 1, Elementium, 1f, requirements, 50);
+            research.ResearchComplete += Elementium_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+        }
+
+        private static void Elementium_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Elementium.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.EarthStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.FireStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.WaterStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.AirStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+        }
+
         private static void AddBuildersWandResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
@@ -465,11 +495,11 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.SteelIngot, 10);
             researchDic.Add(BuiltinBlocks.GoldIngot, 10);
             researchDic.Add(BuiltinBlocks.SilverIngot, 10);
-            researchDic.Add(BuiltinBlocks.Planks, 10);
+            researchDic.Add(Items.Elementium.Item.ItemIndex, 1);
 
             var requirements = new List<string>()
             {
-                GetResearchKey(Mana + "1")
+                GetResearchKey(Elementium + "1")
             };
 
             var research = new PandaResearch(researchDic, 1, BuildersWand, 1f, requirements, 50);
