@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.AirStone.Register")]
         public static void Register()
         {
-            var aether = new InventoryItem(Aether.Item.ItemIndex, 1);
+            var aether = new InventoryItem(Elementium.Item.ItemIndex, 2);
             var torch = new InventoryItem(BuiltinBlocks.BronzeArrow, 20);
 
             var recipe = new Recipe(Item.name,

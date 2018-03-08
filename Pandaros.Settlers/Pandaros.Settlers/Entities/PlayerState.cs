@@ -56,14 +56,40 @@ namespace Pandaros.Settlers.Entities
         public Dictionary<Items.Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Items.Armor.ArmorSlot, ArmorState>();
         public bool BossesEnabled { get; set; } = true;
         public bool MonstersEnabled { get; set; } = true;
-
+        public bool SettlersEnabled { get; set; } = true;
         public ArmorState Weapon { get; set; } = new ArmorState();
 
         public Items.BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = Items.BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
+        public int SettlersToggledTimes { get; set; }
+        public int HighestColonistCount { get; set; }
+
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
+        public double NextGenTime { get; set; }
+
+        public int MaxPerSpawn
+        {
+            get
+            {
+                var max = SettlerManager.MIN_PERSPAWN;
+                var col = Colony.Get(Player);
+
+                if (col.FollowerCount >= SettlerManager.MAX_BUYABLE)
+                {
+                    var maxAdd = (int)System.Math.Ceiling(col.FollowerCount * 0.05f);
+
+                    if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
+                        maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
+
+                    max += Rand.Next((int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
+                               maxAdd + (int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MaxSettlers), 0f));
+                }
+
+                return max;
+            }
+        }
 
         public PlayerState(Players.Player p)
         {
@@ -156,6 +182,15 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(MonstersEnabled), out bool monsters))
                     _playerStates[p].MonstersEnabled = monsters;
 
+                if (stateNode.TryGetAs(nameof(SettlersEnabled), out bool settlers))
+                    _playerStates[p].SettlersEnabled = settlers;
+
+                if (stateNode.TryGetAs(nameof(SettlersToggledTimes), out int toggle))
+                    _playerStates[p].SettlersToggledTimes = toggle;
+
+                if (stateNode.TryGetAs(nameof(HighestColonistCount), out int hsc))
+                    _playerStates[p].HighestColonistCount = hsc;
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
@@ -191,9 +226,12 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(BuildersWandPreview), buildersWandPreview);
                 node.SetAs(nameof(BossesEnabled), _playerStates[p].BossesEnabled);
                 node.SetAs(nameof(MonstersEnabled), _playerStates[p].MonstersEnabled);
+                node.SetAs(nameof(SettlersEnabled), _playerStates[p].SettlersEnabled);
                 node.SetAs(nameof(BuildersWandMode), _playerStates[p].BuildersWandMode.ToString());
                 node.SetAs(nameof(BuildersWandCharge), _playerStates[p].BuildersWandCharge);
                 node.SetAs(nameof(BuildersWandTarget), _playerStates[p].BuildersWandTarget);
+                node.SetAs(nameof(SettlersToggledTimes), _playerStates[p].SettlersToggledTimes);
+                node.SetAs(nameof(HighestColonistCount), _playerStates[p].HighestColonistCount);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

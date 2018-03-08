@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Elementium.Register")]
         public static void Register()
         {
-            var aether = new InventoryItem(Aether.Item.ItemIndex, 1);
+            var aether = new InventoryItem(Aether.Item.ItemIndex, 2);
             var copper = new InventoryItem(BuiltinBlocks.Copper, 20);
             var iron = new InventoryItem(BuiltinBlocks.IronOre, 20);
             var tin = new InventoryItem(BuiltinBlocks.Tin, 20);
