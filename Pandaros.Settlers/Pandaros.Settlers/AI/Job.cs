@@ -33,6 +33,8 @@ namespace Pandaros.Settlers.AI
 
         public virtual InventoryItem RecruitementItem { get { return InventoryItem.Empty; } }
 
+        public NPCBase NPC { get => usedNPC; set => usedNPC = value; }
+
         public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
         {
             this.position = position;

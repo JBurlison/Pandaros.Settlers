@@ -6,6 +6,25 @@
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
+    ],
+    "website": "http://www.settlersmod.com/",
+    "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items and new jobs!",
+    "patchnotes": [
+      {
+        "version": "0.8.0.0",
+        "notes": [
+          "Zombies can now be disabled be disabled with the /monsters [off|on] command",
+          "Bosses no longer have max HP. They will scale fully based on difficulty and number of colonists.",
+          "New research added: Elementium, craftable by the Apothecary. Elementium is the base metal for magical items and stones.",
+          "New elemental stones added for magic: Earth, Air, Fire, Water and Void, these are used as reagents and ammo for magic attacks.",
+          "Settlers are back! Along with their original researchables; Max Settlers, Min Settlers, Time Between",
+          "Added Skilled labor researchables. Skilled labor add additional chance for rare items to be crafted. (most rare items are a by-product of a item being crafted with a drop rate of 5% base)",
+          "Added Elemental Turrets.",
+          "Bosses now have different elemental armors along with additional physical resistance.",
+          "Zombies base HP will now scale with colonies that are 500+ colonists big",
+          "Knight base damage reduction increased from 65% to 75%"
+        ]
+      }
     ]
   }
 ]

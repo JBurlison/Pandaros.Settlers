@@ -58,10 +58,10 @@ namespace Pandaros.Settlers.Items.Machines
         public const string CROSSBOW = "Crossbow Turret";
         public const string MATCHLOCK = "Matchlock Turret";
 
-        public static string STONE_NAMESPACE = GameLoader.NAMESPACE + ".StoneTurret";
-        public static string BRONZEARROW_NAMESPACE = GameLoader.NAMESPACE + ".BronzeArrowTurret";
-        public static string CROSSBOW_NAMESPACE = GameLoader.NAMESPACE + ".CrossbowTurret";
-        public static string MATCHLOCK_NAMESPACE = GameLoader.NAMESPACE + ".MatchlockTurret";
+        public static readonly string STONE_NAMESPACE = GameLoader.NAMESPACE + ".StoneTurret";
+        public static readonly string BRONZEARROW_NAMESPACE = GameLoader.NAMESPACE + ".BronzeArrowTurret";
+        public static readonly string CROSSBOW_NAMESPACE = GameLoader.NAMESPACE + ".CrossbowTurret";
+        public static readonly string MATCHLOCK_NAMESPACE = GameLoader.NAMESPACE + ".MatchlockTurret";
 
         public static ushort Repair(Players.Player player, MachineState machineState) 
         {
@@ -214,7 +214,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
 
                                 TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
-                                monster.OnHit(TurretSettings[machineState.MachineType].Damage);
+                                monster.OnHit(TurretSettings[machineState.MachineType].Damage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);
                             }
                         }
 

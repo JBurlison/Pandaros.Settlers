@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Jobs
         {
             if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Jobs.Knight))
             {
-                box.Set(box.item1 - (box.item1 * .65f));
+                box.Set(box.item1 - (box.item1 * .75f));
             }
         }
 
@@ -84,6 +84,8 @@ namespace Pandaros.Settlers.Jobs
                 return InventoryItem.Empty;
             }
         }
+
+        public NPCBase NPC { get => _usedNPC; set => _usedNPC = value; }
 
         public Knight(List<Vector3Int> potrolPoints, Players.Player owner)
         {

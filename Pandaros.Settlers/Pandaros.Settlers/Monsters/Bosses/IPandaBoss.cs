@@ -16,6 +16,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
         float ZombieHPBonus { get; }
         bool KilledBefore { get; set; }
         Dictionary<ushort, int> KillRewards { get; }
+        Dictionary<DamageType, float> Damage { get; }
+        List<DamageType> ElementalArmor { get; }
+        Dictionary<DamageType, float> AdditionalResistance { get; }
         IPandaBoss GetNewBoss(Path path, Players.Player p);
     }
 }

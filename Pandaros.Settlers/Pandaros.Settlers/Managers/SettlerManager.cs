@@ -49,6 +49,19 @@ namespace Pandaros.Settlers.Managers
             HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerClicked")]
+        public static void OnPlayerClicked(Players.Player player, Pipliz.Box<Shared.PlayerClickedData> boxedData)
+        {
+            if (boxedData.item1.clickType == Shared.PlayerClickedData.ClickType.Right &&
+                boxedData.item1.rayCastHit.rayHitType == Shared.RayHitType.Block &&
+                World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out var blockHit) &&
+                blockHit == BlockTypes.Builtin.BuiltinBlocks.BerryBush)
+            {
+                var inv = Inventory.GetInventory(player);
+                inv.TryAdd(BlockTypes.Builtin.BuiltinBlocks.Berry, 2);
+            }
+        }
+
         private static void HealingOverTimeNPC_NewInstance(object sender, EventArgs e)
         {
             var healing = sender as HealingOverTimeNPC;
@@ -154,6 +167,7 @@ namespace Pandaros.Settlers.Managers
                 if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
                 {
                     PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is reconnected. Restoring Colony.");
+
                     foreach (var node in followersNode.LoopArray())
                     {
                         try
@@ -166,12 +180,10 @@ namespace Pandaros.Settlers.Managers
                             foreach (var job in jf.openJobs)
                                 if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int)pos)
                                 {
-                                    
-
                                     if (job.IsValid && job.NeedsNPC)
                                     {
                                         npc.TakeJob(job);
-                                        job.OnAssignedNPC(npc);
+                                        job.NPC = npc;
                                         JobTracker.Remove(p, job.KeyLocation);
                                     }
                                     break;
@@ -182,7 +194,8 @@ namespace Pandaros.Settlers.Managers
                             PandaLogger.LogError(ex);
                         }
                     }
-
+                    
+                    JSON.Serialize(file, new JSONNode(NodeType.Array));
                     jf.Update();
                 }
             }
@@ -277,7 +290,6 @@ namespace Pandaros.Settlers.Managers
                             if (job != null && job.KeyLocation != Vector3Int.invalidPos)
                             {
                                 jobloc = (JSONNode)job.KeyLocation;
-                                job.OnRemovedNPC();
                                 follower.ClearJob();
                             }
                         }
@@ -315,7 +327,7 @@ namespace Pandaros.Settlers.Managers
 
             if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
             {
-                var cost =  npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f);
+                var cost =  npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .20f);
                 float num = 0f;
 
                 if (cost < 1)

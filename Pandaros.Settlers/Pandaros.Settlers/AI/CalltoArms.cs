@@ -338,7 +338,7 @@ namespace Pandaros.Settlers.AI
                             if (job.GetType() != typeof(CalltoArmsJob))
                                 _Jobs[follower] = job;
 
-                            job.OnRemovedNPC();
+                            job.NPC = null;
                             follower.ClearJob();
                         }
                     }
@@ -365,7 +365,7 @@ namespace Pandaros.Settlers.AI
                     if (job != null && job.GetType() == typeof(CalltoArmsJob))
                     {
                         follower.ClearJob();
-                        job.OnRemovedNPC();
+                        job.NPC = null;
                         ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(job);
                     }
 
@@ -373,7 +373,7 @@ namespace Pandaros.Settlers.AI
                     {
                         assignedWorkers.Add(follower);
                         follower.TakeJob(_Jobs[follower]);
-                        _Jobs[follower].OnAssignedNPC(follower);
+                        _Jobs[follower].NPC = follower;
                         JobTracker.Remove(player, _Jobs[follower].KeyLocation);
                     }
 

@@ -91,6 +91,8 @@ namespace Pandaros.Settlers
         {
             Reload();
             GetorDefault("BossesCanBeDisabled", true);
+            GetorDefault("MonstersCanBeDisabled", true);
+            Save();
         }
 
         public static void Reload()
