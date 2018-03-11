@@ -65,6 +65,11 @@
     "Pandaros.Settlers.TreatedBandage": "Vendas avanzadas",
     "Pandaros.Settlers.Aether": "Ether",
     "Pandaros.Settlers.BuildersWand": "Varita de construcción",
+    "Pandaros.Settlers.Elementium": "Elementium",
+    "Pandaros.Settlers.FireStone": "Piedra imbuida en fuego",
+    "Pandaros.Settlers.AirStone": "Piedra imbuida en aire",
+    "Pandaros.Settlers.EarthStone": "Piedra imbuida en tierra",
+    "Pandaros.Settlers.WaterStone": "Piedra imbuida en agua",
     "Pandaros.Settlers.AutoLoad.Selector": "Caja de selección",
     "Pandaros.Settlers.AutoLoad.rawemerald": "Esmeralda",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "Esmeralda cortada",
@@ -280,6 +285,11 @@
     "Pandaros.Settlers.Aether": "Mana concentrado. ¡Manejar con cuidado!",
     "Pandaros.Settlers.TeleportPad": "Coloca dos para enlazarlos. Es muy fácil de utilizar, pero muy difícil de comprender como funciona. Cuando recojas uno también se recogerá el que está enlazado. Necesita que un maquinista haga mantenimiento sobre al menos uno de los círculos de teletransporte enlazados.",
     "Pandaros.Settlers.BuildersWand": "Funciona sobre los bloques seleccionados. Debes tener los bloques en el almacén. Botón derecho para ver una vista previa, vuelve a pulsar el botón derecho para confirmar o el botón izquierdo para cancelar. Cuando no estés viendo una vista previa puedes pulsar el primer botón del ratón para cambiar de modo.",
+    "Pandaros.Settlers.Elementium": "Usado para crear piedras elementadas y objetos mágicos.",
+    "Pandaros.Settlers.FireStone": "Controla el poder del fuego con esta piedra.",
+    "Pandaros.Settlers.AirStone": "Controla el poder del aire con esta piedra.",
+    "Pandaros.Settlers.EarthStone": "Controla el poder de la tierra con esta piedra.",
+    "Pandaros.Settlers.WaterStone": "Controla el poder del agua con esta piedra.",
     "Pandaros.Settlers.AutoLoad.Selector": "Caja de selección para la varita de construcción. ¡NO UTILIZAR, puede destruir tu mundo! ¡ESTÁS AVISADO!",
     "Pandaros.Settlers.AutoLoad.rawemerald": "El comienzo del mod.",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "La moneda del mod!  BRILLANTE!",
@@ -1150,7 +1160,11 @@
         "BetterBuildersWand5": {
           "name": "Varita de construcción perfecta",
           "description": "Mejora la varita de construcción para que pueda trabajar con hasta 2000 bloques antes de que se rompa."
-          }
+          },
+        "Elementium1": {
+          "name": "Elementium",
+          "description": "Desbloquea Elementium. El Elementium puede ser transmutado por el boticario para crear poderosas armas y objetos mágicos."
+         }
       }
     }
   }
