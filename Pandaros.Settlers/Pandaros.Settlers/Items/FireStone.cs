@@ -23,7 +23,6 @@ namespace Pandaros.Settlers.Items
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }
 
@@ -35,6 +34,12 @@ namespace Pandaros.Settlers.Items
             var node = new JSONNode();
             node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/Firestone.png");
             node["isPlaceable"] = new JSONNode(false);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("ingredient"));
+            categories.AddToArray(new JSONNode("magic"));
+            categories.AddToArray(new JSONNode("stone"));
+            node.SetAs("categories", categories);
 
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);

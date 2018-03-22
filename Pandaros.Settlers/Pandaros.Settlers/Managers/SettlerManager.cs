@@ -28,7 +28,6 @@ namespace Pandaros.Settlers.Managers
 
         private static float _baseFoodPerHour;
         private static double _updateTime;
-        private static double _nextSettlerCheck;
         private static int _idNext = 1;
 
         public static List<HealingOverTimeNPC> HealingSpells { get; private set; } = new List<HealingOverTimeNPC>();

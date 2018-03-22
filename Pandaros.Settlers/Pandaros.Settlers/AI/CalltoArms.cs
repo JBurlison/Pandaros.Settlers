@@ -108,7 +108,7 @@ namespace Pandaros.Settlers.AI
 
             if (_waitingFor > 10)
             {
-                var banner = BannerManager.GetClosestBanner(usedNPC.Colony.Owner, currentPos);
+                var banner = BannerTracker.GetClosest(usedNPC.Colony.Owner, currentPos);
 
                 if (banner != null)
                     return banner.KeyLocation;

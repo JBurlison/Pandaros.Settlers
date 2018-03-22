@@ -146,7 +146,6 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
@@ -172,6 +171,10 @@ namespace Pandaros.Settlers.Items.Machines
             minerFlagNode.SetAs("isSolid", true);
             minerFlagNode.SetAs("sideall", "SELF");
             minerFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/MiningMachine.obj");
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            minerFlagNode.SetAs("categories", categories);
 
             Item = new ItemTypesServer.ItemTypeRaw(minerName, minerFlagNode);
             items.Add(minerName, Item);

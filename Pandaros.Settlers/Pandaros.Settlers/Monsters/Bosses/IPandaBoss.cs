@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    public interface IPandaBoss : Server.Monsters.IMonster
+    public interface IPandaBoss : Server.Monsters.IMonster, IElementalDamager, IElementalArmor, IKillReward
     {
         string Name { get; }
         string AnnouncementText { get; }
@@ -15,10 +15,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
         float ZombieMultiplier { get; }
         float ZombieHPBonus { get; }
         bool KilledBefore { get; set; }
-        Dictionary<ushort, int> KillRewards { get; }
-        Dictionary<DamageType, float> Damage { get; }
-        List<DamageType> ElementalArmor { get; }
-        Dictionary<DamageType, float> AdditionalResistance { get; }
         IPandaBoss GetNewBoss(Path path, Players.Player p);
     }
 }

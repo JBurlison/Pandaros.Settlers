@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Monsters.Bosses;
 using Server.Monsters;
 using Server.NPCs;
@@ -97,56 +98,58 @@ namespace Pandaros.Settlers.Managers
                     bool turnOffBoss = true;
                     WorldSettings worldSettings = ServerManager.WorldSettings;
                     float num = (!worldSettings.MonstersDoubled) ? 1 : 2;
-                    var banners = BannerTracker.GetBanners();
+                    var banners = BannerTracker.GetCount();
 
-                    for (int i = 0; i < banners.Count; i++)
+                    for (int i = 0; i < banners; i++)
                     {
                         if (_maxTimePerTick.Elapsed.TotalMilliseconds > Monsters.PandaMonsterSpawner.MonsterVariables.MSPerTick)
                             break;
 
-                        Banner bannerGoal = banners.GetValueAtIndex(i);
-                        var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
-                        var colony = Colony.Get(ps.Player);
-
-                        if (ps.BossesEnabled && 
-                            ps.Player.IsConnected && 
-                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 15))
+                        if (BannerTracker.TryGetAtIndex(i, out var bannerGoal))
                         {
-                            if (bossType != null && 
-                                !_spawnedBosses.ContainsKey(ps) &&
-                                MonsterSpawner.TryGetSpawnLocation(bannerGoal, 300f, out var start) == MonsterSpawner.ESpawnResult.Success &&
-                                Server.AI.AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) == Server.AI.EPathFindingResult.Success)
+                            var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
+                            var colony = Colony.Get(ps.Player);
+
+                            if (ps.BossesEnabled &&
+                                ps.Player.IsConnected &&
+                                colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 15))
                             {
-                                var pandaboss = bossType.GetNewBoss(path, ps.Player);
-                                _spawnedBosses.Add(ps, pandaboss);
-
-                                BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new Monsters.BossSpawnedEvent(ps, pandaboss));
-                                ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, pandaboss);
-
-                                MonsterTracker.Add(pandaboss);
-                                colony.OnZombieSpawn(true);
-
-                                PandaChat.Send(ps.Player, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}", ChatColor.red);
-
-                                if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
-                                    ServerManager.SendAudio(ps.Player.Position, pandaboss.AnnouncementAudio);
-                            }
-
-                            if (_spawnedBosses.ContainsKey(ps) &&
-                                _spawnedBosses[ps].IsValid &&
-                                _spawnedBosses[ps].CurrentHealth > 0)
-                            {
-                                if (ps.Player.GetTempValues(true).GetOrDefault("BossIndicator", 0) < Pipliz.Time.SecondsSinceStartInt)
+                                if (bossType != null &&
+                                    !_spawnedBosses.ContainsKey(ps) &&
+                                    MonsterSpawner.TryGetSpawnLocation(bannerGoal, 300f, out var start) == MonsterSpawner.ESpawnResult.Success &&
+                                    Server.AI.AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) == Server.AI.EPathFindingResult.Success)
                                 {
-                                    Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_spawnedBosses[ps].Position), _spawnedBosses[ps].ID, new Shared.IndicatorState(1, GameLoader.Poisoned_Icon, false, false));
-                                    ps.Player.GetTempValues(true).Set("BossIndicator", Pipliz.Time.SecondsSinceStartInt + 1);
+                                    var pandaboss = bossType.GetNewBoss(path, ps.Player);
+                                    _spawnedBosses.Add(ps, pandaboss);
+
+                                    BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new Monsters.BossSpawnedEvent(ps, pandaboss));
+                                    ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, pandaboss);
+
+                                    MonsterTracker.Add(pandaboss);
+                                    colony.OnZombieSpawn(true);
+
+                                    PandaChat.Send(ps.Player, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}", ChatColor.red);
+
+                                    if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
+                                        ServerManager.SendAudio(ps.Player.Position, pandaboss.AnnouncementAudio);
                                 }
 
-                                if (_spawnedBosses[ps].ZombieMultiplier != 0)
-                                    num *= _spawnedBosses[ps].ZombieMultiplier;
+                                if (_spawnedBosses.ContainsKey(ps) &&
+                                    _spawnedBosses[ps].IsValid &&
+                                    _spawnedBosses[ps].CurrentHealth > 0)
+                                {
+                                    if (ps.Player.GetTempValues(true).GetOrDefault("BossIndicator", 0) < Pipliz.Time.SecondsSinceStartInt)
+                                    {
+                                        Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_spawnedBosses[ps].Position), _spawnedBosses[ps].ID, new Shared.IndicatorState(1, GameLoader.Poisoned_Icon, false, false));
+                                        ps.Player.GetTempValues(true).Set("BossIndicator", Pipliz.Time.SecondsSinceStartInt + 1);
+                                    }
 
-                                Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true, _spawnedBosses[ps]);
-                                turnOffBoss = false;
+                                    if (_spawnedBosses[ps].ZombieMultiplier != 0)
+                                        num *= _spawnedBosses[ps].ZombieMultiplier;
+
+                                    Monsters.PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num, secondsSinceStartDouble, true, _spawnedBosses[ps]);
+                                    turnOffBoss = false;
+                                }
                             }
                         }
                     }
@@ -154,23 +157,13 @@ namespace Pandaros.Settlers.Managers
                     if (turnOffBoss)
                     {
                         if (Players.CountConnected != 0 && _spawnedBosses.Count != 0)
-                            PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
-
-                        foreach (var p in _spawnedBosses)
                         {
-                            if (p.Key.Player.IsConnected)
-                            {
-                                var stockpile = Stockpile.GetStockPile(p.Key.Player);
-                                PandaChat.Send(p.Key.Player, $"[{p.Value.Name}] {p.Value.DeathText}", ChatColor.red);
-
-                                foreach (var reward in p.Value.KillRewards)
-                                {
-                                    stockpile.Add(reward.Key, reward.Value);
-                                    if (ItemTypes.TryGetType(reward.Key, out var item))
-                                        PandaChat.Send(p.Key.Player, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
-                                }
-                            }
+                            PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
+                            var boss = _spawnedBosses.FirstOrDefault().Value;
+                            PandaChat.SendToAll($"[{boss.Name}] {boss.DeathText}", ChatColor.red);
                         }
+
+                     
 
                         BossActive = false;
                         _spawnedBosses.Clear();
@@ -186,6 +179,7 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             GetNextBossSpawnTime();
+            AddBoss(new PutridCorpse(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new Bulging(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new ZombieQueen(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new ZombieKing(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
@@ -236,10 +230,56 @@ namespace Pandaros.Settlers.Managers
         public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
         {
             var ps = PlayerState.GetPlayerState(monster.OriginalGoal);
+            var elementalMonster = monster as IElementalArmor;
+            var turret = d.HitSourceObject as IElementalDamager;
+
+            if (elementalMonster != null && 
+                turret != null)
+            {
+                var damage = 0f;
+
+                foreach (var dt in turret.Damage)
+                {
+                    var tmpDmg = dt.Key.CalcDamage(elementalMonster.ElementalArmor, dt.Value);
+
+                    if (elementalMonster.AdditionalResistance.TryGetValue(dt.Key, out var flatResist))
+                        tmpDmg = tmpDmg - (tmpDmg * flatResist);
+
+                    damage += tmpDmg;
+                }
+
+                d.HitDamage = damage;
+            }
+            else if (elementalMonster != null)
+            {
+                d.HitDamage = DamageType.Physical.CalcDamage(elementalMonster.ElementalArmor, d.HitDamage);
+
+                if (elementalMonster.AdditionalResistance.TryGetValue(DamageType.Physical, out var flatResist))
+                    d.HitDamage = d.HitDamage - (d.HitDamage * flatResist);
+            }
+
             d.HitDamage = d.HitDamage - (d.HitDamage * ps.Difficulty.MonsterDamageReduction);
 
             if (Pipliz.Random.NextFloat() > .5f)
                 ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + "ZombieAudio");
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterDied, GameLoader.NAMESPACE)]
+        public static void MonsterDied(IMonster monster)
+        {
+            var rewardMonster = monster as IKillReward;
+            if (rewardMonster != null && rewardMonster.OriginalGoal.IsConnected)
+            {
+                var stockpile = Stockpile.GetStockPile(rewardMonster.OriginalGoal);
+
+                foreach (var reward in rewardMonster.KillRewards)
+                {
+                    stockpile.Add(reward.Key, reward.Value);
+
+                    if (ItemTypes.TryGetType(reward.Key, out var item))
+                        PandaChat.Send(rewardMonster.OriginalGoal, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
+                }
+            }
         }
 
         public static Dictionary<int, IMonster> GetAllMonsters()

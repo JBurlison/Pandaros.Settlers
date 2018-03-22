@@ -40,14 +40,12 @@ namespace Pandaros.Settlers.Managers
 
             _bannerCounts.Clear();
 
-            var banners = BannerTracker.GetBanners();
+            var banners = BannerTracker.GetCount();
 
-            if (banners != null)
-                for (int i = 0; i < banners.Count; i++)
+            if (banners > 0)
+                for (int i = 0; i < banners; i++)
                 {
-                    var banner = banners.GetValueAtIndex(i);
-
-                    if (banner != null)
+                    if (BannerTracker.TryGetAtIndex(i, out var banner))
                     {
                         if (!_bannerCounts.ContainsKey(banner.Owner))
                             _bannerCounts.Add(banner.Owner, 1);
@@ -97,38 +95,5 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        public static Banner GetClosestBanner(Players.Player p, Vector3Int currentPos)
-        {
-            Banner closest = null;
-            float distance = float.MaxValue;
-
-            var banners = BannerTracker.GetBanners();
-
-            for (int i = 0; i < banners.Count; i++)
-            {
-                var banner = banners.GetValueAtIndex(i);
-
-                if (banner.Owner == p)
-                {
-                    var bannerDistance = Vector3.Distance(currentPos.Vector, banner.KeyLocation.Vector);
-
-                    if (closest == null)
-                    {
-                        closest = banner;
-                        distance = bannerDistance;
-                    }
-                    else
-                    {
-                        if (bannerDistance < distance)
-                        {
-                            closest = banner;
-                            distance = bannerDistance;
-                        }
-                    }
-                }
-            }
-            
-            return closest;
-        }
     }
 }

@@ -85,7 +85,6 @@ namespace Pandaros.Settlers.Items
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5);
 
-                //ItemTypesServer.LoadSortOrder(a.Value.ItemType.name, GameLoader.GetNextItemSortIndex());
                 RecipeStorage.AddOptionalLimitTypeRecipe(Armor.JOB_METALSMITH, recipe);
             }
 
@@ -100,6 +99,10 @@ namespace Pandaros.Settlers.Items
             copperSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperSword.png");
             copperSwordNode["isPlaceable"] = new JSONNode(false);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("weapon"));
+            copperSwordNode.SetAs("categories", categories);
+
             var copperSword = new ItemTypesServer.ItemTypeRaw(copperSwordName, copperSwordNode);
             items.Add(copperSwordName, copperSword);
             ItemFactory.WeaponLookup.Add(copperSword.ItemIndex, new WeaponMetadata(50f, 50, MetalType.Copper, WeaponType.Sword, copperSword));
@@ -108,6 +111,8 @@ namespace Pandaros.Settlers.Items
             var bronzeSwordNode = new JSONNode();
             bronzeSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeSword.png");
             bronzeSwordNode["isPlaceable"] = new JSONNode(false);
+
+            bronzeSwordNode.SetAs("categories", categories);
 
             var bronzeSword = new ItemTypesServer.ItemTypeRaw(bronzeSwordName, bronzeSwordNode);
             items.Add(bronzeSwordName, bronzeSword);
@@ -118,6 +123,8 @@ namespace Pandaros.Settlers.Items
             IronSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronSword.png");
             IronSwordNode["isPlaceable"] = new JSONNode(false);
 
+            IronSwordNode.SetAs("categories", categories);
+
             var IronSword = new ItemTypesServer.ItemTypeRaw(IronSwordName, IronSwordNode);
             items.Add(IronSwordName, IronSword);
             ItemFactory.WeaponLookup.Add(IronSword.ItemIndex, new WeaponMetadata(250f, 100, MetalType.Iron, WeaponType.Sword, IronSword));
@@ -126,6 +133,8 @@ namespace Pandaros.Settlers.Items
             var steelSwordNode = new JSONNode();
             steelSwordNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelSword.png");
             steelSwordNode["isPlaceable"] = new JSONNode(false);
+
+            steelSwordNode.SetAs("categories", categories);
 
             var steelSword = new ItemTypesServer.ItemTypeRaw(steelSwordName, steelSwordNode);
             items.Add(steelSwordName, steelSword);

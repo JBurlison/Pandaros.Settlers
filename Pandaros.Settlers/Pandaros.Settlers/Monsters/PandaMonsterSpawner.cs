@@ -48,21 +48,23 @@ namespace Pandaros.Settlers.Monsters
             bool flag = worldSettings.ZombiesEnabled && (TimeCycle.ShouldSpawnMonsters || worldSettings.MonstersDayTime);
             int num = (!worldSettings.MonstersDoubled) ? 1 : 2;
             double secondsSinceStartDouble = Pipliz.Time.SecondsSinceStartDouble;
-            var banners = BannerTracker.GetBanners();
+            var banners = BannerTracker.GetCount();
 
             maxTimePerTick.Reset();
             maxTimePerTick.Start();
 
-            for (int i = 0; i < banners.Count; i++)
+            for (int i = 0; i < banners; i++)
             {
                 if (maxTimePerTick.Elapsed.TotalMilliseconds > MonsterVariables.MSPerTick)
                     break;
 
-                Banner valueAtIndex = banners.GetValueAtIndex(i);
-                var ps = PlayerState.GetPlayerState(valueAtIndex.Owner);
+                if (BannerTracker.TryGetAtIndex(i, out var banner))
+                {
+                    var ps = PlayerState.GetPlayerState(banner.Owner);
 
-                if (ps.MonstersEnabled)
-                    SpawnForBanner(valueAtIndex, flag, num, secondsSinceStartDouble, false, null);
+                    if (ps.MonstersEnabled)
+                        SpawnForBanner(banner, flag, num, secondsSinceStartDouble, false, null);
+                }
             }
 
             maxTimePerTick.Stop();

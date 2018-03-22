@@ -25,7 +25,6 @@ namespace Pandaros.Settlers.Items.Healing
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }
 
@@ -37,6 +36,10 @@ namespace Pandaros.Settlers.Items.Healing
             var node = new JSONNode();
             node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/Anitbiotic.png");
             node["isPlaceable"] = new JSONNode(false);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("medicine"));
+            node.SetAs("categories", categories);
 
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);

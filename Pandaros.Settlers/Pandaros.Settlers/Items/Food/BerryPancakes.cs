@@ -24,7 +24,6 @@ namespace Pandaros.Settlers.Items.Food
                                     new InventoryItem(Item.ItemIndex, 2),
                                     50);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddDefaultLimitTypeRecipe(ItemFactory.JOB_BAKER, recipe);
         }
 
@@ -37,6 +36,10 @@ namespace Pandaros.Settlers.Items.Food
             foodNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BerryPancakes.png");
             foodNode["isPlaceable"] = new JSONNode(false);
             foodNode.SetAs("nutritionalValue", 4f);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("food"));
+            foodNode.SetAs("categories", categories);
 
             Item = new ItemTypesServer.ItemTypeRaw(foodName, foodNode);
             items.Add(foodName, Item);

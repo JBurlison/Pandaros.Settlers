@@ -86,6 +86,9 @@
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="IElementalArmor.cs" />
+    <Compile Include="IElementalDamager.cs" />
+    <Compile Include="IKillReward.cs" />
     <Compile Include="Items\AirStone.cs" />
     <Compile Include="Items\EarthStone.cs" />
     <Compile Include="Items\Void.cs" />

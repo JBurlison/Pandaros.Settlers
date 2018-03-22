@@ -492,7 +492,6 @@ namespace Pandaros.Settlers.Items
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5, false, -100);
 
-                //ItemTypesServer.LoadSortOrder(a.Value.ItemType.name, GameLoader.GetNextItemSortIndex());
                 RecipeStorage.AddOptionalLimitTypeRecipe(JOB_METALSMITH, recipe);
             }
         }
@@ -512,6 +511,10 @@ namespace Pandaros.Settlers.Items
                 copperHelmNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperHelm.png");
                 copperHelmNode["isPlaceable"] = new JSONNode(false);
 
+                JSONNode categories = new JSONNode(NodeType.Array);
+                categories.AddToArray(new JSONNode("armor"));
+                copperHelmNode.SetAs("categories", categories);
+
                 var copperHelm = new ItemTypesServer.ItemTypeRaw(copperHelmName, copperHelmNode);
                 items.Add(copperHelmName, copperHelm);
                 ArmorLookup.Add(copperHelm.ItemIndex, new ArmorMetadata(0.05f, 15, MetalType.Copper, copperHelm, ArmorSlot.Helm));
@@ -521,6 +524,8 @@ namespace Pandaros.Settlers.Items
                 var copperChestNode = new JSONNode();
                 copperChestNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperChest.png");
                 copperChestNode["isPlaceable"] = new JSONNode(false);
+
+                copperChestNode.SetAs("categories", categories);
 
                 var copperChest = new ItemTypesServer.ItemTypeRaw(copperChestName, copperChestNode);
                 items.Add(copperChestName, copperChest);
@@ -532,6 +537,8 @@ namespace Pandaros.Settlers.Items
                 copperGlovesNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperGloves.png");
                 copperGlovesNode["isPlaceable"] = new JSONNode(false);
 
+                copperGlovesNode.SetAs("categories", categories);
+
                 var copperGloves = new ItemTypesServer.ItemTypeRaw(copperGlovesName, copperGlovesNode);
                 items.Add(copperGlovesName, copperGloves);
                 ArmorLookup.Add(copperGloves.ItemIndex, new ArmorMetadata(0.025f, 10, MetalType.Copper, copperGloves, ArmorSlot.Gloves));
@@ -541,6 +548,8 @@ namespace Pandaros.Settlers.Items
                 var copperLegsNode = new JSONNode();
                 copperLegsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperLegs.png");
                 copperLegsNode["isPlaceable"] = new JSONNode(false);
+
+                copperLegsNode.SetAs("categories", categories);
 
                 var copperLegs = new ItemTypesServer.ItemTypeRaw(copperLegsName, copperLegsNode);
                 items.Add(copperLegsName, copperLegs);
@@ -552,6 +561,8 @@ namespace Pandaros.Settlers.Items
                 copperBootsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperBoots.png");
                 copperBootsNode["isPlaceable"] = new JSONNode(false);
 
+                copperBootsNode.SetAs("categories", categories);
+
                 var copperBoots = new ItemTypesServer.ItemTypeRaw(copperBootsName, copperBootsNode);
                 items.Add(copperBootsName, copperBoots);
                 ArmorLookup.Add(copperBoots.ItemIndex, new ArmorMetadata(0.025f, 10, MetalType.Copper, copperBoots, ArmorSlot.Boots));
@@ -561,6 +572,8 @@ namespace Pandaros.Settlers.Items
                 var copperShieldNode = new JSONNode();
                 copperShieldNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/CopperShield.png");
                 copperShieldNode["isPlaceable"] = new JSONNode(false);
+
+                copperShieldNode.SetAs("categories", categories);
 
                 var copperShield = new ItemTypesServer.ItemTypeRaw(copperShieldName, copperShieldNode);
                 items.Add(copperShieldName, copperShield);
@@ -576,6 +589,8 @@ namespace Pandaros.Settlers.Items
                 bronzeHelmNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeHelm.png");
                 bronzeHelmNode["isPlaceable"] = new JSONNode(false);
 
+                bronzeHelmNode.SetAs("categories", categories);
+
                 var bronzeHelm = new ItemTypesServer.ItemTypeRaw(bronzeHelmName, bronzeHelmNode);
                 items.Add(bronzeHelmName, bronzeHelm);
                 ArmorLookup.Add(bronzeHelm.ItemIndex, new ArmorMetadata(0.07f, 20, MetalType.Bronze, bronzeHelm, ArmorSlot.Helm));
@@ -585,6 +600,8 @@ namespace Pandaros.Settlers.Items
                 var bronzeChestNode = new JSONNode();
                 bronzeChestNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeChest.png");
                 bronzeChestNode["isPlaceable"] = new JSONNode(false);
+
+                bronzeChestNode.SetAs("categories", categories);
 
                 var bronzeChest = new ItemTypesServer.ItemTypeRaw(bronzeChestName, bronzeChestNode);
                 items.Add(bronzeChestName, bronzeChest);
@@ -596,6 +613,8 @@ namespace Pandaros.Settlers.Items
                 bronzeGlovesNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeGloves.png");
                 bronzeGlovesNode["isPlaceable"] = new JSONNode(false);
 
+                bronzeGlovesNode.SetAs("categories", categories);
+
                 var bronzeGloves = new ItemTypesServer.ItemTypeRaw(bronzeGlovesName, bronzeGlovesNode);
                 items.Add(bronzeGlovesName, bronzeGloves);
                 ArmorLookup.Add(bronzeGloves.ItemIndex, new ArmorMetadata(0.04f, 15, MetalType.Bronze, bronzeGloves, ArmorSlot.Gloves));
@@ -605,6 +624,8 @@ namespace Pandaros.Settlers.Items
                 var bronzeLegsNode = new JSONNode();
                 bronzeLegsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeLegs.png");
                 bronzeLegsNode["isPlaceable"] = new JSONNode(false);
+
+                bronzeLegsNode.SetAs("categories", categories);
 
                 var bronzeLegs = new ItemTypesServer.ItemTypeRaw(bronzeLegsName, bronzeLegsNode);
                 items.Add(bronzeLegsName, bronzeLegs);
@@ -616,6 +637,8 @@ namespace Pandaros.Settlers.Items
                 bronzeBootsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeBoots.png");
                 bronzeBootsNode["isPlaceable"] = new JSONNode(false);
 
+                bronzeBootsNode.SetAs("categories", categories);
+
                 var bronzeBoots = new ItemTypesServer.ItemTypeRaw(bronzeBootsName, bronzeBootsNode);
                 items.Add(bronzeBootsName, bronzeBoots);
                 ArmorLookup.Add(bronzeBoots.ItemIndex, new ArmorMetadata(0.04f, 15, MetalType.Bronze, bronzeBoots, ArmorSlot.Boots));
@@ -625,6 +648,8 @@ namespace Pandaros.Settlers.Items
                 var bronzeShieldNode = new JSONNode();
                 bronzeShieldNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BronzeShield.png");
                 bronzeShieldNode["isPlaceable"] = new JSONNode(false);
+
+                bronzeShieldNode.SetAs("categories", categories);
 
                 var bronzeShield = new ItemTypesServer.ItemTypeRaw(bronzeShieldName, bronzeShieldNode);
                 items.Add(bronzeShieldName, bronzeShield);
@@ -640,6 +665,8 @@ namespace Pandaros.Settlers.Items
                 ironHelmNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronHelm.png");
                 ironHelmNode["isPlaceable"] = new JSONNode(false);
 
+                ironHelmNode.SetAs("categories", categories);
+
                 var ironHelm = new ItemTypesServer.ItemTypeRaw(ironHelmName, ironHelmNode);
                 items.Add(ironHelmName, ironHelm);
                 ArmorLookup.Add(ironHelm.ItemIndex, new ArmorMetadata(0.09f, 30, MetalType.Iron, ironHelm, ArmorSlot.Helm));
@@ -649,6 +676,8 @@ namespace Pandaros.Settlers.Items
                 var ironChestNode = new JSONNode();
                 ironChestNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronChest.png");
                 ironChestNode["isPlaceable"] = new JSONNode(false);
+
+                ironChestNode.SetAs("categories", categories);
 
                 var ironChest = new ItemTypesServer.ItemTypeRaw(ironChestName, ironChestNode);
                 items.Add(ironChestName, ironChest);
@@ -660,6 +689,8 @@ namespace Pandaros.Settlers.Items
                 ironGlovesNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronGloves.png");
                 ironGlovesNode["isPlaceable"] = new JSONNode(false);
 
+                ironGlovesNode.SetAs("categories", categories);
+
                 var ironGloves = new ItemTypesServer.ItemTypeRaw(ironGlovesName, ironGlovesNode);
                 items.Add(ironGlovesName, ironGloves);
                 ArmorLookup.Add(ironGloves.ItemIndex, new ArmorMetadata(0.055f, 25, MetalType.Iron, ironGloves, ArmorSlot.Gloves));
@@ -669,6 +700,8 @@ namespace Pandaros.Settlers.Items
                 var ironLegsNode = new JSONNode();
                 ironLegsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronLegs.png");
                 ironLegsNode["isPlaceable"] = new JSONNode(false);
+
+                ironLegsNode.SetAs("categories", categories);
 
                 var ironLegs = new ItemTypesServer.ItemTypeRaw(ironLegsName, ironLegsNode);
                 items.Add(ironLegsName, ironLegs);
@@ -680,6 +713,8 @@ namespace Pandaros.Settlers.Items
                 ironBootsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronBoots.png");
                 ironBootsNode["isPlaceable"] = new JSONNode(false);
 
+                ironBootsNode.SetAs("categories", categories);
+
                 var ironBoots = new ItemTypesServer.ItemTypeRaw(ironBootsName, ironBootsNode);
                 items.Add(ironBootsName, ironBoots);
                 ArmorLookup.Add(ironBoots.ItemIndex, new ArmorMetadata(0.055f, 25, MetalType.Iron, ironBoots, ArmorSlot.Boots));
@@ -689,6 +724,8 @@ namespace Pandaros.Settlers.Items
                 var ironShieldNode = new JSONNode();
                 ironShieldNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/IronShield.png");
                 ironShieldNode["isPlaceable"] = new JSONNode(false);
+
+                ironShieldNode.SetAs("categories", categories);
 
                 var ironShield = new ItemTypesServer.ItemTypeRaw(ironShieldName, ironShieldNode);
                 items.Add(ironShieldName, ironShield);
@@ -704,6 +741,8 @@ namespace Pandaros.Settlers.Items
                 steelHelmNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelHelm.png");
                 steelHelmNode["isPlaceable"] = new JSONNode(false);
 
+                steelHelmNode.SetAs("categories", categories);
+
                 var steelHelm = new ItemTypesServer.ItemTypeRaw(steelHelmName, steelHelmNode);
                 items.Add(steelHelmName, steelHelm);
                 ArmorLookup.Add(steelHelm.ItemIndex, new ArmorMetadata(0.11f, 40, MetalType.Steel, steelHelm, ArmorSlot.Helm));
@@ -713,6 +752,8 @@ namespace Pandaros.Settlers.Items
                 var steelChestNode = new JSONNode();
                 steelChestNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelChest.png");
                 steelChestNode["isPlaceable"] = new JSONNode(false);
+
+                steelChestNode.SetAs("categories", categories);
 
                 var steelChest = new ItemTypesServer.ItemTypeRaw(steelChestName, steelChestNode);
                 items.Add(steelChestName, steelChest);
@@ -724,6 +765,8 @@ namespace Pandaros.Settlers.Items
                 steelGlovesNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelGloves.png");
                 steelGlovesNode["isPlaceable"] = new JSONNode(false);
 
+                steelGlovesNode.SetAs("categories", categories);
+
                 var steelGloves = new ItemTypesServer.ItemTypeRaw(steelGlovesName, steelGlovesNode);
                 items.Add(steelGlovesName, steelGloves);
                 ArmorLookup.Add(steelGloves.ItemIndex, new ArmorMetadata(0.07f, 35, MetalType.Steel, steelGloves, ArmorSlot.Gloves));
@@ -733,6 +776,8 @@ namespace Pandaros.Settlers.Items
                 var steelLegsNode = new JSONNode();
                 steelLegsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelLegs.png");
                 steelLegsNode["isPlaceable"] = new JSONNode(false);
+
+                steelLegsNode.SetAs("categories", categories);
 
                 var steelLegs = new ItemTypesServer.ItemTypeRaw(steelLegsName, steelLegsNode);
                 items.Add(steelLegsName, steelLegs);
@@ -744,6 +789,8 @@ namespace Pandaros.Settlers.Items
                 steelBootsNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelBoots.png");
                 steelBootsNode["isPlaceable"] = new JSONNode(false);
 
+                steelBootsNode.SetAs("categories", categories);
+
                 var steelBoots = new ItemTypesServer.ItemTypeRaw(steelBootsName, steelBootsNode);
                 items.Add(steelBootsName, steelBoots);
                 ArmorLookup.Add(steelBoots.ItemIndex, new ArmorMetadata(0.07f, 35, MetalType.Steel, steelBoots, ArmorSlot.Boots));
@@ -753,6 +800,8 @@ namespace Pandaros.Settlers.Items
                 var steelShieldNode = new JSONNode();
                 steelShieldNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/SteelShield.png");
                 steelShieldNode["isPlaceable"] = new JSONNode(false);
+
+                steelShieldNode.SetAs("categories", categories);
 
                 var steelShield = new ItemTypesServer.ItemTypeRaw(steelShieldName, steelShieldNode);
                 items.Add(steelShieldName, steelShield);

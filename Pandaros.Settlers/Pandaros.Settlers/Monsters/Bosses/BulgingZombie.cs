@@ -14,6 +14,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class Bulging : Zombie, IPandaBoss
     {
+        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
+        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>();
         private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging";
         static NPCTypeMonsterSettings _mts;
@@ -87,6 +89,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public float ZombieMultiplier => 1f;
         public float ZombieHPBonus => 20;
         public Dictionary<ushort, int> KillRewards => REWARDS;
+        public Dictionary<DamageType, float> Damage => _damage;
+
+        public DamageType ElementalArmor => DamageType.Physical;
+
+        public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 
         public Bulging(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

@@ -43,8 +43,6 @@ namespace Pandaros.Settlers
         public static ushort NOAMMO_Icon { get; private set; }
         public static ushort Poisoned_Icon { get; private set; }
 
-        private static ushort _itemSortIndex = 30000;
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
@@ -324,10 +322,5 @@ namespace Pandaros.Settlers
                 gameJson[modNode.Key] = modNode.Value;
             }
         }
-
-        //public static ushort GetNextItemSortIndex()
-        //{
-        //    return _itemSortIndex++;
-        //}
     }
 }

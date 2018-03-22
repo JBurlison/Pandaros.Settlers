@@ -36,6 +36,12 @@ namespace Pandaros.Settlers.Items
             node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/Airstone.png");
             node["isPlaceable"] = new JSONNode(false);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("ingredient"));
+            categories.AddToArray(new JSONNode("magic"));
+            categories.AddToArray(new JSONNode("stone"));
+            node.SetAs("categories", categories);
+
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);
         }

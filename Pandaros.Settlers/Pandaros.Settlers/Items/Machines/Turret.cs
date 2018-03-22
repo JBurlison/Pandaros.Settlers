@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Turret
     {
-        public class TurretSetting
+        public class TurretSetting : IElementalDamager
         {
             public float RepairTime { get; set; }
 
@@ -37,7 +37,15 @@ namespace Pandaros.Settlers.Items.Machines
 
             public string Name { get; set; }
 
-            public float Damage { get; set; }
+            public Dictionary<DamageType, float> Damage { get; set; } = new Dictionary<DamageType, float>();
+
+            public float TotalDamage
+            {
+                get
+                {
+                    return Damage.Sum(kvp => kvp.Value);
+                }
+            }
 
             public int Range { get; set; }
 
@@ -182,22 +190,24 @@ namespace Pandaros.Settlers.Items.Machines
 
                         if (machineState.Load > 0)
                         {
-                            var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                            var totalDamage = TurretSettings[machineState.MachineType].TotalDamage;
+
+                            var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
 
                             if (monster == null)
-                                monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                                monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
 
                             if (monster == null)
-                                MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                                monster = MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
 
                             if (monster == null)
-                                MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                                monster = MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
 
                             if (monster == null)
-                                MonsterTracker.Find(machineState.Position.Add(0, 0, 1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                                monster = MonsterTracker.Find(machineState.Position.Add(0, 0, 1), TurretSettings[machineState.MachineType].Range, totalDamage);
 
                             if (monster == null)
-                                MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, TurretSettings[machineState.MachineType].Damage);
+                                monster = MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, totalDamage);
 
                             if (monster != null)
                             {
@@ -214,7 +224,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     ServerManager.SendAudio(monster.PositionToAimFor, TurretSettings[machineState.MachineType].OnHitAudio);
 
                                 TurretSettings[machineState.MachineType].ProjectileAnimation.SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
-                                monster.OnHit(TurretSettings[machineState.MachineType].Damage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);
+                                monster.OnHit(totalDamage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);
                             }
                         }
 
@@ -289,12 +299,6 @@ namespace Pandaros.Settlers.Items.Machines
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
 
-
-            //ItemTypesServer.LoadSortOrder(STONE_NAMESPACE, GameLoader.GetNextItemSortIndex());
-            //ItemTypesServer.LoadSortOrder(BRONZEARROW_NAMESPACE, GameLoader.GetNextItemSortIndex());
-            //ItemTypesServer.LoadSortOrder(CROSSBOW_NAMESPACE, GameLoader.GetNextItemSortIndex());
-            //ItemTypesServer.LoadSortOrder(MATCHLOCK_NAMESPACE, GameLoader.GetNextItemSortIndex());
-
             foreach (var turret in TurretSettings)
                 MachineManager.RegisterMachineType(turret.Key, new MachineManager.MachineSettings(turret.Value.TurretItem.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, turret.Value.RepairTime, turret.Value.RefuelTime, turret.Value.ReloadTime, turret.Value.WorkTime));
         }
@@ -306,7 +310,6 @@ namespace Pandaros.Settlers.Items.Machines
                 TurretItem = TurretTypes[STONE],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.SlingBullet) },
                 AmmoValue = 0.04f,
-                Damage = 50f,
                 DurabilityPerDoWork = 0.005f,
                 FuelPerDoWork = 0.003f,
                 Name = STONE,
@@ -326,6 +329,7 @@ namespace Pandaros.Settlers.Items.Machines
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.SLINGBULLET]
             };
+            turretSettings.Damage[DamageType.Physical] = 50;
 
             TurretSettings[STONE] = turretSettings;
         }
@@ -337,7 +341,6 @@ namespace Pandaros.Settlers.Items.Machines
                 TurretItem = TurretTypes[BRONZEARROW],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.BronzeArrow) },
                 AmmoValue = 0.04f,
-                Damage = 100f,
                 DurabilityPerDoWork = 0.003f,
                 FuelPerDoWork = 0.01f,
                 Name = BRONZEARROW,
@@ -357,6 +360,7 @@ namespace Pandaros.Settlers.Items.Machines
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.ARROW]
             };
+            turretSettings.Damage[DamageType.Physical] = 100;
 
             TurretSettings[BRONZEARROW] = turretSettings;
         }
@@ -368,7 +372,6 @@ namespace Pandaros.Settlers.Items.Machines
                 TurretItem = TurretTypes[CROSSBOW],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.CrossbowBolt) },
                 AmmoValue = 0.04f,
-                Damage = 300f,
                 DurabilityPerDoWork = 0.005f,
                 FuelPerDoWork = 0.02f,
                 Name = CROSSBOW,
@@ -388,6 +391,7 @@ namespace Pandaros.Settlers.Items.Machines
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.CROSSBOWBOLT]
             };
+            turretSettings.Damage[DamageType.Physical] = 300;
 
             TurretSettings[CROSSBOW] = turretSettings;
         }
@@ -400,7 +404,6 @@ namespace Pandaros.Settlers.Items.Machines
                 TurretItem = TurretTypes[MATCHLOCK],
                 Ammo = new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.LeadBullet), new InventoryItem(BuiltinBlocks.GunpowderPouch) },
                 AmmoValue = 0.04f,
-                Damage = 500f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = MATCHLOCK,
@@ -420,6 +423,7 @@ namespace Pandaros.Settlers.Items.Machines
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
             };
+            turretSettings.Damage[DamageType.Physical] = 500;
 
             TurretSettings[MATCHLOCK] = turretSettings;
         }
@@ -482,6 +486,11 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("sidez-", STONE_NAMESPACE + "sides")
               .SetAs("npcLimit", 0);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            categories.AddToArray(new JSONNode("turret"));
+            turretNode.SetAs("categories", categories);
+
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
             TurretTypes[STONE] = item;
             items.Add(turretName, item);
@@ -503,6 +512,11 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("sidez+", BRONZEARROW_NAMESPACE + "sides")
               .SetAs("sidez-", BRONZEARROW_NAMESPACE + "sides")
               .SetAs("npcLimit", 0);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            categories.AddToArray(new JSONNode("turret"));
+            turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
             TurretTypes[BRONZEARROW] = item;
@@ -526,6 +540,11 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("sidez-", CROSSBOW_NAMESPACE + "sides")
               .SetAs("npcLimit", 0);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            categories.AddToArray(new JSONNode("turret"));
+            turretNode.SetAs("categories", categories);
+
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
             TurretTypes[CROSSBOW] = item;
             items.Add(turretName, item);
@@ -547,6 +566,11 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("sidez+", MATCHLOCK_NAMESPACE + "sides")
               .SetAs("sidez-", MATCHLOCK_NAMESPACE + "sides")
               .SetAs("npcLimit", 0);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            categories.AddToArray(new JSONNode("turret"));
+            turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
             TurretTypes[MATCHLOCK] = item;

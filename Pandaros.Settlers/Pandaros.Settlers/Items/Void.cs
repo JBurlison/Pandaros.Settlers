@@ -21,6 +21,11 @@ namespace Pandaros.Settlers.Items
             node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/void.png");
             node["isPlaceable"] = new JSONNode(false);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("ingredient"));
+            categories.AddToArray(new JSONNode("magic"));
+            node.SetAs("categories", categories);
+
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);
         }
@@ -31,7 +36,7 @@ namespace Pandaros.Settlers.Items
             if (recipe.Name == Elementium.Item.name && job.NPC != null)
             {
                 var inv = Entities.SettlerInventory.GetSettlerInventory(job.NPC);
-                var chance = 0.05f;
+                var chance = 0.03f;
 
                 if (inv.JobSkills.ContainsKey(Jobs.ApothecaryRegister.JOB_NAME))
                     chance += inv.JobSkills[Jobs.ApothecaryRegister.JOB_NAME];
@@ -39,7 +44,7 @@ namespace Pandaros.Settlers.Items
                 if (Pipliz.Random.NextFloat() <= chance)
                 {
                     results.Add(new InventoryItem(Item.ItemIndex));
-                    PandaChat.Send(job.NPC.Colony.Owner, $"{inv.SettlerName} the Apothecary has descovered a Void Stone while crafting Elementium!", ChatColor.purple);
+                    PandaChat.Send(job.NPC.Colony.Owner, $"{inv.SettlerName} the Apothecary has discovered a Void Stone while crafting Elementium!", ChatColor.orange);
                 }
             }
         }

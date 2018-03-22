@@ -82,7 +82,6 @@ namespace Pandaros.Settlers.Items.Machines
                 TurretItem = Turret.TurretTypes[AIRTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(AirStone.Item.ItemIndex) },
                 AmmoValue = 0.20f,
-                Damage = 500f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = AIRTURRET,
@@ -102,6 +101,8 @@ namespace Pandaros.Settlers.Items.Machines
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
             };
+            turretSettings.Damage[DamageType.Air] = 250;
+            turretSettings.Damage[DamageType.Physical] = 100;
 
             Turret.TurretSettings[AIRTURRET] = turretSettings;
         }
@@ -122,6 +123,11 @@ namespace Pandaros.Settlers.Items.Machines
               .SetAs("sidez+", AIRTURRET_NAMESPACE + "sides")
               .SetAs("sidez-", AIRTURRET_NAMESPACE + "sides")
               .SetAs("npcLimit", 0);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            categories.AddToArray(new JSONNode("turret"));
+            turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
             Turret.TurretTypes[AIRTURRET] = item;

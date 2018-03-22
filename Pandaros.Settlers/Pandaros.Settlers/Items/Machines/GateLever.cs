@@ -375,8 +375,6 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(GateItem.ItemIndex),
                                     24);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
-            //ItemTypesServer.LoadSortOrder(GateItem.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, gate);
         }
 
@@ -408,6 +406,11 @@ namespace Pandaros.Settlers.Items.Machines
             GateLeverNode.SetAs("sideall", GameLoader.NAMESPACE + ".GateLever");
             GateLeverNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/Lever.obj");
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            categories.AddToArray(new JSONNode("gate"));
+            GateLeverNode.SetAs("categories", categories);
+
             Item = new ItemTypesServer.ItemTypeRaw(GateLeverName, GateLeverNode);
             items.Add(GateLeverName, Item);
 
@@ -430,6 +433,11 @@ namespace Pandaros.Settlers.Items.Machines
                     .SetAs<string>("rotatablex-", GateXminusName)
                     .SetAs<string>("rotatablez+", GateZminusName)
                     .SetAs<string>("rotatablez-", GateZplusName);
+
+            JSONNode gateCategories = new JSONNode(NodeType.Array);
+            gateCategories.AddToArray(new JSONNode("machine"));
+            gateCategories.AddToArray(new JSONNode("gate"));
+            GateNode.SetAs("categories", gateCategories);
 
             GateItem = new ItemTypesServer.ItemTypeRaw(GateName, GateNode);
             items.Add(GateName, GateItem);

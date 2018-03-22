@@ -14,6 +14,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class Juggernaut : Zombie, IPandaBoss
     {
+        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
+        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>();
         private float _totalHealth = 40000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut";
         static NPCTypeMonsterSettings _mts;
@@ -61,6 +63,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public float ZombieHPBonus => 50;
 
         public Dictionary<ushort, int> KillRewards => REWARDS;
+        public Dictionary<DamageType, float> Damage => _damage;
+
+        public DamageType ElementalArmor => DamageType.Physical;
+
+        public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 
         public Juggernaut(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

@@ -40,7 +40,6 @@ namespace Pandaros.Settlers.Items
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }
 
@@ -55,6 +54,11 @@ namespace Pandaros.Settlers.Items
             node["maxStackSize"] = new JSONNode(10);
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("tool"));
+            categories.AddToArray(new JSONNode("magic"));
+            node.SetAs("categories", categories);
 
             var seclectorName = GameLoader.NAMESPACE + ".AutoLoad.Selector";
             var selector = new JSONNode();

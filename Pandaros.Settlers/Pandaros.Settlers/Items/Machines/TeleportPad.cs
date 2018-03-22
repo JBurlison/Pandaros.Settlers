@@ -177,7 +177,6 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     6);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
@@ -204,6 +203,10 @@ namespace Pandaros.Settlers.Items.Machines
             TeleportPadNode.SetAs("isSolid", false);
             TeleportPadNode.SetAs("sideall", "SELF");
             TeleportPadNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/TeleportPad.obj");
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("machine"));
+            TeleportPadNode.SetAs("categories", categories);
 
             var TeleportPadCollidersNode = new JSONNode(NodeType.Array);
             TeleportPadCollidersNode.AddToArray(new JSONNode("{-0.5, -0.5, -0.5}, {0.5, -0.3, 0.5}"));
