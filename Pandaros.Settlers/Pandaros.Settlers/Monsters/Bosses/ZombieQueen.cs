@@ -103,7 +103,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var c = Colony.Get(ps.Player);
                 List<IMonster> alreadyTeleported = new List<IMonster>();
 
-                for (int i = 0; i < ps.Difficulty.Rank; i++)
+                for (int i = 0; i < ps.Difficulty.Rank - 1; i++)
                 {
                     var monster = MonsterTracker.Find(position, 20, ps.Difficulty.ZombieQueenTargetTeleportHp);
                     var zombie = monster as Zombie;
