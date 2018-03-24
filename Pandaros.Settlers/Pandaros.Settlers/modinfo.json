@@ -31,7 +31,10 @@
           "Zombie Queen now teleports one less monster. The number of monsters teleported is based on difficulty. For example: Medium went from 3 to 2 monsters per teleport cool down.",
           "2 new bosses added: Fallen Ranger: Has a ranged bow attack. Tinker: Destroys machines, extremely low punching damage.",
           "New Epic bosses. Spawn after your colony reaches 500 colonists.  Void Knight: Void armored, has lance that can reach 2 blocks that is laced with void damage. Void Mage: AoE Void fire attacks.",
-          "Fixed monster spawner. No longer spawns twice as many zombies during bosses."
+          "Fixed monster spawner. No longer spawns twice as many zombies during bosses.",
+          "Bosses will no longer die if you block their path. They will teleport to the next valid position in their path to prevent cheesing bosses via path blocking.",
+          "Fixed bug where turrets would not shoot from all sides.",
+          "Fixed bug where builders wand could not build on one side in horizontal mode."
         ]
       }
     ]

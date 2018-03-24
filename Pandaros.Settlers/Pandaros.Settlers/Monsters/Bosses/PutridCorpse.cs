@@ -13,7 +13,7 @@ using UnityEngine;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class PutridCorpse : Zombie, IPandaBoss
+    public class PutridCorpse : PandaZombie, IPandaBoss
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {

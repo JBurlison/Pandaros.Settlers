@@ -12,7 +12,7 @@ using System.Text;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class Bulging : Zombie, IPandaBoss
+    public class Bulging : PandaZombie, IPandaBoss
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {

@@ -7,6 +7,7 @@ namespace Pandaros.Settlers.Research
 {
     public static class ColonyBuiltIn
     {
+        public const string ARCHERY = "pipliz.baseresearch.archery";
         public const string BannerRadius1 = "pipliz.baseresearch.bannerradius1";
         public const string BannerRadius2 = "pipliz.baseresearch.bannerradius2";
         public const string BannerRadius3 = "pipliz.baseresearch.bannerradius3";

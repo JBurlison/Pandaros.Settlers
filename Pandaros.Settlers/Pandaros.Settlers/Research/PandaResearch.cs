@@ -498,6 +498,11 @@ namespace Pandaros.Settlers.Research
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.FireStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.WaterStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.AirStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.AIRTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.FIRETURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.EARTHTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.WATERTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.VOIDTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
         }
 
         private static void AddBuildersWandResearch(Dictionary<ushort, int> researchDic)
@@ -617,7 +622,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.TailorShop
+                ColonyBuiltIn.ARCHERY
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedBow, .05f, requirements);
@@ -652,7 +657,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.CrossBowBolt
+                ColonyBuiltIn.CrossBow
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .05f, requirements);
@@ -738,13 +743,15 @@ namespace Pandaros.Settlers.Research
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Miner.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.GateLever.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.GateLever.GateItem.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.BRONZEARROW_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.STONE_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.CROSSBOW_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.MATCHLOCK_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.AdvancedCrafterRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
             RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.MachinistRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
             RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.MachinistRegister.JOB_RECIPE);
             RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.AdvancedCrafterRegister.JOB_RECIPE);
 
-            foreach (var item in Items.Machines.Turret.TurretSettings)
-                RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.Value.TurretItem.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
         }
 
         private static void AddImprovedDuarability(Dictionary<ushort, int> researchDic)

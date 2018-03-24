@@ -113,5 +113,36 @@ namespace Pandaros.Settlers
             int j = Array.IndexOf<T>(Arr, src) + 1;
             return (Arr.Length == j) ? Arr[0] : Arr[j];
         }
+
+        public static T CallAndReturn<T>(this object o, string methodName, params object[] args)
+        {
+            var retVal = default(T);
+            var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+            if (mi != null)
+                retVal = (T)mi.Invoke(o, args);
+
+            return retVal;
+        }
+
+        public static object Call(this object o, string methodName, params object[] args)
+        {
+            var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (mi != null)
+            {
+                return mi.Invoke(o, args);
+            }
+            return null;
+        }
+
+        public static rT GetFieldValue<rT, oT>(this object o, string fieldName)
+        {
+            return (rT)typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o);
+        }
+
+        public static void SetFieldValue<oT>(this object o, string fieldName, object fieldValue)
+        {
+            typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
+        }
     }
 }
