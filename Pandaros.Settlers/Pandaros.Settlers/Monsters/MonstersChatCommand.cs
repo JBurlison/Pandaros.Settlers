@@ -39,6 +39,7 @@ namespace Pandaros.Settlers.Monsters
                 else
                 {
                     state.MonstersEnabled = false;
+                    Server.Monsters.MonsterTracker.KillAllZombies(player);
                     PandaChat.Send(player, "Settlers! Mod Monsters are now off.", ChatColor.green);
                 }
             }

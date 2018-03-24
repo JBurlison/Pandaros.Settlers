@@ -39,14 +39,19 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
-            itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, new JSONNode()
+            var item = new JSONNode()
               .SetAs("icon", Path.Combine(GameLoader.ICON_FOLDER_PANDA, "AdvancedCraftingTable.png"))
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", "planks")
               .SetAs("sidey+", GameLoader.NAMESPACE + "AdvancedCraftingTableTop")
-              .SetAs("npcLimit", 0)
-            ));
+              .SetAs("npcLimit", 0);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("job"));
+            item.SetAs("categories", categories);
+
+            itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]

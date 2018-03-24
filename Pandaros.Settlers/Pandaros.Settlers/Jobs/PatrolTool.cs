@@ -36,8 +36,6 @@ namespace Pandaros.Settlers.Jobs
                                     new InventoryItem(PatrolFlag.ItemIndex, 2),
                                     5);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
-            //ItemTypesServer.LoadSortOrder(PatrolFlag.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }
 
@@ -60,6 +58,10 @@ namespace Pandaros.Settlers.Jobs
             patrolToolNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/KnightPatrolTool.png");
             patrolToolNode["isPlaceable"] = new JSONNode(false);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("job"));
+            patrolToolNode.SetAs("categories", categories);
+
             Item = new ItemTypesServer.ItemTypeRaw(patrolToolName, patrolToolNode);
             items.Add(patrolToolName, Item);
 
@@ -71,6 +73,10 @@ namespace Pandaros.Settlers.Jobs
             patrolFlagNode.SetAs("isSolid", false);
             patrolFlagNode.SetAs("sideall", "SELF");
             patrolFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/PatrolFlag.obj");
+
+            JSONNode patrolFlagCategories = new JSONNode(NodeType.Array);
+            patrolFlagCategories.AddToArray(new JSONNode("job"));
+            patrolFlagNode.SetAs("categories", patrolFlagCategories);
 
             PatrolFlag = new ItemTypesServer.ItemTypeRaw(patrolFlagName, patrolFlagNode);
             items.Add(patrolFlagName, PatrolFlag);

@@ -18,23 +18,25 @@ using UnityEngine;
 namespace Pandaros.Settlers.Monsters
 {
     [ModLoader.ModManager]
-    public class PandaMonsterSpawner : MonsterSpawner
+    public class PandaMonsterSpawner : IMonsterSpawner
     {
-        private Stopwatch maxTimePerTick = new Stopwatch();
-        public static Variables MonsterVariables { get; private set; } = new Variables();
+        private Stopwatch _maxTimePerTick = new Stopwatch();
         private static double siegeModeCooldown = 3.0;
+        public static MonsterSpawner.Variables MonsterVariables { get; private set; } = new MonsterSpawner.Variables();
         public static PandaMonsterSpawner Instance { get; private set; }
-
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterNetworkSetup, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad")]
+        public static MonsterSpawner MonsterSpawnerInstance { get; private set; }
+        
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad"),
+            ModLoader.ModCallbackDependsOn("pipliz.server.monsterspawner.register")]
         private static void AfterWorldLoad()
         {
             Instance = new PandaMonsterSpawner();
+            MonsterSpawnerInstance = MonsterTracker.MonsterSpawner as MonsterSpawner;
             MonsterTracker.MonsterSpawner = Instance;
             PandaLogger.Log("PandaMonsterSpawner Initialized!");
         }
 
-        new public void Update()
+        public void Update()
         {
             if (!World.Initialized || 
                 !ServerManager.WorldSettings.ZombiesEnabled || 
@@ -49,12 +51,12 @@ namespace Pandaros.Settlers.Monsters
             double secondsSinceStartDouble = Pipliz.Time.SecondsSinceStartDouble;
             var banners = BannerTracker.GetCount();
 
-            maxTimePerTick.Reset();
-            maxTimePerTick.Start();
+            _maxTimePerTick.Reset();
+            _maxTimePerTick.Start();
 
             for (int i = 0; i < banners; i++)
             {
-                if (maxTimePerTick.Elapsed.TotalMilliseconds > MonsterVariables.MSPerTick)
+                if (_maxTimePerTick.Elapsed.TotalMilliseconds > MonsterVariables.MSPerTick)
                     break;
 
                 if (BannerTracker.TryGetAtIndex(i, out var banner))
@@ -66,20 +68,18 @@ namespace Pandaros.Settlers.Monsters
                 }
             }
 
-            maxTimePerTick.Stop();
+            _maxTimePerTick.Stop();
         }
         
         public void SpawnForBanner(Banner valueAtIndex, bool flag, float num, double secondsSinceStartDouble, bool force, IPandaBoss boss)
         {
-            var ps = PlayerState.GetPlayerState(valueAtIndex.Owner);
-
             if (valueAtIndex != null && valueAtIndex.KeyLocation.IsValid)
             {
                 Colony colony = Colony.Get(valueAtIndex.Owner);
 
                 if (flag)
                 {
-                    float num2 = GetMaxZombieCount(colony.FollowerCount) * num;
+                    float num2 = MonsterSpawnerInstance.GetMaxZombieCount(colony.FollowerCount) * num;
 
                     if (num2 > 0f)
                     {
@@ -108,14 +108,14 @@ namespace Pandaros.Settlers.Monsters
             }
         }
 
-        new public static void SpawnZombie(Colony colony, Banner bannerGoal)
+        public static void SpawnZombie(Colony colony, Banner bannerGoal)
         {
             CaclulateZombie(colony, bannerGoal, null);
         }
 
         public static void CaclulateZombie(Colony colony, Banner bannerGoal, IPandaBoss boss, bool force = false)
         {
-            NPCType typeToSpawn = GetTypeToSpawn((float)colony.FollowerCount);
+            NPCType typeToSpawn = MonsterSpawner.GetTypeToSpawn((float)colony.FollowerCount);
             float maxSpawnWalkDistance = 500f;
 
             if (force || TimeCycle.ShouldSpawnMonsters)

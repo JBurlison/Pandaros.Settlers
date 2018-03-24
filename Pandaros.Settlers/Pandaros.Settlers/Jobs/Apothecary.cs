@@ -38,13 +38,18 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
-            itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, new JSONNode()
+            var item = new JSONNode()
               .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "ApothecaryTable.png"))
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", GameLoader.NAMESPACE + "ApothecaryTable")
-              .SetAs("npcLimit", 0)
-            ));
+              .SetAs("npcLimit", 0);
+
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("job"));
+            item.SetAs("categories", categories);
+
+            itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterWorldLoad")]
