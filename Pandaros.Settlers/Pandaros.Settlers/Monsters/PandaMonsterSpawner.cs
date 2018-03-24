@@ -26,8 +26,7 @@ namespace Pandaros.Settlers.Monsters
         public static PandaMonsterSpawner Instance { get; private set; }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad"),
-            ModLoader.ModCallbackDependsOn("pipliz.server.monsterspawner.register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterNetworkSetup, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad")]
         private static void AfterWorldLoad()
         {
             Instance = new PandaMonsterSpawner();
@@ -35,7 +34,7 @@ namespace Pandaros.Settlers.Monsters
             PandaLogger.Log("PandaMonsterSpawner Initialized!");
         }
 
-        public new void Update()
+        new public void Update()
         {
             if (!World.Initialized || 
                 !ServerManager.WorldSettings.ZombiesEnabled || 
@@ -61,7 +60,7 @@ namespace Pandaros.Settlers.Monsters
                 if (BannerTracker.TryGetAtIndex(i, out var banner))
                 {
                     var ps = PlayerState.GetPlayerState(banner.Owner);
-
+                    
                     if (ps.MonstersEnabled)
                         SpawnForBanner(banner, flag, num, secondsSinceStartDouble, false, null);
                 }
@@ -72,6 +71,8 @@ namespace Pandaros.Settlers.Monsters
         
         public void SpawnForBanner(Banner valueAtIndex, bool flag, float num, double secondsSinceStartDouble, bool force, IPandaBoss boss)
         {
+            var ps = PlayerState.GetPlayerState(valueAtIndex.Owner);
+
             if (valueAtIndex != null && valueAtIndex.KeyLocation.IsValid)
             {
                 Colony colony = Colony.Get(valueAtIndex.Owner);

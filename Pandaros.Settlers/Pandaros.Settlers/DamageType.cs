@@ -12,7 +12,7 @@ namespace Pandaros.Settlers
         Air,
         Fire,
         Water,
-        Champion
+        Void
     }
 
     public static class DamageTypeExtentions
@@ -110,7 +110,7 @@ namespace Pandaros.Settlers
                 case DamageType.Physical:
                     switch (monsterType)
                     {
-                        case DamageType.Champion:
+                        case DamageType.Void:
                             multiplier = 0;
                             break;
                     }

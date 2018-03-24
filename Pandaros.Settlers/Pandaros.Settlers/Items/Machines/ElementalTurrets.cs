@@ -107,7 +107,7 @@ namespace Pandaros.Settlers.Items.Machines
             Turret.TurretSettings[AIRTURRET] = turretSettings;
         }
 
-        private static void AddStoneTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        private static void AddAirTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var turretName = AIRTURRET_NAMESPACE;
             var turretNode = new JSONNode()

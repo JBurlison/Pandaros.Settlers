@@ -15,8 +15,17 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class PutridCorpse : Zombie, IPandaBoss
     {
-        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
-        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>();
+        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Void, 25f },
+            { DamageType.Physical, 50f }
+        };
+
+        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Physical, 0.15f }
+        };
+
         int _nextBossUpdateTime = int.MinValue;
         private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse";
@@ -71,7 +80,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public Dictionary<ushort, int> KillRewards => REWARDS;
         public Dictionary<DamageType, float> Damage => _damage;
 
-        public DamageType ElementalArmor => DamageType.Physical;
+        public DamageType ElementalArmor => DamageType.Earth;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 

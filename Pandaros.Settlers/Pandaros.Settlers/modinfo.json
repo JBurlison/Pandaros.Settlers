@@ -13,7 +13,7 @@
       {
         "version": "0.8.0.0",
         "notes": [
-          "Zombies can now be disabled be disabled with the /monsters [off|on] command",
+          "Zombies can now be disabled with the /monsters [off|on] command.",
           "Bosses no longer have max HP. They will scale fully based on difficulty and number of colonists.",
           "New research added: Elementium, craftable by the Apothecary. Elementium is the base metal for magical items and stones.",
           "New elemental stones added for magic: Earth, Air, Fire, Water and Void, these are used as reagents and ammo for magic attacks.",
@@ -21,14 +21,14 @@
           "Added Skilled labor researchables. Skilled labor add additional chance for rare items to be crafted. (most rare items are a by-product of a item being crafted with a drop rate of 3% base)",
           "Added Elemental Turrets.",
           "Bosses now have different elemental armors along with additional physical resistance.",
-          "Zombies base HP will now scale with colonies that are 500+ colonists big.",
+          "Zombies base HP will now scale with colonies that are larger than 500 colonists.",
           "Knight base damage reduction increased from 65% to 75%.",
           "Added items to /lootall command.",
-          "Turrets now shoot slower than normal guards, but continue to do the same ammount of damage.",
-          "Magic items can be crafted and given to Colonists by right clicking on them, the magic item tool can be used to remove the item from a colonist. If the colonist dies, the item loses its magic. Colonists can only carry one magic item",
+          "Turrets now shoot slower than normal guards, but continue to do the same amount of damage.",
+          "Magic items can be crafted and given to Colonists by right clicking on them, the magic item tool can be used to remove the item from a colonist. If the colonist dies, the item loses its magic. Colonists can only carry one magic item.",
           "Magical totems can be carried in a players inventory to gain its effects. These effects stack.",
           "Bosses that move slower have had their HP buffed 25%.",
-          "Zombie Queen now teleports one less monster. The number of monsters teleported is based on difficulty. For example: Medum went from 3 to 2 monsters per teleport cooldown.",
+          "Zombie Queen now teleports one less monster. The number of monsters teleported is based on difficulty. For example: Medium went from 3 to 2 monsters per teleport cool down.",
           "2 new bosses added: Fallen Ranger: Has a ranged bow attack. Tinker: Destroys machines, extremely low punching damage.",
           "New Epic bosses. Spawn after your colony reaches 500 colonists.  Void Knight: Void armored, has lance that can reach 2 blocks that is laced with void damage. Void Mage: AoE Void fire attacks."
         ]

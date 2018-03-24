@@ -14,8 +14,17 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class Hoarder : Zombie, IPandaBoss
     {
-        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
-        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>();
+        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Void, 10f },
+            { DamageType.Physical, 10f }
+        };
+
+        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Physical, 0.15f }
+        };
+
         private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder";
         static NPCTypeMonsterSettings _mts;
@@ -69,7 +78,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public Dictionary<ushort, int> KillRewards => REWARDS;
         public Dictionary<DamageType, float> Damage => _damage;
 
-        public DamageType ElementalArmor => DamageType.Physical;
+        public DamageType ElementalArmor => DamageType.Water;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 

@@ -15,8 +15,16 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class ZombieQueen : Zombie, IPandaBoss
     {
-        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
-        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>();
+        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Void, 25f },
+            { DamageType.Physical, 55f }
+        };
+
+        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
+        {
+
+        };
 
         private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen";
@@ -76,7 +84,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public Dictionary<DamageType, float> Damage => _damage;
 
-        public DamageType ElementalArmor => DamageType.Physical;
+        public DamageType ElementalArmor => DamageType.Water;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 

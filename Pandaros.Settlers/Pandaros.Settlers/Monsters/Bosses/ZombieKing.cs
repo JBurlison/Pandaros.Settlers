@@ -14,8 +14,17 @@ namespace Pandaros.Settlers.Monsters.Bosses
     [ModLoader.ModManager]
     public class ZombieKing : Zombie, IPandaBoss
     {
-        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
-        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>();
+        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Void, 30f },
+            { DamageType.Physical, 50f }
+        };
+
+        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
+        {
+            { DamageType.Physical, 0.2f }
+        };
+
         private float _totalHealth = 20000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieKing";
         static NPCTypeMonsterSettings _mts;
@@ -70,7 +79,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public float ZombieHPBonus => 150;
         public Dictionary<DamageType, float> Damage => _damage;
 
-        public DamageType ElementalArmor => DamageType.Physical;
+        public DamageType ElementalArmor => DamageType.Fire;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 
