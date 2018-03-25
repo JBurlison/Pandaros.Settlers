@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Items.Healing
             if (boxedData.item1.clickType == Shared.PlayerClickedData.ClickType.Right &&
                 boxedData.item1.typeSelected == Item.ItemIndex)
             {
-                if (TimeCycle.TotalTime > _coolDown[player])
+                if (Pipliz.Time.SecondsSinceStartDouble> _coolDown[player])
                 {
                     var healing = new Entities.HealingOverTimePC(player, INITIALHEAL, TOTALHOT, 5);
                     healed = true;
@@ -78,7 +78,7 @@ namespace Pandaros.Settlers.Items.Healing
             {
                 if (NPC.NPCTracker.TryGetNPC(boxedData.item1.rayCastHit.hitNPCID, out var npc))
                 {
-                    if (TimeCycle.TotalTime > _coolDown[player])
+                    if (Pipliz.Time.SecondsSinceStartDouble> _coolDown[player])
                     {
                         var heal = new Entities.HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5, Item.ItemIndex);
                         healed = true;
@@ -88,7 +88,7 @@ namespace Pandaros.Settlers.Items.Healing
 
             if (healed)
             {
-                _coolDown[player] = TimeCycle.TotalTime + COOLDOWN;
+                _coolDown[player] = Pipliz.Time.SecondsSinceStartDouble+ COOLDOWN;
                 boxedData.item1.consumedType = Shared.PlayerClickedData.ConsumedType.UsedByMod;
                 ServerManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
                 if (Inventory.TryGetInventory(player, out var inv))

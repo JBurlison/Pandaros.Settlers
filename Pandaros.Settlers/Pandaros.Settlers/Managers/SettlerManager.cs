@@ -35,8 +35,8 @@ namespace Pandaros.Settlers.Managers
         private static float _baseFoodPerHour;
         private static double _updateTime;
         private static int _idNext = 1;
-        private static double _nextLaborerTime = TimeCycle.TotalTime + Pipliz.Random.Next(2, 6);
-        private static double _nextbedTime = TimeCycle.TotalTime + Pipliz.Random.Next(1, 2);
+        private static double _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(2, 6);
+        private static double _nextbedTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(1, 2);
 
         public static List<HealingOverTimeNPC> HealingSpells { get; private set; } = new List<HealingOverTimeNPC>();
 
@@ -479,9 +479,9 @@ namespace Pandaros.Settlers.Managers
                 PlayerState state = PlayerState.GetPlayerState(p);
 
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = TimeCycle.TotalTime + Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
 
-                if (TimeCycle.TotalTime > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
+                if (Pipliz.Time.SecondsSinceStartDouble> state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
                     float chance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
                     chance += SettlerEvaluation.SpawnChance(p, colony, state);
@@ -539,7 +539,7 @@ namespace Pandaros.Settlers.Managers
                             state.HighestColonistCount = colony.FollowerCount;
                     }
 
-                    state.NextGenTime = TimeCycle.TotalTime + Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
                 }
             }
 
@@ -557,7 +557,7 @@ namespace Pandaros.Settlers.Managers
         {
             bool update = false;
 
-            if (TimeCycle.IsDay && TimeCycle.TotalTime > _nextLaborerTime)
+            if (TimeCycle.IsDay && Pipliz.Time.SecondsSinceStartDouble> _nextLaborerTime)
             {
                 if (p.IsConnected)
                 {
@@ -572,7 +572,7 @@ namespace Pandaros.Settlers.Managers
                         var tmpVals = npc.GetTempValues();
 
                         if (!tmpVals.Contains(LEAVETIME_JOB))
-                            tmpVals.Set(LEAVETIME_JOB, TimeCycle.TotalTime + LOABOROR_LEAVE_HOURS);
+                            tmpVals.Set(LEAVETIME_JOB, Pipliz.Time.SecondsSinceStartDouble+ LOABOROR_LEAVE_HOURS);
                         else if (tmpVals.Get<double>(LEAVETIME_JOB) < TimeCycle.TotalTime)
                         {
                             left++;
@@ -586,7 +586,7 @@ namespace Pandaros.Settlers.Managers
                     update = unTrack.Count != 0;
                 }
 
-                _nextLaborerTime = TimeCycle.TotalTime + Pipliz.Random.Next(2, 6);
+                _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(2, 6);
             }
 
             return update;
@@ -630,7 +630,7 @@ namespace Pandaros.Settlers.Managers
             bool update = false;
             try
             {
-                if (!TimeCycle.IsDay && TimeCycle.TotalTime > _nextbedTime)
+                if (!TimeCycle.IsDay && Pipliz.Time.SecondsSinceStartDouble> _nextbedTime)
                 {
                     if (p.IsConnected)
                     {
@@ -646,7 +646,7 @@ namespace Pandaros.Settlers.Managers
                         {
                             if (state.NeedsABed == 0)
                             {
-                                state.NeedsABed = TimeCycle.TotalTime + BED_LEAVE_HOURS;
+                                state.NeedsABed = Pipliz.Time.SecondsSinceStartDouble+ BED_LEAVE_HOURS;
                                 PandaChat.Send(p, SettlerReasoning.GetNeedBed(), ChatColor.grey);
                             }
 
@@ -672,7 +672,7 @@ namespace Pandaros.Settlers.Managers
                         }
                     }
 
-                    _nextbedTime = TimeCycle.TotalTime + Pipliz.Random.Next(1, 2);
+                    _nextbedTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(1, 2);
                 }
             }
             catch (Exception ex)
