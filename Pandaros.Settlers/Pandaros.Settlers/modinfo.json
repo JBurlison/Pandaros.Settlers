@@ -13,8 +13,8 @@
       {
         "version": "0.8.0.1",
         "notes": [
-          "Fiex settlers coming too often after reduced time is researched.",
-          "Fixed Knights erroring."
+          "Fix settlers coming too often after reduced time is researched.",
+          "Fixed Knights unable to get weapons or armor."
         ]
       },
       {
