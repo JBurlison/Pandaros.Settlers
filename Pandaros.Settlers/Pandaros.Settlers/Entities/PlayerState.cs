@@ -195,6 +195,9 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(NeedsABed), out int nb))
                     _playerStates[p].NeedsABed = nb;
 
+                if (stateNode.TryGetAs(nameof(NextGenTime), out int ngt))
+                    _playerStates[p].NextGenTime = ngt;
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
@@ -237,6 +240,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(SettlersToggledTimes), _playerStates[p].SettlersToggledTimes);
                 node.SetAs(nameof(HighestColonistCount), _playerStates[p].HighestColonistCount);
                 node.SetAs(nameof(NeedsABed), _playerStates[p].NeedsABed);
+                node.SetAs(nameof(NextGenTime), _playerStates[p].NextGenTime);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

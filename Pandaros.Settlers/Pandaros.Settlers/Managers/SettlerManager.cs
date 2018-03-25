@@ -23,7 +23,8 @@ namespace Pandaros.Settlers.Managers
         public const int MAX_BUYABLE = 10;
         public const int MIN_PERSPAWN = 5;
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
-        public const double BED_LEAVE_HOURS = 5;
+        public const int HOUR_TO_REAL_SEC = 30;
+        public static double BED_LEAVE_HOURS = HOUR_TO_REAL_SEC * 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
         private const string LEAVETIME_JOB = "LeaveTime_JOB";
         private const string LEAVETIME_BED = "LeaveTime_BED";
@@ -479,9 +480,9 @@ namespace Pandaros.Settlers.Managers
                 PlayerState state = PlayerState.GetPlayerState(p);
 
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0)) * HOUR_TO_REAL_SEC);
 
-                if (Pipliz.Time.SecondsSinceStartDouble> state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
+                if (Pipliz.Time.SecondsSinceStartDouble > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
                     float chance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SettlerChance), 0f) + state.Difficulty.AdditionalChance;
                     chance += SettlerEvaluation.SpawnChance(p, colony, state);
@@ -539,7 +540,7 @@ namespace Pandaros.Settlers.Managers
                             state.HighestColonistCount = colony.FollowerCount;
                     }
 
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0)) * HOUR_TO_REAL_SEC);
                 }
             }
 
@@ -557,7 +558,7 @@ namespace Pandaros.Settlers.Managers
         {
             bool update = false;
 
-            if (TimeCycle.IsDay && Pipliz.Time.SecondsSinceStartDouble> _nextLaborerTime)
+            if (TimeCycle.IsDay && Pipliz.Time.SecondsSinceStartDouble > _nextLaborerTime)
             {
                 if (p.IsConnected)
                 {
@@ -586,7 +587,7 @@ namespace Pandaros.Settlers.Managers
                     update = unTrack.Count != 0;
                 }
 
-                _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(2, 6);
+                _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(2, 6) * HOUR_TO_REAL_SEC);
             }
 
             return update;
@@ -628,13 +629,13 @@ namespace Pandaros.Settlers.Managers
         private static bool EvaluateBeds(Players.Player p)
         {
             bool update = false;
+
             try
             {
-                if (!TimeCycle.IsDay && Pipliz.Time.SecondsSinceStartDouble> _nextbedTime)
+                if (!TimeCycle.IsDay && Pipliz.Time.SecondsSinceStartDouble > _nextbedTime)
                 {
                     if (p.IsConnected)
                     {
-                        List<NPC.NPCBase> unTrack = new List<NPCBase>();
                         Colony colony = Colony.Get(p);
                         PlayerState state = PlayerState.GetPlayerState(p);
                         var remainingBeds = BedBlockTracker.GetCount(p) - colony.FollowerCount;
@@ -646,7 +647,7 @@ namespace Pandaros.Settlers.Managers
                         {
                             if (state.NeedsABed == 0)
                             {
-                                state.NeedsABed = Pipliz.Time.SecondsSinceStartDouble+ BED_LEAVE_HOURS;
+                                state.NeedsABed = Pipliz.Time.SecondsSinceStartDouble + BED_LEAVE_HOURS;
                                 PandaChat.Send(p, SettlerReasoning.GetNeedBed(), ChatColor.grey);
                             }
 
@@ -672,7 +673,7 @@ namespace Pandaros.Settlers.Managers
                         }
                     }
 
-                    _nextbedTime = Pipliz.Time.SecondsSinceStartDouble+ Pipliz.Random.Next(1, 2);
+                    _nextbedTime = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(60, 120);
                 }
             }
             catch (Exception ex)

@@ -2,7 +2,7 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.0.0",
+    "version": "0.8.0.1",
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
@@ -10,6 +10,13 @@
     "website": "http://www.settlersmod.com/",
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.0.1",
+        "notes": [
+          "Fiex settlers coming too often after reduced time is researched.",
+          "Fixed Knights erroring."
+        ]
+      },
       {
         "version": "0.8.0.0",
         "notes": [

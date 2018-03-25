@@ -242,8 +242,14 @@ namespace Pandaros.Settlers.Jobs
 
         public void OnNPCAtJob(ref NPCBase.NPCState state)
         {
-            if (CheckTime())
+            if (CheckTime() && UsedNPC != null)
             {
+                if (_inv == null)
+                    _inv = SettlerInventory.GetSettlerInventory(UsedNPC);
+
+                if (_stock == null)
+                    _stock = UsedNPC.Colony.UsedStockpile;
+
                 Items.Armor.GetBestArmorForNPC(_stock, _usedNPC, _inv, 0);
 
                 try
@@ -288,31 +294,51 @@ namespace Pandaros.Settlers.Jobs
 
         private bool GetBestWeapon()
         {
-            bool hasItem = !_inv.Weapon.IsEmpty();
-            Items.WeaponMetadata bestWeapon = null;
+            bool hasItem = false;
 
-            if (hasItem)
-                bestWeapon = Items.ItemFactory.WeaponLookup[_inv.Weapon.Id];
-
-            foreach (var wep in Items.ItemFactory.WeaponLookup.Values)
-                if ((_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null) ||
-                    (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null && bestWeapon.Damage < wep.Damage))
-                    bestWeapon = wep;
-
-            if ((bestWeapon != null && hasItem && _inv.Weapon.Id != bestWeapon.ItemType.ItemIndex) ||
-                (!hasItem && bestWeapon != null))
+            try
             {
-                hasItem = true;
-                _stock.TryRemove(bestWeapon.ItemType.ItemIndex);
-
-                if (!_inv.Weapon.IsEmpty())
-                    _stock.Add(_inv.Weapon.Id);
-
-                _inv.Weapon = new SettlerInventory.ArmorState()
+                if (UsedNPC != null)
                 {
-                    Id = bestWeapon.ItemType.ItemIndex,
-                    Durability = bestWeapon.Durability
-                };
+                    if (_inv == null)
+                        _inv = SettlerInventory.GetSettlerInventory(UsedNPC);
+
+                    if (_stock == null)
+                        _stock = UsedNPC.Colony.UsedStockpile;
+
+                    hasItem = !_inv.Weapon.IsEmpty();
+                    Items.WeaponMetadata bestWeapon = null;
+
+                    if (hasItem)
+                        bestWeapon = Items.ItemFactory.WeaponLookup[_inv.Weapon.Id];
+
+                    foreach (var wep in Items.ItemFactory.WeaponLookup.Values)
+                        if ((_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null) ||
+                            (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null && bestWeapon.Damage < wep.Damage))
+                            bestWeapon = wep;
+
+                    if (bestWeapon != null)
+                    {
+                        if ((hasItem && _inv.Weapon.Id != bestWeapon.ItemType.ItemIndex) || !hasItem)
+                        {
+                            hasItem = true;
+                            _stock.TryRemove(bestWeapon.ItemType.ItemIndex);
+
+                            if (!_inv.Weapon.IsEmpty())
+                                _stock.Add(_inv.Weapon.Id);
+
+                            _inv.Weapon = new SettlerInventory.ArmorState()
+                            {
+                                Id = bestWeapon.ItemType.ItemIndex,
+                                Durability = bestWeapon.Durability
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
 
             return hasItem;
