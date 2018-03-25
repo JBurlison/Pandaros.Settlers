@@ -244,22 +244,22 @@ namespace Pandaros.Settlers.Items
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Armor.OnPlayerHit"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
-        public static void OnPlayerHit(Players.Player player, Pipliz.Box<float> box)
+        public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData box)
         {
             var state = PlayerState.GetPlayerState(player);
             DeductArmor(box, state.Armor, player, "Your");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit"), ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
-        public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
+        public static void OnNPCHit(NPC.NPCBase npc, ModLoader.OnHitData box)
         {
             var inv = SettlerInventory.GetSettlerInventory(npc);
             DeductArmor(box, inv.Armor, npc.Colony.Owner, inv.SettlerName);
         }
 
-        private static void DeductArmor(Pipliz.Box<float> box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> entityArmor, Players.Player player, string name)
+        private static void DeductArmor(ModLoader.OnHitData box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> entityArmor, Players.Player player, string name)
         {
-            if (box.item1 > 0)
+            if (box.HitDamage > 0)
             {
                 float armor = 0;
 
@@ -274,7 +274,7 @@ namespace Pandaros.Settlers.Items
 
                 if (armor != 0)
                 {
-                    box.Set(box.item1 - (box.item1 * armor));
+                    box.HitDamage = box.HitDamage - (box.HitDamage * armor);
 
                     var hitLocation = _rand.Next(1, 100);
 

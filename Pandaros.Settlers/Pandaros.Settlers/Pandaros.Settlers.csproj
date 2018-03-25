@@ -129,6 +129,7 @@
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="MethodUtil.cs" />
+    <Compile Include="SettlersChatCommand.cs" />
     <Compile Include="Monsters\MonstersChatCommand.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />
     <Compile Include="Monsters\Bosses\PutridCorpse.cs" />

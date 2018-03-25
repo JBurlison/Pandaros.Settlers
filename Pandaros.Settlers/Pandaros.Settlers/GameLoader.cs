@@ -171,7 +171,7 @@ namespace Pandaros.Settlers
             ChatCommands.CommandManager.RegisterCommand(new ConfigurationChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new Monsters.BossesChatCommand());
             ChatCommands.CommandManager.RegisterCommand(new Monsters.MonstersChatCommand());
-
+            ChatCommands.CommandManager.RegisterCommand(new SettlersChatCommand());
 
             VersionChecker.WriteVersionsToConsole();
 #if Debug

@@ -182,7 +182,7 @@ namespace Pandaros.Settlers
     {
         public bool IsCommand(string chat)
         {
-            return chat.StartsWith("/settlers", StringComparison.OrdinalIgnoreCase) || chat.StartsWith("/settlers", StringComparison.OrdinalIgnoreCase);
+            return chat.StartsWith("/settlersversion", StringComparison.OrdinalIgnoreCase);
         }
 
         public bool TryDoCommand(Players.Player player, string chat)

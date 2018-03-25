@@ -24,6 +24,7 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
+        private const string ISSETTLER = "isSettler";
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
 
         private static float _baseFoodPerHour;
@@ -225,21 +226,24 @@ namespace Pandaros.Settlers.Managers
             if (Configuration.DifficutlyCanBeChanged)
                 GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
 
-            var ps = PlayerState.GetPlayerState(p);
-
-            if (ps.SettlersEnabled)
-                PandaChat.Send(p, string.Format("Recruiting over {0} colonists will cost {1}% of your food. If you build it... they will come.", MAX_BUYABLE, Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f) * 100), ChatColor.orange);
-
-            if (ps.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 3))
+            if (Configuration.GetorDefault("SettlersEnabled", true) && Configuration.GetorDefault("MaxSettlersToggle", 3) > 0)
             {
-                var settlers = ps.SettlersEnabled ? "on" : "off";
+                var ps = PlayerState.GetPlayerState(p);
 
-                if (Configuration.GetorDefault("MaxSettlersToggle", 3) > 0)
-                    PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {Configuration.GetorDefault("MaxSettlersToggle", 3)} times.", ChatColor.orange);
-                else
-                    PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'", ChatColor.orange);
+                if (ps.SettlersEnabled && Configuration.GetorDefault("ColonistsRecruitment", true))
+                    PandaChat.Send(p, string.Format("Recruiting over {0} colonists will cost {1}% of your food. If you build it... they will come.", MAX_BUYABLE, Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f) * 100), ChatColor.orange);
 
-                PandaChat.Send(p, $"Random Settlers are currently {settlers}.", ChatColor.orange);
+                if (ps.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 3))
+                {
+                    var settlers = ps.SettlersEnabled ? "on" : "off";
+
+                    if (Configuration.GetorDefault("MaxSettlersToggle", 3) > 0)
+                        PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {Configuration.GetorDefault("MaxSettlersToggle", 3)} times.", ChatColor.orange);
+                    else
+                        PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'", ChatColor.orange);
+
+                    PandaChat.Send(p, $"Random Settlers are currently {settlers}.", ChatColor.orange);
+                }
             }
 
             UpdateFoodUse(p);
@@ -322,28 +326,40 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPC.NPCBase npc)
         {
+            if (npc.GetTempValues().TryGet(ISSETTLER, out bool settler) && settler)
+                return;
+
             var ps = PlayerState.GetPlayerState(npc.Colony.Owner);
 
-            if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
+            if (ps.SettlersEnabled)
             {
-                var cost =  npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .20f);
-                float num = 0f;
-
-                if (cost < 1)
-                    cost = 1;
-
-                if (npc.Colony.UsedStockpile.TotalFood < cost || !npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost))
+                if (Configuration.GetorDefault("ColonistsRecruitment", true))
                 {
-                    Chat.Send(npc.Colony.Owner, $"<color=red>Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.</color>", ChatSenderType.Server);
-                    npc.Colony.UsedStockpile.Add(BlockTypes.Builtin.BuiltinBlocks.Bed, (int)System.Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
-                    npc.health = 0;
-                    npc.Update();
-                    return;
+                    if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
+                    {
+                        var cost = npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .20f);
+                        float num = 0f;
+
+                        if (cost < 1)
+                            cost = 1;
+
+                        if (npc.Colony.UsedStockpile.TotalFood < cost || !npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost))
+                        {
+                            Chat.Send(npc.Colony.Owner, $"<color=red>Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.</color>", ChatSenderType.Server);
+                            npc.Colony.UsedStockpile.Add(BlockTypes.Builtin.BuiltinBlocks.Bed, (int)System.Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
+                            npc.health = 0;
+                            npc.Update();
+                            return;
+                        }
+                    }
+
+                    SettlerInventory.GetSettlerInventory(npc);
+                    UpdateFoodUse(npc.Colony.Owner);
                 }
+                else
+                    PandaChat.Send(npc.Colony.Owner, "The server administrator has disabled recruitment of colonists while settlers are enabled.");
             }
 
-            SettlerInventory.GetSettlerInventory(npc);
-            UpdateFoodUse(npc.Colony.Owner);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
@@ -447,11 +463,12 @@ namespace Pandaros.Settlers.Managers
                         {
                             NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.GetClosest(p, playerPos).KeyLocation.Vector, colony);
                             SettlerInventory.GetSettlerInventory(newGuy);
+                            newGuy.GetTempValues().Set(ISSETTLER, true);
 
                             if (i <= numbSkilled)
                             {
                                 var npcTemp = newGuy.GetTempValues(true);
-                                npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.01f);
+                                npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.02f);
                             }
 
                             update = true;
