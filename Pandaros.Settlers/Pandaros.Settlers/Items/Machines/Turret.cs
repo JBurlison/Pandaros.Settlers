@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Turret
     {
-        public class TurretSetting : IElementalDamager
+        public class TurretSetting : IPandaDamage
         {
             public float RepairTime { get; set; }
 

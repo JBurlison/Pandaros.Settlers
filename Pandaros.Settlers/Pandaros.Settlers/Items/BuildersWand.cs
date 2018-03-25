@@ -153,8 +153,7 @@ namespace Pandaros.Settlers.Items
 
                                 case VoxelSide.zPlus:
                                     startingPos = click.VoxelHit.Add(0, 0, 1);
-                                    xyNeg(ps, startingPos);
-
+                                    xzNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.yMin:
@@ -283,9 +282,9 @@ namespace Pandaros.Settlers.Items
             }
         }
 
-        private static void xzNeg(PlayerState ps, Vector3Int startingPos)
+        private static void xzNeg(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, -1))
                     break;
 
@@ -294,9 +293,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void xzPos(PlayerState ps, Vector3Int startingPos)
+        private static void xzPos(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(i, 0, 0), ps, 0, 0, 1))
                     break;
 
@@ -305,9 +304,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void zxNeg(PlayerState ps, Vector3Int startingPos)
+        private static void zxNeg(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(0, 0, i), ps, -1, 0, 0))
                     break;
 
@@ -316,9 +315,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void yxPos(PlayerState ps, Vector3Int startingPos)
+        private static void yxPos(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(0, i, 0), ps, 1, 0, 0))
                     break;
 
@@ -327,9 +326,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void yxNeg(PlayerState ps, Vector3Int startingPos)
+        private static void yxNeg(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(0, i, 0), ps, -1, 0, 0))
                     break;
 
@@ -338,9 +337,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void yzPos(PlayerState ps, Vector3Int startingPos)
+        private static void yzPos(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, 1))
                     break;
 
@@ -349,9 +348,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void yzNeg(PlayerState ps, Vector3Int startingPos)
+        private static void yzNeg(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(0, i, 0), ps, 0, 0, -1))
                     break;
 
@@ -360,9 +359,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void zxPos(PlayerState ps, Vector3Int startingPos)
+        private static void zxPos(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(0, 0, i), ps, 1, 0, 0))
                     break;
 
@@ -371,9 +370,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void xyNeg(PlayerState ps, Vector3Int startingPos)
+        private static void xyNeg(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(i, 0, 0), ps, 0, -1, 0))
                     break;
 
@@ -404,9 +403,9 @@ namespace Pandaros.Settlers.Items
                     break;
         }
 
-        private static void xyPos(PlayerState ps, Vector3Int startingPos)
+        private static void xyPos(PlayerState ps, Vector3Int startingPos, bool offset = false)
         {
-            for (int i = 0; i < WAND_MAX_RANGE; i++)
+            for (int i = Convert.ToInt32(offset); i < WAND_MAX_RANGE; i++)
                 if (Layout(startingPos.Add(i, 0, 0), ps, 0, 1, 0))
                     break;
 

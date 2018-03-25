@@ -86,8 +86,8 @@
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
-    <Compile Include="IElementalArmor.cs" />
-    <Compile Include="IElementalDamager.cs" />
+    <Compile Include="IPandaArmor.cs" />
+    <Compile Include="IPandaDamage.cs" />
     <Compile Include="IKillReward.cs" />
     <Compile Include="Items\AirStone.cs" />
     <Compile Include="Items\EarthStone.cs" />
@@ -129,6 +129,9 @@
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="MethodUtil.cs" />
+    <Compile Include="Monsters\Bosses\FallenRanger.cs" />
+    <Compile Include="Monsters\Bosses\Phase.cs" />
+    <Compile Include="Monsters\Bosses\JackbNimble.cs" />
     <Compile Include="SettlersChatCommand.cs" />
     <Compile Include="Monsters\MonstersChatCommand.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />
@@ -730,6 +733,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Bluebonnet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\bow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\BuildersWand1.png">
@@ -2097,6 +2103,9 @@
     <Content Include="Textures\albedo\EarthTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\FallenRanger.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\FireBossTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2161,6 +2170,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\irondoor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\JackbNimble.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\Juggernaut.png">
@@ -2293,6 +2305,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\pad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\Phase.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\PhysicianBench.png">

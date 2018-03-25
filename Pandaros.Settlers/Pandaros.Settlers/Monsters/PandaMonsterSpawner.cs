@@ -162,6 +162,12 @@ namespace Pandaros.Settlers.Monsters
                     }
                 }
 
+                if (colony.FollowerCount > 499)
+                {
+                    var fi = monster.GetType().GetField("health", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+                    fi.SetValue(monster, (float)fi.GetValue(monster) + (colony.FollowerCount * .05));
+                }
+
                 ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, monster);
                 MonsterTracker.Add(monster);
                 colony.OnZombieSpawn(true);

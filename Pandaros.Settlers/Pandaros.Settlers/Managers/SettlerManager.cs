@@ -1,4 +1,5 @@
-﻿using NPC;
+﻿using BlockTypes.Builtin;
+using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;
@@ -24,12 +25,18 @@ namespace Pandaros.Settlers.Managers
         public const int ABSOLUTE_MAX_PERSPAWN = 20;
         public const double BED_LEAVE_HOURS = 5;
         private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
+        private const string LEAVETIME_JOB = "LeaveTime_JOB";
+        private const string LEAVETIME_BED = "LeaveTime_BED";
         private const string ISSETTLER = "isSettler";
+        private const string KNOWN_ITTERATIONS = "SKILLED_ITTERATIONS";
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
 
+        private const int _numberOfCraftsPerPercent = 1000;
         private static float _baseFoodPerHour;
         private static double _updateTime;
         private static int _idNext = 1;
+        private static double _nextLaborerTime = TimeCycle.TotalTime + Pipliz.Random.Next(2, 6);
+        private static double _nextbedTime = TimeCycle.TotalTime + Pipliz.Random.Next(1, 2);
 
         public static List<HealingOverTimeNPC> HealingSpells { get; private set; } = new List<HealingOverTimeNPC>();
 
@@ -102,9 +109,6 @@ namespace Pandaros.Settlers.Managers
                                 ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
                             }
                         }
-
-                        if ( EvaluateSettlers(p))
-                            UpdateFoodUse(p);
                     }
                 });
 
@@ -144,6 +148,12 @@ namespace Pandaros.Settlers.Managers
                                 }
                             }
                         }
+
+
+                    if (EvaluateSettlers(p) ||
+                        EvaluateLaborers(p) ||
+                        EvaluateBeds(p))
+                        UpdateFoodUse(p);
                 });
             }
         }
@@ -226,19 +236,19 @@ namespace Pandaros.Settlers.Managers
             if (Configuration.DifficutlyCanBeChanged)
                 GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
 
-            if (Configuration.GetorDefault("SettlersEnabled", true) && Configuration.GetorDefault("MaxSettlersToggle", 3) > 0)
+            if (Configuration.GetorDefault("SettlersEnabled", true) && Configuration.GetorDefault("MaxSettlersToggle", 4) > 0)
             {
                 var ps = PlayerState.GetPlayerState(p);
 
                 if (ps.SettlersEnabled && Configuration.GetorDefault("ColonistsRecruitment", true))
                     PandaChat.Send(p, string.Format("Recruiting over {0} colonists will cost {1}% of your food. If you build it... they will come.", MAX_BUYABLE, Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f) * 100), ChatColor.orange);
 
-                if (ps.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 3))
+                if (ps.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 4))
                 {
                     var settlers = ps.SettlersEnabled ? "on" : "off";
 
-                    if (Configuration.GetorDefault("MaxSettlersToggle", 3) > 0)
-                        PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {Configuration.GetorDefault("MaxSettlersToggle", 3)} times.", ChatColor.orange);
+                    if (Configuration.GetorDefault("MaxSettlersToggle", 4) > 0)
+                        PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {Configuration.GetorDefault("MaxSettlersToggle", 4)} times.", ChatColor.orange);
                     else
                         PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'", ChatColor.orange);
 
@@ -284,8 +294,8 @@ namespace Pandaros.Settlers.Managers
 
                     foreach (var follower in colony.Followers)
                     {
-
                         JSONNode jobloc = null;
+
                         if (follower.IsValid)
                         {
                             var job = follower.Job;
@@ -337,7 +347,7 @@ namespace Pandaros.Settlers.Managers
                 {
                     if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
                     {
-                        var cost = npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .20f);
+                        var cost = npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f);
                         float num = 0f;
 
                         if (cost < 1)
@@ -346,7 +356,7 @@ namespace Pandaros.Settlers.Managers
                         if (npc.Colony.UsedStockpile.TotalFood < cost || !npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost))
                         {
                             Chat.Send(npc.Colony.Owner, $"<color=red>Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.</color>", ChatSenderType.Server);
-                            npc.Colony.UsedStockpile.Add(BlockTypes.Builtin.BuiltinBlocks.Bed, (int)System.Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
+                            npc.Colony.UsedStockpile.Add(BlockTypes.Builtin.BuiltinBlocks.Bread, (int)System.Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
                             npc.health = 0;
                             npc.Update();
                             return;
@@ -374,12 +384,61 @@ namespace Pandaros.Settlers.Managers
         {
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
                 npc.GetTempValues(true).Set(GameLoader.SETTLER_INV, new SettlerInventory(invNode));
+
+            var tmpVals = npc.GetTempValues();
+
+            if (node.TryGetAs<double>(LEAVETIME_JOB, out var leaveTime))
+                tmpVals.Set(LEAVETIME_JOB, leaveTime);
+
+            if (node.TryGetAs<float>(GameLoader.ALL_SKILLS, out var skills))
+                tmpVals.Set(GameLoader.ALL_SKILLS, skills);
+
+            if (node.TryGetAs<int>(KNOWN_ITTERATIONS, out var jobItterations))
+                tmpVals.Set(KNOWN_ITTERATIONS, jobItterations);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCSaved, GameLoader.NAMESPACE + ".SettlerManager.OnNPCSaved")]
         public static void OnNPCSaved(NPC.NPCBase npc, JSONNode node)
         {
+            var tmpVals = npc.GetTempValues();
+
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
+
+            if (npc.NPCType.IsLaborer && tmpVals.Contains(LEAVETIME_JOB))
+                node.SetAs(LEAVETIME_JOB, tmpVals.Get<double>(LEAVETIME_JOB));
+
+            if (tmpVals.Contains(GameLoader.ALL_SKILLS))
+                node.SetAs(GameLoader.ALL_SKILLS, tmpVals.Get<float>(GameLoader.ALL_SKILLS));
+
+            if (tmpVals.Contains(KNOWN_ITTERATIONS))
+                node.SetAs(KNOWN_ITTERATIONS, tmpVals.Get<int>(KNOWN_ITTERATIONS));
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
+        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
+        {
+            var tmpVals = job.NPC.GetTempValues();
+
+            if (!tmpVals.Contains(KNOWN_ITTERATIONS))
+                tmpVals.Set<int>(KNOWN_ITTERATIONS, 1);
+            else
+                tmpVals.Set(KNOWN_ITTERATIONS, tmpVals.Get<int>(KNOWN_ITTERATIONS) + 1);
+
+            if (!tmpVals.Contains(GameLoader.ALL_SKILLS))
+                tmpVals.Set<float>(GameLoader.ALL_SKILLS, 0f);
+
+            var nextLevel = Pipliz.Math.RoundToInt(tmpVals.Get<float>(GameLoader.ALL_SKILLS) * 100) * _numberOfCraftsPerPercent;
+
+            if (tmpVals.Get<int>(KNOWN_ITTERATIONS) >= nextLevel)
+            {
+                var nextFloat = tmpVals.Get<float>(GameLoader.ALL_SKILLS) + 0.001f;
+
+                if (nextFloat > 0.025f)
+                    nextFloat = 0.025f;
+
+                tmpVals.Set<int>(KNOWN_ITTERATIONS, 0);
+                tmpVals.Set<float>(GameLoader.ALL_SKILLS, nextFloat);
+            }
         }
 
         public static void UpdateFoodUse(Players.Player p)
@@ -468,7 +527,7 @@ namespace Pandaros.Settlers.Managers
                             if (i <= numbSkilled)
                             {
                                 var npcTemp = newGuy.GetTempValues(true);
-                                npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.02f);
+                                npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.002f);
                             }
 
                             update = true;
@@ -482,6 +541,143 @@ namespace Pandaros.Settlers.Managers
 
                     state.NextGenTime = TimeCycle.TotalTime + Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0));
                 }
+            }
+
+            return update;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
+        public static void OnNPCJobChanged(TupleStruct<NPC.NPCBase, IJob, IJob> data)
+        {
+            if (!data.item1.NPCType.IsLaborer)
+                data.item1.GetTempValues().Remove(LEAVETIME_JOB);
+        }
+
+        private static bool EvaluateLaborers(Players.Player p)
+        {
+            bool update = false;
+
+            if (TimeCycle.IsDay && TimeCycle.TotalTime > _nextLaborerTime)
+            {
+                if (p.IsConnected)
+                {
+                    List<NPC.NPCBase> unTrack = new List<NPCBase>();
+                    Colony colony = Colony.Get(p);
+                    PlayerState state = PlayerState.GetPlayerState(p);
+                    int left = 0;
+
+                    for (int i = 0; i < colony.LaborerCount; i++)
+                    {
+                        var npc = colony.FindLaborer(i);
+                        var tmpVals = npc.GetTempValues();
+
+                        if (!tmpVals.Contains(LEAVETIME_JOB))
+                            tmpVals.Set(LEAVETIME_JOB, TimeCycle.TotalTime + LOABOROR_LEAVE_HOURS);
+                        else if (tmpVals.Get<double>(LEAVETIME_JOB) < TimeCycle.TotalTime)
+                        {
+                            left++;
+                            NPCLeaving(npc);
+                        }
+                    }
+
+                    if (left > 0)
+                        PandaChat.Send(p, string.Concat(SettlerReasoning.GetNoJobReason(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
+
+                    update = unTrack.Count != 0;
+                }
+
+                _nextLaborerTime = TimeCycle.TotalTime + Pipliz.Random.Next(2, 6);
+            }
+
+            return update;
+        }
+
+        private static void NPCLeaving(NPCBase npc)
+        {
+            if (Pipliz.Random.NextFloat() > .49f)
+            {
+                var cost = npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f);
+                float num = 0f;
+
+                if (cost < 1)
+                    cost = 1;
+
+               npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost);
+            }
+            else
+            {
+                var numberOfItems = Pipliz.Random.Next(1, 10);
+
+                for (int i = 0; i < numberOfItems; i++)
+                {
+                    var randItem = Pipliz.Random.Next(npc.Colony.UsedStockpile.SpotCount);
+                    var item = npc.Colony.UsedStockpile.GetByIndex(randItem);
+                    
+                    if (item.Type != BuiltinBlocks.Air && item.Amount != 0)
+                    {
+                        var leaveTax = Pipliz.Math.RoundToInt(item.Amount * .10);
+                        npc.Colony.UsedStockpile.TryRemove(item.Type, leaveTax);
+                    }
+                }
+            }
+
+            npc.health = 0;
+            npc.OnDeath();
+        }
+
+        private static bool EvaluateBeds(Players.Player p)
+        {
+            bool update = false;
+            try
+            {
+                if (!TimeCycle.IsDay && TimeCycle.TotalTime > _nextbedTime)
+                {
+                    if (p.IsConnected)
+                    {
+                        List<NPC.NPCBase> unTrack = new List<NPCBase>();
+                        Colony colony = Colony.Get(p);
+                        PlayerState state = PlayerState.GetPlayerState(p);
+                        var remainingBeds = BedBlockTracker.GetCount(p) - colony.FollowerCount;
+                        int left = 0;
+
+                        if (remainingBeds >= 0)
+                            state.NeedsABed = 0;
+                        else
+                        {
+                            if (state.NeedsABed == 0)
+                            {
+                                state.NeedsABed = TimeCycle.TotalTime + BED_LEAVE_HOURS;
+                                PandaChat.Send(p, SettlerReasoning.GetNeedBed(), ChatColor.grey);
+                            }
+
+                            if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalTime)
+                            {
+                                foreach (var follower in colony.Followers)
+                                {
+                                    if (follower.GetFieldValue<BedBlock, NPCBase>("bed") == null)
+                                    {
+                                        left++;
+                                        NPCLeaving(follower);
+                                    }
+                                }
+
+                                state.NeedsABed = 0;
+                            }
+
+                            if (left > 0)
+                            {
+                                PandaChat.Send(p, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
+                                update = true;
+                            }
+                        }
+                    }
+
+                    _nextbedTime = TimeCycle.TotalTime + Pipliz.Random.Next(1, 2);
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex, "EvaluateBeds");
             }
 
             return update;

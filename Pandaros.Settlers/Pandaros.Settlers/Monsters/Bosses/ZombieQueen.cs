@@ -13,7 +13,7 @@ using System.Text;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class ZombieQueen : PandaZombie, IPandaBoss
+    public class ZombieQueen : Zombie, IPandaBoss
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {
@@ -74,14 +74,14 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementAudio => null;
 
-        public float ZombieMultiplier => 0;
+        public float ZombieMultiplier => 1.1f;
 
         public string DeathText => "I'll get you next time my pretties!";
 
         public Dictionary<ushort, int> KillRewards => REWARDS;
 
         public float ZombieHPBonus => 0;
-
+        public float MissChance => 0.05f;
         public Dictionary<DamageType, float> Damage => _damage;
 
         public DamageType ElementalArmor => DamageType.Water;

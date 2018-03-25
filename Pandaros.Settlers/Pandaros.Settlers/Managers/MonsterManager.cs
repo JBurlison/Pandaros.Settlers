@@ -163,8 +163,6 @@ namespace Pandaros.Settlers.Managers
                             PandaChat.SendToAll($"[{boss.Name}] {boss.DeathText}", ChatColor.red);
                         }
 
-                     
-
                         BossActive = false;
                         _spawnedBosses.Clear();
                         GetNextBossSpawnTime();
@@ -230,19 +228,25 @@ namespace Pandaros.Settlers.Managers
         public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
         {
             var ps = PlayerState.GetPlayerState(monster.OriginalGoal);
-            var elementalMonster = monster as IElementalArmor;
-            var turret = d.HitSourceObject as IElementalDamager;
+            var pandaArmor = monster as IPandaArmor;
+            var turret = d.HitSourceObject as IPandaDamage;
 
-            if (elementalMonster != null && 
+            if (pandaArmor != null && Pipliz.Random.NextFloat() <= pandaArmor.MissChance)
+            {
+                d.HitDamage = 0;
+                return;
+            }
+
+            if (pandaArmor != null && 
                 turret != null)
             {
                 var damage = 0f;
 
                 foreach (var dt in turret.Damage)
                 {
-                    var tmpDmg = dt.Key.CalcDamage(elementalMonster.ElementalArmor, dt.Value);
+                    var tmpDmg = dt.Key.CalcDamage(pandaArmor.ElementalArmor, dt.Value);
 
-                    if (elementalMonster.AdditionalResistance.TryGetValue(dt.Key, out var flatResist))
+                    if (pandaArmor.AdditionalResistance.TryGetValue(dt.Key, out var flatResist))
                         tmpDmg = tmpDmg - (tmpDmg * flatResist);
 
                     damage += tmpDmg;
@@ -250,11 +254,11 @@ namespace Pandaros.Settlers.Managers
 
                 d.HitDamage = damage;
             }
-            else if (elementalMonster != null)
+            else if (pandaArmor != null)
             {
-                d.HitDamage = DamageType.Physical.CalcDamage(elementalMonster.ElementalArmor, d.HitDamage);
+                d.HitDamage = DamageType.Physical.CalcDamage(pandaArmor.ElementalArmor, d.HitDamage);
 
-                if (elementalMonster.AdditionalResistance.TryGetValue(DamageType.Physical, out var flatResist))
+                if (pandaArmor.AdditionalResistance.TryGetValue(DamageType.Physical, out var flatResist))
                     d.HitDamage = d.HitDamage - (d.HitDamage * flatResist);
             }
 

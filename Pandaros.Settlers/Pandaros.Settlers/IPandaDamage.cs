@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pandaros.Settlers
 {
-    public interface IElementalDamager
+    public interface IPandaDamage
     {
         Dictionary<DamageType, float> Damage { get; }
     }

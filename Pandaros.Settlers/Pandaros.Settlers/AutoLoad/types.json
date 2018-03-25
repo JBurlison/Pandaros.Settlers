@@ -39,59 +39,41 @@
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 1.0,
-    "categories": [
-      "food"
-    ]
+    "nutritionalValue": 1.0
   },
   "egg": {
     "icon": "egg.png",
     "isPlaceable": false,
     "npcLimit": 0,
-    "maxStackSize": 600,
-    "categories": [
-      "food"
-    ]
+    "maxStackSize": 600
   },
   "cake": {
     "icon": "cake.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 10.0,
-    "categories": [
-      "food"
-    ]
+    "nutritionalValue": 5.0
   },
   "beef": {
     "icon": "Beef.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 4.0,
-    "categories": [
-      "food"
-    ]
+    "nutritionalValue": 4.0
   },
   "carrot": {
     "icon": "Carrot.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 0.6,
-    "categories": [
-      "food"
-    ]
+    "nutritionalValue": 0.6
   },
   "cheese": {
     "icon": "Cheese.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 0.6,
-    "categories": [
-      "food"
-    ]
+    "nutritionalValue": 0.6
   },
   "chisel": {
     "icon": "chisel.png",

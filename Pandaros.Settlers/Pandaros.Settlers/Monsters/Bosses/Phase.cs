@@ -12,7 +12,7 @@ using System.Text;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class Hoarder : Zombie, IPandaBoss
+    public class Phase : Zombie, IPandaBoss
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {
@@ -22,35 +22,42 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
         {
-            { DamageType.Physical, 0.15f }
+            { DamageType.Air, 0.20f },
         };
 
-        private float _totalHealth = 20000;
-        public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder";
+        private float _totalHealth = 40000;
+        public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Phase";
         static NPCTypeMonsterSettings _mts;
         static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
         {
             { Items.Mana.Item.ItemIndex, 10 }
         };
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder.Register"),
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.Bosses.Phase.AfterWorldLoad"),
+            ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            Managers.MonsterManager.AddBoss(new Phase(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Phase.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
             ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {
             JSONNode m = new JSONNode()
                .SetAs("keyName", Key)
-               .SetAs("printName", "Hoarder")
+               .SetAs("printName", "Phase")
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Hoarder.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Hoarder.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Hoarder.png")
-                .SetAs("initialHealth", 20000)
-                .SetAs("movementSpeed", .75f)
+                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Phase.png")
+                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ZombieQueen.png")
+                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/ZombieQueen.png")
+                .SetAs("initialHealth", 2000)
+                .SetAs("movementSpeed", 2.25f)
                 .SetAs("punchCooldownMS", 500)
-                .SetAs("punchDamage", 25);
+                .SetAs("punchDamage", 100);
 
             m.SetAs("data", ms);
             _mts = new NPCTypeMonsterSettings(m);
@@ -59,36 +66,33 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public IPandaBoss GetNewBoss(Path path, Players.Player p)
         {
-            return new Hoarder(path, p);
+            return new Phase(path, p);
         }
 
-        public string AnnouncementText => "FEAR THE ZOMBIE HORDE!";
-        public string DeathText => "Gughghgugggghrrrghghgfggg......";
-
-        public string Name => "Hoarder";
-
+        public string AnnouncementText => "You cant see me....";
+        public string DeathText => "I just wanted to stay out of sight.";
+        public string Name => "Phase";
         public override float TotalHealth => _totalHealth;
-
-        public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
-
+        public bool KilledBefore { get => false; set => killedBefore = value; }
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
+        public float ZombieMultiplier => 1f;
+        public float ZombieHPBonus => 0;
 
-        public float ZombieMultiplier => 1.5f;
-        public float ZombieHPBonus => 20;
         public Dictionary<ushort, int> KillRewards => REWARDS;
         public Dictionary<DamageType, float> Damage => _damage;
-        public float MissChance => 0.05f;
 
         public DamageType ElementalArmor => DamageType.Water;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 
-        public Hoarder(Path path, Players.Player originalGoal) :
+        public float MissChance => 0.35f;
+
+        public Phase(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
             Colony c = Colony.Get(originalGoal);
             var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            var hp = c.FollowerCount * (ps.Difficulty.BossHPPerColonist - (ps.Difficulty.BossHPPerColonist * .20f));
 
             if (hp < _totalHealth)
                 _totalHealth = hp;

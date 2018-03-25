@@ -180,17 +180,17 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[VOIDTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(Void.Item.ItemIndex) },
-                AmmoValue = 0.20f,
+                AmmoValue = 0.50f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = VOIDTURRET,
                 OnShootAudio = VOIDTURRET_NAMESPACE,
                 OnHitAudio = VOIDTURRET_NAMESPACE,
                 Range = 25,
-                WorkTime = 14f,
-                RefuelTime = 8,
-                ReloadTime = 9,
-                RepairTime = 15,
+                WorkTime = 13f,
+                RefuelTime = 15,
+                ReloadTime = 15,
+                RepairTime = 20,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 10), new InventoryItem(Mana.Item.ItemIndex, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1), new InventoryItem(Esper.Item.ItemIndex, 1) } },
@@ -200,7 +200,7 @@ namespace Pandaros.Settlers.Items.Machines
                 },
                 ProjectileAnimation = Managers.AnimationManager.AnimatedObjects[Managers.AnimationManager.LEADBULLET]
             };
-            turretSettings.Damage[DamageType.Air] = 400;
+            turretSettings.Damage[DamageType.Void] = 400;
             turretSettings.Damage[DamageType.Physical] = 100;
 
             Turret.TurretSettings[VOIDTURRET] = turretSettings;
@@ -212,17 +212,17 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[FIRETURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(FireStone.Item.ItemIndex) },
-                AmmoValue = 0.20f,
+                AmmoValue = 0.50f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = FIRETURRET,
                 OnShootAudio = FIRETURRET_NAMESPACE,
                 OnHitAudio = FIRETURRET_NAMESPACE,
                 Range = 25,
-                WorkTime = 14f,
-                RefuelTime = 8,
-                ReloadTime = 9,
-                RepairTime = 15,
+                WorkTime = 13f,
+                RefuelTime = 15,
+                ReloadTime = 15,
+                RepairTime = 20,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 10), new InventoryItem(Mana.Item.ItemIndex, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
@@ -244,17 +244,17 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[WATERTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(WaterStone.Item.ItemIndex) },
-                AmmoValue = 0.20f,
+                AmmoValue = 0.50f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = WATERTURRET,
                 OnShootAudio = WATERTURRET_NAMESPACE,
                 OnHitAudio = WATERTURRET_NAMESPACE,
                 Range = 25,
-                WorkTime = 14f,
-                RefuelTime = 8,
-                ReloadTime = 9,
-                RepairTime = 15,
+                WorkTime = 13f,
+                RefuelTime = 15,
+                ReloadTime = 15,
+                RepairTime = 20,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 10), new InventoryItem(Mana.Item.ItemIndex, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
@@ -276,17 +276,17 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[EARTHTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(EarthStone.Item.ItemIndex) },
-                AmmoValue = 0.20f,
+                AmmoValue = 0.50f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = EARTHTURRET,
                 OnShootAudio = EARTHTURRET_NAMESPACE,
                 OnHitAudio = EARTHTURRET_NAMESPACE,
                 Range = 25,
-                WorkTime = 14f,
-                RefuelTime = 8,
-                ReloadTime = 9,
-                RepairTime = 15,
+                WorkTime = 13f,
+                RefuelTime = 15,
+                ReloadTime = 15,
+                RepairTime = 20,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 10), new InventoryItem(Mana.Item.ItemIndex, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },
@@ -308,17 +308,17 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[AIRTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(AirStone.Item.ItemIndex) },
-                AmmoValue = 0.20f,
+                AmmoValue = 0.50f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = AIRTURRET,
                 OnShootAudio = AIRTURRET_NAMESPACE,
                 OnHitAudio = AIRTURRET_NAMESPACE,
                 Range = 25,
-                WorkTime = 14f,
-                RefuelTime = 8,
-                ReloadTime = 9,
-                RepairTime = 15,
+                WorkTime = 13f,
+                RefuelTime = 15,
+                ReloadTime = 15,
+                RepairTime = 20,
                 RequiredForFix = new Dictionary<float, List<InventoryItem>>()
                 {
                     { 75f, new List<InventoryItem>() { new InventoryItem(BuiltinBlocks.StoneBricks, 10), new InventoryItem(Mana.Item.ItemIndex, 1), new InventoryItem(BuiltinBlocks.CopperNails, 1) } },

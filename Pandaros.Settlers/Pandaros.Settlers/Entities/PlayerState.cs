@@ -68,6 +68,7 @@ namespace Pandaros.Settlers.Entities
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public double NextGenTime { get; set; }
+        public double NeedsABed { get; set; }
 
         public int MaxPerSpawn
         {
@@ -191,6 +192,9 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(HighestColonistCount), out int hsc))
                     _playerStates[p].HighestColonistCount = hsc;
 
+                if (stateNode.TryGetAs(nameof(NeedsABed), out int nb))
+                    _playerStates[p].NeedsABed = nb;
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
@@ -232,6 +236,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(BuildersWandTarget), _playerStates[p].BuildersWandTarget);
                 node.SetAs(nameof(SettlersToggledTimes), _playerStates[p].SettlersToggledTimes);
                 node.SetAs(nameof(HighestColonistCount), _playerStates[p].HighestColonistCount);
+                node.SetAs(nameof(NeedsABed), _playerStates[p].NeedsABed);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

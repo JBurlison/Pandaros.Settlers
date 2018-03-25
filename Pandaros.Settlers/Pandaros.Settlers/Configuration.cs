@@ -92,7 +92,7 @@ namespace Pandaros.Settlers
             Reload();
             GetorDefault("BossesCanBeDisabled", true);
             GetorDefault("MonstersCanBeDisabled", true);
-            GetorDefault("MaxSettlersToggle", 3);
+            GetorDefault("MaxSettlersToggle", 4);
             GetorDefault("SettlersEnabled", true);
             GetorDefault("ColonistsRecruitment", true);
             Save();

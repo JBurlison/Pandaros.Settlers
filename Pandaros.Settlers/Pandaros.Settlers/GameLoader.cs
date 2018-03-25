@@ -42,6 +42,7 @@ namespace Pandaros.Settlers
         public static ushort Empty_Icon { get; private set; }
         public static ushort NOAMMO_Icon { get; private set; }
         public static ushort Poisoned_Icon { get; private set; }
+        public static ushort Bow_Icon { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
@@ -149,6 +150,13 @@ namespace Pandaros.Settlers
             Poisoned_Icon = poisoned.ItemIndex;
 
             items.Add(NAMESPACE + ".Poisoned", poisoned);
+
+            var bowNode = new JSONNode();
+            bowNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/bow.png");
+            var bow = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".BowIcon", bowNode);
+            Bow_Icon = bow.ItemIndex;
+
+            items.Add(NAMESPACE + ".BowIcon", bow);
 
             Jobs.MachinistJob.OkStatus = new List<uint>()
             {

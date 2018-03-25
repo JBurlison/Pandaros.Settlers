@@ -13,7 +13,7 @@ using UnityEngine;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class PutridCorpse : PandaZombie, IPandaBoss
+    public class PutridCorpse : Zombie, IPandaBoss
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {
@@ -79,7 +79,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public float ZombieHPBonus => 20;
         public Dictionary<ushort, int> KillRewards => REWARDS;
         public Dictionary<DamageType, float> Damage => _damage;
-
+        public float MissChance => 0.05f;
         public DamageType ElementalArmor => DamageType.Earth;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;

@@ -43,11 +43,11 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit"), 
             ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit"),
             ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
-        public static void OnNPCHit(NPC.NPCBase npc, Pipliz.Box<float> box)
+        public static void OnNPCHit(NPC.NPCBase npc, ModLoader.OnHitData box)
         {
             if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Jobs.Knight))
             {
-                box.Set(box.item1 - (box.item1 * .75f));
+                box.HitDamage = box.HitDamage - (box.HitDamage * .75f);
             }
         }
 

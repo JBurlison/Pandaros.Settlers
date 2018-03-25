@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Pandaros.Settlers
 {
-    public interface IElementalArmor
+    public interface IPandaArmor
     {
+        float MissChance { get; }
         DamageType ElementalArmor { get; }
         Dictionary<DamageType, float> AdditionalResistance { get; }
     }

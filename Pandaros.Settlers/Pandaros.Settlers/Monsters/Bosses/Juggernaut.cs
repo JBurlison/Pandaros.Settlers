@@ -12,7 +12,7 @@ using System.Text;
 namespace Pandaros.Settlers.Monsters.Bosses
 {
     [ModLoader.ModManager]
-    public class Juggernaut : PandaZombie, IPandaBoss
+    public class Juggernaut : Zombie, IPandaBoss
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {
@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public override float TotalHealth => _totalHealth;
         public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
-        public float ZombieMultiplier => 0f;
+        public float ZombieMultiplier => 1f;
         public float ZombieHPBonus => 50;
 
         public Dictionary<ushort, int> KillRewards => REWARDS;
@@ -81,12 +81,14 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 
+        public float MissChance => 0f;
+
         public Juggernaut(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
             Colony c = Colony.Get(originalGoal);
             var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * (ps.Difficulty.BossHPPerColonist * 2f);
+            var hp = c.FollowerCount * (ps.Difficulty.BossHPPerColonist * 2.25f);
 
             if (hp < _totalHealth)
                 _totalHealth = hp;

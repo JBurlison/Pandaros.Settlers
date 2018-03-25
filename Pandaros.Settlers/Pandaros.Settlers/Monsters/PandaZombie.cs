@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Monsters
                         return false;
                     }
 
-                    if (!Do())
+                    if (!decision.Do())
                     {
                         OnDiscard();
                         return false;
