@@ -2,7 +2,7 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.0.2",
+    "version": "0.8.0.3",
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
@@ -10,6 +10,14 @@
     "website": "http://www.settlersmod.com/",
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.0.3",
+        "notes": [
+          "Fix zombies not spawning when a player has over 500 colonists.",
+          "Fixed Max Settlers that can come at a single time",
+          "Updated the tooltips for Mana and Elementium to note their rare drops."
+        ]
+      },
       {
         "version": "0.8.0.2",
         "notes": [
