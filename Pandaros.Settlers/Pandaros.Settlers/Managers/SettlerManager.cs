@@ -150,11 +150,13 @@ namespace Pandaros.Settlers.Managers
                             }
                         }
 
+                    var ps = PlayerState.GetPlayerState(p);
 
-                    if (EvaluateSettlers(p) ||
-                        EvaluateLaborers(p) ||
-                        EvaluateBeds(p))
-                        UpdateFoodUse(p);
+                    if (ps.SettlersEnabled)
+                        if (EvaluateSettlers(p) ||
+                            EvaluateLaborers(p) ||
+                            EvaluateBeds(p))
+                            UpdateFoodUse(p);
                 });
             }
         }
@@ -480,7 +482,7 @@ namespace Pandaros.Settlers.Managers
                 PlayerState state = PlayerState.GetPlayerState(p);
 
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0)) * HOUR_TO_REAL_SEC);
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(10, 20 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
 
                 if (Pipliz.Time.SecondsSinceStartDouble > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
@@ -500,50 +502,68 @@ namespace Pandaros.Settlers.Managers
                             addCount += System.Math.Floor(diff * .25);
                         }
 
-                        var skillChance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
-                        int numbSkilled = 0;
-
-                        rand = Pipliz.Random.NextFloat();
-
-                        if (skillChance > rand)
-                            numbSkilled = state.Rand.Next(1, 2 + p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.NumberSkilledLaborer), 0));
-
-                        var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
-
-                        if (numbSkilled > 0)
-                            if (numbSkilled == 1)
-                                reason += string.Format(" {0} of them is skilled!", numbSkilled);
-                            else
-                                reason += string.Format(" {0} of them are skilled!", numbSkilled);
-
-                        PandaChat.Send(p, reason, ChatColor.magenta);
-                        var playerPos = new Vector3Int(p.Position);
-
-                        for (int i = 0; i < addCount; i++)
+                        try
                         {
-                            NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.GetClosest(p, playerPos).KeyLocation.Vector, colony);
-                            SettlerInventory.GetSettlerInventory(newGuy);
-                            newGuy.GetTempValues().Set(ISSETTLER, true);
+                            var skillChance = p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
+                            int numbSkilled = 0;
 
-                            if (i <= numbSkilled)
+                            rand = Pipliz.Random.NextFloat();
+
+                            try
                             {
-                                var npcTemp = newGuy.GetTempValues(true);
-                                npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.002f);
+                                if (skillChance > rand)
+                                    numbSkilled = state.Rand.Next(1, 2 + Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault<float>(PandaResearch.GetResearchKey(PandaResearch.NumberSkilledLaborer), 0f)));
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.Log("NumberSkilledLaborer");
+                                PandaLogger.LogError(ex);
                             }
 
-                            update = true;
-                            colony.RegisterNPC(newGuy);
-                            ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+                            var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
+
+                            if (numbSkilled > 0)
+                                if (numbSkilled == 1)
+                                    reason += string.Format(" {0} of them is skilled!", numbSkilled);
+                                else
+                                    reason += string.Format(" {0} of them are skilled!", numbSkilled);
+
+
+                            PandaChat.Send(p, reason, ChatColor.magenta);
+                            var playerPos = new Vector3Int(p.Position);
+
+                            for (int i = 0; i < addCount; i++)
+                            {
+                                NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.GetClosest(p, playerPos).KeyLocation.Vector, colony);
+                                SettlerInventory.GetSettlerInventory(newGuy);
+                                newGuy.GetTempValues().Set(ISSETTLER, true);
+
+                                if (i <= numbSkilled)
+                                {
+                                    var npcTemp = newGuy.GetTempValues(true);
+                                    npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.002f);
+                                }
+
+                                update = true;
+                                colony.RegisterNPC(newGuy);
+                                ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            PandaLogger.Log("SkilledLaborer");
+                            PandaLogger.LogError(ex);
                         }
 
                         if (colony.FollowerCount > state.HighestColonistCount)
                             state.HighestColonistCount = colony.FollowerCount;
                     }
 
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 14 - p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0)) * HOUR_TO_REAL_SEC);
+
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 14 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
                 }
             }
-
+   
             return update;
         }
 
@@ -587,7 +607,7 @@ namespace Pandaros.Settlers.Managers
                     update = unTrack.Count != 0;
                 }
 
-                _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(2, 6) * HOUR_TO_REAL_SEC);
+                _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 6) * HOUR_TO_REAL_SEC);
             }
 
             return update;
@@ -673,7 +693,7 @@ namespace Pandaros.Settlers.Managers
                         }
                     }
 
-                    _nextbedTime = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(60, 120);
+                    _nextbedTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(5, 8) * HOUR_TO_REAL_SEC);
                 }
             }
             catch (Exception ex)
