@@ -306,6 +306,7 @@ namespace Pandaros.Settlers.Managers
                             if (job != null && job.KeyLocation != Vector3Int.invalidPos)
                             {
                                 jobloc = (JSONNode)job.KeyLocation;
+                                job.NPC = null;
                                 follower.ClearJob();
                             }
                         }
@@ -320,7 +321,6 @@ namespace Pandaros.Settlers.Managers
                             copyOfFollowers.Add(follower);
                         }
                     }
-
 
                     JSON.Serialize(file, followers);
 
@@ -482,7 +482,7 @@ namespace Pandaros.Settlers.Managers
                 PlayerState state = PlayerState.GetPlayerState(p);
 
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(10, 20 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(6, 15 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
 
                 if (Pipliz.Time.SecondsSinceStartDouble > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
@@ -491,7 +491,7 @@ namespace Pandaros.Settlers.Managers
 
                     var rand = Pipliz.Random.NextFloat();
 
-                    if (chance > 0 && chance > rand)
+                    if (chance > rand)
                     {
                         var addCount = System.Math.Floor(state.MaxPerSpawn * chance);
 
@@ -563,7 +563,8 @@ namespace Pandaros.Settlers.Managers
                     }
 
 
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 20 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(6, 15 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
+                    colony.SendUpdate();
                 }
             }
    
@@ -608,6 +609,7 @@ namespace Pandaros.Settlers.Managers
                         PandaChat.Send(p, string.Concat(SettlerReasoning.GetNoJobReason(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
 
                     update = unTrack.Count != 0;
+                    colony.SendUpdate();
                 }
 
                 _nextLaborerTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(4, 6) * HOUR_TO_REAL_SEC);
@@ -694,6 +696,8 @@ namespace Pandaros.Settlers.Managers
                                 update = true;
                             }
                         }
+
+                        colony.SendUpdate();
                     }
 
                     _nextbedTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(5, 8) * HOUR_TO_REAL_SEC);

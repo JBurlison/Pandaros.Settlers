@@ -207,20 +207,20 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData d)
         {
-            if (d.HitDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
+            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
             {
                 var state = PlayerState.GetPlayerState(player);
-                d.HitDamage += state.Difficulty.MonsterDamage;
+                d.ResultDamage += state.Difficulty.MonsterDamage;
             }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPC.NPCBase npc, ModLoader.OnHitData d)
         {
-            if (d.HitDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster) 
+            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster) 
             {
                 var state = PlayerState.GetPlayerState(npc.Colony.Owner);
-                d.HitDamage += state.Difficulty.MonsterDamage;
+                d.ResultDamage += state.Difficulty.MonsterDamage;
             }
         }
 
@@ -233,7 +233,7 @@ namespace Pandaros.Settlers.Managers
 
             if (pandaArmor != null && Pipliz.Random.NextFloat() <= pandaArmor.MissChance)
             {
-                d.HitDamage = 0;
+                d.ResultDamage = 0;
                 return;
             }
 
@@ -252,17 +252,17 @@ namespace Pandaros.Settlers.Managers
                     damage += tmpDmg;
                 }
 
-                d.HitDamage = damage;
+                d.ResultDamage = damage;
             }
             else if (pandaArmor != null)
             {
-                d.HitDamage = DamageType.Physical.CalcDamage(pandaArmor.ElementalArmor, d.HitDamage);
+                d.ResultDamage = DamageType.Physical.CalcDamage(pandaArmor.ElementalArmor, d.ResultDamage);
 
                 if (pandaArmor.AdditionalResistance.TryGetValue(DamageType.Physical, out var flatResist))
-                    d.HitDamage = d.HitDamage - (d.HitDamage * flatResist);
+                    d.ResultDamage = d.ResultDamage - (d.ResultDamage * flatResist);
             }
 
-            d.HitDamage = d.HitDamage - (d.HitDamage * ps.Difficulty.MonsterDamageReduction);
+            d.ResultDamage = d.ResultDamage - (d.ResultDamage * ps.Difficulty.MonsterDamageReduction);
 
             if (Pipliz.Random.NextFloat() > .5f)
                 ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + "ZombieAudio");

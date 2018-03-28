@@ -2,7 +2,7 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.0.3",
+    "version": "0.8.0.4",
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
@@ -10,6 +10,16 @@
     "website": "http://www.settlersmod.com/",
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.0.4",
+        "notes": [
+          "Fixed settler count properly updating after a colonist laves.",
+          "Fixed settler count properly updating after colonists join your colony.",
+          "Fixed offline colonies not proplery saving saving colonists jobs.",
+          "Armor, difficulty damage reduction and elemental resistances are now properly applied on hit.",
+          "Right clicking on a berry bush now gives you 2 berries to help you recover from a wipe of your colonists early game."
+        ]
+      },
       {
         "version": "0.8.0.3",
         "notes": [

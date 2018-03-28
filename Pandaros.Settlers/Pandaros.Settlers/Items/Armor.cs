@@ -259,7 +259,7 @@ namespace Pandaros.Settlers.Items
 
         private static void DeductArmor(ModLoader.OnHitData box, Dictionary<ArmorSlot, SettlerInventory.ArmorState> entityArmor, Players.Player player, string name)
         {
-            if (box.HitDamage > 0)
+            if (box.ResultDamage > 0)
             {
                 float armor = 0;
 
@@ -274,7 +274,7 @@ namespace Pandaros.Settlers.Items
 
                 if (armor != 0)
                 {
-                    box.HitDamage = box.HitDamage - (box.HitDamage * armor);
+                    box.ResultDamage = box.ResultDamage - (box.ResultDamage * armor);
 
                     var hitLocation = _rand.Next(1, 100);
 

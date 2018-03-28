@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Jobs
         {
             if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Jobs.Knight))
             {
-                box.HitDamage = box.HitDamage - (box.HitDamage * .75f);
+                box.ResultDamage = box.ResultDamage - (box.ResultDamage * .75f);
             }
         }
 
