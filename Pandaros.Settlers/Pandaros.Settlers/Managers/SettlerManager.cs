@@ -477,7 +477,7 @@ namespace Pandaros.Settlers.Managers
                 PlayerState state = PlayerState.GetPlayerState(p);
 
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(6, 15 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(10, 25 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
 
                 if (Pipliz.Time.SecondsSinceStartDouble > state.NextGenTime && colony.FollowerCount >= MAX_BUYABLE)
                 {
@@ -557,7 +557,7 @@ namespace Pandaros.Settlers.Managers
                     }
 
 
-                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(6, 15 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
+                    state.NextGenTime = Pipliz.Time.SecondsSinceStartDouble + (Pipliz.Random.Next(10, 25 - Pipliz.Math.RoundToInt(p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * HOUR_TO_REAL_SEC);
                     colony.SendUpdate();
                 }
             }
