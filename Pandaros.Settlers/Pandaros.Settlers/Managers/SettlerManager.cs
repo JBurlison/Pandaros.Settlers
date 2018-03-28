@@ -93,72 +93,67 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
         public static void OnUpdate()
         {
-            if (_updateTime < Pipliz.Time.SecondsSinceStartDouble && TimeCycle.IsDay)
+            Players.PlayerDatabase.ForeachValue(p =>
             {
-                Players.PlayerDatabase.ForeachValue(p =>
-                {
-                    if (p.IsConnected)
-                    {
-                        var colony = Colony.Get(p);
-                        NPCBase lastNPC = null;
+                var stockpile = Stockpile.GetStockPile(p);
+                var colony = Colony.Get(p);
+                var hasBandages = stockpile.Contains(Items.Healing.TreatedBandage.Item.ItemIndex) ||
+                        stockpile.Contains(Items.Healing.Bandage.Item.ItemIndex);
 
-                        foreach (var follower in colony.Followers)
+                if (hasBandages)
+                    foreach (var follower in colony.Followers)
+                    {
+                        if (follower.health < NPCBase.MaxHealth &&
+                            !HealingOverTimeNPC.NPCIsBeingHealed(follower))
                         {
-                            if (lastNPC == null || (Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 && Pipliz.Random.NextBool()))
+                            bool healing = false;
+
+                            if (NPCBase.MaxHealth - follower.health > Items.Healing.TreatedBandage.INITIALHEAL)
                             {
-                                lastNPC = follower;
-                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
+                                stockpile.TryRemove(Items.Healing.TreatedBandage.Item.ItemIndex);
+                                healing = true;
+                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+                                var heal = new Entities.HealingOverTimeNPC(follower, Items.Healing.TreatedBandage.INITIALHEAL, Items.Healing.TreatedBandage.TOTALHOT, 5, Items.Healing.TreatedBandage.Item.ItemIndex);
+                            }
+
+                            if (!healing)
+                            {
+                                stockpile.TryRemove(Items.Healing.Bandage.Item.ItemIndex);
+                                healing = true;
+                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+                                var heal = new Entities.HealingOverTimeNPC(follower, Items.Healing.Bandage.INITIALHEAL, Items.Healing.Bandage.TOTALHOT, 5, Items.Healing.Bandage.Item.ItemIndex);
                             }
                         }
                     }
-                });
 
-                _updateTime = Pipliz.Time.SecondsSinceStartDouble + 10;
-            }
-            else
-            {
-                Players.PlayerDatabase.ForeachValue(p =>
+                if (_updateTime < Pipliz.Time.SecondsSinceStartDouble && TimeCycle.IsDay && p.IsConnected)
                 {
-                    var stockpile = Stockpile.GetStockPile(p);
-                    var colony = Colony.Get(p);
-                    var hasBandages = stockpile.Contains(Items.Healing.TreatedBandage.Item.ItemIndex) ||
-                            stockpile.Contains(Items.Healing.Bandage.Item.ItemIndex);
+                    NPCBase lastNPC = null;
 
-                    if (hasBandages)
-                        foreach (var follower in colony.Followers)
+                    foreach (var follower in colony.Followers)
+                    {
+                        if (lastNPC == null || (Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 && Pipliz.Random.NextBool()))
                         {
-                            if (follower.health < NPCBase.MaxHealth &&
-                                !HealingOverTimeNPC.NPCIsBeingHealed(follower))
-                            {
-                                bool healing = false;
-
-                                if (NPCBase.MaxHealth - follower.health > Items.Healing.TreatedBandage.INITIALHEAL)
-                                {
-                                    stockpile.TryRemove(Items.Healing.TreatedBandage.Item.ItemIndex);
-                                    healing = true;
-                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
-                                    var heal = new Entities.HealingOverTimeNPC(follower, Items.Healing.TreatedBandage.INITIALHEAL, Items.Healing.TreatedBandage.TOTALHOT, 5, Items.Healing.TreatedBandage.Item.ItemIndex);
-                                }
-
-                                if (!healing)
-                                {
-                                    stockpile.TryRemove(Items.Healing.Bandage.Item.ItemIndex);
-                                    healing = true;
-                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
-                                    var heal = new Entities.HealingOverTimeNPC(follower, Items.Healing.Bandage.INITIALHEAL, Items.Healing.Bandage.TOTALHOT, 5, Items.Healing.Bandage.Item.ItemIndex);
-                                }
-                            }
+                            lastNPC = follower;
+                            ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
                         }
+                    }
+                }
 
-                    var ps = PlayerState.GetPlayerState(p);
+                var ps = PlayerState.GetPlayerState(p);
 
-                    if (ps.SettlersEnabled)
-                        if (EvaluateSettlers(p) ||
-                            EvaluateLaborers(p) ||
-                            EvaluateBeds(p))
-                            UpdateFoodUse(p);
-                });
-            }
+                if (ps.SettlersEnabled)
+                    if (EvaluateSettlers(p) ||
+                        EvaluateLaborers(p) ||
+                        EvaluateBeds(p))
+                        colony.SendUpdate();
+
+                UpdateFoodUse(p);
+            });
+
+
+            if (_updateTime < Pipliz.Time.SecondsSinceStartDouble && TimeCycle.IsDay)
+                _updateTime = Pipliz.Time.SecondsSinceStartDouble + 10;
         }
 
 
