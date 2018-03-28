@@ -543,7 +543,6 @@ namespace Pandaros.Settlers.Managers
                                 }
 
                                 update = true;
-                                colony.RegisterNPC(newGuy);
                                 ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
                             }
                         }
