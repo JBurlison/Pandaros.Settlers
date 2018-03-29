@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         private float _totalHealth = 40000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger";
         static NPCTypeMonsterSettings _mts;
-        double _cooldown = 0;
+        double _cooldown = 2;
 
         static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
         {
