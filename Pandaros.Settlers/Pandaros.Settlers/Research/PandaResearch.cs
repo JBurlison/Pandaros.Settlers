@@ -191,7 +191,6 @@ namespace Pandaros.Settlers.Research
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.CopperParts, 2);
             researchDic.Add(BuiltinBlocks.CopperNails, 3);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 4);
 
             var requirements = new List<string>()
             {

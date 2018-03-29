@@ -13,7 +13,8 @@
       {
         "version": "0.8.0.8",
         "notes": [
-          "Settlers now come a little more often but there are less settlers."
+          "Settlers now come a little more often but there are less settlers.",
+          "Removed copper coin requirement from researching copper armor."
         ]
       },
       {
