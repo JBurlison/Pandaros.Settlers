@@ -78,15 +78,8 @@ namespace Pandaros.Settlers.Entities
                 var col = Colony.Get(Player);
 
                 if (col.FollowerCount >= SettlerManager.MAX_BUYABLE)
-                {
-                    var maxAdd = (int)System.Math.Ceiling(col.FollowerCount * 0.05f);
-
-                    if (maxAdd > SettlerManager.ABSOLUTE_MAX_PERSPAWN)
-                        maxAdd = SettlerManager.ABSOLUTE_MAX_PERSPAWN;
-
                     max += Rand.Next((int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
-                               maxAdd + (int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MaxSettlers), 0f));
-                }
+                               SettlerManager.ABSOLUTE_MAX_PERSPAWN + (int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MaxSettlers), 0f));
 
                 return max;
             }
