@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Managers
         private static Dictionary<PlayerState, IPandaBoss> _spawnedBosses = new Dictionary<PlayerState, IPandaBoss>();
         private static List<IPandaBoss> _bossList = new List<IPandaBoss>();
 
-        private static int _boss = 0;
+        private static int _boss = -1;
         public static event EventHandler<Monsters.BossSpawnedEvent> BossSpawned;
 
         public static void AddBoss(IPandaBoss m)
@@ -39,12 +39,13 @@ namespace Pandaros.Settlers.Managers
 
             lock (_bossList)
             {
-                t = _bossList[_boss];
+                var rand = _boss;
 
-                _boss++;
+                while(rand != _boss)
+                    rand = Pipliz.Random.Next(0, _bossList.Count + 1);
 
-                if (_boss >= _bossList.Count)
-                    _boss = 0;
+                t = _bossList[rand];
+                _boss = rand;
             }
 
             return t;

@@ -14,7 +14,8 @@
         "version": "0.8.0.9",
         "notes": [
           "Added decorative category to the carpet blocks.",
-          "The settlers message will no longer appear if you did not random any."
+          "The settlers message will no longer appear if you did not random any.",
+          "Bosses come at random now instead of round robin. The same boss cannot spawn twice in a row."
         ]
       },
       {
