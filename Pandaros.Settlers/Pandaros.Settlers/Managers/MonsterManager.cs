@@ -41,8 +41,8 @@ namespace Pandaros.Settlers.Managers
             {
                 var rand = _boss;
 
-                while(rand != _boss)
-                    rand = Pipliz.Random.Next(0, _bossList.Count + 1);
+                while(rand == _boss)
+                    rand = Pipliz.Random.Next(0, _bossList.Count);
 
                 t = _bossList[rand];
                 _boss = rand;
