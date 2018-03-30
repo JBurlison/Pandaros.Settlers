@@ -74,11 +74,11 @@ namespace Pandaros.Settlers.Items.Machines
             var elemen = new InventoryItem(Elementium.Item.ItemIndex, 2);
             var esper = new InventoryItem(Esper.Item.ItemIndex, 1);
             var esperMax = new InventoryItem(Esper.Item.ItemIndex, 10);
-            var airStone = new InventoryItem(AirStone.Item.ItemIndex, 5);
-            var fireStone = new InventoryItem(FireStone.Item.ItemIndex, 5);
-            var waterStone = new InventoryItem(WaterStone.Item.ItemIndex, 5);
-            var earthStone = new InventoryItem(EarthStone.Item.ItemIndex, 5);
-            var voidStone = new InventoryItem(Void.Item.ItemIndex, 4);
+            var airStone = new InventoryItem(AirStone.Item.ItemIndex, 2);
+            var fireStone = new InventoryItem(FireStone.Item.ItemIndex, 2);
+            var waterStone = new InventoryItem(WaterStone.Item.ItemIndex, 2);
+            var earthStone = new InventoryItem(EarthStone.Item.ItemIndex, 2);
+            var voidStone = new InventoryItem(Void.Item.ItemIndex, 1);
 
             AddAirTurretTurretSettings();
             AddEarthTurretTurretSettings();
@@ -180,7 +180,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[VOIDTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(Void.Item.ItemIndex) },
-                AmmoValue = 0.50f,
+                AmmoValue = 1f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = VOIDTURRET,

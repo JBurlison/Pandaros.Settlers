@@ -386,7 +386,8 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                GetResearchKey(SwordSmithing + "1") 
+                GetResearchKey(SwordSmithing + "1"),
+                ColonyBuiltIn.ScienceBagBasic
             };
 
             var research = new PandaResearch(researchDic, 1, Knights, 1f, requirements);
@@ -916,7 +917,15 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CarpetYellow, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            for (int i = 1; i <= 5; i++)
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.ScienceBagLife,
+                ColonyBuiltIn.CoinMinting
+            };
+
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, TimeBetween, 1f, requirements));
+
+            for (int i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, TimeBetween, 1f));
         }
 

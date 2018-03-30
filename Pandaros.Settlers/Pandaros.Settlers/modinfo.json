@@ -14,7 +14,10 @@
         "version": "0.8.0.8",
         "notes": [
           "Settlers now come a little more often but there are less settlers.",
-          "Removed copper coin requirement from researching copper armor."
+          "Removed copper coin requirement from researching copper armor.",
+          "Lowered the cost of elemental turret cost of 5 elemental stones to 2.",
+          "Void turrets now cost 1 elemental stone to create and 1 to fuel.",
+          "Fixed Time Between Settlers research to have the proper dependancies."
         ]
       },
       {
