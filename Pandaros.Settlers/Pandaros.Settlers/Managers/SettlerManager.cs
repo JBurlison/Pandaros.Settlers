@@ -514,35 +514,38 @@ namespace Pandaros.Settlers.Managers
                                 PandaLogger.LogError(ex);
                             }
 
-                            var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
 
-                            if (numbSkilled > 0)
-                                if (numbSkilled == 1)
-                                    reason += string.Format(" {0} of them is skilled!", numbSkilled);
-                                else
-                                    reason += string.Format(" {0} of them are skilled!", numbSkilled);
-
-
-                            PandaChat.Send(p, reason, ChatColor.magenta);
-                            var playerPos = new Vector3Int(p.Position);
-
-                            if (addCount > 20)
-                                addCount = 20;
-
-                            for (int i = 0; i < addCount; i++)
+                            if (addCount > 0)
                             {
-                                NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.GetClosest(p, playerPos).KeyLocation.Vector, colony);
-                                SettlerInventory.GetSettlerInventory(newGuy);
-                                newGuy.GetTempValues().Set(ISSETTLER, true);
+                                var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
 
-                                if (i <= numbSkilled)
+                                if (numbSkilled > 0)
+                                    if (numbSkilled == 1)
+                                        reason += string.Format(" {0} of them is skilled!", numbSkilled);
+                                    else
+                                        reason += string.Format(" {0} of them are skilled!", numbSkilled);
+
+                                PandaChat.Send(p, reason, ChatColor.magenta);
+                                var playerPos = new Vector3Int(p.Position);
+
+                                if (addCount > 20)
+                                    addCount = 20;
+
+                                for (int i = 0; i < addCount; i++)
                                 {
-                                    var npcTemp = newGuy.GetTempValues(true);
-                                    npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.002f);
-                                }
+                                    NPCBase newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"), BannerTracker.GetClosest(p, playerPos).KeyLocation.Vector, colony);
+                                    SettlerInventory.GetSettlerInventory(newGuy);
+                                    newGuy.GetTempValues().Set(ISSETTLER, true);
 
-                                update = true;
-                                ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+                                    if (i <= numbSkilled)
+                                    {
+                                        var npcTemp = newGuy.GetTempValues(true);
+                                        npcTemp.Set(GameLoader.ALL_SKILLS, state.Rand.Next(1, 10) * 0.002f);
+                                    }
+
+                                    update = true;
+                                    ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+                                }
                             }
                         }
                         catch (Exception ex)

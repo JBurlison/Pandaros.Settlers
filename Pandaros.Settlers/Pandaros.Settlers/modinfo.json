@@ -13,7 +13,8 @@
       {
         "version": "0.8.0.9",
         "notes": [
-          "Added decorative category to the carpet blocks."
+          "Added decorative category to the carpet blocks.",
+          "The settlers message will no longer appear if you did not random any."
         ]
       },
       {
