@@ -25,14 +25,18 @@ namespace Pandaros.Settlers.Cosmetics
 
         public static ItemTypesServer.ItemTypeRaw AddCarpetTypeTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes, string key)
         {
-            var item = new ItemTypesServer.ItemTypeRaw(GameLoader.NAMESPACE + "." + key, new JSONNode()
+            var carpet = new JSONNode()
               .SetAs("icon", GameLoader.ICON_FOLDER_PANDA + "/" + key + ".png")
               .SetAs("onPlaceAudio", "dirtPlace")
               .SetAs("onRemoveAudio", "grassDelete")
               .SetAs("sideall", GameLoader.NAMESPACE + "." + key)
-              .SetAs("maxStackSize", 200)
-            );
+              .SetAs("maxStackSize", 200);
 
+            JSONNode categories = new JSONNode(NodeType.Array);
+            categories.AddToArray(new JSONNode("decorative"));
+            carpet.SetAs("categories", categories);
+
+            var item = new ItemTypesServer.ItemTypeRaw(GameLoader.NAMESPACE + "." + key, carpet);
             itemTypes.Add(GameLoader.NAMESPACE + "." + key, item);
 
             return item;
