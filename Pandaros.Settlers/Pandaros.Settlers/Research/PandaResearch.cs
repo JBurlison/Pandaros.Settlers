@@ -409,7 +409,8 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                ColonyBuiltIn.HerbFarming
+                ColonyBuiltIn.HerbFarming,
+                ColonyBuiltIn.ScienceBagAdvanced
             };
 
             var research = new PandaResearch(researchDic, 1, Apothecary, 1f, requirements);
