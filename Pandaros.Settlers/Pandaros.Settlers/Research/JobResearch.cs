@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, MerchantTraining, .05f, requirements);
@@ -97,7 +97,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, TailorTraining, .05f, requirements);
@@ -128,7 +128,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, BloomeryTraining, .05f, requirements);
@@ -159,7 +159,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, FineryForgeTraining, .05f, requirements);
@@ -190,7 +190,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, FurnaceTraining, .05f, requirements);
@@ -221,7 +221,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, GrinderTraining, .05f, requirements);
@@ -252,7 +252,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, GunSmithTraining, .05f, requirements);
@@ -283,7 +283,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, KilnTraining, .05f, requirements);
@@ -314,7 +314,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, MetalSmithTraining, .05f, requirements);
@@ -344,7 +344,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, MintTraining, .05f, requirements);
@@ -375,7 +375,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, OvenTraining, .05f, requirements);
@@ -406,7 +406,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, WoodcutterTraining, .05f, requirements);
@@ -437,7 +437,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>()
             {
-                SCIENCEBAGREQ
+                SCIENCEBAGREQ, ColonyBuiltIn.CoinMinting
             };
 
             var research = new PandaResearch(researchDic, 1, WorkBenchTraining, .05f, requirements);
