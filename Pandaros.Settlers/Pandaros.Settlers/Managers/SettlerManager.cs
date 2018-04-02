@@ -517,6 +517,9 @@ namespace Pandaros.Settlers.Managers
 
                             if (addCount > 0)
                             {
+                                if (addCount > 30)
+                                    addCount = 30;
+
                                 var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
 
                                 if (numbSkilled > 0)
@@ -527,9 +530,6 @@ namespace Pandaros.Settlers.Managers
 
                                 PandaChat.Send(p, reason, ChatColor.magenta);
                                 var playerPos = new Vector3Int(p.Position);
-
-                                if (addCount > 20)
-                                    addCount = 20;
 
                                 for (int i = 0; i < addCount; i++)
                                 {

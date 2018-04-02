@@ -11,6 +11,12 @@
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
       {
+        "version": "0.8.0.11",
+        "notes": [
+          "The number of settlers that join your colonoy after a wipe is now displayed accurately. Note: There is a HARD max of 30 settlers."
+        ]
+      },
+      {
         "version": "0.8.0.10",
         "notes": [
           "Number of craftable stones by default lowered from 50 to 6.",
