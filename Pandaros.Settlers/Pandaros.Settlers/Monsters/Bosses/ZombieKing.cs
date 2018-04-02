@@ -73,10 +73,10 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
 
-        public float ZombieMultiplier => 1.1f;
+        public float ZombieMultiplier => 1.0f;
         public float MissChance => 0.05f;
         public Dictionary<ushort, int> KillRewards => REWARDS;
-        public float ZombieHPBonus => 150;
+        public float ZombieHPBonus => 50;
         public Dictionary<DamageType, float> Damage => _damage;
 
         public DamageType ElementalArmor => DamageType.Fire;

@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Items
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>() { aether, torch },
                                     new InventoryItem(Item.ItemIndex, 1),
-                                    50);
+                                    6);
 
             //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);

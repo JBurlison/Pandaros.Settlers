@@ -2,7 +2,7 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.0.9",
+    "version": "0.8.0.10",
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
@@ -10,6 +10,14 @@
     "website": "http://www.settlersmod.com/",
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.0.10",
+        "notes": [
+          "Number of craftable stones by default lowered from 50 to 6.",
+          "Reduced the bonus HP to zombies from 150 hp to 50 hp.",
+          "Number of zombies that are spawned from Hoarder has been reduced."
+        ]
+      },
       {
         "version": "0.8.0.9",
         "notes": [
