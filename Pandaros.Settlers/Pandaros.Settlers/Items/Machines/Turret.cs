@@ -17,6 +17,8 @@ namespace Pandaros.Settlers.Items.Machines
     {
         public class TurretSetting : IPandaDamage
         {
+            float _ammoReloadVal = -1;
+
             public float RepairTime { get; set; }
 
             public float RefuelTime { get; set; }
@@ -30,6 +32,22 @@ namespace Pandaros.Settlers.Items.Machines
             public List<InventoryItem> Ammo { get; set; }
 
             public float AmmoValue { get; set; }
+
+            public float AmmoReloadValue
+            {
+                get
+                {
+                    if (_ammoReloadVal != -1)
+                        return _ammoReloadVal;
+                    else
+                        return AmmoValue;
+                }
+                set
+                {
+                    _ammoReloadVal = value;
+                }
+
+            }
 
             public float DurabilityPerDoWork { get; set; }
 
@@ -146,7 +164,7 @@ namespace Pandaros.Settlers.Items.Machines
                         {
                             if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
                             {
-                                machineState.Load += TurretSettings[machineState.MachineType].AmmoValue;
+                                machineState.Load += TurretSettings[machineState.MachineType].AmmoReloadValue;
 
                                 if (TurretSettings[machineState.MachineType].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
                                     stockpile.Add(BuiltinBlocks.LinenPouch);

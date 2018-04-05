@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Managers
             if (boxedData.item1.clickType == Shared.PlayerClickedData.ClickType.Right &&
                 boxedData.item1.rayCastHit.rayHitType == Shared.RayHitType.Block &&
                 World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out var blockHit) &&
-                blockHit == BlockTypes.Builtin.BuiltinBlocks.BerryBush)
+                blockHit == BuiltinBlocks.BerryBush)
             {
                 var inv = Inventory.GetInventory(player);
                 inv.TryAdd(BlockTypes.Builtin.BuiltinBlocks.Berry, 2);
@@ -238,7 +238,7 @@ namespace Pandaros.Settlers.Managers
                 var ps = PlayerState.GetPlayerState(p);
 
                 if (ps.SettlersEnabled && Configuration.GetorDefault("ColonistsRecruitment", true))
-                    PandaChat.Send(p, string.Format("Recruiting over {0} colonists will cost {1}% of your food. If you build it... they will come.", MAX_BUYABLE, Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f) * 100), ChatColor.orange);
+                    PandaChat.Send(p, string.Format("Recruiting over {0} colonists will cost the base food cost plus a compounding {1} food. This compounding value resets once per in game day. If you build it... they will come.", MAX_BUYABLE, Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5)), ChatColor.orange);
 
                 if (ps.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 4))
                 {
@@ -344,7 +344,7 @@ namespace Pandaros.Settlers.Managers
                 {
                     if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
                     {
-                        var cost = npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f);
+                        var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5) * ps.ColonistsBought;
                         float num = 0f;
 
                         if (cost < 1)
@@ -353,10 +353,15 @@ namespace Pandaros.Settlers.Managers
                         if (npc.Colony.UsedStockpile.TotalFood < cost || !npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost))
                         {
                             Chat.Send(npc.Colony.Owner, $"<color=red>Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.</color>", ChatSenderType.Server);
-                            npc.Colony.UsedStockpile.Add(BlockTypes.Builtin.BuiltinBlocks.Bread, (int)System.Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
+                            npc.Colony.UsedStockpile.Add(BuiltinBlocks.Bread, (int)System.Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
                             npc.health = 0;
                             npc.Update();
                             return;
+                        }
+                        else
+                        {
+                            ps.ColonistsBought++;
+                            ps.NextColonistBuyTime = TimeCycle.TotalTime + 24;
                         }
                     }
 
@@ -369,7 +374,7 @@ namespace Pandaros.Settlers.Managers
 
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".SettlerManager.OnNPCDied")]
         public static void OnNPCDied(NPC.NPCBase npc)
         {
             SettlerInventory.GetSettlerInventory(npc);
@@ -618,7 +623,7 @@ namespace Pandaros.Settlers.Managers
         {
             if (Pipliz.Random.NextFloat() > .49f)
             {
-                var cost = npc.Colony.UsedStockpile.TotalFood * Configuration.GetorDefault("RecruitmentCostPercentOfFood", .10f);
+                var cost = npc.Colony.UsedStockpile.TotalFood * .05f;
                 float num = 0f;
 
                 if (cost < 1)

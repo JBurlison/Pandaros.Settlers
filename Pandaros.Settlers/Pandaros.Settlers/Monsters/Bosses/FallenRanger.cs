@@ -16,8 +16,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {
-            { DamageType.Void, 20f },
-            { DamageType.Physical, 40f }
+            { DamageType.Void, 10f },
+            { DamageType.Physical, 20f }
         };
 
         private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
@@ -110,7 +110,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 ServerManager.SendAudio(Position, "bowShoot");
                 npc.OnHit(100, this, ModLoader.OnHitData.EHitSourceType.Monster);
                 ServerManager.SendAudio(npc.Position.Vector, "fleshHit");
-                _cooldown = Pipliz.Time.SecondsSinceStartDouble + 2;
+                _cooldown = Pipliz.Time.SecondsSinceStartDouble + 4;
             }
 
             killedBefore = false;

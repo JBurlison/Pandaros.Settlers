@@ -13,7 +13,10 @@
       {
         "version": "0.8.0.11",
         "notes": [
-          "The number of settlers that join your colonoy after a wipe is now displayed accurately. Note: There is a HARD max of 30 settlers."
+          "The number of settlers that join your colonoy after a wipe is now displayed accurately. Note: There is a HARD max of 30 settlers.",
+          "Fixed Elemental Turret ammo running out after 2 shots. it now lasts 50 shots per 2 stones. 50 shots per 1 void stone.",
+          "Buying colonists no longer costs a % of your food but now a compounding 5 additional food per colonist bought. Example: the first colonist will cost 50, second 55, third 60, ect... This resets after 24 in game hours of not buying any colonists. A message will be displayed when it has reset.",
+          "Fallen rangers damage and ranged attack speed have been halved."
         ]
       },
       {

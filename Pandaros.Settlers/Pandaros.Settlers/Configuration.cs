@@ -95,6 +95,7 @@ namespace Pandaros.Settlers
             GetorDefault("MaxSettlersToggle", 4);
             GetorDefault("SettlersEnabled", true);
             GetorDefault("ColonistsRecruitment", true);
+            GetorDefault("CompoundingFoodRecruitmentCost", 5);
             Save();
         }
 

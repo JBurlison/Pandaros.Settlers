@@ -180,7 +180,8 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[VOIDTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(Void.Item.ItemIndex) },
-                AmmoValue = 1f,
+                AmmoValue = 0.04f,
+                AmmoReloadValue = 1f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = VOIDTURRET,
@@ -212,7 +213,8 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[FIRETURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(FireStone.Item.ItemIndex) },
-                AmmoValue = 0.50f,
+                AmmoValue = 0.02f,
+                AmmoReloadValue = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = FIRETURRET,
@@ -244,7 +246,8 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[WATERTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(WaterStone.Item.ItemIndex) },
-                AmmoValue = 0.50f,
+                AmmoValue = 0.02f,
+                AmmoReloadValue = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = WATERTURRET,
@@ -276,7 +279,8 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[EARTHTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(EarthStone.Item.ItemIndex) },
-                AmmoValue = 0.50f,
+                AmmoValue = 0.02f,
+                AmmoReloadValue = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = EARTHTURRET,
@@ -308,7 +312,8 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 TurretItem = Turret.TurretTypes[AIRTURRET],
                 Ammo = new List<InventoryItem>() { new InventoryItem(AirStone.Item.ItemIndex) },
-                AmmoValue = 0.50f,
+                AmmoValue = 0.02f,
+                AmmoReloadValue = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork = 0.02f,
                 Name = AIRTURRET,

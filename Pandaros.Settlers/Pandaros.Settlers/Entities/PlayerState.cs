@@ -58,7 +58,8 @@ namespace Pandaros.Settlers.Entities
         public bool MonstersEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;
         public ArmorState Weapon { get; set; } = new ArmorState();
-
+        public int ColonistsBought { get; set; }
+        public double NextColonistBuyTime { get; set; }
         public Items.BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = Items.BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
@@ -134,6 +135,25 @@ namespace Pandaros.Settlers.Entities
             }
 
             return null;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
+        public static void OnUpdate()
+        {
+            Players.PlayerDatabase.ForeachValue(p =>
+            {
+                if (p.IsConnected)
+                {
+                    var ps = GetPlayerState(p);
+
+                    if (ps.NextColonistBuyTime != 0 && TimeCycle.TotalTime > ps.NextColonistBuyTime)
+                    {
+                        PandaChat.Send(p, "The compounding cost of buying colonists has been reset.", ChatColor.orange);
+                        ps.NextColonistBuyTime = 0;
+                        ps.ColonistsBought = 0;
+                    }
+                }
+            });
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]
