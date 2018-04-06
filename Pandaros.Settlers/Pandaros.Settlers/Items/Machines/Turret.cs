@@ -227,7 +227,7 @@ namespace Pandaros.Settlers.Items.Machines
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, totalDamage);
 
-                            if (monster != null)
+                            if (monster != null && General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
                             {
                                 machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
                                 Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, TurretSettings[machineState.MachineType].Ammo.FirstOrDefault().Type));

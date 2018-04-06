@@ -16,8 +16,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
         {
-            { DamageType.Void, 10f },
-            { DamageType.Physical, 20f }
+            { DamageType.Void, 20f },
+            { DamageType.Physical, 30f }
         };
 
         private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
@@ -103,14 +103,27 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public override bool Update()
         {
-            if (Pipliz.Time.SecondsSinceStartDouble > _cooldown &&
-                NPCTracker.TryGetNear(Position, 50, out var npc))
+            if (Pipliz.Time.SecondsSinceStartDouble > _cooldown)
             {
-                Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(Position), ID, new Shared.IndicatorState(2, GameLoader.Bow_Icon));
-                ServerManager.SendAudio(Position, "bowShoot");
-                npc.OnHit(100, this, ModLoader.OnHitData.EHitSourceType.Monster);
-                ServerManager.SendAudio(npc.Position.Vector, "fleshHit");
-                _cooldown = Pipliz.Time.SecondsSinceStartDouble + 4;
+                if (Players.FindClosestAlive(Position, out var p, out var dis) &&
+                    dis <= 30 &&
+                    General.Physics.Physics.CanSee(Position, p.Position))
+                {
+                    Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(Position), ID, new Shared.IndicatorState(2, GameLoader.Bow_Icon));
+                    ServerManager.SendAudio(Position, "bowShoot");
+                    p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
+                    ServerManager.SendAudio(p.Position, "fleshHit");
+                    _cooldown = Pipliz.Time.SecondsSinceStartDouble + 4;
+                }
+                else if (NPCTracker.TryGetNear(Position, 30, out var npc) &&
+                General.Physics.Physics.CanSee(Position, npc.Position.Vector))
+                {
+                    Server.Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(Position), ID, new Shared.IndicatorState(2, GameLoader.Bow_Icon));
+                    ServerManager.SendAudio(Position, "bowShoot");
+                    npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this, ModLoader.OnHitData.EHitSourceType.Monster);
+                    ServerManager.SendAudio(npc.Position.Vector, "fleshHit");
+                    _cooldown = Pipliz.Time.SecondsSinceStartDouble + 4;
+                }
             }
 
             killedBefore = false;
