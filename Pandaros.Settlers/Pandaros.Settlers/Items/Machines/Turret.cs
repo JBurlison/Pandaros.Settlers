@@ -212,22 +212,40 @@ namespace Pandaros.Settlers.Items.Machines
 
                             var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
 
+                            if (!General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                                monster = null;
+
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
+
+                            if (!General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                                monster = null;
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(-1, 0, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
 
+                            if (!General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                                monster = null;
+
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, -1, 0), TurretSettings[machineState.MachineType].Range, totalDamage);
+
+                            if (!General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                                monster = null;
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, 0, 1), TurretSettings[machineState.MachineType].Range, totalDamage);
 
+                            if (!General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                                monster = null;
+
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, 0, -1), TurretSettings[machineState.MachineType].Range, totalDamage);
 
-                            if (monster != null && General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                            if (!General.Physics.Physics.CanSee(machineState.Position.Vector, monster.Position))
+                                monster = null;
+
+                            if (monster != null)
                             {
                                 machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
                                 Server.Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(TurretSettings[machineState.MachineType].WorkTime, TurretSettings[machineState.MachineType].Ammo.FirstOrDefault().Type));
