@@ -2,7 +2,7 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.0.10",
+    "version": "0.8.0.12",
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
@@ -10,6 +10,13 @@
     "website": "http://www.settlersmod.com/",
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.0.12",
+        "notes": [
+          "Fixed compounding cost of recruiting settlers not resetting.",
+          "Settlers will now properly leave after 1 in game week of having no job or bed"
+        ]
+      },
       {
         "version": "0.8.0.11",
         "notes": [

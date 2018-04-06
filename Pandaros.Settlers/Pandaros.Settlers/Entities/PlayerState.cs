@@ -137,7 +137,7 @@ namespace Pandaros.Settlers.Entities
             return null;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnUpdate")]
         public static void OnUpdate()
         {
             Players.PlayerDatabase.ForeachValue(p =>

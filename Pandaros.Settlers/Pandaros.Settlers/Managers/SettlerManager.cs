@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Managers
         private const string LEAVETIME_BED = "LeaveTime_BED";
         private const string ISSETTLER = "isSettler";
         private const string KNOWN_ITTERATIONS = "SKILLED_ITTERATIONS";
-        public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours;
+        public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * TimeCycle.SecondsPerHour;
 
         private const int _numberOfCraftsPerPercent = 1000;
         private static float _baseFoodPerHour;
@@ -673,7 +673,7 @@ namespace Pandaros.Settlers.Managers
                         {
                             if (state.NeedsABed == 0)
                             {
-                                state.NeedsABed = Pipliz.Time.SecondsSinceStartDouble + BED_LEAVE_HOURS;
+                                state.NeedsABed = Pipliz.Time.SecondsSinceStartDouble + LOABOROR_LEAVE_HOURS;
                                 PandaChat.Send(p, SettlerReasoning.GetNeedBed(), ChatColor.grey);
                             }
 
