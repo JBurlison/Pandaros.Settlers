@@ -28,7 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="APIProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -91,6 +91,7 @@
     <Compile Include="IKillReward.cs" />
     <Compile Include="Items\AirStone.cs" />
     <Compile Include="Items\EarthStone.cs" />
+    <Compile Include="Items\IMagicItem.cs" />
     <Compile Include="Items\Void.cs" />
     <Compile Include="Items\Esper.cs" />
     <Compile Include="Items\Machines\ElementalTurrets.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Items\Machines\MachineState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
+    <Compile Include="Items\Machines\IMachineSettings.cs" />
     <Compile Include="Managers\MachineManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Managers\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ColonyArchiver.cs" />
+    <Compile Include="SettlersExtender.cs" />
     <Compile Include="VersionChecker.cs" />
   </ItemGroup>
   <ItemGroup>

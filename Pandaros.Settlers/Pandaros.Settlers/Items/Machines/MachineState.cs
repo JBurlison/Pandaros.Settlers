@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Items.Machines
         public double NextTimeForWork { get; set; } = Time.SecondsSinceStartDouble + _rand.NextDouble(0, 5);
         public Jobs.MachinistJob Machinist { get; set; }
 
-        public MachineManager.MachineSettings MachineSettings { get; private set; }
+        public IMachineSettings MachineSettings { get; private set; }
 
         public BoxedDictionary TempValues { get; private set; } = new BoxedDictionary();
 

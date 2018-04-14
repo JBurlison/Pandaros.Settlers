@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Managers
         public static string MACHINE_JSON = "";
 
 
-        public class MachineSettings
+        public class MachineSettings : IMachineSettings
         {
             public float RepairTime { get; set; }
 
@@ -54,17 +54,17 @@ namespace Pandaros.Settlers.Managers
         public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
 
         private const int MACHINE_REFRESH = 1;
-        public static Dictionary<string, MachineSettings> _machineCallbacks = new Dictionary<string, MachineSettings>(StringComparer.OrdinalIgnoreCase);
+        public static Dictionary<string, IMachineSettings> _machineCallbacks = new Dictionary<string, IMachineSettings>(StringComparer.OrdinalIgnoreCase);
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
         private static double _nextUpdate = 0;
 
-        public static void RegisterMachineType(string machineType, MachineSettings callback)
+        public static void RegisterMachineType(string machineType, IMachineSettings callback)
         {
             PandaLogger.Log(machineType + " Registered as a Machine Type!");
             _machineCallbacks[machineType] = callback;
         }
 
-        public static MachineSettings GetCallbacks(string machineType)
+        public static IMachineSettings GetCallbacks(string machineType)
         {
             if (_machineCallbacks.ContainsKey(machineType))
                 return _machineCallbacks[machineType];
