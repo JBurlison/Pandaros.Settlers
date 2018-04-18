@@ -20,8 +20,8 @@ namespace Pandaros.Settlers
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            if (player == null || player.ID == NetworkID.Server)
-                return true;
+            if (player == null || player.ID == NetworkID.Server || !Permissions.PermissionsManager.CheckAndWarnPermission(player, new Permissions.PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Archive")))
+                    return true;
 
             foreach (var p in Players.PlayerDatabase.ValuesAsList)
                 Managers.SettlerManager.SaveOffline(p);

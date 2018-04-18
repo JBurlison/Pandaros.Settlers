@@ -86,6 +86,7 @@
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="IMagicEffect.cs" />
     <Compile Include="IPandaArmor.cs" />
     <Compile Include="IPandaDamage.cs" />
     <Compile Include="IKillReward.cs" />

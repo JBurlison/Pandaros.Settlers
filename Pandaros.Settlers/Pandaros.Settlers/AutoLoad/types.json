@@ -1211,10 +1211,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1263,10 +1263,10 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1323,10 +1323,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1375,10 +1375,10 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1427,10 +1427,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1479,10 +1479,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1531,10 +1531,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1586,10 +1586,10 @@
     "onRemoveAudio": "vanilla.waterSplashFeet",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "categories": [
@@ -1642,10 +1642,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1695,10 +1695,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1748,10 +1748,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1801,10 +1801,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1854,10 +1854,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1907,10 +1907,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -1960,10 +1960,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2011,10 +2011,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2062,10 +2062,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2113,10 +2113,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2168,10 +2168,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2221,10 +2221,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2273,10 +2273,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2325,10 +2325,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2377,10 +2377,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2429,10 +2429,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2482,10 +2482,10 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2534,10 +2534,10 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2586,10 +2586,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2639,10 +2639,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2690,8 +2690,8 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
-      {"min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
+    "colliders": [
+      {"boxes" : [ { "min":[-0.5, -0.5, -0.5],"max":[0.5, 0.0, 0.5]}
     ],
     "customData": {
       "useNormalMap": true,
@@ -2735,10 +2735,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2787,10 +2787,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2839,10 +2839,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2915,10 +2915,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -2967,10 +2967,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3009,10 +3009,10 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3095,10 +3095,10 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3146,10 +3146,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3198,10 +3198,10 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3250,10 +3250,10 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3302,10 +3302,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3354,10 +3354,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3406,10 +3406,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3458,10 +3458,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3510,10 +3510,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3562,10 +3562,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3614,10 +3614,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3666,10 +3666,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3718,10 +3718,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3770,10 +3770,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3822,10 +3822,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3874,10 +3874,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3925,10 +3925,10 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -3977,10 +3977,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -4029,10 +4029,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -4081,10 +4081,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -4133,10 +4133,10 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {
@@ -4208,10 +4208,10 @@
     "onRemoveAudio": "vanilla.waterSplashFeet",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "boxColliders": [
+    "colliders": [
       {
-        "min": [ -0.5, -0.5, -0.5 ],
-        "max": [ 0.5, 0.0, 0.5 ]
+        "boxes" : [ { "min": [ -0.5, -0.5, -0.5 ],
+        "max": [ 0.5, 0.0, 0.5 ] } ]
       }
     ],
     "customData": {

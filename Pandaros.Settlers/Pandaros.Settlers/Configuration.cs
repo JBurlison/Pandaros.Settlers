@@ -31,6 +31,11 @@ namespace Pandaros.Settlers
             }
         }
 
+        public static bool HasSetting(string setting)
+        {
+            return _rootSettings.HasChild(setting);
+        }
+
         public static GameDifficulty DefaultDifficulty
         {
             get
@@ -152,7 +157,29 @@ namespace Pandaros.Settlers
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            Configuration.Reload();
+            if (Permissions.PermissionsManager.CheckAndWarnPermission(player, new Permissions.PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Config")))
+            {
+                string[] array = CommandManager.SplitCommand(chat);
+
+                if (array.Length == 3)
+                {
+                    if (Configuration.HasSetting(array[1]))
+                    {
+                        if (int.TryParse(array[2], out var set))
+                            Configuration.SetValue(array[1], set);
+                        else if (float.TryParse(array[2], out var fset))
+                            Configuration.SetValue(array[1], fset);
+                        else if (bool.TryParse(array[2], out var bset))
+                            Configuration.SetValue(array[1], bset);
+                        else
+                            Configuration.SetValue(array[1], array[2]);
+                    }
+                    else
+                        PandaChat.Send(player, $"The configuration {array[1]} does not exist.", ChatColor.red);
+                }
+                else
+                    Configuration.Reload();
+            }
 
             return true;
         }
