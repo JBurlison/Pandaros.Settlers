@@ -2,7 +2,7 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.1.0",
+    "version": "0.8.0.15",
     "enabled": true,
     "compatibleversions": [
       "0.6.0"
@@ -11,7 +11,7 @@
     "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
       {
-        "version": "0.8.1.0",
+        "version": "0.8.0.15",
         "notes": [
           "Fixed slabs so you can walk on them again as stairs.",
           "Configurations can now be set in game with the /settlersconfig *SETTING* *VALUE* command",
