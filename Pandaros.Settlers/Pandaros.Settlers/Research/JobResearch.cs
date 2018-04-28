@@ -29,8 +29,6 @@ namespace Pandaros.Settlers.Research
         private const string SCIENCEBAGREQ = ColonyBuiltIn.ScienceBagBasic;
         private const int BAG_COST = 2;
         private const int COIN_COST = 5;
-        private static ushort SCIENCEBAG = BuiltinBlocks.ScienceBagBasic;
-        private static ushort COIN = BuiltinBlocks.BronzeCoin;
 
         static Dictionary<string, float> _defaultValues = new Dictionary<string, float>();
 
@@ -61,8 +59,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -92,8 +90,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.LinenBag, 3);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -123,8 +121,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.IronWrought, 3);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -154,8 +152,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -185,8 +183,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Bricks, 5);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -216,8 +214,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Flour, 5);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -247,8 +245,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.LeadBullet, 5);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -278,8 +276,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Charcoal, 3);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -309,8 +307,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.BronzePlate, 3);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -339,8 +337,8 @@ namespace Pandaros.Settlers.Research
             _defaultValues[nameof(MintJob)] = MintJob.StaticCraftingCooldown;
 
             researchDic.Clear();
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -370,8 +368,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Bread, 3);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -401,8 +399,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.Planks, 5);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
@@ -432,8 +430,8 @@ namespace Pandaros.Settlers.Research
 
             researchDic.Clear();
             researchDic.Add(BuiltinBlocks.WorkBench, 3);
-            researchDic.Add(SCIENCEBAG, BAG_COST);
-            researchDic.Add(COIN, COIN_COST);
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
             var requirements = new List<string>()
             {
