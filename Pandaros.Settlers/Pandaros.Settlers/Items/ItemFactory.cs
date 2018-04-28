@@ -31,7 +31,6 @@ namespace Pandaros.Settlers.Items
 
         public const string JOB_BAKER = "pipliz.baker";
         public const string JOB_CRAFTER = "pipliz.crafter";
-        public static ushort Firewood = ItemTypes.IndexLookup.GetIndex("firewood");
 
         public static void RefreshGuardSettings()
         {
