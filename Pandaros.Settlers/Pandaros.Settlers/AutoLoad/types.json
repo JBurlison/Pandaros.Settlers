@@ -3,18 +3,13 @@
     "icon": "refinedemerald.png",
     "maxStackSize": 600,
     "isPlaceable": false,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "rawemerald": {
     "icon": "rawemerald.png",
     "maxStackSize": 600,
     "isPlaceable": false,
-    "categories": [
-      "ingredient",
-      "raw"
-    ]
+    "categories": [ "ingredient", "raw" ]
   },
   "infiniteemerald": {
     "icon": "infiniteemerald.png",
@@ -28,18 +23,16 @@
     "isDestructible": true,
     "customData": {
       "minerIsMineable": true,
-      "minerMiningTime": 5.0
+      "minerMiningTime": 5
     },
-    "categories": [
-      "ore"
-    ]
+    "categories": [ "ore" ]
   },
   "milk": {
     "icon": "milk.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 1.0
+    "nutritionalValue": 1
   },
   "egg": {
     "icon": "egg.png",
@@ -52,14 +45,14 @@
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 5.0
+    "nutritionalValue": 5
   },
   "beef": {
     "icon": "Beef.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "nutritionalValue": 4.0
+    "nutritionalValue": 4
   },
   "carrot": {
     "icon": "Carrot.png",
@@ -80,9 +73,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isPlaceable": false,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "blueclay": {
     "sideall": "SELF",
@@ -91,10 +82,7 @@
     "icon": "blueClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "magentaclay": {
     "sideall": "SELF",
@@ -103,10 +91,7 @@
     "icon": "magentaClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "yellowclay": {
     "sideall": "SELF",
@@ -115,10 +100,7 @@
     "icon": "yellowClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "lightpinkclay": {
     "sideall": "SELF",
@@ -127,10 +109,7 @@
     "icon": "lightpinkClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "redclay": {
     "sideall": "SELF",
@@ -139,10 +118,7 @@
     "icon": "redClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "orangeclay": {
     "sideall": "SELF",
@@ -151,10 +127,7 @@
     "icon": "orangeClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "blackclay": {
     "sideall": "SELF",
@@ -163,10 +136,7 @@
     "icon": "blackClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "brownclay": {
     "sideall": "SELF",
@@ -175,10 +145,7 @@
     "icon": "brownClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "cyanclay": {
     "sideall": "SELF",
@@ -187,10 +154,7 @@
     "icon": "cyanClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "darkblueclay": {
     "sideall": "SELF",
@@ -199,10 +163,7 @@
     "icon": "darkblueClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "greyclay": {
     "sideall": "SELF",
@@ -211,10 +172,7 @@
     "icon": "greyClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "lightgreyclay": {
     "sideall": "SELF",
@@ -223,10 +181,7 @@
     "icon": "lightgreyClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "greenclay": {
     "sideall": "SELF",
@@ -235,10 +190,7 @@
     "icon": "greenClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "limeclay": {
     "sideall": "SELF",
@@ -247,10 +199,7 @@
     "icon": "limeClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "pinkclay": {
     "sideall": "SELF",
@@ -259,10 +208,7 @@
     "icon": "pinkClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "purpleclay": {
     "sideall": "SELF",
@@ -271,10 +217,7 @@
     "icon": "purpleClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "whiteclay": {
     "sideall": "SELF",
@@ -283,10 +226,7 @@
     "icon": "whiteClay.png",
     "onPlaceAudio": "vanilla.dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "limestone": {
     "icon": "limeStone.png",
@@ -296,10 +236,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "destructionTime": 600,
-    "categories": [
-      "decorative",
-      "stone"
-    ]
+    "categories": [ "decorative", "stone" ]
   },
   "sandstone": {
     "icon": "sandStone.png",
@@ -309,10 +246,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "destructionTime": 600,
-    "categories": [
-      "decorative",
-      "stone"
-    ]
+    "categories": [ "decorative", "stone" ]
   },
   "infiniteruby": {
     "icon": "infiniteruby.png",
@@ -326,11 +260,9 @@
     "isDestructible": true,
     "customData": {
       "minerIsMineable": true,
-      "minerMiningTime": 5.0
+      "minerMiningTime": 5
     },
-    "categories": [
-      "ore"
-    ]
+    "categories": [ "ore" ]
   },
   "infinitesapphire": {
     "icon": "infinitesapphire.png",
@@ -344,11 +276,9 @@
     "isDestructible": true,
     "customData": {
       "minerIsMineable": true,
-      "minerMiningTime": 5.0
+      "minerMiningTime": 5
     },
-    "categories": [
-      "ore"
-    ]
+    "categories": [ "ore" ]
   },
   "ironbar": {
     "icon": "ironbar.png",
@@ -362,10 +292,7 @@
     "rotatablex-": "ironbarx-",
     "rotatablez+": "ironbarz+",
     "rotatablez-": "ironbarz-",
-    "categories": [
-      "decorative",
-      "iron"
-    ]
+    "categories": [ "decorative", "iron" ]
   },
   "ironbarx+": {
     "parentType": "ironbar",
@@ -395,10 +322,7 @@
     "rotatablex-": "ironbarcornerx-",
     "rotatablez+": "ironbarcornerz+",
     "rotatablez-": "ironbarcornerz-",
-    "categories": [
-      "decorative",
-      "iron"
-    ]
+    "categories": [ "decorative", "iron" ]
   },
   "ironbarcornerx+": {
     "parentType": "ironbarcorner",
@@ -428,10 +352,7 @@
     "rotatablex-": "irondoorx-",
     "rotatablez+": "irondoorz+",
     "rotatablez-": "irondoorz-",
-    "categories": [
-      "decorative",
-      "iron"
-    ]
+    "categories": [ "decorative", "iron" ]
   },
   "irondoorx+": {
     "parentType": "irondoor",
@@ -457,10 +378,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Marblepillarbase.obj",
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "marblepillarbody": {
     "icon": "marblepillarbody.png",
@@ -470,10 +388,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Marblepillarbody.obj",
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "marblepillartop": {
     "icon": "marblepillartop.png",
@@ -483,19 +398,14 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Marblepillartop.obj",
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "chalk": {
     "icon": "chalk.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "notwater": {
     "isSolid": true,
@@ -506,47 +416,35 @@
     "maxStackSize": 600,
     "icon": "water.png",
     "isPlaceable": true,
-    "categories": [
-      "decorative",
-      "water"
-    ]
+    "categories": [ "decorative", "water" ]
   },
   "knife": {
     "icon": "Knife.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "glass": {
     "icon": "Glass.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "decorative",
-      "glass"
-    ]
+    "categories": [ "decorative", "glass" ]
   },
   "sledgehammer": {
     "icon": "Sledgehammer.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "saw": {
     "icon": "saw.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "dirtbricks": {
     "isFertile": true,
@@ -556,40 +454,27 @@
     "maxStackSize": 600,
     "onRemoveAudio": "vanilla.grassDelete",
     "onPlaceAudio": "vanilla.dirtPlace",
-    "categories": [
-      "decorative",
-      "dirt"
-    ]
+    "categories": [ "decorative", "dirt" ]
   },
   "rawruby": {
     "icon": "rawruby.png",
     "isPlaceable": false,
-    "categories": [
-      "ingredient",
-      "raw"
-    ]
+    "categories": [ "ingredient", "raw" ]
   },
   "rawsapphire": {
     "icon": "rawsapphire.png",
     "isPlaceable": false,
-    "categories": [
-      "ingredient",
-      "raw"
-    ]
+    "categories": [ "ingredient", "raw" ]
   },
   "refinedsapphire": {
     "icon": "refinedsapphire.png",
     "isPlaceable": false,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "refinedruby": {
     "icon": "refinedruby.png",
     "isPlaceable": false,
-    "categories": [
-      "ingredient"
-    ]
+    "categories": [ "ingredient" ]
   },
   "marble": {
     "sideall": "SELF",
@@ -598,10 +483,7 @@
     "icon": "marble.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "marblebricks": {
     "sideall": "SELF",
@@ -610,10 +492,7 @@
     "icon": "marbleBrick.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "rawmarble": {
     "sideall": "SELF",
@@ -622,10 +501,7 @@
     "icon": "rawMarble.png",
     "onPlaceAudio": "vanilla.stonePlace",
     "onRemoveAudio": "vanilla.stoneDelete",
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "fence": {
     "icon": "woodfence.png",
@@ -639,10 +515,7 @@
     "rotatablex-": "woodfencex-",
     "rotatablez+": "woodfencez+",
     "rotatablez-": "woodfencez-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodfencex+": {
     "parentType": "fence",
@@ -672,10 +545,7 @@
     "rotatablex-": "woodfencecornerx-",
     "rotatablez+": "woodfencecornerz+",
     "rotatablez-": "woodfencecornerz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodfencecornerx+": {
     "parentType": "fencecorner",
@@ -705,10 +575,7 @@
     "rotatablex-": "windowx-",
     "rotatablez+": "windowz+",
     "rotatablez-": "windowz-",
-    "categories": [
-      "decorative",
-      "glass"
-    ]
+    "categories": [ "decorative", "glass" ]
   },
   "windowx+": {
     "parentType": "window",
@@ -738,10 +605,7 @@
     "rotatablex-": "doublewindowx-",
     "rotatablez+": "doublewindowz+",
     "rotatablez-": "doublewindowz-",
-    "categories": [
-      "decorative",
-      "glass"
-    ]
+    "categories": [ "decorative", "glass" ]
   },
   "doublewindowx+": {
     "parentType": "doublewindow",
@@ -771,10 +635,7 @@
     "rotatablex-": "woodsupportx-",
     "rotatablez+": "woodsupportz+",
     "rotatablez-": "woodsupportz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodsupportx+": {
     "parentType": "woodsupport",
@@ -804,10 +665,7 @@
     "rotatablex-": "woodsupportudx-",
     "rotatablez+": "woodsupportudz+",
     "rotatablez-": "woodsupportudz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodsupportudx+": {
     "parentType": "woodsupportud",
@@ -833,10 +691,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "woodsupportcube.obj",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "hangingbanner": {
     "icon": "hangingbanner.png",
@@ -851,9 +706,7 @@
     "rotatablex-": "hangingbannerx-",
     "rotatablez+": "hangingbannerz+",
     "rotatablez-": "hangingbannerz-",
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "hangingbannerx+": {
     "parentType": "hangingbanner",
@@ -884,9 +737,7 @@
     "rotatablex-": "hangingbannerrwx-",
     "rotatablez+": "hangingbannerrwz+",
     "rotatablez-": "hangingbannerrwz-",
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "hangingbannerrwx+": {
     "parentType": "hangingbannerrw",
@@ -917,9 +768,7 @@
     "rotatablex-": "hangingbannerbwx-",
     "rotatablez+": "hangingbannerbwz+",
     "rotatablez-": "hangingbannerbwz-",
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "hangingbannerbwx+": {
     "parentType": "hangingbannerbw",
@@ -950,9 +799,7 @@
     "rotatablex-": "hangingbannercbx-",
     "rotatablez+": "hangingbannercbz+",
     "rotatablez-": "hangingbannercbz-",
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "hangingbannercbx+": {
     "parentType": "hangingbannercb",
@@ -983,9 +830,7 @@
     "rotatablex-": "hangingbannerbw2x-",
     "rotatablez+": "hangingbannerbw2z+",
     "rotatablez-": "hangingbannerbw2z-",
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "hangingbannerbw2x+": {
     "parentType": "hangingbannerbw2",
@@ -1016,10 +861,7 @@
     "rotatablex-": "simplechairx-",
     "rotatablez+": "simplechairz+",
     "rotatablez-": "simplechairz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "simplechairx+": {
     "parentType": "simplechair",
@@ -1045,10 +887,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "simpletable.obj",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodencatwalk": {
     "icon": "woodencatwalk.png",
@@ -1062,10 +901,7 @@
     "rotatablex-": "woodencatwalkx",
     "rotatablez+": "woodencatwalkz",
     "rotatablez-": "woodencatwalkz",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodencatwalkx": {
     "parentType": "woodencatwalk",
@@ -1089,10 +925,7 @@
     "rotatablex-": "benchleftx-",
     "rotatablez+": "benchleftz+",
     "rotatablez-": "benchleftz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "benchleftx+": {
     "parentType": "bench",
@@ -1117,10 +950,7 @@
     "rotatablex-": "benchrightx-",
     "rotatablez+": "benchrightz+",
     "rotatablez-": "benchrightz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "benchrightx+": {
     "parentType": "benchright",
@@ -1150,10 +980,7 @@
     "rotatablex-": "woodbarrelx-",
     "rotatablez+": "woodbarrelz+",
     "rotatablez-": "woodbarrelz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "woodbarrelx+": {
     "parentType": "woodbarrel",
@@ -1183,10 +1010,7 @@
     "rotatablex-": "cratestackx-",
     "rotatablez+": "cratestackz+",
     "rotatablez-": "cratestackz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "cratestackx+": {
     "parentType": "cratestack",
@@ -1211,32 +1035,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "stonebrickslabtop": {
     "parentType": "stonebrickslab",
@@ -1275,32 +1086,19 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "plankslableft": {
     "parentType": "plankslab",
@@ -1347,32 +1145,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "brickslableft": {
     "parentType": "brickslab",
@@ -1411,32 +1196,19 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "coatedplankslableft": {
     "parentType": "coatedplankslab",
@@ -1475,32 +1247,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "cherryblossomslableft": {
     "parentType": "cherryblossomslab",
@@ -1539,32 +1298,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "leaves"
-    ]
+    "categories": [ "decorative", "leaves" ]
   },
   "leavestemperateslableft": {
     "parentType": "leavestemperateslab",
@@ -1603,32 +1349,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "leaves"
-    ]
+    "categories": [ "decorative", "leaves" ]
   },
   "leavestaigaslableft": {
     "parentType": "leavestaigaslab",
@@ -1670,28 +1403,15 @@
     "onRemoveAudio": "vanilla.waterSplashFeet",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
-    "categories": [
-      "decorative",
-      "water"
-    ]
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
+    "categories": [ "decorative", "water" ]
   },
   "waterslableft": {
     "parentType": "waterslab",
@@ -1726,10 +1446,7 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "slabbottom.obj",
-    "categories": [
-      "decorative",
-      "water"
-    ]
+    "categories": [ "decorative", "water" ]
   },
   "adobeslab": {
     "fullblockType": "vanilla.adobe",
@@ -1738,32 +1455,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "dirt"
-    ]
+    "categories": [ "decorative", "dirt" ]
   },
   "adobeslableft": {
     "parentType": "adobeslab",
@@ -1803,32 +1507,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "grass"
-    ]
+    "categories": [ "decorative", "grass" ]
   },
   "rainforestslableft": {
     "parentType": "rainforestslab",
@@ -1868,32 +1559,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "grass"
-    ]
+    "categories": [ "decorative", "grass" ]
   },
   "temperateslableft": {
     "parentType": "temperateslab",
@@ -1933,32 +1611,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "grass"
-    ]
+    "categories": [ "decorative", "grass" ]
   },
   "tundraslableft": {
     "parentType": "tundraslab",
@@ -1998,32 +1663,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "grass"
-    ]
+    "categories": [ "decorative", "grass" ]
   },
   "taigaslableft": {
     "parentType": "taigaslab",
@@ -2063,32 +1715,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "grass"
-    ]
+    "categories": [ "decorative", "grass" ]
   },
   "savannaslableft": {
     "parentType": "savannaslab",
@@ -2128,31 +1767,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "strawslableft": {
     "parentType": "strawslab",
@@ -2191,31 +1818,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "berrybushslableft": {
     "parentType": "berrybushslab",
@@ -2254,31 +1869,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "snowslableft": {
     "parentType": "snowslab",
@@ -2317,31 +1920,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "sandslableft": {
     "parentType": "sandslab",
@@ -2384,32 +1975,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "dirt"
-    ]
+    "categories": [ "decorative", "dirt" ]
   },
   "dirtslableft": {
     "parentType": "dirtslab",
@@ -2449,32 +2027,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "carpet"
-    ]
+    "categories": [ "decorative", "carpet" ]
   },
   "carpetyellowslableft": {
     "parentType": "carpetyellowslab",
@@ -2513,32 +2078,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "carpet"
-    ]
+    "categories": [ "decorative", "carpet" ]
   },
   "carpetblueslableft": {
     "parentType": "carpetblueslab",
@@ -2577,32 +2129,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "carpet"
-    ]
+    "categories": [ "decorative", "carpet" ]
   },
   "carpetredslableft": {
     "parentType": "carpetredslab",
@@ -2641,32 +2180,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "stoneblockslableft": {
     "parentType": "stoneblockslab",
@@ -2705,32 +2231,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "dirt"
-    ]
+    "categories": [ "decorative", "dirt" ]
   },
   "dirtbrickslableft": {
     "parentType": "dirtbrickslab",
@@ -2770,32 +2283,19 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "logtaigaslableft": {
     "parentType": "logtaigaslab",
@@ -2834,32 +2334,19 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "logtemperateslableft": {
     "parentType": "logtemperateslab",
@@ -2898,31 +2385,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "sandstoneslableft": {
     "parentType": "sandstoneslab",
@@ -2963,31 +2438,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "limestoneslableft": {
     "parentType": "limestoneslab",
@@ -3026,24 +2489,14 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
@@ -3086,32 +2539,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "rawmarbleslableft": {
     "parentType": "rawmarbleslab",
@@ -3150,32 +2590,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "marble"
-    ]
+    "categories": [ "decorative", "marble" ]
   },
   "marblebricksslableft": {
     "parentType": "marblebricksslab",
@@ -3214,32 +2641,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "stonesquaresslableft": {
     "parentType": "stonesquaresslab",
@@ -3278,10 +2692,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "stonesquares": {
     "icon": "stonesquares.png",
@@ -3290,10 +2701,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "mossstonesquaresslab": {
     "fullblockType": "mossstonesquaresslab",
@@ -3302,32 +2710,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "mossstonesquaresslableft": {
     "parentType": "mossstonesquaresslab",
@@ -3366,32 +2761,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "mossstonebricksslableft": {
     "parentType": "mossstonebricksslab",
@@ -3420,32 +2802,19 @@
     "onRemoveAudio": "vanilla.stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "mossstoneslableft": {
     "parentType": "mossstoneslab",
@@ -3494,10 +2863,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "mossstonebricks": {
     "icon": "mossstonebricks.png",
@@ -3506,10 +2872,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [
-      "decorative",
-      "bricks"
-    ]
+    "categories": [ "decorative", "bricks" ]
   },
   "plasterslab": {
     "fullblockType": "vanilla.plaster",
@@ -3518,31 +2881,19 @@
     "onPlaceAudio": "vanilla.dirtPlace",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative"
-    ]
+    "categories": [ "decorative" ]
   },
   "plasterslableft": {
     "parentType": "plasterslab",
@@ -3581,32 +2932,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "clayslableft": {
     "parentType": "clayslab",
@@ -3645,32 +2983,19 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "redplankslableft": {
     "parentType": "redplankslab",
@@ -3709,32 +3034,19 @@
     "onRemoveAudio": "vanilla.woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "wood"
-    ]
+    "categories": [ "decorative", "wood" ]
   },
   "blackplankslableft": {
     "parentType": "blackplankslab",
@@ -3773,32 +3085,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "whiteclayslableft": {
     "parentType": "whiteclayslab",
@@ -3837,32 +3136,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "yellowclayslableft": {
     "parentType": "yellowclayslab",
@@ -3901,32 +3187,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "orangeclayslableft": {
     "parentType": "orangeclayslab",
@@ -3965,32 +3238,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "magentaclayslableft": {
     "parentType": "magentaclayslab",
@@ -4029,32 +3289,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "purpleclayslableft": {
     "parentType": "purpleclayslab",
@@ -4093,32 +3340,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "redclayslableft": {
     "parentType": "redclayslab",
@@ -4157,32 +3391,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "lightpinkclayslableft": {
     "parentType": "lightpinkclayslab",
@@ -4221,32 +3442,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "pinkclayslableft": {
     "parentType": "pinkclayslab",
@@ -4285,32 +3493,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "limeclayslableft": {
     "parentType": "limeclayslab",
@@ -4349,32 +3544,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "greenclayslableft": {
     "parentType": "greenclayslab",
@@ -4413,32 +3595,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "lightgreyclayslableft": {
     "parentType": "lightgreyclayslab",
@@ -4477,32 +3646,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "greyclayslableft": {
     "parentType": "greyclayslab",
@@ -4540,32 +3696,19 @@
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "vanilla.grassDelete",
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "darkblueclayslableft": {
     "parentType": "darkblueclayslab",
@@ -4604,32 +3747,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "cyanclayslableft": {
     "parentType": "cyanclayslab",
@@ -4668,32 +3798,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "brownclayslableft": {
     "parentType": "brownclayslab",
@@ -4732,32 +3849,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "blueclayslableft": {
     "parentType": "blueclayslab",
@@ -4796,32 +3900,19 @@
     "onRemoveAudio": "vanilla.grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [
-      "decorative",
-      "clay"
-    ]
+    "categories": [ "decorative", "clay" ]
   },
   "blackclayslableft": {
     "parentType": "blackclayslab",
@@ -4870,10 +3961,7 @@
     "onPlaceAudio": "vanilla.waterSplashFeet",
     "onRemoveAudio": "vanilla.waterSplashFeet",
     "sideall": "lava",
-    "categories": [
-      "decorative",
-      "water"
-    ]
+    "categories": [ "decorative", "water" ]
   },
   "lavaslab": {
     "color": "#ba2203",
@@ -4883,24 +3971,14 @@
     "onRemoveAudio": "vanilla.waterSplashFeet",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "colliders": [
-      {
-        "boxes": [
-          {
-            "min": [
-              -0.5,
-              -0.5,
-              -0.5
-            ],
-            "max": [
-              0.5,
-              0.0,
-              0.5
-            ]
-          }
-        ]
-      }
-    ],
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0, 0.5 ]
+        }
+      ]
+    },
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true,
@@ -4914,10 +3992,7 @@
         }
       }
     },
-    "categories": [
-      "decorative",
-      "water"
-    ]
+    "categories": [ "decorative", "water" ]
   },
   "lavaleft": {
     "parentType": "lavaslab",
@@ -4958,10 +4033,7 @@
     "maxStackSize": 600,
     "mesh": "aloe.obj",
     "isSolid": false,
-    "categories": [
-      "decorative",
-      "flower"
-    ]
+    "categories": [ "decorative", "flower" ]
   },
   "tulip": {
     "icon": "tulip.png",
@@ -4972,10 +4044,7 @@
     "maxStackSize": 600,
     "mesh": "tulip.obj",
     "isSolid": false,
-    "categories": [
-      "decorative",
-      "flower"
-    ]
+    "categories": [ "decorative", "flower" ]
   },
   "daisy": {
     "icon": "daisy.png",
@@ -4986,10 +4055,7 @@
     "maxStackSize": 600,
     "mesh": "daisy.obj",
     "isSolid": false,
-    "categories": [
-      "decorative",
-      "flower"
-    ]
+    "categories": [ "decorative", "flower" ]
   },
   "Sunflower": {
     "icon": "Sunflower.png",
@@ -5000,10 +4066,7 @@
     "maxStackSize": 600,
     "mesh": "Sunflower.obj",
     "isSolid": false,
-    "categories": [
-      "decorative",
-      "flower"
-    ]
+    "categories": [ "decorative", "flower" ]
   },
   "rose": {
     "icon": "rose.png",
@@ -5014,10 +4077,7 @@
     "maxStackSize": 600,
     "mesh": "rose.obj",
     "isSolid": false,
-    "categories": [
-      "decorative",
-      "flower"
-    ]
+    "categories": [ "decorative", "flower" ]
   },
   "Flowers1": {
     "icon": "Flowers1.png",
@@ -5028,9 +4088,6 @@
     "maxStackSize": 600,
     "mesh": "Flowers1.obj",
     "isSolid": false,
-    "categories": [
-      "decorative",
-      "flower"
-    ]
+    "categories": [ "decorative", "flower" ]
   }
 }

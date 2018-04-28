@@ -15,9 +15,7 @@
         "notes": [
           "Fixed slabs so you can walk on them again as stairs.",
           "Configurations can now be set in game with the /settlersconfig *SETTING* *VALUE* command",
-          "Added Permissions to some commands",
-          "Added magic items",
-          "Added Extention mods system where mod creators can extend and add to settlers"
+          "Added Permissions to some commands"
         ]
       },
       {
