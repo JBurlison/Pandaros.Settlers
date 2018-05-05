@@ -69,7 +69,6 @@
     <Compile Include="AI\Job.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
-    <Compile Include="AutoLoad.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Cosmetics\CarpetPurple.cs" />
     <Compile Include="Cosmetics\CarpetPink.cs" />

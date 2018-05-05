@@ -413,10 +413,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "ironbarx+",
-    "rotatablex-": "ironbarx-",
-    "rotatablez+": "ironbarz+",
-    "rotatablez-": "ironbarz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.ironbarx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.ironbarx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.ironbarz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.ironbarz-",
     "categories": [
       "decorative",
       "iron"
@@ -446,10 +446,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "ironbarcornerx+",
-    "rotatablex-": "ironbarcornerx-",
-    "rotatablez+": "ironbarcornerz+",
-    "rotatablez-": "ironbarcornerz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.ironbarcornerx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.ironbarcornerx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.ironbarcornerz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.ironbarcornerz-",
     "categories": [
       "decorative",
       "iron"
@@ -479,10 +479,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "irondoorx+",
-    "rotatablex-": "irondoorx-",
-    "rotatablez+": "irondoorz+",
-    "rotatablez-": "irondoorz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.irondoorx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.irondoorx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.irondoorz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.irondoorz-",
     "categories": [
       "decorative",
       "iron"
@@ -636,10 +636,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "woodfencex+",
-    "rotatablex-": "woodfencex-",
-    "rotatablez+": "woodfencez+",
-    "rotatablez-": "woodfencez-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.woodfencex+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.woodfencex-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.woodfencez+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.woodfencez-",
     "categories": [
       "decorative",
       "wood"
@@ -669,10 +669,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "woodfencecornerx+",
-    "rotatablex-": "woodfencecornerx-",
-    "rotatablez+": "woodfencecornerz+",
-    "rotatablez-": "woodfencecornerz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.woodfencecornerx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.woodfencecornerx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.woodfencecornerz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.woodfencecornerz-",
     "categories": [
       "decorative",
       "wood"
@@ -702,10 +702,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "windowx+",
-    "rotatablex-": "windowx-",
-    "rotatablez+": "windowz+",
-    "rotatablez-": "windowz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.windowx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.windowx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.windowz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.windowz-",
     "categories": [
       "decorative",
       "glass"
@@ -735,10 +735,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "doublewindowx+",
-    "rotatablex-": "doublewindowx-",
-    "rotatablez+": "doublewindowz+",
-    "rotatablez-": "doublewindowz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.doublewindowx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.doublewindowx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.doublewindowz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.doublewindowz-",
     "categories": [
       "decorative",
       "glass"
@@ -768,10 +768,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "woodsupportx+",
-    "rotatablex-": "woodsupportx-",
-    "rotatablez+": "woodsupportz+",
-    "rotatablez-": "woodsupportz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.woodsupportx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.woodsupportx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.woodsupportz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.woodsupportz-",
     "categories": [
       "decorative",
       "wood"
@@ -801,10 +801,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "woodsupportudx+",
-    "rotatablex-": "woodsupportudx-",
-    "rotatablez+": "woodsupportudz+",
-    "rotatablez-": "woodsupportudz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.woodsupportudx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.woodsupportudx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.woodsupportudz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.woodsupportudz-",
     "categories": [
       "decorative",
       "wood"
@@ -848,10 +848,10 @@
     "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
-    "rotatablex+": "hangingbannerx+",
-    "rotatablex-": "hangingbannerx-",
-    "rotatablez+": "hangingbannerz+",
-    "rotatablez-": "hangingbannerz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.hangingbannerx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.hangingbannerx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.hangingbannerz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerz-",
     "categories": [
       "decorative"
     ]
@@ -881,10 +881,10 @@
     "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
-    "rotatablex+": "hangingbannerrwx+",
-    "rotatablex-": "hangingbannerrwx-",
-    "rotatablez+": "hangingbannerrwz+",
-    "rotatablez-": "hangingbannerrwz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.hangingbannerrwx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.hangingbannerrwx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.hangingbannerrwz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerrwz-",
     "categories": [
       "decorative"
     ]
@@ -914,10 +914,10 @@
     "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
-    "rotatablex+": "hangingbannerbwx+",
-    "rotatablex-": "hangingbannerbwx-",
-    "rotatablez+": "hangingbannerbwz+",
-    "rotatablez-": "hangingbannerbwz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.hangingbannerbwx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.hangingbannerbwx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.hangingbannerbwz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerbwz-",
     "categories": [
       "decorative"
     ]
@@ -947,10 +947,10 @@
     "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
-    "rotatablex+": "hangingbannercbx+",
-    "rotatablex-": "hangingbannercbx-",
-    "rotatablez+": "hangingbannercbz+",
-    "rotatablez-": "hangingbannercbz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.hangingbannercbx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.hangingbannercbx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.hangingbannercbz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannercbz-",
     "categories": [
       "decorative"
     ]
@@ -980,10 +980,10 @@
     "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
-    "rotatablex+": "hangingbannerbw2x+",
-    "rotatablex-": "hangingbannerbw2x-",
-    "rotatablez+": "hangingbannerbw2z+",
-    "rotatablez-": "hangingbannerbw2z-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.hangingbannerbw2x+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.hangingbannerbw2x-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.hangingbannerbw2z+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerbw2z-",
     "categories": [
       "decorative"
     ]
@@ -1013,10 +1013,10 @@
     "maxStackSize": 600,
     "isSolid": false,
     "isRotatable": true,
-    "rotatablex+": "simplechairx+",
-    "rotatablex-": "simplechairx-",
-    "rotatablez+": "simplechairz+",
-    "rotatablez-": "simplechairz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.simplechairx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.simplechairx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.simplechairz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.simplechairz-",
     "categories": [
       "decorative",
       "wood"
@@ -1059,10 +1059,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "woodencatwalkx",
-    "rotatablex-": "woodencatwalkx",
-    "rotatablez+": "woodencatwalkz",
-    "rotatablez-": "woodencatwalkz",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.woodencatwalkx",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.woodencatwalkx",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.woodencatwalkz",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.woodencatwalkz",
     "categories": [
       "decorative",
       "wood"
@@ -1086,10 +1086,10 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "rotatablex+": "benchleftx+",
-    "rotatablex-": "benchleftx-",
-    "rotatablez+": "benchleftz+",
-    "rotatablez-": "benchleftz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.benchleftx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.benchleftx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.benchleftz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.benchleftz-",
     "categories": [
       "decorative",
       "wood"
@@ -1114,10 +1114,10 @@
   "Pandaros.Settlers.AutoLoad.benchright": {
     "parentType": "Pandaros.Settlers.AutoLoad.bench",
     "isRotatable": true,
-    "rotatablex+": "benchrightx+",
-    "rotatablex-": "benchrightx-",
-    "rotatablez+": "benchrightz+",
-    "rotatablez-": "benchrightz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.benchrightx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.benchrightx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.benchrightz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.benchrightz-",
     "categories": [
       "decorative",
       "wood"
@@ -1147,10 +1147,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "woodbarrelx+",
-    "rotatablex-": "woodbarrelx-",
-    "rotatablez+": "woodbarrelz+",
-    "rotatablez-": "woodbarrelz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.woodbarrelx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.woodbarrelx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.woodbarrelz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.woodbarrelz-",
     "categories": [
       "decorative",
       "wood"
@@ -1180,10 +1180,10 @@
     "npcLimit": 0,
     "maxStackSize": 600,
     "isRotatable": true,
-    "rotatablex+": "cratestackx+",
-    "rotatablex-": "cratestackx-",
-    "rotatablez+": "cratestackz+",
-    "rotatablez-": "cratestackz-",
+    "rotatablex+": "Pandaros.Settlers.AutoLoad.cratestackx+",
+    "rotatablex-": "Pandaros.Settlers.AutoLoad.cratestackx-",
+    "rotatablez+": "Pandaros.Settlers.AutoLoad.cratestackz+",
+    "rotatablez-": "Pandaros.Settlers.AutoLoad.cratestackz-",
     "categories": [
       "decorative",
       "wood"
