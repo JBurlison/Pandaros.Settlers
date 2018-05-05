@@ -1,4 +1,6 @@
 ﻿using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Machines;
+using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using System;
 using System.Collections.Generic;
@@ -36,6 +38,11 @@ namespace Pandaros.Settlers
 
                                 case nameof(IPandaBoss):
                                     IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(type, new Server.AI.Path(), Players.GetPlayer(NetworkID.Server));
+                                    break;
+
+                                case nameof(IMachineSettings):
+                                    IMachineSettings machineSettings = (IMachineSettings)Activator.CreateInstance(type);
+                                    MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
                                     break;
                             }
                         }
