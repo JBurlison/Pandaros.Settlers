@@ -47,9 +47,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", "Juggernaut.png")
-                .SetAs("normal", "Juggernaut_normal.png")
-                .SetAs("emissive", "Juggernaut_emissive.png")
+                .SetAs("albedo", GameLoader.NPC_PATH + "Juggernaut.png")
+                .SetAs("normal", GameLoader.NPC_PATH + "Juggernaut_normal.png")
+                .SetAs("emissive", GameLoader.NPC_PATH + "Juggernaut_emissive.png")
                 .SetAs("initialHealth", 40000)
                 .SetAs("movementSpeed", .9f)
                 .SetAs("punchCooldownMS", 3000)

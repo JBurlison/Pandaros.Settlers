@@ -13,6 +13,7 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
+        public const string NPC_PATH = "gamedata/textures/materials/npc/";
         public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";

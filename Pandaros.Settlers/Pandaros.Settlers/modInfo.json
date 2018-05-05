@@ -23,7 +23,7 @@
         "relativePath": "AutoLoad/texturemapping.json"
       },
       {
-        "fileType": "overrideTypeProperties",
+        "fileType": "addNewTypes",
         "relativePath": "AutoLoad/types.json"
       },
       {

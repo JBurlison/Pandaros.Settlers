@@ -46,9 +46,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", "PutridCorpse.png")
-                .SetAs("normal", "Hoarder_normal.png")
-                .SetAs("emissive", "Hoarder_emissive.png")
+                .SetAs("albedo", GameLoader.NPC_PATH + "PutridCorpse.png")
+                .SetAs("normal", GameLoader.NPC_PATH + "Hoarder_normal.png")
+                .SetAs("emissive", GameLoader.NPC_PATH + "Hoarder_emissive.png")
                 .SetAs("initialHealth", 20000)
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 3000)
