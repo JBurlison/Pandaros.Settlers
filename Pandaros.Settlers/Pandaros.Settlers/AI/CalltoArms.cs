@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.AI
     [ModLoader.ModManager]
     public class CalltoArmsJob : Job
     {
-        const int CALL_RAD = 100;
+        const int CALL_RAD = 500;
 
         static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();

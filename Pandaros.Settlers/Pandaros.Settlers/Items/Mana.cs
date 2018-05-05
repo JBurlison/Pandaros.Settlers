@@ -15,10 +15,10 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Mana.Register")]
         public static void Register()
         {
-            var herbs = new InventoryItem(BuiltinBlocks.Hollyhock, 20);
-            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 20);
-            var oil = new InventoryItem(BuiltinBlocks.LinseedOil, 5);
-            var herbs3 = new InventoryItem(BuiltinBlocks.Wolfsbane, 20);
+            var herbs = new InventoryItem(BuiltinBlocks.Hollyhock, 10);
+            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 10);
+            var oil = new InventoryItem(BuiltinBlocks.LinseedOil, 10);
+            var herbs3 = new InventoryItem(BuiltinBlocks.Wolfsbane, 10);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>() { herbs3, oil, herbs, herbs2 },

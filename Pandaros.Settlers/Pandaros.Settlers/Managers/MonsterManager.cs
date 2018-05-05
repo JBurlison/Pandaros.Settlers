@@ -182,7 +182,6 @@ namespace Pandaros.Settlers.Managers
             AddBoss(new Bulging(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new ZombieQueen(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new ZombieKing(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-            AddBoss(new Hoarder(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             AddBoss(new Juggernaut(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             _maxTimePerTick.Start();
         }

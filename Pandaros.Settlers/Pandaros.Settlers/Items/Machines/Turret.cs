@@ -318,7 +318,7 @@ namespace Pandaros.Settlers.Items.Machines
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
 
             foreach (var turret in TurretSettings)
-                MachineManager.RegisterMachineType(turret.Key, new MachineManager.MachineSettings(turret.Value.TurretItem.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, turret.Value.RepairTime, turret.Value.RefuelTime, turret.Value.ReloadTime, turret.Value.WorkTime));
+                MachineManager.RegisterMachineType(turret.Key, new MachineManager.MachineSettings(turret.Key, turret.Value.TurretItem.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, turret.Value.RepairTime, turret.Value.RefuelTime, turret.Value.ReloadTime, turret.Value.WorkTime));
         }
 
         private static void AddStoneTurretSettings()

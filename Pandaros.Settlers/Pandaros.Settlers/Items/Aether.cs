@@ -15,13 +15,13 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Aether.Register")]
         public static void Register()
         {
-            var mana = new InventoryItem(Mana.Item.ItemIndex, 5);
-            var cryastal = new InventoryItem(BuiltinBlocks.Crystal, 2);
+            var mana = new InventoryItem(Mana.Item.ItemIndex, 2);
+            var cryastal = new InventoryItem(BuiltinBlocks.Crystal, 10);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>() { mana, cryastal },
                                     new InventoryItem(Item.ItemIndex, 1),
-                                    50);
+                                    20);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }

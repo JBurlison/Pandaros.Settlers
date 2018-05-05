@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             MachineManager.MachineRemoved += MachineManager_MachineRemoved;
-            MachineManager.RegisterMachineType(nameof(TeleportPad), new MachineManager.MachineSettings(Item.ItemIndex, Repair, Refuel, Reload, DoWork, 10, 4, 5, 10));
+            MachineManager.RegisterMachineType(nameof(TeleportPad), new MachineManager.MachineSettings(nameof(TeleportPad), Item.ItemIndex, Repair, Refuel, Reload, DoWork, 10, 4, 5, 10));
         }
 
         public static ushort Repair(Players.Player player, MachineState machineState)

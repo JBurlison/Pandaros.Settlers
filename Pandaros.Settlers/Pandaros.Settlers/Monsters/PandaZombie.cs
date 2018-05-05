@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Monsters
                 return false;
             }
 
-            if (Pipliz.Time.SecondsSinceStartDouble < nextUpdate)
+            if (Time.SecondsSinceStartDoubleThisFrame < nextUpdate)
             {
                 result = true;
             }
@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Monsters
                 {
                     if (!decision.IsValid)
                     {
-                        decision = default(ZombieDecision);
+                        decision = default(Zombie.ZombieDecision);
                         ReconsiderDecision();
                     }
 
@@ -52,15 +52,16 @@ namespace Pandaros.Settlers.Monsters
                     if (!decision.IsValid)
                     {
                         OnRagdoll();
-                        return false;
+                        bool result2 = false;
+                        return result2;
                     }
 
                     if (!decision.Do())
                     {
                         OnDiscard();
-                        return false;
+                        bool result2 = false;
+                        return result2;
                     }
-
                     result = true;
                 }
                 finally
@@ -69,7 +70,7 @@ namespace Pandaros.Settlers.Monsters
                 }
             }
 
-            if (Pipliz.Time.SecondsSinceStartDouble - lastSend > MaxTimeBetweenUpdateSends)
+            if (Time.SecondsSinceStartDoubleThisFrame > nextSend)
                 SendUpdate();
 
             return result;

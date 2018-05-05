@@ -79,7 +79,7 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterMachines")]
         public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
-            MachineManager.RegisterMachineType(nameof(GateLever), new MachineManager.MachineSettings(Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 4));
+            MachineManager.RegisterMachineType(nameof(GateLever), new MachineManager.MachineSettings(nameof(GateLever), Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 4));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterAudio"),

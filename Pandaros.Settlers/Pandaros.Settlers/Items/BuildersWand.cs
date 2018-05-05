@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Items
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>() { elementium, aether, steel, gold, silver },
                                     new InventoryItem(Item.ItemIndex, 1),
-                                    50);
+                                    5);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }

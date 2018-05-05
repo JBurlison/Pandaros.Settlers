@@ -121,10 +121,5 @@ namespace Pandaros.Settlers.Jobs
             base.OnRecipeCrafted();
             ServerManager.SendAudio(this.position.Vector, "crafting");
         }
-
-        protected override string GetRecipeLocation()
-        {
-            return Path.Combine(GameLoader.MOD_FOLDER, "AutoLoad/AdvancedCrafter.json");
-        }
     }
 }

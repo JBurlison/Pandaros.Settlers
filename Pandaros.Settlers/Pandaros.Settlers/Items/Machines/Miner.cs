@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMachines")]
         public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
-            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineSettings(Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 4));
+            MachineManager.RegisterMachineType(nameof(Miner), new MachineManager.MachineSettings(nameof(Miner), Item.ItemIndex, Repair, MachineManager.Refuel, Reload, DoWork, 10, 4, 5, 4));
         }
 
         public static ushort Repair(Players.Player player, MachineState machineState)

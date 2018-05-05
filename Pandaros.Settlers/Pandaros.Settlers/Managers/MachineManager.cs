@@ -21,6 +21,8 @@ namespace Pandaros.Settlers.Managers
 
         public class MachineSettings : IMachineSettings
         {
+            public string Name { get; set; }
+
             public float RepairTime { get; set; }
 
             public float RefuelTime { get; set; }
@@ -36,9 +38,10 @@ namespace Pandaros.Settlers.Managers
             public Func<Players.Player, MachineState, ushort> Reload { get; set; }
             public Action<Players.Player, MachineState> DoWork { get; set; }
 
-            public MachineSettings(ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, Func<Players.Player, MachineState, ushort> reload,
+            public MachineSettings(string name, ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, Func<Players.Player, MachineState, ushort> reload,
                                     Action<Players.Player, MachineState> doWork, float repairTime, float refuelTime, float reloadTime, float workTime)
             {
+                Name = name;
                 ItemIndex = itemIndex;
                 Repair = repair;
                 Refuel = refuel;

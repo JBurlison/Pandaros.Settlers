@@ -117,10 +117,5 @@ namespace Pandaros.Settlers.Jobs
             base.OnRecipeCrafted();
             ServerManager.SendAudio(this.position.Vector, "crafting");
         }
-
-        protected override string GetRecipeLocation()
-        {
-            return System.IO.Path.Combine(GameLoader.MOD_FOLDER, "AutoLoad/Apothecary.json");
-        }
     }
 }

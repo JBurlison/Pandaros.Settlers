@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Items
             if (recipe.Name == Elementium.Item.name && job.NPC != null)
             {
                 var inv = Entities.SettlerInventory.GetSettlerInventory(job.NPC);
-                var chance = 0.03f;
+                var chance = 0.05f;
 
                 if (inv.JobSkills.ContainsKey(Jobs.ApothecaryRegister.JOB_NAME))
                     chance += inv.JobSkills[Jobs.ApothecaryRegister.JOB_NAME];

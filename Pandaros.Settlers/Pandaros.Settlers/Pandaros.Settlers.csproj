@@ -335,13 +335,13 @@
     <None Include="AutoLoad\types.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\en-US\translation.json">
+    <None Include="localization\en-US\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\es-ES\translation.json">
+    <None Include="localization\es-ES\es-ES.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\ru-RU\translation.json">
+    <None Include="localization\ru-RU\ru-RU.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\aloe.obj">

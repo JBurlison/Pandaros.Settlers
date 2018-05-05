@@ -2,14 +2,125 @@
   {
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
-    "version": "0.8.0.15",
+    "namepretty": "Pandaros' Settlers!",
+    "version": "0.8.1.0",
     "enabled": true,
+    "marksgamemodded": true,
     "compatibleversions": [
-      "0.6.0"
+      "0.6.1"
+    ],
+    "jsonFiles": [
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/en-US.json"
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/es-ES/es-ES.json"
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/ru-RU/ru-RU.json"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/Apothecary.json",
+        "npcType": "Pandaros.Settlers.Apothecary",
+        "limitsUIMapping": [
+          "Pandaros.Settlers.ApothecaryTable"
+        ]
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/AdvancedCrafter.json",
+        "npcType": "Pandaros.Settlers.AdvancedCrafter",
+        "limitsUIMapping": [
+          "Pandaros.Settlers.AdvancedCraftingTable"
+        ]
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/crafting.json",
+        "npcType": "pipliz.crafter"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/tailoring.json",
+        "npcType": "pipliz.tailor"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/grinding.json",
+        "npcType": "pipliz.grinder"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/crafting.json",
+        "npcType": "pipliz.crafter"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/minting.json",
+        "npcType": "pipliz.merchant"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/technologist.json",
+        "npcType": "pipliz.technologist"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/smelting.json",
+        "npcType": "pipliz.smelter"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/baking.json",
+        "npcType": "pipliz.baker"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/stonemasonry.json",
+        "npcType": "pipliz.stonemason"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/metalsmithing.json",
+        "npcType": "pipliz.metalsmithjob"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/kiln.json",
+        "npcType": "pipliz.kilnjob"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/gunsmith.json",
+        "npcType": "pipliz.gunsmithjob"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/fineryforge.json",
+        "npcType": "pipliz.fineryforgejob"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/dyeing.json",
+        "npcType": "pipliz.dyer"
+      }
     ],
     "website": "http://www.settlersmod.com/",
-    "about":  "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
+    "about": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.1.0",
+        "notes": [
+          "Added Mod extensions. These are addons to the Settlers core engines. Made for optional additions. Mod makers see the Wiki for more details.",
+          "6.1.0 Colony Survival support",
+          "Cost of Mana, Aether, elementum have their reliance on herbs reduced. But, the cost of other reagents increased",
+          "Chance of getting Void from a elementium craft has been increased."
+        ]
+      },
       {
         "version": "0.8.0.15",
         "notes": [

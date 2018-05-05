@@ -15,18 +15,18 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Elementium.Register")]
         public static void Register()
         {
-            var aether = new InventoryItem(Aether.Item.ItemIndex, 2);
-            var copper = new InventoryItem(BuiltinBlocks.Copper, 20);
-            var iron = new InventoryItem(BuiltinBlocks.IronOre, 20);
-            var tin = new InventoryItem(BuiltinBlocks.Tin, 20);
-            var gold = new InventoryItem(BuiltinBlocks.GoldOre, 20);
-            var silver = new InventoryItem(BuiltinBlocks.GalenaSilver, 20);
-            var lead = new InventoryItem(BuiltinBlocks.GalenaLead, 20);
+            var aether = new InventoryItem(Aether.Item.ItemIndex, 1);
+            var copper = new InventoryItem(BuiltinBlocks.Copper, 400);
+            var iron = new InventoryItem(BuiltinBlocks.IronOre, 200);
+            var tin = new InventoryItem(BuiltinBlocks.Tin, 400);
+            var gold = new InventoryItem(BuiltinBlocks.GoldOre, 100);
+            var silver = new InventoryItem(BuiltinBlocks.GalenaSilver, 50);
+            var lead = new InventoryItem(BuiltinBlocks.GalenaLead, 50);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>() { aether, copper, iron, tin, gold, silver, lead },
                                     new InventoryItem(Item.ItemIndex, 1),
-                                    50);
+                                    10);
 
             RecipeStorage.AddOptionalLimitTypeRecipe(Jobs.ApothecaryRegister.JOB_NAME, recipe);
         }
