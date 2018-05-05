@@ -94,7 +94,9 @@ namespace Pandaros.Settlers.Jobs
         Vector3Int originalPosition;
         public static List<uint> OkStatus;
         private int _stuckCount = 0;
+        public const string  MECHANICAL = "MECHANICAL";
 
+        public virtual List<string> MachineTypes { get; set; } = new List<string>() { MECHANICAL };
 
         public override string NPCTypeKey
         {
@@ -142,7 +144,7 @@ namespace Pandaros.Settlers.Jobs
                 var ps = PlayerState.GetPlayerState(Owner);
 
                 if (MachineManager.Machines.ContainsKey(owner))
-                    foreach (var machine in MachineManager.Machines[Owner].Values.Where(m => m.Machinist == null))
+                    foreach (var machine in MachineManager.Machines[Owner].Values.Where(m => m.Machinist == null && MachineTypes.Contains(m.MachineSettings.MachineType)))
                     {
                         if (machine != PreviousMachine && machine.PositionIsValid())
                         {

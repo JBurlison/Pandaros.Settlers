@@ -37,6 +37,7 @@ namespace Pandaros.Settlers.Managers
             public Func<Players.Player, MachineState, ushort> Refuel { get; set; }
             public Func<Players.Player, MachineState, ushort> Reload { get; set; }
             public Action<Players.Player, MachineState> DoWork { get; set; }
+            public string MachineType { get; set; } = Jobs.MachinistJob.MECHANICAL;
 
             public MachineSettings() { }
 

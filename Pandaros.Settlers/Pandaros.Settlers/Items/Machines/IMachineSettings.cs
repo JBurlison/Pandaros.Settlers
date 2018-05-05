@@ -15,5 +15,6 @@ namespace Pandaros.Settlers.Items.Machines
         Func<Players.Player, MachineState, ushort> Repair { get; set; }
         float RepairTime { get; set; }
         float WorkTime { get; set; }
+        string MachineType { get; set; }
     }
 }
