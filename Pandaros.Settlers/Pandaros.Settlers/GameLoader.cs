@@ -58,8 +58,8 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
-            GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")) + "/";
-            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length) + "/";
+            GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/") + "/";
+            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
             MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
             ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
             MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
