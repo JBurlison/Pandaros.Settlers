@@ -53,7 +53,6 @@ namespace Pandaros.Settlers
                     // Added user agent
                     webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
                     webClient.Headers["Content-Type"] = "text";
-                    webClient.Headers[HttpRequestHeader.Authorization] = "Token 7b3d1cd9d45be2182e334f7a2fa73ff4c10868cc";
                     using (Stream data = webClient.OpenRead(GIT_URL))
                     using (StreamReader reader = new StreamReader(data))
                         releases = reader.ReadToEnd();
@@ -114,7 +113,6 @@ namespace Pandaros.Settlers
                 WebClient webClient = new WebClient();
                 webClient.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
                 webClient.Headers["Content-Type"] = "text";
-                webClient.Headers[HttpRequestHeader.Authorization] = "Token 7b3d1cd9d45be2182e334f7a2fa73ff4c10868cc";
                 webClient.DownloadFileCompleted += (s, e) =>
                 {
                     if (!NewVer)

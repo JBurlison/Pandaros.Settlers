@@ -201,9 +201,22 @@ namespace Pandaros.Settlers.Items.Machines
             categories.AddToArray(new JSONNode("machine"));
             TeleportPadNode.SetAs("categories", categories);
 
-            var TeleportPadCollidersNode = new JSONNode(NodeType.Array);
-            TeleportPadCollidersNode.AddToArray(new JSONNode("{-0.5, -0.5, -0.5}, {0.5, -0.3, 0.5}"));
-            TeleportPadNode.SetAs("boxColliders", TeleportPadCollidersNode);
+
+            var TeleportPadCollidersNode = new JSONNode();
+            var TeleportPadBoxesNode = new JSONNode();
+            var TeleportPadBoxesMinNode = new JSONNode(NodeType.Array);
+            TeleportPadBoxesMinNode.AddToArray(new JSONNode(-0.5));
+            TeleportPadBoxesMinNode.AddToArray(new JSONNode(-0.5));
+            TeleportPadBoxesMinNode.AddToArray(new JSONNode(-0.5));
+            var TeleportPadBoxesMaxNode = new JSONNode(NodeType.Array);
+            TeleportPadBoxesMaxNode.AddToArray(new JSONNode(0.5));
+            TeleportPadBoxesMaxNode.AddToArray(new JSONNode(-0.3));
+            TeleportPadBoxesMaxNode.AddToArray(new JSONNode(0.5));
+
+            TeleportPadBoxesNode.SetAs("min", TeleportPadBoxesMinNode);
+            TeleportPadBoxesNode.SetAs("max", TeleportPadBoxesMaxNode);
+            TeleportPadCollidersNode.SetAs("boxes", TeleportPadBoxesNode);
+            TeleportPadNode.SetAs("Colliders", TeleportPadCollidersNode);
 
             var TeleportPadCustomNode = new JSONNode();
             TeleportPadCustomNode.SetAs("useEmissiveMap", true);

@@ -13,13 +13,14 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
-        public const string MESH_PATH = "gamedata/meshes/";
-        public const string ICON_PATH = "gamedata/textures/icons/";
-        public const string BLOCKS_ALBEDO_PATH = "gamedata/textures/materials/blocks/albedo/";
-        public const string BLOCKS_EMISSIVE_PATH = "gamedata/textures/materials/blocks/emissive/";
-        public const string BLOCKS_HEIGHT_PATH = "gamedata/textures/materials/blocks/height/";
-        public const string BLOCKS_NORMAL_PATH = "gamedata/textures/materials/blocks/normal/";
-        public const string NPC_PATH = "gamedata/textures/materials/npc/";
+        public static string MESH_PATH = "gamedata/meshes/";
+        public static string ICON_PATH = "gamedata/textures/icons/";
+        public static string BLOCKS_ALBEDO_PATH = "Textures/albedo/";
+        public static string BLOCKS_EMISSIVE_PATH = "Textures/emissive/";
+        public static string BLOCKS_HEIGHT_PATH = "Textures/height/";
+        public static string BLOCKS_NORMAL_PATH = "Textures/normal/";
+        public static string TEXTURE_FOLDER_PANDA = "Textures";
+        public static string NPC_PATH = "gamedata/textures/materials/npc/";
         public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";
@@ -60,6 +61,14 @@ namespace Pandaros.Settlers
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")) + "/";
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length) + "/";
             MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
+            ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
+            MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
+            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/") + "/";
+            BLOCKS_ALBEDO_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
+            BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
+            BLOCKS_HEIGHT_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
+            BLOCKS_NORMAL_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
+
             MOD_FOLDER = Path.GetDirectoryName(path);
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
  
@@ -84,70 +93,70 @@ namespace Pandaros.Settlers
         public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var monsterNode = new JSONNode();
-            monsterNode["icon"] = new JSONNode("NoMonster.png");
+            monsterNode["icon"] = new JSONNode(ICON_PATH + "NoMonster.png");
             var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
             MissingMonster_Icon = monster.ItemIndex;
             
             items.Add(NAMESPACE + ".Monster", monster);
 
             var repairingNode = new JSONNode();
-            repairingNode["icon"] = new JSONNode("Repairing.png");
+            repairingNode["icon"] = new JSONNode(ICON_PATH + "Repairing.png");
             var repairing = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Repairing", repairingNode);
             Repairing_Icon = repairing.ItemIndex;
 
             items.Add(NAMESPACE + ".Repairing", repairing);
 
             var refuelNode = new JSONNode();
-            refuelNode["icon"] = new JSONNode("Refuel.png");
+            refuelNode["icon"] = new JSONNode(ICON_PATH + "Refuel.png");
             var refuel = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Refuel", refuelNode);
             Refuel_Icon = refuel.ItemIndex;
 
             items.Add(NAMESPACE + ".Refuel", refuel);
 
             var waitingNode = new JSONNode();
-            waitingNode["icon"] = new JSONNode("Waiting.png");
+            waitingNode["icon"] = new JSONNode(ICON_PATH + "Waiting.png");
             var waiting = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Waiting", waitingNode);
             Waiting_Icon = waiting.ItemIndex;
 
             items.Add(NAMESPACE + ".Waiting", waiting);
 
             var reloadNode = new JSONNode();
-            reloadNode["icon"] = new JSONNode("Reload.png");
+            reloadNode["icon"] = new JSONNode(ICON_PATH + "Reload.png");
             var reload = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Reload", reloadNode);
             Reload_Icon = reload.ItemIndex;
 
             items.Add(NAMESPACE + ".Reload", reload);
 
             var brokenNode = new JSONNode();
-            brokenNode["icon"] = new JSONNode("Broken.png");
+            brokenNode["icon"] = new JSONNode(ICON_PATH + "Broken.png");
             var broken = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Broken", brokenNode);
             Broken_Icon = broken.ItemIndex;
 
             items.Add(NAMESPACE + ".Broken", broken);
 
             var emptyNode = new JSONNode();
-            emptyNode["icon"] = new JSONNode("Empty.png");
+            emptyNode["icon"] = new JSONNode(ICON_PATH + "Empty.png");
             var empty = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Empty", emptyNode);
             Empty_Icon = empty.ItemIndex;
 
             items.Add(NAMESPACE + ".Empty", empty);
 
             var noAmmoNode = new JSONNode();
-            noAmmoNode["icon"] = new JSONNode("NoAmmo.png");
+            noAmmoNode["icon"] = new JSONNode(ICON_PATH + "NoAmmo.png");
             var noAmmo = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".NoAmmo", emptyNode);
             NOAMMO_Icon = noAmmo.ItemIndex;
 
             items.Add(NAMESPACE + ".NoAmmo", noAmmo);
 
             var poisonedNode = new JSONNode();
-            poisonedNode["icon"] = new JSONNode("Poisoned.png");
+            poisonedNode["icon"] = new JSONNode(ICON_PATH + "Poisoned.png");
             var poisoned = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Poisoned", poisonedNode);
             Poisoned_Icon = poisoned.ItemIndex;
 
             items.Add(NAMESPACE + ".Poisoned", poisoned);
 
             var bowNode = new JSONNode();
-            bowNode["icon"] = new JSONNode("bow.png");
+            bowNode["icon"] = new JSONNode(ICON_PATH + "bow.png");
             var bow = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".BowIcon", bowNode);
             Bow_Icon = bow.ItemIndex;
 

@@ -29,9 +29,9 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = "AdvancedCraftingTableTop.png";
-            textureMapping.NormalPath = "AdvancedCraftingTableTop.png";
-            textureMapping.HeightPath = "AdvancedCraftingTableTop.png";
+            textureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "AdvancedCraftingTableTop.png";
+            textureMapping.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "AdvancedCraftingTableTop.png";
+            textureMapping.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "AdvancedCraftingTableTop.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "AdvancedCraftingTableTop", textureMapping);
         }
