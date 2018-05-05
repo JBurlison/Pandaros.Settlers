@@ -31,7 +31,7 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 8, 1, 1);
+        public static readonly Version MOD_VER = new Version(0, 8, 1, 2);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 

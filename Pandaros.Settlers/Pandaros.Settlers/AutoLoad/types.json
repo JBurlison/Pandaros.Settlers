@@ -4703,7 +4703,7 @@
     "maxStackSize": 600,
     "onPlaceAudio": "waterSplashFeet",
     "onRemoveAudio": "waterSplashFeet",
-    "sideall": "lava",
+    "sideall": "SELF",
     "categories": [
       "decorative",
       "water"
@@ -4752,32 +4752,32 @@
   },
   "Pandaros.Settlers.AutoLoad.lavaleft": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "sideall": "lava",
+    "sideall": "SELF",
     "mesh": "./../Meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "sideall": "lava",
+    "sideall": "SELF",
     "mesh": "./../Meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "sideall": "lava",
+    "sideall": "SELF",
     "mesh": "./../Meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "sideall": "lava",
+    "sideall": "SELF",
     "mesh": "./../Meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "sideall": "lava",
+    "sideall": "SELF",
     "mesh": "./../Meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "sideall": "lava",
+    "sideall": "SELF",
     "mesh": "./../Meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.aloe": {

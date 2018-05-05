@@ -140,7 +140,8 @@
       {
         "version": "0.8.1.2",
         "notes": [
-          "Fixed mod items not in shop."
+          "Fixed mod items not in shop.",
+          "Fixed lava"
         ]
       },
       {
