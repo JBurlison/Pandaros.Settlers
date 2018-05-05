@@ -133,6 +133,12 @@
     "about": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
       {
+        "version": "0.8.1.1",
+        "notes": [
+          "Fixed Icons and texture mappings."
+        ]
+      },
+      {
         "version": "0.8.1.0",
         "notes": [
           "Added Mod extensions. These are addons to the Settlers core engines. Made for optional additions. Mod makers see the Wiki for more details.",

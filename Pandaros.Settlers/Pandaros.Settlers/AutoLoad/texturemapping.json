@@ -10,1828 +10,725 @@
     "folderHeight": "./../Textures/height/",
     "folderNormal": "./../Textures/normal/"
   },
-  "infiniteemerald": {
+  "Pandaros.Settlers.AutoLoad.infiniteemerald": {
     "albedo": "oreEmerald"
   },
-  "orangeclay": {
-    "albedo": "orangeClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.orangeclay": {
+    "albedo": "orangeClay"
   },
-  "lightpinkclay": {
-    "albedo": "lightpinkClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.lightpinkclay": {
+    "albedo": "lightpinkClay"
   },
-  "magentaclay": {
-    "albedo": "magentaClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.magentaclay": {
+    "albedo": "magentaClay"
   },
-  "yellowclay": {
-    "albedo": "yellowClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.yellowclay": {
+    "albedo": "yellowClay"
   },
-  "blueclay": {
-    "albedo": "blueClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.blueclay": {
+    "albedo": "blueClay"
   },
-  "redclay": {
-    "albedo": "redClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.redclay": {
+    "albedo": "redClay"
   },
-  "blackclay": {
-    "albedo": "blackClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.blackclay": {
+    "albedo": "blackClay"
   },
-  "brownclay": {
-    "albedo": "brownClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.brownclay": {
+    "albedo": "brownClay"
   },
-  "cyanclay": {
-    "albedo": "cyanClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.cyanclay": {
+    "albedo": "cyanClay"
   },
-  "darkblueclay": {
-    "albedo": "darkblueClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.darkblueclay": {
+    "albedo": "darkblueClay"
   },
-  "greenclay": {
-    "albedo": "greenClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.greenclay": {
+    "albedo": "greenClay"
   },
-  "greyclay": {
-    "albedo": "greyClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.greyclay": {
+    "albedo": "greyClay"
   },
-  "lightgreyclay": {
-    "albedo": "lightgreyClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.lightgreyclay": {
+    "albedo": "lightgreyClay"
   },
-  "limeclay": {
-    "albedo": "limeClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.limeclay": {
+    "albedo": "limeClay"
   },
-  "pinkclay": {
-    "albedo": "pinkClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.pinkclay": {
+    "albedo": "pinkClay"
   },
-  "purpleclay": {
-    "albedo": "purpleClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.purpleclay": {
+    "albedo": "purpleClay"
   },
-  "whiteclay": {
-    "albedo": "whiteClay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.whiteclay": {
+    "albedo": "whiteClay"
   },
-  "limestone": {
+  "Pandaros.Settlers.AutoLoad.limestone": {
     "albedo": "limeStone"
   },
-  "sandstone": {
+  "Pandaros.Settlers.AutoLoad.sandstone": {
     "albedo": "sandStone"
   },
-  "infiniteruby": {
+  "Pandaros.Settlers.AutoLoad.infiniteruby": {
     "albedo": "oreRuby"
   },
-  "infinitesapphire": {
+  "Pandaros.Settlers.AutoLoad.infinitesapphire": {
     "albedo": "oresapphire"
   },
-  "ironbar": {
+  "Pandaros.Settlers.AutoLoad.ironbar": {
     "albedo": "ironbar"
   },
-  "ironbarcorner": {
+  "Pandaros.Settlers.AutoLoad.ironbarcorner": {
     "albedo": "ironbar"
   },
-  "irondoor": {
+  "Pandaros.Settlers.AutoLoad.irondoor": {
     "albedo": "irondoor"
   },
-  "marblepillarbase": {
+  "Pandaros.Settlers.AutoLoad.marblepillarbase": {
     "albedo": "Marblepillarbase"
   },
-  "marblepillarbody": {
+  "Pandaros.Settlers.AutoLoad.marblepillarbody": {
     "albedo": "Marblepillarbase"
   },
-  "marblepillartop": {
+  "Pandaros.Settlers.AutoLoad.marblepillartop": {
     "albedo": "Marblepillartop"
   },
-  "dirtbricks": {
+  "Pandaros.Settlers.AutoLoad.dirtbricks": {
     "albedo": "dirtBricks"
   },
-  "marble": {
+  "Pandaros.Settlers.AutoLoad.marble": {
     "albedo": "marble"
   },
-  "rawmarble": {
+  "Pandaros.Settlers.AutoLoad.rawmarble": {
     "albedo": "rawMarble"
   },
-  "marblebricks": {
+  "Pandaros.Settlers.AutoLoad.marblebricks": {
     "albedo": "marblebricks"
   },
-  "notwater": {
+  "Pandaros.Settlers.AutoLoad.notwater": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "fence": {
+  "Pandaros.Settlers.AutoLoad.fence": {
     "albedo": "woodfence"
   },
-  "fencecorner": {
+  "Pandaros.Settlers.AutoLoad.fencecorner": {
     "albedo": "woodfence"
   },
-  "window": {
+  "Pandaros.Settlers.AutoLoad.window": {
     "albedo": "window"
   },
-  "doublewindow": {
+  "Pandaros.Settlers.AutoLoad.doublewindow": {
     "albedo": "window"
   },
-  "woodsupport": {
+  "Pandaros.Settlers.AutoLoad.woodsupport": {
     "albedo": "woodsupport"
   },
-  "woodsupportud": {
+  "Pandaros.Settlers.AutoLoad.woodsupportud": {
     "albedo": "woodsupport"
   },
-  "woodsupportcube": {
+  "Pandaros.Settlers.AutoLoad.woodsupportcube": {
     "albedo": "woodsupportcube"
   },
-  "hangingbanner": {
+  "Pandaros.Settlers.AutoLoad.hangingbanner": {
     "albedo": "hangingbanner_ry"
   },
-  "hangingbannerrw": {
+  "Pandaros.Settlers.AutoLoad.hangingbannerrw": {
     "albedo": "hangingbanner_rw"
   },
-  "hangingbannerbw": {
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw": {
     "albedo": "hangingbanner_bw"
   },
-  "hangingbannercb": {
+  "Pandaros.Settlers.AutoLoad.hangingbannercb": {
     "albedo": "hangingbanner_cb"
   },
-  "hangingbannerbw2": {
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw2": {
     "albedo": "hangingbanner_bw2"
   },
-  "simplechair": {
+  "Pandaros.Settlers.AutoLoad.simplechair": {
     "albedo": "simplechair"
   },
-  "simpletable": {
+  "Pandaros.Settlers.AutoLoad.simpletable": {
     "albedo": "simpletable"
   },
-  "woodencatwalk": {
+  "Pandaros.Settlers.AutoLoad.woodencatwalk": {
     "albedo": "woodencatwalk"
   },
-  "bench": {
+  "Pandaros.Settlers.AutoLoad.bench": {
     "albedo": "bench"
   },
-  "benchright": {
+  "Pandaros.Settlers.AutoLoad.benchright": {
     "albedo": "bench"
   },
-  "woodbarrel": {
+  "Pandaros.Settlers.AutoLoad.woodbarrel": {
     "albedo": "woodbarrel"
   },
-  "cratestack": {
+  "Pandaros.Settlers.AutoLoad.cratestack": {
     "albedo": "cratestack"
   },
-  "mossstone": {
+  "Pandaros.Settlers.AutoLoad.mossstone": {
     "albedo": "mossStone"
   },
-  "mossstonebricks": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricks": {
     "albedo": "mossStoneBricks"
   },
-  "mossstonesquares": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquares": {
     "albedo": "mossStoneSquares"
   },
-  "stonesquares": {
+  "Pandaros.Settlers.AutoLoad.stonesquares": {
     "albedo": "stoneSquares"
   },
-  "brickslabbottom": {
-    "albedo": "bricks",
-    "normal": "bricks",
-    "height": "bricks"
+  "Pandaros.Settlers.AutoLoad.redclayslabbottom": {
+    "albedo": "redclay"
   },
-  "blackplankslabbottom": {
-    "albedo": "blackplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
+  "Pandaros.Settlers.AutoLoad.blackclayslabbottom": {
+    "albedo": "blackclay"
   },
-  "redplankslabbottom": {
-    "albedo": "redplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
+  "Pandaros.Settlers.AutoLoad.blueclayslabbottom": {
+    "albedo": "blueclay"
   },
-  "coatedplankslabbottom": {
-    "albedo": "coatedplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabbottom": {
+    "albedo": "darkblueclay"
   },
-  "clayslabbottom": {
-    "albedo": "clay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.brownclayslabbottom": {
+    "albedo": "brownclay"
   },
-  "redclayslabbottom": {
-    "albedo": "redclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.cyanclayslabbottom": {
+    "albedo": "cyanclay"
   },
-  "blackclayslabbottom": {
-    "albedo": "blackclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.greenclayslabbottom": {
+    "albedo": "greenclay"
   },
-  "blueclayslabbottom": {
-    "albedo": "blueclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.greyclayslabbottom": {
+    "albedo": "greyclay"
   },
-  "darkblueclayslabbottom": {
-    "albedo": "darkblueclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabbottom": {
+    "albedo": "lightgreyclay"
   },
-  "brownclayslabbottom": {
-    "albedo": "brownclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabbottom": {
+    "albedo": "lightpinkclay"
   },
-  "cyanclayslabbottom": {
-    "albedo": "cyanclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.limeclayslabbottom": {
+    "albedo": "limeclay"
   },
-  "greenclayslabbottom": {
-    "albedo": "greenclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.magentaclayslabbottom": {
+    "albedo": "magentaclay"
   },
-  "greyclayslabbottom": {
-    "albedo": "greyclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.orangeclayslabbottom": {
+    "albedo": "orangeclay"
   },
-  "lightgreyclayslabbottom": {
-    "albedo": "lightgreyclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.pinkclayslabbottom": {
+    "albedo": "pinkclay"
   },
-  "lightpinkclayslabbottom": {
-    "albedo": "lightpinkclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.purpleclayslabbottom": {
+    "albedo": "purpleclay"
   },
-  "limeclayslabbottom": {
-    "albedo": "limeclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.yellowclayslabbottom": {
+    "albedo": "yellowclay"
   },
-  "magentaclayslabbottom": {
-    "albedo": "magentaclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.whiteclayslabbottom": {
+    "albedo": "whiteclay"
   },
-  "orangeclayslabbottom": {
-    "albedo": "orangeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "pinkclayslabbottom": {
-    "albedo": "pinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "purpleclayslabbottom": {
-    "albedo": "purpleclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "yellowclayslabbottom": {
-    "albedo": "yellowclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "whiteclayslabbottom": {
-    "albedo": "whiteclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "plasterslabbottom": {
-    "albedo": "plasterblock",
-    "normal": "plasterblock",
-    "height": "plasterblock"
-  },
-  "mossstoneslabbottom": {
+  "Pandaros.Settlers.AutoLoad.mossstoneslabbottom": {
     "albedo": "mossstone"
   },
-  "mossstonebricksslabbottom": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabbottom": {
     "albedo": "mossStoneBricks"
   },
-  "mossstonesquaresslabbottom": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabbottom": {
     "albedo": "mossStoneSquares"
   },
-  "stonesquaresslabbottom": {
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabbottom": {
     "albedo": "stonesquares"
   },
-  "marblebricksslabbottom": {
+  "Pandaros.Settlers.AutoLoad.marblebricksslabbottom": {
     "albedo": "marblebricks"
   },
-  "marbleslabbottom": {
+  "Pandaros.Settlers.AutoLoad.marbleslabbottom": {
     "albedo": "marble"
   },
-  "rawmarbleslabbottom": {
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabbottom": {
     "albedo": "rawmarble"
   },
-  "sandstoneslabbottom": {
+  "Pandaros.Settlers.AutoLoad.sandstoneslabbottom": {
     "albedo": "sandStone"
   },
-  "logtemperateslabbottom": {
-    "albedo": "logtemperate",
-    "normal": "log",
-    "height": "log"
-  },
-  "limestoneslabbottom": {
+  "Pandaros.Settlers.AutoLoad.limestoneslabbottom": {
     "albedo": "limeStone"
   },
-  "logtaigaslabbottom": {
-    "albedo": "logtaiga",
-    "normal": "log",
-    "height": "log"
-  },
-  "dirtbrickslabbottom": {
+  "Pandaros.Settlers.AutoLoad.dirtbrickslabbottom": {
     "albedo": "dirtBricks"
   },
-  "stoneblockslabbottom": {
-    "albedo": "stoneblock",
-    "normal": "stoneblock",
-    "height": "stoneblock"
-  },
-  "carpetredslabbottom": {
-    "albedo": "carpetred",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetblueslabbottom": {
-    "albedo": "carpetblue",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetyellowslabbottom": {
-    "albedo": "carpetyellow",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "dirtslabbottom": {
-    "albedo": "dirt",
-    "normal": "dirt",
-    "height": "dirt"
-  },
-  "sandslabbottom": {
-    "albedo": "sand",
-    "normal": "sand",
-    "height": "sand"
-  },
-  "snowslabbottom": {
-    "albedo": "snow",
-    "normal": "snow",
-    "height": "snow"
-  },
-  "strawslabbottom": {
-    "albedo": "straw",
-    "normal": "straw",
-    "height": "straw"
-  },
-  "adobeslabbottom": {
-    "albedo": "adobe",
-    "normal": "adobe",
-    "height": "adobe"
-  },
-  "waterslab": {
+  "Pandaros.Settlers.AutoLoad.waterslab": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "waterslabbottom": {
+  "Pandaros.Settlers.AutoLoad.waterslabbottom": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "rainforestslabbottom": {
-    "albedo": "grassRainforest",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
+  "Pandaros.Settlers.AutoLoad.redclayslabtop": {
+    "albedo": "redclay"
   },
-  "savannaslabbottom": {
-    "albedo": "grassSavanna",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
+  "Pandaros.Settlers.AutoLoad.blackclayslabtop": {
+    "albedo": "blackclay"
   },
-  "temperateslabbottom": {
-    "albedo": "grassTemperate",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
+  "Pandaros.Settlers.AutoLoad.blueclayslabtop": {
+    "albedo": "blueclay"
   },
-  "tundraslabbottom": {
-    "albedo": "grassTundra",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabtop": {
+    "albedo": "darkblueclay"
   },
-  "taigaslabbottom": {
-    "albedo": "grassTaiga",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
+  "Pandaros.Settlers.AutoLoad.brownclayslabtop": {
+    "albedo": "brownclay"
   },
-  "brickslabtop": {
-    "albedo": "bricks"
+  "Pandaros.Settlers.AutoLoad.cyanclayslabtop": {
+    "albedo": "cyanclay"
   },
-  "blackplankslabtop": {
-    "albedo": "blackplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
+  "Pandaros.Settlers.AutoLoad.greenclayslabtop": {
+    "albedo": "greenclay"
   },
-  "redplankslabtop": {
-    "albedo": "redplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
+  "Pandaros.Settlers.AutoLoad.greyclayslabtop": {
+    "albedo": "greyclay"
   },
-  "coatedplankslabtop": {
-    "albedo": "coatedplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabtop": {
+    "albedo": "lightgreyclay"
   },
-  "clayslabtop": {
-    "albedo": "clay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabtop": {
+    "albedo": "lightpinkclay"
   },
-  "redclayslabtop": {
-    "albedo": "redclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.limeclayslabtop": {
+    "albedo": "limeclay"
   },
-  "blackclayslabtop": {
-    "albedo": "blackclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.magentaclayslabtop": {
+    "albedo": "magentaclay"
   },
-  "blueclayslabtop": {
-    "albedo": "blueclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.orangeclayslabtop": {
+    "albedo": "orangeclay"
   },
-  "darkblueclayslabtop": {
-    "albedo": "darkblueclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.pinkclayslabtop": {
+    "albedo": "pinkclay"
   },
-  "brownclayslabtop": {
-    "albedo": "brownclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.purpleclayslabtop": {
+    "albedo": "purpleclay"
   },
-  "cyanclayslabtop": {
-    "albedo": "cyanclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.yellowclayslabtop": {
+    "albedo": "yellowclay"
   },
-  "greenclayslabtop": {
-    "albedo": "greenclay",
-    "normal": "clay",
-    "height": "clay"
+  "Pandaros.Settlers.AutoLoad.whiteclayslabtop": {
+    "albedo": "whiteclay"
   },
-  "greyclayslabtop": {
-    "albedo": "greyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightgreyclayslabtop": {
-    "albedo": "lightgreyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightpinkclayslabtop": {
-    "albedo": "lightpinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "limeclayslabtop": {
-    "albedo": "limeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "magentaclayslabtop": {
-    "albedo": "magentaclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "orangeclayslabtop": {
-    "albedo": "orangeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "pinkclayslabtop": {
-    "albedo": "pinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "purpleclayslabtop": {
-    "albedo": "purpleclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "yellowclayslabtop": {
-    "albedo": "yellowclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "whiteclayslabtop": {
-    "albedo": "whiteclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "plasterslabtop": {
-    "albedo": "plasterblock",
-    "normal": "plasterblock",
-    "height": "plasterblock"
-  },
-  "mossstoneslabtop": {
-    "albedo": "mossstone"
-  },
-  "mossstonebricksslabtop": {
-    "albedo": "mossStoneBricks"
-  },
-  "mossstonesquaresslabtop": {
-    "albedo": "mossStoneSquares"
-  },
-  "stonesquaresslabtop": {
-    "albedo": "stonesquares"
-  },
-  "marblebricksslabtop": {
-    "albedo": "marblebricks"
-  },
-  "marbleslabtop": {
-    "albedo": "marble"
-  },
-  "rawmarbleslabtop": {
-    "albedo": "rawmarble"
-  },
-  "sandstoneslabtop": {
-    "albedo": "sandStone"
-  },
-  "logtemperateslabtop": {
-    "albedo": "logtemperate",
-    "normal": "log",
-    "height": "log"
-  },
-  "limestoneslabtop": {
-    "albedo": "limeStone"
-  },
-  "logtaigaslabtop": {
-    "albedo": "logtaiga",
-    "normal": "log",
-    "height": "log"
-  },
-  "dirtbrickslabtop": {
-    "albedo": "dirtBricks"
-  },
-  "stoneblockslabtop": {
-    "albedo": "stoneblock",
-    "normal": "stoneblock",
-    "height": "stoneblock"
-  },
-  "carpetredslabtop": {
-    "albedo": "carpetred",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetblueslabtop": {
-    "albedo": "carpetblue",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetyellowslabtop": {
-    "albedo": "carpetyellow",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "dirtslabtop": {
-    "albedo": "dirt",
-    "normal": "dirt",
-    "height": "dirt"
-  },
-  "sandslabtop": {
-    "albedo": "sand",
-    "normal": "sand",
-    "height": "sand"
-  },
-  "snowslabtop": {
-    "albedo": "snow",
-    "normal": "snow",
-    "height": "snow"
-  },
-  "strawslabtop": {
-    "albedo": "straw",
-    "normal": "straw",
-    "height": "straw"
-  },
-  "adobeslabtop": {
-    "albedo": "adobe",
-    "normal": "adobe",
-    "height": "adobe"
-  },
-  "waterslabtop": {
+  "Pandaros.Settlers.AutoLoad.waterslabtop": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "rainforestslabtop": {
-    "albedo": "grassRainforest",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "savannaslabtop": {
-    "albedo": "grassSavanna",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "temperateslabtop": {
-    "albedo": "grassTemperate",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "tundraslabtop": {
-    "albedo": "grassTundra",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "taigaslabtop": {
-    "albedo": "grassTaiga",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "cherryblossomslabtop": {
-    "albedo": "cherryblossom",
-    "normal": "cherryblossom",
-    "height": "cherryblossom"
-  },
-  "berrybushslabtop": {
-    "albedo": "berrybush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "leavestemperateslabtop": {
-    "albedo": "leavesTemperate",
-    "normal": "leavesTemperate",
-    "height": "leavesTemperate"
-  },
-  "leavestaigaslabtop": {
-    "albedo": "leavesTaiga",
-    "normal": "leavesTaiga",
-    "height": "leavesTaiga"
-  },
-  "cherryblossomslabbottom": {
-    "albedo": "cherryblossom",
-    "normal": "cherryblossom",
-    "height": "cherryblossom"
-  },
-  "berrybushslabbottom": {
-    "albedo": "berrybush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "leavestemperateslabbottom": {
-    "albedo": "leavesTemperate",
-    "normal": "leavesTemperate",
-    "height": "leavesTemperate"
-  },
-  "leavestaigaslabbottom": {
-    "albedo": "leavesTaiga",
-    "normal": "leavesTaiga",
-    "height": "leavesTaiga"
-  },
-  "dandelion": {
+  "Pandaros.Settlers.AutoLoad.dandelion": {
     "albedo": "dandelion"
   },
-  "lily": {
+  "Pandaros.Settlers.AutoLoad.lily": {
     "albedo": "lily"
   },
-  "tulip": {
+  "Pandaros.Settlers.AutoLoad.tulip": {
     "albedo": "tulip"
   },
-  "aloe": {
+  "Pandaros.Settlers.AutoLoad.aloe": {
     "albedo": "aloe"
   },
-  "daisy": {
+  "Pandaros.Settlers.AutoLoad.daisy": {
     "albedo": "daisy"
   },
-  "Flowers1": {
+  "Pandaros.Settlers.AutoLoad.Flowers1": {
     "albedo": "Flowers1"
   },
-  "Sunflower": {
+  "Pandaros.Settlers.AutoLoad.Sunflower": {
     "albedo": "Sunflower"
   },
-  "rose": {
+  "Pandaros.Settlers.AutoLoad.rose": {
     "albedo": "rose"
   },
-  "allium": {
+  "Pandaros.Settlers.AutoLoad.allium": {
     "albedo": "allium"
   },
-  "berrybushtest": {
-    "albedo": "dandelionbush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "stonebrickslabbottom": {
-    "albedo": "stoneBricks"
-  },
-  "stonebrickslabtop": {
-    "albedo": "stoneBricks"
-  },
-  "stonebrickslableft": {
-    "albedo": "stoneBricks"
-  },
-  "stonebrickslabright": {
-    "albedo": "stoneBricks"
-  },
-  "stonebrickslabfront": {
-    "albedo": "stoneBricks"
-  },
-  "stonebrickslabback": {
-    "albedo": "stoneBricks"
-  },
-  "plankslabtop": {
-    "albedo": "planks",
-    "normal": "planks",
-    "height": "planks"
-  },
-  "plankslabbottom": {
-    "albedo": "planks",
-    "normal": "planks",
-    "height": "planks"
-  },
-  "plankslableft": {
-    "albedo": "planks",
-    "normal": "planks",
-    "height": "planks"
-  },
-  "plankslabright": {
-    "albedo": "planks",
-    "normal": "planks",
-    "height": "planks"
-  },
-  "plankslabfront": {
-    "albedo": "planks",
-    "normal": "planks",
-    "height": "planks"
-  },
-  "plankslabback": {
-    "albedo": "planks",
-    "normal": "planks",
-    "height": "planks"
-  },
-  "brickslableft": {
-    "albedo": "bricks"
-  },
-  "brickslabright": {
-    "albedo": "bricks"
-  },
-  "brickslabfront": {
-    "albedo": "bricks"
-  },
-  "brickslabback": {
-    "albedo": "bricks"
-  },
-  "coatedplankslableft": {
-    "albedo": "coatedplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "coatedplankslabright": {
-    "albedo": "coatedplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "coatedplankslabfront": {
-    "albedo": "coatedplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "coatedplankslabback": {
-    "albedo": "coatedplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "cherryblossomslableft": {
-    "albedo": "cherryblossom",
-    "normal": "cherryblossom",
-    "height": "cherryblossom"
-  },
-  "cherryblossomslabright": {
-    "albedo": "cherryblossom",
-    "normal": "cherryblossom",
-    "height": "cherryblossom"
-  },
-  "cherryblossomslabfront": {
-    "albedo": "cherryblossom",
-    "normal": "cherryblossom",
-    "height": "cherryblossom"
-  },
-  "cherryblossomslabback": {
-    "albedo": "cherryblossom",
-    "normal": "cherryblossom",
-    "height": "cherryblossom"
-  },
-  "leavestemperateslableft": {
-    "albedo": "leavestemperate",
-    "normal": "leavestemperate",
-    "height": "leavestemperate"
-  },
-  "leavestemperateslabright": {
-    "albedo": "leavestemperate",
-    "normal": "leavestemperate",
-    "height": "leavestemperate"
-  },
-  "leavestemperateslabfront": {
-    "albedo": "leavestemperate",
-    "normal": "leavestemperate",
-    "height": "leavestemperate"
-  },
-  "leavestemperateslabback": {
-    "albedo": "leavestemperate",
-    "normal": "leavestemperate",
-    "height": "leavestemperate"
-  },
-  "leavestaigaslableft": {
-    "albedo": "leavestaiga",
-    "normal": "leavesTaiga",
-    "height": "leavesTaiga"
-  },
-  "leavestaigaslabright": {
-    "albedo": "leavestaiga",
-    "normal": "leavesTaiga",
-    "height": "leavesTaiga"
-  },
-  "leavestaigaslabfront": {
-    "albedo": "leavestaiga",
-    "normal": "leavesTaiga",
-    "height": "leavesTaiga"
-  },
-  "leavestaigaslabback": {
-    "albedo": "leavestaiga",
-    "normal": "leavesTaiga",
-    "height": "leavesTaiga"
-  },
-  "waterslableft": {
+  "Pandaros.Settlers.AutoLoad.waterslableft": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "waterslabright": {
+  "Pandaros.Settlers.AutoLoad.waterslabright": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "waterslabfront": {
+  "Pandaros.Settlers.AutoLoad.waterslabfront": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "waterslabback": {
+  "Pandaros.Settlers.AutoLoad.waterslabback": {
     "albedo": "notwater",
     "normal": "notwater",
     "height": "notwater"
   },
-  "adobeslableft": {
-    "albedo": "adobe",
-    "normal": "adobe",
-    "height": "adobe"
-  },
-  "adobeslabright": {
-    "albedo": "adobe",
-    "normal": "adobe",
-    "height": "adobe"
-  },
-  "adobeslabfront": {
-    "albedo": "adobe",
-    "normal": "adobe",
-    "height": "adobe"
-  },
-  "adobeslabback": {
-    "albedo": "adobe",
-    "normal": "adobe",
-    "height": "adobe"
-  },
-  "rainforestslableft": {
-    "albedo": "grassrainforest",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "rainforestslabright": {
-    "albedo": "grassrainforest",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "rainforestslabfront": {
-    "albedo": "grassrainforest",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "rainforestslabback": {
-    "albedo": "grassrainforest",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "temperateslableft": {
-    "albedo": "grasstemperate",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "temperateslabright": {
-    "albedo": "grasstemperate",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "temperateslabfront": {
-    "albedo": "grasstemperate",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "temperateslabback": {
-    "albedo": "grasstemperate",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "tundraslableft": {
-    "albedo": "grassTundra",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "tundraslabright": {
-    "albedo": "grassTundra",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "tundraslabfront": {
-    "albedo": "grassTundra",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "tundraslabback": {
-    "albedo": "grassTundra",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "taigaslableft": {
-    "albedo": "grasstaiga",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "taigaslabright": {
-    "albedo": "grasstaiga",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "taigaslabfront": {
-    "albedo": "grasstaiga",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "taigaslabback": {
-    "albedo": "grasstaiga",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "savannaslableft": {
-    "albedo": "grasssavanna",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "savannaslabright": {
-    "albedo": "grasssavanna",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "savannaslabfront": {
-    "albedo": "grasssavanna",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "savannaslabback": {
-    "albedo": "grasssavanna",
-    "normal": "grassGeneric",
-    "height": "grassGeneric"
-  },
-  "strawslableft": {
-    "albedo": "straw",
-    "normal": "straw",
-    "height": "straw"
-  },
-  "strawslabright": {
-    "albedo": "straw",
-    "normal": "straw",
-    "height": "straw"
-  },
-  "strawslabfront": {
-    "albedo": "straw",
-    "normal": "straw",
-    "height": "straw"
-  },
-  "strawslabback": {
-    "albedo": "straw",
-    "normal": "straw",
-    "height": "straw"
-  },
-  "berrybushslableft": {
-    "albedo": "berrybush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "berrybushslabright": {
-    "albedo": "berrybush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "berrybushslabfront": {
-    "albedo": "berrybush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "berrybushslabback": {
-    "albedo": "berrybush",
-    "normal": "berrybush",
-    "height": "berrybush"
-  },
-  "snowslableft": {
-    "albedo": "snow",
-    "normal": "snow",
-    "height": "snow"
-  },
-  "snowslabright": {
-    "albedo": "snow",
-    "normal": "snow",
-    "height": "snow"
-  },
-  "snowslabfront": {
-    "albedo": "snow",
-    "normal": "snow",
-    "height": "snow"
-  },
-  "snowslabback": {
-    "albedo": "snow",
-    "normal": "snow",
-    "height": "snow"
-  },
-  "sandslableft": {
-    "albedo": "sand",
-    "normal": "sand",
-    "height": "sand"
-  },
-  "sandslabright": {
-    "albedo": "sand",
-    "normal": "sand",
-    "height": "sand"
-  },
-  "sandslabfront": {
-    "albedo": "sand",
-    "normal": "sand",
-    "height": "sand"
-  },
-  "sandslabback": {
-    "albedo": "sand",
-    "normal": "sand",
-    "height": "sand"
-  },
-  "dirtslableft": {
-    "albedo": "dirt",
-    "normal": "dirt",
-    "height": "dirt"
-  },
-  "dirtslabright": {
-    "albedo": "dirt",
-    "normal": "dirt",
-    "height": "dirt"
-  },
-  "dirtslabfront": {
-    "albedo": "dirt",
-    "normal": "dirt",
-    "height": "dirt"
-  },
-  "dirtslabback": {
-    "albedo": "dirt",
-    "normal": "dirt",
-    "height": "dirt"
-  },
-  "carpetyellowslableft": {
-    "albedo": "carpetyellow",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetyellowslabright": {
-    "albedo": "carpetyellow",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetyellowslabfront": {
-    "albedo": "carpetyellow",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetyellowslabback": {
-    "albedo": "carpetyellow",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetblueslableft": {
-    "albedo": "carpetblue",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetblueslabright": {
-    "albedo": "carpetblue",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetblueslabfront": {
-    "albedo": "carpetblue",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetblueslabback": {
-    "albedo": "carpetblue",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetredslableft": {
-    "albedo": "carpetred",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetredslabright": {
-    "albedo": "carpetred",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetredslabfront": {
-    "albedo": "carpetred",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "carpetredslabback": {
-    "albedo": "carpetred",
-    "normal": "carpet",
-    "height": "carpet"
-  },
-  "stoneblockslableft": {
-    "albedo": "stoneblock",
-    "normal": "stoneblock",
-    "height": "stoneblock"
-  },
-  "stoneblockslabright": {
-    "albedo": "stoneblock",
-    "normal": "stoneblock",
-    "height": "stoneblock"
-  },
-  "stoneblockslabfront": {
-    "albedo": "stoneblock",
-    "normal": "stoneblock",
-    "height": "stoneblock"
-  },
-  "stoneblockslabback": {
-    "albedo": "stoneblock",
-    "normal": "stoneblock",
-    "height": "stoneblock"
-  },
-  "dirtbrickslableft": {
-    "albedo": "dirtBricks"
-  },
-  "dirtbrickslabright": {
-    "albedo": "dirtBricks"
-  },
-  "dirtbrickslabfront": {
-    "albedo": "dirtBricks"
-  },
-  "dirtbrickslabback": {
-    "albedo": "dirtBricks"
-  },
-  "logtaigaslableft": {
-    "albedo": "logtaiga",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtaigaslabright": {
-    "albedo": "logtaiga",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtaigaslabfront": {
-    "albedo": "logtaiga",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtaigaslabback": {
-    "albedo": "logtaiga",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtemperateslableft": {
-    "albedo": "logtemperate",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtemperateslabright": {
-    "albedo": "logtemperate",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtemperateslabfront": {
-    "albedo": "logtemperate",
-    "normal": "log",
-    "height": "log"
-  },
-  "logtemperateslabback": {
-    "albedo": "logtemperate",
-    "normal": "log",
-    "height": "log"
-  },
-  "sandstoneslableft": {
+  "Pandaros.Settlers.AutoLoad.sandstoneslableft": {
     "albedo": "sandstone"
   },
-  "sandstoneslabright": {
+  "Pandaros.Settlers.AutoLoad.sandstoneslabright": {
     "albedo": "sandstone"
   },
-  "sandstoneslabfront": {
+  "Pandaros.Settlers.AutoLoad.sandstoneslabfront": {
     "albedo": "sandstone"
   },
-  "sandstoneslabback": {
+  "Pandaros.Settlers.AutoLoad.sandstoneslabback": {
     "albedo": "sandstone"
   },
-  "limestoneslableft": {
+  "Pandaros.Settlers.AutoLoad.limestoneslableft": {
     "albedo": "limestone"
   },
-  "limestoneslabright": {
+  "Pandaros.Settlers.AutoLoad.limestoneslabright": {
     "albedo": "limestone"
   },
-  "limestoneslabfront": {
+  "Pandaros.Settlers.AutoLoad.limestoneslabfront": {
     "albedo": "limestone"
   },
-  "limestoneslabback": {
+  "Pandaros.Settlers.AutoLoad.limestoneslabback": {
     "albedo": "limestone"
   },
-  "marbleslableft": {
+  "Pandaros.Settlers.AutoLoad.marbleslableft": {
     "albedo": "marble"
   },
-  "marbleslabright": {
+  "Pandaros.Settlers.AutoLoad.marbleslabright": {
     "albedo": "marble"
   },
-  "marbleslabfront": {
+  "Pandaros.Settlers.AutoLoad.marbleslabfront": {
     "albedo": "marble"
   },
-  "marbleslabback": {
+  "Pandaros.Settlers.AutoLoad.marbleslabback": {
     "albedo": "marble"
   },
-  "rawmarbleslableft": {
+  "Pandaros.Settlers.AutoLoad.rawmarbleslableft": {
     "albedo": "rawmarble"
   },
-  "rawmarbleslabright": {
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabright": {
     "albedo": "rawmarble"
   },
-  "rawmarbleslabfront": {
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabfront": {
     "albedo": "rawmarble"
   },
-  "rawmarbleslabback": {
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabback": {
     "albedo": "rawmarble"
   },
-  "marblebricksslableft": {
+  "Pandaros.Settlers.AutoLoad.marblebricksslableft": {
     "albedo": "marblebricks"
   },
-  "marblebricksslabright": {
+  "Pandaros.Settlers.AutoLoad.marblebricksslabright": {
     "albedo": "marblebricks"
   },
-  "marblebricksslabfront": {
+  "Pandaros.Settlers.AutoLoad.marblebricksslabfront": {
     "albedo": "marblebricks"
   },
-  "marblebricksslabback": {
+  "Pandaros.Settlers.AutoLoad.marblebricksslabback": {
     "albedo": "marblebricks"
   },
-  "stonesquaresslableft": {
+  "Pandaros.Settlers.AutoLoad.stonesquaresslableft": {
     "albedo": "stonesquares"
   },
-  "stonesquaresslabright": {
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabright": {
     "albedo": "stonesquares"
   },
-  "stonesquaresslabfront": {
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabfront": {
     "albedo": "stonesquares"
   },
-  "stonesquaresslabback": {
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabback": {
     "albedo": "stonesquares"
   },
-  "mossstonesquaresslableft": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslableft": {
     "albedo": "mossstonesquares"
   },
-  "mossstonesquaresslabright": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabright": {
     "albedo": "mossstonesquares"
   },
-  "mossstonesquaresslabfront": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabfront": {
     "albedo": "mossstonesquares"
   },
-  "mossstonesquaresslabback": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabback": {
     "albedo": "mossstonesquares"
   },
-  "mossstonebricksslableft": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslableft": {
     "albedo": "mossstonebricks"
   },
-  "mossstonebricksslabright": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabright": {
     "albedo": "mossstonebricks"
   },
-  "mossstonebricksslabfront": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabfront": {
     "albedo": "mossstonebricks"
   },
-  "mossstonebricksslabback": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabback": {
     "albedo": "mossstonebricks"
   },
-  "mossstoneslableft": {
+  "Pandaros.Settlers.AutoLoad.mossstoneslableft": {
     "albedo": "mossstone"
   },
-  "mossstoneslabright": {
+  "Pandaros.Settlers.AutoLoad.mossstoneslabright": {
     "albedo": "mossstone"
   },
-  "mossstoneslabfront": {
+  "Pandaros.Settlers.AutoLoad.mossstoneslabfront": {
     "albedo": "mossstone"
   },
-  "mossstoneslabback": {
+  "Pandaros.Settlers.AutoLoad.mossstoneslabback": {
     "albedo": "mossstone"
   },
-  "plasterslableft": {
-    "albedo": "plasterblock",
-    "normal": "plasterblock",
-    "height": "plasterblock"
-  },
-  "plasterslabright": {
-    "albedo": "plasterblock",
-    "normal": "plasterblock",
-    "height": "plasterblock"
-  },
-  "plasterslabfront": {
-    "albedo": "plasterblock",
-    "normal": "plasterblock",
-    "height": "plasterblock"
-  },
-  "plasterslabback": {
-    "albedo": "plasterblock",
-    "normal": "plasterblock",
-    "height": "plasterblock"
-  },
-  "clayslableft": {
-    "albedo": "clay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "clayslabright": {
-    "albedo": "clay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "clayslabfront": {
-    "albedo": "clay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "clayslabback": {
-    "albedo": "clay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "redplankslableft": {
-    "albedo": "redplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "redplankslabright": {
-    "albedo": "redplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "redplankslabfront": {
-    "albedo": "redplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "redplankslabback": {
-    "albedo": "redplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "blackplankslableft": {
-    "albedo": "blackplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "blackplankslabright": {
-    "albedo": "blackplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "blackplankslabfront": {
-    "albedo": "blackplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "blackplankslabback": {
-    "albedo": "blackplanks",
-    "normal": "planks",
-    "height": "coatedplanks"
-  },
-  "whiteclayslableft": {
-    "albedo": "whiteclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "whiteclayslabright": {
-    "albedo": "whiteclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "whiteclayslabfront": {
-    "albedo": "whiteclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "whiteclayslabback": {
-    "albedo": "whiteclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "yellowclayslableft": {
-    "albedo": "yellowclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "yellowclayslabright": {
-    "albedo": "yellowclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "yellowclayslabfront": {
-    "albedo": "yellowclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "yellowclayslabback": {
-    "albedo": "yellowclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "orangeclayslableft": {
-    "albedo": "orangeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "orangeclayslabright": {
-    "albedo": "orangeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "orangeclayslabfront": {
-    "albedo": "orangeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "orangeclayslabback": {
-    "albedo": "orangeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "magentaclayslableft": {
-    "albedo": "magentaclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "magentaclayslabright": {
-    "albedo": "magentaclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "magentaclayslabfront": {
-    "albedo": "magentaclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "magentaclayslabback": {
-    "albedo": "magentaclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "purpleclayslableft": {
-    "albedo": "purpleclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "purpleclayslabright": {
-    "albedo": "purpleclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "purpleclayslabfront": {
-    "albedo": "purpleclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "purpleclayslabback": {
-    "albedo": "purpleclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "redclayslableft": {
-    "albedo": "redclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "redclayslabright": {
-    "albedo": "redclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "redclayslabfront": {
-    "albedo": "redclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "redclayslabback": {
-    "albedo": "redclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightpinkclayslableft": {
-    "albedo": "lightpinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightpinkclayslabright": {
-    "albedo": "lightpinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightpinkclayslabfront": {
-    "albedo": "lightpinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightpinkclayslabback": {
-    "albedo": "lightpinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "pinkclayslableft": {
-    "albedo": "pinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "pinkclayslabright": {
-    "albedo": "pinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "pinkclayslabfront": {
-    "albedo": "pinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "pinkclayslabback": {
-    "albedo": "pinkclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "limeclayslableft": {
-    "albedo": "limeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "limeclayslabright": {
-    "albedo": "limeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "limeclayslabfront": {
-    "albedo": "limeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "limeclayslabback": {
-    "albedo": "limeclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greenclayslableft": {
-    "albedo": "greenclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greenclayslabright": {
-    "albedo": "greenclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greenclayslabfront": {
-    "albedo": "greenclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greenclayslabback": {
-    "albedo": "greenclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightgreyclayslableft": {
-    "albedo": "lightgreyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightgreyclayslabright": {
-    "albedo": "lightgreyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightgreyclayslabfront": {
-    "albedo": "lightgreyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lightgreyclayslabback": {
-    "albedo": "lightgreyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greyclayslableft": {
-    "albedo": "greyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greyclayslabright": {
-    "albedo": "greyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greyclayslabfront": {
-    "albedo": "greyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "greyclayslabback": {
-    "albedo": "greyclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "darkblueclayslableft": {
-    "albedo": "darkblueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "darkblueclayslabright": {
-    "albedo": "darkblueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "darkblueclayslabfront": {
-    "albedo": "darkblueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "darkblueclayslabback": {
-    "albedo": "darkblueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "cyanclayslableft": {
-    "albedo": "cyanclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "cyanclayslabright": {
-    "albedo": "cyanclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "cyanclayslabfront": {
-    "albedo": "cyanclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "cyanclayslabback": {
-    "albedo": "cyanclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "brownclayslableft": {
-    "albedo": "brownclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "brownclayslabright": {
-    "albedo": "brownclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "brownclayslabfront": {
-    "albedo": "brownclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "brownclayslabback": {
-    "albedo": "brownclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blueclayslableft": {
-    "albedo": "blueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blueclayslabright": {
-    "albedo": "blueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blueclayslabfront": {
-    "albedo": "blueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blueclayslabback": {
-    "albedo": "blueclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blackclayslableft": {
-    "albedo": "blackclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blackclayslabright": {
-    "albedo": "blackclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blackclayslabfront": {
-    "albedo": "blackclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "blackclayslabback": {
-    "albedo": "blackclay",
-    "normal": "clay",
-    "height": "clay"
-  },
-  "lava": {
+  "Pandaros.Settlers.AutoLoad.whiteclayslableft": {
+    "albedo": "whiteclay"
+  },
+  "Pandaros.Settlers.AutoLoad.whiteclayslabright": {
+    "albedo": "whiteclay"
+  },
+  "Pandaros.Settlers.AutoLoad.whiteclayslabfront": {
+    "albedo": "whiteclay"
+  },
+  "Pandaros.Settlers.AutoLoad.whiteclayslabback": {
+    "albedo": "whiteclay"
+  },
+  "Pandaros.Settlers.AutoLoad.yellowclayslableft": {
+    "albedo": "yellowclay"
+  },
+  "Pandaros.Settlers.AutoLoad.yellowclayslabright": {
+    "albedo": "yellowclay"
+  },
+  "Pandaros.Settlers.AutoLoad.yellowclayslabfront": {
+    "albedo": "yellowclay"
+  },
+  "Pandaros.Settlers.AutoLoad.yellowclayslabback": {
+    "albedo": "yellowclay"
+  },
+  "Pandaros.Settlers.AutoLoad.orangeclayslableft": {
+    "albedo": "orangeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.orangeclayslabright": {
+    "albedo": "orangeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.orangeclayslabfront": {
+    "albedo": "orangeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.orangeclayslabback": {
+    "albedo": "orangeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.magentaclayslableft": {
+    "albedo": "magentaclay"
+  },
+  "Pandaros.Settlers.AutoLoad.magentaclayslabright": {
+    "albedo": "magentaclay"
+  },
+  "Pandaros.Settlers.AutoLoad.magentaclayslabfront": {
+    "albedo": "magentaclay"
+  },
+  "Pandaros.Settlers.AutoLoad.magentaclayslabback": {
+    "albedo": "magentaclay"
+  },
+  "Pandaros.Settlers.AutoLoad.purpleclayslableft": {
+    "albedo": "purpleclay"
+  },
+  "Pandaros.Settlers.AutoLoad.purpleclayslabright": {
+    "albedo": "purpleclay"
+  },
+  "Pandaros.Settlers.AutoLoad.purpleclayslabfront": {
+    "albedo": "purpleclay"
+  },
+  "Pandaros.Settlers.AutoLoad.purpleclayslabback": {
+    "albedo": "purpleclay"
+  },
+  "Pandaros.Settlers.AutoLoad.redclayslableft": {
+    "albedo": "redclay"
+  },
+  "Pandaros.Settlers.AutoLoad.redclayslabright": {
+    "albedo": "redclay"
+  },
+  "Pandaros.Settlers.AutoLoad.redclayslabfront": {
+    "albedo": "redclay"
+  },
+  "Pandaros.Settlers.AutoLoad.redclayslabback": {
+    "albedo": "redclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslableft": {
+    "albedo": "lightpinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabright": {
+    "albedo": "lightpinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabfront": {
+    "albedo": "lightpinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabback": {
+    "albedo": "lightpinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.pinkclayslableft": {
+    "albedo": "pinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.pinkclayslabright": {
+    "albedo": "pinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.pinkclayslabfront": {
+    "albedo": "pinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.pinkclayslabback": {
+    "albedo": "pinkclay"
+  },
+  "Pandaros.Settlers.AutoLoad.limeclayslableft": {
+    "albedo": "limeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.limeclayslabright": {
+    "albedo": "limeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.limeclayslabfront": {
+    "albedo": "limeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.limeclayslabback": {
+    "albedo": "limeclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greenclayslableft": {
+    "albedo": "greenclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greenclayslabright": {
+    "albedo": "greenclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greenclayslabfront": {
+    "albedo": "greenclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greenclayslabback": {
+    "albedo": "greenclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslableft": {
+    "albedo": "lightgreyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabright": {
+    "albedo": "lightgreyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabfront": {
+    "albedo": "lightgreyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabback": {
+    "albedo": "lightgreyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greyclayslableft": {
+    "albedo": "greyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greyclayslabright": {
+    "albedo": "greyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greyclayslabfront": {
+    "albedo": "greyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.greyclayslabback": {
+    "albedo": "greyclay"
+  },
+  "Pandaros.Settlers.AutoLoad.darkblueclayslableft": {
+    "albedo": "darkblueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabright": {
+    "albedo": "darkblueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabfront": {
+    "albedo": "darkblueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabback": {
+    "albedo": "darkblueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.cyanclayslableft": {
+    "albedo": "cyanclay"
+  },
+  "Pandaros.Settlers.AutoLoad.cyanclayslabright": {
+    "albedo": "cyanclay"
+  },
+  "Pandaros.Settlers.AutoLoad.cyanclayslabfront": {
+    "albedo": "cyanclay"
+  },
+  "Pandaros.Settlers.AutoLoad.cyanclayslabback": {
+    "albedo": "cyanclay"
+  },
+  "Pandaros.Settlers.AutoLoad.brownclayslableft": {
+    "albedo": "brownclay"
+  },
+  "Pandaros.Settlers.AutoLoad.brownclayslabright": {
+    "albedo": "brownclay"
+  },
+  "Pandaros.Settlers.AutoLoad.brownclayslabfront": {
+    "albedo": "brownclay"
+  },
+  "Pandaros.Settlers.AutoLoad.brownclayslabback": {
+    "albedo": "brownclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blueclayslableft": {
+    "albedo": "blueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blueclayslabright": {
+    "albedo": "blueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blueclayslabfront": {
+    "albedo": "blueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blueclayslabback": {
+    "albedo": "blueclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blackclayslableft": {
+    "albedo": "blackclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blackclayslabright": {
+    "albedo": "blackclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blackclayslabfront": {
+    "albedo": "blackclay"
+  },
+  "Pandaros.Settlers.AutoLoad.blackclayslabback": {
+    "albedo": "blackclay"
+  },
+  "Pandaros.Settlers.AutoLoad.lava": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "lavaslab": {
+  "Pandaros.Settlers.AutoLoad.lavaslab": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "lavaslableft": {
+  "Pandaros.Settlers.AutoLoad.lavaslableft": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "lavaslabright": {
+  "Pandaros.Settlers.AutoLoad.lavaslabright": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "lavaslabfront": {
+  "Pandaros.Settlers.AutoLoad.lavaslabfront": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "lavaslabback": {
+  "Pandaros.Settlers.AutoLoad.lavaslabback": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "lavaslabbottom": {
+  "Pandaros.Settlers.AutoLoad.lavaslabbottom": {
     "albedo": "lava",
     "normal": "lava",
     "emissive": "lava",
     "height": "lava"
   },
-  "Selector": {
+  "Pandaros.Settlers.AutoLoad.Selector": {
     "albedo": "Selector"
   }
 }
