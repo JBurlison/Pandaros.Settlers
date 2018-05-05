@@ -44,9 +44,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Bulging.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Hoarder.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Hoarder.png")
+                .SetAs("albedo", "Bulging.png")
+                .SetAs("normal", "Hoarder_normal.png")
+                .SetAs("emissive", "Hoarder_emissive.png")
                 .SetAs("initialHealth", 20000)
                 .SetAs("movementSpeed", .75f)
                 .SetAs("punchCooldownMS", 3000)
@@ -104,6 +104,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
         public float MissChance => 0.05f;
+
+        public Bulging() :
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+        {
+        }
 
         public Bulging(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

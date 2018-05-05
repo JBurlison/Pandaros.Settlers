@@ -28,9 +28,9 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/ApothecaryTable.png";
-            textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/ApothecaryTable.png";
-            textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ApothecaryTable.png";
+            textureMapping.AlbedoPath = "ApothecaryTable.png";
+            textureMapping.HeightPath = "ApothecaryTable.png";
+            textureMapping.NormalPath = "ApothecaryTable.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTable", textureMapping);
         }
@@ -39,7 +39,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
-              .SetAs("icon", System.IO.Path.Combine(GameLoader.ICON_FOLDER_PANDA, "ApothecaryTable.png"))
+              .SetAs("icon","ApothecaryTable.png")
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", GameLoader.NAMESPACE + "ApothecaryTable")

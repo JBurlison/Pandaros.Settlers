@@ -29,9 +29,9 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/AdvancedCraftingTableTop.png";
-            textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/AdvancedCraftingTableTop.png";
-            textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/AdvancedCraftingTableTop.png";
+            textureMapping.AlbedoPath = "AdvancedCraftingTableTop.png";
+            textureMapping.NormalPath = "AdvancedCraftingTableTop.png";
+            textureMapping.HeightPath = "AdvancedCraftingTableTop.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "AdvancedCraftingTableTop", textureMapping);
         }
@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
-              .SetAs("icon", Path.Combine(GameLoader.ICON_FOLDER_PANDA, "AdvancedCraftingTable.png"))
+              .SetAs("icon", "AdvancedCraftingTable.png")
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", "planks")

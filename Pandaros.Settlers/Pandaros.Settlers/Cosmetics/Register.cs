@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Cosmetics
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
 
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/" + key + ".png";
+            textureMapping.AlbedoPath = "" + key + ".png";
             textureMapping.NormalPath = "gamedata/textures/materials/blocks/normal/carpet.png";
             textureMapping.EmissivePath = "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png";
             textureMapping.HeightPath = "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png";
@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Cosmetics
         public static ItemTypesServer.ItemTypeRaw AddCarpetTypeTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes, string key)
         {
             var carpet = new JSONNode()
-              .SetAs("icon", GameLoader.ICON_FOLDER_PANDA + "/" + key + ".png")
+              .SetAs("icon", "" + key + ".png")
               .SetAs("onPlaceAudio", "dirtPlace")
               .SetAs("onRemoveAudio", "grassDelete")
               .SetAs("sideall", GameLoader.NAMESPACE + "." + key)

@@ -18,49 +18,60 @@ namespace Pandaros.Settlers
         {
             foreach (var mod in list.Where(m => m.HasAssembly))
             {
-                if (mod.name != GameLoader.NAMESPACE)
+                try
                 {
-                    try
+                    // Get all Types available in the assembly in an array
+                    Type[] typeArray = mod.LoadedAssembly.GetTypes();
+
+                    // Walk through each Type and list their Information
+                    foreach (Type type in typeArray)
                     {
-                        // Get all Types available in the assembly in an array
-                        Type[] typeArray = mod.LoadedAssembly.GetTypes();
+                        Type[] ifaces = type.GetInterfaces();
 
-                        // Walk through each Type and list their Information
-                        foreach (Type type in typeArray)
+                        foreach (Type iface in ifaces)
                         {
-                            Type[] ifaces = type.GetInterfaces();
-
-                            foreach (Type iface in ifaces)
+                            try
                             {
-                                try
+                                switch (iface.Name)
                                 {
-                                    switch (iface.Name)
-                                    {
-                                        case nameof(IMagicItem):
-                                            IMagicItem magicItem = (IMagicItem)Activator.CreateInstance(type);
-                                            break;
+                                    case nameof(IMagicItem):
+                                        IMagicItem magicItem = (IMagicItem)Activator.CreateInstance(type);
+                                        PandaLogger.Log($"Magic Item {magicItem.Name} Loaded!");
+                                        break;
 
-                                        case nameof(IPandaBoss):
-                                            IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(type, new Server.AI.Path(), Players.GetPlayer(NetworkID.Server));
-                                            break;
+                                    case nameof(IPandaBoss):
+                                        IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(type);
 
-                                        case nameof(IMachineSettings):
-                                            IMachineSettings machineSettings = (IMachineSettings)Activator.CreateInstance(type);
+                                        if (pandaBoss != null && !string.IsNullOrEmpty(pandaBoss.Name))
+                                        {
+                                            PandaLogger.Log($"Boss {pandaBoss.Name} Loaded!");
+                                            MonsterManager.AddBoss(pandaBoss);
+                                        }
+
+                                        break;
+
+                                    case nameof(IMachineSettings):
+                                        IMachineSettings machineSettings = (IMachineSettings)Activator.CreateInstance(type);
+
+                                        if (machineSettings != null && !string.IsNullOrEmpty(machineSettings.Name))
+                                        {
+                                            PandaLogger.Log($"Machine {machineSettings.Name} Loaded!");
                                             MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
-                                            break;
-                                    }
+                                        }
+
+                                        break;
                                 }
-                                catch (Exception ex)
-                                {
-                                    PandaLogger.LogError(ex, $"Error loading interface {iface.Name}");
-                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.LogError(ex, $"Error loading interface {iface.Name}");
                             }
                         }
                     }
-                    catch (Exception)
-                    {
-                        // Do not log it is not the correct type.
-                    }
+                }
+                catch (Exception)
+                {
+                    // Do not log it is not the correct type.
                 }
             }
         }

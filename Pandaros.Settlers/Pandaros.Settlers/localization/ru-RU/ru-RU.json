@@ -123,795 +123,795 @@
     "Pandaros": {
       "Settlers": {
         "SettlerChance1": {
-          "name": "Шанс Поселенца I",
+          "name": "Pandaros.Settlers.AutoLoad.Шанс Поселенца I",
           "description": "Повышает вероятность того что поселенец найдёт вашу колонию."
         },
         "SettlerChance2": {
-          "name": "Шанс Поселенца II",
+          "name": "Pandaros.Settlers.AutoLoad.Шанс Поселенца II",
           "description": "Повышает вероятность того что поселенец найдёт вашу колонию."
         },
         "SettlerChance3": {
-          "name": "Шанс Поселенца III",
+          "name": "Pandaros.Settlers.AutoLoad.Шанс Поселенца III",
           "description": "Повышает вероятность того что поселенец найдёт вашу колонию."
         },
         "SettlerChance4": {
-          "name": "Шанс Поселенца IV",
+          "name": "Pandaros.Settlers.AutoLoad.Шанс Поселенца IV",
           "description": "Повышает вероятность того что поселенец найдёт вашу колонию."
         },
         "SettlerChance5": {
-          "name": "Шанс Поселенца V",
+          "name": "Pandaros.Settlers.AutoLoad.Шанс Поселенца V",
           "description": "Повышает вероятность того что поселенец найдёт вашу колонию."
         },
         "MaxSettlers1": {
-          "name": "Максимум Поселенцев I",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев I",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers2": {
-          "name": "Максимум Поселенцев II",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев II",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers3": {
-          "name": "Максимум Поселенцев III",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев III",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers4": {
-          "name": "Максимум Поселенцев IV",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев IV",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers5": {
-          "name": "Максимум Поселенцев V",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев V",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers6": {
-          "name": "Максимум Поселенцев VI",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев VI",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers7": {
-          "name": "Максимум Поселенцев VII",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев VII",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers8": {
-          "name": "Максимум Поселенцев VIII",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев VIII",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers9": {
-          "name": "Максимум Поселенцев IX",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев IX",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MaxSettlers10": {
-          "name": "Максимум Поселенцев X",
+          "name": "Pandaros.Settlers.AutoLoad.Максимум Поселенцев X",
           "description": "Повышает максимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers1": {
-          "name": "Минимум Поселенцев I",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев I",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers2": {
-          "name": "Минимум Поселенцев II",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев II",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers3": {
-          "name": "Минимум Поселенцев III",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев III",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers4": {
-          "name": "Минимум Поселенцев IV",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев IV",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers5": {
-          "name": "Минимум Поселенцев V",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев V",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers6": {
-          "name": "Минимум Поселенцев VI",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев VI",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers7": {
-          "name": "Минимум Поселенцев VII",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев VII",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers8": {
-          "name": "Минимум Поселенцев VIII",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев VIII",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers9": {
-          "name": "Минимум Поселенцев IX",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев IX",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "MinSettlers10": {
-          "name": "Минимум Поселенцев X",
+          "name": "Pandaros.Settlers.AutoLoad.Минимум Поселенцев X",
           "description": "Повышает минимальное количество потенциальных поселенцев которые могут найти вашу колонию."
         },
         "ReducedWaste1": {
-          "name": "Сниженное Потребление Еды I",
+          "name": "Pandaros.Settlers.AutoLoad.Сниженное Потребление Еды I",
           "description": "Уменьшает потребление еды в вашей колонии."
         },
         "ReducedWaste2": {
-          "name": "Сниженное Потребление Еды II",
+          "name": "Pandaros.Settlers.AutoLoad.Сниженное Потребление Еды II",
           "description": "Уменьшает потребление еды в вашей колонии."
         },
         "ReducedWaste3": {
-          "name": "Сниженное Потребление Еды III",
+          "name": "Pandaros.Settlers.AutoLoad.Сниженное Потребление Еды III",
           "description": "Уменьшает потребление еды в вашей колонии."
         },
         "ReducedWaste4": {
-          "name": "Сниженное Потребление Еды IV",
+          "name": "Pandaros.Settlers.AutoLoad.Сниженное Потребление Еды IV",
           "description": "Уменьшает потребление еды в вашей колонии."
         },
         "ReducedWaste5": {
-          "name": "Сниженное Потребление Еды V",
+          "name": "Pandaros.Settlers.AutoLoad.Сниженное Потребление Еды V",
           "description": "Уменьшает потребление еды в вашей колонии."
         },
         "TimeBetween1": {
-          "name": "Сокрашение Ожидания I",
+          "name": "Pandaros.Settlers.AutoLoad.Сокрашение Ожидания I",
           "description": "Сокращает время между шансами того что поселенцы присоединяться к вашей колонии."
         },
         "TimeBetween2": {
-          "name": "Сокрашение Ожидания II",
+          "name": "Pandaros.Settlers.AutoLoad.Сокрашение Ожидания II",
           "description": "Сокращает время между шансами того что поселенцы присоединяться к вашей колонии."
         },
         "TimeBetween3": {
-          "name": "Сокрашение Ожидания III",
+          "name": "Pandaros.Settlers.AutoLoad.Сокрашение Ожидания III",
           "description": "Сокращает время между шансами того что поселенцы присоединяться к вашей колонии."
         },
         "TimeBetween4": {
-          "name": "Сокрашение Ожидания IV",
+          "name": "Pandaros.Settlers.AutoLoad.Сокрашение Ожидания IV",
           "description": "Сокращает время между шансами того что поселенцы присоединяться к вашей колонии."
         },
         "TimeBetween5": {
-          "name": "Сокрашение Ожидания V",
+          "name": "Pandaros.Settlers.AutoLoad.Сокрашение Ожидания V",
           "description": "Сокращает время между шансами того что поселенцы присоединяться к вашей колонии."
         },
         "Settlement1": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement2": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement3": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement4": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement5": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement6": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement7": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement8": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement9": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement10": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement11": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement12": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement13": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement14": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement15": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement16": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement17": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement18": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement19": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "Settlement20": {
-          "name": "Дополнительный Баннер",
+          "name": "Pandaros.Settlers.AutoLoad.Дополнительный Баннер",
           "description": "После изучения, вы получите дополнительный баннер для размещения в вашем складе."
         },
         "SkilledLaborer1": {
-          "name": "Опытный Работник I",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник I",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer2": {
-          "name": "Опытный Работник II",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник II",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer3": {
-          "name": "Опытный Работник III",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник III",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer4": {
-          "name": "Опытный Работник IV",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник IV",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer5": {
-          "name": "Опытный Работник V",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник V",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer6": {
-          "name": "Опытный Работник VI",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник VI",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer7": {
-          "name": "Опытный Работник VII",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник VII",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer8": {
-          "name": "Опытный Работник VIII",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник VIII",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer9": {
-          "name": "Опытный Работник IX",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник IX",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "SkilledLaborer10": {
-          "name": "Опытный Работник X",
+          "name": "Pandaros.Settlers.AutoLoad.Опытный Работник X",
           "description": "Увеличивает шанс получения квалифицированных рабочих, когда поселенцы могут найти вашу колонию."
         },
         "NumberSkilledLaborer1": {
-          "name": "Количество Опытных Работников I",
+          "name": "Pandaros.Settlers.AutoLoad.Количество Опытных Работников I",
           "description": "Увеличивает максимальное количество потенциальных квалифицированных рабочих, полученных, когда они находят вашу колонию."
         },
         "NumberSkilledLaborer2": {
-          "name": "Количество Опытных Работников II",
+          "name": "Pandaros.Settlers.AutoLoad.Количество Опытных Работников II",
           "description": "Увеличивает максимальное количество потенциальных квалифицированных рабочих, полученных, когда они находят вашу колонию."
         },
         "NumberSkilledLaborer3": {
-          "name": "Количество Опытных Работников III",
+          "name": "Pandaros.Settlers.AutoLoad.Количество Опытных Работников III",
           "description": "Увеличивает максимальное количество потенциальных квалифицированных рабочих, полученных, когда они находят вашу колонию."
         },
         "NumberSkilledLaborer4": {
-          "name": "Количество Опытных Работников IV",
+          "name": "Pandaros.Settlers.AutoLoad.Количество Опытных Работников IV",
           "description": "Увеличивает максимальное количество потенциальных квалифицированных рабочих, полученных, когда они находят вашу колонию."
         },
         "NumberSkilledLaborer5": {
-          "name": "Количество Опытных Работников V",
+          "name": "Pandaros.Settlers.AutoLoad.Количество Опытных Работников V",
           "description": "Увеличивает максимальное количество потенциальных квалифицированных рабочих, полученных, когда они находят вашу колонию."
         },
         "ArmorSmithing1": {
-          "name": "Ковка Брони I - Медь",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Брони I - Медь",
           "description": "Позволяет создавать медную броню для ваших колонистов."
         },
         "ArmorSmithing2": {
-          "name": "Ковка Брони II - Бронза",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Брони II - Бронза",
           "description": "Позволяет создавать бронзовую броню для ваших колонистов."
         },
         "ArmorSmithing3": {
-          "name": "Ковка Брони III - Железо",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Брони III - Железо",
           "description": "Позволяет создавать медную броню для ваших колонистов."
         },
         "ArmorSmithing4": {
-          "name": "Ковка Брони IV - Сталь",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Брони IV - Сталь",
           "description": "Позволяет создавать стальную броню для ваших колонистов."
         },
         "ColonistHealth1": {
-          "name": "Повышение Здоровья Колониста I",
+          "name": "Pandaros.Settlers.AutoLoad.Повышение Здоровья Колониста I",
           "description": "Повышает здоровье колонистов на 10."
         },
         "ColonistHealth2": {
-          "name": "Повышение Здоровья Колониста II",
+          "name": "Pandaros.Settlers.AutoLoad.Повышение Здоровья Колониста II",
           "description": "Повышает здоровье колонистов на 20."
         },
         "ColonistHealth3": {
-          "name": "Повышение Здоровья Колониста III",
+          "name": "Pandaros.Settlers.AutoLoad.Повышение Здоровья Колониста III",
           "description": "Повышает здоровье колонистов на 30."
         },
         "ColonistHealth4": {
-          "name": "Повышение Здоровья Колониста IV",
+          "name": "Pandaros.Settlers.AutoLoad.Повышение Здоровья Колониста IV",
           "description": "Повышает здоровье колонистов на 40."
         },
         "ColonistHealth5": {
-          "name": "Повышение Здоровья Колониста V",
+          "name": "Pandaros.Settlers.AutoLoad.Повышение Здоровья Колониста V",
           "description": "Повышает здоровье колонистов на 50."
         },
         "SwordSmithing1": {
-          "name": "Ковка Мечей I - Медь",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Мечей I - Медь",
           "description": "Позволяет создавать медные мечи для вас и ваших колонистов."
         },
         "SwordSmithing2": {
-          "name": "Ковка Мечей II - Бронза",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Мечей II - Бронза",
           "description": "Позволяет создавать бронзовые мечи для вас и ваших колонистов."
         },
         "SwordSmithing3": {
-          "name": "Ковка Мечей III - Железо",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Мечей III - Железо",
           "description": "Позволяет создавать железные мечи для вас и ваших колонистов."
         },
         "SwordSmithing4": {
-          "name": "Ковка Мечей IV - Сталь",
+          "name": "Pandaros.Settlers.AutoLoad.Ковка Мечей IV - Сталь",
           "description": "Позволяет создавать стальные мечи для вас и ваших колонистов."
         },
         "Knights1": {
-          "name": "Рыцари",
+          "name": "Pandaros.Settlers.AutoLoad.Рыцари",
           "description": "Позволяет размещать патрули рыцарей и создавать патрульные флаги."
         },
         "ImprovedSling1": {
-          "name": "Тренировка Пращи I",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Пращи I",
           "description": "Повышает скорость перезарядки пращи на 5%."
         },
         "ImprovedSling2": {
-          "name": "Тренировка Пращи II",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Пращи II",
           "description": "Повышает скорость перезарядки пращи на 10%."
         },
         "ImprovedSling3": {
-          "name": "Тренировка Пращи III",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Пращи III",
           "description": "Повышает скорость перезарядки пращи на 15%."
         },
         "ImprovedSling4": {
-          "name": "Тренировка Пращи IV",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Пращи IV",
           "description": "Повышает скорость перезарядки пращи на 20%."
         },
         "ImprovedSling5": {
-          "name": "Тренировка Пращи V",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Пращи V",
           "description": "Повышает скорость перезарядки пращи на 25%."
         },
         "ImprovedBow1": {
-          "name": "Тренировка Лука I",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Лука I",
           "description": "Повышает скорость перезарядки лука на 5%."
         },
         "ImprovedBow2": {
-          "name": "Тренировка Лука II",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Лука II",
           "description": "Повышает скорость перезарядки лука на 10%."
         },
         "ImprovedBow3": {
-          "name": "Тренировка Лука III",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Лука III",
           "description": "Повышает скорость перезарядки лука на 15%."
         },
         "ImprovedBow4": {
-          "name": "Тренировка Лука IV",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Лука IV",
           "description": "Повышает скорость перезарядки лука на 20%."
         },
         "ImprovedBow5": {
-          "name": "Тренировка Лука V",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Лука V",
           "description": "Повышает скорость перезарядки лука на 25%."
         },
         "ImprovedCrossbow1": {
-          "name": "Тренировка Арбалета I",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Арбалета I",
           "description": "Повышает скорость перезарядки арбалета на 5%."
         },
         "ImprovedCrossbow2": {
-          "name": "Тренировка Арбалета II",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Арбалета II",
           "description": "Повышает скорость перезарядки арбалета на 10%."
         },
         "ImprovedCrossbow3": {
-          "name": "Тренировка Арбалета III",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Арбалета III",
           "description": "Повышает скорость перезарядки арбалета на 15%."
         },
         "ImprovedCrossbow4": {
-          "name": "Тренировка Арбалета IV",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Арбалета IV",
           "description": "Повышает скорость перезарядки арбалета на 20%."
         },
         "ImprovedCrossbow5": {
-          "name": "Тренировка Арбалета V",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Арбалета V",
           "description": "Повышает скорость перезарядки арбалета на 25%."
         },
         "ImprovedMatchlockgun1": {
-          "name": "Тренировка Мушкета I",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Мушкета I",
           "description": "Повышает скорость перезарядки мушкета на 5%."
         },
         "ImprovedMatchlockgun2": {
-          "name": "Тренировка Мушкета II",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Мушкета II",
           "description": "Повышает скорость перезарядки мушкета на 10%."
         },
         "ImprovedMatchlockgun3": {
-          "name": "Тренировка Мушкета III",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Мушкета III",
           "description": "Повышает скорость перезарядки мушкета на 15%."
         },
         "ImprovedMatchlockgun4": {
-          "name": "Тренировка Мушкета IV",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Мушкета IV",
           "description": "Повышает скорость перезарядки мушкета на 20%."
         },
         "ImprovedMatchlockgun5": {
-          "name": "Тренировка Мушкета V",
+          "name": "Pandaros.Settlers.AutoLoad.Тренировка Мушкета V",
           "description": "Повышает скорость перезарядки мушкета на 25%."
         },
         "Machines1": {
-          "name": "Механизмы!",
+          "name": "Pandaros.Settlers.AutoLoad.Механизмы!",
           "description": "Позволяет создавать механизмы. Добавляет работу механика."
         },
         "ImprovedDurability1": {
-          "name": "Улучшенная прочность I",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная прочность I",
           "description": "Увеличивает прочность механизмов на 10%. Механизмы реже нуждаются в ремонте."
         },
         "ImprovedDurability2": {
-          "name": "Улучшенная прочность II",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная прочность II",
           "description": "Увеличивает прочность механизмов на 20%. Механизмы реже нуждаются в ремонте."
         },
         "ImprovedDurability3": {
-          "name": "Улучшенная прочность III",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная прочность III",
           "description": "Увеличивает прочность механизмов на 30%. Механизмы реже нуждаются в ремонте."
         },
         "ImprovedDurability4": {
-          "name": "Улучшенная прочность IV",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная прочность IV",
           "description": "Увеличивает прочность механизмов на 40%. Механизмы реже нуждаются в ремонте."
         },
         "ImprovedDurability5": {
-          "name": "Улучшенная прочность V",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная прочность V",
           "description": "Увеличивает прочность механизмов на 50%. Механизмы реже нуждаются в ремонте."
         },
         "ImprovedFuelCapacity1": {
-          "name": "Улучшенный Топливный Бак I",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенный Топливный Бак I",
           "description": "Увеличивает топливную мощность всех механизмов на 10%. Механизмы реже нуждаются в заправке."
         },
         "ImprovedFuelCapacity2": {
-          "name": "Улучшенный Топливный Бак II",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенный Топливный Бак II",
           "description": "Увеличивает топливную мощность всех механизмов на 20%. Механизмы реже нуждаются в заправке."
         },
         "ImprovedFuelCapacity3": {
-          "name": "Улучшенный Топливный Бак III",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенный Топливный Бак III",
           "description": "Увеличивает топливную мощность всех механизмов на 30%. Механизмы реже нуждаются в заправке."
         },
         "ImprovedFuelCapacity4": {
-          "name": "Улучшенный Топливный Бак IV",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенный Топливный Бак IV",
           "description": "Увеличивает топливную мощность всех механизмов на 40%. Механизмы реже нуждаются в заправке."
         },
         "ImprovedFuelCapacity5": {
-          "name": "Улучшенный Топливный Бак V",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенный Топливный Бак V",
           "description": "Увеличивает топливную мощность всех механизмов на 50%. Механизмы реже нуждаются в заправке."
         },
         "IncreasedCapacity1": {
-          "name": "Улучшенная Вместимость I",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная Вместимость I",
           "description": "Увеличивает вместимость всех механизмов на 20%. Механизмы будут реже нуждаться в снарядах/предметах."
         },
         "IncreasedCapacity2": {
-          "name": "Улучшенная Вместимость II",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная Вместимость II",
           "description": "Увеличивает вместимость всех механизмов на 40%. Механизмы будут реже нуждаться в снарядах/предметах."
         },
         "IncreasedCapacity3": {
-          "name": "Улучшенная Вместимость III",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная Вместимость III",
           "description": "Увеличивает вместимость всех механизмов на 60%. Механизмы будут реже нуждаться в снарядах/предметах."
         },
         "IncreasedCapacity4": {
-          "name": "Улучшенная Вместимость IV",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная Вместимость IV",
           "description": "Увеличивает вместимость всех механизмов на 80%. Механизмы будут реже нуждаться в снарядах/предметах."
         },
         "IncreasedCapacity5": {
-          "name": "Улучшенная Вместимость V",
+          "name": "Pandaros.Settlers.AutoLoad.Улучшенная Вместимость V",
           "description": "Увеличивает вместимость всех механизмов на 100%. Механизмы будут реже нуждаться в снарядах/предметах."
         },
         "MerchantTraining1": {
-          "name": "Обучение Торговцев I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Торговцев I",
           "description": "Уменьшает время работы торговца на 5%."
         },
         "MerchantTraining2": {
-          "name": "Обучение Торговцев II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Торговцев II",
           "description": "Уменьшает время работы торговца на 10%."
         },
         "MerchantTraining3": {
-          "name": "Обучение Торговцев III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Торговцев III",
           "description": "Уменьшает время работы торговца на 15%."
         },
         "MerchantTraining4": {
-          "name": "Обучение Торговцев IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Торговцев IV",
           "description": "Уменьшает время работы торговца на 20%."
         },
         "MerchantTraining5": {
-          "name": "Обучение Торговцев V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Торговцев V",
           "description": "Уменьшает время работы торговца на 25%."
         },
         "TailorTraining1": {
-          "name": "Обучение Портного I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Портного I",
           "description": "Уменьшает время работы портного на 5%."
         },
         "TailorTraining2": {
-          "name": "Обучение Портного II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Портного II",
           "description": "Уменьшает время работы портного на 10%."
         },
         "TailorTraining3": {
-          "name": "Обучение Портного III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Портного III",
           "description": "Уменьшает время работы портного на 15%."
         },
         "TailorTraining4": {
-          "name": "Обучение Портного IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Портного IV",
           "description": "Уменьшает время работы портного на 20%."
         },
         "TailorTraining5": {
-          "name": "Обучение Портного V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Портного V",
           "description": "Уменьшает время работы портного на 25%."
         },
         "BloomeryTraining1": {
-          "name": "Обучение Сыродутному Горну I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Сыродутному Горну I",
           "description": "Уменьшает время работы за сыродутным горном на 5%."
         },
         "BloomeryTraining2": {
-          "name": "Обучение Сыродутному Горну II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Сыродутному Горну II",
           "description": "Уменьшает время работы за сыродутным горном на 10%."
         },
         "BloomeryTraining3": {
-          "name": "Обучение Сыродутному Горну III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Сыродутному Горну III",
           "description": "Уменьшает время работы за сыродутным горном на 15%."
         },
         "BloomeryTraining4": {
-          "name": "Обучение Сыродутному Горну IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Сыродутному Горну IV",
           "description": "Уменьшает время работы за сыродутным горном на 20%."
         },
         "BloomeryTraining5": {
-          "name": "Обучение Сыродутному Горну V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Сыродутному Горну V",
           "description": "Уменьшает время работы за сыродутным горном на 25%."
         },
         "FineryForgeTraining1": {
-          "name": "Обучение Кузнечному Горну I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнечному Горну I",
           "description": "Уменьшает время работы за кузнечным горном на 5%."
         },
         "FineryForgeTraining2": {
-          "name": "Обучение Кузнечному Горну II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнечному Горну II",
           "description": "Уменьшает время работы за кузнечным горном на 10%."
         },
         "FineryForgeTraining3": {
-          "name": "Обучение Кузнечному Горну III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнечному Горну III",
           "description": "Уменьшает время работы за кузнечным горном на 15%."
         },
         "FineryForgeTraining4": {
-          "name": "Обучение Кузнечному Горну IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнечному Горну IV",
           "description": "Уменьшает время работы за кузнечным горном на 20%."
         },
         "FineryForgeTraining5": {
-          "name": "Обучение Кузнечному Горну V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнечному Горну V",
           "description": "Уменьшает время работы за кузнечным горном на 25%."
         },
         "FurnaceTraining1": {
-          "name": "Обучение Горну I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Горну I",
           "description": "Уменьшает время работы за горном на 5%."
         },
         "FurnaceTraining2": {
-          "name": "Обучение Горну II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Горну II",
           "description": "Уменьшает время работы за горном на 10%."
         },
         "FurnaceTraining3": {
-          "name": "Обучение Горну III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Горну III",
           "description": "Уменьшает время работы за горном на 15%."
         },
         "FurnaceTraining4": {
-          "name": "Обучение Горну IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Горну IV",
           "description": "Уменьшает время работы за горном на 20%."
         },
         "FurnaceTraining5": {
-          "name": "Обучение Горну V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Горну V",
           "description": "Уменьшает время работы за горном на 25%."
         },
         "GrinderTraining1": {
-          "name": "Обучение Мельника I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Мельника I",
           "description": "Уменьшает время работы мельника на 5%."
         },
         "GrinderTraining2": {
-          "name": "Обучение Мельника II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Мельника II",
           "description": "Уменьшает время работы мельника на 10%."
         },
         "GrinderTraining3": {
-          "name": "Обучение Мельника III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Мельника III",
           "description": "Уменьшает время работы мельника на 15%."
         },
         "GrinderTraining4": {
-          "name": "Обучение Мельника IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Мельника IV",
           "description": "Уменьшает время работы мельника на 20%."
         },
         "GrinderTraining5": {
-          "name": "Обучение Мельника V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Мельника V",
           "description": "Уменьшает время работы мельника на 25%."
         },
         "GunSmithTraining1": {
-          "name": "Обучение Оружейника I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Оружейника I",
           "description": "Уменьшает время работы оружейника на 5%."
         },
         "GunSmithTraining2": {
-          "name": "Обучение Оружейника II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Оружейника II",
           "description": "Уменьшает время работы оружейника на 10%."
         },
         "GunSmithTraining3": {
-          "name": "Обучение Оружейника III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Оружейника III",
           "description": "Уменьшает время работы оружейника на 15%."
         },
         "GunSmithTraining4": {
-          "name": "Обучение Оружейника IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Оружейника IV",
           "description": "Уменьшает время работы оружейника на 20%."
         },
         "GunSmithTraining5": {
-          "name": "Обучение Оружейника V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Оружейника V",
           "description": "Уменьшает время работы оружейника на 25%."
         },
         "KilnTraining1": {
-          "name": "Обучение Печи для Обжига I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Печи для Обжига I",
           "description": "Уменьшает время работы за печью для обжига на 5%."
         },
         "KilnTraining2": {
-          "name": "Обучение Печи для Обжига II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Печи для Обжига II",
           "description": "Уменьшает время работы за печью для обжига на 10%."
         },
         "KilnTraining3": {
-          "name": "Обучение Печи для Обжига III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Печи для Обжига III",
           "description": "Уменьшает время работы за печью для обжига на 15%."
         },
         "KilnTraining4": {
-          "name": "Обучение Печи для Обжига IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Печи для Обжига IV",
           "description": "Уменьшает время работы за печью для обжига на 20%."
         },
         "KilnTraining5": {
-          "name": "Обучение Печи для Обжига V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Печи для Обжига V",
           "description": "Уменьшает время работы за печью для обжига на 25%."
         },
         "MetalSmithTraining1": {
-          "name": "Обучение Кузнеца I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнеца I",
           "description": "Уменьшает время работы кузнеца на 5%."
         },
         "MetalSmithTraining2": {
-          "name": "Обучение Кузнеца II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнеца II",
           "description": "Уменьшает время работы кузнеца на 10%."
         },
         "MetalSmithTraining3": {
-          "name": "Обучение Кузнеца III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнеца III",
           "description": "Уменьшает время работы кузнеца на 15%."
         },
         "MetalSmithTraining4": {
-          "name": "Обучение Кузнеца IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнеца IV",
           "description": "Уменьшает время работы кузнеца на 20%."
         },
         "MetalSmithTraining5": {
-          "name": "Обучение Кузнеца V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Кузнеца V",
           "description": "Уменьшает время работы кузнеца на 25%."
         },
         "MintTraining1": {
-          "name": "Обучение Чеканщика I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Чеканщика I",
           "description": "Уменьшает время чеканки монет на 5%."
         },
         "MintTraining2": {
-          "name": "Обучение Чеканщика II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Чеканщика II",
           "description": "Уменьшает время чеканки монет на 10%."
         },
         "MintTraining3": {
-          "name": "Обучение Чеканщика III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Чеканщика III",
           "description": "Уменьшает время чеканки монет на 15%."
         },
         "MintTraining4": {
-          "name": "Обучение Чеканщика IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Чеканщика IV",
           "description": "Уменьшает время чеканки монет на 20%."
         },
         "MintTraining5": {
-          "name": "Обучение Чеканщика V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Чеканщика V",
           "description": "Уменьшает время чеканки монет на 25%."
         },
         "OvenTraining1": {
-          "name": "Обучение Пекаря I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Пекаря I",
           "description": "Уменьшает время работы пекаря на 5%."
         },
         "OvenTraining2": {
-          "name": "Обучение Пекаря II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Пекаря II",
           "description": "Уменьшает время работы пекаря на 10%."
         },
         "OvenTraining3": {
-          "name": "Обучение Пекаря III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Пекаря III",
           "description": "Уменьшает время работы пекаря на 15%."
         },
         "OvenTraining4": {
-          "name": "Обучение Пекаря IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Пекаря IV",
           "description": "Уменьшает время работы пекаря на 20%."
         },
         "OvenTraining5": {
-          "name": "Обучение Пекаря V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Пекаря V",
           "description": "Уменьшает время работы пекаря на 25%."
         },
         "WoodcutterTraining1": {
-          "name": "Обучение Дроворуба I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Дроворуба I",
           "description": "Уменьшает время рубки дров на 5%."
         },
         "WoodcutterTraining2": {
-          "name": "Обучение Дроворуба II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Дроворуба II",
           "description": "Уменьшает время рубки дров на 10%."
         },
         "WoodcutterTraining3": {
-          "name": "Обучение Дроворуба III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Дроворуба III",
           "description": "Уменьшает время рубки дров на 15%."
         },
         "WoodcutterTraining4": {
-          "name": "Обучение Дроворуба IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Дроворуба IV",
           "description": "Уменьшает время рубки дров на 20%."
         },
         "WoodcutterTraining5": {
-          "name": "Обучение Дроворуба V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Дроворуба V",
           "description": "Уменьшает время рубки дров на 25%."
         },
         "WorkBenchTraining1": {
-          "name": "Обучение Верстаку I",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Верстаку I",
           "description": "Уменьшает время работы за верстаком на 5%."
         },
         "WorkBenchTraining2": {
-          "name": "Обучение Верстаку II",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Верстаку II",
           "description": "Уменьшает время работы за верстаком на 10%."
         },
         "WorkBenchTraining3": {
-          "name": "Обучение Верстаку III",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Верстаку III",
           "description": "Уменьшает время работы за верстаком на 15%."
         },
         "WorkBenchTraining4": {
-          "name": "Обучение Верстаку IV",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Верстаку IV",
           "description": "Уменьшает время работы за верстаком на 20%."
         },
         "WorkBenchTraining5": {
-          "name": "Обучение Верстаку V",
+          "name": "Pandaros.Settlers.AutoLoad.Обучение Верстаку V",
           "description": "Уменьшает время работы за верстаком на 25%."
         },
         "MasterOfAll1": {
-          "name": "Мастер На Все Руки I",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки I",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 3%. Складывается с обучением."
         },
         "MasterOfAll2": {
-          "name": "Мастер На Все Руки II",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки II",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 6%. Складывается с обучением."
         },
         "MasterOfAll3": {
-          "name": "Мастер На Все Руки III",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки III",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 9%. Складывается с обучением."
         },
         "MasterOfAll4": {
-          "name": "Мастер На Все Руки IV",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки IV",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 12%. Складывается с обучением."
         },
         "MasterOfAll5": {
-          "name": "Мастер На Все Руки V",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки V",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 15%. Складывается с обучением."
         },
         "MasterOfAll6": {
-          "name": "Мастер На Все Руки VI",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки VI",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 18%. Складывается с обучением."
         },
         "MasterOfAll7": {
-          "name": "Мастер На Все Руки VII",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки VII",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 21%. Складывается с обучением."
         },
         "MasterOfAll8": {
-          "name": "Мастер На Все Руки VIII",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки VIII",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 24%. Складывается с обучением."
         },
         "MasterOfAll9": {
-          "name": "Мастер На Все Руки IX",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки IX",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 27%. Складывается с обучением."
         },
         "MasterOfAll10": {
-          "name": "Мастер На Все Руки X",
+          "name": "Pandaros.Settlers.AutoLoad.Мастер На Все Руки X",
           "description": "Настоящие мастера оттачивают свои навыки глубже. Сокращает время изготовления на дополнительные 30%. Складывается с обучением."
         },
         "Herbalists1": {
-          "name": "Травник",
+          "name": "Pandaros.Settlers.AutoLoad.Травник",
           "description": "Травники выращивают травы, используемые для лекарств, еды и зелий."
         },
         "Apothecaries1": {
-          "name": "Аптекарь",
+          "name": "Pandaros.Settlers.AutoLoad.Аптекарь",
           "description": "Аптекарь создает антидоты для яда и бинты для врачей."
         },
         "AdvancedApothecary1": {
-          "name": "Продвинутый Аптекарь",
+          "name": "Pandaros.Settlers.AutoLoad.Продвинутый Аптекарь",
           "description": "Аптекари узнают, как сделать антибиотики для лечения инфекций и обработанные бинты для мощного исцеления."
         }
       }

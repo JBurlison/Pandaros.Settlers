@@ -123,13 +123,6 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterAudio"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        public static void RegisterAudio()
-        {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "MiningMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/MiningMachine.ogg" });
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
         public static void RegisterMiner()
         {
@@ -153,7 +146,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var minerTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            minerTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/MiningMachine.png";
+            minerTextureMapping.AlbedoPath = "MiningMachine.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
@@ -163,14 +156,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var minerName = GameLoader.NAMESPACE + ".Miner";
             var minerFlagNode = new JSONNode();
-            minerFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/MiningMachine.png");
+            minerFlagNode["icon"] = new JSONNode("MiningMachine.png");
             minerFlagNode["isPlaceable"] = new JSONNode(true);
             minerFlagNode.SetAs("onRemoveAmount", 1);
             minerFlagNode.SetAs("onPlaceAudio", "stonePlace");
             minerFlagNode.SetAs("onRemoveAudio", "stoneDelete");
             minerFlagNode.SetAs("isSolid", true);
             minerFlagNode.SetAs("sideall", "SELF");
-            minerFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/MiningMachine.obj");
+            minerFlagNode.SetAs("mesh", "MiningMachine.obj");
 
             JSONNode categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));

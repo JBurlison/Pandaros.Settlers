@@ -1,15 +1,15 @@
 [
   {
-    "name": "refinedemerald",
+    "name": "Pandaros.Settlers.AutoLoad.refinedemerald",
     "results": [
       {
-        "type": "refinedemerald",
+        "type": "Pandaros.Settlers.AutoLoad.refinedemerald",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "rawemerald",
+        "type": "Pandaros.Settlers.AutoLoad.rawemerald",
         "amount": 1
       }
     ],
@@ -17,16 +17,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "refinedruby",
+    "name": "Pandaros.Settlers.AutoLoad.refinedruby",
     "results": [
       {
-        "type": "refinedruby",
+        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "rawruby",
+        "type": "Pandaros.Settlers.AutoLoad.rawruby",
         "amount": 1
       }
     ],
@@ -34,16 +34,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "refinedsapphire",
+    "name": "Pandaros.Settlers.AutoLoad.refinedsapphire",
     "results": [
       {
-        "type": "refinedsapphire",
+        "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "rawsapphire",
+        "type": "Pandaros.Settlers.AutoLoad.rawsapphire",
         "amount": 1
       }
     ],
@@ -51,20 +51,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marblebricks",
+    "name": "Pandaros.Settlers.AutoLoad.marblebricks",
     "results": [
       {
-        "type": "marblebricks",
+        "type": "Pandaros.Settlers.AutoLoad.marblebricks",
         "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       },
       {
-        "type": "marble",
+        "type": "Pandaros.Settlers.AutoLoad.marble",
         "amount": 1
       }
     ],
@@ -73,20 +73,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marblepillarbase",
+    "name": "Pandaros.Settlers.AutoLoad.marblepillarbase",
     "results": [
       {
-        "type": "marblepillarbase",
+        "type": "Pandaros.Settlers.AutoLoad.marblepillarbase",
         "amount": 2
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       },
       {
-        "type": "marble",
+        "type": "Pandaros.Settlers.AutoLoad.marble",
         "amount": 2
       }
     ],
@@ -95,20 +95,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marblepillarbody",
+    "name": "Pandaros.Settlers.AutoLoad.marblepillarbody",
     "results": [
       {
-        "type": "marblepillarbody",
+        "type": "Pandaros.Settlers.AutoLoad.marblepillarbody",
         "amount": 2
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       },
       {
-        "type": "marble",
+        "type": "Pandaros.Settlers.AutoLoad.marble",
         "amount": 2
       }
     ],
@@ -117,20 +117,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marblepillartop",
+    "name": "Pandaros.Settlers.AutoLoad.marblepillartop",
     "results": [
       {
-        "type": "marblepillartop",
+        "type": "Pandaros.Settlers.AutoLoad.marblepillartop",
         "amount": 2
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       },
       {
-        "type": "marble",
+        "type": "Pandaros.Settlers.AutoLoad.marble",
         "amount": 2
       }
     ],
@@ -139,20 +139,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marble",
+    "name": "Pandaros.Settlers.AutoLoad.marble",
     "results": [
       {
-        "type": "marble",
+        "type": "Pandaros.Settlers.AutoLoad.marble",
         "amount": 2
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       },
       {
-        "type": "rawmarble",
+        "type": "Pandaros.Settlers.AutoLoad.rawmarble",
         "amount": 2
       }
     ],
@@ -161,20 +161,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "vanilla.sand",
+    "name": "Pandaros.Settlers.AutoLoad.sand",
     "results": [
       {
-        "type": "vanilla.sand",
+        "type": "sand",
         "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "sledgehammer",
+        "type": "Pandaros.Settlers.AutoLoad.sledgehammer",
         "amount": 1
       },
       {
-        "type": "vanilla.stoneblock",
+        "type": "stoneblock",
         "amount": 1
       }
     ],
@@ -183,16 +183,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "stonesquares",
+    "name": "Pandaros.Settlers.AutoLoad.stonesquares",
     "results": [
       {
         "amount": 6,
-        "type": "stonesquares"
+        "type": "Pandaros.Settlers.AutoLoad.stonesquares"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.stonebricks",
+        "type": "stonebricks",
         "amount": 4
       }
     ],
@@ -201,20 +201,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "stonebrickslab",
+    "name": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "results": [
       {
         "amount": 4,
-        "type": "stonebrickslab"
+        "type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.stonebricks",
+        "type": "stonebricks",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -222,20 +222,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "mossstoneslab",
+    "name": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "results": [
       {
         "amount": 4,
-        "type": "mossstoneslab"
+        "type": "Pandaros.Settlers.AutoLoad.mossstoneslab"
       }
     ],
     "requires": [
       {
-        "type": "mossstone",
+        "type": "Pandaros.Settlers.AutoLoad.mossstone",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -243,20 +243,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "mossstonebricksslab",
+    "name": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "results": [
       {
         "amount": 4,
-        "type": "mossstonebricksslab"
+        "type": "Pandaros.Settlers.AutoLoad.mossstonebricksslab"
       }
     ],
     "requires": [
       {
-        "type": "mossstonebricks",
+        "type": "Pandaros.Settlers.AutoLoad.mossstonebricks",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -264,20 +264,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "mossstonesquaresslab",
+    "name": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "results": [
       {
         "amount": 4,
-        "type": "mossstonesquaresslab"
+        "type": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab"
       }
     ],
     "requires": [
       {
-        "type": "mossstonesquares",
+        "type": "Pandaros.Settlers.AutoLoad.mossstonesquares",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -285,20 +285,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "stonesquaresslab",
+    "name": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "results": [
       {
         "amount": 4,
-        "type": "stonesquaresslab"
+        "type": "Pandaros.Settlers.AutoLoad.stonesquaresslab"
       }
     ],
     "requires": [
       {
-        "type": "stonesquares",
+        "type": "Pandaros.Settlers.AutoLoad.stonesquares",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -306,20 +306,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "stoneblockslab",
+    "name": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "results": [
       {
         "amount": 4,
-        "type": "stoneblockslab"
+        "type": "Pandaros.Settlers.AutoLoad.stoneblockslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.stoneblock",
+        "type": "stoneblock",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -327,20 +327,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "limestoneslab",
+    "name": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "results": [
       {
         "amount": 4,
-        "type": "limestoneslab"
+        "type": "Pandaros.Settlers.AutoLoad.limestoneslab"
       }
     ],
     "requires": [
       {
-        "type": "limestone",
+        "type": "Pandaros.Settlers.AutoLoad.limestone",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -348,20 +348,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "sandstoneslab",
+    "name": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "results": [
       {
         "amount": 4,
-        "type": "sandstoneslab"
+        "type": "Pandaros.Settlers.AutoLoad.sandstoneslab"
       }
     ],
     "requires": [
       {
-        "type": "sandstone",
+        "type": "Pandaros.Settlers.AutoLoad.sandstone",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -369,20 +369,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "dirtbricks",
+    "name": "Pandaros.Settlers.AutoLoad.dirtbricks",
     "results": [
       {
-        "type": "dirtbricks",
+        "type": "Pandaros.Settlers.AutoLoad.dirtbricks",
         "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       },
       {
-        "type": "vanilla.dirt",
+        "type": "dirt",
         "amount": 1
       }
     ],
@@ -391,20 +391,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "brickslab",
+    "name": "Pandaros.Settlers.AutoLoad.brickslab",
     "results": [
       {
         "amount": 4,
-        "type": "brickslab"
+        "type": "Pandaros.Settlers.AutoLoad.brickslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.bricks",
+        "type": "bricks",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -412,20 +412,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "clayslab",
+    "name": "Pandaros.Settlers.AutoLoad.clayslab",
     "results": [
       {
         "amount": 4,
-        "type": "clayslab"
+        "type": "Pandaros.Settlers.AutoLoad.clayslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -433,20 +433,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "plasterslab",
+    "name": "Pandaros.Settlers.AutoLoad.plasterslab",
     "results": [
       {
         "amount": 4,
-        "type": "plasterslab"
+        "type": "Pandaros.Settlers.AutoLoad.plasterslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.plasterblock",
+        "type": "plasterblock",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -454,20 +454,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marblebricksslab",
+    "name": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "results": [
       {
         "amount": 4,
-        "type": "marblebricksslab"
+        "type": "Pandaros.Settlers.AutoLoad.marblebricksslab"
       }
     ],
     "requires": [
       {
-        "type": "marblebricks",
+        "type": "Pandaros.Settlers.AutoLoad.marblebricks",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -475,20 +475,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "rawmarbleslab",
+    "name": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "results": [
       {
         "amount": 4,
-        "type": "rawmarbleslab"
+        "type": "Pandaros.Settlers.AutoLoad.rawmarbleslab"
       }
     ],
     "requires": [
       {
-        "type": "rawmarble",
+        "type": "Pandaros.Settlers.AutoLoad.rawmarble",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -496,20 +496,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "marbleslab",
+    "name": "Pandaros.Settlers.AutoLoad.marbleslab",
     "results": [
       {
         "amount": 4,
-        "type": "marbleslab"
+        "type": "Pandaros.Settlers.AutoLoad.marbleslab"
       }
     ],
     "requires": [
       {
-        "type": "marble",
+        "type": "Pandaros.Settlers.AutoLoad.marble",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -517,20 +517,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "dirtbrickslab",
+    "name": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "results": [
       {
         "amount": 4,
-        "type": "dirtbrickslab"
+        "type": "Pandaros.Settlers.AutoLoad.dirtbrickslab"
       }
     ],
     "requires": [
       {
-        "type": "dirtbricks",
+        "type": "Pandaros.Settlers.AutoLoad.dirtbricks",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -538,20 +538,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "dirtslab",
+    "name": "Pandaros.Settlers.AutoLoad.dirtslab",
     "results": [
       {
         "amount": 4,
-        "type": "dirtslab"
+        "type": "Pandaros.Settlers.AutoLoad.dirtslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.dirt",
+        "type": "dirt",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,
@@ -559,20 +559,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "sandslab",
+    "name": "Pandaros.Settlers.AutoLoad.sandslab",
     "results": [
       {
         "amount": 4,
-        "type": "sandslab"
+        "type": "Pandaros.Settlers.AutoLoad.sandslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.sand",
+        "type": "sand",
         "amount": 1
       },
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "npcCraftable": true,

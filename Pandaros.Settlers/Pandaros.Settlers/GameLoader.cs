@@ -13,13 +13,7 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
-        public static string ICON_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/icons";
-        public static string LOCALIZATION_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/localization";
-        public static string MESH_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Meshes";
-        public static string TEXTURE_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Textures";
         public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
-        public static string AUDIO_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/Audio";
-        public static string AUTOLOAD_FOLDER_PANDA = @"gamedata/mods/Pandaros/settlers/localization";
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";
         public static string GAME_ROOT = @"";
@@ -61,12 +55,6 @@ namespace Pandaros.Settlers
             MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
             MOD_FOLDER = Path.GetDirectoryName(path);
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
-            LOCALIZATION_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "localization").Replace("\\", "/");
-            ICON_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/");
-            MESH_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/");
-            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/");
-            AUDIO_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/");
-            AUTOLOAD_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "AutoLoad").Replace("\\", "/");
  
             bool fileWasCopied = false;
 
@@ -89,70 +77,70 @@ namespace Pandaros.Settlers
         public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var monsterNode = new JSONNode();
-            monsterNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/NoMonster.png");
+            monsterNode["icon"] = new JSONNode("NoMonster.png");
             var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
             MissingMonster_Icon = monster.ItemIndex;
             
             items.Add(NAMESPACE + ".Monster", monster);
 
             var repairingNode = new JSONNode();
-            repairingNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Repairing.png");
+            repairingNode["icon"] = new JSONNode("Repairing.png");
             var repairing = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Repairing", repairingNode);
             Repairing_Icon = repairing.ItemIndex;
 
             items.Add(NAMESPACE + ".Repairing", repairing);
 
             var refuelNode = new JSONNode();
-            refuelNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Refuel.png");
+            refuelNode["icon"] = new JSONNode("Refuel.png");
             var refuel = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Refuel", refuelNode);
             Refuel_Icon = refuel.ItemIndex;
 
             items.Add(NAMESPACE + ".Refuel", refuel);
 
             var waitingNode = new JSONNode();
-            waitingNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Waiting.png");
+            waitingNode["icon"] = new JSONNode("Waiting.png");
             var waiting = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Waiting", waitingNode);
             Waiting_Icon = waiting.ItemIndex;
 
             items.Add(NAMESPACE + ".Waiting", waiting);
 
             var reloadNode = new JSONNode();
-            reloadNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Reload.png");
+            reloadNode["icon"] = new JSONNode("Reload.png");
             var reload = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Reload", reloadNode);
             Reload_Icon = reload.ItemIndex;
 
             items.Add(NAMESPACE + ".Reload", reload);
 
             var brokenNode = new JSONNode();
-            brokenNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Broken.png");
+            brokenNode["icon"] = new JSONNode("Broken.png");
             var broken = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Broken", brokenNode);
             Broken_Icon = broken.ItemIndex;
 
             items.Add(NAMESPACE + ".Broken", broken);
 
             var emptyNode = new JSONNode();
-            emptyNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Empty.png");
+            emptyNode["icon"] = new JSONNode("Empty.png");
             var empty = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Empty", emptyNode);
             Empty_Icon = empty.ItemIndex;
 
             items.Add(NAMESPACE + ".Empty", empty);
 
             var noAmmoNode = new JSONNode();
-            noAmmoNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/NoAmmo.png");
+            noAmmoNode["icon"] = new JSONNode("NoAmmo.png");
             var noAmmo = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".NoAmmo", emptyNode);
             NOAMMO_Icon = noAmmo.ItemIndex;
 
             items.Add(NAMESPACE + ".NoAmmo", noAmmo);
 
             var poisonedNode = new JSONNode();
-            poisonedNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/Poisoned.png");
+            poisonedNode["icon"] = new JSONNode("Poisoned.png");
             var poisoned = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Poisoned", poisonedNode);
             Poisoned_Icon = poisoned.ItemIndex;
 
             items.Add(NAMESPACE + ".Poisoned", poisoned);
 
             var bowNode = new JSONNode();
-            bowNode["icon"] = new JSONNode(ICON_FOLDER_PANDA + "/bow.png");
+            bowNode["icon"] = new JSONNode("bow.png");
             var bow = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".BowIcon", bowNode);
             Bow_Icon = bow.ItemIndex;
 

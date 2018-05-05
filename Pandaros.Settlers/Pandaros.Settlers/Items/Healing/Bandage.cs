@@ -17,13 +17,6 @@ namespace Pandaros.Settlers.Items.Healing
         public const float TOTALHOT = 40f;
         private static Dictionary<Players.Player, double> _coolDown = new Dictionary<Players.Player, double>();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Healing.Bandage.RegisterAudio"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        public static void RegisterAudio()
-        {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + ".Bandage", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/Bandage.ogg" });
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
         public static void Register()
         {
@@ -44,7 +37,7 @@ namespace Pandaros.Settlers.Items.Healing
         {
             var name = GameLoader.NAMESPACE + ".Bandage";
             var node = new JSONNode();
-            node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/Bandage.png");
+            node["icon"] = new JSONNode("Bandage.png");
             node["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);

@@ -1,15 +1,15 @@
 [
   {
-    "name": "glass",
+    "name": "Pandaros.Settlers.AutoLoad.glass",
     "results": [
       {
-        "type": "glass",
+        "type": "Pandaros.Settlers.AutoLoad.glass",
         "amount": 2
       }
     ],
     "requires": [
       {
-        "type": "vanilla.sand",
+        "type": "sand",
         "amount": 2
       }
     ],

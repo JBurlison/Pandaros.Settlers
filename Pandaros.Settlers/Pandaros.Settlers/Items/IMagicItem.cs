@@ -7,6 +7,7 @@ namespace Pandaros.Settlers.Items
 {
     public interface IMagicItem
     {
+        string Name { get; set; }
         NPC.NPCBase Owner { get; set; }
 
         IMagicEffect Effect { get; set; }

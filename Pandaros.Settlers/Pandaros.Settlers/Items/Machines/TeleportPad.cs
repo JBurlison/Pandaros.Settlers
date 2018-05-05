@@ -153,13 +153,6 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterAudio"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        public static void RegisterAudio()
-        {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + ".TeleportPadMachineAudio", new List<string>() { GameLoader.AUDIO_FOLDER_PANDA + "/Teleport.ogg" });
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterTeleportPad")]
         public static void RegisterTeleportPad()
         {
@@ -184,8 +177,8 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var TeleportPadTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            TeleportPadTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/TeleportPad.png";
-            TeleportPadTextureMapping.EmissivePath = GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/TeleportPad.png";
+            TeleportPadTextureMapping.AlbedoPath = "TeleportPad.png";
+            TeleportPadTextureMapping.EmissivePath = "TeleportPad.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".TeleportPad", TeleportPadTextureMapping);
         }
@@ -195,14 +188,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var TeleportPadName = GameLoader.NAMESPACE + ".TeleportPad";
             var TeleportPadNode = new JSONNode();
-            TeleportPadNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/TeleportPad.png");
+            TeleportPadNode["icon"] = new JSONNode("TeleportPad.png");
             TeleportPadNode["isPlaceable"] = new JSONNode(true);
             TeleportPadNode.SetAs("onRemoveAmount", 1);
             TeleportPadNode.SetAs("onPlaceAudio", "stonePlace");
             TeleportPadNode.SetAs("onRemoveAudio", "stoneDelete");
             TeleportPadNode.SetAs("isSolid", false);
             TeleportPadNode.SetAs("sideall", "SELF");
-            TeleportPadNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/TeleportPad.obj");
+            TeleportPadNode.SetAs("mesh", "TeleportPad.obj");
 
             JSONNode categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));

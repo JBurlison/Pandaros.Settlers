@@ -1,17 +1,17 @@
 [
   {
-    "name": "chisel",
+    "name": "Pandaros.Settlers.AutoLoad.chisel",
     "results": [
       {
-        "type": "chisel"
+        "type": "Pandaros.Settlers.AutoLoad.chisel"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot"
+        "type": "ironingot"
       },
       {
-        "type": "vanilla.planks"
+        "type": "planks"
       }
     ],
     "npcCraftable": true,
@@ -19,19 +19,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "sledgehammer",
+    "name": "Pandaros.Settlers.AutoLoad.sledgehammer",
     "results": [
       {
-        "type": "sledgehammer"
+        "type": "Pandaros.Settlers.AutoLoad.sledgehammer"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot",
+        "type": "ironingot",
         "amount": 2
       },
       {
-        "type": "vanilla.planks"
+        "type": "planks"
       }
     ],
     "npcCraftable": true,
@@ -39,15 +39,15 @@
     "defaultPriority": -100
   },
   {
-    "name": "saw",
+    "name": "Pandaros.Settlers.AutoLoad.saw",
     "results": [
       {
-        "type": "saw"
+        "type": "Pandaros.Settlers.AutoLoad.saw"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot"
+        "type": "ironingot"
       }
     ],
     "npcCraftable": true,
@@ -55,15 +55,15 @@
     "defaultPriority": -100
   },
   {
-    "name": "ironbar",
+    "name": "Pandaros.Settlers.AutoLoad.ironbar",
     "results": [
       {
-        "type": "ironbar"
+        "type": "Pandaros.Settlers.AutoLoad.ironbar"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot",
+        "type": "ironingot",
         "amount": 2
       }
     ],
@@ -72,15 +72,15 @@
     "defaultPriority": -100
   },
   {
-    "name": "ironbarcorner",
+    "name": "Pandaros.Settlers.AutoLoad.ironbarcorner",
     "results": [
       {
-        "type": "ironbarcorner"
+        "type": "Pandaros.Settlers.AutoLoad.ironbarcorner"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot",
+        "type": "ironingot",
         "amount": 2
       }
     ],
@@ -89,15 +89,15 @@
     "defaultPriority": -100
   },
   {
-    "name": "irondoor",
+    "name": "Pandaros.Settlers.AutoLoad.irondoor",
     "results": [
       {
-        "type": "irondoor"
+        "type": "Pandaros.Settlers.AutoLoad.irondoor"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot",
+        "type": "ironingot",
         "amount": 2
       }
     ],
@@ -106,19 +106,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "knife",
+    "name": "Pandaros.Settlers.AutoLoad.knife",
     "results": [
       {
-        "type": "knife"
+        "type": "Pandaros.Settlers.AutoLoad.knife"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.ironingot",
+        "type": "ironingot",
         "amount": 1
       },
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 1
       }
     ],

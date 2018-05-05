@@ -1,15 +1,15 @@
 [
   {
-    "name": "fence",
+    "name": "Pandaros.Settlers.AutoLoad.fence",
     "results": [
       {
         "amount": 4,
-        "type": "fence"
+        "type": "Pandaros.Settlers.AutoLoad.fence"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 3
       }
     ],
@@ -18,16 +18,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "fencecorner",
+    "name": "Pandaros.Settlers.AutoLoad.fencecorner",
     "results": [
       {
         "amount": 2,
-        "type": "fencecorner"
+        "type": "Pandaros.Settlers.AutoLoad.fencecorner"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 3
       }
     ],
@@ -36,16 +36,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "window",
+    "name": "Pandaros.Settlers.AutoLoad.window",
     "results": [
       {
         "amount": 2,
-        "type": "window"
+        "type": "Pandaros.Settlers.AutoLoad.window"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
@@ -58,11 +58,11 @@
     "defaultPriority": -100
   },
   {
-    "name": "doublewindow",
+    "name": "Pandaros.Settlers.AutoLoad.doublewindow",
     "results": [
       {
         "amount": 1,
-        "type": "doublewindow"
+        "type": "Pandaros.Settlers.AutoLoad.doublewindow"
       }
     ],
     "requires": [
@@ -76,16 +76,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "woodsupport",
+    "name": "Pandaros.Settlers.AutoLoad.woodsupport",
     "results": [
       {
         "amount": 4,
-        "type": "woodsupport"
+        "type": "Pandaros.Settlers.AutoLoad.woodsupport"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       }
     ],
@@ -94,16 +94,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "woodsupportud",
+    "name": "Pandaros.Settlers.AutoLoad.woodsupportud",
     "results": [
       {
         "amount": 4,
-        "type": "woodsupportud"
+        "type": "Pandaros.Settlers.AutoLoad.woodsupportud"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       }
     ],
@@ -112,20 +112,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "woodsupportcube",
+    "name": "Pandaros.Settlers.AutoLoad.woodsupportcube",
     "results": [
       {
         "amount": 2,
-        "type": "woodsupportcube"
+        "type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -134,20 +134,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "simplechair",
+    "name": "Pandaros.Settlers.AutoLoad.simplechair",
     "results": [
       {
-        "type": "simplechair",
+        "type": "Pandaros.Settlers.AutoLoad.simplechair",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 1
       },
       {
-        "type": "vanilla.straw",
+        "type": "straw",
         "amount": 1
       }
     ],
@@ -155,19 +155,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "simpletable",
+    "name": "Pandaros.Settlers.AutoLoad.simpletable",
     "results": [
       {
-        "type": "simpletable"
+        "type": "Pandaros.Settlers.AutoLoad.simpletable"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 4
       },
       {
-        "type": "vanilla.straw",
+        "type": "straw",
         "amount": 2
       }
     ],
@@ -175,16 +175,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "woodencatwalk",
+    "name": "Pandaros.Settlers.AutoLoad.woodencatwalk",
     "results": [
       {
-        "type": "woodencatwalk",
+        "type": "Pandaros.Settlers.AutoLoad.woodencatwalk",
         "amount": 2
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 4
       }
     ],
@@ -193,16 +193,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "woodbarrel",
+    "name": "Pandaros.Settlers.AutoLoad.woodbarrel",
     "results": [
       {
-        "type": "woodbarrel",
+        "type": "Pandaros.Settlers.AutoLoad.woodbarrel",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       }
     ],
@@ -211,20 +211,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "bench",
+    "name": "Pandaros.Settlers.AutoLoad.bench",
     "results": [
       {
-        "type": "bench",
+        "type": "Pandaros.Settlers.AutoLoad.bench",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 1
       },
       {
-        "type": "vanilla.ironingot",
+        "type": "ironingot",
         "amount": 1
       }
     ],
@@ -233,16 +233,16 @@
     "defaultPriority": -100
   },
   {
-    "name": "cratestack",
+    "name": "Pandaros.Settlers.AutoLoad.cratestack",
     "results": [
       {
-        "type": "cratestack",
+        "type": "Pandaros.Settlers.AutoLoad.cratestack",
         "amount": 1
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       }
     ],
@@ -251,42 +251,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "plankslab",
+    "name": "Pandaros.Settlers.AutoLoad.\"plankslab\"",
     "results": [
       {
-        "type": "plankslab",
-        "amount": 4
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.planks",
-        "amount": 1
-      },
-      {
-        "type": "saw",
-        "amount": 1
-      }
-    ],
-    "npcCraftable": true,
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "redplankslab",
-    "results": [
-      {
-        "type": "redplankslab",
+        "type": "Pandaros.Settlers.AutoLoad.plankslab",
         "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "vanilla.redplanks",
+        "type": "planks",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -295,20 +273,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "blackplankslab",
+    "name": "Pandaros.Settlers.AutoLoad.redplankslab",
     "results": [
       {
-        "amount": 4,
-        "type": "blackplankslab"
+        "type": "Pandaros.Settlers.AutoLoad.redplankslab",
+        "amount": 4
       }
     ],
     "requires": [
       {
-        "type": "vanilla.blackplanks",
+        "type": "redplanks",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -317,20 +295,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "coatedplankslab",
+    "name": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "results": [
       {
         "amount": 4,
-        "type": "coatedplankslab"
+        "type": "Pandaros.Settlers.AutoLoad.blackplankslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.coatedplanks",
+        "type": "blackplanks",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -339,20 +317,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "logtemperateslab",
+    "name": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "results": [
       {
         "amount": 4,
-        "type": "logtemperateslab"
+        "type": "Pandaros.Settlers.AutoLoad.coatedplankslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.logtemperate",
+        "type": "coatedplanks",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -361,20 +339,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "logtaigaslab",
+    "name": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "results": [
       {
         "amount": 4,
-        "type": "logtaigaslab"
+        "type": "Pandaros.Settlers.AutoLoad.logtemperateslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.logtaiga",
+        "type": "logtemperate",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -383,20 +361,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "carpetredslab",
+    "name": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "results": [
       {
         "amount": 4,
-        "type": "carpetredslab"
+        "type": "Pandaros.Settlers.AutoLoad.logtaigaslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.carpetred",
+        "type": "logtaiga",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -405,20 +383,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "carpetblueslab",
+    "name": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "results": [
       {
         "amount": 4,
-        "type": "carpetblueslab"
+        "type": "Pandaros.Settlers.AutoLoad.carpetredslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.carpetblue",
+        "type": "carpetred",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -427,20 +405,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "carpetyellowslab",
+    "name": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "results": [
       {
         "amount": 4,
-        "type": "carpetyellowslab"
+        "type": "Pandaros.Settlers.AutoLoad.carpetblueslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.carpetyellow",
+        "type": "carpetblue",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -449,20 +427,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "snowslab",
+    "name": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "results": [
       {
         "amount": 4,
-        "type": "snowslab"
+        "type": "Pandaros.Settlers.AutoLoad.carpetyellowslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.snow",
+        "type": "carpetyellow",
         "amount": 1
       },
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -471,20 +449,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "strawslab",
+    "name": "Pandaros.Settlers.AutoLoad.snowslab",
     "results": [
       {
         "amount": 4,
-        "type": "strawslab"
+        "type": "Pandaros.Settlers.AutoLoad.snowslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.straw",
+        "type": "snow",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       }
     ],
@@ -493,20 +471,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "adobeslab",
+    "name": "Pandaros.Settlers.AutoLoad.strawslab",
     "results": [
       {
         "amount": 4,
-        "type": "adobeslab"
+        "type": "Pandaros.Settlers.AutoLoad.strawslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.adobe",
+        "type": "straw",
         "amount": 1
       },
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -515,11 +493,33 @@
     "defaultPriority": -100
   },
   {
-    "name": "waterslab",
+    "name": "Pandaros.Settlers.AutoLoad.adobeslab",
     "results": [
       {
         "amount": 4,
-        "type": "waterslab"
+        "type": "Pandaros.Settlers.AutoLoad.adobeslab"
+      }
+    ],
+    "requires": [
+      {
+        "type": "adobe",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.waterslab",
+    "results": [
+      {
+        "amount": 4,
+        "type": "Pandaros.Settlers.AutoLoad.waterslab"
       }
     ],
     "requires": [
@@ -533,11 +533,11 @@
     "defaultPriority": -100
   },
   {
-    "name": "lavaslab",
+    "name": "Pandaros.Settlers.AutoLoad.lavaslab",
     "results": [
       {
         "amount": 4,
-        "type": "lavaslab"
+        "type": "Pandaros.Settlers.AutoLoad.lavaslab"
       }
     ],
     "requires": [
@@ -551,20 +551,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "rainforestslab",
+    "name": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "results": [
       {
         "amount": 4,
-        "type": "rainforestslab"
+        "type": "Pandaros.Settlers.AutoLoad.rainforestslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.grassrainforest",
+        "type": "grassrainforest",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -573,20 +573,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "savannaslab",
+    "name": "Pandaros.Settlers.AutoLoad.savannaslab",
     "results": [
       {
         "amount": 4,
-        "type": "savannaslab"
+        "type": "Pandaros.Settlers.AutoLoad.savannaslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.grasssavanna",
+        "type": "grasssavanna",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -595,20 +595,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "taigaslab",
+    "name": "Pandaros.Settlers.AutoLoad.taigaslab",
     "results": [
       {
         "amount": 4,
-        "type": "taigaslab"
+        "type": "Pandaros.Settlers.AutoLoad.taigaslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.grasstaiga",
+        "type": "grasstaiga",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -617,20 +617,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "tundraslab",
+    "name": "Pandaros.Settlers.AutoLoad.tundraslab",
     "results": [
       {
         "amount": 4,
-        "type": "tundraslab"
+        "type": "Pandaros.Settlers.AutoLoad.tundraslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.grasstundra",
+        "type": "grasstundra",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -639,20 +639,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "temperateslab",
+    "name": "Pandaros.Settlers.AutoLoad.temperateslab",
     "results": [
       {
         "amount": 4,
-        "type": "temperateslab"
+        "type": "Pandaros.Settlers.AutoLoad.temperateslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.grasstemperate",
+        "type": "grasstemperate",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -661,20 +661,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "leavestemperateslab",
+    "name": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "results": [
       {
         "amount": 4,
-        "type": "leavestemperateslab"
+        "type": "Pandaros.Settlers.AutoLoad.leavestemperateslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.leavestemperate",
+        "type": "leavestemperate",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -683,20 +683,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "leavestaigaslab",
+    "name": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "results": [
       {
         "amount": 4,
-        "type": "leavestaigaslab"
+        "type": "Pandaros.Settlers.AutoLoad.leavestaigaslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.leavestaiga",
+        "type": "leavestaiga",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -705,20 +705,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "cherryblossomslab",
+    "name": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "results": [
       {
         "amount": 4,
-        "type": "cherryblossomslab"
+        "type": "Pandaros.Settlers.AutoLoad.cherryblossomslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.cherryblossom",
+        "type": "cherryblossom",
         "amount": 1
       },
       {
-        "type": "saw",
+        "type": "Pandaros.Settlers.AutoLoad.saw",
         "amount": 1
       }
     ],
@@ -727,20 +727,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "berrybushslab",
+    "name": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "results": [
       {
         "amount": 4,
-        "type": "berrybushslab"
+        "type": "Pandaros.Settlers.AutoLoad.berrybushslab"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.berrybush",
+        "type": "berrybush",
         "amount": 1
       },
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       }
     ],
@@ -749,20 +749,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "clayslabbottom",
+    "name": "Pandaros.Settlers.AutoLoad.clayslabbottom",
     "results": [
       {
         "amount": 4,
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       },
       {
-        "type": "chisel",
+        "type": "Pandaros.Settlers.AutoLoad.chisel",
         "amount": 1
       }
     ],

@@ -35,13 +35,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
             { Items.Mana.Item.ItemIndex, 10 }
         };
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger.AfterWorldLoad"),
-            ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
-        public static void AfterWorldLoad()
-        {
-            Managers.MonsterManager.AddBoss(new FallenRanger(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
             ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
@@ -53,9 +46,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/FallenRanger.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ZombieQueen.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/ZombieQueen.png")
+                .SetAs("albedo", "FallenRanger.png")
+                .SetAs("normal", "ZombieQueen_normal.png")
+                .SetAs("emissive", "ZombieQueen_emissive.png")
                 .SetAs("initialHealth", 4000)
                 .SetAs("movementSpeed", 1.25f)
                 .SetAs("punchCooldownMS", 2000)
@@ -87,6 +80,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public DamageType ElementalArmor => DamageType.Earth;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
+
+        public FallenRanger() :
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+        {
+        }
 
         public FallenRanger(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

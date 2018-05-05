@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var flagTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            flagTextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/PatrolFlag.png";
+            flagTextureMapping.AlbedoPath = "PatrolFlag.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".PatrolFlag", flagTextureMapping);
         }
@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Jobs
         {
             var patrolToolName = GameLoader.NAMESPACE + ".PatrolTool";
             var patrolToolNode = new JSONNode();
-            patrolToolNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/KnightPatrolTool.png");
+            patrolToolNode["icon"] = new JSONNode("KnightPatrolTool.png");
             patrolToolNode["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);
@@ -67,12 +67,12 @@ namespace Pandaros.Settlers.Jobs
 
             var patrolFlagName = GameLoader.NAMESPACE + ".PatrolFlag";
             var patrolFlagNode = new JSONNode();
-            patrolFlagNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/PatrolFlagItem.png");
+            patrolFlagNode["icon"] = new JSONNode("PatrolFlagItem.png");
             patrolFlagNode["isPlaceable"] = new JSONNode(false);
             patrolFlagNode.SetAs("onRemoveAmount", 0);
             patrolFlagNode.SetAs("isSolid", false);
             patrolFlagNode.SetAs("sideall", "SELF");
-            patrolFlagNode.SetAs("mesh", GameLoader.MESH_FOLDER_PANDA + "/PatrolFlag.obj");
+            patrolFlagNode.SetAs("mesh", "PatrolFlag.obj");
 
             JSONNode patrolFlagCategories = new JSONNode(NodeType.Array);
             patrolFlagCategories.AddToArray(new JSONNode("job"));

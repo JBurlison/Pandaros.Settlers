@@ -1,21 +1,26 @@
 {
-  "refinedemerald": {
+  "Pandaros.Settlers.AutoLoad.refinedemerald": {
     "icon": "refinedemerald.png",
     "maxStackSize": 600,
     "isPlaceable": false,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "rawemerald": {
+  "Pandaros.Settlers.AutoLoad.rawemerald": {
     "icon": "rawemerald.png",
     "maxStackSize": 600,
     "isPlaceable": false,
-    "categories": [ "ingredient", "raw" ]
+    "categories": [
+      "ingredient",
+      "raw"
+    ]
   },
-  "infiniteemerald": {
+  "Pandaros.Settlers.AutoLoad.infiniteemerald": {
     "icon": "infiniteemerald.png",
-    "onPlaceAudio": "vanilla.stonePlace",
+    "onPlaceAudio": "stonePlace",
     "onRemoveType": "rawemerald",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onRemoveAudio": "stoneDelete",
     "destructionTime": 2000,
     "sideall": "SELF",
     "npcLimit": 0,
@@ -25,234 +30,295 @@
       "minerIsMineable": true,
       "minerMiningTime": 5
     },
-    "categories": [ "ore" ]
+    "categories": [
+      "ore"
+    ]
   },
-  "milk": {
+  "Pandaros.Settlers.AutoLoad.milk": {
     "icon": "milk.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 1
   },
-  "egg": {
+  "Pandaros.Settlers.AutoLoad.egg": {
     "icon": "egg.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600
   },
-  "cake": {
+  "Pandaros.Settlers.AutoLoad.cake": {
     "icon": "cake.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 5
   },
-  "beef": {
+  "Pandaros.Settlers.AutoLoad.beef": {
     "icon": "Beef.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 4
   },
-  "carrot": {
+  "Pandaros.Settlers.AutoLoad.carrot": {
     "icon": "Carrot.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 0.6
   },
-  "cheese": {
+  "Pandaros.Settlers.AutoLoad.cheese": {
     "icon": "Cheese.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 0.6
   },
-  "chisel": {
+  "Pandaros.Settlers.AutoLoad.chisel": {
     "icon": "chisel.png",
     "npcLimit": 0,
     "maxStackSize": 600,
     "isPlaceable": false,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "blueclay": {
+  "Pandaros.Settlers.AutoLoad.blueclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "blueClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "magentaclay": {
+  "Pandaros.Settlers.AutoLoad.magentaclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "magentaClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "yellowclay": {
+  "Pandaros.Settlers.AutoLoad.yellowclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "yellowClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "lightpinkclay": {
+  "Pandaros.Settlers.AutoLoad.lightpinkclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "lightpinkClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "redclay": {
+  "Pandaros.Settlers.AutoLoad.redclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "redClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "orangeclay": {
+  "Pandaros.Settlers.AutoLoad.orangeclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "orangeClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "blackclay": {
+  "Pandaros.Settlers.AutoLoad.blackclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "blackClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "brownclay": {
+  "Pandaros.Settlers.AutoLoad.brownclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "brownClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "cyanclay": {
+  "Pandaros.Settlers.AutoLoad.cyanclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "cyanClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "darkblueclay": {
+  "Pandaros.Settlers.AutoLoad.darkblueclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "darkblueClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "greyclay": {
+  "Pandaros.Settlers.AutoLoad.greyclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "greyClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "lightgreyclay": {
+  "Pandaros.Settlers.AutoLoad.lightgreyclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "lightgreyClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "greenclay": {
+  "Pandaros.Settlers.AutoLoad.greenclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "greenClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "limeclay": {
+  "Pandaros.Settlers.AutoLoad.limeclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "limeClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "pinkclay": {
+  "Pandaros.Settlers.AutoLoad.pinkclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "pinkClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "purpleclay": {
+  "Pandaros.Settlers.AutoLoad.purpleclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "purpleClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "whiteclay": {
+  "Pandaros.Settlers.AutoLoad.whiteclay": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "whiteClay.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
-    "categories": [ "decorative", "clay" ]
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "limestone": {
+  "Pandaros.Settlers.AutoLoad.limestone": {
     "icon": "limeStone.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "destructionTime": 600,
-    "categories": [ "decorative", "stone" ]
+    "categories": [
+      "decorative",
+      "stone"
+    ]
   },
-  "sandstone": {
+  "Pandaros.Settlers.AutoLoad.sandstone": {
     "icon": "sandStone.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "destructionTime": 600,
-    "categories": [ "decorative", "stone" ]
+    "categories": [
+      "decorative",
+      "stone"
+    ]
   },
-  "infiniteruby": {
+  "Pandaros.Settlers.AutoLoad.infiniteruby": {
     "icon": "infiniteruby.png",
-    "onPlaceAudio": "vanilla.stonePlace",
+    "onPlaceAudio": "stonePlace",
     "onRemoveType": "rawruby",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onRemoveAudio": "stoneDelete",
     "destructionTime": 2000,
     "sideall": "SELF",
     "npcLimit": 0,
@@ -262,13 +328,15 @@
       "minerIsMineable": true,
       "minerMiningTime": 5
     },
-    "categories": [ "ore" ]
+    "categories": [
+      "ore"
+    ]
   },
-  "infinitesapphire": {
+  "Pandaros.Settlers.AutoLoad.infinitesapphire": {
     "icon": "infinitesapphire.png",
-    "onPlaceAudio": "vanilla.stonePlace",
+    "onPlaceAudio": "stonePlace",
     "onRemoveType": "rawsapphire",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onRemoveAudio": "stoneDelete",
     "destructionTime": 2000,
     "sideall": "SELF",
     "npcLimit": 0,
@@ -278,9 +346,11 @@
       "minerIsMineable": true,
       "minerMiningTime": 5
     },
-    "categories": [ "ore" ]
+    "categories": [
+      "ore"
+    ]
   },
-  "ironbar": {
+  "Pandaros.Settlers.AutoLoad.ironbar": {
     "icon": "ironbar.png",
     "onPlaceAudio": "metalPlace",
     "onRemoveAudio": "metalPlace",
@@ -292,25 +362,28 @@
     "rotatablex-": "ironbarx-",
     "rotatablez+": "ironbarz+",
     "rotatablez-": "ironbarz-",
-    "categories": [ "decorative", "iron" ]
+    "categories": [
+      "decorative",
+      "iron"
+    ]
   },
-  "ironbarx+": {
-    "parentType": "ironbar",
+  "Pandaros.Settlers.AutoLoad.ironbarx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
     "mesh": "ironbarx+.obj"
   },
-  "ironbarx-": {
-    "parentType": "ironbar",
+  "Pandaros.Settlers.AutoLoad.ironbarx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
     "mesh": "ironbarx-.obj"
   },
-  "ironbarz+": {
-    "parentType": "ironbar",
+  "Pandaros.Settlers.AutoLoad.ironbarz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
     "mesh": "ironbarz+.obj"
   },
-  "ironbarz-": {
-    "parentType": "ironbar",
+  "Pandaros.Settlers.AutoLoad.ironbarz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
     "mesh": "ironbarz-.obj"
   },
-  "ironbarcorner": {
+  "Pandaros.Settlers.AutoLoad.ironbarcorner": {
     "icon": "ironbarcorner.png",
     "onPlaceAudio": "metalPlace",
     "onRemoveAudio": "metalPlace",
@@ -322,25 +395,28 @@
     "rotatablex-": "ironbarcornerx-",
     "rotatablez+": "ironbarcornerz+",
     "rotatablez-": "ironbarcornerz-",
-    "categories": [ "decorative", "iron" ]
+    "categories": [
+      "decorative",
+      "iron"
+    ]
   },
-  "ironbarcornerx+": {
-    "parentType": "ironbarcorner",
+  "Pandaros.Settlers.AutoLoad.ironbarcornerx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
     "mesh": "ironbarcornerx+.obj"
   },
-  "ironbarcornerx-": {
-    "parentType": "ironbarcorner",
+  "Pandaros.Settlers.AutoLoad.ironbarcornerx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
     "mesh": "ironbarcornerx-.obj"
   },
-  "ironbarcornerz+": {
-    "parentType": "ironbarcorner",
+  "Pandaros.Settlers.AutoLoad.ironbarcornerz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
     "mesh": "ironbarcornerz+.obj"
   },
-  "ironbarcornerz-": {
-    "parentType": "ironbarcorner",
+  "Pandaros.Settlers.AutoLoad.ironbarcornerz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
     "mesh": "ironbarcornerz-.obj"
   },
-  "irondoor": {
+  "Pandaros.Settlers.AutoLoad.irondoor": {
     "onPlaceAudio": "metalPlace",
     "icon": "irondoor.png",
     "onRemoveAudio": "metalPlace",
@@ -352,161 +428,209 @@
     "rotatablex-": "irondoorx-",
     "rotatablez+": "irondoorz+",
     "rotatablez-": "irondoorz-",
-    "categories": [ "decorative", "iron" ]
+    "categories": [
+      "decorative",
+      "iron"
+    ]
   },
-  "irondoorx+": {
-    "parentType": "irondoor",
+  "Pandaros.Settlers.AutoLoad.irondoorx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
     "mesh": "irondoorx+.obj"
   },
-  "irondoorx-": {
-    "parentType": "irondoor",
+  "Pandaros.Settlers.AutoLoad.irondoorx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
     "mesh": "irondoorx-.obj"
   },
-  "irondoorz+": {
-    "parentType": "irondoor",
+  "Pandaros.Settlers.AutoLoad.irondoorz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
     "mesh": "irondoorz+.obj"
   },
-  "irondoorz-": {
-    "parentType": "irondoor",
+  "Pandaros.Settlers.AutoLoad.irondoorz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
     "mesh": "irondoorz-.obj"
   },
-  "marblepillarbase": {
+  "Pandaros.Settlers.AutoLoad.marblepillarbase": {
     "icon": "marblepillarbase.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Marblepillarbase.obj",
-    "categories": [ "decorative", "marble" ]
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "marblepillarbody": {
+  "Pandaros.Settlers.AutoLoad.marblepillarbody": {
     "icon": "marblepillarbody.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Marblepillarbody.obj",
-    "categories": [ "decorative", "marble" ]
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "marblepillartop": {
+  "Pandaros.Settlers.AutoLoad.marblepillartop": {
     "icon": "marblepillartop.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Marblepillartop.obj",
-    "categories": [ "decorative", "marble" ]
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "chalk": {
+  "Pandaros.Settlers.AutoLoad.chalk": {
     "icon": "chalk.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "notwater": {
+  "Pandaros.Settlers.AutoLoad.notwater": {
     "isSolid": true,
-    "onPlaceAudio": "vanilla.waterSplashFeet",
-    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "onPlaceAudio": "waterSplashFeet",
+    "onRemoveAudio": "waterSplashFeet",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "water.png",
     "isPlaceable": true,
-    "categories": [ "decorative", "water" ]
+    "categories": [
+      "decorative",
+      "water"
+    ]
   },
-  "knife": {
+  "Pandaros.Settlers.AutoLoad.knife": {
     "icon": "Knife.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "glass": {
+  "Pandaros.Settlers.AutoLoad.glass": {
     "icon": "Glass.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "decorative", "glass" ]
+    "categories": [
+      "decorative",
+      "glass"
+    ]
   },
-  "sledgehammer": {
+  "Pandaros.Settlers.AutoLoad.sledgehammer": {
     "icon": "Sledgehammer.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "saw": {
+  "Pandaros.Settlers.AutoLoad.saw": {
     "icon": "saw.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "dirtbricks": {
+  "Pandaros.Settlers.AutoLoad.dirtbricks": {
     "isFertile": true,
     "icon": "dirtbricks.png",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "onRemoveAudio": "vanilla.grassDelete",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "categories": [ "decorative", "dirt" ]
+    "onRemoveAudio": "grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "categories": [
+      "decorative",
+      "dirt"
+    ]
   },
-  "rawruby": {
+  "Pandaros.Settlers.AutoLoad.rawruby": {
     "icon": "rawruby.png",
     "isPlaceable": false,
-    "categories": [ "ingredient", "raw" ]
+    "categories": [
+      "ingredient",
+      "raw"
+    ]
   },
-  "rawsapphire": {
+  "Pandaros.Settlers.AutoLoad.rawsapphire": {
     "icon": "rawsapphire.png",
     "isPlaceable": false,
-    "categories": [ "ingredient", "raw" ]
+    "categories": [
+      "ingredient",
+      "raw"
+    ]
   },
-  "refinedsapphire": {
+  "Pandaros.Settlers.AutoLoad.refinedsapphire": {
     "icon": "refinedsapphire.png",
     "isPlaceable": false,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "refinedruby": {
+  "Pandaros.Settlers.AutoLoad.refinedruby": {
     "icon": "refinedruby.png",
     "isPlaceable": false,
-    "categories": [ "ingredient" ]
+    "categories": [
+      "ingredient"
+    ]
   },
-  "marble": {
+  "Pandaros.Settlers.AutoLoad.marble": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "marble.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
-    "categories": [ "decorative", "marble" ]
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "marblebricks": {
+  "Pandaros.Settlers.AutoLoad.marblebricks": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "marbleBrick.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
-    "categories": [ "decorative", "marble" ]
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "rawmarble": {
+  "Pandaros.Settlers.AutoLoad.rawmarble": {
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "icon": "rawMarble.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
-    "categories": [ "decorative", "marble" ]
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "fence": {
+  "Pandaros.Settlers.AutoLoad.fence": {
     "icon": "woodfence.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -515,28 +639,31 @@
     "rotatablex-": "woodfencex-",
     "rotatablez+": "woodfencez+",
     "rotatablez-": "woodfencez-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodfencex+": {
-    "parentType": "fence",
+  "Pandaros.Settlers.AutoLoad.woodfencex+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fence",
     "mesh": "woodfencex+.obj"
   },
-  "woodfencex-": {
-    "parentType": "fence",
+  "Pandaros.Settlers.AutoLoad.woodfencex-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fence",
     "mesh": "woodfencex-.obj"
   },
-  "woodfencez+": {
-    "parentType": "fence",
+  "Pandaros.Settlers.AutoLoad.woodfencez+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fence",
     "mesh": "woodfencez+.obj"
   },
-  "woodfencez-": {
-    "parentType": "fence",
+  "Pandaros.Settlers.AutoLoad.woodfencez-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fence",
     "mesh": "woodfencez-.obj"
   },
-  "fencecorner": {
+  "Pandaros.Settlers.AutoLoad.fencecorner": {
     "icon": "woodfencecorner.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -545,28 +672,31 @@
     "rotatablex-": "woodfencecornerx-",
     "rotatablez+": "woodfencecornerz+",
     "rotatablez-": "woodfencecornerz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodfencecornerx+": {
-    "parentType": "fencecorner",
+  "Pandaros.Settlers.AutoLoad.woodfencecornerx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
     "mesh": "woodfencecornerx+.obj"
   },
-  "woodfencecornerx-": {
-    "parentType": "fencecorner",
+  "Pandaros.Settlers.AutoLoad.woodfencecornerx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
     "mesh": "woodfencecornerx-.obj"
   },
-  "woodfencecornerz+": {
-    "parentType": "fencecorner",
+  "Pandaros.Settlers.AutoLoad.woodfencecornerz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
     "mesh": "woodfencecornerz+.obj"
   },
-  "woodfencecornerz-": {
-    "parentType": "fencecorner",
+  "Pandaros.Settlers.AutoLoad.woodfencecornerz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
     "mesh": "woodfencecornerz-.obj"
   },
-  "window": {
+  "Pandaros.Settlers.AutoLoad.window": {
     "icon": "window.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -575,28 +705,31 @@
     "rotatablex-": "windowx-",
     "rotatablez+": "windowz+",
     "rotatablez-": "windowz-",
-    "categories": [ "decorative", "glass" ]
+    "categories": [
+      "decorative",
+      "glass"
+    ]
   },
-  "windowx+": {
-    "parentType": "window",
+  "Pandaros.Settlers.AutoLoad.windowx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.window",
     "mesh": "windowx+.obj"
   },
-  "windowx-": {
-    "parentType": "window",
+  "Pandaros.Settlers.AutoLoad.windowx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.window",
     "mesh": "windowx-.obj"
   },
-  "windowz+": {
-    "parentType": "window",
+  "Pandaros.Settlers.AutoLoad.windowz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.window",
     "mesh": "windowz+.obj"
   },
-  "windowz-": {
-    "parentType": "window",
+  "Pandaros.Settlers.AutoLoad.windowz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.window",
     "mesh": "windowz-.obj"
   },
-  "doublewindow": {
+  "Pandaros.Settlers.AutoLoad.doublewindow": {
     "icon": "window.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -605,28 +738,31 @@
     "rotatablex-": "doublewindowx-",
     "rotatablez+": "doublewindowz+",
     "rotatablez-": "doublewindowz-",
-    "categories": [ "decorative", "glass" ]
+    "categories": [
+      "decorative",
+      "glass"
+    ]
   },
-  "doublewindowx+": {
-    "parentType": "doublewindow",
+  "Pandaros.Settlers.AutoLoad.doublewindowx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
     "mesh": "windowtwowayx.obj"
   },
-  "doublewindowx-": {
-    "parentType": "doublewindow",
+  "Pandaros.Settlers.AutoLoad.doublewindowx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
     "mesh": "windowtwowayx.obj"
   },
-  "doublewindowz+": {
-    "parentType": "doublewindow",
+  "Pandaros.Settlers.AutoLoad.doublewindowz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
     "mesh": "windowtwowayz.obj"
   },
-  "doublewindowz-": {
-    "parentType": "doublewindow",
+  "Pandaros.Settlers.AutoLoad.doublewindowz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
     "mesh": "windowtwowayz.obj"
   },
-  "woodsupport": {
+  "Pandaros.Settlers.AutoLoad.woodsupport": {
     "icon": "woodsupport.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -635,28 +771,31 @@
     "rotatablex-": "woodsupportx-",
     "rotatablez+": "woodsupportz+",
     "rotatablez-": "woodsupportz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodsupportx+": {
-    "parentType": "woodsupport",
+  "Pandaros.Settlers.AutoLoad.woodsupportx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
     "mesh": "woodsupportx+.obj"
   },
-  "woodsupportx-": {
-    "parentType": "woodsupport",
+  "Pandaros.Settlers.AutoLoad.woodsupportx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
     "mesh": "woodsupportx-.obj"
   },
-  "woodsupportz+": {
-    "parentType": "woodsupport",
+  "Pandaros.Settlers.AutoLoad.woodsupportz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
     "mesh": "woodsupportz+.obj"
   },
-  "woodsupportz-": {
-    "parentType": "woodsupport",
+  "Pandaros.Settlers.AutoLoad.woodsupportz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
     "mesh": "woodsupportz-.obj"
   },
-  "woodsupportud": {
+  "Pandaros.Settlers.AutoLoad.woodsupportud": {
     "icon": "woodsupportud.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -665,38 +804,44 @@
     "rotatablex-": "woodsupportudx-",
     "rotatablez+": "woodsupportudz+",
     "rotatablez-": "woodsupportudz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodsupportudx+": {
-    "parentType": "woodsupportud",
+  "Pandaros.Settlers.AutoLoad.woodsupportudx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
     "mesh": "woodsupportudx+.obj"
   },
-  "woodsupportudx-": {
-    "parentType": "woodsupportud",
+  "Pandaros.Settlers.AutoLoad.woodsupportudx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
     "mesh": "woodsupportudx-.obj"
   },
-  "woodsupportudz+": {
-    "parentType": "woodsupportud",
+  "Pandaros.Settlers.AutoLoad.woodsupportudz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
     "mesh": "woodsupportudz+.obj"
   },
-  "woodsupportudz-": {
-    "parentType": "woodsupportud",
+  "Pandaros.Settlers.AutoLoad.woodsupportudz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
     "mesh": "woodsupportudz-.obj"
   },
-  "woodsupportcube": {
+  "Pandaros.Settlers.AutoLoad.woodsupportcube": {
     "icon": "woodsupportcube.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "woodsupportcube.obj",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "hangingbanner": {
+  "Pandaros.Settlers.AutoLoad.hangingbanner": {
     "icon": "hangingbanner.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -706,28 +851,30 @@
     "rotatablex-": "hangingbannerx-",
     "rotatablez+": "hangingbannerz+",
     "rotatablez-": "hangingbannerz-",
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "hangingbannerx+": {
-    "parentType": "hangingbanner",
+  "Pandaros.Settlers.AutoLoad.hangingbannerx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
     "mesh": "hangingbannerx+.obj"
   },
-  "hangingbannerx-": {
-    "parentType": "hangingbanner",
+  "Pandaros.Settlers.AutoLoad.hangingbannerx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
     "mesh": "hangingbannerx-.obj"
   },
-  "hangingbannerz+": {
-    "parentType": "hangingbanner",
+  "Pandaros.Settlers.AutoLoad.hangingbannerz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
     "mesh": "hangingbannerz+.obj"
   },
-  "hangingbannerz-": {
-    "parentType": "hangingbanner",
+  "Pandaros.Settlers.AutoLoad.hangingbannerz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
     "mesh": "hangingbannerz-.obj"
   },
-  "hangingbannerrw": {
+  "Pandaros.Settlers.AutoLoad.hangingbannerrw": {
     "icon": "hangingbannerrw.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -737,28 +884,30 @@
     "rotatablex-": "hangingbannerrwx-",
     "rotatablez+": "hangingbannerrwz+",
     "rotatablez-": "hangingbannerrwz-",
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "hangingbannerrwx+": {
-    "parentType": "hangingbannerrw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerrwx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
     "mesh": "hangingbannerx+.obj"
   },
-  "hangingbannerrwx-": {
-    "parentType": "hangingbannerrw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerrwx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
     "mesh": "hangingbannerx-.obj"
   },
-  "hangingbannerrwz+": {
-    "parentType": "hangingbannerrw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerrwz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
     "mesh": "hangingbannerz+.obj"
   },
-  "hangingbannerrwz-": {
-    "parentType": "hangingbannerrw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerrwz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
     "mesh": "hangingbannerz-.obj"
   },
-  "hangingbannerbw": {
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw": {
     "icon": "hangingbannerbw.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -768,28 +917,30 @@
     "rotatablex-": "hangingbannerbwx-",
     "rotatablez+": "hangingbannerbwz+",
     "rotatablez-": "hangingbannerbwz-",
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "hangingbannerbwx+": {
-    "parentType": "hangingbannerbw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbwx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
     "mesh": "hangingbannerx+.obj"
   },
-  "hangingbannerbwx-": {
-    "parentType": "hangingbannerbw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbwx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
     "mesh": "hangingbannerx-.obj"
   },
-  "hangingbannerbwz+": {
-    "parentType": "hangingbannerbw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbwz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
     "mesh": "hangingbannerz+.obj"
   },
-  "hangingbannerbwz-": {
-    "parentType": "hangingbannerbw",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbwz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
     "mesh": "hangingbannerz-.obj"
   },
-  "hangingbannercb": {
+  "Pandaros.Settlers.AutoLoad.hangingbannercb": {
     "icon": "hangingbannercb.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -799,28 +950,30 @@
     "rotatablex-": "hangingbannercbx-",
     "rotatablez+": "hangingbannercbz+",
     "rotatablez-": "hangingbannercbz-",
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "hangingbannercbx+": {
-    "parentType": "hangingbannercb",
+  "Pandaros.Settlers.AutoLoad.hangingbannercbx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
     "mesh": "hangingbannerx+.obj"
   },
-  "hangingbannercbx-": {
-    "parentType": "hangingbannercb",
+  "Pandaros.Settlers.AutoLoad.hangingbannercbx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
     "mesh": "hangingbannerx-.obj"
   },
-  "hangingbannercbz+": {
-    "parentType": "hangingbannercb",
+  "Pandaros.Settlers.AutoLoad.hangingbannercbz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
     "mesh": "hangingbannerz+.obj"
   },
-  "hangingbannercbz-": {
-    "parentType": "hangingbannercb",
+  "Pandaros.Settlers.AutoLoad.hangingbannercbz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
     "mesh": "hangingbannerz-.obj"
   },
-  "hangingbannerbw2": {
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw2": {
     "icon": "hangingbannerbw2.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -830,28 +983,30 @@
     "rotatablex-": "hangingbannerbw2x-",
     "rotatablez+": "hangingbannerbw2z+",
     "rotatablez-": "hangingbannerbw2z-",
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "hangingbannerbw2x+": {
-    "parentType": "hangingbannerbw2",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw2x+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
     "mesh": "hangingbannerx+.obj"
   },
-  "hangingbannerbw2x-": {
-    "parentType": "hangingbannerbw2",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw2x-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
     "mesh": "hangingbannerx-.obj"
   },
-  "hangingbannerbw2z+": {
-    "parentType": "hangingbannerbw2",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw2z+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
     "mesh": "hangingbannerz+.obj"
   },
-  "hangingbannerbw2z-": {
-    "parentType": "hangingbannerbw2",
+  "Pandaros.Settlers.AutoLoad.hangingbannerbw2z-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
     "mesh": "hangingbannerz-.obj"
   },
-  "simplechair": {
+  "Pandaros.Settlers.AutoLoad.simplechair": {
     "icon": "simplechair.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -861,38 +1016,44 @@
     "rotatablex-": "simplechairx-",
     "rotatablez+": "simplechairz+",
     "rotatablez-": "simplechairz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "simplechairx+": {
-    "parentType": "simplechair",
+  "Pandaros.Settlers.AutoLoad.simplechairx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
     "mesh": "simplechairx+.obj"
   },
-  "simplechairx-": {
-    "parentType": "simplechair",
+  "Pandaros.Settlers.AutoLoad.simplechairx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
     "mesh": "simplechairx-.obj"
   },
-  "simplechairz+": {
-    "parentType": "simplechair",
+  "Pandaros.Settlers.AutoLoad.simplechairz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
     "mesh": "simplechairz+.obj"
   },
-  "simplechairz-": {
-    "parentType": "simplechair",
+  "Pandaros.Settlers.AutoLoad.simplechairz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
     "mesh": "simplechairz-.obj"
   },
-  "simpletable": {
+  "Pandaros.Settlers.AutoLoad.simpletable": {
     "icon": "simpletable.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "simpletable.obj",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodencatwalk": {
+  "Pandaros.Settlers.AutoLoad.woodencatwalk": {
     "icon": "woodencatwalk.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -901,19 +1062,22 @@
     "rotatablex-": "woodencatwalkx",
     "rotatablez+": "woodencatwalkz",
     "rotatablez-": "woodencatwalkz",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodencatwalkx": {
-    "parentType": "woodencatwalk",
+  "Pandaros.Settlers.AutoLoad.woodencatwalkx": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodencatwalk",
     "mesh": "woodencatwalkx.obj"
   },
-  "woodencatwalkz": {
-    "parentType": "woodencatwalk",
+  "Pandaros.Settlers.AutoLoad.woodencatwalkz": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodencatwalk",
     "mesh": "woodencatwalkz.obj"
   },
-  "bench": {
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+  "Pandaros.Settlers.AutoLoad.bench": {
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "icon": "bench.png",
     "isRotatable": true,
     "isSolid": false,
@@ -925,53 +1089,59 @@
     "rotatablex-": "benchleftx-",
     "rotatablez+": "benchleftz+",
     "rotatablez-": "benchleftz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "benchleftx+": {
-    "parentType": "bench",
+  "Pandaros.Settlers.AutoLoad.benchleftx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.bench",
     "mesh": "benchleftx+.obj"
   },
-  "benchleftx-": {
-    "parentType": "bench",
+  "Pandaros.Settlers.AutoLoad.benchleftx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.bench",
     "mesh": "benchleftx-.obj"
   },
-  "benchleftz+": {
-    "parentType": "bench",
+  "Pandaros.Settlers.AutoLoad.benchleftz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.bench",
     "mesh": "benchleftz+.obj"
   },
-  "benchleftz-": {
-    "parentType": "bench",
+  "Pandaros.Settlers.AutoLoad.benchleftz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.bench",
     "mesh": "benchleftz-.obj"
   },
-  "benchright": {
-    "parentType": "bench",
+  "Pandaros.Settlers.AutoLoad.benchright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.bench",
     "isRotatable": true,
     "rotatablex+": "benchrightx+",
     "rotatablex-": "benchrightx-",
     "rotatablez+": "benchrightz+",
     "rotatablez-": "benchrightz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "benchrightx+": {
-    "parentType": "benchright",
+  "Pandaros.Settlers.AutoLoad.benchrightx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
     "mesh": "benchrightx+.obj"
   },
-  "benchrightx-": {
-    "parentType": "benchright",
+  "Pandaros.Settlers.AutoLoad.benchrightx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
     "mesh": "benchrightx-.obj"
   },
-  "benchrightz+": {
-    "parentType": "benchright",
+  "Pandaros.Settlers.AutoLoad.benchrightz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
     "mesh": "benchrightz+.obj"
   },
-  "benchrightz-": {
-    "parentType": "benchright",
+  "Pandaros.Settlers.AutoLoad.benchrightz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
     "mesh": "benchrightz-.obj"
   },
-  "woodbarrel": {
+  "Pandaros.Settlers.AutoLoad.woodbarrel": {
     "icon": "woodbarrel.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -980,28 +1150,31 @@
     "rotatablex-": "woodbarrelx-",
     "rotatablez+": "woodbarrelz+",
     "rotatablez-": "woodbarrelz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "woodbarrelx+": {
-    "parentType": "woodbarrel",
+  "Pandaros.Settlers.AutoLoad.woodbarrelx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
     "mesh": "woodbarrelx+.obj"
   },
-  "woodbarrelx-": {
-    "parentType": "woodbarrel",
+  "Pandaros.Settlers.AutoLoad.woodbarrelx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
     "mesh": "woodbarrelx-.obj"
   },
-  "woodbarrelz+": {
-    "parentType": "woodbarrel",
+  "Pandaros.Settlers.AutoLoad.woodbarrelz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
     "mesh": "woodbarrelz+.obj"
   },
-  "woodbarrelz-": {
-    "parentType": "woodbarrel",
+  "Pandaros.Settlers.AutoLoad.woodbarrelz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
     "mesh": "woodbarrelz-.obj"
   },
-  "cratestack": {
+  "Pandaros.Settlers.AutoLoad.cratestack": {
     "icon": "cratestack.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -1010,36 +1183,46 @@
     "rotatablex-": "cratestackx-",
     "rotatablez+": "cratestackz+",
     "rotatablez-": "cratestackz-",
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "cratestackx+": {
-    "parentType": "cratestack",
+  "Pandaros.Settlers.AutoLoad.cratestackx+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
     "mesh": "cratestackx+.obj"
   },
-  "cratestackx-": {
-    "parentType": "cratestack",
+  "Pandaros.Settlers.AutoLoad.cratestackx-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
     "mesh": "cratestackx-.obj"
   },
-  "cratestackz+": {
-    "parentType": "cratestack",
+  "Pandaros.Settlers.AutoLoad.cratestackz+": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
     "mesh": "cratestackz+.obj"
   },
-  "cratestackz-": {
-    "parentType": "cratestack",
+  "Pandaros.Settlers.AutoLoad.cratestackz-": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
     "mesh": "cratestackz-.obj"
   },
-  "stonebrickslab": {
-    "fullblockType": "vanilla.stonebricks",
+  "Pandaros.Settlers.AutoLoad.stonebrickslab": {
     "icon": "stonebrickslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1047,50 +1230,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "stonebrickslabtop": {
-    "parentType": "stonebrickslab",
+  "Pandaros.Settlers.AutoLoad.stonebrickslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "stonebrickslabbottom": {
-    "parentType": "stonebrickslab",
+  "Pandaros.Settlers.AutoLoad.stonebrickslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "stonebrickslableft": {
-    "parentType": "stonebrickslab",
+  "Pandaros.Settlers.AutoLoad.stonebrickslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "stonebrickslabright": {
-    "parentType": "stonebrickslab",
+  "Pandaros.Settlers.AutoLoad.stonebrickslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "stonebrickslabfront": {
-    "parentType": "stonebrickslab",
+  "Pandaros.Settlers.AutoLoad.stonebrickslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "stonebrickslabback": {
-    "parentType": "stonebrickslab",
+  "Pandaros.Settlers.AutoLoad.stonebrickslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "plankslab": {
-    "fullblockType": "vanilla.planks",
+  "Pandaros.Settlers.AutoLoad.plankslab": {
     "icon": "plankslab.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1098,30 +1291,33 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "plankslableft": {
-    "parentType": "plankslab",
+  "Pandaros.Settlers.AutoLoad.plankslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "plankslabright": {
-    "parentType": "plankslab",
+  "Pandaros.Settlers.AutoLoad.plankslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "plankslabfront": {
-    "parentType": "plankslab",
+  "Pandaros.Settlers.AutoLoad.plankslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "plankslabback": {
-    "parentType": "plankslab",
+  "Pandaros.Settlers.AutoLoad.plankslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "plankslabtop": {
-    "parentType": "plankslab",
+  "Pandaros.Settlers.AutoLoad.plankslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj",
     "customData": {
@@ -1129,8 +1325,8 @@
       "useHeightMap": true
     }
   },
-  "plankslabbottom": {
-    "parentType": "plankslab",
+  "Pandaros.Settlers.AutoLoad.plankslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj",
     "customData": {
@@ -1138,18 +1334,25 @@
       "useHeightMap": true
     }
   },
-  "brickslab": {
-    "fullblockType": "vanilla.bricks",
+  "Pandaros.Settlers.AutoLoad.brickslab": {
     "icon": "brickslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1157,50 +1360,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "brickslableft": {
-    "parentType": "brickslab",
+  "Pandaros.Settlers.AutoLoad.brickslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "brickslabright": {
-    "parentType": "brickslab",
+  "Pandaros.Settlers.AutoLoad.brickslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "brickslabfront": {
-    "parentType": "brickslab",
+  "Pandaros.Settlers.AutoLoad.brickslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "brickslabback": {
-    "parentType": "brickslab",
+  "Pandaros.Settlers.AutoLoad.brickslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "brickslabtop": {
-    "parentType": "brickslab",
+  "Pandaros.Settlers.AutoLoad.brickslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "brickslabbottom": {
-    "parentType": "brickslab",
+  "Pandaros.Settlers.AutoLoad.brickslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "coatedplankslab": {
-    "fullblockType": "vanilla.coatedplanks",
+  "Pandaros.Settlers.AutoLoad.coatedplankslab": {
     "icon": "coatedplankslab.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1208,50 +1421,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "coatedplankslableft": {
-    "parentType": "coatedplankslab",
+  "Pandaros.Settlers.AutoLoad.coatedplankslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "coatedplankslabright": {
-    "parentType": "coatedplankslab",
+  "Pandaros.Settlers.AutoLoad.coatedplankslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "coatedplankslabfront": {
-    "parentType": "coatedplankslab",
+  "Pandaros.Settlers.AutoLoad.coatedplankslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "coatedplankslabback": {
-    "parentType": "coatedplankslab",
+  "Pandaros.Settlers.AutoLoad.coatedplankslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "coatedplankslabtop": {
-    "parentType": "coatedplankslab",
+  "Pandaros.Settlers.AutoLoad.coatedplankslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "coatedplankslabbottom": {
-    "parentType": "coatedplankslab",
+  "Pandaros.Settlers.AutoLoad.coatedplankslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "cherryblossomslab": {
-    "fullblockType": "vanilla.cherryblossom",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslab": {
     "icon": "cherryblossomslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1259,50 +1482,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "cherryblossomslableft": {
-    "parentType": "cherryblossomslab",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "cherryblossomslabright": {
-    "parentType": "cherryblossomslab",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "cherryblossomslabfront": {
-    "parentType": "cherryblossomslab",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "cherryblossomslabback": {
-    "parentType": "cherryblossomslab",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "cherryblossomslabtop": {
-    "parentType": "cherryblossomslab",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "cherryblossomslabbottom": {
-    "parentType": "cherryblossomslab",
+  "Pandaros.Settlers.AutoLoad.cherryblossomslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "leavestemperateslab": {
-    "fullblockType": "vanilla.leavestemperate",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslab": {
     "icon": "leavestemperateslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1310,50 +1543,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "leaves" ]
+    "categories": [
+      "decorative",
+      "leaves"
+    ]
   },
-  "leavestemperateslableft": {
-    "parentType": "leavestemperateslab",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "leavestemperateslabright": {
-    "parentType": "leavestemperateslab",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "leavestemperateslabfront": {
-    "parentType": "leavestemperateslab",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "leavestemperateslabback": {
-    "parentType": "leavestemperateslab",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "leavestemperateslabbottom": {
-    "parentType": "leavestemperateslab",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "leavestemperateslabtop": {
-    "parentType": "leavestemperateslab",
+  "Pandaros.Settlers.AutoLoad.leavestemperateslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "leavestaigaslab": {
-    "fullblockType": "vanilla.leavestaiga",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslab": {
     "icon": "leavestaigaslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1361,105 +1604,129 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "leaves" ]
+    "categories": [
+      "decorative",
+      "leaves"
+    ]
   },
-  "leavestaigaslableft": {
-    "parentType": "leavestaigaslab",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "leavestaigaslabright": {
-    "parentType": "leavestaigaslab",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "leavestaigaslabfront": {
-    "parentType": "leavestaigaslab",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "leavestaigaslabback": {
-    "parentType": "leavestaigaslab",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "leavestaigaslabbottom": {
-    "parentType": "leavestaigaslab",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "leavestaigaslabtop": {
-    "parentType": "leavestaigaslab",
+  "Pandaros.Settlers.AutoLoad.leavestaigaslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "waterslab": {
+  "Pandaros.Settlers.AutoLoad.waterslab": {
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
     "icon": "waterslab.png",
-    "onPlaceAudio": "vanilla.waterSplashFeet",
-    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "onPlaceAudio": "waterSplashFeet",
+    "onRemoveAudio": "waterSplashFeet",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
-    "categories": [ "decorative", "water" ]
+    "categories": [
+      "decorative",
+      "water"
+    ]
   },
-  "waterslableft": {
-    "parentType": "waterslab",
+  "Pandaros.Settlers.AutoLoad.waterslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "waterslabright": {
-    "parentType": "waterslab",
+  "Pandaros.Settlers.AutoLoad.waterslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "waterslabfront": {
-    "parentType": "waterslab",
+  "Pandaros.Settlers.AutoLoad.waterslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "waterslabback": {
-    "parentType": "waterslab",
+  "Pandaros.Settlers.AutoLoad.waterslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "waterslabtop": {
-    "parentType": "waterslab",
+  "Pandaros.Settlers.AutoLoad.waterslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "slabtop.obj"
   },
-  "waterslabbottom": {
-    "parentType": "waterslab",
+  "Pandaros.Settlers.AutoLoad.waterslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "slabbottom.obj",
-    "categories": [ "decorative", "water" ]
+    "categories": [
+      "decorative",
+      "water"
+    ]
   },
-  "adobeslab": {
-    "fullblockType": "vanilla.adobe",
+  "Pandaros.Settlers.AutoLoad.adobeslab": {
     "icon": "adobeslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1467,51 +1734,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "dirt" ]
+    "categories": [
+      "decorative",
+      "dirt"
+    ]
   },
-  "adobeslableft": {
-    "parentType": "adobeslab",
+  "Pandaros.Settlers.AutoLoad.adobeslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "adobeslabright": {
-    "parentType": "adobeslab",
+  "Pandaros.Settlers.AutoLoad.adobeslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "adobeslabfront": {
-    "parentType": "adobeslab",
+  "Pandaros.Settlers.AutoLoad.adobeslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "adobeslabback": {
-    "parentType": "adobeslab",
+  "Pandaros.Settlers.AutoLoad.adobeslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "adobeslabtop": {
-    "parentType": "adobeslab",
+  "Pandaros.Settlers.AutoLoad.adobeslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "isFertile": true,
     "mesh": "slabtop.obj"
   },
-  "adobeslabbottom": {
-    "parentType": "adobeslab",
+  "Pandaros.Settlers.AutoLoad.adobeslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "rainforestslab": {
-    "fullblockType": "vanilla.grassrainforest",
+  "Pandaros.Settlers.AutoLoad.rainforestslab": {
     "icon": "grassrainforestslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1519,51 +1796,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "grass" ]
+    "categories": [
+      "decorative",
+      "grass"
+    ]
   },
-  "rainforestslableft": {
-    "parentType": "rainforestslab",
+  "Pandaros.Settlers.AutoLoad.rainforestslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "rainforestslabright": {
-    "parentType": "rainforestslab",
+  "Pandaros.Settlers.AutoLoad.rainforestslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "rainforestslabfront": {
-    "parentType": "rainforestslab",
+  "Pandaros.Settlers.AutoLoad.rainforestslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "rainforestslabback": {
-    "parentType": "rainforestslab",
+  "Pandaros.Settlers.AutoLoad.rainforestslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "rainforestslabtop": {
-    "parentType": "rainforestslab",
+  "Pandaros.Settlers.AutoLoad.rainforestslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "isFertile": true,
     "mesh": "slabtop.obj"
   },
-  "rainforestslabbottom": {
-    "parentType": "rainforestslab",
+  "Pandaros.Settlers.AutoLoad.rainforestslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "temperateslab": {
-    "fullblockType": "vanilla.grasstemperate",
+  "Pandaros.Settlers.AutoLoad.temperateslab": {
     "icon": "grasstemperateslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1571,51 +1858,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "grass" ]
+    "categories": [
+      "decorative",
+      "grass"
+    ]
   },
-  "temperateslableft": {
-    "parentType": "temperateslab",
+  "Pandaros.Settlers.AutoLoad.temperateslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "temperateslabright": {
-    "parentType": "temperateslab",
+  "Pandaros.Settlers.AutoLoad.temperateslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "temperateslabfront": {
-    "parentType": "temperateslab",
+  "Pandaros.Settlers.AutoLoad.temperateslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "temperateslabback": {
-    "parentType": "temperateslab",
+  "Pandaros.Settlers.AutoLoad.temperateslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "temperateslabtop": {
-    "parentType": "temperateslab",
+  "Pandaros.Settlers.AutoLoad.temperateslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "isFertile": true,
     "mesh": "slabtop.obj"
   },
-  "temperateslabbottom": {
-    "parentType": "temperateslab",
+  "Pandaros.Settlers.AutoLoad.temperateslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "tundraslab": {
-    "fullblockType": "vanilla.grasstundra",
+  "Pandaros.Settlers.AutoLoad.tundraslab": {
     "icon": "grasstundraslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1623,51 +1920,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "grass" ]
+    "categories": [
+      "decorative",
+      "grass"
+    ]
   },
-  "tundraslableft": {
-    "parentType": "tundraslab",
+  "Pandaros.Settlers.AutoLoad.tundraslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "tundraslabright": {
-    "parentType": "tundraslab",
+  "Pandaros.Settlers.AutoLoad.tundraslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "tundraslabfront": {
-    "parentType": "tundraslab",
+  "Pandaros.Settlers.AutoLoad.tundraslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "tundraslabback": {
-    "parentType": "tundraslab",
+  "Pandaros.Settlers.AutoLoad.tundraslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "tundraslabbottom": {
-    "parentType": "tundraslab",
+  "Pandaros.Settlers.AutoLoad.tundraslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "tundraslabtop": {
-    "parentType": "tundraslab",
+  "Pandaros.Settlers.AutoLoad.tundraslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "isFertile": true,
     "mesh": "slabtop.obj"
   },
-  "taigaslab": {
-    "fullblockType": "vanilla.grasstaiga",
+  "Pandaros.Settlers.AutoLoad.taigaslab": {
     "icon": "grasstaigaslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1675,51 +1982,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "grass" ]
+    "categories": [
+      "decorative",
+      "grass"
+    ]
   },
-  "taigaslableft": {
-    "parentType": "taigaslab",
+  "Pandaros.Settlers.AutoLoad.taigaslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "taigaslabright": {
-    "parentType": "taigaslab",
+  "Pandaros.Settlers.AutoLoad.taigaslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "taigaslabfront": {
-    "parentType": "taigaslab",
+  "Pandaros.Settlers.AutoLoad.taigaslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "taigaslabback": {
-    "parentType": "taigaslab",
+  "Pandaros.Settlers.AutoLoad.taigaslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "taigaslabtop": {
-    "parentType": "taigaslab",
+  "Pandaros.Settlers.AutoLoad.taigaslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "isFertile": true,
     "mesh": "slabtop.obj"
   },
-  "taigaslabbottom": {
-    "parentType": "taigaslab",
+  "Pandaros.Settlers.AutoLoad.taigaslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "savannaslab": {
-    "fullblockType": "vanilla.grasssavanna",
+  "Pandaros.Settlers.AutoLoad.savannaslab": {
     "icon": "grasssavannaslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1727,51 +2044,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "grass" ]
+    "categories": [
+      "decorative",
+      "grass"
+    ]
   },
-  "savannaslableft": {
-    "parentType": "savannaslab",
+  "Pandaros.Settlers.AutoLoad.savannaslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "savannaslabright": {
-    "parentType": "savannaslab",
+  "Pandaros.Settlers.AutoLoad.savannaslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "savannaslabfront": {
-    "parentType": "savannaslab",
+  "Pandaros.Settlers.AutoLoad.savannaslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "savannaslabback": {
-    "parentType": "savannaslab",
+  "Pandaros.Settlers.AutoLoad.savannaslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "savannaslabtop": {
-    "parentType": "savannaslab",
+  "Pandaros.Settlers.AutoLoad.savannaslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "isFertile": true,
     "mesh": "slabtop.obj"
   },
-  "savannaslabbottom": {
-    "parentType": "savannaslab",
+  "Pandaros.Settlers.AutoLoad.savannaslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "strawslab": {
-    "fullblockType": "vanilla.straw",
+  "Pandaros.Settlers.AutoLoad.strawslab": {
     "icon": "strawslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1779,50 +2106,59 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "strawslableft": {
-    "parentType": "strawslab",
+  "Pandaros.Settlers.AutoLoad.strawslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "strawslabright": {
-    "parentType": "strawslab",
+  "Pandaros.Settlers.AutoLoad.strawslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "strawslabfront": {
-    "parentType": "strawslab",
+  "Pandaros.Settlers.AutoLoad.strawslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "strawslabback": {
-    "parentType": "strawslab",
+  "Pandaros.Settlers.AutoLoad.strawslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "strawslabtop": {
-    "parentType": "strawslab",
+  "Pandaros.Settlers.AutoLoad.strawslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "strawslabbottom": {
-    "parentType": "strawslab",
+  "Pandaros.Settlers.AutoLoad.strawslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "berrybushslab": {
-    "fullblockType": "vanilla.berrybush",
+  "Pandaros.Settlers.AutoLoad.berrybushslab": {
     "icon": "berrybushslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1830,50 +2166,59 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "berrybushslableft": {
-    "parentType": "berrybushslab",
+  "Pandaros.Settlers.AutoLoad.berrybushslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "berrybushslabright": {
-    "parentType": "berrybushslab",
+  "Pandaros.Settlers.AutoLoad.berrybushslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "berrybushslabfront": {
-    "parentType": "berrybushslab",
+  "Pandaros.Settlers.AutoLoad.berrybushslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "berrybushslabback": {
-    "parentType": "berrybushslab",
+  "Pandaros.Settlers.AutoLoad.berrybushslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "berrybushslabtop": {
-    "parentType": "berrybushslab",
+  "Pandaros.Settlers.AutoLoad.berrybushslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "berrybushslabbottom": {
-    "parentType": "berrybushslab",
+  "Pandaros.Settlers.AutoLoad.berrybushslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "snowslab": {
-    "fullblockType": "vanilla.snow",
+  "Pandaros.Settlers.AutoLoad.snowslab": {
     "icon": "snowslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1881,50 +2226,59 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "snowslableft": {
-    "parentType": "snowslab",
+  "Pandaros.Settlers.AutoLoad.snowslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "snowslabright": {
-    "parentType": "snowslab",
+  "Pandaros.Settlers.AutoLoad.snowslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "snowslabfront": {
-    "parentType": "snowslab",
+  "Pandaros.Settlers.AutoLoad.snowslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "snowslabback": {
-    "parentType": "snowslab",
+  "Pandaros.Settlers.AutoLoad.snowslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "snowslabbottom": {
-    "parentType": "snowslab",
+  "Pandaros.Settlers.AutoLoad.snowslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "snowslabtop": {
-    "parentType": "snowslab",
+  "Pandaros.Settlers.AutoLoad.snowslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "sandslab": {
-    "fullblockType": "vanilla.sand",
+  "Pandaros.Settlers.AutoLoad.sandslab": {
     "icon": "sandslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1932,54 +2286,63 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "sandslableft": {
-    "parentType": "sandslab",
+  "Pandaros.Settlers.AutoLoad.sandslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "sandslabright": {
-    "parentType": "sandslab",
+  "Pandaros.Settlers.AutoLoad.sandslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "sandslabfront": {
-    "parentType": "sandslab",
+  "Pandaros.Settlers.AutoLoad.sandslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "sandslabback": {
-    "parentType": "sandslab",
+  "Pandaros.Settlers.AutoLoad.sandslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "sandslabtop": {
+  "Pandaros.Settlers.AutoLoad.sandslabtop": {
     "icon": "sandslab.png",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "slabtop.obj"
   },
-  "sandslabbottom": {
+  "Pandaros.Settlers.AutoLoad.sandslabbottom": {
     "icon": "sandslab.png",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "slabbottom.obj"
   },
-  "dirtslab": {
-    "fullblockType": "vanilla.dirt",
+  "Pandaros.Settlers.AutoLoad.dirtslab": {
     "icon": "dirtslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -1987,51 +2350,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "dirt" ]
+    "categories": [
+      "decorative",
+      "dirt"
+    ]
   },
-  "dirtslableft": {
-    "parentType": "dirtslab",
+  "Pandaros.Settlers.AutoLoad.dirtslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "dirtslabright": {
-    "parentType": "dirtslab",
+  "Pandaros.Settlers.AutoLoad.dirtslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "dirtslabfront": {
-    "parentType": "dirtslab",
+  "Pandaros.Settlers.AutoLoad.dirtslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "dirtslabback": {
-    "parentType": "dirtslab",
+  "Pandaros.Settlers.AutoLoad.dirtslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "dirtslabtop": {
-    "parentType": "dirtslab",
+  "Pandaros.Settlers.AutoLoad.dirtslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "isFertile": true,
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "dirtslabbottom": {
-    "parentType": "dirtslab",
+  "Pandaros.Settlers.AutoLoad.dirtslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "carpetyellowslab": {
-    "fullblockType": "vanilla.carpetyellow",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslab": {
     "icon": "yellowcarpetslab.png",
-    "onPlaceAudio": "vanilla.carpetyellowPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "carpetyellowPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2039,50 +2412,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "carpet" ]
+    "categories": [
+      "decorative",
+      "carpet"
+    ]
   },
-  "carpetyellowslableft": {
-    "parentType": "carpetyellowslab",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "carpetyellowslabright": {
-    "parentType": "carpetyellowslab",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "carpetyellowslabfront": {
-    "parentType": "carpetyellowslab",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "carpetyellowslabback": {
-    "parentType": "carpetyellowslab",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "carpetyellowslabtop": {
-    "parentType": "carpetyellowslab",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "carpetyellowslabbottom": {
-    "parentType": "carpetyellowslab",
+  "Pandaros.Settlers.AutoLoad.carpetyellowslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "carpetblueslab": {
-    "fullblockType": "vanilla.carpetblue",
+  "Pandaros.Settlers.AutoLoad.carpetblueslab": {
     "icon": "bluecarpetslab.png",
-    "onPlaceAudio": "vanilla.carpetbluePlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "carpetbluePlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2090,50 +2473,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "carpet" ]
+    "categories": [
+      "decorative",
+      "carpet"
+    ]
   },
-  "carpetblueslableft": {
-    "parentType": "carpetblueslab",
+  "Pandaros.Settlers.AutoLoad.carpetblueslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "carpetblueslabright": {
-    "parentType": "carpetblueslab",
+  "Pandaros.Settlers.AutoLoad.carpetblueslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "carpetblueslabfront": {
-    "parentType": "carpetblueslab",
+  "Pandaros.Settlers.AutoLoad.carpetblueslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "carpetblueslabback": {
-    "parentType": "carpetblueslab",
+  "Pandaros.Settlers.AutoLoad.carpetblueslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "carpetblueslabbottom": {
-    "parentType": "carpetblueslab",
+  "Pandaros.Settlers.AutoLoad.carpetblueslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "carpetblueslabtop": {
-    "parentType": "carpetblueslab",
+  "Pandaros.Settlers.AutoLoad.carpetblueslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "carpetredslab": {
-    "fullblockType": "vanilla.carpetred",
+  "Pandaros.Settlers.AutoLoad.carpetredslab": {
     "icon": "redcarpetslab.png",
-    "onPlaceAudio": "vanilla.carpetredPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "carpetredPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2141,50 +2534,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "carpet" ]
+    "categories": [
+      "decorative",
+      "carpet"
+    ]
   },
-  "carpetredslableft": {
-    "parentType": "carpetredslab",
+  "Pandaros.Settlers.AutoLoad.carpetredslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "carpetredslabright": {
-    "parentType": "carpetredslab",
+  "Pandaros.Settlers.AutoLoad.carpetredslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "carpetredslabfront": {
-    "parentType": "carpetredslab",
+  "Pandaros.Settlers.AutoLoad.carpetredslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "carpetredslabback": {
-    "parentType": "carpetredslab",
+  "Pandaros.Settlers.AutoLoad.carpetredslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "carpetredslabtop": {
-    "parentType": "carpetredslab",
+  "Pandaros.Settlers.AutoLoad.carpetredslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "carpetredslabbottom": {
-    "parentType": "carpetredslab",
+  "Pandaros.Settlers.AutoLoad.carpetredslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "stoneblockslab": {
-    "fullblockType": "vanilla.stoneblock",
+  "Pandaros.Settlers.AutoLoad.stoneblockslab": {
     "icon": "stoneblockslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2192,50 +2595,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "stoneblockslableft": {
-    "parentType": "stoneblockslab",
+  "Pandaros.Settlers.AutoLoad.stoneblockslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "stoneblockslabright": {
-    "parentType": "stoneblockslab",
+  "Pandaros.Settlers.AutoLoad.stoneblockslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "stoneblockslabfront": {
-    "parentType": "stoneblockslab",
+  "Pandaros.Settlers.AutoLoad.stoneblockslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "stoneblockslabback": {
-    "parentType": "stoneblockslab",
+  "Pandaros.Settlers.AutoLoad.stoneblockslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "stoneblockslabtop": {
-    "parentType": "stoneblockslab",
+  "Pandaros.Settlers.AutoLoad.stoneblockslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "stoneblockslabbottom": {
-    "parentType": "stoneblockslab",
+  "Pandaros.Settlers.AutoLoad.stoneblockslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "dirtbrickslab": {
-    "fullblockType": "dirtbrick",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslab": {
     "icon": "dirtbrickslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2243,51 +2656,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "dirt" ]
+    "categories": [
+      "decorative",
+      "dirt"
+    ]
   },
-  "dirtbrickslableft": {
-    "parentType": "dirtbrickslab",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "dirtbrickslabright": {
-    "parentType": "dirtbrickslab",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "dirtbrickslabfront": {
-    "parentType": "dirtbrickslab",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "dirtbrickslabback": {
-    "parentType": "dirtbrickslab",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "dirtbrickslabtop": {
-    "parentType": "dirtbrickslab",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "isFertile": true,
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "dirtbrickslabbottom": {
-    "parentType": "dirtbrickslab",
+  "Pandaros.Settlers.AutoLoad.dirtbrickslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "logtaigaslab": {
-    "fullblockType": "vanilla.logtaiga",
+  "Pandaros.Settlers.AutoLoad.logtaigaslab": {
     "icon": "logtaigaslab.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2295,50 +2718,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "logtaigaslableft": {
-    "parentType": "logtaigaslab",
+  "Pandaros.Settlers.AutoLoad.logtaigaslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "logtaigaslabright": {
-    "parentType": "logtaigaslab",
+  "Pandaros.Settlers.AutoLoad.logtaigaslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "logtaigaslabfront": {
-    "parentType": "logtaigaslab",
+  "Pandaros.Settlers.AutoLoad.logtaigaslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "logtaigaslabback": {
-    "parentType": "logtaigaslab",
+  "Pandaros.Settlers.AutoLoad.logtaigaslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "logtaigaslabtop": {
-    "parentType": "logtaigaslab",
+  "Pandaros.Settlers.AutoLoad.logtaigaslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "logtaigaslabbottom": {
-    "parentType": "logtaigaslab",
+  "Pandaros.Settlers.AutoLoad.logtaigaslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "logtemperateslab": {
-    "fullblockType": "vanilla.logtemperate",
+  "Pandaros.Settlers.AutoLoad.logtemperateslab": {
     "icon": "logtemperateslab.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2346,50 +2779,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "logtemperateslableft": {
-    "parentType": "logtemperateslab",
+  "Pandaros.Settlers.AutoLoad.logtemperateslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "logtemperateslabright": {
-    "parentType": "logtemperateslab",
+  "Pandaros.Settlers.AutoLoad.logtemperateslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "logtemperateslabfront": {
-    "parentType": "logtemperateslab",
+  "Pandaros.Settlers.AutoLoad.logtemperateslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "logtemperateslabback": {
-    "parentType": "logtemperateslab",
+  "Pandaros.Settlers.AutoLoad.logtemperateslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "logtemperateslabtop": {
-    "parentType": "logtemperateslab",
+  "Pandaros.Settlers.AutoLoad.logtemperateslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "logtemperateslabbottom": {
-    "parentType": "logtemperateslab",
+  "Pandaros.Settlers.AutoLoad.logtemperateslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "sandstoneslab": {
-    "fullblockType": "sandstone",
+  "Pandaros.Settlers.AutoLoad.sandstoneslab": {
     "icon": "sandstoneslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2397,52 +2840,61 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "sandstoneslableft": {
-    "parentType": "sandstoneslab",
+  "Pandaros.Settlers.AutoLoad.sandstoneslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "sandstoneslabright": {
-    "parentType": "sandstoneslab",
+  "Pandaros.Settlers.AutoLoad.sandstoneslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "sandstoneslabfront": {
-    "parentType": "sandstoneslab",
+  "Pandaros.Settlers.AutoLoad.sandstoneslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "sandstoneslabback": {
-    "parentType": "sandstoneslab",
+  "Pandaros.Settlers.AutoLoad.sandstoneslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "sandstoneslabtop": {
-    "parentType": "sandstoneslab",
+  "Pandaros.Settlers.AutoLoad.sandstoneslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "slabtop.obj"
   },
-  "sandstoneslabbottom": {
-    "parentType": "sandstoneslab",
+  "Pandaros.Settlers.AutoLoad.sandstoneslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "limestoneslab": {
-    "fullblockType": "limestone",
+  "Pandaros.Settlers.AutoLoad.limestoneslab": {
     "icon": "limestoneslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2450,50 +2902,59 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "limestoneslableft": {
-    "parentType": "limestoneslab",
+  "Pandaros.Settlers.AutoLoad.limestoneslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "limestoneslabright": {
-    "parentType": "limestoneslab",
+  "Pandaros.Settlers.AutoLoad.limestoneslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "limestoneslabfront": {
-    "parentType": "limestoneslab",
+  "Pandaros.Settlers.AutoLoad.limestoneslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "limestoneslabback": {
-    "parentType": "limestoneslab",
+  "Pandaros.Settlers.AutoLoad.limestoneslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "limestoneslabtop": {
-    "parentType": "limestoneslab",
+  "Pandaros.Settlers.AutoLoad.limestoneslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "limestoneslabbottom": {
-    "parentType": "limestoneslab",
+  "Pandaros.Settlers.AutoLoad.limestoneslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "marbleslab": {
-    "fullblockType": "marble",
+  "Pandaros.Settlers.AutoLoad.marbleslab": {
     "icon": "marbleslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2503,47 +2964,54 @@
     }
   },
   "marbleslableft": {
-    "parentType": "marbleslab",
+    "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "marbleslabright": {
-    "parentType": "marbleslab",
+  "Pandaros.Settlers.AutoLoad.marbleslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "marbleslabfront": {
-    "parentType": "marbleslab",
+  "Pandaros.Settlers.AutoLoad.marbleslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "marbleslabback": {
-    "parentType": "marbleslab",
+  "Pandaros.Settlers.AutoLoad.marbleslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "marbleslabbottom": {
-    "parentType": "marbleslab",
+  "Pandaros.Settlers.AutoLoad.marbleslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "marbleslabtop": {
-    "parentType": "marbleslab",
+  "Pandaros.Settlers.AutoLoad.marbleslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "rawmarbleslab": {
-    "fullblockType": "rawmarble",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslab": {
     "icon": "rawmarbleslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2551,50 +3019,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "marble" ]
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "rawmarbleslableft": {
-    "parentType": "rawmarbleslab",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "rawmarbleslabright": {
-    "parentType": "rawmarbleslab",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "rawmarbleslabfront": {
-    "parentType": "rawmarbleslab",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "rawmarbleslabback": {
-    "parentType": "rawmarbleslab",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "rawmarbleslabbottom": {
-    "parentType": "rawmarbleslab",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "rawmarbleslabtop": {
-    "parentType": "rawmarbleslab",
+  "Pandaros.Settlers.AutoLoad.rawmarbleslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "marblebricksslab": {
-    "fullblockType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslab": {
     "icon": "marblebricksslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2602,50 +3080,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "marble" ]
+    "categories": [
+      "decorative",
+      "marble"
+    ]
   },
-  "marblebricksslableft": {
-    "parentType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "marblebricksslabright": {
-    "parentType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "marblebricksslabfront": {
-    "parentType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "marblebricksslabback": {
-    "parentType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "marblebricksslabtop": {
-    "parentType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "marblebricksslabbottom": {
-    "parentType": "marblebricksslab",
+  "Pandaros.Settlers.AutoLoad.marblebricksslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "stonesquaresslab": {
-    "fullblockType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslab": {
     "icon": "stonesquaresslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2653,68 +3141,84 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "stonesquaresslableft": {
-    "parentType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "stonesquaresslabright": {
-    "parentType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "stonesquaresslabfront": {
-    "parentType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "stonesquaresslabback": {
-    "parentType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "stonesquaresslabtop": {
-    "parentType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "stonesquaresslabbottom": {
-    "parentType": "stonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.stonesquaresslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "mossstonesquares": {
+  "Pandaros.Settlers.AutoLoad.mossstonesquares": {
     "icon": "mossstonesquares.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "stonesquares": {
+  "Pandaros.Settlers.AutoLoad.stonesquares": {
     "icon": "stonesquares.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "mossstonesquaresslab": {
-    "fullblockType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslab": {
     "icon": "mossstonesquaresslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2722,50 +3226,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "mossstonesquaresslableft": {
-    "parentType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "mossstonesquaresslabright": {
-    "parentType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "mossstonesquaresslabfront": {
-    "parentType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "mossstonesquaresslabback": {
-    "parentType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "mossstonesquaresslabbottom": {
-    "parentType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "mossstonesquaresslabtop": {
-    "parentType": "mossstonesquaresslab",
+  "Pandaros.Settlers.AutoLoad.mossstonesquaresslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "mossstonebricksslab": {
-    "fullblockType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslab": {
     "icon": "mossstonebricksslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2773,40 +3287,50 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "mossstonebricksslableft": {
-    "parentType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "mossstonebricksslabright": {
-    "parentType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "mossstonebricksslabfront": {
-    "parentType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "mossstonebricksslabback": {
-    "parentType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "mossstoneslab": {
-    "fullblockType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslab": {
     "icon": "mossstoneslab.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2814,78 +3338,94 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "mossstoneslableft": {
-    "parentType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "mossstoneslabright": {
-    "parentType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "mossstoneslabfront": {
-    "parentType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "mossstoneslabback": {
-    "parentType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "mossstoneslabbottom": {
-    "parentType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "mossstoneslabtop": {
-    "parentType": "mossstoneslab",
+  "Pandaros.Settlers.AutoLoad.mossstoneslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "mossstonebricksslabbottom": {
-    "parentType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "mossstonebricksslabtop": {
-    "parentType": "mossstonebricksslab",
+  "Pandaros.Settlers.AutoLoad.mossstonebricksslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "mossstone": {
+  "Pandaros.Settlers.AutoLoad.mossstone": {
     "icon": "mossstone.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "mossstonebricks": {
+  "Pandaros.Settlers.AutoLoad.mossstonebricks": {
     "icon": "mossstonebricks.png",
-    "onPlaceAudio": "vanilla.stonePlace",
-    "onRemoveAudio": "vanilla.stoneDelete",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "categories": [ "decorative", "bricks" ]
+    "categories": [
+      "decorative",
+      "bricks"
+    ]
   },
-  "plasterslab": {
-    "fullblockType": "vanilla.plaster",
+  "Pandaros.Settlers.AutoLoad.plasterslab": {
     "icon": "plasterslab.png",
-    "onRemoveAudio": "vanilla.dirtPlace",
-    "onPlaceAudio": "vanilla.dirtPlace",
+    "onRemoveAudio": "dirtPlace",
+    "onPlaceAudio": "dirtPlace",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2893,50 +3433,59 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative" ]
+    "categories": [
+      "decorative"
+    ]
   },
-  "plasterslableft": {
-    "parentType": "plasterslab",
+  "Pandaros.Settlers.AutoLoad.plasterslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "plasterslabright": {
-    "parentType": "plasterslab",
+  "Pandaros.Settlers.AutoLoad.plasterslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "plasterslabfront": {
-    "parentType": "plasterslab",
+  "Pandaros.Settlers.AutoLoad.plasterslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "plasterslabback": {
-    "parentType": "plasterslab",
+  "Pandaros.Settlers.AutoLoad.plasterslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "plasterslabtop": {
-    "parentType": "plasterslab",
+  "Pandaros.Settlers.AutoLoad.plasterslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "plasterslabbottom": {
-    "parentType": "plasterslab",
+  "Pandaros.Settlers.AutoLoad.plasterslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "clayslab": {
-    "fullblockType": "vanilla.clay",
+  "Pandaros.Settlers.AutoLoad.clayslab": {
     "icon": "clayslab.png",
-    "onPlaceAudio": "vanilla.dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onPlaceAudio": "dirtPlace",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2944,50 +3493,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "clayslableft": {
-    "parentType": "clayslab",
+  "Pandaros.Settlers.AutoLoad.clayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "clayslabright": {
-    "parentType": "clayslab",
+  "Pandaros.Settlers.AutoLoad.clayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "clayslabfront": {
-    "parentType": "clayslab",
+  "Pandaros.Settlers.AutoLoad.clayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "clayslabback": {
-    "parentType": "clayslab",
+  "Pandaros.Settlers.AutoLoad.clayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "clayslabtop": {
-    "parentType": "clayslab",
+  "Pandaros.Settlers.AutoLoad.clayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "clayslabbottom": {
-    "parentType": "clayslab",
+  "Pandaros.Settlers.AutoLoad.clayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "redplankslab": {
-    "fullblockType": "vanilla.redplanks",
+  "Pandaros.Settlers.AutoLoad.redplankslab": {
     "icon": "redplankslab.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -2995,50 +3554,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "redplankslableft": {
-    "parentType": "redplankslab",
+  "Pandaros.Settlers.AutoLoad.redplankslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "redplankslabright": {
-    "parentType": "redplankslab",
+  "Pandaros.Settlers.AutoLoad.redplankslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "redplankslabfront": {
-    "parentType": "redplankslab",
+  "Pandaros.Settlers.AutoLoad.redplankslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "redplankslabback": {
-    "parentType": "redplankslab",
+  "Pandaros.Settlers.AutoLoad.redplankslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "redplankslabbottom": {
-    "parentType": "redplankslab",
+  "Pandaros.Settlers.AutoLoad.redplankslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "redplankslabtop": {
-    "parentType": "redplankslab",
+  "Pandaros.Settlers.AutoLoad.redplankslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "blackplankslab": {
-    "fullblockType": "vanilla.blackplanks",
+  "Pandaros.Settlers.AutoLoad.blackplankslab": {
     "icon": "blackplankslab.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3046,50 +3615,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "wood" ]
+    "categories": [
+      "decorative",
+      "wood"
+    ]
   },
-  "blackplankslableft": {
-    "parentType": "blackplankslab",
+  "Pandaros.Settlers.AutoLoad.blackplankslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "blackplankslabright": {
-    "parentType": "blackplankslab",
+  "Pandaros.Settlers.AutoLoad.blackplankslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "blackplankslabfront": {
-    "parentType": "blackplankslab",
+  "Pandaros.Settlers.AutoLoad.blackplankslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "blackplankslabback": {
-    "parentType": "blackplankslab",
+  "Pandaros.Settlers.AutoLoad.blackplankslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "blackplankslabbottom": {
-    "parentType": "blackplankslab",
+  "Pandaros.Settlers.AutoLoad.blackplankslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "blackplankslabtop": {
-    "parentType": "blackplankslab",
+  "Pandaros.Settlers.AutoLoad.blackplankslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "whiteclayslab": {
-    "fullblockType": "whiteclay",
+  "Pandaros.Settlers.AutoLoad.whiteclayslab": {
     "icon": "whiteclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3097,50 +3676,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "whiteclayslableft": {
-    "parentType": "whiteclayslab",
+  "Pandaros.Settlers.AutoLoad.whiteclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "whiteclayslabright": {
-    "parentType": "whiteclayslab",
+  "Pandaros.Settlers.AutoLoad.whiteclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "whiteclayslabfront": {
-    "parentType": "whiteclayslab",
+  "Pandaros.Settlers.AutoLoad.whiteclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "whiteclayslabback": {
-    "parentType": "whiteclayslab",
+  "Pandaros.Settlers.AutoLoad.whiteclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "whiteclayslabbottom": {
-    "parentType": "whiteclayslab",
+  "Pandaros.Settlers.AutoLoad.whiteclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "whiteclayslabtop": {
-    "parentType": "whiteclayslab",
+  "Pandaros.Settlers.AutoLoad.whiteclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "yellowclayslab": {
-    "fullblockType": "yellowclay",
+  "Pandaros.Settlers.AutoLoad.yellowclayslab": {
     "icon": "yellowclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3148,50 +3737,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "yellowclayslableft": {
-    "parentType": "yellowclayslab",
+  "Pandaros.Settlers.AutoLoad.yellowclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "yellowclayslabright": {
-    "parentType": "yellowclayslab",
+  "Pandaros.Settlers.AutoLoad.yellowclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "yellowclayslabfront": {
-    "parentType": "yellowclayslab",
+  "Pandaros.Settlers.AutoLoad.yellowclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "yellowclayslabback": {
-    "parentType": "yellowclayslab",
+  "Pandaros.Settlers.AutoLoad.yellowclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "yellowclayslabbottom": {
-    "parentType": "yellowclayslab",
+  "Pandaros.Settlers.AutoLoad.yellowclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "yellowclayslabtop": {
-    "parentType": "yellowclayslab",
+  "Pandaros.Settlers.AutoLoad.yellowclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "orangeclayslab": {
-    "fullblockType": "orangeclay",
+  "Pandaros.Settlers.AutoLoad.orangeclayslab": {
     "icon": "orangeclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3199,50 +3798,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "orangeclayslableft": {
-    "parentType": "orangeclayslab",
+  "Pandaros.Settlers.AutoLoad.orangeclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "orangeclayslabright": {
-    "parentType": "orangeclayslab",
+  "Pandaros.Settlers.AutoLoad.orangeclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "orangeclayslabfront": {
-    "parentType": "orangeclayslab",
+  "Pandaros.Settlers.AutoLoad.orangeclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "orangeclayslabback": {
-    "parentType": "orangeclayslab",
+  "Pandaros.Settlers.AutoLoad.orangeclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "orangeclayslabtop": {
-    "parentType": "orangeclayslab",
+  "Pandaros.Settlers.AutoLoad.orangeclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "orangeclayslabbottom": {
-    "parentType": "orangeclayslab",
+  "Pandaros.Settlers.AutoLoad.orangeclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "magentaclayslab": {
-    "fullblockType": "magentaclay",
+  "Pandaros.Settlers.AutoLoad.magentaclayslab": {
     "icon": "magentaclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3250,50 +3859,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "magentaclayslableft": {
-    "parentType": "magentaclayslab",
+  "Pandaros.Settlers.AutoLoad.magentaclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "magentaclayslabright": {
-    "parentType": "magentaclayslab",
+  "Pandaros.Settlers.AutoLoad.magentaclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "magentaclayslabfront": {
-    "parentType": "magentaclayslab",
+  "Pandaros.Settlers.AutoLoad.magentaclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "magentaclayslabback": {
-    "parentType": "magentaclayslab",
+  "Pandaros.Settlers.AutoLoad.magentaclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "magentaclayslabbottom": {
-    "parentType": "magentaclayslab",
+  "Pandaros.Settlers.AutoLoad.magentaclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "magentaclayslabtop": {
-    "parentType": "magentaclayslab",
+  "Pandaros.Settlers.AutoLoad.magentaclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "purpleclayslab": {
-    "fullblockType": "purpleclay",
+  "Pandaros.Settlers.AutoLoad.purpleclayslab": {
     "icon": "purpleclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3301,50 +3920,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "purpleclayslableft": {
-    "parentType": "purpleclayslab",
+  "Pandaros.Settlers.AutoLoad.purpleclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "purpleclayslabright": {
-    "parentType": "purpleclayslab",
+  "Pandaros.Settlers.AutoLoad.purpleclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "purpleclayslabfront": {
-    "parentType": "purpleclayslab",
+  "Pandaros.Settlers.AutoLoad.purpleclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "purpleclayslabback": {
-    "parentType": "purpleclayslab",
+  "Pandaros.Settlers.AutoLoad.purpleclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "purpleclayslabbottom": {
-    "parentType": "purpleclayslab",
+  "Pandaros.Settlers.AutoLoad.purpleclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "purpleclayslabtop": {
-    "parentType": "purpleclayslab",
+  "Pandaros.Settlers.AutoLoad.purpleclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "redclayslab": {
-    "fullblockType": "redclay",
+  "Pandaros.Settlers.AutoLoad.redclayslab": {
     "icon": "redclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3352,50 +3981,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "redclayslableft": {
-    "parentType": "redclayslab",
+  "Pandaros.Settlers.AutoLoad.redclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "redclayslabright": {
-    "parentType": "redclayslab",
+  "Pandaros.Settlers.AutoLoad.redclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "redclayslabfront": {
-    "parentType": "redclayslab",
+  "Pandaros.Settlers.AutoLoad.redclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "redclayslabback": {
-    "parentType": "redclayslab",
+  "Pandaros.Settlers.AutoLoad.redclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "redclayslabbottom": {
-    "parentType": "redclayslab",
+  "Pandaros.Settlers.AutoLoad.redclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "redclayslabtop": {
-    "parentType": "redclayslab",
+  "Pandaros.Settlers.AutoLoad.redclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "lightpinkclayslab": {
-    "fullblockType": "lightpinkclay",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslab": {
     "icon": "lightpinkclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3403,50 +4042,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "lightpinkclayslableft": {
-    "parentType": "lightpinkclayslab",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "lightpinkclayslabright": {
-    "parentType": "lightpinkclayslab",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "lightpinkclayslabfront": {
-    "parentType": "lightpinkclayslab",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "lightpinkclayslabback": {
-    "parentType": "lightpinkclayslab",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "lightpinkclayslabbottom": {
-    "parentType": "lightpinkclayslab",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "lightpinkclayslabtop": {
-    "parentType": "lightpinkclayslab",
+  "Pandaros.Settlers.AutoLoad.lightpinkclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "pinkclayslab": {
-    "fullblockType": "pinkclay",
+  "Pandaros.Settlers.AutoLoad.pinkclayslab": {
     "icon": "pinkclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3454,50 +4103,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "pinkclayslableft": {
-    "parentType": "pinkclayslab",
+  "Pandaros.Settlers.AutoLoad.pinkclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "pinkclayslabright": {
-    "parentType": "pinkclayslab",
+  "Pandaros.Settlers.AutoLoad.pinkclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "pinkclayslabfront": {
-    "parentType": "pinkclayslab",
+  "Pandaros.Settlers.AutoLoad.pinkclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "pinkclayslabback": {
-    "parentType": "pinkclayslab",
+  "Pandaros.Settlers.AutoLoad.pinkclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "pinkclayslabbottom": {
-    "parentType": "pinkclayslab",
+  "Pandaros.Settlers.AutoLoad.pinkclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "pinkclayslabtop": {
-    "parentType": "pinkclayslab",
+  "Pandaros.Settlers.AutoLoad.pinkclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "limeclayslab": {
-    "fullblockType": "limeclay",
+  "Pandaros.Settlers.AutoLoad.limeclayslab": {
     "icon": "limeclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3505,50 +4164,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "limeclayslableft": {
-    "parentType": "limeclayslab",
+  "Pandaros.Settlers.AutoLoad.limeclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "limeclayslabright": {
-    "parentType": "limeclayslab",
+  "Pandaros.Settlers.AutoLoad.limeclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "limeclayslabfront": {
-    "parentType": "limeclayslab",
+  "Pandaros.Settlers.AutoLoad.limeclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "limeclayslabback": {
-    "parentType": "limeclayslab",
+  "Pandaros.Settlers.AutoLoad.limeclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "limeclayslabbottom": {
-    "parentType": "limeclayslab",
+  "Pandaros.Settlers.AutoLoad.limeclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "limeclayslabtop": {
-    "parentType": "limeclayslab",
+  "Pandaros.Settlers.AutoLoad.limeclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "greenclayslab": {
-    "fullblockType": "greenclay",
+  "Pandaros.Settlers.AutoLoad.greenclayslab": {
     "icon": "greenclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3556,50 +4225,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "greenclayslableft": {
-    "parentType": "greenclayslab",
+  "Pandaros.Settlers.AutoLoad.greenclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "greenclayslabright": {
-    "parentType": "greenclayslab",
+  "Pandaros.Settlers.AutoLoad.greenclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "greenclayslabfront": {
-    "parentType": "greenclayslab",
+  "Pandaros.Settlers.AutoLoad.greenclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "greenclayslabback": {
-    "parentType": "greenclayslab",
+  "Pandaros.Settlers.AutoLoad.greenclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "greenclayslabbottom": {
-    "parentType": "greenclayslab",
+  "Pandaros.Settlers.AutoLoad.greenclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "greenclayslabtop": {
-    "parentType": "greenclayslab",
+  "Pandaros.Settlers.AutoLoad.greenclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "lightgreyclayslab": {
-    "fullblockType": "lightgreyclay",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslab": {
     "icon": "lightgreyclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3607,50 +4286,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "lightgreyclayslableft": {
-    "parentType": "lightgreyclayslab",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "lightgreyclayslabright": {
-    "parentType": "lightgreyclayslab",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "lightgreyclayslabfront": {
-    "parentType": "lightgreyclayslab",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "lightgreyclayslabback": {
-    "parentType": "lightgreyclayslab",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "lightgreyclayslabbottom": {
-    "parentType": "lightgreyclayslab",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "lightgreyclayslabtop": {
-    "parentType": "lightgreyclayslab",
+  "Pandaros.Settlers.AutoLoad.lightgreyclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "greyclayslab": {
-    "fullblockType": "greyclay",
+  "Pandaros.Settlers.AutoLoad.greyclayslab": {
     "icon": "greyclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3658,49 +4347,59 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "greyclayslableft": {
-    "parentType": "greyclayslab",
+  "Pandaros.Settlers.AutoLoad.greyclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "greyclayslabright": {
-    "parentType": "greyclayslab",
+  "Pandaros.Settlers.AutoLoad.greyclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "greyclayslabfront": {
-    "parentType": "greyclayslab",
+  "Pandaros.Settlers.AutoLoad.greyclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "greyclayslabback": {
-    "parentType": "greyclayslab",
+  "Pandaros.Settlers.AutoLoad.greyclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "greyclayslabbottom": {
-    "parentType": "greyclayslab",
+  "Pandaros.Settlers.AutoLoad.greyclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "greyclayslabtop": {
-    "parentType": "greyclayslab",
+  "Pandaros.Settlers.AutoLoad.greyclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "darkblueclayslab": {
-    "fullblockType": "darkblueclay",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslab": {
     "icon": "darkblueclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3708,50 +4407,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "darkblueclayslableft": {
-    "parentType": "darkblueclayslab",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "darkblueclayslabright": {
-    "parentType": "darkblueclayslab",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "darkblueclayslabfront": {
-    "parentType": "darkblueclayslab",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "darkblueclayslabback": {
-    "parentType": "darkblueclayslab",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "darkblueclayslabtop": {
-    "parentType": "darkblueclayslab",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "darkblueclayslabbottom": {
-    "parentType": "darkblueclayslab",
+  "Pandaros.Settlers.AutoLoad.darkblueclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "cyanclayslab": {
-    "fullblockType": "cyanclay",
+  "Pandaros.Settlers.AutoLoad.cyanclayslab": {
     "icon": "cyanclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3759,50 +4468,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "cyanclayslableft": {
-    "parentType": "cyanclayslab",
+  "Pandaros.Settlers.AutoLoad.cyanclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "cyanclayslabright": {
-    "parentType": "cyanclayslab",
+  "Pandaros.Settlers.AutoLoad.cyanclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "cyanclayslabfront": {
-    "parentType": "cyanclayslab",
+  "Pandaros.Settlers.AutoLoad.cyanclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "cyanclayslabback": {
-    "parentType": "cyanclayslab",
+  "Pandaros.Settlers.AutoLoad.cyanclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "cyanclayslabbottom": {
-    "parentType": "cyanclayslab",
+  "Pandaros.Settlers.AutoLoad.cyanclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "cyanclayslabtop": {
-    "parentType": "cyanclayslab",
+  "Pandaros.Settlers.AutoLoad.cyanclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "brownclayslab": {
-    "fullblockType": "brownclay",
+  "Pandaros.Settlers.AutoLoad.brownclayslab": {
     "icon": "brownclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3810,50 +4529,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "brownclayslableft": {
-    "parentType": "brownclayslab",
+  "Pandaros.Settlers.AutoLoad.brownclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "brownclayslabright": {
-    "parentType": "brownclayslab",
+  "Pandaros.Settlers.AutoLoad.brownclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "brownclayslabfront": {
-    "parentType": "brownclayslab",
+  "Pandaros.Settlers.AutoLoad.brownclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "brownclayslabback": {
-    "parentType": "brownclayslab",
+  "Pandaros.Settlers.AutoLoad.brownclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "brownclayslabbottom": {
-    "parentType": "brownclayslab",
+  "Pandaros.Settlers.AutoLoad.brownclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "brownclayslabtop": {
-    "parentType": "brownclayslab",
+  "Pandaros.Settlers.AutoLoad.brownclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "blueclayslab": {
-    "fullblockType": "blueclay",
+  "Pandaros.Settlers.AutoLoad.blueclayslab": {
     "icon": "blueclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3861,50 +4590,60 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "blueclayslableft": {
-    "parentType": "blueclayslab",
+  "Pandaros.Settlers.AutoLoad.blueclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "blueclayslabright": {
-    "parentType": "blueclayslab",
+  "Pandaros.Settlers.AutoLoad.blueclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "blueclayslabfront": {
-    "parentType": "blueclayslab",
+  "Pandaros.Settlers.AutoLoad.blueclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "blueclayslabback": {
-    "parentType": "blueclayslab",
+  "Pandaros.Settlers.AutoLoad.blueclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "blueclayslabbottom": {
-    "parentType": "blueclayslab",
+  "Pandaros.Settlers.AutoLoad.blueclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "blueclayslabtop": {
-    "parentType": "blueclayslab",
+  "Pandaros.Settlers.AutoLoad.blueclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "blackclayslab": {
-    "fullblockType": "blackclay",
+  "Pandaros.Settlers.AutoLoad.blackclayslab": {
     "icon": "blackclayslab.png",
     "onPlaceAudio": "dirtPlace",
-    "onRemoveAudio": "vanilla.grassDelete",
+    "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3912,39 +4651,42 @@
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "categories": [ "decorative", "clay" ]
+    "categories": [
+      "decorative",
+      "clay"
+    ]
   },
-  "blackclayslableft": {
-    "parentType": "blackclayslab",
+  "Pandaros.Settlers.AutoLoad.blackclayslableft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
     "mesh": "slableft.obj"
   },
-  "blackclayslabright": {
-    "parentType": "blackclayslab",
+  "Pandaros.Settlers.AutoLoad.blackclayslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
     "mesh": "slabright.obj"
   },
-  "blackclayslabfront": {
-    "parentType": "blackclayslab",
+  "Pandaros.Settlers.AutoLoad.blackclayslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
     "mesh": "slabfront.obj"
   },
-  "blackclayslabback": {
-    "parentType": "blackclayslab",
+  "Pandaros.Settlers.AutoLoad.blackclayslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
     "mesh": "slabback.obj"
   },
-  "blackclayslabbottom": {
-    "parentType": "blackclayslab",
+  "Pandaros.Settlers.AutoLoad.blackclayslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
     "mesh": "slabbottom.obj"
   },
-  "blackclayslabtop": {
-    "parentType": "blackclayslab",
+  "Pandaros.Settlers.AutoLoad.blackclayslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
     "mesh": "slabtop.obj"
   },
-  "lava": {
+  "Pandaros.Settlers.AutoLoad.lava": {
     "color": "#ba2203",
     "customData": {
       "torches": {
@@ -3958,24 +4700,34 @@
     },
     "icon": "lavaIcon.png",
     "maxStackSize": 600,
-    "onPlaceAudio": "vanilla.waterSplashFeet",
-    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "onPlaceAudio": "waterSplashFeet",
+    "onRemoveAudio": "waterSplashFeet",
     "sideall": "lava",
-    "categories": [ "decorative", "water" ]
+    "categories": [
+      "decorative",
+      "water"
+    ]
   },
-  "lavaslab": {
+  "Pandaros.Settlers.AutoLoad.lavaslab": {
     "color": "#ba2203",
-    "fullblockType": "lava",
     "icon": "lavaslab.png",
-    "onPlaceAudio": "vanilla.waterSplashFeet",
-    "onRemoveAudio": "vanilla.waterSplashFeet",
+    "onPlaceAudio": "waterSplashFeet",
+    "onRemoveAudio": "waterSplashFeet",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0, 0.5 ]
+          "min": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0,
+            0.5
+          ]
         }
       ]
     },
@@ -3992,102 +4744,123 @@
         }
       }
     },
-    "categories": [ "decorative", "water" ]
+    "categories": [
+      "decorative",
+      "water"
+    ]
   },
-  "lavaleft": {
-    "parentType": "lavaslab",
+  "Pandaros.Settlers.AutoLoad.lavaleft": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
     "mesh": "slableft.obj"
   },
-  "lavaslabright": {
-    "parentType": "lavaslab",
+  "Pandaros.Settlers.AutoLoad.lavaslabright": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
     "mesh": "slabright.obj"
   },
-  "lavaslabfront": {
-    "parentType": "lavaslab",
+  "Pandaros.Settlers.AutoLoad.lavaslabfront": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
     "mesh": "slabfront.obj"
   },
-  "lavaslabback": {
-    "parentType": "lavaslab",
+  "Pandaros.Settlers.AutoLoad.lavaslabback": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
     "mesh": "slabback.obj"
   },
-  "lavaslabbottom": {
-    "parentType": "lavaslab",
+  "Pandaros.Settlers.AutoLoad.lavaslabbottom": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
     "mesh": "slabbottom.obj"
   },
-  "lavaslabtop": {
-    "parentType": "lavaslab",
+  "Pandaros.Settlers.AutoLoad.lavaslabtop": {
+    "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
     "mesh": "slabtop.obj"
   },
-  "aloe": {
+  "Pandaros.Settlers.AutoLoad.aloe": {
     "icon": "aloe.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "aloe.obj",
     "isSolid": false,
-    "categories": [ "decorative", "flower" ]
+    "categories": [
+      "decorative",
+      "flower"
+    ]
   },
-  "tulip": {
+  "Pandaros.Settlers.AutoLoad.tulip": {
     "icon": "tulip.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "tulip.obj",
     "isSolid": false,
-    "categories": [ "decorative", "flower" ]
+    "categories": [
+      "decorative",
+      "flower"
+    ]
   },
-  "daisy": {
+  "Pandaros.Settlers.AutoLoad.daisy": {
     "icon": "daisy.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "daisy.obj",
     "isSolid": false,
-    "categories": [ "decorative", "flower" ]
+    "categories": [
+      "decorative",
+      "flower"
+    ]
   },
-  "Sunflower": {
+  "Pandaros.Settlers.AutoLoad.Sunflower": {
     "icon": "Sunflower.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Sunflower.obj",
     "isSolid": false,
-    "categories": [ "decorative", "flower" ]
+    "categories": [
+      "decorative",
+      "flower"
+    ]
   },
-  "rose": {
+  "Pandaros.Settlers.AutoLoad.rose": {
     "icon": "rose.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "rose.obj",
     "isSolid": false,
-    "categories": [ "decorative", "flower" ]
+    "categories": [
+      "decorative",
+      "flower"
+    ]
   },
-  "Flowers1": {
+  "Pandaros.Settlers.AutoLoad.Flowers1": {
     "icon": "Flowers1.png",
-    "onPlaceAudio": "vanilla.woodPlace",
-    "onRemoveAudio": "vanilla.woodDeleteLight",
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "mesh": "Flowers1.obj",
     "isSolid": false,
-    "categories": [ "decorative", "flower" ]
+    "categories": [
+      "decorative",
+      "flower"
+    ]
   }
 }

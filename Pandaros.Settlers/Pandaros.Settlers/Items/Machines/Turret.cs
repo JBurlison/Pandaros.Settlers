@@ -450,30 +450,30 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/StoneTurret.png";
-            textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Turret.png";
-            textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/Turret.png";
+            textureMapping.AlbedoPath = "StoneTurret.png";
+            textureMapping.NormalPath = "Turret.png";
+            textureMapping.HeightPath = "Turret.png";
 
             ItemTypesServer.SetTextureMapping(STONE_NAMESPACE + "sides", textureMapping);
 
             var bronzetextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            bronzetextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/ArrowTurret.png";
-            bronzetextureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Turret.png";
-            bronzetextureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/Turret.png";
+            bronzetextureMapping.AlbedoPath = "ArrowTurret.png";
+            bronzetextureMapping.NormalPath = "Turret.png";
+            bronzetextureMapping.HeightPath = "Turret.png";
 
             ItemTypesServer.SetTextureMapping(BRONZEARROW_NAMESPACE + "sides", bronzetextureMapping);
 
             var crossbowtextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            crossbowtextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/CrossbowTurret.png";
-            crossbowtextureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Turret.png";
-            crossbowtextureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/Turret.png";
+            crossbowtextureMapping.AlbedoPath = "CrossbowTurret.png";
+            crossbowtextureMapping.NormalPath = "Turret.png";
+            crossbowtextureMapping.HeightPath = "Turret.png";
 
             ItemTypesServer.SetTextureMapping(CROSSBOW_NAMESPACE + "sides", crossbowtextureMapping);
 
             var matchlocktextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            matchlocktextureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/MatchlockTurret.png";
-            matchlocktextureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Turret.png";
-            matchlocktextureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/Turret.png";
+            matchlocktextureMapping.AlbedoPath = "MatchlockTurret.png";
+            matchlocktextureMapping.NormalPath = "Turret.png";
+            matchlocktextureMapping.HeightPath = "Turret.png";
 
             ItemTypesServer.SetTextureMapping(MATCHLOCK_NAMESPACE + "sides", matchlocktextureMapping);
         }
@@ -491,7 +491,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = STONE_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", GameLoader.ICON_FOLDER_PANDA + "/StoneTurret.png")
+              .SetAs("icon", "StoneTurret.png")
             .  SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -518,7 +518,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = BRONZEARROW_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", GameLoader.ICON_FOLDER_PANDA + "/ArrowTurret.png")
+              .SetAs("icon", "ArrowTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -545,7 +545,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = CROSSBOW_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", GameLoader.ICON_FOLDER_PANDA + "/CrossbowTurret.png")
+              .SetAs("icon", "CrossbowTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -572,7 +572,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = MATCHLOCK_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", GameLoader.ICON_FOLDER_PANDA + "/MatchlockTurret.png")
+              .SetAs("icon", "MatchlockTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")

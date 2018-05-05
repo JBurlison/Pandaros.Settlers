@@ -44,15 +44,6 @@ namespace Pandaros.Settlers.Managers
             ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "TalkingAudio", new List<string>()
-            {
-                GameLoader.AUDIO_FOLDER_PANDA + "/Talking1.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Talking2.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Talking3.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Talking4.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Talking5.ogg"
-            });
-
             HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;
         }
 

@@ -1,27 +1,27 @@
 [
 
   {
-    "name": "blackclay",
+    "name": "Pandaros.Settlers.AutoLoad.blackclay",
     "results": [
       {
-        "type": "blackclay"
+        "type": "Pandaros.Settlers.AutoLoad.blackclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -29,19 +29,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "yellowclay",
+    "name": "Pandaros.Settlers.AutoLoad.yellowclay",
     "results": [
       {
-        "type": "yellowclay"
+        "type": "Pandaros.Settlers.AutoLoad.yellowclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -49,19 +49,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "blueclay",
+    "name": "Pandaros.Settlers.AutoLoad.blueclay",
     "results": [
       {
-        "type": "blueclay"
+        "type": "Pandaros.Settlers.AutoLoad.blueclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 3
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -69,23 +69,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "brownclay",
+    "name": "Pandaros.Settlers.AutoLoad.brownclay",
     "results": [
       {
-        "type": "brownclay"
+        "type": "Pandaros.Settlers.AutoLoad.brownclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -93,23 +93,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "cyanclay",
+    "name": "Pandaros.Settlers.AutoLoad.cyanclay",
     "results": [
       {
-        "type": "cyanclay"
+        "type": "Pandaros.Settlers.AutoLoad.cyanclay"
       }
     ],
     "requires": [
       {
         "amount": 2,
-        "type": "vanilla.alkanet"
+        "type": "alkanet"
       },
       {
         "amount": 1,
-        "type": "vanilla.gypsum"
+        "type": "gypsum"
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -117,19 +117,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "darkblueclay",
+    "name": "Pandaros.Settlers.AutoLoad.darkblueclay",
     "results": [
       {
-        "type": "darkblueclay"
+        "type": "Pandaros.Settlers.AutoLoad.darkblueclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 6
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -137,23 +137,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "greenclay",
+    "name": "Pandaros.Settlers.AutoLoad.greenclay",
     "results": [
       {
-        "type": "greenclay"
+        "type": "Pandaros.Settlers.AutoLoad.greenclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 2
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -161,22 +161,22 @@
     "defaultPriority": -100
   },
   {
-    "name": "magentaclay",
+    "name": "Pandaros.Settlers.AutoLoad.magentaclay",
     "results": [
       {
-        "type": "magentaclay"
+        "type": "Pandaros.Settlers.AutoLoad.magentaclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.clay"
+        "type": "clay"
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       }
     ],
@@ -184,31 +184,31 @@
     "defaultPriority": -100
   },
   {
-    "name": "greyclay",
+    "name": "Pandaros.Settlers.AutoLoad.greyclay",
     "results": [
       {
-        "type": "greyclay"
+        "type": "Pandaros.Settlers.AutoLoad.greyclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 1
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -216,31 +216,31 @@
     "defaultPriority": -100
   },
   {
-    "name": "lightgreyclay",
+    "name": "Pandaros.Settlers.AutoLoad.lightgreyclay",
     "results": [
       {
-        "type": "lightgreyclay"
+        "type": "Pandaros.Settlers.AutoLoad.lightgreyclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 2
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -248,23 +248,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "limeclay",
+    "name": "Pandaros.Settlers.AutoLoad.limeclay",
     "results": [
       {
-        "type": "limeclay"
+        "type": "Pandaros.Settlers.AutoLoad.limeclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -272,23 +272,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "orangeclay",
+    "name": "Pandaros.Settlers.AutoLoad.orangeclay",
     "results": [
       {
-        "type": "orangeclay"
+        "type": "Pandaros.Settlers.AutoLoad.orangeclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -296,47 +296,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "pinkclay",
+    "name": "Pandaros.Settlers.AutoLoad.pinkclay",
     "results": [
       {
-        "type": "pinkclay"
+        "type": "Pandaros.Settlers.AutoLoad.pinkclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 2
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.clay",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "purpleclay",
-    "results": [
-      {
-        "type": "purpleclay"
-      }
-    ],
-    "requires": [
-      {
-        "type": "vanilla.alkanet",
-        "amount": 2
-      },
-      {
-        "type": "vanilla.hollyhock",
-        "amount": 2
-      },
-      {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -344,19 +320,43 @@
     "defaultPriority": -100
   },
   {
-    "name": "redclay",
+    "name": "Pandaros.Settlers.AutoLoad.purpleclay",
     "results": [
       {
-        "type": "redclay"
+        "type": "Pandaros.Settlers.AutoLoad.purpleclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.hollyhock",
+        "type": "alkanet",
+        "amount": 2
+      },
+      {
+        "type": "hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "clay",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.redclay",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.redclay"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
         "amount": 3
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -364,23 +364,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "lightpinkclay",
+    "name": "Pandaros.Settlers.AutoLoad.lightpinkclay",
     "results": [
       {
-        "type": "lightpinkclay"
+        "type": "Pandaros.Settlers.AutoLoad.lightpinkclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 3
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -388,19 +388,19 @@
     "defaultPriority": -100
   },
   {
-    "name": "whiteclay",
+    "name": "Pandaros.Settlers.AutoLoad.whiteclay",
     "results": [
       {
-        "type": "whiteclay"
+        "type": "Pandaros.Settlers.AutoLoad.whiteclay"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 3
       },
       {
-        "type": "vanilla.clay",
+        "type": "clay",
         "amount": 1
       }
     ],
@@ -408,27 +408,27 @@
     "defaultPriority": -100
   },
   {
-    "name": "blackclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "blackclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.blackclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       }
     ],
@@ -436,43 +436,43 @@
     "defaultPriority": -100
   },
   {
-    "name": "blueclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "blueclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.blueclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
         "amount": 3,
-        "type": "vanilla.alkanet"
+        "type": "alkanet"
       }
     ],
     "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
-    "name": "brownclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "brownclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.brownclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       }
     ],
@@ -480,75 +480,75 @@
     "defaultPriority": -100
   },
   {
-    "name": "cyanclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "cyanclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.cyanclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
         "amount": 2,
-        "type": "vanilla.alkanet"
+        "type": "alkanet"
       },
       {
         "amount": 1,
-        "type": "vanilla.gypsum"
+        "type": "gypsum"
       }
     ],
     "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
-    "name": "darkblueclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "darkblueclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.darkblueclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
         "amount": 6,
-        "type": "vanilla.alkanet"
+        "type": "alkanet"
       }
     ],
     "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
-    "name": "greyclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "greyclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.greyclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 1
       }
     ],
@@ -556,31 +556,31 @@
     "defaultPriority": -100
   },
   {
-    "name": "lightgreyclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "lightgreyclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.lightgreyclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 1
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       },
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 2
       }
     ],
@@ -588,23 +588,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "greenclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "greenclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.greenclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 2
       }
     ],
@@ -612,23 +612,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "limeclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "limeclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.limeclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       }
     ],
@@ -636,23 +636,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "pinkclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "pinkclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.pinkclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 2
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       }
     ],
@@ -660,23 +660,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "lightpinkclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "lightpinkclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.lightpinkclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.gypsum",
+        "type": "gypsum",
         "amount": 3
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 1
       }
     ],
@@ -684,43 +684,43 @@
     "defaultPriority": -100
   },
   {
-    "name": "redclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.redclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "redclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.redclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
         "amount": 3,
-        "type": "vanilla.hollyhock"
+        "type": "hollyhock"
       }
     ],
     "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
-    "name": "purpleclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "purpleclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.purpleclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 2
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       }
     ],
@@ -728,23 +728,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "magentaclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "magentaclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.magentaclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.alkanet",
+        "type": "alkanet",
         "amount": 1
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       }
     ],
@@ -752,23 +752,23 @@
     "defaultPriority": -100
   },
   {
-    "name": "orangeclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "orangeclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.orangeclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
-        "type": "vanilla.wolfsbane",
+        "type": "wolfsbane",
         "amount": 2
       },
       {
-        "type": "vanilla.hollyhock",
+        "type": "hollyhock",
         "amount": 2
       }
     ],
@@ -776,40 +776,40 @@
     "defaultPriority": -100
   },
   {
-    "name": "yellowclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "yellowclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.yellowclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
         "amount": 2,
-        "type": "vanilla.wolfsbane"
+        "type": "wolfsbane"
       }
     ],
     "defaultLimit": 0,
     "defaultPriority": -100
   },
   {
-    "name": "whiteclayslab",
+    "name": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "results": [
       {
         "amount": 4,
-        "type": "whiteclayslab"
+        "type": "Pandaros.Settlers.AutoLoad.whiteclayslab"
       }
     ],
     "requires": [
       {
-        "type": "clayslabbottom"
+        "type": "Pandaros.Settlers.AutoLoad.clayslabbottom"
       },
       {
         "amount": 3,
-        "type": "vanilla.gypsum"
+        "type": "gypsum"
       }
     ],
     "defaultLimit": 0,

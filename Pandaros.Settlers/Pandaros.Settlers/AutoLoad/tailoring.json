@@ -1,19 +1,19 @@
 [
   {
-    "name": "hangingbanner",
+    "name": "Pandaros.Settlers.AutoLoad.hangingbanner",
     "results": [
       {
         "amount": 1,
-        "type": "hangingbanner"
+        "type": "Pandaros.Settlers.AutoLoad.hangingbanner"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
-        "type": "vanilla.linen",
+        "type": "linen",
         "amount": 1
       }
     ],
@@ -21,20 +21,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "hangingbannerrw",
+    "name": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
     "results": [
       {
         "amount": 1,
-        "type": "hangingbannerrw"
+        "type": "Pandaros.Settlers.AutoLoad.hangingbannerrw"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
-        "type": "vanilla.linen",
+        "type": "linen",
         "amount": 1
       }
     ],
@@ -42,20 +42,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "hangingbannerbw",
+    "name": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
     "results": [
       {
         "amount": 1,
-        "type": "hangingbannerbw"
+        "type": "Pandaros.Settlers.AutoLoad.hangingbannerbw"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
-        "type": "vanilla.linen",
+        "type": "linen",
         "amount": 1
       }
     ],
@@ -63,20 +63,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "hangingbannercb",
+    "name": "Pandaros.Settlers.AutoLoad.hangingbannercb",
     "results": [
       {
         "amount": 1,
-        "type": "hangingbannercb"
+        "type": "Pandaros.Settlers.AutoLoad.hangingbannercb"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
-        "type": "vanilla.linen",
+        "type": "linen",
         "amount": 1
       }
     ],
@@ -84,20 +84,20 @@
     "defaultPriority": -100
   },
   {
-    "name": "hangingbannerbw2",
+    "name": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
     "results": [
       {
         "amount": 1,
-        "type": "hangingbannerbw2"
+        "type": "Pandaros.Settlers.AutoLoad.hangingbannerbw2"
       }
     ],
     "requires": [
       {
-        "type": "vanilla.planks",
+        "type": "planks",
         "amount": 2
       },
       {
-        "type": "vanilla.linen",
+        "type": "linen",
         "amount": 1
       }
     ],

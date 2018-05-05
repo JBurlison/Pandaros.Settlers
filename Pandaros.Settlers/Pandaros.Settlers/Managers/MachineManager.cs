@@ -38,6 +38,8 @@ namespace Pandaros.Settlers.Managers
             public Func<Players.Player, MachineState, ushort> Reload { get; set; }
             public Action<Players.Player, MachineState> DoWork { get; set; }
 
+            public MachineSettings() { }
+
             public MachineSettings(string name, ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, Func<Players.Player, MachineState, ushort> reload,
                                     Action<Players.Player, MachineState> doWork, float repairTime, float refuelTime, float reloadTime, float workTime)
             {

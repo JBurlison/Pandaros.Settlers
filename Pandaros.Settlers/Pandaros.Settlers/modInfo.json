@@ -1,7 +1,7 @@
 ﻿[
   {
     "dllpath": "Pandaros.Settlers.dll",
-    "name": "Pandaros.Settlers",
+    "name": "Pandaros.Settlers.AutoLoad.Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
     "version": "0.8.1.0",
     "enabled": true,
@@ -9,7 +9,23 @@
     "compatibleversions": [
       "0.6.1"
     ],
+    "overrideAlbedoFolder": "Textures/albedo/",
+    "overrideEmissiveFolder": "Textures/emissive/",
+    "overrideNormalFolder": "Textures/height/",
+    "overrideHeightFolder": "Textures/normal/",
+    "overrideMeshesFolder": "Meshes/",
+    "overrideIconFolder": "icons/",
+    "overrideAudioFolder": "Audio/",
+    "overrideNPCFolder": "Textures/npc/",
     "jsonFiles": [
+      {
+        "fileType": "addOrOverrideTextureMappingEntries",
+        "relativePath": "AutoLoad/texturemapping.json"
+      },
+      {
+        "fileType": "overrideTypeProperties",
+        "relativePath": "AutoLoad/types.json"
+      },
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/en-US.json"

@@ -356,827 +356,827 @@
     "Pandaros": {
       "Settlers": {
         "SettlerChance1": {
-          "name": "inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.inmigrantes.",
           "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance2": {
-          "name": "inmigrantes.I",
+          "name": "Pandaros.Settlers.AutoLoad.inmigrantes.I",
           "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance3": {
-          "name": "inmigrantes.II",
+          "name": "Pandaros.Settlers.AutoLoad.inmigrantes.II",
           "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance4": {
-          "name": "inmigrantes.V",
+          "name": "Pandaros.Settlers.AutoLoad.inmigrantes.V",
           "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "SettlerChance5": {
-          "name": "inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.inmigrantes.",
           "description": "Incrementa la posibilidad de que vengan inmigrantes."
         },
         "MaxSettlers1": {
-          "name": "Máximo de inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers2": {
-          "name": "Máximo de inmigrantes.I",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.I",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers3": {
-          "name": "Máximo de inmigrantes.II",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.II",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers4": {
-          "name": "Máximo de inmigrantes.V",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.V",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers5": {
-          "name": "Máximo de inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers6": {
-          "name": "Máximo de inmigrantes.I",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.I",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers7": {
-          "name": "Máximo de inmigrantes.II",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.II",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers8": {
-          "name": "Máximo de inmigrantes.III",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.III",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers9": {
-          "name": "Máximo de inmigrantes.X",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.X",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MaxSettlers10": {
-          "name": "Máximo de inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de inmigrantes.",
           "description": "Incrementa el máximo de inmigrantes.ue vienen.."
         },
         "MinSettlers1": {
-          "name": "Mínimo de inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers2": {
-          "name": "Mínimo de inmigrantes.I",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.I",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers3": {
-          "name": "Mínimo de inmigrantes.II",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.II",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers4": {
-          "name": "Mínimo de inmigrantes.V",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.V",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers5": {
-          "name": "Mínimo de inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers6": {
-          "name": "Mínimo de inmigrantes.I",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.I",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers7": {
-          "name": "Mínimo de inmigrantes.II",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.II",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers8": {
-          "name": "Mínimo de inmigrantes.III",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.III",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers9": {
-          "name": "Mínimo de inmigrantes.X",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.X",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "MinSettlers10": {
-          "name": "Mínimo de inmigrantes.",
+          "name": "Pandaros.Settlers.AutoLoad.Mínimo de inmigrantes.",
           "description": "Incrementa el mínimo de inmigrantes.ue vienen."
         },
         "ReducedWaste1": {
-          "name": "Reducir el consumo de comida I",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el consumo de comida I",
           "description": "Reduce el derroche de comida en tu colonia."
         },
         "ReducedWaste2": {
-          "name": "Reducir el consumo de comida II",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el consumo de comida II",
           "description": "Reduce el derroche de comida en tu colonia."
         },
         "ReducedWaste3": {
-          "name": "Reducir el consumo de comida III",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el consumo de comida III",
           "description": "Reduce el derroche de comida en tu colonia."
         },
         "ReducedWaste4": {
-          "name": "Reducir el consumo de comida IV",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el consumo de comida IV",
           "description": "Reduce el derroche de comida en tu colonia."
         },
         "ReducedWaste5": {
-          "name": "Reducir el consumo de comida V",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el consumo de comida V",
           "description": "Reduce el derroche de comida en tu colonia."
         },
         "TimeBetween1": {
-          "name": "Reducir el tiempo de inmigración I",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el tiempo de inmigración I",
           "description": "Reduce el tiempo entre que vengan inmigrantes."
         },
         "TimeBetween2": {
-          "name": "Reducir el tiempo de inmigración II",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el tiempo de inmigración II",
           "description": "Reduce el tiempo entre que vengan inmigrantes."
         },
         "TimeBetween3": {
-          "name": "Reducir el tiempo de inmigración III",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el tiempo de inmigración III",
           "description": "Reduce el tiempo entre que vengan inmigrantes."
         },
         "TimeBetween4": {
-          "name": "Reducir el tiempo de inmigración IV",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el tiempo de inmigración IV",
           "description": "Reduce el tiempo entre que vengan inmigrantes."
         },
         "TimeBetween5": {
-          "name": "Reducir el tiempo de inmigración V",
+          "name": "Pandaros.Settlers.AutoLoad.Reducir el tiempo de inmigración V",
           "description": "Reduce el tiempo entre que vengan inmigrantes."
         },
         "Settlement1": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement2": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement3": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement4": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement5": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement6": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement7": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement8": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement9": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement10": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement11": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement12": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement13": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement14": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement15": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement16": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement17": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement18": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement19": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "Settlement20": {
-          "name": "Estandarte adicional",
+          "name": "Pandaros.Settlers.AutoLoad.Estandarte adicional",
           "description": "Cuando se investiga añade un nuevo estandarte en tu almecen."
         },
         "SkilledLaborer1": {
-          "name": "Trabajadores expertos I",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos I",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer2": {
-          "name": "Trabajadores expertos II",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos II",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer3": {
-          "name": "Trabajadores expertos III",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos III",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer4": {
-          "name": "Trabajadores expertos IV",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos IV",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer5": {
-          "name": "Trabajadores expertos V",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos V",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer6": {
-          "name": "Trabajadores expertos VI",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos VI",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer7": {
-          "name": "Trabajadores expertos VII",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos VII",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer8": {
-          "name": "Trabajadores expertos VIII",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos VIII",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer9": {
-          "name": "Trabajadores expertos IX",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos IX",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "SkilledLaborer10": {
-          "name": "Trabajadores expertos X",
+          "name": "Pandaros.Settlers.AutoLoad.Trabajadores expertos X",
           "description": "Incrementa la posibilidad de conseguir trabajadores expertos cuando vengan inmigrantes."
         },
         "NumberSkilledLaborer1": {
-          "name": "Máximo de trabajadores expertos I",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de trabajadores expertos I",
           "description": "Incrementa el máximo de trabajadores expertos que pueden venir."
         },
         "NumberSkilledLaborer2": {
-          "name": "Máximo de trabajadores expertos II",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de trabajadores expertos II",
           "description": "Incrementa el máximo de trabajadores expertos que pueden venir."
         },
         "NumberSkilledLaborer3": {
-          "name": "Máximo de trabajadores expertos III",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de trabajadores expertos III",
           "description": "Incrementa el máximo de trabajadores expertos que pueden venir."
         },
         "NumberSkilledLaborer4": {
-          "name": "Máximo de trabajadores expertos IV",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de trabajadores expertos IV",
           "description": "Incrementa el máximo de trabajadores expertos que pueden venir."
         },
         "NumberSkilledLaborer5": {
-          "name": "Máximo de trabajadores expertos V",
+          "name": "Pandaros.Settlers.AutoLoad.Máximo de trabajadores expertos V",
           "description": "Incrementa el máximo de trabajadores expertos que pueden venir."
         },
         "ArmorSmithing1": {
-          "name": "Forjado de armaduras I - Cobre",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de armaduras I - Cobre",
           "description": "Permite la forja de armaduras de cobre para ti y tus colonos.."
         },
         "ArmorSmithing2": {
-          "name": "Forjado de armaduras II - Bronce",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de armaduras II - Bronce",
           "description": "Permite la forja de armaduras de bronce para ti y tus colonos.."
         },
         "ArmorSmithing3": {
-          "name": "Forjado de armaduras III - Hierro",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de armaduras III - Hierro",
           "description": "Permite la forja de armaduras de hierro para ti y tus colonos.."
         },
         "ArmorSmithing4": {
-          "name": "Forjado de armaduras IV - Acero",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de armaduras IV - Acero",
           "description": "Permite la forja de armaduras de acero para ti y tus colonos.."
         },
         "ColonistHealth1": {
-          "name": "Increased Colonist Health I",
+          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health I",
           "description": "Incrementa los HP máximos de tus colonos en 10."
         },
         "ColonistHealth2": {
-          "name": "Increased Colonist Health II",
+          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health II",
           "description": "Incrementa los HP máximos de tus colonos en 20."
         },
         "ColonistHealth3": {
-          "name": "Increased Colonist Health III",
+          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health III",
           "description": "Incrementa los HP máximos de tus colonos en 30."
         },
         "ColonistHealth4": {
-          "name": "Increased Colonist Health IV",
+          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health IV",
           "description": "Incrementa los HP máximos de tus colonos en 40."
         },
         "ColonistHealth5": {
-          "name": "Increased Colonist Health V",
+          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health V",
           "description": "Incrementa los HP máximos de tus colonos en 50."
         },
         "SwordSmithing1": {
-          "name": "Forjado de espadas I - Cobre",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de espadas I - Cobre",
           "description": "Permite forjar espadas de cobre para ti y tus colonos."
         },
         "SwordSmithing2": {
-          "name": "Forjado de espadas II - Bronze",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de espadas II - Bronze",
           "description": "Permite forjar espadas de bronce para ti y tus colonos."
         },
         "SwordSmithing3": {
-          "name": "Forjado de espadas III - Iron",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de espadas III - Iron",
           "description": "Permite forjar espadas de hierro para ti y tus colonos."
         },
         "SwordSmithing4": {
-          "name": "Forjado de espadas IV - Steel",
+          "name": "Pandaros.Settlers.AutoLoad.Forjado de espadas IV - Steel",
           "description": "Permite forjar espadas de acero para ti y tus colonos."
         },
         "Knights1": {
-          "name": "Caballeros",
+          "name": "Pandaros.Settlers.AutoLoad.Caballeros",
           "description": "Permite la creación de patrullasde caballeros y la construción de benderas de patrulla."
         },
         "ImprovedSling1": {
-          "name": "Entrenamiento de honderos I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de honderos I",
           "description": "Incrementa la recarga de tus honderos en un 5%."
         },
         "ImprovedSling2": {
-          "name": "Entrenamiento de honderos II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de honderos II",
           "description": "Incrementa la recarga de tus honderos en un 10%."
         },
         "ImprovedSling3": {
-          "name": "Entrenamiento de honderos III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de honderos III",
           "description": "Incrementa la recarga de tus honderos en un 15%."
         },
         "ImprovedSling4": {
-          "name": "Entrenamiento de honderos IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de honderos IV",
           "description": "Incrementa la recarga de tus honderos en un 20%."
         },
         "ImprovedSling5": {
-          "name": "Entrenamiento de honderos V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de honderos V",
           "description": "Incrementa la recarga de tus honderos en un 25%."
         },
         "ImprovedBow1": {
-          "name": "Entrenamiento de arqueros I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arqueros I",
           "description": "Incrementa la recarga de tus arqueros en un 5%."
         },
         "ImprovedBow2": {
-          "name": "Entrenamiento de arqueros II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arqueros II",
           "description": "Incrementa la recarga de tus arqueros en un 10%."
         },
         "ImprovedBow3": {
-          "name": "Entrenamiento de arqueros III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arqueros III",
           "description": "Incrementa la recarga de tus arqueros en un 15%."
         },
         "ImprovedBow4": {
-          "name": "Entrenamiento de arqueros IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arqueros IV",
           "description": "Incrementa la recarga de tus arqueros en un 20%."
         },
         "ImprovedBow5": {
-          "name": "Entrenamiento de arqueros V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arqueros V",
           "description": "Incrementa la recarga de tus arqueros en un 25%."
         },
         "ImprovedCrossbow1": {
-          "name": "Entrenamiento de ballesteros I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ballesteros I",
           "description": "Incrementa la recarga de tus ballesteros en un 5%."
         },
         "ImprovedCrossbow2": {
-          "name": "Entrenamiento de ballesteros II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ballesteros II",
           "description": "Incrementa la recarga de tus ballesteros en un 10%."
         },
         "ImprovedCrossbow3": {
-          "name": "Entrenamiento de ballesteros III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ballesteros III",
           "description": "Incrementa la recarga de tus ballesteros en un 15%."
         },
         "ImprovedCrossbow4": {
-          "name": "Entrenamiento de ballesteros IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ballesteros IV",
           "description": "Incrementa la recarga de tus ballesteros en un 20%."
         },
         "ImprovedCrossbow5": {
-          "name": "Entrenamiento de ballesteros V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ballesteros V",
           "description": "Incrementa la recarga de tus ballesteros en un 25%."
         },
         "ImprovedMatchlockgun1": {
-          "name": "Entrenamiento de arcabuceros I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arcabuceros I",
           "description": "Incrementa la recarga de tus arcabuceros en un 5%."
         },
         "ImprovedMatchlockgun2": {
-          "name": "Entrenamiento de arcabuceros II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arcabuceros II",
           "description": "Incrementa la recarga de tus arcabuceros en un 10%."
         },
         "ImprovedMatchlockgun3": {
-          "name": "Entrenamiento de arcabuceros III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arcabuceros III",
           "description": "Incrementa la recarga de tus arcabuceros en un 15%."
         },
         "ImprovedMatchlockgun4": {
-          "name": "Entrenamiento de arcabuceros IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arcabuceros IV",
           "description": "Incrementa la recarga de tus arcabuceros en un 20%."
         },
         "ImprovedMatchlockgun5": {
-          "name": "Entrenamiento de arcabuceros V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de arcabuceros V",
           "description": "Incrementa la recarga de tus arcabuceros en un 25%."
         },
         "Machines1": {
-          "name": "¡Máquinas!",
+          "name": "Pandaros.Settlers.AutoLoad.¡Máquinas!",
           "description": "Permite la creación de máquinas y añade el trabajo de maquinistas." 
         },
         "ImprovedDurability1": {
-          "name": "Aumentar la durabilidad I",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la durabilidad I",
           "description": "Incrementa la durabilidad de tus máquinas en un 10%. Las máquinas necesitan repararse menos a menudo."
         },
         "ImprovedDurability2": {
-          "name": "Aumentar la durabilidad II",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la durabilidad II",
           "description": "Incrementa la durabilidad de tus máquinas en un 20%. Las máquinas necesitan repararse menos a menudo."
         },
         "ImprovedDurability3": {
-          "name": "Aumentar la durabilidad III",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la durabilidad III",
           "description": "Incrementa la durabilidad de tus máquinas en un 30%. Las máquinas necesitan repararse menos a menudo."
         },
         "ImprovedDurability4": {
-          "name": "Aumentar la durabilidad IV",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la durabilidad IV",
           "description": "Incrementa la durabilidad de tus máquinas en un 40%. Las máquinas necesitan repararse menos a menudo."
         },
         "ImprovedDurability5": {
-          "name": "Aumentar la durabilidad V",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la durabilidad V",
           "description": "Incrementa la durabilidad de tus máquinas en un 50%. Las máquinas necesitan repararse menos a menudo."
         },
         "ImprovedFuelCapacity1": {
-          "name": "Aumentar el depósito I",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar el depósito I",
           "description": "Incrementa el depósito de tus máquinas en un 10%. Las máquinas necesitan repostar menos a menudo."
         },
         "ImprovedFuelCapacity2": {
-          "name": "Aumentar el depósito II",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar el depósito II",
           "description": "Incrementa el depósito de tus máquinas en un 20%. Las máquinas necesitan repostar menos a menudo."
         },
         "ImprovedFuelCapacity3": {
-          "name": "Aumentar el depósito III",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar el depósito III",
           "description": "Incrementa el depósito de tus máquinas en un 30%. Las máquinas necesitan repostar menos a menudo."
         },
         "ImprovedFuelCapacity4": {
-          "name": "Aumentar el depósito IV",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar el depósito IV",
           "description": "Incrementa el depósito de tus máquinas en un 40%. Las máquinas necesitan repostar menos a menudo."
         },
         "ImprovedFuelCapacity5": {
-          "name": "Aumentar el depósito V",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar el depósito V",
           "description": "Incrementa el depósito de tus máquinas en un 50%. Las máquinas necesitan repostar menos a menudo."
         },
         "IncreasedCapacity1": {
-          "name": "Aumentar la capacidad I",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la capacidad I",
           "description": "Incrementa la capacidad de tus máquinas en un 20%. Las máquinas necesitan recargar munición/objetos menos a menudo."
         },
         "IncreasedCapacity2": {
-          "name": "Aumentar la capacidad II",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la capacidad II",
           "description": "Incrementa la capacidad de tus máquinas en un 40%. Las máquinas necesitan recargar munición/objetos menos a menudo."
         },
         "IncreasedCapacity3": {
-          "name": "Aumentar la capacidad III",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la capacidad III",
           "description": "Incrementa la capacidad de tus máquinas en un 60%. Las máquinas necesitan recargar munición/objetos menos a menudo."
         },
         "IncreasedCapacity4": {
-          "name": "Aumentar la capacidad IV",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la capacidad IV",
           "description": "Incrementa la capacidad de tus máquinas en un 80%. Las máquinas necesitan recargar munición/objetos menos a menudo."
         },
         "IncreasedCapacity5": {
-          "name": "Aumentar la capacidad V",
+          "name": "Pandaros.Settlers.AutoLoad.Aumentar la capacidad V",
           "description": "Incrementa la capacidad de tus máquinas en un 100%. Las máquinas necesitan recargar munición/objetos menos a menudo."
         },
         "MerchantTraining1": {
-          "name": "Entrenamiento de tiendas I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de tiendas I",
           "description": "Reduce el tiempo de compra de la tienda en un 5%."
         },
         "MerchantTraining2": {
-          "name": "Entrenamiento de tiendas II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de tiendas II",
           "description": "Reduce el tiempo de compra de la tienda en un 10%."
         },
         "MerchantTraining3": {
-          "name": "Entrenamiento de tiendas III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de tiendas III",
           "description": "Reduce el tiempo de compra de la tienda en un 15%."
         },
         "MerchantTraining4": {
-          "name": "Entrenamiento de tiendas IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de tiendas IV",
           "description": "Reduce el tiempo de compra de la tienda en un 20%."
         },
         "MerchantTraining5": {
-          "name": "Entrenamiento de tiendas V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de tiendas V",
           "description": "Reduce el tiempo de compra de la tienda en un 25%."
         },
         "TailorTraining1": {
-          "name": "Entrenamiento de sastres I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de sastres I",
           "description": "Reduce el tiempo de creación de tus sastres en un 5%."
         },
         "TailorTraining2": {
-          "name": "Entrenamiento de sastres II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de sastres II",
           "description": "Reduce el tiempo de creación de tus sastres en un 10%."
         },
         "TailorTraining3": {
-          "name": "Entrenamiento de sastres III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de sastres III",
           "description": "Reduce el tiempo de creación de tus sastres en un 15%."
         },
         "TailorTraining4": {
-          "name": "Entrenamiento de sastres IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de sastres IV",
           "description": "Reduce el tiempo de creación de tus sastres en un 20%."
         },
         "TailorTraining5": {
-          "name": "Entrenamiento de sastres V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de sastres V",
           "description": "Reduce el tiempo de creación de tus sastres en un 25%."
         },
         "BloomeryTraining1": {
-          "name": "Entrenamiento de forjas I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de forjas I",
           "description": "Reduce el tiempo de creación de tus forjas en un by 5%."
         },
         "BloomeryTraining2": {
-          "name": "Entrenamiento de forjas II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de forjas II",
           "description": "Reduce el tiempo de creación de tus forjas en un by 10%."
         },
         "BloomeryTraining3": {
-          "name": "Entrenamiento de forjas III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de forjas III",
           "description": "Reduce el tiempo de creación de tus forjas en un by 15%."
         },
         "BloomeryTraining4": {
-          "name": "Entrenamiento de forjas IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de forjas IV",
           "description": "Reduce el tiempo de creación de tus forjas en un by 20%."
         },
         "BloomeryTraining5": {
-          "name": "Entrenamiento de forjas V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de forjas V",
           "description": "Reduce el tiempo de creación de tus forjas en un by 25%."
         },
         "FineryForgeTraining1": {
-          "name": "Entrenamiento de ferrerías I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ferrerías I",
           "description": "Reduce el tiempo de creación de tus ferrerías en un by 5%."
         },
         "FineryForgeTraining2": {
-          "name": "Entrenamiento de ferrerías II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ferrerías II",
           "description": "Reduce el tiempo de creación de tus ferrerías en un by 10%."
         },
         "FineryForgeTraining3": {
-          "name": "Entrenamiento de ferrerías III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ferrerías III",
           "description": "Reduce el tiempo de creación de tus ferrerías en un by 15%."
         },
         "FineryForgeTraining4": {
-          "name": "Entrenamiento de ferrerías IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ferrerías IV",
           "description": "Reduce el tiempo de creación de tus ferrerías en un by 20%."
         },
         "FineryForgeTraining5": {
-          "name": "Entrenamiento de ferrerías V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de ferrerías V",
           "description": "Reduce el tiempo de creación de tus ferrerías en un by 25%."
         },
         "FurnaceTraining1": {
-          "name": "Entrenamiento de fundidoras I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de fundidoras I",
           "description": "Reduce el tiempo de creación de tus fundidoras en un 5%."
         },
         "FurnaceTraining2": {
-          "name": "Entrenamiento de fundidoras II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de fundidoras II",
           "description": "Reduce el tiempo de creación de tus fundidoras en un 10%."
         },
         "FurnaceTraining3": {
-          "name": "Entrenamiento de fundidoras III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de fundidoras III",
           "description": "Reduce el tiempo de creación de tus fundidoras en un 15%."
         },
         "FurnaceTraining4": {
-          "name": "Entrenamiento de fundidoras IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de fundidoras IV",
           "description": "Reduce el tiempo de creación de tus fundidoras en un 20%."
         },
         "FurnaceTraining5": {
-          "name": "Entrenamiento de fundidoras V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de fundidoras V",
           "description": "Reduce el tiempo de creación de tus fundidoras en un 25%."
         },
         "GrinderTraining1": {
-          "name": "Entrenamiento de moledoras I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de moledoras I",
           "description": "Reduce el tiempo de creación de tus moledoras en un 5%."
         },
         "GrinderTraining2": {
-          "name": "Entrenamiento de moledoras II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de moledoras II",
           "description": "Reduce el tiempo de creación de tus moledoras en un 10%."
         },
         "GrinderTraining3": {
-          "name": "Entrenamiento de moledoras III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de moledoras III",
           "description": "Reduce el tiempo de creación de tus moledoras en un 15%."
         },
         "GrinderTraining4": {
-          "name": "Entrenamiento de moledoras IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de moledoras IV",
           "description": "Reduce el tiempo de creación de tus moledoras en un 20%."
         },
         "GrinderTraining5": {
-          "name": "Entrenamiento de moledoras V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de moledoras V",
           "description": "Reduce el tiempo de creación de tus moledoras en un 25%."
         },
         "GunSmithTraining1": {
-          "name": "Entrenamiento de armerías I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de armerías I",
           "description": "Reduce el tiempo de creación de tus armerías en un by 5%."
         },
         "GunSmithTraining2": {
-          "name": "Entrenamiento de armerías II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de armerías II",
           "description": "Reduce el tiempo de creación de tus armerías en un by 10%."
         },
         "GunSmithTraining3": {
-          "name": "Entrenamiento de armerías III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de armerías III",
           "description": "Reduce el tiempo de creación de tus armerías en un by 15%."
         },
         "GunSmithTraining4": {
-          "name": "Entrenamiento de armerías IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de armerías IV",
           "description": "Reduce el tiempo de creación de tus armerías en un by 20%."
         },
         "GunSmithTraining5": {
-          "name": "Entrenamiento de armerías V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de armerías V",
           "description": "Reduce el tiempo de creación de tus armerías en un by 25%."
         },
         "KilnTraining1": {
-          "name": "Entrenamiento de Kilns I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de Kilns I",
           "description": "Reduce el tiempo de creación de tus Kilns en un 5%."
         },
         "KilnTraining2": {
-          "name": "Entrenamiento de Kilns II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de Kilns II",
           "description": "Reduce el tiempo de creación de tus Kilns en un 10%."
         },
         "KilnTraining3": {
-          "name": "Entrenamiento de Kilns III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de Kilns III",
           "description": "Reduce el tiempo de creación de tus Kilns en un 15%."
         },
         "KilnTraining4": {
-          "name": "Entrenamiento de Kilns IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de Kilns IV",
           "description": "Reduce el tiempo de creación de tus Kilns en un 20%."
         },
         "KilnTraining5": {
-          "name": "Entrenamiento de Kilns V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de Kilns V",
           "description": "Reduce el tiempo de creación de tus Kilns en un 25%."
         },
         "MetalSmithTraining1": {
-          "name": "Entrenamiento de yunques de bronce I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de yunques de bronce I",
           "description": "Reduce el tiempo de creación de tus yunques de bronce en un 5%."
         },
         "MetalSmithTraining2": {
-          "name": "Entrenamiento de yunques de bronce II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de yunques de bronce II",
           "description": "Reduce el tiempo de creación de tus yunques de bronce en un 10%."
         },
         "MetalSmithTraining3": {
-          "name": "Entrenamiento de yunques de bronce III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de yunques de bronce III",
           "description": "Reduce el tiempo de creación de tus yunques de bronce en un 15%."
         },
         "MetalSmithTraining4": {
-          "name": "Entrenamiento de yunques de bronce IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de yunques de bronce IV",
           "description": "Reduce el tiempo de creación de tus yunques de bronce en un 20%."
         },
         "MetalSmithTraining5": {
-          "name": "Entrenamiento de yunques de bronce V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de yunques de bronce V",
           "description": "Reduce el tiempo de creación de tus yunques de bronce en un 25%."
         },
         "MintTraining1": {
-          "name": "Entrenamiento de casas de la moneda I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de casas de la moneda I",
           "description": "Reduce el tiempo de creación de tus casas de la moneda en un 5%."
         },
         "MintTraining2": {
-          "name": "Entrenamiento de casas de la moneda II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de casas de la moneda II",
           "description": "Reduce el tiempo de creación de tus casas de la moneda en un 10%."
         },
         "MintTraining3": {
-          "name": "Entrenamiento de casas de la moneda III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de casas de la moneda III",
           "description": "Reduce el tiempo de creación de tus casas de la moneda en un 15%."
         },
         "MintTraining4": {
-          "name": "Entrenamiento de casas de la moneda IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de casas de la moneda IV",
           "description": "Reduce el tiempo de creación de tus casas de la moneda en un 20%."
         },
         "MintTraining5": {
-          "name": "Entrenamiento de casas de la moneda V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de casas de la moneda V",
           "description": "Reduce el tiempo de creación de tus casas de la moneda en un 25%."
         },
         "OvenTraining1": {
-          "name": "Entrenamiento de hornos I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de hornos I",
           "description": "Reduce el tiempo de creación de tus hornos en un 5%."
         },
         "OvenTraining2": {
-          "name": "Entrenamiento de hornos II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de hornos II",
           "description": "Reduce el tiempo de creación de tus hornos en un 10%."
         },
         "OvenTraining3": {
-          "name": "Entrenamiento de hornos III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de hornos III",
           "description": "Reduce el tiempo de creación de tus hornos en un 15%."
         },
         "OvenTraining4": {
-          "name": "Entrenamiento de hornos IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de hornos IV",
           "description": "Reduce el tiempo de creación de tus hornos en un 20%."
         },
         "OvenTraining5": {
-          "name": "Entrenamiento de hornos V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de hornos V",
           "description": "Reduce el tiempo de creación de tus hornos en un 25%."
         },
         "WoodcutterTraining1": {
-          "name": "Entrenamiento de troncos para leña I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de troncos para leña I",
           "description": "Reduce el tiempo de creación de tus troncos para leña en un 5%."
         },
         "WoodcutterTraining2": {
-          "name": "Entrenamiento de troncos para leña II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de troncos para leña II",
           "description": "Reduce el tiempo de creación de tus troncos para leña en un 10%."
         },
         "WoodcutterTraining3": {
-          "name": "Entrenamiento de troncos para leña III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de troncos para leña III",
           "description": "Reduce el tiempo de creación de tus troncos para leña en un 15%."
         },
         "WoodcutterTraining4": {
-          "name": "Entrenamiento de troncos para leña IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de troncos para leña IV",
           "description": "Reduce el tiempo de creación de tus troncos para leña en un 20%."
         },
         "WoodcutterTraining5": {
-          "name": "Entrenamiento de troncos para leña V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de troncos para leña V",
           "description": "Reduce el tiempo de creación de tus troncos para leña en un 25%."
         },
         "WorkBenchTraining1": {
-          "name": "Entrenamiento de bancos de trabajo I",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de bancos de trabajo I",
           "description": "Reduce el tiempo de creación de tus bancos de trabajo en un 5%."
         },
         "WorkBenchTraining2": {
-          "name": "Entrenamiento de bancos de trabajo II",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de bancos de trabajo II",
           "description": "Reduce el tiempo de creación de tus bancos de trabajo en un 10%."
         },
         "WorkBenchTraining3": {
-          "name": "Entrenamiento de bancos de trabajo III",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de bancos de trabajo III",
           "description": "Reduce el tiempo de creación de tus bancos de trabajo en un 15%."
         },
         "WorkBenchTraining4": {
-          "name": "Entrenamiento de bancos de trabajo IV",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de bancos de trabajo IV",
           "description": "Reduce el tiempo de creación de tus bancos de trabajo en un 20%."
         },
         "WorkBenchTraining5": {
-          "name": "Entrenamiento de bancos de trabajo V",
+          "name": "Pandaros.Settlers.AutoLoad.Entrenamiento de bancos de trabajo V",
           "description": "Reduce el tiempo de creación de tus bancos de trabajo en un 25%."
         },
         "MasterOfAll1": {
-          "name": "Maestros I",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros I",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 3%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll2": {
-          "name": "Maestros II",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros II",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 6%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll3": {
-          "name": "Maestros III",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros III",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 9%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll4": {
-          "name": "Maestros IV",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros IV",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 12%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll5": {
-          "name": "Maestros V",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros V",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 15%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll6": {
-          "name": "Maestros VI",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros VI",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 18%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll7": {
-          "name": "Maestros VII",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros VII",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 21%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll8": {
-          "name": "Maestros VIII",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros VIII",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 24%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll9": {
-          "name": "Maestros IX",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros IX",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 27%. adicional. Acumulable con los entrenamientos."
         },
         "MasterOfAll10": {
-          "name": "Maestros X",
+          "name": "Pandaros.Settlers.AutoLoad.Maestros X",
           "description": "Los verdaderos maestros perfeccionan sus habilidades. Reduce el tiempo de producción en un 30%. adicional. Acumulable con los entrenamientos."
         },
         "Apothecaries1": {
-          "name": "Apotecario",
+          "name": "Pandaros.Settlers.AutoLoad.Apotecario",
           "description": "Los apotecarios crean vendas para ti y tus colonos."
         },
         "AdvancedApothecary1": {
-          "name": "Apotecario avanzado",
+          "name": "Pandaros.Settlers.AutoLoad.Apotecario avanzado",
           "description": "Los apotecarios aprenden a crear vendas avanzadas que curan mucho más."
         },
         "Mana1": {
-          "name": "¡Mana!",
+          "name": "Pandaros.Settlers.AutoLoad.¡Mana!",
           "description": "Desbloquea el mana, el cual puede ser usado para cosas mágicas!"
         },
         "Teleportation1": {
-          "name": "¡Teletransporte!",
+          "name": "Pandaros.Settlers.AutoLoad.¡Teletransporte!",
           "description": "Desbloquea los círculos de teletransporte. Deben ser colocados por parejas y por lo menos uno de los dos debe ser mantenido por un maquinista."
         },
         "BuildersWand1": {
-          "name": "Varita de construcción",
+          "name": "Pandaros.Settlers.AutoLoad.Varita de construcción",
           "description": "¡Desbloquea la varita de construcción! Se usa para trabajar con una gran cantidad de bloques. Permite trabajar con hasta 750 bloques antes de que se rompa"
         },
         "BetterBuildersWand1": {
-          "name": "Varita de construcción mejorada",
+          "name": "Pandaros.Settlers.AutoLoad.Varita de construcción mejorada",
           "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1000 bloques antes de que se rompa."
         },
         "BetterBuildersWand2": {
-          "name": "Varita de construcción muy mejorada",
+          "name": "Pandaros.Settlers.AutoLoad.Varita de construcción muy mejorada",
           "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1250 bloques antes de que se rompa."
         },
         "BetterBuildersWand3": {
-          "name": "Super varita de construcción",
+          "name": "Pandaros.Settlers.AutoLoad.Super varita de construcción",
           "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1500 bloques antes de que se rompa."
         },
         "BetterBuildersWand4": {
-          "name": "Ultra varita de construcción",
+          "name": "Pandaros.Settlers.AutoLoad.Ultra varita de construcción",
           "description": "Mejora la varita de construcción para que pueda trabajar con hasta 1750 bloques antes de que se rompa."
         },
         "BetterBuildersWand5": {
-          "name": "Varita de construcción perfecta",
+          "name": "Pandaros.Settlers.AutoLoad.Varita de construcción perfecta",
           "description": "Mejora la varita de construcción para que pueda trabajar con hasta 2000 bloques antes de que se rompa."
           },
         "Elementium1": {
-          "name": "Elementium",
+          "name": "Pandaros.Settlers.AutoLoad.Elementium",
           "description": "Desbloquea Elementium. El Elementium puede ser transmutado por el boticario para crear poderosas armas y objetos mágicos."
          }
       }

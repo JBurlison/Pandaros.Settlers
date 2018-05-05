@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Items.Food
         {
             var foodName = GameLoader.NAMESPACE + ".BerryPancakes";
             var foodNode = new JSONNode();
-            foodNode["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/BerryPancakes.png");
+            foodNode["icon"] = new JSONNode("BerryPancakes.png");
             foodNode["isPlaceable"] = new JSONNode(false);
             foodNode.SetAs("nutritionalValue", 4f);
 

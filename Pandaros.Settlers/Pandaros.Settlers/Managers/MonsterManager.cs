@@ -178,30 +178,12 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             GetNextBossSpawnTime();
-            AddBoss(new PutridCorpse(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-            AddBoss(new Bulging(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-            AddBoss(new ZombieQueen(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-            AddBoss(new ZombieKing(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-            AddBoss(new Juggernaut(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
             _maxTimePerTick.Start();
         }
         
         private static void GetNextBossSpawnTime()
         {
             _nextBossUpdateTime = Pipliz.Time.SecondsSinceStartInt + Pipliz.Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.MonsterManager.RegisterAudio"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        public static void RegisterAudio()
-        {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "ZombieAudio", new List<string>()
-            {
-                GameLoader.AUDIO_FOLDER_PANDA + "/Zombie1.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Zombie2.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Zombie3.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Zombie4.ogg",
-            });
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]

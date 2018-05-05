@@ -33,13 +33,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
             { Items.Mana.Item.ItemIndex, 10 }
         };
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.Bosses.JackbNimble.AfterWorldLoad"),
-            ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
-        public static void AfterWorldLoad()
-        {
-            Managers.MonsterManager.AddBoss(new JackbNimble(new Server.AI.Path(), Players.GetPlayer(NetworkID.Server)));
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.JackbNimble.Register"),
             ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
             ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
@@ -51,9 +44,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/JackbNimble.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ZombieQueen.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/ZombieQueen.png")
+                .SetAs("albedo", "JackbNimble.png")
+                .SetAs("normal", "ZombieQueen_normal.png")
+                .SetAs("emissive", "ZombieQueen_emissive.png")
                 .SetAs("initialHealth", 2000)
                 .SetAs("movementSpeed", 3.25f)
                 .SetAs("punchCooldownMS", 500)
@@ -84,6 +77,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public DamageType ElementalArmor => DamageType.Air;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
+
+        public JackbNimble() :
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+        {
+        }
 
         public JackbNimble(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Items
         {
             var name = GameLoader.NAMESPACE + ".Aether";
             var node = new JSONNode();
-            node["icon"] = new JSONNode(GameLoader.ICON_FOLDER_PANDA + "/redbottle.png");
+            node["icon"] = new JSONNode("redbottle.png");
             node["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);

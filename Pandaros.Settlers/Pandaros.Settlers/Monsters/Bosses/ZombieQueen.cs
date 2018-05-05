@@ -46,9 +46,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/ZombieQueen.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/ZombieQueen.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/ZombieQueen.png")
+                .SetAs("albedo", "ZombieQueen.png")
+                .SetAs("normal", "ZombieQueen_normal.png")
+                .SetAs("emissive", "ZombieQueen_emissive.png")
                 .SetAs("initialHealth", 20000)
                 .SetAs("movementSpeed", 1.3f)
                 .SetAs("punchCooldownMS", 2000)
@@ -87,6 +87,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public DamageType ElementalArmor => DamageType.Water;
 
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
+
+        public ZombieQueen() :
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+        {
+        }
 
         public ZombieQueen(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

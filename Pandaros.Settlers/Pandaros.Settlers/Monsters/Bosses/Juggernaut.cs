@@ -47,11 +47,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
                .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/Juggernaut.png")
-                .SetAs("normal", GameLoader.TEXTURE_FOLDER_PANDA + "/normal/Juggernaut.png")
-                .SetAs("emissive", GameLoader.TEXTURE_FOLDER_PANDA + "/emissive/Juggernaut.png")
+                .SetAs("albedo", "Juggernaut.png")
+                .SetAs("normal", "Juggernaut_normal.png")
+                .SetAs("emissive", "Juggernaut_emissive.png")
                 .SetAs("initialHealth", 40000)
-                .SetAs("movementSpeed", .75f)
+                .SetAs("movementSpeed", .9f)
                 .SetAs("punchCooldownMS", 3000)
                 .SetAs("punchDamage", 100);
 
@@ -82,6 +82,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
 
         public float MissChance => 0f;
+
+        public Juggernaut() :
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+        {
+        }
 
         public Juggernaut(Path path, Players.Player originalGoal) :
             base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)

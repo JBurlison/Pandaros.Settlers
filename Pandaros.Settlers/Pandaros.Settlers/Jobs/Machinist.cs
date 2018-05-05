@@ -22,26 +22,6 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".MachinistBench";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.Machinist.RegisterAudio"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles"), ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        public static void RegisterAudio()
-        {
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "HammerAudio", new List<string>()
-            {
-                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer1.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer2.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer3.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Hammer4.ogg"
-            });
-
-            GameLoader.AddSoundFile(GameLoader.NAMESPACE + "ReloadingAudio", new List<string>()
-            {
-                GameLoader.AUDIO_FOLDER_PANDA + "/Reloading1.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Reloading2.ogg",
-                GameLoader.AUDIO_FOLDER_PANDA + "/Reloading3.ogg"
-            });
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Machinist.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void RegisterJobs()
@@ -53,9 +33,9 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.TEXTURE_FOLDER_PANDA + "/albedo/MachinistBenchTop.png";
-            textureMapping.NormalPath = GameLoader.TEXTURE_FOLDER_PANDA + "/normal/MachinistBenchTop.png";
-            textureMapping.HeightPath = GameLoader.TEXTURE_FOLDER_PANDA + "/height/MachinistBenchTop.png";
+            textureMapping.AlbedoPath = "MachinistBenchTop.png";
+            textureMapping.NormalPath = "MachinistBenchTop.png";
+            textureMapping.HeightPath = "MachinistBenchTop.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "MachinistBenchTop", textureMapping);
         }
@@ -64,7 +44,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
-              .SetAs("icon", Path.Combine(GameLoader.ICON_FOLDER_PANDA, "MachinistBench.png"))
+              .SetAs("icon", "MachinistBench.png")
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
               .SetAs("sideall", "stonebricks")
