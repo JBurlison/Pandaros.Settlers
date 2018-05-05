@@ -18,39 +18,49 @@ namespace Pandaros.Settlers
         {
             foreach (var mod in list.Where(m => m.HasAssembly))
             {
-                try
+                if (mod.name != GameLoader.NAMESPACE)
                 {
-                    // Get all Types available in the assembly in an array
-                    Type[] typeArray = mod.LoadedAssembly.GetTypes();
-
-                    // Walk through each Type and list their Information
-                    foreach (Type type in typeArray)
+                    try
                     {
-                        Type[] ifaces = type.GetInterfaces();
+                        // Get all Types available in the assembly in an array
+                        Type[] typeArray = mod.LoadedAssembly.GetTypes();
 
-                        foreach (Type iface in ifaces)
+                        // Walk through each Type and list their Information
+                        foreach (Type type in typeArray)
                         {
-                            switch (iface.Name)
+                            Type[] ifaces = type.GetInterfaces();
+
+                            foreach (Type iface in ifaces)
                             {
-                                case nameof(IMagicItem):
-                                    IMagicItem magicItem = (IMagicItem)Activator.CreateInstance(type);
-                                    break;
+                                try
+                                {
+                                    switch (iface.Name)
+                                    {
+                                        case nameof(IMagicItem):
+                                            IMagicItem magicItem = (IMagicItem)Activator.CreateInstance(type);
+                                            break;
 
-                                case nameof(IPandaBoss):
-                                    IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(type, new Server.AI.Path(), Players.GetPlayer(NetworkID.Server));
-                                    break;
+                                        case nameof(IPandaBoss):
+                                            IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(type, new Server.AI.Path(), Players.GetPlayer(NetworkID.Server));
+                                            break;
 
-                                case nameof(IMachineSettings):
-                                    IMachineSettings machineSettings = (IMachineSettings)Activator.CreateInstance(type);
-                                    MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
-                                    break;
+                                        case nameof(IMachineSettings):
+                                            IMachineSettings machineSettings = (IMachineSettings)Activator.CreateInstance(type);
+                                            MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
+                                            break;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    PandaLogger.LogError(ex, $"Error loading interface {iface.Name}");
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    // Do not log it is not the correct type.
+                    catch (Exception)
+                    {
+                        // Do not log it is not the correct type.
+                    }
                 }
             }
         }
