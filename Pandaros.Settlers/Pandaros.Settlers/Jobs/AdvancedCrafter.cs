@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
-              .SetAs("icon", "AdvancedCraftingTable.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "AdvancedCraftingTable.png")
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", "planks")

@@ -73,10 +73,10 @@ namespace Pandaros.Settlers.Research
             LevelKey = GetLevelKey(name);
 
             key = TmpValueKey + level;
-            icon = name + level + ".png";
+            icon = GameLoader.ICON_PATH + name + level + ".png";
 
             if (!addLevelToName)
-                icon = name + ".png";
+                icon = GameLoader.ICON_PATH + name + ".png";
 
             iterationCount = baseIterationCount + (2 * level);
 

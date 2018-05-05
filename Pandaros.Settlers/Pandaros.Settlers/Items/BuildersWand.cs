@@ -64,7 +64,7 @@ namespace Pandaros.Settlers.Items
             var selector = new JSONNode();
             selector["icon"] = new JSONNode(GameLoader.ICON_PATH + "Selector.png");
             selector["isPlaceable"] = new JSONNode(false);
-            selector["mesh"] = new JSONNode("Selector.ply");
+            selector["mesh"] = new JSONNode(GameLoader.MESH_PATH + "Selector.ply");
             selector["destructionTime"] = new JSONNode(1);
             selector["sideall"] = new JSONNode("SELF");
             selector["onRemove"] = new JSONNode(NodeType.Array);

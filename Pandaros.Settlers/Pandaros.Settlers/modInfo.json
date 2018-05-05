@@ -20,6 +20,10 @@
     "jsonFiles": [
       {
         "fileType": "addOrOverrideTextureMappingEntries",
+        "relativePath": "AutoLoad/texturemapping_Default.json"
+      },
+      {
+        "fileType": "addOrOverrideTextureMappingEntries",
         "relativePath": "AutoLoad/texturemapping.json"
       },
       {

@@ -39,7 +39,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
-              .SetAs("icon","ApothecaryTable.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "ApothecaryTable.png")
               .SetAs("onPlaceAudio", "woodPlace")
               .SetAs("onRemoveAudio", "woodDeleteLight")
               .SetAs("sideall", GameLoader.NAMESPACE + "ApothecaryTable")

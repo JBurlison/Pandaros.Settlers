@@ -33,9 +33,9 @@ namespace Pandaros.Settlers.Jobs
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = "MachinistBenchTop.png";
-            textureMapping.NormalPath = "MachinistBenchTop.png";
-            textureMapping.HeightPath = "MachinistBenchTop.png";
+            textureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "MachinistBenchTop.png";
+            textureMapping.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "MachinistBenchTop.png";
+            textureMapping.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "MachinistBenchTop.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "MachinistBenchTop", textureMapping);
         }
@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
-              .SetAs("icon", "MachinistBench.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "MachinistBench.png")
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
               .SetAs("sideall", "stonebricks")
