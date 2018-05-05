@@ -681,7 +681,7 @@
     <None Include="Meshes\woodsupportz-.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="modinfo.json">
+    <None Include="modInfo.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

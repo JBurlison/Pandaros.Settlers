@@ -15,12 +15,12 @@ namespace Pandaros.Settlers.AI
         static NameGenerator()
         {
             // Get first and last names
-            string fnames = File.ReadAllText(GameLoader.MOD_FOLDER + "\\AI\\FirstNames.csv").Replace("\r", "");
+            string fnames = File.ReadAllText(GameLoader.MOD_FOLDER + "/AI/FirstNames.csv").Replace("\r", "");
             fnames.Replace(" ", "");
             String[] afirstNames = fnames.Split('\n');
             _firstNames = afirstNames.OfType<string>().ToList();
 
-            string lnames = File.ReadAllText(GameLoader.MOD_FOLDER + "\\AI\\LastNames.csv").Replace("\r", "");
+            string lnames = File.ReadAllText(GameLoader.MOD_FOLDER + "/AI/LastNames.csv").Replace("\r", "");
             lnames.Replace(" ", "");
             String[] alastNames = lnames.Split('\n');
             _lastNames = alastNames.OfType<string>().ToList();
