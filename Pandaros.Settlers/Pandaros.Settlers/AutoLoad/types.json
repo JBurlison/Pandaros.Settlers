@@ -1,6 +1,6 @@
 {
   "Pandaros.Settlers.AutoLoad.refinedemerald": {
-    "icon": "refinedemerald.png",
+    "icon": "gamedata/textures/icons/refinedemerald.png",
     "maxStackSize": 600,
     "isPlaceable": false,
     "categories": [
@@ -8,7 +8,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.rawemerald": {
-    "icon": "rawemerald.png",
+    "icon": "gamedata/textures/icons/rawemerald.png",
     "maxStackSize": 600,
     "isPlaceable": false,
     "categories": [
@@ -17,7 +17,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.infiniteemerald": {
-    "icon": "infiniteemerald.png",
+    "icon": "gamedata/textures/icons/infiniteemerald.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveType": "rawemerald",
     "onRemoveAudio": "stoneDelete",
@@ -35,48 +35,48 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.milk": {
-    "icon": "milk.png",
+    "icon": "gamedata/textures/icons/milk.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 1
   },
   "Pandaros.Settlers.AutoLoad.egg": {
-    "icon": "egg.png",
+    "icon": "gamedata/textures/icons/egg.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600
   },
   "Pandaros.Settlers.AutoLoad.cake": {
-    "icon": "cake.png",
+    "icon": "gamedata/textures/icons/cake.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 5
   },
   "Pandaros.Settlers.AutoLoad.beef": {
-    "icon": "Beef.png",
+    "icon": "gamedata/textures/icons/Beef.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 4
   },
   "Pandaros.Settlers.AutoLoad.carrot": {
-    "icon": "Carrot.png",
+    "icon": "gamedata/textures/icons/Carrot.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 0.6
   },
   "Pandaros.Settlers.AutoLoad.cheese": {
-    "icon": "Cheese.png",
+    "icon": "gamedata/textures/icons/Cheese.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
     "nutritionalValue": 0.6
   },
   "Pandaros.Settlers.AutoLoad.chisel": {
-    "icon": "chisel.png",
+    "icon": "gamedata/textures/icons/chisel.png",
     "npcLimit": 0,
     "maxStackSize": 600,
     "isPlaceable": false,
@@ -88,7 +88,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "blueClay.png",
+    "icon": "gamedata/textures/icons/blueClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -100,7 +100,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "magentaClay.png",
+    "icon": "gamedata/textures/icons/magentaClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -112,7 +112,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "yellowClay.png",
+    "icon": "gamedata/textures/icons/yellowClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -124,7 +124,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "lightpinkClay.png",
+    "icon": "gamedata/textures/icons/lightpinkClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -136,7 +136,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "redClay.png",
+    "icon": "gamedata/textures/icons/redClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -148,7 +148,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "orangeClay.png",
+    "icon": "gamedata/textures/icons/orangeClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -160,7 +160,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "blackClay.png",
+    "icon": "gamedata/textures/icons/blackClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -172,7 +172,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "brownClay.png",
+    "icon": "gamedata/textures/icons/brownClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -184,7 +184,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "cyanClay.png",
+    "icon": "gamedata/textures/icons/cyanClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -196,7 +196,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "darkblueClay.png",
+    "icon": "gamedata/textures/icons/darkblueClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -208,7 +208,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "greyClay.png",
+    "icon": "gamedata/textures/icons/greyClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -220,7 +220,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "lightgreyClay.png",
+    "icon": "gamedata/textures/icons/lightgreyClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -232,7 +232,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "greenClay.png",
+    "icon": "gamedata/textures/icons/greenClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -244,7 +244,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "limeClay.png",
+    "icon": "gamedata/textures/icons/limeClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -256,7 +256,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "pinkClay.png",
+    "icon": "gamedata/textures/icons/pinkClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -268,7 +268,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "purpleClay.png",
+    "icon": "gamedata/textures/icons/purpleClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -280,7 +280,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "whiteClay.png",
+    "icon": "gamedata/textures/icons/whiteClay.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "categories": [
@@ -289,7 +289,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.limestone": {
-    "icon": "limeStone.png",
+    "icon": "gamedata/textures/icons/limeStone.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -302,7 +302,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.sandstone": {
-    "icon": "sandStone.png",
+    "icon": "gamedata/textures/icons/sandStone.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -315,7 +315,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.infiniteruby": {
-    "icon": "infiniteruby.png",
+    "icon": "gamedata/textures/icons/infiniteruby.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveType": "rawruby",
     "onRemoveAudio": "stoneDelete",
@@ -333,7 +333,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.infinitesapphire": {
-    "icon": "infinitesapphire.png",
+    "icon": "gamedata/textures/icons/infinitesapphire.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveType": "rawsapphire",
     "onRemoveAudio": "stoneDelete",
@@ -351,7 +351,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.ironbar": {
-    "icon": "ironbar.png",
+    "icon": "gamedata/textures/icons/ironbar.png",
     "onPlaceAudio": "metalPlace",
     "onRemoveAudio": "metalPlace",
     "sideall": "SELF",
@@ -369,22 +369,22 @@
   },
   "Pandaros.Settlers.AutoLoad.ironbarx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "ironbarx+.obj"
+    "mesh": "gamedata/meshes/ironbarx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "ironbarx-.obj"
+    "mesh": "gamedata/meshes/ironbarx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "ironbarz+.obj"
+    "mesh": "gamedata/meshes/ironbarz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "ironbarz-.obj"
+    "mesh": "gamedata/meshes/ironbarz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarcorner": {
-    "icon": "ironbarcorner.png",
+    "icon": "gamedata/textures/icons/ironbarcorner.png",
     "onPlaceAudio": "metalPlace",
     "onRemoveAudio": "metalPlace",
     "sideall": "SELF",
@@ -402,23 +402,23 @@
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "ironbarcornerx+.obj"
+    "mesh": "gamedata/meshes/ironbarcornerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "ironbarcornerx-.obj"
+    "mesh": "gamedata/meshes/ironbarcornerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "ironbarcornerz+.obj"
+    "mesh": "gamedata/meshes/ironbarcornerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "ironbarcornerz-.obj"
+    "mesh": "gamedata/meshes/ironbarcornerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.irondoor": {
     "onPlaceAudio": "metalPlace",
-    "icon": "irondoor.png",
+    "icon": "gamedata/textures/icons/irondoor.png",
     "onRemoveAudio": "metalPlace",
     "sideall": "SELF",
     "npcLimit": 0,
@@ -435,61 +435,61 @@
   },
   "Pandaros.Settlers.AutoLoad.irondoorx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "irondoorx+.obj"
+    "mesh": "gamedata/meshes/irondoorx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.irondoorx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "irondoorx-.obj"
+    "mesh": "gamedata/meshes/irondoorx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.irondoorz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "irondoorz+.obj"
+    "mesh": "gamedata/meshes/irondoorz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.irondoorz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "irondoorz-.obj"
+    "mesh": "gamedata/meshes/irondoorz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblepillarbase": {
-    "icon": "marblepillarbase.png",
+    "icon": "gamedata/textures/icons/marblepillarbase.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "Marblepillarbase.obj",
+    "mesh": "gamedata/meshes/Marblepillarbase.obj",
     "categories": [
       "decorative",
       "marble"
     ]
   },
   "Pandaros.Settlers.AutoLoad.marblepillarbody": {
-    "icon": "marblepillarbody.png",
+    "icon": "gamedata/textures/icons/marblepillarbody.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "Marblepillarbody.obj",
+    "mesh": "gamedata/meshes/Marblepillarbody.obj",
     "categories": [
       "decorative",
       "marble"
     ]
   },
   "Pandaros.Settlers.AutoLoad.marblepillartop": {
-    "icon": "marblepillartop.png",
+    "icon": "gamedata/textures/icons/marblepillartop.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "Marblepillartop.obj",
+    "mesh": "gamedata/meshes/Marblepillartop.obj",
     "categories": [
       "decorative",
       "marble"
     ]
   },
   "Pandaros.Settlers.AutoLoad.chalk": {
-    "icon": "chalk.png",
+    "icon": "gamedata/textures/icons/chalk.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -504,7 +504,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "water.png",
+    "icon": "gamedata/textures/icons/water.png",
     "isPlaceable": true,
     "categories": [
       "decorative",
@@ -512,7 +512,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.knife": {
-    "icon": "Knife.png",
+    "icon": "gamedata/textures/icons/Knife.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -521,7 +521,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.glass": {
-    "icon": "Glass.png",
+    "icon": "gamedata/textures/icons/Glass.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -531,7 +531,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.sledgehammer": {
-    "icon": "Sledgehammer.png",
+    "icon": "gamedata/textures/icons/Sledgehammer.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -540,7 +540,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.saw": {
-    "icon": "saw.png",
+    "icon": "gamedata/textures/icons/saw.png",
     "isPlaceable": false,
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -550,7 +550,7 @@
   },
   "Pandaros.Settlers.AutoLoad.dirtbricks": {
     "isFertile": true,
-    "icon": "dirtbricks.png",
+    "icon": "gamedata/textures/icons/dirtbricks.png",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -562,7 +562,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.rawruby": {
-    "icon": "rawruby.png",
+    "icon": "gamedata/textures/icons/rawruby.png",
     "isPlaceable": false,
     "categories": [
       "ingredient",
@@ -570,7 +570,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.rawsapphire": {
-    "icon": "rawsapphire.png",
+    "icon": "gamedata/textures/icons/rawsapphire.png",
     "isPlaceable": false,
     "categories": [
       "ingredient",
@@ -578,14 +578,14 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.refinedsapphire": {
-    "icon": "refinedsapphire.png",
+    "icon": "gamedata/textures/icons/refinedsapphire.png",
     "isPlaceable": false,
     "categories": [
       "ingredient"
     ]
   },
   "Pandaros.Settlers.AutoLoad.refinedruby": {
-    "icon": "refinedruby.png",
+    "icon": "gamedata/textures/icons/refinedruby.png",
     "isPlaceable": false,
     "categories": [
       "ingredient"
@@ -595,7 +595,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "marble.png",
+    "icon": "gamedata/textures/icons/marble.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "categories": [
@@ -607,7 +607,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "marbleBrick.png",
+    "icon": "gamedata/textures/icons/marbleBrick.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "categories": [
@@ -619,7 +619,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "rawMarble.png",
+    "icon": "gamedata/textures/icons/rawMarble.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "categories": [
@@ -628,7 +628,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.fence": {
-    "icon": "woodfence.png",
+    "icon": "gamedata/textures/icons/woodfence.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -646,22 +646,22 @@
   },
   "Pandaros.Settlers.AutoLoad.woodfencex+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fence",
-    "mesh": "woodfencex+.obj"
+    "mesh": "gamedata/meshes/woodfencex+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodfencex-": {
     "parentType": "Pandaros.Settlers.AutoLoad.fence",
-    "mesh": "woodfencex-.obj"
+    "mesh": "gamedata/meshes/woodfencex-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodfencez+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fence",
-    "mesh": "woodfencez+.obj"
+    "mesh": "gamedata/meshes/woodfencez+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodfencez-": {
     "parentType": "Pandaros.Settlers.AutoLoad.fence",
-    "mesh": "woodfencez-.obj"
+    "mesh": "gamedata/meshes/woodfencez-.obj"
   },
   "Pandaros.Settlers.AutoLoad.fencecorner": {
-    "icon": "woodfencecorner.png",
+    "icon": "gamedata/textures/icons/woodfencecorner.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -679,22 +679,22 @@
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "woodfencecornerx+.obj"
+    "mesh": "gamedata/meshes/woodfencecornerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "woodfencecornerx-.obj"
+    "mesh": "gamedata/meshes/woodfencecornerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "woodfencecornerz+.obj"
+    "mesh": "gamedata/meshes/woodfencecornerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "woodfencecornerz-.obj"
+    "mesh": "gamedata/meshes/woodfencecornerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.window": {
-    "icon": "window.png",
+    "icon": "gamedata/textures/icons/window.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -712,22 +712,22 @@
   },
   "Pandaros.Settlers.AutoLoad.windowx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.window",
-    "mesh": "windowx+.obj"
+    "mesh": "gamedata/meshes/windowx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.windowx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.window",
-    "mesh": "windowx-.obj"
+    "mesh": "gamedata/meshes/windowx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.windowz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.window",
-    "mesh": "windowz+.obj"
+    "mesh": "gamedata/meshes/windowz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.windowz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.window",
-    "mesh": "windowz-.obj"
+    "mesh": "gamedata/meshes/windowz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.doublewindow": {
-    "icon": "window.png",
+    "icon": "gamedata/textures/icons/window.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -745,22 +745,22 @@
   },
   "Pandaros.Settlers.AutoLoad.doublewindowx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
-    "mesh": "windowtwowayx.obj"
+    "mesh": "gamedata/meshes/windowtwowayx.obj"
   },
   "Pandaros.Settlers.AutoLoad.doublewindowx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
-    "mesh": "windowtwowayx.obj"
+    "mesh": "gamedata/meshes/windowtwowayx.obj"
   },
   "Pandaros.Settlers.AutoLoad.doublewindowz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
-    "mesh": "windowtwowayz.obj"
+    "mesh": "gamedata/meshes/windowtwowayz.obj"
   },
   "Pandaros.Settlers.AutoLoad.doublewindowz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
-    "mesh": "windowtwowayz.obj"
+    "mesh": "gamedata/meshes/windowtwowayz.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupport": {
-    "icon": "woodsupport.png",
+    "icon": "gamedata/textures/icons/woodsupport.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -778,22 +778,22 @@
   },
   "Pandaros.Settlers.AutoLoad.woodsupportx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
-    "mesh": "woodsupportx+.obj"
+    "mesh": "gamedata/meshes/woodsupportx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
-    "mesh": "woodsupportx-.obj"
+    "mesh": "gamedata/meshes/woodsupportx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
-    "mesh": "woodsupportz+.obj"
+    "mesh": "gamedata/meshes/woodsupportz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
-    "mesh": "woodsupportz-.obj"
+    "mesh": "gamedata/meshes/woodsupportz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportud": {
-    "icon": "woodsupportud.png",
+    "icon": "gamedata/textures/icons/woodsupportud.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -811,35 +811,35 @@
   },
   "Pandaros.Settlers.AutoLoad.woodsupportudx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
-    "mesh": "woodsupportudx+.obj"
+    "mesh": "gamedata/meshes/woodsupportudx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportudx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
-    "mesh": "woodsupportudx-.obj"
+    "mesh": "gamedata/meshes/woodsupportudx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportudz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
-    "mesh": "woodsupportudz+.obj"
+    "mesh": "gamedata/meshes/woodsupportudz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportudz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
-    "mesh": "woodsupportudz-.obj"
+    "mesh": "gamedata/meshes/woodsupportudz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportcube": {
-    "icon": "woodsupportcube.png",
+    "icon": "gamedata/textures/icons/woodsupportcube.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "woodsupportcube.obj",
+    "mesh": "gamedata/meshes/woodsupportcube.obj",
     "categories": [
       "decorative",
       "wood"
     ]
   },
   "Pandaros.Settlers.AutoLoad.hangingbanner": {
-    "icon": "hangingbanner.png",
+    "icon": "gamedata/textures/icons/hangingbanner.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -857,22 +857,22 @@
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
-    "mesh": "hangingbannerx+.obj"
+    "mesh": "gamedata/meshes/hangingbannerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
-    "mesh": "hangingbannerx-.obj"
+    "mesh": "gamedata/meshes/hangingbannerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
-    "mesh": "hangingbannerz+.obj"
+    "mesh": "gamedata/meshes/hangingbannerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
-    "mesh": "hangingbannerz-.obj"
+    "mesh": "gamedata/meshes/hangingbannerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrw": {
-    "icon": "hangingbannerrw.png",
+    "icon": "gamedata/textures/icons/hangingbannerrw.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -890,22 +890,22 @@
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrwx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
-    "mesh": "hangingbannerx+.obj"
+    "mesh": "gamedata/meshes/hangingbannerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrwx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
-    "mesh": "hangingbannerx-.obj"
+    "mesh": "gamedata/meshes/hangingbannerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrwz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
-    "mesh": "hangingbannerz+.obj"
+    "mesh": "gamedata/meshes/hangingbannerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrwz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
-    "mesh": "hangingbannerz-.obj"
+    "mesh": "gamedata/meshes/hangingbannerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw": {
-    "icon": "hangingbannerbw.png",
+    "icon": "gamedata/textures/icons/hangingbannerbw.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -923,22 +923,22 @@
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbwx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
-    "mesh": "hangingbannerx+.obj"
+    "mesh": "gamedata/meshes/hangingbannerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbwx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
-    "mesh": "hangingbannerx-.obj"
+    "mesh": "gamedata/meshes/hangingbannerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbwz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
-    "mesh": "hangingbannerz+.obj"
+    "mesh": "gamedata/meshes/hangingbannerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbwz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
-    "mesh": "hangingbannerz-.obj"
+    "mesh": "gamedata/meshes/hangingbannerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercb": {
-    "icon": "hangingbannercb.png",
+    "icon": "gamedata/textures/icons/hangingbannercb.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -956,22 +956,22 @@
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercbx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
-    "mesh": "hangingbannerx+.obj"
+    "mesh": "gamedata/meshes/hangingbannerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercbx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
-    "mesh": "hangingbannerx-.obj"
+    "mesh": "gamedata/meshes/hangingbannerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercbz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
-    "mesh": "hangingbannerz+.obj"
+    "mesh": "gamedata/meshes/hangingbannerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercbz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
-    "mesh": "hangingbannerz-.obj"
+    "mesh": "gamedata/meshes/hangingbannerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw2": {
-    "icon": "hangingbannerbw2.png",
+    "icon": "gamedata/textures/icons/hangingbannerbw2.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -989,22 +989,22 @@
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw2x+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
-    "mesh": "hangingbannerx+.obj"
+    "mesh": "gamedata/meshes/hangingbannerx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw2x-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
-    "mesh": "hangingbannerx-.obj"
+    "mesh": "gamedata/meshes/hangingbannerx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw2z+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
-    "mesh": "hangingbannerz+.obj"
+    "mesh": "gamedata/meshes/hangingbannerz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw2z-": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw2",
-    "mesh": "hangingbannerz-.obj"
+    "mesh": "gamedata/meshes/hangingbannerz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.simplechair": {
-    "icon": "simplechair.png",
+    "icon": "gamedata/textures/icons/simplechair.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -1023,35 +1023,35 @@
   },
   "Pandaros.Settlers.AutoLoad.simplechairx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
-    "mesh": "simplechairx+.obj"
+    "mesh": "gamedata/meshes/simplechairx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.simplechairx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
-    "mesh": "simplechairx-.obj"
+    "mesh": "gamedata/meshes/simplechairx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.simplechairz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
-    "mesh": "simplechairz+.obj"
+    "mesh": "gamedata/meshes/simplechairz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.simplechairz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
-    "mesh": "simplechairz-.obj"
+    "mesh": "gamedata/meshes/simplechairz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.simpletable": {
-    "icon": "simpletable.png",
+    "icon": "gamedata/textures/icons/simpletable.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "simpletable.obj",
+    "mesh": "gamedata/meshes/simpletable.obj",
     "categories": [
       "decorative",
       "wood"
     ]
   },
   "Pandaros.Settlers.AutoLoad.woodencatwalk": {
-    "icon": "woodencatwalk.png",
+    "icon": "gamedata/textures/icons/woodencatwalk.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -1069,16 +1069,16 @@
   },
   "Pandaros.Settlers.AutoLoad.woodencatwalkx": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodencatwalk",
-    "mesh": "woodencatwalkx.obj"
+    "mesh": "gamedata/meshes/woodencatwalkx.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodencatwalkz": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodencatwalk",
-    "mesh": "woodencatwalkz.obj"
+    "mesh": "gamedata/meshes/woodencatwalkz.obj"
   },
   "Pandaros.Settlers.AutoLoad.bench": {
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
-    "icon": "bench.png",
+    "icon": "gamedata/textures/icons/bench.png",
     "isRotatable": true,
     "isSolid": false,
     "needsBase": true,
@@ -1096,19 +1096,19 @@
   },
   "Pandaros.Settlers.AutoLoad.benchleftx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "benchleftx+.obj"
+    "mesh": "gamedata/meshes/benchleftx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchleftx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "benchleftx-.obj"
+    "mesh": "gamedata/meshes/benchleftx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchleftz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "benchleftz+.obj"
+    "mesh": "gamedata/meshes/benchleftz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchleftz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "benchleftz-.obj"
+    "mesh": "gamedata/meshes/benchleftz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchright": {
     "parentType": "Pandaros.Settlers.AutoLoad.bench",
@@ -1124,22 +1124,22 @@
   },
   "Pandaros.Settlers.AutoLoad.benchrightx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "benchrightx+.obj"
+    "mesh": "gamedata/meshes/benchrightx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchrightx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "benchrightx-.obj"
+    "mesh": "gamedata/meshes/benchrightx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchrightz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "benchrightz+.obj"
+    "mesh": "gamedata/meshes/benchrightz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.benchrightz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "benchrightz-.obj"
+    "mesh": "gamedata/meshes/benchrightz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodbarrel": {
-    "icon": "woodbarrel.png",
+    "icon": "gamedata/textures/icons/woodbarrel.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -1157,22 +1157,22 @@
   },
   "Pandaros.Settlers.AutoLoad.woodbarrelx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
-    "mesh": "woodbarrelx+.obj"
+    "mesh": "gamedata/meshes/woodbarrelx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodbarrelx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
-    "mesh": "woodbarrelx-.obj"
+    "mesh": "gamedata/meshes/woodbarrelx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodbarrelz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
-    "mesh": "woodbarrelz+.obj"
+    "mesh": "gamedata/meshes/woodbarrelz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.woodbarrelz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
-    "mesh": "woodbarrelz-.obj"
+    "mesh": "gamedata/meshes/woodbarrelz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.cratestack": {
-    "icon": "cratestack.png",
+    "icon": "gamedata/textures/icons/cratestack.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
@@ -1190,22 +1190,22 @@
   },
   "Pandaros.Settlers.AutoLoad.cratestackx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
-    "mesh": "cratestackx+.obj"
+    "mesh": "gamedata/meshes/cratestackx+.obj"
   },
   "Pandaros.Settlers.AutoLoad.cratestackx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
-    "mesh": "cratestackx-.obj"
+    "mesh": "gamedata/meshes/cratestackx-.obj"
   },
   "Pandaros.Settlers.AutoLoad.cratestackz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
-    "mesh": "cratestackz+.obj"
+    "mesh": "gamedata/meshes/cratestackz+.obj"
   },
   "Pandaros.Settlers.AutoLoad.cratestackz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
-    "mesh": "cratestackz-.obj"
+    "mesh": "gamedata/meshes/cratestackz-.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslab": {
-    "icon": "stonebrickslab.png",
+    "icon": "gamedata/textures/icons/stonebrickslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -1238,35 +1238,35 @@
   "Pandaros.Settlers.AutoLoad.stonebrickslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.plankslab": {
-    "icon": "plankslab.png",
+    "icon": "gamedata/textures/icons/plankslab.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
@@ -1299,27 +1299,27 @@
   "Pandaros.Settlers.AutoLoad.plankslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.plankslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.plankslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.plankslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.plankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj",
+    "mesh": "gamedata/meshes/slabtop.obj",
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
@@ -1328,14 +1328,14 @@
   "Pandaros.Settlers.AutoLoad.plankslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj",
+    "mesh": "gamedata/meshes/slabbottom.obj",
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     }
   },
   "Pandaros.Settlers.AutoLoad.brickslab": {
-    "icon": "brickslab.png",
+    "icon": "gamedata/textures/icons/brickslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -1368,35 +1368,35 @@
   "Pandaros.Settlers.AutoLoad.brickslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.brickslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.brickslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.brickslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.brickslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.brickslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslab": {
-    "icon": "coatedplankslab.png",
+    "icon": "gamedata/textures/icons/coatedplankslab.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
@@ -1429,35 +1429,35 @@
   "Pandaros.Settlers.AutoLoad.coatedplankslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslab": {
-    "icon": "cherryblossomslab.png",
+    "icon": "gamedata/textures/icons/cherryblossomslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1490,35 +1490,35 @@
   "Pandaros.Settlers.AutoLoad.cherryblossomslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestemperateslab": {
-    "icon": "leavestemperateslab.png",
+    "icon": "gamedata/textures/icons/leavestemperateslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1551,35 +1551,35 @@
   "Pandaros.Settlers.AutoLoad.leavestemperateslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestemperateslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestemperateslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestemperateslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestemperateslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestemperateslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslab": {
-    "icon": "leavestaigaslab.png",
+    "icon": "gamedata/textures/icons/leavestaigaslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1612,39 +1612,39 @@
   "Pandaros.Settlers.AutoLoad.leavestaigaslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.waterslab": {
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
     },
-    "icon": "waterslab.png",
+    "icon": "gamedata/textures/icons/waterslab.png",
     "onPlaceAudio": "waterSplashFeet",
     "onRemoveAudio": "waterSplashFeet",
     "npcLimit": 0,
@@ -1673,43 +1673,43 @@
   "Pandaros.Settlers.AutoLoad.waterslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.waterslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.waterslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.waterslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.waterslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.waterslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "slabbottom.obj",
+    "mesh": "gamedata/meshes/slabbottom.obj",
     "categories": [
       "decorative",
       "water"
     ]
   },
   "Pandaros.Settlers.AutoLoad.adobeslab": {
-    "icon": "adobeslab.png",
+    "icon": "gamedata/textures/icons/adobeslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1742,36 +1742,36 @@
   "Pandaros.Settlers.AutoLoad.adobeslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.adobeslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.adobeslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.adobeslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.adobeslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.adobeslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslab": {
-    "icon": "grassrainforestslab.png",
+    "icon": "gamedata/textures/icons/grassrainforestslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1804,36 +1804,36 @@
   "Pandaros.Settlers.AutoLoad.rainforestslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.rainforestslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.temperateslab": {
-    "icon": "grasstemperateslab.png",
+    "icon": "gamedata/textures/icons/grasstemperateslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1866,36 +1866,36 @@
   "Pandaros.Settlers.AutoLoad.temperateslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.temperateslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.temperateslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.temperateslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.temperateslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.temperateslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.temperateslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.tundraslab": {
-    "icon": "grasstundraslab.png",
+    "icon": "gamedata/textures/icons/grasstundraslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1928,36 +1928,36 @@
   "Pandaros.Settlers.AutoLoad.tundraslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.tundraslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.tundraslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.tundraslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.tundraslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.tundraslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.tundraslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.taigaslab": {
-    "icon": "grasstaigaslab.png",
+    "icon": "gamedata/textures/icons/grasstaigaslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -1990,36 +1990,36 @@
   "Pandaros.Settlers.AutoLoad.taigaslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.taigaslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.taigaslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.taigaslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.taigaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.taigaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.taigaslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.savannaslab": {
-    "icon": "grasssavannaslab.png",
+    "icon": "gamedata/textures/icons/grasssavannaslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2052,36 +2052,36 @@
   "Pandaros.Settlers.AutoLoad.savannaslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.savannaslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.savannaslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.savannaslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.savannaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.savannaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.savannaslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.strawslab": {
-    "icon": "strawslab.png",
+    "icon": "gamedata/textures/icons/strawslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2113,35 +2113,35 @@
   "Pandaros.Settlers.AutoLoad.strawslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.strawslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.strawslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.strawslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.strawslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.strawslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.berrybushslab": {
-    "icon": "berrybushslab.png",
+    "icon": "gamedata/textures/icons/berrybushslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2173,35 +2173,35 @@
   "Pandaros.Settlers.AutoLoad.berrybushslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.berrybushslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.berrybushslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.berrybushslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.berrybushslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.berrybushslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.snowslab": {
-    "icon": "snowslab.png",
+    "icon": "gamedata/textures/icons/snowslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2233,35 +2233,35 @@
   "Pandaros.Settlers.AutoLoad.snowslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.snowslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.snowslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.snowslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.snowslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.snowslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandslab": {
-    "icon": "sandslab.png",
+    "icon": "gamedata/textures/icons/sandslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2293,39 +2293,39 @@
   "Pandaros.Settlers.AutoLoad.sandslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandslabtop": {
-    "icon": "sandslab.png",
+    "icon": "gamedata/textures/icons/sandslab.png",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandslabbottom": {
-    "icon": "sandslab.png",
+    "icon": "gamedata/textures/icons/sandslab.png",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtslab": {
-    "icon": "dirtslab.png",
+    "icon": "gamedata/textures/icons/dirtslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2358,36 +2358,36 @@
   "Pandaros.Settlers.AutoLoad.dirtslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "isFertile": true,
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslab": {
-    "icon": "yellowcarpetslab.png",
+    "icon": "gamedata/textures/icons/yellowcarpetslab.png",
     "onPlaceAudio": "carpetyellowPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2420,35 +2420,35 @@
   "Pandaros.Settlers.AutoLoad.carpetyellowslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslab": {
-    "icon": "bluecarpetslab.png",
+    "icon": "gamedata/textures/icons/bluecarpetslab.png",
     "onPlaceAudio": "carpetbluePlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2481,35 +2481,35 @@
   "Pandaros.Settlers.AutoLoad.carpetblueslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslab": {
-    "icon": "redcarpetslab.png",
+    "icon": "gamedata/textures/icons/redcarpetslab.png",
     "onPlaceAudio": "carpetredPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -2542,35 +2542,35 @@
   "Pandaros.Settlers.AutoLoad.carpetredslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslab": {
-    "icon": "stoneblockslab.png",
+    "icon": "gamedata/textures/icons/stoneblockslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -2603,35 +2603,35 @@
   "Pandaros.Settlers.AutoLoad.stoneblockslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslab": {
-    "icon": "dirtbrickslab.png",
+    "icon": "gamedata/textures/icons/dirtbrickslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -2664,36 +2664,36 @@
   "Pandaros.Settlers.AutoLoad.dirtbrickslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "isFertile": true,
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslab": {
-    "icon": "logtaigaslab.png",
+    "icon": "gamedata/textures/icons/logtaigaslab.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
@@ -2726,35 +2726,35 @@
   "Pandaros.Settlers.AutoLoad.logtaigaslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslab": {
-    "icon": "logtemperateslab.png",
+    "icon": "gamedata/textures/icons/logtemperateslab.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
@@ -2787,35 +2787,35 @@
   "Pandaros.Settlers.AutoLoad.logtemperateslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslab": {
-    "icon": "sandstoneslab.png",
+    "icon": "gamedata/textures/icons/sandstoneslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -2847,37 +2847,37 @@
   "Pandaros.Settlers.AutoLoad.sandstoneslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslab": {
-    "icon": "limestoneslab.png",
+    "icon": "gamedata/textures/icons/limestoneslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -2909,35 +2909,35 @@
   "Pandaros.Settlers.AutoLoad.limestoneslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslab": {
-    "icon": "marbleslab.png",
+    "icon": "gamedata/textures/icons/marbleslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -2966,35 +2966,35 @@
   "marbleslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslab": {
-    "icon": "rawmarbleslab.png",
+    "icon": "gamedata/textures/icons/rawmarbleslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -3027,35 +3027,35 @@
   "Pandaros.Settlers.AutoLoad.rawmarbleslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslab": {
-    "icon": "marblebricksslab.png",
+    "icon": "gamedata/textures/icons/marblebricksslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -3088,35 +3088,35 @@
   "Pandaros.Settlers.AutoLoad.marblebricksslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslab": {
-    "icon": "stonesquaresslab.png",
+    "icon": "gamedata/textures/icons/stonesquaresslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -3149,35 +3149,35 @@
   "Pandaros.Settlers.AutoLoad.stonesquaresslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquares": {
-    "icon": "mossstonesquares.png",
+    "icon": "gamedata/textures/icons/mossstonesquares.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3189,7 +3189,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.stonesquares": {
-    "icon": "stonesquares.png",
+    "icon": "gamedata/textures/icons/stonesquares.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3201,7 +3201,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslab": {
-    "icon": "mossstonesquaresslab.png",
+    "icon": "gamedata/textures/icons/mossstonesquaresslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -3234,35 +3234,35 @@
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslab": {
-    "icon": "mossstonebricksslab.png",
+    "icon": "gamedata/textures/icons/mossstonebricksslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -3295,25 +3295,25 @@
   "Pandaros.Settlers.AutoLoad.mossstonebricksslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslab": {
-    "icon": "mossstoneslab.png",
+    "icon": "gamedata/textures/icons/mossstoneslab.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "npcLimit": 0,
@@ -3346,45 +3346,45 @@
   "Pandaros.Settlers.AutoLoad.mossstoneslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstone": {
-    "icon": "mossstone.png",
+    "icon": "gamedata/textures/icons/mossstone.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3396,7 +3396,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricks": {
-    "icon": "mossstonebricks.png",
+    "icon": "gamedata/textures/icons/mossstonebricks.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3408,7 +3408,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.plasterslab": {
-    "icon": "plasterslab.png",
+    "icon": "gamedata/textures/icons/plasterslab.png",
     "onRemoveAudio": "dirtPlace",
     "onPlaceAudio": "dirtPlace",
     "npcLimit": 0,
@@ -3440,35 +3440,35 @@
   "Pandaros.Settlers.AutoLoad.plasterslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.plasterslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.plasterslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.plasterslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.plasterslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.plasterslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.clayslab": {
-    "icon": "clayslab.png",
+    "icon": "gamedata/textures/icons/clayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3501,35 +3501,35 @@
   "Pandaros.Settlers.AutoLoad.clayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.clayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.clayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.clayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.clayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.clayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.redplankslab": {
-    "icon": "redplankslab.png",
+    "icon": "gamedata/textures/icons/redplankslab.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
@@ -3562,35 +3562,35 @@
   "Pandaros.Settlers.AutoLoad.redplankslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.redplankslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.redplankslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.redplankslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.redplankslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.redplankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslab": {
-    "icon": "blackplankslab.png",
+    "icon": "gamedata/textures/icons/blackplankslab.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "npcLimit": 0,
@@ -3623,35 +3623,35 @@
   "Pandaros.Settlers.AutoLoad.blackplankslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslab": {
-    "icon": "whiteclayslab.png",
+    "icon": "gamedata/textures/icons/whiteclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3684,35 +3684,35 @@
   "Pandaros.Settlers.AutoLoad.whiteclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslab": {
-    "icon": "yellowclayslab.png",
+    "icon": "gamedata/textures/icons/yellowclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3745,35 +3745,35 @@
   "Pandaros.Settlers.AutoLoad.yellowclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslab": {
-    "icon": "orangeclayslab.png",
+    "icon": "gamedata/textures/icons/orangeclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3806,35 +3806,35 @@
   "Pandaros.Settlers.AutoLoad.orangeclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslab": {
-    "icon": "magentaclayslab.png",
+    "icon": "gamedata/textures/icons/magentaclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3867,35 +3867,35 @@
   "Pandaros.Settlers.AutoLoad.magentaclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslab": {
-    "icon": "purpleclayslab.png",
+    "icon": "gamedata/textures/icons/purpleclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3928,35 +3928,35 @@
   "Pandaros.Settlers.AutoLoad.purpleclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.redclayslab": {
-    "icon": "redclayslab.png",
+    "icon": "gamedata/textures/icons/redclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -3989,35 +3989,35 @@
   "Pandaros.Settlers.AutoLoad.redclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslab": {
-    "icon": "lightpinkclayslab.png",
+    "icon": "gamedata/textures/icons/lightpinkclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4050,35 +4050,35 @@
   "Pandaros.Settlers.AutoLoad.lightpinkclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslab": {
-    "icon": "pinkclayslab.png",
+    "icon": "gamedata/textures/icons/pinkclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4111,35 +4111,35 @@
   "Pandaros.Settlers.AutoLoad.pinkclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslab": {
-    "icon": "limeclayslab.png",
+    "icon": "gamedata/textures/icons/limeclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4172,35 +4172,35 @@
   "Pandaros.Settlers.AutoLoad.limeclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslab": {
-    "icon": "greenclayslab.png",
+    "icon": "gamedata/textures/icons/greenclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4233,35 +4233,35 @@
   "Pandaros.Settlers.AutoLoad.greenclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslab": {
-    "icon": "lightgreyclayslab.png",
+    "icon": "gamedata/textures/icons/lightgreyclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4294,35 +4294,35 @@
   "Pandaros.Settlers.AutoLoad.lightgreyclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslab": {
-    "icon": "greyclayslab.png",
+    "icon": "gamedata/textures/icons/greyclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4355,35 +4355,35 @@
   "Pandaros.Settlers.AutoLoad.greyclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslab": {
-    "icon": "darkblueclayslab.png",
+    "icon": "gamedata/textures/icons/darkblueclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "maxStackSize": 600,
@@ -4415,35 +4415,35 @@
   "Pandaros.Settlers.AutoLoad.darkblueclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslab": {
-    "icon": "cyanclayslab.png",
+    "icon": "gamedata/textures/icons/cyanclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4476,35 +4476,35 @@
   "Pandaros.Settlers.AutoLoad.cyanclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslab": {
-    "icon": "brownclayslab.png",
+    "icon": "gamedata/textures/icons/brownclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4537,35 +4537,35 @@
   "Pandaros.Settlers.AutoLoad.brownclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslab": {
-    "icon": "blueclayslab.png",
+    "icon": "gamedata/textures/icons/blueclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4598,35 +4598,35 @@
   "Pandaros.Settlers.AutoLoad.blueclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslab": {
-    "icon": "blackclayslab.png",
+    "icon": "gamedata/textures/icons/blackclayslab.png",
     "onPlaceAudio": "dirtPlace",
     "onRemoveAudio": "grassDelete",
     "npcLimit": 0,
@@ -4659,32 +4659,32 @@
   "Pandaros.Settlers.AutoLoad.blackclayslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.lava": {
     "color": "#ba2203",
@@ -4698,7 +4698,7 @@
         }
       }
     },
-    "icon": "lavaIcon.png",
+    "icon": "gamedata/textures/icons/lavaIcon.png",
     "maxStackSize": 600,
     "onPlaceAudio": "waterSplashFeet",
     "onRemoveAudio": "waterSplashFeet",
@@ -4710,7 +4710,7 @@
   },
   "Pandaros.Settlers.AutoLoad.lavaslab": {
     "color": "#ba2203",
-    "icon": "lavaslab.png",
+    "icon": "gamedata/textures/icons/lavaslab.png",
     "onPlaceAudio": "waterSplashFeet",
     "onRemoveAudio": "waterSplashFeet",
     "npcLimit": 0,
@@ -4752,41 +4752,41 @@
   "Pandaros.Settlers.AutoLoad.lavaleft": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
-    "mesh": "slableft.obj"
+    "mesh": "gamedata/meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
-    "mesh": "slabright.obj"
+    "mesh": "gamedata/meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
-    "mesh": "slabfront.obj"
+    "mesh": "gamedata/meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
-    "mesh": "slabback.obj"
+    "mesh": "gamedata/meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
-    "mesh": "slabbottom.obj"
+    "mesh": "gamedata/meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
     "sideall": "lava",
-    "mesh": "slabtop.obj"
+    "mesh": "gamedata/meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.aloe": {
-    "icon": "aloe.png",
+    "icon": "gamedata/textures/icons/aloe.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "aloe.obj",
+    "mesh": "gamedata/meshes/aloe.obj",
     "isSolid": false,
     "categories": [
       "decorative",
@@ -4794,13 +4794,13 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.tulip": {
-    "icon": "tulip.png",
+    "icon": "gamedata/textures/icons/tulip.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "tulip.obj",
+    "mesh": "gamedata/meshes/tulip.obj",
     "isSolid": false,
     "categories": [
       "decorative",
@@ -4808,13 +4808,13 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.daisy": {
-    "icon": "daisy.png",
+    "icon": "gamedata/textures/icons/daisy.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "daisy.obj",
+    "mesh": "gamedata/meshes/daisy.obj",
     "isSolid": false,
     "categories": [
       "decorative",
@@ -4822,13 +4822,13 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.Sunflower": {
-    "icon": "Sunflower.png",
+    "icon": "gamedata/textures/icons/Sunflower.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "Sunflower.obj",
+    "mesh": "gamedata/meshes/Sunflower.obj",
     "isSolid": false,
     "categories": [
       "decorative",
@@ -4836,13 +4836,13 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.rose": {
-    "icon": "rose.png",
+    "icon": "gamedata/textures/icons/rose.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "rose.obj",
+    "mesh": "gamedata/meshes/rose.obj",
     "isSolid": false,
     "categories": [
       "decorative",
@@ -4850,13 +4850,13 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.Flowers1": {
-    "icon": "Flowers1.png",
+    "icon": "gamedata/textures/icons/Flowers1.png",
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "woodDeleteLight",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "Flowers1.obj",
+    "mesh": "gamedata/meshes/Flowers1.obj",
     "isSolid": false,
     "categories": [
       "decorative",

@@ -13,6 +13,12 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
+        public const string MESH_PATH = "gamedata/meshes/";
+        public const string ICON_PATH = "gamedata/textures/icons/";
+        public const string BLOCKS_ALBEDO_PATH = "gamedata/textures/materials/blocks/albedo/";
+        public const string BLOCKS_EMISSIVE_PATH = "gamedata/textures/materials/blocks/emissive/";
+        public const string BLOCKS_HEIGHT_PATH = "gamedata/textures/materials/blocks/height/";
+        public const string BLOCKS_NORMAL_PATH = "gamedata/textures/materials/blocks/normal/";
         public const string NPC_PATH = "gamedata/textures/materials/npc/";
         public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
         public static string MODS_FOLDER = @"";

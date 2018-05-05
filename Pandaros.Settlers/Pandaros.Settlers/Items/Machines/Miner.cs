@@ -146,7 +146,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var minerTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            minerTextureMapping.AlbedoPath = "MiningMachine.png";
+            minerTextureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "MiningMachine.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
@@ -156,14 +156,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var minerName = GameLoader.NAMESPACE + ".Miner";
             var minerFlagNode = new JSONNode();
-            minerFlagNode["icon"] = new JSONNode("MiningMachine.png");
+            minerFlagNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "MiningMachine.png");
             minerFlagNode["isPlaceable"] = new JSONNode(true);
             minerFlagNode.SetAs("onRemoveAmount", 1);
             minerFlagNode.SetAs("onPlaceAudio", "stonePlace");
             minerFlagNode.SetAs("onRemoveAudio", "stoneDelete");
             minerFlagNode.SetAs("isSolid", true);
             minerFlagNode.SetAs("sideall", "SELF");
-            minerFlagNode.SetAs("mesh", "MiningMachine.obj");
+            minerFlagNode.SetAs("mesh", GameLoader.MESH_PATH + "MiningMachine.obj");
 
             JSONNode categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));

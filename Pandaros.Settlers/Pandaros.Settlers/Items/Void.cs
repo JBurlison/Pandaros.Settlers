@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Items
         {
             var name = GameLoader.NAMESPACE + ".Void";
             var node = new JSONNode();
-            node["icon"] = new JSONNode("void.png");
+            node["icon"] = new JSONNode(GameLoader.ICON_PATH + "void.png");
             node["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);

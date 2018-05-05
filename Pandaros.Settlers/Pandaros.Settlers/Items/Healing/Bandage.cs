@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items.Healing
         {
             var name = GameLoader.NAMESPACE + ".Bandage";
             var node = new JSONNode();
-            node["icon"] = new JSONNode("Bandage.png");
+            node["icon"] = new JSONNode(GameLoader.ICON_PATH + "Bandage.png");
             node["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);

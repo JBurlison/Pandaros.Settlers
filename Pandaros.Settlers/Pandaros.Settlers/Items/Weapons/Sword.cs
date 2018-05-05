@@ -96,7 +96,7 @@ namespace Pandaros.Settlers.Items
         {
             var copperSwordName = GameLoader.NAMESPACE + ".CopperSword";
             var copperSwordNode = new JSONNode();
-            copperSwordNode["icon"] = new JSONNode("CopperSword.png");
+            copperSwordNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "CopperSword.png");
             copperSwordNode["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);
@@ -109,7 +109,7 @@ namespace Pandaros.Settlers.Items
 
             var bronzeSwordName = GameLoader.NAMESPACE + ".BronzeSword";
             var bronzeSwordNode = new JSONNode();
-            bronzeSwordNode["icon"] = new JSONNode("BronzeSword.png");
+            bronzeSwordNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "BronzeSword.png");
             bronzeSwordNode["isPlaceable"] = new JSONNode(false);
 
             bronzeSwordNode.SetAs("categories", categories);
@@ -120,7 +120,7 @@ namespace Pandaros.Settlers.Items
 
             var IronSwordName = GameLoader.NAMESPACE + ".IronSword";
             var IronSwordNode = new JSONNode();
-            IronSwordNode["icon"] = new JSONNode("IronSword.png");
+            IronSwordNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "IronSword.png");
             IronSwordNode["isPlaceable"] = new JSONNode(false);
 
             IronSwordNode.SetAs("categories", categories);
@@ -131,7 +131,7 @@ namespace Pandaros.Settlers.Items
 
             var steelSwordName = GameLoader.NAMESPACE + ".SteelSword";
             var steelSwordNode = new JSONNode();
-            steelSwordNode["icon"] = new JSONNode("SteelSword.png");
+            steelSwordNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "SteelSword.png");
             steelSwordNode["isPlaceable"] = new JSONNode(false);
 
             steelSwordNode.SetAs("categories", categories);

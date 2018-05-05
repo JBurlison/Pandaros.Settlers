@@ -98,37 +98,37 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = "AirTurret.png";
-            textureMapping.NormalPath = "Turret.png";
-            textureMapping.HeightPath = "Turret.png";
+            textureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "AirTurret.png";
+            textureMapping.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "Turret.png";
+            textureMapping.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "Turret.png";
 
             ItemTypesServer.SetTextureMapping(AIRTURRET_NAMESPACE + "sides", textureMapping);
 
             var earthTexture = new ItemTypesServer.TextureMapping(new JSONNode());
-            earthTexture.AlbedoPath = "EarthTurret.png";
-            earthTexture.NormalPath = "Turret.png";
-            earthTexture.HeightPath = "Turret.png";
+            earthTexture.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "EarthTurret.png";
+            earthTexture.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "Turret.png";
+            earthTexture.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "Turret.png";
 
             ItemTypesServer.SetTextureMapping(EARTHTURRET_NAMESPACE + "sides", earthTexture);
 
             var fireTexture = new ItemTypesServer.TextureMapping(new JSONNode());
-            fireTexture.AlbedoPath = "FireTurret.png";
-            fireTexture.NormalPath = "Turret.png";
-            fireTexture.HeightPath = "Turret.png";
+            fireTexture.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "FireTurret.png";
+            fireTexture.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "Turret.png";
+            fireTexture.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "Turret.png";
 
             ItemTypesServer.SetTextureMapping(FIRETURRET_NAMESPACE + "sides", fireTexture);
 
             var waterTexture = new ItemTypesServer.TextureMapping(new JSONNode());
-            waterTexture.AlbedoPath = "WaterTurret.png";
-            waterTexture.NormalPath = "Turret.png";
-            waterTexture.HeightPath = "Turret.png";
+            waterTexture.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "WaterTurret.png";
+            waterTexture.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "Turret.png";
+            waterTexture.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "Turret.png";
 
             ItemTypesServer.SetTextureMapping(WATERTURRET_NAMESPACE + "sides", waterTexture);
 
             var voidTexture = new ItemTypesServer.TextureMapping(new JSONNode());
-            voidTexture.AlbedoPath = "VoidTurret.png";
-            voidTexture.NormalPath = "Turret.png";
-            voidTexture.HeightPath = "Turret.png";
+            voidTexture.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "VoidTurret.png";
+            voidTexture.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "Turret.png";
+            voidTexture.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "Turret.png";
 
             ItemTypesServer.SetTextureMapping(VOIDTURRET_NAMESPACE + "sides", voidTexture);
         }
@@ -302,7 +302,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = VOIDTURRET_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", "VoidTurret.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "VoidTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -330,7 +330,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = WATERTURRET_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", "WaterTurret.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "WaterTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -358,7 +358,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = EARTHTURRET_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", "EarthTurret.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "EarthTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -386,7 +386,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = FIRETURRET_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", "FireTurret.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "FireTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")
@@ -414,7 +414,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretName = AIRTURRET_NAMESPACE;
             var turretNode = new JSONNode()
-              .SetAs("icon", "AirTurret.png")
+              .SetAs("icon", GameLoader.ICON_PATH + "AirTurret.png")
               .SetAs("isPlaceable", true)
               .SetAs("onPlaceAudio", "stonePlace")
               .SetAs("onRemoveAudio", "stoneDelete")

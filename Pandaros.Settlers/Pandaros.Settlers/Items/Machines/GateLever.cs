@@ -69,10 +69,10 @@ namespace Pandaros.Settlers.Items.Machines
         public static ItemTypesServer.ItemTypeRaw GateItemZP { get; private set; }
         public static ItemTypesServer.ItemTypeRaw GateItemZN { get; private set; }
 
-        static MeshedObjectTypeSettings _gateXMinusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateXMinusAnimated", "gatex-.obj", GameLoader.NAMESPACE + ".Gate");
-        static MeshedObjectTypeSettings _gateXPlusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateXPlusAnimated", "gatex+.obj", GameLoader.NAMESPACE + ".Gate");
-        static MeshedObjectTypeSettings _gateZMinusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZMinusAnimated", "gatez-.obj", GameLoader.NAMESPACE + ".Gate");
-        static MeshedObjectTypeSettings _gateZPlusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZPlusAnimated", "gatez+.obj", GameLoader.NAMESPACE + ".Gate");
+        static MeshedObjectTypeSettings _gateXMinusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateXMinusAnimated", GameLoader.MESH_PATH + "gatex-.obj", GameLoader.NAMESPACE + ".Gate");
+        static MeshedObjectTypeSettings _gateXPlusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateXPlusAnimated", GameLoader.MESH_PATH + "gatex+.obj", GameLoader.NAMESPACE + ".Gate");
+        static MeshedObjectTypeSettings _gateZMinusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZMinusAnimated", GameLoader.MESH_PATH + "gatez-.obj", GameLoader.NAMESPACE + ".Gate");
+        static MeshedObjectTypeSettings _gateZPlusItemObjSettings = new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZPlusAnimated", GameLoader.MESH_PATH + "gatez+.obj", GameLoader.NAMESPACE + ".Gate");
 
         private static Dictionary<Players.Player, Dictionary<Vector3Int, GateState>> _gatePositions = new Dictionary<Players.Player, Dictionary<Vector3Int, GateState>>();
 
@@ -365,12 +365,12 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var GateLeverTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            GateLeverTextureMapping.AlbedoPath = "Lever.png";
+            GateLeverTextureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "Lever.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".GateLever", GateLeverTextureMapping);
 
             var GateTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            GateTextureMapping.AlbedoPath = "gate.png";
+            GateTextureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "gate.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Gate", GateTextureMapping);
         }
@@ -380,14 +380,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var GateLeverName = GameLoader.NAMESPACE + ".GateLever";
             var GateLeverNode = new JSONNode();
-            GateLeverNode["icon"] = new JSONNode("GateLever.png");
+            GateLeverNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "GateLever.png");
             GateLeverNode["isPlaceable"] = new JSONNode(true);
             GateLeverNode.SetAs("onRemoveAmount", 1);
             GateLeverNode.SetAs("onPlaceAudio", "stonePlace");
             GateLeverNode.SetAs("onRemoveAudio", "stoneDelete");
             GateLeverNode.SetAs("isSolid", true);
             GateLeverNode.SetAs("sideall", GameLoader.NAMESPACE + ".GateLever");
-            GateLeverNode.SetAs("mesh", "Lever.obj");
+            GateLeverNode.SetAs("mesh", GameLoader.MESH_PATH + "Lever.obj");
 
             JSONNode categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -404,7 +404,7 @@ namespace Pandaros.Settlers.Items.Machines
             var GateZminusName = GateName + "z-";
             var GateZplusName = GateName + "z+";
             var GateNode = new JSONNode();
-            GateNode["icon"] = new JSONNode("Gate.png");
+            GateNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "Gate.png");
             GateNode["isPlaceable"] = new JSONNode(true);
             GateNode.SetAs("onRemoveAmount", 0);
             GateNode.SetAs("onPlaceAudio", GameLoader.NAMESPACE + "Metal");
@@ -429,7 +429,7 @@ namespace Pandaros.Settlers.Items.Machines
             var GateXminuNode = new JSONNode();
             GateXminuNode.SetAs("needsBase", true);
             GateXminuNode.SetAs("parentType", GateName);
-            GateXminuNode.SetAs("mesh", "gatex-.obj");
+            GateXminuNode.SetAs("mesh", GameLoader.MESH_PATH + "gatex-.obj");
             GateItemXN = new ItemTypesServer.ItemTypeRaw(GateXminusName, GateXminuNode);
             items.Add(GateXminusName, GateItemXN);
 
@@ -437,7 +437,7 @@ namespace Pandaros.Settlers.Items.Machines
             var GateXplusNode = new JSONNode();
             GateXplusNode.SetAs("needsBase", true);
             GateXplusNode.SetAs("parentType", GateName);
-            GateXplusNode.SetAs("mesh", "gatex+.obj");
+            GateXplusNode.SetAs("mesh", GameLoader.MESH_PATH + "gatex+.obj");
             GateItemXP = new ItemTypesServer.ItemTypeRaw(GateXplusName, GateXplusNode);
             items.Add(GateXplusName, GateItemXP);
 
@@ -445,7 +445,7 @@ namespace Pandaros.Settlers.Items.Machines
             var GateZminuNode = new JSONNode();
             GateZminuNode.SetAs("needsBase", true);
             GateZminuNode.SetAs("parentType", GateName);
-            GateZminuNode.SetAs("mesh", "gatez-.obj");
+            GateZminuNode.SetAs("mesh", GameLoader.MESH_PATH + "gatez-.obj");
             GateItemZN = new ItemTypesServer.ItemTypeRaw(GateZminusName, GateZminuNode);
             items.Add(GateZminusName, GateItemZN);
 
@@ -453,7 +453,7 @@ namespace Pandaros.Settlers.Items.Machines
             var GateZplusNode = new JSONNode();
             GateZplusNode.SetAs("needsBase", true);
             GateZplusNode.SetAs("parentType", GateName);
-            GateZplusNode.SetAs("mesh", "gatez+.obj");
+            GateZplusNode.SetAs("mesh", GameLoader.MESH_PATH + "gatez+.obj");
             GateItemZP = new ItemTypesServer.ItemTypeRaw(GateZplusName, GateZplusNode);
             items.Add(GateZplusName, GateItemZP);
 

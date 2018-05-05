@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.Items
         {
             var name = GameLoader.NAMESPACE + ".BuildersWand";
             var node = new JSONNode();
-            node["icon"] = new JSONNode("BuildersWand.png");
+            node["icon"] = new JSONNode(GameLoader.ICON_PATH + "BuildersWand.png");
             node["isPlaceable"] = new JSONNode(false);
             node["maxStackSize"] = new JSONNode(10);
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Items
 
             var seclectorName = GameLoader.NAMESPACE + ".AutoLoad.Selector";
             var selector = new JSONNode();
-            selector["icon"] = new JSONNode("Selector.png");
+            selector["icon"] = new JSONNode(GameLoader.ICON_PATH + "Selector.png");
             selector["isPlaceable"] = new JSONNode(false);
             selector["mesh"] = new JSONNode("Selector.ply");
             selector["destructionTime"] = new JSONNode(1);

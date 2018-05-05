@@ -9,14 +9,14 @@
     "compatibleversions": [
       "0.6.1"
     ],
-    "overrideAlbedoFolder": "Textures/albedo/",
-    "overrideEmissiveFolder": "Textures/emissive/",
-    "overrideNormalFolder": "Textures/height/",
-    "overrideHeightFolder": "Textures/normal/",
-    "overrideMeshesFolder": "Meshes/",
-    "overrideIconFolder": "icons/",
-    "overrideAudioFolder": "Audio/",
-    "overrideNPCFolder": "Textures/npc/",
+    "overrideAlbedoFolder": "./Textures/albedo/",
+    "overrideEmissiveFolder": "./Textures/emissive/",
+    "overrideNormalFolder": "./Textures/height/",
+    "overrideHeightFolder": "./Textures/normal/",
+    "overrideMeshesFolder": "./Meshes/",
+    "overrideIconFolder": "./icons/",
+    "overrideAudioFolder": "./Audio/",
+    "overrideNPCFolder": "./Textures/npc/",
     "jsonFiles": [
       {
         "fileType": "addOrOverrideTextureMappingEntries",

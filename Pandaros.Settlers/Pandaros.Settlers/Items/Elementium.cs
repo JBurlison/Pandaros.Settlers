@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items
         {
             var name = GameLoader.NAMESPACE + ".Elementium";
             var node = new JSONNode();
-            node["icon"] = new JSONNode("Elementium.png");
+            node["icon"] = new JSONNode(GameLoader.ICON_PATH + "Elementium.png");
             node["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);

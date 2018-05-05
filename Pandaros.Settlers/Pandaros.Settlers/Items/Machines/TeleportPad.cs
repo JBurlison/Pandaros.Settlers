@@ -177,8 +177,8 @@ namespace Pandaros.Settlers.Items.Machines
         public static void AddTextures()
         {
             var TeleportPadTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            TeleportPadTextureMapping.AlbedoPath = "TeleportPad.png";
-            TeleportPadTextureMapping.EmissivePath = "TeleportPad.png";
+            TeleportPadTextureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "TeleportPad.png";
+            TeleportPadTextureMapping.EmissivePath = GameLoader.BLOCKS_EMISSIVE_PATH + "TeleportPad.png";
 
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".TeleportPad", TeleportPadTextureMapping);
         }
@@ -188,14 +188,14 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var TeleportPadName = GameLoader.NAMESPACE + ".TeleportPad";
             var TeleportPadNode = new JSONNode();
-            TeleportPadNode["icon"] = new JSONNode("TeleportPad.png");
+            TeleportPadNode["icon"] = new JSONNode(GameLoader.ICON_PATH + "TeleportPad.png");
             TeleportPadNode["isPlaceable"] = new JSONNode(true);
             TeleportPadNode.SetAs("onRemoveAmount", 1);
             TeleportPadNode.SetAs("onPlaceAudio", "stonePlace");
             TeleportPadNode.SetAs("onRemoveAudio", "stoneDelete");
             TeleportPadNode.SetAs("isSolid", false);
             TeleportPadNode.SetAs("sideall", "SELF");
-            TeleportPadNode.SetAs("mesh", "TeleportPad.obj");
+            TeleportPadNode.SetAs("mesh", GameLoader.MESH_PATH + "TeleportPad.obj");
 
             JSONNode categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));

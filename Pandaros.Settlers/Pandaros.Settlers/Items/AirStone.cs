@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Items
         {
             var name = GameLoader.NAMESPACE + ".AirStone";
             var node = new JSONNode();
-            node["icon"] = new JSONNode("Airstone.png");
+            node["icon"] = new JSONNode(GameLoader.ICON_PATH + "Airstone.png");
             node["isPlaceable"] = new JSONNode(false);
 
             JSONNode categories = new JSONNode(NodeType.Array);
