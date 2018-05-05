@@ -11,9 +11,27 @@ using System.Text;
 namespace Pandaros.Settlers
 {
     [ModLoader.ModManager]
-    class SettlersExtender
+    public static class SettlersExtender
     {
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, GameLoader.NAMESPACE + ".Gameloader.AfterModsLoaded")]
+        static List<Type> _monsters = new List<Type>();
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterWorldLoad"),
+            ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            foreach (var monster in _monsters)
+            {
+                IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(monster);
+
+                if (pandaBoss != null && !string.IsNullOrEmpty(pandaBoss.Name))
+                {
+                    PandaLogger.Log($"Boss {pandaBoss.Name} Loaded!");
+                    MonsterManager.AddBoss(pandaBoss);
+                }
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterModsLoaded")]
         public static void AfterModsLoaded(List<ModLoader.ModDescription> list)
         {
             foreach (var mod in list.Where(m => m.HasAssembly))
@@ -40,14 +58,7 @@ namespace Pandaros.Settlers
                                         break;
 
                                     case nameof(IPandaBoss):
-                                        IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(type);
-
-                                        if (pandaBoss != null && !string.IsNullOrEmpty(pandaBoss.Name))
-                                        {
-                                            PandaLogger.Log($"Boss {pandaBoss.Name} Loaded!");
-                                            MonsterManager.AddBoss(pandaBoss);
-                                        }
-
+                                        _monsters.Add(type);
                                         break;
 
                                     case nameof(IMachineSettings):
