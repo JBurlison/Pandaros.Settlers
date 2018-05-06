@@ -166,6 +166,7 @@ namespace Pandaros.Settlers.Items.Machines
                         _gatePositions.Add(player, new Dictionary<Vector3Int, GateState>());
 
                     Dictionary<GateState, Vector3Int> moveGates = new Dictionary<GateState, Vector3Int>();
+                    var ps = PlayerState.GetPlayerState(player);
 
                     foreach (var gate in _gatePositions[player])
                     {
@@ -214,11 +215,21 @@ namespace Pandaros.Settlers.Items.Machines
                             }
                         }
 
-                        if (TimeCycle.IsDay && gate.Value.State == GatePosition.Open)
+                        if (ps.BossesEnabled)
+                        {
+                            if (TimeCycle.IsDay && !MonsterManager.BossActive && gate.Value.State == GatePosition.Open)
+                                continue;
+                        }
+                        else if (TimeCycle.IsDay && gate.Value.State == GatePosition.Open)
                             continue;
 
-                        if (!TimeCycle.IsDay && gate.Value.State == GatePosition.Closed)
-                            continue;
+                        if (ps.BossesEnabled)
+                        {
+                            if ((!TimeCycle.IsDay || MonsterManager.BossActive) && gate.Value.State == GatePosition.Closed)
+                                continue;
+                        }
+                        else if(!TimeCycle.IsDay && gate.Value.State == GatePosition.Closed)
+                                continue;
 
                         float dis = Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
 
@@ -226,7 +237,12 @@ namespace Pandaros.Settlers.Items.Machines
                         {
                             int offset = 2;
 
-                            if (!TimeCycle.IsDay)
+                            if (ps.BossesEnabled)
+                            {
+                                if (!TimeCycle.IsDay || MonsterManager.BossActive)
+                                    offset = -2;
+                            }
+                            else if (!TimeCycle.IsDay)
                                 offset = -2;
 
                             moveGates.Add(gate.Value, gate.Key.Add(0, offset, 0));
@@ -247,7 +263,12 @@ namespace Pandaros.Settlers.Items.Machines
 
                         int newOffset = -1;
 
-                        if (!TimeCycle.IsDay)
+                        if (ps.BossesEnabled)
+                        {
+                            if (!TimeCycle.IsDay || MonsterManager.BossActive)
+                                newOffset = 1;
+                        }
+                        else if (!TimeCycle.IsDay)
                             newOffset = 1;
 
                         switch (mkvp.Key.Orientation)
@@ -272,7 +293,12 @@ namespace Pandaros.Settlers.Items.Machines
 
                         var moveState = GatePosition.MovingClosed;
 
-                        if (TimeCycle.IsDay)
+                        if (ps.BossesEnabled)
+                        {
+                            if (TimeCycle.IsDay && !MonsterManager.BossActive)
+                                moveState = GatePosition.MovingOpen;
+                        }
+                        else if (TimeCycle.IsDay)
                             moveState = GatePosition.MovingOpen;
 
                         mkvp.Key.State = moveState;
@@ -284,7 +310,12 @@ namespace Pandaros.Settlers.Items.Machines
 
                             var state = GatePosition.Closed;
 
-                            if (TimeCycle.IsDay)
+                            if (ps.BossesEnabled)
+                            {
+                                if (TimeCycle.IsDay && !MonsterManager.BossActive)
+                                    state = GatePosition.Open;
+                            }
+                            else if (TimeCycle.IsDay)
                                 state = GatePosition.Open;
 
                             mkvp.Key.State = state;

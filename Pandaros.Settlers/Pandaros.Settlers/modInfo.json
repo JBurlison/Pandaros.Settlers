@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers.AutoLoad.Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.1.4",
+    "version": "0.8.1.5",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -137,6 +137,13 @@
     "website": "http://www.settlersmod.com/",
     "about": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.1.4",
+        "notes": [
+          "Removed the reduced waste research",
+          "Gates now close when bosses spawn"
+        ]
+      },
       {
         "version": "0.8.1.4",
         "notes": [
