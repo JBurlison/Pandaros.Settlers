@@ -332,10 +332,10 @@
     <None Include="AutoLoad\texturemapping_Default.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="AutoLoad\texturemapping.json">
+    <None Include="texturemapping.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="AutoLoad\types.json">
+    <None Include="types.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="localization\en-US\en-US.json">

@@ -5,10 +5,10 @@
     "defaultHeight": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png",
     "defaultNormal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "fileExtension": ".png",
-    "folderAlbedo": "./../Textures/albedo/",
-    "folderEmissive": "./../Textures/emissive/",
-    "folderHeight": "./../Textures/height/",
-    "folderNormal": "./../Textures/normal/"
+    "folderAlbedo": "./Textures/albedo/",
+    "folderEmissive": "./Textures/emissive/",
+    "folderHeight": "./Textures/height/",
+    "folderNormal": "./Textures/normal/"
   },
   "Pandaros.Settlers.AutoLoad.infiniteemerald": {
     "albedo": "oreEmerald"

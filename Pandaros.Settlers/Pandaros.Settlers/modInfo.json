@@ -24,11 +24,11 @@
       },
       {
         "fileType": "addOrOverrideTextureMappingEntries",
-        "relativePath": "AutoLoad/texturemapping.json"
+        "relativePath": "texturemapping.json"
       },
       {
         "fileType": "addNewTypes",
-        "relativePath": "AutoLoad/types.json"
+        "relativePath": "types.json"
       },
       {
         "fileType": "addOrOverrideLocalization",
@@ -141,7 +141,8 @@
         "version": "0.8.1.4",
         "notes": [
           "Removed the reduced waste research",
-          "Gates now close when bosses spawn"
+          "Gates now close when bosses spawn",
+          "Fixed Linux pathing"
         ]
       },
       {

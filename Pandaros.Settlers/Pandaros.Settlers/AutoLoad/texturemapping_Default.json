@@ -1,15 +1,15 @@
 {
-  "_settings": {
-    "defaultAlbedo": "gamedata/textures/materials/blocks/albedo/neutral.png",
-    "defaultEmissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "defaultHeight": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png",
-    "defaultNormal": "gamedata/textures/materials/blocks/normal/neutral.png",
-    "fileExtension": ".png",
-    "folderAlbedo": "gamedata/textures/materials/blocks/albedo/",
-    "folderEmissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/",
-    "folderHeight": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/",
-    "folderNormal": "gamedata/textures/materials/blocks/normal/"
-  },
+  //"_settings": {
+  //  "defaultAlbedo": "gamedata/textures/materials/blocks/albedo/neutral.png",
+  //  "defaultEmissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
+  //  "defaultHeight": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png",
+  //  "defaultNormal": "gamedata/textures/materials/blocks/normal/neutral.png",
+  //  "fileExtension": ".png",
+  //  "folderAlbedo": "gamedata/textures/materials/blocks/albedo/",
+  //  "folderEmissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/",
+  //  "folderHeight": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/",
+  //  "folderNormal": "gamedata/textures/materials/blocks/normal/"
+  //},
   "Pandaros.Settlers.AutoLoad.orangeclay": {
     "normal": "clay",
     "height": "clay"
