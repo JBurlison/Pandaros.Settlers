@@ -140,7 +140,7 @@
       {
         "version": "0.8.1.5",
         "notes": [
-          "Removed the reduced waste research",
+          "Nefed the reduced waste research",
           "Gates now close when bosses spawn",
           "Fixed Linux pathing"
         ]

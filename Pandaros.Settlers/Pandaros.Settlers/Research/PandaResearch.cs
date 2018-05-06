@@ -140,6 +140,7 @@ namespace Pandaros.Settlers.Research
             AddSettlerChance(researchDic);
             AddSkilledLaborer(researchDic);
             AddNumberSkilledLaborer(researchDic);
+            AddReducedWaste(researchDic);
             AddBanner(researchDic);
             AddArmorSmithing(researchDic);
             AddColonistHealth(researchDic);
@@ -162,6 +163,37 @@ namespace Pandaros.Settlers.Research
             AddBetterBuildersWandResearch(researchDic);
 
             PandaLogger.Log("Panda Research Registering Complete!");
+        }
+
+        private static void AddReducedWaste(Dictionary<ushort, int> researchDic)
+        {
+            researchDic.Clear();
+            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
+            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
+            researchDic.Add(BuiltinBlocks.Berry, 2);
+            researchDic.Add(BuiltinBlocks.Bread, 2);
+            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+
+            var requirements = new List<string>()
+            {
+                ColonyBuiltIn.ScienceBagLife
+            };
+
+            var research = new PandaResearch(researchDic, 1, ReducedWaste, 0.001f, requirements);
+            research.ResearchComplete += ReducedWaste_ResearchComplete;
+            ScienceManager.RegisterResearchable(research);
+
+            for (int i = 2; i <= 5; i++)
+            {
+                research = new PandaResearch(researchDic, i, ReducedWaste, 0.001f, requirements);
+                research.ResearchComplete += ReducedWaste_ResearchComplete;
+                ScienceManager.RegisterResearchable(research);
+            }
+        }
+
+        private static void ReducedWaste_ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            Managers.SettlerManager.UpdateFoodUse(e.Manager.Player);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
