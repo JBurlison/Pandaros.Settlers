@@ -14,6 +14,7 @@ namespace Pandaros.Settlers
     public static class GameLoader
     {
         public static string MESH_PATH = "gamedata/meshes/";
+        public static string AUDIO_PATH = "gamedata/Audio/";
         public static string ICON_PATH = "gamedata/textures/icons/";
         public static string BLOCKS_ALBEDO_PATH = "Textures/albedo/";
         public static string BLOCKS_EMISSIVE_PATH = "Textures/emissive/";
@@ -58,19 +59,20 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
+            MOD_FOLDER = Path.GetDirectoryName(path);
+            PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
+
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/") + "/";
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
             MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
             ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
             MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
+            AUDIO_PATH = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
             TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/") + "/";
             BLOCKS_ALBEDO_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
             BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
             BLOCKS_HEIGHT_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
             BLOCKS_NORMAL_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
-
-            MOD_FOLDER = Path.GetDirectoryName(path);
-            PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
  
             bool fileWasCopied = false;
 
@@ -191,11 +193,27 @@ namespace Pandaros.Settlers
 #endif
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + ".OnQuitLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, NAMESPACE + ".OnQuitLate")]
         public static void OnQuitLate()
         {
             RUNNING = false;
             WorldLoaded = false;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".GameLoader.LoadAudioFiles"),
+            ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles"),
+            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
+        private static void RegisterAudioFiles()
+        {
+            var files = JSON.Deserialize(MOD_FOLDER + "/Audio/audioFiles.json", false);
+
+            foreach (JSONNode current in files.LoopArray())
+            {
+                foreach (JSONNode current2 in current["fileList"].LoopArray())
+                    current2["path"] = new JSONNode(AUDIO_PATH + current2.GetAs<string>("path"));
+
+                ItemTypesServer.AudioFilesJSON.AddToArray(current);
+            }
         }
 
         public static string GetUpdatableBlocksJSONPath()
