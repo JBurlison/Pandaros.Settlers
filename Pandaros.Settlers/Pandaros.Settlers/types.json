@@ -32,7 +32,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "icon": "./icons/marble.png",
+    "icon": "./icons/Marble.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "categories": [
@@ -3178,7 +3178,7 @@
     "mesh": "./Meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquares": {
-    "icon": "./icons/mossstonesquares.png",
+    "icon": "./icons/mossStoneSquares.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3190,7 +3190,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.stonesquares": {
-    "icon": "./icons/stonesquares.png",
+    "icon": "./icons/stoneSquares.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3385,7 +3385,7 @@
     "mesh": "./Meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.mossstone": {
-    "icon": "./icons/mossstone.png",
+    "icon": "./icons/mossStone.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",
@@ -3397,7 +3397,7 @@
     ]
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricks": {
-    "icon": "./icons/mossstonebricks.png",
+    "icon": "./icons/mossStoneBricks.png",
     "onPlaceAudio": "stonePlace",
     "onRemoveAudio": "stoneDelete",
     "sideall": "SELF",

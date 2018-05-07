@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Managers
                     if (m == null || (Vector3.Distance(monster.Value.Position, m.Position) > 10 && Pipliz.Random.NextBool()))
                     {
                         m = monster.Value;
-                        ServerManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + "ZombieAudio");
+                        ServerManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + ".ZombieAudio");
                     }
                 }
 
@@ -247,7 +247,7 @@ namespace Pandaros.Settlers.Managers
             d.ResultDamage = d.ResultDamage - (d.ResultDamage * ps.Difficulty.MonsterDamageReduction);
 
             if (Pipliz.Random.NextFloat() > .5f)
-                ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + "ZombieAudio");
+                ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterDied, GameLoader.NAMESPACE)]

@@ -16,5 +16,8 @@ namespace Pandaros.Settlers.Items.Machines
         float RepairTime { get; set; }
         float WorkTime { get; set; }
         string MachineType { get; set; }
+        string RefuelAudioKey { get; set; }
+        string ReloadAudioKey { get; set; }
+        string RepairAudioKey { get; set; }
     }
 }

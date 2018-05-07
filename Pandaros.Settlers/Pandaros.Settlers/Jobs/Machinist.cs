@@ -188,19 +188,19 @@ namespace Pandaros.Settlers.Jobs
                 {
                     status = TargetMachine.MachineSettings.Repair(Owner, TargetMachine);
                     cooldown = TargetMachine.MachineSettings.RepairTime;
-                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + "HammerAudio");
+                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + ".HammerAudio");
                 }
                 else if (TargetMachine.Fuel < .3f)
                 {
                     status = TargetMachine.MachineSettings.Refuel(Owner, TargetMachine);
                     cooldown = TargetMachine.MachineSettings.RefuelTime;
-                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + "ReloadingAudio");
+                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + ".ReloadingAudio");
                 }
                 else if (TargetMachine.Load < .3f)
                 {
                     status = TargetMachine.MachineSettings.Reload(Owner, TargetMachine);
                     cooldown = TargetMachine.MachineSettings.ReloadTime;
-                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + "ReloadingAudio");
+                    ServerManager.SendAudio(TargetMachine.Position.Vector, GameLoader.NAMESPACE + ".ReloadingAudio");
                 }
                 else
                 {

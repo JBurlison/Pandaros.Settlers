@@ -36,13 +36,16 @@ namespace Pandaros.Settlers.Items.Machines
 
         public BoxedDictionary TempValues { get; private set; } = new BoxedDictionary();
 
-        public MachineState(Vector3Int pos, Players.Player owner, string machineType)
+        public MachineState(Vector3Int pos, Players.Player owner, string machineType, IMachineSettings settings = null)
         {
             Position = pos;
             MachineType = machineType;
             Owner = owner;
 
-            MachineSettings = MachineManager.GetCallbacks(machineType);
+            if (settings == null)
+                MachineSettings = MachineManager.GetCallbacks(machineType);
+            else
+                MachineSettings = settings;
         }
 
         public MachineState(JSONNode baseNode, Players.Player owner)

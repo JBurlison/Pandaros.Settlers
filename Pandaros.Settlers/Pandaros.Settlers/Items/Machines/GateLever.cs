@@ -350,7 +350,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                     if (moveGates.Count > 0)
                     {
-                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "GateLeverMachineAudio");
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".GateLeverMachineAudio");
 
                         machineState.Durability -= 0.01f;
                         machineState.Fuel -= 0.03f;

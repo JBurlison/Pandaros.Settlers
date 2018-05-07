@@ -125,7 +125,7 @@ namespace Pandaros.Settlers.Managers
                         if (lastNPC == null || (Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 && Pipliz.Random.NextBool()))
                         {
                             lastNPC = follower;
-                            ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + "TalkingAudio");
+                            ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".TalkingAudio");
                         }
                     }
                 }

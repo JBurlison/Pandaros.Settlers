@@ -119,7 +119,7 @@ namespace Pandaros.Settlers.Jobs
         protected override void OnRecipeCrafted()
         {
             base.OnRecipeCrafted();
-            ServerManager.SendAudio(this.position.Vector, "crafting");
+            ServerManager.SendAudio(this.position.Vector, ".crafting");
         }
     }
 }

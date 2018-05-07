@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Items.Machines
                             if (Pipliz.Random.NextDouble() <= itemList[i].chance)
                                 Stockpile.GetStockPile(player).Add(itemList[i].item);
 
-                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + "MiningMachineAudio");
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
                     }
 
                     machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;

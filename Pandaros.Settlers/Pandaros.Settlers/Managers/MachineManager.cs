@@ -38,6 +38,9 @@ namespace Pandaros.Settlers.Managers
             public Func<Players.Player, MachineState, ushort> Reload { get; set; }
             public Action<Players.Player, MachineState> DoWork { get; set; }
             public string MachineType { get; set; } = Jobs.MachinistJob.MECHANICAL;
+            public string RefuelAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
+            public string ReloadAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
+            public string RepairAudioKey { get; set; } = GameLoader.NAMESPACE + ".HammerAudio";
 
             public MachineSettings() { }
 
