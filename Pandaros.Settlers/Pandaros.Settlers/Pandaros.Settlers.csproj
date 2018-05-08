@@ -331,7 +331,7 @@
     <None Include="AutoLoad\technologist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="texturemapping.json">
+    <None Include="Textures\texturemapping.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="types.json">

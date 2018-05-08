@@ -1,347 +1,336 @@
 {
-  "_settings": {
-    "defaultAlbedo": "gamedata/textures/materials/blocks/albedo/neutral.png",
-    "defaultEmissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "defaultHeight": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png",
-    "defaultNormal": "gamedata/textures/materials/blocks/normal/neutral.png",
-    "fileExtension": "",
-    "folderAlbedo": "",
-    "folderEmissive": "",
-    "folderHeight": "",
-    "folderNormal": ""
-  },
   "infiniteemerald": {
-    "albedo": "./Textures/albedo/oreEmerald.png",
+    "albedo": "./albedo/oreEmerald.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclay": {
-    "albedo": "./Textures/albedo/orangeClay.png",
+    "albedo": "./albedo/orangeClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclay": {
-    "albedo": "./Textures/albedo/lightpinkClay.png",
+    "albedo": "./albedo/lightpinkClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclay": {
-    "albedo": "./Textures/albedo/magentaClay.png",
+    "albedo": "./albedo/magentaClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclay": {
-    "albedo": "./Textures/albedo/yellowClay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclay": {
-    "albedo": "./Textures/albedo/blueClay.png",
+    "albedo": "./albedo/blueClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclay": {
-    "albedo": "./Textures/albedo/redClay.png",
+    "albedo": "./albedo/redClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclay": {
-    "albedo": "./Textures/albedo/blackClay.png",
+    "albedo": "./albedo/blackClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclay": {
-    "albedo": "./Textures/albedo/brownClay.png",
+    "albedo": "./albedo/brownClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclay": {
-    "albedo": "./Textures/albedo/cyanClay.png",
+    "albedo": "./albedo/cyanClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclay": {
-    "albedo": "./Textures/albedo/darkblueClay.png",
+    "albedo": "./albedo/darkblueClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclay": {
-    "albedo": "./Textures/albedo/greenClay.png",
+    "albedo": "./albedo/greenClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclay": {
-    "albedo": "./Textures/albedo/greyClay.png",
+    "albedo": "./albedo/greyClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclay": {
-    "albedo": "./Textures/albedo/lightgreyClay.png",
+    "albedo": "./albedo/lightgreyClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclay": {
-    "albedo": "./Textures/albedo/limeClay.png",
+    "albedo": "./albedo/limeClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclay": {
-    "albedo": "./Textures/albedo/pinkClay.png",
+    "albedo": "./albedo/pinkClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclay": {
-    "albedo": "./Textures/albedo/purpleClay.png",
+    "albedo": "./albedo/purpleClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclay": {
-    "albedo": "./Textures/albedo/whiteClay.png",
+    "albedo": "./albedo/whiteClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limestone": {
-    "albedo": "./Textures/albedo/limeStone.png",
+    "albedo": "./albedo/limeStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstone": {
-    "albedo": "./Textures/albedo/sandStone.png",
+    "albedo": "./albedo/sandStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.infiniteruby": {
-    "albedo": "./Textures/albedo/oreRuby.png",
+    "albedo": "./albedo/oreRuby.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.infinitesapphire": {
-    "albedo": "./Textures/albedo/oresapphire.png",
+    "albedo": "./albedo/oresapphire.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.ironbar": {
-    "albedo": "./Textures/albedo/ironbar.png",
+    "albedo": "./albedo/ironbar.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.ironbarcorner": {
-    "albedo": "./Textures/albedo/ironbar.png",
+    "albedo": "./albedo/ironbar.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.irondoor": {
-    "albedo": "./Textures/albedo/irondoor.png",
+    "albedo": "./albedo/irondoor.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblepillarbase": {
-    "albedo": "./Textures/albedo/Marblepillarbase.png",
+    "albedo": "./albedo/Marblepillarbase.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblepillarbody": {
-    "albedo": "./Textures/albedo/Marblepillarbase.png",
+    "albedo": "./albedo/Marblepillarbase.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblepillartop": {
-    "albedo": "./Textures/albedo/Marblepillartop.png",
+    "albedo": "./albedo/Marblepillartop.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbricks": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marble": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarble": {
-    "albedo": "./Textures/albedo/rawMarble.png",
+    "albedo": "./albedo/rawMarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricks": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.notwater": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.fence": {
-    "albedo": "./Textures/albedo/woodfence.png",
+    "albedo": "./albedo/woodfence.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.fencecorner": {
-    "albedo": "./Textures/albedo/woodfence.png",
+    "albedo": "./albedo/woodfence.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.window": {
-    "albedo": "./Textures/albedo/window.png",
+    "albedo": "./albedo/window.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.doublewindow": {
-    "albedo": "./Textures/albedo/window.png",
+    "albedo": "./albedo/window.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.woodsupport": {
-    "albedo": "./Textures/albedo/woodsupport.png",
+    "albedo": "./albedo/woodsupport.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportud": {
-    "albedo": "./Textures/albedo/woodsupport.png",
+    "albedo": "./albedo/woodsupport.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.woodsupportcube": {
-    "albedo": "./Textures/albedo/woodsupportcube.png",
+    "albedo": "./albedo/woodsupportcube.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.hangingbanner": {
-    "albedo": "./Textures/albedo/hangingbanner_ry.png",
+    "albedo": "./albedo/hangingbanner_ry.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrw": {
-    "albedo": "./Textures/albedo/hangingbanner_rw.png",
+    "albedo": "./albedo/hangingbanner_rw.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw": {
-    "albedo": "./Textures/albedo/hangingbanner_bw.png",
+    "albedo": "./albedo/hangingbanner_bw.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercb": {
-    "albedo": "./Textures/albedo/hangingbanner_cb.png",
+    "albedo": "./albedo/hangingbanner_cb.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbw2": {
-    "albedo": "./Textures/albedo/hangingbanner_bw2.png",
+    "albedo": "./albedo/hangingbanner_bw2.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.simplechair": {
-    "albedo": "./Textures/albedo/simplechair.png",
+    "albedo": "./albedo/simplechair.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.simpletable": {
-    "albedo": "./Textures/albedo/simpletable.png",
+    "albedo": "./albedo/simpletable.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.woodencatwalk": {
-    "albedo": "./Textures/albedo/woodencatwalk.png",
+    "albedo": "./albedo/woodencatwalk.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.bench": {
-    "albedo": "./Textures/albedo/bench.png",
+    "albedo": "./albedo/bench.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.benchright": {
-    "albedo": "./Textures/albedo/bench.png",
+    "albedo": "./albedo/bench.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.woodbarrel": {
-    "albedo": "./Textures/albedo/woodbarrel.png",
+    "albedo": "./albedo/woodbarrel.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.cratestack": {
-    "albedo": "./Textures/albedo/cratestack.png",
+    "albedo": "./albedo/cratestack.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstone": {
-    "albedo": "./Textures/albedo/mossStone.png",
+    "albedo": "./albedo/mossStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricks": {
-    "albedo": "./Textures/albedo/mossStoneBricks.png",
+    "albedo": "./albedo/mossStoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquares": {
-    "albedo": "./Textures/albedo/mossStoneSquares.png",
+    "albedo": "./albedo/mossStoneSquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquares": {
-    "albedo": "./Textures/albedo/stoneSquares.png",
+    "albedo": "./albedo/stoneSquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -353,7 +342,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/bricks.png"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabbottom": {
-    "albedo": "./Textures/albedo/blackplanks.png",
+    "albedo": "./albedo/blackplanks.png",
     "normal": "gamedata/textures/materials/blocks/normal/planks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/coatedplanks.png"
@@ -377,103 +366,103 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabbottom": {
-    "albedo": "./Textures/albedo/redclay.png",
+    "albedo": "./albedo/redclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabbottom": {
-    "albedo": "./Textures/albedo/blackclay.png",
+    "albedo": "./albedo/blackclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabbottom": {
-    "albedo": "./Textures/albedo/blueclay.png",
+    "albedo": "./albedo/blueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabbottom": {
-    "albedo": "./Textures/albedo/darkblueclay.png",
+    "albedo": "./albedo/darkblueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabbottom": {
-    "albedo": "./Textures/albedo/brownclay.png",
+    "albedo": "./albedo/brownclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabbottom": {
-    "albedo": "./Textures/albedo/cyanclay.png",
+    "albedo": "./albedo/cyanclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabbottom": {
-    "albedo": "./Textures/albedo/greenclay.png",
+    "albedo": "./albedo/greenclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabbottom": {
-    "albedo": "./Textures/albedo/greyclay.png",
+    "albedo": "./albedo/greyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabbottom": {
-    "albedo": "./Textures/albedo/lightgreyclay.png",
+    "albedo": "./albedo/lightgreyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabbottom": {
-    "albedo": "./Textures/albedo/lightpinkclay.png",
+    "albedo": "./albedo/lightpinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabbottom": {
-    "albedo": "./Textures/albedo/limeclay.png",
+    "albedo": "./albedo/limeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabbottom": {
-    "albedo": "./Textures/albedo/magentaclay.png",
+    "albedo": "./albedo/magentaclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabbottom": {
-    "albedo": "./Textures/albedo/orangeclay.png",
+    "albedo": "./albedo/orangeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabbottom": {
-    "albedo": "./Textures/albedo/pinkclay.png",
+    "albedo": "./albedo/pinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabbottom": {
-    "albedo": "./Textures/albedo/purpleclay.png",
+    "albedo": "./albedo/purpleclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabbottom": {
-    "albedo": "./Textures/albedo/yellowclay.png",
+    "albedo": "./albedo/yellowclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabbottom": {
-    "albedo": "./Textures/albedo/whiteclay.png",
+    "albedo": "./albedo/whiteclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
@@ -485,49 +474,49 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/plasterblock.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabbottom": {
-    "albedo": "./Textures/albedo/mossstone.png",
+    "albedo": "./albedo/mossstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabbottom": {
-    "albedo": "./Textures/albedo/mossStoneBricks.png",
+    "albedo": "./albedo/mossStoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabbottom": {
-    "albedo": "./Textures/albedo/mossStoneSquares.png",
+    "albedo": "./albedo/mossStoneSquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabbottom": {
-    "albedo": "./Textures/albedo/stonesquares.png",
+    "albedo": "./albedo/stonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabbottom": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabbottom": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabbottom": {
-    "albedo": "./Textures/albedo/rawmarble.png",
+    "albedo": "./albedo/rawmarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabbottom": {
-    "albedo": "./Textures/albedo/sandStone.png",
+    "albedo": "./albedo/sandStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -539,7 +528,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/log.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabbottom": {
-    "albedo": "./Textures/albedo/limeStone.png",
+    "albedo": "./albedo/limeStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -551,7 +540,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/log.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabbottom": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -563,19 +552,19 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneblock.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabbottom": {
-    "albedo": "./Textures/albedo/carpetred.png",
+    "albedo": "./albedo/carpetred.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabbottom": {
-    "albedo": "./Textures/albedo/carpetblue.png",
+    "albedo": "./albedo/carpetblue.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabbottom": {
-    "albedo": "./Textures/albedo/carpetyellow.png",
+    "albedo": "./albedo/carpetyellow.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
@@ -611,16 +600,16 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslab": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslabbottom": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabbottom": {
     "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
@@ -647,7 +636,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
   },
   "Pandaros.Settlers.AutoLoad.taigaslabbottom": {
-    "albedo": "./Textures/albedo/grassTaiga.png",
+    "albedo": "./albedo/grassTaiga.png",
     "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
@@ -683,103 +672,103 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabtop": {
-    "albedo": "./Textures/albedo/redclay.png",
+    "albedo": "./albedo/redclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabtop": {
-    "albedo": "./Textures/albedo/blackclay.png",
+    "albedo": "./albedo/blackclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabtop": {
-    "albedo": "./Textures/albedo/blueclay.png",
+    "albedo": "./albedo/blueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabtop": {
-    "albedo": "./Textures/albedo/darkblueclay.png",
+    "albedo": "./albedo/darkblueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabtop": {
-    "albedo": "./Textures/albedo/brownclay.png",
+    "albedo": "./albedo/brownclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabtop": {
-    "albedo": "./Textures/albedo/cyanclay.png",
+    "albedo": "./albedo/cyanclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabtop": {
-    "albedo": "./Textures/albedo/greenclay.png",
+    "albedo": "./albedo/greenclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabtop": {
-    "albedo": "./Textures/albedo/greyclay.png",
+    "albedo": "./albedo/greyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabtop": {
-    "albedo": "./Textures/albedo/lightgreyclay.png",
+    "albedo": "./albedo/lightgreyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabtop": {
-    "albedo": "./Textures/albedo/lightpinkclay.png",
+    "albedo": "./albedo/lightpinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabtop": {
-    "albedo": "./Textures/albedo/limeclay.png",
+    "albedo": "./albedo/limeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabtop": {
-    "albedo": "./Textures/albedo/magentaclay.png",
+    "albedo": "./albedo/magentaclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabtop": {
-    "albedo": "./Textures/albedo/orangeclay.png",
+    "albedo": "./albedo/orangeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabtop": {
-    "albedo": "./Textures/albedo/pinkclay.png",
+    "albedo": "./albedo/pinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabtop": {
-    "albedo": "./Textures/albedo/purpleclay.png",
+    "albedo": "./albedo/purpleclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabtop": {
-    "albedo": "./Textures/albedo/yellowclay.png",
+    "albedo": "./albedo/yellowclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabtop": {
-    "albedo": "./Textures/albedo/whiteclay.png",
+    "albedo": "./albedo/whiteclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
@@ -791,49 +780,49 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/plasterblock.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabtop": {
-    "albedo": "./Textures/albedo/mossstone.png",
+    "albedo": "./albedo/mossstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabtop": {
-    "albedo": "./Textures/albedo/mossStoneBricks.png",
+    "albedo": "./albedo/mossStoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabtop": {
-    "albedo": "./Textures/albedo/mossStoneSquares.png",
+    "albedo": "./albedo/mossStoneSquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabtop": {
-    "albedo": "./Textures/albedo/stonesquares.png",
+    "albedo": "./albedo/stonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabtop": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabtop": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabtop": {
-    "albedo": "./Textures/albedo/rawmarble.png",
+    "albedo": "./albedo/rawmarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabtop": {
-    "albedo": "./Textures/albedo/sandStone.png",
+    "albedo": "./albedo/sandStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -845,7 +834,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/log.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabtop": {
-    "albedo": "./Textures/albedo/limeStone.png",
+    "albedo": "./albedo/limeStone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -857,7 +846,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/log.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabtop": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -869,19 +858,19 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneblock.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabtop": {
-    "albedo": "./Textures/albedo/carpetred.png",
+    "albedo": "./albedo/carpetred.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabtop": {
-    "albedo": "./Textures/albedo/carpetblue.png",
+    "albedo": "./albedo/carpetblue.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabtop": {
-    "albedo": "./Textures/albedo/carpetyellow.png",
+    "albedo": "./albedo/carpetyellow.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
@@ -917,10 +906,10 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslabtop": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.rainforestslabtop": {
     "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
@@ -1001,61 +990,61 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/leavesTaiga.png"
   },
   "Pandaros.Settlers.AutoLoad.dandelion": {
-    "albedo": "./Textures/albedo/dandelion.png",
+    "albedo": "./albedo/dandelion.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.lily": {
-    "albedo": "./Textures/albedo/lily.png",
+    "albedo": "./albedo/lily.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.tulip": {
-    "albedo": "./Textures/albedo/tulip.png",
+    "albedo": "./albedo/tulip.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.aloe": {
-    "albedo": "./Textures/albedo/aloe.png",
+    "albedo": "./albedo/aloe.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.daisy": {
-    "albedo": "./Textures/albedo/daisy.png",
+    "albedo": "./albedo/daisy.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.Flowers1": {
-    "albedo": "./Textures/albedo/Flowers1.png",
+    "albedo": "./albedo/Flowers1.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.Sunflower": {
-    "albedo": "./Textures/albedo/Sunflower.png",
+    "albedo": "./albedo/Sunflower.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rose": {
-    "albedo": "./Textures/albedo/rose.png",
+    "albedo": "./albedo/rose.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.allium": {
-    "albedo": "./Textures/albedo/allium.png",
+    "albedo": "./albedo/allium.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.berrybushtest": {
-    "albedo": "./Textures/albedo/dandelionbush.png",
+    "albedo": "./albedo/dandelionbush.png",
     "normal": "gamedata/textures/materials/blocks/normal/berrybush.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/berrybush.png"
@@ -1253,28 +1242,28 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/leavesTaiga.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslableft": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslabright": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslabfront": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.waterslabback": {
-    "albedo": "./Textures/albedo/notwater.png",
-    "normal": "./Textures/normal/notwater.png",
+    "albedo": "./albedo/notwater.png",
+    "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "./Textures/height/notwater.png"
+    "height": "./height/notwater.png"
   },
   "Pandaros.Settlers.AutoLoad.adobeslableft": {
     "albedo": "gamedata/textures/materials/blocks/albedo/adobe.png",
@@ -1541,73 +1530,73 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/dirt.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslableft": {
-    "albedo": "./Textures/albedo/carpetyellow.png",
+    "albedo": "./albedo/carpetyellow.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabright": {
-    "albedo": "./Textures/albedo/carpetyellow.png",
+    "albedo": "./albedo/carpetyellow.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabfront": {
-    "albedo": "./Textures/albedo/carpetyellow.png",
+    "albedo": "./albedo/carpetyellow.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabback": {
-    "albedo": "./Textures/albedo/carpetyellow.png",
+    "albedo": "./albedo/carpetyellow.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslableft": {
-    "albedo": "./Textures/albedo/carpetblue.png",
+    "albedo": "./albedo/carpetblue.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabright": {
-    "albedo": "./Textures/albedo/carpetblue.png",
+    "albedo": "./albedo/carpetblue.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabfront": {
-    "albedo": "./Textures/albedo/carpetblue.png",
+    "albedo": "./albedo/carpetblue.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetblueslabback": {
-    "albedo": "./Textures/albedo/carpetblue.png",
+    "albedo": "./albedo/carpetblue.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslableft": {
-    "albedo": "./Textures/albedo/carpetred.png",
+    "albedo": "./albedo/carpetred.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabright": {
-    "albedo": "./Textures/albedo/carpetred.png",
+    "albedo": "./albedo/carpetred.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabfront": {
-    "albedo": "./Textures/albedo/carpetred.png",
+    "albedo": "./albedo/carpetred.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabback": {
-    "albedo": "./Textures/albedo/carpetred.png",
+    "albedo": "./albedo/carpetred.png",
     "normal": "gamedata/textures/materials/blocks/normal/carpet.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/carpet.png"
@@ -1637,25 +1626,25 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneblock.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslableft": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabright": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabfront": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabback": {
-    "albedo": "./Textures/albedo/dirtBricks.png",
+    "albedo": "./albedo/dirtBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -1709,217 +1698,217 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/log.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslableft": {
-    "albedo": "./Textures/albedo/sandstone.png",
+    "albedo": "./albedo/sandstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabright": {
-    "albedo": "./Textures/albedo/sandstone.png",
+    "albedo": "./albedo/sandstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabfront": {
-    "albedo": "./Textures/albedo/sandstone.png",
+    "albedo": "./albedo/sandstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabback": {
-    "albedo": "./Textures/albedo/sandstone.png",
+    "albedo": "./albedo/sandstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslableft": {
-    "albedo": "./Textures/albedo/limestone.png",
+    "albedo": "./albedo/limestone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabright": {
-    "albedo": "./Textures/albedo/limestone.png",
+    "albedo": "./albedo/limestone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabfront": {
-    "albedo": "./Textures/albedo/limestone.png",
+    "albedo": "./albedo/limestone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabback": {
-    "albedo": "./Textures/albedo/limestone.png",
+    "albedo": "./albedo/limestone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslableft": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabright": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabfront": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabback": {
-    "albedo": "./Textures/albedo/marble.png",
+    "albedo": "./albedo/marble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslableft": {
-    "albedo": "./Textures/albedo/rawmarble.png",
+    "albedo": "./albedo/rawmarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabright": {
-    "albedo": "./Textures/albedo/rawmarble.png",
+    "albedo": "./albedo/rawmarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabfront": {
-    "albedo": "./Textures/albedo/rawmarble.png",
+    "albedo": "./albedo/rawmarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslabback": {
-    "albedo": "./Textures/albedo/rawmarble.png",
+    "albedo": "./albedo/rawmarble.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslableft": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabright": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabfront": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabback": {
-    "albedo": "./Textures/albedo/marblebricks.png",
+    "albedo": "./albedo/marblebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslableft": {
-    "albedo": "./Textures/albedo/stonesquares.png",
+    "albedo": "./albedo/stonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabright": {
-    "albedo": "./Textures/albedo/stonesquares.png",
+    "albedo": "./albedo/stonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabfront": {
-    "albedo": "./Textures/albedo/stonesquares.png",
+    "albedo": "./albedo/stonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabback": {
-    "albedo": "./Textures/albedo/stonesquares.png",
+    "albedo": "./albedo/stonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslableft": {
-    "albedo": "./Textures/albedo/mossstonesquares.png",
+    "albedo": "./albedo/mossstonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabright": {
-    "albedo": "./Textures/albedo/mossstonesquares.png",
+    "albedo": "./albedo/mossstonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabfront": {
-    "albedo": "./Textures/albedo/mossstonesquares.png",
+    "albedo": "./albedo/mossstonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabback": {
-    "albedo": "./Textures/albedo/mossstonesquares.png",
+    "albedo": "./albedo/mossstonesquares.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslableft": {
-    "albedo": "./Textures/albedo/mossstonebricks.png",
+    "albedo": "./albedo/mossstonebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabright": {
-    "albedo": "./Textures/albedo/mossstonebricks.png",
+    "albedo": "./albedo/mossstonebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabfront": {
-    "albedo": "./Textures/albedo/mossstonebricks.png",
+    "albedo": "./albedo/mossstonebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabback": {
-    "albedo": "./Textures/albedo/mossstonebricks.png",
+    "albedo": "./albedo/mossstonebricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslableft": {
-    "albedo": "./Textures/albedo/mossstone.png",
+    "albedo": "./albedo/mossstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabright": {
-    "albedo": "./Textures/albedo/mossstone.png",
+    "albedo": "./albedo/mossstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabfront": {
-    "albedo": "./Textures/albedo/mossstone.png",
+    "albedo": "./albedo/mossstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslabback": {
-    "albedo": "./Textures/albedo/mossstone.png",
+    "albedo": "./albedo/mossstone.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
@@ -2021,457 +2010,457 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/coatedplanks.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslableft": {
-    "albedo": "./Textures/albedo/whiteclay.png",
+    "albedo": "./albedo/whiteclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabright": {
-    "albedo": "./Textures/albedo/whiteclay.png",
+    "albedo": "./albedo/whiteclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabfront": {
-    "albedo": "./Textures/albedo/whiteclay.png",
+    "albedo": "./albedo/whiteclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslabback": {
-    "albedo": "./Textures/albedo/whiteclay.png",
+    "albedo": "./albedo/whiteclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslableft": {
-    "albedo": "./Textures/albedo/yellowclay.png",
+    "albedo": "./albedo/yellowclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabright": {
-    "albedo": "./Textures/albedo/yellowclay.png",
+    "albedo": "./albedo/yellowclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabfront": {
-    "albedo": "./Textures/albedo/yellowclay.png",
+    "albedo": "./albedo/yellowclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabback": {
-    "albedo": "./Textures/albedo/yellowclay.png",
+    "albedo": "./albedo/yellowclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslableft": {
-    "albedo": "./Textures/albedo/orangeclay.png",
+    "albedo": "./albedo/orangeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabright": {
-    "albedo": "./Textures/albedo/orangeclay.png",
+    "albedo": "./albedo/orangeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabfront": {
-    "albedo": "./Textures/albedo/orangeclay.png",
+    "albedo": "./albedo/orangeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabback": {
-    "albedo": "./Textures/albedo/orangeclay.png",
+    "albedo": "./albedo/orangeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslableft": {
-    "albedo": "./Textures/albedo/magentaclay.png",
+    "albedo": "./albedo/magentaclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabright": {
-    "albedo": "./Textures/albedo/magentaclay.png",
+    "albedo": "./albedo/magentaclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabfront": {
-    "albedo": "./Textures/albedo/magentaclay.png",
+    "albedo": "./albedo/magentaclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.magentaclayslabback": {
-    "albedo": "./Textures/albedo/magentaclay.png",
+    "albedo": "./albedo/magentaclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslableft": {
-    "albedo": "./Textures/albedo/purpleclay.png",
+    "albedo": "./albedo/purpleclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabright": {
-    "albedo": "./Textures/albedo/purpleclay.png",
+    "albedo": "./albedo/purpleclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabfront": {
-    "albedo": "./Textures/albedo/purpleclay.png",
+    "albedo": "./albedo/purpleclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslabback": {
-    "albedo": "./Textures/albedo/purpleclay.png",
+    "albedo": "./albedo/purpleclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclayslableft": {
-    "albedo": "./Textures/albedo/redclay.png",
+    "albedo": "./albedo/redclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabright": {
-    "albedo": "./Textures/albedo/redclay.png",
+    "albedo": "./albedo/redclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabfront": {
-    "albedo": "./Textures/albedo/redclay.png",
+    "albedo": "./albedo/redclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.redclayslabback": {
-    "albedo": "./Textures/albedo/redclay.png",
+    "albedo": "./albedo/redclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslableft": {
-    "albedo": "./Textures/albedo/lightpinkclay.png",
+    "albedo": "./albedo/lightpinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabright": {
-    "albedo": "./Textures/albedo/lightpinkclay.png",
+    "albedo": "./albedo/lightpinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabfront": {
-    "albedo": "./Textures/albedo/lightpinkclay.png",
+    "albedo": "./albedo/lightpinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabback": {
-    "albedo": "./Textures/albedo/lightpinkclay.png",
+    "albedo": "./albedo/lightpinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslableft": {
-    "albedo": "./Textures/albedo/pinkclay.png",
+    "albedo": "./albedo/pinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabright": {
-    "albedo": "./Textures/albedo/pinkclay.png",
+    "albedo": "./albedo/pinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabfront": {
-    "albedo": "./Textures/albedo/pinkclay.png",
+    "albedo": "./albedo/pinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslabback": {
-    "albedo": "./Textures/albedo/pinkclay.png",
+    "albedo": "./albedo/pinkclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslableft": {
-    "albedo": "./Textures/albedo/limeclay.png",
+    "albedo": "./albedo/limeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabright": {
-    "albedo": "./Textures/albedo/limeclay.png",
+    "albedo": "./albedo/limeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabfront": {
-    "albedo": "./Textures/albedo/limeclay.png",
+    "albedo": "./albedo/limeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.limeclayslabback": {
-    "albedo": "./Textures/albedo/limeclay.png",
+    "albedo": "./albedo/limeclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslableft": {
-    "albedo": "./Textures/albedo/greenclay.png",
+    "albedo": "./albedo/greenclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabright": {
-    "albedo": "./Textures/albedo/greenclay.png",
+    "albedo": "./albedo/greenclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabfront": {
-    "albedo": "./Textures/albedo/greenclay.png",
+    "albedo": "./albedo/greenclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greenclayslabback": {
-    "albedo": "./Textures/albedo/greenclay.png",
+    "albedo": "./albedo/greenclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslableft": {
-    "albedo": "./Textures/albedo/lightgreyclay.png",
+    "albedo": "./albedo/lightgreyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabright": {
-    "albedo": "./Textures/albedo/lightgreyclay.png",
+    "albedo": "./albedo/lightgreyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabfront": {
-    "albedo": "./Textures/albedo/lightgreyclay.png",
+    "albedo": "./albedo/lightgreyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabback": {
-    "albedo": "./Textures/albedo/lightgreyclay.png",
+    "albedo": "./albedo/lightgreyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslableft": {
-    "albedo": "./Textures/albedo/greyclay.png",
+    "albedo": "./albedo/greyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabright": {
-    "albedo": "./Textures/albedo/greyclay.png",
+    "albedo": "./albedo/greyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabfront": {
-    "albedo": "./Textures/albedo/greyclay.png",
+    "albedo": "./albedo/greyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.greyclayslabback": {
-    "albedo": "./Textures/albedo/greyclay.png",
+    "albedo": "./albedo/greyclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslableft": {
-    "albedo": "./Textures/albedo/darkblueclay.png",
+    "albedo": "./albedo/darkblueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabright": {
-    "albedo": "./Textures/albedo/darkblueclay.png",
+    "albedo": "./albedo/darkblueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabfront": {
-    "albedo": "./Textures/albedo/darkblueclay.png",
+    "albedo": "./albedo/darkblueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabback": {
-    "albedo": "./Textures/albedo/darkblueclay.png",
+    "albedo": "./albedo/darkblueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslableft": {
-    "albedo": "./Textures/albedo/cyanclay.png",
+    "albedo": "./albedo/cyanclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabright": {
-    "albedo": "./Textures/albedo/cyanclay.png",
+    "albedo": "./albedo/cyanclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabfront": {
-    "albedo": "./Textures/albedo/cyanclay.png",
+    "albedo": "./albedo/cyanclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.cyanclayslabback": {
-    "albedo": "./Textures/albedo/cyanclay.png",
+    "albedo": "./albedo/cyanclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslableft": {
-    "albedo": "./Textures/albedo/brownclay.png",
+    "albedo": "./albedo/brownclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabright": {
-    "albedo": "./Textures/albedo/brownclay.png",
+    "albedo": "./albedo/brownclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabfront": {
-    "albedo": "./Textures/albedo/brownclay.png",
+    "albedo": "./albedo/brownclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.brownclayslabback": {
-    "albedo": "./Textures/albedo/brownclay.png",
+    "albedo": "./albedo/brownclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslableft": {
-    "albedo": "./Textures/albedo/blueclay.png",
+    "albedo": "./albedo/blueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabright": {
-    "albedo": "./Textures/albedo/blueclay.png",
+    "albedo": "./albedo/blueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabfront": {
-    "albedo": "./Textures/albedo/blueclay.png",
+    "albedo": "./albedo/blueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blueclayslabback": {
-    "albedo": "./Textures/albedo/blueclay.png",
+    "albedo": "./albedo/blueclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslableft": {
-    "albedo": "./Textures/albedo/blackclay.png",
+    "albedo": "./albedo/blackclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabright": {
-    "albedo": "./Textures/albedo/blackclay.png",
+    "albedo": "./albedo/blackclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabfront": {
-    "albedo": "./Textures/albedo/blackclay.png",
+    "albedo": "./albedo/blackclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.blackclayslabback": {
-    "albedo": "./Textures/albedo/blackclay.png",
+    "albedo": "./albedo/blackclay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.lava": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.lavaslab": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.lavaslableft": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabright": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabfront": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabback": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.lavaslabbottom": {
-    "albedo": "./Textures/albedo/lava.png",
-    "normal": "./Textures/normal/lava.png",
-    "emissive": "./Textures/emissive/lava.png",
-    "height": "./Textures/height/lava.png"
+    "albedo": "./albedo/lava.png",
+    "normal": "./normal/lava.png",
+    "emissive": "./emissive/lava.png",
+    "height": "./height/lava.png"
   },
   "Pandaros.Settlers.AutoLoad.Selector": {
-    "albedo": "./Textures/albedo/Selector.png",
+    "albedo": "./albedo/Selector.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"

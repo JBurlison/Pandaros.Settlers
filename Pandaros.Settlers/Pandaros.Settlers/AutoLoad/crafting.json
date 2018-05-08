@@ -49,7 +49,7 @@
         "amount": 2
       },
       {
-        "type": "glass",
+        "type": "Pandaros.Settlers.AutoLoad.glass",
         "amount": 2
       }
     ],
@@ -67,7 +67,7 @@
     ],
     "requires": [
       {
-        "type": "window",
+        "type": "Pandaros.Settlers.AutoLoad.window",
         "amount": 2
       }
     ],
@@ -524,7 +524,7 @@
     ],
     "requires": [
       {
-        "type": "notwater",
+        "type": "Pandaros.Settlers.AutoLoad.notwater",
         "amount": 1
       }
     ],
@@ -542,7 +542,7 @@
     ],
     "requires": [
       {
-        "type": "lava",
+        "type": "Pandaros.Settlers.AutoLoad.lava",
         "amount": 1
       }
     ],

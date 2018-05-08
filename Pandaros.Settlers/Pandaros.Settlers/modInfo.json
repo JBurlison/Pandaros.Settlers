@@ -20,7 +20,7 @@
     "jsonFiles": [
       {
         "fileType": "addOrOverrideTextureMappingEntries",
-        "relativePath": "texturemapping.json"
+        "relativePath": "Textures/texturemapping.json"
       },
       {
         "fileType": "addNewTypes",
