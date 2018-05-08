@@ -1,5 +1,5 @@
 {
-  "infiniteemerald": {
+  "Pandaros.Settlers.AutoLoad.infiniteemerald": {
     "albedo": "./albedo/oreEmerald.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
