@@ -137,8 +137,9 @@
         "version": "0.8.1.6",
         "notes": [
           "Fixed sounds not working",
-          "Fixed some blocks not having any texture.",
-          "Fixed More Linux pathing"
+          "Fixed some blocks not having any texture. There are still more that are broken at this time.",
+          "Fixed More Linux pathing",
+          "Fixed some items not able to be crafted."
         ]
       },
       {

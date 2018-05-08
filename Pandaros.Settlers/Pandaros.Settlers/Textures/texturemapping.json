@@ -456,7 +456,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabbottom": {
-    "albedo": "./albedo/yellowclay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
@@ -762,7 +762,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabtop": {
-    "albedo": "./albedo/yellowclay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
@@ -2034,25 +2034,25 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslableft": {
-    "albedo": "./albedo/yellowclay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabright": {
-    "albedo": "./albedo/yellowclay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabfront": {
-    "albedo": "./albedo/yellowclay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslabback": {
-    "albedo": "./albedo/yellowclay.png",
+    "albedo": "./albedo/yellowClay.png",
     "normal": "gamedata/textures/materials/blocks/normal/clay.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/clay.png"
