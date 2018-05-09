@@ -4708,6 +4708,7 @@
     "icon": "./icons/lavaslab.png",
     "onPlaceAudio": "waterSplashFeet",
     "onRemoveAudio": "waterSplashFeet",
+    "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
     "colliders": {

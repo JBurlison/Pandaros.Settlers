@@ -1,6 +1,8 @@
 ﻿using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
+using Pipliz;
 using Pipliz.JSON;
+using Pipliz.Threading;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,7 +34,7 @@ namespace Pandaros.Settlers
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
 
-        public static readonly Version MOD_VER = new Version(0, 8, 1, 6);
+        public static readonly Version MOD_VER = new Version(0, 8, 1, 7);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -213,6 +215,61 @@ namespace Pandaros.Settlers
                     current2["path"] = new JSONNode(AUDIO_PATH + current2.GetAs<string>("path"));
 
                 ItemTypesServer.AudioFilesJSON.AddToArray(current);
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".GameLoader.trychangeblock")]
+        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
+        {
+            if (userData.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+                return;
+
+            if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
+            {
+                VoxelSide side = userData.PlayerClickedData.VoxelSideHit;
+                ushort newType = userData.TypeNew;
+                string suffix = string.Empty;
+
+                switch (side)
+                {
+                    case VoxelSide.xPlus:
+                        suffix = "right";
+                        break;
+
+                    case VoxelSide.xMin:
+                        suffix = "left";
+                        break;
+
+                    case VoxelSide.yPlus:
+                        suffix = "bottom";
+                        break;
+
+                    case VoxelSide.yMin:
+                        suffix = "top";
+                        break;
+
+                    case VoxelSide.zPlus:
+                        suffix = "front";
+                        break;
+
+                    case VoxelSide.zMin:
+                        suffix = "back";
+                        break;
+                }
+
+                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType, out string typename))
+                {
+                    string otherTypename = typename + suffix;
+
+                    if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out ushort otherIndex))
+                    {
+                        Vector3Int position = userData.Position;
+                        ThreadManager.InvokeOnMainThread(delegate ()
+                        {
+                            ServerManager.TryChangeBlock(position, otherIndex);
+                        }, 0.1f);
+                    }
+                }
             }
         }
 

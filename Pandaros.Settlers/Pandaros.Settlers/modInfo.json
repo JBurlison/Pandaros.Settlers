@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.1.6",
+    "version": "0.8.1.7",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -133,6 +133,12 @@
     "website": "http://www.settlersmod.com/",
     "about": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.1.7",
+        "notes": [
+          "Fixed some blocks not having any texture. this should be all of them fixed now."
+        ]
+      },
       {
         "version": "0.8.1.6",
         "notes": [
