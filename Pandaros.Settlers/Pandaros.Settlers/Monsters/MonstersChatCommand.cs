@@ -1,9 +1,7 @@
-﻿using ChatCommands;
+﻿using System;
+using ChatCommands;
 using Pandaros.Settlers.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Server.Monsters;
 
 namespace Pandaros.Settlers.Monsters
 {
@@ -19,13 +17,15 @@ namespace Pandaros.Settlers.Monsters
             if (player == null || player.ID == NetworkID.Server)
                 return true;
 
-            string[] array = CommandManager.SplitCommand(chat);
-            Colony colony = Colony.Get(player);
-            PlayerState state = PlayerState.GetPlayerState(player);
+            var array  = CommandManager.SplitCommand(chat);
+            var colony = Colony.Get(player);
+            var state  = PlayerState.GetPlayerState(player);
 
             if (array.Length == 1)
             {
-                PandaChat.Send(player, "Settlers! Monsters are {0}.", ChatColor.green, state.MonstersEnabled ? "on" : "off");
+                PandaChat.Send(player, "Settlers! Monsters are {0}.", ChatColor.green,
+                               state.MonstersEnabled ? "on" : "off");
+
                 return true;
             }
 
@@ -39,13 +39,14 @@ namespace Pandaros.Settlers.Monsters
                 else
                 {
                     state.MonstersEnabled = false;
-                    Server.Monsters.MonsterTracker.KillAllZombies(player);
+                    MonsterTracker.KillAllZombies(player);
                     PandaChat.Send(player, "Settlers! Mod Monsters are now off.", ChatColor.green);
                 }
             }
 
             if (!Configuration.GetorDefault("MonstersCanBeDisabled", true))
-                PandaChat.Send(player, "The server administrator had disabled the changing of Monsters.", ChatColor.green);
+                PandaChat.Send(player, "The server administrator had disabled the changing of Monsters.",
+                               ChatColor.green);
 
             return true;
         }

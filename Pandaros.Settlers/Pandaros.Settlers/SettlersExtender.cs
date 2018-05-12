@@ -1,27 +1,26 @@
-﻿using Pandaros.Settlers.Items;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+using Pandaros.Settlers.Seasons;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public static class SettlersExtender
     {
-        static List<Type> _monsters = new List<Type>();
+        private static readonly List<Type> _monsters = new List<Type>();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterWorldLoad"),
-            ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,   GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterWorldLoad")]
+        [ModLoader.ModCallbackProvidesForAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             foreach (var monster in _monsters)
             {
-                IPandaBoss pandaBoss = (IPandaBoss)Activator.CreateInstance(monster);
+                var pandaBoss = (IPandaBoss) Activator.CreateInstance(monster);
 
                 if (pandaBoss != null && !string.IsNullOrEmpty(pandaBoss.Name))
                 {
@@ -31,29 +30,28 @@ namespace Pandaros.Settlers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterModsLoaded")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterModsLoaded,
+            GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterModsLoaded")]
         public static void AfterModsLoaded(List<ModLoader.ModDescription> list)
         {
             foreach (var mod in list.Where(m => m.HasAssembly))
-            {
                 try
                 {
                     // Get all Types available in the assembly in an array
-                    Type[] typeArray = mod.LoadedAssembly.GetTypes();
+                    var typeArray = mod.LoadedAssembly.GetTypes();
 
                     // Walk through each Type and list their Information
-                    foreach (Type type in typeArray)
+                    foreach (var type in typeArray)
                     {
-                        Type[] ifaces = type.GetInterfaces();
+                        var ifaces = type.GetInterfaces();
 
-                        foreach (Type iface in ifaces)
-                        {
+                        foreach (var iface in ifaces)
                             try
                             {
                                 switch (iface.Name)
                                 {
                                     case nameof(IMagicItem):
-                                        IMagicItem magicItem = (IMagicItem)Activator.CreateInstance(type);
+                                        var magicItem = (IMagicItem) Activator.CreateInstance(type);
                                         PandaLogger.Log($"Magic Item {magicItem.Name} Loaded!");
                                         break;
 
@@ -61,8 +59,14 @@ namespace Pandaros.Settlers
                                         _monsters.Add(type);
                                         break;
 
+                                    case nameof(ISeason):
+                                        var season = (ISeason) Activator.CreateInstance(type);
+                                        PandaLogger.Log($"Season {season.Name} Loaded.");
+                                        SeasonsFactory.AddSeason(season);
+                                        break;
+
                                     case nameof(IMachineSettings):
-                                        IMachineSettings machineSettings = (IMachineSettings)Activator.CreateInstance(type);
+                                        var machineSettings = (IMachineSettings) Activator.CreateInstance(type);
 
                                         if (machineSettings != null && !string.IsNullOrEmpty(machineSettings.Name))
                                         {
@@ -77,14 +81,14 @@ namespace Pandaros.Settlers
                             {
                                 PandaLogger.LogError(ex, $"Error loading interface {iface.Name}");
                             }
-                        }
                     }
                 }
                 catch (Exception)
                 {
                     // Do not log it is not the correct type.
                 }
-            }
+
+            SeasonsFactory.ResortSeasons();
         }
     }
 }

@@ -1,10 +1,6 @@
-﻿using General.Networking;
+﻿using System.Collections.Generic;
 using Pipliz;
 using Pipliz.Chatting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers
 {
@@ -42,7 +38,8 @@ namespace Pandaros.Settlers
 
     public static class PandaChat
     {
-        static Dictionary<Players.Player, double> _nextSendTime = new Dictionary<Players.Player, double>();
+        private static readonly Dictionary<Players.Player, double> _nextSendTime =
+            new Dictionary<Players.Player, double>();
 
         public static bool CanSendMesssage(Players.Player p)
         {
@@ -52,60 +49,69 @@ namespace Pandaros.Settlers
             return Time.SecondsSinceStartDouble > _nextSendTime[p];
         }
 
-        public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white, params string[] args)
+        public static void SendThrottle(Players.Player  ply, string message, ChatColor color = ChatColor.white,
+                                        params string[] args)
         {
             if (CanSendMesssage(ply))
             {
-                string messageBuilt = BuildMessage(string.Format(message, args), color);
-                Pipliz.Chatting.Chat.Send(ply, messageBuilt);
+                var messageBuilt = BuildMessage(string.Format(message, args), color);
+                Chat.Send(ply, messageBuilt);
                 _nextSendTime[ply] = Time.SecondsSinceStartDouble + 10;
             }
         }
 
-        public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white, ChatStyle style = ChatStyle.normal, Pipliz.Chatting.ChatSenderType sender = Pipliz.Chatting.ChatSenderType.Server)
+        public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white,
+                                        ChatStyle      style  = ChatStyle.normal,
+                                        ChatSenderType sender = ChatSenderType.Server)
         {
             if (CanSendMesssage(ply))
             {
-                string messageBuilt = BuildMessage(message, color, style);
-                Pipliz.Chatting.Chat.Send(ply, messageBuilt, sender);
+                var messageBuilt = BuildMessage(message, color, style);
+                Chat.Send(ply, messageBuilt, sender);
                 _nextSendTime[ply] = Time.SecondsSinceStartDouble + 10;
             }
         }
 
-        public static void Send(Players.Player ply, string message, ChatColor color = ChatColor.white, params string[] args)
+        public static void Send(Players.Player  ply, string message, ChatColor color = ChatColor.white,
+                                params string[] args)
         {
-            string messageBuilt = BuildMessage(string.Format(message, args), color);
-            Pipliz.Chatting.Chat.Send(ply, messageBuilt);
+            var messageBuilt = BuildMessage(string.Format(message, args), color);
+            Chat.Send(ply, messageBuilt);
         }
 
-        public static void Send(Players.Player ply, string message, ChatColor color = ChatColor.white, ChatStyle style = ChatStyle.normal, Pipliz.Chatting.ChatSenderType sender = Pipliz.Chatting.ChatSenderType.Server)
+        public static void Send(Players.Player ply, string message,
+                                ChatColor      color = ChatColor.white,
+                                ChatStyle      style = ChatStyle.normal, ChatSenderType sender = ChatSenderType.Server)
         {
-            string messageBuilt = BuildMessage(message, color, style);
-            Pipliz.Chatting.Chat.Send(ply, messageBuilt, sender);
+            var messageBuilt = BuildMessage(message, color, style);
+            Chat.Send(ply, messageBuilt, sender);
         }
 
-        public static void SendToAll(string message, ChatColor color = ChatColor.white, ChatStyle style = ChatStyle.normal, Pipliz.Chatting.ChatSenderType sender = Pipliz.Chatting.ChatSenderType.Server)
+        public static void SendToAll(string    message,                  ChatColor      color  = ChatColor.white,
+                                     ChatStyle style = ChatStyle.normal, ChatSenderType sender = ChatSenderType.Server)
         {
-            string messageBuilt = BuildMessage(message, color, style);
-            Pipliz.Chatting.Chat.SendToAll(messageBuilt, sender);
+            var messageBuilt = BuildMessage(message, color, style);
+            Chat.SendToAll(messageBuilt, sender);
         }
 
-        public static void SendToAllBut(Players.Player ply, string message, ChatColor color = ChatColor.white, ChatStyle style = ChatStyle.normal, Pipliz.Chatting.ChatSenderType sender = Pipliz.Chatting.ChatSenderType.Server)
+        public static void SendToAllBut(Players.Player ply, string message, ChatColor color = ChatColor.white,
+                                        ChatStyle      style  = ChatStyle.normal,
+                                        ChatSenderType sender = ChatSenderType.Server)
         {
-            string messageBuilt = BuildMessage(message, color, style);
-            Pipliz.Chatting.Chat.SendToAllBut(ply, messageBuilt, sender);
+            var messageBuilt = BuildMessage(message, color, style);
+            Chat.SendToAllBut(ply, messageBuilt, sender);
         }
 
 
-        public static string BuildMessage(string message, ChatColor color = ChatColor.white, ChatStyle style = ChatStyle.normal)
+        public static string BuildMessage(string    message, ChatColor color = ChatColor.white,
+                                          ChatStyle style = ChatStyle.normal)
         {
-            string colorPrefix = "<color=" + color.ToString() + ">";
-            string colorSuffix = "</color>";
+            var    colorPrefix = "<color=" + color + ">";
+            var    colorSuffix = "</color>";
             string stylePrefix, styleSuffix;
 
             switch (style)
             {
-
                 case ChatStyle.bold:
                     stylePrefix = "<b>";
                     styleSuffix = "</b>";

@@ -1,34 +1,61 @@
-﻿using ChatCommands;
-using Pipliz.JSON;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
+using ChatCommands;
+using Permissions;
+using Pipliz.JSON;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public static class Configuration
     {
-        private static string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
+        private static readonly string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
         private static JSONNode _rootSettings = new JSONNode();
 
         public static GameDifficulty MinDifficulty
         {
             get
             {
-                string diffStr = GetorDefault(nameof(MinDifficulty), GameDifficulty.Normal.Name);
+                var diffStr = GetorDefault(nameof(MinDifficulty), GameDifficulty.Normal.Name);
 
                 if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
                     return GameDifficulty.GameDifficulties[diffStr];
-                else
-                    return GameDifficulty.Normal;
+
+                return GameDifficulty.Normal;
             }
-            private set
+            private set => SetValue(nameof(MinDifficulty), value);
+        }
+
+        public static GameDifficulty DefaultDifficulty
+        {
+            get
             {
-                SetValue(nameof(MinDifficulty), value);
+                var diffStr = GetorDefault(nameof(DefaultDifficulty), GameDifficulty.Medium.Name);
+
+                if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
+                    return GameDifficulty.GameDifficulties[diffStr];
+
+                return GameDifficulty.Medium;
             }
+            private set => SetValue(nameof(DefaultDifficulty), value);
+        }
+
+        public static bool DifficutlyCanBeChanged
+        {
+            get => GetorDefault(nameof(DifficutlyCanBeChanged), true);
+            private set => SetValue(nameof(DifficutlyCanBeChanged), value);
+        }
+
+        public static bool OfflineColonies
+        {
+            get => GetorDefault(nameof(OfflineColonies), true);
+            private set => SetValue(nameof(OfflineColonies), value);
+        }
+
+        public static bool TeleportPadsRequireMachinists
+        {
+            get => GetorDefault(nameof(TeleportPadsRequireMachinists), false);
+            private set => SetValue(nameof(TeleportPadsRequireMachinists), value);
         }
 
         public static bool HasSetting(string setting)
@@ -36,62 +63,10 @@ namespace Pandaros.Settlers
             return _rootSettings.HasChild(setting);
         }
 
-        public static GameDifficulty DefaultDifficulty
-        {
-            get
-            {
-                string diffStr = GetorDefault(nameof(DefaultDifficulty), GameDifficulty.Medium.Name);
 
-                if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
-                    return GameDifficulty.GameDifficulties[diffStr];
-                else
-                    return GameDifficulty.Medium;
-            }
-            private set
-            {
-                SetValue(nameof(DefaultDifficulty), value);
-            }
-        }
-
-        public static bool DifficutlyCanBeChanged
-        {
-            get
-            {
-                return GetorDefault(nameof(DifficutlyCanBeChanged), true);
-            }
-            private set
-            {
-                SetValue(nameof(DifficutlyCanBeChanged), value);
-            }
-        }
-
-        public static bool OfflineColonies
-        {
-            get
-            {
-                return GetorDefault(nameof(OfflineColonies), true);
-            }
-            private set
-            {
-                SetValue(nameof(OfflineColonies), value);
-            }
-        }
-
-        public static bool TeleportPadsRequireMachinists
-        {
-            get
-            {
-                return GetorDefault(nameof(TeleportPadsRequireMachinists), false);
-            }
-            private set
-            {
-                SetValue(nameof(TeleportPadsRequireMachinists), value);
-            }
-        }
-       
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld"),
-            ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+            GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld")]
+        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
             Reload();
@@ -111,19 +86,17 @@ namespace Pandaros.Settlers
                 _rootSettings = config;
 
                 if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
-                {
                     foreach (var diff in diffs.LoopArray())
                     {
                         var newDiff = new GameDifficulty(diff);
                         GameDifficulty.GameDifficulties[newDiff.Name] = newDiff;
                     }
-                }
             }
         }
 
         public static void Save()
         {
-            JSONNode diffs = new JSONNode(NodeType.Array);
+            var diffs = new JSONNode(NodeType.Array);
 
             foreach (var diff in GameDifficulty.GameDifficulties.Values)
                 diffs.AddToArray(diff.ToJson());
@@ -157,9 +130,11 @@ namespace Pandaros.Settlers
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            if (Permissions.PermissionsManager.CheckAndWarnPermission(player, new Permissions.PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Config")))
+            if (PermissionsManager.CheckAndWarnPermission(player,
+                                                          new PermissionsManager.Permission(GameLoader.NAMESPACE +
+                                                                                            ".Permissions.Config")))
             {
-                string[] array = CommandManager.SplitCommand(chat);
+                var array = CommandManager.SplitCommand(chat);
 
                 if (array.Length == 3)
                 {
@@ -175,10 +150,14 @@ namespace Pandaros.Settlers
                             Configuration.SetValue(array[1], array[2]);
                     }
                     else
+                    {
                         PandaChat.Send(player, $"The configuration {array[1]} does not exist.", ChatColor.red);
+                    }
                 }
                 else
+                {
                     Configuration.Reload();
+                }
             }
 
             return true;

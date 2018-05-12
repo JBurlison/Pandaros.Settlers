@@ -1,66 +1,76 @@
-﻿using BlockTypes.Builtin;
-using ChatCommands;
-using Pandaros.Settlers.Entities;
-using Pipliz;
-using Server.Monsters;
-using Server.NPCs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using ChatCommands;
 using NPC;
-using Pipliz.Collections;
+using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
+using Pipliz;
+using Pipliz.Collections;
 using Pipliz.Mods.APIProvider.Jobs;
+using Server.AI;
+using Server.Monsters;
+using Server.NPCs;
+using Shared;
+using UnityEngine;
+using Physics = General.Physics.Physics;
 
 namespace Pandaros.Settlers.AI
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public class CalltoArmsJob : Job
     {
-        const int CALL_RAD = 500;
+        private const int CALL_RAD = 500;
 
-        static string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
-        static Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
+        private static readonly string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
+        private static readonly Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
 
-        static NPCTypeStandardSettings _callToArmsNPCSettings = new NPCTypeStandardSettings()
+        private static readonly NPCTypeStandardSettings _callToArmsNPCSettings = new NPCTypeStandardSettings
         {
-            type = NPCTypeID.GetNextID(),
-            keyName = GameLoader.NAMESPACE + ".CalledToArms",
-            printName = "Called to Arms",
-            maskColor0 = UnityEngine.Color.red,
-            maskColor1 = UnityEngine.Color.magenta
+            type       = NPCTypeID.GetNextID(),
+            keyName    = GameLoader.NAMESPACE + ".CalledToArms",
+            printName  = "Called to Arms",
+            maskColor0 = Color.red,
+            maskColor1 = Color.magenta
         };
-        public static NPCType CallToArmsNPCType;
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".CalltoArms.Init"),
-            ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes"),
-            ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
+        public static NPCType CallToArmsNPCType;
+        private Colony _colony;
+        private PlayerState _playerState;
+        private Stockpile _stock;
+        private IMonster _target;
+        private BoxedDictionary _tmpVals;
+        private int _waitingFor;
+
+        private GuardBaseJob.GuardSettings _weapon;
+
+        public override bool ToSleep => false;
+
+        public override NPCType NPCType => CallToArmsNPCType;
+
+        public override bool NeedsItems => _weapon == null;
+
+        public override Vector3Int KeyLocation => position;
+
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+            GameLoader.NAMESPACE + ".CalltoArms.Init")]
+        [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.registerjobs")]
         public static void Init()
         {
             NPCType.AddSettings(_callToArmsNPCSettings);
             CallToArmsNPCType = NPCType.GetByKeyNameOrDefault(_callToArmsNPCSettings.keyName);
         }
 
-        GuardBaseJob.GuardSettings _weapon;
-        BoxedDictionary _tmpVals;
-        Colony _colony;
-        PlayerState _playerState;
-        Stockpile _stock;
-        IMonster _target;
-        int _waitingFor;
-
-        public override bool ToSleep => false;
-
-        public override NPCType NPCType => CallToArmsNPCType;
-
         public override void OnAssignedNPC(NPCBase npc)
         {
-            owner = npc.Colony.Owner;
-            _tmpVals = npc.GetTempValues(true);
-            _colony = npc.Colony;
+            owner        = npc.Colony.Owner;
+            _tmpVals     = npc.GetTempValues(true);
+            _colony      = npc.Colony;
             _playerState = PlayerState.GetPlayerState(_colony.Owner);
-            _stock = Stockpile.GetStockPile(_colony.Owner);
+            _stock       = Stockpile.GetStockPile(_colony.Owner);
             base.OnAssignedNPC(npc);
         }
 
@@ -76,33 +86,33 @@ namespace Pandaros.Settlers.AI
                 {
                     return currentPos;
                 }
-                else
+
+                _target = MonsterTracker.Find(currentPos, CALL_RAD, _weapon.shootDamage);
+
+                if (_target != null)
                 {
-                    _target = MonsterTracker.Find(currentPos, CALL_RAD, _weapon.shootDamage);
+                    var ranged = _weapon.range - 5;
 
-                    if (_target != null)
-                    {
-                        var ranged = _weapon.range - 5;
+                    if (ranged < 0)
+                        ranged = 1;
 
-                        if (ranged < 0)
-                            ranged = 1;
+                    position = new Vector3Int(_target.Position).Add(ranged, 0, ranged);
+                    position = AIManager.ClosestPosition(position, currentPos);
 
-                        position = new Vector3Int(_target.Position).Add(ranged, 0, ranged);
-                        position = Server.AI.AIManager.ClosestPosition(position, currentPos);
-
-                        if (!Server.AI.AIManager.CanStandAt(position))
-                        {
-                            _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
-                            _waitingFor++;
-                        }
-                        else
-                            return position;
-                    }
-                    else
+                    if (!AIManager.CanStandAt(position))
                     {
                         _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
                         _waitingFor++;
                     }
+                    else
+                    {
+                        return position;
+                    }
+                }
+                else
+                {
+                    _tmpVals.Set(COOLDOWN_KEY, _weapon.cooldownMissingItem);
+                    _waitingFor++;
                 }
             }
 
@@ -117,12 +127,12 @@ namespace Pandaros.Settlers.AI
             return currentPos;
         }
 
-        public static GuardBaseJob.GuardSettings GetWeapon(NPC.NPCBase npc)
+        public static GuardBaseJob.GuardSettings GetWeapon(NPCBase npc)
         {
             GuardBaseJob.GuardSettings weapon = null;
-            var inv = SettlerInventory.GetSettlerInventory(npc);
+            var                        inv    = SettlerInventory.GetSettlerInventory(npc);
 
-            foreach (var w in Items.ItemFactory.WeaponGuardSettings)
+            foreach (var w in ItemFactory.WeaponGuardSettings)
                 if (npc.Inventory.Contains(w.recruitmentItem) || inv.Weapon.Id == w.recruitmentItem.Type)
                 {
                     weapon = w;
@@ -139,10 +149,10 @@ namespace Pandaros.Settlers.AI
                 var currentposition = usedNPC.Position;
                 _hadAmmo.Clear();
 
-                if (_target == null || !_target.IsValid || !General.Physics.Physics.CanSee(usedNPC.Position.Vector, _target.Position))
+                if (_target == null || !_target.IsValid || !Physics.CanSee(usedNPC.Position.Vector, _target.Position))
                     _target = MonsterTracker.Find(currentposition, _weapon.range, _weapon.shootDamage);
 
-                if (_target != null && General.Physics.Physics.CanSee(usedNPC.Position.Vector, _target.Position))
+                if (_target != null && Physics.CanSee(usedNPC.Position.Vector, _target.Position))
                 {
                     foreach (var projectile in _weapon.shootItem)
                     {
@@ -160,7 +170,8 @@ namespace Pandaros.Settlers.AI
 
                     if (!_hadAmmo.Any(a => !a.Value))
                     {
-                        state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownShot, _weapon.shootItem[0].Type));
+                        state.SetIndicator(new IndicatorState(_weapon.cooldownShot, _weapon.shootItem[0].Type));
+
                         foreach (var ammo in _hadAmmo)
                         {
                             if (usedNPC.Inventory.Contains(ammo.Key))
@@ -182,18 +193,19 @@ namespace Pandaros.Settlers.AI
                             ServerManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
 
                         if (_weapon.shootItem.Count > 0)
-                        {
                             foreach (var proj in _weapon.shootItem)
                             {
-                                string projName = ItemTypes.IndexLookup.GetName(proj.Type);
+                                var projName = ItemTypes.IndexLookup.GetName(proj.Type);
 
                                 if (AnimationManager.AnimatedObjects.ContainsKey(projName))
                                 {
-                                    AnimationManager.AnimatedObjects[projName].SendMoveToInterpolatedOnce(position.Vector, _target.PositionToAimFor);
+                                    AnimationManager
+                                       .AnimatedObjects[projName]
+                                       .SendMoveToInterpolatedOnce(position.Vector, _target.PositionToAimFor);
+
                                     break;
                                 }
                             }
-                        }
 
                         _target.OnHit(_weapon.shootDamage);
                         state.SetCooldown(_weapon.cooldownShot);
@@ -201,24 +213,29 @@ namespace Pandaros.Settlers.AI
                     }
                     else
                     {
-                        state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownMissingItem, _weapon.shootItem[0].Type, true));
+                        state.SetIndicator(new IndicatorState(_weapon.cooldownMissingItem, _weapon.shootItem[0].Type,
+                                                              true));
+
                         state.SetCooldown(_weapon.cooldownMissingItem);
                     }
                 }
                 else
                 {
-                    state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
+                    state.SetIndicator(new IndicatorState(_weapon.cooldownSearchingTarget,
+                                                          GameLoader.MissingMonster_Icon, true));
+
                     state.SetCooldown(_weapon.cooldownMissingItem);
                     _target = null;
                 }
             }
             catch (Exception)
             {
-                state.SetIndicator(new Shared.IndicatorState(_weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
+                state.SetIndicator(new IndicatorState(_weapon.cooldownSearchingTarget, GameLoader.MissingMonster_Icon,
+                                                      true));
+
                 state.SetCooldown(_weapon.cooldownMissingItem);
                 _target = null;
             }
-
         }
 
         public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
@@ -226,14 +243,12 @@ namespace Pandaros.Settlers.AI
             if (_weapon != null)
                 return;
 
-            if (_playerState.CallToArmsEnabled && Items.ItemFactory.WeaponGuardSettings.Count != 0)
+            if (_playerState.CallToArmsEnabled && ItemFactory.WeaponGuardSettings.Count != 0)
             {
                 _weapon = GetWeapon(usedNPC);
 
                 if (_weapon == null)
-                {
-                    foreach (var w in Items.ItemFactory.WeaponGuardSettings)
-                    {
+                    foreach (var w in ItemFactory.WeaponGuardSettings)
                         if (_stock.Contains(w.recruitmentItem))
                         {
                             _stock.TryRemove(w.recruitmentItem);
@@ -241,14 +256,8 @@ namespace Pandaros.Settlers.AI
                             _weapon = w;
                             break;
                         }
-                    }
-                }
             }
         }
-
-        public override bool NeedsItems => _weapon == null;
-
-        public override Vector3Int KeyLocation => position;
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
@@ -261,6 +270,7 @@ namespace Pandaros.Settlers.AI
         public override void OnRemove()
         {
             isValid = false;
+
             if (usedNPC != null)
             {
                 usedNPC.ClearJob();
@@ -273,26 +283,23 @@ namespace Pandaros.Settlers.AI
             usedNPC = null;
         }
 
-        new public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
+        public new void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
         {
             this.position = position;
-            this.owner = owner;
-            if (desiredNPCID != 0 && NPCTracker.TryGetNPC(desiredNPCID, out this.usedNPC))
-            {
-                this.usedNPC.TakeJob(this);
-            }
+            this.owner    = owner;
+
+            if (desiredNPCID != 0 && NPCTracker.TryGetNPC(desiredNPCID, out usedNPC))
+                usedNPC.TakeJob(this);
             else
-            {
                 desiredNPCID = 0;
-            }
         }
     }
 
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public class CalltoArms : IChatCommand
     {
-        Dictionary<NPC.NPCBase, NPC.IJob> _Jobs = new Dictionary<NPC.NPCBase, NPC.IJob>();
-        List<CalltoArmsJob> _callToArmsJobs = new List<CalltoArmsJob>();
+        private readonly List<CalltoArmsJob> _callToArmsJobs = new List<CalltoArmsJob>();
+        private readonly Dictionary<NPCBase, IJob> _Jobs = new Dictionary<NPCBase, IJob>();
 
         public bool IsCommand(string chat)
         {
@@ -301,23 +308,14 @@ namespace Pandaros.Settlers.AI
                    chat.StartsWith("/call", StringComparison.OrdinalIgnoreCase);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
-        public void OnPlayerDisconnected(Players.Player p)
-        {
-            PlayerState state = PlayerState.GetPlayerState(p);
-
-            if (state.CallToArmsEnabled)
-                TryDoCommand(p, "");
-        }
-
         public bool TryDoCommand(Players.Player player, string chat)
         {
             if (player == null || player.ID == NetworkID.Server)
                 return true;
 
-            string[] array = CommandManager.SplitCommand(chat);
-            Colony colony = Colony.Get(player);
-            PlayerState state = PlayerState.GetPlayerState(player);
+            var array  = CommandManager.SplitCommand(chat);
+            var colony = Colony.Get(player);
+            var state  = PlayerState.GetPlayerState(player);
             state.CallToArmsEnabled = !state.CallToArmsEnabled;
 
             if (state.CallToArmsEnabled)
@@ -356,7 +354,7 @@ namespace Pandaros.Settlers.AI
             else
             {
                 PandaChat.Send(player, "Call to arms deactivated.", ChatColor.green, ChatStyle.bold);
-                List<NPCBase> assignedWorkers = new List<NPCBase>();
+                var assignedWorkers = new List<NPCBase>();
 
                 foreach (var follower in colony.Followers)
                 {
@@ -366,7 +364,7 @@ namespace Pandaros.Settlers.AI
                     {
                         follower.ClearJob();
                         job.NPC = null;
-                        ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(job);
+                        ((JobTracker.JobFinder) JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(job);
                     }
 
                     if (_Jobs.ContainsKey(follower) && _Jobs[follower].NeedsNPC)
@@ -376,14 +374,13 @@ namespace Pandaros.Settlers.AI
                         _Jobs[follower].NPC = follower;
                         JobTracker.Remove(player, _Jobs[follower].KeyLocation);
                     }
-
                 }
 
                 _Jobs.Clear();
             }
 
             foreach (var armsJob in _callToArmsJobs)
-                ((JobTracker.JobFinder)JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(armsJob);
+                ((JobTracker.JobFinder) JobTracker.GetOrCreateJobFinder(player)).openJobs.Remove(armsJob);
 
             _callToArmsJobs.Clear();
             JobTracker.Update();
@@ -392,11 +389,21 @@ namespace Pandaros.Settlers.AI
             return true;
         }
 
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerDisconnected,
+            GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
+        public void OnPlayerDisconnected(Players.Player p)
+        {
+            var state = PlayerState.GetPlayerState(p);
+
+            if (state.CallToArmsEnabled)
+                TryDoCommand(p, "");
+        }
+
         public static bool CanCallToArms(IJob job)
         {
             return !(job is GuardBaseJob) &&
-                   !(job is Jobs.Knight) &&
-                   !(job is Jobs.MachinistJob);
+                   !(job is Knight) &&
+                   !(job is MachinistJob);
         }
     }
 }

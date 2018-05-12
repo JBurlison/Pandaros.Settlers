@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Pandaros.Settlers.Entities;
 using NPC;
-using Pandaros.Settlers.AI;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
+using Pipliz;
 
 namespace Pandaros.Settlers.AI
 {
-    public static class SettlerEvaluation 
+    public static class SettlerEvaluation
     {
         private static readonly double _minFoodHours = TimeSpan.FromDays(3).TotalHours;
 
         public static float SpawnChance(Players.Player p, Colony c, PlayerState state)
         {
-            float chance = .3f;
+            var chance        = .3f;
             var remainingBeds = BedBlockTracker.GetCount(p) - c.FollowerCount;
 
             if (remainingBeds < 1)
@@ -42,8 +39,8 @@ namespace Pandaros.Settlers.AI
 
             if (state.Difficulty != GameDifficulty.Easy)
                 if (c.InSiegeMode ||
-                c.LastSiegeModeSpawn != 0 &&
-                Pipliz.Time.SecondsSinceStartDouble - c.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
+                    c.LastSiegeModeSpawn != 0 &&
+                    Time.SecondsSinceStartDouble - c.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
                     chance -= 0.4f;
 
             return chance;

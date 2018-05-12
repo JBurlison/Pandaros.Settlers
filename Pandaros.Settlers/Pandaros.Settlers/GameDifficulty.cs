@@ -1,58 +1,68 @@
-﻿using ChatCommands;
-using Pandaros.Settlers.AI;
+﻿using System;
+using System.Collections.Generic;
+using ChatCommands;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz.JSON;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public class GameDifficulty
     {
-        public static Dictionary<string, GameDifficulty> GameDifficulties { get; private set; }
-
-        public static GameDifficulty Normal { get; private set; }
-        public static GameDifficulty Easy { get; private set; }
-        public static GameDifficulty Medium { get; private set; }
-        public static GameDifficulty Hard { get; private set; }
-
-        public void Print(Players.Player player)
-        {
-            PandaChat.Send(player, $"FoodMultiplier: {FoodMultiplier}", ChatColor.green);
-            PandaChat.Send(player, $"MonsterDamage: {MonsterDamage}", ChatColor.green);
-            PandaChat.Send(player, $"MonsterDamageReduction: {MonsterDamageReduction}", ChatColor.green);
-        }
-
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
-            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f) { Rank = 0, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 50, ZombieQueenTargetTeleportCooldownSeconds = 30, AdditionalChance = 0f };
-            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f) { Rank = 1, ZombieQueenTargetTeleportHp = 100, BossHPPerColonist = 50, ZombieQueenTargetTeleportCooldownSeconds = 3, AdditionalChance = 0.4f };
-            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f) { Rank = 2, ZombieQueenTargetTeleportHp = 300, BossHPPerColonist = 70, ZombieQueenTargetTeleportCooldownSeconds = 15, AdditionalChance = 0f };
-            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f) { Rank = 3, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 80, ZombieQueenTargetTeleportCooldownSeconds = 10, AdditionalChance = -0.2f };
-            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f) { Rank = 4, ZombieQueenTargetTeleportHp = 500, BossHPPerColonist = 100, ZombieQueenTargetTeleportCooldownSeconds = 5, AdditionalChance = -0.4f };
+
+            Normal = new GameDifficulty("Normal", 0f, 0f, 0f, 0f)
+            {
+                Rank                                     = 0,
+                ZombieQueenTargetTeleportHp              = 100,
+                BossHPPerColonist                        = 50,
+                ZombieQueenTargetTeleportCooldownSeconds = 30,
+                AdditionalChance                         = 0f
+            };
+
+            Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f)
+            {
+                Rank                                     = 1,
+                ZombieQueenTargetTeleportHp              = 100,
+                BossHPPerColonist                        = 50,
+                ZombieQueenTargetTeleportCooldownSeconds = 3,
+                AdditionalChance                         = 0.4f
+            };
+
+            Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f)
+            {
+                Rank                                     = 2,
+                ZombieQueenTargetTeleportHp              = 300,
+                BossHPPerColonist                        = 70,
+                ZombieQueenTargetTeleportCooldownSeconds = 15,
+                AdditionalChance                         = 0f
+            };
+
+            Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f)
+            {
+                Rank                                     = 3,
+                ZombieQueenTargetTeleportHp              = 500,
+                BossHPPerColonist                        = 80,
+                ZombieQueenTargetTeleportCooldownSeconds = 10,
+                AdditionalChance                         = -0.2f
+            };
+
+            new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f)
+            {
+                Rank                                     = 4,
+                ZombieQueenTargetTeleportHp              = 500,
+                BossHPPerColonist                        = 100,
+                ZombieQueenTargetTeleportCooldownSeconds = 5,
+                AdditionalChance                         = -0.4f
+            };
         }
 
-        public string Name { get; set; }
-        public int Rank { get; set; }
-
-        public float FoodMultiplier { get; set; }
-
-        public float MachineThreashHold { get; set; } = 0;
-
-        public float MonsterDamageReduction { get; set; }
-        public float AdditionalChance { get; set; }
-        public float MonsterDamage { get; set; }
-        public float ZombieQueenTargetTeleportHp { get; set; } = 250;
-        public float ZombieQueenTargetTeleportCooldownSeconds { get; set; } = 45;
-        public float BossHPPerColonist { get; set; } = 30;
-
-        public GameDifficulty() { }
+        public GameDifficulty()
+        {
+        }
 
         public GameDifficulty(JSONNode node)
         {
@@ -82,26 +92,55 @@ namespace Pandaros.Settlers
             }
         }
 
-        public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr, float monsterDamage)
+        public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr,
+                              float  monsterDamage)
         {
-            Name = name;
-            FoodMultiplier = foodMultiplier;
+            Name                   = name;
+            FoodMultiplier         = foodMultiplier;
             GameDifficulties[name] = this;
-            MachineThreashHold = machineThreashHold;
+            MachineThreashHold     = machineThreashHold;
             MonsterDamageReduction = monsterDr;
-            MonsterDamage = monsterDamage;
+            MonsterDamage          = monsterDamage;
+        }
+
+        public static Dictionary<string, GameDifficulty> GameDifficulties { get; }
+
+        public static GameDifficulty Normal { get; }
+        public static GameDifficulty Easy { get; }
+        public static GameDifficulty Medium { get; }
+        public static GameDifficulty Hard { get; }
+
+        public string Name { get; set; }
+        public int Rank { get; set; }
+
+        public float FoodMultiplier { get; set; }
+
+        public float MachineThreashHold { get; set; }
+
+        public float MonsterDamageReduction { get; set; }
+        public float AdditionalChance { get; set; }
+        public float MonsterDamage { get; set; }
+        public float ZombieQueenTargetTeleportHp { get; set; } = 250;
+        public float ZombieQueenTargetTeleportCooldownSeconds { get; set; } = 45;
+        public float BossHPPerColonist { get; set; } = 30;
+
+        public void Print(Players.Player player)
+        {
+            PandaChat.Send(player, $"FoodMultiplier: {FoodMultiplier}", ChatColor.green);
+            PandaChat.Send(player, $"MonsterDamage: {MonsterDamage}", ChatColor.green);
+            PandaChat.Send(player, $"MonsterDamageReduction: {MonsterDamageReduction}", ChatColor.green);
         }
 
         public JSONNode ToJson()
         {
-            JSONNode node = new JSONNode()
-                .SetAs(nameof(Name), Name)
-                .SetAs(nameof(Rank), Rank)
-                .SetAs(nameof(FoodMultiplier), FoodMultiplier)
-                .SetAs(nameof(MachineThreashHold), MachineThreashHold)
-                .SetAs(nameof(MonsterDamageReduction), MonsterDamageReduction)
-                .SetAs(nameof(MonsterDamage), MonsterDamage)
-                .SetAs(nameof(AdditionalChance), AdditionalChance);
+            var node = new JSONNode()
+                      .SetAs(nameof(Name), Name)
+                      .SetAs(nameof(Rank), Rank)
+                      .SetAs(nameof(FoodMultiplier), FoodMultiplier)
+                      .SetAs(nameof(MachineThreashHold), MachineThreashHold)
+                      .SetAs(nameof(MonsterDamageReduction), MonsterDamageReduction)
+                      .SetAs(nameof(MonsterDamage), MonsterDamage)
+                      .SetAs(nameof(AdditionalChance), AdditionalChance);
 
             return node;
         }
@@ -110,13 +149,14 @@ namespace Pandaros.Settlers
         {
             return Name;
         }
-        
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
+
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+            GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             foreach (var player in Players.PlayerDatabase.ValuesAsList)
             {
-                PlayerState ps = PlayerState.GetPlayerState(player);
+                var ps = PlayerState.GetPlayerState(player);
 
                 if (ps != null && ps.Difficulty.Rank < Configuration.MinDifficulty.Rank)
                     ps.Difficulty = Configuration.MinDifficulty;
@@ -128,7 +168,8 @@ namespace Pandaros.Settlers
     {
         public bool IsCommand(string chat)
         {
-            return chat.StartsWith("/difficulty", StringComparison.OrdinalIgnoreCase) || chat.StartsWith("/dif", StringComparison.OrdinalIgnoreCase);
+            return chat.StartsWith("/difficulty", StringComparison.OrdinalIgnoreCase) ||
+                   chat.StartsWith("/dif", StringComparison.OrdinalIgnoreCase);
         }
 
         public bool TryDoCommand(Players.Player player, string chat)
@@ -136,9 +177,9 @@ namespace Pandaros.Settlers
             if (player == null || player.ID == NetworkID.Server)
                 return true;
 
-            string[] array = CommandManager.SplitCommand(chat);
-            Colony colony = Colony.Get(player);
-            PlayerState state = PlayerState.GetPlayerState(player);
+            var array  = CommandManager.SplitCommand(chat);
+            var colony = Colony.Get(player);
+            var state  = PlayerState.GetPlayerState(player);
 
             if (array.Length == 1)
             {
@@ -165,18 +206,22 @@ namespace Pandaros.Settlers
                 if (newDiff.Rank >= Configuration.MinDifficulty.Rank)
                 {
                     state.Difficulty = newDiff;
-                    Managers.SettlerManager.UpdateFoodUse(player);
+                    SettlerManager.UpdateFoodUse(player);
                     state.Difficulty.Print(player);
-                    PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
+
+                    PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green,
+                                   state.Difficulty.Name);
+
                     return true;
                 }
-                else
-                    PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.", ChatColor.green, Configuration.MinDifficulty.Name);
 
+                PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.",
+                               ChatColor.green, Configuration.MinDifficulty.Name);
             }
 
             if (!Configuration.DifficutlyCanBeChanged)
-                PandaChat.Send(player, "The server administrator had disabled the changing of game difficulty.", ChatColor.green);
+                PandaChat.Send(player, "The server administrator had disabled the changing of game difficulty.",
+                               ChatColor.green);
 
             return true;
         }
@@ -192,7 +237,7 @@ namespace Pandaros.Settlers
             PandaChat.Send(player, "Current Difficulty: " + PlayerState.GetPlayerState(player).Difficulty.Name, color);
             PandaChat.Send(player, "Possible commands:", color);
 
-            string diffs = string.Empty;
+            var diffs = string.Empty;
 
             foreach (var diff in GameDifficulty.GameDifficulties)
                 diffs += diff.Key + " | ";

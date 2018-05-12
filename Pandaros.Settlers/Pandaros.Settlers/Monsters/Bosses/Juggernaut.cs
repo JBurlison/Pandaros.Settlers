@@ -1,63 +1,42 @@
-﻿using NPC;
+﻿using System.Collections.Generic;
+using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items;
 using Pipliz.JSON;
 using Server.AI;
-using Server.Monsters;
 using Server.NPCs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public class Juggernaut : Zombie, IPandaBoss
     {
-        private Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>()
-        {
-            { DamageType.Void, 70f },
-            { DamageType.Physical, 70f }
-        };
-
-        private Dictionary<DamageType, float> _additionalResistance = new Dictionary<DamageType, float>()
-        {
-            { DamageType.Physical, 0.4f },
-            { DamageType.Air, 0.4f },
-            { DamageType.Earth, 0.4f },
-            { DamageType.Water, 0.4f }
-        };
-
-        private float _totalHealth = 40000;
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut";
-        static NPCTypeMonsterSettings _mts;
-        static Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>()
+        private static NPCTypeMonsterSettings _mts;
+
+        private static readonly Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>
         {
-            { Items.Mana.Item.ItemIndex, 10 }
+            {Mana.Item.ItemIndex, 10}
         };
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut.Register"),
-            ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
-        public static void Register()
+        private readonly float _totalHealth = 40000;
+
+        public Juggernaut() :
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
         {
-            JSONNode m = new JSONNode()
-               .SetAs("keyName", Key)
-               .SetAs("printName", "Juggernaut")
-               .SetAs("npcType", "monster");
+        }
 
-            var ms = new JSONNode()
-                .SetAs("albedo", GameLoader.NPC_PATH + "Juggernaut.png")
-                .SetAs("normal", GameLoader.NPC_PATH + "Juggernaut_normal.png")
-                .SetAs("emissive", GameLoader.NPC_PATH + "Juggernaut_emissive.png")
-                .SetAs("initialHealth", 40000)
-                .SetAs("movementSpeed", .9f)
-                .SetAs("punchCooldownMS", 3000)
-                .SetAs("punchDamage", 100);
+        public Juggernaut(Path path, Players.Player originalGoal) :
+            base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
+        {
+            var c  = Colony.Get(originalGoal);
+            var ps = PlayerState.GetPlayerState(originalGoal);
+            var hp = c.FollowerCount * (ps.Difficulty.BossHPPerColonist * 2.25f);
 
-            m.SetAs("data", ms);
-            _mts = new NPCTypeMonsterSettings(m);
-            NPCType.AddSettings(_mts);
+            if (hp < _totalHealth)
+                _totalHealth = hp;
+
+            health = _totalHealth;
         }
 
         public IPandaBoss GetNewBoss(Path path, Players.Player p)
@@ -69,42 +48,66 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string DeathText => "Juggernaut want to smash.....";
         public string Name => "Juggernaut";
         public override float TotalHealth => _totalHealth;
-        public bool KilledBefore { get => killedBefore; set => killedBefore = value; }
+
+        public bool KilledBefore
+        {
+            get => killedBefore;
+            set => killedBefore = value;
+        }
+
         public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
         public float ZombieMultiplier => 1f;
         public float ZombieHPBonus => 50;
 
         public Dictionary<ushort, int> KillRewards => REWARDS;
-        public Dictionary<DamageType, float> Damage => _damage;
+
+        public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
+        {
+            {DamageType.Void, 70f},
+            {DamageType.Physical, 70f}
+        };
 
         public DamageType ElementalArmor => DamageType.Physical;
 
-        public Dictionary<DamageType, float> AdditionalResistance => _additionalResistance;
+        public Dictionary<DamageType, float> AdditionalResistance { get; } = new Dictionary<DamageType, float>
+        {
+            {DamageType.Physical, 0.4f},
+            {DamageType.Air, 0.4f},
+            {DamageType.Earth, 0.4f},
+            {DamageType.Water, 0.4f}
+        };
 
         public float MissChance => 0f;
-
-        public Juggernaut() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
-        {
-        }
-
-        public Juggernaut(Path path, Players.Player originalGoal) :
-            base (NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
-        {
-            Colony c = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * (ps.Difficulty.BossHPPerColonist * 2.25f);
-
-            if (hp < _totalHealth)
-                _totalHealth = hp;
-
-            health = _totalHealth;
-        }
 
         public override bool Update()
         {
             killedBefore = false;
             return base.Update();
+        }
+
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+            GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut.Register")]
+        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
+        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registermonstertextures")]
+        public static void Register()
+        {
+            var m = new JSONNode()
+                   .SetAs("keyName", Key)
+                   .SetAs("printName", "Juggernaut")
+                   .SetAs("npcType", "monster");
+
+            var ms = new JSONNode()
+                    .SetAs("albedo", GameLoader.NPC_PATH + "Juggernaut.png")
+                    .SetAs("normal", GameLoader.NPC_PATH + "Juggernaut_normal.png")
+                    .SetAs("emissive", GameLoader.NPC_PATH + "Juggernaut_emissive.png")
+                    .SetAs("initialHealth", 40000)
+                    .SetAs("movementSpeed", .9f)
+                    .SetAs("punchCooldownMS", 3000)
+                    .SetAs("punchDamage", 100);
+
+            m.SetAs("data", ms);
+            _mts = new NPCTypeMonsterSettings(m);
+            NPCType.AddSettings(_mts);
         }
     }
 }

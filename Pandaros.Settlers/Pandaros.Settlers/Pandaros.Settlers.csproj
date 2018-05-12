@@ -135,6 +135,13 @@
     <Compile Include="Monsters\Bosses\FallenRanger.cs" />
     <Compile Include="Monsters\Bosses\Phase.cs" />
     <Compile Include="Monsters\Bosses\JackbNimble.cs" />
+    <Compile Include="Seasons\BlockTypeRegistry.cs" />
+    <Compile Include="Seasons\ISeason.cs" />
+    <Compile Include="Seasons\SeasonsFactory.cs" />
+    <Compile Include="Seasons\Summer.cs" />
+    <Compile Include="Seasons\Spring.cs" />
+    <Compile Include="Seasons\Fall.cs" />
+    <Compile Include="Seasons\Winter.cs" />
     <Compile Include="SettlersChatCommand.cs" />
     <Compile Include="Monsters\MonstersChatCommand.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />

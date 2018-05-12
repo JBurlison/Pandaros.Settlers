@@ -1,5 +1,4 @@
 ﻿using System;
-using Pandaros.Settlers.Items.Machines;
 
 namespace Pandaros.Settlers.Items.Machines
 {

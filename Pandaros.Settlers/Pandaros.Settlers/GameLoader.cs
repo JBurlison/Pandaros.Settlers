@@ -1,20 +1,23 @@
-﻿using BlockTypes.Builtin;
-using Pandaros.Settlers.Entities;
-using Pipliz;
-using Pipliz.JSON;
-using Pipliz.Threading;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+using ChatCommands;
+using Pandaros.Settlers.AI;
+using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Monsters;
+using Pipliz.JSON;
+using Pipliz.Threading;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public static class GameLoader
     {
+        public const string NAMESPACE = "Pandaros.Settlers";
+        public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
+        public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
         public static string MESH_PATH = "gamedata/meshes/";
         public static string AUDIO_PATH = "gamedata/Audio/";
         public static string ICON_PATH = "gamedata/textures/icons/";
@@ -30,11 +33,7 @@ namespace Pandaros.Settlers
         public static string GAME_ROOT = @"";
         public static string SAVE_LOC = "";
 
-        public const string NAMESPACE = "Pandaros.Settlers";
-        public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
-        public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
-
-        public static readonly Version MOD_VER = new Version(0, 8, 1, 7);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 0);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
@@ -49,34 +48,38 @@ namespace Pandaros.Settlers
         public static ushort Poisoned_Icon { get; private set; }
         public static ushort Bow_Icon { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".AfterSelectedWorld")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+            NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
-            WorldLoaded = true;
-            SAVE_LOC = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
-            Managers.MachineManager.MACHINE_JSON = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.Machines.json";
+            WorldLoaded                 = true;
+            SAVE_LOC                    = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
+            MachineManager.MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
             MOD_FOLDER = Path.GetDirectoryName(path);
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
 
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/") + "/";
-            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
-            MODS_FOLDER = GAMEDATA_FOLDER + "/mods/";
-            ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
-            MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
-            AUDIO_PATH = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
+
+            GAMEDATA_FOLDER =
+                path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
+
+            MODS_FOLDER          = GAMEDATA_FOLDER + "/mods/";
+            ICON_PATH            = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
+            MESH_PATH            = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
+            AUDIO_PATH           = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
             TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/") + "/";
-            BLOCKS_ALBEDO_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
+            BLOCKS_ALBEDO_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
             BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
-            BLOCKS_HEIGHT_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
-            BLOCKS_NORMAL_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
- 
-            bool fileWasCopied = false;
+            BLOCKS_HEIGHT_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
+            BLOCKS_NORMAL_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
+
+            var fileWasCopied = false;
 
             foreach (var file in Directory.GetFiles(MOD_FOLDER + "/ZipSupport"))
             {
@@ -90,17 +93,18 @@ namespace Pandaros.Settlers
             }
 
             if (fileWasCopied)
-                PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+                PandaLogger.Log(ChatColor.red,
+                                "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
         public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var monsterNode = new JSONNode();
             monsterNode["icon"] = new JSONNode(ICON_PATH + "NoMonster.png");
             var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
             MissingMonster_Icon = monster.ItemIndex;
-            
+
             items.Add(NAMESPACE + ".Monster", monster);
 
             var repairingNode = new JSONNode();
@@ -166,7 +170,7 @@ namespace Pandaros.Settlers
 
             items.Add(NAMESPACE + ".BowIcon", bow);
 
-            Jobs.MachinistJob.OkStatus = new List<uint>()
+            MachinistJob.OkStatus = new List<uint>
             {
                 Refuel_Icon,
                 Reload_Icon,
@@ -174,20 +178,20 @@ namespace Pandaros.Settlers
                 Waiting_Icon
             };
         }
-        
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".AfterStartup")]
+
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterStartup, NAMESPACE + ".AfterStartup")]
         public static void AfterStartup()
         {
             RUNNING = true;
-            ChatCommands.CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-            ChatCommands.CommandManager.RegisterCommand(new AI.CalltoArms());
-            ChatCommands.CommandManager.RegisterCommand(new Items.ArmorCommand());
-            ChatCommands.CommandManager.RegisterCommand(new VersionChatCommand());
-            ChatCommands.CommandManager.RegisterCommand(new ColonyArchiver());
-            ChatCommands.CommandManager.RegisterCommand(new ConfigurationChatCommand());
-            ChatCommands.CommandManager.RegisterCommand(new Monsters.BossesChatCommand());
-            ChatCommands.CommandManager.RegisterCommand(new Monsters.MonstersChatCommand());
-            ChatCommands.CommandManager.RegisterCommand(new SettlersChatCommand());
+            CommandManager.RegisterCommand(new GameDifficultyChatCommand());
+            CommandManager.RegisterCommand(new CalltoArms());
+            CommandManager.RegisterCommand(new ArmorCommand());
+            CommandManager.RegisterCommand(new VersionChatCommand());
+            CommandManager.RegisterCommand(new ColonyArchiver());
+            CommandManager.RegisterCommand(new ConfigurationChatCommand());
+            CommandManager.RegisterCommand(new BossesChatCommand());
+            CommandManager.RegisterCommand(new MonstersChatCommand());
+            CommandManager.RegisterCommand(new SettlersChatCommand());
 
             VersionChecker.WriteVersionsToConsole();
 #if Debug
@@ -195,30 +199,32 @@ namespace Pandaros.Settlers
 #endif
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, NAMESPACE + ".OnQuitLate")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnQuitLate, NAMESPACE + ".OnQuitLate")]
         public static void OnQuitLate()
         {
-            RUNNING = false;
+            RUNNING     = false;
             WorldLoaded = false;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".GameLoader.LoadAudioFiles"),
-            ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles"),
-            ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+            NAMESPACE + ".GameLoader.LoadAudioFiles")]
+        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
+        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.loadaudiofiles")]
         private static void RegisterAudioFiles()
         {
             var files = JSON.Deserialize(MOD_FOLDER + "/Audio/audioFiles.json", false);
 
-            foreach (JSONNode current in files.LoopArray())
+            foreach (var current in files.LoopArray())
             {
-                foreach (JSONNode current2 in current["fileList"].LoopArray())
+                foreach (var current2 in current["fileList"].LoopArray())
                     current2["path"] = new JSONNode(AUDIO_PATH + current2.GetAs<string>("path"));
 
                 ItemTypesServer.AudioFilesJSON.AddToArray(current);
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".GameLoader.trychangeblock")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
+            NAMESPACE + ".GameLoader.trychangeblock")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {
             if (userData.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
@@ -226,9 +232,9 @@ namespace Pandaros.Settlers
 
             if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
             {
-                VoxelSide side = userData.PlayerClickedData.VoxelSideHit;
-                ushort newType = userData.TypeNew;
-                string suffix = string.Empty;
+                var side    = userData.PlayerClickedData.VoxelSideHit;
+                var newType = userData.TypeNew;
+                var suffix  = string.Empty;
 
                 switch (side)
                 {
@@ -257,17 +263,16 @@ namespace Pandaros.Settlers
                         break;
                 }
 
-                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType, out string typename))
+                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType, out var typename))
                 {
-                    string otherTypename = typename + suffix;
+                    var otherTypename = typename + suffix;
 
-                    if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out ushort otherIndex))
+                    if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out var otherIndex))
                     {
-                        Vector3Int position = userData.Position;
-                        ThreadManager.InvokeOnMainThread(delegate ()
-                        {
-                            ServerManager.TryChangeBlock(position, otherIndex);
-                        }, 0.1f);
+                        var position = userData.Position;
+
+                        ThreadManager
+                           .InvokeOnMainThread(delegate { ServerManager.TryChangeBlock(position, otherIndex); }, 0.1f);
                     }
                 }
             }
@@ -288,12 +293,12 @@ namespace Pandaros.Settlers
             foreach (var fileName in fileNames)
             {
                 var audoFileNode = new JSONNode()
-                    .SetAs("path", fileName)
-                    .SetAs("audioGroup", "Effects");
+                                  .SetAs("path", fileName)
+                                  .SetAs("audioGroup", "Effects");
 
                 fileListNode.AddToArray(audoFileNode);
             }
-            
+
             node.SetAs("fileList", fileListNode);
 
             ItemTypesServer.AudioFilesJSON.AddToArray(node);

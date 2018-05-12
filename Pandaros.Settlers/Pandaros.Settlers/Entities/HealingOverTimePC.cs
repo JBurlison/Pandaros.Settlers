@@ -1,42 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Pipliz;
 
 namespace Pandaros.Settlers.Entities
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public class HealingOverTimePC
     {
-        public static event EventHandler NewInstance;
-        private static long _nextUpdate = 0;
-        private static List<HealingOverTimePC> _instances = new List<HealingOverTimePC>();
-        private static List<HealingOverTimePC> _toRemove = new List<HealingOverTimePC>();
-
-        public Players.Player Target { get; private set; }
-
-        public float TotalHoTTime { get; private set; }
-
-        public float InitialHeal { get; private set; }
-
-        public int DurationSeconds { get; private set; }
-
-        public int TicksLeft { get; private set; }
-
-        public float HealPerTic { get; private set; }
-
-        public event EventHandler Complete;
-
-        public event EventHandler Tick;
+        private static long _nextUpdate;
+        private static readonly List<HealingOverTimePC> _instances = new List<HealingOverTimePC>();
+        private static readonly List<HealingOverTimePC> _toRemove = new List<HealingOverTimePC>();
 
         public HealingOverTimePC(Players.Player pc, float initialHeal, float totalHoT, int durationSeconds)
         {
-            HealPerTic = totalHoT / durationSeconds;
+            HealPerTic      = totalHoT / durationSeconds;
             DurationSeconds = durationSeconds;
-            InitialHeal = initialHeal;
-            Target = pc;
-            TotalHoTTime = totalHoT;
-            TicksLeft = durationSeconds;
+            InitialHeal     = initialHeal;
+            Target          = pc;
+            TotalHoTTime    = totalHoT;
+            TicksLeft       = durationSeconds;
 
             if (NewInstance != null)
                 NewInstance(this, null);
@@ -45,6 +27,23 @@ namespace Pandaros.Settlers.Entities
             Target.Heal(InitialHeal);
             Tick += HealingOverTimeNPC_Tick;
         }
+
+        public Players.Player Target { get; }
+
+        public float TotalHoTTime { get; }
+
+        public float InitialHeal { get; }
+
+        public int DurationSeconds { get; }
+
+        public int TicksLeft { get; private set; }
+
+        public float HealPerTic { get; }
+        public static event EventHandler NewInstance;
+
+        public event EventHandler Complete;
+
+        public event EventHandler Tick;
 
         private void HealingOverTimeNPC_Tick(object sender, EventArgs e)
         {
@@ -55,10 +54,11 @@ namespace Pandaros.Settlers.Entities
                 Complete(this, null);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.HealingOverTimePC.Update")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+            GameLoader.NAMESPACE + ".Entities.HealingOverTimePC.Update")]
         public static void Update()
         {
-            if (Pipliz.Time.MillisecondsSinceStart > _nextUpdate && _instances.Count > 0)
+            if (Time.MillisecondsSinceStart > _nextUpdate && _instances.Count > 0)
             {
                 _toRemove.Clear();
 
@@ -76,9 +76,8 @@ namespace Pandaros.Settlers.Entities
 
                 _toRemove.Clear();
 
-                _nextUpdate = Pipliz.Time.MillisecondsSinceStart + 1000;
+                _nextUpdate = Time.MillisecondsSinceStart + 1000;
             }
         }
-
     }
 }

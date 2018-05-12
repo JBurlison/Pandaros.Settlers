@@ -1,53 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using NPC;
+using Pipliz;
+using Shared;
 
 namespace Pandaros.Settlers.Entities
 {
     [ModLoader.ModManager]
     public class HealingOverTimeNPC
     {
-        public static event EventHandler NewInstance;
-        private static long _nextUpdate = 0;
-        private static List<HealingOverTimeNPC> _instances = new List<HealingOverTimeNPC>();
-        private static List<HealingOverTimeNPC> _toRemove = new List<HealingOverTimeNPC>();
+        private static long _nextUpdate;
+        private static readonly List<HealingOverTimeNPC> _instances = new List<HealingOverTimeNPC>();
+        private static readonly List<HealingOverTimeNPC> _toRemove = new List<HealingOverTimeNPC>();
 
-        public NPC.NPCBase Target { get; private set; }
+        public HealingOverTimeNPC(NPCBase nPC, float initialHeal, float totalHoT, int durationSeconds, ushort indicator)
+        {
+            HealPerTic      = totalHoT / durationSeconds;
+            DurationSeconds = durationSeconds;
+            InitialHeal     = initialHeal;
+            Target          = nPC;
+            TotalHoTTime    = totalHoT;
+            TicksLeft       = durationSeconds;
+            Indicator       = indicator;
 
-        public float TotalHoTTime { get; private set; }
+            NewInstance?.Invoke(this, null);
 
-        public float InitialHeal { get; private set; }
+            _instances.Add(this);
+            Target.Heal(InitialHeal);
+            Target.SetIndicatorState(new IndicatorState(1, Indicator));
+            Tick += HealingOverTimeNPC_Tick;
+        }
 
-        public int DurationSeconds { get; private set; }
+        public NPCBase Target { get; }
+
+        public float TotalHoTTime { get; }
+
+        public float InitialHeal { get; }
+
+        public int DurationSeconds { get; }
 
         public int TicksLeft { get; private set; }
 
-        public float HealPerTic { get; private set; }
-        public ushort Indicator { get; private set; }
+        public float HealPerTic { get; }
+        public ushort Indicator { get; }
+        public static event EventHandler NewInstance;
 
         public event EventHandler Complete;
 
         public event EventHandler Tick;
-
-        public HealingOverTimeNPC(NPC.NPCBase nPC, float initialHeal, float totalHoT, int durationSeconds, ushort indicator)
-        {
-            HealPerTic = totalHoT / durationSeconds;
-            DurationSeconds = durationSeconds;
-            InitialHeal = initialHeal;
-            Target = nPC;
-            TotalHoTTime = totalHoT;
-            TicksLeft = durationSeconds;
-            Indicator = indicator;
-
-            if (NewInstance != null)
-                NewInstance(this, null);
-
-            _instances.Add(this);
-            Target.Heal(InitialHeal);
-            Target.SetIndicatorState(new Shared.IndicatorState(1, Indicator));
-            Tick += HealingOverTimeNPC_Tick;
-        }
 
         private void HealingOverTimeNPC_Tick(object sender, EventArgs e)
         {
@@ -58,19 +59,19 @@ namespace Pandaros.Settlers.Entities
                 Complete(this, null);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.HealingOverTimeNPC.Update")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+            GameLoader.NAMESPACE + ".Entities.HealingOverTimeNPC.Update")]
         public static void Update()
         {
-            if (Pipliz.Time.MillisecondsSinceStart > _nextUpdate && _instances.Count > 0)
+            if (Time.MillisecondsSinceStart > _nextUpdate && _instances.Count > 0)
             {
                 _toRemove.Clear();
 
                 foreach (var healing in _instances)
                 {
-                    healing.Target.SetIndicatorState(new Shared.IndicatorState(1, healing.Indicator));
+                    healing.Target.SetIndicatorState(new IndicatorState(1, healing.Indicator));
 
-                    if (healing.Tick != null)
-                        healing.Tick(healing, null);
+                    healing.Tick?.Invoke(healing, null);
 
                     if (healing.TicksLeft <= 0)
                         _toRemove.Add(healing);
@@ -81,11 +82,11 @@ namespace Pandaros.Settlers.Entities
 
                 _toRemove.Clear();
 
-                _nextUpdate = Pipliz.Time.MillisecondsSinceStart + 1000;
+                _nextUpdate = Time.MillisecondsSinceStart + 1000;
             }
         }
 
-        public static bool NPCIsBeingHealed(NPC.NPCBase npc)
+        public static bool NPCIsBeingHealed(NPCBase npc)
         {
             return _instances.Any(a => a.Target == npc);
         }

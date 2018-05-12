@@ -1,30 +1,34 @@
-﻿using BlockTypes.Builtin;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BlockTypes.Builtin;
+using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Healing;
+using Pandaros.Settlers.Items.Machines;
+using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
 using Pipliz.Mods.APIProvider.Science;
 using Pipliz.Mods.BaseGame.BlockNPCs;
 using Server.Science;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Research
 {
     public class ResearchCompleteEventArgs : EventArgs
     {
-        public PandaResearch Research { get; private set; }
-
-        public ScienceManagerPlayer Manager { get; private set; }
-
         public ResearchCompleteEventArgs(PandaResearch research, ScienceManagerPlayer player)
         {
             Research = research;
-            Manager = player;
+            Manager  = player;
         }
+
+        public PandaResearch Research { get; }
+
+        public ScienceManagerPlayer Manager { get; }
     }
 
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public class PandaResearch : BaseResearchable
     {
         public const string Settlement = "Settlement";
@@ -54,38 +58,33 @@ namespace Pandaros.Settlers.Research
         public const string SettlerChance = "SettlerChance";
         public const string NumberSkilledLaborer = "NumberSkilledLaborer";
         public const string SkilledLaborer = "SkilledLaborer";
+        private static readonly Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
 
-        public string TmpValueKey { get; private set; } = string.Empty;
-        public int Level { get; private set; } = 1;
-        public float Value { get; private set; } = 0;
-        public float BaseValue { get; private set; } = 0;
-        public string LevelKey { get; private set; } = string.Empty;
-
-        public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
-        static Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
-
-        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name, float baseValue, List<string> dependancies = null, int baseIterationCount = 10, bool addLevelToName = true)
+        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name,
+                             float                   baseValue,
+                             List<string>            dependancies   = null, int baseIterationCount = 10,
+                             bool                    addLevelToName = true)
         {
-            BaseValue = baseValue;
-            Value = baseValue * level;
-            Level = level;
+            BaseValue   = baseValue;
+            Value       = baseValue * level;
+            Level       = level;
             TmpValueKey = GetResearchKey(name);
-            LevelKey = GetLevelKey(name);
+            LevelKey    = GetLevelKey(name);
 
-            key = TmpValueKey + level;
+            key  = TmpValueKey + level;
             icon = GameLoader.ICON_PATH + name + level + ".png";
 
             if (!addLevelToName)
                 icon = GameLoader.ICON_PATH + name + ".png";
 
-            iterationCount = baseIterationCount + (2 * level);
+            iterationCount = baseIterationCount + 2 * level;
 
             foreach (var kvp in requiredItems)
             {
                 var val = kvp.Value;
 
                 if (level > 1)
-                    for (int i = 1; i <= level; i++)
+                    for (var i = 1; i <= level; i++)
                         if (i % 2 == 0)
                             val += kvp.Value * 2;
                         else
@@ -101,6 +100,14 @@ namespace Pandaros.Settlers.Research
                 foreach (var dep in dependancies)
                     AddDependency(dep);
         }
+
+        public string TmpValueKey { get; } = string.Empty;
+        public int Level { get; } = 1;
+        public float Value { get; }
+        public float BaseValue { get; }
+        public string LevelKey { get; } = string.Empty;
+
+        public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
 
         public override void OnResearchComplete(ScienceManagerPlayer manager, EResearchCompletionReason reason)
         {
@@ -128,7 +135,8 @@ namespace Pandaros.Settlers.Research
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnAddResearchables,
+            GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()
         {
             var researchDic = new Dictionary<ushort, int>();
@@ -174,7 +182,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Bread, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.ScienceBagLife
             };
@@ -183,9 +191,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += ReducedWaste_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ReducedWaste, 0.001f, requirements);
+                research                  =  new PandaResearch(researchDic, i, ReducedWaste, 0.001f, requirements);
                 research.ResearchComplete += ReducedWaste_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -193,7 +201,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ReducedWaste_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            Managers.SettlerManager.UpdateFoodUse(e.Manager.Player);
+            SettlerManager.UpdateFoodUse(e.Manager.Player);
         }
 
         private static void AddBanner(Dictionary<ushort, int> researchDic)
@@ -206,14 +214,15 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.BannerRadius3
             };
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, Settlement, 1f, requirements, 20, false));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, Settlement, 1f, requirements, 20,
+                                                                  false));
 
-            for (int i = 2; i <= 20; i++)
+            for (var i = 2; i <= 20; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, Settlement, 1f, null, 20, false));
         }
 
@@ -223,7 +232,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CopperParts, 2);
             researchDic.Add(BuiltinBlocks.CopperNails, 3);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.BronzeAnvil
             };
@@ -250,7 +259,8 @@ namespace Pandaros.Settlers.Research
             RegisterArmorSmithng(researchDic, 4);
         }
 
-        private static void RegisterArmorSmithng(Dictionary<ushort, int> researchDic, int level, List<string> requirements = null)
+        private static void RegisterArmorSmithng(Dictionary<ushort, int> researchDic, int level,
+                                                 List<string>            requirements = null)
         {
             var research = new PandaResearch(researchDic, level, ArmorSmithing, 1f, requirements);
             research.ResearchComplete += Research_ResearchComplete;
@@ -259,26 +269,27 @@ namespace Pandaros.Settlers.Research
 
         private static void Research_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            List<Items.Armor.ArmorMetadata> armor = new List<Items.Armor.ArmorMetadata>();
+            var armor = new List<Armor.ArmorMetadata>();
 
             switch (e.Research.Level)
             {
                 case 1:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Copper));
+                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Copper));
                     break;
                 case 2:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Bronze));
+                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Bronze));
                     break;
                 case 3:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Iron));
+                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Iron));
                     break;
                 case 4:
-                    armor.AddRange(Items.Armor.ArmorLookup.Values.Where(a => a.Metal == Items.MetalType.Steel));
+                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Steel));
                     break;
             }
 
             foreach (var item in armor)
-                RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.ItemType.name, true, Items.Armor.JOB_METALSMITH);
+                RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                             .SetRecipeAvailability(item.ItemType.name, true, Armor.JOB_METALSMITH);
         }
 
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
@@ -287,7 +298,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CopperParts, 2);
             researchDic.Add(BuiltinBlocks.CopperNails, 3);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.BronzeAnvil
             };
@@ -314,7 +325,8 @@ namespace Pandaros.Settlers.Research
             RegisterSwordmithng(researchDic, 4);
         }
 
-        private static void RegisterSwordmithng(Dictionary<ushort, int> researchDic, int level, List<string> requirements = null)
+        private static void RegisterSwordmithng(Dictionary<ushort, int> researchDic, int level,
+                                                List<string>            requirements = null)
         {
             var research = new PandaResearch(researchDic, level, SwordSmithing, 1f, requirements);
             research.ResearchComplete += SwordResearch_ResearchComplete;
@@ -323,26 +335,27 @@ namespace Pandaros.Settlers.Research
 
         private static void SwordResearch_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            List<Items.WeaponMetadata> sword = new List<Items.WeaponMetadata>();
+            var sword = new List<WeaponMetadata>();
 
             switch (e.Research.Level)
             {
                 case 1:
-                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Copper));
+                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Copper));
                     break;
                 case 2:
-                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Bronze));
+                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Bronze));
                     break;
                 case 3:
-                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Iron));
+                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Iron));
                     break;
                 case 4:
-                    sword.AddRange(Items.ItemFactory.WeaponLookup.Values.Where(a => a.Metal == Items.MetalType.Steel));
+                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Steel));
                     break;
             }
 
             foreach (var item in sword)
-                RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(item.ItemType.name, true, Items.Armor.JOB_METALSMITH);
+                RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                             .SetRecipeAvailability(item.ItemType.name, true, Armor.JOB_METALSMITH);
         }
 
         private static void AddColonistHealth(Dictionary<ushort, int> researchDic)
@@ -353,7 +366,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Linen, 5);
             researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.ScienceBagLife
             };
@@ -362,9 +375,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += Research_ResearchComplete1;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ColonistHealth, 10f);
+                research                  =  new PandaResearch(researchDic, i, ColonistHealth, 10f);
                 research.ResearchComplete += Research_ResearchComplete1;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -372,9 +385,10 @@ namespace Pandaros.Settlers.Research
 
         private static void Research_ResearchComplete1(object sender, ResearchCompleteEventArgs e)
         {
-            var maxHp = e.Manager.Player.GetTempValues(true).GetOrDefault<float>(GameLoader.NAMESPACE + ".MAXCOLONISTHP", NPC.NPCBase.MaxHealth);
+            var maxHp = e.Manager.Player.GetTempValues(true)
+                         .GetOrDefault(GameLoader.NAMESPACE + ".MAXCOLONISTHP", NPCBase.MaxHealth);
 
-            NPC.NPCBase.MaxHealth = maxHp + (e.Research.Level * e.Research.BaseValue);
+            NPCBase.MaxHealth = maxHp + e.Research.Level * e.Research.BaseValue;
         }
 
         private static void AddKnightResearch(Dictionary<ushort, int> researchDic)
@@ -384,7 +398,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
             researchDic.Add(BuiltinBlocks.Linen, 2);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(SwordSmithing + "1"),
                 ColonyBuiltIn.ScienceBagBasic
@@ -397,8 +411,10 @@ namespace Pandaros.Settlers.Research
 
         private static void Knights_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            Jobs.PatrolTool.GivePlayerPatrolTool(e.Manager.Player);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.PatrolTool.PatrolFlag.name, true, Items.ItemFactory.JOB_CRAFTER);
+            PatrolTool.GivePlayerPatrolTool(e.Manager.Player);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(PatrolTool.PatrolFlag.name, true, ItemFactory.JOB_CRAFTER);
         }
 
         private static void AddApocthResearch(Dictionary<ushort, int> researchDic)
@@ -407,7 +423,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
             researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.HerbFarming,
                 ColonyBuiltIn.ScienceBagAdvanced
@@ -420,8 +436,10 @@ namespace Pandaros.Settlers.Research
 
         private static void Apocth_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.ApothecaryRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.ApothecaryRegister.JOB_RECIPE);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(ApothecaryRegister.JOB_RECIPE, true, ItemFactory.JOB_CRAFTER);
+
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, ApothecaryRegister.JOB_RECIPE);
         }
 
         private static void AddAdvanceApocthResearch(Dictionary<ushort, int> researchDic)
@@ -430,7 +448,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
             researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Apothecary + "1")
             };
@@ -442,8 +460,11 @@ namespace Pandaros.Settlers.Research
 
         private static void AdvanceApocth_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.Anitbiotic.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Healing.TreatedBandage.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Anitbiotic.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(TreatedBandage.Item.name, true, ApothecaryRegister.JOB_NAME);
         }
 
         private static void AddManaResearch(Dictionary<ushort, int> researchDic)
@@ -455,7 +476,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.LinseedOil, 10);
             researchDic.Add(BuiltinBlocks.Crystal, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Apothecary + "1")
             };
@@ -467,14 +488,17 @@ namespace Pandaros.Settlers.Research
 
         private static void Mana_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Mana.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Aether.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Items.Mana.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Aether.Item.name, true, ApothecaryRegister.JOB_NAME);
         }
 
         private static void AddElementiumResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(Items.Aether.Item.ItemIndex, 1);
+            researchDic.Add(Aether.Item.ItemIndex, 1);
             researchDic.Add(BuiltinBlocks.Copper, 20);
             researchDic.Add(BuiltinBlocks.IronOre, 20);
             researchDic.Add(BuiltinBlocks.Tin, 20);
@@ -482,7 +506,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.GalenaSilver, 20);
             researchDic.Add(BuiltinBlocks.GalenaLead, 20);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Mana + "1")
             };
@@ -494,28 +518,52 @@ namespace Pandaros.Settlers.Research
 
         private static void Elementium_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Elementium.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.EarthStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.FireStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.WaterStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.AirStone.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.AIRTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.FIRETURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.EARTHTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.WATERTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.ElementalTurrets.VOIDTURRET_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Items.Elementium.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(EarthStone.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(FireStone.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(WaterStone.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(AirStone.Item.name, true, ApothecaryRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(ElementalTurrets.AIRTURRET_NAMESPACE, true,
+                                                AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(ElementalTurrets.FIRETURRET_NAMESPACE, true,
+                                                AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(ElementalTurrets.EARTHTURRET_NAMESPACE, true,
+                                                AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(ElementalTurrets.WATERTURRET_NAMESPACE, true,
+                                                AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(ElementalTurrets.VOIDTURRET_NAMESPACE, true,
+                                                AdvancedCrafterRegister.JOB_NAME);
         }
 
         private static void AddBuildersWandResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(Items.Aether.Item.ItemIndex, 2);
+            researchDic.Add(Aether.Item.ItemIndex, 2);
             researchDic.Add(BuiltinBlocks.SteelIngot, 10);
             researchDic.Add(BuiltinBlocks.GoldIngot, 10);
             researchDic.Add(BuiltinBlocks.SilverIngot, 10);
             researchDic.Add(Items.Elementium.Item.ItemIndex, 1);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Elementium + "1")
             };
@@ -527,19 +575,20 @@ namespace Pandaros.Settlers.Research
 
         private static void BuildersWand_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.BuildersWand.Item.name, true, Jobs.ApothecaryRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Items.BuildersWand.Item.name, true, ApothecaryRegister.JOB_NAME);
         }
 
         private static void AddBetterBuildersWandResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(Items.Aether.Item.ItemIndex, 2);
+            researchDic.Add(Aether.Item.ItemIndex, 2);
             researchDic.Add(BuiltinBlocks.SteelIngot, 10);
             researchDic.Add(BuiltinBlocks.GoldIngot, 10);
             researchDic.Add(BuiltinBlocks.SilverIngot, 10);
             researchDic.Add(BuiltinBlocks.Planks, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(BuildersWand + "1")
             };
@@ -548,9 +597,11 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += BetterBuildersWand_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, BetterBuildersWand, 250f, requirements, 50);
+                research =
+                    new PandaResearch(researchDic, i, BetterBuildersWand, 250f, requirements, 50);
+
                 research.ResearchComplete += BetterBuildersWand_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -559,8 +610,8 @@ namespace Pandaros.Settlers.Research
         private static void BetterBuildersWand_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             var ps = PlayerState.GetPlayerState(e.Manager.Player);
-            ps.BuildersWandMaxCharge = (int)e.Research.Value;
-            ps.BuildersWandCharge += ps.BuildersWandMaxCharge;
+            ps.BuildersWandMaxCharge =  (int) e.Research.Value;
+            ps.BuildersWandCharge    += ps.BuildersWandMaxCharge;
         }
 
         private static void AddTeleporters(Dictionary<ushort, int> researchDic)
@@ -573,7 +624,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Crystal, 20);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Mana + "1"),
                 GetResearchKey(Machines + "1")
@@ -586,7 +637,8 @@ namespace Pandaros.Settlers.Research
 
         private static void Teleporters_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.TeleportPad.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(TeleportPad.Item.name, true, AdvancedCrafterRegister.JOB_NAME);
         }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
@@ -595,7 +647,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Sling, 1);
             researchDic.Add(BuiltinBlocks.SlingBullet, 5);
 
-            for (int i = 1; i <= 5; i++)
+            for (var i = 1; i <= 5; i++)
             {
                 var research = new PandaResearch(researchDic, i, ImprovedSling, .05f);
                 research.ResearchComplete += ImprovedSlings_ResearchComplete;
@@ -611,8 +663,11 @@ namespace Pandaros.Settlers.Research
             if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobNight)))
                 _baseSpeed.Add(nameof(GuardSlingerJobNight), GuardSlingerJobNight.GetGuardSettings().cooldownShot);
 
-            GuardSlingerJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobDay)] - (_baseSpeed[nameof(GuardSlingerJobDay)] * e.Research.Value);
-            GuardSlingerJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobNight)] - (_baseSpeed[nameof(GuardSlingerJobNight)] * e.Research.Value);
+            GuardSlingerJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobDay)] -
+                                                             _baseSpeed[nameof(GuardSlingerJobDay)] * e.Research.Value;
+
+            GuardSlingerJobNight.CachedSettings.cooldownShot =
+                _baseSpeed[nameof(GuardSlingerJobNight)] - _baseSpeed[nameof(GuardSlingerJobNight)] * e.Research.Value;
         }
 
         private static void AddImprovedBows(Dictionary<ushort, int> researchDic)
@@ -621,7 +676,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Bow, 1);
             researchDic.Add(BuiltinBlocks.BronzeArrow, 5);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.ARCHERY
             };
@@ -630,9 +685,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += ImprovedBows_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedBow, .05f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedBow, .05f);
                 research.ResearchComplete += ImprovedBows_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -646,8 +701,11 @@ namespace Pandaros.Settlers.Research
             if (!_baseSpeed.ContainsKey(nameof(GuardBowJobNight)))
                 _baseSpeed.Add(nameof(GuardBowJobNight), GuardBowJobNight.GetGuardSettings().cooldownShot);
 
-            GuardBowJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardBowJobDay)] - (_baseSpeed[nameof(GuardBowJobDay)] * e.Research.Value);
-            GuardBowJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardBowJobNight)] - (_baseSpeed[nameof(GuardBowJobNight)] * e.Research.Value);
+            GuardBowJobDay.CachedSettings.cooldownShot =
+                _baseSpeed[nameof(GuardBowJobDay)] - _baseSpeed[nameof(GuardBowJobDay)] * e.Research.Value;
+
+            GuardBowJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardBowJobNight)] -
+                                                           _baseSpeed[nameof(GuardBowJobNight)] * e.Research.Value;
         }
 
         private static void AddImprovedCrossbows(Dictionary<ushort, int> researchDic)
@@ -656,7 +714,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Crossbow, 1);
             researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.CrossBow
             };
@@ -665,9 +723,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedCrossbow, .05f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedCrossbow, .05f);
                 research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -681,8 +739,13 @@ namespace Pandaros.Settlers.Research
             if (!_baseSpeed.ContainsKey(nameof(GuardCrossbowJobNight)))
                 _baseSpeed.Add(nameof(GuardCrossbowJobNight), GuardCrossbowJobNight.GetGuardSettings().cooldownShot);
 
-            GuardCrossbowJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardCrossbowJobDay)] - (_baseSpeed[nameof(GuardCrossbowJobDay)] * e.Research.Value);
-            GuardCrossbowJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardCrossbowJobNight)] - (_baseSpeed[nameof(GuardCrossbowJobNight)] * e.Research.Value);
+            GuardCrossbowJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardCrossbowJobDay)] -
+                                                              _baseSpeed[nameof(GuardCrossbowJobDay)] *
+                                                              e.Research.Value;
+
+            GuardCrossbowJobNight.CachedSettings.cooldownShot =
+                _baseSpeed[nameof(GuardCrossbowJobNight)] -
+                _baseSpeed[nameof(GuardCrossbowJobNight)] * e.Research.Value;
         }
 
         private static void AddImprovedMatchlockgun(Dictionary<ushort, int> researchDic)
@@ -692,7 +755,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.LeadBullet, 5);
             researchDic.Add(BuiltinBlocks.GunpowderPouch, 2);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.MatchlockGun
             };
@@ -701,9 +764,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedMatchlockgun, .05f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedMatchlockgun, .05f);
                 research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -717,8 +780,12 @@ namespace Pandaros.Settlers.Research
             if (!_baseSpeed.ContainsKey(nameof(GuardMatchlockJobNight)))
                 _baseSpeed.Add(nameof(GuardMatchlockJobNight), GuardMatchlockJobNight.GetGuardSettings().cooldownShot);
 
-            GuardMatchlockJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardMatchlockJobDay)] - (_baseSpeed[nameof(GuardMatchlockJobDay)] * e.Research.Value);
-            GuardMatchlockJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardMatchlockJobNight)] - (_baseSpeed[nameof(GuardMatchlockJobNight)] * e.Research.Value);
+            GuardMatchlockJobDay.CachedSettings.cooldownShot =
+                _baseSpeed[nameof(GuardMatchlockJobDay)] - _baseSpeed[nameof(GuardMatchlockJobDay)] * e.Research.Value;
+
+            GuardMatchlockJobNight.CachedSettings.cooldownShot =
+                _baseSpeed[nameof(GuardMatchlockJobNight)] -
+                _baseSpeed[nameof(GuardMatchlockJobNight)] * e.Research.Value;
         }
 
         private static void AddMachines(Dictionary<ushort, int> researchDic)
@@ -729,7 +796,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Planks, 5);
             researchDic.Add(BuiltinBlocks.Linen, 2);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.Bloomery
             };
@@ -741,18 +808,35 @@ namespace Pandaros.Settlers.Research
 
         private static void Machiness_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Miner.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.GateLever.Item.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.GateLever.GateItem.name, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.BRONZEARROW_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.STONE_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.CROSSBOW_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Items.Machines.Turret.MATCHLOCK_NAMESPACE, true, Jobs.AdvancedCrafterRegister.JOB_NAME);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.AdvancedCrafterRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
-            RecipeStorage.GetPlayerStorage(e.Manager.Player).SetRecipeAvailability(Jobs.MachinistRegister.JOB_RECIPE, true, Items.ItemFactory.JOB_CRAFTER);
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.MachinistRegister.JOB_RECIPE);
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Jobs.AdvancedCrafterRegister.JOB_RECIPE);
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Miner.Item.name, true, AdvancedCrafterRegister.JOB_NAME);
 
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(GateLever.Item.name, true, AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(GateLever.GateItem.name, true, AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Turret.BRONZEARROW_NAMESPACE, true, AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Turret.STONE_NAMESPACE, true, AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Turret.CROSSBOW_NAMESPACE, true, AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(Turret.MATCHLOCK_NAMESPACE, true, AdvancedCrafterRegister.JOB_NAME);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(AdvancedCrafterRegister.JOB_RECIPE, true, ItemFactory.JOB_CRAFTER);
+
+            RecipeStorage.GetPlayerStorage(e.Manager.Player)
+                         .SetRecipeAvailability(MachinistRegister.JOB_RECIPE, true, ItemFactory.JOB_CRAFTER);
+
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, MachinistRegister.JOB_RECIPE);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, AdvancedCrafterRegister.JOB_RECIPE);
         }
 
         private static void AddImprovedDuarability(Dictionary<ushort, int> researchDic)
@@ -763,7 +847,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.SteelIngot, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Machines + "1")
             };
@@ -772,9 +856,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += ImprovedDuarability_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedDurability, .1f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedDurability, .1f);
                 research.ResearchComplete += ImprovedDuarability_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -782,7 +866,8 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedDuarability_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            Items.Machines.MachineState.MAX_DURABILITY[e.Manager.Player] = Items.Machines.MachineState.DEFAULT_MAX_DURABILITY + (Items.Machines.MachineState.DEFAULT_MAX_DURABILITY * e.Research.Value);
+            MachineState.MAX_DURABILITY[e.Manager.Player] =
+                MachineState.DEFAULT_MAX_DURABILITY + MachineState.DEFAULT_MAX_DURABILITY * e.Research.Value;
         }
 
         private static void AddImprovedFuelCapacity(Dictionary<ushort, int> researchDic)
@@ -793,7 +878,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.SteelIngot, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Machines + "1")
             };
@@ -802,9 +887,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += ImprovedFuelCapacity_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, ImprovedFuelCapacity, .1f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedFuelCapacity, .1f);
                 research.ResearchComplete += ImprovedFuelCapacity_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -812,7 +897,8 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedFuelCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            Items.Machines.MachineState.MAX_FUEL[e.Manager.Player] = Items.Machines.MachineState.DEFAULT_MAX_FUEL + (Items.Machines.MachineState.DEFAULT_MAX_FUEL * e.Research.Value);
+            MachineState.MAX_FUEL[e.Manager.Player] =
+                MachineState.DEFAULT_MAX_FUEL + MachineState.DEFAULT_MAX_FUEL * e.Research.Value;
         }
 
         private static void AddIncreasedCapacity(Dictionary<ushort, int> researchDic)
@@ -823,7 +909,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.SteelIngot, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 10);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(Machines + "1")
             };
@@ -832,9 +918,9 @@ namespace Pandaros.Settlers.Research
             research.ResearchComplete += IncreasedCapacity_ResearchComplete;
             ScienceManager.RegisterResearchable(research);
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
             {
-                research = new PandaResearch(researchDic, i, IncreasedCapacity, .2f);
+                research                  =  new PandaResearch(researchDic, i, IncreasedCapacity, .2f);
                 research.ResearchComplete += IncreasedCapacity_ResearchComplete;
                 ScienceManager.RegisterResearchable(research);
             }
@@ -842,7 +928,8 @@ namespace Pandaros.Settlers.Research
 
         private static void IncreasedCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            Items.Machines.MachineState.MAX_LOAD[e.Manager.Player] = Items.Machines.MachineState.DEFAULT_MAX_LOAD + (Items.Machines.MachineState.DEFAULT_MAX_LOAD * e.Research.Value);
+            MachineState.MAX_LOAD[e.Manager.Player] =
+                MachineState.DEFAULT_MAX_LOAD + MachineState.DEFAULT_MAX_LOAD * e.Research.Value;
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)
@@ -855,14 +942,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Bed, 10);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(SettlerChance) + "1"
             };
 
             ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MaxSettlers, 1f, requirements));
 
-            for (int i = 2; i <= 10; i++)
+            for (var i = 2; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MaxSettlers, 1f));
         }
 
@@ -876,14 +963,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Clothing, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(MaxSettlers) + "3"
             };
 
             ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MinSettlers, 1f, requirements));
 
-            for (int i = 2; i <= 10; i++)
+            for (var i = 2; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MinSettlers, 1f));
         }
 
@@ -897,14 +984,14 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Bed, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.BannerRadius2
             };
 
             ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SettlerChance, 0.1f, requirements));
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SettlerChance, 0.1f));
         }
 
@@ -918,7 +1005,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.CarpetYellow, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 ColonyBuiltIn.ScienceBagLife,
                 ColonyBuiltIn.CoinMinting
@@ -926,7 +1013,7 @@ namespace Pandaros.Settlers.Research
 
             ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, TimeBetween, 1f, requirements));
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, TimeBetween, 1f));
         }
 
@@ -939,7 +1026,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.IronBlock, 2);
             researchDic.Add(BuiltinBlocks.GoldCoin, 30);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(SettlerChance) + "2",
                 GetResearchKey(ReducedWaste) + "2",
@@ -948,7 +1035,7 @@ namespace Pandaros.Settlers.Research
 
             ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.02f, requirements));
 
-            for (int i = 2; i <= 10; i++)
+            for (var i = 2; i <= 10; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.02f));
         }
 
@@ -963,14 +1050,15 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.IronRivet, 20);
             researchDic.Add(BuiltinBlocks.GoldCoin, 30);
 
-            var requirements = new List<string>()
+            var requirements = new List<string>
             {
                 GetResearchKey(SkilledLaborer) + "1"
             };
 
-            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, NumberSkilledLaborer, 1f, requirements));
+            ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, NumberSkilledLaborer, 1f,
+                                                                  requirements));
 
-            for (int i = 2; i <= 5; i++)
+            for (var i = 2; i <= 5; i++)
                 ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, NumberSkilledLaborer, 1f));
         }
     }

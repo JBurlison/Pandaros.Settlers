@@ -1,9 +1,6 @@
-﻿using ChatCommands;
+﻿using System;
+using ChatCommands;
 using Pandaros.Settlers.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Monsters
 {
@@ -19,13 +16,15 @@ namespace Pandaros.Settlers.Monsters
             if (player == null || player.ID == NetworkID.Server)
                 return true;
 
-            string[] array = CommandManager.SplitCommand(chat);
-            Colony colony = Colony.Get(player);
-            PlayerState state = PlayerState.GetPlayerState(player);
+            var array  = CommandManager.SplitCommand(chat);
+            var colony = Colony.Get(player);
+            var state  = PlayerState.GetPlayerState(player);
 
             if (array.Length == 1)
             {
-                PandaChat.Send(player, "Settlers! Bosses are {0}.", ChatColor.green, state.BossesEnabled ? "on" : "off");
+                PandaChat.Send(player, "Settlers! Bosses are {0}.", ChatColor.green,
+                               state.BossesEnabled ? "on" : "off");
+
                 return true;
             }
 
@@ -44,7 +43,8 @@ namespace Pandaros.Settlers.Monsters
             }
 
             if (!Configuration.GetorDefault("BossesCanBeDisabled", true))
-                PandaChat.Send(player, "The server administrator had disabled the changing of bosses.", ChatColor.green);
+                PandaChat.Send(player, "The server administrator had disabled the changing of bosses.",
+                               ChatColor.green);
 
             return true;
         }

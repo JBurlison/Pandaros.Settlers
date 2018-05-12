@@ -1,13 +1,7 @@
-﻿using ChatCommands;
-using ICSharpCode.SharpZipLib.Zip;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using System;
+using ChatCommands;
+using Pandaros.Settlers.Managers;
+using Permissions;
 
 namespace Pandaros.Settlers
 {
@@ -20,14 +14,16 @@ namespace Pandaros.Settlers
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            if (player == null || player.ID == NetworkID.Server || !Permissions.PermissionsManager.CheckAndWarnPermission(player, new Permissions.PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Archive")))
-                    return true;
+            if (player == null || player.ID == NetworkID.Server ||
+                !PermissionsManager.CheckAndWarnPermission(player,
+                                                           new PermissionsManager.Permission(GameLoader.NAMESPACE +
+                                                                                             ".Permissions.Archive")))
+                return true;
 
             foreach (var p in Players.PlayerDatabase.ValuesAsList)
-                Managers.SettlerManager.SaveOffline(p);
- 
+                SettlerManager.SaveOffline(p);
+
             return true;
         }
     }
-   
 }

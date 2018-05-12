@@ -1,46 +1,25 @@
-﻿using NPC;
+﻿using System.Collections.Generic;
+using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.Collections;
 using Pipliz.JSON;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Random = System.Random;
 
 namespace Pandaros.Settlers.Items.Machines
 {
     public class MachineState
     {
-        static System.Random _rand = new System.Random();
-
         public const float DEFAULT_MAX_DURABILITY = 1f;
         public const float DEFAULT_MAX_FUEL = 1f;
         public const float DEFAULT_MAX_LOAD = 1f;
-
-        public static Dictionary<Players.Player, float> MAX_DURABILITY { get; set; } = new Dictionary<Players.Player, float>();
-        public static Dictionary<Players.Player, float> MAX_FUEL { get; set; } = new Dictionary<Players.Player, float>();
-        public static Dictionary<Players.Player, float> MAX_LOAD { get; set; } = new Dictionary<Players.Player, float>();
-
-        public Vector3Int Position { get; private set; } = Vector3Int.invalidPos;
-        public float Durability { get; set; } = DEFAULT_MAX_DURABILITY;
-        public float Fuel { get; set; } = DEFAULT_MAX_FUEL;
-        public float Load { get; set; } = DEFAULT_MAX_LOAD;
-
-        public string MachineType { get; private set; }
-        public Players.Player Owner { get; private set; }
-        public double NextTimeForWork { get; set; } = Time.SecondsSinceStartDouble + _rand.NextDouble(0, 5);
-        public Jobs.MachinistJob Machinist { get; set; }
-
-        public IMachineSettings MachineSettings { get; private set; }
-
-        public BoxedDictionary TempValues { get; private set; } = new BoxedDictionary();
+        private static readonly Random _rand = new Random();
 
         public MachineState(Vector3Int pos, Players.Player owner, string machineType, IMachineSettings settings = null)
         {
-            Position = pos;
+            Position    = pos;
             MachineType = machineType;
-            Owner = owner;
+            Owner       = owner;
 
             if (settings == null)
                 MachineSettings = MachineManager.GetCallbacks(machineType);
@@ -51,12 +30,12 @@ namespace Pandaros.Settlers.Items.Machines
         public MachineState(JSONNode baseNode, Players.Player owner)
         {
             MAX_DURABILITY[owner] = DEFAULT_MAX_DURABILITY;
-            MAX_FUEL[owner] = DEFAULT_MAX_FUEL;
-            MAX_LOAD[owner] = DEFAULT_MAX_LOAD;
+            MAX_FUEL[owner]       = DEFAULT_MAX_FUEL;
+            MAX_LOAD[owner]       = DEFAULT_MAX_LOAD;
 
-            Position = (Vector3Int)baseNode[nameof(Position)];
-            Durability = baseNode.GetAs<float>(nameof(Durability));
-            Fuel = baseNode.GetAs<float>(nameof(Fuel));
+            Position    = (Vector3Int) baseNode[nameof(Position)];
+            Durability  = baseNode.GetAs<float>(nameof(Durability));
+            Fuel        = baseNode.GetAs<float>(nameof(Fuel));
             MachineType = baseNode.GetAs<string>(nameof(MachineType));
 
             if (baseNode.TryGetAs<float>(nameof(Load), out var load))
@@ -64,6 +43,29 @@ namespace Pandaros.Settlers.Items.Machines
 
             MachineSettings = MachineManager.GetCallbacks(MachineType);
         }
+
+        public static Dictionary<Players.Player, float> MAX_DURABILITY { get; set; } =
+            new Dictionary<Players.Player, float>();
+
+        public static Dictionary<Players.Player, float> MAX_FUEL { get; set; } =
+            new Dictionary<Players.Player, float>();
+
+        public static Dictionary<Players.Player, float> MAX_LOAD { get; set; } =
+            new Dictionary<Players.Player, float>();
+
+        public Vector3Int Position { get; } = Vector3Int.invalidPos;
+        public float Durability { get; set; } = DEFAULT_MAX_DURABILITY;
+        public float Fuel { get; set; } = DEFAULT_MAX_FUEL;
+        public float Load { get; set; } = DEFAULT_MAX_LOAD;
+
+        public string MachineType { get; }
+        public Players.Player Owner { get; }
+        public double NextTimeForWork { get; set; } = Time.SecondsSinceStartDouble + _rand.NextDouble(0, 5);
+        public MachinistJob Machinist { get; set; }
+
+        public IMachineSettings MachineSettings { get; }
+
+        public BoxedDictionary TempValues { get; } = new BoxedDictionary();
 
         public bool PositionIsValid()
         {
@@ -74,20 +76,17 @@ namespace Pandaros.Settlers.Items.Machines
 #endif
                 return objType == MachineSettings.ItemIndex;
             }
-            else
-            {
 #if Debug
                 PandaLogger.Log(ChatColor.lime, $"PositionIsValid Trt Get Failed {Position == null}.");
 #endif
-                return Position != null;
-            }
+            return Position != null;
         }
 
         public virtual JSONNode ToJsonNode()
         {
             var baseNode = new JSONNode();
 
-            baseNode.SetAs(nameof(Position), (JSONNode)Position);
+            baseNode.SetAs(nameof(Position), (JSONNode) Position);
             baseNode.SetAs(nameof(Durability), Durability);
             baseNode.SetAs(nameof(Fuel), Fuel);
             baseNode.SetAs(nameof(Load), Load);

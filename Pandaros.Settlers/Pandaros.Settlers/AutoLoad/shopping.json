@@ -169,10 +169,9 @@
     "defaultLimit": 0,
     "defaultPriority": -100
   },
-
   {
     "name": "Pandaros.Settlers.AutoLoad.mossstone",
-    "results": [ { "type": "Pandaros.Settlers.AutoLoad.mossstone" } ],
+    "results": [{ "type": "Pandaros.Settlers.AutoLoad.mossstone" }],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedruby",
@@ -184,7 +183,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.mossstonebricks",
-    "results": [ { "type": "Pandaros.Settlers.AutoLoad.mossstonebricks" } ],
+    "results": [{ "type": "Pandaros.Settlers.AutoLoad.mossstonebricks" }],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedruby",
@@ -196,7 +195,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.mossstonesquares",
-    "results": [ { "type": "Pandaros.Settlers.AutoLoad.mossstonesquares" } ],
+    "results": [{ "type": "Pandaros.Settlers.AutoLoad.mossstonesquares" }],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedruby",
@@ -344,7 +343,7 @@
   },
   {
     "name": "snow",
-    "results": [ { "type": "snow" } ],
+    "results": [{ "type": "snow" }],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",
@@ -356,7 +355,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.notwater",
-    "results": [ { "type": "Pandaros.Settlers.AutoLoad.notwater" } ],
+    "results": [{ "type": "Pandaros.Settlers.AutoLoad.notwater" }],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",
@@ -368,7 +367,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.lava",
-    "results": [ { "type": "Pandaros.Settlers.AutoLoad.lava" } ],
+    "results": [{ "type": "Pandaros.Settlers.AutoLoad.lava" }],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",

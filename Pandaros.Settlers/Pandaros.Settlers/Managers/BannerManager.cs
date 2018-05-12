@@ -1,29 +1,20 @@
-﻿using BlockTypes.Builtin;
-using ChatCommands;
-using Pandaros.Settlers.Entities;
-using Pipliz;
-using Server.Monsters;
-using Server.NPCs;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NPC;
-using Pipliz.Collections;
-using UnityEngine;
+using BlockTypes.Builtin;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Research;
-using Pandaros.Settlers.AI;
+using Pipliz;
 
 namespace Pandaros.Settlers.Managers
 {
     [ModLoader.ModManager]
     public class BannerManager
     {
-        public static Vector3Int MAX_Vector3Int { get; private set; } = new Vector3Int(int.MaxValue, int.MaxValue, int.MaxValue);
-        private static Dictionary<Players.Player, int> _bannerCounts = new Dictionary<Players.Player, int>();
+        private static readonly Dictionary<Players.Player, int> _bannerCounts = new Dictionary<Players.Player, int>();
         private static DateTime _nextBannerTime = DateTime.MinValue;
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".BannerManager.OnUpdate")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+            GameLoader.NAMESPACE + ".BannerManager.OnUpdate")]
         public static void OnUpdate()
         {
             if (GameLoader.WorldLoaded && DateTime.Now > _nextBannerTime)
@@ -43,8 +34,7 @@ namespace Pandaros.Settlers.Managers
             var banners = BannerTracker.GetCount();
 
             if (banners > 0)
-                for (int i = 0; i < banners; i++)
-                {
+                for (var i = 0; i < banners; i++)
                     if (BannerTracker.TryGetAtIndex(i, out var banner))
                     {
                         if (!_bannerCounts.ContainsKey(banner.Owner))
@@ -52,8 +42,7 @@ namespace Pandaros.Settlers.Managers
                         else
                             _bannerCounts[banner.Owner]++;
                     }
-                }
-            
+
             foreach (var p in _bannerCounts)
             {
                 var ps = PlayerState.GetPlayerState(p.Key);
@@ -61,18 +50,18 @@ namespace Pandaros.Settlers.Managers
                 if (ps == null)
                     continue;
 
-                var numberOfBanners = p.Key.GetTempValues(true).GetOrDefault(PandaResearch.GetLevelKey(PandaResearch.Settlement), 0) + 1;
-                var inv = Inventory.GetInventory(p.Key);
+                var numberOfBanners = p.Key.GetTempValues(true)
+                                       .GetOrDefault(PandaResearch.GetLevelKey(PandaResearch.Settlement), 0) + 1;
+
+                var inv        = Inventory.GetInventory(p.Key);
                 var sockBanner = Stockpile.GetStockPile(p.Key).AmountContained(BuiltinBlocks.Banner);
 
                 var inventoryBanners = 0;
 
                 if (inv != null)
-                {
                     foreach (var item in inv.Items)
                         if (item.Type == BuiltinBlocks.Banner)
                             inventoryBanners = item.Amount;
-                }
 
                 var totalBanners = p.Value + sockBanner + inventoryBanners;
 
@@ -86,14 +75,9 @@ namespace Pandaros.Settlers.Managers
 #endif
 
                 if (totalBanners < numberOfBanners)
-                {
                     if (!Inventory.GetInventory(p.Key).TryAdd(BuiltinBlocks.Banner))
-                    {
                         Stockpile.GetStockPile(p.Key).Add(BuiltinBlocks.Banner);
-                    }
-                }
             }
         }
-
     }
 }

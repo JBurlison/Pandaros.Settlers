@@ -1,27 +1,28 @@
-﻿using BlockTypes.Builtin;
+﻿using System.Collections.Generic;
 using NPC;
+using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Jobs;
+using Pipliz;
 using Pipliz.JSON;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Items
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public static class Void
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Void.Add"), ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+            GameLoader.NAMESPACE + ".Items.Void.Add")]
+        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Void";
             var node = new JSONNode();
-            node["icon"] = new JSONNode(GameLoader.ICON_PATH + "void.png");
+            node["icon"]        = new JSONNode(GameLoader.ICON_PATH + "void.png");
             node["isPlaceable"] = new JSONNode(false);
 
-            JSONNode categories = new JSONNode(NodeType.Array);
+            var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("ingredient"));
             categories.AddToArray(new JSONNode("magic"));
             node.SetAs("categories", categories);
@@ -30,21 +31,25 @@ namespace Pandaros.Settlers.Items
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".Items.Void.OnNPCCraftedRecipe")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
+            GameLoader.NAMESPACE + ".Items.Void.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
             if (recipe.Name == Elementium.Item.name && job.NPC != null)
             {
-                var inv = Entities.SettlerInventory.GetSettlerInventory(job.NPC);
+                var inv    = SettlerInventory.GetSettlerInventory(job.NPC);
                 var chance = 0.05f;
 
-                if (inv.JobSkills.ContainsKey(Jobs.ApothecaryRegister.JOB_NAME))
-                    chance += inv.JobSkills[Jobs.ApothecaryRegister.JOB_NAME];
+                if (inv.JobSkills.ContainsKey(ApothecaryRegister.JOB_NAME))
+                    chance += inv.JobSkills[ApothecaryRegister.JOB_NAME];
 
-                if (Pipliz.Random.NextFloat() <= chance)
+                if (Random.NextFloat() <= chance)
                 {
                     results.Add(new InventoryItem(Item.ItemIndex));
-                    PandaChat.Send(job.NPC.Colony.Owner, $"{inv.SettlerName} the Apothecary has discovered a Void Stone while crafting Elementium!", ChatColor.orange);
+
+                    PandaChat.Send(job.NPC.Colony.Owner,
+                                   $"{inv.SettlerName} the Apothecary has discovered a Void Stone while crafting Elementium!",
+                                   ChatColor.orange);
                 }
             }
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Pandaros.Settlers
+﻿namespace Pandaros.Settlers
 {
     public enum DamageType
     {
@@ -24,6 +19,7 @@ namespace Pandaros.Settlers
             switch (sourceType)
             {
                 case DamageType.Air:
+
                     switch (monsterType)
                     {
                         case DamageType.Air:
@@ -42,9 +38,11 @@ namespace Pandaros.Settlers
                             multiplier = 0.5f;
                             break;
                     }
+
                     break;
 
                 case DamageType.Fire:
+
                     switch (monsterType)
                     {
                         case DamageType.Air:
@@ -63,9 +61,11 @@ namespace Pandaros.Settlers
                             multiplier = 0.5f;
                             break;
                     }
+
                     break;
 
                 case DamageType.Water:
+
                     switch (monsterType)
                     {
                         case DamageType.Air:
@@ -84,9 +84,11 @@ namespace Pandaros.Settlers
                             multiplier = 2f;
                             break;
                     }
+
                     break;
 
                 case DamageType.Earth:
+
                     switch (monsterType)
                     {
                         case DamageType.Air:
@@ -105,15 +107,18 @@ namespace Pandaros.Settlers
                             multiplier = 0;
                             break;
                     }
+
                     break;
 
                 case DamageType.Physical:
+
                     switch (monsterType)
                     {
                         case DamageType.Void:
                             multiplier = 0;
                             break;
                     }
+
                     break;
             }
 

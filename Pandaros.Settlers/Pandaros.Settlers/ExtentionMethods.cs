@@ -1,21 +1,15 @@
-﻿using BlockTypes.Builtin;
-using General.Networking;
-using NPC;
-using Pandaros.Settlers.Entities;
-using Pipliz;
-using Server.Monsters;
-using Server.NPCs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Reflection;
-using System.Text;
+using NPC;
+using Pipliz;
+using Server.AI;
+using Random = System.Random;
 
 namespace Pandaros.Settlers
 {
     public static class ExtentionMethods
     {
-        public static double NextDouble(this System.Random rng, double min, double max)
+        public static double NextDouble(this Random rng, double min, double max)
         {
             return rng.NextDouble() * (max - min) + min;
         }
@@ -23,7 +17,7 @@ namespace Pandaros.Settlers
         public static bool TakeItemFromInventory(this Players.Player player, ushort itemType)
         {
             var hasItem = false;
-            var invRef = Inventory.GetInventory(player);
+            var invRef  = Inventory.GetInventory(player);
 
             if (invRef != null)
             {
@@ -31,8 +25,7 @@ namespace Pandaros.Settlers
 
                 if (playerInv != null)
                 {
-                    for (int i = 0; i < playerInv.Length - 1; i++)
-                    {
+                    for (var i = 0; i < playerInv.Length - 1; i++)
                         if (playerInv[i].Type == itemType && playerInv[i].Amount > 0)
                         {
                             hasItem = true;
@@ -43,7 +36,6 @@ namespace Pandaros.Settlers
                             else
                                 playerInv[i] = InventoryItem.Empty;
                         }
-                    }
 
                     if (hasItem)
                         invRef.SendUpdate();
@@ -53,18 +45,19 @@ namespace Pandaros.Settlers
             return hasItem;
         }
 
-        public static Vector3Int GetClosestPositionWithinY(this Vector3Int goalPosition, Vector3Int currentPosition, int minMaxY)
+        public static Vector3Int GetClosestPositionWithinY(this Vector3Int goalPosition, Vector3Int currentPosition,
+                                                           int             minMaxY)
         {
-            Vector3Int pos = Server.AI.AIManager.ClosestPosition(goalPosition, currentPosition);
+            var pos = AIManager.ClosestPosition(goalPosition, currentPosition);
 
             if (pos == Vector3Int.invalidPos)
             {
-                int y = -1;
-                var negY = (minMaxY * -1);
+                var y    = -1;
+                var negY = minMaxY * -1;
 
                 while (pos == Vector3Int.invalidPos)
                 {
-                    pos = Server.AI.AIManager.ClosestPosition(goalPosition.Add(0, y, 0), currentPosition);
+                    pos = AIManager.ClosestPosition(goalPosition.Add(0, y, 0), currentPosition);
 
                     if (y > 0)
                     {
@@ -86,12 +79,12 @@ namespace Pandaros.Settlers
             return pos;
         }
 
-        public static void Heal(this NPC.NPCBase nPC, float heal)
+        public static void Heal(this NPCBase nPC, float heal)
         {
             nPC.health += heal;
 
-            if (nPC.health > NPC.NPCBase.MaxHealth)
-                nPC.health = NPC.NPCBase.MaxHealth;
+            if (nPC.health > NPCBase.MaxHealth)
+                nPC.health = NPCBase.MaxHealth;
 
             nPC.Update();
         }
@@ -108,36 +101,35 @@ namespace Pandaros.Settlers
 
         public static T Next<T>(this T src) where T : struct
         {
-            if (!typeof(T).IsEnum) throw new ArgumentException(String.Format("Argumnent {0} is not an Enum", typeof(T).FullName));
-            T[] Arr = (T[])Enum.GetValues(src.GetType());
-            int j = Array.IndexOf<T>(Arr, src) + 1;
-            return (Arr.Length == j) ? Arr[0] : Arr[j];
+            if (!typeof(T).IsEnum)
+                throw new ArgumentException(string.Format("Argumnent {0} is not an Enum", typeof(T).FullName));
+
+            var Arr = (T[]) Enum.GetValues(src.GetType());
+            var j   = Array.IndexOf(Arr, src) + 1;
+            return Arr.Length == j ? Arr[0] : Arr[j];
         }
 
         public static T CallAndReturn<T>(this object o, string methodName, params object[] args)
         {
             var retVal = default(T);
-            var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var mi     = o.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
 
             if (mi != null)
-                retVal = (T)mi.Invoke(o, args);
+                retVal = (T) mi.Invoke(o, args);
 
             return retVal;
         }
 
         public static object Call(this object o, string methodName, params object[] args)
         {
-            var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (mi != null)
-            {
-                return mi.Invoke(o, args);
-            }
+            var mi = o.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+            if (mi != null) return mi.Invoke(o, args);
             return null;
         }
 
         public static rT GetFieldValue<rT, oT>(this object o, string fieldName)
         {
-            return (rT)typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o);
+            return (rT) typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o);
         }
 
         public static void SetFieldValue<oT>(this object o, string fieldName, object fieldValue)

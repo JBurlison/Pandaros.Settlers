@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using NPC;
 
 namespace Pandaros.Settlers.Items
 {
     public interface IMagicItem
     {
         string Name { get; set; }
-        NPC.NPCBase Owner { get; set; }
+        NPCBase Owner { get; set; }
 
         IMagicEffect Effect { get; set; }
 
         string Icon { get; set; }
 
-        void Update();
-
         List<InventoryItem> CraftingCost { get; set; }
+
+        void Update();
     }
 }

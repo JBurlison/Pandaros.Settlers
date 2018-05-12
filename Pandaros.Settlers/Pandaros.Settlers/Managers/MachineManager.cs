@@ -1,155 +1,131 @@
-﻿using BlockTypes.Builtin;
-using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items.Machines;
-using Pipliz;
-using Pipliz.JSON;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using BlockTypes.Builtin;
+using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items.Machines;
+using Pandaros.Settlers.Jobs;
+using Pipliz;
+using Pipliz.JSON;
+using Server;
+using Shared;
 using UnityEngine;
+using Math = Pipliz.Math;
+using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Managers
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public static class MachineManager
     {
-        public static event EventHandler MachineRemoved;
+        private const int MACHINE_REFRESH = 1;
         public static string MACHINE_JSON = "";
 
+        public static Dictionary<string, IMachineSettings> MachineCallbacks =
+            new Dictionary<string, IMachineSettings>(StringComparer.OrdinalIgnoreCase);
 
-        public class MachineSettings : IMachineSettings
-        {
-            public string Name { get; set; }
-
-            public float RepairTime { get; set; }
-
-            public float RefuelTime { get; set; }
-
-            public float ReloadTime { get; set; }
-
-            public float WorkTime { get; set; }
-
-            public ushort ItemIndex { get; set; }
-
-            public Func<Players.Player, MachineState, ushort> Repair { get; set; }
-            public Func<Players.Player, MachineState, ushort> Refuel { get; set; }
-            public Func<Players.Player, MachineState, ushort> Reload { get; set; }
-            public Action<Players.Player, MachineState> DoWork { get; set; }
-            public string MachineType { get; set; } = Jobs.MachinistJob.MECHANICAL;
-            public string RefuelAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
-            public string ReloadAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
-            public string RepairAudioKey { get; set; } = GameLoader.NAMESPACE + ".HammerAudio";
-
-            public MachineSettings() { }
-
-            public MachineSettings(string name, ushort itemIndex, Func<Players.Player, MachineState, ushort> repair, Func<Players.Player, MachineState, ushort> refuel, Func<Players.Player, MachineState, ushort> reload,
-                                    Action<Players.Player, MachineState> doWork, float repairTime, float refuelTime, float reloadTime, float workTime)
-            {
-                Name = name;
-                ItemIndex = itemIndex;
-                Repair = repair;
-                Refuel = refuel;
-                DoWork = doWork;
-                RepairTime = repairTime;
-                RefuelTime = refuelTime;
-                WorkTime = workTime;
-                Reload = reload;
-                ReloadTime = reloadTime;
-            }
-        }
-
-        public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; private set; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
-
-        private const int MACHINE_REFRESH = 1;
-        public static Dictionary<string, IMachineSettings> _machineCallbacks = new Dictionary<string, IMachineSettings>(StringComparer.OrdinalIgnoreCase);
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
-        private static double _nextUpdate = 0;
+        private static double _nextUpdate;
+
+        public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; } =
+            new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
+
+        public static event EventHandler MachineRemoved;
 
         public static void RegisterMachineType(string machineType, IMachineSettings callback)
         {
             PandaLogger.Log(machineType + " Registered as a Machine Type!");
-            _machineCallbacks[machineType] = callback;
+            MachineCallbacks[machineType] = callback;
         }
 
         public static IMachineSettings GetCallbacks(string machineType)
         {
-            if (_machineCallbacks.ContainsKey(machineType))
-                return _machineCallbacks[machineType];
-            else
-            {
-                PandaLogger.Log($"Unknown machine type {machineType}. Returning {nameof(Miner)}.");
-                return _machineCallbacks[nameof(Miner)];
-            }
+            if (MachineCallbacks.ContainsKey(machineType)) return MachineCallbacks[machineType];
+
+            PandaLogger.Log($"Unknown machine type {machineType}. Returning {nameof(Miner)}.");
+            return MachineCallbacks[nameof(Miner)];
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.SetFuelValues")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+            GameLoader.NAMESPACE + ".Items.Machines.MacineManager.SetFuelValues")]
         public static void SetFuelValues()
         {
-            FuelValues[BuiltinBlocks.Coalore] = .20f;
-            FuelValues[BuiltinBlocks.Firewood] = .10f;
-            FuelValues[BuiltinBlocks.Straw] = .05f;
+            FuelValues[BuiltinBlocks.Coalore]         = .20f;
+            FuelValues[BuiltinBlocks.Firewood]        = .10f;
+            FuelValues[BuiltinBlocks.Straw]           = .05f;
             FuelValues[BuiltinBlocks.LeavesTemperate] = .02f;
-            FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
+            FuelValues[BuiltinBlocks.LeavesTaiga]     = .02f;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+            GameLoader.NAMESPACE + ".Items.Machines.MacineManager.OnUpdate")]
         public static void OnUpdate()
         {
-            if (GameLoader.WorldLoaded && _nextUpdate < Pipliz.Time.SecondsSinceStartDouble)
+            if (GameLoader.WorldLoaded && _nextUpdate < Time.SecondsSinceStartDouble)
             {
                 lock (Machines)
+                {
                     foreach (var machine in Machines)
-                        if ((!machine.Key.IsConnected && Configuration.OfflineColonies) || machine.Key.IsConnected)
+                        if (!machine.Key.IsConnected && Configuration.OfflineColonies || machine.Key.IsConnected)
                             foreach (var state in machine.Value)
                                 try
                                 {
                                     state.Value.MachineSettings.DoWork(machine.Key, state.Value);
 
                                     if (state.Value.Load <= 0)
-                                        Server.Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Reload_Icon, true, false));
+                                        Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector,
+                                                                        new IndicatorState(MACHINE_REFRESH,
+                                                                                           GameLoader.Reload_Icon, true,
+                                                                                           false));
 
                                     if (state.Value.Durability <= 0)
-                                        Server.Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Repairing_Icon, true, false));
+                                        Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector,
+                                                                        new IndicatorState(MACHINE_REFRESH,
+                                                                                           GameLoader.Repairing_Icon,
+                                                                                           true, false));
 
                                     if (state.Value.Fuel <= 0)
-                                        Server.Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, new Shared.IndicatorState(MACHINE_REFRESH, GameLoader.Refuel_Icon, true, false));
-      
+                                        Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector,
+                                                                        new IndicatorState(MACHINE_REFRESH,
+                                                                                           GameLoader.Refuel_Icon, true,
+                                                                                           false));
                                 }
                                 catch (Exception ex)
                                 {
                                     PandaLogger.LogError(ex);
                                 }
+                }
 
-                _nextUpdate = Pipliz.Time.SecondsSinceStartDouble + MACHINE_REFRESH;
+                _nextUpdate = Time.SecondsSinceStartDouble + MACHINE_REFRESH;
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnLoadingPlayer")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnLoadingPlayer,
+            GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnLoadingPlayer")]
         public static void OnLoadingPlayer(JSONNode n, Players.Player p)
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Machines", out var machinesNode))
-            {
                 lock (Machines)
                 {
                     foreach (var node in machinesNode.LoopArray())
                         RegisterMachineState(p, new MachineState(node, p));
 
                     if (Machines.ContainsKey(p))
-                        PandaLogger.Log(ChatColor.lime, $"{Machines[p].Count} machines loaded from save for {p.ID.steamID.m_SteamID}!");
+                        PandaLogger.Log(ChatColor.lime,
+                                        $"{Machines[p].Count} machines loaded from save for {p.ID.steamID.m_SteamID}!");
                     else
                         PandaLogger.Log(ChatColor.lime, $"No machines found in save for {p.ID.steamID.m_SteamID}.");
                 }
-            }
             else
                 PandaLogger.Log(ChatColor.lime, $"No machines found in save for {p.ID.steamID.m_SteamID}.");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.PatrolTool.OnSavingPlayer")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnSavingPlayer,
+            GameLoader.NAMESPACE + ".Items.Machines.MachineManager.PatrolTool.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {
             lock (Machines)
+            {
                 if (Machines.ContainsKey(p))
                 {
                     if (n.HasChild(GameLoader.NAMESPACE + ".Machines"))
@@ -162,9 +138,11 @@ namespace Pandaros.Settlers.Managers
 
                     n[GameLoader.NAMESPACE + ".Machines"] = machineNode;
                 }
+            }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
+            GameLoader.NAMESPACE + ".Items.Machines.MachineManager.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
@@ -207,12 +185,12 @@ namespace Pandaros.Settlers.Managers
 
         public static List<Vector3Int> GetClosestMachines(Vector3Int position, Players.Player owner, int maxDistance)
         {
-            int closest = int.MaxValue;
-            var retVal = new List<Vector3Int>();
+            var closest = int.MaxValue;
+            var retVal  = new List<Vector3Int>();
 
             foreach (var machine in Machines[owner])
             {
-                var dis = Pipliz.Math.RoundToInt(Vector3.Distance(machine.Key.Vector, position.Vector));
+                var dis = Math.RoundToInt(Vector3.Distance(machine.Key.Vector, position.Vector));
 
                 if (dis <= maxDistance && dis <= closest)
                     retVal.Add(machine.Key);
@@ -223,7 +201,7 @@ namespace Pandaros.Settlers.Managers
 
         public static ushort Refuel(Players.Player player, MachineState machineState)
         {
-            if ((!player.IsConnected && Configuration.OfflineColonies) || player.IsConnected)
+            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
             {
                 var ps = PlayerState.GetPlayerState(player);
 
@@ -235,16 +213,14 @@ namespace Pandaros.Settlers.Managers
                     var stockpile = Stockpile.GetStockPile(player);
 
                     foreach (var item in FuelValues)
-                    {
                         while ((stockpile.AmountContained(item.Key) > 100 ||
                                 item.Key == BuiltinBlocks.Firewood ||
                                 item.Key == BuiltinBlocks.Coalore) &&
-                                machineState.Fuel < MachineState.MAX_FUEL[player])
+                               machineState.Fuel < MachineState.MAX_FUEL[player])
                         {
                             stockpile.TryRemove(item.Key);
                             machineState.Fuel += item.Value;
                         }
-                    }
 
                     if (machineState.Fuel < MachineState.MAX_FUEL[player])
                         return FuelValues.First().Key;
@@ -252,6 +228,55 @@ namespace Pandaros.Settlers.Managers
             }
 
             return GameLoader.Refuel_Icon;
+        }
+
+
+        public class MachineSettings : IMachineSettings
+        {
+            public MachineSettings()
+            {
+            }
+
+            public MachineSettings(string                                     name, ushort itemIndex,
+                                   Func<Players.Player, MachineState, ushort> repair,
+                                   Func<Players.Player, MachineState, ushort> refuel,
+                                   Func<Players.Player, MachineState, ushort> reload,
+                                   Action<Players.Player, MachineState>       doWork, float repairTime,
+                                   float                                      refuelTime,
+                                   float                                      reloadTime, float workTime)
+            {
+                Name       = name;
+                ItemIndex  = itemIndex;
+                Repair     = repair;
+                Refuel     = refuel;
+                DoWork     = doWork;
+                RepairTime = repairTime;
+                RefuelTime = refuelTime;
+                WorkTime   = workTime;
+                Reload     = reload;
+                ReloadTime = reloadTime;
+            }
+
+            public string Name { get; set; }
+
+            public float RepairTime { get; set; }
+
+            public float RefuelTime { get; set; }
+
+            public float ReloadTime { get; set; }
+
+            public float WorkTime { get; set; }
+
+            public ushort ItemIndex { get; set; }
+
+            public Func<Players.Player, MachineState, ushort> Repair { get; set; }
+            public Func<Players.Player, MachineState, ushort> Refuel { get; set; }
+            public Func<Players.Player, MachineState, ushort> Reload { get; set; }
+            public Action<Players.Player, MachineState> DoWork { get; set; }
+            public string MachineType { get; set; } = MachinistJob.MECHANICAL;
+            public string RefuelAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
+            public string ReloadAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
+            public string RepairAudioKey { get; set; } = GameLoader.NAMESPACE + ".HammerAudio";
         }
     }
 }
