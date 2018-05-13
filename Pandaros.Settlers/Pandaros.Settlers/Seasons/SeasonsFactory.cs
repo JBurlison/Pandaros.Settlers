@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using Pipliz;
 using Pipliz.Collections.Threadsafe;
-using Math = Pipliz.Math;
+using Math = System.Math;
 
 namespace Pandaros.Settlers.Seasons
 {
-    [ModLoader.ModManager]
+    [ModLoader.ModManagerAttribute]
     public static class SeasonsFactory
     {
         private const int CYCLE_SECONDS = 10;
@@ -19,8 +18,8 @@ namespace Pandaros.Settlers.Seasons
         private static int _currentMax = CHUNKS_PER_CYCLE;
         private static int _currentMin;
         private static int _currentDayInSeason = 0;
-        private static int _daysBetweenSeasonChanges = 5;
-        private static int _currentSeason = 0;
+        private static readonly int _daysBetweenSeasonChanges = 5;
+        private static int _currentSeason;
         private static int _nextSeason = 1;
         private static double _nextUpdate = TimeCycle.TotalTime + 10;
         private static double _nextCycleTime;
@@ -30,14 +29,16 @@ namespace Pandaros.Settlers.Seasons
 
         public static ISeason NextSeason => _seasons[_nextSeason];
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.AfterWorldLoad")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+            GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var worldChunks = GetWorldChunks();
-            _numberOfCycles = (int)System.Math.Ceiling((double)worldChunks.Count / CHUNKS_PER_CYCLE);
+            _numberOfCycles = (int) Math.Ceiling((double) worldChunks.Count / CHUNKS_PER_CYCLE);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.ChangeSeasons")]
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+            GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.ChangeSeasons")]
         public static void ChangeSeasons()
         {
             if (TimeCycle.TotalTime > _nextUpdate && Time.SecondsSinceStartDouble > _nextCycleTime)
@@ -49,36 +50,51 @@ namespace Pandaros.Settlers.Seasons
 
                 worldChunks.ForeachValue(c =>
                 {
-                    if (i >= _currentMin && i < _currentMax && c.Data is Chunk.ChunkDataFull)
+                    if (i >= _currentMin && i < _currentMax)
                     {
-                        var bounds = c.Bounds;
-                        PandaLogger.Log("Chunk Found");
+                        c.LockWriteData();
 
-                        for (var x = 0; x <= 15; x++)
-                        for (var y = 0; y <= 15; y++)
-                        for (var z = 0; z <= 15; z++)
-                            try
+                        try
+                        {
+                            if (c.DataState != Chunk.ChunkDataState.DataFull)
+                                return;
+
+                            PandaLogger.Log("Chunk Found");
+                            var data     = c.Data;
+                            var didThing = false;
+
+                            for (var d = 0; d < 4096; d++)
                             {
+                                var existingType = data[d];
+
                                 foreach (var type in BlockTypeRegistry.Mappings)
-                                    if (type.Value.Contains(c.Data[x, y, z]) &&
+                                    if (type.Value.Contains(existingType) &&
                                         NextSeason.SeasonalBlocks.ContainsKey(type.Key))
                                     {
-                                        c.Data = c.Data.Set(new Vector3Byte(x, y, z), NextSeason.SeasonalBlocks[type.Key]);
-                                        //chunkData[x, y, z] = NextSeason.SeasonalBlocks[type.Key];
+                                        var localPos = new Vector3Byte(d);
+
+                                        data = data.Set(localPos, NextSeason.SeasonalBlocks[type.Key]);
+
+                                        if (!didThing)
+                                        {
+                                            didThing  = true;
+                                            c.IsDirty = true;
+                                        }
+
+                                        ServerManager.SendBlockChange(localPos.ToWorld(c.Position),
+                                                                      NextSeason.SeasonalBlocks[type.Key]);
                                         PandaLogger.Log("Block Updated!");
                                         break;
                                     }
-
-                            }
-                            catch (Exception ex)
-                            {
-                                        PandaLogger.LogError(ex);
                             }
 
-                        for (int p = 0; p < Players.CountConnected; p++)
-                            c.AddReceivingPlayer(Players.GetConnectedByIndex(p));
-
-                        c.SendToReceivingPlayers();
+                            if (didThing)
+                                c.Data = data;
+                        }
+                        finally
+                        {
+                            c.UnlockWriteData();
+                        }
                     }
 
                     i++;
@@ -100,11 +116,11 @@ namespace Pandaros.Settlers.Seasons
                     _currentMax    = CHUNKS_PER_CYCLE;
                     _currentMin    = 0;
                     _nextCycleTime = 0;
-                    _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
+                    _nextUpdate    = TimeCycle.TotalTime + 24 * _daysBetweenSeasonChanges;
                 }
             }
         }
-        
+
         public static void AddSeason(ISeason season)
         {
             if (season != null)
@@ -112,26 +128,36 @@ namespace Pandaros.Settlers.Seasons
                 if (!string.IsNullOrEmpty(season.SeasonAfter))
                 {
                     var afterSeason = _seasons.FirstOrDefault(s => s.Name == season.SeasonAfter);
-                    var indexOfSeason = _seasons.IndexOf(afterSeason);
-                    var newIndex = indexOfSeason - 1;
 
-                    if (newIndex < 0)
-                        newIndex = 0;
+                    if (afterSeason != null)
+                    {
+                        var indexOfSeason = _seasons.IndexOf(afterSeason);
+                        var newIndex      = indexOfSeason - 1;
 
-                    if (newIndex <= _seasons.Count)
-                        _seasons.Insert(newIndex, season);
+                        if (newIndex < 0)
+                            newIndex = 0;
+
+                        if (newIndex <= _seasons.Count)
+                            _seasons.Insert(newIndex, season);
+                        else
+                            _seasons.Add(season);
+                    }
                     else
+                    {
                         _seasons.Add(season);
+                    }
                 }
                 else
+                {
                     _seasons.Add(season);
+                }
             }
         }
 
         public static void ResortSeasons()
         {
-            for (int j = 0; j < _seasons.Count; j++)
-            for (int i = 0; i < _seasons.Count - 1; i++)
+            for (var j = 0; j < _seasons.Count; j++)
+            for (var i = 0; i < _seasons.Count - 1; i++)
             {
                 var s = _seasons[i];
                 _seasons.Remove(s);
@@ -141,7 +167,7 @@ namespace Pandaros.Settlers.Seasons
             var sb = new StringBuilder();
             sb.Append("Season order: ");
 
-            for (int j = 0; j < _seasons.Count; j++)
+            for (var j = 0; j < _seasons.Count; j++)
             {
                 sb.Append(_seasons[j].Name);
 
@@ -154,7 +180,10 @@ namespace Pandaros.Settlers.Seasons
 
         private static ThreadedDictionary<Vector3Int, Chunk> GetWorldChunks()
         {
-            return (ThreadedDictionary<Vector3Int, Chunk>) typeof(World).GetField("chunks", BindingFlags.NonPublic | BindingFlags.Static)?.GetValue(null);
+            return (ThreadedDictionary<Vector3Int, Chunk>) typeof(World)
+                                                          .GetField("chunks",
+                                                                    BindingFlags.NonPublic | BindingFlags.Static)
+                                                         ?.GetValue(null);
         }
     }
 }

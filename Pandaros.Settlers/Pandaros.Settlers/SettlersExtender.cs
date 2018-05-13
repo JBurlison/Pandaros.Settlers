@@ -13,21 +13,18 @@ namespace Pandaros.Settlers
     public static class SettlersExtender
     {
         private static readonly List<Type> _monsters = new List<Type>();
+        private static readonly List<Type> _magicITems = new List<Type>();
+        private static readonly List<Type> _season = new List<Type>();
+        private static readonly List<Type> _machineSettings = new List<Type>();
 
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,   GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterWorldLoad")]
         [ModLoader.ModCallbackProvidesForAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            foreach (var monster in _monsters)
-            {
-                var pandaBoss = (IPandaBoss) Activator.CreateInstance(monster);
-
-                if (pandaBoss != null && !string.IsNullOrEmpty(pandaBoss.Name))
-                {
-                    PandaLogger.Log($"Boss {pandaBoss.Name} Loaded!");
-                    MonsterManager.AddBoss(pandaBoss);
-                }
-            }
+            ActivateBosses();
+            ActivateMachine();
+            ActivateMagicItems();
+            ActivateSeasons();
         }
 
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterModsLoaded,
@@ -51,8 +48,7 @@ namespace Pandaros.Settlers
                                 switch (iface.Name)
                                 {
                                     case nameof(IMagicItem):
-                                        var magicItem = (IMagicItem) Activator.CreateInstance(type);
-                                        PandaLogger.Log($"Magic Item {magicItem.Name} Loaded!");
+                                        _magicITems.Add(type);
                                         break;
 
                                     case nameof(IPandaBoss):
@@ -60,20 +56,11 @@ namespace Pandaros.Settlers
                                         break;
 
                                     case nameof(ISeason):
-                                        var season = (ISeason) Activator.CreateInstance(type);
-                                        PandaLogger.Log($"Season {season.Name} Loaded.");
-                                        SeasonsFactory.AddSeason(season);
+                                        _season.Add(type);
                                         break;
 
                                     case nameof(IMachineSettings):
-                                        var machineSettings = (IMachineSettings) Activator.CreateInstance(type);
-
-                                        if (machineSettings != null && !string.IsNullOrEmpty(machineSettings.Name))
-                                        {
-                                            PandaLogger.Log($"Machine {machineSettings.Name} Loaded!");
-                                            MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
-                                        }
-
+                                        _machineSettings.Add(type);
                                         break;
                                 }
                             }
@@ -87,8 +74,59 @@ namespace Pandaros.Settlers
                 {
                     // Do not log it is not the correct type.
                 }
+        }
+
+        private static void ActivateBosses()
+        {
+            foreach (var monster in _monsters)
+            {
+                if (Activator.CreateInstance(monster) is IPandaBoss pandaBoss &&
+                    !string.IsNullOrEmpty(pandaBoss.Name))
+                {
+                    PandaLogger.Log($"Boss {pandaBoss.Name} Loaded!");
+                    MonsterManager.AddBoss(pandaBoss);
+                }
+            }
+        }
+
+        private static void ActivateMagicItems()
+        {
+            foreach (var item in _magicITems)
+            {
+                if (Activator.CreateInstance(item) is IMagicItem magicItem &&
+                    !string.IsNullOrEmpty(magicItem.Name))
+                {
+                    PandaLogger.Log($"Magic Item {magicItem.Name} Loaded!");
+                }
+            }
+        }
+
+        private static void ActivateSeasons()
+        {
+            foreach (var s in _season)
+            {
+                if (Activator.CreateInstance(s) is ISeason season &&
+                    !string.IsNullOrEmpty(season.Name))
+                {
+                    PandaLogger.Log($"Season {season.Name} Loaded.");
+                    SeasonsFactory.AddSeason(season);
+                }
+            }
 
             SeasonsFactory.ResortSeasons();
+        }
+
+        private static void ActivateMachine()
+        {
+            foreach (var s in _machineSettings)
+            {
+                if (Activator.CreateInstance(s) is IMachineSettings machineSettings &&
+                    !string.IsNullOrEmpty(machineSettings.Name))
+                {
+                    PandaLogger.Log($"Machine {machineSettings.Name} Loaded!");
+                    MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
+                }
+            }
         }
     }
 }
