@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Seasons
         public Dictionary<string, ushort> SeasonalBlocks { get; } = new Dictionary<string, ushort>()
         {
             {
-                BlockTypeRegistry.GRASS, BuiltinBlocks.Snow
+                BlockTypeRegistry.GRASS, BuiltinBlocks.GrassTemperate
             }
         };
 

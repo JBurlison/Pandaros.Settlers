@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Seasons
     [ModLoader.ModManagerAttribute]
     public static class SeasonsFactory
     {
-        private const int CYCLE_SECONDS = 10;
+        private const int CYCLE_SECONDS = 5;
         private const int CHUNKS_PER_CYCLE = 1000;
         private static readonly int _totalChunks = 20000;
         private static int _numberOfCycles = 20;
@@ -19,6 +19,7 @@ namespace Pandaros.Settlers.Seasons
         private static int _currentMin;
         private static int _currentDayInSeason = 0;
         private static readonly int _daysBetweenSeasonChanges = 5;
+        private static int _previousSesion;
         private static int _currentSeason;
         private static int _nextSeason = 1;
         private static double _nextUpdate = TimeCycle.TotalTime + 10;
@@ -29,22 +30,24 @@ namespace Pandaros.Settlers.Seasons
 
         public static ISeason NextSeason => _seasons[_nextSeason];
 
+        public static ISeason PreviousSeason => _seasons[_previousSesion];
+
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.AfterWorldLoad")]
+            GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.AfterWorldLoad"), 
+        ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var worldChunks = GetWorldChunks();
             _numberOfCycles = (int) Math.Ceiling((double) worldChunks.Count / CHUNKS_PER_CYCLE);
+            _previousSesion = _seasons.Count - 1;
         }
 
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
             GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.ChangeSeasons")]
         public static void ChangeSeasons()
         {
-            if (TimeCycle.TotalTime > _nextUpdate && Time.SecondsSinceStartDouble > _nextCycleTime)
+            if (Time.SecondsSinceStartDouble > _nextCycleTime)
             {
-                PandaLogger.Log(ChatColor.silver, "Time to change seasons!");
-
                 var worldChunks = GetWorldChunks();
                 var i           = 0;
 
@@ -58,8 +61,7 @@ namespace Pandaros.Settlers.Seasons
                         {
                             if (c.DataState != Chunk.ChunkDataState.DataFull)
                                 return;
-
-                            PandaLogger.Log("Chunk Found");
+                            
                             var data     = c.Data;
                             var didThing = false;
 
@@ -68,8 +70,10 @@ namespace Pandaros.Settlers.Seasons
                                 var existingType = data[d];
 
                                 foreach (var type in BlockTypeRegistry.Mappings)
-                                    if (type.Value.Contains(existingType) &&
-                                        NextSeason.SeasonalBlocks.ContainsKey(type.Key))
+                                    if ((type.Value.Contains(existingType) &&
+                                        NextSeason.SeasonalBlocks.ContainsKey(type.Key)) ||
+                                        (PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
+                                         PreviousSeason.SeasonalBlocks[type.Key] == existingType))
                                     {
                                         var localPos = new Vector3Byte(d);
 
@@ -83,7 +87,6 @@ namespace Pandaros.Settlers.Seasons
 
                                         ServerManager.SendBlockChange(localPos.ToWorld(c.Position),
                                                                       NextSeason.SeasonalBlocks[type.Key]);
-                                        PandaLogger.Log("Block Updated!");
                                         break;
                                     }
                             }
@@ -106,17 +109,28 @@ namespace Pandaros.Settlers.Seasons
 
                 if (_currentMax > _totalChunks)
                 {
+                    _currentMax = CHUNKS_PER_CYCLE;
+                    _currentMin = 0;
+                }
+
+                if (TimeCycle.TotalTime > _nextUpdate)
+                {
                     _currentSeason = _nextSeason;
 
                     _nextSeason++;
 
                     if (_nextSeason >= _seasons.Count)
-                        _nextSeason = 0;
+                    {
+                        _nextSeason     = 0;
+                        _previousSesion = _seasons.Count - 1;
+                    }
+                    else
+                        _previousSesion = _nextSeason - 1;
 
                     _currentMax    = CHUNKS_PER_CYCLE;
                     _currentMin    = 0;
                     _nextCycleTime = 0;
-                    _nextUpdate    = TimeCycle.TotalTime + 24 * _daysBetweenSeasonChanges;
+                    _nextUpdate    = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
                 }
             }
         }
