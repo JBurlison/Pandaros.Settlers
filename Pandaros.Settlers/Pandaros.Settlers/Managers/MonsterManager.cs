@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using NPC;
+﻿using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Monsters.Bosses;
@@ -12,6 +7,11 @@ using Server;
 using Server.AI;
 using Server.Monsters;
 using Shared;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Managers
             GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
         public static void OnUpdate()
         {
-            if (!World.Initialized || !ServerManager.WorldSettings.ZombiesEnabled || AIManager.IsBusy())
+            if (!World.Initialized || AIManager.IsBusy())
                 return;
 
             var secondsSinceStartDouble = Time.SecondsSinceStartDouble;
@@ -81,7 +81,7 @@ namespace Pandaros.Settlers.Managers
                 IMonster m = null;
 
                 foreach (var monster in GetAllMonsters())
-                    if (m == null || Vector3.Distance(monster.Value.Position, m.Position) > 10 && Random.NextBool())
+                    if (m == null || Vector3.Distance(monster.Value.Position, m.Position) > 15 && Random.NextBool())
                     {
                         m = monster.Value;
                         ServerManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + ".ZombieAudio");
@@ -93,12 +93,8 @@ namespace Pandaros.Settlers.Managers
             IPandaBoss bossType = null;
 
             if (World.Initialized &&
-                ServerManager.WorldSettings.ZombiesEnabled &&
                 !AIManager.IsBusy())
             {
-                _maxTimePerTick.Reset();
-                _maxTimePerTick.Start();
-
                 if (!BossActive &&
                     _nextBossUpdateTime < secondsSinceStartDouble)
                 {
@@ -113,12 +109,12 @@ namespace Pandaros.Settlers.Managers
                 {
                     var   turnOffBoss   = true;
                     var   worldSettings = ServerManager.WorldSettings;
-                    float num           = !worldSettings.MonstersDoubled ? 1 : 2;
                     var   banners       = BannerTracker.GetCount();
+
 
                     for (var i = 0; i < banners; i++)
                     {
-                        if (_maxTimePerTick.Elapsed.TotalMilliseconds > PandaMonsterSpawner.MonsterVariables.MSPerTick)
+                        if (_maxTimePerTick.Elapsed.TotalMilliseconds > PandaMonsterSpawner.Instance.SpawnerVariables.MSPerTick)
                             break;
 
                         if (BannerTracker.TryGetAtIndex(i, out var bannerGoal))
@@ -172,13 +168,6 @@ namespace Pandaros.Settlers.Managers
                                           .Set("BossIndicator", Time.SecondsSinceStartInt + 1);
                                     }
 
-                                    if (_spawnedBosses[ps].ZombieMultiplier != 0)
-                                        num *= _spawnedBosses[ps].ZombieMultiplier;
-
-                                    PandaMonsterSpawner.Instance.SpawnForBanner(bannerGoal, true, num,
-                                                                                secondsSinceStartDouble, true,
-                                                                                _spawnedBosses[ps]);
-
                                     turnOffBoss = false;
                                 }
                             }
@@ -214,8 +203,7 @@ namespace Pandaros.Settlers.Managers
 
         private static void GetNextBossSpawnTime()
         {
-            _nextBossUpdateTime =
-                Time.SecondsSinceStartInt + Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
+            _nextBossUpdateTime = Time.SecondsSinceStartInt + Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
         }
 
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerHit,

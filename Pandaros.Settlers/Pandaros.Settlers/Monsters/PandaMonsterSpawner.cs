@@ -1,60 +1,115 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using Difficulty;
 using NPC;
-using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
 using Server.AI;
 using Server.Monsters;
 using Server.NPCs;
+using System.Reflection;
 
 namespace Pandaros.Settlers.Monsters
 {
-    [ModLoader.ModManagerAttribute]
-    public class PandaMonsterSpawner : IMonsterSpawner
+    [ModLoader.ModManager]
+    public class PandaMonsterSpawner : MonsterSpawner
     {
-        private static readonly double siegeModeCooldown = 3.0;
-        private readonly Stopwatch _maxTimePerTick = new Stopwatch();
-        public static MonsterSpawner.Variables MonsterVariables { get; } = new MonsterSpawner.Variables();
+        private static double siegeModeCooldown = 3.0;
+        private const double MONSTERS_DELAY_THRESHOLD_SECONDS = 1.0;
         public static PandaMonsterSpawner Instance { get; private set; }
-        public static MonsterSpawner MonsterSpawnerInstance { get; private set; }
+        public Variables SpawnerVariables { get { return variables; } }
 
-        public void Update()
+        public override void Update()
         {
             if (!World.Initialized ||
-                !ServerManager.WorldSettings.ZombiesEnabled ||
-                AIManager.IsBusy() ||
-                MonsterManager.BossActive)
+                AIManager.IsBusy())
                 return;
 
-            var worldSettings = ServerManager.WorldSettings;
+            CalculateColoniesThatRequireMonsters(MonsterManager.BossActive);
 
-            var flag = worldSettings.ZombiesEnabled &&
-                                          (TimeCycle.ShouldSpawnMonsters || worldSettings.MonstersDayTime);
+            maxTimePerTick.Reset();
+            maxTimePerTick.Start();
 
-            var num                     = !worldSettings.MonstersDoubled ? 1 : 2;
-            var secondsSinceStartDouble = Time.SecondsSinceStartDouble;
-            var banners                 = BannerTracker.GetCount();
-
-            _maxTimePerTick.Reset();
-            _maxTimePerTick.Start();
-
-            for (var i = 0; i < banners; i++)
+            while (coloniesRequiringZombies.Count > 0 && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
             {
-                if (_maxTimePerTick.Elapsed.TotalMilliseconds > MonsterVariables.MSPerTick)
-                    break;
-
-                if (BannerTracker.TryGetAtIndex(i, out var banner))
+                int i = 0;
+                while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
                 {
-                    var ps = PlayerState.GetPlayerState(banner.Owner);
+                    var tuple = coloniesRequiringZombies[i];
+                    Colony colony = tuple.item1;
+                    Banner banner = tuple.item2;
 
-                    if (ps.MonstersEnabled)
-                        SpawnForBanner(banner, flag, num, secondsSinceStartDouble, false, null);
+                    double nextZombieSpawn = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0);
+
+                    if (nextZombieSpawn > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
+                    {
+                        coloniesRequiringZombies.RemoveAt(i);
+                        continue;
+                    }
+
+                    IDifficultySetting difficulty = colony.Owner.DifficultySetting;
+                    float cooldown = difficulty.GetZombieSpawnCooldown(colony);
+
+                    if (SpawnForBanner(banner, difficulty, colony, cooldown, null))
+                    {
+                        NextZombieSpawnTimes[colony] = nextZombieSpawn + cooldown;
+                    }
+                    else if (colony.InSiegeMode)
+                    {
+                        coloniesRequiringZombies.RemoveAt(i); // only test getting out of siege mode once per time
+                    }
                 }
             }
 
-            _maxTimePerTick.Stop();
+            maxTimePerTick.Stop();
+        }
+
+        public void CalculateColoniesThatRequireMonsters(bool force)
+        {
+            int bannerCount = BannerTracker.GetCount();
+            coloniesRequiringZombies.Clear();
+
+            for (int i = 0; i < bannerCount; i++)
+            {
+                Banner banner;
+
+                if (!BannerTracker.TryGetAtIndex(i, out banner) || !banner.KeyLocation.IsValid)
+                    continue;
+
+                Colony colony = Colony.Get(banner.Owner);
+
+                if (colony.FollowerCount == 0)
+                {
+                    colony.OnZombieSpawn(true);
+                    continue;
+                }
+
+                IDifficultySetting difficultyColony = colony.Owner.DifficultySetting;
+
+                if (!force && !difficultyColony.ShouldSpawnZombies(colony))
+                {
+                    colony.OnZombieSpawn(true);
+                    continue;
+                }
+
+                double nextZombieSpawnTime = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0);
+
+                if (nextZombieSpawnTime > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
+                    continue;
+
+                if (colony.InSiegeMode)
+                {
+                    if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - colony.LastSiegeModeSpawn < siegeModeCooldown)
+                        continue;
+                    else
+                        colony.LastSiegeModeSpawn = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
+                }
+
+                // lagging behind, or no cooldown set: teleport to current time
+                if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - nextZombieSpawnTime > MONSTERS_DELAY_THRESHOLD_SECONDS)
+                    NextZombieSpawnTimes[colony] = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
+
+                coloniesRequiringZombies.Add(TupleStruct.Create(colony, banner));
+            }
         }
 
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
@@ -63,127 +118,83 @@ namespace Pandaros.Settlers.Monsters
         private static void AfterWorldLoad()
         {
             Instance                      = new PandaMonsterSpawner();
-            MonsterSpawnerInstance        = MonsterTracker.MonsterSpawner as MonsterSpawner;
             MonsterTracker.MonsterSpawner = Instance;
             PandaLogger.Log("PandaMonsterSpawner Initialized!");
         }
 
-        public void SpawnForBanner(Banner valueAtIndex, bool       flag, float num, double secondsSinceStartDouble,
-                                   bool   force,        IPandaBoss boss)
+        public bool SpawnForBanner(Banner banner, IDifficultySetting difficulty, Colony colony, float cooldown, IPandaBoss boss)
         {
-            if (valueAtIndex != null && valueAtIndex.KeyLocation.IsValid)
+            int recycleFrequency = MonsterSpawner.GetPathRecycleFrequency(1f / cooldown);
+            NPCType zombieTypeToSpawn = difficulty.GetZombieTypeToSpawn(colony);
+            float maxPathDistance = difficulty.GetMaxPathDistance(colony, zombieTypeToSpawn, banner.SafeRadius);
+            return CaclulateZombie(banner, colony, zombieTypeToSpawn, recycleFrequency, maxPathDistance);
+        }
+
+        public static bool GetPath(int frequency, Vector3Int goal, float maxSpawnWalkDistance, out Path path)
+        {
+            return MonsterSpawner.PathCache.TryGetPath(frequency, goal, maxSpawnWalkDistance, out path);
+        }
+
+        public static bool CaclulateZombie(Banner banner, Colony colony, NPCType typeToSpawn, int RecycleFrequency = 1, float maxSpawnWalkDistance = 500f, IPandaBoss boss = null)
+        {
+            Path path;
+            if (RecycleFrequency > 1 && MonsterSpawner.PathCache.TryGetPath(RecycleFrequency, banner.KeyLocation, maxSpawnWalkDistance, out path))
             {
-                var colony = Colony.Get(valueAtIndex.Owner);
-
-                if (flag)
-                {
-                    var num2 = MonsterSpawnerInstance.GetMaxZombieCount(colony.FollowerCount) * num;
-
-                    if (num2 > 0f)
-                    {
-                        if (MonsterTracker.MonstersPerPlayer(valueAtIndex.Owner) < num2)
-                        {
-                            if (colony.InSiegeMode)
-                            {
-                                if (secondsSinceStartDouble - colony.LastSiegeModeSpawn < siegeModeCooldown)
-                                    return;
-
-                                colony.LastSiegeModeSpawn = secondsSinceStartDouble;
-                            }
-
-                            CaclulateZombie(colony, valueAtIndex, boss, force);
-                        }
-                    }
-                    else
-                    {
-                        colony.OnZombieSpawn(true);
-                    }
-                }
-                else
-                {
-                    colony.OnZombieSpawn(true);
-                }
+                SpawnPandaZombie(typeToSpawn, path, colony, boss);
+                return true;
             }
-        }
-
-        public static void SpawnZombie(Colony colony, Banner bannerGoal)
-        {
-            CaclulateZombie(colony, bannerGoal, null);
-        }
-
-        public static void CaclulateZombie(Colony colony, Banner bannerGoal, IPandaBoss boss, bool force = false)
-        {
-            var typeToSpawn          = MonsterSpawner.GetTypeToSpawn(colony.FollowerCount);
-            var maxSpawnWalkDistance = 500f;
-
-            if (force || TimeCycle.ShouldSpawnMonsters)
-                if (typeToSpawn.TryGetSettings(out NPCTypeMonsterSettings nPCTypeMonsterSettings))
-                {
-                    if (force)
-                        maxSpawnWalkDistance =
-                            TimeCycle.NightLengthInRealSeconds * (nPCTypeMonsterSettings.movementSpeed * 0.85f) +
-                            bannerGoal.SafeRadius;
-                    else
-                        maxSpawnWalkDistance =
-                            TimeCycle.NightLengthLeftInRealSeconds * (nPCTypeMonsterSettings.movementSpeed * 0.85f) +
-                            bannerGoal.SafeRadius;
-                }
-
-            switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal, maxSpawnWalkDistance, out var start))
+            Vector3Int positionFinal;
+            switch (MonsterSpawner.TryGetSpawnLocation(banner, maxSpawnWalkDistance, out positionFinal))
             {
                 case MonsterSpawner.ESpawnResult.Success:
-
-                {
-                    SpawnPandaZombie(colony, bannerGoal, boss, typeToSpawn, start);
-                    break;
-                }
-
+                    if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, banner.KeyLocation, out path, 2000000000) == EPathFindingResult.Success)
+                    {
+                        if (RecycleFrequency > 1)
+                            MonsterSpawner.PathCache.AddCopy(path);
+                        SpawnPandaZombie(typeToSpawn, path, colony, boss);
+                        return true;
+                    }
+                    colony.OnZombieSpawn(false);
+                    return false;
                 case MonsterSpawner.ESpawnResult.NotLoaded:
+                case MonsterSpawner.ESpawnResult.Impossible:
                     colony.OnZombieSpawn(true);
-                    break;
-
+                    return true;
                 case MonsterSpawner.ESpawnResult.Fail:
                     colony.OnZombieSpawn(false);
-                    break;
+                    return true;
+                default:
+                    return false;
             }
         }
 
-        public static void SpawnPandaZombie(Colony     colony, Banner bannerGoal, IPandaBoss boss, NPCType typeToSpawn,
-                                            Vector3Int start)
+        public static void SpawnPandaZombie(NPCType typeToSpawn, Path path, Colony colony, IPandaBoss boss)
         {
-            if (AIManager.ZombiePathFinder.TryFindPath(start, bannerGoal.KeyLocation, out var path, 2000000000) ==
-                EPathFindingResult.Success)
-            {
-                var monster = new Zombie(typeToSpawn, path, bannerGoal.Owner);
+            var monster = new Zombie(typeToSpawn, path, colony.Owner);
 
-                if (boss != null)
-                    if (boss.ZombieHPBonus != 0)
-                    {
-                        var fi = monster
-                                .GetType().GetField("health",
-                                                    BindingFlags.GetField | BindingFlags.NonPublic |
-                                                    BindingFlags.Instance);
-
-                        fi.SetValue(monster, (float) fi.GetValue(monster) + boss.ZombieHPBonus);
-                    }
-
-                if (colony.FollowerCount > 499)
+            if (boss != null)
+                if (boss.ZombieHPBonus != 0)
                 {
                     var fi = monster
                             .GetType().GetField("health",
-                                                BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+                                                BindingFlags.GetField | BindingFlags.NonPublic |
+                                                BindingFlags.Instance);
 
-                    fi.SetValue(monster, (float) fi.GetValue(monster) + colony.FollowerCount * .05f);
+                    fi.SetValue(monster, (float) fi.GetValue(monster) + boss.ZombieHPBonus);
                 }
 
-                ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, monster);
-                MonsterTracker.Add(monster);
-                colony.OnZombieSpawn(true);
-            }
-            else
+            if (colony.FollowerCount > 499)
             {
-                colony.OnZombieSpawn(false);
+                var fi = monster
+                        .GetType().GetField("health",
+                                            BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+
+                fi.SetValue(monster, (float) fi.GetValue(monster) + colony.FollowerCount * .05f);
             }
+
+            ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, monster);
+            MonsterTracker.Add(monster);
+            colony.OnZombieSpawn(true);
         }
     }
 }

@@ -8,10 +8,10 @@ using Math = System.Math;
 
 namespace Pandaros.Settlers.Seasons
 {
-    [ModLoader.ModManagerAttribute]
+   // [ModLoader.ModManagerAttribute]
     public static class SeasonsFactory
     {
-        private const int CYCLE_SECONDS = 5;
+        private const int CYCLE_SECONDS = 2;
         private const int CHUNKS_PER_CYCLE = 1000;
         private static readonly int _totalChunks = 20000;
         private static int _numberOfCycles = 20;
@@ -40,6 +40,8 @@ namespace Pandaros.Settlers.Seasons
             var worldChunks = GetWorldChunks();
             _numberOfCycles = (int) Math.Ceiling((double) worldChunks.Count / CHUNKS_PER_CYCLE);
             _previousSesion = _seasons.Count - 1;
+            ChunkUpdating.PlayerLoadedMaxRange = ChunkUpdating.PlayerLoadedMaxRange * 3;
+            ChunkUpdating.PlayerLoadedMinRange = ChunkUpdating.PlayerLoadedMaxRange;
         }
 
         [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,

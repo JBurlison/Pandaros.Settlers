@@ -130,8 +130,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var pos = new Vector3Int(boss.Position);
 
                 for (var i = 0; i < numberToSpawn; i++)
-                    PandaMonsterSpawner.SpawnPandaZombie(colony, banner, boss,
-                                                         MonsterSpawner.GetTypeToSpawn(colony.FollowerCount), pos);
+                    PandaMonsterSpawner.CaclulateZombie(banner, colony, MonsterSpawner.GetTypeToSpawn(colony.FollowerCount));
             }
         }
     }

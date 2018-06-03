@@ -20,27 +20,7 @@ namespace Pandaros.Settlers
             var invRef  = Inventory.GetInventory(player);
 
             if (invRef != null)
-            {
-                var playerInv = invRef.Items;
-
-                if (playerInv != null)
-                {
-                    for (var i = 0; i < playerInv.Length - 1; i++)
-                        if (playerInv[i].Type == itemType && playerInv[i].Amount > 0)
-                        {
-                            hasItem = true;
-                            var count = playerInv[i].Amount - 1;
-
-                            if (count >= 1)
-                                playerInv[i] = new InventoryItem(itemType, count);
-                            else
-                                playerInv[i] = InventoryItem.Empty;
-                        }
-
-                    if (hasItem)
-                        invRef.SendUpdate();
-                }
-            }
+                invRef.TryRemove(itemType);
 
             return hasItem;
         }
