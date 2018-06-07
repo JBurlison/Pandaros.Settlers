@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.1.8",
+    "version": "0.8.2.0",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -134,6 +134,26 @@
     "about":
       "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.2.0",
+        "notes": [
+          "Added Seasons! The grounds and trees now change with the seasons!",
+          "Colonists needs adjust as seasons change. Help keep them comfortable!",
+          "Added Fireplace",
+          "Added Campfire",
+          "Added new clothing types: Light and Heavy",
+          "Added Icebox Job to make cool refreshing drinks and icees!",
+          "Added Olla Job to make warm soups! Yumm!",
+          "Added new machine: Fan. Helps keep your colonists cool in the hot summers!",
+          "Wood use drastically increases as it gets colder outside",
+          "Added Cows (because of the limitations of the game there are no animations for these, they do move though)",
+          "Added Chickens",
+          "Colonists now die if they get too cold. An icon will appear over their head when they are too cold.",
+          "Colonists will leave the colony if they are not comfortable.",
+          "You can give comfort items directly to colonists, by default as items are made colonists in most need will take them.",
+          "Colonists now require a cooling or heating method near their beds in the summer/winter to keep comfortable while they sleep."
+        ]
+      },
       {
         "version": "0.8.1.8",
         "notes": [
