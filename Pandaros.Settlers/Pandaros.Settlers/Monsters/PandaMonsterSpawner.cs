@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Monsters
                 AIManager.IsBusy())
                 return;
 
-            CalculateColoniesThatRequireMonsters(MonsterManager.BossActive);
+            CalculateColoniesThatRequireMonsters();
 
             maxTimePerTick.Reset();
             maxTimePerTick.Start();
@@ -63,7 +63,7 @@ namespace Pandaros.Settlers.Monsters
             maxTimePerTick.Stop();
         }
 
-        public void CalculateColoniesThatRequireMonsters(bool force)
+        public void CalculateColoniesThatRequireMonsters()
         {
             int bannerCount = BannerTracker.GetCount();
             coloniesRequiringZombies.Clear();
@@ -85,12 +85,12 @@ namespace Pandaros.Settlers.Monsters
 
                 IDifficultySetting difficultyColony = colony.Owner.DifficultySetting;
 
-                if (!force && !difficultyColony.ShouldSpawnZombies(colony))
+                if (!MonsterManager.BossActive && !difficultyColony.ShouldSpawnZombies(colony))
                 {
                     colony.OnZombieSpawn(true);
                     continue;
                 }
-
+                
                 double nextZombieSpawnTime = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0);
 
                 if (nextZombieSpawnTime > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
@@ -128,11 +128,6 @@ namespace Pandaros.Settlers.Monsters
             NPCType zombieTypeToSpawn = difficulty.GetZombieTypeToSpawn(colony);
             float maxPathDistance = difficulty.GetMaxPathDistance(colony, zombieTypeToSpawn, banner.SafeRadius);
             return CaclulateZombie(banner, colony, zombieTypeToSpawn, recycleFrequency, maxPathDistance);
-        }
-
-        public static bool GetPath(int frequency, Vector3Int goal, float maxSpawnWalkDistance, out Path path)
-        {
-            return MonsterSpawner.PathCache.TryGetPath(frequency, goal, maxSpawnWalkDistance, out path);
         }
 
         public static bool CaclulateZombie(Banner banner, Colony colony, NPCType typeToSpawn, int RecycleFrequency = 1, float maxSpawnWalkDistance = 500f, IPandaBoss boss = null)
@@ -195,6 +190,7 @@ namespace Pandaros.Settlers.Monsters
             ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, monster);
             MonsterTracker.Add(monster);
             colony.OnZombieSpawn(true);
+            PandaLogger.Log($"Zombie Spawned!");
         }
     }
 }
