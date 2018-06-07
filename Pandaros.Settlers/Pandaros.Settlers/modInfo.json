@@ -137,7 +137,8 @@
       {
         "version": "0.8.1.8",
         "notes": [
-          "Added 0.6.2.0 support"
+          "Added 0.6.2.0 support",
+          "Added player configurations to the banners settings menu"
         ]
       },
       {

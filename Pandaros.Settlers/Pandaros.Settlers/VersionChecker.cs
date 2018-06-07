@@ -60,10 +60,7 @@ namespace Pandaros.Settlers
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                PandaLogger.LogError(ex);
-            }
+            catch (Exception) { }
 
             return releases;
         }
@@ -89,102 +86,104 @@ namespace Pandaros.Settlers
 
         public static void WriteVersionsToConsole()
         {
-            var gitVer   = GetGitVerion();
-            var bkFolder = GameLoader.GAMEDATA_FOLDER + "Pandaros.bk";
-
-            PandaLogger.Log(ChatColor.green, "Mod version: {0}.", GameLoader.MOD_VER.ToString());
-            PandaLogger.Log(ChatColor.green, "Git version: {0}.", gitVer.ToString());
-
-            var versionCompare = GameLoader.MOD_VER.CompareTo(gitVer);
-
-            if (versionCompare < 0)
+            try
             {
-                PandaLogger.Log(ChatColor.red, "Settlers! version is out of date. Downloading new version from: {0}",
-                                GIT_URL);
+                var gitVer = GetGitVerion();
+                var bkFolder = GameLoader.GAMEDATA_FOLDER + "Pandaros.bk";
 
-                var releases  = GetReleases();
-                var iName     = releases.IndexOf(ASSETS);
-                var nameSub   = releases.Substring(iName + ASSETS.Length);
-                var zip       = releases.IndexOf(ZIP);
-                var zipSub    = releases.Substring(zip + ZIP.Length);
-                var iEndName  = zipSub.IndexOf("\"");
-                var verString = zipSub.Substring(0, iEndName);
-                var newVer    = GameLoader.MODS_FOLDER + $"/{gitVer}.zip";
-                var oldVer    = GameLoader.MODS_FOLDER + $"/{GameLoader.MOD_VER}.zip";
-                ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
+                PandaLogger.Log(ChatColor.green, "Mod version: {0}.", GameLoader.MOD_VER.ToString());
+                PandaLogger.Log(ChatColor.green, "Git version: {0}.", gitVer.ToString());
 
-                var webClient = new WebClient();
+                var versionCompare = GameLoader.MOD_VER.CompareTo(gitVer);
 
-                webClient.Headers["User-Agent"] =
-                    "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
-
-                webClient.Headers["Content-Type"] = "text";
-
-                webClient.DownloadFileCompleted += (s, e) =>
+                if (versionCompare < 0)
                 {
-                    if (!NewVer)
+                    PandaLogger.Log(ChatColor.red, "Settlers! version is out of date. Downloading new version from: {0}",
+                                    GIT_URL);
+
+                    var releases = GetReleases();
+                    var iName = releases.IndexOf(ASSETS);
+                    var nameSub = releases.Substring(iName + ASSETS.Length);
+                    var zip = releases.IndexOf(ZIP);
+                    var zipSub = releases.Substring(zip + ZIP.Length);
+                    var iEndName = zipSub.IndexOf("\"");
+                    var verString = zipSub.Substring(0, iEndName);
+                    var newVer = GameLoader.MODS_FOLDER + $"/{gitVer}.zip";
+                    var oldVer = GameLoader.MODS_FOLDER + $"/{GameLoader.MOD_VER}.zip";
+                    ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
+
+                    var webClient = new WebClient();
+
+                    webClient.Headers["User-Agent"] =
+                        "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+                    webClient.Headers["Content-Type"] = "text";
+
+                    webClient.DownloadFileCompleted += (s, e) =>
                     {
-                        NewVer = true;
-                        var error = false;
-
-                        try
+                        if (!NewVer)
                         {
-                            if (Directory.Exists(bkFolder))
-                                Directory.Delete(bkFolder, true);
-
-                            PandaLogger.Log(ChatColor.green,
-                                            $"Settlers! update {gitVer} downloaded. Making a backup..");
-
-                            Directory.Move(GameLoader.MODS_FOLDER + "/Pandaros", bkFolder);
-
-                            if (File.Exists(oldVer))
-                                File.Delete(oldVer);
-
-                            PandaLogger.Log(ChatColor.green, $"Installing...");
+                            NewVer = true;
+                            var error = false;
 
                             try
                             {
-                                var fastZip = new FastZip();
-                                fastZip.ExtractZip(newVer, GameLoader.MODS_FOLDER, null);
-                            }
-                            catch (Exception ex)
-                            {
-                                error = true;
+                                if (Directory.Exists(bkFolder))
+                                    Directory.Delete(bkFolder, true);
 
+                                PandaLogger.Log(ChatColor.green,
+                                                $"Settlers! update {gitVer} downloaded. Making a backup..");
+
+                                Directory.Move(GameLoader.MODS_FOLDER + "/Pandaros", bkFolder);
+
+                                if (File.Exists(oldVer))
+                                    File.Delete(oldVer);
+
+                                PandaLogger.Log(ChatColor.green, $"Installing...");
+
+                                try
+                                {
+                                    var fastZip = new FastZip();
+                                    fastZip.ExtractZip(newVer, GameLoader.MODS_FOLDER, null);
+                                }
+                                catch (Exception ex)
+                                {
+                                    error = true;
+
+                                    if (Directory.Exists(bkFolder))
+                                        Directory.Move(bkFolder, GameLoader.MODS_FOLDER + "/Pandaros");
+
+                                    PandaLogger.LogError(ex);
+
+                                    PandaLogger.Log(ChatColor.red,
+                                                    $"There was an error updating to the latest version of Settlers!");
+                                }
+
+                                if (!error)
+                                {
+                                    PandaLogger.Log(ChatColor.green,
+                                                    $"Settlers! update {gitVer} installed. Restart to update!");
+
+                                    PandaChat.SendToAll($"Settlers! update {gitVer} installed. Restart server to update!",
+                                                        ChatColor.maroon, ChatStyle.bolditalic);
+                                }
+                            }
+                            catch (Exception)
+                            {
                                 if (Directory.Exists(bkFolder))
                                     Directory.Move(bkFolder, GameLoader.MODS_FOLDER + "/Pandaros");
-
-                                PandaLogger.LogError(ex);
-
-                                PandaLogger.Log(ChatColor.red,
-                                                $"There was an error updating to the latest version of Settlers!");
                             }
 
-                            if (!error)
-                            {
-                                PandaLogger.Log(ChatColor.green,
-                                                $"Settlers! update {gitVer} installed. Restart to update!");
-
-                                PandaChat.SendToAll($"Settlers! update {gitVer} installed. Restart server to update!",
-                                                    ChatColor.maroon, ChatStyle.bolditalic);
-                            }
+                            if (File.Exists(newVer))
+                                File.Delete(newVer);
                         }
-                        catch (Exception ex)
-                        {
-                            if (Directory.Exists(bkFolder))
-                                Directory.Move(bkFolder, GameLoader.MODS_FOLDER + "/Pandaros");
-
-                            PandaLogger.LogError(ex);
-                        }
-
-                        if (File.Exists(newVer))
-                            File.Delete(newVer);
-                    }
-                };
+                    };
 
 
-                webClient.DownloadFileAsync(new Uri(verString), newVer);
+                    webClient.DownloadFileAsync(new Uri(verString), newVer);
+                }
             }
+            catch (Exception) { }
         }
     }
 

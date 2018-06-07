@@ -178,7 +178,7 @@ namespace Pandaros.Settlers.Monsters
                     fi.SetValue(monster, (float) fi.GetValue(monster) + boss.ZombieHPBonus);
                 }
 
-            if (colony.FollowerCount > 499)
+            if (colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 15))
             {
                 var fi = monster
                         .GetType().GetField("health",
@@ -190,7 +190,6 @@ namespace Pandaros.Settlers.Monsters
             ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, monster);
             MonsterTracker.Add(monster);
             colony.OnZombieSpawn(true);
-            PandaLogger.Log($"Zombie Spawned!");
         }
     }
 }
