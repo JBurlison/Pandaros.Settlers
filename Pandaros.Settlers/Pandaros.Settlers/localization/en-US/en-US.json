@@ -364,839 +364,839 @@
     "Pandaros": {
       "Settlers": {
         "SettlerChance1": {
-          "name": "Pandaros.Settlers.AutoLoad.Settler Chance I",
+          "name": "Settler Chance I",
           "description": "Increases chance for settlers to find your colony."
         },
         "SettlerChance2": {
-          "name": "Pandaros.Settlers.AutoLoad.Settler Chance II",
+          "name": "Settler Chance II",
           "description": "Increases chance for settlers to find your colony."
         },
         "SettlerChance3": {
-          "name": "Pandaros.Settlers.AutoLoad.Settler Chance III",
+          "name": "Settler Chance III",
           "description": "Increases chance for settlers to find your colony."
         },
         "SettlerChance4": {
-          "name": "Pandaros.Settlers.AutoLoad.Settler Chance IV",
+          "name": "Settler Chance IV",
           "description": "Increases chance for settlers to find your colony."
         },
         "SettlerChance5": {
-          "name": "Pandaros.Settlers.AutoLoad.Settler Chance V",
+          "name": "Settler Chance V",
           "description": "Increases chance for settlers to find your colony."
         },
         "MaxSettlers1": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler I",
+          "name": "Max Settler I",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers2": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler II",
+          "name": "Max Settler II",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers3": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler III",
+          "name": "Max Settler III",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers4": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler IV",
+          "name": "Max Settler IV",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers5": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler V",
+          "name": "Max Settler V",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers6": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler VI",
+          "name": "Max Settler VI",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers7": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler VII",
+          "name": "Max Settler VII",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers8": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler VIII",
+          "name": "Max Settler VIII",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers9": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler IX",
+          "name": "Max Settler IX",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MaxSettlers10": {
-          "name": "Pandaros.Settlers.AutoLoad.Max Settler X",
+          "name": "Max Settler X",
           "description": "Increases maximum number of potential settlers received when they find your colony."
         },
         "MinSettlers1": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler I",
+          "name": "Min Settler I",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers2": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler II",
+          "name": "Min Settler II",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers3": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler III",
+          "name": "Min Settler III",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers4": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler IV",
+          "name": "Min Settler IV",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers5": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler V",
+          "name": "Min Settler V",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers6": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler VI",
+          "name": "Min Settler VI",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers7": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler VII",
+          "name": "Min Settler VII",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers8": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler VIII",
+          "name": "Min Settler VIII",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers9": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler IX",
+          "name": "Min Settler IX",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "MinSettlers10": {
-          "name": "Pandaros.Settlers.AutoLoad.Min Settler X",
+          "name": "Min Settler X",
           "description": "Increases minimum number of potential settlers received when they find your colony."
         },
         "ReducedWaste1": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Food Waste I",
+          "name": "Reduced Food Waste I",
           "description": "Reduces food waste in your colony."
         },
         "ReducedWaste2": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Food Waste II",
+          "name": "Reduced Food Waste II",
           "description": "Reduces food waste in your colony."
         },
         "ReducedWaste3": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Food Waste III",
+          "name": "Reduced Food Waste III",
           "description": "Reduces food waste in your colony."
         },
         "ReducedWaste4": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Food Waste IV",
+          "name": "Reduced Food Waste IV",
           "description": "Reduces food waste in your colony."
         },
         "ReducedWaste5": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Food Waste V",
+          "name": "Reduced Food Waste V",
           "description": "Reduces food waste in your colony."
         },
         "TimeBetween1": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Time Between I",
+          "name": "Reduced Time Between I",
           "description": "Reduces time between chances for settlers to join your colony."
         },
         "TimeBetween2": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Time Between II",
+          "name": "Reduced Time Between II",
           "description": "Reduces time between chances for settlers to join your colony."
         },
         "TimeBetween3": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Time Between III",
+          "name": "Reduced Time Between III",
           "description": "Reduces time between chances for settlers to join your colony."
         },
         "TimeBetween4": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Time Between IV",
+          "name": "Reduced Time Between IV",
           "description": "Reduces time between chances for settlers to join your colony."
         },
         "TimeBetween5": {
-          "name": "Pandaros.Settlers.AutoLoad.Reduced Time Between V",
+          "name": "Reduced Time Between V",
           "description": "Reduces time between chances for settlers to join your colony."
         },
         "Settlement1": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement2": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement3": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement4": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement5": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement6": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement7": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement8": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement9": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement10": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement11": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement12": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement13": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement14": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement15": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement16": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement17": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement18": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement19": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "Settlement20": {
-          "name": "Pandaros.Settlers.AutoLoad.Settlement - Additional Banner",
+          "name": "Settlement - Additional Banner",
           "description": "When researched, gives you an additional banner to place in your stockpile."
         },
         "SkilledLaborer1": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer I",
+          "name": "Skilled Laborer I",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer2": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer II",
+          "name": "Skilled Laborer II",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer3": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer III",
+          "name": "Skilled Laborer III",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer4": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer IV",
+          "name": "Skilled Laborer IV",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer5": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer V",
+          "name": "Skilled Laborer V",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer6": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer VI",
+          "name": "Skilled Laborer VI",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer7": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer VII",
+          "name": "Skilled Laborer VII",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer8": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer VIII",
+          "name": "Skilled Laborer VIII",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer9": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer IX",
+          "name": "Skilled Laborer IX",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "SkilledLaborer10": {
-          "name": "Pandaros.Settlers.AutoLoad.Skilled Laborer X",
+          "name": "Skilled Laborer X",
           "description": "Increases chance of getting skilled laborers when settlers to find your colony."
         },
         "NumberSkilledLaborer1": {
-          "name": "Pandaros.Settlers.AutoLoad.Number of Skilled Laborer I",
+          "name": "Number of Skilled Laborer I",
           "description": "Increases maximum number of potential skilled settlers received when they find your colony."
         },
         "NumberSkilledLaborer2": {
-          "name": "Pandaros.Settlers.AutoLoad.Number of Skilled Laborer II",
+          "name": "Number of Skilled Laborer II",
           "description": "Increases maximum number of potential skilled settlers received when they find your colony."
         },
         "NumberSkilledLaborer3": {
-          "name": "Pandaros.Settlers.AutoLoad.Number of Skilled Laborer III",
+          "name": "Number of Skilled Laborer III",
           "description": "Increases maximum number of potential skilled settlers received when they find your colony."
         },
         "NumberSkilledLaborer4": {
-          "name": "Pandaros.Settlers.AutoLoad.Number of Skilled Laborer IV",
+          "name": "Number of Skilled Laborer IV",
           "description": "Increases maximum number of potential skilled settlers received when they find your colony."
         },
         "NumberSkilledLaborer5": {
-          "name": "Pandaros.Settlers.AutoLoad.Number of Skilled Laborer V",
+          "name": "Number of Skilled Laborer V",
           "description": "Increases maximum number of potential skilled settlers received when they find your colony."
         },
         "ArmorSmithing1": {
-          "name": "Pandaros.Settlers.AutoLoad.Armor Smithing I - Copper",
+          "name": "Armor Smithing I - Copper",
           "description": "Allows crafting of copper armors for your colonists."
         },
         "ArmorSmithing2": {
-          "name": "Pandaros.Settlers.AutoLoad.Armor Smithing II - Bronze",
+          "name": "Armor Smithing II - Bronze",
           "description": "Allows crafting of bronze armors for your colonists."
         },
         "ArmorSmithing3": {
-          "name": "Pandaros.Settlers.AutoLoad.Armor Smithing III - Iron",
+          "name": "Armor Smithing III - Iron",
           "description": "Allows crafting of iron armors for your colonists."
         },
         "ArmorSmithing4": {
-          "name": "Pandaros.Settlers.AutoLoad.Armor Smithing IV - Steel",
+          "name": "Armor Smithing IV - Steel",
           "description": "Allows crafting of steel armors for your colonists."
         },
         "ColonistHealth1": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health I",
+          "name": "Increased Colonist Health I",
           "description": "Increases colonist health by 10."
         },
         "ColonistHealth2": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health II",
+          "name": "Increased Colonist Health II",
           "description": "Increases colonist health by 20."
         },
         "ColonistHealth3": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health III",
+          "name": "Increased Colonist Health III",
           "description": "Increases colonist health by 30."
         },
         "ColonistHealth4": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health IV",
+          "name": "Increased Colonist Health IV",
           "description": "Increases colonist health by 40."
         },
         "ColonistHealth5": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Colonist Health V",
+          "name": "Increased Colonist Health V",
           "description": "Increases colonist health by 50."
         },
         "SwordSmithing1": {
-          "name": "Pandaros.Settlers.AutoLoad.Sword Smithing I - Copper",
+          "name": "Sword Smithing I - Copper",
           "description": "Allows crafting of copper swords for you and your colonists."
         },
         "SwordSmithing2": {
-          "name": "Pandaros.Settlers.AutoLoad.Sword Smithing II - Bronze",
+          "name": "Sword Smithing II - Bronze",
           "description": "Allows crafting of bronze swords for you and your colonists."
         },
         "SwordSmithing3": {
-          "name": "Pandaros.Settlers.AutoLoad.Sword Smithing III - Iron",
+          "name": "Sword Smithing III - Iron",
           "description": "Allows crafting of iron swords for you and your colonists."
         },
         "SwordSmithing4": {
-          "name": "Pandaros.Settlers.AutoLoad.Sword Smithing IV - Steel",
+          "name": "Sword Smithing IV - Steel",
           "description": "Allows crafting of steel swords for you and your colonists."
         },
         "Knights1": {
-          "name": "Pandaros.Settlers.AutoLoad.Knights",
+          "name": "Knights",
           "description": "Allows for placing knight patrols and crafting Patrol Flags."
         },
         "ImprovedSling1": {
-          "name": "Pandaros.Settlers.AutoLoad.Sling Training I",
+          "name": "Sling Training I",
           "description": "Increases reload speed of slings by 5%."
         },
         "ImprovedSling2": {
-          "name": "Pandaros.Settlers.AutoLoad.Sling Training II",
+          "name": "Sling Training II",
           "description": "Increases reload speed of slings by 10%."
         },
         "ImprovedSling3": {
-          "name": "Pandaros.Settlers.AutoLoad.Sling Training III",
+          "name": "Sling Training III",
           "description": "Increases reload speed of slings by 15%."
         },
         "ImprovedSling4": {
-          "name": "Pandaros.Settlers.AutoLoad.Sling Training IV",
+          "name": "Sling Training IV",
           "description": "Increases reload speed of slings by 20%."
         },
         "ImprovedSling5": {
-          "name": "Pandaros.Settlers.AutoLoad.Sling Training V",
+          "name": "Sling Training V",
           "description": "Increases reload speed of slings by 25%."
         },
         "ImprovedBow1": {
-          "name": "Pandaros.Settlers.AutoLoad.Bow Training I",
+          "name": "Bow Training I",
           "description": "Increases reload speed of Bows by 5%."
         },
         "ImprovedBow2": {
-          "name": "Pandaros.Settlers.AutoLoad.Bow Training II",
+          "name": "Bow Training II",
           "description": "Increases reload speed of Bows by 10%."
         },
         "ImprovedBow3": {
-          "name": "Pandaros.Settlers.AutoLoad.Bow Training III",
+          "name": "Bow Training III",
           "description": "Increases reload speed of Bows by 15%."
         },
         "ImprovedBow4": {
-          "name": "Pandaros.Settlers.AutoLoad.Bow Training IV",
+          "name": "Bow Training IV",
           "description": "Increases reload speed of Bows by 20%."
         },
         "ImprovedBow5": {
-          "name": "Pandaros.Settlers.AutoLoad.Bow Training V",
+          "name": "Bow Training V",
           "description": "Increases reload speed of Bows by 25%."
         },
         "ImprovedCrossbow1": {
-          "name": "Pandaros.Settlers.AutoLoad.Crossbow Training I",
+          "name": "Crossbow Training I",
           "description": "Increases reload speed of Crossbows by 5%."
         },
         "ImprovedCrossbow2": {
-          "name": "Pandaros.Settlers.AutoLoad.Crossbow Training II",
+          "name": "Crossbow Training II",
           "description": "Increases reload speed of Crossbows by 10%."
         },
         "ImprovedCrossbow3": {
-          "name": "Pandaros.Settlers.AutoLoad.Crossbow Training III",
+          "name": "Crossbow Training III",
           "description": "Increases reload speed of Crossbows by 15%."
         },
         "ImprovedCrossbow4": {
-          "name": "Pandaros.Settlers.AutoLoad.Crossbow Training IV",
+          "name": "Crossbow Training IV",
           "description": "Increases reload speed of Crossbows by 20%."
         },
         "ImprovedCrossbow5": {
-          "name": "Pandaros.Settlers.AutoLoad.Crossbow Training V",
+          "name": "Crossbow Training V",
           "description": "Increases reload speed of Crossbows by 25%."
         },
         "ImprovedMatchlockgun1": {
-          "name": "Pandaros.Settlers.AutoLoad.Matchlockgun Training I",
+          "name": "Matchlockgun Training I",
           "description": "Increases reload speed of Matchlockguns by 5%."
         },
         "ImprovedMatchlockgun2": {
-          "name": "Pandaros.Settlers.AutoLoad.Matchlockgun Training II",
+          "name": "Matchlockgun Training II",
           "description": "Increases reload speed of Matchlockguns by 10%."
         },
         "ImprovedMatchlockgun3": {
-          "name": "Pandaros.Settlers.AutoLoad.Matchlockgun Training III",
+          "name": "Matchlockgun Training III",
           "description": "Increases reload speed of Matchlockguns by 15%."
         },
         "ImprovedMatchlockgun4": {
-          "name": "Pandaros.Settlers.AutoLoad.Matchlockgun Training IV",
+          "name": "Matchlockgun Training IV",
           "description": "Increases reload speed of Matchlockguns by 20%."
         },
         "ImprovedMatchlockgun5": {
-          "name": "Pandaros.Settlers.AutoLoad.Matchlockgun Training V",
+          "name": "Matchlockgun Training V",
           "description": "Increases reload speed of Matchlockguns by 25%."
         },
         "Machines1": {
-          "name": "Pandaros.Settlers.AutoLoad.Machines!",
+          "name": "Machines!",
           "description": "Allows crafting of machines for crafters. Adds the machinist job."
         },
         "ImprovedDurability1": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Durability I",
+          "name": "Improved Durability I",
           "description": "Increases all machines durability by 10%. Machines will need repairing less often."
         },
         "ImprovedDurability2": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Durability II",
+          "name": "Improved Durability II",
           "description": "Increases all machines durability by 20%. Machines will need repairing less often."
         },
         "ImprovedDurability3": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Durability III",
+          "name": "Improved Durability III",
           "description": "Increases all machines durability by 30%. Machines will need repairing less often."
         },
         "ImprovedDurability4": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Durability IV",
+          "name": "Improved Durability IV",
           "description": "Increases all machines durability by 40%. Machines will need repairing less often."
         },
         "ImprovedDurability5": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Durability V",
+          "name": "Improved Durability V",
           "description": "Increases all machines durability by 50%. Machines will need repairing less often."
         },
         "ImprovedFuelCapacity1": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Fuel Capacity I",
+          "name": "Improved Fuel Capacity I",
           "description": "Increases all machines fuel capacity by 10%. Machines will need refueling less often."
         },
         "ImprovedFuelCapacity2": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Fuel Capacity II",
+          "name": "Improved Fuel Capacity II",
           "description": "Increases all machines fuel capacity by 20%. Machines will need refueling less often."
         },
         "ImprovedFuelCapacity3": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Fuel Capacity III",
+          "name": "Improved Fuel Capacity III",
           "description": "Increases all machines fuel capacity by 30%. Machines will need refueling less often."
         },
         "ImprovedFuelCapacity4": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Fuel Capacity IV",
+          "name": "Improved Fuel Capacity IV",
           "description": "Increases all machines fuel capacity by 40%. Machines will need refueling less often."
         },
         "ImprovedFuelCapacity5": {
-          "name": "Pandaros.Settlers.AutoLoad.Improved Fuel Capacity V",
+          "name": "Improved Fuel Capacity V",
           "description": "Increases all machines fuel capacity by 50%. Machines will need refueling less often."
         },
         "IncreasedCapacity1": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Item Capacity I",
+          "name": "Increased Item Capacity I",
           "description": "Increases all machines item capacity by 20%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity2": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Item Capacity II",
+          "name": "Increased Item Capacity II",
           "description": "Increases all machines item capacity by 40%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity3": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Item Capacity III",
+          "name": "Increased Item Capacity III",
           "description": "Increases all machines item capacity by 60%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity4": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Item Capacity IV",
+          "name": "Increased Item Capacity IV",
           "description": "Increases all machines item capacity by 80%. Machines will need ammo/items less often."
         },
         "IncreasedCapacity5": {
-          "name": "Pandaros.Settlers.AutoLoad.Increased Item Capacity V",
+          "name": "Increased Item Capacity V",
           "description": "Increases all machines item capacity by 100%. Machines will need ammo/items less often."
         },
         "MerchantTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Merchant Training I",
+          "name": "Merchant Training I",
           "description": "Decreases time to craft for Merchant by 5%."
         },
         "MerchantTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Merchant Training II",
+          "name": "Merchant Training II",
           "description": "Decreases time to craft for Merchant by 10%."
         },
         "MerchantTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Merchant Training III",
+          "name": "Merchant Training III",
           "description": "Decreases time to craft for Merchant by 15%."
         },
         "MerchantTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Merchant Training IV",
+          "name": "Merchant Training IV",
           "description": "Decreases time to craft for Merchant by 20%."
         },
         "MerchantTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Merchant Training V",
+          "name": "Merchant Training V",
           "description": "Decreases time to craft for Merchant by 25%."
         },
         "TailorTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Tailor Training I",
+          "name": "Tailor Training I",
           "description": "Decreases time to craft for Tailor by 5%."
         },
         "TailorTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Tailor Training II",
+          "name": "Tailor Training II",
           "description": "Decreases time to craft for Tailor by 10%."
         },
         "TailorTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Tailor Training III",
+          "name": "Tailor Training III",
           "description": "Decreases time to craft for Tailor by 15%."
         },
         "TailorTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Tailor Training IV",
+          "name": "Tailor Training IV",
           "description": "Decreases time to craft for Tailor by 20%."
         },
         "TailorTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Tailor Training V",
+          "name": "Tailor Training V",
           "description": "Decreases time to craft for Tailor by 25%."
         },
         "BloomeryTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Bloomery Training I",
+          "name": "Bloomery Training I",
           "description": "Decreases time to craft for Bloomery by 5%."
         },
         "BloomeryTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Bloomery Training II",
+          "name": "Bloomery Training II",
           "description": "Decreases time to craft for Bloomery by 10%."
         },
         "BloomeryTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Bloomery Training III",
+          "name": "Bloomery Training III",
           "description": "Decreases time to craft for Bloomery by 15%."
         },
         "BloomeryTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Bloomery Training IV",
+          "name": "Bloomery Training IV",
           "description": "Decreases time to craft for Bloomery by 20%."
         },
         "BloomeryTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Bloomery Training V",
+          "name": "Bloomery Training V",
           "description": "Decreases time to craft for Bloomery by 25%."
         },
         "FineryForgeTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.FineryForge Training I",
+          "name": "FineryForge Training I",
           "description": "Decreases time to craft for FineryForge by 5%."
         },
         "FineryForgeTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.FineryForge Training II",
+          "name": "FineryForge Training II",
           "description": "Decreases time to craft for FineryForge by 10%."
         },
         "FineryForgeTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.FineryForge Training III",
+          "name": "FineryForge Training III",
           "description": "Decreases time to craft for FineryForge by 15%."
         },
         "FineryForgeTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.FineryForge Training IV",
+          "name": "FineryForge Training IV",
           "description": "Decreases time to craft for FineryForge by 20%."
         },
         "FineryForgeTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.FineryForge Training V",
+          "name": "FineryForge Training V",
           "description": "Decreases time to craft for FineryForge by 25%."
         },
         "FurnaceTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Furnace Training I",
+          "name": "Furnace Training I",
           "description": "Decreases time to craft for Furnace by 5%."
         },
         "FurnaceTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Furnace Training II",
+          "name": "Furnace Training II",
           "description": "Decreases time to craft for Furnace by 10%."
         },
         "FurnaceTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Furnace Training III",
+          "name": "Furnace Training III",
           "description": "Decreases time to craft for Furnace by 15%."
         },
         "FurnaceTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Furnace Training IV",
+          "name": "Furnace Training IV",
           "description": "Decreases time to craft for Furnace by 20%."
         },
         "FurnaceTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Furnace Training V",
+          "name": "Furnace Training V",
           "description": "Decreases time to craft for Furnace by 25%."
         },
         "GrinderTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Grinder Training I",
+          "name": "Grinder Training I",
           "description": "Decreases time to craft for Grinder by 5%."
         },
         "GrinderTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Grinder Training II",
+          "name": "Grinder Training II",
           "description": "Decreases time to craft for Grinder by 10%."
         },
         "GrinderTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Grinder Training III",
+          "name": "Grinder Training III",
           "description": "Decreases time to craft for Grinder by 15%."
         },
         "GrinderTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Grinder Training IV",
+          "name": "Grinder Training IV",
           "description": "Decreases time to craft for Grinder by 20%."
         },
         "GrinderTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Grinder Training V",
+          "name": "Grinder Training V",
           "description": "Decreases time to craft for Grinder by 25%."
         },
         "GunSmithTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.GunSmith Training I",
+          "name": "GunSmith Training I",
           "description": "Decreases time to craft for GunSmith by 5%."
         },
         "GunSmithTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.GunSmith Training II",
+          "name": "GunSmith Training II",
           "description": "Decreases time to craft for GunSmith by 10%."
         },
         "GunSmithTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.GunSmith Training III",
+          "name": "GunSmith Training III",
           "description": "Decreases time to craft for GunSmith by 15%."
         },
         "GunSmithTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.GunSmith Training IV",
+          "name": "GunSmith Training IV",
           "description": "Decreases time to craft for GunSmith by 20%."
         },
         "GunSmithTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.GunSmith Training V",
+          "name": "GunSmith Training V",
           "description": "Decreases time to craft for GunSmith by 25%."
         },
         "KilnTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Kiln Training I",
+          "name": "Kiln Training I",
           "description": "Decreases time to craft for Kiln by 5%."
         },
         "KilnTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Kiln Training II",
+          "name": "Kiln Training II",
           "description": "Decreases time to craft for Kiln by 10%."
         },
         "KilnTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Kiln Training III",
+          "name": "Kiln Training III",
           "description": "Decreases time to craft for Kiln by 15%."
         },
         "KilnTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Kiln Training IV",
+          "name": "Kiln Training IV",
           "description": "Decreases time to craft for Kiln by 20%."
         },
         "KilnTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Kiln Training V",
+          "name": "Kiln Training V",
           "description": "Decreases time to craft for Kiln by 25%."
         },
         "MetalSmithTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.MetalSmith Training I",
+          "name": "MetalSmith Training I",
           "description": "Decreases time to craft for MetalSmith by 5%."
         },
         "MetalSmithTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.MetalSmith Training II",
+          "name": "MetalSmith Training II",
           "description": "Decreases time to craft for MetalSmith by 10%."
         },
         "MetalSmithTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.MetalSmith Training III",
+          "name": "MetalSmith Training III",
           "description": "Decreases time to craft for MetalSmith by 15%."
         },
         "MetalSmithTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.MetalSmith Training IV",
+          "name": "MetalSmith Training IV",
           "description": "Decreases time to craft for MetalSmith by 20%."
         },
         "MetalSmithTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.MetalSmith Training V",
+          "name": "MetalSmith Training V",
           "description": "Decreases time to craft for MetalSmith by 25%."
         },
         "MintTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Mint Training I",
+          "name": "Mint Training I",
           "description": "Decreases time to craft for Mint by 5%."
         },
         "MintTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Mint Training II",
+          "name": "Mint Training II",
           "description": "Decreases time to craft for Mint by 10%."
         },
         "MintTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Mint Training III",
+          "name": "Mint Training III",
           "description": "Decreases time to craft for Mint by 15%."
         },
         "MintTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Mint Training IV",
+          "name": "Mint Training IV",
           "description": "Decreases time to craft for Mint by 20%."
         },
         "MintTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Mint Training V",
+          "name": "Mint Training V",
           "description": "Decreases time to craft for Mint by 25%."
         },
         "OvenTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Oven Training I",
+          "name": "Oven Training I",
           "description": "Decreases time to craft for Oven by 5%."
         },
         "OvenTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Oven Training II",
+          "name": "Oven Training II",
           "description": "Decreases time to craft for Oven by 10%."
         },
         "OvenTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Oven Training III",
+          "name": "Oven Training III",
           "description": "Decreases time to craft for Oven by 15%."
         },
         "OvenTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Oven Training IV",
+          "name": "Oven Training IV",
           "description": "Decreases time to craft for Oven by 20%."
         },
         "OvenTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Oven Training V",
+          "name": "Oven Training V",
           "description": "Decreases time to craft for Oven by 25%."
         },
         "WoodcutterTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.Woodcutter Training I",
+          "name": "Woodcutter Training I",
           "description": "Decreases time to craft for Woodcutter by 5%."
         },
         "WoodcutterTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.Woodcutter Training II",
+          "name": "Woodcutter Training II",
           "description": "Decreases time to craft for Woodcutter by 10%."
         },
         "WoodcutterTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.Woodcutter Training III",
+          "name": "Woodcutter Training III",
           "description": "Decreases time to craft for Woodcutter by 15%."
         },
         "WoodcutterTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.Woodcutter Training IV",
+          "name": "Woodcutter Training IV",
           "description": "Decreases time to craft for Woodcutter by 20%."
         },
         "WoodcutterTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.Woodcutter Training V",
+          "name": "Woodcutter Training V",
           "description": "Decreases time to craft for Woodcutter by 25%."
         },
         "WorkBenchTraining1": {
-          "name": "Pandaros.Settlers.AutoLoad.WorkBench Training I",
+          "name": "WorkBench Training I",
           "description": "Decreases time to craft for WorkBench by 5%."
         },
         "WorkBenchTraining2": {
-          "name": "Pandaros.Settlers.AutoLoad.WorkBench Training II",
+          "name": "WorkBench Training II",
           "description": "Decreases time to craft for WorkBench by 10%."
         },
         "WorkBenchTraining3": {
-          "name": "Pandaros.Settlers.AutoLoad.WorkBench Training III",
+          "name": "WorkBench Training III",
           "description": "Decreases time to craft for WorkBench by 15%."
         },
         "WorkBenchTraining4": {
-          "name": "Pandaros.Settlers.AutoLoad.WorkBench Training IV",
+          "name": "WorkBench Training IV",
           "description": "Decreases time to craft for WorkBench by 20%."
         },
         "WorkBenchTraining5": {
-          "name": "Pandaros.Settlers.AutoLoad.WorkBench Training V",
+          "name": "WorkBench Training V",
           "description": "Decreases time to craft for WorkBench by 25%."
         },
         "MasterOfAll1": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All I",
+          "name": "Master Of All I",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 3%. Stacks with training."
         },
         "MasterOfAll2": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All II",
+          "name": "Master Of All II",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 6%. Stacks with training."
         },
         "MasterOfAll3": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All III",
+          "name": "Master Of All III",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 9%. Stacks with training."
         },
         "MasterOfAll4": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All IV",
+          "name": "Master Of All IV",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 12%. Stacks with training."
         },
         "MasterOfAll5": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All V",
+          "name": "Master Of All V",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 15%. Stacks with training."
         },
         "MasterOfAll6": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All VI",
+          "name": "Master Of All VI",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 18%. Stacks with training."
         },
         "MasterOfAll7": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All VII",
+          "name": "Master Of All VII",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 21%. Stacks with training."
         },
         "MasterOfAll8": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All VIII",
+          "name": "Master Of All VIII",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 24%. Stacks with training."
         },
         "MasterOfAll9": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All IX",
+          "name": "Master Of All IX",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 27%. Stacks with training."
         },
         "MasterOfAll10": {
-          "name": "Pandaros.Settlers.AutoLoad.Master Of All X",
+          "name": "Master Of All X",
           "description":
             "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
         },
         "Apothecaries1": {
-          "name": "Pandaros.Settlers.AutoLoad.Apothecary",
+          "name": "Apothecary",
           "description": "Apothecary creates magical reagents such as mana and bandages for you and your colonists."
         },
         "AdvancedApothecary1": {
-          "name": "Pandaros.Settlers.AutoLoad.Advanced Apothecary",
+          "name": "Advanced Apothecary",
           "description": "Apothecaries learn how to make Treated bandages for powerful healing."
         },
         "Mana1": {
-          "name": "Pandaros.Settlers.AutoLoad.Mana!",
+          "name": "Mana!",
           "description": "Unlocks mana that can be used for magical things!"
         },
         "Teleportation1": {
-          "name": "Pandaros.Settlers.AutoLoad.Teleportation!",
+          "name": "Teleportation!",
           "description":
             "Unlocks Teleporters! Can be crafted, placed in pairs. One side must be maintained by a machinist."
         },
         "BuildersWand1": {
-          "name": "Pandaros.Settlers.AutoLoad.Builders Wand",
+          "name": "Builders Wand",
           "description":
             "Unlocks the Builders Wand! Used to lay out a large number of blocks at a time. Can lay out 750 blocks before it breaks."
         },
         "BetterBuildersWand1": {
-          "name": "Pandaros.Settlers.AutoLoad.Better Builders Wand",
+          "name": "Better Builders Wand",
           "description": "Upgrades the Builders Wand to lay out 1000 blocks before it breaks!"
         },
         "BetterBuildersWand2": {
-          "name": "Pandaros.Settlers.AutoLoad.Even Better Builders Wand",
+          "name": "Even Better Builders Wand",
           "description": "Upgrades the Builders Wand to lay out 1250 blocks before it breaks!"
         },
         "BetterBuildersWand3": {
-          "name": "Pandaros.Settlers.AutoLoad.Super Builders Wand",
+          "name": "Super Builders Wand",
           "description": "Upgrades the Builders Wand to lay out 1500 blocks before it breaks!"
         },
         "BetterBuildersWand4": {
-          "name": "Pandaros.Settlers.AutoLoad.Ultra Builders Wand",
+          "name": "Ultra Builders Wand",
           "description": "Upgrades the Builders Wand to lay out 1750 blocks before it breaks!"
         },
         "BetterBuildersWand5": {
-          "name": "Pandaros.Settlers.AutoLoad.Perfect Builders Wand",
+          "name": "Perfect Builders Wand",
           "description": "Upgrades the Builders Wand to lay out 2000 blocks before it breaks!"
         },
         "Elementium1": {
-          "name": "Pandaros.Settlers.AutoLoad.Elementium",
+          "name": "Elementium",
           "description":
             "Unlocks Elementium. Elementium is transmuted by Apothecary and is used to create powerful magic items and elemental weapons."
         }
