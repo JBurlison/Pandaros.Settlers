@@ -18,12 +18,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMachines")]
-        public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        public static void RegisterMachines()
         {
-            MachineManager.RegisterMachineType(nameof(Miner),
-                                               new MachineManager.MachineSettings(nameof(Miner), Item.ItemIndex, Repair,
+            MachineManager.RegisterMachineType(new MachineManager.MachineSettings(nameof(Miner), Item.ItemIndex, Repair,
                                                                                   MachineManager.Refuel, Reload, DoWork,
                                                                                   10, 4, 5, 4));
         }

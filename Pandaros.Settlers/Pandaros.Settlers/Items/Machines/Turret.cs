@@ -321,8 +321,7 @@ namespace Pandaros.Settlers.Items.Machines
             RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
 
             foreach (var turret in TurretSettings)
-                MachineManager.RegisterMachineType(turret.Key,
-                                                   new MachineManager.MachineSettings(turret.Key,
+                MachineManager.RegisterMachineType(new MachineManager.MachineSettings(turret.Key,
                                                                                       turret.Value.TurretItem.ItemIndex,
                                                                                       Repair, MachineManager.Refuel,
                                                                                       Reload, DoWork,

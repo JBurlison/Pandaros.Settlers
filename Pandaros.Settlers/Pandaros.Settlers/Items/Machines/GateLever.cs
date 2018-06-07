@@ -55,12 +55,11 @@ namespace Pandaros.Settlers.Items.Machines
         public static ItemTypesServer.ItemTypeRaw GateItemZP { get; private set; }
         public static ItemTypesServer.ItemTypeRaw GateItemZN { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterMachines")]
-        public static void RegisterMachines(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        public static void RegisterMachines()
         {
-            MachineManager.RegisterMachineType(nameof(GateLever),
-                                               new MachineManager.MachineSettings(nameof(GateLever), Item.ItemIndex,
+            MachineManager.RegisterMachineType(new MachineManager.MachineSettings(nameof(GateLever), Item.ItemIndex,
                                                                                   Repair, MachineManager.Refuel, Reload,
                                                                                   DoWork, 10, 4, 5, 4));
         }

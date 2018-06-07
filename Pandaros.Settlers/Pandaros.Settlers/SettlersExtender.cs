@@ -124,7 +124,7 @@ namespace Pandaros.Settlers
                     !string.IsNullOrEmpty(machineSettings.Name))
                 {
                     PandaLogger.Log($"Machine {machineSettings.Name} Loaded!");
-                    MachineManager.RegisterMachineType(machineSettings.Name, machineSettings);
+                    MachineManager.RegisterMachineType(machineSettings);
                 }
             }
         }

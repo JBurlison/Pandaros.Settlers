@@ -21,28 +21,27 @@ namespace Pandaros.Settlers.Managers
         private const int MACHINE_REFRESH = 1;
         public static string MACHINE_JSON = "";
 
-        public static Dictionary<string, IMachineSettings> MachineCallbacks =
-            new Dictionary<string, IMachineSettings>(StringComparer.OrdinalIgnoreCase);
+        public static Dictionary<string, IMachineSettings> MachineCallbacks = new Dictionary<string, IMachineSettings>(StringComparer.OrdinalIgnoreCase);
 
         public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
         private static double _nextUpdate;
 
-        public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; } =
-            new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
+        public static Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>> Machines { get; } = new Dictionary<Players.Player, Dictionary<Vector3Int, MachineState>>();
 
         public static event EventHandler MachineRemoved;
 
-        public static void RegisterMachineType(string machineType, IMachineSettings callback)
+        public static void RegisterMachineType(IMachineSettings callback)
         {
-            PandaLogger.Log(machineType + " Registered as a Machine Type!");
-            MachineCallbacks[machineType] = callback;
+            PandaLogger.Log(callback.Name + " Registered as a Machine!");
+            MachineCallbacks[callback.Name] = callback;
         }
 
-        public static IMachineSettings GetCallbacks(string machineType)
+        public static IMachineSettings GetCallbacks(string machineName)
         {
-            if (MachineCallbacks.ContainsKey(machineType)) return MachineCallbacks[machineType];
+            if (MachineCallbacks.ContainsKey(machineName))
+                return MachineCallbacks[machineName];
 
-            PandaLogger.Log($"Unknown machine type {machineType}. Returning {nameof(Miner)}.");
+            PandaLogger.Log($"Unknown machine {machineName}. Returning {nameof(Miner)}.");
             return MachineCallbacks[nameof(Miner)];
         }
 
@@ -237,13 +236,16 @@ namespace Pandaros.Settlers.Managers
             {
             }
 
-            public MachineSettings(string                                     name, ushort itemIndex,
+            public MachineSettings(string                                     name, 
+                                   ushort                                     itemIndex,
                                    Func<Players.Player, MachineState, ushort> repair,
                                    Func<Players.Player, MachineState, ushort> refuel,
                                    Func<Players.Player, MachineState, ushort> reload,
-                                   Action<Players.Player, MachineState>       doWork, float repairTime,
+                                   Action<Players.Player, MachineState>       doWork, 
+                                   float                                      repairTime,
                                    float                                      refuelTime,
-                                   float                                      reloadTime, float workTime)
+                                   float                                      reloadTime, 
+                                   float                                      workTime)
             {
                 Name       = name;
                 ItemIndex  = itemIndex;
