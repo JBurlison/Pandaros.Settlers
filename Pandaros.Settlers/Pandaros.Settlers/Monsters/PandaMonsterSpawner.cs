@@ -1,5 +1,6 @@
 ﻿using Difficulty;
 using NPC;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
@@ -83,9 +84,11 @@ namespace Pandaros.Settlers.Monsters
                     continue;
                 }
 
+                var ps = PlayerState.GetPlayerState(banner.Owner);
                 IDifficultySetting difficultyColony = colony.Owner.DifficultySetting;
 
-                if (!MonsterManager.BossActive && !difficultyColony.ShouldSpawnZombies(colony))
+                if (!MonsterManager.BossActive)
+                if (!ps.MonstersEnabled && !difficultyColony.ShouldSpawnZombies(colony))
                 {
                     colony.OnZombieSpawn(true);
                     continue;
