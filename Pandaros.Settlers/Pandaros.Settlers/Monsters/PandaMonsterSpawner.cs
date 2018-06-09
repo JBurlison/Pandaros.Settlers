@@ -29,30 +29,27 @@ namespace Pandaros.Settlers.Monsters
 
             maxTimePerTick.Reset();
             maxTimePerTick.Start();
-
+            
             while (coloniesRequiringZombies.Count > 0 && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
             {
                 int i = 0;
+
                 while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
                 {
                     var tuple = coloniesRequiringZombies[i];
                     Colony colony = tuple.item1;
                     Banner banner = tuple.item2;
 
-                    double nextZombieSpawn = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0);
-
-                    if (nextZombieSpawn > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
-                    {
-                        coloniesRequiringZombies.RemoveAt(i);
-                        continue;
-                    }
-
                     IDifficultySetting difficulty = colony.Owner.DifficultySetting;
                     float cooldown = difficulty.GetZombieSpawnCooldown(colony);
 
                     if (SpawnForBanner(banner, difficulty, colony, cooldown, null))
                     {
-                        NextZombieSpawnTimes[colony] = nextZombieSpawn + cooldown;
+                        double nextZombieSpawn = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0) + cooldown;
+                        NextZombieSpawnTimes[colony] = nextZombieSpawn;
+
+                        if (nextZombieSpawn > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
+                            coloniesRequiringZombies.RemoveAt(i);
                     }
                     else if (colony.InSiegeMode)
                     {
@@ -88,7 +85,7 @@ namespace Pandaros.Settlers.Monsters
                 IDifficultySetting difficultyColony = colony.Owner.DifficultySetting;
 
                 if (!MonsterManager.BossActive)
-                if (!ps.MonstersEnabled && !difficultyColony.ShouldSpawnZombies(colony))
+                if (!ps.MonstersEnabled || !difficultyColony.ShouldSpawnZombies(colony))
                 {
                     colony.OnZombieSpawn(true);
                     continue;
