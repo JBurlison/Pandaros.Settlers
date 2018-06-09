@@ -137,7 +137,10 @@
       {
         "version": "0.8.1.10",
         "notes": [
-          "Fixed monsters spawning like CRAZY"
+          "Fixed monsters spawning like CRAZY",
+          "Fixed bosses not spawning",
+          "When colonists leave they now tell you what they are taking",
+          "There is now a penalty on top of seige mode for bosses unable to get to your banner."
         ]
       },
       {

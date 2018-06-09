@@ -28,6 +28,7 @@ namespace Pandaros.Settlers.Entities
         }
 
         public Random Rand { get; set; }
+        public int FaiedBossSpawns { get; set; }
 
         public static List<HealingOverTimePC> HealingSpells { get; } = new List<HealingOverTimePC>();
 

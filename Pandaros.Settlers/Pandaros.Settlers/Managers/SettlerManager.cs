@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.AI;
@@ -690,13 +691,8 @@ namespace Pandaros.Settlers.Managers
         {
             if (Random.NextFloat() > .49f)
             {
-                var cost = npc.Colony.UsedStockpile.TotalFood * .05f;
-                var num  = 0f;
-
-                if (cost < 1)
-                    cost = 1;
-
-                npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost);
+                float cost = PenalizeFood(npc.Colony, 0.05f);
+                PandaChat.Send(npc.Colony.Owner, $"A colonist has left your colony taking {cost} food.", ChatColor.red);
             }
             else
             {
@@ -713,10 +709,24 @@ namespace Pandaros.Settlers.Managers
                         npc.Colony.UsedStockpile.TryRemove(item.Type, leaveTax);
                     }
                 }
+
+                PandaChat.Send(npc.Colony.Owner, $"A colonist has left your colony taking 10% of {numberOfItems} items from your stockpile.", ChatColor.red);
             }
 
             npc.health = 0;
             npc.OnDeath();
+        }
+
+        public static float PenalizeFood(Colony c, float percent)
+        {
+            var cost = (float)Math.Ceiling(c.UsedStockpile.TotalFood * percent);
+            var num = 0f;
+
+            if (cost < 1)
+                cost = 1;
+
+            c.UsedStockpile.TryRemoveFood(ref num, cost);
+            return cost;
         }
 
         private static bool EvaluateBeds(Players.Player p)
