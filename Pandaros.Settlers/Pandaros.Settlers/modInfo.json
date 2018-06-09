@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.1.9",
+    "version": "0.8.1.10",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -134,6 +134,12 @@
     "about":
       "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.1.10",
+        "notes": [
+          "Fixed monsters spawning like CRAZY"
+        ]
+      },
       {
         "version": "0.8.1.9",
         "notes": [

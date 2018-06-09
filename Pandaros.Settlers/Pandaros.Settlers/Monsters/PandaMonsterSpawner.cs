@@ -88,7 +88,7 @@ namespace Pandaros.Settlers.Monsters
                 IDifficultySetting difficultyColony = colony.Owner.DifficultySetting;
 
                 if (!MonsterManager.BossActive)
-                if (!ps.MonstersEnabled && !difficultyColony.ShouldSpawnZombies(colony))
+                if (!ps.MonstersEnabled || !difficultyColony.ShouldSpawnZombies(colony))
                 {
                     colony.OnZombieSpawn(true);
                     continue;

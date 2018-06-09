@@ -33,7 +33,7 @@ namespace Pandaros.Settlers
         public static string GAME_ROOT = @"";
         public static string SAVE_LOC = "";
 
-        public static readonly Version MOD_VER = new Version(0, 8, 1, 9);
+        public static readonly Version MOD_VER = new Version(0, 8, 1, 10);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
 
