@@ -165,7 +165,7 @@ namespace Pandaros.Settlers.Monsters
 
         public static void SpawnPandaZombie(NPCType typeToSpawn, Path path, Colony colony, IPandaBoss boss)
         {
-            var monster = new Zombie(typeToSpawn, path, colony.Owner);
+            var monster = new PandaZombie(typeToSpawn, path, colony.Owner);
 
             if (boss != null)
                 if (boss.ZombieHPBonus != 0)

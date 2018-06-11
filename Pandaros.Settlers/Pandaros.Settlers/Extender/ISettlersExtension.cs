@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Pandaros.Settlers.Extender
+{
+    public interface ISettlersExtension
+    {
+        List<Type> LoadedAssembalies { get; }
+
+        string InterfaceName { get; }
+
+        void ActiveAssemblies();
+    }
+}

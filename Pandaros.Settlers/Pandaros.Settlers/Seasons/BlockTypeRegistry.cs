@@ -18,6 +18,7 @@ namespace Pandaros.Settlers.Seasons
             Mappings[GRASS].Add(BuiltinBlocks.GrassTaiga);
             Mappings[GRASS].Add(BuiltinBlocks.GrassTemperate);
             Mappings[GRASS].Add(BuiltinBlocks.GrassTundra);
+            Mappings[GRASS].Add(BuiltinBlocks.Snow);
 
             Mappings[LEAVES].Add(BuiltinBlocks.LeavesTemperate);
         }
