@@ -15,8 +15,7 @@ namespace Pandaros.Settlers.Seasons
         private const int CHUNKS_PER_CYCLE = 100;
         private static int _currentMax = CHUNKS_PER_CYCLE;
         private static int _currentMin;
-        private static int _currentDayInSeason = 0;
-        private static readonly int _daysBetweenSeasonChanges = 5;
+        private static readonly int _daysBetweenSeasonChanges = 10;
         private static int _previousSesion;
         private static int _currentSeason;
         private static int _nextSeason = 1;
@@ -34,12 +33,11 @@ namespace Pandaros.Settlers.Seasons
         public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData chunkCallback)
         {
             chunkCallback.Result = true;
-            chunkCallback.MillisecondsTillNextCheck = int.MaxValue;
         }
 
   
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.AfterWorldLoad"), 
-        ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Gameloader.SettlersExtender.AfterWorldLoad")]
+        ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var worldChunks = GetWorldChunks();
@@ -102,8 +100,6 @@ namespace Pandaros.Settlers.Seasons
 
         private static void ChangeSeason(Chunk c)
         {
-            c.LockWriteData();
-
             try
             {
                 if (c.DataState != Chunk.ChunkDataState.DataFull)
@@ -111,6 +107,8 @@ namespace Pandaros.Settlers.Seasons
 
                 var data = c.Data;
                 var didThing = false;
+                c.LockWriteData();
+
 
                 for (var d = 0; d < 4096; d++)
                 {
