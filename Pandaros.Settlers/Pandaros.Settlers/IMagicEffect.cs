@@ -15,5 +15,7 @@
         float CraftingSpeed { get; set; }
 
         float MovementSpeed { get; set; }
+
+        void Update();
     }
 }

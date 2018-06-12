@@ -38,7 +38,6 @@ namespace Pandaros.Settlers.Cosmetics
                                     new List<InventoryItem> {flax, planks, linen},
                                     new InventoryItem(Item.ItemIndex, 1), 2);
 
-            //ItemTypesServer.LoadSortOrder(NAME, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddDefaultLimitTypeRecipe(Register.DYER_JOB, recipe);
         }
     }
