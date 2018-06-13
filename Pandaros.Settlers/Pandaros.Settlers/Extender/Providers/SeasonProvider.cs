@@ -12,7 +12,22 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public string InterfaceName => nameof(ISeason);
 
-        public void ActiveAssemblies()
+        public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        {
+            
+        }
+
+        public void AfterItemTypesDefined()
+        {
+           
+        }
+
+        public void AfterSelectedWorld()
+        {
+           
+        }
+
+        public void AfterWorldLoad()
         {
             foreach (var s in LoadedAssembalies)
             {

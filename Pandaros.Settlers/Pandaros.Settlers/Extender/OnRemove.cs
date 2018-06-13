@@ -23,6 +23,10 @@ namespace Pandaros.Settlers.Extender
         {
             var node = new JSONNode();
 
+            node.SetAs(nameof(amount), amount);
+            node.SetAs(nameof(chance), chance);
+            node.SetAs(nameof(type), type);
+
             return node;
         }
     }

@@ -90,6 +90,7 @@
     <Compile Include="Extender\ICSType.cs" />
     <Compile Include="Extender\IJsonConvertable.cs" />
     <Compile Include="Extender\OnRemove.cs" />
+    <Compile Include="Extender\Providers\ItemsProvider.cs" />
     <Compile Include="Extender\Providers\SeasonProvider.cs" />
     <Compile Include="Extender\Providers\MachineSettingsProvider.cs" />
     <Compile Include="Extender\Providers\MagicItemsProvider.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ColonyArchiver.cs" />
     <Compile Include="Extender\SettlersExtender.cs" />
+    <Compile Include="Stats\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
   </ItemGroup>
   <ItemGroup>

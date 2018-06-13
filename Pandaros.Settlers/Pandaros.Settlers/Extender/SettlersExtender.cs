@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Managers;
-using Pandaros.Settlers.Monsters.Bosses;
-using Pandaros.Settlers.Seasons;
 
 namespace Pandaros.Settlers.Extender
 {
@@ -19,7 +14,14 @@ namespace Pandaros.Settlers.Extender
         public static void AfterWorldLoad()
         {
             foreach (var extension in _settlersExtensions)
-                extension.ActiveAssemblies();
+                try
+                {
+                    extension.AfterWorldLoad();
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterModsLoaded")]
@@ -27,6 +29,50 @@ namespace Pandaros.Settlers.Extender
         {
             LoadExtenstions(list);
             LoadImplementation(list);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterItemTypesDefined")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
+        public static void AfterItemTypesDefined()
+        {
+            foreach (var extension in _settlersExtensions)
+                try
+                {
+                    extension.AfterItemTypesDefined();
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterSelectedWorld")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
+        public static void AfterSelectedWorld()
+        {
+            foreach (var extension in _settlersExtensions)
+                try
+                {
+                    extension.AfterSelectedWorld();
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterAddingBaseTypes")]
+        public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        {
+            foreach (var extension in _settlersExtensions)
+                try
+                {
+                    extension.AfterAddingBaseTypes(itemTypes);
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
         }
 
         private static void LoadImplementation(List<ModLoader.ModDescription> list)

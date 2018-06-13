@@ -6,6 +6,7 @@ namespace Pandaros.Settlers.Extender
 {
     public interface ICSType : IJsonConvertable
     {
+        string Name { get; }
         bool blocksPathing { get; }
         ReadOnlyCollection<string> categories { get; }
         ReadOnlyCollection<Colliders> colliders { get; }

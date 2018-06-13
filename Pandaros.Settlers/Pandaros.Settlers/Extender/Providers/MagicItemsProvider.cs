@@ -10,7 +10,22 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public string InterfaceName => nameof(IMagicItem);
 
-        public void ActiveAssemblies()
+        public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        {
+            
+        }
+
+        public void AfterItemTypesDefined()
+        {
+            
+        }
+
+        public void AfterSelectedWorld()
+        {
+           
+        }
+
+        public void AfterWorldLoad()
         {
             foreach (var item in LoadedAssembalies)
             {

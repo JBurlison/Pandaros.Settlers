@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using NPC;
+using Pandaros.Settlers.Extender;
 using Pipliz;
+using Pipliz.JSON;
 using Server.AI;
+using UnityEngine;
 using Random = System.Random;
 
 namespace Pandaros.Settlers
@@ -115,6 +120,37 @@ namespace Pandaros.Settlers
         public static void SetFieldValue<oT>(this object o, string fieldName, object fieldValue)
         {
             typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
+        }
+
+        public static string ToRGBHex(this Color c)
+        {
+            return string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b));
+        }
+
+        public static JSONNode ToJsonNode<T>(this IEnumerable<T> convertableCollection) where T : IJsonConvertable
+        {
+            var newNode = new JSONNode(NodeType.Array);
+
+            foreach (var n in convertableCollection)
+                newNode.AddToArray(n.ToJsonNode());
+
+            return newNode;
+        }
+
+        public static JSONNode ToJsonNode(this IEnumerable<string> convertableCollection)
+        {
+            var newNode = new JSONNode(NodeType.Array);
+
+            foreach (var n in convertableCollection)
+                newNode.AddToArray(new JSONNode(n));
+
+            return newNode;
+        }
+
+        private static byte ToByte(float f)
+        {
+            f = Mathf.Clamp01(f);
+            return (byte)(f * 255);
         }
     }
 }

@@ -11,7 +11,22 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public string InterfaceName => nameof(IPandaBoss);
 
-        public void ActiveAssemblies()
+        public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        {
+            
+        }
+
+        public void AfterItemTypesDefined()
+        {
+           
+        }
+
+        public void AfterSelectedWorld()
+        {
+            
+        }
+
+        public void AfterWorldLoad()
         {
             foreach (var monster in LoadedAssembalies)
             {

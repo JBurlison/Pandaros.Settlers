@@ -10,6 +10,7 @@ namespace Pandaros.Settlers.Extender
 {
     public abstract class CSType : ICSType
     {
+        public virtual string Name { get; }
         public virtual bool isDestructible { get; } = true;
         public virtual bool isRotatable { get; } = false;
         public virtual bool isSolid { get; } = true;
@@ -48,7 +49,41 @@ namespace Pandaros.Settlers.Extender
         public virtual JSONNode ToJsonNode()
         {
             var node = new JSONNode();
-            
+
+            node.SetAs(nameof(isDestructible), isDestructible);
+            node.SetAs(nameof(isRotatable), isRotatable);
+            node.SetAs(nameof(isSolid), isSolid);
+            node.SetAs(nameof(isFertile), isFertile);
+            node.SetAs(nameof(isPlaceable), isPlaceable);
+            node.SetAs(nameof(needsBase), needsBase);
+            node.SetAs(nameof(maxStackSize), maxStackSize);
+            node.SetAs(nameof(nutritionalValue), nutritionalValue);
+            node.SetAs(nameof(mesh), mesh);
+            node.SetAs(nameof(icon), icon);
+            node.SetAs(nameof(onRemoveAudio), onRemoveAudio);
+            node.SetAs(nameof(destructionTime), destructionTime);
+            node.SetAs(nameof(customData), customData);
+            node.SetAs(nameof(parentType), parentType);
+            node.SetAs(nameof(rotatablexp), rotatablexp);
+            node.SetAs(nameof(rotatablexn), rotatablexn);
+            node.SetAs(nameof(rotatablezp), rotatablezp);
+            node.SetAs(nameof(rotatablezn), rotatablezn);
+            node.SetAs(nameof(sideall), sideall);
+            node.SetAs(nameof(sidexp), sidexp);
+            node.SetAs(nameof(sidexn), sidexn);
+            node.SetAs(nameof(sideyp), sideyp);
+            node.SetAs(nameof(sideyn), sideyn);
+            node.SetAs(nameof(sidezp), sidezp);
+            node.SetAs(nameof(sidezn), sidezn);
+            node.SetAs(nameof(color), color.ToRGBHex());
+            node.SetAs(nameof(onRemoveType), onRemoveType);
+            node.SetAs(nameof(onRemoveAmount), onRemoveAmount);
+            node.SetAs(nameof(onRemoveChance), onRemoveChance);
+            node.SetAs(nameof(onRemove), onRemove.ToJsonNode());
+            node.SetAs(nameof(blocksPathing), blocksPathing);
+            node.SetAs(nameof(colliders), colliders.ToJsonNode());
+            node.SetAs(nameof(categories), categories.ToJsonNode());
+
             return node;    
         }
     }
