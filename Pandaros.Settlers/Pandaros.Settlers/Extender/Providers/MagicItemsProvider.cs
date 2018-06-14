@@ -1,6 +1,7 @@
 ﻿using Pandaros.Settlers.Items;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
@@ -27,14 +28,24 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterWorldLoad()
         {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("");
+            sb.AppendLine("-------------------Magic Items Loaded----------------------");
+            sb.AppendLine("");
+
             foreach (var item in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(item) is IMagicItem magicItem &&
                     !string.IsNullOrEmpty(magicItem.Name))
                 {
-                    PandaLogger.Log($"Magic Item {magicItem.Name} Loaded!");
+                    sb.Append($"{magicItem.Name}, ");
                 }
             }
+
+            sb.AppendLine("");
+            sb.AppendLine("---------------------------------------------------------");
+
+            PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
     }
 }

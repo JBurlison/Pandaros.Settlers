@@ -32,7 +32,6 @@ namespace Pandaros.Settlers.Extender
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterItemTypesDefined")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AfterItemTypesDefined()
         {
             foreach (var extension in _settlersExtensions)

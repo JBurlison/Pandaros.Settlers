@@ -2,6 +2,7 @@
 using Pandaros.Settlers.Monsters.Bosses;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
@@ -28,15 +29,23 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterWorldLoad()
         {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("");
+            sb.AppendLine("-------------------Bosses Loaded----------------------");
+            sb.AppendLine("");
             foreach (var monster in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(monster) is IPandaBoss pandaBoss &&
                     !string.IsNullOrEmpty(pandaBoss.Name))
                 {
-                    PandaLogger.Log($"Boss {pandaBoss.Name} Loaded!");
+                    sb.Append($"{pandaBoss.Name}, ");
                     MonsterManager.AddBoss(pandaBoss);
                 }
             }
+            sb.AppendLine("");
+            sb.AppendLine("------------------------------------------------------");
+
+            PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
     }
 }

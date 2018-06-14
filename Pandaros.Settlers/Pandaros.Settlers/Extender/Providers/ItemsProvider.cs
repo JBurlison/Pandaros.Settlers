@@ -13,16 +13,27 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("");
+            sb.AppendLine("-------------------Items Loaded----------------------");
+            sb.AppendLine("");
+
             foreach (var item in LoadedAssembalies)
             {
                 if (item.Name != nameof(CSType) &&
                     Activator.CreateInstance(item) is ICSType itemType &&
                     !string.IsNullOrEmpty(itemType.Name))
                 {
-                    PandaLogger.Log($"Item {itemType.Name} Loaded!");
-
+                    var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.ToJsonNode());
+                    itemTypes.Add(itemType.Name, rawItem);
+                    sb.Append($"{itemType.Name}, ");
                 }
             }
+
+            sb.AppendLine("");
+            sb.AppendLine("------------------------------------------------------");
+
+            PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
 
         public void AfterItemTypesDefined()

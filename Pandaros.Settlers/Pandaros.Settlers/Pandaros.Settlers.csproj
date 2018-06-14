@@ -87,9 +87,11 @@
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="Extender\Colliders.cs" />
     <Compile Include="Extender\CSType.cs" />
+    <Compile Include="Extender\ICSRecipe.cs" />
     <Compile Include="Extender\ICSType.cs" />
     <Compile Include="Extender\IJsonConvertable.cs" />
     <Compile Include="Extender\OnRemove.cs" />
+    <Compile Include="Extender\Providers\RecipeProvider.cs" />
     <Compile Include="Extender\Providers\ItemsProvider.cs" />
     <Compile Include="Extender\Providers\SeasonProvider.cs" />
     <Compile Include="Extender\Providers\MachineSettingsProvider.cs" />

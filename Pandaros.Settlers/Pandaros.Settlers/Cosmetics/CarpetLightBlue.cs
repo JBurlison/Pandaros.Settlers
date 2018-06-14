@@ -42,6 +42,7 @@ namespace Pandaros.Settlers.Cosmetics
 
             //ItemTypesServer.LoadSortOrder(NAME, GameLoader.GetNextItemSortIndex());
             RecipeStorage.AddDefaultLimitTypeRecipe(Register.DYER_JOB, recipe);
+
         }
     }
 }

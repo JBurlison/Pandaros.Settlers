@@ -3,6 +3,7 @@ using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
@@ -29,15 +30,25 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterWorldLoad()
         {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("");
+            sb.AppendLine("-------------------Machines Loaded----------------------");
+            sb.AppendLine("");
+
             foreach (var s in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(s) is IMachineSettings machineSettings &&
                     !string.IsNullOrEmpty(machineSettings.Name))
                 {
-                    PandaLogger.Log($"Machine {machineSettings.Name} Loaded!");
+                    sb.Append($"{machineSettings.Name}, ");
                     MachineManager.RegisterMachineType(machineSettings);
                 }
             }
+
+            sb.AppendLine("");
+            sb.AppendLine("---------------------------------------------------------");
+
+            PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
     }
 }
