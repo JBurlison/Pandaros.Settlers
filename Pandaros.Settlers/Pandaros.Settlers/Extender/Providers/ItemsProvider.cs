@@ -15,7 +15,8 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             foreach (var item in LoadedAssembalies)
             {
-                if (Activator.CreateInstance(item) is ICSType itemType &&
+                if (item.Name != nameof(CSType) &&
+                    Activator.CreateInstance(item) is ICSType itemType &&
                     !string.IsNullOrEmpty(itemType.Name))
                 {
                     PandaLogger.Log($"Item {itemType.Name} Loaded!");

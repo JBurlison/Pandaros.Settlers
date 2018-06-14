@@ -275,18 +275,14 @@
     "Pandaros.Settlers.BerryPancakes": "They are berry good!",
     "Pandaros.Settlers.BerryPie": "Berry than your mothers!",
     "Pandaros.Settlers.PatrolFlag": "Used with the Patrol Tool. Tells your knights where to keep watch!",
-    "Pandaros.Settlers.PatrolTool":
-      "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
-    "Pandaros.Settlers.Miner":
-      "A good machine can mine twice as fast as any human! Requires a good supply of wood or coal. Crank to start!",
-    "Pandaros.Settlers.MachinistBench":
-      "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench.",
+    "Pandaros.Settlers.PatrolTool": "Left Click to set patrol points, Right click to create patrol. Left click on existing patrols to change patrol type.",
+    "Pandaros.Settlers.Miner": "A good machine can mine twice as fast as any human! Requires a good supply of wood or coal. Crank to start!",
+    "Pandaros.Settlers.MachinistBench": "Machinist's need this bench to repair machines on. The Machinist monitors all machies within 20 blocks of the bench.",
     "Pandaros.Settlers.StoneTurret": "50 Physical Damage per shot. Fires a little slower than a Colonist.",
     "Pandaros.Settlers.BronzeArrowTurret": "100 Physical Damage per shot. Fires a little slower than as a Colonist.",
     "Pandaros.Settlers.CrossbowTurret": "300 Physical Damage per shot. Fires a little slower than as a Colonist.",
     "Pandaros.Settlers.MatchlockTurret": "500 Physical Damage per shot. Fires a little slower than as a Colonist.",
-    "Pandaros.Settlers.GateLever":
-      "Opens all Iron Gates within 20 blocks of it automatically every morning, and closes them every night. Needs a Machinist to maintain it.",
+    "Pandaros.Settlers.GateLever": "Opens all Iron Gates within 20 blocks of it automatically every morning, and closes them every night. Needs a Machinist to maintain it.",
     "Pandaros.Settlers.Gate": "Iron Gate. Needs a Gate Lever to open.",
     "Pandaros.Settlers.ApothecaryTable": "Used to make medicines, bandages and magical reagents such as mana.",
     "Pandaros.Settlers.Anitbiotic": "Use on bandages for extra fast healing.",
@@ -294,25 +290,21 @@
     "Pandaros.Settlers.TreatedBandage": "Instantly heals for 50 health then heals for 70 health over 5 seconds.",
     "Pandaros.Settlers.Mana": "Unlocks magical powers! When crafted has a 3% chance to also make Esper.",
     "Pandaros.Settlers.Aether": "Potent Mana. Handle with care!",
-    "Pandaros.Settlers.TeleportPad":
-      "Place 2 to link them. It's that simple! Pick one up and the other will be picked up too! Needs a Machinist to maintain at least one side.",
-    "Pandaros.Settlers.BuildersWand":
-      "Lays out the targeted block. Must have the blocks in your stockpile. Right click to preview, then right click to confirm or Left click to cancel. When not previewing Left click to change modes.",
+    "Pandaros.Settlers.TeleportPad": "Place 2 to link them. It's that simple! Pick one up and the other will be picked up too! Needs a Machinist to maintain at least one side.",
+    "Pandaros.Settlers.BuildersWand": "Lays out the targeted block. Must have the blocks in your stockpile. Right click to preview, then right click to confirm or Left click to cancel. When not previewing Left click to change modes.",
     "Pandaros.Settlers.Elementium": "Used to make elemental stones and magic items! Has a 3% chance to make Void also.",
     "Pandaros.Settlers.FireStone": "Harness the power of fire!",
     "Pandaros.Settlers.AirStone": "Harness the power of air!",
     "Pandaros.Settlers.EarthStone": "Harness the power of earth!",
     "Pandaros.Settlers.WaterStone": "Harness the power of water!",
-    "Pandaros.Settlers.Esper":
-      "Very difficult to capture during the creation of mana. A very powerful reagent for only the most powerful of magical things.",
+    "Pandaros.Settlers.Esper": "Very difficult to capture during the creation of mana. A very powerful reagent for only the most powerful of magical things.",
     "Pandaros.Settlers.Void": "Rare byproduct from Elementium. Who knows all it's uses...",
     "Pandaros.Settlers.AirTurret": "Air Turret deals 400 air damage and 100 physical damage per shot.",
     "Pandaros.Settlers.EarthTurret": "Earth Turret deals 400 earth damage and 100 physical damage per shot.",
     "Pandaros.Settlers.FireTurret": "Fire Turret deals 400 fire damage and 100 physical damage per shot.",
     "Pandaros.Settlers.WaterTurret": "Water Turret deals 400 water damage and 100 physical damage per shot.",
     "Pandaros.Settlers.VoidTurret": "Void Turret  deals 400 void damage and 100 physical damage per shot.",
-    "Pandaros.Settlers.AutoLoad.Selector":
-      "Selector Box for the Builders Wand. DO NOT PLACE THIS. WHY DO YOU HAVE THIS? YOU HAVE BEEN WARNED!",
+    "Pandaros.Settlers.AutoLoad.Selector": "Selector Box for the Builders Wand. DO NOT PLACE THIS. WHY DO YOU HAVE THIS? YOU HAVE BEEN WARNED!",
     "Pandaros.Settlers.AutoLoad.rawemerald": "The start to the mod.",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "The mod currency!  SHINY!",
     "Pandaros.Settlers.AutoLoad.infiniteemerald": "The start of an adventure.",
@@ -363,6 +355,11 @@
     },
     "Pandaros": {
       "Settlers": {
+        "inventory": {
+          "NumberPlaced": "Total Placed",
+          "NumberRemoved": "Total Removed",
+          "NumberInWorld": "Current In World"
+        },
         "SettlerChance1": {
           "name": "Settler Chance I",
           "description": "Increases chance for settlers to find your colony."
@@ -1105,53 +1102,43 @@
         },
         "MasterOfAll1": {
           "name": "Master Of All I",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 3%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 3%. Stacks with training."
         },
         "MasterOfAll2": {
           "name": "Master Of All II",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 6%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 6%. Stacks with training."
         },
         "MasterOfAll3": {
           "name": "Master Of All III",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 9%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 9%. Stacks with training."
         },
         "MasterOfAll4": {
           "name": "Master Of All IV",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 12%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 12%. Stacks with training."
         },
         "MasterOfAll5": {
           "name": "Master Of All V",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 15%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 15%. Stacks with training."
         },
         "MasterOfAll6": {
           "name": "Master Of All VI",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 18%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 18%. Stacks with training."
         },
         "MasterOfAll7": {
           "name": "Master Of All VII",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 21%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 21%. Stacks with training."
         },
         "MasterOfAll8": {
           "name": "Master Of All VIII",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 24%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 24%. Stacks with training."
         },
         "MasterOfAll9": {
           "name": "Master Of All IX",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 27%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 27%. Stacks with training."
         },
         "MasterOfAll10": {
           "name": "Master Of All X",
-          "description":
-            "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
         },
         "Apothecaries1": {
           "name": "Apothecary",
@@ -1167,13 +1154,11 @@
         },
         "Teleportation1": {
           "name": "Teleportation!",
-          "description":
-            "Unlocks Teleporters! Can be crafted, placed in pairs. One side must be maintained by a machinist."
+          "description": "Unlocks Teleporters! Can be crafted, placed in pairs. One side must be maintained by a machinist."
         },
         "BuildersWand1": {
           "name": "Builders Wand",
-          "description":
-            "Unlocks the Builders Wand! Used to lay out a large number of blocks at a time. Can lay out 750 blocks before it breaks."
+          "description": "Unlocks the Builders Wand! Used to lay out a large number of blocks at a time. Can lay out 750 blocks before it breaks."
         },
         "BetterBuildersWand1": {
           "name": "Better Builders Wand",
@@ -1197,8 +1182,7 @@
         },
         "Elementium1": {
           "name": "Elementium",
-          "description":
-            "Unlocks Elementium. Elementium is transmuted by Apothecary and is used to create powerful magic items and elemental weapons."
+          "description": "Unlocks Elementium. Elementium is transmuted by Apothecary and is used to create powerful magic items and elemental weapons."
         }
       }
     }

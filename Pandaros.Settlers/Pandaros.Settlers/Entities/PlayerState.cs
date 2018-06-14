@@ -61,8 +61,10 @@ namespace Pandaros.Settlers.Entities
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
         public Vector3Int TeleporterPlaced { get; set; } = Vector3Int.invalidPos;
 
-        public Dictionary<Armor.ArmorSlot, ArmorState> Armor { get; set; } =
-            new Dictionary<Armor.ArmorSlot, ArmorState>();
+        public Dictionary<Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Armor.ArmorSlot, ArmorState>();
+        public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
 
         public bool BossesEnabled { get; set; } = true;
         public bool MonstersEnabled { get; set; } = true;
@@ -174,6 +176,18 @@ namespace Pandaros.Settlers.Entities
 
             if (n.TryGetChild(GameLoader.NAMESPACE + ".PlayerState", out var stateNode))
             {
+                if (stateNode.TryGetAs(nameof(ItemsPlaced), out JSONNode ItemsPlacedNode) && ItemsPlacedNode.NodeType == NodeType.Object)
+                    foreach (var aNode in ItemsPlacedNode.LoopObject())
+                        _playerStates[p].ItemsPlaced.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
+                if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode) && ItemsRemovedNode.NodeType == NodeType.Object)
+                    foreach (var aNode in ItemsRemovedNode.LoopObject())
+                        _playerStates[p].ItemsRemoved.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
+                if (stateNode.TryGetAs(nameof(ItemsInWorld), out JSONNode ItemsInWorldNode) && ItemsInWorldNode.NodeType == NodeType.Object)
+                    foreach (var aNode in ItemsInWorldNode.LoopObject())
+                        _playerStates[p].ItemsInWorld.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
                 if (stateNode.TryGetAs("Armor", out JSONNode armorNode) && armorNode.NodeType == NodeType.Object)
                     foreach (var aNode in armorNode.LoopObject())
                         _playerStates[p].Armor[(Armor.ArmorSlot) Enum.Parse(typeof(Armor.ArmorSlot), aNode.Key)] =
@@ -237,8 +251,20 @@ namespace Pandaros.Settlers.Entities
             {
                 var node                = new JSONNode();
                 var armorNode           = new JSONNode();
+                var ItemsPlacedNode     = new JSONNode();
+                var ItemsRemovedNode    = new JSONNode();
+                var ItemsInWorldNode    = new JSONNode();
                 var flagsPlaced         = new JSONNode(NodeType.Array);
                 var buildersWandPreview = new JSONNode(NodeType.Array);
+
+                foreach (var kvp in _playerStates[p].ItemsPlaced)
+                    ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                foreach (var kvp in _playerStates[p].ItemsRemoved)
+                    ItemsRemovedNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                foreach (var kvp in _playerStates[p].ItemsInWorld)
+                    ItemsInWorldNode.SetAs(kvp.Key.ToString(), kvp.Value);
 
                 foreach (var armor in _playerStates[p].Armor)
                     armorNode.SetAs(armor.Key.ToString(), armor.Value.ToJsonNode());
@@ -264,6 +290,10 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(SettlersToggledTimes), _playerStates[p].SettlersToggledTimes);
                 node.SetAs(nameof(HighestColonistCount), _playerStates[p].HighestColonistCount);
                 node.SetAs(nameof(NeedsABed), _playerStates[p].NeedsABed);
+                node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
+                node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
+                node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
+
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }
