@@ -31,26 +31,19 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterWorldLoad()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("");
-            sb.AppendLine("-------------------Seasons Loaded----------------------");
-            sb.AppendLine("");
+            PandaLogger.Log(ChatColor.lime, "-------------------Seasons Loaded----------------------");
 
             foreach (var s in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(s) is ISeason season &&
                     !string.IsNullOrEmpty(season.Name))
                 {
-                    sb.Append($"{season.Name}, ");
                     SeasonsFactory.AddSeason(season);
                 }
             }
 
             SeasonsFactory.ResortSeasons();
-
-            sb.AppendLine("");
-            sb.AppendLine("---------------------------------------------------------");
-
-            PandaLogger.Log(ChatColor.lime, sb.ToString());
+            PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
         }
     }
 }

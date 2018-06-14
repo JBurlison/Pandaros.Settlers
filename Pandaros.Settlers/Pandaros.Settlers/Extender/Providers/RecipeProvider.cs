@@ -29,9 +29,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterWorldLoad()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("");
-            sb.AppendLine("-------------------Recipes Loaded----------------------");
-            sb.AppendLine("");
+            PandaLogger.Log(ChatColor.lime, "-------------------Recipes Loaded----------------------");
 
             foreach (var item in LoadedAssembalies)
             {
@@ -60,10 +58,8 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            sb.AppendLine("");
-            sb.AppendLine("---------------------------------------------------------");
-
             PandaLogger.Log(ChatColor.lime, sb.ToString());
+            PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
         }
     }
 }

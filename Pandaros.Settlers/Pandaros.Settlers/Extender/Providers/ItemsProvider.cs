@@ -14,9 +14,8 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("");
-            sb.AppendLine("-------------------Items Loaded----------------------");
-            sb.AppendLine("");
+
+            PandaLogger.Log(ChatColor.lime, "-------------------Items Loaded----------------------");
 
             foreach (var item in LoadedAssembalies)
             {
@@ -30,10 +29,8 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            sb.AppendLine("");
-            sb.AppendLine("------------------------------------------------------");
-
             PandaLogger.Log(ChatColor.lime, sb.ToString());
+            PandaLogger.Log(ChatColor.lime, "------------------------------------------------------");
         }
 
         public void AfterItemTypesDefined()

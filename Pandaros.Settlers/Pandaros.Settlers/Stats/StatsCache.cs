@@ -17,16 +17,19 @@ namespace Pandaros.Settlers.Stats
         {
             if (data.hoverType != Shared.ETooltipHoverType.Item ||
                 data.player.ID.type == NetworkID.IDType.Server ||
-                data.player.ID.type == NetworkID.IDType.Invalid)
+                data.player.ID.type == NetworkID.IDType.Invalid ||
+                !ItemTypes.TryGetType(data.hoverItem, out var item))
                 return;
 
             var ps = PlayerState.GetPlayerState(data.player);
 
             if (ps != null)
             {
-                BuildMenu(data, ps, ps.ItemsPlaced, "NumberPlaced");
-                BuildMenu(data, ps, ps.ItemsRemoved, "NumberRemoved");
-                BuildMenu(data, ps, ps.ItemsInWorld, "NumberInWorld");
+                ushort itemId = GetParentId(data.hoverItem, item);
+
+                BuildMenu(data, itemId, ps, ps.ItemsPlaced, "NumberPlaced");
+                BuildMenu(data, itemId, ps, ps.ItemsRemoved, "NumberRemoved");
+                BuildMenu(data, itemId, ps, ps.ItemsInWorld, "NumberInWorld");
             }
         }
 
@@ -42,40 +45,55 @@ namespace Pandaros.Settlers.Stats
 
             if (ps != null)
             {
-                if (d.TypeNew != BuiltinBlocks.Air)
+                if (d.TypeNew != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeNew, out var item))
                 {
-                    if (!ps.ItemsPlaced.ContainsKey(d.TypeNew))
-                        ps.ItemsPlaced.Add(d.TypeNew, 0);
+                    ushort itemId = GetParentId(d.TypeNew, item);
 
-                    if (!ps.ItemsInWorld.ContainsKey(d.TypeNew))
-                        ps.ItemsInWorld.Add(d.TypeNew, 0);
+                    if (!ps.ItemsPlaced.ContainsKey(itemId))
+                        ps.ItemsPlaced.Add(itemId, 0);
 
-                    ps.ItemsPlaced[d.TypeNew]++;
-                    ps.ItemsInWorld[d.TypeNew]++;
+                    if (!ps.ItemsInWorld.ContainsKey(itemId))
+                        ps.ItemsInWorld.Add(itemId, 0);
+
+                    ps.ItemsPlaced[itemId]++;
+                    ps.ItemsInWorld[itemId]++;
                 }
 
-                if (d.TypeNew == BuiltinBlocks.Air && d.TypeOld != BuiltinBlocks.Air)
+                if (d.TypeNew == BuiltinBlocks.Air && d.TypeOld != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeOld, out var itemOld))
                 {
-                    if (!ps.ItemsRemoved.ContainsKey(d.TypeOld))
-                        ps.ItemsRemoved.Add(d.TypeOld, 0);
+                    ushort itemId = GetParentId(d.TypeOld, itemOld);
 
-                    if (!ps.ItemsInWorld.ContainsKey(d.TypeOld))
-                        ps.ItemsInWorld.Add(d.TypeOld, 0);
+                    if (!ps.ItemsRemoved.ContainsKey(itemId))
+                        ps.ItemsRemoved.Add(itemId, 0);
+
+                    if (!ps.ItemsInWorld.ContainsKey(itemId))
+                        ps.ItemsInWorld.Add(itemId, 0);
                     else
-                        ps.ItemsInWorld[d.TypeOld]--;
+                        ps.ItemsInWorld[itemId]--;
 
-                    ps.ItemsRemoved[d.TypeOld]++;
+                    ps.ItemsRemoved[itemId]++;
                 }
             }
         }
 
-        private static void BuildMenu(ConstructTooltipUIData data, PlayerState ps, Dictionary<ushort, int> dict, string sentenceKey)
+        private static ushort GetParentId(ushort siblingType, ItemTypes.ItemType itemOld)
         {
-            if (!dict.ContainsKey(data.hoverItem))
-                dict.Add(data.hoverItem, 0);
+            var itemId = siblingType;
+            var parent = itemOld.GetRootParentType();
+
+            if (parent != null)
+                itemId = parent.ItemIndex;
+
+            return itemId;
+        }
+
+        private static void BuildMenu(ConstructTooltipUIData data, ushort item, PlayerState ps, Dictionary<ushort, int> dict, string sentenceKey)
+        {
+            if (!dict.ContainsKey(item))
+                dict.Add(item, 0);
 
             data.menu.Items.Add(new HorizontalSplit(new Label(new LabelData(GameLoader.NAMESPACE + ".inventory." + sentenceKey, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Sentence)),
-                                                    new Label(new LabelData(dict[data.hoverItem].ToString())), 30, 0.75f));
+                                                    new Label(new LabelData(dict[item].ToString())), 30, 0.75f));
             
         }
     }

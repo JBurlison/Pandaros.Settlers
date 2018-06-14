@@ -30,9 +30,8 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterWorldLoad()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("");
-            sb.AppendLine("-------------------Bosses Loaded----------------------");
-            sb.AppendLine("");
+            PandaLogger.Log(ChatColor.lime, "-------------------Bosses Loaded----------------------");
+
             foreach (var monster in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(monster) is IPandaBoss pandaBoss &&
@@ -42,10 +41,9 @@ namespace Pandaros.Settlers.Extender.Providers
                     MonsterManager.AddBoss(pandaBoss);
                 }
             }
-            sb.AppendLine("");
-            sb.AppendLine("------------------------------------------------------");
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
+            PandaLogger.Log(ChatColor.lime, "------------------------------------------------------");
         }
     }
 }

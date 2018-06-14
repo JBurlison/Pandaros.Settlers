@@ -198,7 +198,7 @@ namespace Pandaros.Settlers.Seasons
                     sb.Append(", ");
             }
 
-            PandaLogger.Log(sb.ToString());
+            PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
 
         private static ThreadedDictionary<Vector3Int, Chunk> GetWorldChunks()
