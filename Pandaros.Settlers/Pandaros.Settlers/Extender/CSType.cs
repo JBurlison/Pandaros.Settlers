@@ -11,19 +11,19 @@ namespace Pandaros.Settlers.Extender
     public abstract class CSType : ICSType
     {
         public virtual string Name { get; }
-        public virtual bool isDestructible { get; } = true;
-        public virtual bool isRotatable { get; } = false;
-        public virtual bool isSolid { get; } = true;
-        public virtual bool isFertile { get; } = false;
-        public virtual bool isPlaceable { get; } = false;
-        public virtual bool needsBase { get; } = false;
-        public virtual int maxStackSize { get; } = 50;
-        public virtual float nutritionalValue { get; } = 0f;
+        public virtual bool? isDestructible { get; }
+        public virtual bool? isRotatable { get; }
+        public virtual bool? isSolid { get; } 
+        public virtual bool? isFertile { get; }
+        public virtual bool? isPlaceable { get; }
+        public virtual bool? needsBase { get; }
+        public virtual int? maxStackSize { get; } 
+        public virtual float? nutritionalValue { get; }
         public virtual string mesh { get; }
         public virtual string icon { get; }
         public virtual string onRemoveAudio { get; }
         public virtual string onPlaceAudio { get; }
-        public virtual int destructionTime { get; } = 400;
+        public virtual int? destructionTime { get; }
         public virtual JSONNode customData { get; }
         public virtual string parentType { get; }
         public virtual string rotatablexp { get; }
@@ -37,12 +37,12 @@ namespace Pandaros.Settlers.Extender
         public virtual string sideyn { get; }
         public virtual string sidezp { get; }
         public virtual string sidezn { get; }
-        public virtual Color color { get; } = Color.white;
+        public virtual Color color { get; } 
         public virtual string onRemoveType { get; }
         public virtual string onRemoveAmount { get; }
         public virtual string onRemoveChance { get; }
         public virtual ReadOnlyCollection<OnRemove> onRemove { get; } = new ReadOnlyCollection<OnRemove>(new List<OnRemove>());
-        public virtual bool blocksPathing => isSolid;
+        public virtual bool? blocksPathing => isSolid;
         public virtual ReadOnlyCollection<Colliders> colliders { get; } = new ReadOnlyCollection<Colliders>(new List<Colliders>());
         public virtual ReadOnlyCollection<string> categories { get; } = new ReadOnlyCollection<string>(new List<string>());
 
@@ -50,40 +50,105 @@ namespace Pandaros.Settlers.Extender
         {
             var node = new JSONNode();
 
-            node.SetAs(nameof(isDestructible), isDestructible);
-            node.SetAs(nameof(isRotatable), isRotatable);
-            node.SetAs(nameof(isSolid), isSolid);
-            node.SetAs(nameof(isFertile), isFertile);
-            node.SetAs(nameof(isPlaceable), isPlaceable);
-            node.SetAs(nameof(needsBase), needsBase);
-            node.SetAs(nameof(maxStackSize), maxStackSize);
-            node.SetAs(nameof(nutritionalValue), nutritionalValue);
-            node.SetAs(nameof(mesh), mesh);
-            node.SetAs(nameof(icon), icon);
-            node.SetAs(nameof(onRemoveAudio), onRemoveAudio);
-            node.SetAs(nameof(destructionTime), destructionTime);
-            node.SetAs(nameof(customData), customData);
-            node.SetAs(nameof(parentType), parentType);
-            node.SetAs(nameof(rotatablexp), rotatablexp);
-            node.SetAs(nameof(rotatablexn), rotatablexn);
-            node.SetAs(nameof(rotatablezp), rotatablezp);
-            node.SetAs(nameof(rotatablezn), rotatablezn);
-            node.SetAs(nameof(sideall), sideall);
-            node.SetAs(nameof(sidexp), sidexp);
-            node.SetAs(nameof(sidexn), sidexn);
-            node.SetAs(nameof(sideyp), sideyp);
-            node.SetAs(nameof(sideyn), sideyn);
-            node.SetAs(nameof(sidezp), sidezp);
-            node.SetAs(nameof(sidezn), sidezn);
-            node.SetAs(nameof(color), color.ToRGBHex());
-            node.SetAs(nameof(onRemoveType), onRemoveType);
-            node.SetAs(nameof(onRemoveAmount), onRemoveAmount);
-            node.SetAs(nameof(onRemoveChance), onRemoveChance);
-            node.SetAs(nameof(onRemove), onRemove.ToJsonNode());
-            node.SetAs(nameof(blocksPathing), blocksPathing);
-            node.SetAs(nameof(colliders), colliders.ToJsonNode());
-            node.SetAs(nameof(categories), categories.ToJsonNode());
+            if (isDestructible != null)
+                node.SetAs(nameof(isDestructible), isDestructible);
 
+            if (isRotatable != null)
+                node.SetAs(nameof(isRotatable), isRotatable);
+
+            if (isSolid != null)
+                node.SetAs(nameof(isSolid), isSolid);
+
+            if (isFertile != null)
+                node.SetAs(nameof(isFertile), isFertile);
+
+            if (isPlaceable != null)
+                node.SetAs(nameof(isPlaceable), isPlaceable);
+
+            if (needsBase != null)
+                node.SetAs(nameof(needsBase), needsBase);
+
+            if (maxStackSize != null)
+                node.SetAs(nameof(maxStackSize), maxStackSize);
+
+            if (nutritionalValue != null)
+                node.SetAs(nameof(nutritionalValue), nutritionalValue);
+
+            if (mesh != null)
+                node.SetAs(nameof(mesh), mesh);
+
+            if (icon != null)
+                node.SetAs(nameof(icon), icon);
+
+            if (onRemoveAudio != null)
+                node.SetAs(nameof(onRemoveAudio), onRemoveAudio);
+
+            if (destructionTime != null)
+                node.SetAs(nameof(destructionTime), destructionTime);
+
+            if (customData != null)
+                node.SetAs(nameof(customData), customData);
+
+            if (parentType != null)
+                node.SetAs(nameof(parentType), parentType);
+
+            if (rotatablexp != null)
+                node.SetAs(nameof(rotatablexp), rotatablexp);
+
+            if (rotatablexn != null)
+                node.SetAs(nameof(rotatablexn), rotatablexn);
+
+            if (rotatablezp != null)
+                node.SetAs(nameof(rotatablezp), rotatablezp);
+
+            if (rotatablezn != null)
+                node.SetAs(nameof(rotatablezn), rotatablezn);
+
+            if (sideall != null)
+                node.SetAs(nameof(sideall), sideall);
+
+            if (sidexp != null)
+                node.SetAs(nameof(sidexp), sidexp);
+
+            if (sidexn != null)
+                node.SetAs(nameof(sidexn), sidexn);
+
+            if (sideyp != null)
+                node.SetAs(nameof(sideyp), sideyp);
+
+            if (sideyn != null)
+                node.SetAs(nameof(sideyn), sideyn);
+
+            if (sidezp != null)
+                node.SetAs(nameof(sidezp), sidezp);
+
+            if (sidezn != null)
+                node.SetAs(nameof(sidezn), sidezn);
+
+            if (color != null && !color.Equals(Color.clear))
+                node.SetAs(nameof(color), color.ToRGBHex());
+
+            if (onRemoveType != null)
+                node.SetAs(nameof(onRemoveType), onRemoveType);
+
+            if (onRemoveAmount != null)
+                node.SetAs(nameof(onRemoveAmount), onRemoveAmount);
+
+            if (onRemoveChance != null)
+                node.SetAs(nameof(onRemoveChance), onRemoveChance);
+
+            if (onRemove.Count != 0)
+                node.SetAs(nameof(onRemove), onRemove.ToJsonNode());
+
+            if (blocksPathing != null)
+                node.SetAs(nameof(blocksPathing), blocksPathing);
+
+            if (colliders.Count != 0)
+                node.SetAs(nameof(colliders), colliders.ToJsonNode());
+
+            if (categories.Count != 0)
+                node.SetAs(nameof(categories), categories.ToJsonNode());
+            
             return node;    
         }
     }

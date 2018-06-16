@@ -18,16 +18,6 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterItemTypesDefined()
         {
-            
-        }
-
-        public void AfterSelectedWorld()
-        {
-            
-        }
-
-        public void AfterWorldLoad()
-        {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Recipes Loaded----------------------");
 
@@ -40,12 +30,12 @@ namespace Pandaros.Settlers.Extender.Providers
                     var results = new List<InventoryItem>();
 
                     foreach (var ri in recipe.Requirements)
-                        if (ItemTypesServer.TryGetType(ri.Key, out var itemAction))
-                            requirements.Add(new InventoryItem(itemAction.typeMain, ri.Value));
+                        if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
+                            requirements.Add(new InventoryItem(itemIndex, ri.Value));
 
                     foreach (var ri in recipe.Results)
-                        if (ItemTypesServer.TryGetType(ri.Key, out var itemAction))
-                            requirements.Add(new InventoryItem(itemAction.typeMain, ri.Value));
+                        if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
+                            results.Add(new InventoryItem(itemIndex, ri.Value));
 
                     var newRecipe = new Recipe(recipe.Name, requirements, results, recipe.DefautLimit, recipe.IsOptional, recipe.DefautLimit);
 
@@ -60,6 +50,16 @@ namespace Pandaros.Settlers.Extender.Providers
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+        }
+
+        public void AfterSelectedWorld()
+        {
+            
+        }
+
+        public void AfterWorldLoad()
+        {
+            
         }
     }
 }

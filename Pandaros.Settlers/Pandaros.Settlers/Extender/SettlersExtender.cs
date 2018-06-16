@@ -61,6 +61,7 @@ namespace Pandaros.Settlers.Extender
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterAddingBaseTypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             foreach (var extension in _settlersExtensions)

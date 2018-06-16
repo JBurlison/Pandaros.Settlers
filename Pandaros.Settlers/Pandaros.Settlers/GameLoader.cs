@@ -65,9 +65,7 @@ namespace Pandaros.Settlers
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
 
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/") + "/";
-
-            GAMEDATA_FOLDER =
-                path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
+            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
 
             MODS_FOLDER          = GAMEDATA_FOLDER + "/mods/";
             ICON_PATH            = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";

@@ -7,30 +7,33 @@ namespace Pandaros.Settlers.Extender.Providers
 {
     public class ItemsProvider : ISettlersExtension
     {
+        StringBuilder _sb = new StringBuilder();
+
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(ICSType);
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
-            StringBuilder sb = new StringBuilder();
-
-            PandaLogger.Log(ChatColor.lime, "-------------------Items Loaded----------------------");
-
             foreach (var item in LoadedAssembalies)
             {
-                if (item.Name != nameof(CSType) &&
-                    Activator.CreateInstance(item) is ICSType itemType &&
-                    !string.IsNullOrEmpty(itemType.Name))
+                try
                 {
-                    var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.ToJsonNode());
-                    itemTypes.Add(itemType.Name, rawItem);
-                    sb.Append($"{itemType.Name}, ");
+                    if (item.FullName != "Pandaros.Settlers.Extender.CSType" &&
+                        Activator.CreateInstance(item) is ICSType itemType &&
+                        !string.IsNullOrEmpty(itemType.Name))
+                    {
+                        var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.ToJsonNode());
+                        itemTypes.Add(itemType.Name, rawItem);
+                        _sb.Append($"{itemType.Name}, ");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
                 }
             }
 
-            PandaLogger.Log(ChatColor.lime, sb.ToString());
-            PandaLogger.Log(ChatColor.lime, "------------------------------------------------------");
         }
 
         public void AfterItemTypesDefined()
@@ -45,7 +48,9 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterWorldLoad()
         {
-            
+            PandaLogger.Log(ChatColor.lime, "-------------------Items Loaded----------------------");
+            PandaLogger.Log(ChatColor.lime, _sb.ToString());
+            PandaLogger.Log(ChatColor.lime, "------------------------------------------------------"); 
         }
     }
 }

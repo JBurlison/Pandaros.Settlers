@@ -28,9 +28,9 @@ namespace Pandaros.Settlers.Cosmetics
             Item = Register.AddCarpetTypeTypes(itemTypes, KEY);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterWorldLoad")]
-        public static void AfterWorldLoad()
+        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+            GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterItemTypesDefined")]
+        public static void AfterItemTypesDefined()
         {
             var flax   = new InventoryItem(BuiltinBlocks.Flax, 1);
             var planks = new InventoryItem(BuiltinBlocks.Planks, 1);

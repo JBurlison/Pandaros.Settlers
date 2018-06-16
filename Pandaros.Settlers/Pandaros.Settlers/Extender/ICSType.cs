@@ -7,22 +7,22 @@ namespace Pandaros.Settlers.Extender
     public interface ICSType : IJsonConvertable
     {
         string Name { get; }
-        bool blocksPathing { get; }
+        bool? blocksPathing { get; }
         ReadOnlyCollection<string> categories { get; }
         ReadOnlyCollection<Colliders> colliders { get; }
         Color color { get; }
         JSONNode customData { get; }
-        int destructionTime { get; }
+        int? destructionTime { get; }
         string icon { get; }
-        bool isDestructible { get; }
-        bool isFertile { get; }
-        bool isPlaceable { get; }
-        bool isRotatable { get; }
-        bool isSolid { get; }
-        int maxStackSize { get; }
+        bool? isDestructible { get; }
+        bool? isFertile { get; }
+        bool? isPlaceable { get; }
+        bool? isRotatable { get; }
+        bool? isSolid { get; }
+        int? maxStackSize { get; }
         string mesh { get; }
-        bool needsBase { get; }
-        float nutritionalValue { get; }
+        bool? needsBase { get; }
+        float? nutritionalValue { get; }
         string onPlaceAudio { get; }
         ReadOnlyCollection<OnRemove> onRemove { get; }
         string onRemoveAmount { get; }

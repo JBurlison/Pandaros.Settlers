@@ -1,48 +1,44 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using BlockTypes.Builtin;
+using Pandaros.Settlers.Extender;
 using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items.Food
 {
-    [ModLoader.ModManagerAttribute]
-    public static class BerryPancakes
+    public class BerryPancakes : CSType
     {
-        public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
+        public const string NAME = GameLoader.NAMESPACE + ".BerryPancakes";
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Food.RegisterBerryPancakes")]
-        public static void RegisterBerryPancakes()
+        public override string Name => NAME;
+        public override string icon => GameLoader.ICON_PATH + "BerryPancakes.png";
+        public override bool? isPlaceable => false;
+        public override float? nutritionalValue => 4f;
+        public override ReadOnlyCollection<string> categories => new ReadOnlyCollection<string>(new List<string>() { "food" });
+    }
+
+    public class BerryPancakesRecipe : ICSRecipe
+    {
+        public string Name => BerryPancakes.NAME;
+
+        public Dictionary<string, int> Requirements => new Dictionary<string, int>()
         {
-            var flour    = new InventoryItem(BuiltinBlocks.Flour, 3);
-            var Berries  = new InventoryItem(BuiltinBlocks.Berry, 2);
-            var firewood = new InventoryItem(BuiltinBlocks.Firewood);
+            { "flour", 3 },
+            { "berry", 3 },
+            { "firewood", 1 }
+        };
 
-            var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem> {flour, Berries, firewood},
-                                    new InventoryItem(Item.ItemIndex, 2),
-                                    50);
-
-            RecipeStorage.AddDefaultLimitTypeRecipe(ItemFactory.JOB_BAKER, recipe);
-        }
-
-
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Food.AddBerryPancakes")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
-        public static void AddBerryPie(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        public Dictionary<string, int> Results => new Dictionary<string, int>()
         {
-            var foodName = GameLoader.NAMESPACE + ".BerryPancakes";
-            var foodNode = new JSONNode();
-            foodNode["icon"]        = new JSONNode(GameLoader.ICON_PATH + "BerryPancakes.png");
-            foodNode["isPlaceable"] = new JSONNode(false);
-            foodNode.SetAs("nutritionalValue", 4f);
+            { BerryPancakes.NAME, 2 }
+        };
 
-            var categories = new JSONNode(NodeType.Array);
-            categories.AddToArray(new JSONNode("food"));
-            foodNode.SetAs("categories", categories);
+        public CraftPriority Priority => CraftPriority.Medium;
 
-            Item = new ItemTypesServer.ItemTypeRaw(foodName, foodNode);
-            items.Add(foodName, Item);
-        }
+        public bool IsOptional => false;
+
+        public int DefautLimit => 50;
+
+        public string Job => ItemFactory.JOB_BAKER;
     }
 }
