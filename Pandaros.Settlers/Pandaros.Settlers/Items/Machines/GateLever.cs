@@ -5,6 +5,7 @@ using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pipliz;
 using Pipliz.JSON;
 using Pipliz.Threading;
@@ -14,7 +15,60 @@ using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManagerAttribute]
+    public class GateLeverRegister : IRoamingJobObjective
+    {
+        public string Name => nameof(GateLever);
+        public float WorkTime => 4;
+        public ushort ItemIndex => GateLever.Item.ItemIndex;
+        public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
+        {
+            { MachineConstants.REFUEL, new RefuelMachineAction() },
+            { MachineConstants.REPAIR, new RepairGateLever() },
+            { MachineConstants.RELOAD, new ReloadGateLever() }
+        };
+
+        public string ObjectiveCategory => MachineConstants.MECHANICAL;
+
+        public void DoWork(Players.Player player, RoamingJobState state)
+        {
+            GateLever.DoWork(player, state);
+        }
+    }
+
+    public class RepairGateLever : IRoamingJobObjectiveAction
+    {
+        public string Name => MachineConstants.REPAIR;
+
+        public float TimeToPreformAction => 10;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+
+        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        {
+            return GateLever.Repair(player, state);
+        }
+    }
+
+    public class ReloadGateLever : IRoamingJobObjectiveAction
+    {
+        public string Name => MachineConstants.RELOAD;
+
+        public float TimeToPreformAction => 5;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+
+        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        {
+            return GateLever.Reload(player, state);
+        }
+    }
+
+
+    [ModLoader.ModManager]
     public static class GateLever
     {
         public enum GatePosition
@@ -55,16 +109,8 @@ namespace Pandaros.Settlers.Items.Machines
         public static ItemTypesServer.ItemTypeRaw GateItemZP { get; private set; }
         public static ItemTypesServer.ItemTypeRaw GateItemZN { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterMachines")]
-        public static void RegisterMachines()
-        {
-            MachineManager.RegisterMachineType(new MachineManager.MachineSettings(nameof(GateLever), Item.ItemIndex,
-                                                                                  Repair, MachineManager.Refuel, Reload,
-                                                                                  DoWork, 10, 4, 5, 4));
-        }
 
-        public static ushort Repair(Players.Player player, MachineState machineState)
+        public static ushort Repair(Players.Player player, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
 
@@ -72,7 +118,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 var ps = PlayerState.GetPlayerState(player);
 
-                if (machineState.Durability < .75f)
+                if (machineState.ActionLoad[MachineConstants.REPAIR] < .75f)
                 {
                     var repaired       = false;
                     var requiredForFix = new List<InventoryItem>();
@@ -81,16 +127,16 @@ namespace Pandaros.Settlers.Items.Machines
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
 
-                    if (machineState.Durability < .10f)
+                    if (machineState.ActionLoad[MachineConstants.REPAIR] < .10f)
                     {
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
                     }
-                    else if (machineState.Durability < .30f)
+                    else if (machineState.ActionLoad[MachineConstants.REPAIR] < .30f)
                     {
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 3));
                     }
-                    else if (machineState.Durability < .50f)
+                    else if (machineState.ActionLoad[MachineConstants.REPAIR] < .50f)
                     {
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
                     }
@@ -110,36 +156,30 @@ namespace Pandaros.Settlers.Items.Machines
                             }
                     }
 
-                    if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                        MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
                     if (repaired)
-                        machineState.Durability = MachineState.MAX_DURABILITY[player];
+                        machineState.ActionLoad[MachineConstants.REPAIR] = RoamingJobState.GetMaxLoad(MachineConstants.REPAIR, player, MachineConstants.MECHANICAL);
                 }
             }
 
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, MachineState machineState)
+        public static ushort Reload(Players.Player player, RoamingJobState machineState)
         {
             if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
             {
-                if (!MachineState.MAX_LOAD.ContainsKey(player))
-                    MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
-
-                machineState.Load = MachineState.MAX_LOAD[player];
+                machineState.ActionLoad[MachineConstants.RELOAD] = RoamingJobState.GetMaxLoad(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL);
             }
 
             return GameLoader.Reload_Icon;
         }
 
-        public static void DoWork(Players.Player player, MachineState machineState)
+        public static void DoWork(Players.Player player, RoamingJobState machineState)
         {
             if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
-                if (machineState.Durability > 0 &&
-                    machineState.Fuel > 0 &&
-                    machineState.Load > 0 &&
+                if (machineState.ActionLoad[MachineConstants.REPAIR] > 0 &&
+                    machineState.ActionLoad[MachineConstants.RELOAD] > 0 &&
+                    machineState.ActionLoad[MachineConstants.REFUEL] > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
                     if (!machineState.TempValues.Contains(DoorOpen))
@@ -371,21 +411,21 @@ namespace Pandaros.Settlers.Items.Machines
                         ServerManager.SendAudio(machineState.Position.Vector,
                                                 GameLoader.NAMESPACE + ".GateLeverMachineAudio");
 
-                        machineState.Durability -= 0.01f;
-                        machineState.Fuel       -= 0.03f;
+                        machineState.ActionLoad[MachineConstants.REPAIR] -= 0.01f;
+                        machineState.ActionLoad[MachineConstants.REFUEL] -= 0.03f;
 
-                        if (machineState.Durability < 0)
-                            machineState.Durability = 0;
+                        if (machineState.ActionLoad[MachineConstants.REPAIR] < 0)
+                            machineState.ActionLoad[MachineConstants.REPAIR] = 0;
 
-                        if (machineState.Fuel <= 0)
-                            machineState.Fuel = 0;
+                        if (machineState.ActionLoad[MachineConstants.REFUEL] <= 0)
+                            machineState.ActionLoad[MachineConstants.REFUEL] = 0;
                     }
 
-                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                    machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                 }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterGateLever")]
         public static void RegisterGateLever()
         {
@@ -420,7 +460,7 @@ namespace Pandaros.Settlers.Items.Machines
             RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddTextures")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
@@ -436,7 +476,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Gate", GateTextureMapping);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddGateLever")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void AddGateLever(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -527,7 +567,7 @@ namespace Pandaros.Settlers.Items.Machines
             MeshedObjectType.Register(_gateZPlusItemObjSettings);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnSavingPlayer,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {
@@ -557,7 +597,7 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnLoadingPlayer,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnLoadingPlayer")]
         public static void OnLoadingPlayer(JSONNode n, Players.Player p)
         {
@@ -572,7 +612,7 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
@@ -582,8 +622,8 @@ namespace Pandaros.Settlers.Items.Machines
 
             if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
             {
-                MachineManager.RegisterMachineState(d.RequestedByPlayer,
-                                                    new MachineState(d.Position, d.RequestedByPlayer,
+                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer,
+                                                    new RoamingJobState(d.Position, d.RequestedByPlayer,
                                                                      nameof(GateLever)));
             }
             else if (d.TypeOld == BuiltinBlocks.Air && (d.TypeNew == GateItem.ItemIndex ||
@@ -595,8 +635,7 @@ namespace Pandaros.Settlers.Items.Machines
                 if (!_gatePositions.ContainsKey(d.RequestedByPlayer))
                     _gatePositions.Add(d.RequestedByPlayer, new Dictionary<Vector3Int, GateState>());
 
-                _gatePositions[d.RequestedByPlayer]
-                   .Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
+                _gatePositions[d.RequestedByPlayer].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
             }
 
             if (d.TypeNew == BuiltinBlocks.Air)

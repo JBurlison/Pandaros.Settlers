@@ -64,7 +64,7 @@ namespace Pandaros.Settlers.Items
             WeaponGuardSettings = WeaponGuardSettings.OrderBy(w => w.shootDamage).Reverse().ToList();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerClicked,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".Items.WeaponAttack")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.players.hitnpc")]
         public static void WeaponAttack(Players.Player player, Box<PlayerClickedData> boxedData)

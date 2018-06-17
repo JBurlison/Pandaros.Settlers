@@ -126,6 +126,10 @@ namespace Pandaros.Settlers
         {
             ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage("Exception", ChatColor.red), e));
 
+            _logQueue.Enqueue(e.Message);
+            _logQueue.Enqueue(e.StackTrace);
+            _loggerSemaphore.Set();
+
             if (e.InnerException != null)
                 LogError(e.InnerException);
         }

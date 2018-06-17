@@ -109,7 +109,7 @@ namespace Pandaros.Settlers.Items
         public static Dictionary<ushort, ArmorMetadata> ArmorLookup { get; set; } =
             new Dictionary<ushort, ArmorMetadata>();
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Armor.GetArmor")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Armor.GetArmor")]
         public static void GetArmor()
         {
             if (_nextUpdate < DateTime.Now)
@@ -213,7 +213,7 @@ namespace Pandaros.Settlers.Items
             return best;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerHit,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit,
             GameLoader.NAMESPACE + ".Armor.OnPlayerHit")]
         [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData box)
@@ -222,7 +222,7 @@ namespace Pandaros.Settlers.Items
             DeductArmor(box, state.Armor, player, "Your");
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
         [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
         {
@@ -278,7 +278,7 @@ namespace Pandaros.Settlers.Items
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Armor.RegisterRecipes")]
         public static void RegisterRecipes()
         {
@@ -494,7 +494,7 @@ namespace Pandaros.Settlers.Items
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Armor.AddArmor")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void AddArmor(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)

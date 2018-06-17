@@ -86,7 +86,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             return base.Update();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging.Register")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registermonstertextures")]
@@ -111,7 +111,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             NPCType.AddSettings(_mts);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnMonsterDied,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterDied,
             GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging.OnMonsterDied")]
         public static void OnMonsterDied(IMonster monster)
         {

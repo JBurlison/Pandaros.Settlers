@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".AdvancedCraftingTable";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
         public static void RegisterJobs()
@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.Jobs
             BlockJobManagerTracker.Register<AdvancedCrafterJob>(JOB_ITEM_KEY);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddTextures")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Jobs
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "AdvancedCraftingTableTop", textureMapping);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Jobs
             itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {

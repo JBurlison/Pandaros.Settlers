@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Research
 
         private static readonly Dictionary<string, float> _defaultValues = new Dictionary<string, float>();
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnAddResearchables,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables,
             GameLoader.NAMESPACE + ".Research.JobResearch.OnAddResearchables")]
         [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()

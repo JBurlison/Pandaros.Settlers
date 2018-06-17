@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Managers
         private static readonly Dictionary<Players.Player, int> _bannerCounts = new Dictionary<Players.Player, int>();
         private static DateTime _nextBannerTime = DateTime.MinValue;
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
             GameLoader.NAMESPACE + ".BannerManager.OnUpdate")]
         public static void OnUpdate()
         {

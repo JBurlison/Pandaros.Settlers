@@ -10,6 +10,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(ICSRecipe);
+        public string ClassName => null;
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {

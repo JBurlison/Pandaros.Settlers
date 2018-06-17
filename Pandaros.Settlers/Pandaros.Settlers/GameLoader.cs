@@ -5,6 +5,7 @@ using ChatCommands;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters;
 using Pipliz.JSON;
@@ -48,17 +49,17 @@ namespace Pandaros.Settlers
         public static ushort Poisoned_Icon { get; private set; }
         public static ushort Bow_Icon { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
             WorldLoaded                 = true;
             SAVE_LOC                    = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
-            MachineManager.MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
+            RoamingJobManager.MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
             PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
             MOD_FOLDER = Path.GetDirectoryName(path);
@@ -95,7 +96,7 @@ namespace Pandaros.Settlers
                                 "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
         public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var monsterNode = new JSONNode();
@@ -168,7 +169,7 @@ namespace Pandaros.Settlers
 
             items.Add(NAMESPACE + ".BowIcon", bow);
 
-            MachinistJob.OkStatus = new List<uint>
+            RoamingJob.OkStatus = new List<uint>
             {
                 Refuel_Icon,
                 Reload_Icon,
@@ -177,7 +178,7 @@ namespace Pandaros.Settlers
             };
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterStartup, NAMESPACE + ".AfterStartup")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, NAMESPACE + ".AfterStartup")]
         public static void AfterStartup()
         {
             RUNNING = true;
@@ -197,14 +198,14 @@ namespace Pandaros.Settlers
 #endif
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnQuitLate, NAMESPACE + ".OnQuitLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, NAMESPACE + ".OnQuitLate")]
         public static void OnQuitLate()
         {
             RUNNING     = false;
             WorldLoaded = false;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             NAMESPACE + ".GameLoader.LoadAudioFiles")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.loadaudiofiles")]
@@ -221,7 +222,7 @@ namespace Pandaros.Settlers
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
             NAMESPACE + ".GameLoader.trychangeblock")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {

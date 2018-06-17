@@ -8,6 +8,7 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Healing;
 using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz.Mods.APIProvider.Science;
 using Pipliz.Mods.BaseGame.BlockNPCs;
@@ -135,7 +136,7 @@ namespace Pandaros.Settlers.Research
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnAddResearchables,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables,
             GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()
         {
@@ -833,9 +834,9 @@ namespace Pandaros.Settlers.Research
                          .SetRecipeAvailability(AdvancedCrafterRegister.JOB_RECIPE, true, ItemFactory.JOB_CRAFTER);
 
             RecipeStorage.GetPlayerStorage(e.Manager.Player)
-                         .SetRecipeAvailability(MachinistRegister.JOB_RECIPE, true, ItemFactory.JOB_CRAFTER);
+                         .SetRecipeAvailability(Machinist.JOB_RECIPE, true, ItemFactory.JOB_CRAFTER);
 
-            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, MachinistRegister.JOB_RECIPE);
+            RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, Machinist.JOB_RECIPE);
             RecipePlayer.UnlockOptionalRecipe(e.Manager.Player, AdvancedCrafterRegister.JOB_RECIPE);
         }
 
@@ -866,8 +867,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedDuarability_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            MachineState.MAX_DURABILITY[e.Manager.Player] =
-                MachineState.DEFAULT_MAX_DURABILITY + MachineState.DEFAULT_MAX_DURABILITY * e.Research.Value;
+            RoamingJobState.SetMaxLoad(MachineConstants.REPAIR, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
         }
 
         private static void AddImprovedFuelCapacity(Dictionary<ushort, int> researchDic)
@@ -897,8 +897,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedFuelCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            MachineState.MAX_FUEL[e.Manager.Player] =
-                MachineState.DEFAULT_MAX_FUEL + MachineState.DEFAULT_MAX_FUEL * e.Research.Value;
+            RoamingJobState.SetMaxLoad(MachineConstants.REFUEL, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
         }
 
         private static void AddIncreasedCapacity(Dictionary<ushort, int> researchDic)
@@ -928,8 +927,7 @@ namespace Pandaros.Settlers.Research
 
         private static void IncreasedCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            MachineState.MAX_LOAD[e.Manager.Player] =
-                MachineState.DEFAULT_MAX_LOAD + MachineState.DEFAULT_MAX_LOAD * e.Research.Value;
+            RoamingJobState.SetMaxLoad(MachineConstants.RELOAD, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)

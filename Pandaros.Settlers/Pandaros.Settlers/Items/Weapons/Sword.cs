@@ -7,7 +7,7 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManagerAttribute]
     public static class Sword
     {
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Sword.RegisterRecipes")]
         public static void RegisterRecipes()
         {
@@ -86,7 +86,7 @@ namespace Pandaros.Settlers.Items
             ItemFactory.RefreshGuardSettings();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Sword.AddSwords")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void AddSwords(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)

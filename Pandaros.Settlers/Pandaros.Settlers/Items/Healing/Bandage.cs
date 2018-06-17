@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Items.Healing
         private static readonly Dictionary<Players.Player, double> _coolDown = new Dictionary<Players.Player, double>();
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
         public static void Register()
         {
@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Items.Healing
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Items.Healing
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerClicked,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".Items.Healing.Bandage.Click")]
         public static void Click(Players.Player player, Box<PlayerClickedData> boxedData)
         {

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Items
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Mana.Register")]
         public static void Register()
         {
@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Items
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.Mana.Add")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)

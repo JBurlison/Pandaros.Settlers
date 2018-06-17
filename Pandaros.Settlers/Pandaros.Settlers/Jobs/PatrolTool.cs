@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Jobs
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.RegisterPatrolTool")]
         public static void RegisterPatrolTool()
         {
@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddTextures")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -88,7 +88,7 @@ namespace Pandaros.Settlers.Jobs
             items.Add(patrolFlagName, PatrolFlag);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerConnectedLate,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerConnectedLate")]
         [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
@@ -97,7 +97,7 @@ namespace Pandaros.Settlers.Jobs
                 GivePlayerPatrolTool(p);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerRespawn,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerRespawn,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerRespawn")]
         public static void OnPlayerRespawn(Players.Player p)
         {
@@ -124,7 +124,7 @@ namespace Pandaros.Settlers.Jobs
                 playerStockpile.Add(new InventoryItem(Item.ItemIndex));
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnLoadingPlayer,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer,
             GameLoader.NAMESPACE + ".Jobs.OnLoadingPlayer")]
         public static void OnLoadingPlayer(JSONNode n, Players.Player p)
         {
@@ -150,7 +150,7 @@ namespace Pandaros.Settlers.Jobs
             JobTracker.Update();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.AfterWorldLoad")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.load")]
         public static void AfterWorldLoad()
@@ -164,7 +164,7 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnSavingPlayer,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {
@@ -194,7 +194,7 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerClicked,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".Jobs.PlacePatrol")]
         public static void PlacePatrol(Players.Player player, Box<PlayerClickedData> boxedData)
         {
@@ -296,7 +296,7 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
             GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {

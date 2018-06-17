@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Items.Machines;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using System;
@@ -7,11 +8,12 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class MachineSettingsProvider : ISettlersExtension
+    public class RoamingJobObjectiveProvider : ISettlersExtension
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
-        public string InterfaceName => nameof(IMachineSettings);
+        public string InterfaceName => nameof(IRoamingJobObjective);
+        public string ClassName => null;
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
@@ -31,15 +33,16 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterWorldLoad()
         {
             StringBuilder sb = new StringBuilder();
-            PandaLogger.Log(ChatColor.lime, "-------------------Machines Loaded----------------------");
+            PandaLogger.Log(ChatColor.lime, "-------------------Roaming Job Objective Loaded----------------------");
 
             foreach (var s in LoadedAssembalies)
             {
-                if (Activator.CreateInstance(s) is IMachineSettings machineSettings &&
-                    !string.IsNullOrEmpty(machineSettings.Name))
+                if (s.Name != nameof(TurretRegister) &&
+                    Activator.CreateInstance(s) is IRoamingJobObjective roamingJobObjective &&
+                    !string.IsNullOrEmpty(roamingJobObjective.Name))
                 {
-                    sb.Append($"{machineSettings.Name}, ");
-                    MachineManager.RegisterMachineType(machineSettings);
+                    sb.Append($"{roamingJobObjective.Name}, ");
+                    RoamingJobManager.RegisterObjectiveType(roamingJobObjective);
                 }
             }
 

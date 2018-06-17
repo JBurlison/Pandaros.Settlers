@@ -27,7 +27,7 @@ namespace Pandaros.Settlers.Items
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw Selector { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.BuildersWand.Register")]
         public static void Register()
         {
@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Items
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.BuildersWand.Add")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -76,7 +76,7 @@ namespace Pandaros.Settlers.Items
             items.Add(seclectorName, Selector);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerClicked,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".Items.BuildersWand.PlayerClicked")]
         public static void PlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
         {

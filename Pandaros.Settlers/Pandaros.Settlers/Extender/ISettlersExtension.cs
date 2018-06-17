@@ -11,6 +11,8 @@ namespace Pandaros.Settlers.Extender
 
         string InterfaceName { get; }
 
+        string ClassName { get; }
+
         void AfterWorldLoad();
 
         void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes);

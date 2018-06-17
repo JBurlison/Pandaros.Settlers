@@ -25,11 +25,14 @@ namespace Pandaros.Settlers.Stats
 
             if (ps != null)
             {
-                ushort itemId = GetParentId(data.hoverItem, item);
+                if (item.IsPlaceable)
+                {
+                    ushort itemId = GetParentId(data.hoverItem, item);
 
-                BuildMenu(data, itemId, ps, ps.ItemsPlaced, "NumberPlaced");
-                BuildMenu(data, itemId, ps, ps.ItemsRemoved, "NumberRemoved");
-                BuildMenu(data, itemId, ps, ps.ItemsInWorld, "NumberInWorld");
+                    BuildPlaceableMenu(data, itemId, ps, ps.ItemsPlaced, "NumberPlaced");
+                    BuildPlaceableMenu(data, itemId, ps, ps.ItemsRemoved, "NumberRemoved");
+                    BuildPlaceableMenu(data, itemId, ps, ps.ItemsInWorld, "NumberInWorld");
+                }
             }
         }
 
@@ -87,7 +90,7 @@ namespace Pandaros.Settlers.Stats
             return itemId;
         }
 
-        private static void BuildMenu(ConstructTooltipUIData data, ushort item, PlayerState ps, Dictionary<ushort, int> dict, string sentenceKey)
+        private static void BuildPlaceableMenu(ConstructTooltipUIData data, ushort item, PlayerState ps, Dictionary<ushort, int> dict, string sentenceKey)
         {
             if (!dict.ContainsKey(item))
                 dict.Add(item, 0);

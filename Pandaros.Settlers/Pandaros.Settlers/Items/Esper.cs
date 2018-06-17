@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Items
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.Esper.Add")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Items
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
             GameLoader.NAMESPACE + ".Items.Esper.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {

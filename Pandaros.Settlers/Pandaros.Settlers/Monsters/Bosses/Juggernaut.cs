@@ -85,7 +85,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             return base.Update();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Monsters.Bosses.Juggernaut.Register")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registermonstertextures")]

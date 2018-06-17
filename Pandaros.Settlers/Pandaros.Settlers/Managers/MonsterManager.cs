@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Managers
             return t;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
             GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
         public static void OnUpdate()
         {
@@ -233,7 +233,7 @@ namespace Pandaros.Settlers.Managers
             colony.OnZombieSpawn(false);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
@@ -245,7 +245,7 @@ namespace Pandaros.Settlers.Managers
             _nextBossUpdateTime = Time.SecondsSinceStartInt + Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerHit,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit,
             GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData d)
         {
@@ -256,7 +256,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCHit,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit,
             GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData d)
         {
@@ -267,7 +267,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnMonsterHit,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit,
             GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
         public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
         {
@@ -312,7 +312,7 @@ namespace Pandaros.Settlers.Managers
                 ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnMonsterDied, GameLoader.NAMESPACE)]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterDied, GameLoader.NAMESPACE)]
         public static void MonsterDied(IMonster monster)
         {
             var rewardMonster = monster as IKillReward;

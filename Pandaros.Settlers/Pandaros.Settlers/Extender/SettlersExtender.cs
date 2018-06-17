@@ -32,6 +32,7 @@ namespace Pandaros.Settlers.Extender
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterItemTypesDefined")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void AfterItemTypesDefined()
         {
             foreach (var extension in _settlersExtensions)
@@ -90,7 +91,14 @@ namespace Pandaros.Settlers.Extender
 
                         foreach (var iface in ifaces)
                             foreach (var e in _settlersExtensions)
-                                if (e.InterfaceName == iface.Name)
+                                if (!string.IsNullOrEmpty(e.InterfaceName) && e.InterfaceName == iface.Name)
+                                    e.LoadedAssembalies.Add(type);
+                        
+                        var types = type.GetNestedTypes();
+
+                        foreach (var nestedType in types)
+                            foreach (var e in _settlersExtensions)
+                                if (!string.IsNullOrEmpty(e.ClassName) && e.ClassName == nestedType.Name)
                                     e.LoadedAssembalies.Add(type);
                     }
                 }

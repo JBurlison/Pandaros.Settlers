@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Cosmetics
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AddTextures")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
@@ -21,14 +21,14 @@ namespace Pandaros.Settlers.Cosmetics
             Register.AddCarpetTextures(KEY);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             Item = Register.AddCarpetTypeTypes(itemTypes, KEY);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterItemTypesDefined")]
         public static void AfterItemTypesDefined()
         {

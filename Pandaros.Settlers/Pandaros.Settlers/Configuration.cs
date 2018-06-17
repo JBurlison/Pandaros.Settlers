@@ -64,7 +64,7 @@ namespace Pandaros.Settlers
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld")]
         [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()

@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Managers
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.loadaudiofiles")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Managers
             HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerClicked,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".SettlerManager.OnPlayerClicked")]
         public static void OnPlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
         {
@@ -93,7 +93,7 @@ namespace Pandaros.Settlers.Managers
             healing.Complete -= Healing_Complete;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
             GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
         public static void OnUpdate()
         {
@@ -165,7 +165,7 @@ namespace Pandaros.Settlers.Managers
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
@@ -173,7 +173,7 @@ namespace Pandaros.Settlers.Managers
             Players.PlayerDatabase.ForeachValue(p => UpdateFoodUse(p));
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerConnectedEarly,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly,
             GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
         public static void OnPlayerConnectedEarly(Players.Player p)
         {
@@ -234,7 +234,7 @@ namespace Pandaros.Settlers.Managers
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerConnectedLate,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate,
             GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
@@ -276,7 +276,7 @@ namespace Pandaros.Settlers.Managers
             Colony.SendColonistCount(p);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerDisconnected,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected,
             GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
@@ -351,7 +351,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCRecruited,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited,
             GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPCBase npc)
         {
@@ -403,7 +403,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCDied,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied,
             GameLoader.NAMESPACE + ".SettlerManager.OnNPCDied")]
         public static void OnNPCDied(NPCBase npc)
         {
@@ -411,7 +411,7 @@ namespace Pandaros.Settlers.Managers
             UpdateFoodUse(npc.Colony.Owner);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCLoaded,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCLoaded,
             GameLoader.NAMESPACE + ".SettlerManager.OnNPCLoaded")]
         public static void OnNPCLoaded(NPCBase npc, JSONNode node)
         {
@@ -430,7 +430,7 @@ namespace Pandaros.Settlers.Managers
                 tmpVals.Set(KNOWN_ITTERATIONS, jobItterations);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCSaved,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCSaved,
             GameLoader.NAMESPACE + ".SettlerManager.OnNPCSaved")]
         public static void OnNPCSaved(NPCBase npc, JSONNode node)
         {
@@ -448,7 +448,7 @@ namespace Pandaros.Settlers.Managers
                 node.SetAs(KNOWN_ITTERATIONS, tmpVals.Get<int>(KNOWN_ITTERATIONS));
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
             GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
@@ -634,7 +634,7 @@ namespace Pandaros.Settlers.Managers
             return update;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCJobChanged,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged,
             GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
         public static void OnNPCJobChanged(TupleStruct<NPCBase, IJob, IJob> data)
         {

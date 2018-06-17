@@ -4,6 +4,7 @@ using System.Linq;
 using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
@@ -13,7 +14,67 @@ using Shared;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManagerAttribute]
+    public class TurretRegister : IRoamingJobObjective
+    {
+        public TurretRegister(Turret.TurretSetting setting)
+        {
+            Name = setting.Name;
+            WorkTime = setting.WorkTime;
+            ItemIndex = Turret.TurretTypes[setting.Name].ItemIndex;
+        }
+
+        public string Name { get; private set; }
+        public float WorkTime { get; private set; }
+        public ushort ItemIndex { get; private set; }
+
+        public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
+        {
+            { MachineConstants.REFUEL, new RefuelMachineAction() },
+            { MachineConstants.REPAIR, new RepairTurret() },
+            { MachineConstants.RELOAD, new ReloadTurret() }
+        };
+
+        public string ObjectiveCategory => MachineConstants.MECHANICAL;
+
+        public void DoWork(Players.Player player, RoamingJobState state)
+        {
+            Turret.DoWork(player, state);
+        }
+    }
+
+    public class RepairTurret : IRoamingJobObjectiveAction
+    {
+        public string Name => MachineConstants.REPAIR;
+
+        public float TimeToPreformAction => 10;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+
+        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        {
+            return Turret.Repair(player, state);
+        }
+    }
+
+    public class ReloadTurret : IRoamingJobObjectiveAction
+    {
+        public string Name => MachineConstants.RELOAD;
+
+        public float TimeToPreformAction => 5;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+
+        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        {
+            return Turret.Reload(player, state);
+        }
+    }
+
+    [ModLoader.ModManager]
     public static class Turret
     {
         public const string STONE = "Stone Turret";
@@ -23,15 +84,14 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static Dictionary<string, TurretSetting> TurretSettings = new Dictionary<string, TurretSetting>();
 
-        public static Dictionary<string, ItemTypesServer.ItemTypeRaw> TurretTypes =
-            new Dictionary<string, ItemTypesServer.ItemTypeRaw>();
+        public static Dictionary<string, ItemTypesServer.ItemTypeRaw> TurretTypes = new Dictionary<string, ItemTypesServer.ItemTypeRaw>();
 
         public static readonly string STONE_NAMESPACE = GameLoader.NAMESPACE + ".StoneTurret";
         public static readonly string BRONZEARROW_NAMESPACE = GameLoader.NAMESPACE + ".BronzeArrowTurret";
         public static readonly string CROSSBOW_NAMESPACE = GameLoader.NAMESPACE + ".CrossbowTurret";
         public static readonly string MATCHLOCK_NAMESPACE = GameLoader.NAMESPACE + ".MatchlockTurret";
 
-        public static ushort Repair(Players.Player player, MachineState machineState)
+        public static ushort Repair(Players.Player player, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
 
@@ -40,18 +100,15 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     var ps = PlayerState.GetPlayerState(player);
 
-                    if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                        MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
-                    if (machineState.Durability < .75f && TurretSettings.ContainsKey(machineState.MachineType))
+                    if (machineState.ActionLoad[MachineConstants.REPAIR] < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
                     {
                         var repaired       = false;
                         var requiredForFix = new List<InventoryItem>();
                         var stockpile      = Stockpile.GetStockPile(player);
 
-                        foreach (var durability in TurretSettings[machineState.MachineType]
+                        foreach (var durability in TurretSettings[machineState.RoamObjective]
                                                   .RequiredForFix.OrderByDescending(s => s.Key))
-                            if (machineState.Durability < durability.Key)
+                            if (machineState.ActionLoad[MachineConstants.REPAIR] < durability.Key)
                             {
                                 requiredForFix = durability.Value;
                                 break;
@@ -73,7 +130,7 @@ namespace Pandaros.Settlers.Items.Machines
                         }
 
                         if (repaired)
-                            machineState.Durability = MachineState.MAX_DURABILITY[player];
+                            machineState.ActionLoad[MachineConstants.REPAIR] = RoamingJobState.GetMaxLoad(MachineConstants.REPAIR, player, MachineConstants.MECHANICAL);
                     }
                 }
                 catch (Exception ex)
@@ -84,7 +141,7 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, MachineState machineState)
+        public static ushort Reload(Players.Player player, RoamingJobState machineState)
         {
             var retval = GameLoader.Reload_Icon;
 
@@ -93,27 +150,22 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     var ps = PlayerState.GetPlayerState(player);
 
-                    if (!MachineState.MAX_LOAD.ContainsKey(player))
-                        MachineState.MAX_LOAD[player] = MachineState.DEFAULT_MAX_LOAD;
-
-                    if (TurretSettings.ContainsKey(machineState.MachineType) && machineState.Load < .75f)
+                    if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.ActionLoad[MachineConstants.RELOAD] < .75f)
                     {
                         var stockpile = Stockpile.GetStockPile(player);
 
-                        while (stockpile.Contains(TurretSettings[machineState.MachineType].Ammo) &&
-                               machineState.Load <= MachineState.MAX_LOAD[player])
-                            if (stockpile.TryRemove(TurretSettings[machineState.MachineType].Ammo))
+                        while (stockpile.Contains(TurretSettings[machineState.RoamObjective].Ammo) &&
+                               machineState.ActionLoad[MachineConstants.RELOAD] <= RoamingJobState.GetMaxLoad(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
+                            if (stockpile.TryRemove(TurretSettings[machineState.RoamObjective].Ammo))
                             {
-                                machineState.Load += TurretSettings[machineState.MachineType].AmmoReloadValue;
+                                machineState.ActionLoad[MachineConstants.RELOAD] += TurretSettings[machineState.RoamObjective].AmmoReloadValue;
 
-                                if (TurretSettings[machineState.MachineType]
-                                   .Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
+                                if (TurretSettings[machineState.RoamObjective].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
                                     stockpile.Add(BuiltinBlocks.LinenPouch);
                             }
 
-                        if (machineState.Load < MachineState.MAX_LOAD[player])
-                            retval = TurretSettings[machineState.MachineType]
-                                    .Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
+                        if (machineState.ActionLoad[MachineConstants.RELOAD] < RoamingJobState.GetMaxLoad(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
+                            retval = TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
                     }
                 }
                 catch (Exception ex)
@@ -124,83 +176,83 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static void DoWork(Players.Player player, MachineState machineState)
+        public static void DoWork(Players.Player player, RoamingJobState machineState)
         {
             if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
                 try
                 {
-                    if (TurretSettings.ContainsKey(machineState.MachineType) &&
-                        machineState.Durability > 0 &&
-                        machineState.Fuel > 0 &&
+                    if (TurretSettings.ContainsKey(machineState.RoamObjective) &&
+                        machineState.ActionLoad[MachineConstants.REPAIR] > 0 &&
+                        machineState.ActionLoad[MachineConstants.REFUEL] > 0 &&
                         machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                     {
                         var stockpile = Stockpile.GetStockPile(player);
 
-                        machineState.Durability -= TurretSettings[machineState.MachineType].DurabilityPerDoWork;
-                        machineState.Fuel       -= TurretSettings[machineState.MachineType].FuelPerDoWork;
+                        machineState.ActionLoad[MachineConstants.REPAIR] -= TurretSettings[machineState.RoamObjective].DurabilityPerDoWork;
+                        machineState.ActionLoad[MachineConstants.REFUEL] -= TurretSettings[machineState.RoamObjective].FuelPerDoWork;
 
-                        if (machineState.Durability < 0)
-                            machineState.Durability = 0;
+                        if (machineState.ActionLoad[MachineConstants.REPAIR] < 0)
+                            machineState.ActionLoad[MachineConstants.REPAIR] = 0;
 
-                        if (machineState.Fuel <= 0)
-                            machineState.Fuel = 0;
+                        if (machineState.ActionLoad[MachineConstants.REFUEL] <= 0)
+                            machineState.ActionLoad[MachineConstants.REFUEL] = 0;
 
-                        if (machineState.Load > 0)
+                        if (machineState.ActionLoad[MachineConstants.RELOAD] > 0)
                         {
-                            var totalDamage = TurretSettings[machineState.MachineType].TotalDamage;
+                            var totalDamage = TurretSettings[machineState.RoamObjective].TotalDamage;
 
                             var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0),
-                                                              TurretSettings[machineState.MachineType].Range,
+                                                              TurretSettings[machineState.RoamObjective].Range,
                                                               totalDamage);
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0),
-                                                              TurretSettings[machineState.MachineType].Range,
+                                                              TurretSettings[machineState.RoamObjective].Range,
                                                               totalDamage);
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(-1, 0, 0),
-                                                              TurretSettings[machineState.MachineType].Range,
+                                                              TurretSettings[machineState.RoamObjective].Range,
                                                               totalDamage);
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, -1, 0),
-                                                              TurretSettings[machineState.MachineType].Range,
+                                                              TurretSettings[machineState.RoamObjective].Range,
                                                               totalDamage);
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, 0, 1),
-                                                              TurretSettings[machineState.MachineType].Range,
+                                                              TurretSettings[machineState.RoamObjective].Range,
                                                               totalDamage);
 
                             if (monster == null)
                                 monster = MonsterTracker.Find(machineState.Position.Add(0, 0, -1),
-                                                              TurretSettings[machineState.MachineType].Range,
+                                                              TurretSettings[machineState.RoamObjective].Range,
                                                               totalDamage);
 
                             if (monster != null)
                             {
-                                machineState.Load -= TurretSettings[machineState.MachineType].AmmoValue;
+                                machineState.ActionLoad[MachineConstants.RELOAD] -= TurretSettings[machineState.RoamObjective].AmmoValue;
 
                                 Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
                                                                 new
-                                                                    IndicatorState(TurretSettings[machineState.MachineType].WorkTime,
+                                                                    IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
                                                                                    TurretSettings
-                                                                                           [machineState.MachineType]
+                                                                                           [machineState.RoamObjective]
                                                                                       .Ammo.FirstOrDefault().Type));
 
-                                if (machineState.Load < 0)
-                                    machineState.Load = 0;
+                                if (machineState.ActionLoad[MachineConstants.RELOAD] < 0)
+                                    machineState.ActionLoad[MachineConstants.RELOAD] = 0;
 
-                                if (TurretSettings[machineState.MachineType].OnShootAudio != null)
+                                if (TurretSettings[machineState.RoamObjective].OnShootAudio != null)
                                     ServerManager.SendAudio(machineState.Position.Vector,
-                                                            TurretSettings[machineState.MachineType].OnShootAudio);
+                                                            TurretSettings[machineState.RoamObjective].OnShootAudio);
 
-                                if (TurretSettings[machineState.MachineType].OnHitAudio != null)
+                                if (TurretSettings[machineState.RoamObjective].OnHitAudio != null)
                                     ServerManager.SendAudio(monster.PositionToAimFor,
-                                                            TurretSettings[machineState.MachineType].OnHitAudio);
+                                                            TurretSettings[machineState.RoamObjective].OnHitAudio);
 
-                                TurretSettings[machineState.MachineType]
+                                TurretSettings[machineState.RoamObjective]
                                    .ProjectileAnimation
                                    .SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
 
@@ -209,16 +261,16 @@ namespace Pandaros.Settlers.Items.Machines
                         }
 
                         machineState.NextTimeForWork =
-                            machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                            machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                     }
                 }
                 catch (Exception ex)
                 {
-                    PandaLogger.LogError(ex, $"Turret shoot for {machineState.MachineType}");
+                    PandaLogger.LogError(ex, $"Turret shoot for {machineState.RoamObjective}");
                 }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
         public static void RegisterTurret()
         {
@@ -321,15 +373,9 @@ namespace Pandaros.Settlers.Items.Machines
             RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
 
             foreach (var turret in TurretSettings)
-                MachineManager.RegisterMachineType(new MachineManager.MachineSettings(turret.Key,
-                                                                                      turret.Value.TurretItem.ItemIndex,
-                                                                                      Repair, MachineManager.Refuel,
-                                                                                      Reload, DoWork,
-                                                                                      turret.Value.RepairTime,
-                                                                                      turret.Value.RefuelTime,
-                                                                                      turret.Value.ReloadTime,
-                                                                                      turret.Value.WorkTime));
+                RoamingJobManager.RegisterObjectiveType(new TurretRegister(turret.Value));
         }
+
 
         private static void AddStoneTurretSettings()
         {
@@ -607,7 +653,7 @@ namespace Pandaros.Settlers.Items.Machines
             TurretSettings[MATCHLOCK] = turretSettings;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTextures")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
@@ -641,7 +687,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(MATCHLOCK_NAMESPACE + "sides", matchlocktextureMapping);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
         public static void AddTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -764,7 +810,7 @@ namespace Pandaros.Settlers.Items.Machines
             items.Add(turretName, item);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
             GameLoader.NAMESPACE + ".Items.Machines.Turret.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
@@ -776,8 +822,8 @@ namespace Pandaros.Settlers.Items.Machines
                 var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.TypeNew).Value;
 
                 if (turret != null)
-                    MachineManager.RegisterMachineState(d.RequestedByPlayer,
-                                                        new MachineState(d.Position, d.RequestedByPlayer, turret.Name));
+                    RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer,
+                                                        new RoamingJobState(d.Position, d.RequestedByPlayer, turret.Name));
             }
         }
 

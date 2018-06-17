@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BlockTypes.Builtin;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Research;
 using Pipliz;
@@ -147,8 +148,7 @@ namespace Pandaros.Settlers.Entities
             return null;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
-            GameLoader.NAMESPACE + ".Entities.PlayerState.OnUpdate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnUpdate")]
         public static void OnUpdate()
         {
             Players.PlayerDatabase.ForeachValue(p =>
@@ -167,8 +167,7 @@ namespace Pandaros.Settlers.Entities
             });
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnLoadingPlayer,
-            GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer,  GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]
         public static void OnLoadingPlayer(JSONNode n, Players.Player p)
         {
             if (!_playerStates.ContainsKey(p))
@@ -243,7 +242,7 @@ namespace Pandaros.Settlers.Entities
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnSavingPlayer,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer,
             GameLoader.NAMESPACE + ".Entities.PlayerState.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {

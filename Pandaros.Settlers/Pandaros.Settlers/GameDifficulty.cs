@@ -152,7 +152,7 @@ namespace Pandaros.Settlers
             return Name;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {

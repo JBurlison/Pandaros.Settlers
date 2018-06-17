@@ -18,7 +18,7 @@ using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Jobs
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class Knight : IJob, INPCTypeDefiner
     {
         private const float COOLDOWN = 2f;
@@ -240,7 +240,7 @@ namespace Pandaros.Settlers.Jobs
             return _knightNPCSettings;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.registerjobs")]
@@ -250,7 +250,7 @@ namespace Pandaros.Settlers.Jobs
             KnightNPCType = NPCType.GetByKeyNameOrDefault(_knightNPCSettings.keyName);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnNPCHit,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit,
             GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit")]
         [ModLoader.ModCallbackProvidesForAttribute(GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
         [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]

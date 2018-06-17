@@ -6,6 +6,7 @@ using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.Collections;
@@ -54,7 +55,7 @@ namespace Pandaros.Settlers.AI
 
         public override Vector3Int KeyLocation => position;
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".CalltoArms.Init")]
         [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.registerjobs")]
@@ -389,7 +390,7 @@ namespace Pandaros.Settlers.AI
             return true;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerDisconnected,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected,
             GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
         public void OnPlayerDisconnected(Players.Player p)
         {
@@ -403,7 +404,7 @@ namespace Pandaros.Settlers.AI
         {
             return !(job is GuardBaseJob) &&
                    !(job is Knight) &&
-                   !(job is MachinistJob);
+                   !(job is RoamingJob);
         }
     }
 }
