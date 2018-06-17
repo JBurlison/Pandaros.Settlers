@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var flagTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -152,7 +152,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.AfterWorldLoad")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.load")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.load")]
         public static void AfterWorldLoad()
         {
             foreach (var k in _loadedKnights)

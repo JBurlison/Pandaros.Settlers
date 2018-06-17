@@ -208,7 +208,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             NAMESPACE + ".GameLoader.LoadAudioFiles")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.loadaudiofiles")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
         private static void RegisterAudioFiles()
         {
             var files = JSON.Deserialize(MOD_FOLDER + "/Audio/audioFiles.json", false);

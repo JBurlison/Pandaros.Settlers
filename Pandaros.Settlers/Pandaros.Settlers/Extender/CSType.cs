@@ -93,37 +93,37 @@ namespace Pandaros.Settlers.Extender
                 node.SetAs(nameof(parentType), parentType);
 
             if (rotatablexp != null)
-                node.SetAs(nameof(rotatablexp), rotatablexp);
+                node.SetAs("rotatablex+", rotatablexp);
 
             if (rotatablexn != null)
-                node.SetAs(nameof(rotatablexn), rotatablexn);
+                node.SetAs("rotatablex-", rotatablexn);
 
             if (rotatablezp != null)
-                node.SetAs(nameof(rotatablezp), rotatablezp);
+                node.SetAs("rotatablez+", rotatablezp);
 
             if (rotatablezn != null)
-                node.SetAs(nameof(rotatablezn), rotatablezn);
+                node.SetAs("rotatablez-", rotatablezn);
 
             if (sideall != null)
                 node.SetAs(nameof(sideall), sideall);
 
             if (sidexp != null)
-                node.SetAs(nameof(sidexp), sidexp);
+                node.SetAs("sidex+", sidexp);
 
             if (sidexn != null)
-                node.SetAs(nameof(sidexn), sidexn);
+                node.SetAs("sidex-", sidexn);
 
             if (sideyp != null)
-                node.SetAs(nameof(sideyp), sideyp);
+                node.SetAs("sidey+", sideyp);
 
             if (sideyn != null)
-                node.SetAs(nameof(sideyn), sideyn);
+                node.SetAs("sidey-", sideyn);
 
             if (sidezp != null)
-                node.SetAs(nameof(sidezp), sidezp);
+                node.SetAs("sidez+", sidezp);
 
             if (sidezn != null)
-                node.SetAs(nameof(sidezn), sidezn);
+                node.SetAs("sidez-", sidezn);
 
             if (color != null && !color.Equals(Color.clear))
                 node.SetAs(nameof(color), color.ToRGBHex());

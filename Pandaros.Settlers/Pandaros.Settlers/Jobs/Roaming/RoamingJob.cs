@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BlockTypes.Builtin;
 using NPC;
@@ -48,7 +49,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public virtual NPCTypeStandardSettings GetNPCTypeDefinition()
         {
-            return new NPCTypeStandardSettings();
+            throw new NotImplementedException();
         }
 
         public override ITrackableBlock InitializeFromJSON(Players.Player player, JSONNode node)
@@ -72,36 +73,30 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 var ps = PlayerState.GetPlayerState(Owner);
 
                 if (RoamingJobManager.Objectives.ContainsKey(owner))
-                    foreach (var machine in RoamingJobManager
+                    foreach (var objective in RoamingJobManager
                                            .Objectives[Owner].Values
                                            .Where(m => m.JobRef == null && ObjectiveCategories.Contains(m.RoamingJobSettings.ObjectiveCategory)))
-                    {
-                        bool breakout = false;
-
-                        if (breakout)
-                            break;
-
-                        if (machine != PreviousObjective && machine.PositionIsValid())
+                        if (objective != PreviousObjective && objective.PositionIsValid())
                         {
-                            var dis = Vector3.Distance(machine.Position.Vector, pos.Vector);
+                            var dis = Vector3.Distance(objective.Position.Vector, pos.Vector);
 
                             if (dis <= 21)
-                                foreach (var action in machine.ActionLoad)
-                                    if (action.Value < .5f)
-                                    {
-                                        TargetObjective = machine;
-                                        TargetObjective.JobRef = this;
+                            {
+                                var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
+                                if (action.Key != null)
+                                {
+                                    TargetObjective = objective;
+                                    TargetObjective.JobRef = this;
 
-                                        pos = TargetObjective.Position.GetClosestPositionWithinY(usedNPC.Position, 5);
-                                        breakout = true;
-                                        break;
-                                    }
+                                    pos = TargetObjective.Position.GetClosestPositionWithinY(usedNPC.Position, 5);
+                                    break;
+                                }
+                            }
                         }
-                    }
             }
             else
             {
-                pos = TargetObjective.Position.GetClosestPositionWithinY(usedNPC.Position, 3);
+                pos = TargetObjective.Position.GetClosestPositionWithinY(usedNPC.Position, 5);
             }
 
             return pos;
@@ -113,19 +108,18 @@ namespace Pandaros.Settlers.Jobs.Roaming
             var cooldown      = COOLDOWN;
             var allActionsComplete = false;
 
-            if (TargetObjective != null &&
-                usedNPC != null &&
-                5 > Vector3.Distance(TargetObjective.Position.Vector, usedNPC.Position.Vector))
+            if (TargetObjective != null && usedNPC != null)
             {
                 usedNPC.LookAt(TargetObjective.Position.Vector);
                 bool actionFound = false;
 
-                foreach (var action in TargetObjective.ActionLoad)
-                    if (action.Value < .50f)
+                foreach (var action in new Dictionary<string, float>(TargetObjective.ActionEnergy))
+                    if (action.Value < .5f)
                     {
                         status   = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].PreformAction(Owner, TargetObjective);
                         cooldown = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].TimeToPreformAction;
                         ServerManager.SendAudio(TargetObjective.Position.Vector, TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].AudoKey);
+                        actionFound = true;
                     }
 
                 if (!actionFound)
@@ -137,7 +131,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 }
             }
 
-            // if the machine is gone, Abort.
+            // if the objective is gone, Abort.
             CheckIfValidMachine();
 
             if (OkStatus.Contains(status))

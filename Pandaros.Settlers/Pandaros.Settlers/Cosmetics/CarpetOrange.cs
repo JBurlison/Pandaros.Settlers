@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Cosmetics
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             Register.AddCarpetTextures(KEY);

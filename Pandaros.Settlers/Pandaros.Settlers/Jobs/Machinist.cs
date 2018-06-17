@@ -12,30 +12,36 @@ using System.Collections.ObjectModel;
 
 namespace Pandaros.Settlers.Jobs
 {
+    [ModLoader.ModManager]
     public class Machinist : RoamingJob
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Machinist";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".MachinistBench";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        public override List<string> ObjectiveCategories => base.ObjectiveCategories;
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Machinist.RegisterJobs")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
+        public static void RegisterJobs()
+        {
+            BlockJobManagerTracker.Register<Machinist>(JOB_ITEM_KEY);
+        }
+
+        public override List<string> ObjectiveCategories => new List<string>() { Items.Machines.MachineConstants.MECHANICAL };
         public override string NPCTypeKey => JOB_NAME;
         public override string JobItemKey => JOB_ITEM_KEY;
-        public override InventoryItem RecruitementItem => base.RecruitementItem;
+        public override InventoryItem RecruitementItem => new InventoryItem(BuiltinBlocks.CopperTools, 1);
         public override bool ToSleep => false;
-
-        private NPCTypeStandardSettings _nPCType = new NPCTypeStandardSettings
-        {
-            keyName = JOB_NAME,
-            printName = "Machinist",
-            maskColor1 = new Color32(242, 132, 29, 255),
-            type = NPCTypeID.GetNextID(),
-            inventoryCapacity = 1f
-        };
 
         public override NPCTypeStandardSettings GetNPCTypeDefinition()
         {
-            return _nPCType;
+            return new NPCTypeStandardSettings
+            {
+                keyName = NPCTypeKey,
+                printName = "Machinist",
+                maskColor1 = new Color32(242, 132, 29, 255),
+                type = NPCTypeID.GetNextID(),
+                inventoryCapacity = 1f
+            };
         }
     }
 
@@ -80,11 +86,8 @@ namespace Pandaros.Settlers.Jobs
         };
 
         public CraftPriority Priority => CraftPriority.Medium;
-
         public bool IsOptional => true;
-
         public int DefautLimit => 2;
-
         public string Job => ItemFactory.JOB_CRAFTER;
     }
 }

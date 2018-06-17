@@ -57,7 +57,7 @@ namespace Pandaros.Settlers.AI
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".CalltoArms.Init")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.registerjobs")]
         public static void Init()
         {

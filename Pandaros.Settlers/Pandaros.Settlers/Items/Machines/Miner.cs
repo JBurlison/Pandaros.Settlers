@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 var ps = PlayerState.GetPlayerState(player);
 
-                if (machineState.ActionLoad[MachineConstants.REPAIR] < .75f)
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
                 {
                     var repaired       = false;
                     var requiredForFix = new List<InventoryItem>();
@@ -89,20 +89,20 @@ namespace Pandaros.Settlers.Items.Machines
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
 
-                    if (machineState.ActionLoad[MachineConstants.REPAIR] < .10f)
+                    if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                     {
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
                     }
-                    else if (machineState.ActionLoad[MachineConstants.REPAIR] < .30f)
+                    else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                     {
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
                     }
-                    else if (machineState.ActionLoad[MachineConstants.REPAIR] < .50f)
+                    else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                     {
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
                         requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
@@ -124,7 +124,7 @@ namespace Pandaros.Settlers.Items.Machines
                     }
 
                     if (repaired)
-                        machineState.ActionLoad[MachineConstants.REPAIR] = RoamingJobState.GetMaxLoad(MachineConstants.REPAIR, player, MachineConstants.MECHANICAL);
+                        machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
                 }
             }
 
@@ -139,18 +139,12 @@ namespace Pandaros.Settlers.Items.Machines
         public static void DoWork(Players.Player player, RoamingJobState machineState)
         {
             if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
-                if (machineState.ActionLoad[MachineConstants.REPAIR] > 0 &&
-                    machineState.ActionLoad[MachineConstants.REFUEL] > 0 &&
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    machineState.ActionLoad[MachineConstants.REPAIR] -= 0.02f;
-                    machineState.ActionLoad[MachineConstants.REFUEL] -= 0.05f;
-
-                    if (machineState.ActionLoad[MachineConstants.REPAIR] < 0)
-                        machineState.ActionLoad[MachineConstants.REPAIR] = 0;
-
-                    if (machineState.ActionLoad[MachineConstants.REFUEL] <= 0)
-                        machineState.ActionLoad[MachineConstants.REFUEL] = 0;
+                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
+                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
                     if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out var itemBelow))
                     {
@@ -204,7 +198,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var minerTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());

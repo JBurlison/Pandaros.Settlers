@@ -95,7 +95,7 @@ namespace Pandaros.Settlers.Items.Machines
             var retval = GameLoader.Repairing_Icon;
             var ps     = PlayerState.GetPlayerState(player);
 
-            if (machineState.ActionLoad[MachineConstants.REPAIR] < .75f)
+            if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
                 var repaired       = false;
                 var requiredForFix = new List<InventoryItem>();
@@ -104,19 +104,19 @@ namespace Pandaros.Settlers.Items.Machines
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.StoneBricks, 5));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagBasic, 2));
 
-                if (machineState.ActionLoad[MachineConstants.REPAIR] < .10f)
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 2));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
                 }
-                else if (machineState.ActionLoad[MachineConstants.REPAIR] < .30f)
+                else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
                 }
-                else if (machineState.ActionLoad[MachineConstants.REPAIR] < .50f)
+                else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                 {
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 1));
@@ -139,11 +139,11 @@ namespace Pandaros.Settlers.Items.Machines
 
                 if (repaired)
                 {
-                    machineState.ActionLoad[MachineConstants.REPAIR] = RoamingJobState.GetMaxLoad(MachineConstants.REPAIR, player, MachineConstants.MECHANICAL);
+                    machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
 
                     if (_paired.ContainsKey(machineState.Position) &&
                         GetPadAt(_paired[machineState.Position], out var ms))
-                        ms.ActionLoad[MachineConstants.REPAIR] = RoamingJobState.GetMaxLoad(MachineConstants.REPAIR, player, MachineConstants.MECHANICAL);
+                        ms.ResetActionToMaxLoad(MachineConstants.REPAIR);
                 }
             }
 
@@ -159,7 +159,7 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var ps = PlayerState.GetPlayerState(player);
 
-            if (machineState.ActionLoad[MachineConstants.REFUEL] < .75f)
+            if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
             {
                 RoamingJobState paired = null;
 
@@ -169,15 +169,15 @@ namespace Pandaros.Settlers.Items.Machines
                 var stockpile = Stockpile.GetStockPile(player);
 
                 while (stockpile.TryRemove(Mana.Item.ItemIndex) &&
-                       machineState.ActionLoad[MachineConstants.REFUEL] < RoamingJobState.GetMaxLoad(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                       machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
                 {
-                    machineState.ActionLoad[MachineConstants.REFUEL] += 0.20f;
+                    machineState.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
 
                     if (paired != null)
-                        paired.ActionLoad[MachineConstants.REFUEL] += 0.20f;
+                        paired.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
                 }
 
-                if (machineState.ActionLoad[MachineConstants.REFUEL] < RoamingJobState.GetMaxLoad(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
                     return Mana.Item.ItemIndex;
             }
 
@@ -192,18 +192,12 @@ namespace Pandaros.Settlers.Items.Machines
             if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var ms) &&
-                    machineState.ActionLoad[MachineConstants.REPAIR] > 0 &&
-                    machineState.ActionLoad[MachineConstants.REFUEL] > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    machineState.ActionLoad[MachineConstants.REPAIR] -= 0.01f;
-                    machineState.ActionLoad[MachineConstants.REFUEL] -= 0.05f;
-
-                    if (machineState.ActionLoad[MachineConstants.REPAIR] < 0)
-                        machineState.ActionLoad[MachineConstants.REPAIR] = 0;
-
-                    if (machineState.ActionLoad[MachineConstants.REFUEL] <= 0)
-                        machineState.ActionLoad[MachineConstants.REFUEL] = 0;
+                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.01f);
+                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
                     machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                 }

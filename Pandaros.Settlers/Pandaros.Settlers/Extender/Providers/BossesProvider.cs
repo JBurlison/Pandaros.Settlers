@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public string InterfaceName => nameof(IPandaBoss);
 
-        public string ClassName => null;
+        public Type ClassType => null;
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {

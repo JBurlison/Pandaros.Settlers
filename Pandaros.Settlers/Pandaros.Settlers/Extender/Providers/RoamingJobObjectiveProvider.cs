@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(IRoamingJobObjective);
-        public string ClassName => null;
+        public Type ClassType => null;
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
@@ -21,16 +21,6 @@ namespace Pandaros.Settlers.Extender.Providers
         }
 
         public void AfterItemTypesDefined()
-        {
-          
-        }
-
-        public void AfterSelectedWorld()
-        {
-            
-        }
-
-        public void AfterWorldLoad()
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Roaming Job Objective Loaded----------------------");
@@ -48,7 +38,15 @@ namespace Pandaros.Settlers.Extender.Providers
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+        }
 
+        public void AfterSelectedWorld()
+        {
+            
+        }
+
+        public void AfterWorldLoad()
+        {
             
         }
     }

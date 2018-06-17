@@ -48,7 +48,7 @@ namespace Pandaros.Settlers.Managers
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.loadaudiofiles")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {

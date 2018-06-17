@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Items
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".Items.WeaponAttack")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.players.hitnpc")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.players.hitnpc")]
         public static void WeaponAttack(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             if (boxedData.item1.IsConsumed)

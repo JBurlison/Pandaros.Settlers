@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void RegisterJobs()
         {
             BlockJobManagerTracker.Register<ApothecaryJob>(JOB_ITEM_KEY);
@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Jobs
                                     new List<InventoryItem> {iron, tools, planks},
                                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
-            //ItemTypesServer.LoadSortOrder(JOB_ITEM_KEY, GameLoader.GetNextItemSortIndex());
+
             RecipePlayer.AddOptionalRecipe(recipe);
             RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }

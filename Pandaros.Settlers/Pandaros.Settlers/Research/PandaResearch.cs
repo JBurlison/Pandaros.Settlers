@@ -136,8 +136,7 @@ namespace Pandaros.Settlers.Research
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables,
-            GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()
         {
             var researchDic = new Dictionary<ushort, int>();
@@ -867,7 +866,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedDuarability_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RoamingJobState.SetMaxLoad(MachineConstants.REPAIR, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
+            RoamingJobState.SetActionsMaxEnergy(MachineConstants.REPAIR, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
         }
 
         private static void AddImprovedFuelCapacity(Dictionary<ushort, int> researchDic)
@@ -897,7 +896,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedFuelCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RoamingJobState.SetMaxLoad(MachineConstants.REFUEL, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
+            RoamingJobState.SetActionsMaxEnergy(MachineConstants.REFUEL, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
         }
 
         private static void AddIncreasedCapacity(Dictionary<ushort, int> researchDic)
@@ -927,7 +926,7 @@ namespace Pandaros.Settlers.Research
 
         private static void IncreasedCapacity_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            RoamingJobState.SetMaxLoad(MachineConstants.RELOAD, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
+            RoamingJobState.SetActionsMaxEnergy(MachineConstants.RELOAD, e.Manager.Player, MachineConstants.MECHANICAL, RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
         }
 
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)

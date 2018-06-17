@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 var ps = PlayerState.GetPlayerState(player);
 
-                if (machineState.ActionLoad[MachineConstants.REFUEL] < .75f)
+                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
                 {
                     var stockpile = Stockpile.GetStockPile(player);
 
@@ -45,13 +45,13 @@ namespace Pandaros.Settlers.Items.Machines
                         while ((stockpile.AmountContained(item.Key) > 100 ||
                                 item.Key == BuiltinBlocks.Firewood ||
                                 item.Key == BuiltinBlocks.Coalore) &&
-                                machineState.ActionLoad[MachineConstants.REFUEL] < RoamingJobState.GetMaxLoad(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                                machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
                         {
                             stockpile.TryRemove(item.Key);
-                            machineState.ActionLoad[MachineConstants.REFUEL] += item.Value;
+                            machineState.AddToActionEmergy(MachineConstants.REFUEL, item.Value);
                         }
 
-                    if (machineState.ActionLoad[MachineConstants.REFUEL] < RoamingJobState.GetMaxLoad(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                    if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
                         return FuelValues.First().Key;
                 }
             }

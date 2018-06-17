@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Extender
 
         string InterfaceName { get; }
 
-        string ClassName { get; }
+        Type ClassType { get; }
 
         void AfterWorldLoad();
 

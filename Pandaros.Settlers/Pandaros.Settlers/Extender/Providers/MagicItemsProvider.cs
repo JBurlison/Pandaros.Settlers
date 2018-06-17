@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(IMagicItem);
-        public string ClassName => null;
+        public Type ClassType => null;
 
         public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {

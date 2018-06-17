@@ -100,7 +100,7 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     var ps = PlayerState.GetPlayerState(player);
 
-                    if (machineState.ActionLoad[MachineConstants.REPAIR] < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
+                    if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
                     {
                         var repaired       = false;
                         var requiredForFix = new List<InventoryItem>();
@@ -108,7 +108,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         foreach (var durability in TurretSettings[machineState.RoamObjective]
                                                   .RequiredForFix.OrderByDescending(s => s.Key))
-                            if (machineState.ActionLoad[MachineConstants.REPAIR] < durability.Key)
+                            if (machineState.GetActionEnergy(MachineConstants.REPAIR) < durability.Key)
                             {
                                 requiredForFix = durability.Value;
                                 break;
@@ -130,7 +130,7 @@ namespace Pandaros.Settlers.Items.Machines
                         }
 
                         if (repaired)
-                            machineState.ActionLoad[MachineConstants.REPAIR] = RoamingJobState.GetMaxLoad(MachineConstants.REPAIR, player, MachineConstants.MECHANICAL);
+                            machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
                     }
                 }
                 catch (Exception ex)
@@ -150,21 +150,21 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     var ps = PlayerState.GetPlayerState(player);
 
-                    if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.ActionLoad[MachineConstants.RELOAD] < .75f)
+                    if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.GetActionEnergy(MachineConstants.RELOAD) < .75f)
                     {
                         var stockpile = Stockpile.GetStockPile(player);
 
                         while (stockpile.Contains(TurretSettings[machineState.RoamObjective].Ammo) &&
-                               machineState.ActionLoad[MachineConstants.RELOAD] <= RoamingJobState.GetMaxLoad(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
+                               machineState.GetActionEnergy(MachineConstants.RELOAD) <= RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
                             if (stockpile.TryRemove(TurretSettings[machineState.RoamObjective].Ammo))
                             {
-                                machineState.ActionLoad[MachineConstants.RELOAD] += TurretSettings[machineState.RoamObjective].AmmoReloadValue;
+                                machineState.AddToActionEmergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoReloadValue);
 
                                 if (TurretSettings[machineState.RoamObjective].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
                                     stockpile.Add(BuiltinBlocks.LinenPouch);
                             }
 
-                        if (machineState.ActionLoad[MachineConstants.RELOAD] < RoamingJobState.GetMaxLoad(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
+                        if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
                             retval = TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
                     }
                 }
@@ -182,22 +182,16 @@ namespace Pandaros.Settlers.Items.Machines
                 try
                 {
                     if (TurretSettings.ContainsKey(machineState.RoamObjective) &&
-                        machineState.ActionLoad[MachineConstants.REPAIR] > 0 &&
-                        machineState.ActionLoad[MachineConstants.REFUEL] > 0 &&
+                        machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                        machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                         machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                     {
                         var stockpile = Stockpile.GetStockPile(player);
 
-                        machineState.ActionLoad[MachineConstants.REPAIR] -= TurretSettings[machineState.RoamObjective].DurabilityPerDoWork;
-                        machineState.ActionLoad[MachineConstants.REFUEL] -= TurretSettings[machineState.RoamObjective].FuelPerDoWork;
+                        machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, TurretSettings[machineState.RoamObjective].DurabilityPerDoWork);
+                        machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, TurretSettings[machineState.RoamObjective].FuelPerDoWork);
 
-                        if (machineState.ActionLoad[MachineConstants.REPAIR] < 0)
-                            machineState.ActionLoad[MachineConstants.REPAIR] = 0;
-
-                        if (machineState.ActionLoad[MachineConstants.REFUEL] <= 0)
-                            machineState.ActionLoad[MachineConstants.REFUEL] = 0;
-
-                        if (machineState.ActionLoad[MachineConstants.RELOAD] > 0)
+                        if (machineState.GetActionEnergy(MachineConstants.RELOAD) > 0)
                         {
                             var totalDamage = TurretSettings[machineState.RoamObjective].TotalDamage;
 
@@ -232,7 +226,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                             if (monster != null)
                             {
-                                machineState.ActionLoad[MachineConstants.RELOAD] -= TurretSettings[machineState.RoamObjective].AmmoValue;
+                                machineState.SubtractFromActionEnergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoValue);
 
                                 Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
                                                                 new
@@ -240,9 +234,6 @@ namespace Pandaros.Settlers.Items.Machines
                                                                                    TurretSettings
                                                                                            [machineState.RoamObjective]
                                                                                       .Ammo.FirstOrDefault().Type));
-
-                                if (machineState.ActionLoad[MachineConstants.RELOAD] < 0)
-                                    machineState.ActionLoad[MachineConstants.RELOAD] = 0;
 
                                 if (TurretSettings[machineState.RoamObjective].OnShootAudio != null)
                                     ServerManager.SendAudio(machineState.Position.Vector,
@@ -655,7 +646,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());

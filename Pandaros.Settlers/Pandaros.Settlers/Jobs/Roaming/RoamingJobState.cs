@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.Collections;
@@ -12,7 +11,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
     {
         public const float DEFAULT_MAX = 1f;
         private static readonly Random _rand = new Random();
-
+        
         public RoamingJobState(Vector3Int pos, Players.Player owner, string machineType, IRoamingJobObjective settings = null)
         {
             Position    = pos;
@@ -35,9 +34,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
             if (baseNode.TryGetAs<string>(nameof(RoamObjective), out var ro) || baseNode.TryGetAs("MachineType", out ro))
                 RoamObjective = ro; 
 
-            if (baseNode.TryGetAs(nameof(ActionLoad), out JSONNode ItemsRemovedNode) && ItemsRemovedNode.NodeType == NodeType.Object)
+            if (baseNode.TryGetAs(nameof(ActionEnergy), out JSONNode ItemsRemovedNode) && ItemsRemovedNode.NodeType == NodeType.Object)
                 foreach (var aNode in ItemsRemovedNode.LoopObject())
-                    ActionLoad.Add(aNode.Key, aNode.Value.GetAs<int>());
+                    ActionEnergy.Add(aNode.Key, aNode.Value.GetAs<int>());
 
             RoamingJobSettings = RoamingJobManager.GetCallbacks(RoamObjective);
             Initialize();
@@ -48,45 +47,12 @@ namespace Pandaros.Settlers.Jobs.Roaming
         ///     Key: IRoamingJobAction.Name
         ///     Key: Players.Player
         ///     Key: Category
-        ///     Value: Max Action Load
+        ///     Value: Max Action Energy
         /// </summary>
-        static Dictionary<string, Dictionary<Players.Player, Dictionary<string, float>>> _maxActionLoad = new Dictionary<string, Dictionary<Players.Player, Dictionary<string, float>>>();
+        static Dictionary<string, Dictionary<Players.Player, Dictionary<string, float>>> _maxActionEnergy = new Dictionary<string, Dictionary<Players.Player, Dictionary<string, float>>>();
 
-        public static float GetMaxLoad(string actionName, Players.Player player, string category)
-        {
-            if (!_maxActionLoad.ContainsKey(actionName))
-                _maxActionLoad.Add(actionName, new Dictionary<Players.Player, Dictionary<string, float>>());
-
-            if (!_maxActionLoad[actionName].ContainsKey(player))
-                _maxActionLoad[actionName].Add(player, new Dictionary<string, float>());
-
-            if (!_maxActionLoad[actionName][player].ContainsKey(category))
-                _maxActionLoad[actionName][player].Add(category, DEFAULT_MAX);
-
-            return _maxActionLoad[actionName][player][category];
-        }
-
-        public static void SetMaxLoad(string actionName, Players.Player player, string category, float maxLoad)
-        {
-            if (!_maxActionLoad.ContainsKey(actionName))
-                _maxActionLoad.Add(actionName, new Dictionary<Players.Player, Dictionary<string, float>>());
-
-            if (!_maxActionLoad[actionName].ContainsKey(player))
-                _maxActionLoad[actionName].Add(player, new Dictionary<string, float>());
-
-            if (!_maxActionLoad[actionName][player].ContainsKey(category))
-                _maxActionLoad[actionName][player].Add(category, DEFAULT_MAX);
-
-            _maxActionLoad[actionName][player][category] = maxLoad;
-        }
-
+        public Dictionary<string, float> ActionEnergy { get; private set; } = new Dictionary<string, float>();
         public Vector3Int Position { get; } = Vector3Int.invalidPos;
-
-        /// <summary>
-        ///     Key: IRoamingJobAction.Name
-        ///     Value: Current Action Load
-        /// </summary>
-        public Dictionary<string, float> ActionLoad { get; set; } = new Dictionary<string, float>();
         public string RoamObjective { get; }
         public Players.Player Owner { get; }
         public double NextTimeForWork { get; set; } = Time.SecondsSinceStartDouble + _rand.NextDouble(0, 5);
@@ -99,7 +65,75 @@ namespace Pandaros.Settlers.Jobs.Roaming
         private void Initialize()
         {
             foreach (var roamAction in RoamingJobSettings.ActionCallbacks.Values)
-                SetMaxLoad(roamAction.Name, Owner, RoamingJobSettings.ObjectiveCategory, DEFAULT_MAX);
+                SetActionsMaxEnergy(roamAction.Name, Owner, RoamingJobSettings.ObjectiveCategory, DEFAULT_MAX);
+        }
+
+        public void ResetActionToMaxLoad(string action)
+        {
+            SetActionEnergy(action, GetActionsMaxEnergy(action, Owner, RoamingJobSettings.ObjectiveCategory));
+        }
+
+        public float GetActionEnergy(string action)
+        {
+            if (!ActionEnergy.ContainsKey(action))
+                ActionEnergy.Add(action, GetActionsMaxEnergy(action, Owner, RoamingJobSettings.ObjectiveCategory));
+
+            return ActionEnergy[action];
+        }
+
+        public void SetActionEnergy(string action, float value)
+        {
+            ActionEnergy[action] = value;
+
+            if (ActionEnergy[action] < 0)
+                ActionEnergy[action] = 0;
+        }
+
+        public void AddToActionEmergy(string action, float value)
+        {
+            if (!ActionEnergy.ContainsKey(action))
+                ActionEnergy.Add(action, GetActionsMaxEnergy(action, Owner, RoamingJobSettings.ObjectiveCategory));
+
+            ActionEnergy[action] += value;
+        }
+
+        public void SubtractFromActionEnergy(string action, float value)
+        {
+            if (!ActionEnergy.ContainsKey(action))
+                ActionEnergy.Add(action, GetActionsMaxEnergy(action, Owner, RoamingJobSettings.ObjectiveCategory));
+
+            ActionEnergy[action] -= value;
+
+            if (ActionEnergy[action] < 0)
+                ActionEnergy[action] = 0;
+        }
+
+        public static float GetActionsMaxEnergy(string actionName, Players.Player player, string category)
+        {
+            if (!_maxActionEnergy.ContainsKey(actionName))
+                _maxActionEnergy.Add(actionName, new Dictionary<Players.Player, Dictionary<string, float>>());
+
+            if (!_maxActionEnergy[actionName].ContainsKey(player))
+                _maxActionEnergy[actionName].Add(player, new Dictionary<string, float>());
+
+            if (!_maxActionEnergy[actionName][player].ContainsKey(category))
+                _maxActionEnergy[actionName][player].Add(category, DEFAULT_MAX);
+
+            return _maxActionEnergy[actionName][player][category];
+        }
+
+        public static void SetActionsMaxEnergy(string actionName, Players.Player player, string category, float maxLoad)
+        {
+            if (!_maxActionEnergy.ContainsKey(actionName))
+                _maxActionEnergy.Add(actionName, new Dictionary<Players.Player, Dictionary<string, float>>());
+
+            if (!_maxActionEnergy[actionName].ContainsKey(player))
+                _maxActionEnergy[actionName].Add(player, new Dictionary<string, float>());
+
+            if (!_maxActionEnergy[actionName][player].ContainsKey(category))
+                _maxActionEnergy[actionName][player].Add(category, DEFAULT_MAX);
+
+            _maxActionEnergy[actionName][player][category] = maxLoad;
         }
 
         public bool PositionIsValid()
@@ -124,9 +158,10 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
             baseNode.SetAs(nameof(Position), (JSONNode) Position);
 
-            foreach (var kvp in ActionLoad)
+            foreach (var kvp in ActionEnergy)
                 actionLoadNode.SetAs(kvp.Key.ToString(), kvp.Value);
 
+            baseNode.SetAs(nameof(ActionEnergy), actionLoadNode);
             baseNode.SetAs(nameof(RoamObjective), RoamObjective); //MachineType
 
             return baseNode;

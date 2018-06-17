@@ -93,13 +93,10 @@ namespace Pandaros.Settlers.Extender
                             foreach (var e in _settlersExtensions)
                                 if (!string.IsNullOrEmpty(e.InterfaceName) && e.InterfaceName == iface.Name)
                                     e.LoadedAssembalies.Add(type);
-                        
-                        var types = type.GetNestedTypes();
 
-                        foreach (var nestedType in types)
-                            foreach (var e in _settlersExtensions)
-                                if (!string.IsNullOrEmpty(e.ClassName) && e.ClassName == nestedType.Name)
-                                    e.LoadedAssembalies.Add(type);
+                        foreach (var e in _settlersExtensions)
+                            if (e.ClassType != null && type.Equals(e.ClassType))
+                                e.LoadedAssembalies.Add(type);
                     }
                 }
                 catch (Exception)

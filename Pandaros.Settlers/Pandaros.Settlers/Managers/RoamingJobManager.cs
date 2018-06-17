@@ -33,7 +33,6 @@ namespace Pandaros.Settlers.Managers
 
         public static void RegisterObjectiveType(IRoamingJobObjective objective)
         {
-            PandaLogger.Log("{0} Registered as a Roaming Job objective for ObjectiveCategory {1}!", objective.Name, objective.ObjectiveCategory);
             ObjectiveCallbacks[objective.Name] = objective;
         }
 
@@ -45,8 +44,6 @@ namespace Pandaros.Settlers.Managers
             PandaLogger.Log($"Unknown objective {objectiveName}. Returning {nameof(Miner)}.");
             return ObjectiveCallbacks[nameof(Miner)];
         }
-
-       
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnUpdate")]
         public static void OnUpdate()
@@ -62,7 +59,7 @@ namespace Pandaros.Settlers.Managers
                                 {
                                     state.Value.RoamingJobSettings.DoWork(machine.Key, state.Value);
 
-                                    foreach (var objectiveLoad in state.Value.ActionLoad)
+                                    foreach (var objectiveLoad in state.Value.ActionEnergy)
                                     {
                                         if (objectiveLoad.Value <= 0)
                                             Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, 
@@ -179,56 +176,5 @@ namespace Pandaros.Settlers.Managers
 
             return retVal;
         }
-
-        //public class MachineSettings : IRoamingJobObjective
-        //{
-        //    public MachineSettings()
-        //    {
-        //    }
-
-        //    public MachineSettings(string                                     name, 
-        //                           ushort                                     itemIndex,
-        //                           Func<Players.Player, RoamingJobState, ushort> repair,
-        //                           Func<Players.Player, RoamingJobState, ushort> refuel,
-        //                           Func<Players.Player, RoamingJobState, ushort> reload,
-        //                           Action<Players.Player, RoamingJobState>       doWork, 
-        //                           float                                      repairTime,
-        //                           float                                      refuelTime,
-        //                           float                                      reloadTime, 
-        //                           float                                      workTime)
-        //    {
-        //        Name       = name;
-        //        ItemIndex  = itemIndex;
-        //        Repair     = repair;
-        //        Refuel     = refuel;
-        //        DoWork     = doWork;
-        //        RepairTime = repairTime;
-        //        RefuelTime = refuelTime;
-        //        WorkTime   = workTime;
-        //        Reload     = reload;
-        //        ReloadTime = reloadTime;
-        //    }
-
-        //    public string Name { get; set; }
-
-        //    public float RepairTime { get; set; }
-
-        //    public float RefuelTime { get; set; }
-
-        //    public float ReloadTime { get; set; }
-
-        //    public float WorkTime { get; set; }
-
-        //    public ushort ItemIndex { get; set; }
-
-        //    public Func<Players.Player, RoamingJobState, ushort> Repair { get; set; }
-        //    public Func<Players.Player, RoamingJobState, ushort> Refuel { get; set; }
-        //    public Func<Players.Player, RoamingJobState, ushort> Reload { get; set; }
-        //    public Action<Players.Player, RoamingJobState> DoWork { get; set; }
-        //    public string ObjectiveCategory { get; set; } = RoamingJob.MECHANICAL;
-        //    public string RefuelAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
-        //    public string ReloadAudioKey { get; set; } = GameLoader.NAMESPACE + ".ReloadingAudio";
-        //    public string RepairAudioKey { get; set; } = GameLoader.NAMESPACE + ".HammerAudio";
-        //}
     }
 }

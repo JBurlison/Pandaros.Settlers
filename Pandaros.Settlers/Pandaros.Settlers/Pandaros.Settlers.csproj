@@ -93,7 +93,6 @@
     <Compile Include="Extender\ICSType.cs" />
     <Compile Include="Extender\IJsonConvertable.cs" />
     <Compile Include="Extender\OnRemove.cs" />
-    <Compile Include="Extender\Providers\RoamingJobProvider.cs" />
     <Compile Include="Extender\Providers\RecipeProvider.cs" />
     <Compile Include="Extender\Providers\ItemsProvider.cs" />
     <Compile Include="Extender\Providers\TextureMappingProvider.cs" />

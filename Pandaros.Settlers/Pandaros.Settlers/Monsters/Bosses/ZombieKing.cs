@@ -86,7 +86,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieKing.Register")]
         [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registermonstertextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {
             var m = new JSONNode()

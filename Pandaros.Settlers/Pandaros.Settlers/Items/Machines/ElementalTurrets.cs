@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.RegisterTurret")]
-        [ModLoader.ModCallbackProvidesForAttribute(GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
+        [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
         public static void RegisterTurret()
         {
             var planks     = new InventoryItem(BuiltinBlocks.Planks, 50);
@@ -124,7 +124,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
