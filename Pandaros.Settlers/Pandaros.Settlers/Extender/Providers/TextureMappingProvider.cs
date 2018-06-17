@@ -27,7 +27,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterSelectedWorld()
         {
             StringBuilder sb = new StringBuilder();
-            PandaLogger.Log(ChatColor.lime, "-------------------Magic Items Loaded----------------------");
+            PandaLogger.Log(ChatColor.lime, "-------------------Texture Mapping Loaded----------------------");
 
             foreach (var item in LoadedAssembalies)
             {
