@@ -46,5 +46,10 @@ namespace Pandaros.Settlers.Extender.Providers
             SeasonsFactory.ResortSeasons();
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
         }
+
+        public void OnAddResearchables()
+        {
+
+        }
     }
 }

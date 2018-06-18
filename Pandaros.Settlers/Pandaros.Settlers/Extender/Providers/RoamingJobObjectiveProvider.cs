@@ -49,5 +49,10 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             
         }
+
+        public void OnAddResearchables()
+        {
+
+        }
     }
 }

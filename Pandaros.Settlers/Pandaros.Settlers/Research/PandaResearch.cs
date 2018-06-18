@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Research
         public ScienceManagerPlayer Manager { get; }
     }
 
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class PandaResearch : BaseResearchable
     {
         public const string Settlement = "Settlement";
@@ -61,10 +61,13 @@ namespace Pandaros.Settlers.Research
         public const string SkilledLaborer = "SkilledLaborer";
         private static readonly Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
 
-        public PandaResearch(Dictionary<ushort, int> requiredItems, int level, string name,
-                             float                   baseValue,
-                             List<string>            dependancies   = null, int baseIterationCount = 10,
-                             bool                    addLevelToName = true)
+        public PandaResearch(Dictionary<ushort, int> requiredItems, 
+                             int level, 
+                             string name,
+                             float baseValue,
+                             List<string> dependancies = null, 
+                             int baseIterationCount = 10,
+                             bool addLevelToName = true)
         {
             BaseValue   = baseValue;
             Value       = baseValue * level;

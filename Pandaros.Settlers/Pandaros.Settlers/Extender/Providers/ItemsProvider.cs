@@ -53,5 +53,10 @@ namespace Pandaros.Settlers.Extender.Providers
             PandaLogger.Log(ChatColor.lime, _sb.ToString());
             PandaLogger.Log(ChatColor.lime, "------------------------------------------------------"); 
         }
+
+        public void OnAddResearchables()
+        {
+
+        }
     }
 }

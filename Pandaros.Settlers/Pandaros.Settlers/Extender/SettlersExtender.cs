@@ -9,6 +9,21 @@ namespace Pandaros.Settlers.Extender
     {
         private static List<ISettlersExtension> _settlersExtensions = new List<ISettlersExtension>();
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnAddResearchables")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.JobResearch.OnAddResearchables")]
+        public static void Register()
+        {
+            foreach (var extension in _settlersExtensions)
+                try
+                {
+                    extension.OnAddResearchables();
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,   GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterWorldLoad")]
         [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
         public static void AfterWorldLoad()

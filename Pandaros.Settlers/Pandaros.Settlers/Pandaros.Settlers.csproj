@@ -95,6 +95,7 @@
     <Compile Include="Extender\OnRemove.cs" />
     <Compile Include="Extender\Providers\RecipeProvider.cs" />
     <Compile Include="Extender\Providers\ItemsProvider.cs" />
+    <Compile Include="Extender\Providers\ResearchProvider.cs" />
     <Compile Include="Extender\Providers\TextureMappingProvider.cs" />
     <Compile Include="Extender\Providers\SeasonProvider.cs" />
     <Compile Include="Extender\Providers\RoamingJobObjectiveProvider.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Monsters\Bosses\FallenRanger.cs" />
     <Compile Include="Monsters\Bosses\Phase.cs" />
     <Compile Include="Monsters\Bosses\JackbNimble.cs" />
+    <Compile Include="Research\IPandaResearch.cs" />
     <Compile Include="Seasons\BlockTypeRegistry.cs" />
     <Compile Include="Seasons\ISeason.cs" />
     <Compile Include="Seasons\SeasonsFactory.cs" />

@@ -20,5 +20,7 @@ namespace Pandaros.Settlers.Extender
         void AfterSelectedWorld();
 
         void AfterItemTypesDefined();
+
+        void OnAddResearchables();
     }
 }
