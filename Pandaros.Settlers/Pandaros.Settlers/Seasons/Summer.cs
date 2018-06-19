@@ -19,9 +19,9 @@ namespace Pandaros.Settlers.Seasons
         public string Name { get; } = nameof(Summer);
         public float FoodMultiplier { get; }
         public float WoodMultiplier { get; }
-        public float MinDayTemperature { get; }
-        public float MaxDayTemperature { get; }
-        public float MinNightTemperature { get; }
-        public float MaxNightTemperature { get; }
+        public double MinDayTemperature { get; } = 72;
+        public double MaxDayTemperature { get; } = 96;
+        public double MinNightTemperature { get; } = 60;
+        public double MaxNightTemperature { get; } = 78;
     }
 }

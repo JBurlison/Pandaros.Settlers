@@ -21,6 +21,8 @@ namespace Pandaros.Settlers.Seasons
         private static int _nextSeason = 1;
         private static double _nextUpdate = TimeCycle.TotalTime + 10;
         private static double _nextCycleTime;
+        private static double _midDay;
+        private static double _midNight;
         private static readonly List<ISeason> _seasons = new List<ISeason>();
 
         public static ISeason CurrentSeason => _seasons[_currentSeason];
@@ -29,19 +31,68 @@ namespace Pandaros.Settlers.Seasons
 
         public static ISeason PreviousSeason => _seasons[_previousSesion];
 
+        public static double Temperature
+        {
+            get
+            {
+                double retVal = 75;
+
+                if (TimeCycle.IsDay)
+                {
+                    var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
+
+                    if (TimeCycle.TimeOfDay <= _midDay)
+                    {
+                        var pct =  TimeCycle.TimeOfDay / _midDay;
+                        retVal = tempDiff * pct;
+                    }
+                    else
+                    {
+                        var pct = TimeCycle.TimeOfDay / TimeCycle.SunSet;
+                        retVal = tempDiff * pct;
+                    }
+
+                    retVal += CurrentSeason.MinDayTemperature;
+                }
+                else
+                {
+                    var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
+
+                    if (TimeCycle.TimeOfDay <= _midNight)
+                    {
+                        var pct = TimeCycle.TimeOfDay / _midNight;
+                        retVal = tempDiff * pct;
+                    }
+                    else
+                    {
+                        var pct = TimeCycle.TimeOfDay / TimeCycle.SunRise;
+                        retVal = tempDiff * pct;
+                    }
+
+                    retVal = CurrentSeason.MaxNightTemperature - retVal;
+                }
+
+                return Math.Round(retVal, 2);
+            }
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.OnShouldKeepChunkLoaded")]
         public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData chunkCallback)
         {
             chunkCallback.Result = true;
         }
 
-  
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.AfterWorldLoad"), 
         ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var worldChunks = GetWorldChunks();
             _previousSesion = _seasons.Count - 1;
+            var timeToMidDay = TimeCycle.DayLength / 2;
+            var timeToMidNight = TimeCycle.NightLength / 2;
+            _midDay = TimeCycle.SunRise + timeToMidDay;
+            _midNight = TimeCycle.SunSet + timeToMidNight;
             ChunkUpdating.PlayerLoadedMaxRange = ChunkUpdating.PlayerLoadedMaxRange * 3;
             ChunkUpdating.PlayerLoadedMinRange = ChunkUpdating.PlayerLoadedMaxRange;
         }
@@ -49,7 +100,7 @@ namespace Pandaros.Settlers.Seasons
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.ChangeSeasons")]
         public static void ChangeSeasons()
         {
-            if (Time.SecondsSinceStartDouble > _nextCycleTime)
+            if (World.Initialized && Time.SecondsSinceStartDouble > _nextCycleTime)
             {
                 var worldChunks = GetWorldChunks();
                 var i = 0;
