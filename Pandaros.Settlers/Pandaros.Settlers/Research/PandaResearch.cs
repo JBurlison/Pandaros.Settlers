@@ -5,8 +5,10 @@ using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Healing;
 using Pandaros.Settlers.Items.Machines;
+using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
@@ -272,27 +274,27 @@ namespace Pandaros.Settlers.Research
 
         private static void Research_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            var armor = new List<Armor.ArmorMetadata>();
+            var armor = new List<IArmor>();
 
             switch (e.Research.Level)
             {
                 case 1:
-                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Copper));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Copper"));
                     break;
                 case 2:
-                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Bronze));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Bronze"));
                     break;
                 case 3:
-                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Iron));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Iron"));
                     break;
                 case 4:
-                    armor.AddRange(Armor.ArmorLookup.Values.Where(a => a.Metal == MetalType.Steel));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Steel"));
                     break;
             }
 
             foreach (var item in armor)
                 RecipeStorage.GetPlayerStorage(e.Manager.Player)
-                             .SetRecipeAvailability(item.ItemType.name, true, Armor.JOB_METALSMITH);
+                             .SetRecipeAvailability(item.ItemType.name, true, ItemFactory.JOB_METALSMITH);
         }
 
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
@@ -343,22 +345,22 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Copper));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Copper Sword"));
                     break;
                 case 2:
-                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Bronze));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Bronze Sword"));
                     break;
                 case 3:
-                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Iron));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Iron Sword"));
                     break;
                 case 4:
-                    sword.AddRange(ItemFactory.WeaponLookup.Values.Where(a => a.Metal == MetalType.Steel));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Steel Sword"));
                     break;
             }
 
             foreach (var item in sword)
                 RecipeStorage.GetPlayerStorage(e.Manager.Player)
-                             .SetRecipeAvailability(item.ItemType.name, true, Armor.JOB_METALSMITH);
+                             .SetRecipeAvailability(item.ItemType.name, true, ItemFactory.JOB_METALSMITH);
         }
 
         private static void AddColonistHealth(Dictionary<ushort, int> researchDic)

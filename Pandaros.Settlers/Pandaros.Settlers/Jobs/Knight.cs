@@ -5,6 +5,7 @@ using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Weapons;
 using Pipliz;
 using Pipliz.Collections;
 using Pipliz.Mods.APIProvider.Jobs;
@@ -57,8 +58,7 @@ namespace Pandaros.Settlers.Jobs
             Owner        = owner;
         }
 
-        public static Dictionary<Players.Player, List<Knight>> Knights { get; } =
-            new Dictionary<Players.Player, List<Knight>>();
+        public static Dictionary<Players.Player, List<Knight>> Knights { get; } = new Dictionary<Players.Player, List<Knight>>();
 
         public PatrolType PatrolType { get; set; }
 
@@ -93,12 +93,12 @@ namespace Pandaros.Settlers.Jobs
             var currentPos = UsedNPC.Position;
             GetBestWeapon();
 
-            _target = MonsterTracker.Find(currentPos, 1, ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+            _target = MonsterTracker.Find(currentPos, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
             if (_target != null) return currentPos;
 
             _target = MonsterTracker.Find(PatrolPoints[_currentPatrolPos], 10,
-                                          ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+                                          WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
             if (_target != null)
             {
@@ -193,7 +193,7 @@ namespace Pandaros.Settlers.Jobs
                 if (_stock == null)
                     _stock = UsedNPC.Colony.UsedStockpile;
 
-                Armor.GetBestArmorForNPC(_stock, UsedNPC, _inv, 0);
+                ArmorFactory.GetBestArmorForNPC(_stock, UsedNPC, _inv, 0);
 
                 try
                 {
@@ -201,8 +201,7 @@ namespace Pandaros.Settlers.Jobs
 
                     if (_target == null || !_target.IsValid ||
                         !Physics.CanSee(UsedNPC.Position.Vector, _target.Position))
-                        _target = MonsterTracker.Find(currentposition, 1,
-                                                      ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+                        _target = MonsterTracker.Find(currentposition, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
 
                     if (_target != null && Physics.CanSee(UsedNPC.Position.Vector, _target.Position))
                     {
@@ -210,7 +209,7 @@ namespace Pandaros.Settlers.Jobs
                         UsedNPC.LookAt(_target.Position);
                         ServerManager.SendAudio(_target.PositionToAimFor, "punch");
 
-                        _target.OnHit(ItemFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+                        _target.OnHit(WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
                         _waitingFor = 0;
                     }
                     else
@@ -232,7 +231,7 @@ namespace Pandaros.Settlers.Jobs
             var hasItem = GetBestWeapon();
 
             if (!hasItem)
-                state.SetIndicator(new IndicatorState(COOLDOWN, ItemFactory.WeaponLookup.FirstOrDefault().Key, true));
+                state.SetIndicator(new IndicatorState(COOLDOWN, WeaponFactory.WeaponLookup.FirstOrDefault().Key, true));
         }
 
         public NPCTypeStandardSettings GetNPCTypeDefinition()
@@ -240,8 +239,7 @@ namespace Pandaros.Settlers.Jobs
             return _knightNPCSettings;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
@@ -250,8 +248,7 @@ namespace Pandaros.Settlers.Jobs
             KnightNPCType = NPCType.GetByKeyNameOrDefault(_knightNPCSettings.keyName);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit,
-            GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit")]
         [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
@@ -285,7 +282,8 @@ namespace Pandaros.Settlers.Jobs
         {
             var timeNow = Time.SecondsSinceStartDouble;
 
-            if (timeNow < _timeJob) return false;
+            if (timeNow < _timeJob)
+                return false;
 
             _timeJob = timeNow + COOLDOWN;
 
@@ -307,12 +305,12 @@ namespace Pandaros.Settlers.Jobs
                         _stock = UsedNPC.Colony.UsedStockpile;
 
                     hasItem = !_inv.Weapon.IsEmpty();
-                    WeaponMetadata bestWeapon = null;
+                    IWeapon bestWeapon = null;
 
                     if (hasItem)
-                        bestWeapon = ItemFactory.WeaponLookup[_inv.Weapon.Id];
+                        bestWeapon = WeaponFactory.WeaponLookup[_inv.Weapon.Id];
 
-                    foreach (var wep in ItemFactory.WeaponLookup.Values)
+                    foreach (var wep in WeaponFactory.WeaponLookup.Values)
                         if (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null ||
                             _stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null &&
                             bestWeapon.Damage < wep.Damage)

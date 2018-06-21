@@ -189,7 +189,7 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs("Armor", out JSONNode armorNode) && armorNode.NodeType == NodeType.Object)
                     foreach (var aNode in armorNode.LoopObject())
-                        _playerStates[p].Armor[(ArmorFactory.ArmorSlot) Enum.Parse(typeof(Armor.ArmorSlot), aNode.Key)] =
+                        _playerStates[p].Armor[(ArmorFactory.ArmorSlot) Enum.Parse(typeof(ArmorFactory.ArmorSlot), aNode.Key)] =
                             new ArmorState(aNode.Value);
 
                 if (stateNode.TryGetAs("FlagsPlaced", out JSONNode flagsPlaced) &&

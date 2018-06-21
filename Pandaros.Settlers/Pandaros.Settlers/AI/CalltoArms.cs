@@ -5,6 +5,7 @@ using ChatCommands;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
@@ -133,7 +134,7 @@ namespace Pandaros.Settlers.AI
             GuardBaseJob.GuardSettings weapon = null;
             var                        inv    = SettlerInventory.GetSettlerInventory(npc);
 
-            foreach (var w in ItemFactory.WeaponGuardSettings)
+            foreach (var w in WeaponFactory.WeaponGuardSettings)
                 if (npc.Inventory.Contains(w.recruitmentItem) || inv.Weapon.Id == w.recruitmentItem.Type)
                 {
                     weapon = w;
@@ -244,12 +245,12 @@ namespace Pandaros.Settlers.AI
             if (_weapon != null)
                 return;
 
-            if (_playerState.CallToArmsEnabled && ItemFactory.WeaponGuardSettings.Count != 0)
+            if (_playerState.CallToArmsEnabled && WeaponFactory.WeaponGuardSettings.Count != 0)
             {
                 _weapon = GetWeapon(usedNPC);
 
                 if (_weapon == null)
-                    foreach (var w in ItemFactory.WeaponGuardSettings)
+                    foreach (var w in WeaponFactory.WeaponGuardSettings)
                         if (_stock.Contains(w.recruitmentItem))
                         {
                             _stock.TryRemove(w.recruitmentItem);
