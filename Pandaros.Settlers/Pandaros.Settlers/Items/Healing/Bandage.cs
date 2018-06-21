@@ -9,7 +9,7 @@ using Shared;
 
 namespace Pandaros.Settlers.Items.Healing
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Bandage
     {
         public const double COOLDOWN = 5;
@@ -18,8 +18,7 @@ namespace Pandaros.Settlers.Items.Healing
         private static readonly Dictionary<Players.Player, double> _coolDown = new Dictionary<Players.Player, double>();
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
         public static void Register()
         {
             var oil   = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
@@ -34,9 +33,8 @@ namespace Pandaros.Settlers.Items.Healing
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Bandage";
@@ -52,8 +50,7 @@ namespace Pandaros.Settlers.Items.Healing
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
-            GameLoader.NAMESPACE + ".Items.Healing.Bandage.Click")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Click")]
         public static void Click(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             var healed = false;

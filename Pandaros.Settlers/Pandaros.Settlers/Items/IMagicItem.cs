@@ -5,14 +5,14 @@ namespace Pandaros.Settlers.Items
 {
     public interface IMagicItem
     {
-        string Name { get; set; }
+        string Name { get; }
         NPCBase Owner { get; set; }
 
-        IMagicEffect Effect { get; set; }
+        IMagicEffect Effect { get; }
 
-        string Icon { get; set; }
+        string Icon { get; }
 
-        List<InventoryItem> CraftingCost { get; set; }
+        List<InventoryItem> CraftingCost { get; }
 
         void Update();
     }

@@ -10,7 +10,7 @@ using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class PutridCorpse : Zombie, IPandaBoss
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse";
@@ -107,7 +107,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse.Register")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {

@@ -166,8 +166,7 @@ namespace Pandaros.Settlers.Items.Machines
                 }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
         public static void RegisterMiner()
         {
             var rivets      = new InventoryItem(BuiltinBlocks.IronRivet, 6);
@@ -196,8 +195,7 @@ namespace Pandaros.Settlers.Items.Machines
             RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
@@ -207,9 +205,8 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,  GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddMiner(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var minerName     = GameLoader.NAMESPACE + ".Miner";
@@ -231,8 +228,7 @@ namespace Pandaros.Settlers.Items.Machines
             items.Add(minerName, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,  GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
@@ -250,9 +246,7 @@ namespace Pandaros.Settlers.Items.Machines
                         return;
                     }
 
-                PandaChat.Send(d.RequestedByPlayer, "The mining machine must be placed on stone or ore.",
-                               ChatColor.orange);
-
+                PandaChat.Send(d.RequestedByPlayer, "The mining machine must be placed on stone or ore.", ChatColor.orange);
                 d.CallbackState = ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled;
             }
         }

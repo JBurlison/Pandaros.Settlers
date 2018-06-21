@@ -9,7 +9,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class GameDifficulty
     {
         static GameDifficulty()
@@ -166,7 +166,7 @@ namespace Pandaros.Settlers
         }
     }
 
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class GameDifficultyChatCommand : IChatCommand
     {
         private static string _Difficulty = GameLoader.NAMESPACE + ".Difficulty";

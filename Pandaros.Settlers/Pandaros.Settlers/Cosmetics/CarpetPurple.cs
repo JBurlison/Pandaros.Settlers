@@ -3,7 +3,7 @@ using BlockTypes.Builtin;
 
 namespace Pandaros.Settlers.Cosmetics
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class CarpetPurple
     {
         private const string KEY = "carpetpurple";

@@ -23,7 +23,7 @@ using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Managers
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class SettlerManager
     {
         public const int MAX_BUYABLE = 10;
@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
         {
             HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;

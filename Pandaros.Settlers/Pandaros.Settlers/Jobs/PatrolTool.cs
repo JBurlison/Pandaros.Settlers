@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Jobs
         Zipper
     }
 
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class PatrolTool
     {
         private static readonly Dictionary<Players.Player, List<KnightState>> _loadedKnights =
@@ -56,7 +56,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var patrolToolName = GameLoader.NAMESPACE + ".PatrolTool";
@@ -90,7 +90,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate,
             GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerConnectedLate")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
             if (p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Knights), 0f) == 1f)

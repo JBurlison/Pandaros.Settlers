@@ -2,13 +2,12 @@
 using BlockTypes.Builtin;
 using Pipliz.JSON;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Items.Weapons
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Sword
     {
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Sword.RegisterRecipes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,  GameLoader.NAMESPACE + ".Sword.RegisterRecipes")]
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
@@ -29,7 +28,7 @@ namespace Pandaros.Settlers.Items
 
             List<InventoryItem> items;
 
-            foreach (var a in ItemFactory.WeaponLookup)
+            foreach (var a in WeaponFactory.WeaponLookup)
             {
                 items = new List<InventoryItem>();
 
@@ -37,7 +36,7 @@ namespace Pandaros.Settlers.Items
                 // Copper
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.WeaponType == WeaponType.Sword)
+                if (a.Value.Name == "Copper Sword")
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
@@ -48,7 +47,7 @@ namespace Pandaros.Settlers.Items
                 // Bronze
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.WeaponType == WeaponType.Sword)
+                if (a.Value.Name == "Bronze Sword")
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
@@ -59,7 +58,7 @@ namespace Pandaros.Settlers.Items
                 // Iron
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.WeaponType == WeaponType.Sword)
+                if (a.Value.Name == "Iron Sword")
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
@@ -70,7 +69,7 @@ namespace Pandaros.Settlers.Items
                 // Steel
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.WeaponType == WeaponType.Sword)
+                if (a.Value.Name == "Steel Sword")
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
@@ -80,15 +79,14 @@ namespace Pandaros.Settlers.Items
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe  = new Recipe(a.Value.ItemType.name, items, invItem, 5);
 
-                RecipeStorage.AddOptionalLimitTypeRecipe(Armor.JOB_METALSMITH, recipe);
+                RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
             }
 
-            ItemFactory.RefreshGuardSettings();
+            WeaponFactory.RefreshGuardSettings();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Sword.AddSwords")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Sword.AddSwords")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddSwords(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var copperSwordName = GameLoader.NAMESPACE + ".CopperSword";
@@ -103,8 +101,7 @@ namespace Pandaros.Settlers.Items
             var copperSword = new ItemTypesServer.ItemTypeRaw(copperSwordName, copperSwordNode);
             items.Add(copperSwordName, copperSword);
 
-            ItemFactory.WeaponLookup.Add(copperSword.ItemIndex,
-                                         new WeaponMetadata(50f, 50, MetalType.Copper, WeaponType.Sword, copperSword));
+            WeaponFactory.WeaponLookup.Add(copperSword.ItemIndex, new WeaponMetadata(50f, 50, "Copper Sword", copperSword));
 
             var bronzeSwordName = GameLoader.NAMESPACE + ".BronzeSword";
             var bronzeSwordNode = new JSONNode();
@@ -116,8 +113,7 @@ namespace Pandaros.Settlers.Items
             var bronzeSword = new ItemTypesServer.ItemTypeRaw(bronzeSwordName, bronzeSwordNode);
             items.Add(bronzeSwordName, bronzeSword);
 
-            ItemFactory.WeaponLookup.Add(bronzeSword.ItemIndex,
-                                         new WeaponMetadata(100f, 75, MetalType.Bronze, WeaponType.Sword, bronzeSword));
+            WeaponFactory.WeaponLookup.Add(bronzeSword.ItemIndex, new WeaponMetadata(100f, 75, "Bronze Sword", bronzeSword));
 
             var IronSwordName = GameLoader.NAMESPACE + ".IronSword";
             var IronSwordNode = new JSONNode();
@@ -129,8 +125,7 @@ namespace Pandaros.Settlers.Items
             var IronSword = new ItemTypesServer.ItemTypeRaw(IronSwordName, IronSwordNode);
             items.Add(IronSwordName, IronSword);
 
-            ItemFactory.WeaponLookup.Add(IronSword.ItemIndex,
-                                         new WeaponMetadata(250f, 100, MetalType.Iron, WeaponType.Sword, IronSword));
+            WeaponFactory.WeaponLookup.Add(IronSword.ItemIndex, new WeaponMetadata(250f, 100, "Iron Sword", IronSword));
 
             var steelSwordName = GameLoader.NAMESPACE + ".SteelSword";
             var steelSwordNode = new JSONNode();
@@ -142,8 +137,7 @@ namespace Pandaros.Settlers.Items
             var steelSword = new ItemTypesServer.ItemTypeRaw(steelSwordName, steelSwordNode);
             items.Add(steelSwordName, steelSword);
 
-            ItemFactory.WeaponLookup.Add(steelSword.ItemIndex,
-                                         new WeaponMetadata(500f, 150, MetalType.Steel, WeaponType.Sword, steelSword));
+            WeaponFactory.WeaponLookup.Add(steelSword.ItemIndex, new WeaponMetadata(500f, 150, "Steel Sword", steelSword));
         }
     }
 }

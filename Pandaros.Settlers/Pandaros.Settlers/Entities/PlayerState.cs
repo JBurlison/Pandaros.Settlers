@@ -12,7 +12,7 @@ using Random = System.Random;
 
 namespace Pandaros.Settlers.Entities
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class PlayerState
     {
         private static readonly Dictionary<Players.Player, PlayerState> _playerStates =
@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Entities
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
         public Vector3Int TeleporterPlaced { get; set; } = Vector3Int.invalidPos;
 
-        public Dictionary<Armor.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<Armor.ArmorSlot, ArmorState>();
+        public Dictionary<ArmorFactory.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<ArmorFactory.ArmorSlot, ArmorState>();
         public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
@@ -131,7 +131,7 @@ namespace Pandaros.Settlers.Entities
         {
             Weapon = new ArmorState();
 
-            foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
                 Armor.Add(armorType, new ArmorState());
         }
 
@@ -189,7 +189,7 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs("Armor", out JSONNode armorNode) && armorNode.NodeType == NodeType.Object)
                     foreach (var aNode in armorNode.LoopObject())
-                        _playerStates[p].Armor[(Armor.ArmorSlot) Enum.Parse(typeof(Armor.ArmorSlot), aNode.Key)] =
+                        _playerStates[p].Armor[(ArmorFactory.ArmorSlot) Enum.Parse(typeof(Armor.ArmorSlot), aNode.Key)] =
                             new ArmorState(aNode.Value);
 
                 if (stateNode.TryGetAs("FlagsPlaced", out JSONNode flagsPlaced) &&

@@ -243,7 +243,7 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.registerjobs")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
         {
             NPCType.AddSettings(_knightNPCSettings);
@@ -253,7 +253,7 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit,
             GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit")]
         [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
         {
             if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Knight))

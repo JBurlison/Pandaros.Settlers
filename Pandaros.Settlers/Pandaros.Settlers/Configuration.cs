@@ -6,7 +6,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Configuration
     {
         private static readonly string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
@@ -66,7 +66,7 @@ namespace Pandaros.Settlers
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
             Reload();

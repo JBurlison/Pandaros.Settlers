@@ -114,7 +114,7 @@ namespace Pandaros.Settlers.Monsters
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
             GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.monsterspawner.register")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.monsterspawner.register")]
         private static void AfterWorldLoad()
         {
             Instance                      = new PandaMonsterSpawner();

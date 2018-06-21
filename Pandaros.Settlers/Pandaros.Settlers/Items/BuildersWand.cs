@@ -9,7 +9,7 @@ using Shared;
 
 namespace Pandaros.Settlers.Items
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class BuildersWand
     {
         public enum WandMode
@@ -48,7 +48,7 @@ namespace Pandaros.Settlers.Items
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.BuildersWand.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".BuildersWand";

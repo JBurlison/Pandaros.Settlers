@@ -5,13 +5,12 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items.Healing
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Anitbiotic
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
         public static void Register()
         {
             var herbs  = new InventoryItem(BuiltinBlocks.Hollyhock, 2);
@@ -28,9 +27,8 @@ namespace Pandaros.Settlers.Items.Healing
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Add")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Anitbiotic";

@@ -1,20 +1,24 @@
-﻿namespace Pandaros.Settlers
+﻿using Pandaros.Settlers.Items.Temperature;
+
+namespace Pandaros.Settlers
 {
     public interface IMagicEffect
     {
-        IPandaArmor SpecialArmor { get; set; }
+        IPandaArmor SpecialArmor { get; }
 
-        IPandaDamage SpecialDamage { get; set; }
+        IPandaDamage SpecialDamage { get; }
 
-        float HPBoost { get; set; }
+        ITemperatureRegulator TemperatureRegulation { get; }
 
-        float HPTickRegen { get; set; }
+        float HPBoost { get; }
 
-        float AuraRange { get; set; }
+        float HPTickRegen { get; }
 
-        float CraftingSpeed { get; set; }
+        float AuraRange { get; }
 
-        float MovementSpeed { get; set; }
+        float CraftingSpeed { get; }
+
+        float MovementSpeed { get; }
 
         void Update();
     }

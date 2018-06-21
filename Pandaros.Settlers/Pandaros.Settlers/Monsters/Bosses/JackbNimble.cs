@@ -8,7 +8,7 @@ using Server.NPCs;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class JackbNimble : Zombie, IPandaBoss
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.JackbNimble";
@@ -83,7 +83,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Monsters.Bosses.JackbNimble.Register")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {

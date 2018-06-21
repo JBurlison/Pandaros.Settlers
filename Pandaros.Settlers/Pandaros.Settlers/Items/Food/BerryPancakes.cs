@@ -1,25 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Pandaros.Settlers.Extender;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using BlockTypes.Builtin;
-using Pandaros.Settlers.Extender;
-using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items.Food
 {
-    public class BerryPancakes : CSType
+    public class BerryPancakes : CSType, ICSRecipe
     {
-        public const string NAME = GameLoader.NAMESPACE + ".BerryPancakes";
-
-        public override string Name => NAME;
+        public override string Name => GameLoader.NAMESPACE + ".BerryPancakes";
         public override string icon => GameLoader.ICON_PATH + "BerryPancakes.png";
         public override bool? isPlaceable => false;
         public override float? nutritionalValue => 4f;
         public override ReadOnlyCollection<string> categories => new ReadOnlyCollection<string>(new List<string>() { "food" });
-    }
-
-    public class BerryPancakesRecipe : ICSRecipe
-    {
-        public string Name => BerryPancakes.NAME;
 
         public Dictionary<string, int> Requirements => new Dictionary<string, int>()
         {
@@ -30,7 +21,7 @@ namespace Pandaros.Settlers.Items.Food
 
         public Dictionary<string, int> Results => new Dictionary<string, int>()
         {
-            { BerryPancakes.NAME, 2 }
+            { Name, 2 }
         };
 
         public CraftPriority Priority => CraftPriority.Medium;

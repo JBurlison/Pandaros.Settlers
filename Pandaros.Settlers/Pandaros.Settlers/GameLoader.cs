@@ -13,7 +13,7 @@ using Pipliz.Threading;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class GameLoader
     {
         public const string NAMESPACE = "Pandaros.Settlers";
@@ -207,7 +207,7 @@ namespace Pandaros.Settlers
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
             NAMESPACE + ".GameLoader.LoadAudioFiles")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.registeraudiofiles")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
         private static void RegisterAudioFiles()
         {

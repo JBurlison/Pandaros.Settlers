@@ -2,15 +2,27 @@
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Temperature;
+using Pandaros.Settlers.Items.Weapons;
 using Pipliz;
 using Pipliz.Collections.Threadsafe;
 using Math = System.Math;
 
 namespace Pandaros.Settlers.Seasons
 {
+    public enum TemperatureScale
+    {
+        Celcius,
+        Ferinheight
+    }
+
     [ModLoader.ModManager]
     public static class SeasonsFactory
     {
+        public const double COMFORTABLE_TEMP_MIN = 62;
+        public const double COMFORTABLE_TEMP_MAX = 82;
+        public const string DEGREE_SYMBOL = "°";
         private const int CYCLE_SECONDS = 2;
         private const int CHUNKS_PER_CYCLE = 100;
         private static int _currentMax = CHUNKS_PER_CYCLE;
@@ -24,62 +36,62 @@ namespace Pandaros.Settlers.Seasons
         private static double _midDay;
         private static double _midNight;
         private static readonly List<ISeason> _seasons = new List<ISeason>();
-
+        
         public static ISeason CurrentSeason => _seasons[_currentSeason];
 
         public static ISeason NextSeason => _seasons[_nextSeason];
 
         public static ISeason PreviousSeason => _seasons[_previousSesion];
 
-        public static double Temperature
-        {
-            get
-            {
-                double retVal = 75;
-
-                if (TimeCycle.IsDay)
-                {
-                    var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
-
-                    if (TimeCycle.TimeOfDay <= _midDay)
-                    {
-                        var pct =  TimeCycle.TimeOfDay / _midDay;
-                        retVal = tempDiff * pct;
-                    }
-                    else
-                    {
-                        var pct = TimeCycle.TimeOfDay / TimeCycle.SunSet;
-                        retVal = tempDiff * pct;
-                    }
-
-                    retVal += CurrentSeason.MinDayTemperature;
-                }
-                else
-                {
-                    var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
-
-                    if (TimeCycle.TimeOfDay <= _midNight)
-                    {
-                        var pct = TimeCycle.TimeOfDay / _midNight;
-                        retVal = tempDiff * pct;
-                    }
-                    else
-                    {
-                        var pct = TimeCycle.TimeOfDay / TimeCycle.SunRise;
-                        retVal = tempDiff * pct;
-                    }
-
-                    retVal = CurrentSeason.MaxNightTemperature - retVal;
-                }
-
-                return Math.Round(retVal, 2);
-            }
-        }
+        public static double Temperature { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.OnShouldKeepChunkLoaded")]
         public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData chunkCallback)
         {
             chunkCallback.Result = true;
+        }
+
+
+        public static bool IsComfortable(NPC.NPCBase npc)
+        {
+            var inv = Entities.SettlerInventory.GetSettlerInventory(npc);
+            double effectiveTemp = Temperature;
+
+            foreach (var item in inv.Armor)
+                if (!item.Value.IsEmpty() && ArmorFactory.ArmorLookup.ContainsKey(item.Value.Id))
+                {
+                    var armor = ArmorFactory.ArmorLookup[item.Value.Id];
+
+                    if (armor.MagicEffect != null && armor.MagicEffect.TemperatureRegulation != null)
+                        effectiveTemp = FactorTempChange(effectiveTemp, armor.MagicEffect.TemperatureRegulation);
+                }
+
+            if (!inv.Weapon.IsEmpty() && WeaponFactory.WeaponLookup.ContainsKey(inv.Weapon.Id))
+            {
+                var weapon = WeaponFactory.WeaponLookup[inv.Weapon.Id];
+
+                if (weapon.MagicEffect != null && weapon.MagicEffect.TemperatureRegulation != null)
+                    effectiveTemp = FactorTempChange(effectiveTemp, weapon.MagicEffect.TemperatureRegulation);
+            }
+
+
+
+            return IsComfortable(effectiveTemp);
+        }
+
+        public static bool IsComfortable(double temp)
+        {
+            return COMFORTABLE_TEMP_MIN <= temp && COMFORTABLE_TEMP_MAX >= temp;
+        }
+
+        public static double FactorTempChange(double currentTemp, ITemperatureRegulator regulator)
+        {
+            var retval = currentTemp;
+
+
+
+
+            return retval;
         }
 
 
@@ -104,6 +116,8 @@ namespace Pandaros.Settlers.Seasons
             {
                 var worldChunks = GetWorldChunks();
                 var i = 0;
+
+                Temperature = GetTemprature();
 
                 worldChunks.ForeachValue(c =>
                 {
@@ -258,6 +272,48 @@ namespace Pandaros.Settlers.Seasons
                                                           .GetField("chunks",
                                                                     BindingFlags.NonPublic | BindingFlags.Static)
                                                          ?.GetValue(null);
+        }
+
+        private static double GetTemprature()
+        {
+            double retVal = 75;
+
+            if (TimeCycle.IsDay)
+            {
+                var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
+
+                if (TimeCycle.TimeOfDay <= _midDay)
+                {
+                    var pct = TimeCycle.TimeOfDay / _midDay;
+                    retVal = tempDiff * pct;
+                }
+                else
+                {
+                    var pct = TimeCycle.TimeOfDay / TimeCycle.SunSet;
+                    retVal = tempDiff * pct;
+                }
+
+                retVal += CurrentSeason.MinDayTemperature;
+            }
+            else
+            {
+                var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
+
+                if (TimeCycle.TimeOfDay <= _midNight)
+                {
+                    var pct = TimeCycle.TimeOfDay / _midNight;
+                    retVal = tempDiff * pct;
+                }
+                else
+                {
+                    var pct = TimeCycle.TimeOfDay / TimeCycle.SunRise;
+                    retVal = tempDiff * pct;
+                }
+
+                retVal = CurrentSeason.MaxNightTemperature - retVal;
+            }
+
+            return Math.Round(retVal, 2);
         }
     }
 }

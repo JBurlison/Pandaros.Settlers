@@ -4,7 +4,7 @@ using Pipliz;
 
 namespace Pandaros.Settlers.Entities
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class HealingOverTimePC
     {
         private static long _nextUpdate;

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class ApothecaryRegister
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Apothecary";

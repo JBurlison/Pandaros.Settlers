@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Entities
                     foreach (var skill in itterations.LoopObject())
                         JobItteration[skill.Key] = skill.Value.GetAs<int>();
 
-                foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+                foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
                     Armor[armorType].FromJsonNode(armorType.ToString(), baseNode);
             }
         }
@@ -52,14 +52,13 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
 
-        public Dictionary<Armor.ArmorSlot, ArmorState> Armor { get; set; } =
-            new Dictionary<Armor.ArmorSlot, ArmorState>();
+        public Dictionary<ArmorFactory.ArmorSlot, ArmorState> Armor { get; set; } =  new Dictionary<ArmorFactory.ArmorSlot, ArmorState>();
 
         public ArmorState Weapon { get; set; } = new ArmorState();
 
         private void SetupArmor()
         {
-            foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
                 Armor.Add(armorType, new ArmorState());
         }
 
@@ -85,7 +84,7 @@ namespace Pandaros.Settlers.Entities
 
             baseNode[nameof(itterations)] = itterations;
 
-            foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
                 baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();
 
             return baseNode;

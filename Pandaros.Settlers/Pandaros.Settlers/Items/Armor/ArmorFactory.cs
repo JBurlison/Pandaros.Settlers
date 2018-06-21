@@ -6,6 +6,7 @@ using BlockTypes.Builtin;
 using ChatCommands;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items.Armor;
 using Pipliz.JSON;
 using static Pandaros.Settlers.Entities.SettlerInventory;
 
@@ -21,15 +22,7 @@ namespace Pandaros.Settlers.Items
         public bool TryDoCommand(Players.Player player, string chat)
         {
             var colony = Colony.Get(player);
-            var counts = new Dictionary<MetalType, Dictionary<Armor.ArmorSlot, int>>();
-            var slots  = new Dictionary<Armor.ArmorSlot, int>();
-
-            foreach (Armor.ArmorSlot slot in Armor.ArmorSlotEnum)
-                slots.Add(slot, 0);
-
-            foreach (MetalType metal in Enum.GetValues(typeof(MetalType)))
-                counts.Add(metal, new Dictionary<Armor.ArmorSlot, int>(slots));
-
+            var counts = new Dictionary<string, Dictionary<ArmorFactory.ArmorSlot, int>>();
             foreach (var npc in colony.Followers)
             {
                 var inv = GetSettlerInventory(npc);
@@ -37,8 +30,15 @@ namespace Pandaros.Settlers.Items
                 foreach (var item in inv.Armor)
                     if (!item.Value.IsEmpty())
                     {
-                        var armor = Armor.ArmorLookup[item.Value.Id];
-                        counts[armor.Metal][armor.Slot]++;
+                        var armor = ArmorFactory.ArmorLookup[item.Value.Id];
+
+                        if (!counts.ContainsKey(armor.Name))
+                            counts.Add(armor.Name, new Dictionary<ArmorFactory.ArmorSlot, int>());
+
+                        if (!counts[armor.Name].ContainsKey(armor.Slot))
+                            counts[armor.Name].Add(armor.Slot, 0);
+
+                        counts[armor.Name][armor.Slot]++;
                     }
             }
 
@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Items
                 if (armor.Value.IsEmpty())
                     psb.Append($" {armor.Key}: None |");
                 else
-                    psb.Append($" {armor.Key}: {Armor.ArmorLookup[armor.Value.Id].Metal} | ");
+                    psb.Append($" {armor.Key}: {ArmorFactory.ArmorLookup[armor.Value.Id].Name} | ");
 
             PandaChat.Send(player, psb.ToString());
 
@@ -67,20 +67,21 @@ namespace Pandaros.Settlers.Items
         }
     }
 
-    [ModLoader.ModManagerAttribute]
-    public static class Armor
+    [ModLoader.ModManager]
+    public static class ArmorFactory
     {
         public enum ArmorSlot
         {
+            Clothing,
             Helm,
             Chest,
             Gloves,
             Legs,
             Boots,
-            Shield
+            Shield,
+            Neck
         }
-
-        public const string JOB_METALSMITH = "pipliz.metalsmithjob";
+        
         public static DateTime _nextUpdate = DateTime.MinValue;
 
         private static readonly Dictionary<ArmorSlot, int> _hitChance = new Dictionary<ArmorSlot, int>
@@ -89,7 +90,9 @@ namespace Pandaros.Settlers.Items
             {ArmorSlot.Chest, 55},
             {ArmorSlot.Gloves, 65},
             {ArmorSlot.Legs, 90},
-            {ArmorSlot.Boots, 100}
+            {ArmorSlot.Boots, 100},
+            {ArmorSlot.Clothing, 0},
+            {ArmorSlot.Neck, 0}
         };
 
         private static readonly Dictionary<ArmorSlot, int> _hitChanceShield = new Dictionary<ArmorSlot, int>
@@ -99,15 +102,16 @@ namespace Pandaros.Settlers.Items
             {ArmorSlot.Gloves, 35},
             {ArmorSlot.Legs, 45},
             {ArmorSlot.Boots, 50},
-            {ArmorSlot.Shield, 100}
+            {ArmorSlot.Shield, 100},
+            {ArmorSlot.Clothing, 0},
+            {ArmorSlot.Neck, 0}
         };
 
         private static readonly Random _rand = new Random();
 
         public static Array ArmorSlotEnum { get; } = Enum.GetValues(typeof(ArmorSlot));
 
-        public static Dictionary<ushort, ArmorMetadata> ArmorLookup { get; set; } =
-            new Dictionary<ushort, ArmorMetadata>();
+        public static Dictionary<ushort, IArmor> ArmorLookup { get; set; } = new Dictionary<ushort, IArmor>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Armor.GetArmor")]
         public static void GetArmor()
@@ -215,7 +219,7 @@ namespace Pandaros.Settlers.Items
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit,
             GameLoader.NAMESPACE + ".Armor.OnPlayerHit")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData box)
         {
             var state = PlayerState.GetPlayerState(player);
@@ -223,7 +227,7 @@ namespace Pandaros.Settlers.Items
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
         {
             var inv = GetSettlerInventory(npc);
@@ -307,42 +311,42 @@ namespace Pandaros.Settlers.Items
                 // Copper
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Helm)
+                if (a.Value.Name == "Copper" && a.Value.Slot == ArmorSlot.Helm)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
                     items.AddRange(new[] {copper, copperParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Chest)
+                if (a.Value.Name == "Copper" && a.Value.Slot == ArmorSlot.Chest)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 5);
                     items.AddRange(new[] {copper, copperParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Gloves)
+                if (a.Value.Name == "Copper" && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
                     items.AddRange(new[] {copper, copperParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Legs)
+                if (a.Value.Name == "Copper" && a.Value.Slot == ArmorSlot.Legs)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 3);
                     items.AddRange(new[] {copper, copperParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Boots)
+                if (a.Value.Name == "Copper" && a.Value.Slot == ArmorSlot.Boots)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
                     items.AddRange(new[] {copper, copperParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Copper && a.Value.Slot == ArmorSlot.Shield)
+                if (a.Value.Name == "Copper" && a.Value.Slot == ArmorSlot.Shield)
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
@@ -353,42 +357,42 @@ namespace Pandaros.Settlers.Items
                 // Bronze
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Helm)
+                if (a.Value.Name == "Bronze" && a.Value.Slot == ArmorSlot.Helm)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
                     items.AddRange(new[] {bronze, bronzePlate, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Chest)
+                if (a.Value.Name == "Bronze" && a.Value.Slot == ArmorSlot.Chest)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 5);
                     items.AddRange(new[] {bronze, bronzePlate, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Gloves)
+                if (a.Value.Name == "Bronze" && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
                     items.AddRange(new[] {bronze, bronzePlate, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Legs)
+                if (a.Value.Name == "Bronze" && a.Value.Slot == ArmorSlot.Legs)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 3);
                     items.AddRange(new[] {bronze, bronzePlate, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Boots)
+                if (a.Value.Name == "Bronze" && a.Value.Slot == ArmorSlot.Boots)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
                     items.AddRange(new[] {bronze, bronzePlate, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Bronze && a.Value.Slot == ArmorSlot.Shield)
+                if (a.Value.Name == "Bronze" && a.Value.Slot == ArmorSlot.Shield)
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
@@ -399,42 +403,42 @@ namespace Pandaros.Settlers.Items
                 // Iron
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Helm)
+                if (a.Value.Name == "Iron" && a.Value.Slot == ArmorSlot.Helm)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
                     items.AddRange(new[] {iron, ironRivet, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Chest)
+                if (a.Value.Name == "Iron" && a.Value.Slot == ArmorSlot.Chest)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 5);
                     items.AddRange(new[] {iron, ironRivet, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Gloves)
+                if (a.Value.Name == "Iron" && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
                     items.AddRange(new[] {iron, ironRivet, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Legs)
+                if (a.Value.Name == "Iron" && a.Value.Slot == ArmorSlot.Legs)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 3);
                     items.AddRange(new[] {iron, ironRivet, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Boots)
+                if (a.Value.Name == "Iron" && a.Value.Slot == ArmorSlot.Boots)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
                     items.AddRange(new[] {iron, ironRivet, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Iron && a.Value.Slot == ArmorSlot.Shield)
+                if (a.Value.Name == "Iron" && a.Value.Slot == ArmorSlot.Shield)
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
@@ -445,42 +449,42 @@ namespace Pandaros.Settlers.Items
                 // Steel
                 // ----------------------------------------
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Helm)
+                if (a.Value.Name == "Steel" && a.Value.Slot == ArmorSlot.Helm)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
                     items.AddRange(new[] {steel, steelParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Chest)
+                if (a.Value.Name == "Steel" && a.Value.Slot == ArmorSlot.Chest)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
                     items.AddRange(new[] {steel, steelParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Gloves)
+                if (a.Value.Name == "Steel" && a.Value.Slot == ArmorSlot.Gloves)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
                     items.AddRange(new[] {steel, steelParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Legs)
+                if (a.Value.Name == "Steel" && a.Value.Slot == ArmorSlot.Legs)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 3);
                     items.AddRange(new[] {steel, steelParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Boots)
+                if (a.Value.Name == "Steel" && a.Value.Slot == ArmorSlot.Boots)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
                     items.AddRange(new[] {steel, steelParts, coppertools, clothing});
                 }
 
-                if (a.Value.Metal == MetalType.Steel && a.Value.Slot == ArmorSlot.Shield)
+                if (a.Value.Name == "Steel" && a.Value.Slot == ArmorSlot.Shield)
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
@@ -490,13 +494,13 @@ namespace Pandaros.Settlers.Items
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe  = new Recipe(a.Value.ItemType.name, items, invItem, 5, false, -100);
 
-                RecipeStorage.AddOptionalLimitTypeRecipe(JOB_METALSMITH, recipe);
+                RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
             }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Armor.AddArmor")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddArmor(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             try
@@ -519,7 +523,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(copperHelmName, copperHelm);
 
                 ArmorLookup.Add(copperHelm.ItemIndex,
-                                new ArmorMetadata(0.05f, 15, MetalType.Copper, copperHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.05f, 15, "Copper", copperHelm, ArmorSlot.Helm));
 
                 // Chest
                 var copperChestName = GameLoader.NAMESPACE + ".CopperChest";
@@ -533,7 +537,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(copperChestName, copperChest);
 
                 ArmorLookup.Add(copperChest.ItemIndex,
-                                new ArmorMetadata(.1f, 25, MetalType.Copper, copperChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.1f, 25, "Copper", copperChest, ArmorSlot.Chest));
 
                 // Gloves
                 var copperGlovesName = GameLoader.NAMESPACE + ".CopperGloves";
@@ -547,7 +551,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(copperGlovesName, copperGloves);
 
                 ArmorLookup.Add(copperGloves.ItemIndex,
-                                new ArmorMetadata(0.025f, 10, MetalType.Copper, copperGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.025f, 10, "Copper", copperGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var copperLegsName = GameLoader.NAMESPACE + ".CopperLegs";
@@ -561,7 +565,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(copperLegsName, copperLegs);
 
                 ArmorLookup.Add(copperLegs.ItemIndex,
-                                new ArmorMetadata(0.07f, 20, MetalType.Copper, copperLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.07f, 20, "Copper", copperLegs, ArmorSlot.Legs));
 
                 // Boots
                 var copperBootsName = GameLoader.NAMESPACE + ".CopperBoots";
@@ -575,7 +579,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(copperBootsName, copperBoots);
 
                 ArmorLookup.Add(copperBoots.ItemIndex,
-                                new ArmorMetadata(0.025f, 10, MetalType.Copper, copperBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.025f, 10, "Copper", copperBoots, ArmorSlot.Boots));
 
                 // Shield
                 var copperShieldName = GameLoader.NAMESPACE + ".CopperShield";
@@ -589,7 +593,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(copperShieldName, copperShield);
 
                 ArmorLookup.Add(copperShield.ItemIndex,
-                                new ArmorMetadata(0.05f, 30, MetalType.Copper, copperShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.05f, 30, "Copper", copperShield, ArmorSlot.Shield));
 
                 // ----------------------------------------
                 // Bronze
@@ -607,7 +611,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(bronzeHelmName, bronzeHelm);
 
                 ArmorLookup.Add(bronzeHelm.ItemIndex,
-                                new ArmorMetadata(0.07f, 20, MetalType.Bronze, bronzeHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.07f, 20, "Bronze", bronzeHelm, ArmorSlot.Helm));
 
                 // Chest
                 var bronzeChestName = GameLoader.NAMESPACE + ".BronzeChest";
@@ -621,7 +625,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(bronzeChestName, bronzeChest);
 
                 ArmorLookup.Add(bronzeChest.ItemIndex,
-                                new ArmorMetadata(.15f, 30, MetalType.Bronze, bronzeChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.15f, 30, "Bronze", bronzeChest, ArmorSlot.Chest));
 
                 // Gloves
                 var bronzeGlovesName = GameLoader.NAMESPACE + ".BronzeGloves";
@@ -635,7 +639,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(bronzeGlovesName, bronzeGloves);
 
                 ArmorLookup.Add(bronzeGloves.ItemIndex,
-                                new ArmorMetadata(0.04f, 15, MetalType.Bronze, bronzeGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.04f, 15, "Bronze", bronzeGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var bronzeLegsName = GameLoader.NAMESPACE + ".BronzeLegs";
@@ -649,7 +653,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(bronzeLegsName, bronzeLegs);
 
                 ArmorLookup.Add(bronzeLegs.ItemIndex,
-                                new ArmorMetadata(0.09f, 25, MetalType.Bronze, bronzeLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.09f, 25, "Bronze", bronzeLegs, ArmorSlot.Legs));
 
                 // Boots
                 var bronzeBootsName = GameLoader.NAMESPACE + ".BronzeBoots";
@@ -663,7 +667,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(bronzeBootsName, bronzeBoots);
 
                 ArmorLookup.Add(bronzeBoots.ItemIndex,
-                                new ArmorMetadata(0.04f, 15, MetalType.Bronze, bronzeBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.04f, 15, "Bronze", bronzeBoots, ArmorSlot.Boots));
 
                 // Shield
                 var bronzeShieldName = GameLoader.NAMESPACE + ".BronzeShield";
@@ -677,7 +681,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(bronzeShieldName, bronzeShield);
 
                 ArmorLookup.Add(bronzeShield.ItemIndex,
-                                new ArmorMetadata(0.07f, 40, MetalType.Bronze, bronzeShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.07f, 40, "Bronze", bronzeShield, ArmorSlot.Shield));
 
                 // ----------------------------------------
                 // Iron
@@ -695,7 +699,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(ironHelmName, ironHelm);
 
                 ArmorLookup.Add(ironHelm.ItemIndex,
-                                new ArmorMetadata(0.09f, 30, MetalType.Iron, ironHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.09f, 30, "Iron", ironHelm, ArmorSlot.Helm));
 
                 // Chest
                 var ironChestName = GameLoader.NAMESPACE + ".IronChest";
@@ -709,7 +713,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(ironChestName, ironChest);
 
                 ArmorLookup.Add(ironChest.ItemIndex,
-                                new ArmorMetadata(.2f, 40, MetalType.Iron, ironChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.2f, 40, "Iron", ironChest, ArmorSlot.Chest));
 
                 // Gloves
                 var ironGlovesName = GameLoader.NAMESPACE + ".IronGloves";
@@ -723,7 +727,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(ironGlovesName, ironGloves);
 
                 ArmorLookup.Add(ironGloves.ItemIndex,
-                                new ArmorMetadata(0.055f, 25, MetalType.Iron, ironGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.055f, 25, "Iron", ironGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var ironLegsName = GameLoader.NAMESPACE + ".IronLegs";
@@ -737,7 +741,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(ironLegsName, ironLegs);
 
                 ArmorLookup.Add(ironLegs.ItemIndex,
-                                new ArmorMetadata(0.11f, 35, MetalType.Iron, ironLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.11f, 35, "Iron", ironLegs, ArmorSlot.Legs));
 
                 // Boots
                 var ironBootsName = GameLoader.NAMESPACE + ".IronBoots";
@@ -751,7 +755,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(ironBootsName, ironBoots);
 
                 ArmorLookup.Add(ironBoots.ItemIndex,
-                                new ArmorMetadata(0.055f, 25, MetalType.Iron, ironBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.055f, 25, "Iron", ironBoots, ArmorSlot.Boots));
 
                 // Shield
                 var ironShieldName = GameLoader.NAMESPACE + ".IronShield";
@@ -765,7 +769,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(ironShieldName, ironShield);
 
                 ArmorLookup.Add(ironShield.ItemIndex,
-                                new ArmorMetadata(0.1f, 50, MetalType.Iron, ironShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.1f, 50, "Iron", ironShield, ArmorSlot.Shield));
 
                 // ----------------------------------------
                 // Steel
@@ -783,7 +787,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(steelHelmName, steelHelm);
 
                 ArmorLookup.Add(steelHelm.ItemIndex,
-                                new ArmorMetadata(0.11f, 40, MetalType.Steel, steelHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.11f, 40, "Steel", steelHelm, ArmorSlot.Helm));
 
                 // Chest
                 var steelChestName = GameLoader.NAMESPACE + ".SteelChest";
@@ -797,7 +801,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(steelChestName, steelChest);
 
                 ArmorLookup.Add(steelChest.ItemIndex,
-                                new ArmorMetadata(.3f, 50, MetalType.Steel, steelChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.3f, 50, "Steel", steelChest, ArmorSlot.Chest));
 
                 // Gloves
                 var steelGlovesName = GameLoader.NAMESPACE + ".SteelGloves";
@@ -811,7 +815,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(steelGlovesName, steelGloves);
 
                 ArmorLookup.Add(steelGloves.ItemIndex,
-                                new ArmorMetadata(0.07f, 35, MetalType.Steel, steelGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.07f, 35, "Steel", steelGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var steelLegsName = GameLoader.NAMESPACE + ".SteelLegs";
@@ -825,7 +829,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(steelLegsName, steelLegs);
 
                 ArmorLookup.Add(steelLegs.ItemIndex,
-                                new ArmorMetadata(0.13f, 40, MetalType.Steel, steelLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.13f, 40, "Steel", steelLegs, ArmorSlot.Legs));
 
                 // Boots
                 var steelBootsName = GameLoader.NAMESPACE + ".SteelBoots";
@@ -839,7 +843,7 @@ namespace Pandaros.Settlers.Items
                 items.Add(steelBootsName, steelBoots);
 
                 ArmorLookup.Add(steelBoots.ItemIndex,
-                                new ArmorMetadata(0.07f, 35, MetalType.Steel, steelBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.07f, 35, "Steel", steelBoots, ArmorSlot.Boots));
 
                 // Shield
                 var steelShieldName = GameLoader.NAMESPACE + ".SteelShield";
@@ -853,9 +857,9 @@ namespace Pandaros.Settlers.Items
                 items.Add(steelShieldName, steelShield);
 
                 ArmorLookup.Add(steelShield.ItemIndex,
-                                new ArmorMetadata(0.12f, 60, MetalType.Steel, steelShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.12f, 60, "Steel", steelShield, ArmorSlot.Shield));
 
-                ArmorLookup = ArmorLookup.OrderBy(kvp => kvp.Value.Metal).ThenBy(kvp => kvp.Value.ArmorRating)
+                ArmorLookup = ArmorLookup.OrderBy(kvp => kvp.Value.Name).ThenBy(kvp => kvp.Value.ArmorRating)
                                          .ToDictionary(k => k.Key, v => v.Value);
             }
             catch (Exception ex)
@@ -864,14 +868,14 @@ namespace Pandaros.Settlers.Items
             }
         }
 
-        public class ArmorMetadata
+        public class ArmorMetadata : IArmor
         {
-            public ArmorMetadata(float                       armorRating, int       durability, MetalType metal,
+            public ArmorMetadata(float                       armorRating, int       durability, string name,
                                  ItemTypesServer.ItemTypeRaw itemType,    ArmorSlot slot)
             {
                 ArmorRating = armorRating;
                 Durability  = durability;
-                Metal       = metal;
+                Name = name;
                 ItemType    = itemType;
                 Slot        = slot;
             }
@@ -880,11 +884,13 @@ namespace Pandaros.Settlers.Items
 
             public int Durability { get; set; }
 
-            public MetalType Metal { get; }
+            public string Name { get; }
 
             public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
             public ArmorSlot Slot { get; }
+
+            public IMagicEffect MagicEffect => null;
         }
     }
 }

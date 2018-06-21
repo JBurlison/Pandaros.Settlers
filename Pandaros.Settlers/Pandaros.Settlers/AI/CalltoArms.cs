@@ -20,7 +20,7 @@ using Physics = General.Physics.Physics;
 
 namespace Pandaros.Settlers.AI
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class CalltoArmsJob : Job
     {
         private const int CALL_RAD = 500;
@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.AI
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".CalltoArms.Init")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.registerjobs")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
         {
             NPCType.AddSettings(_callToArmsNPCSettings);
@@ -296,7 +296,7 @@ namespace Pandaros.Settlers.AI
         }
     }
 
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class CalltoArms : IChatCommand
     {
         private readonly List<CalltoArmsJob> _callToArmsJobs = new List<CalltoArmsJob>();

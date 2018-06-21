@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class AdvancedCrafterRegister
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".AdvancedCrafter";

@@ -7,7 +7,7 @@ using Pandaros.Settlers.Jobs.Roaming;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class ElementalTurrets
     {
         public const string AIRTURRET = "Air Turret";
@@ -22,8 +22,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static readonly string WATERTURRET_NAMESPACE = GameLoader.NAMESPACE + ".WaterTurret";
         public static readonly string VOIDTURRET_NAMESPACE = GameLoader.NAMESPACE + ".VoidTurret";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.RegisterTurret")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.RegisterTurret")]
         [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
         public static void RegisterTurret()
         {
@@ -109,10 +108,9 @@ namespace Pandaros.Settlers.Items.Machines
             RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
         public static void AddTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             AddAirTurret(items);
@@ -122,8 +120,7 @@ namespace Pandaros.Settlers.Items.Machines
             AddVoidTurret(items);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,  GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {

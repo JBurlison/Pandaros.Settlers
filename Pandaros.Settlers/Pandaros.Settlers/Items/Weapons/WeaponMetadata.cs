@@ -1,26 +1,23 @@
-﻿namespace Pandaros.Settlers.Items
+﻿namespace Pandaros.Settlers.Items.Weapons
 {
-    public class WeaponMetadata
+    public class WeaponMetadata : IWeapon
     {
-        public WeaponMetadata(float                       damage, int durability, MetalType metalType,
-                              WeaponType                  weaponType,
-                              ItemTypesServer.ItemTypeRaw item)
+        public WeaponMetadata(float damage, int durability, string name, ItemTypesServer.ItemTypeRaw item)
         {
             Damage     = damage;
-            Metal      = metalType;
-            WeaponType = weaponType;
+            Name       = name;
             ItemType   = item;
             Durability = durability;
         }
 
-        public MetalType Metal { get; }
-
-        public WeaponType WeaponType { get; }
+        public string Name { get; }
 
         public float Damage { get; }
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
         public int Durability { get; set; }
+
+        public IMagicEffect MagicEffect => null;
     }
 }

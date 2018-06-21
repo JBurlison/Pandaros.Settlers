@@ -5,7 +5,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Aether
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Items
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
             GameLoader.NAMESPACE + ".Items.Aether.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Aether";

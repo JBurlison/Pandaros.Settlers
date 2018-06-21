@@ -8,7 +8,7 @@ using Shared;
 
 namespace Pandaros.Settlers.Items.Healing
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class TreatedBandage
     {
         public const long COOLDOWN = 5000;
@@ -17,8 +17,7 @@ namespace Pandaros.Settlers.Items.Healing
         private static readonly Dictionary<Players.Player, long> _coolDown = new Dictionary<Players.Player, long>();
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Register")]
         public static void Register()
         {
             var bandage     = new InventoryItem(Bandage.Item.ItemIndex, 1);
@@ -33,9 +32,8 @@ namespace Pandaros.Settlers.Items.Healing
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Add")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".TreatedBandage";
@@ -51,8 +49,7 @@ namespace Pandaros.Settlers.Items.Healing
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
-            GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Click")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Click")]
         public static void Click(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             var healed = false;

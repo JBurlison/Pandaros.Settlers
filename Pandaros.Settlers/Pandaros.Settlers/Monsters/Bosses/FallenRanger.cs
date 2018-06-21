@@ -13,7 +13,7 @@ using Shared;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class FallenRanger : Zombie, IPandaBoss
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger";
@@ -120,7 +120,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger.Register")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {
