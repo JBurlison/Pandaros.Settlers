@@ -24,8 +24,7 @@ namespace Pandaros.Settlers.Managers
         private static double _nextUpdateTime;
         private static int _nextBossUpdateTime = int.MaxValue;
 
-        private static readonly Dictionary<PlayerState, IPandaBoss> _spawnedBosses =
-            new Dictionary<PlayerState, IPandaBoss>();
+        private static readonly Dictionary<PlayerState, IPandaBoss> _spawnedBosses =  new Dictionary<PlayerState, IPandaBoss>();
 
         private static readonly List<IPandaBoss> _bossList = new List<IPandaBoss>();
 
@@ -142,7 +141,7 @@ namespace Pandaros.Settlers.Managers
 
                         if (ps.BossesEnabled &&
                             ps.Player.IsConnected &&
-                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 15))
+                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
                         {
                             if (bossType != null &&
                                 !_spawnedBosses.ContainsKey(ps))
@@ -228,7 +227,7 @@ namespace Pandaros.Settlers.Managers
             ps.FaiedBossSpawns++;
 
             if (ps.FaiedBossSpawns > 10)
-                PandaChat.SendThrottle(ps.Player, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You will be penalized {SettlerManager.PenalizeFood(colony, 0.15f)} food.", ChatColor.red);
+                PandaChat.SendThrottle(ps.Player, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(colony, 0.15f)} food.", ChatColor.red);
 
             colony.OnZombieSpawn(false);
         }

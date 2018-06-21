@@ -5,6 +5,7 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Research;
+using Pandaros.Settlers.Seasons;
 using Pipliz;
 using Pipliz.JSON;
 using static Pandaros.Settlers.Entities.SettlerInventory;
@@ -56,7 +57,7 @@ namespace Pandaros.Settlers.Entities
 
 
         public GameDifficulty Difficulty { get; set; }
-
+        public TemperatureScale TemperatureScale { get; set; }
         public Players.Player Player { get; }
 
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
@@ -207,8 +208,10 @@ namespace Pandaros.Settlers.Entities
                     _playerStates[p].DifficultyStr = diff;
 
                 if (stateNode.TryGetAs(nameof(BuildersWandMode), out string wandMode))
-                    _playerStates[p].BuildersWandMode =
-                        (BuildersWand.WandMode) Enum.Parse(typeof(BuildersWand.WandMode), wandMode);
+                    _playerStates[p].BuildersWandMode = (BuildersWand.WandMode) Enum.Parse(typeof(BuildersWand.WandMode), wandMode);
+
+                if (stateNode.TryGetAs(nameof(TemperatureScale), out string tempScale))
+                    _playerStates[p].TemperatureScale = (TemperatureScale)Enum.Parse(typeof(TemperatureScale), tempScale);
 
                 if (stateNode.TryGetAs(nameof(BuildersWandCharge), out int wandCharge))
                     _playerStates[p].BuildersWandCharge = wandCharge;
@@ -292,7 +295,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
-
+                node.SetAs(nameof(TemperatureScale), _playerStates[p].TemperatureScale.ToString());
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

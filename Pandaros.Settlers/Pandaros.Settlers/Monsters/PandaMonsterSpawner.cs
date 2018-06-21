@@ -178,7 +178,7 @@ namespace Pandaros.Settlers.Monsters
                     fi.SetValue(monster, (float) fi.GetValue(monster) + boss.ZombieHPBonus);
                 }
 
-            if (colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 15))
+            if (colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
             {
                 var fi = monster
                         .GetType().GetField("health",

@@ -51,6 +51,15 @@ namespace Pandaros.Settlers.Seasons
             chunkCallback.Result = true;
         }
 
+        public static double ConvertCelsiusToFahrenheit(double c)
+        {
+            return ((9.0 / 5.0) * c) + 32;
+        }
+
+        public static double ConvertFahrenheitToCelsius(double f)
+        {
+            return (5.0 / 9.0) * (f - 32);
+        }
 
         public static bool IsComfortable(NPC.NPCBase npc)
         {
@@ -58,6 +67,10 @@ namespace Pandaros.Settlers.Seasons
             double effectiveTemp = Temperature;
 
             foreach (var item in inv.Armor)
+            {
+                if (IsComfortable(effectiveTemp))
+                    break;
+
                 if (!item.Value.IsEmpty() && ArmorFactory.ArmorLookup.ContainsKey(item.Value.Id))
                 {
                     var armor = ArmorFactory.ArmorLookup[item.Value.Id];
@@ -65,16 +78,17 @@ namespace Pandaros.Settlers.Seasons
                     if (armor.MagicEffect != null && armor.MagicEffect.TemperatureRegulation != null)
                         effectiveTemp = FactorTempChange(effectiveTemp, armor.MagicEffect.TemperatureRegulation);
                 }
+            }
 
-            if (!inv.Weapon.IsEmpty() && WeaponFactory.WeaponLookup.ContainsKey(inv.Weapon.Id))
+            if (!IsComfortable(effectiveTemp) && 
+                !inv.Weapon.IsEmpty() && 
+                WeaponFactory.WeaponLookup.ContainsKey(inv.Weapon.Id))
             {
                 var weapon = WeaponFactory.WeaponLookup[inv.Weapon.Id];
 
                 if (weapon.MagicEffect != null && weapon.MagicEffect.TemperatureRegulation != null)
                     effectiveTemp = FactorTempChange(effectiveTemp, weapon.MagicEffect.TemperatureRegulation);
             }
-
-
 
             return IsComfortable(effectiveTemp);
         }
