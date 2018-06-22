@@ -1,11 +1,11 @@
-﻿using Server.AI;
+﻿using Pandaros.Settlers.Extender;
+using Server.AI;
 using Server.Monsters;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    public interface IPandaBoss : IMonster, IPandaDamage, IPandaArmor, IKillReward
+    public interface IPandaBoss : IMonster, IPandaDamage, IPandaArmor, IKillReward, INameable
     {
-        string Name { get; }
         string AnnouncementText { get; }
         string DeathText { get; }
         string AnnouncementAudio { get; }

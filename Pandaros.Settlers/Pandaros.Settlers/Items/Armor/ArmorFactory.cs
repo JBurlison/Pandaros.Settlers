@@ -7,6 +7,8 @@ using ChatCommands;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items.Armor;
+using Pandaros.Settlers.Items.Temperature;
+using Pipliz;
 using Pipliz.JSON;
 using static Pandaros.Settlers.Entities.SettlerInventory;
 
@@ -107,7 +109,7 @@ namespace Pandaros.Settlers.Items
             {ArmorSlot.Neck, 0}
         };
 
-        private static readonly Random _rand = new Random();
+        private static readonly System.Random _rand = new System.Random();
 
         public static Array ArmorSlotEnum { get; } = Enum.GetValues(typeof(ArmorSlot));
 
@@ -217,8 +219,7 @@ namespace Pandaros.Settlers.Items
             return best;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit,
-            GameLoader.NAMESPACE + ".Armor.OnPlayerHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Armor.OnPlayerHit")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData box)
         {
@@ -240,6 +241,8 @@ namespace Pandaros.Settlers.Items
             if (box.ResultDamage > 0)
             {
                 float armor = 0;
+                bool missed = false;
+                var weap = Weapons.WeaponFactory.GetWeapon(box);
 
                 foreach (ArmorSlot armorSlot in ArmorSlotEnum)
                 {
@@ -247,10 +250,20 @@ namespace Pandaros.Settlers.Items
                         entityArmor.Add(armorSlot, new ArmorState());
 
                     if (!entityArmor[armorSlot].IsEmpty())
-                        armor += ArmorLookup[entityArmor[armorSlot].Id].ArmorRating;
+                    {
+                        var item = ArmorLookup[entityArmor[armorSlot].Id];
+                        armor += item.ArmorRating;
+
+                        if (item.MissChance != 0 && item.MissChance > Pipliz.Random.NextFloat())
+                        {
+                            missed = true;
+                            break;
+                        }
+
+                    }
                 }
 
-                if (armor != 0)
+                if (!missed && armor != 0)
                 {
                     box.ResultDamage = box.ResultDamage - box.ResultDamage * armor;
 
@@ -269,7 +282,7 @@ namespace Pandaros.Settlers.Items
                             if (entityArmor[loc.Key].Durability <= 0)
                             {
                                 entityArmor[loc.Key].Durability = 0;
-                                entityArmor[loc.Key].Id         = default(ushort);
+                                entityArmor[loc.Key].Id = default(ushort);
 
                                 PandaChat.Send(player,
                                                $"{name} {loc.Key} broke! If you have a spare one it will be automatically equipt within 30 seconds.",
@@ -279,11 +292,15 @@ namespace Pandaros.Settlers.Items
                             break;
                         }
                 }
+
+                if (missed)
+                    box.ResultDamage = 0;
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Armor.RegisterRecipes")]
+        
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Armor.RegisterRecipes")]
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
@@ -891,6 +908,35 @@ namespace Pandaros.Settlers.Items
             public ArmorSlot Slot { get; }
 
             public IMagicEffect MagicEffect => null;
+
+            public float HPBoost => 0;
+
+            public float HPTickRegen => 0;
+
+            public float CraftingSpeed => 0;
+
+            public float MovementSpeed => 0;
+
+            public float MissChance => 0;
+
+            public DamageType ElementalArmor => DamageType.Physical;
+
+            public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
+
+            public Dictionary<DamageType, float> Damage => new Dictionary<DamageType, float>();
+
+            public int RadiusOfTemperatureAdjustment => 0;
+
+            public double TemperatureAdjusted => 0;
+
+            public Vector3Int Position { get; set; }
+
+            public TemperatureType TemperatureRegulated =>  TemperatureType.None;
+
+            public void Update()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

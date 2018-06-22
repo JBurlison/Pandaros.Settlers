@@ -168,14 +168,6 @@ namespace Pandaros.Settlers
             Bow_Icon = bow.ItemIndex;
 
             items.Add(NAMESPACE + ".BowIcon", bow);
-
-            RoamingJob.OkStatus = new List<uint>
-            {
-                Refuel_Icon,
-                Reload_Icon,
-                Repairing_Icon,
-                Waiting_Icon
-            };
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, NAMESPACE + ".AfterStartup")]
@@ -205,8 +197,7 @@ namespace Pandaros.Settlers
             WorldLoaded = false;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            NAMESPACE + ".GameLoader.LoadAudioFiles")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".GameLoader.LoadAudioFiles")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
         private static void RegisterAudioFiles()
@@ -216,14 +207,24 @@ namespace Pandaros.Settlers
             foreach (var current in files.LoopArray())
             {
                 foreach (var current2 in current["fileList"].LoopArray())
+                {
                     current2["path"] = new JSONNode(AUDIO_PATH + current2.GetAs<string>("path"));
+
+                    if (current2.TryGetAs<bool>("isThreeD", out var is3d))
+                        current2["isThreeD"] = new JSONNode(is3d);
+
+                    if (current2.TryGetAs<float>("volume", out var volume))
+                        current2["isThreeD"] = new JSONNode(volume);
+
+                    if (current2.TryGetAs<string>("audioGroup", out var audioGroup))
+                        current2["audioGroup"] = new JSONNode(audioGroup);
+                }
 
                 ItemTypesServer.AudioFilesJSON.AddToArray(current);
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
-            NAMESPACE + ".GameLoader.trychangeblock")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, NAMESPACE + ".GameLoader.trychangeblock")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {
             if (userData.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)

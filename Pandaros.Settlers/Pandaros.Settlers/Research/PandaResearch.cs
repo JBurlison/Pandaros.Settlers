@@ -340,7 +340,7 @@ namespace Pandaros.Settlers.Research
 
         private static void SwordResearch_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            var sword = new List<WeaponMetadata>();
+            var sword = new List<IWeapon>();
 
             switch (e.Research.Level)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pandaros.Settlers.Items.Temperature;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,7 @@ namespace Pandaros.Settlers.Extender.Providers
             {
                 try
                 {
-                    if (item.FullName != "Pandaros.Settlers.Extender.CSType" &&
-                        Activator.CreateInstance(item) is ICSType itemType &&
+                    if (Activator.CreateInstance(item) is ICSType itemType &&
                         !string.IsNullOrEmpty(itemType.Name))
                     {
                         var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.ToJsonNode());

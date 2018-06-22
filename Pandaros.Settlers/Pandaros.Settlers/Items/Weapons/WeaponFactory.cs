@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Weapons
     {
         public static List<GuardBaseJob.GuardSettings> WeaponGuardSettings = new List<GuardBaseJob.GuardSettings>();
 
-        public static Dictionary<ushort, WeaponMetadata> WeaponLookup { get; } =  new Dictionary<ushort, WeaponMetadata>();
+        public static Dictionary<ushort, IWeapon> WeaponLookup { get; } =  new Dictionary<ushort, IWeapon>();
 
         public static void RefreshGuardSettings()
         {
@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Items.Weapons
                     range                   = 1,
                     recruitmentItem         = new InventoryItem(weap.Key, 1),
                     shootItem               = new List<InventoryItem>(),
-                    shootDamage             = weap.Value.Damage,
+                    shootDamage             = weap.Value.Damage[DamageType.Physical],
                     OnShootAudio            = "sling",
                     OnHitAudio              = "fleshHit"
                 });
@@ -78,18 +78,19 @@ namespace Pandaros.Settlers.Items.Weapons
                 Players.LastPunches[player]  = millisecondsSinceStart;
                 boxedData.item1.consumedType = PlayerClickedData.ConsumedType.UsedByMod;
 
+                // TODO: fix the damage.
                 if (ZombieID.IsZombieID(rayCastHit.hitNPCID))
                 {
                     if (MonsterTracker.TryGetMonsterByID(rayCastHit.hitNPCID, out var monster))
                     {
-                        monster.OnHit(WeaponLookup[click.typeSelected].Damage);
+                        monster.OnHit(WeaponLookup[click.typeSelected].Damage[DamageType.Physical]);
                         state.Weapon.Durability--;
                         ServerManager.SendAudio(monster.PositionToAimFor, "punch");
                     }
                 }
                 else if (NPCTracker.TryGetNPC(rayCastHit.hitNPCID, out var nPCBase))
                 {
-                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage);
+                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage[DamageType.Physical]);
                     state.Weapon.Durability--;
                     ServerManager.SendAudio(nPCBase.Position.Vector, "punch");
                 }
@@ -104,6 +105,58 @@ namespace Pandaros.Settlers.Items.Weapons
                                    ChatColor.orange);
                 }
             }
+        }
+
+        public static IPandaDamage GetWeapon(ModLoader.OnHitData box)
+        {
+            var weap = box.HitSourceObject as IPandaDamage;
+
+            if (weap == null && box.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
+            {
+                var npc = box.HitSourceObject as NPCBase;
+
+                if (npc != null)
+                {
+                    var inv = SettlerInventory.GetSettlerInventory(npc);
+
+                    if (!inv.Weapon.IsEmpty() && WeaponLookup.ContainsKey(inv.Weapon.Id))
+                        weap = WeaponLookup[inv.Weapon.Id];
+                }
+            }
+
+            if (weap == null &&
+                (box.HitSourceType == ModLoader.OnHitData.EHitSourceType.PlayerProjectile ||
+                box.HitSourceType == ModLoader.OnHitData.EHitSourceType.PlayerClick))
+            {
+                var p = box.HitSourceObject as Players.Player;
+
+                if (p != null)
+                {
+                    var ps = PlayerState.GetPlayerState(p);
+
+                    if (!ps.Weapon.IsEmpty() && WeaponLookup.ContainsKey(ps.Weapon.Id))
+                        weap = WeaponLookup[ps.Weapon.Id];
+                }
+            }
+
+            return weap;
+        }
+
+        public static float CalcDamage(IPandaArmor pandaArmor, IPandaDamage pamdaDamage)
+        {
+            var damage = 0f;
+
+            foreach (var dt in pamdaDamage.Damage)
+            {
+                var tmpDmg = dt.Key.CalcDamage(pandaArmor.ElementalArmor, dt.Value);
+
+                if (pandaArmor.AdditionalResistance.TryGetValue(dt.Key, out var flatResist))
+                    tmpDmg = tmpDmg - tmpDmg * flatResist;
+
+                damage += tmpDmg;
+            }
+
+            return damage;
         }
     }
 }

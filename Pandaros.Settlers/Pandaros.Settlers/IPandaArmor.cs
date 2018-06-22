@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Pandaros.Settlers.Extender;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers
 {
-    public interface IPandaArmor
+    public interface IPandaArmor : INameable
     {
         float MissChance { get; }
         DamageType ElementalArmor { get; }

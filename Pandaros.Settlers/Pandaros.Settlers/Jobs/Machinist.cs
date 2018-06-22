@@ -31,6 +31,13 @@ namespace Pandaros.Settlers.Jobs
         public override string JobItemKey => JOB_ITEM_KEY;
         public override InventoryItem RecruitementItem => new InventoryItem(BuiltinBlocks.CopperTools, 1);
         public override bool ToSleep => false;
+        public override List<uint> OkStatus => new List<uint>
+            {
+                GameLoader.Refuel_Icon,
+                GameLoader.Reload_Icon,
+                GameLoader.Repairing_Icon,
+                GameLoader.Waiting_Icon
+            };
 
         public override NPCTypeStandardSettings GetNPCTypeDefinition()
         {

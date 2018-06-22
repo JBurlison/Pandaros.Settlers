@@ -1,19 +1,13 @@
 ﻿using System.Collections.Generic;
 using NPC;
+using Pandaros.Settlers.Extender;
 
 namespace Pandaros.Settlers.Items
 {
-    public interface IMagicItem
+    public interface IMagicItem : ICSType
     {
-        string Name { get; }
         NPCBase Owner { get; set; }
-
         IMagicEffect Effect { get; }
-
-        string Icon { get; }
-
-        List<InventoryItem> CraftingCost { get; }
-
         void Update();
     }
 }

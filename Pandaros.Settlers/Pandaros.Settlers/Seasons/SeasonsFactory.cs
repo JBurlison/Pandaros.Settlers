@@ -17,6 +17,13 @@ namespace Pandaros.Settlers.Seasons
         Ferinheight
     }
 
+    public enum ComfortLevel
+    {
+        TooHot,
+        TooCold,
+        JustRight
+    }
+
     [ModLoader.ModManager]
     public static class SeasonsFactory
     {
@@ -43,6 +50,9 @@ namespace Pandaros.Settlers.Seasons
 
         public static ISeason PreviousSeason => _seasons[_previousSesion];
 
+        /// <summary>
+        ///     in Fahrenheit
+        /// </summary>
         public static double Temperature { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.OnShouldKeepChunkLoaded")]
@@ -61,51 +71,77 @@ namespace Pandaros.Settlers.Seasons
             return (5.0 / 9.0) * (f - 32);
         }
 
-        public static bool IsComfortable(NPC.NPCBase npc)
+        public static ComfortLevel GetComfortLevel(NPC.NPCBase npc)
         {
             var inv = Entities.SettlerInventory.GetSettlerInventory(npc);
             double effectiveTemp = Temperature;
 
             foreach (var item in inv.Armor)
             {
-                if (IsComfortable(effectiveTemp))
+                if (GetComfortLevel(effectiveTemp) == ComfortLevel.JustRight)
                     break;
 
                 if (!item.Value.IsEmpty() && ArmorFactory.ArmorLookup.ContainsKey(item.Value.Id))
                 {
                     var armor = ArmorFactory.ArmorLookup[item.Value.Id];
 
-                    if (armor.MagicEffect != null && armor.MagicEffect.TemperatureRegulation != null)
-                        effectiveTemp = FactorTempChange(effectiveTemp, armor.MagicEffect.TemperatureRegulation);
+                    if (armor != null && armor.TemperatureRegulated != TemperatureType.None)
+                        effectiveTemp = FactorTempChange(effectiveTemp, armor);
                 }
             }
 
-            if (!IsComfortable(effectiveTemp) && 
+            if (GetComfortLevel(effectiveTemp) != ComfortLevel.JustRight && 
                 !inv.Weapon.IsEmpty() && 
                 WeaponFactory.WeaponLookup.ContainsKey(inv.Weapon.Id))
             {
                 var weapon = WeaponFactory.WeaponLookup[inv.Weapon.Id];
 
-                if (weapon.MagicEffect != null && weapon.MagicEffect.TemperatureRegulation != null)
-                    effectiveTemp = FactorTempChange(effectiveTemp, weapon.MagicEffect.TemperatureRegulation);
+                if (weapon != null && weapon.TemperatureRegulated != TemperatureType.None)
+                    effectiveTemp = FactorTempChange(effectiveTemp, weapon);
             }
 
-            return IsComfortable(effectiveTemp);
+            return GetComfortLevel(effectiveTemp);
         }
 
-        public static bool IsComfortable(double temp)
+        public static ComfortLevel GetComfortLevel(double temp)
         {
-            return COMFORTABLE_TEMP_MIN <= temp && COMFORTABLE_TEMP_MAX >= temp;
+            if (COMFORTABLE_TEMP_MIN <= temp)
+                return ComfortLevel.TooCold;
+
+            if (COMFORTABLE_TEMP_MAX >= temp)
+                return ComfortLevel.TooHot;
+
+            return ComfortLevel.JustRight;
         }
 
         public static double FactorTempChange(double currentTemp, ITemperatureRegulator regulator)
         {
-            var retval = currentTemp;
+            if (GetComfortLevel(currentTemp) == ComfortLevel.JustRight)
+                return currentTemp;
+
+            if (regulator.TemperatureRegulated == TemperatureType.Cold || 
+                regulator.TemperatureRegulated == TemperatureType.Both)
+            {
+                if (currentTemp < COMFORTABLE_TEMP_MIN)
+                    currentTemp += regulator.TemperatureAdjusted;
 
 
+                if (currentTemp > COMFORTABLE_TEMP_MAX)
+                    currentTemp = COMFORTABLE_TEMP_MAX;
+            }
+
+            if (regulator.TemperatureRegulated == TemperatureType.Heat ||
+                regulator.TemperatureRegulated == TemperatureType.Both)
+            {
+                if (currentTemp > COMFORTABLE_TEMP_MAX)
+                    currentTemp -= regulator.TemperatureAdjusted;
+
+                if (currentTemp < COMFORTABLE_TEMP_MIN)
+                    currentTemp = COMFORTABLE_TEMP_MIN;
+            }
 
 
-            return retval;
+            return currentTemp;
         }
 
 

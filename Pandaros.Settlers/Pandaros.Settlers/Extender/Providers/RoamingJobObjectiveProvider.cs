@@ -27,8 +27,7 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var s in LoadedAssembalies)
             {
-                if (s.Name != nameof(TurretRegister) &&
-                    Activator.CreateInstance(s) is IRoamingJobObjective roamingJobObjective &&
+                if (Activator.CreateInstance(s) is IRoamingJobObjective roamingJobObjective &&
                     !string.IsNullOrEmpty(roamingJobObjective.Name))
                 {
                     sb.Append($"{roamingJobObjective.Name}, ");

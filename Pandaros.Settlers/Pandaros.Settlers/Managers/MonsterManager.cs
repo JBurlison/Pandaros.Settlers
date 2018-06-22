@@ -65,8 +65,7 @@ namespace Pandaros.Settlers.Managers
             return t;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
-            GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
         public static void OnUpdate()
         {
             if (!World.Initialized || AIManager.IsBusy())
@@ -232,8 +231,7 @@ namespace Pandaros.Settlers.Managers
             colony.OnZombieSpawn(false);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             GetNextBossSpawnTime();
@@ -244,8 +242,7 @@ namespace Pandaros.Settlers.Managers
             _nextBossUpdateTime = Time.SecondsSinceStartInt + Random.Next(MinBossSpawnTimeSeconds, MaxBossSpawnTimeSeconds);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit,
-            GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData d)
         {
             if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
@@ -255,8 +252,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit,
-            GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData d)
         {
             if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
@@ -266,13 +262,12 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit,
-            GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
         public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
         {
             var ps         = PlayerState.GetPlayerState(monster.OriginalGoal);
             var pandaArmor = monster as IPandaArmor;
-            var turret     = d.HitSourceObject as IPandaDamage;
+            var pamdaDamage     = d.HitSourceObject as IPandaDamage;
 
             if (pandaArmor != null && Random.NextFloat() <= pandaArmor.MissChance)
             {
@@ -280,22 +275,9 @@ namespace Pandaros.Settlers.Managers
                 return;
             }
 
-            if (pandaArmor != null &&
-                turret != null)
+            if (pandaArmor != null && pamdaDamage != null)
             {
-                var damage = 0f;
-
-                foreach (var dt in turret.Damage)
-                {
-                    var tmpDmg = dt.Key.CalcDamage(pandaArmor.ElementalArmor, dt.Value);
-
-                    if (pandaArmor.AdditionalResistance.TryGetValue(dt.Key, out var flatResist))
-                        tmpDmg = tmpDmg - tmpDmg * flatResist;
-
-                    damage += tmpDmg;
-                }
-
-                d.ResultDamage = damage;
+                d.ResultDamage = Items.Weapons.WeaponFactory.CalcDamage(pandaArmor, pamdaDamage);
             }
             else if (pandaArmor != null)
             {
@@ -325,8 +307,7 @@ namespace Pandaros.Settlers.Managers
                     stockpile.Add(reward.Key, reward.Value);
 
                     if (ItemTypes.TryGetType(reward.Key, out var item))
-                        PandaChat.Send(rewardMonster.OriginalGoal,
-                                       $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
+                        PandaChat.Send(rewardMonster.OriginalGoal, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
                 }
             }
         }

@@ -6,13 +6,11 @@ using static Pandaros.Settlers.Items.ArmorFactory;
 
 namespace Pandaros.Settlers.Items.Armor
 {
-    public interface IArmor
+    public interface IArmor : IMagicEffect
     {
-        IMagicEffect MagicEffect { get; }
         ArmorSlot Slot { get; }
         float ArmorRating { get; }
         int Durability { get; set; }
-        string Name { get; }
         ItemTypesServer.ItemTypeRaw ItemType { get; }
     }
 }

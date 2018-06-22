@@ -35,9 +35,12 @@ namespace Pandaros.Settlers.Managers
         private const string ISSETTLER = "isSettler";
         private const string KNOWN_ITTERATIONS = "SKILLED_ITTERATIONS";
 
-        private const int _numberOfCraftsPerPercent = 1000;
+        private const int _NUMBEROFCRAFTSPERPERCENT = 1000;
+        private const int _UPDATE_TIME = 10;
         public static double BED_LEAVE_HOURS = TimeCycle.SecondsPerHour * 5;
         public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * TimeCycle.SecondsPerHour;
+        public static readonly double COLD_LEAVE_HOURS = TimeCycle.SecondsPerHour * 5;
+        public static readonly double HOT_LEAVE_HOURS = TimeCycle.SecondsPerHour * 6;
         private static float _baseFoodPerHour;
         private static double _updateTime;
         private static int _idNext = 1;
@@ -46,8 +49,7 @@ namespace Pandaros.Settlers.Managers
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
         public static void RegisterAudio()
@@ -55,8 +57,7 @@ namespace Pandaros.Settlers.Managers
             HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
-            GameLoader.NAMESPACE + ".SettlerManager.OnPlayerClicked")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,  GameLoader.NAMESPACE + ".SettlerManager.OnPlayerClicked")]
         public static void OnPlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             if (boxedData.item1.clickType == PlayerClickedData.ClickType.Right &&
@@ -93,8 +94,7 @@ namespace Pandaros.Settlers.Managers
             healing.Complete -= Healing_Complete;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
-            GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
         public static void OnUpdate()
         {
             Players.PlayerDatabase.ForeachValue(p =>
@@ -134,18 +134,23 @@ namespace Pandaros.Settlers.Managers
                             }
                         }
 
-                if (_updateTime < Time.SecondsSinceStartDouble && TimeCycle.IsDay && p.IsConnected)
+                if (_updateTime < Time.SecondsSinceStartDouble && p.IsConnected)
                 {
                     NPCBase lastNPC = null;
 
                     foreach (var follower in colony.Followers)
-                        if (lastNPC == null ||
+                    {
+                        if (TimeCycle.IsDay)
+                            if (lastNPC == null ||
                             Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 &&
                             Random.NextBool())
-                        {
-                            lastNPC = follower;
-                            ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".TalkingAudio");
-                        }
+                            {
+                                lastNPC = follower;
+                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".TalkingAudio");
+                            }
+
+                        EvaluateComfort(follower);
+                    }
                 }
 
                 var ps = PlayerState.GetPlayerState(p);
@@ -161,20 +166,35 @@ namespace Pandaros.Settlers.Managers
 
 
             if (_updateTime < Time.SecondsSinceStartDouble && TimeCycle.IsDay)
-                _updateTime = Time.SecondsSinceStartDouble + 10;
+                _updateTime = Time.SecondsSinceStartDouble + _UPDATE_TIME;
         }
 
+        private static void EvaluateComfort(NPCBase follower)
+        {
+            switch (Seasons.SeasonsFactory.GetComfortLevel(follower))
+            {
+                case Seasons.ComfortLevel.TooCold:
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
+                    break;
+
+                case Seasons.ComfortLevel.TooHot:
+
+                    break;
+
+                case Seasons.ComfortLevel.JustRight:
+
+                    break;
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
             Players.PlayerDatabase.ForeachValue(p => UpdateFoodUse(p));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly,
-            GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
         public static void OnPlayerConnectedEarly(Players.Player p)
         {
             if (p.IsConnected && !Configuration.OfflineColonies)
@@ -234,8 +254,7 @@ namespace Pandaros.Settlers.Managers
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate,
-            GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
             if (Configuration.DifficutlyCanBeChanged)
@@ -276,8 +295,7 @@ namespace Pandaros.Settlers.Managers
             Colony.SendColonistCount(p);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected,
-            GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
             SaveOffline(p);
@@ -351,8 +369,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited,
-            GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPCBase npc)
         {
             if (npc.GetTempValues().TryGet(ISSETTLER, out bool settler) && settler)
@@ -403,16 +420,14 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied,
-            GameLoader.NAMESPACE + ".SettlerManager.OnNPCDied")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".SettlerManager.OnNPCDied")]
         public static void OnNPCDied(NPCBase npc)
         {
             SettlerInventory.GetSettlerInventory(npc);
             UpdateFoodUse(npc.Colony.Owner);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCLoaded,
-            GameLoader.NAMESPACE + ".SettlerManager.OnNPCLoaded")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCLoaded, GameLoader.NAMESPACE + ".SettlerManager.OnNPCLoaded")]
         public static void OnNPCLoaded(NPCBase npc, JSONNode node)
         {
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
@@ -430,8 +445,7 @@ namespace Pandaros.Settlers.Managers
                 tmpVals.Set(KNOWN_ITTERATIONS, jobItterations);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCSaved,
-            GameLoader.NAMESPACE + ".SettlerManager.OnNPCSaved")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCSaved, GameLoader.NAMESPACE + ".SettlerManager.OnNPCSaved")]
         public static void OnNPCSaved(NPCBase npc, JSONNode node)
         {
             var tmpVals = npc.GetTempValues();
@@ -448,8 +462,7 @@ namespace Pandaros.Settlers.Managers
                 node.SetAs(KNOWN_ITTERATIONS, tmpVals.Get<int>(KNOWN_ITTERATIONS));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
-            GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
             var tmpVals = job.NPC.GetTempValues();
@@ -462,8 +475,7 @@ namespace Pandaros.Settlers.Managers
             if (!tmpVals.Contains(GameLoader.ALL_SKILLS))
                 tmpVals.Set(GameLoader.ALL_SKILLS, 0f);
 
-            var nextLevel = Pipliz.Math.RoundToInt(tmpVals.Get<float>(GameLoader.ALL_SKILLS) * 100) *
-                            _numberOfCraftsPerPercent;
+            var nextLevel = Pipliz.Math.RoundToInt(tmpVals.Get<float>(GameLoader.ALL_SKILLS) * 100) * _NUMBEROFCRAFTSPERPERCENT;
 
             if (tmpVals.Get<int>(KNOWN_ITTERATIONS) >= nextLevel)
             {

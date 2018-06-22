@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface ICSTextureMapping : IJsonConvertable
+    public interface ICSTextureMapping : IJsonConvertable, INameable
     {
-        string Name { get; }
         string emissive { get; }
         string albedo { get; }
         string normal { get; }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Pandaros.Settlers.Extender;
+using System;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Jobs.Roaming
 {
-    public interface IRoamingJobObjective
+    public interface IRoamingJobObjective : INameable
     {
-        string Name { get; }
         float WorkTime { get; }
         ushort ItemIndex { get; }
         Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; }
@@ -14,9 +14,8 @@ namespace Pandaros.Settlers.Jobs.Roaming
         void DoWork(Players.Player player, RoamingJobState state);
     }
 
-    public interface IRoamingJobObjectiveAction
+    public interface IRoamingJobObjectiveAction : INameable
     {
-        string Name { get; }
         float TimeToPreformAction { get; }
         string AudoKey { get; }
         ushort ObjectiveLoadEmptyIcon { get; }

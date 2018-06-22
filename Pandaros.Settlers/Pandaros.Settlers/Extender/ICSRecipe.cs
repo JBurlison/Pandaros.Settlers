@@ -12,9 +12,8 @@ namespace Pandaros.Settlers.Extender
         High = 100
     }
 
-    public interface ICSRecipe
+    public interface ICSRecipe : INameable
     {
-        string Name { get; }
         Dictionary<string, int> Requirements { get; }
         Dictionary<string, int> Results { get; }
         CraftPriority Priority { get; }

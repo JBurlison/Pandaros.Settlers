@@ -92,15 +92,16 @@
     <Compile Include="Extender\ICSTextureMapping.cs" />
     <Compile Include="Extender\ICSType.cs" />
     <Compile Include="Extender\IJsonConvertable.cs" />
+    <Compile Include="Extender\INameable.cs" />
     <Compile Include="Extender\OnRemove.cs" />
-    <Compile Include="Extender\Providers\TemperatureRegulatorProvider.cs" />
+    <Compile Include="Extender\Providers\WeaponProvider.cs" />
     <Compile Include="Extender\Providers\RecipeProvider.cs" />
     <Compile Include="Extender\Providers\ItemsProvider.cs" />
     <Compile Include="Extender\Providers\ResearchProvider.cs" />
     <Compile Include="Extender\Providers\TextureMappingProvider.cs" />
     <Compile Include="Extender\Providers\SeasonProvider.cs" />
     <Compile Include="Extender\Providers\RoamingJobObjectiveProvider.cs" />
-    <Compile Include="Extender\Providers\MagicItemsProvider.cs" />
+    <Compile Include="Extender\Providers\ArmorProvider.cs" />
     <Compile Include="Extender\Providers\BossesProvider.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="IMagicEffect.cs" />
@@ -213,6 +214,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Audio\EarthTurret3.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Environment.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Audio\FireTurret1.ogg">

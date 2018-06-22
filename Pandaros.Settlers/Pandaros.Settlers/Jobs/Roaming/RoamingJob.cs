@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         private int _stuckCount;
         private Vector3Int originalPosition;
 
-        public static List<uint> OkStatus { get; set; }
+        public virtual List<uint> OkStatus { get; } = new List<uint>();
         public RoamingJobState TargetObjective { get; set; }
         public RoamingJobState PreviousObjective { get; set; }
 

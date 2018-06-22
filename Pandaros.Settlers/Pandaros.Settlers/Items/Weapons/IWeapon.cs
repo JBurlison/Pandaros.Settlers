@@ -1,11 +1,8 @@
 ﻿namespace Pandaros.Settlers.Items.Weapons
 {
-    public interface IWeapon
+    public interface IWeapon : IMagicEffect
     {
-        IMagicEffect MagicEffect { get; }
-        float Damage { get; }
         int Durability { get; set; }
         ItemTypesServer.ItemTypeRaw ItemType { get; }
-        string Name { get; }
     }
 }

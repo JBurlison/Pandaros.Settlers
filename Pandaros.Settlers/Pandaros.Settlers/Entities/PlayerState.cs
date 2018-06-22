@@ -16,14 +16,13 @@ namespace Pandaros.Settlers.Entities
     [ModLoader.ModManager]
     public class PlayerState
     {
-        private static readonly Dictionary<Players.Player, PlayerState> _playerStates =
-            new Dictionary<Players.Player, PlayerState>();
+        private static readonly Dictionary<Players.Player, PlayerState> _playerStates = new Dictionary<Players.Player, PlayerState>();
 
         public PlayerState(Players.Player p)
         {
             Difficulty = Configuration.DefaultDifficulty;
-            Player     = p;
-            Rand       = new Random();
+            Player = p;
+            Rand = new Random();
             SetupArmor();
 
             HealingOverTimePC.NewInstance += HealingOverTimePC_NewInstance;
@@ -71,6 +70,7 @@ namespace Pandaros.Settlers.Entities
         public bool BossesEnabled { get; set; } = true;
         public bool MonstersEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;
+        public bool MusicEnabled { get; set; } = true;
         public ArmorState Weapon { get; set; } = new ArmorState();
         public int ColonistsBought { get; set; }
         public double NextColonistBuyTime { get; set; }
@@ -84,6 +84,8 @@ namespace Pandaros.Settlers.Entities
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public double NextGenTime { get; set; }
         public double NeedsABed { get; set; }
+        public long NextMusicTime { get; set; }
+        public bool Connected { get; set; }
 
         public int MaxPerSpawn
         {
@@ -94,8 +96,8 @@ namespace Pandaros.Settlers.Entities
 
                 if (col.FollowerCount >= SettlerManager.MAX_BUYABLE)
                     max +=
-                        Rand.Next((int) Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
-                                  SettlerManager.ABSOLUTE_MAX_PERSPAWN + (int) Player
+                        Rand.Next((int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
+                                  SettlerManager.ABSOLUTE_MAX_PERSPAWN + (int)Player
                                                                               .GetTempValues(true)
                                                                               .GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MaxSettlers),
                                                                                             0f));
@@ -149,6 +151,21 @@ namespace Pandaros.Settlers.Entities
             return null;
         }
 
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".Entities.PlayerState.OnPlayerDisconnected")]
+        public static void OnPlayerDisconnected(Players.Player p)
+        {
+            _playerStates[p].Connected = false;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnPlayerConnectedSuperLate")]
+        [ModLoader.ModCallbackDependsOn("pipliz.mods.basegame.sendconstructiondata")]
+        public static void OnPlayerConnectedSuperLate(Players.Player p)
+        {
+            _playerStates[p].Connected = true;
+        }
+
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnUpdate")]
         public static void OnUpdate()
         {
@@ -156,19 +173,32 @@ namespace Pandaros.Settlers.Entities
             {
                 if (p.IsConnected)
                 {
-                    var ps = GetPlayerState(p);
-
-                    if (ps.NextColonistBuyTime != 0 && TimeCycle.TotalTime > ps.NextColonistBuyTime)
+                    try
                     {
-                        PandaChat.Send(p, "The compounding cost of buying colonists has been reset.", ChatColor.orange);
-                        ps.NextColonistBuyTime = 0;
-                        ps.ColonistsBought     = 0;
+                        var ps = GetPlayerState(p);
+
+                        if (ps.NextColonistBuyTime != 0 && TimeCycle.TotalTime > ps.NextColonistBuyTime)
+                        {
+                            PandaChat.Send(p, "The compounding cost of buying colonists has been reset.", ChatColor.orange);
+                            ps.NextColonistBuyTime = 0;
+                            ps.ColonistsBought = 0;
+                        }
+
+                        if (ps.Connected && ps.MusicEnabled && Time.MillisecondsSinceStart > ps.NextMusicTime)
+                        {
+                            ServerManager.SendAudio(GameLoader.NAMESPACE + ".Environment", p);
+                            ps.NextMusicTime = 171700 + Time.MillisecondsSinceStart;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        PandaLogger.LogError(ex);
                     }
                 }
             });
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer,  GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]
         public static void OnLoadingPlayer(JSONNode n, Players.Player p)
         {
             if (!_playerStates.ContainsKey(p))
@@ -237,6 +267,9 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(NeedsABed), out int nb))
                     _playerStates[p].NeedsABed = nb;
 
+                if (stateNode.TryGetAs(nameof(MusicEnabled), out bool music))
+                    _playerStates[p].MusicEnabled = music;
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
@@ -245,8 +278,7 @@ namespace Pandaros.Settlers.Entities
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer,
-            GameLoader.NAMESPACE + ".Entities.PlayerState.OnSavingPlayer")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnSavingPlayer")]
         public static void OnSavingPlayer(JSONNode n, Players.Player p)
         {
             if (_playerStates.ContainsKey(p))
@@ -296,8 +328,48 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
                 node.SetAs(nameof(TemperatureScale), _playerStates[p].TemperatureScale.ToString());
+                node.SetAs(nameof(MusicEnabled), _playerStates[p].MusicEnabled);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
+            }
+        }
+
+        private static string _Enviorment = GameLoader.NAMESPACE + ".Enviorment";
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Entities.PlayerState.AddSetting")]
+        public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
+        {
+            menu.Items.Add(new NetworkUI.Items.DropDown("Music", _Enviorment, new List<string>() { "Disabled", "Enabled" }));
+            var ps = PlayerState.GetPlayerState(player);
+
+            if (ps != null)
+                menu.LocalStorage.SetAs(_Enviorment, Convert.ToInt32(ps.MusicEnabled));
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Entities.PlayerState.ChangedSetting")]
+        public static void ChangedSetting(TupleStruct<Players.Player, JSONNode, string> data)
+        {
+            switch (data.item3)
+            {
+                case "world_settings":
+                    var ps = PlayerState.GetPlayerState(data.item1);
+
+                    if (ps != null)
+                    {
+                        var def = Convert.ToInt32(ps.MusicEnabled);
+                        var enabled = data.item2.GetAsOrDefault(_Enviorment, def);
+
+                        if (def != enabled)
+                        {
+                            ps.MusicEnabled = enabled != 0;
+                            PandaChat.Send(data.item1, "Music is now " + (ps.MusicEnabled ? "on" : "off"), ChatColor.green);
+
+                            if (!ps.MusicEnabled)
+                                PandaChat.Send(data.item1, "Music can take up to 3 minutes to turn off.", ChatColor.green);
+                        }
+                    }
+
+                    break;
             }
         }
     }

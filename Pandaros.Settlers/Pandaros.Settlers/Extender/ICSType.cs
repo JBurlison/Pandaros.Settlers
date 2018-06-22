@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface ICSType : IJsonConvertable
+    public interface ICSType : IJsonConvertable, INameable
     {
-        string Name { get; }
         bool? blocksPathing { get; }
         ReadOnlyCollection<string> categories { get; }
         ReadOnlyCollection<Colliders> colliders { get; }

@@ -31,8 +31,7 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var item in LoadedAssembalies)
             {
-                if (item.FullName != "Pandaros.Settlers.Extender.CSTextureMapping" && 
-                    Activator.CreateInstance(item) is ICSTextureMapping texture &&
+                if (Activator.CreateInstance(item) is ICSTextureMapping texture &&
                     !string.IsNullOrEmpty(texture.Name))
                 {
                     ItemTypesServer.SetTextureMapping(texture.Name, new ItemTypesServer.TextureMapping(texture.ToJsonNode()));

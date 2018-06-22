@@ -9,16 +9,16 @@ namespace Pandaros.Settlers.Items.Temperature
 {
     public enum TemperatureType
     {
+        None = 0,
         Heat,
         Cold,
         Both
     }
 
-    public interface ITemperatureRegulator : ICSType
+    public interface ITemperatureRegulator 
     {
-        int Radius { get; }
-        double MinTemperatureAdjusted { get; }
-        double MaxTemperatureAdjusted { get; }
+        int RadiusOfTemperatureAdjustment { get; }
+        double TemperatureAdjusted { get; }
         Vector3Int Position { get; set; }
         TemperatureType TemperatureRegulated { get; }
     }

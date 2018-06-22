@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Pandaros.Settlers.Extender
 {
@@ -106,9 +107,13 @@ namespace Pandaros.Settlers.Extender
 
                         foreach (var iface in ifaces)
                             foreach (var e in _settlersExtensions)
-                                if (!string.IsNullOrEmpty(e.InterfaceName) && e.InterfaceName == iface.Name)
-                                    e.LoadedAssembalies.Add(type);
+                                if (!string.IsNullOrEmpty(e.InterfaceName) && e.InterfaceName == iface.Name && !type.IsInterface)
+                                {
+                                    var constructor = type.GetConstructor(Type.EmptyTypes);
 
+                                    if (constructor != null)
+                                        e.LoadedAssembalies.Add(type);
+                                }
                         foreach (var e in _settlersExtensions)
                             if (e.ClassType != null && type.Equals(e.ClassType))
                                 e.LoadedAssembalies.Add(type);

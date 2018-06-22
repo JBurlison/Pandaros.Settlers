@@ -15,7 +15,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Settlers.AddSetting")]
         public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
         {
-            menu.Items.Add(new NetworkUI.Items.DropDown("Settlers", _Setters, new List<string>() { "Disabled", "Enabled" }));
+            menu.Items.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Disabled", "Enabled" }));
             var ps = PlayerState.GetPlayerState(player);
 
             if (ps != null)
@@ -31,12 +31,18 @@ namespace Pandaros.Settlers
                     var ps = PlayerState.GetPlayerState(data.item1);
                     var maxToggleTimes = Configuration.GetorDefault("MaxSettlersToggle", 4);
 
-                    if (ps != null && data.item2.GetAsOrDefault(_Setters, Convert.ToInt32(ps.SettlersEnabled)) != Convert.ToInt32(ps.SettlersEnabled))
+                    if (ps != null)
                     {
                         if (!Configuration.GetorDefault("SettlersEnabled", true))
                             PandaChat.Send(data.item1, "The server administrator had disabled the changing of Settlers.", ChatColor.red);
                         else if (!HasToggeledMaxTimes(maxToggleTimes, ps, data.item1))
-                            TurnSettlersOn(data.item1, ps, maxToggleTimes, data.item2.GetAsOrDefault(_Setters, Convert.ToInt32(ps.SettlersEnabled)) != 0);
+                        {
+                            var def = Convert.ToInt32(ps.SettlersEnabled);
+                            var enabled = data.item2.GetAsOrDefault(_Setters, def);
+
+                            if (def != enabled)
+                                TurnSettlersOn(data.item1, ps, maxToggleTimes, enabled != 0);
+                        }
 
                         PandaChat.Send(data.item1, "Settlers! Mod Settlers are now " + (ps.SettlersEnabled ? "on" : "off"), ChatColor.green);
                     }

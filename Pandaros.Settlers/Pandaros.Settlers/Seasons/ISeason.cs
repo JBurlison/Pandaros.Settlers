@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Pandaros.Settlers.Extender;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Seasons
 {
-    public interface ISeason
+    public interface ISeason : INameable
     {
         Dictionary<string, ushort> SeasonalBlocks { get; }
 
         string SeasonAfter { get; }
-        string Name { get; }
         float FoodMultiplier { get; }
         float WoodMultiplier { get; }
         double MinDayTemperature { get; }
