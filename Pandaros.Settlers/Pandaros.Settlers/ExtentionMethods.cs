@@ -92,7 +92,7 @@ namespace Pandaros.Settlers
         public static T CallAndReturn<T>(this object o, string methodName, params object[] args)
         {
             var retVal = default(T);
-            var mi     = o.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+            var mi     = o.GetType().GetMethod(methodName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
             if (mi != null)
                 retVal = (T) mi.Invoke(o, args);
@@ -102,19 +102,19 @@ namespace Pandaros.Settlers
 
         public static object Call(this object o, string methodName, params object[] args)
         {
-            var mi = o.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+            var mi = o.GetType().GetMethod(methodName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (mi != null) return mi.Invoke(o, args);
             return null;
         }
 
         public static rT GetFieldValue<rT, oT>(this object o, string fieldName)
         {
-            return (rT) typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o);
+            return (rT) typeof(oT).GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(o);
         }
 
         public static void SetFieldValue<oT>(this object o, string fieldName, object fieldValue)
         {
-            typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
+            typeof(oT).GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
         }
     }
 }
