@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BlockTypes.Builtin;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Extender;
 using Pandaros.Settlers.Jobs.Roaming;
 
 namespace Pandaros.Settlers.Items.Machines
@@ -23,7 +24,7 @@ namespace Pandaros.Settlers.Items.Machines
             FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
         }
 
-        string IRoamingJobObjectiveAction.Name => MachineConstants.REFUEL;
+        string INameable.Name => MachineConstants.REFUEL;
 
         float IRoamingJobObjectiveAction.TimeToPreformAction => 4;
 

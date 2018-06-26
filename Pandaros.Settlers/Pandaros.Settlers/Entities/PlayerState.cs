@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BlockTypes.Builtin;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Research;
@@ -134,7 +135,7 @@ namespace Pandaros.Settlers.Entities
         {
             Weapon = new ArmorState();
 
-            foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                 Armor.Add(armorType, new ArmorState());
         }
 

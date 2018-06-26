@@ -5,6 +5,7 @@ using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Weapons;
 using Pipliz;
 using Pipliz.Collections;
@@ -93,12 +94,12 @@ namespace Pandaros.Settlers.Jobs
             var currentPos = UsedNPC.Position;
             GetBestWeapon();
 
-            _target = MonsterTracker.Find(currentPos, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+            _target = MonsterTracker.Find(currentPos, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
 
             if (_target != null) return currentPos;
 
             _target = MonsterTracker.Find(PatrolPoints[_currentPatrolPos], 10,
-                                          WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+                                          WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
 
             if (_target != null)
             {
@@ -201,7 +202,7 @@ namespace Pandaros.Settlers.Jobs
 
                     if (_target == null || !_target.IsValid ||
                         !Physics.CanSee(UsedNPC.Position.Vector, _target.Position))
-                        _target = MonsterTracker.Find(currentposition, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+                        _target = MonsterTracker.Find(currentposition, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
 
                     if (_target != null && Physics.CanSee(UsedNPC.Position.Vector, _target.Position))
                     {
@@ -209,7 +210,7 @@ namespace Pandaros.Settlers.Jobs
                         UsedNPC.LookAt(_target.Position);
                         ServerManager.SendAudio(_target.PositionToAimFor, "punch");
 
-                        _target.OnHit(WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage);
+                        _target.OnHit(WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
                         _waitingFor = 0;
                     }
                     else
@@ -313,7 +314,7 @@ namespace Pandaros.Settlers.Jobs
                     foreach (var wep in WeaponFactory.WeaponLookup.Values)
                         if (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null ||
                             _stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null &&
-                            bestWeapon.Damage < wep.Damage)
+                            bestWeapon.Damage.TotalDamage() < wep.Damage.TotalDamage())
                             bestWeapon = wep;
 
                     if (bestWeapon != null)

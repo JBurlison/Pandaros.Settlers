@@ -4,6 +4,7 @@ using System.IO;
 using ChatCommands;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;

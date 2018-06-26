@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Items.Weapons
                     range                   = 1,
                     recruitmentItem         = new InventoryItem(weap.Key, 1),
                     shootItem               = new List<InventoryItem>(),
-                    shootDamage             = weap.Value.Damage[DamageType.Physical],
+                    shootDamage             = weap.Value.Damage.TotalDamage(),
                     OnShootAudio            = "sling",
                     OnHitAudio              = "fleshHit"
                 });
@@ -78,19 +78,18 @@ namespace Pandaros.Settlers.Items.Weapons
                 Players.LastPunches[player]  = millisecondsSinceStart;
                 boxedData.item1.consumedType = PlayerClickedData.ConsumedType.UsedByMod;
 
-                // TODO: fix the damage.
                 if (ZombieID.IsZombieID(rayCastHit.hitNPCID))
                 {
                     if (MonsterTracker.TryGetMonsterByID(rayCastHit.hitNPCID, out var monster))
                     {
-                        monster.OnHit(WeaponLookup[click.typeSelected].Damage[DamageType.Physical]);
+                        monster.OnHit(WeaponLookup[click.typeSelected].Damage.TotalDamage());
                         state.Weapon.Durability--;
                         ServerManager.SendAudio(monster.PositionToAimFor, "punch");
                     }
                 }
                 else if (NPCTracker.TryGetNPC(rayCastHit.hitNPCID, out var nPCBase))
                 {
-                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage[DamageType.Physical]);
+                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage.TotalDamage(), player, ModLoader.OnHitData.EHitSourceType.PlayerClick);
                     state.Weapon.Durability--;
                     ServerManager.SendAudio(nPCBase.Position.Vector, "punch");
                 }

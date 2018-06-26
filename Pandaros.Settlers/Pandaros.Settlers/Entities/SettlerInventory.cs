@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Entities
@@ -37,10 +38,12 @@ namespace Pandaros.Settlers.Entities
                     foreach (var skill in itterations.LoopObject())
                         JobItteration[skill.Key] = skill.Value.GetAs<int>();
 
-                foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
+                foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                     Armor[armorType].FromJsonNode(armorType.ToString(), baseNode);
             }
         }
+
+        public double MagicItemUpdateTime { get; set; } = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(1, 10);
 
         public int SettlerId { get; set; }
 
@@ -58,7 +61,7 @@ namespace Pandaros.Settlers.Entities
 
         private void SetupArmor()
         {
-            foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                 Armor.Add(armorType, new ArmorState());
         }
 
@@ -84,7 +87,7 @@ namespace Pandaros.Settlers.Entities
 
             baseNode[nameof(itterations)] = itterations;
 
-            foreach (ArmorFactory.ArmorSlot armorType in Items.ArmorFactory.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                 baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();
 
             return baseNode;

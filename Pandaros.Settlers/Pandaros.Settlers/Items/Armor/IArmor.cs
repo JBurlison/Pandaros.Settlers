@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using static Pandaros.Settlers.Items.ArmorFactory;
+﻿using static Pandaros.Settlers.Items.Armor.ArmorFactory;
 
 namespace Pandaros.Settlers.Items.Armor
 {

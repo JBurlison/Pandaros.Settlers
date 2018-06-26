@@ -12,7 +12,7 @@ using Pipliz;
 using Pipliz.JSON;
 using static Pandaros.Settlers.Entities.SettlerInventory;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Items.Armor
 {
     public class ArmorCommand : IChatCommand
     {

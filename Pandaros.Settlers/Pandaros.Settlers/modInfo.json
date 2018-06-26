@@ -32,6 +32,14 @@
       },
       {
         "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/en-US.json"
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/science/en-US.json"
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/es-ES/es-ES.json"
       },
       {

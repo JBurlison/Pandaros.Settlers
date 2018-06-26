@@ -6,6 +6,7 @@ using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Healing;
 using Pandaros.Settlers.Research;
 using Pipliz;
@@ -43,6 +44,7 @@ namespace Pandaros.Settlers.Managers
         public static readonly double HOT_LEAVE_HOURS = TimeCycle.SecondsPerHour * 6;
         private static float _baseFoodPerHour;
         private static double _updateTime;
+        private static double _magicUpdateTime = Time.SecondsSinceStartDouble + Random.Next(2, 5);
         private static int _idNext = 1;
         private static double _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(2, 6);
         private static double _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(1, 2);
@@ -99,40 +101,63 @@ namespace Pandaros.Settlers.Managers
         {
             Players.PlayerDatabase.ForeachValue(p =>
             {
-                var stockpile = Stockpile.GetStockPile(p);
-                var colony    = Colony.Get(p);
+                var colony = Colony.Get(p);
 
-                var hasBandages = stockpile.Contains(TreatedBandage.Item.ItemIndex) ||
-                                  stockpile.Contains(Bandage.Item.ItemIndex);
-
-                if (hasBandages)
+                if (_magicUpdateTime < Time.SecondsSinceStartDouble)
+                {
                     foreach (var follower in colony.Followers)
-                        if (follower.health < NPCBase.MaxHealth &&
-                            !HealingOverTimeNPC.NPCIsBeingHealed(follower))
+                    {
+                        var inv = SettlerInventory.GetSettlerInventory(follower);
+
+                        if (inv.MagicItemUpdateTime < Time.SecondsSinceStartDouble)
                         {
-                            var healing = false;
+                            foreach (var item in inv.Armor)
+                                if (item.Value.Id != 0 && ArmorFactory.ArmorLookup.TryGetValue(item.Value.Id, out var armor))
+                                {
+                                    armor.Update();
 
-                            if (NPCBase.MaxHealth - follower.health > TreatedBandage.INITIALHEAL)
+                                    if (armor.HPTickRegen != 0)
+                                        follower.Heal(armor.HPTickRegen);
+                                }
+
+                            var stockpile = Stockpile.GetStockPile(p);
+                            var hasBandages = stockpile.Contains(TreatedBandage.Item.ItemIndex) ||
+                                      stockpile.Contains(Bandage.Item.ItemIndex);
+
+                            if (hasBandages &&
+                                follower.health < NPCBase.MaxHealth &&
+                                !HealingOverTimeNPC.NPCIsBeingHealed(follower))
                             {
-                                stockpile.TryRemove(TreatedBandage.Item.ItemIndex);
-                                healing = true;
-                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+                                var healing = false;
 
-                                var heal = new HealingOverTimeNPC(follower, TreatedBandage.INITIALHEAL,
-                                                                  TreatedBandage.TOTALHOT, 5,
-                                                                  TreatedBandage.Item.ItemIndex);
+                                if (NPCBase.MaxHealth - follower.health > TreatedBandage.INITIALHEAL)
+                                {
+                                    stockpile.TryRemove(TreatedBandage.Item.ItemIndex);
+                                    healing = true;
+                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+
+                                    var heal = new HealingOverTimeNPC(follower, TreatedBandage.INITIALHEAL,
+                                                                      TreatedBandage.TOTALHOT, 5,
+                                                                      TreatedBandage.Item.ItemIndex);
+                                }
+
+                                if (!healing)
+                                {
+                                    stockpile.TryRemove(Bandage.Item.ItemIndex);
+                                    healing = true;
+                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+
+                                    var heal = new HealingOverTimeNPC(follower, Bandage.INITIALHEAL, Bandage.TOTALHOT, 5,
+                                                                      Bandage.Item.ItemIndex);
+                                }
                             }
 
-                            if (!healing)
-                            {
-                                stockpile.TryRemove(Bandage.Item.ItemIndex);
-                                healing = true;
-                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
 
-                                var heal = new HealingOverTimeNPC(follower, Bandage.INITIALHEAL, Bandage.TOTALHOT, 5,
-                                                                  Bandage.Item.ItemIndex);
-                            }
+                            inv.MagicItemUpdateTime += 5000;
                         }
+                    }
+                }
+                    
 
                 if (_updateTime < Time.SecondsSinceStartDouble && p.IsConnected)
                 {
@@ -163,7 +188,9 @@ namespace Pandaros.Settlers.Managers
 
                 UpdateFoodUse(p);
             });
-
+            
+            if (_magicUpdateTime < Time.SecondsSinceStartDouble)
+                _magicUpdateTime = Time.SecondsSinceStartDouble + 1;
 
             if (_updateTime < Time.SecondsSinceStartDouble && TimeCycle.IsDay)
                 _updateTime = Time.SecondsSinceStartDouble + _UPDATE_TIME;
@@ -771,7 +798,7 @@ namespace Pandaros.Settlers.Managers
                             if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalTime)
                             {
                                 foreach (var follower in colony.Followers)
-                                    if (follower.GetFieldValue<BedBlock, NPCBase>("bed") == null)
+                                    if (follower.UsedBed == null)
                                     {
                                         left++;
                                         NPCLeaving(follower);

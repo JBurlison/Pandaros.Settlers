@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Temperature;
 using Pandaros.Settlers.Items.Weapons;
 using Pipliz;
@@ -318,10 +319,7 @@ namespace Pandaros.Settlers.Seasons
 
         private static ThreadedDictionary<Vector3Int, Chunk> GetWorldChunks()
         {
-            return (ThreadedDictionary<Vector3Int, Chunk>) typeof(World)
-                                                          .GetField("chunks",
-                                                                    BindingFlags.NonPublic | BindingFlags.Static)
-                                                         ?.GetValue(null);
+            return World.GetChunks();
         }
 
         private static double GetTemprature()

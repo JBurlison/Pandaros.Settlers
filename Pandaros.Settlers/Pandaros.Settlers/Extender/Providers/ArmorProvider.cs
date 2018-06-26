@@ -3,7 +3,6 @@ using Pandaros.Settlers.Items.Armor;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Pandaros.Settlers.Items.ArmorFactory;
 
 namespace Pandaros.Settlers.Extender.Providers
 {

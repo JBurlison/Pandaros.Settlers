@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -145,6 +146,11 @@ namespace Pandaros.Settlers
                 newNode.AddToArray(new JSONNode(n));
 
             return newNode;
+        }
+
+        public static float TotalDamage(this Dictionary<DamageType, float> damage)
+        {
+            return damage.Sum(kvp => kvp.Value);
         }
 
         private static byte ToByte(float f)

@@ -104,6 +104,8 @@
     <Compile Include="Extender\Providers\ArmorProvider.cs" />
     <Compile Include="Extender\Providers\BossesProvider.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="Help\HelpMenu.cs" />
+    <Compile Include="Help\IHelpMenuItem.cs" />
     <Compile Include="IMagicEffect.cs" />
     <Compile Include="IPandaArmor.cs" />
     <Compile Include="IPandaDamage.cs" />
@@ -367,6 +369,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AutoLoad\technologist.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\science\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\help\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Textures\texturemapping.json">
@@ -813,6 +821,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\FireTurret.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Help.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Mana1.png">
