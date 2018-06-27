@@ -673,8 +673,7 @@ namespace Pandaros.Settlers.Managers
             return update;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged,
-            GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
         public static void OnNPCJobChanged(TupleStruct<NPCBase, IJob, IJob> data)
         {
             if (!data.item1.NPCType.IsLaborer)

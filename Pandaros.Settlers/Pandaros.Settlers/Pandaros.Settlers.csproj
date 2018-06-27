@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pandaros.Settlers</RootNamespace>
     <AssemblyName>Pandaros.Settlers</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="APIProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,6 +88,7 @@
     <Compile Include="DamageType.cs" />
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
+    <Compile Include="EventedDictionary.cs" />
     <Compile Include="Extender\Colliders.cs" />
     <Compile Include="Extender\CSType.cs" />
     <Compile Include="Extender\ICSRecipe.cs" />
@@ -112,10 +116,12 @@
     <Compile Include="IKillReward.cs" />
     <Compile Include="Extender\ISettlersExtension.cs" />
     <Compile Include="Items\AirStone.cs" />
+    <Compile Include="Items\Armor\ArmorFactory.cs" />
     <Compile Include="Items\Armor\IArmor.cs" />
     <Compile Include="Items\EarthStone.cs" />
     <Compile Include="Items\IMagicItem.cs" />
     <Compile Include="Items\ItemFactory.cs" />
+    <Compile Include="Items\ItemState.cs" />
     <Compile Include="Items\Machines\MachineConstants.cs" />
     <Compile Include="Items\Machines\RefuelMachineAction.cs" />
     <Compile Include="Items\Temperature\ITemperatureRegulator.cs" />
@@ -129,7 +135,6 @@
     <Compile Include="Items\Machines\TeleportPad.cs" />
     <Compile Include="Items\Aether.cs" />
     <Compile Include="Items\Mana.cs" />
-    <Compile Include="Items\Armor\ArmorFactory.cs" />
     <Compile Include="Items\Food\BerryPancakes.cs" />
     <Compile Include="Items\Food\BerryPie.cs" />
     <Compile Include="Items\Healing\Anitbiotic.cs" />

@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 var millisecondsSinceStart = Time.MillisecondsSinceStart;
 
                 if (state.Weapon.IsEmpty() || state.Weapon.Id != click.typeSelected)
-                    state.Weapon = new SettlerInventory.ArmorState
+                    state.Weapon = new ItemState
                     {
                         Id         = click.typeSelected,
                         Durability = WeaponLookup[click.typeSelected].Durability
@@ -96,7 +96,7 @@ namespace Pandaros.Settlers.Items.Weapons
 
                 if (state.Weapon.Durability <= 0)
                 {
-                    state.Weapon = new SettlerInventory.ArmorState();
+                    state.Weapon = new ItemState();
                     player.TakeItemFromInventory(click.typeSelected);
 
                     PandaChat.Send(player,

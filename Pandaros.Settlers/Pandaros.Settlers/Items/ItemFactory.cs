@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Items
 {
+    
     public class ItemFactory
     {
         public const string JOB_BAKER = "pipliz.baker";

@@ -55,14 +55,34 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
 
-        public Dictionary<ArmorFactory.ArmorSlot, ArmorState> Armor { get; set; } =  new Dictionary<ArmorFactory.ArmorSlot, ArmorState>();
+        public EventedDictionary<ArmorFactory.ArmorSlot, ItemState> Armor { get; set; } =  new EventedDictionary<ArmorFactory.ArmorSlot, ItemState>();
 
-        public ArmorState Weapon { get; set; } = new ArmorState();
+        public ItemState Weapon { get; set; } = new ItemState();
 
         private void SetupArmor()
         {
             foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
-                Armor.Add(armorType, new ArmorState());
+                Armor.Add(armorType, new ItemState());
+
+            Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
+        }
+
+        private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
+        {
+            switch (e.EventType)
+            {
+                case DictionaryEventType.AddItem:
+
+                    break;
+
+                case DictionaryEventType.ChangeItem:
+
+                    break;
+
+                case DictionaryEventType.RemoveItem:
+
+                    break;
+            }
         }
 
         public JSONNode ToJsonNode()
@@ -106,52 +126,6 @@ namespace Pandaros.Settlers.Entities
             return inv;
         }
 
-        [Serializable]
-        public class ArmorState
-        {
-            public ArmorState()
-            {
-            }
-
-            public ArmorState(JSONNode node)
-            {
-                if (node.TryGetAs(nameof(Id), out ushort id))
-                    Id = id;
-
-                if (node.TryGetAs(nameof(Durability), out int durablility))
-                    Durability = durablility;
-            }
-
-            public ushort Id { get; set; }
-
-            public int Durability { get; set; }
-
-            public bool IsEmpty()
-            {
-                return Id == default(ushort);
-            }
-
-            public void FromJsonNode(string nodeName, JSONNode node)
-            {
-                if (node.TryGetAs(nodeName, out JSONNode stateNode))
-                {
-                    if (stateNode.TryGetAs(nameof(Id), out ushort id))
-                        Id = id;
-
-                    if (stateNode.TryGetAs(nameof(Durability), out int durablility))
-                        Durability = durablility;
-                }
-            }
-
-            public JSONNode ToJsonNode()
-            {
-                var baseNode = new JSONNode();
-
-                baseNode[nameof(Id)]         = new JSONNode(Id);
-                baseNode[nameof(Durability)] = new JSONNode(Durability);
-
-                return baseNode;
-            }
-        }
+        
     }
 }

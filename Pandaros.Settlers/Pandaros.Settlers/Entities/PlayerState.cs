@@ -63,7 +63,7 @@ namespace Pandaros.Settlers.Entities
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
         public Vector3Int TeleporterPlaced { get; set; } = Vector3Int.invalidPos;
 
-        public Dictionary<ArmorFactory.ArmorSlot, ArmorState> Armor { get; set; } = new Dictionary<ArmorFactory.ArmorSlot, ArmorState>();
+        public Dictionary<ArmorFactory.ArmorSlot, ItemState> Armor { get; set; } = new Dictionary<ArmorFactory.ArmorSlot, ItemState>();
         public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
@@ -72,7 +72,7 @@ namespace Pandaros.Settlers.Entities
         public bool MonstersEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;
         public bool MusicEnabled { get; set; } = true;
-        public ArmorState Weapon { get; set; } = new ArmorState();
+        public ItemState Weapon { get; set; } = new ItemState();
         public int ColonistsBought { get; set; }
         public double NextColonistBuyTime { get; set; }
         public BuildersWand.WandMode BuildersWandMode { get; set; }
@@ -133,10 +133,10 @@ namespace Pandaros.Settlers.Entities
 
         private void SetupArmor()
         {
-            Weapon = new ArmorState();
+            Weapon = new ItemState();
 
             foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
-                Armor.Add(armorType, new ArmorState());
+                Armor.Add(armorType, new ItemState());
         }
 
         public static PlayerState GetPlayerState(Players.Player p)
@@ -222,7 +222,7 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs("Armor", out JSONNode armorNode) && armorNode.NodeType == NodeType.Object)
                     foreach (var aNode in armorNode.LoopObject())
                         _playerStates[p].Armor[(ArmorFactory.ArmorSlot) Enum.Parse(typeof(ArmorFactory.ArmorSlot), aNode.Key)] =
-                            new ArmorState(aNode.Value);
+                            new ItemState(aNode.Value);
 
                 if (stateNode.TryGetAs("FlagsPlaced", out JSONNode flagsPlaced) &&
                     flagsPlaced.NodeType == NodeType.Array)
@@ -233,7 +233,7 @@ namespace Pandaros.Settlers.Entities
                     _playerStates[p].TeleporterPlaced = (Vector3Int) teleporterPlaced;
 
                 if (stateNode.TryGetAs("Weapon", out JSONNode wepNode))
-                    _playerStates[p].Weapon = new ArmorState(wepNode);
+                    _playerStates[p].Weapon = new ItemState(wepNode);
 
                 if (stateNode.TryGetAs("Difficulty", out string diff))
                     _playerStates[p].DifficultyStr = diff;
