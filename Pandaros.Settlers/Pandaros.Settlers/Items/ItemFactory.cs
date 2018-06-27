@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Items
                 }
                 else if (NPCTracker.TryGetNPC(rayCastHit.hitNPCID, out var nPCBase))
                 {
-                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage);
+                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage, player, ModLoader.OnHitData.EHitSourceType.PlayerClick);
                     state.Weapon.Durability--;
                     ServerManager.SendAudio(nPCBase.Position.Vector, "punch");
                 }
