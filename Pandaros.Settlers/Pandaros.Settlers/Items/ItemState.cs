@@ -6,12 +6,25 @@ using System.Text;
 
 namespace Pandaros.Settlers.Items
 {
+    public class ItemStateChangedEventArgs: EventArgs
+    {
+        public ItemStateChangedEventArgs(ushort value, ushort oldValue)
+        {
+            Value = value;
+            ReplacedValue = oldValue;
+        }
+
+        public ushort Value { get; private set; }
+
+        public ushort ReplacedValue { get; private set; }
+    }
+
     [Serializable]
     public class ItemState
     {
         ushort _id = default(ushort);
 
-        public event EventHandler IdChanged;
+        public event EventHandler<ItemStateChangedEventArgs> IdChanged;
 
         public ItemState()
         {
@@ -34,12 +47,14 @@ namespace Pandaros.Settlers.Items
             }
             set
             {
-                if (!IsEmpty())
+                if (_id != value)
                 {
+                    var oldVal = _id;
+                    _id = value;
 
+                    if (IdChanged != null && IdChanged.GetInvocationList().Length != 0)
+                        IdChanged(this, new ItemStateChangedEventArgs(_id, oldVal));
                 }
-
-                _id = value;
             }
         }
         public int Durability { get; set; }

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes.Builtin;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
-using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Research;
 using Pandaros.Settlers.Seasons;
 using Pipliz;
 using Pipliz.JSON;
-using static Pandaros.Settlers.Entities.SettlerInventory;
+using System;
+using System.Collections.Generic;
 using Random = System.Random;
 
 namespace Pandaros.Settlers.Entities
@@ -63,7 +61,7 @@ namespace Pandaros.Settlers.Entities
         public List<Vector3Int> FlagsPlaced { get; set; } = new List<Vector3Int>();
         public Vector3Int TeleporterPlaced { get; set; } = Vector3Int.invalidPos;
 
-        public Dictionary<ArmorFactory.ArmorSlot, ItemState> Armor { get; set; } = new Dictionary<ArmorFactory.ArmorSlot, ItemState>();
+        public EventedDictionary<ArmorFactory.ArmorSlot, ItemState> Armor { get; set; } = new EventedDictionary<ArmorFactory.ArmorSlot, ItemState>();
         public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
@@ -134,9 +132,34 @@ namespace Pandaros.Settlers.Entities
         private void SetupArmor()
         {
             Weapon = new ItemState();
+            Weapon.IdChanged += Weapon_IdChanged;
 
             foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
-                Armor.Add(armorType, new ItemState());
+            {
+                var armorState = new ItemState();
+                armorState.IdChanged += ArmorState_IdChanged;
+                Armor.Add(armorType, armorState);
+            }
+
+            Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
+        }
+
+        private void ArmorState_IdChanged(object sender, ItemStateChangedEventArgs e)
+        {
+            var state = sender as ItemState;
+
+
+        }
+
+        private void Weapon_IdChanged(object sender, ItemStateChangedEventArgs e)
+        {
+            var state = sender as ItemState;
+
+        }
+
+        private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
+        {
+            
         }
 
         public static PlayerState GetPlayerState(Players.Player p)
@@ -170,7 +193,7 @@ namespace Pandaros.Settlers.Entities
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnUpdate")]
         public static void OnUpdate()
         {
-            Players.PlayerDatabase.ForeachValue(p =>
+            foreach (var p in Players.PlayerDatabase.Values)
             {
                 if (p.IsConnected)
                 {
@@ -196,7 +219,7 @@ namespace Pandaros.Settlers.Entities
                         PandaLogger.LogError(ex);
                     }
                 }
-            });
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]

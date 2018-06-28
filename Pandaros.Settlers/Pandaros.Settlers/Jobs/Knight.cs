@@ -14,7 +14,6 @@ using Server.AI;
 using Server.Monsters;
 using Server.NPCs;
 using Shared;
-using UnityEngine;
 using Physics = General.Physics.Physics;
 using Time = Pipliz.Time;
 
@@ -31,8 +30,8 @@ namespace Pandaros.Settlers.Jobs
             type       = NPCTypeID.GetNextID(),
             keyName    = GameLoader.NAMESPACE + ".Knight",
             printName  = "Knight",
-            maskColor0 = Color.blue,
-            maskColor1 = Color.black
+            maskColor0 = UnityEngine.Color.blue,
+            maskColor1 = UnityEngine.Color.black
         };
 
         private Colony _colony;
@@ -326,7 +325,7 @@ namespace Pandaros.Settlers.Jobs
                             if (!_inv.Weapon.IsEmpty())
                                 _stock.Add(_inv.Weapon.Id);
 
-                            _inv.Weapon = new SettlerInventory.ArmorState
+                            _inv.Weapon = new ItemState
                             {
                                 Id         = bestWeapon.ItemType.ItemIndex,
                                 Durability = bestWeapon.Durability

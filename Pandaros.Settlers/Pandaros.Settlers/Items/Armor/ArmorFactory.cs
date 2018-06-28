@@ -120,7 +120,7 @@ namespace Pandaros.Settlers.Items.Armor
         {
             if (_nextUpdate < DateTime.Now)
             {
-                Players.PlayerDatabase.ForeachValue(p =>
+                foreach (var p in Players.PlayerDatabase.Values)
                 {
                     var colony = Colony.Get(p);
                     var state = PlayerState.GetPlayerState(p);
@@ -165,7 +165,7 @@ namespace Pandaros.Settlers.Items.Armor
                         var inv = GetSettlerInventory(npc);
                         GetBestArmorForNPC(stockpile, npc, inv, 4);
                     }
-                });
+                }
 
                 _nextUpdate = DateTime.Now + TimeSpan.FromSeconds(30);
             }
@@ -235,7 +235,7 @@ namespace Pandaros.Settlers.Items.Armor
             DeductArmor(box, inv.Armor, npc.Colony.Owner, inv.SettlerName);
         }
 
-        private static void DeductArmor(ModLoader.OnHitData box, Dictionary<ArmorSlot, ItemState> entityArmor,
+        private static void DeductArmor(ModLoader.OnHitData box, EventedDictionary<ArmorSlot, ItemState> entityArmor,
                                         Players.Player player, string name)
         {
             if (box.ResultDamage > 0)

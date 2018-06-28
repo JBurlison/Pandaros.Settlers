@@ -17,7 +17,6 @@ using Server.Monsters;
 using Server.NPCs;
 using Server.TerrainGeneration;
 using Shared;
-using UnityEngine;
 using Math = System.Math;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
@@ -99,7 +98,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
         public static void OnUpdate()
         {
-            Players.PlayerDatabase.ForeachValue(p =>
+            foreach (var p in Players.PlayerDatabase.Values)
             {
                 var colony = Colony.Get(p);
 
@@ -167,7 +166,7 @@ namespace Pandaros.Settlers.Managers
                     {
                         if (TimeCycle.IsDay)
                             if (lastNPC == null ||
-                            Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 &&
+                            UnityEngine.Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 &&
                             Random.NextBool())
                             {
                                 lastNPC = follower;
@@ -187,7 +186,7 @@ namespace Pandaros.Settlers.Managers
                         colony.SendUpdate();
 
                 UpdateFoodUse(p);
-            });
+            }
             
             if (_magicUpdateTime < Time.SecondsSinceStartDouble)
                 _magicUpdateTime = Time.SecondsSinceStartDouble + 1;
@@ -218,7 +217,8 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
-            Players.PlayerDatabase.ForeachValue(p => UpdateFoodUse(p));
+            foreach (var p in Players.PlayerDatabase.Values)
+                UpdateFoodUse(p);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
@@ -284,9 +284,6 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
-            if (Configuration.DifficutlyCanBeChanged)
-                GameDifficultyChatCommand.PossibleCommands(p, ChatColor.grey);
-
             if (Configuration.GetorDefault("SettlersEnabled", true) &&
                 Configuration.GetorDefault("MaxSettlersToggle", 4) > 0)
             {
@@ -458,7 +455,7 @@ namespace Pandaros.Settlers.Managers
         public static void OnNPCLoaded(NPCBase npc, JSONNode node)
         {
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
-                npc.GetTempValues(true).Set(GameLoader.SETTLER_INV, new SettlerInventory(invNode));
+                npc.GetTempValues(true).Set(GameLoader.SETTLER_INV, new SettlerInventory(invNode, npc));
 
             var tmpVals = npc.GetTempValues();
 

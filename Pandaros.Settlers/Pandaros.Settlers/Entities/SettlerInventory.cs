@@ -10,17 +10,19 @@ namespace Pandaros.Settlers.Entities
 {
     public class SettlerInventory
     {
-        public SettlerInventory(int id)
+        public SettlerInventory(NPCBase id)
         {
-            SettlerId   = id;
+            SettlerId   = id.ID;
+            NPC = id;
             SettlerName = NameGenerator.GetName();
             SetupArmor();
         }
 
-        public SettlerInventory(JSONNode baseNode)
+        public SettlerInventory(JSONNode baseNode, NPCBase nPC)
         {
             if (baseNode.TryGetAs<int>(nameof(SettlerId), out var settlerId))
             {
+                NPC = nPC;
                 SetupArmor();
                 SettlerId = settlerId;
 
@@ -46,6 +48,8 @@ namespace Pandaros.Settlers.Entities
         public double MagicItemUpdateTime { get; set; } = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(1, 10);
 
         public int SettlerId { get; set; }
+        
+        public NPCBase NPC { get; private set; }
 
         public string SettlerName { get; set; }
 
@@ -67,12 +71,13 @@ namespace Pandaros.Settlers.Entities
             Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
         }
 
+        // TODO: apply armor
         private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
         {
             switch (e.EventType)
             {
                 case DictionaryEventType.AddItem:
-
+                    
                     break;
 
                 case DictionaryEventType.ChangeItem:
@@ -119,7 +124,7 @@ namespace Pandaros.Settlers.Entities
 
             if (!tempVals.TryGet(GameLoader.SETTLER_INV, out SettlerInventory inv))
             {
-                inv = new SettlerInventory(npc.ID);
+                inv = new SettlerInventory(npc);
                 tempVals.Set(GameLoader.SETTLER_INV, inv);
             }
 
