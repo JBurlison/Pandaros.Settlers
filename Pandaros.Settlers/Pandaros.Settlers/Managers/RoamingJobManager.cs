@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BlockTypes.Builtin;
-using Pandaros.Settlers.Entities;
+﻿using BlockTypes.Builtin;
 using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pipliz;
 using Pipliz.JSON;
 using Server;
 using Shared;
-using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Math = Pipliz.Math;
 using Time = Pipliz.Time;
 
@@ -168,7 +165,7 @@ namespace Pandaros.Settlers.Managers
 
             foreach (var machine in Objectives[owner].Where(o => o.Value.RoamingJobSettings.ObjectiveCategory == category))
             {
-                var dis = Math.RoundToInt(Vector3.Distance(machine.Key.Vector, position.Vector));
+                var dis = Math.RoundToInt(UnityEngine.Vector3.Distance(machine.Key.Vector, position.Vector));
 
                 if (dis <= maxDistance && dis <= closest)
                     retVal.Add(machine.Key);

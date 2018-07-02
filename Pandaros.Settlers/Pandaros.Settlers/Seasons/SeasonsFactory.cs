@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -170,7 +171,7 @@ namespace Pandaros.Settlers.Seasons
 
                 Temperature = GetTemprature();
 
-                worldChunks.ForeachValue(c =>
+                foreach (var c in worldChunks.Values)
                 {
                     if (i >= _currentMin && i < _currentMax)
                         ChangeSeason(c);
@@ -179,7 +180,7 @@ namespace Pandaros.Settlers.Seasons
                         return;
 
                     i++;
-                });
+                }
 
                 _currentMax += CHUNKS_PER_CYCLE;
                 _currentMin += CHUNKS_PER_CYCLE;
@@ -317,7 +318,7 @@ namespace Pandaros.Settlers.Seasons
             PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
 
-        private static ThreadedDictionary<Vector3Int, Chunk> GetWorldChunks()
+        private static ConcurrentDictionary<Vector3Int, Chunk> GetWorldChunks()
         {
             return World.GetChunks();
         }

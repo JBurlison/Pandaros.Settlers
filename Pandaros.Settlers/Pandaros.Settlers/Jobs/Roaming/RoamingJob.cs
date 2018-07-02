@@ -4,14 +4,12 @@ using System.Linq;
 using BlockTypes.Builtin;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
 using Pipliz.Mods.APIProvider.Jobs;
 using Server.NPCs;
 using Shared;
-using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs.Roaming
 {
@@ -78,7 +76,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                            .Where(m => m.JobRef == null && ObjectiveCategories.Contains(m.RoamingJobSettings.ObjectiveCategory)))
                         if (objective != PreviousObjective && objective.PositionIsValid())
                         {
-                            var dis = Vector3.Distance(objective.Position.Vector, pos.Vector);
+                            var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
 
                             if (dis <= 21)
                             {

@@ -10,7 +10,6 @@ using Pipliz;
 using Pipliz.JSON;
 using Pipliz.Threading;
 using Server.MeshedObjects;
-using UnityEngine;
 using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Items.Machines
@@ -258,7 +257,7 @@ namespace Pandaros.Settlers.Items.Machines
                             continue;
                         }
 
-                        var dis = Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
+                        var dis = UnityEngine.Vector3.Distance(machineState.Position.Vector, gate.Key.Vector);
 
                         if (dis <= 21)
                         {

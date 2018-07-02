@@ -20,7 +20,7 @@ namespace Pandaros.Settlers
                                                                                              ".Permissions.Archive")))
                 return true;
 
-            foreach (var p in Players.PlayerDatabase.ValuesAsList)
+            foreach (var p in Players.PlayerDatabase.Values)
                 SettlerManager.SaveOffline(p);
 
             return true;

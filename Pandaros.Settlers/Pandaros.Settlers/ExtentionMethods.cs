@@ -8,7 +8,6 @@ using Pandaros.Settlers.Extender;
 using Pipliz;
 using Pipliz.JSON;
 using Server.AI;
-using UnityEngine;
 using Random = System.Random;
 
 namespace Pandaros.Settlers
@@ -123,7 +122,7 @@ namespace Pandaros.Settlers
             typeof(oT).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
         }
 
-        public static string ToRGBHex(this Color c)
+        public static string ToRGBHex(this UnityEngine.Color c)
         {
             return string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b));
         }
@@ -155,7 +154,7 @@ namespace Pandaros.Settlers
 
         private static byte ToByte(float f)
         {
-            f = Mathf.Clamp01(f);
+            f = UnityEngine.Mathf.Clamp01(f);
             return (byte)(f * 255);
         }
     }

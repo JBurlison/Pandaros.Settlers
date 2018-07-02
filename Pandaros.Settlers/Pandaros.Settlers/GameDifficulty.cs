@@ -156,7 +156,7 @@ namespace Pandaros.Settlers
             GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            foreach (var player in Players.PlayerDatabase.ValuesAsList)
+            foreach (var player in Players.PlayerDatabase.Values)
             {
                 var ps = PlayerState.GetPlayerState(player);
 

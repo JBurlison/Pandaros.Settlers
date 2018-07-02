@@ -9,10 +9,8 @@ using Server.Monsters;
 using Shared;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using UnityEngine;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
 
@@ -78,7 +76,7 @@ namespace Pandaros.Settlers.Managers
                 IMonster m = null;
 
                 foreach (var monster in GetAllMonsters())
-                    if (m == null || Vector3.Distance(monster.Value.Position, m.Position) > 15 && Random.NextBool())
+                    if (m == null || UnityEngine.Vector3.Distance(monster.Value.Position, m.Position) > 15 && Random.NextBool())
                     {
                         m = monster.Value;
                         ServerManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + ".ZombieAudio");

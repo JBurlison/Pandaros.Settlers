@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ChatCommands;
+﻿using ChatCommands;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
@@ -16,7 +12,9 @@ using Server.AI;
 using Server.Monsters;
 using Server.NPCs;
 using Shared;
-using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Physics = General.Physics.Physics;
 
 namespace Pandaros.Settlers.AI
@@ -34,8 +32,8 @@ namespace Pandaros.Settlers.AI
             type       = NPCTypeID.GetNextID(),
             keyName    = GameLoader.NAMESPACE + ".CalledToArms",
             printName  = "Called to Arms",
-            maskColor0 = Color.red,
-            maskColor1 = Color.magenta
+            maskColor0 = UnityEngine.Color.red,
+            maskColor1 = UnityEngine.Color.magenta
         };
 
         public static NPCType CallToArmsNPCType;
