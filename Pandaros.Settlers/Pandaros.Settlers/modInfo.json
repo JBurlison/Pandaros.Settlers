@@ -7,7 +7,7 @@
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
-      "0.6.3"
+      "0.7.0"
     ],
     "overrideAlbedoFolder": "./Textures/albedo/",
     "overrideEmissiveFolder": "./Textures/emissive/",

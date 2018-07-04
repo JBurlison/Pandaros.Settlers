@@ -200,7 +200,7 @@ namespace Pandaros.Settlers.Managers
             switch (Seasons.SeasonsFactory.GetComfortLevel(follower))
             {
                 case Seasons.ComfortLevel.TooCold:
-
+                    // TODO
                     break;
 
                 case Seasons.ComfortLevel.TooHot:
@@ -228,8 +228,7 @@ namespace Pandaros.Settlers.Managers
             {
                 var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
 
-                var file =
-                    $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/{p.ID.steamID.ToString()}.json";
+                var file =  $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/{p.ID.steamID.ToString()}.json";
 
                 if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
                 {
@@ -309,7 +308,7 @@ namespace Pandaros.Settlers.Managers
                         PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'",
                                        ChatColor.orange);
 
-                    PandaChat.Send(p, $"Random Settlers are currently {settlers}.", ChatColor.orange);
+                    PandaChat.Send(p, $"Random Settlers are currently {settlers} and the current season is {Seasons.SeasonsFactory.CurrentSeason.Name}!", ChatColor.orange);
                 }
             }
 

@@ -935,7 +935,7 @@ namespace Pandaros.Settlers.Items.Armor
 
             public void Update()
             {
-                throw new NotImplementedException();
+                
             }
         }
     }

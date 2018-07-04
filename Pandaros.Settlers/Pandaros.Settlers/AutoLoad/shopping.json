@@ -1,56 +1,5 @@
 [
   {
-    "name": "Pandaros.Settlers.AutoLoad.aloe",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.aloe",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.tulip",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.tulip",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.Flowers1",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.Flowers1",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
     "name": "Pandaros.Settlers.AutoLoad.infiniteemerald",
     "results": [
       {

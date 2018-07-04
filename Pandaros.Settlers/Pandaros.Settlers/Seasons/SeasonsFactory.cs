@@ -1,14 +1,13 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Items.Armor;
+﻿using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Temperature;
 using Pandaros.Settlers.Items.Weapons;
 using Pipliz;
-using Pipliz.Collections.Threadsafe;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
 using Math = System.Math;
 
 namespace Pandaros.Settlers.Seasons
@@ -32,7 +31,7 @@ namespace Pandaros.Settlers.Seasons
         public const double COMFORTABLE_TEMP_MIN = 62;
         public const double COMFORTABLE_TEMP_MAX = 82;
         public const string DEGREE_SYMBOL = "°";
-        private const int CYCLE_SECONDS = 2;
+        private const int CYCLE_SECONDS = 2000;
         private const int CHUNKS_PER_CYCLE = 100;
         private static int _currentMax = CHUNKS_PER_CYCLE;
         private static int _currentMin;
@@ -41,11 +40,11 @@ namespace Pandaros.Settlers.Seasons
         private static int _currentSeason;
         private static int _nextSeason = 1;
         private static double _nextUpdate = TimeCycle.TotalTime + 10;
-        private static double _nextCycleTime;
         private static double _midDay;
         private static double _midNight;
         private static readonly List<ISeason> _seasons = new List<ISeason>();
-        
+        private static Thread _seasonThread = new Thread(ChangeSeasons);
+
         public static ISeason CurrentSeason => _seasons[_currentSeason];
 
         public static ISeason NextSeason => _seasons[_nextSeason];
@@ -56,12 +55,6 @@ namespace Pandaros.Settlers.Seasons
         ///     in Fahrenheit
         /// </summary>
         public static double Temperature { get; private set; }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.OnShouldKeepChunkLoaded")]
-        public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData chunkCallback)
-        {
-            chunkCallback.Result = true;
-        }
 
         public static double ConvertCelsiusToFahrenheit(double c)
         {
@@ -159,59 +152,70 @@ namespace Pandaros.Settlers.Seasons
             _midNight = TimeCycle.SunSet + timeToMidNight;
             ChunkUpdating.PlayerLoadedMaxRange = ChunkUpdating.PlayerLoadedMaxRange * 3;
             ChunkUpdating.PlayerLoadedMinRange = ChunkUpdating.PlayerLoadedMaxRange;
+            _seasonThread.IsBackground = true;
+            _seasonThread.Start();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.ChangeSeasons")]
         public static void ChangeSeasons()
         {
-            if (World.Initialized && Time.SecondsSinceStartDouble > _nextCycleTime)
+            while (!World.Initialized)
+                Thread.Sleep(1000);
+
+            while (GameLoader.RUNNING)
             {
-                var worldChunks = GetWorldChunks();
-                var i = 0;
-
-                Temperature = GetTemprature();
-
-                foreach (var c in worldChunks.Values)
+                try
                 {
-                    if (i >= _currentMin && i < _currentMax)
-                        ChangeSeason(c);
+                    var worldChunks = GetWorldChunks();
+                    var i = 0;
 
-                    if (i > _currentMax)
-                        return;
+                    Temperature = GetTemprature();
 
-                    i++;
-                }
-
-                _currentMax += CHUNKS_PER_CYCLE;
-                _currentMin += CHUNKS_PER_CYCLE;
-                _nextCycleTime = Time.SecondsSinceStartDouble + CYCLE_SECONDS;
-
-                if (_currentMax > worldChunks.Count)
-                {
-                    _currentMax = CHUNKS_PER_CYCLE;
-                    _currentMin = 0;
-                }
-
-                if (TimeCycle.TotalTime > _nextUpdate)
-                {
-                    _currentSeason = _nextSeason;
-                    _nextSeason++;
-
-                    if (_nextSeason >= _seasons.Count)
+                    foreach (var c in worldChunks.Values)
                     {
-                        _nextSeason     = 0;
-                        _previousSesion = _seasons.Count - 1;
-                    }
-                    else
-                        _previousSesion = _nextSeason - 1;
+                        if (i >= _currentMin && i < _currentMax)
+                            ChangeSeason(c);
 
-                    _currentMax    = CHUNKS_PER_CYCLE;
-                    _currentMin    = 0;
-                    _nextCycleTime = 0;
-                    _nextUpdate    = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
-                    PandaChat.SendToAll($"The season in now {CurrentSeason.Name}", ChatColor.olive, ChatStyle.bold);
-                    PandaLogger.Log(ChatColor.olive, $"The season in now {CurrentSeason.Name}");
+                        if (i > _currentMax)
+                            return;
+
+                        i++;
+                    }
+
+                    _currentMax += CHUNKS_PER_CYCLE;
+                    _currentMin += CHUNKS_PER_CYCLE;
+
+                    if (_currentMax > worldChunks.Count)
+                    {
+                        _currentMax = CHUNKS_PER_CYCLE;
+                        _currentMin = 0;
+                    }
+
+                    if (TimeCycle.TotalTime > _nextUpdate)
+                    {
+                        _currentSeason = _nextSeason;
+                        _nextSeason++;
+
+                        if (_nextSeason >= _seasons.Count)
+                        {
+                            _nextSeason = 0;
+                            _previousSesion = _seasons.Count - 1;
+                        }
+                        else
+                            _previousSesion = _nextSeason - 1;
+
+                        _currentMax = CHUNKS_PER_CYCLE;
+                        _currentMin = 0;
+                        _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
+                        PandaChat.SendToAll($"The season in now {CurrentSeason.Name}", ChatColor.olive, ChatStyle.bold);
+                        PandaLogger.Log(ChatColor.olive, $"The season in now {CurrentSeason.Name}");
+                    }
                 }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+
+                Thread.Sleep(CYCLE_SECONDS);
             }
         }
 
@@ -225,7 +229,6 @@ namespace Pandaros.Settlers.Seasons
                 var data = c.Data;
                 var didThing = false;
                 c.LockWriteData();
-
 
                 for (var d = 0; d < 4096; d++)
                 {
@@ -246,8 +249,16 @@ namespace Pandaros.Settlers.Seasons
                                 c.IsDirty = true;
                             }
 
-                            ServerManager.SendBlockChange(localPos.ToWorld(c.Position),
-                                                          CurrentSeason.SeasonalBlocks[type.Key]);
+                            using (ByteBuilder byteBuilder = ByteBuilder.Get())
+                            {
+                                byteBuilder.Write(General.Networking.ClientMessageType.BlockChange);
+                                byteBuilder.WriteVariable(localPos.ToWorld(c.Position));
+                                byteBuilder.WriteVariable(CurrentSeason.SeasonalBlocks[type.Key]);
+                                var dataArray = byteBuilder.ToArray();
+
+                                for (int index = 0; index < Players.CountConnected; ++index)
+                                    NetworkWrapper.Send(dataArray, Players.GetConnectedByIndex(index));
+                            }
                             break;
                         }
                 }

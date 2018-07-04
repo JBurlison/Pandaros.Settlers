@@ -228,25 +228,22 @@ namespace Pandaros.Settlers.Items.Machines
                             {
                                 machineState.SubtractFromActionEnergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoValue);
 
-                                Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
-                                                                new
-                                                                    IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
-                                                                                   TurretSettings
-                                                                                           [machineState.RoamObjective]
-                                                                                      .Ammo.FirstOrDefault().Type));
+                                if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out var above) && above == BuiltinBlocks.Air)
+                                    Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
+                                                                    new IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
+                                                                                       TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault().Type));
 
                                 if (TurretSettings[machineState.RoamObjective].OnShootAudio != null)
-                                    ServerManager.SendAudio(machineState.Position.Vector,
-                                                            TurretSettings[machineState.RoamObjective].OnShootAudio);
+                                    ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.RoamObjective].OnShootAudio);
 
                                 if (TurretSettings[machineState.RoamObjective].OnHitAudio != null)
-                                    ServerManager.SendAudio(monster.PositionToAimFor,
-                                                            TurretSettings[machineState.RoamObjective].OnHitAudio);
+                                    ServerManager.SendAudio(monster.PositionToAimFor,TurretSettings[machineState.RoamObjective].OnHitAudio);
 
                                 TurretSettings[machineState.RoamObjective]
                                    .ProjectileAnimation
                                    .SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
 
+                                ServerManager.SendParticleTrail(machineState.Position.Vector, monster.PositionToAimFor, 2);
                                 monster.OnHit(totalDamage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);
                             }
                         }

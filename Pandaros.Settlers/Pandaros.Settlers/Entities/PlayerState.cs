@@ -148,7 +148,7 @@ namespace Pandaros.Settlers.Entities
         {
             var state = sender as ItemState;
 
-
+            // TODO
         }
 
         private void Weapon_IdChanged(object sender, ItemStateChangedEventArgs e)

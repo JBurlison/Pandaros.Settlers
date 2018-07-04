@@ -59,7 +59,6 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            SeasonsFactory.ResortSeasons();
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
         }
     }
