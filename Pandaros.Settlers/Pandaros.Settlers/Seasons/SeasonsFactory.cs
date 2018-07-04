@@ -6,6 +6,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using Math = System.Math;
@@ -43,7 +44,7 @@ namespace Pandaros.Settlers.Seasons
         private static double _midDay;
         private static double _midNight;
         private static readonly List<ISeason> _seasons = new List<ISeason>();
-        private static Thread _seasonThread = new Thread(ChangeSeasons);
+        private static Thread _seasonThread;
 
         public static ISeason CurrentSeason => _seasons[_currentSeason];
 
@@ -144,7 +145,6 @@ namespace Pandaros.Settlers.Seasons
         ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            var worldChunks = GetWorldChunks();
             _previousSesion = _seasons.Count - 1;
             var timeToMidDay = TimeCycle.DayLength / 2;
             var timeToMidNight = TimeCycle.NightLength / 2;
@@ -152,6 +152,7 @@ namespace Pandaros.Settlers.Seasons
             _midNight = TimeCycle.SunSet + timeToMidNight;
             ChunkUpdating.PlayerLoadedMaxRange = ChunkUpdating.PlayerLoadedMaxRange * 3;
             ChunkUpdating.PlayerLoadedMinRange = ChunkUpdating.PlayerLoadedMaxRange;
+            _seasonThread = new Thread(ChangeSeasons);
             _seasonThread.IsBackground = true;
             _seasonThread.Start();
         }
@@ -165,18 +166,30 @@ namespace Pandaros.Settlers.Seasons
             {
                 try
                 {
-                    var worldChunks = GetWorldChunks();
                     var i = 0;
 
                     Temperature = GetTemprature();
 
-                    foreach (var c in worldChunks.Values)
+                    foreach (var pos in ServerManager.SaveManager.Storage.Indices.Regions.Keys)
                     {
-                        if (i >= _currentMin && i < _currentMax)
-                            ChangeSeason(c);
+                        var c = World.GetChunk(pos);
+
+                        if (c == null && ServerManager.SaveManager.Storage.TryGetChunk(pos, out var cData, out var dataType))
+                        {
+                            c = new Chunk(pos);
+                            c.SetData(cData, dataType);
+                        }
+
+                        if (c != null)
+                        {
+                            if (i >= _currentMin && i < _currentMax)
+                                ChangeSeason(c);
+
+                            ServerManager.SaveManager.Storage.SetChunk(pos, c);
+                        }
 
                         if (i > _currentMax)
-                            return;
+                            break;
 
                         i++;
                     }
@@ -184,7 +197,7 @@ namespace Pandaros.Settlers.Seasons
                     _currentMax += CHUNKS_PER_CYCLE;
                     _currentMin += CHUNKS_PER_CYCLE;
 
-                    if (_currentMax > worldChunks.Count)
+                    if (_currentMax > ServerManager.SaveManager.Storage.Indices.Regions.Count)
                     {
                         _currentMax = CHUNKS_PER_CYCLE;
                         _currentMin = 0;
@@ -327,11 +340,6 @@ namespace Pandaros.Settlers.Seasons
             }
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
-        }
-
-        private static ConcurrentDictionary<Vector3Int, Chunk> GetWorldChunks()
-        {
-            return World.GetChunks();
         }
 
         private static double GetTemprature()
