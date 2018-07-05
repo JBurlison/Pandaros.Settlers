@@ -21,16 +21,6 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterItemTypesDefined()
         {
-           
-        }
-
-        public void AfterSelectedWorld()
-        {
-           
-        }
-
-        public void AfterWorldLoad()
-        {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Seasons Loaded----------------------");
 
@@ -45,6 +35,16 @@ namespace Pandaros.Settlers.Extender.Providers
 
             SeasonsFactory.ResortSeasons();
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+        }
+
+        public void AfterSelectedWorld()
+        {
+           
+        }
+
+        public void AfterWorldLoad()
+        {
+           
         }
 
         public void OnAddResearchables()

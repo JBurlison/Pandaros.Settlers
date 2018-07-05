@@ -33,18 +33,18 @@ namespace Pandaros.Settlers.Seasons
         public const double COMFORTABLE_TEMP_MAX = 82;
         public const string DEGREE_SYMBOL = "°";
         private const int CYCLE_SECONDS = 2000;
-        private const int CHUNKS_PER_CYCLE = 100;
-        private static int _currentMax = CHUNKS_PER_CYCLE;
-        private static int _currentMin;
+        private const int RefreshCycleTimeMinMS = 10000;
+        private const int RefreshCycleTimeMaxMS = 20000;
         private static readonly int _daysBetweenSeasonChanges = 10;
         private static int _previousSesion;
         private static int _currentSeason;
         private static int _nextSeason = 1;
-        private static double _nextUpdate = TimeCycle.TotalTime + 10;
+        private static double _nextUpdate = 0;
+        private static double _tempUpdate = 0;
         private static double _midDay;
         private static double _midNight;
         private static readonly List<ISeason> _seasons = new List<ISeason>();
-        private static Thread _seasonThread;
+        private static HashSet<Chunk> _updatedChunks = new HashSet<Chunk>();
 
         public static ISeason CurrentSeason => _seasons[_currentSeason];
 
@@ -152,56 +152,86 @@ namespace Pandaros.Settlers.Seasons
             _midNight = TimeCycle.SunSet + timeToMidNight;
             ChunkUpdating.PlayerLoadedMaxRange = ChunkUpdating.PlayerLoadedMaxRange * 3;
             ChunkUpdating.PlayerLoadedMinRange = ChunkUpdating.PlayerLoadedMaxRange;
-            _seasonThread = new Thread(ChangeSeasons);
-            _seasonThread.IsBackground = true;
-            _seasonThread.Start();
+
+            _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
         }
 
-        public static void ChangeSeasons()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.bannercheck")] // after banner check so that it doesn't increase our delay-to-next-cooldown by 5x
+        static void Process(ChunkUpdating.KeepChunkLoadedData data)
         {
-            while (!World.Initialized)
-                Thread.Sleep(1000);
-
-            while (GameLoader.RUNNING)
+            if (!data.Result)
             {
+                if (data.CheckedChunk.Data.IsAir)  // don't keep extra air chunks loaded (won't be replacing air)
+                    return;
+
+                // up the keep-loaded-range to include all send chunks
+                for (int i = 0; i < Players.CountConnected; i++)
+                {
+                    Players.Player player = Players.GetConnectedByIndex(i);
+
+                    if (player != null && (player.VoxelPosition - data.CheckedChunk.Position).MaxPartAbs <= player.DrawDistance + 24)
+                    {
+                        data.Result = true;
+                        break;
+                    }
+                }
+            }
+
+            if (data.Result) // set the time-till-next-callback to our refresh cycle time
+                data.MillisecondsTillNextCheck = Pipliz.Random.Next(RefreshCycleTimeMinMS, RefreshCycleTimeMaxMS);
+
+            if (_updatedChunks.Add(data.CheckedChunk))
+            {
+                // unseen chunk since season switch
+                bool didChange = false;
+                bool lockedAlready = data.ChunkLoadedSource != ChunkUpdating.KeepChunkLoadedData.EChunkLoadedSource.Updater;
+                data.CheckedChunk.ForeachDataReplace(ChangeSeason, ref didChange, lockedAlready);
+                if (didChange)
+                {
+                    Pipliz.Vector3Int position = data.CheckedChunk.Position.Add(8, 8, 8);
+                    if (data.ChunkLoadedSource == ChunkUpdating.KeepChunkLoadedData.EChunkLoadedSource.Updater)
+                    {
+                        // updater won't send the change by itself, so manually send it
+                        data.CheckedChunk.LockReadData();
+                        try
+                        {
+                            Players.SendToNearbyDrawDistance(position, data.CheckedChunk.GetNetworkPacket(), 200000);
+                        }
+                        finally
+                        {
+                            data.CheckedChunk.UnlockReadData();
+                        }
+                    }
+                    else
+                    {
+                        // generator or savegame loader source; they may already have a player queued up and will send it to that. Add all connected players nearby to that list.
+                        int connectedPlayers = Players.CountConnected;
+                        for (int i = 0; i < connectedPlayers; i++)
+                        {
+                            Players.Player player = Players.GetConnectedByIndex(i);
+                            if (player != null && (player.VoxelPosition - position).MaxPartAbs < player.DrawDistance + 24)
+                            {
+                                data.CheckedChunk.AddReceivingPlayer(player);
+                            }
+                        }
+                    }
+                    data.CheckedChunk.IsDirty = true;
+                }
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Update")]
+        public static void Update()
+        {
+            if (!World.Initialized)
+                return;
+
+            if (Time.SecondsSinceStartDouble > _tempUpdate)
                 try
                 {
-                    var i = 0;
-
+                    _tempUpdate = Time.SecondsSinceStartDouble + 10;
                     Temperature = GetTemprature();
-
-                    foreach (var pos in ServerManager.SaveManager.Storage.Indices.Regions.Keys)
-                    {
-                        var c = World.GetChunk(pos);
-
-                        if (c == null && ServerManager.SaveManager.Storage.TryGetChunk(pos, out var cData, out var dataType))
-                        {
-                            c = new Chunk(pos);
-                            c.SetData(cData, dataType);
-                        }
-
-                        if (c != null)
-                        {
-                            if (i >= _currentMin && i < _currentMax)
-                                ChangeSeason(c);
-
-                            ServerManager.SaveManager.Storage.SetChunk(pos, c);
-                        }
-
-                        if (i > _currentMax)
-                            break;
-
-                        i++;
-                    }
-
-                    _currentMax += CHUNKS_PER_CYCLE;
-                    _currentMin += CHUNKS_PER_CYCLE;
-
-                    if (_currentMax > ServerManager.SaveManager.Storage.Indices.Regions.Count)
-                    {
-                        _currentMax = CHUNKS_PER_CYCLE;
-                        _currentMin = 0;
-                    }
 
                     if (TimeCycle.TotalTime > _nextUpdate)
                     {
@@ -216,8 +246,7 @@ namespace Pandaros.Settlers.Seasons
                         else
                             _previousSesion = _nextSeason - 1;
 
-                        _currentMax = CHUNKS_PER_CYCLE;
-                        _currentMin = 0;
+                        _updatedChunks.Clear();
                         _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
                         PandaChat.SendToAll($"The season in now {CurrentSeason.Name}", ChatColor.olive, ChatStyle.bold);
                         PandaLogger.Log(ChatColor.olive, $"The season in now {CurrentSeason.Name}");
@@ -227,62 +256,30 @@ namespace Pandaros.Settlers.Seasons
                 {
                     PandaLogger.LogError(ex);
                 }
-
-                Thread.Sleep(CYCLE_SECONDS);
-            }
         }
 
-        private static void ChangeSeason(Chunk c)
+        private static ushort ChangeSeason(ref Chunk.DataIteration iteration, ref bool didChange)
         {
+            ushort retVal = iteration.DataType;
+
             try
             {
-                if (c.DataState != Chunk.ChunkDataState.DataFull)
-                    return;
-
-                var data = c.Data;
-                var didThing = false;
-                c.LockWriteData();
-
-                for (var d = 0; d < 4096; d++)
-                {
-                    var existingType = data[d];
-
-                    foreach (var type in BlockTypeRegistry.Mappings)
-                        if (type.Value.Contains(existingType) &&
-                            PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
-                            CurrentSeason.SeasonalBlocks[type.Key] != existingType)
-                        {
-                            var localPos = new Vector3Byte(d);
-
-                            data = data.Set(localPos, CurrentSeason.SeasonalBlocks[type.Key]);
-
-                            if (!didThing)
-                            {
-                                didThing = true;
-                                c.IsDirty = true;
-                            }
-
-                            using (ByteBuilder byteBuilder = ByteBuilder.Get())
-                            {
-                                byteBuilder.Write(General.Networking.ClientMessageType.BlockChange);
-                                byteBuilder.WriteVariable(localPos.ToWorld(c.Position));
-                                byteBuilder.WriteVariable(CurrentSeason.SeasonalBlocks[type.Key]);
-                                var dataArray = byteBuilder.ToArray();
-
-                                for (int index = 0; index < Players.CountConnected; ++index)
-                                    NetworkWrapper.Send(dataArray, Players.GetConnectedByIndex(index));
-                            }
-                            break;
-                        }
-                }
-
-                if (didThing)
-                    c.Data = data;
+                foreach (var type in BlockTypeRegistry.Mappings)
+                    if (type.Value.Contains(iteration.DataType) &&
+                        PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
+                        CurrentSeason.SeasonalBlocks[type.Key] != iteration.DataType)
+                    {
+                        retVal = CurrentSeason.SeasonalBlocks[type.Key];
+                        didChange = true;
+                        break;
+                    }
             }
-            finally
+            catch (Exception ex)
             {
-                c.UnlockWriteData();
+                PandaLogger.LogError(ex);
             }
+
+            return retVal;
         }
 
         public static void AddSeason(ISeason season)
