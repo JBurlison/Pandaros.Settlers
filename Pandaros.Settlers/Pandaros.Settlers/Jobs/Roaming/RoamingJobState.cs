@@ -12,14 +12,14 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public const float DEFAULT_MAX = 1f;
         private static readonly Random _rand = new Random();
         
-        public RoamingJobState(Vector3Int pos, Players.Player owner, string machineType, IRoamingJobObjective settings = null)
+        public RoamingJobState(Vector3Int pos, Players.Player owner, string objectiveType, IRoamingJobObjective settings = null)
         {
             Position    = pos;
-            RoamObjective = machineType;
+            RoamObjective = objectiveType;
             Owner       = owner;
 
             if (settings == null)
-                RoamingJobSettings = RoamingJobManager.GetCallbacks(machineType);
+                RoamingJobSettings = RoamingJobManager.GetCallbacks(objectiveType);
             else
                 RoamingJobSettings = settings;
 
@@ -162,7 +162,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 actionLoadNode.SetAs(kvp.Key.ToString(), kvp.Value);
 
             baseNode.SetAs(nameof(ActionEnergy), actionLoadNode);
-            baseNode.SetAs(nameof(RoamObjective), RoamObjective); //MachineType
+            baseNode.SetAs(nameof(RoamObjective), RoamObjective);
 
             return baseNode;
         }

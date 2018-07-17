@@ -148,7 +148,10 @@ namespace Pandaros.Settlers.Extender
 
             if (categories.Count != 0)
                 node.SetAs(nameof(categories), categories.ToJsonNode());
-            
+
+#if DEBUG
+            PandaLogger.Log(node.ToString());
+#endif
             return node;    
         }
     }

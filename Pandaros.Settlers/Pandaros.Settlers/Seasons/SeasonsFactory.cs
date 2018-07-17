@@ -150,8 +150,6 @@ namespace Pandaros.Settlers.Seasons
             var timeToMidNight = TimeCycle.NightLength / 2;
             _midDay = TimeCycle.SunRise + timeToMidDay;
             _midNight = TimeCycle.SunSet + timeToMidNight;
-            ChunkUpdating.PlayerLoadedMaxRange = ChunkUpdating.PlayerLoadedMaxRange * 3;
-            ChunkUpdating.PlayerLoadedMinRange = ChunkUpdating.PlayerLoadedMaxRange;
 
             _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
         }
@@ -232,6 +230,7 @@ namespace Pandaros.Settlers.Seasons
                 {
                     _tempUpdate = Time.SecondsSinceStartDouble + 10;
                     Temperature = GetTemprature();
+                    PandaLogger.Log("Temperature: " + Temperature);
 
                     if (TimeCycle.TotalTime > _nextUpdate)
                     {

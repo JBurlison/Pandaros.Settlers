@@ -130,7 +130,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             }
 
             // if the objective is gone, Abort.
-            CheckIfValidMachine();
+            CheckIfValidObjective();
 
             if (OkStatus.Contains(status))
                 _stuckCount = 0;
@@ -163,7 +163,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             state.SetCooldown(cooldown);
         }
 
-        private void CheckIfValidMachine()
+        private void CheckIfValidObjective()
         {
             if (TargetObjective != null && !TargetObjective.PositionIsValid())
             {

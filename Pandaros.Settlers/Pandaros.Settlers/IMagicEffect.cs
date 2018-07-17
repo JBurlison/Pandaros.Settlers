@@ -7,8 +7,6 @@ namespace Pandaros.Settlers
     {
         float HPBoost { get; }
         float HPTickRegen { get; }
-        float CraftingSpeed { get; }
-        float MovementSpeed { get; }
         void Update();
     }
 }

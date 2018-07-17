@@ -28,10 +28,6 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public float HPTickRegen => 0;
 
-        public float CraftingSpeed => 0;
-
-        public float MovementSpeed => 0;
-
         public float MissChance => 0;
 
         public DamageType ElementalArmor => DamageType.Physical;

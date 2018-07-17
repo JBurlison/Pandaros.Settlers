@@ -1,4 +1,5 @@
 ﻿using BlockTypes.Builtin;
+using General.Networking;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Managers;
@@ -25,8 +26,9 @@ namespace Pandaros.Settlers.Entities
             SetupArmor();
 
             HealingOverTimePC.NewInstance += HealingOverTimePC_NewInstance;
+            _playerVariables = JSON.Deserialize("gamedata/settings/serverperclient.json");
         }
-
+        public JSONNode _playerVariables = new JSONNode();
         public Random Rand { get; set; }
         public int FaiedBossSpawns { get; set; }
 
@@ -148,17 +150,46 @@ namespace Pandaros.Settlers.Entities
         {
             var state = sender as ItemState;
 
-            // TODO
+            if (state != null && 
+                ArmorFactory.ArmorLookup.TryGetValue(state.Id, out var armor))
+            {
+                if (armor.HPBoost != 0)
+                {
+                    var tempVal = Player.GetTempValues(true);
+                    tempVal.Set("pipliz.healthmax", tempVal.GetOrDefault<float>("pipliz.healthmax", 100) + armor.HPBoost);
+                }
+            }
+
+
+            UpdatePlayerVariables();
         }
 
         private void Weapon_IdChanged(object sender, ItemStateChangedEventArgs e)
         {
             var state = sender as ItemState;
 
+
+            UpdatePlayerVariables();
         }
 
         private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
         {
+
+           
+        }
+
+        private void UpdatePlayerVariables()
+        {
+            using (ByteBuilder bRaw = ByteBuilder.Get())
+            {
+                bRaw.Write(ClientMessageType.ReceiveServerPerClientSettings);
+                using (ByteBuilder b = ByteBuilder.Get())
+                {
+                    b.Write(_playerVariables.ToString());
+                    bRaw.WriteCompressed(b);
+                }
+                NetworkWrapper.Send(bRaw.ToArray(), Player.ID);
+            }
             
         }
 
