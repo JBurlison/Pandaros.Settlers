@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.AI
         public static float SpawnChance(Players.Player p, Colony c, PlayerState state)
         {
             var chance        = .3f;
-            var remainingBeds = BedBlockTracker.GetCount(p) - c.FollowerCount;
+            var remainingBeds = ServerManager.BlockEntityCallbacks.BedTracker.GetCount(p) - c.FollowerCount;
 
             if (remainingBeds < 1)
                 chance -= 0.1f;

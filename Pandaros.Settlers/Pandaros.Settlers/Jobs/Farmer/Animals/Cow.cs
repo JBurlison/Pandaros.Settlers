@@ -1,11 +1,6 @@
 ﻿using Pandaros.Settlers.Extender;
-using Pipliz.JSON;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Jobs.Farmer.Animals
 {
@@ -16,7 +11,7 @@ namespace Pandaros.Settlers.Jobs.Farmer.Animals
         public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "cow.png";
     }
 
-    public class Cow : CSType, ICSRecipe
+    public class Cow : CSType, ICSRecipe, AI.IAnimal
     {
         public override string Name => GameLoader.NAMESPACE + ".Cow";
         public override string icon => GameLoader.ICON_PATH + "cow.png";
@@ -38,5 +33,9 @@ namespace Pandaros.Settlers.Jobs.Farmer.Animals
         public override string sideall => "SELF";
         public override string mesh => GameLoader.MESH_PATH + "cow.ply";
         public string Job => "pipliz.merchant";
+
+        public double RoamUpdate => 0;
+
+        public int RoamRange => 3;
     }
 }

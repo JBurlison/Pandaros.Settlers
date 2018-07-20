@@ -775,7 +775,7 @@ namespace Pandaros.Settlers.Managers
                     {
                         var colony        = Colony.Get(p);
                         var state         = PlayerState.GetPlayerState(p);
-                        var remainingBeds = BedBlockTracker.GetCount(p) - colony.FollowerCount;
+                        var remainingBeds = ServerManager.BlockEntityCallbacks.BedTracker.GetCount(p) - colony.FollowerCount;
                         var left          = 0;
 
                         if (remainingBeds >= 0)
