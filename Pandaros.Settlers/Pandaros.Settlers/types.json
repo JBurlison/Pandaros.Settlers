@@ -2963,28 +2963,34 @@
       "useHeightMap": true
     }
   },
-  "marbleslableft": {
+  "Pandaros.Settlers.AutoLoad.marbleslableft": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
+    "sideall": "SELF",
     "mesh": "./Meshes/slableft.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabright": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
+    "sideall": "SELF",
     "mesh": "./Meshes/slabright.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabfront": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
+    "sideall": "SELF",
     "mesh": "./Meshes/slabfront.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
+    "sideall": "SELF",
     "mesh": "./Meshes/slabback.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
+    "sideall": "SELF",
     "mesh": "./Meshes/slabbottom.obj"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
+    "sideall": "SELF",
     "mesh": "./Meshes/slabtop.obj"
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslab": {
