@@ -269,10 +269,7 @@ namespace Pandaros.Settlers
 
                     if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out var otherIndex))
                     {
-                        var position = userData.Position;
-
-                        ThreadManager
-                           .InvokeOnMainThread(delegate { ServerManager.TryChangeBlock(position, otherIndex); }, 0.1f);
+                        userData.TypeNew = otherIndex;
                     }
                 }
             }
