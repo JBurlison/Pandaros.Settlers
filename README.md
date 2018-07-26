@@ -15,3 +15,5 @@ Head on over to [Releases](https://github.com/JBurlison/Pandaros.Settlers/releas
 unzip into mods folder in Steam\steamapps\common\Colony Survival\gamedata\mods\
 
 The mod should be in \Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\
+
+You can also use the [Mod Manager](https://steamcommunity.com/app/366090/discussions/8/1700541698701730951/)

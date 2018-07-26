@@ -1061,37 +1061,37 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/berrybush.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabbottom": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/leavesTaiga.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabtop": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/leavesTaiga.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslableft": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/leavesTaiga.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabright": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/leavesTaiga.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabfront": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/leavesTaiga.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabback": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/leavesTaiga.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
