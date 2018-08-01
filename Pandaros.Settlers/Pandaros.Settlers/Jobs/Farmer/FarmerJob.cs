@@ -8,5 +8,6 @@ namespace Pandaros.Settlers.Jobs.Farmer
 {
     class FarmerJob
     {
+        // TODO: Make roaming Job Farmer
     }
 }

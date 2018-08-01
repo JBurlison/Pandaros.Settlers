@@ -232,6 +232,7 @@ namespace Pandaros.Settlers.Seasons
                     Temperature = GetTemprature();
                     PandaLogger.Log("Temperature: " + Temperature);
 
+                    // TODO: Change Based on Biome
                     if (TimeCycle.TotalTime > _nextUpdate)
                     {
                         _currentSeason = _nextSeason;
@@ -338,6 +339,11 @@ namespace Pandaros.Settlers.Seasons
             PandaLogger.Log(ChatColor.lime, sb.ToString());
         }
 
+        // TODO: Fix midnight and noon temps.
+        /// <summary>
+        ///     Get temp based on time of day. The closer to noon the hotter, The closer to midnight the cooler.
+        /// </summary>
+        /// <returns></returns>
         private static double GetTemprature()
         {
             double retVal = 75;

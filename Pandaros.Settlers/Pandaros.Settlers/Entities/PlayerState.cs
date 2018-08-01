@@ -149,6 +149,7 @@ namespace Pandaros.Settlers.Entities
         private void ArmorState_IdChanged(object sender, ItemStateChangedEventArgs e)
         {
             var state = sender as ItemState;
+            // TODO: handle new magic items, update _playerVariables
 
             if (state != null && 
                 ArmorFactory.ArmorLookup.TryGetValue(state.Id, out var armor))
@@ -167,15 +168,15 @@ namespace Pandaros.Settlers.Entities
         private void Weapon_IdChanged(object sender, ItemStateChangedEventArgs e)
         {
             var state = sender as ItemState;
-
+            // TODO: handle new magic items, update _playerVariables
 
             UpdatePlayerVariables();
         }
 
         private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
         {
+            // TODO: handle new magic items, update _playerVariables
 
-           
         }
 
         private void UpdatePlayerVariables()

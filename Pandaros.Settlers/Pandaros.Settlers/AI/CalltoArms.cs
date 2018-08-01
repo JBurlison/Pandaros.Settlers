@@ -19,6 +19,7 @@ using Physics = General.Physics.Physics;
 
 namespace Pandaros.Settlers.AI
 {
+    // TODO Fix this make it work differently 
     [ModLoader.ModManager]
     public class CalltoArmsJob : Job
     {

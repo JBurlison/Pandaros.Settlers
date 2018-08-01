@@ -9,6 +9,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Stats
 {
+    // TODO: More stats?
     [ModLoader.ModManager]
     public static class StatsCache
     {

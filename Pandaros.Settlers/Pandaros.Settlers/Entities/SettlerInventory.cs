@@ -29,9 +29,6 @@ namespace Pandaros.Settlers.Entities
                 baseNode.TryGetAs<string>(nameof(SettlerName), out var name);
                 SettlerName = name;
 
-                if (baseNode.TryGetAs<double>(nameof(Happyness), out var happy))
-                    Happyness = happy;
-
                 if (baseNode.TryGetAs(nameof(JobSkills), out JSONNode skills))
                     foreach (var skill in skills.LoopObject())
                         JobSkills[skill.Key] = skill.Value.GetAs<float>();
@@ -52,8 +49,6 @@ namespace Pandaros.Settlers.Entities
         public NPCBase NPC { get; private set; }
 
         public string SettlerName { get; set; }
-
-        public double Happyness { get; set; } = 1;
 
         public Dictionary<string, float> JobSkills { get; set; } = new Dictionary<string, float>();
 
@@ -96,7 +91,6 @@ namespace Pandaros.Settlers.Entities
 
             baseNode[nameof(SettlerId)]   = new JSONNode(SettlerId);
             baseNode[nameof(SettlerName)] = new JSONNode(SettlerName);
-            baseNode[nameof(Happyness)]   = new JSONNode(Happyness);
 
             var skills = new JSONNode();
 

@@ -3,6 +3,7 @@ using BlockTypes.Builtin;
 
 namespace Pandaros.Settlers.Seasons
 {
+    // TODO: add biome specific blocks for each season
     public static class BlockTypeRegistry
     {
         public const string GRASS = "Grass";

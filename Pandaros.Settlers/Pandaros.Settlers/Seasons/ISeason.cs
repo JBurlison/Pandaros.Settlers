@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Seasons
 {
+    // TODO: Support for biomes
     public interface ISeason : INameable
     {
         Dictionary<string, ushort> SeasonalBlocks { get; }
