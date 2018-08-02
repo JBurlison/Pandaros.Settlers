@@ -149,7 +149,7 @@ namespace Pandaros.Settlers.Entities
         private void ArmorState_IdChanged(object sender, ItemStateChangedEventArgs e)
         {
             var state = sender as ItemState;
-            // TODO: handle new magic items, update _playerVariables
+            RecaclculateMagicItems();
 
             if (state != null && 
                 ArmorFactory.ArmorLookup.TryGetValue(state.Id, out var armor))
@@ -180,9 +180,13 @@ namespace Pandaros.Settlers.Entities
                 AddMagicEffect(playerWep);
             }
 
-            foreach (var arm in Armor)
+            foreach(var arm in Armor)
             {
-
+                if(ArmorFactory.ArmorLookup.TryGetValue(arm.Value.Id, out var armor) &&
+                    armor is IPlayerMagicItem playerArmor)
+                {
+                    AddMagicEffect(playerArmor);
+                }
             }
 
             UpdatePlayerVariables();
@@ -195,6 +199,13 @@ namespace Pandaros.Settlers.Entities
 
         private void AddMagicEffect(IPlayerMagicItem playerMagicItem)
         {
+            _playerVariables.SetAs("MovementSpeed", _playerVariables.GetAs<float>("MovementSpeed") + playerMagicItem.MovementSpeed);
+            _playerVariables.SetAs("JumpPower", _playerVariables.GetAs<float>("JumpPower") + playerMagicItem.JumpPower);
+            _playerVariables.SetAs("FlySpeed", _playerVariables.GetAs<float>("FlySpeed") + playerMagicItem.FlySpeed);
+            _playerVariables.SetAs("MoveSpeed", _playerVariables.GetAs<float>("MoveSpeed") + playerMagicItem.MoveSpeed);
+            _playerVariables.SetAs("LightRange", _playerVariables.GetAs<float>("LightRange") + playerMagicItem.MovementSpeed);
+            _playerVariables.SetAs("FallDamage", _playerVariables.GetAs<float>("FallDamage") + playerMagicItem.FallDamage);
+            _playerVariables.SetAs("FallDamagePerUnit", _playerVariables.GetAs<float>("FallDamagePerUnit") + playerMagicItem.FallDamagePerUnit);
             _playerVariables.SetAs("BuildDistance", _playerVariables.GetAs<float>("BuildDistance") + playerMagicItem.BuildDistance);
         }
 
@@ -202,8 +213,7 @@ namespace Pandaros.Settlers.Entities
 
         private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
         {
-            // TODO: handle new magic items, update _playerVariables
-            
+            RecaclculateMagicItems();
         }
 
         private void UpdatePlayerVariables()
