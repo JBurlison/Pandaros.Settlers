@@ -167,16 +167,43 @@ namespace Pandaros.Settlers.Entities
 
         private void Weapon_IdChanged(object sender, ItemStateChangedEventArgs e)
         {
-            var state = sender as ItemState;
-            // TODO: handle new magic items, update _playerVariables
+            RecaclculateMagicItems();
+        }
+
+        private void RecaclculateMagicItems()
+        {
+            ResetPlayerVars();
+
+            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(Weapon.Id, out Items.Weapons.IWeapon wep) &&
+                            wep is IPlayerMagicItem playerWep)
+            {
+                AddMagicEffect(playerWep);
+            }
+
+            foreach (var arm in Armor)
+            {
+
+            }
 
             UpdatePlayerVariables();
         }
 
+        private void ResetPlayerVars()
+        {
+            _playerVariables = JSON.Deserialize("gamedata/settings/serverperclient.json");
+        }
+
+        private void AddMagicEffect(IPlayerMagicItem playerMagicItem)
+        {
+            _playerVariables.SetAs("BuildDistance", _playerVariables.GetAs<float>("BuildDistance") + playerMagicItem.BuildDistance);
+        }
+
+
+
         private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
         {
             // TODO: handle new magic items, update _playerVariables
-
+            
         }
 
         private void UpdatePlayerVariables()

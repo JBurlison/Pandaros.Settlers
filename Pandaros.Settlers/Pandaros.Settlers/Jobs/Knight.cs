@@ -310,7 +310,7 @@ namespace Pandaros.Settlers.Jobs
                     if (hasItem)
                         bestWeapon = WeaponFactory.WeaponLookup[_inv.Weapon.Id];
 
-                    foreach (var wep in WeaponFactory.WeaponLookup.Values)
+                    foreach (var wep in WeaponFactory.WeaponLookup.Values.Where(w => w as IPlayerMagicItem == null))
                         if (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null ||
                             _stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null &&
                             bestWeapon.Damage.TotalDamage() < wep.Damage.TotalDamage())
