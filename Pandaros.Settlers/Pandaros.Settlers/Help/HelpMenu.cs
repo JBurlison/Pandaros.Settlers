@@ -1,11 +1,9 @@
 ﻿using NetworkUI;
-using Pandaros.Settlers.Extender;
+using Pandaros.Settlers.Items;
 using Pipliz;
 using Shared;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Help
 {

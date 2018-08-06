@@ -300,13 +300,14 @@ namespace Pandaros.Settlers.Managers
             {
                 var stockpile = Stockpile.GetStockPile(rewardMonster.OriginalGoal);
 
-                foreach (var reward in rewardMonster.KillRewards)
-                {
-                    stockpile.Add(reward.Key, reward.Value);
+                // TODO
+                //foreach (var reward in rewardMonster.KillRewards)
+                //{
+                //    stockpile.Add(reward.Key, reward.Value);
 
-                    if (ItemTypes.TryGetType(reward.Key, out var item))
-                        PandaChat.Send(rewardMonster.OriginalGoal, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
-                }
+                //    if (ItemTypes.TryGetType(reward.Key, out var item))
+                //        PandaChat.Send(rewardMonster.OriginalGoal, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
+                //}
             }
         }
 

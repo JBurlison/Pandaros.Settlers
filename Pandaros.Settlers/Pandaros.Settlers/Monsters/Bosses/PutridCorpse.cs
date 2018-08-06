@@ -15,12 +15,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse";
         private static NPCTypeMonsterSettings _mts;
-
-        private static readonly Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>
-        {
-            {Mana.Item.ItemIndex, 10}
-        };
-
         private int _nextBossUpdateTime = int.MinValue;
         private readonly float _totalHealth = 20000;
 
@@ -64,7 +58,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public float ZombieMultiplier => 1f;
         public float ZombieHPBonus => 20;
-        public Dictionary<ushort, int> KillRewards => REWARDS;
+        public string LootTableName => BossLoot.LootTableName;
 
         public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
         {

@@ -114,6 +114,7 @@ namespace Pandaros.Settlers.Extender
                                     if (constructor != null)
                                         e.LoadedAssembalies.Add(type);
                                 }
+
                         foreach (var e in _settlersExtensions)
                             if (e.ClassType != null && type.Equals(e.ClassType))
                                 e.LoadedAssembalies.Add(type);

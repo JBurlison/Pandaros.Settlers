@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Pipliz.JSON;
 
-namespace Pandaros.Settlers.Extender
+namespace Pandaros.Settlers.Items
 {
     public class OnRemove : IJsonConvertable
     {

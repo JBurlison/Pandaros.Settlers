@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Extender
+namespace Pandaros.Settlers.Items
 {
     public abstract class CSType : ICSType
     {
@@ -45,6 +45,7 @@ namespace Pandaros.Settlers.Extender
         public virtual bool? blocksPathing => isSolid;
         public virtual ReadOnlyCollection<Colliders> colliders { get; } = new ReadOnlyCollection<Colliders>(new List<Colliders>());
         public virtual ReadOnlyCollection<string> categories { get; } = new ReadOnlyCollection<string>(new List<string>());
+        public virtual ItemRarity Rarity { get; } = ItemRarity.Artifact;
 
         public virtual JSONNode ToJsonNode()
         {
@@ -148,6 +149,8 @@ namespace Pandaros.Settlers.Extender
 
             if (categories.Count != 0)
                 node.SetAs(nameof(categories), categories.ToJsonNode());
+
+            node.SetAs(nameof(Rarity), Rarity);
 
 #if DEBUG
             PandaLogger.Log(node.ToString());

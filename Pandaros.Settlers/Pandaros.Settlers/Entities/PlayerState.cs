@@ -209,8 +209,6 @@ namespace Pandaros.Settlers.Entities
             _playerVariables.SetAs("BuildDistance", _playerVariables.GetAs<float>("BuildDistance") + playerMagicItem.BuildDistance);
         }
 
-
-
         private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
         {
             RecaclculateMagicItems();

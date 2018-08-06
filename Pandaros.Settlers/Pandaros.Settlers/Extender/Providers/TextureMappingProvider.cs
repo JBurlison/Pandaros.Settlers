@@ -1,6 +1,4 @@
-﻿using Pandaros.Settlers.Managers;
-using Pandaros.Settlers.Monsters.Bosses;
-using Pandaros.Settlers.Seasons;
+﻿using Pandaros.Settlers.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;

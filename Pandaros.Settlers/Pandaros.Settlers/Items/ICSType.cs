@@ -2,8 +2,16 @@
 using Pipliz.JSON;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Extender
+namespace Pandaros.Settlers.Items
 {
+    public enum ItemRarity
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Artifact
+    }
+
     public interface ICSType : IJsonConvertable, INameable
     {
         bool? blocksPathing { get; }
@@ -40,5 +48,6 @@ namespace Pandaros.Settlers.Extender
         string sideyp { get; }
         string sidezn { get; }
         string sidezp { get; }
+        ItemRarity Rarity { get; }
     }
 }

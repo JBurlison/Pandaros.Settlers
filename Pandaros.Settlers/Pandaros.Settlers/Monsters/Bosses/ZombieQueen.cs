@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using NPC;
 using Pandaros.Settlers.Entities;
@@ -16,11 +17,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen";
         private static NPCTypeMonsterSettings _mts;
-
-        private static readonly Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>
-        {
-            {Mana.Item.ItemIndex, 10}
-        };
 
         private readonly float _totalHealth = 20000;
         private double _updateTime;
@@ -66,8 +62,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string DeathText => "I'll get you next time my pretties!";
 
-        public Dictionary<ushort, int> KillRewards => REWARDS;
-
         public float ZombieHPBonus => 0;
         public float MissChance => 0.05f;
 
@@ -80,6 +74,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public DamageType ElementalArmor => DamageType.Water;
 
         public Dictionary<DamageType, float> AdditionalResistance { get; } = new Dictionary<DamageType, float>();
+
+        public string LootTableName => BossLoot.LootTableName;
 
         public override bool Update()
         {

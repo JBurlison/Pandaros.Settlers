@@ -5,7 +5,7 @@ using System.Text;
 using Pipliz.JSON;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Extender
+namespace Pandaros.Settlers.Items
 {
     public class Colliders : IJsonConvertable
     {

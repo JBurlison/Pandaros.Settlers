@@ -13,12 +13,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieKing";
         private static NPCTypeMonsterSettings _mts;
-
-        private static readonly Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>
-        {
-            {Mana.Item.ItemIndex, 10}
-        };
-
         private readonly float _totalHealth = 20000;
 
         public ZombieKing() :
@@ -61,7 +55,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public float ZombieMultiplier => 1.0f;
         public float MissChance => 0.05f;
-        public Dictionary<ushort, int> KillRewards => REWARDS;
+        public string LootTableName => BossLoot.LootTableName;
         public float ZombieHPBonus => 50;
 
         public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
