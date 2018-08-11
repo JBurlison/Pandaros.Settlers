@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using AI;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pipliz.JSON;
-using Server.AI;
-using Server.NPCs;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -14,27 +12,29 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Hoarder";
         private static NPCTypeMonsterSettings _mts;
 
-        private readonly float _totalHealth = 20000;
+        private float _totalHealth = 20000;
 
         public Hoarder() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), GameLoader.StubColony)
         {
         }
 
-        public Hoarder(Path path, Players.Player originalGoal) :
+        public Hoarder(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var c  = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            originalGoal.ForEachOwner(o =>
+            {
+                var ps = PlayerState.GetPlayerState(o);
+                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
 
-            if (hp < _totalHealth)
-                _totalHealth = hp;
+                if (hp < _totalHealth)
+                    _totalHealth = hp;
 
-            health = _totalHealth;
+                health = _totalHealth;
+            });
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        public IPandaBoss GetNewBoss(Path path, Colony p)
         {
             return new Hoarder(path, p);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+using BlockTypes;
+using Recipes;
 
 namespace Pandaros.Settlers.Cosmetics
 {
@@ -11,23 +12,20 @@ namespace Pandaros.Settlers.Cosmetics
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             Register.AddCarpetTextures(KEY);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterAddingBaseTypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             Item = Register.AddCarpetTypeTypes(itemTypes, KEY);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterItemTypesDefined")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterItemTypesDefined")]
         public static void AfterItemTypesDefined()
         {
             var flax   = new InventoryItem(BuiltinBlocks.Flax, 1);

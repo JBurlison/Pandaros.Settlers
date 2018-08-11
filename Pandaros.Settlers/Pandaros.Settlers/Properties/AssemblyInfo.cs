@@ -9,14 +9,14 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Pandaros.Settlers")]
-[assembly: AssemblyCopyright("Copyright ©  2017 Jim Burlison")]
+[assembly: AssemblyCopyright("Copyright ©  2018 Jim Burlison")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
+[assembly: ComVisible(true)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("4fcbf9ce-32eb-41ea-a70c-774e11ca8818")]

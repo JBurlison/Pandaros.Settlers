@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NPC;
 using Pandaros.Settlers.Entities;
-using Server.Monsters;
+using System;
 
 namespace Pandaros.Settlers.Monsters
 {

@@ -1,4 +1,5 @@
-﻿using BlockTypes.Builtin;
+﻿using BlockTypes;
+using BlockTypes.Builtin;
 using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pipliz;
@@ -24,7 +25,7 @@ namespace Pandaros.Settlers.Managers
         
         private static double _nextUpdate;
 
-        public static Dictionary<Players.Player, Dictionary<Vector3Int, RoamingJobState>> Objectives { get; } = new Dictionary<Players.Player, Dictionary<Vector3Int, RoamingJobState>>();
+        public static Dictionary<Colony, Dictionary<Vector3Int, RoamingJobState>> Objectives { get; } = new Dictionary<Colony, Dictionary<Vector3Int, RoamingJobState>>();
 
         public static event EventHandler ObjectiveRemoved;
 
@@ -50,7 +51,7 @@ namespace Pandaros.Settlers.Managers
                 lock (Objectives)
                 {
                     foreach (var machine in Objectives)
-                        if (!machine.Key.IsConnected && Configuration.OfflineColonies || machine.Key.IsConnected)
+                        if (!machine.Key.OwnerIsOnline() && Configuration.OfflineColonies || machine.Key.OwnerIsOnline())
                             foreach (var state in machine.Value)
                                 try
                                 {
@@ -76,40 +77,40 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnLoadingPlayer")]
-        public static void OnLoadingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnLoadingColony")]
+        public static void OnLoadingColony(JSONNode n, Colony c)
         {
-            if (p.ID == null || p.ID.steamID == null || p.ID.type == NetworkID.IDType.Server)
+            if (c.ColonyID > -1)
                 return;
 
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Objectives", out var objectivesNode) || n.TryGetChild(GameLoader.NAMESPACE + ".Machines", out objectivesNode))
                 lock (Objectives)
                 {
                     foreach (var node in objectivesNode.LoopArray())
-                        RegisterRoamingJobState(p, new RoamingJobState(node, p));
+                        RegisterRoamingJobState(c, new RoamingJobState(node, c));
 
-                    if (Objectives.ContainsKey(p))
-                        PandaLogger.Log(ChatColor.lime, $"{Objectives[p].Count} objectives loaded from save for {p.ID.steamID.m_SteamID}!");
+                    if (Objectives.ContainsKey(c))
+                        PandaLogger.Log(ChatColor.lime, $"{Objectives[c].Count} objectives loaded from save for {c.ColonyID}!");
                     else
-                        PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {p.ID.steamID.m_SteamID}.");
+                        PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
                 }
             else
-                PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {p.ID.steamID.m_SteamID}.");
+                PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.PatrolTool.OnSavingPlayer")]
-        public static void OnSavingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.PatrolTool.OnSavingColony")]
+        public static void OnSavingColony(JSONNode n, Colony c)
         {
             lock (Objectives)
             {
-                if (Objectives.ContainsKey(p))
+                if (Objectives.ContainsKey(c))
                 {
                     if (n.HasChild(GameLoader.NAMESPACE + ".Objectives"))
                         n.RemoveChild(GameLoader.NAMESPACE + ".Objectives");
 
                     var objectiveNode = new JSONNode(NodeType.Array);
 
-                    foreach (var node in Objectives[p])
+                    foreach (var node in Objectives[c])
                         objectiveNode.AddToArray(node.Value.ToJsonNode());
 
                     n[GameLoader.NAMESPACE + ".Objectives"] = objectiveNode;
@@ -127,19 +128,19 @@ namespace Pandaros.Settlers.Managers
                 RemoveObjective(d.RequestedByPlayer, d.Position);
         }
 
-        public static void RemoveObjective(Players.Player p, Vector3Int pos, bool throwEvent = true)
+        public static void RemoveObjective(Colony c, Vector3Int pos, bool throwEvent = true)
         {
             lock (Objectives)
             {
-                if (!Objectives.ContainsKey(p))
-                    Objectives.Add(p, new Dictionary<Vector3Int, RoamingJobState>());
+                if (!Objectives.ContainsKey(c))
+                    Objectives.Add(c, new Dictionary<Vector3Int, RoamingJobState>());
 
 
-                if (Objectives[p].ContainsKey(pos))
+                if (Objectives[c].ContainsKey(pos))
                 {
-                    var mach = Objectives[p][pos];
+                    var mach = Objectives[c][pos];
 
-                    Objectives[p].Remove(pos);
+                    Objectives[c].Remove(pos);
 
                     if (throwEvent && ObjectiveRemoved != null)
                         ObjectiveRemoved(mach, new EventArgs());
@@ -147,18 +148,18 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        public static void RegisterRoamingJobState(Players.Player player, RoamingJobState state)
+        public static void RegisterRoamingJobState(Colony colony, RoamingJobState state)
         {
             lock (Objectives)
             {
-                if (!Objectives.ContainsKey(player))
-                    Objectives.Add(player, new Dictionary<Vector3Int, RoamingJobState>());
+                if (!Objectives.ContainsKey(colony))
+                    Objectives.Add(colony, new Dictionary<Vector3Int, RoamingJobState>());
 
-                Objectives[player][state.Position] = state;
+                Objectives[colony][state.Position] = state;
             }
         }
 
-        public static List<Vector3Int> GetClosestObjective(Vector3Int position, Players.Player owner, int maxDistance, string category)
+        public static List<Vector3Int> GetClosestObjective(Vector3Int position, Colony owner, int maxDistance, string category)
         {
             var closest = int.MaxValue;
             var retVal  = new List<Vector3Int>();

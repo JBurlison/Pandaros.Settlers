@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Chatting;
 using Pipliz;
-using Pipliz.Chatting;
 
 namespace Pandaros.Settlers
 {
@@ -62,7 +62,7 @@ namespace Pandaros.Settlers
 
         public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white,
                                         ChatStyle      style  = ChatStyle.normal,
-                                        ChatSenderType sender = ChatSenderType.Server)
+                                        EChatSendOptions sender = EChatSendOptions.Default)
         {
             if (CanSendMesssage(ply))
             {
@@ -81,25 +81,25 @@ namespace Pandaros.Settlers
 
         public static void Send(Players.Player ply, string message,
                                 ChatColor      color = ChatColor.white,
-                                ChatStyle      style = ChatStyle.normal, ChatSenderType sender = ChatSenderType.Server)
+                                ChatStyle      style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
         {
             var messageBuilt = BuildMessage(message, color, style);
             Chat.Send(ply, messageBuilt, sender);
         }
 
         public static void SendToAll(string    message,                  ChatColor      color  = ChatColor.white,
-                                     ChatStyle style = ChatStyle.normal, ChatSenderType sender = ChatSenderType.Server)
+                                     ChatStyle style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
         {
             var messageBuilt = BuildMessage(message, color, style);
-            Chat.SendToAll(messageBuilt, sender);
+            Chat.SendToConnected(messageBuilt, sender);
         }
 
         public static void SendToAllBut(Players.Player ply, string message, ChatColor color = ChatColor.white,
                                         ChatStyle      style  = ChatStyle.normal,
-                                        ChatSenderType sender = ChatSenderType.Server)
+                                        EChatSendOptions sender = EChatSendOptions.Default)
         {
             var messageBuilt = BuildMessage(message, color, style);
-            Chat.SendToAllBut(ply, messageBuilt, sender);
+            Chat.SendToConnectedBut(ply, messageBuilt, sender);
         }
 
 

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using AI;
 using NPC;
-using Pandaros.Settlers.Extender;
 using Pipliz;
 using Pipliz.JSON;
-using Server.AI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Random = System.Random;
 
 namespace Pandaros.Settlers
@@ -156,6 +154,23 @@ namespace Pandaros.Settlers
         {
             f = UnityEngine.Mathf.Clamp01(f);
             return (byte)(f * 255);
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            foreach (var item in source)
+                action(item);
+        }
+
+        public static void ForEachOwner(this Colony source, Action<Players.Player> action)
+        {
+            foreach (var item in source.Owners)
+                action(item);
+        }
+
+        public static bool OwnerIsOnline(this Colony source)
+        {
+            return source.Owners.Any(o => o.IsConnected);
         }
     }
 }

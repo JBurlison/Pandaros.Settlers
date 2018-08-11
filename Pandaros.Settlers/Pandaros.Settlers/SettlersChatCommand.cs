@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using ChatCommands;
+﻿using Chatting;
 using Pandaros.Settlers.Entities;
 using Pipliz;
 using Pipliz.JSON;
+using System;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers
 {
@@ -62,7 +62,6 @@ namespace Pandaros.Settlers
                 return true;
 
             var array          = CommandManager.SplitCommand(chat);
-            var colony         = Colony.Get(player);
             var state          = PlayerState.GetPlayerState(player);
             var maxToggleTimes = Configuration.GetorDefault("MaxSettlersToggle", 4);
 

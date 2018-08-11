@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ChatCommands;
+using Chatting;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz;
@@ -213,7 +214,6 @@ namespace Pandaros.Settlers
                 return true;
 
             var array = CommandManager.SplitCommand(chat);
-            var colony = Colony.Get(player);
             var state = PlayerState.GetPlayerState(player);
 
             if (array.Length == 1)

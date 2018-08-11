@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using ChatCommands;
+﻿using Chatting;
+using NPC;
 using Pandaros.Settlers.Entities;
 using Pipliz;
 using Pipliz.JSON;
-using Server.Monsters;
+using System;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Monsters
 {
@@ -59,7 +59,6 @@ namespace Pandaros.Settlers.Monsters
                 return true;
 
             var array  = CommandManager.SplitCommand(chat);
-            var colony = Colony.Get(player);
             var state  = PlayerState.GetPlayerState(player);
 
             if (array.Length == 1)

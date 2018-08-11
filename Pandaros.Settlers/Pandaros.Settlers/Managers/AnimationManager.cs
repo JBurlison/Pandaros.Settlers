@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MeshedObjects;
+using System;
 using System.Collections.Generic;
-using Server.MeshedObjects;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Managers

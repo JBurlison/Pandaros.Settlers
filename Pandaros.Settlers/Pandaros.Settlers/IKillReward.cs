@@ -5,7 +5,7 @@ namespace Pandaros.Settlers
 {
     public interface IKillReward
     {
-        Players.Player OriginalGoal { get; }
+        Colony OriginalGoal { get; }
         string LootTableName { get; }
     }
 }

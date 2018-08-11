@@ -1,11 +1,9 @@
-﻿using NPC;
+﻿using AI;
+using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
-using Server;
-using Server.AI;
-using Server.Monsters;
 using Shared;
 using System;
 using System.Collections.Generic;

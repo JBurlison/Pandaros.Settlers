@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BlockTypes.Builtin;
+﻿using BlockEntities;
+using BlockTypes;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.NPCs;
 using Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Jobs.Roaming
 {
@@ -24,12 +23,12 @@ namespace Pandaros.Settlers.Jobs.Roaming
         }
     }
 
-    public class RoamingJob : BlockJobBase, IBlockJobBase, INPCTypeDefiner
+    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntity, IBlockEntityKeepLoaded, IBlockEntityOnRemove, ILoadedWithDataByPositionType
     {
         protected float cooldown = 2f;
         private const float COOLDOWN = 3f;
         private int _stuckCount;
-        private Vector3Int originalPosition;
+        private Vector3Int _originalPosition;
 
         public virtual List<uint> OkStatus { get; } = new List<uint>();
         public RoamingJobState TargetObjective { get; set; }
@@ -38,39 +37,41 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public virtual string JobItemKey => null;
         public virtual List<string> ObjectiveCategories => new List<string>();
 
-        public ITrackableBlock InitializeOnAdd(Vector3Int position, ushort type, Players.Player player)
-        {
-            originalPosition = position;
-            InitializeJob(player, position, 0);
-            return this;
-        }
+        public Colony Owner { get; private set; }
+
+        public bool NeedsNPC { get; private set; }
+
+        public InventoryItem RecruitmentItem { get; private set; }
+
+        public NPCBase NPC { get; private set; }
+
+        public NPCType NPCType { get; private set; }
+
+        public bool IsValid { get; private set; }
 
         public virtual NPCTypeStandardSettings GetNPCTypeDefinition()
         {
             throw new NotImplementedException();
         }
 
-        public override ITrackableBlock InitializeFromJSON(Players.Player player, JSONNode node)
+        public virtual ESerializeEntityResult SerializeToBytes(Vector3Int blockPosition, ByteBuilder builder)
         {
-            originalPosition = (Vector3Int) node[nameof(originalPosition)];
-            InitializeJob(player, (Vector3Int) node["position"], node.GetAs<int>("npcID"));
-            return this;
+            
+            return base.GetJSON().SetAs(nameof(_originalPosition), (JSONNode)_originalPosition); ;
         }
 
-        public override JSONNode GetJSON()
+        public virtual void OnLoadedWithDataPosition(Vector3Int blockPosition, ushort type, ByteReader reader)
         {
-            return base.GetJSON().SetAs(nameof(originalPosition), (JSONNode) originalPosition);
+            _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
         }
 
-        public override Vector3Int GetJobLocation()
+        public virtual Vector3Int GetJobLocation()
         {
-            var pos = originalPosition;
+            var pos = _originalPosition;
 
             if (TargetObjective == null)
             {
-                var ps = PlayerState.GetPlayerState(Owner);
-
-                if (RoamingJobManager.Objectives.ContainsKey(owner))
+                if (RoamingJobManager.Objectives.ContainsKey(Owner))
                     foreach (var objective in RoamingJobManager
                                            .Objectives[Owner].Values
                                            .Where(m => m.JobRef == null && ObjectiveCategories.Contains(m.RoamingJobSettings.ObjectiveCategory)))
@@ -86,7 +87,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                     TargetObjective = objective;
                                     TargetObjective.JobRef = this;
 
-                                    pos = TargetObjective.Position.GetClosestPositionWithinY(usedNPC.Position, 5);
+                                    pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
                                     break;
                                 }
                             }
@@ -94,21 +95,21 @@ namespace Pandaros.Settlers.Jobs.Roaming
             }
             else
             {
-                pos = TargetObjective.Position.GetClosestPositionWithinY(usedNPC.Position, 5);
+                pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
             }
 
             return pos;
         }
 
-        public override void OnNPCAtJob(ref NPCBase.NPCState state)
+        public void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             var status        = GameLoader.Waiting_Icon;
             var cooldown      = COOLDOWN;
             var allActionsComplete = false;
 
-            if (TargetObjective != null && usedNPC != null)
+            if (TargetObjective != null && NPC != null)
             {
-                usedNPC.LookAt(TargetObjective.Position.Vector);
+                NPC.LookAt(TargetObjective.Position.Vector);
                 bool actionFound = false;
 
                 foreach (var action in new Dictionary<string, float>(TargetObjective.ActionEnergy))
@@ -172,9 +173,31 @@ namespace Pandaros.Settlers.Jobs.Roaming
             }
         }
 
-        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
+        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             return NPCBase.NPCGoal.Job;
         }
+
+        public void SetNPC(NPCBase npc)
+        {
+            NPC = npc;
+        }
+
+        public void OnNPCAtStockpile(ref NPCBase.NPCState state)
+        {
+            
+        }
+     
+        public EKeepChunkLoadedResult OnKeepChunkLoaded(Vector3Int blockPosition)
+        {
+            return EKeepChunkLoadedResult.YesLong;
+        }
+
+        public void OnRemove(Vector3Int blockPosition)
+        {
+            
+        }
+
+        
     }
 }

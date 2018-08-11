@@ -449,7 +449,7 @@ namespace Pandaros.Settlers.Items.Machines
             if (machineState != null &&
                 machineState.RoamObjective == nameof(TeleportPad))
             {
-                var ps = PlayerState.GetPlayerState(machineState.Owner);
+                var ps = PlayerState.GetPlayerState(machineState.Colony);
 
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var paired))
@@ -460,12 +460,12 @@ namespace Pandaros.Settlers.Items.Machines
                     if (_paired.ContainsKey(paired.Position))
                         _paired.Remove(paired.Position);
 
-                    RoamingJobManager.RemoveObjective(machineState.Owner, paired.Position, false);
+                    RoamingJobManager.RemoveObjective(machineState.Colony, paired.Position, false);
                     ServerManager.TryChangeBlock(paired.Position, BuiltinBlocks.Air);
 
-                    if (!Inventory.GetInventory(machineState.Owner).TryAdd(Item.ItemIndex))
+                    if (!Inventory.GetInventory(machineState.Colony).TryAdd(Item.ItemIndex))
                     {
-                        var stockpile = Stockpile.GetStockPile(machineState.Owner);
+                        var stockpile = Stockpile.GetStockPile(machineState.Colony);
                         stockpile.Add(Item.ItemIndex);
                     }
                 }

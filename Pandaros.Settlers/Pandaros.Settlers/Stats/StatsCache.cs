@@ -1,11 +1,8 @@
-﻿using BlockTypes.Builtin;
+﻿using BlockTypes;
 using NetworkUI;
 using NetworkUI.Items;
 using Pandaros.Settlers.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Stats
 {
@@ -49,9 +46,9 @@ namespace Pandaros.Settlers.Stats
 
             if (ps != null)
             {
-                if (d.TypeNew != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeNew, out var item))
+                if (d.TypeNew.ItemIndex != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeNew.ItemIndex, out var item))
                 {
-                    ushort itemId = GetParentId(d.TypeNew, item);
+                    ushort itemId = GetParentId(d.TypeNew.ItemIndex, item);
 
                     if (!ps.ItemsPlaced.ContainsKey(itemId))
                         ps.ItemsPlaced.Add(itemId, 0);
@@ -63,9 +60,9 @@ namespace Pandaros.Settlers.Stats
                     ps.ItemsInWorld[itemId]++;
                 }
 
-                if (d.TypeNew == BuiltinBlocks.Air && d.TypeOld != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeOld, out var itemOld))
+                if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.TypeOld.ItemIndex != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeOld.ItemIndex, out var itemOld))
                 {
-                    ushort itemId = GetParentId(d.TypeOld, itemOld);
+                    ushort itemId = GetParentId(d.TypeOld.ItemIndex, itemOld);
 
                     if (!ps.ItemsRemoved.ContainsKey(itemId))
                         ps.ItemsRemoved.Add(itemId, 0);

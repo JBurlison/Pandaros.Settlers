@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BlockTypes.Builtin;
-using ChatCommands;
+﻿using BlockTypes;
+using Chatting;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Temperature;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using static Pandaros.Settlers.Entities.SettlerInventory;
 
 namespace Pandaros.Settlers.Items.Armor
@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.Items.Armor
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            var colony = Colony.Get(player);
+            var colony = player.ActiveColony;
             var counts = new Dictionary<string, Dictionary<ArmorFactory.ArmorSlot, int>>();
             foreach (var npc in colony.Followers)
             {
@@ -122,9 +122,9 @@ namespace Pandaros.Settlers.Items.Armor
             {
                 foreach (var p in Players.PlayerDatabase.Values)
                 {
-                    var colony = Colony.Get(p);
+                    var colony = p.ActiveColony;
                     var state = PlayerState.GetPlayerState(p);
-                    var stockpile = Stockpile.GetStockPile(p);
+                    var stockpile = colony.Stockpile;
 
                     /// Load up player first.
                     foreach (ArmorSlot slot in ArmorSlotEnum)
@@ -224,7 +224,7 @@ namespace Pandaros.Settlers.Items.Armor
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData box)
         {
             var state = PlayerState.GetPlayerState(player);
-            DeductArmor(box, state.Armor, player, "Your");
+            DeductArmor(box, state.Armor);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
@@ -232,11 +232,10 @@ namespace Pandaros.Settlers.Items.Armor
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
         {
             var inv = GetSettlerInventory(npc);
-            DeductArmor(box, inv.Armor, npc.Colony.Owner, inv.SettlerName);
+            DeductArmor(box, inv.Armor);
         }
 
-        private static void DeductArmor(ModLoader.OnHitData box, EventedDictionary<ArmorSlot, ItemState> entityArmor,
-                                        Players.Player player, string name)
+        private static void DeductArmor(ModLoader.OnHitData box, EventedDictionary<ArmorSlot, ItemState> entityArmor)
         {
             if (box.ResultDamage > 0)
             {
@@ -283,10 +282,6 @@ namespace Pandaros.Settlers.Items.Armor
                             {
                                 entityArmor[loc.Key].Durability = 0;
                                 entityArmor[loc.Key].Id = default(ushort);
-
-                                PandaChat.Send(player,
-                                               $"{name} {loc.Key} broke! If you have a spare one it will be automatically equipt within 30 seconds.",
-                                               ChatColor.white);
                             }
 
                             break;
@@ -511,7 +506,7 @@ namespace Pandaros.Settlers.Items.Armor
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5, false, -100);
 
-                RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
+                ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
             }
         }
 

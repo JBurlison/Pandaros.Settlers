@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using AI;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pipliz;
 using Pipliz.JSON;
-using Server.AI;
-using Server.Monsters;
-using Server.NPCs;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -18,28 +14,30 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen";
         private static NPCTypeMonsterSettings _mts;
 
-        private readonly float _totalHealth = 20000;
+        private float _totalHealth = 20000;
         private double _updateTime;
 
         public ZombieQueen() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), GameLoader.StubColony)
         {
         }
 
-        public ZombieQueen(Path path, Players.Player originalGoal) :
+        public ZombieQueen(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var c  = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            originalGoal.ForEachOwner(o =>
+            {
+                var ps = PlayerState.GetPlayerState(o);
+                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
 
-            if (hp < _totalHealth)
-                _totalHealth = hp;
+                if (hp < _totalHealth)
+                    _totalHealth = hp;
 
-            health = _totalHealth;
+                health = _totalHealth;
+            });
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        public IPandaBoss GetNewBoss(Path path, Colony p)
         {
             return new ZombieQueen(path, p);
         }
@@ -83,13 +81,29 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
             if (_updateTime < Time.SecondsSinceStartDouble)
             {
-                var ps                = PlayerState.GetPlayerState(OriginalGoal);
-                var c                 = Colony.Get(ps.Player);
+                var rank = 1;
+                var cooldown = 30f;
+                var teleportHP = 100f;
+
                 var alreadyTeleported = new List<IMonster>();
 
-                for (var i = 0; i < ps.Difficulty.Rank - 1; i++)
+                OriginalGoal.ForEachOwner(o =>
                 {
-                    var monster = MonsterTracker.Find(position, 20, ps.Difficulty.ZombieQueenTargetTeleportHp);
+                    var ps = PlayerState.GetPlayerState(o);
+
+                    if (ps.Difficulty.Rank > rank)
+                        rank = ps.Difficulty.Rank;
+
+                    if (ps.Difficulty.ZombieQueenTargetTeleportHp > teleportHP)
+                        teleportHP = ps.Difficulty.ZombieQueenTargetTeleportHp;
+
+                    if (cooldown > ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds)
+                        cooldown = ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
+                });
+
+                for (var i = 0; i < rank - 1; i++)
+                {
+                    var monster = MonsterTracker.Find(position, 20, teleportHP);
                     var zombie  = monster as Zombie;
 
                     if (zombie != null &&
@@ -123,7 +137,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     }
                 }
 
-                _updateTime = Time.SecondsSinceStartDouble + ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
+                _updateTime = Time.SecondsSinceStartDouble + cooldown;
             }
 
             return base.Update();

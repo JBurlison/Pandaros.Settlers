@@ -1,7 +1,6 @@
-﻿using System;
-using ChatCommands;
+﻿using Chatting;
 using Pandaros.Settlers.Managers;
-using Permissions;
+using System;
 
 namespace Pandaros.Settlers
 {

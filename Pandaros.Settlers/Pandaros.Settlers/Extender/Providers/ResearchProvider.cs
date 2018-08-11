@@ -46,13 +46,13 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     var research = new PandaResearch(pandaResearch.RequiredItems, 1, pandaResearch.Name, pandaResearch.BaseValue, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
                     research.ResearchComplete += pandaResearch.ResearchComplete;
-                    ScienceManager.RegisterResearchable(research);
+                    ServerManager.ScienceManager.RegisterResearchable(research);
 
                     for (var i = 2; i <= 5; i++)
                     {
                         research = new PandaResearch(pandaResearch.RequiredItems, i, pandaResearch.Name, pandaResearch.BaseValue, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
                         research.ResearchComplete += pandaResearch.ResearchComplete;
-                        ScienceManager.RegisterResearchable(research);
+                        ServerManager.ScienceManager.RegisterResearchable(research);
                     }
 
                     sb.Append(pandaResearch.Name + ", ");

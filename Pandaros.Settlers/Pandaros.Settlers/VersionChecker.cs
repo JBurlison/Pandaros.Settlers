@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Chatting;
+using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.IO;
 using System.Net;
 using System.Security.Authentication;
 using System.Threading;
-using ChatCommands;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace Pandaros.Settlers
 {

@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using AI;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pipliz;
 using Pipliz.JSON;
-using Server.AI;
-using Server.Monsters;
-using Server.NPCs;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -15,27 +12,29 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging";
         private static NPCTypeMonsterSettings _mts;
-        private readonly float _totalHealth = 20000;
+        private float _totalHealth = 20000;
 
         public Bulging() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), GameLoader.StubColony)
         {
         }
 
-        public Bulging(Path path, Players.Player originalGoal) :
+        public Bulging(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var c  = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            originalGoal.ForEachOwner(o =>
+            {
+                var ps = PlayerState.GetPlayerState(o);
+                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
 
-            if (hp < _totalHealth)
-                _totalHealth = hp;
+                if (hp < _totalHealth)
+                    _totalHealth = hp;
 
-            health = _totalHealth;
+                health = _totalHealth;
+            });
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        public IPandaBoss GetNewBoss(Path path, Colony p)
         {
             return new Bulging(path, p);
         }
@@ -113,10 +112,16 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
             if (boss != null)
             {
-                var ps            = PlayerState.GetPlayerState(boss.OriginalGoal);
-                var banner        = BannerTracker.Get(boss.OriginalGoal);
-                var numberToSpawn = ps.Difficulty.Rank * 10;
-                var colony        = Colony.Get(boss.originalGoal);
+                var numberToSpawn = 0;
+
+                boss.OriginalGoal.ForEachOwner(o =>
+                {
+                    var ps = PlayerState.GetPlayerState(o);
+                    var nts = ps.Difficulty.Rank * 10;
+
+                    if (nts > numberToSpawn)
+                        numberToSpawn = nts;
+                });
 
                 if (numberToSpawn == 0)
                     numberToSpawn = 10;
@@ -124,7 +129,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var pos = new Vector3Int(boss.Position);
 
                 for (var i = 0; i < numberToSpawn; i++)
-                    PandaMonsterSpawner.CaclulateZombie(banner, colony, MonsterSpawner.GetTypeToSpawn(colony.FollowerCount));
+                    PandaMonsterSpawner.CaclulateZombie(boss.OriginalGoal.RandomBanner, boss.OriginalGoal, MonsterSpawner.GetTypeToSpawn(boss.OriginalGoal.FollowerCount));
             }
         }
     }

@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using AI;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pipliz.JSON;
-using Server.AI;
-using Server.NPCs;
+using System.Collections.Generic;
 using UnityEngine;
 using Time = Pipliz.Time;
 
@@ -16,27 +14,29 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse";
         private static NPCTypeMonsterSettings _mts;
         private int _nextBossUpdateTime = int.MinValue;
-        private readonly float _totalHealth = 20000;
+        private float _totalHealth = 20000;
 
         public PutridCorpse() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), GameLoader.StubColony)
         {
         }
 
-        public PutridCorpse(Path path, Players.Player originalGoal) :
+        public PutridCorpse(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var c  = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            originalGoal.ForEachOwner(o =>
+            {
+                var ps = PlayerState.GetPlayerState(o);
+                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
 
-            if (hp < _totalHealth)
-                _totalHealth = hp;
+                if (hp < _totalHealth)
+                    _totalHealth = hp;
 
-            health = _totalHealth;
+                health = _totalHealth;
+            });
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        public IPandaBoss GetNewBoss(Path path, Colony p)
         {
             return new PutridCorpse(path, p);
         }
@@ -78,9 +78,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         {
             if (_nextBossUpdateTime < Time.SecondsSinceStartInt)
             {
-                var c = Colony.Get(originalGoal);
-
-                foreach (var follower in c.Followers)
+                foreach (var follower in originalGoal.Followers)
                 {
                     var dis = Vector3.Distance(Position, follower.Position.Vector);
 
@@ -88,8 +86,11 @@ namespace Pandaros.Settlers.Monsters.Bosses
                         follower.OnHit(10);
                 }
 
-                if (Vector3.Distance(Position, originalGoal.Position) <= 20)
-                    Players.TakeHit(originalGoal, 10, true);
+                originalGoal.ForEachOwner(o =>
+                {
+                    if (Vector3.Distance(Position, o.Position) <= 20)
+                        Players.TakeHit(o, 10, true);
+                });
 
                 _nextBossUpdateTime = Time.SecondsSinceStartInt + 5;
             }

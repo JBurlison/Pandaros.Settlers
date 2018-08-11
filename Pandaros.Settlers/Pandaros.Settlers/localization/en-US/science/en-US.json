@@ -142,125 +142,45 @@
           "name": "Reduced Time Between V",
           "description": "Reduces time between chances for settlers to join your colony."
         },
-        "Settlement1": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement2": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement3": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement4": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement5": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement6": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement7": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement8": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement9": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement10": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement11": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement12": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement13": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement14": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement15": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement16": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement17": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement18": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement19": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
-        "Settlement20": {
-          "name": "Settlement - Additional Banner",
-          "description": "When researched, gives you an additional banner to place in your stockpile."
-        },
         "SkilledLaborer1": {
           "name": "Skilled Laborer I",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer2": {
           "name": "Skilled Laborer II",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer3": {
           "name": "Skilled Laborer III",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer4": {
           "name": "Skilled Laborer IV",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer5": {
           "name": "Skilled Laborer V",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer6": {
           "name": "Skilled Laborer VI",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer7": {
           "name": "Skilled Laborer VII",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer8": {
           "name": "Skilled Laborer VIII",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer9": {
           "name": "Skilled Laborer IX",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "SkilledLaborer10": {
           "name": "Skilled Laborer X",
-          "description": "Increases chance of getting skilled laborers when settlers to find your colony."
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting."
         },
         "NumberSkilledLaborer1": {
           "name": "Number of Skilled Laborer I",

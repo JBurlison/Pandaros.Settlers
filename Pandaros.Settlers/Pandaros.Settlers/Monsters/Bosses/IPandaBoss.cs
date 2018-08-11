@@ -1,6 +1,5 @@
-﻿using Pandaros.Settlers.Extender;
-using Server.AI;
-using Server.Monsters;
+﻿using AI;
+using NPC;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -12,6 +11,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
         float ZombieMultiplier { get; }
         float ZombieHPBonus { get; }
         bool KilledBefore { get; set; }
-        IPandaBoss GetNewBoss(Path path, Players.Player p);
+        IPandaBoss GetNewBoss(Path path, Colony c);
     }
 }

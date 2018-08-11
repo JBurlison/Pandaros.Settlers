@@ -1,4 +1,4 @@
-﻿using ChatCommands;
+﻿using Chatting;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items.Weapons;
@@ -6,22 +6,18 @@ using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.Collections;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.AI;
-using Server.Monsters;
-using Server.NPCs;
 using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Physics = General.Physics.Physics;
 
 namespace Pandaros.Settlers.AI
 {
     // TODO Fix this make it work differently 
     [ModLoader.ModManager]
-    public class CalltoArmsJob : Job
+    public class CalltoArmsJob : IJob
     {
         private const int CALL_RAD = 500;
 
@@ -45,18 +41,19 @@ namespace Pandaros.Settlers.AI
         private BoxedDictionary _tmpVals;
         private int _waitingFor;
 
-        private GuardBaseJob.GuardSettings _weapon;
+        private GuardJobSettings _weapon;
 
-        public override bool ToSleep => false;
+        public Colony Owner => throw new NotImplementedException();
 
-        public override NPCType NPCType => CallToArmsNPCType;
+        public bool NeedsNPC => throw new NotImplementedException();
 
-        public override bool NeedsItems => _weapon == null;
+        public InventoryItem RecruitmentItem => throw new NotImplementedException();
 
-        public override Vector3Int KeyLocation => position;
+        public NPCBase NPC => throw new NotImplementedException();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".CalltoArms.Init")]
+        public bool IsValid => throw new NotImplementedException();
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,GameLoader.NAMESPACE + ".CalltoArms.Init")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
@@ -65,17 +62,18 @@ namespace Pandaros.Settlers.AI
             CallToArmsNPCType = NPCType.GetByKeyNameOrDefault(_callToArmsNPCSettings.keyName);
         }
 
-        public override void OnAssignedNPC(NPCBase npc)
+        public void OnAssignedNPC(NPCBase npc)
         {
-            owner        = npc.Colony.Owner;
+            
+            owner        = npc.Colony.Owners;
             _tmpVals     = npc.GetTempValues(true);
             _colony      = npc.Colony;
             _playerState = PlayerState.GetPlayerState(_colony.Owner);
-            _stock       = Stockpile.GetStockPile(_colony.Owner);
+            _stock       = npc.Colony.Stockpile;
             base.OnAssignedNPC(npc);
         }
 
-        public override Vector3Int GetJobLocation()
+        public Vector3Int GetJobLocation()
         {
             var currentPos = usedNPC.Position;
 
@@ -150,10 +148,10 @@ namespace Pandaros.Settlers.AI
                 var currentposition = usedNPC.Position;
                 _hadAmmo.Clear();
 
-                if (_target == null || !_target.IsValid || !Physics.CanSee(usedNPC.Position.Vector, _target.Position))
+                if (_target == null || !_target.IsValid || !VoxelPhysics.CanSee(usedNPC.Position.Vector, _target.Position))
                     _target = MonsterTracker.Find(currentposition, _weapon.range, _weapon.shootDamage);
 
-                if (_target != null && Physics.CanSee(usedNPC.Position.Vector, _target.Position))
+                if (_target != null && VoxelPhysics.CanSee(usedNPC.Position.Vector, _target.Position))
                 {
                     foreach (var projectile in _weapon.shootItem)
                     {
@@ -239,7 +237,7 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
+        public void OnNPCAtStockpile(ref NPCBase.NPCState state)
         {
             if (_weapon != null)
                 return;
@@ -260,7 +258,7 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
+        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             if (_weapon == null)
                 return NPCBase.NPCGoal.Stockpile;
@@ -268,7 +266,7 @@ namespace Pandaros.Settlers.AI
             return NPCBase.NPCGoal.Job;
         }
 
-        public override void OnRemove()
+        public void OnRemove()
         {
             isValid = false;
 
@@ -279,12 +277,12 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public override void OnRemovedNPC()
+        public void OnRemovedNPC()
         {
             usedNPC = null;
         }
 
-        public new void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
+        public void InitializeJob(Players.Player owner, Vector3Int position, int desiredNPCID)
         {
             this.position = position;
             this.owner    = owner;
@@ -293,6 +291,11 @@ namespace Pandaros.Settlers.AI
                 usedNPC.TakeJob(this);
             else
                 desiredNPCID = 0;
+        }
+
+        public void SetNPC(NPCBase npc)
+        {
+            throw new NotImplementedException();
         }
     }
 

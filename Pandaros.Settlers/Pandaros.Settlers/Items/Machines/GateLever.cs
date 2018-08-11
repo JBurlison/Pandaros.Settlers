@@ -11,6 +11,8 @@ using Pipliz.JSON;
 using Pipliz.Threading;
 using Server.MeshedObjects;
 using Time = Pipliz.Time;
+using BlockTypes;
+using MeshedObjects;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -44,9 +46,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony colony, RoamingJobState state)
         {
-            return GateLever.Repair(player, state);
+            return GateLever.Repair(colony, state);
         }
     }
 
@@ -60,9 +62,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony colony, RoamingJobState state)
         {
-            return GateLever.Reload(player, state);
+            return GateLever.Reload(colony, state);
         }
     }
 
@@ -109,66 +111,59 @@ namespace Pandaros.Settlers.Items.Machines
         public static ItemTypesServer.ItemTypeRaw GateItemZN { get; private set; }
 
 
-        public static ushort Repair(Players.Player player, RoamingJobState machineState)
+        public static ushort Repair(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (colony.OwnerIsOnline() && machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
-                var ps = PlayerState.GetPlayerState(player);
+                var repaired       = false;
+                var requiredForFix = new List<InventoryItem>();
 
-                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
-                    var repaired       = false;
-                    var requiredForFix = new List<InventoryItem>();
-                    var stockpile      = Stockpile.GetStockPile(player);
-
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
-
-                    if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
-                    {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
-                    }
-                    else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
-                    {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 3));
-                    }
-                    else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
-                    {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
-                    }
-
-                    if (stockpile.Contains(requiredForFix))
-                    {
-                        stockpile.TryRemove(requiredForFix);
-                        repaired = true;
-                    }
-                    else
-                    {
-                        foreach (var item in requiredForFix)
-                            if (!stockpile.Contains(item))
-                            {
-                                retval = item.Type;
-                                break;
-                            }
-                    }
-
-                    if (repaired)
-                        machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
                 }
+                else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
+                {
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 3));
+                }
+                else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
+                {
+                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
+                }
+
+                if (colony.Stockpile.Contains(requiredForFix))
+                {
+                    colony.Stockpile.TryRemove(requiredForFix);
+                    repaired = true;
+                }
+                else
+                {
+                    foreach (var item in requiredForFix)
+                        if (!colony.Stockpile.Contains(item))
+                        {
+                            retval = item.Type;
+                            break;
+                        }
+                }
+
+                if (repaired)
+                    machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
             }
+            
 
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, RoamingJobState machineState)
+        public static ushort Reload(Colony colony, RoamingJobState machineState)
         {
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
-            {
+            if (colony.OwnerIsOnline())
                 machineState.ResetActionToMaxLoad(MachineConstants.RELOAD);
-            }
 
             return GameLoader.Reload_Icon;
         }

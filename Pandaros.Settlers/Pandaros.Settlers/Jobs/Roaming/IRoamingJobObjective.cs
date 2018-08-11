@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; }
         string ObjectiveCategory { get; }
 
-        void DoWork(Players.Player player, RoamingJobState state);
+        void DoWork(Colony colony, RoamingJobState state);
     }
 
     public interface IRoamingJobObjectiveAction : INameable
@@ -19,6 +19,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
         float TimeToPreformAction { get; }
         string AudoKey { get; }
         ushort ObjectiveLoadEmptyIcon { get; }
-        ushort PreformAction(Players.Player player, RoamingJobState state);
+        ushort PreformAction(Colony colony, RoamingJobState state);
     }
 }

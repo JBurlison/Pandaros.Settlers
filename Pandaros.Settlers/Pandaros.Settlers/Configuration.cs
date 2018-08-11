@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO;
-using ChatCommands;
-using Permissions;
+﻿using Chatting;
 using Pipliz.JSON;
+using System;
+using System.IO;
 
 namespace Pandaros.Settlers
 {

@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using General.Physics;
+﻿using AI;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pipliz;
 using Pipliz.JSON;
-using Server;
-using Server.AI;
-using Server.NPCs;
 using Shared;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -18,30 +14,30 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger";
         private static NPCTypeMonsterSettings _mts;
-
         private double _cooldown = 2;
-
-        private readonly float _totalHealth = 40000;
+        private float _totalHealth = 40000;
 
         public FallenRanger() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), GameLoader.StubColony)
         {
         }
 
-        public FallenRanger(Path path, Players.Player originalGoal) :
+        public FallenRanger(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var c  = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            originalGoal.ForEachOwner(o =>
+            {
+                var ps = PlayerState.GetPlayerState(o);
+                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
 
-            if (hp < _totalHealth)
-                _totalHealth = hp;
+                if (hp < _totalHealth)
+                    _totalHealth = hp;
 
-            health = _totalHealth;
+                health = _totalHealth;
+            });
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        public IPandaBoss GetNewBoss(Path path, Colony p)
         {
             return new FallenRanger(path, p);
         }
@@ -83,7 +79,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             {
                 if (Players.FindClosestAlive(Position, out var p, out var dis) &&
                     dis <= 30 &&
-                    Physics.CanSee(Position, p.Position))
+                    VoxelPhysics.CanSee(Position, p.Position))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(2, GameLoader.Bow_Icon));
@@ -94,7 +90,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     _cooldown = Time.SecondsSinceStartDouble + 4;
                 }
                 else if (NPCTracker.TryGetNear(Position, 30, out var npc) &&
-                         Physics.CanSee(Position, npc.Position.Vector))
+                         VoxelPhysics.CanSee(Position, npc.Position.Vector))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(2, GameLoader.Bow_Icon));

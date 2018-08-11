@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using ChatCommands;
+﻿using Chatting;
 using Pandaros.Settlers.AI;
-using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
-using Pandaros.Settlers.Jobs;
-using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters;
 using Pipliz.JSON;
-using Pipliz.Threading;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Pandaros.Settlers
 {
@@ -38,7 +34,7 @@ namespace Pandaros.Settlers
         public static readonly Version MOD_VER = new Version(0, 8, 2, 0);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
-
+        public static Colony StubColony { get; private set; }
         public static ushort MissingMonster_Icon { get; private set; }
         public static ushort Repairing_Icon { get; private set; }
         public static ushort Refuel_Icon { get; private set; }
@@ -57,7 +53,7 @@ namespace Pandaros.Settlers
             WorldLoaded                 = true;
             SAVE_LOC                    = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
             RoamingJobManager.MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
-            PandaLogger.Log(ChatColor.lime, "World load detected. Starting monitor...");
+            StubColony = new Colony(-99998);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
@@ -264,13 +260,13 @@ namespace Pandaros.Settlers
                         break;
                 }
 
-                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType, out var typename))
+                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType.ItemIndex, out var typename))
                 {
                     var otherTypename = typename + suffix;
 
                     if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out var otherIndex))
                     {
-                        userData.TypeNew = otherIndex;
+                        userData.TypeNew = ItemTypes.GetType(otherIndex);
                     }
                 }
             }

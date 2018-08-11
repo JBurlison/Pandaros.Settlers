@@ -1,13 +1,12 @@
-﻿using Difficulty;
+﻿using AI;
+using BlockEntities.Implementations;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
-using Server.AI;
-using Server.Monsters;
-using Server.NPCs;
 using System.Reflection;
+using static BlockEntities.Implementations.BannerTracker;
 
 namespace Pandaros.Settlers.Monsters
 {
@@ -37,7 +36,7 @@ namespace Pandaros.Settlers.Monsters
                 while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
                 {
                     var tuple = coloniesRequiringZombies[i];
-                    Colony colony = tuple.item1;
+                    Colony colony = tuple.Banners;
                     Banner banner = tuple.item2;
 
                     IDifficultySetting difficulty = colony.Owner.DifficultySetting;
