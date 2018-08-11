@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Items
 {
-    public class Colliders : IJsonConvertable
+    public class Colliders : IJsonSerializable
     {
-        public class Boxes : IJsonConvertable
+        public class Boxes : IJsonSerializable
         {
             public Vector3 min { get; private set; }
             public Vector3 max { get; private set; }
@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Items
                 max = maxCollide;
             }
 
-            public JSONNode ToJsonNode()
+            public JSONNode JsonSerialize()
             {
                 var node = new JSONNode();
                 var nodemin = new JSONNode(NodeType.Array);
@@ -52,13 +52,13 @@ namespace Pandaros.Settlers.Items
             boxes = collider;
         }
 
-        public JSONNode ToJsonNode()
+        public JSONNode JsonSerialize()
         {
             var node = new JSONNode();
 
             node.SetAs(nameof(collidePlayer), collidePlayer);
             node.SetAs(nameof(collideSelection), collideSelection);
-            node.SetAs(nameof(boxes), boxes.ToJsonNode());
+            node.SetAs(nameof(boxes), boxes.JsonSerialize());
 
             return node;
         }

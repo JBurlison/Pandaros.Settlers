@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Items
         Artifact
     }
 
-    public interface ICSType : IJsonConvertable, INameable
+    public interface ICSType : IJsonSerializable, INameable
     {
         bool? blocksPathing { get; }
         ReadOnlyCollection<string> categories { get; }

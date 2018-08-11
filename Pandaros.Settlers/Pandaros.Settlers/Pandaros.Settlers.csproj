@@ -111,7 +111,7 @@
     <Compile Include="Items\CSTextureMapping.cs" />
     <Compile Include="Items\ICSTextureMapping.cs" />
     <Compile Include="Items\ICSType.cs" />
-    <Compile Include="IJsonConvertable.cs" />
+    <Compile Include="IJsonSerializable.cs" />
     <Compile Include="INameable.cs" />
     <Compile Include="Items\OnRemove.cs" />
     <Compile Include="Extender\Providers\LootTableProvider.cs" />

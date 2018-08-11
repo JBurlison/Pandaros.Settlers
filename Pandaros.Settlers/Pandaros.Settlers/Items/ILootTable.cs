@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // Add lick to player and player magic items.
 namespace Pandaros.Settlers.Items
 {
-    public interface ILootTable : INameable, IJsonConvertable
+    public interface ILootTable : INameable, IJsonSerializable
     {
         List<LootPoolEntry> LootPoolList { get; }
 
@@ -41,7 +41,7 @@ namespace Pandaros.Settlers.Items
             return dic;
         }
 
-        public JSONNode ToJsonNode()
+        public JSONNode JsonSerialize()
         {
             JSONNode node = new JSONNode();
             JSONNode lootPools = new JSONNode(NodeType.Array);
@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.Items
             node.SetAs(nameof(Name), Name);
 
             foreach (var pool in LootPoolList)
-                lootPools.AddToArray(pool.ToJsonNode());
+                lootPools.AddToArray(pool.JsonSerialize());
 
             node.SetAs(nameof(LootPoolList), LootPoolList);
 
@@ -57,7 +57,7 @@ namespace Pandaros.Settlers.Items
         }
     }
 
-    public class LootPoolEntry : IJsonConvertable
+    public class LootPoolEntry : IJsonSerializable
     {
         public string Item { get; private set; }
 
@@ -75,7 +75,7 @@ namespace Pandaros.Settlers.Items
             MaxCount = max;
         }
 
-        public JSONNode ToJsonNode()
+        public JSONNode JsonSerialize()
         {
             JSONNode node = new JSONNode();
 

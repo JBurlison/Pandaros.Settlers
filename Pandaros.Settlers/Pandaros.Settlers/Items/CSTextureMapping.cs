@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Items
 
         public virtual string height => null;
 
-        public JSONNode ToJsonNode()
+        public JSONNode JsonSerialize()
         {
             var textureNode = new JSONNode();
 

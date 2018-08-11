@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Items
         public virtual ReadOnlyCollection<string> categories { get; } = new ReadOnlyCollection<string>(new List<string>());
         public virtual ItemRarity Rarity { get; } = ItemRarity.Artifact;
 
-        public virtual JSONNode ToJsonNode()
+        public virtual JSONNode JsonSerialize()
         {
             var node = new JSONNode();
 

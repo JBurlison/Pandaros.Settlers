@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Extender.Providers
                 if (Activator.CreateInstance(item) is ICSTextureMapping texture &&
                     !string.IsNullOrEmpty(texture.Name))
                 {
-                    ItemTypesServer.SetTextureMapping(texture.Name, new ItemTypesServer.TextureMapping(texture.ToJsonNode()));
+                    ItemTypesServer.SetTextureMapping(texture.Name, new ItemTypesServer.TextureMapping(texture.JsonSerialize()));
                     sb.Append($"{texture.Name}, ");
                 }
             }

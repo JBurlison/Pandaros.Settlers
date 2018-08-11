@@ -125,12 +125,12 @@ namespace Pandaros.Settlers
             return string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b));
         }
 
-        public static JSONNode ToJsonNode<T>(this IEnumerable<T> convertableCollection) where T : IJsonConvertable
+        public static JSONNode ToJsonNode<T>(this IEnumerable<T> convertableCollection) where T : IJsonSerializable
         {
             var newNode = new JSONNode(NodeType.Array);
 
             foreach (var n in convertableCollection)
-                newNode.AddToArray(n.ToJsonNode());
+                newNode.AddToArray(n.JsonSerialize());
 
             return newNode;
         }

@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         }
     }
 
-    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntity, IBlockEntityKeepLoaded, IBlockEntityOnRemove, ILoadedWithDataByPositionType
+    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntity, IBlockEntityKeepLoaded, IBlockEntityOnRemove, ILoadedWithDataByPositionType, IJsonSerializable, IJsonDeserializable
     {
         protected float cooldown = 2f;
         private const float COOLDOWN = 3f;
@@ -56,11 +56,27 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public virtual ESerializeEntityResult SerializeToBytes(Vector3Int blockPosition, ByteBuilder builder)
         {
-            
-            return base.GetJSON().SetAs(nameof(_originalPosition), (JSONNode)_originalPosition); ;
+            if (blockPosition == _originalPosition)
+            {
+                return ESerializeEntityResult.WroteData;
+            }
+
+            return ESerializeEntityResult.None;
         }
 
         public virtual void OnLoadedWithDataPosition(Vector3Int blockPosition, ushort type, ByteReader reader)
+        {
+            
+        }
+
+        public JSONNode JsonSerialize()
+        {
+            JSONNode retval = new JSONNode();
+            retval.SetAs(nameof(_originalPosition), (JSONNode)_originalPosition);
+            return retval;
+        }
+
+        public void JsonDeerialize(JSONNode node)
         {
             _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
         }
@@ -197,7 +213,5 @@ namespace Pandaros.Settlers.Jobs.Roaming
         {
             
         }
-
-        
     }
 }

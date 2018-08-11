@@ -6,7 +6,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items
 {
-    public class OnRemove : IJsonConvertable
+    public class OnRemove : IJsonSerializable
     {
         public int amount { get; private set; }
         public float chance { get; private set; }
@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Items
             type = csType;
         }
 
-        public JSONNode ToJsonNode()
+        public JSONNode JsonSerialize()
         {
             var node = new JSONNode();
 

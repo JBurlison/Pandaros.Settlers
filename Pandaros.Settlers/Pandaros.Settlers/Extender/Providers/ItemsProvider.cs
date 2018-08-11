@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.Extender.Providers
                     if (Activator.CreateInstance(item) is ICSType itemType &&
                         !string.IsNullOrEmpty(itemType.Name))
                     {
-                        var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.ToJsonNode());
+                        var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.JsonSerialize());
                         itemTypes.Add(itemType.Name, rawItem);
                         _sb.Append($"{itemType.Name}, ");
                     }
