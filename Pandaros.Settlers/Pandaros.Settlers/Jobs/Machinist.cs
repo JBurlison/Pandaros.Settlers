@@ -54,11 +54,14 @@ namespace Pandaros.Settlers.Jobs
             _Settings = NPCType.GetByKeyNameOrDefault(MachinistDay.JOB_NAME);
         }
 
-        public ItemTypes.ItemType[] BlockTypes => throw new System.NotImplementedException();
+        public virtual ItemTypes.ItemType[] BlockTypes => new[]
+        {
+            ItemTypes.GetType(MachinistDay.JOB_ITEM_KEY)
+        };
 
         public NPCType NPCType => _Settings;
 
-        public InventoryItem RecruitmentItem => throw new System.NotImplementedException();
+        public virtual InventoryItem RecruitmentItem => new InventoryItem(BuiltinBlocks.CopperTools);
 
         public virtual bool ToSleep => !TimeCycle.IsDay;
 
@@ -89,6 +92,11 @@ namespace Pandaros.Settlers.Jobs
     public class MachinistSettingsNight : MachinistSettingsDay
     {
         public override bool ToSleep => TimeCycle.IsDay;
+
+        public override ItemTypes.ItemType[] BlockTypes => new[]
+        {
+            ItemTypes.GetType(MachinistNight.JOB_ITEM_KEY)
+        };
     }
 
     public class MachinistDay : RoamingJob
