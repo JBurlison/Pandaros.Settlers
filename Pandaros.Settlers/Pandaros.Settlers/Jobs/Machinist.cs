@@ -1,14 +1,10 @@
-﻿using BlockTypes.Builtin;
+﻿using BlockTypes;
 using NPC;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Extender;
-using Pipliz.JSON;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.NPCs;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {

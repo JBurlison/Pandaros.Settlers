@@ -9,6 +9,7 @@ using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Assertions;
 
 namespace Pandaros.Settlers.Jobs.Roaming
 {
@@ -18,12 +19,14 @@ namespace Pandaros.Settlers.Jobs.Roaming
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".Jobs.Roaming.RoamingJobRegister.OnDeath")]
         public static void OnDeath(NPCBase nPC)
         {
+            
             if (nPC.Job != null && nPC.Job.GetType() == typeof(RoamingJob) && ((RoamingJob)nPC.Job).TargetObjective != null)
                 ((RoamingJob)nPC.Job).TargetObjective.JobRef = null;
         }
     }
 
-    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntity, IBlockEntityKeepLoaded, IBlockEntityOnRemove, ILoadedWithDataByPositionType, IJsonSerializable, IJsonDeserializable
+    [BlockEntityAutoLoader]
+    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntity, IBlockEntityKeepLoaded, IBlockEntityOnRemove, ILoadedWithDataByPositionType, IJsonSerializable, IJsonDeserializable, IChangedWithType
     {
         protected float cooldown = 2f;
         private const float COOLDOWN = 3f;
@@ -45,39 +48,52 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public NPCBase NPC { get; private set; }
 
-        public NPCType NPCType { get; private set; }
+        public virtual NPCType NPCType { get; private set; }
 
         public bool IsValid { get; private set; }
-
-        public virtual NPCTypeStandardSettings GetNPCTypeDefinition()
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public virtual ESerializeEntityResult SerializeToBytes(Vector3Int blockPosition, ByteBuilder builder)
         {
-            if (blockPosition == _originalPosition)
-            {
-                return ESerializeEntityResult.WroteData;
-            }
-
-            return ESerializeEntityResult.None;
+            Assert.IsTrue(this.IsValid);
+            builder.WriteVariable((uint)this.Owner.ColonyID);
+            int num = NPC != null ? NPC.ID : 0;
+            builder.WriteVariable((uint)num);
+            return ESerializeEntityResult.WroteData | ESerializeEntityResult.LoadChunkOnStartup;
         }
 
         public virtual void OnLoadedWithDataPosition(Vector3Int blockPosition, ushort type, ByteReader reader)
         {
+            ServerManager.BlockEntityTracker.OnAddedEntity(_originalPosition, this);
+        }
+
+        public void OnPlaced(Players.Player player, Vector3Int blockPosition, ItemTypes.ItemType type)
+        {
+            //TODO
+        }
+
+        public void OnChangedWithType(Players.Player player, Vector3Int blockPosition, ItemTypes.ItemType typeOld, ItemTypes.ItemType typeNew)
+        {
             
+        }
+
+        public void OnRemove(Vector3Int blockPosition)
+        {
+            ServerManager.BlockEntityTracker.OnRemoveEntity(blockPosition);
         }
 
         public JSONNode JsonSerialize()
         {
             JSONNode retval = new JSONNode();
             retval.SetAs(nameof(_originalPosition), (JSONNode)_originalPosition);
+            retval.SetAs(nameof(NPC), NPC != null ? NPC.ID : 0);
+            retval.SetAs(nameof(_originalPosition), (JSONNode)_originalPosition);
             return retval;
         }
 
         public void JsonDeerialize(JSONNode node)
         {
+            _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
+            _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
             _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
         }
 
@@ -209,9 +225,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
             return EKeepChunkLoadedResult.YesLong;
         }
 
-        public void OnRemove(Vector3Int blockPosition)
-        {
-            
-        }
+        
     }
 }
