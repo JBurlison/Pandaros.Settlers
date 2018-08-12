@@ -25,8 +25,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         }
     }
 
-    [BlockEntityAutoLoader]
-    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntity, IBlockEntityKeepLoaded, IBlockEntityOnRemove, ILoadedWithDataByPositionType, IJsonSerializable, IJsonDeserializable, IChangedWithType
+    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntityKeepLoaded, IBlockEntityOnRemove
     {
         protected float cooldown = 2f;
         private const float COOLDOWN = 3f;

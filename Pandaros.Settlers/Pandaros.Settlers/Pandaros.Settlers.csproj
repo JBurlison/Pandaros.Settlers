@@ -164,6 +164,7 @@
     <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
     <Compile Include="Jobs\Farmer\FarmerJob.cs" />
     <Compile Include="Jobs\Machinist.cs" />
+    <Compile Include="Jobs\Roaming\RoamingJobFactory.cs" />
     <Compile Include="Jobs\Roaming\RoamingJobState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
@@ -2130,13 +2131,25 @@
     </Content>
     <Content Include="Textures\albedo\Autumn\berrybush.png" />
     <Content Include="Textures\albedo\Autumn\cherryBlossom.png" />
+    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Green.png" />
+    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Orange.png" />
+    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Red.png" />
+    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Yellow.png" />
     <Content Include="Textures\albedo\Autumn\grassRainforest.png" />
     <Content Include="Textures\albedo\Autumn\grassSavanna.png" />
     <Content Include="Textures\albedo\Autumn\grassTaiga.png" />
     <Content Include="Textures\albedo\Autumn\grassTemperate.png" />
     <Content Include="Textures\albedo\Autumn\grassTundra.png" />
     <Content Include="Textures\albedo\Autumn\leavesTaiga.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Green.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Orange.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Red.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Yellow.png" />
     <Content Include="Textures\albedo\Autumn\leavesTemperate.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Green.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Orange.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Red.png" />
+    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Yellow.png" />
     <Content Include="Textures\albedo\Autumn\lumberArea.png" />
     <Content Include="Textures\albedo\bench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
