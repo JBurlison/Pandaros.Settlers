@@ -164,7 +164,6 @@
     <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
     <Compile Include="Jobs\Farmer\FarmerJob.cs" />
     <Compile Include="Jobs\Machinist.cs" />
-    <Compile Include="Jobs\Roaming\RoamingJobFactory.cs" />
     <Compile Include="Jobs\Roaming\RoamingJobState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />

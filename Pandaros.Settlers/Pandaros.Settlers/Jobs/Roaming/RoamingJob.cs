@@ -4,6 +4,7 @@ using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
 using Shared;
 using System;
@@ -25,12 +26,24 @@ namespace Pandaros.Settlers.Jobs.Roaming
         }
     }
 
-    public abstract class RoamingJob : IJob, IBlockEntitySerializable, IBlockEntityKeepLoaded, IBlockEntityOnRemove
+    public abstract class RoamingJob : BlockJobInstance
     {
         protected float cooldown = 2f;
         private const float COOLDOWN = 3f;
         private int _stuckCount;
         private Vector3Int _originalPosition;
+
+        public RoamingJob(IBlockJobSettings settings, Vector3Int position, ItemTypes.ItemType type, ByteReader reader) :
+            base(settings, position, type, reader)
+        {
+            _originalPosition = position;
+        }
+
+        public RoamingJob(IBlockJobSettings settings, Vector3Int position, ItemTypes.ItemType type, Colony colony) :
+            base(settings, position, type, colony)
+        {
+            _originalPosition = position;
+        }
 
         public virtual List<uint> OkStatus { get; } = new List<uint>();
         public RoamingJobState TargetObjective { get; set; }
@@ -38,63 +51,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public virtual string JobItemKey => null;
         public virtual List<string> ObjectiveCategories => new List<string>();
-
-        public Colony Owner { get; private set; }
-
-        public bool NeedsNPC { get; private set; }
-
-        public InventoryItem RecruitmentItem { get; private set; }
-
-        public NPCBase NPC { get; private set; }
-
-        public virtual NPCType NPCType { get; private set; }
-
-        public bool IsValid { get; private set; }
-     
-        public virtual ESerializeEntityResult SerializeToBytes(Vector3Int blockPosition, ByteBuilder builder)
-        {
-            Assert.IsTrue(this.IsValid);
-            builder.WriteVariable((uint)this.Owner.ColonyID);
-            int num = NPC != null ? NPC.ID : 0;
-            builder.WriteVariable((uint)num);
-            return ESerializeEntityResult.WroteData | ESerializeEntityResult.LoadChunkOnStartup;
-        }
-
-        public virtual void OnLoadedWithDataPosition(Vector3Int blockPosition, ushort type, ByteReader reader)
-        {
-            ServerManager.BlockEntityTracker.OnAddedEntity(_originalPosition, this);
-        }
-
-        public void OnPlaced(Players.Player player, Vector3Int blockPosition, ItemTypes.ItemType type)
-        {
-            //TODO
-        }
-
-        public void OnChangedWithType(Players.Player player, Vector3Int blockPosition, ItemTypes.ItemType typeOld, ItemTypes.ItemType typeNew)
-        {
-            
-        }
-
-        public void OnRemove(Vector3Int blockPosition)
-        {
-            ServerManager.BlockEntityTracker.OnRemoveEntity(blockPosition);
-        }
-
-        public JSONNode JsonSerialize()
-        {
-            JSONNode retval = new JSONNode();
-            retval.SetAs(nameof(_originalPosition), (JSONNode)_originalPosition);
-            retval.SetAs(nameof(NPC), NPC != null ? NPC.ID : 0);
-            retval.SetAs(nameof(_originalPosition), (JSONNode)_originalPosition);
-            return retval;
-        }
-
-        public void JsonDeerialize(JSONNode node)
-        {
-            _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
-            _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
-            _originalPosition = (Vector3Int)node[nameof(_originalPosition)];
-        }
 
         public virtual Vector3Int GetJobLocation()
         {
@@ -132,7 +88,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             return pos;
         }
 
-        public void OnNPCAtJob(ref NPCBase.NPCState state)
+        public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
             var status        = GameLoader.Waiting_Icon;
             var cooldown      = COOLDOWN;
@@ -204,26 +160,10 @@ namespace Pandaros.Settlers.Jobs.Roaming
             }
         }
 
-        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
+        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             return NPCBase.NPCGoal.Job;
         }
-
-        public void SetNPC(NPCBase npc)
-        {
-            NPC = npc;
-        }
-
-        public void OnNPCAtStockpile(ref NPCBase.NPCState state)
-        {
-            
-        }
-     
-        public EKeepChunkLoadedResult OnKeepChunkLoaded(Vector3Int blockPosition)
-        {
-            return EKeepChunkLoadedResult.YesLong;
-        }
-
-        
+       
     }
 }
