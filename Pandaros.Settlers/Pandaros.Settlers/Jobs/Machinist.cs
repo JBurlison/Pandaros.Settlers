@@ -2,6 +2,8 @@
 using NPC;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pipliz;
+using Pipliz.APIProvider.Jobs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -9,24 +11,105 @@ using UnityEngine;
 namespace Pandaros.Settlers.Jobs
 {
     [ModLoader.ModManager]
-    public class Machinist : RoamingJob
+    public static class MachinistModEntries
+    {
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.MachinistModEntries")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
+        [ModLoader.ModCallbackProvidesFor("create_savemanager")]
+        public static void AfterDefiningNPCTypes()
+        {
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(
+                new BlockJobManager<MachinistSettingsDay, MachinistDay>(
+                    new MachinistSettingsDay(),
+                    (setting, pos, type, bytedata) => new MachinistDay(setting, pos, type, bytedata),
+                    (setting, pos, type, colony) => new MachinistDay(setting, pos, type, colony)
+                )
+            );
+
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(
+                new BlockJobManager<MachinistSettingsNight, MachinistNight>(
+                    new MachinistSettingsNight(),
+                    (setting, pos, type, bytedata) => new MachinistNight(setting, pos, type, bytedata),
+                    (setting, pos, type, colony) => new MachinistNight(setting, pos, type, colony)
+                )
+            );
+        }
+    }
+
+    public class MachinistSettingsDay : IBlockJobSettings
+    {
+        static NPCType _Settings;
+
+        static MachinistSettingsDay()
+        {
+            NPCType.AddSettings(new NPCTypeStandardSettings
+            {
+                keyName = MachinistDay.JOB_NAME,
+                printName = "Machinist",
+                maskColor1 = new Color32(242, 132, 29, 255),
+                type = NPCTypeID.GetNextID(),
+                inventoryCapacity = 1f
+            });
+
+            _Settings = NPCType.GetByKeyNameOrDefault(MachinistDay.JOB_NAME);
+        }
+
+        public ItemTypes.ItemType[] BlockTypes => throw new System.NotImplementedException();
+
+        public NPCType NPCType => _Settings;
+
+        public InventoryItem RecruitmentItem => throw new System.NotImplementedException();
+
+        public virtual bool ToSleep => !TimeCycle.IsDay;
+
+        public Pipliz.Vector3Int GetJobLocation(BlockJobInstance instance)
+        {
+            if (instance is RoamingJob roamingJob)
+                return roamingJob.OriginalPosition;
+
+            return Pipliz.Vector3Int.invalidPos;
+        }
+
+        public void OnGoalChanged(BlockJobInstance instance, NPCBase.NPCGoal goalOld, NPCBase.NPCGoal goalNew)
+        {
+            
+        }
+
+        public void OnNPCAtJob(BlockJobInstance instance, ref NPCBase.NPCState state)
+        {
+            instance.OnNPCAtJob(ref state);
+        }
+
+        public void OnNPCAtStockpile(BlockJobInstance instance, ref NPCBase.NPCState state)
+        {
+            
+        }
+    }
+
+    public class MachinistSettingsNight : MachinistSettingsDay
+    {
+        public override bool ToSleep => TimeCycle.IsDay;
+    }
+
+    public class MachinistDay : RoamingJob
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Machinist";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".MachinistBench";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Machinist.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
-        public static void RegisterJobs()
+        public MachinistDay(IBlockJobSettings settings, Pipliz.Vector3Int position, ItemTypes.ItemType type, ByteReader reader) :
+            base(settings, position, type, reader)
         {
-            BlockJobManagerTracker.Register<Machinist>(JOB_ITEM_KEY);
         }
 
+        public MachinistDay(IBlockJobSettings settings, Pipliz.Vector3Int position, ItemTypes.ItemType type, Colony colony) :
+            base(settings, position, type, colony)
+        {
+        }
+
+
         public override List<string> ObjectiveCategories => new List<string>() { Items.Machines.MachineConstants.MECHANICAL };
-        public override string NPCTypeKey => JOB_NAME;
         public override string JobItemKey => JOB_ITEM_KEY;
-        public override InventoryItem RecruitementItem => new InventoryItem(BuiltinBlocks.CopperTools, 1);
-        public override bool ToSleep => !TimeCycle.IsDay;
         public override List<uint> OkStatus => new List<uint>
             {
                 GameLoader.Refuel_Icon,
@@ -34,18 +117,6 @@ namespace Pandaros.Settlers.Jobs
                 GameLoader.Repairing_Icon,
                 GameLoader.Waiting_Icon
             };
-
-        public override NPCTypeStandardSettings GetNPCTypeDefinition()
-        {
-            return new NPCTypeStandardSettings
-            {
-                keyName = NPCTypeKey,
-                printName = "Machinist",
-                maskColor1 = new Color32(242, 132, 29, 255),
-                type = NPCTypeID.GetNextID(),
-                inventoryCapacity = 1f
-            };
-        }
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
@@ -56,34 +127,22 @@ namespace Pandaros.Settlers.Jobs
         }
     }
 
-    [ModLoader.ModManager]
-    public class MachinistNight : Machinist
+    public class MachinistNight : MachinistDay
     {
         public new static string JOB_NAME = GameLoader.NAMESPACE + ".NightMachinist";
         public new static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".NightMachinistBench";
         public new static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.NightMachinist.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
-        public new static void RegisterJobs()
-        {
-            BlockJobManagerTracker.Register<MachinistNight>(JOB_ITEM_KEY);
-        }
-        
-        public override string NPCTypeKey => JOB_NAME;
         public override string JobItemKey => JOB_ITEM_KEY;
-        public override bool ToSleep => TimeCycle.IsDay;
 
-        public override NPCTypeStandardSettings GetNPCTypeDefinition()
+        public MachinistNight(IBlockJobSettings settings, Pipliz.Vector3Int position, ItemTypes.ItemType type, ByteReader reader) :
+            base(settings, position, type, reader)
         {
-            return new NPCTypeStandardSettings
-            {
-                keyName = NPCTypeKey,
-                printName = "Night Machinist",
-                maskColor1 = new Color32(242, 132, 29, 255),
-                type = NPCTypeID.GetNextID(),
-                inventoryCapacity = 1f
-            };
+        }
+
+        public MachinistNight(IBlockJobSettings settings, Pipliz.Vector3Int position, ItemTypes.ItemType type, Colony colony) :
+            base(settings, position, type, colony)
+        {
         }
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
@@ -129,7 +188,7 @@ namespace Pandaros.Settlers.Jobs
 
     public class MachinistJobType : CSType
     {
-        public override string Name => Machinist.JOB_ITEM_KEY;
+        public override string Name => MachinistDay.JOB_ITEM_KEY;
         public override string icon => GameLoader.ICON_PATH + "MachinistBench.png";
         public override string onPlaceAudio => "stonePlace";
         public override string onRemoveAudio => "stoneDelete";
@@ -148,7 +207,7 @@ namespace Pandaros.Settlers.Jobs
 
     public class MachinistRecipe : ICSRecipe
     {
-        public virtual string Name => Machinist.JOB_RECIPE;
+        public virtual string Name => MachinistDay.JOB_RECIPE;
 
         public Dictionary<string, int> Requirements => new Dictionary<string, int>()
         {
@@ -160,7 +219,7 @@ namespace Pandaros.Settlers.Jobs
 
         public Dictionary<string, int> Results => new Dictionary<string, int>()
         {
-            { Machinist.JOB_ITEM_KEY, 1 }
+            { MachinistDay.JOB_ITEM_KEY, 1 }
         };
 
         public CraftPriority Priority => CraftPriority.Medium;

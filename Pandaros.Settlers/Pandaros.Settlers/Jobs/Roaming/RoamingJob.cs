@@ -31,30 +31,30 @@ namespace Pandaros.Settlers.Jobs.Roaming
         protected float cooldown = 2f;
         private const float COOLDOWN = 3f;
         private int _stuckCount;
-        private Vector3Int _originalPosition;
+        
 
         public RoamingJob(IBlockJobSettings settings, Vector3Int position, ItemTypes.ItemType type, ByteReader reader) :
             base(settings, position, type, reader)
         {
-            _originalPosition = position;
+            OriginalPosition = position;
         }
 
         public RoamingJob(IBlockJobSettings settings, Vector3Int position, ItemTypes.ItemType type, Colony colony) :
             base(settings, position, type, colony)
         {
-            _originalPosition = position;
+            OriginalPosition = position;
         }
 
         public virtual List<uint> OkStatus { get; } = new List<uint>();
         public RoamingJobState TargetObjective { get; set; }
         public RoamingJobState PreviousObjective { get; set; }
-
+        public Vector3Int OriginalPosition { get; private set; }
         public virtual string JobItemKey => null;
         public virtual List<string> ObjectiveCategories => new List<string>();
 
-        public virtual Vector3Int GetJobLocation()
+        public override Vector3Int GetJobLocation()
         {
-            var pos = _originalPosition;
+            var pos = OriginalPosition;
 
             if (TargetObjective == null)
             {

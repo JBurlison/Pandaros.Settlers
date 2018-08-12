@@ -762,7 +762,7 @@ namespace Pandaros.Settlers.Research
             e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Turret.CROSSBOW_NAMESPACE), true);
             e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Turret.MATCHLOCK_NAMESPACE), true);
             e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(AdvancedCrafterRegister.JOB_RECIPE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Machinist.JOB_RECIPE), true);
+            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(MachinistDay.JOB_RECIPE), true);
         }
 
         private static void AddImprovedDuarability(Dictionary<ushort, int> researchDic)
