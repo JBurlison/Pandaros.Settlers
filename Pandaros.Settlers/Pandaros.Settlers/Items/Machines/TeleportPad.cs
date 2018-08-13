@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using BlockTypes.Builtin;
-using ChatCommands.Implementations;
+﻿using BlockTypes;
+using Chatting.Commands;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Items.Machines
@@ -27,9 +28,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
-        public void DoWork(Players.Player player, RoamingJobState state)
+        public void DoWork(Colony colony, RoamingJobState state)
         {
-            TeleportPad.DoWork(player, state);
+            TeleportPad.DoWork(colony, state);
         }
     }
 
@@ -43,7 +44,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony player, RoamingJobState state)
         {
             return TeleportPad.Repair(player, state);
         }
@@ -59,9 +60,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony colony, RoamingJobState state)
         {
-            return TeleportPad.Reload(player, state);
+            return TeleportPad.Reload(colony, state);
         }
     }
 
@@ -75,7 +76,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony player, RoamingJobState state)
         {
             return TeleportPad.Refuel(player, state);
         }
@@ -90,16 +91,15 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        public static ushort Repair(Players.Player player, RoamingJobState machineState)
+        public static ushort Repair(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
-            var ps     = PlayerState.GetPlayerState(player);
 
             if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
                 var repaired       = false;
                 var requiredForFix = new List<InventoryItem>();
-                var stockpile      = Stockpile.GetStockPile(player);
+                var stockpile      = colony.Stockpile;
 
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.StoneBricks, 5));
                 requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagBasic, 2));
@@ -150,15 +150,13 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, RoamingJobState machineState)
+        public static ushort Reload(Colony colony, RoamingJobState machineState)
         {
             return GameLoader.Waiting_Icon;
         }
 
-        public static ushort Refuel(Players.Player player, RoamingJobState machineState)
+        public static ushort Refuel(Colony colony, RoamingJobState machineState)
         {
-            var ps = PlayerState.GetPlayerState(player);
-
             if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
             {
                 RoamingJobState paired = null;
@@ -166,10 +164,10 @@ namespace Pandaros.Settlers.Items.Machines
                 if (_paired.ContainsKey(machineState.Position))
                     GetPadAt(_paired[machineState.Position], out paired);
 
-                var stockpile = Stockpile.GetStockPile(player);
+                var stockpile = colony.Stockpile;
 
                 while (stockpile.TryRemove(Mana.Item.ItemIndex) &&
-                       machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                       machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                 {
                     machineState.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
 
@@ -177,19 +175,19 @@ namespace Pandaros.Settlers.Items.Machines
                         paired.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
                 }
 
-                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                     return Mana.Item.ItemIndex;
             }
 
             return GameLoader.Refuel_Icon;
         }
 
-        public static void DoWork(Players.Player player, RoamingJobState machineState)
+        public static void DoWork(Colony colony, RoamingJobState machineState)
         {
             if (!Configuration.TeleportPadsRequireMachinists)
                 return;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var ms) &&
                     machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
@@ -220,7 +218,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     6);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTextures")]
@@ -408,10 +406,10 @@ namespace Pandaros.Settlers.Items.Machines
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
                 var ps = PlayerState.GetPlayerState(d.RequestedByPlayer);
-                var ms = new RoamingJobState(d.Position, d.RequestedByPlayer, nameof(TeleportPad));
+                var ms = new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony, nameof(TeleportPad));
 
                 if (ps.TeleporterPlaced == Vector3Int.invalidPos)
                 {
@@ -438,7 +436,7 @@ namespace Pandaros.Settlers.Items.Machines
                     }
                 }
 
-                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer, ms);
+                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony, ms);
             }
         }
 
@@ -449,8 +447,6 @@ namespace Pandaros.Settlers.Items.Machines
             if (machineState != null &&
                 machineState.RoamObjective == nameof(TeleportPad))
             {
-                var ps = PlayerState.GetPlayerState(machineState.Colony);
-
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var paired))
                 {
@@ -462,16 +458,12 @@ namespace Pandaros.Settlers.Items.Machines
 
                     RoamingJobManager.RemoveObjective(machineState.Colony, paired.Position, false);
                     ServerManager.TryChangeBlock(paired.Position, BuiltinBlocks.Air);
-
-                    if (!Inventory.GetInventory(machineState.Colony).TryAdd(Item.ItemIndex))
-                    {
-                        var stockpile = Stockpile.GetStockPile(machineState.Colony);
-                        stockpile.Add(Item.ItemIndex);
-                    }
+                    machineState.Colony.Stockpile.Add(Item.ItemIndex);
                 }
 
-                if (machineState.Position == ps.TeleporterPlaced)
-                    ps.TeleporterPlaced = Vector3Int.invalidPos;
+                // TODO where is this called from?
+                //if (machineState.Position == ps.TeleporterPlaced)
+                //    ps.TeleporterPlaced = Vector3Int.invalidPos;
             }
         }
     }

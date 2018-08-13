@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
+using NPC;
 using Pandaros.Settlers.Items;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.NPCs;
+using Pipliz.Mods.BaseGame.BlockNPCs;
+using Recipes;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
@@ -17,10 +19,25 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
+        [ModLoader.ModCallbackProvidesFor("create_savemanager")]
         public static void RegisterJobs()
         {
-            BlockJobManagerTracker.Register<AdvancedCrafterJob>(JOB_ITEM_KEY);
+            NPCType.AddSettings(new NPCTypeStandardSettings
+            {
+                keyName = JOB_NAME,
+                printName = "Advanced Crafter",
+                maskColor1 = new Color32(101, 121, 123, 255),
+                type = NPCTypeID.GetNextID()
+            });
+            
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(
+                new BlockJobManager<CraftingJobSettings, CraftingJobInstance>(
+                    new CraftingJobSettings(JOB_RECIPE, JOB_NAME),
+                    (setting, pos, type, bytedata) => new CraftingJobInstance(setting, pos, type, bytedata),
+                    (setting, pos, type, colony) => new CraftingJobInstance(setting, pos, type, colony)
+                )
+            );
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
@@ -55,8 +72,7 @@ namespace Pandaros.Settlers.Jobs
             itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,  GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var iron   = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
@@ -67,43 +83,8 @@ namespace Pandaros.Settlers.Jobs
                                     new List<InventoryItem> {iron, tools, planks},
                                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
-            //ItemTypesServer.LoadSortOrder(JOB_ITEM_KEY, GameLoader.GetNextItemSortIndex());
-            RecipePlayer.AddOptionalRecipe(recipe);
-            RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
-        }
-    }
-
-    public class AdvancedCrafterJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
-    {
-        private static readonly NPCTypeStandardSettings _type = new NPCTypeStandardSettings
-        {
-            keyName    = AdvancedCrafterRegister.JOB_NAME,
-            printName  = "Advanced Crafter",
-            maskColor1 = new Color32(101, 121, 123, 255),
-            type       = NPCTypeID.GetNextID()
-        };
-
-        public static float StaticCraftingCooldown = 5f;
-
-        public override string NPCTypeKey => AdvancedCrafterRegister.JOB_NAME;
-
-        public override int MaxRecipeCraftsPerHaul => 1;
-
-        public override float CraftingCooldown
-        {
-            get => StaticCraftingCooldown;
-            set => StaticCraftingCooldown = value;
-        }
-
-        NPCTypeStandardSettings INPCTypeDefiner.GetNPCTypeDefinition()
-        {
-            return _type;
-        }
-
-        protected override void OnRecipeCrafted()
-        {
-            base.OnRecipeCrafted();
-            ServerManager.SendAudio(position.Vector, ".crafting");
+            ServerManager.RecipeStorage.AddPlayerOptionalRecipe(recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
+using NPC;
 using Pandaros.Settlers.Items;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.NPCs;
+using Recipes;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
@@ -15,12 +16,25 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".ApothecaryTable";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void RegisterJobs()
         {
-            BlockJobManagerTracker.Register<ApothecaryJob>(JOB_ITEM_KEY);
+            NPCType.AddSettings(new NPCTypeStandardSettings
+            {
+                keyName = JOB_NAME,
+                printName = "Apothecary",
+                maskColor1 = new Color32(101, 121, 123, 255),
+                type = NPCTypeID.GetNextID()
+            });
+
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(
+                new BlockJobManager<CraftingJobSettings, CraftingJobInstance>(
+                    new CraftingJobSettings(JOB_RECIPE, JOB_NAME),
+                    (setting, pos, type, bytedata) => new CraftingJobInstance(setting, pos, type, bytedata),
+                    (setting, pos, type, colony) => new CraftingJobInstance(setting, pos, type, colony)
+                )
+            );
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
@@ -67,40 +81,8 @@ namespace Pandaros.Settlers.Jobs
                                     new InventoryItem(JOB_ITEM_KEY, 1), 2);
 
 
-            RecipePlayer.AddOptionalRecipe(recipe);
-            RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
-        }
-    }
-
-    public class ApothecaryJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
-    {
-        public static float StaticCraftingCooldown = 15f;
-
-        public override string NPCTypeKey => ApothecaryRegister.JOB_NAME;
-
-        public override int MaxRecipeCraftsPerHaul => 1;
-
-        public override float CraftingCooldown
-        {
-            get => StaticCraftingCooldown;
-            set => StaticCraftingCooldown = value;
-        }
-
-        NPCTypeStandardSettings INPCTypeDefiner.GetNPCTypeDefinition()
-        {
-            return new NPCTypeStandardSettings
-            {
-                keyName    = NPCTypeKey,
-                printName  = "Apothecary",
-                maskColor1 = new Color32(101, 121, 123, 255),
-                type       = NPCTypeID.GetNextID()
-            };
-        }
-
-        protected override void OnRecipeCrafted()
-        {
-            base.OnRecipeCrafted();
-            ServerManager.SendAudio(position.Vector, ".crafting");
+            ServerManager.RecipeStorage.AddPlayerOptionalRecipe(recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }
     }
 }

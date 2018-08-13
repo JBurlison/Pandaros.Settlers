@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using BlockTypes.Builtin;
-using NPC;
+﻿using BlockTypes;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
 using Shared;
+using System;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Jobs
 {
@@ -38,12 +38,11 @@ namespace Pandaros.Settlers.Jobs
                                     new InventoryItem(PatrolFlag.ItemIndex, 2),
                                     5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
@@ -54,8 +53,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
@@ -124,8 +122,7 @@ namespace Pandaros.Settlers.Jobs
                 playerStockpile.Add(new InventoryItem(Item.ItemIndex));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer,
-            GameLoader.NAMESPACE + ".Jobs.OnLoadingPlayer")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Jobs.OnLoadingPlayer")]
         public static void OnLoadingPlayer(JSONNode n, Players.Player p)
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Knights", out var knightsNode))
@@ -208,7 +205,7 @@ namespace Pandaros.Settlers.Jobs
             if (rayCastHit.rayHitType == RayHitType.Block &&
                 click.typeSelected == Item.ItemIndex)
             {
-                var stockpile = Stockpile.GetStockPile(player);
+                var stockpile = player.Stockpile;
 
                 if (click.typeHit != PatrolFlag.ItemIndex)
                 {
@@ -296,8 +293,7 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
-            GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)

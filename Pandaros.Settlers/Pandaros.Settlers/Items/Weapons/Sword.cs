@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pipliz.JSON;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Weapons
 {
@@ -79,7 +80,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
                 var recipe  = new Recipe(a.Value.ItemType.name, items, invItem, 5);
 
-                RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
+                ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
             }
 
             WeaponFactory.RefreshGuardSettings();

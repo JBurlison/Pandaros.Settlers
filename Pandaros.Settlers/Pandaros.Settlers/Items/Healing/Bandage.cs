@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
 using Shared;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Healing
 {
@@ -29,7 +30,7 @@ namespace Pandaros.Settlers.Items.Healing
                                     new InventoryItem(Item.ItemIndex, 1),
                                     50);
 
-            RecipeStorage.AddDefaultLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
 

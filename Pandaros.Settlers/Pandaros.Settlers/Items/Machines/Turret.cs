@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BlockTypes.Builtin;
-using Pandaros.Settlers.Entities;
+﻿using BlockTypes;
+using NPC;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
-using Server;
-using Server.Monsters;
+using Recipes;
 using Shared;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -36,9 +35,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
-        public void DoWork(Players.Player player, RoamingJobState state)
+        public void DoWork(Colony c, RoamingJobState state)
         {
-            Turret.DoWork(player, state);
+            Turret.DoWork(c, state);
         }
     }
 
@@ -52,9 +51,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony colony, RoamingJobState state)
         {
-            return Turret.Repair(player, state);
+            return Turret.Repair(colony, state);
         }
     }
 
@@ -68,9 +67,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony colony, RoamingJobState state)
         {
-            return Turret.Reload(player, state);
+            return Turret.Reload(colony, state);
         }
     }
 
@@ -91,20 +90,18 @@ namespace Pandaros.Settlers.Items.Machines
         public static readonly string CROSSBOW_NAMESPACE = GameLoader.NAMESPACE + ".CrossbowTurret";
         public static readonly string MATCHLOCK_NAMESPACE = GameLoader.NAMESPACE + ".MatchlockTurret";
 
-        public static ushort Repair(Players.Player player, RoamingJobState machineState)
+        public static ushort Repair(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 try
                 {
-                    var ps = PlayerState.GetPlayerState(player);
-
                     if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
                     {
                         var repaired       = false;
                         var requiredForFix = new List<InventoryItem>();
-                        var stockpile      = Stockpile.GetStockPile(player);
+                        var stockpile      = colony.Stockpile;
 
                         foreach (var durability in TurretSettings[machineState.RoamObjective]
                                                   .RequiredForFix.OrderByDescending(s => s.Key))
@@ -141,21 +138,19 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, RoamingJobState machineState)
+        public static ushort Reload(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Reload_Icon;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 try
                 {
-                    var ps = PlayerState.GetPlayerState(player);
-
                     if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.GetActionEnergy(MachineConstants.RELOAD) < .75f)
                     {
-                        var stockpile = Stockpile.GetStockPile(player);
+                        var stockpile = colony.Stockpile;
 
                         while (stockpile.Contains(TurretSettings[machineState.RoamObjective].Ammo) &&
-                               machineState.GetActionEnergy(MachineConstants.RELOAD) <= RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
+                               machineState.GetActionEnergy(MachineConstants.RELOAD) <= RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
                             if (stockpile.TryRemove(TurretSettings[machineState.RoamObjective].Ammo))
                             {
                                 machineState.AddToActionEmergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoReloadValue);
@@ -164,7 +159,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     stockpile.Add(BuiltinBlocks.LinenPouch);
                             }
 
-                        if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, player, MachineConstants.MECHANICAL))
+                        if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
                             retval = TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
                     }
                 }
@@ -176,9 +171,9 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static void DoWork(Players.Player player, RoamingJobState machineState)
+        public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 try
                 {
                     if (TurretSettings.ContainsKey(machineState.RoamObjective) &&
@@ -186,7 +181,7 @@ namespace Pandaros.Settlers.Items.Machines
                         machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                         machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                     {
-                        var stockpile = Stockpile.GetStockPile(player);
+                        var stockpile = colony.Stockpile;
 
                         machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, TurretSettings[machineState.RoamObjective].DurabilityPerDoWork);
                         machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, TurretSettings[machineState.RoamObjective].FuelPerDoWork);
@@ -306,7 +301,7 @@ namespace Pandaros.Settlers.Items.Machines
                                          new InventoryItem(TurretSettings[STONE].TurretItem.ItemIndex),
                                          5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
 
             var bronzeArrowrecipe = new Recipe(BRONZEARROW_NAMESPACE,
                                                new List<InventoryItem>
@@ -323,7 +318,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                new InventoryItem(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
                                                5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
 
             var crossbowrecipe = new Recipe(CROSSBOW_NAMESPACE,
                                             new List<InventoryItem>
@@ -340,7 +335,7 @@ namespace Pandaros.Settlers.Items.Machines
                                             new InventoryItem(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
                                             5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
 
             var matchlockrecipe = new Recipe(MATCHLOCK_NAMESPACE,
                                              new List<InventoryItem>
@@ -358,7 +353,7 @@ namespace Pandaros.Settlers.Items.Machines
                                              new InventoryItem(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
                                              5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
 
             foreach (var turret in TurretSettings)
                 RoamingJobManager.RegisterObjectiveType(new TurretRegister(turret.Value));
@@ -805,13 +800,13 @@ namespace Pandaros.Settlers.Items.Machines
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeOld == BuiltinBlocks.Air)
+            if (d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
-                var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.TypeNew).Value;
+                var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.TypeNew.ItemIndex).Value;
 
                 if (turret != null)
-                    RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer,
-                                                        new RoamingJobState(d.Position, d.RequestedByPlayer, turret.Name));
+                    RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony,
+                                                        new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony, turret.Name));
             }
         }
 

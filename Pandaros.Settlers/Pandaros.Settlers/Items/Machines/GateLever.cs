@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
+using MeshedObjects;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
-using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
-using Pipliz.Threading;
-using Server.MeshedObjects;
+using Recipes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using Time = Pipliz.Time;
-using BlockTypes;
-using MeshedObjects;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -30,9 +29,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
-        public void DoWork(Players.Player player, RoamingJobState state)
+        public void DoWork(Colony colony, RoamingJobState state)
         {
-            GateLever.DoWork(player, state);
+            GateLever.DoWork(colony, state);
         }
     }
 
@@ -100,8 +99,7 @@ namespace Pandaros.Settlers.Items.Machines
             new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZPlusAnimated",
                                          GameLoader.MESH_PATH + "gatez+.obj", GameLoader.NAMESPACE + ".Gate");
 
-        private static readonly Dictionary<Players.Player, Dictionary<Vector3Int, GateState>> _gatePositions =
-            new Dictionary<Players.Player, Dictionary<Vector3Int, GateState>>();
+        private static readonly Dictionary<Colony, Dictionary<Vector3Int, GateState>> _gatePositions = new Dictionary<Colony, Dictionary<Vector3Int, GateState>>();
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw GateItem { get; private set; }
@@ -168,9 +166,9 @@ namespace Pandaros.Settlers.Items.Machines
             return GameLoader.Reload_Icon;
         }
 
-        public static void DoWork(Players.Player player, RoamingJobState machineState)
+        public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.RELOAD) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
@@ -179,13 +177,13 @@ namespace Pandaros.Settlers.Items.Machines
                     if (!machineState.TempValues.Contains(DoorOpen))
                         machineState.TempValues.Set(DoorOpen, false);
 
-                    if (!_gatePositions.ContainsKey(player))
-                        _gatePositions.Add(player, new Dictionary<Vector3Int, GateState>());
+                    if (!_gatePositions.ContainsKey(colony))
+                        _gatePositions.Add(colony, new Dictionary<Vector3Int, GateState>());
 
                     var moveGates = new Dictionary<GateState, Vector3Int>();
-                    var ps        = PlayerState.GetPlayerState(player);
+                    bool bossesEnabled = colony.Owners.Any(o => PlayerState.GetPlayerState(o).BossesEnabled);
 
-                    foreach (var gate in _gatePositions[player])
+                    foreach (var gate in _gatePositions[colony])
                     {
                         if (gate.Value.State == GatePosition.MovingClosed ||
                             gate.Value.State == GatePosition.MovingOpen)
@@ -231,7 +229,7 @@ namespace Pandaros.Settlers.Items.Machines
                                 }
                         }
 
-                        if (ps.BossesEnabled)
+                        if (bossesEnabled)
                         {
                             if (TimeCycle.IsDay && !MonsterManager.BossActive && gate.Value.State == GatePosition.Open)
                                 continue;
@@ -241,7 +239,7 @@ namespace Pandaros.Settlers.Items.Machines
                             continue;
                         }
 
-                        if (ps.BossesEnabled)
+                        if (bossesEnabled)
                         {
                             if ((!TimeCycle.IsDay || MonsterManager.BossActive) &&
                                 gate.Value.State == GatePosition.Closed)
@@ -258,7 +256,7 @@ namespace Pandaros.Settlers.Items.Machines
                         {
                             var offset = 2;
 
-                            if (ps.BossesEnabled)
+                            if (bossesEnabled)
                             {
                                 if (!TimeCycle.IsDay || MonsterManager.BossActive)
                                     offset = -2;
@@ -273,18 +271,18 @@ namespace Pandaros.Settlers.Items.Machines
                     }
 
                     foreach (var mkvp in moveGates)
-                        if (_gatePositions[player].ContainsKey(mkvp.Key.Position))
-                            _gatePositions[player].Remove(mkvp.Key.Position);
+                        if (_gatePositions[colony].ContainsKey(mkvp.Key.Position))
+                            _gatePositions[colony].Remove(mkvp.Key.Position);
 
                     foreach (var mkvp in moveGates)
                     {
-                        _gatePositions[player].Add(mkvp.Value, mkvp.Key);
+                        _gatePositions[colony].Add(mkvp.Value, mkvp.Key);
 
                         ServerManager.TryChangeBlock(mkvp.Key.Position, BuiltinBlocks.Air);
 
                         var newOffset = -1;
 
-                        if (ps.BossesEnabled)
+                        if (bossesEnabled)
                         {
                             if (!TimeCycle.IsDay || MonsterManager.BossActive)
                                 newOffset = 1;
@@ -341,7 +339,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         var moveState = GatePosition.MovingClosed;
 
-                        if (ps.BossesEnabled)
+                        if (bossesEnabled)
                         {
                             if (TimeCycle.IsDay && !MonsterManager.BossActive)
                                 moveState = GatePosition.MovingOpen;
@@ -360,7 +358,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                             var state = GatePosition.Closed;
 
-                            if (ps.BossesEnabled)
+                            if (bossesEnabled)
                             {
                                 if (TimeCycle.IsDay && !MonsterManager.BossActive)
                                     state = GatePosition.Open;
@@ -438,18 +436,17 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
 
             var gate = new Recipe(GateItem.name,
                                   new List<InventoryItem> {iron, rivets, tools},
                                   new InventoryItem(GateItem.ItemIndex),
                                   24);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
@@ -464,8 +461,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Gate", GateTextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddGateLever")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddGateLever")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddGateLever(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
@@ -555,18 +551,17 @@ namespace Pandaros.Settlers.Items.Machines
             MeshedObjectType.Register(_gateZPlusItemObjSettings);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer,
-            GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnSavingPlayer")]
-        public static void OnSavingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnSavingColony")]
+        public static void OnSavingColony(JSONNode n, Colony c)
         {
-            if (_gatePositions.ContainsKey(p))
+            if (_gatePositions.ContainsKey(c))
             {
                 if (n.HasChild(GameLoader.NAMESPACE + ".Gates"))
                     n.RemoveChild(GameLoader.NAMESPACE + ".Gates");
 
                 var gateNode = new JSONNode(NodeType.Array);
 
-                foreach (var pos in _gatePositions[p])
+                foreach (var pos in _gatePositions[c])
                 {
                     if (pos.Value.State == GatePosition.MovingOpen)
                         pos.Value.State = GatePosition.Open;
@@ -585,58 +580,56 @@ namespace Pandaros.Settlers.Items.Machines
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer,
-            GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnLoadingPlayer")]
-        public static void OnLoadingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnLoadingColony")]
+        public static void OnLoadingColony(JSONNode n, Colony c)
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Gates", out var gateNodes))
             {
-                if (!_gatePositions.ContainsKey(p))
-                    _gatePositions.Add(p, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(c))
+                    _gatePositions.Add(c, new Dictionary<Vector3Int, GateState>());
 
                 foreach (var gateNode in gateNodes.LoopArray())
-                    _gatePositions[p].Add((Vector3Int) gateNode.GetAs<JSONNode>("pos"),
+                    _gatePositions[c].Add((Vector3Int) gateNode.GetAs<JSONNode>("pos"),
                                           new GateState(gateNode.GetAs<JSONNode>("state")));
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
-            GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnTryChangeBlockUser")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
                 d.RequestedByPlayer == null)
                 return;
 
-            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
-                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer,
-                                                    new RoamingJobState(d.Position, d.RequestedByPlayer,
+                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony,
+                                                    new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony,
                                                                      nameof(GateLever)));
             }
-            else if (d.TypeOld == BuiltinBlocks.Air && (d.TypeNew == GateItem.ItemIndex ||
-                                                        d.TypeNew == GateItemXN.ItemIndex ||
-                                                        d.TypeNew == GateItemXP.ItemIndex ||
-                                                        d.TypeNew == GateItemZN.ItemIndex ||
-                                                        d.TypeNew == GateItemZP.ItemIndex))
+            else if (d.TypeOld.ItemIndex == BuiltinBlocks.Air && (d.TypeNew.ItemIndex == GateItem.ItemIndex ||
+                                                        d.TypeNew.ItemIndex == GateItemXN.ItemIndex ||
+                                                        d.TypeNew.ItemIndex == GateItemXP.ItemIndex ||
+                                                        d.TypeNew.ItemIndex == GateItemZN.ItemIndex ||
+                                                        d.TypeNew.ItemIndex == GateItemZP.ItemIndex))
             {
-                if (!_gatePositions.ContainsKey(d.RequestedByPlayer))
-                    _gatePositions.Add(d.RequestedByPlayer, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(d.RequestedByPlayer.ActiveColony))
+                    _gatePositions.Add(d.RequestedByPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());
 
-                _gatePositions[d.RequestedByPlayer].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
+                _gatePositions[d.RequestedByPlayer.ActiveColony].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
             }
 
-            if (d.TypeNew == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air)
             {
-                if (!_gatePositions.ContainsKey(d.RequestedByPlayer))
-                    _gatePositions.Add(d.RequestedByPlayer, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(d.RequestedByPlayer.ActiveColony))
+                    _gatePositions.Add(d.RequestedByPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());
 
-                if (_gatePositions[d.RequestedByPlayer].ContainsKey(d.Position))
+                if (_gatePositions[d.RequestedByPlayer.ActiveColony].ContainsKey(d.Position))
                 {
-                    _gatePositions[d.RequestedByPlayer].Remove(d.Position);
+                    _gatePositions[d.RequestedByPlayer.ActiveColony].Remove(d.Position);
 
                     if (!Inventory.GetInventory(d.RequestedByPlayer).TryAdd(GateItem.ItemIndex))
-                        Stockpile.GetStockPile(d.RequestedByPlayer).Add(GateItem.ItemIndex);
+                       d.RequestedByPlayer.ActiveColony.Stockpile.Add(GateItem.ItemIndex);
                 }
             }
         }

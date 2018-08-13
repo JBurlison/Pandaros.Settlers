@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
 using Pipliz.JSON;
-using Pandaros.Settlers.Jobs.Roaming;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Items.Machines
                                        new InventoryItem(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
                                        5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
 
             var earthRecipe = new Recipe(EARTHTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -66,14 +66,14 @@ namespace Pandaros.Settlers.Items.Machines
                                          new InventoryItem(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
                                          5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
 
             var fireRecipe = new Recipe(FIRETURRET_NAMESPACE,
                                         new List<InventoryItem> {planks, elemen, mana, tools, stone, fireStone, esper},
                                         new InventoryItem(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
                                         5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
 
             var waterRecipe = new Recipe(WATERTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -89,7 +89,7 @@ namespace Pandaros.Settlers.Items.Machines
                                          new InventoryItem(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
                                          5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
 
             var voidRecipe = new Recipe(VOIDTURRET_NAMESPACE,
                                         new List<InventoryItem>
@@ -105,7 +105,7 @@ namespace Pandaros.Settlers.Items.Machines
                                         new InventoryItem(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
                                         5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]

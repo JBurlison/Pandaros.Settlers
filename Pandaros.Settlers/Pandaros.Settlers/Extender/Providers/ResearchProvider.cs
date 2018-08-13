@@ -1,6 +1,4 @@
 ﻿using Pandaros.Settlers.Research;
-using Pandaros.Settlers.Seasons;
-using Server.Science;
 using System;
 using System.Collections.Generic;
 using System.Text;

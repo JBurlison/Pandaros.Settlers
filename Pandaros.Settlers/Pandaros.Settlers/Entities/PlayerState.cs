@@ -1,5 +1,4 @@
-﻿using BlockTypes.Builtin;
-using General.Networking;
+﻿using BlockTypes;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Managers;
@@ -7,6 +6,7 @@ using Pandaros.Settlers.Research;
 using Pandaros.Settlers.Seasons;
 using Pipliz;
 using Pipliz.JSON;
+using Shared.Networking;
 using System;
 using System.Collections.Generic;
 using Random = System.Random;
@@ -93,9 +93,9 @@ namespace Pandaros.Settlers.Entities
             get
             {
                 var max = SettlerManager.MIN_PERSPAWN;
-                var col = Colony.Get(Player);
+                var col = Player.ActiveColony;
 
-                if (col.FollowerCount >= SettlerManager.MAX_BUYABLE)
+                if (col != null && col.FollowerCount >= SettlerManager.MAX_BUYABLE)
                     max +=
                         Rand.Next((int)Player.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.MinSettlers), 0f),
                                   SettlerManager.ABSOLUTE_MAX_PERSPAWN + (int)Player

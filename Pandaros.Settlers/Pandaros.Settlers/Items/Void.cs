@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using NPC;
+﻿using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items
 {
@@ -12,8 +13,7 @@ namespace Pandaros.Settlers.Items
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Void.Add")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Void.Add")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
@@ -31,8 +31,7 @@ namespace Pandaros.Settlers.Items
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
-            GameLoader.NAMESPACE + ".Items.Void.OnNPCCraftedRecipe")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".Items.Void.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
             if (recipe.Name == Elementium.Item.name && job.NPC != null)

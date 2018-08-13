@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ChatCommands;
-using Chatting;
+﻿using Chatting;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers
 {

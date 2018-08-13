@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pandaros.Settlers.Jobs;
 using Pipliz.JSON;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items
 {
@@ -22,8 +23,7 @@ namespace Pandaros.Settlers.Items
                                     new InventoryItem(Item.ItemIndex, 1),
                                     6);
 
-            //ItemTypesServer.LoadSortOrder(Item.name, GameLoader.GetNextItemSortIndex());
-            RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
 

@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Cosmetics
 {
@@ -40,8 +41,7 @@ namespace Pandaros.Settlers.Cosmetics
                                     new List<InventoryItem> {flax, planks, linen},
                                     new InventoryItem(Item.ItemIndex, 1), 2);
 
-            //ItemTypesServer.LoadSortOrder(NAME, GameLoader.GetNextItemSortIndex());
-            RecipeStorage.AddDefaultLimitTypeRecipe(Register.DYER_JOB, recipe);
+            ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(Register.DYER_JOB, recipe);
         }
     }
 }

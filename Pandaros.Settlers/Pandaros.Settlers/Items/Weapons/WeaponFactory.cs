@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NPC;
+﻿using NPC;
 using Pandaros.Settlers.Entities;
 using Pipliz;
-using Pipliz.Mods.APIProvider.Jobs;
-using Pipliz.Mods.BaseGame.BlockNPCs;
-using Server.Monsters;
 using Shared;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items.Weapons
 {

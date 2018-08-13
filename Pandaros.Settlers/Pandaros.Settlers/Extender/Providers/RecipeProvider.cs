@@ -41,9 +41,9 @@ namespace Pandaros.Settlers.Extender.Providers
                     var newRecipe = new Recipe(recipe.Name, requirements, results, recipe.DefautLimit, recipe.IsOptional, recipe.DefautLimit);
 
                     if (recipe.IsOptional)
-                        RecipeStorage.AddOptionalLimitTypeRecipe(recipe.Job, newRecipe);
+                        ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(recipe.Job, newRecipe);
                     else
-                        RecipeStorage.AddDefaultLimitTypeRecipe(recipe.Job, newRecipe);
+                        ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(recipe.Job, newRecipe);
 
                     sb.Append($"{recipe.Name}, ");
                 }

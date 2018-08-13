@@ -1,10 +1,8 @@
 ﻿using BlockTypes;
-using BlockTypes.Builtin;
 using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pipliz;
 using Pipliz.JSON;
-using Server;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -124,8 +122,8 @@ namespace Pandaros.Settlers.Managers
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeNew == BuiltinBlocks.Air && d.RequestedByPlayer != null)
-                RemoveObjective(d.RequestedByPlayer, d.Position);
+            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.RequestedByPlayer != null)
+                RemoveObjective(d.RequestedByPlayer.ActiveColony, d.Position);
         }
 
         public static void RemoveObjective(Colony c, Vector3Int pos, bool throwEvent = true)

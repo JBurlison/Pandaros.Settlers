@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Items
                                     new InventoryItem(Item.ItemIndex, 1),
                                     6);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
 

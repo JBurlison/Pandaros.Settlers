@@ -1,11 +1,7 @@
-﻿using System;
+﻿using BlockTypes;
+using Pandaros.Settlers.Jobs.Roaming;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using BlockTypes.Builtin;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Extender;
-using Pandaros.Settlers.Jobs.Roaming;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -32,27 +28,25 @@ namespace Pandaros.Settlers.Items.Machines
 
         ushort IRoamingJobObjectiveAction.ObjectiveLoadEmptyIcon => GameLoader.Refuel_Icon;
 
-        ushort IRoamingJobObjectiveAction.PreformAction(Players.Player player, RoamingJobState machineState)
+        ushort IRoamingJobObjectiveAction.PreformAction(Colony colony, RoamingJobState machineState)
         {
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
             {
-                var ps = PlayerState.GetPlayerState(player);
-
                 if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
                 {
-                    var stockpile = Stockpile.GetStockPile(player);
+                    var stockpile = colony.Stockpile;
 
                     foreach (var item in FuelValues)
                         while ((stockpile.AmountContained(item.Key) > 100 ||
                                 item.Key == BuiltinBlocks.Firewood ||
                                 item.Key == BuiltinBlocks.Coalore) &&
-                                machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                                machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                         {
                             stockpile.TryRemove(item.Key);
                             machineState.AddToActionEmergy(MachineConstants.REFUEL, item.Value);
                         }
 
-                    if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, player, MachineConstants.MECHANICAL))
+                    if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                         return FuelValues.First().Key;
                 }
             }

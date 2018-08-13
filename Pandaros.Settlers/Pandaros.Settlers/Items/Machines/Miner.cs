@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
-using Server;
+using Recipes;
 using Shared;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items.Machines
 {
@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
-        public void DoWork(Players.Player player, RoamingJobState state)
+        public void DoWork(Colony player, RoamingJobState state)
         {
             Miner.DoWork(player, state);
         }
@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony player, RoamingJobState state)
         {
             return Miner.Repair(player, state);
         }
@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
 
-        public ushort PreformAction(Players.Player player, RoamingJobState state)
+        public ushort PreformAction(Colony player, RoamingJobState state)
         {
             return Miner.Reload(player, state);
         }
@@ -72,19 +72,17 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        public static ushort Repair(Players.Player player, RoamingJobState machineState)
+        public static ushort Repair(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
             {
-                var ps = PlayerState.GetPlayerState(player);
-
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
                 {
                     var repaired       = false;
                     var requiredForFix = new List<InventoryItem>();
-                    var stockpile      = Stockpile.GetStockPile(player);
+                    var stockpile = colony.Stockpile;
 
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
                     requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
@@ -131,14 +129,14 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, RoamingJobState machineState)
+        public static ushort Reload(Colony player, RoamingJobState machineState)
         {
             return GameLoader.Waiting_Icon;
         }
 
-        public static void DoWork(Players.Player player, RoamingJobState machineState)
+        public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
@@ -156,7 +154,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                         for (var i = 0; i < itemList.Count; i++)
                             if (Random.NextDouble() <= itemList[i].chance)
-                                Stockpile.GetStockPile(player).Add(itemList[i].item);
+                                colony.Stockpile.Add(itemList[i].item);
 
                         ServerManager.SendAudio(machineState.Position.Vector,
                                                 GameLoader.NAMESPACE + ".MiningMachineAudio");
@@ -192,7 +190,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     new InventoryItem(Item.ItemIndex),
                                     5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
@@ -234,13 +232,13 @@ namespace Pandaros.Settlers.Items.Machines
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
                 if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out var itemBelow))
                     if (CanMineBlock(itemBelow))
                     {
-                        RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer,
-                                                            new RoamingJobState(d.Position, d.RequestedByPlayer,
+                        RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony,
+                                                            new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony,
                                                                              nameof(Miner)));
 
                         return;

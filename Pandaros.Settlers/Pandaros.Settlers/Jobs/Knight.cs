@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BlockTypes.Builtin;
+﻿using AI;
+using BlockTypes;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
@@ -9,18 +7,16 @@ using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Weapons;
 using Pipliz;
 using Pipliz.Collections;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.AI;
-using Server.Monsters;
-using Server.NPCs;
 using Shared;
-using Physics = General.Physics.Physics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Jobs
 {
     [ModLoader.ModManager]
-    public class Knight : IJob, INPCTypeDefiner
+    public class Knight : IJob
     {
         private const float COOLDOWN = 2f;
         public static NPCType KnightNPCType;
@@ -34,11 +30,9 @@ namespace Pandaros.Settlers.Jobs
             maskColor1 = UnityEngine.Color.black
         };
 
-        private Colony _colony;
         private int _currentPatrolPos;
         private bool _forward = true;
         private SettlerInventory _inv;
-        private PlayerState _playerState;
         private Stockpile _stock;
         private IMonster _target;
         private int _timeAtPatrol;
@@ -47,7 +41,7 @@ namespace Pandaros.Settlers.Jobs
 
         private int _waitingFor;
 
-        public Knight(List<Vector3Int> potrolPoints, Players.Player owner)
+        public Knight(List<Vector3Int> potrolPoints, Colony owner)
         {
             if (!Knights.ContainsKey(owner))
                 Knights.Add(owner, new List<Knight>());
@@ -58,14 +52,14 @@ namespace Pandaros.Settlers.Jobs
             Owner        = owner;
         }
 
-        public static Dictionary<Players.Player, List<Knight>> Knights { get; } = new Dictionary<Players.Player, List<Knight>>();
+        public static Dictionary<Colony, List<Knight>> Knights { get; } = new Dictionary<Colony, List<Knight>>();
 
         public PatrolType PatrolType { get; set; }
 
         public List<Vector3Int> PatrolPoints { get; }
         public NPCBase UsedNPC { get; private set; }
         public bool IsValid { get; private set; } = true;
-        public Players.Player Owner { get; }
+        public Colony Owner { get; }
         public Vector3Int KeyLocation { get; private set; }
         public bool NeedsNPC => UsedNPC == null || !UsedNPC.IsValid;
         public NPCType NPCType => KnightNPCType;
@@ -77,6 +71,8 @@ namespace Pandaros.Settlers.Jobs
             get => UsedNPC;
             set => UsedNPC = value;
         }
+
+        public InventoryItem RecruitmentItem => throw new NotImplementedException();
 
         public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
@@ -162,20 +158,16 @@ namespace Pandaros.Settlers.Jobs
                 if (World.TryGetTypeAt(PatrolPoints[_currentPatrolPos], out var objType) &&
                     objType != PatrolTool.PatrolFlag.ItemIndex)
                 {
-                    var stockPile = Stockpile.GetStockPile(Owner);
-
                     UsedNPC.ClearJob();
                     Knights[Owner].Remove(this);
-
-                    if (((JobTracker.JobFinder) JobTracker.GetOrCreateJobFinder(Owner)).openJobs.Contains(this))
-                        ((JobTracker.JobFinder) JobTracker.GetOrCreateJobFinder(Owner)).openJobs.Remove(this);
+                    Owner.JobFinder.Remove(this);
 
                     foreach (var flagPoint in PatrolPoints)
                         if (World.TryGetTypeAt(flagPoint, out var flagType) &&
                             flagType == PatrolTool.PatrolFlag.ItemIndex)
                         {
                             ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
-                            stockPile.Add(PatrolTool.PatrolFlag.ItemIndex);
+                            _stock.Add(PatrolTool.PatrolFlag.ItemIndex);
                         }
                 }
             }
@@ -191,7 +183,7 @@ namespace Pandaros.Settlers.Jobs
                     _inv = SettlerInventory.GetSettlerInventory(UsedNPC);
 
                 if (_stock == null)
-                    _stock = UsedNPC.Colony.UsedStockpile;
+                    _stock = UsedNPC.Colony.Stockpile;
 
                 ArmorFactory.GetBestArmorForNPC(_stock, UsedNPC, _inv, 0);
 
@@ -257,20 +249,10 @@ namespace Pandaros.Settlers.Jobs
                 box.ResultDamage = box.ResultDamage - box.ResultDamage * .75f;
         }
 
-        public void OnAssignedNPC(NPCBase npc)
-        {
-            UsedNPC      = npc;
-            _tmpVals     = npc.GetTempValues(true);
-            _colony      = npc.Colony;
-            _inv         = SettlerInventory.GetSettlerInventory(npc);
-            _playerState = PlayerState.GetPlayerState(_colony.Owner);
-            _stock       = Stockpile.GetStockPile(_colony.Owner);
-        }
-
         public void OnRemovedNPC()
         {
             UsedNPC = null;
-            JobTracker.Add(this);
+           Owner.JobFinder.Add(this);
         }
 
         protected void OverrideCooldown(double cooldownLeft)
@@ -302,7 +284,7 @@ namespace Pandaros.Settlers.Jobs
                         _inv = SettlerInventory.GetSettlerInventory(UsedNPC);
 
                     if (_stock == null)
-                        _stock = UsedNPC.Colony.UsedStockpile;
+                        _stock = UsedNPC.Colony.Stockpile;
 
                     hasItem = !_inv.Weapon.IsEmpty();
                     IWeapon bestWeapon = null;
@@ -350,6 +332,14 @@ namespace Pandaros.Settlers.Jobs
                 UsedNPC.ClearJob();
                 UsedNPC = null;
             }
+        }
+
+        public void SetNPC(NPCBase npc)
+        {
+            UsedNPC = npc;
+            _tmpVals = npc.GetTempValues(true);
+            _inv = SettlerInventory.GetSettlerInventory(npc);
+            _stock = npc.Colony.Stockpile;
         }
     }
 }
