@@ -48,7 +48,6 @@ namespace Pandaros.Settlers.Entities
         public int SettlersToggledTimes { get; set; }
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
-        public double NextGenTime { get; set; }
         public long NextMusicTime { get; set; }
         public bool Connected { get; set; }
 

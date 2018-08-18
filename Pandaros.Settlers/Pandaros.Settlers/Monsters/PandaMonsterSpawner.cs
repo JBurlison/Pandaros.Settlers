@@ -6,6 +6,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
+using System.Collections.Generic;
 using System.Reflection;
 using static BlockEntities.Implementations.BannerTracker;
 
@@ -14,6 +15,12 @@ namespace Pandaros.Settlers.Monsters
     [ModLoader.ModManager]
     public class PandaMonsterSpawner : MonsterSpawner
     {
+        private struct Data
+        {
+            public Dictionary<Colony, double> NextZombieSpawnTimes;
+            public List<Colony> ColoniesRequiringZombies;
+        }
+
         private static double siegeModeCooldown = 3.0;
         private const double MONSTERS_DELAY_THRESHOLD_SECONDS = 1.0;
         public static PandaMonsterSpawner Instance { get; private set; }
@@ -25,7 +32,10 @@ namespace Pandaros.Settlers.Monsters
                 AIManager.IsBusy())
                 return;
 
-            CalculateColoniesThatRequireMonsters();
+            Data data;
+            data.ColoniesRequiringZombies = coloniesRequiringZombies;
+            data.NextZombieSpawnTimes = NextZombieSpawnTimes;
+            ServerManager.BlockEntityTracker.BannerTracker.Foreach(ForeachBanner, ref data);
 
             maxTimePerTick.Reset();
             maxTimePerTick.Start();
@@ -60,55 +70,52 @@ namespace Pandaros.Settlers.Monsters
             maxTimePerTick.Stop();
         }
 
-        public void CalculateColoniesThatRequireMonsters()
+        static void ForeachBanner(Vector3Int position, Banner banner, ref Data data)
         {
-            int bannerCount = ServerManager.BannerTracker.GetCount();
-            coloniesRequiringZombies.Clear();
-
-            for (int i = 0; i < bannerCount; i++)
+            Colony colony = banner.Colony;
+            if (colony == null)
             {
-                Banner banner;
-
-                if (!BannerTracker.TryGetAtIndex(i, out banner) || !banner.KeyLocation.IsValid)
-                    continue;
-
-                Colony colony = Colony.Get(banner.Owner);
-
-                if (colony.FollowerCount == 0)
-                {
-                    colony.OnZombieSpawn(true);
-                    continue;
-                }
-
-                var ps = PlayerState.GetPlayerState(banner.Owner);
-                IColonyDifficultySetting difficultyColony = colony.DifficultySetting;
-
-                if (!MonsterManager.BossActive)
-                if (!ps.MonstersEnabled || !difficultyColony.ShouldSpawnZombies(colony))
-                {
-                    colony.OnZombieSpawn(true);
-                    continue;
-                }
-                
-                double nextZombieSpawnTime = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0);
-
-                if (nextZombieSpawnTime > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
-                    continue;
-
-                if (colony.InSiegeMode)
-                {
-                    if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - colony.LastSiegeModeSpawn < siegeModeCooldown)
-                        continue;
-                    else
-                        colony.LastSiegeModeSpawn = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
-                }
-
-                // lagging behind, or no cooldown set: teleport to current time
-                if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - nextZombieSpawnTime > MONSTERS_DELAY_THRESHOLD_SECONDS)
-                    NextZombieSpawnTimes[colony] = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
-
-                coloniesRequiringZombies.Add(colony);
+                return;
             }
+
+            if (colony.FollowerCount == 0)
+            {
+                colony.OnZombieSpawn(true);
+                return;
+            }
+
+            IColonyDifficultySetting difficultyColony = colony.DifficultySetting;
+
+            if (!difficultyColony.ShouldSpawnZombies(colony))
+            {
+                colony.OnZombieSpawn(true);
+                return;
+            }
+
+            double nextZombieSpawnTime = data.NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0);
+            if (nextZombieSpawnTime > Pipliz.Time.SecondsSinceStartDoubleThisFrame)
+            {
+                return;
+            }
+
+            if (colony.InSiegeMode)
+            {
+                if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - colony.LastSiegeModeSpawn < siegeModeCooldown)
+                {
+                    return;
+                }
+                else
+                {
+                    colony.LastSiegeModeSpawn = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
+                }
+            }
+
+            if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - nextZombieSpawnTime > MONSTERS_DELAY_THRESHOLD_SECONDS)
+            {
+                // lagging behind, or no cooldown set: teleport to current time
+                data.NextZombieSpawnTimes[colony] = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
+            }
+            data.ColoniesRequiringZombies.AddIfUnique(colony);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad")]

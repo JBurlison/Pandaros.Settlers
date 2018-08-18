@@ -172,5 +172,10 @@ namespace Pandaros.Settlers
         {
             return source.Owners.Any(o => o.IsConnected);
         }
+
+        public static SortedList<int, Colony> GetColonies(this ColonyTracker tracker)
+        {
+            return tracker.GetFieldValue<SortedList<int, Colony>, ColonyTracker>("ColoniesByID");
+        }
     }
 }

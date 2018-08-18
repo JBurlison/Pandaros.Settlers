@@ -25,6 +25,7 @@ namespace Pandaros.Settlers.Entities
         public double NextColonistBuyTime { get; set; }
         public double NeedsABed { get; set; }
         public int HighestColonistCount { get; set; }
+        public double NextGenTime { get; set; }
         public string DifficultyStr
         {
             get
@@ -65,7 +66,7 @@ namespace Pandaros.Settlers.Entities
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.ColonyState.OnUpdate")]
         public static void OnUpdate()
         {
-            foreach (var c in ServerManager.ColonyTracker.GetFieldValue<SortedList<int, Colony>, ColonyTracker>("ColoniesByID").Values)
+            foreach (var c in ServerManager.ColonyTracker.GetColonies().Values)
             {
                 if (c.OwnerIsOnline())
                 {
