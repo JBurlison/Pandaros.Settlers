@@ -1,5 +1,6 @@
 ﻿using AI;
 using BlockEntities.Implementations;
+using Difficulty;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
@@ -35,11 +36,10 @@ namespace Pandaros.Settlers.Monsters
 
                 while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
                 {
-                    var tuple = coloniesRequiringZombies[i];
-                    Colony colony = tuple.Banners;
-                    Banner banner = tuple.item2;
+                    Colony colony = coloniesRequiringZombies[i];
+                    Banner banner = colony.RandomBanner;
 
-                    IDifficultySetting difficulty = colony.Owner.DifficultySetting;
+                    IColonyDifficultySetting difficulty = colony.DifficultySetting;
                     float cooldown = difficulty.GetZombieSpawnCooldown(colony);
 
                     if (SpawnForBanner(banner, difficulty, colony, cooldown, null))
@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Monsters
 
         public void CalculateColoniesThatRequireMonsters()
         {
-            int bannerCount = BannerTracker.GetCount();
+            int bannerCount = ServerManager.BannerTracker.GetCount();
             coloniesRequiringZombies.Clear();
 
             for (int i = 0; i < bannerCount; i++)
@@ -81,7 +81,7 @@ namespace Pandaros.Settlers.Monsters
                 }
 
                 var ps = PlayerState.GetPlayerState(banner.Owner);
-                IDifficultySetting difficultyColony = colony.Owner.DifficultySetting;
+                IColonyDifficultySetting difficultyColony = colony.DifficultySetting;
 
                 if (!MonsterManager.BossActive)
                 if (!ps.MonstersEnabled || !difficultyColony.ShouldSpawnZombies(colony))
@@ -107,12 +107,11 @@ namespace Pandaros.Settlers.Monsters
                 if (Pipliz.Time.SecondsSinceStartDoubleThisFrame - nextZombieSpawnTime > MONSTERS_DELAY_THRESHOLD_SECONDS)
                     NextZombieSpawnTimes[colony] = Pipliz.Time.SecondsSinceStartDoubleThisFrame;
 
-                coloniesRequiringZombies.Add(TupleStruct.Create(colony, banner));
+                coloniesRequiringZombies.Add(colony);
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.AfterWorldLoad")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.monsterspawner.register")]
         private static void AfterWorldLoad()
         {
@@ -121,7 +120,7 @@ namespace Pandaros.Settlers.Monsters
             PandaLogger.Log("PandaMonsterSpawner Initialized!");
         }
 
-        public bool SpawnForBanner(Banner banner, IDifficultySetting difficulty, Colony colony, float cooldown, IPandaBoss boss)
+        public bool SpawnForBanner(Banner banner, IColonyDifficultySetting difficulty, Colony colony, float cooldown, IPandaBoss boss)
         {
             int recycleFrequency = MonsterSpawner.GetPathRecycleFrequency(1f / cooldown);
             NPCType zombieTypeToSpawn = difficulty.GetZombieTypeToSpawn(colony);
@@ -132,16 +131,16 @@ namespace Pandaros.Settlers.Monsters
         public static bool CaclulateZombie(Banner banner, Colony colony, NPCType typeToSpawn, int RecycleFrequency = 1, float maxSpawnWalkDistance = 500f, IPandaBoss boss = null)
         {
             Path path;
-            if (RecycleFrequency > 1 && MonsterSpawner.PathCache.TryGetPath(RecycleFrequency, banner.KeyLocation, maxSpawnWalkDistance, out path))
+            if (RecycleFrequency > 1 && PathCache.TryGetPath(RecycleFrequency, banner.Position, maxSpawnWalkDistance, out path))
             {
                 SpawnPandaZombie(typeToSpawn, path, colony, boss);
                 return true;
             }
             Vector3Int positionFinal;
-            switch (MonsterSpawner.TryGetSpawnLocation(banner, maxSpawnWalkDistance, out positionFinal))
+            switch (MonsterSpawner.TryGetSpawnLocation(banner.Position, 100, 200, maxSpawnWalkDistance, out positionFinal))
             {
                 case MonsterSpawner.ESpawnResult.Success:
-                    if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, banner.KeyLocation, out path, 2000000000) == EPathFindingResult.Success)
+                    if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, banner.Position, out path, 2000000000) == EPathFindingResult.Success)
                     {
                         if (RecycleFrequency > 1)
                             MonsterSpawner.PathCache.AddCopy(path);
@@ -164,7 +163,7 @@ namespace Pandaros.Settlers.Monsters
 
         public static void SpawnPandaZombie(NPCType typeToSpawn, Path path, Colony colony, IPandaBoss boss)
         {
-            var monster = new Zombie(typeToSpawn, path, colony.Owner);
+            var monster = new Zombie(typeToSpawn, path, colony);
 
             if (boss != null)
                 if (boss.ZombieHPBonus != 0)

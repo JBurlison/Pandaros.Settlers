@@ -126,6 +126,7 @@
     <Compile Include="Cosmetics\CarpetBlack.cs" />
     <Compile Include="Cosmetics\Register.cs" />
     <Compile Include="DamageType.cs" />
+    <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="EventedDictionary.cs" />
