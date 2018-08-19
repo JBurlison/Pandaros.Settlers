@@ -6,13 +6,13 @@ namespace Pandaros.Settlers.Monsters
 {
     public class BossSpawnedEvent : EventArgs
     {
-        public BossSpawnedEvent(PlayerState ps, IMonster boss)
+        public BossSpawnedEvent(ColonyState cs, IMonster boss)
         {
-            Player = ps;
+            Colony = cs;
             Boss   = boss;
         }
 
-        public PlayerState Player { get; }
+        public ColonyState Colony { get; }
 
         public IMonster Boss { get; }
     }

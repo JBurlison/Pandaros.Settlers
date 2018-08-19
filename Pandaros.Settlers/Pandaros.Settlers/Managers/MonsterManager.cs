@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Managers
         private static double _nextUpdateTime;
         private static int _nextBossUpdateTime = int.MaxValue;
 
-        private static readonly Dictionary<PlayerState, IPandaBoss> _spawnedBosses =  new Dictionary<PlayerState, IPandaBoss>();
+        private static readonly Dictionary<ColonyState, IPandaBoss> _spawnedBosses =  new Dictionary<ColonyState, IPandaBoss>();
 
         private static readonly List<IPandaBoss> _bossList = new List<IPandaBoss>();
 
@@ -102,69 +102,48 @@ namespace Pandaros.Settlers.Managers
                 {
                     var   turnOffBoss   = true;
                     var   worldSettings = ServerManager.WorldSettings;
-  
-                    Dictionary<PlayerState, List<Banner>> banners = new Dictionary<PlayerState, List<Banner>>();
-                    var spawnBanners = new List<Banner>();
 
-                    for (var i = 0; i < BannerTracker.GetCount(); i++)
-                        if (BannerTracker.TryGetAtIndex(i, out var newBanner))
-                        { 
-                            var bps = PlayerState.GetPlayerState(newBanner.Owner);
-
-                            if (!banners.ContainsKey(bps))
-                                banners.Add(bps, new List<Banner>());
-
-                            banners[bps].Add(newBanner);
-                        }
-
-
-                    foreach (var bkvp in banners)
+                    foreach (var colony in ServerManager.ColonyTracker.GetColonies().Values)
                     {
-                        if (bkvp.Value.Count > 1)
+                        var bannerGoal = colony.RandomBanner;
+
+                        if (colony.Banners.Length > 1)
                         {
-                            var next = Pipliz.Random.Next(bkvp.Value.Count);
-                            spawnBanners.Add(bkvp.Value[next]);
+                            var next = Pipliz.Random.Next(colony.Banners.Length);
+                            bannerGoal = colony.Banners[next];
                         }
-                        else if (bkvp.Value.Count == 1)
-                            spawnBanners.Add(bkvp.Value[0]);
-                    }
 
-                    foreach (var bannerGoal in spawnBanners)
-                    {
-                        var ps = PlayerState.GetPlayerState(bannerGoal.Owner);
-                        var colony = Colony.Get(ps.Player);
+                        var cs = ColonyState.GetColonyState(colony);
 
-                        if (ps.BossesEnabled &&
-                            ps.Player.IsConnected &&
-                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
+                        if (cs.BossesEnabled &&
+                            cs.ColonyRef.OwnerIsOnline() &&
+                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
                         {
                             if (bossType != null &&
-                                !_spawnedBosses.ContainsKey(ps))
+                                !_spawnedBosses.ContainsKey(cs))
                             {
                                 Vector3Int positionFinal;
-                                switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal, 500f, out positionFinal))
+                                switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
                                 {
                                     case MonsterSpawner.ESpawnResult.Success:
-                                        if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, bannerGoal.KeyLocation, out var path, 2000000000) == EPathFindingResult.Success)
+                                        if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
                                         {
-                                            var pandaboss = bossType.GetNewBoss(path, ps.Player);
-                                            _spawnedBosses.Add(ps, pandaboss);
+                                            var pandaboss = bossType.GetNewBoss(path, colony);
+                                            _spawnedBosses.Add(cs, pandaboss);
 
                                             BossSpawned?.Invoke(MonsterTracker.MonsterSpawner,
-                                                                new BossSpawnedEvent(ps, pandaboss));
+                                                                new BossSpawnedEvent(cs, pandaboss));
 
                                             ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned,
                                                                                     pandaboss);
 
                                             MonsterTracker.Add(pandaboss);
                                             colony.OnZombieSpawn(true);
-                                            ps.FaiedBossSpawns = 0;
-
-                                            PandaChat.Send(ps.Player, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}",
-                                                            ChatColor.red);
+                                            cs.FaiedBossSpawns = 0;
+                                            PandaChat.Send(cs, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}", ChatColor.red);
 
                                             if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
-                                                ServerManager.SendAudio(ps.Player.Position, pandaboss.AnnouncementAudio);
+                                               colony.ForEachOwner(o => ServerManager.SendAudio(o.Position, pandaboss.AnnouncementAudio));
                                         }
 
                                         break;
@@ -173,24 +152,22 @@ namespace Pandaros.Settlers.Managers
                                         colony.OnZombieSpawn(true);
                                         break;
                                     case MonsterSpawner.ESpawnResult.Fail:
-                                        CantSpawnBoss(ps, colony);
+                                        CantSpawnBoss(cs);
                                         break;
                                 }
 
-                                if (_spawnedBosses.ContainsKey(ps) &&
-                                    _spawnedBosses[ps].IsValid &&
-                                    _spawnedBosses[ps].CurrentHealth > 0)
+                                if (_spawnedBosses.ContainsKey(cs) &&
+                                    _spawnedBosses[cs].IsValid &&
+                                    _spawnedBosses[cs].CurrentHealth > 0)
                                 {
-                                    if (ps.Player.GetTempValues(true).GetOrDefault("BossIndicator", 0) <
-                                        Time.SecondsSinceStartInt)
+                                    if (colony.TemporaryData.GetAsOrDefault("BossIndicator", 0) < Time.SecondsSinceStartInt)
                                     {
-                                        Indicator.SendIconIndicatorNear(new Vector3Int(_spawnedBosses[ps].Position),
-                                                                        _spawnedBosses[ps].ID,
+                                        Indicator.SendIconIndicatorNear(new Vector3Int(_spawnedBosses[cs].Position),
+                                                                        _spawnedBosses[cs].ID,
                                                                         new IndicatorState(1, GameLoader.Poisoned_Icon,
                                                                                             false, false));
 
-                                        ps.Player.GetTempValues(true)
-                                            .Set("BossIndicator", Time.SecondsSinceStartInt + 1);
+                                        colony.TemporaryData.SetAs("BossIndicator", Time.SecondsSinceStartInt + 1);
                                     }
 
                                     turnOffBoss = false;
@@ -217,14 +194,14 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        private static void CantSpawnBoss(PlayerState ps, Colony colony)
+        private static void CantSpawnBoss(ColonyState cs)
         {
-            ps.FaiedBossSpawns++;
+            cs.FaiedBossSpawns++;
 
-            if (ps.FaiedBossSpawns > 10)
-                PandaChat.SendThrottle(ps.Player, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(colony, 0.15f)} food.", ChatColor.red);
+            if (cs.FaiedBossSpawns > 10)
+                PandaChat.SendThrottle(cs, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f)} food.", ChatColor.red);
 
-            colony.OnZombieSpawn(false);
+            cs.ColonyRef.OnZombieSpawn(false);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
@@ -241,9 +218,9 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData d)
         {
-            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
+            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster && player.ActiveColony != null)
             {
-                var state = PlayerState.GetPlayerState(player);
+                var state = ColonyState.GetColonyState(player.ActiveColony);
                 d.ResultDamage += state.Difficulty.MonsterDamage;
             }
         }
@@ -253,7 +230,7 @@ namespace Pandaros.Settlers.Managers
         {
             if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
             {
-                var state = PlayerState.GetPlayerState(npc.Colony.Owner);
+                var state = ColonyState.GetColonyState(npc.Colony);
                 d.ResultDamage += state.Difficulty.MonsterDamage;
             }
         }
@@ -261,7 +238,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
         public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
         {
-            var ps         = PlayerState.GetPlayerState(monster.OriginalGoal);
+            var ps         = ColonyState.GetColonyState(monster.OriginalGoal);
             var pandaArmor = monster as IPandaArmor;
             var pamdaDamage     = d.HitSourceObject as IPandaDamage;
 
@@ -294,9 +271,9 @@ namespace Pandaros.Settlers.Managers
         {
             var rewardMonster = monster as IKillReward;
 
-            if (rewardMonster != null && rewardMonster.OriginalGoal.IsConnected)
+            if (rewardMonster != null && rewardMonster.OriginalGoal.OwnerIsOnline())
             {
-                var stockpile = Stockpile.GetStockPile(rewardMonster.OriginalGoal);
+                var stockpile = rewardMonster.OriginalGoal.Stockpile;
 
                 // TODO
                 //foreach (var reward in rewardMonster.KillRewards)
