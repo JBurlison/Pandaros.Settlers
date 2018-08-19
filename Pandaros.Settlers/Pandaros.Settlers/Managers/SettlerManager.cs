@@ -211,8 +211,9 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
-            foreach (var p in Players.PlayerDatabase.Values)
-                UpdateFoodUse(p);
+
+            foreach (var p in ServerManager.ColonyTracker.GetColonies().Values)
+                UpdateFoodUse(ColonyState.GetColonyState(p));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
@@ -220,42 +221,44 @@ namespace Pandaros.Settlers.Managers
         {
             if (p.IsConnected && !Configuration.OfflineColonies)
             {
-                var jf = JobTracker.GetOrCreateJobFinder(p) as JobTracker.JobFinder;
-
-                var file =  $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/{p.ID.steamID.ToString()}.json";
-
-                if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
+                foreach (Colony c in p.Colonies)
                 {
-                    PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is reconnected. Restoring Colony.");
+                    var file = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/NPCArchive/{c.ColonyID}.json";
 
-                    foreach (var node in followersNode.LoopArray())
-                        try
-                        {
-                            node.SetAs("id", GetAIID());
+                    if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
+                    {
+                        File.Delete(file);
+                        PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is reconnected. Restoring Colony.");
 
-                            var npc = new NPCBase(p, node);
-                            ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+                        foreach (var node in followersNode.LoopArray())
+                            try
+                            {
+                                node.SetAs("id", GetAIID());
 
-                            foreach (var job in jf.openJobs)
-                                if (node.TryGetAs("JobPoS", out JSONNode pos) && job.KeyLocation == (Vector3Int) pos)
-                                {
-                                    if (job.IsValid && job.NeedsNPC)
+                                var npc = new NPCBase(c, node);
+                                ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+
+                                foreach (var job in new List<IJob>(c.JobFinder.JobsData.OpenJobs))
+                                    if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
                                     {
-                                        npc.TakeJob(job);
-                                        job.NPC = npc;
-                                        JobTracker.Remove(p, job.KeyLocation);
+                                        if (job.IsValid && job.NeedsNPC)
+                                        {
+                                            npc.TakeJob(job);
+                                            job.SetNPC(npc);
+                                            c.JobFinder.Remove(job);
+                                        }
+
+                                        break;
                                     }
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.LogError(ex);
+                            }
 
-                                    break;
-                                }
-                        }
-                        catch (Exception ex)
-                        {
-                            PandaLogger.LogError(ex);
-                        }
-
-                    JSON.Serialize(file, new JSONNode(NodeType.Array));
-                    jf.Update();
+                        JSON.Serialize(file, new JSONNode(NodeType.Array));
+                        c.JobFinder.Update();
+                    }
                 }
             }
         }
@@ -278,11 +281,12 @@ namespace Pandaros.Settlers.Managers
         public static void OnPlayerConnectedLate(Players.Player p)
         {
             if (Configuration.GetorDefault("SettlersEnabled", true) &&
-                Configuration.GetorDefault("MaxSettlersToggle", 4) > 0)
+                Configuration.GetorDefault("MaxSettlersToggle", 4) > 0 &&
+                p.ActiveColony != null)
             {
-                var ps = PlayerState.GetPlayerState(p);
+                var cs = ColonyState.GetColonyState(p.ActiveColony);
 
-                if (ps.SettlersEnabled && Configuration.GetorDefault("ColonistsRecruitment", true))
+                if (cs.SettlersEnabled && Configuration.GetorDefault("ColonistsRecruitment", true))
                     PandaChat.Send(p,
                                    string
                                       .Format("Recruiting over {0} colonists will cost the base food cost plus a compounding {1} food. This compounding value resets once per in game day. If you build it... they will come.",
@@ -290,9 +294,9 @@ namespace Pandaros.Settlers.Managers
                                               Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5)),
                                    ChatColor.orange);
 
-                if (ps.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 4))
+                if (cs.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 4))
                 {
-                    var settlers = ps.SettlersEnabled ? "on" : "off";
+                    var settlers = cs.SettlersEnabled ? "on" : "off";
 
                     if (Configuration.GetorDefault("MaxSettlersToggle", 4) > 0)
                         PandaChat.Send(p,
@@ -306,31 +310,34 @@ namespace Pandaros.Settlers.Managers
                 }
             }
 
-            UpdateFoodUse(p);
-
-            Colony.Get(p).SendUpdate();
-            Colony.SendColonistCount(p);
+            foreach (Colony c in p.Colonies)
+            {
+                UpdateFoodUse(ColonyState.GetColonyState(c));
+                c.SendUpdate();
+                c.SendColonistCount();
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
-            SaveOffline(p);
+            foreach (Colony c in p.Colonies)
+                SaveOffline(c);
         }
 
-        public static void SaveOffline(Players.Player p)
+        public static void SaveOffline(Colony colony)
         {
-            if (p.ID == null || p.ID.steamID == null)
+            if (colony.OwnerIsOnline())
                 return;
 
             try
             {
-                var folder = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/players/NPCArchive/";
+                var folder = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/NPCArchive/";
 
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
 
-                var file = $"{folder}{p.ID.steamID.ToString()}.json";
+                var file = $"{folder}{colony.ColonyID}.json";
 
                 if (!Configuration.OfflineColonies)
                 {
@@ -339,10 +346,8 @@ namespace Pandaros.Settlers.Managers
 
                     followers.ClearChildren();
 
-                    PandaLogger.Log(ChatColor.cyan,
-                                    $"Player {p.ID.steamID} is disconnected. Clearing colony until reconnect.");
+                    PandaLogger.Log(ChatColor.cyan, $"All players from {colony.ColonyID} have disconnected. Clearing colony until reconnect.");
 
-                    var colony          = Colony.Get(p);
                     var copyOfFollowers = new List<NPCBase>();
 
                     foreach (var follower in colony.Followers)
@@ -353,10 +358,10 @@ namespace Pandaros.Settlers.Managers
                         {
                             var job = follower.Job;
 
-                            if (job != null && job.KeyLocation != Vector3Int.invalidPos)
+                            if (job != null && job.GetJobLocation() != Vector3Int.invalidPos)
                             {
-                                jobloc  = (JSONNode) job.KeyLocation;
-                                job.NPC = null;
+                                jobloc  = (JSONNode) job.GetJobLocation();
+                                job.SetNPC(null);
                                 follower.ClearJob();
                             }
                         }
@@ -377,7 +382,7 @@ namespace Pandaros.Settlers.Managers
                     foreach (var deadMan in copyOfFollowers)
                         deadMan.OnDeath();
 
-                    MonsterTracker.KillAllZombies(p);
+                    colony.ForEachOwner(o => MonsterTracker.KillAllZombies(o));
                 }
             }
             catch (Exception ex)
@@ -392,7 +397,7 @@ namespace Pandaros.Settlers.Managers
             if (npc.GetTempValues().TryGet(ISSETTLER, out bool settler) && settler)
                 return;
 
-            var ps = PlayerState.GetPlayerState(npc.Colony.Owner);
+            var ps = ColonyState.GetColonyState(npc.Colony);
 
             if (ps.SettlersEnabled)
             {
@@ -406,17 +411,11 @@ namespace Pandaros.Settlers.Managers
                         if (cost < 1)
                             cost = 1;
 
-                        if (npc.Colony.UsedStockpile.TotalFood < cost ||
-                            !npc.Colony.UsedStockpile.TryRemoveFood(ref num, cost))
+                        if (npc.Colony.Stockpile.TotalFood < cost ||
+                            !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
                         {
-                            Chat.Send(npc.Colony.Owner,
-                                      $"<color=red>Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.</color>",
-                                      ChatSenderType.Server);
-
-                            npc.Colony.UsedStockpile.Add(BuiltinBlocks.Bread,
-                                                         (int) Math.Floor(ServerManager.ServerVariables.LaborerCost /
-                                                                          3));
-
+                            PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.", ChatColor.red);
+                            npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
                             npc.health = 0;
                             npc.Update();
                             return;
@@ -427,12 +426,11 @@ namespace Pandaros.Settlers.Managers
                     }
 
                     SettlerInventory.GetSettlerInventory(npc);
-                    UpdateFoodUse(npc.Colony.Owner);
+                    UpdateFoodUse(ps);
                 }
                 else
                 {
-                    PandaChat.Send(npc.Colony.Owner,
-                                   "The server administrator has disabled recruitment of colonists while settlers are enabled.");
+                    PandaChat.Send(npc.Colony, "The server administrator has disabled recruitment of colonists while settlers are enabled.");
                 }
             }
         }
@@ -441,7 +439,7 @@ namespace Pandaros.Settlers.Managers
         public static void OnNPCDied(NPCBase npc)
         {
             SettlerInventory.GetSettlerInventory(npc);
-            UpdateFoodUse(npc.Colony.Owner);
+            UpdateFoodUse(ColonyState.GetColonyState(npc.Colony));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCLoaded, GameLoader.NAMESPACE + ".SettlerManager.OnNPCLoaded")]
@@ -705,17 +703,17 @@ namespace Pandaros.Settlers.Managers
 
                 for (var i = 0; i < numberOfItems; i++)
                 {
-                    var randItem = Random.Next(npc.Colony.UsedStockpile.SpotCount);
-                    var item     = npc.Colony.UsedStockpile.GetByIndex(randItem);
+                    var randItem = Random.Next(npc.Colony.Stockpile.ItemCount);
+                    var item     = npc.Colony.Stockpile.GetByIndex(randItem);
 
                     if (item.Type != BuiltinBlocks.Air && item.Amount != 0)
                     {
                         var leaveTax = Pipliz.Math.RoundToInt(item.Amount * .10);
-                        npc.Colony.UsedStockpile.TryRemove(item.Type, leaveTax);
+                        npc.Colony.Stockpile.TryRemove(item.Type, leaveTax);
                     }
                 }
 
-                PandaChat.Send(npc.Colony.Owner, $"A colonist has left your colony taking 10% of {numberOfItems} items from your stockpile.", ChatColor.red);
+                PandaChat.Send(npc.Colony, $"A colonist has left your colony taking 10% of {numberOfItems} items from your stockpile.", ChatColor.red);
             }
 
             npc.health = 0;
@@ -724,17 +722,17 @@ namespace Pandaros.Settlers.Managers
 
         public static float PenalizeFood(Colony c, float percent)
         {
-            var cost = (float)Math.Ceiling(c.UsedStockpile.TotalFood * percent);
+            var cost = (float)Math.Ceiling(c.Stockpile.TotalFood * percent);
             var num = 0f;
 
             if (cost < 1)
                 cost = 1;
 
-            c.UsedStockpile.TryRemoveFood(ref num, cost);
+            c.Stockpile.TryRemoveFood(ref num, cost);
             return cost;
         }
 
-        private static bool EvaluateBeds(Players.Player p)
+        private static bool EvaluateBeds(ColonyState state)
         {
             var update = false;
 
@@ -742,11 +740,10 @@ namespace Pandaros.Settlers.Managers
             {
                 if (!TimeCycle.IsDay && Time.SecondsSinceStartDouble > _nextbedTime)
                 {
-                    if (p.IsConnected)
+                    if (state.ColonyRef.OwnerIsOnline())
                     {
-                        var colony        = Colony.Get(p);
-                        var state         = PlayerState.GetPlayerState(p);
-                        var remainingBeds = ServerManager.BlockEntityCallbacks.BedTracker.GetCount(p) - colony.FollowerCount;
+                        // TODO Fix bed count
+                        var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.GetCountNearPosition(state.ColonyRef.RandomBanner.Position, state.ColonyRef.BannerSafeRadius) - state.ColonyRef.FollowerCount;
                         var left          = 0;
 
                         if (remainingBeds >= 0)
@@ -758,12 +755,12 @@ namespace Pandaros.Settlers.Managers
                             if (state.NeedsABed == 0)
                             {
                                 state.NeedsABed = Time.SecondsSinceStartDouble + LOABOROR_LEAVE_HOURS;
-                                PandaChat.Send(p, SettlerReasoning.GetNeedBed(), ChatColor.grey);
+                                PandaChat.Send(state.ColonyRef, SettlerReasoning.GetNeedBed(), ChatColor.grey);
                             }
 
                             if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalTime)
                             {
-                                foreach (var follower in colony.Followers)
+                                foreach (var follower in state.ColonyRef.Followers)
                                     if (follower.UsedBed == null)
                                     {
                                         left++;
@@ -775,16 +772,12 @@ namespace Pandaros.Settlers.Managers
 
                             if (left > 0)
                             {
-                                PandaChat.Send(p,
-                                               string.Concat(SettlerReasoning.GetNoBed(),
-                                                             string.Format(" {0} colonists have left your colony.",
-                                                                           left)), ChatColor.red);
-
+                                PandaChat.Send(state.ColonyRef, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
                                 update = true;
                             }
                         }
 
-                        colony.SendUpdate();
+                        state.ColonyRef.SendUpdate();
                     }
 
                     _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * TimeCycle.SecondsPerHour;

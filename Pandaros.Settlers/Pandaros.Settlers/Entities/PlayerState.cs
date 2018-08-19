@@ -45,7 +45,7 @@ namespace Pandaros.Settlers.Entities
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
-        public int SettlersToggledTimes { get; set; }
+        
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public long NextMusicTime { get; set; }
@@ -322,7 +322,6 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(BuildersWandMode), _playerStates[p].BuildersWandMode.ToString());
                 node.SetAs(nameof(BuildersWandCharge), _playerStates[p].BuildersWandCharge);
                 node.SetAs(nameof(BuildersWandTarget), _playerStates[p].BuildersWandTarget);
-                node.SetAs(nameof(SettlersToggledTimes), _playerStates[p].SettlersToggledTimes);
                 node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);

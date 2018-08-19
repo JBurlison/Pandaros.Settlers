@@ -19,8 +19,8 @@ namespace Pandaros.Settlers
                                                                                              ".Permissions.Archive")))
                 return true;
 
-            foreach (var p in Players.PlayerDatabase.Values)
-                SettlerManager.SaveOffline(p);
+            foreach (var c in ServerManager.ColonyTracker.GetColonies())
+                SettlerManager.SaveOffline(c);
 
             return true;
         }

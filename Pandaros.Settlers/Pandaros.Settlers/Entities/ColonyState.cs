@@ -26,6 +26,7 @@ namespace Pandaros.Settlers.Entities
         public double NeedsABed { get; set; }
         public int HighestColonistCount { get; set; }
         public double NextGenTime { get; set; }
+        public int SettlersToggledTimes { get; set; }
         public string DifficultyStr
         {
             get
@@ -114,6 +115,9 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs(nameof(NeedsABed), out int nb))
                     _colonyStates[c].NeedsABed = nb;
+
+                if (stateNode.TryGetAs(nameof(SettlersToggledTimes), out int stt))
+                    _colonyStates[c].SettlersToggledTimes = stt;
             }
         }
 
@@ -123,11 +127,13 @@ namespace Pandaros.Settlers.Entities
             if (_colonyStates.ContainsKey(c))
             {
                 var node = new JSONNode();
+
                 node.SetAs("Difficulty", _colonyStates[c].DifficultyStr);
                 node.SetAs(nameof(BossesEnabled), _colonyStates[c].BossesEnabled);
                 node.SetAs(nameof(MonstersEnabled), _colonyStates[c].MonstersEnabled);
                 node.SetAs(nameof(SettlersEnabled), _colonyStates[c].SettlersEnabled);
                 node.SetAs(nameof(HighestColonistCount), _colonyStates[c].HighestColonistCount);
+                node.SetAs(nameof(SettlersToggledTimes), _colonyStates[c].SettlersToggledTimes);
 
                 n.SetAs(GameLoader.NAMESPACE + ".ColonyState", node);
             }
