@@ -206,7 +206,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ReducedWaste_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.ForEachOwner(o => SettlerManager.UpdateFoodUse(o));
+            SettlerManager.UpdateFoodUse(ColonyState.GetColonyState(e.Manager.Colony));
         }
 
         private static void AddArmorSmithing(Dictionary<ushort, int> researchDic)

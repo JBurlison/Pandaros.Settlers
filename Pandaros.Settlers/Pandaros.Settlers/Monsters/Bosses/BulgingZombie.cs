@@ -22,16 +22,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public Bulging(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            originalGoal.ForEachOwner(o =>
-            {
-                var ps = PlayerState.GetPlayerState(o);
-                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
-
-                if (hp < _totalHealth)
-                    _totalHealth = hp;
-
-                health = _totalHealth;
-            });
+            var ps = ColonyState.GetColonyState(originalGoal);
+            _totalHealth = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            health = _totalHealth;
         }
 
         public IPandaBoss GetNewBoss(Path path, Colony p)
@@ -112,16 +105,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
             if (boss != null)
             {
-                var numberToSpawn = 0;
-
-                boss.OriginalGoal.ForEachOwner(o =>
-                {
-                    var ps = PlayerState.GetPlayerState(o);
-                    var nts = ps.Difficulty.Rank * 10;
-
-                    if (nts > numberToSpawn)
-                        numberToSpawn = nts;
-                });
+                var numberToSpawn = ColonyState.GetColonyState(boss.OriginalGoal).Difficulty.Rank * 10;
 
                 if (numberToSpawn == 0)
                     numberToSpawn = 10;

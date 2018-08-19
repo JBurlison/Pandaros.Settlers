@@ -21,16 +21,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public ZombieKing(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            originalGoal.ForEachOwner(o =>
-            {
-                var ps = PlayerState.GetPlayerState(o);
-                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
-
-                if (hp < _totalHealth)
-                    _totalHealth = hp;
-
-                health = _totalHealth;
-            });
+            var ps = ColonyState.GetColonyState(originalGoal);
+            _totalHealth = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            health = _totalHealth;
         }
 
         public IPandaBoss GetNewBoss(Path path, Colony p)

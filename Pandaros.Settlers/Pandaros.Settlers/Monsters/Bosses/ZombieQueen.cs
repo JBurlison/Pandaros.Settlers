@@ -25,16 +25,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public ZombieQueen(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            originalGoal.ForEachOwner(o =>
-            {
-                var ps = PlayerState.GetPlayerState(o);
-                var hp = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
-
-                if (hp < _totalHealth)
-                    _totalHealth = hp;
-
-                health = _totalHealth;
-            });
+            var ps = ColonyState.GetColonyState(originalGoal);
+            _totalHealth = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
+            health = _totalHealth;
         }
 
         public IPandaBoss GetNewBoss(Path path, Colony p)
@@ -81,26 +74,13 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
             if (_updateTime < Time.SecondsSinceStartDouble)
             {
-                var rank = 1;
-                var cooldown = 30f;
-                var teleportHP = 100f;
-
                 var alreadyTeleported = new List<IMonster>();
-
-                OriginalGoal.ForEachOwner(o =>
-                {
-                    var ps = PlayerState.GetPlayerState(o);
-
-                    if (ps.Difficulty.Rank > rank)
-                        rank = ps.Difficulty.Rank;
-
-                    if (ps.Difficulty.ZombieQueenTargetTeleportHp > teleportHP)
-                        teleportHP = ps.Difficulty.ZombieQueenTargetTeleportHp;
-
-                    if (cooldown > ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds)
-                        cooldown = ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
-                });
-
+                var ps = ColonyState.GetColonyState(OriginalGoal);
+                var rank = ps.Difficulty.Rank;
+                var teleportHP = ps.Difficulty.ZombieQueenTargetTeleportHp;
+                var cooldown = ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
+     
+        
                 for (var i = 0; i < rank - 1; i++)
                 {
                     var monster = MonsterTracker.Find(position, 20, teleportHP);

@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Items
                 {
                     results.Add(new InventoryItem(Item.ItemIndex));
 
-                    PandaChat.Send(job.NPC.Colony.Owner,
+                    PandaChat.Send(job.NPC.Colony,
                                    $"{inv.SettlerName} the Apothecary has discovered a Void Stone while crafting Elementium!",
                                    ChatColor.orange);
                 }

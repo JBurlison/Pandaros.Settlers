@@ -95,6 +95,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".SettlerManager.OnUpdate")]
         public static void OnUpdate()
         {
+            if (ServerManager.ColonyTracker != null)
             foreach (var colony in ServerManager.ColonyTracker.GetColonies().Values)
             {
                 if (_magicUpdateTime < Time.SecondsSinceStartDouble)

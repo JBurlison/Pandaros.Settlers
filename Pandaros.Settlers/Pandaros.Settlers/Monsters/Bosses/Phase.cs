@@ -21,16 +21,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public Phase(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            originalGoal.ForEachOwner(o =>
-            {
-                var ps = PlayerState.GetPlayerState(o);
-                var hp = originalGoal.FollowerCount * (ps.Difficulty.BossHPPerColonist - ps.Difficulty.BossHPPerColonist * .20f);
-
-                if (hp < _totalHealth)
-                    _totalHealth = hp;
-
-                health = _totalHealth;
-            });
+            var ps = ColonyState.GetColonyState(originalGoal);
+            _totalHealth = originalGoal.FollowerCount * (ps.Difficulty.BossHPPerColonist - ps.Difficulty.BossHPPerColonist * .20f);
+            health = _totalHealth;
         }
 
         public IPandaBoss GetNewBoss(Path path, Colony p)

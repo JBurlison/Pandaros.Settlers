@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             Colony       = colony;
 
             if (settings == null)
-                RoamingJobSettings = RoamingJobFactory.GetCallbacks(objectiveType);
+                RoamingJobSettings = RoamingJobManager.GetCallbacks(objectiveType);
             else
                 RoamingJobSettings = settings;
 
@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 foreach (var aNode in ItemsRemovedNode.LoopObject())
                     ActionEnergy.Add(aNode.Key, aNode.Value.GetAs<int>());
 
-            RoamingJobSettings = RoamingJobFactory.GetCallbacks(RoamObjective);
+            RoamingJobSettings = RoamingJobManager.GetCallbacks(RoamObjective);
             Initialize();
         }
 

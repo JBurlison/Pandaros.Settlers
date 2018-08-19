@@ -82,8 +82,6 @@ namespace Pandaros.Settlers.Items.Weapons
 
                 ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
             }
-
-            WeaponFactory.RefreshGuardSettings();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Sword.AddSwords")]

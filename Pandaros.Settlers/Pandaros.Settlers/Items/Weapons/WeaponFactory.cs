@@ -10,40 +10,7 @@ namespace Pandaros.Settlers.Items.Weapons
     [ModLoader.ModManager]
     public static class WeaponFactory
     {
-        public static List<GuardBaseJob.GuardSettings> WeaponGuardSettings = new List<GuardBaseJob.GuardSettings>();
-
         public static Dictionary<ushort, IWeapon> WeaponLookup { get; } =  new Dictionary<ushort, IWeapon>();
-
-        public static void RefreshGuardSettings()
-        {
-            if (!WeaponGuardSettings.Contains(GuardBowJobDay.GetGuardSettings()))
-                WeaponGuardSettings.Add(GuardBowJobDay.GetGuardSettings());
-
-            if (!WeaponGuardSettings.Contains(GuardCrossbowJobDay.GetGuardSettings()))
-                WeaponGuardSettings.Add(GuardCrossbowJobDay.GetGuardSettings());
-
-            if (!WeaponGuardSettings.Contains(GuardMatchlockJobDay.GetGuardSettings()))
-                WeaponGuardSettings.Add(GuardMatchlockJobDay.GetGuardSettings());
-
-            if (!WeaponGuardSettings.Contains(GuardSlingerJobDay.GetGuardSettings()))
-                WeaponGuardSettings.Add(GuardSlingerJobDay.GetGuardSettings());
-
-            foreach (var weap in WeaponLookup)
-                WeaponGuardSettings.Add(new GuardBaseJob.GuardSettings
-                {
-                    cooldownMissingItem     = 1.5f,
-                    cooldownSearchingTarget = 0.5f,
-                    cooldownShot            = 3f,
-                    range                   = 1,
-                    recruitmentItem         = new InventoryItem(weap.Key, 1),
-                    shootItem               = new List<InventoryItem>(),
-                    shootDamage             = weap.Value.Damage.TotalDamage(),
-                    OnShootAudio            = "sling",
-                    OnHitAudio              = "fleshHit"
-                });
-
-            WeaponGuardSettings = WeaponGuardSettings.OrderBy(w => w.shootDamage).Reverse().ToList();
-        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Weapons.WeaponFactory.WeaponAttack")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.players.hitnpc")]

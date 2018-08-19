@@ -20,14 +20,12 @@ namespace Pandaros.Settlers.Jobs
     [ModLoader.ModManager]
     public static class PatrolTool
     {
-        private static readonly Dictionary<Players.Player, List<KnightState>> _loadedKnights =
-            new Dictionary<Players.Player, List<KnightState>>();
+        private static readonly Dictionary<Colony, List<KnightState>> _loadedKnights = new Dictionary<Colony, List<KnightState>>();
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.RegisterPatrolTool")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.PatrolTool.RegisterPatrolTool")]
         public static void RegisterPatrolTool()
         {
             var planks = new InventoryItem(BuiltinBlocks.Planks, 2);
@@ -86,8 +84,7 @@ namespace Pandaros.Settlers.Jobs
             items.Add(patrolFlagName, PatrolFlag);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerConnectedLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerConnectedLate")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
@@ -95,8 +92,7 @@ namespace Pandaros.Settlers.Jobs
                 GivePlayerPatrolTool(p);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerRespawn,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerRespawn")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerRespawn, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerRespawn")]
         public static void OnPlayerRespawn(Players.Player p)
         {
             if (p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Knights), 0f) == 1f)
@@ -105,7 +101,7 @@ namespace Pandaros.Settlers.Jobs
 
         public static void GivePlayerPatrolTool(Players.Player p)
         {
-            var playerStockpile = Stockpile.GetStockPile(p);
+            var playerStockpile = p.ActiveColony?.Stockpile;
             var hasTool         = false;
 
             foreach (var item in Inventory.GetInventory(p).Items)
@@ -115,15 +111,15 @@ namespace Pandaros.Settlers.Jobs
                     break;
                 }
 
-            if (!hasTool)
+            if (!hasTool && playerStockpile != null)
                 hasTool = playerStockpile.Contains(Item.ItemIndex);
 
-            if (!hasTool)
+            if (!hasTool && playerStockpile != null)
                 playerStockpile.Add(new InventoryItem(Item.ItemIndex));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Jobs.OnLoadingPlayer")]
-        public static void OnLoadingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Jobs.OnLoadingColony")]
+        public static void OnLoadingColony(JSONNode n, Colony c)
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Knights", out var knightsNode))
                 foreach (var knightNode in knightsNode.LoopArray())
@@ -137,18 +133,15 @@ namespace Pandaros.Settlers.Jobs
                     {
                         var patrolMode = (PatrolType) Enum.Parse(typeof(PatrolType), patrolTypeStr);
 
-                        if (!_loadedKnights.ContainsKey(p))
-                            _loadedKnights.Add(p, new List<KnightState>());
+                        if (!_loadedKnights.ContainsKey(c))
+                            _loadedKnights.Add(c, new List<KnightState>());
 
-                        _loadedKnights[p].Add(new KnightState {PatrolPoints = points, patrolType = patrolMode});
+                        _loadedKnights[c].Add(new KnightState {PatrolPoints = points, patrolType = patrolMode});
                     }
                 }
-
-            JobTracker.Update();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AfterWorldLoad")]
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.load")]
         public static void AfterWorldLoad()
         {
@@ -157,22 +150,21 @@ namespace Pandaros.Settlers.Jobs
             {
                 var knight = new Knight(kp.PatrolPoints, k.Key);
                 knight.PatrolType = kp.patrolType;
-                JobTracker.Add(knight);
+                k.Key.JobFinder.Add(knight);
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingPlayer,
-            GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnSavingPlayer")]
-        public static void OnSavingPlayer(JSONNode n, Players.Player p)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnSavingColony")]
+        public static void OnSavingColony(JSONNode n, Colony c)
         {
-            if (Knight.Knights.ContainsKey(p))
+            if (Knight.Knights.ContainsKey(c))
             {
                 if (n.HasChild(GameLoader.NAMESPACE + ".Knights"))
                     n.RemoveChild(GameLoader.NAMESPACE + ".Knights");
 
                 var knightsNode = new JSONNode(NodeType.Array);
 
-                foreach (var knight in Knight.Knights[p])
+                foreach (var knight in Knight.Knights[c])
                 {
                     var knightNode = new JSONNode()
                        .SetAs(nameof(knight.PatrolType), knight.PatrolType);
@@ -191,11 +183,10 @@ namespace Pandaros.Settlers.Jobs
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
-            GameLoader.NAMESPACE + ".Jobs.PlacePatrol")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.PlacePatrol")]
         public static void PlacePatrol(Players.Player player, Box<PlayerClickedData> boxedData)
         {
-            if (boxedData.item1.IsConsumed)
+            if (boxedData.item1.IsConsumed || player.ActiveColony == null)
                 return;
 
             var click      = boxedData.item1;
@@ -205,8 +196,6 @@ namespace Pandaros.Settlers.Jobs
             if (rayCastHit.rayHitType == RayHitType.Block &&
                 click.typeSelected == Item.ItemIndex)
             {
-                var stockpile = player.Stockpile;
-
                 if (click.typeHit != PatrolFlag.ItemIndex)
                 {
                     var flagPoint = rayCastHit.voxelHit.Add(0, 1, 0);
@@ -217,19 +206,16 @@ namespace Pandaros.Settlers.Jobs
 
                         if (!hasFlags)
                         {
-                            var playerStock = Stockpile.GetStockPile(player);
-
-                            if (playerStock.Contains(PatrolFlag.ItemIndex))
+                            if (player.ActiveColony.Stockpile.Contains(PatrolFlag.ItemIndex))
                             {
                                 hasFlags = true;
-                                playerStock.TryRemove(PatrolFlag.ItemIndex);
+                                player.ActiveColony.Stockpile.TryRemove(PatrolFlag.ItemIndex);
                             }
                         }
 
                         if (!hasFlags)
                         {
-                            PandaChat.Send(player, "You have no patrol flags in your stockpile or inventory.",
-                                           ChatColor.orange);
+                            PandaChat.Send(player, "You have no patrol flags in your stockpile or inventory.", ChatColor.orange);
                         }
                         else
                         {
@@ -244,7 +230,7 @@ namespace Pandaros.Settlers.Jobs
                 }
                 else
                 {
-                    foreach (var knight in Knight.Knights[player])
+                    foreach (var knight in Knight.Knights[player.ActiveColony])
                         if (knight.PatrolPoints.Contains(rayCastHit.voxelHit))
                         {
                             var patrol = string.Empty;
@@ -280,15 +266,15 @@ namespace Pandaros.Settlers.Jobs
                 }
                 else
                 {
-                    var knight = new Knight(new List<Vector3Int>(state.FlagsPlaced), player);
+                    var knight = new Knight(new List<Vector3Int>(state.FlagsPlaced), player.ActiveColony);
                     state.FlagsPlaced.Clear();
-                    JobTracker.Add(knight);
+                    player.ActiveColony.JobFinder.Add(knight);
 
                     PandaChat.Send(player,
                                    "Patrol Active! To stop the patrol pick up any of the patrol flags in the patrol.",
                                    ChatColor.orange);
 
-                    JobTracker.Update();
+                    player.ActiveColony.JobFinder.Update();
                 }
             }
         }
@@ -296,20 +282,17 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled || d.RequestedByPlayer.ActiveColony == null)
                 return;
 
-            if (d.TypeOld == PatrolFlag.ItemIndex)
+            if (d.TypeOld.ItemIndex == PatrolFlag.ItemIndex)
             {
                 var toRemove = default(Knight);
 
-                var state     = PlayerState.GetPlayerState(d.RequestedByPlayer);
-                var stockpile = Stockpile.GetStockPile(d.RequestedByPlayer);
+                if (!Knight.Knights.ContainsKey(d.RequestedByPlayer.ActiveColony))
+                    Knight.Knights.Add(d.RequestedByPlayer.ActiveColony, new List<Knight>());
 
-                if (!Knight.Knights.ContainsKey(d.RequestedByPlayer))
-                    Knight.Knights.Add(d.RequestedByPlayer, new List<Knight>());
-
-                foreach (var knight in Knight.Knights[d.RequestedByPlayer])
+                foreach (var knight in Knight.Knights[d.RequestedByPlayer.ActiveColony])
                     try
                     {
                         if (knight.PatrolPoints.Contains(d.Position))
@@ -322,7 +305,7 @@ namespace Pandaros.Settlers.Jobs
                                         objType == PatrolFlag.ItemIndex)
                                     {
                                         ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
-                                        stockpile.Add(PatrolFlag.ItemIndex);
+                                        d.RequestedByPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
                                     }
 
                             break;
@@ -339,23 +322,19 @@ namespace Pandaros.Settlers.Jobs
                                    $"Patrol with {toRemove.PatrolPoints.Count} patrol points no longer active.",
                                    ChatColor.orange);
 
-                    Knight.Knights[d.RequestedByPlayer].Remove(toRemove);
-
-                    if (((JobTracker.JobFinder) JobTracker.GetOrCreateJobFinder(d.RequestedByPlayer))
-                       .openJobs.Contains(toRemove))
-                        ((JobTracker.JobFinder) JobTracker.GetOrCreateJobFinder(d.RequestedByPlayer))
-                           .openJobs.Remove(toRemove);
-
-                    JobTracker.Update();
+                    Knight.Knights[d.RequestedByPlayer.ActiveColony].Remove(toRemove);
+                    d.RequestedByPlayer.ActiveColony.JobFinder.Remove(toRemove);
+                    d.RequestedByPlayer.ActiveColony.JobFinder.Update();
                 }
 
+                var state = PlayerState.GetPlayerState(d.RequestedByPlayer);
                 if (state.FlagsPlaced.Contains(d.Position))
                 {
                     state.FlagsPlaced.Remove(d.Position);
                     ServerManager.TryChangeBlock(d.Position, BuiltinBlocks.Air);
                 }
 
-                stockpile.Add(PatrolFlag.ItemIndex);
+                d.RequestedByPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
             }
         }
 

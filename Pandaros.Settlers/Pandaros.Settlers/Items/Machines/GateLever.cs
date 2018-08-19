@@ -181,7 +181,7 @@ namespace Pandaros.Settlers.Items.Machines
                         _gatePositions.Add(colony, new Dictionary<Vector3Int, GateState>());
 
                     var moveGates = new Dictionary<GateState, Vector3Int>();
-                    bool bossesEnabled = colony.Owners.Any(o => PlayerState.GetPlayerState(o).BossesEnabled);
+                    bool bossesEnabled = ColonyState.GetColonyState(colony).BossesEnabled;
 
                     foreach (var gate in _gatePositions[colony])
                     {

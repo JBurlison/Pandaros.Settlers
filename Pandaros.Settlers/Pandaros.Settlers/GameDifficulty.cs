@@ -152,16 +152,15 @@ namespace Pandaros.Settlers
             return Name;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            foreach (var player in Players.PlayerDatabase.Values)
+            foreach (var colony in ServerManager.ColonyTracker.GetColonies().Values)
             {
-                var ps = PlayerState.GetPlayerState(player);
+                var cs = ColonyState.GetColonyState(colony);
 
-                if (ps != null && ps.Difficulty.Rank < Configuration.MinDifficulty.Rank)
-                    ps.Difficulty = Configuration.MinDifficulty;
+                if (cs != null && cs.Difficulty.Rank < Configuration.MinDifficulty.Rank)
+                    cs.Difficulty = Configuration.MinDifficulty;
             }
         }
     }
@@ -174,31 +173,33 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Difficulty.AddSetting")]
         public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
         {
-            menu.Items.Add(new NetworkUI.Items.DropDown("Settlers Difficulty", _Difficulty, GameDifficulty.GameDifficulties.Keys.ToList()));
-            var ps = PlayerState.GetPlayerState(player);
-
-            if (ps != null)
-                menu.LocalStorage.SetAs(_Difficulty, ps.Difficulty.Rank); 
+            if (player.ActiveColony != null)
+            {
+                menu.Items.Add(new NetworkUI.Items.DropDown("Settlers Difficulty", _Difficulty, GameDifficulty.GameDifficulties.Keys.ToList()));
+                var ps = ColonyState.GetColonyState(player.ActiveColony);
+                menu.LocalStorage.SetAs(_Difficulty, ps.Difficulty.Rank);
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Difficulty.ChangedSetting")]
         public static void ChangedSetting(TupleStruct<Players.Player, JSONNode, string> data)
         {
-            switch (data.item3)
-            {
-                case "world_settings":
-                    var ps = PlayerState.GetPlayerState(data.item1);
+            if (data.item1.ActiveColony != null)
+                switch (data.item3)
+                {
+                    case "world_settings":
+                        var ps = ColonyState.GetColonyState(data.item1.ActiveColony);
 
-                    if (ps != null && data.item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank) != ps.Difficulty.Rank)
-                    {
-                        var difficulty =  GameDifficulty.GameDifficulties.FirstOrDefault(kvp => kvp.Value.Rank == data.item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank)).Key;
+                        if (ps != null && data.item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank) != ps.Difficulty.Rank)
+                        {
+                            var difficulty = GameDifficulty.GameDifficulties.FirstOrDefault(kvp => kvp.Value.Rank == data.item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank)).Key;
 
-                        if (difficulty != null)
-                            ChangeDifficulty(data.item1, ps, difficulty);
-                    }
+                            if (difficulty != null)
+                                ChangeDifficulty(data.item1, ps, difficulty);
+                        }
 
-                    break;
-            }
+                        break;
+                }
         }
 
         public bool IsCommand(string chat)
@@ -209,11 +210,11 @@ namespace Pandaros.Settlers
 
         public bool TryDoCommand(Players.Player player, string chat)
         {
-            if (player == null || player.ID == NetworkID.Server)
+            if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
 
             var array = CommandManager.SplitCommand(chat);
-            var state = PlayerState.GetPlayerState(player);
+            var state = ColonyState.GetColonyState(player.ActiveColony);
 
             if (array.Length == 1)
             {
@@ -241,7 +242,7 @@ namespace Pandaros.Settlers
             return true;
         }
 
-        public static bool ChangeDifficulty(Players.Player player, PlayerState state, string difficulty)
+        public static bool ChangeDifficulty(Players.Player player, ColonyState state, string difficulty)
         {
             if (Configuration.DifficutlyCanBeChanged)
             {
@@ -256,7 +257,7 @@ namespace Pandaros.Settlers
                 if (newDiff.Rank >= Configuration.MinDifficulty.Rank)
                 {
                     state.Difficulty = newDiff;
-                    SettlerManager.UpdateFoodUse(player);
+                    SettlerManager.UpdateFoodUse(state);
                     state.Difficulty.Print(player);
 
                     PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green,
@@ -282,15 +283,18 @@ namespace Pandaros.Settlers
 
         public static void PossibleCommands(Players.Player player, ChatColor color)
         {
-            PandaChat.Send(player, "Current Difficulty: " + PlayerState.GetPlayerState(player).Difficulty.Name, color);
-            PandaChat.Send(player, "Possible commands:", color);
+            if (player.ActiveColony != null)
+            {
+                PandaChat.Send(player, "Current Difficulty: " + ColonyState.GetColonyState(player.ActiveColony).Difficulty.Name, color);
+                PandaChat.Send(player, "Possible commands:", color);
 
-            var diffs = string.Empty;
+                var diffs = string.Empty;
 
-            foreach (var diff in GameDifficulty.GameDifficulties)
-                diffs += diff.Key + " | ";
+                foreach (var diff in GameDifficulty.GameDifficulties)
+                    diffs += diff.Key + " | ";
 
-            PandaChat.Send(player, "/difficulty " + diffs.Substring(0, diffs.Length - 2), color);
+                PandaChat.Send(player, "/difficulty " + diffs.Substring(0, diffs.Length - 2), color);
+            }
         }
     }
 }

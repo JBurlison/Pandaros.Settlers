@@ -172,7 +172,7 @@ namespace Pandaros.Settlers
         {
             RUNNING = true;
             CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-            CommandManager.RegisterCommand(new CalltoArms());
+           // TODO CommandManager.RegisterCommand(new CalltoArms());
             CommandManager.RegisterCommand(new ArmorCommand());
             CommandManager.RegisterCommand(new VersionChatCommand());
             CommandManager.RegisterCommand(new ColonyArchiver());

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pandaros.Settlers.Jobs;
 using Pipliz.JSON;
+using Recipes;
 
 namespace Pandaros.Settlers.Items
 {

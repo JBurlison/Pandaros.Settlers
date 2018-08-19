@@ -4,6 +4,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
 using Shared;
 
 namespace Pandaros.Settlers.Items.Healing
