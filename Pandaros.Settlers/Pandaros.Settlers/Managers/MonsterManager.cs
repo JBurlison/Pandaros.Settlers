@@ -103,7 +103,7 @@ namespace Pandaros.Settlers.Managers
                     var   turnOffBoss   = true;
                     var   worldSettings = ServerManager.WorldSettings;
 
-                    foreach (var colony in ServerManager.ColonyTracker.GetColonies().Values)
+                    foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                     {
                         var bannerGoal = colony.RandomBanner;
 

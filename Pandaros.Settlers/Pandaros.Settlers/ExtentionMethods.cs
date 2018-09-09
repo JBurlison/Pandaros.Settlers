@@ -173,11 +173,6 @@ namespace Pandaros.Settlers
             return source.Owners.Any(o => o.IsConnected);
         }
 
-        public static SortedList<int, Colony> GetColonies(this ColonyTracker tracker)
-        {
-            return tracker.GetColonies();
-        }
-
         public static T GetRandomItem<T>(this List<T> l)
         {
             return l[Pipliz.Random.Next(l.Count)];

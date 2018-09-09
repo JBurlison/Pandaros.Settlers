@@ -155,7 +155,7 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            foreach (var colony in ServerManager.ColonyTracker.GetColonies().Values)
+            foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
             {
                 var cs = ColonyState.GetColonyState(colony);
 

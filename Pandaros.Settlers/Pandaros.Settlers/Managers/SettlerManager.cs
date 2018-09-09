@@ -96,7 +96,7 @@ namespace Pandaros.Settlers.Managers
         public static void OnUpdate()
         {
             if (ServerManager.ColonyTracker != null)
-            foreach (var colony in ServerManager.ColonyTracker.GetColonies().Values)
+            foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
             {
                 if (_magicUpdateTime < Time.SecondsSinceStartDouble)
                 {
@@ -213,7 +213,7 @@ namespace Pandaros.Settlers.Managers
         {
             _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
 
-            foreach (var p in ServerManager.ColonyTracker.GetColonies().Values)
+            foreach (var p in ServerManager.ColonyTracker.ColoniesByID.Values)
                 UpdateFoodUse(ColonyState.GetColonyState(p));
         }
 
