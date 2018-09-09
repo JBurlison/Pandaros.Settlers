@@ -119,12 +119,12 @@ namespace Pandaros.Settlers.Managers
                                       colony.Stockpile.Contains(Bandage.Item.ItemIndex);
 
                             if (hasBandages &&
-                                follower.health < NPCBase.MaxHealth &&
+                                follower.health < follower.Colony.NPCHealthMax &&
                                 !HealingOverTimeNPC.NPCIsBeingHealed(follower))
                             {
                                 var healing = false;
 
-                                if (NPCBase.MaxHealth - follower.health > TreatedBandage.INITIALHEAL)
+                                if (follower.Colony.NPCHealthMax - follower.health > TreatedBandage.INITIALHEAL)
                                 {
                                     colony.Stockpile.TryRemove(TreatedBandage.Item.ItemIndex);
                                     healing = true;
@@ -507,7 +507,7 @@ namespace Pandaros.Settlers.Managers
 
         public static void UpdateFoodUse(ColonyState state)
         {
-            if (TerrainGenerator.UsedGenerator != null &&
+            if (ServerManager.TerrainGenerator != null &&
                 AIManager.NPCPathFinder != null)
             {
                 var food   = _baseFoodPerHour;

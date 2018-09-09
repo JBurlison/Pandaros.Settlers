@@ -28,13 +28,7 @@ namespace Pandaros.Settlers.Jobs
                 type = NPCTypeID.GetNextID()
             });
 
-            ServerManager.BlockEntityCallbacks.RegisterEntityManager(
-                new BlockJobManager<CraftingJobSettings, CraftingJobInstance>(
-                    new CraftingJobSettings(JOB_RECIPE, JOB_NAME),
-                    (setting, pos, type, bytedata) => new CraftingJobInstance(setting, pos, type, bytedata),
-                    (setting, pos, type, colony) => new CraftingJobInstance(setting, pos, type, colony)
-                )
-            );
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_RECIPE, JOB_NAME)));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,

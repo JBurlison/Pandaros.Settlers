@@ -14,11 +14,12 @@ namespace Pandaros.Settlers.Seasons
             Mappings.Add(GRASS, new List<ushort>());
             Mappings.Add(LEAVES, new List<ushort>());
 
-            Mappings[GRASS].Add(BuiltinBlocks.GrassRainForest);
-            Mappings[GRASS].Add(BuiltinBlocks.GrassSavanna);
-            Mappings[GRASS].Add(BuiltinBlocks.GrassTaiga);
-            Mappings[GRASS].Add(BuiltinBlocks.GrassTemperate);
-            Mappings[GRASS].Add(BuiltinBlocks.GrassTundra);
+            Mappings[GRASS].Add(BuiltinBlocks.Grass);
+            // TODO
+            //Mappings[GRASS].Add(BuiltinBlocks.GrassSavanna);
+            //Mappings[GRASS].Add(BuiltinBlocks.GrassTaiga);
+            //Mappings[GRASS].Add(BuiltinBlocks.GrassTemperate);
+            //Mappings[GRASS].Add(BuiltinBlocks.GrassTundra);
             Mappings[GRASS].Add(BuiltinBlocks.Snow);
 
             Mappings[LEAVES].Add(BuiltinBlocks.LeavesTemperate);

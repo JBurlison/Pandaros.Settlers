@@ -366,10 +366,8 @@ namespace Pandaros.Settlers.Research
 
         private static void Research_ResearchComplete1(object sender, ResearchCompleteEventArgs e)
         {
-            // TODO
-            var maxHp = e.Manager.Colony.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".MAXCOLONISTHP", NPCBase.MaxHealth);
-
-            NPCBase.MaxHealth = maxHp + e.Research.Level * e.Research.BaseValue;
+            var maxHp = e.Manager.Colony.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".MAXCOLONISTHP", e.Manager.Colony.NPCHealthMax);
+            e.Manager.Colony.NPCHealthMax = maxHp + e.Research.Level * e.Research.BaseValue;
         }
 
         private static void AddKnightResearch(Dictionary<ushort, int> researchDic)

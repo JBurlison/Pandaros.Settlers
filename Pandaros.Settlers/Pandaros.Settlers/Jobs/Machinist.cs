@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Jobs
         public static void AfterDefiningNPCTypes()
         {
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(
-                new BlockJobManager<MachinistSettingsDay, MachinistDay>(
+                new BlockJobManager<MachinistDay>(
                     new MachinistSettingsDay(),
                     (setting, pos, type, bytedata) => new MachinistDay(setting, pos, type, bytedata),
                     (setting, pos, type, colony) => new MachinistDay(setting, pos, type, colony)
@@ -27,7 +27,7 @@ namespace Pandaros.Settlers.Jobs
             );
 
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(
-                new BlockJobManager<MachinistSettingsNight, MachinistNight>(
+                new BlockJobManager<MachinistNight>(
                     new MachinistSettingsNight(),
                     (setting, pos, type, bytedata) => new MachinistNight(setting, pos, type, bytedata),
                     (setting, pos, type, colony) => new MachinistNight(setting, pos, type, colony)
