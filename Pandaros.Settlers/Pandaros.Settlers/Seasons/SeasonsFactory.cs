@@ -50,11 +50,6 @@ namespace Pandaros.Settlers.Seasons
 
         public static ISeason PreviousSeason => _seasons[_previousSesion];
 
-        /// <summary>
-        ///     in Fahrenheit
-        /// </summary>
-        public static double Temperature { get; private set; }
-
         public static double ConvertCelsiusToFahrenheit(double c)
         {
             return ((9.0 / 5.0) * c) + 32;
@@ -68,7 +63,8 @@ namespace Pandaros.Settlers.Seasons
         public static ComfortLevel GetComfortLevel(NPC.NPCBase npc)
         {
             var inv = Entities.SettlerInventory.GetSettlerInventory(npc);
-            double effectiveTemp = Temperature;
+            var chuck = World.GetChunk(npc.Position.ToChunk());
+            double effectiveTemp = ((TerrainGenerator)ServerManager.TerrainGenerator).QueryData(chuck.Position.x, chuck.Position.z).Temperature;
 
             foreach (var item in inv.Armor)
             {
@@ -228,10 +224,7 @@ namespace Pandaros.Settlers.Seasons
                 try
                 {
                     _tempUpdate = Time.SecondsSinceStartDouble + 10;
-                    Temperature = GetTemprature();
-                    PandaLogger.Log("Temperature: " + Temperature);
 
-                    // TODO: Change Based on Biome
                     if (TimeCycle.TotalTime > _nextUpdate)
                     {
                         _currentSeason = _nextSeason;
@@ -270,6 +263,7 @@ namespace Pandaros.Settlers.Seasons
                     foreach (var type in BlockTypeRegistry.Mappings)
                         if (type.Value.Contains(iteration.DataType) &&
                             PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
+                            CurrentSeason.SeasonalBlocks[type.Key].ContainsKey(query.Biome.TopBlockType) &&
                             !CurrentSeason.SeasonalBlocks[type.Key][query.Biome.TopBlockType].Contains(iteration.DataType))
                         {
                             retVal = CurrentSeason.SeasonalBlocks[type.Key][query.Biome.TopBlockType].GetRandomItem();
