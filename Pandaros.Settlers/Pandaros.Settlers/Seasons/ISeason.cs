@@ -6,7 +6,7 @@ namespace Pandaros.Settlers.Seasons
     // TODO: Support for biomes
     public interface ISeason : INameable
     {
-        Dictionary<string, ushort> SeasonalBlocks { get; }
+        Dictionary<string, Dictionary<ushort, List<ushort>>> SeasonalBlocks { get; }
 
         string SeasonAfter { get; }
         float FoodMultiplier { get; }

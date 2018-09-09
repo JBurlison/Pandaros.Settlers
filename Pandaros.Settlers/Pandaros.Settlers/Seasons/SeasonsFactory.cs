@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TerrainGeneration;
 using Math = System.Math;
 
 namespace Pandaros.Settlers.Seasons
@@ -178,6 +179,7 @@ namespace Pandaros.Settlers.Seasons
 
             if (_updatedChunks.Add(data.CheckedChunk))
             {
+                
                 // unseen chunk since season switch
                 bool didChange = false;
                 bool lockedAlready = data.ChunkLoadedSource != ChunkUpdating.KeepChunkLoadedData.EChunkLoadedSource.Updater;
@@ -261,15 +263,20 @@ namespace Pandaros.Settlers.Seasons
 
             try
             {
-                foreach (var type in BlockTypeRegistry.Mappings)
-                    if (type.Value.Contains(iteration.DataType) &&
-                        PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
-                        CurrentSeason.SeasonalBlocks[type.Key] != iteration.DataType)
-                    {
-                        retVal = CurrentSeason.SeasonalBlocks[type.Key];
-                        didChange = true;
-                        break;
-                    }
+                if (ServerManager.TerrainGenerator is ITerrainGenerator generator)
+                {
+                    var query = ((TerrainGenerator)ServerManager.TerrainGenerator).QueryData(iteration.Chunk.Position.x, iteration.Chunk.Position.z);
+
+                    foreach (var type in BlockTypeRegistry.Mappings)
+                        if (type.Value.Contains(iteration.DataType) &&
+                            PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
+                            !CurrentSeason.SeasonalBlocks[type.Key][query.Biome.TopBlockType].Contains(iteration.DataType))
+                        {
+                            retVal = CurrentSeason.SeasonalBlocks[type.Key][query.Biome.TopBlockType].GetRandomItem();
+                            didChange = true;
+                            break;
+                        }
+                }
             }
             catch (Exception ex)
             {

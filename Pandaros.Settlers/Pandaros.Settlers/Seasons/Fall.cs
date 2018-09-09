@@ -5,12 +5,7 @@ namespace Pandaros.Settlers.Seasons
 {
     public class Fall : ISeason
     {
-        public Dictionary<string, ushort> SeasonalBlocks { get; } = new Dictionary<string, ushort>()
-        {
-            {
-                BlockTypeRegistry.GRASS, BuiltinBlocks.GrassSavanna
-            }
-        };
+        public Dictionary<string, Dictionary<ushort, List<ushort>>> SeasonalBlocks { get; } = new Dictionary<string, Dictionary<ushort, List<ushort>>>();
 
         public string SeasonAfter { get; } = nameof(Winter);
         public string Name { get; } = nameof(Fall);

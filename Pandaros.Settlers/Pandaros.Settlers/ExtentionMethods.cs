@@ -66,8 +66,8 @@ namespace Pandaros.Settlers
         {
             nPC.health += heal;
 
-            if (nPC.health > NPCBase.MaxHealth)
-                nPC.health = NPCBase.MaxHealth;
+            if (nPC.health > nPC.Colony.NPCHealthMax)
+                nPC.health = nPC.Colony.NPCHealthMax;
 
             nPC.Update();
         }
@@ -175,7 +175,12 @@ namespace Pandaros.Settlers
 
         public static SortedList<int, Colony> GetColonies(this ColonyTracker tracker)
         {
-            return tracker.GetFieldValue<SortedList<int, Colony>, ColonyTracker>("ColoniesByID");
+            return tracker.GetColonies();
+        }
+
+        public static T GetRandomItem<T>(this List<T> l)
+        {
+            return l[Pipliz.Random.Next(l.Count)];
         }
     }
 }
