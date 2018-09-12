@@ -1,6 +1,7 @@
 ﻿using AI;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
@@ -238,7 +239,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
         public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
         {
-            var ps         = ColonyState.GetColonyState(monster.OriginalGoal);
+            var cs         = ColonyState.GetColonyState(monster.OriginalGoal);
             var pandaArmor = monster as IPandaArmor;
             var pamdaDamage     = d.HitSourceObject as IPandaDamage;
 
@@ -260,30 +261,58 @@ namespace Pandaros.Settlers.Managers
                     d.ResultDamage = d.ResultDamage - d.ResultDamage * flatResist;
             }
 
-            d.ResultDamage = d.ResultDamage - d.ResultDamage * ps.Difficulty.MonsterDamageReduction;
+            d.ResultDamage = d.ResultDamage - d.ResultDamage * cs.Difficulty.MonsterDamageReduction;
 
-            if (Random.NextFloat() > .5f)
-                ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
-        }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterDied, GameLoader.NAMESPACE)]
-        public static void MonsterDied(IMonster monster)
-        {
-            var rewardMonster = monster as IKillReward;
-
-            if (rewardMonster != null && rewardMonster.OriginalGoal.OwnerIsOnline())
+            if (d.ResultDamage >= monster.CurrentHealth)
             {
-                var stockpile = rewardMonster.OriginalGoal.Stockpile;
+                var rewardMonster = monster as IKillReward;
 
-                // TODO
-                //foreach (var reward in rewardMonster.KillRewards)
-                //{
-                //    stockpile.Add(reward.Key, reward.Value);
+                if (rewardMonster != null && rewardMonster.OriginalGoal.OwnerIsOnline())
+                {
+                    var stockpile = rewardMonster.OriginalGoal.Stockpile;
+                    if (!string.IsNullOrEmpty(rewardMonster.LootTableName) &&
+                        Items.LootTables.Lookup.TryGetValue(rewardMonster.LootTableName, out var lootTable))
+                    {
+                        float luck = 0;
 
-                //    if (ItemTypes.TryGetType(reward.Key, out var item))
-                //        PandaChat.Send(rewardMonster.OriginalGoal, $"You have been awarded {reward.Value}x {item.Name}!", ChatColor.orange);
-                //}
+                        if (d.HitSourceObject is ILucky luckSrc)
+                            luck = luckSrc.Luck;
+                        else if ((d.HitSourceType == ModLoader.OnHitData.EHitSourceType.PlayerClick ||
+                                d.HitSourceType == ModLoader.OnHitData.EHitSourceType.PlayerProjectile) &&
+                                d.HitSourceObject is Players.Player player)
+                        {
+                            var ps = PlayerState.GetPlayerState(player);
+
+                            foreach (var armor in ps.Armor)
+                                if (Items.Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var a))
+                                    luck += a.Luck;
+
+                            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(ps.Weapon.Id, out var w))
+                                luck += w.Luck;
+                        }
+                        else if (d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC &&
+                                d.HitSourceObject is NPCBase nPC)
+                        {
+                            var inv = SettlerInventory.GetSettlerInventory(nPC);
+
+                            foreach (var armor in inv.Armor)
+                                if (Items.Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var a))
+                                    luck += a.Luck;
+
+                            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var w))
+                                luck += w.Luck;
+                        }
+
+                        var roll = lootTable.GetDrops(luck);
+
+                        foreach (var item in roll)
+                            monster.OriginalGoal.Stockpile.Add(item.Key, item.Value);
+                    }
+                }
             }
+            else if (Random.NextFloat() > .5f)
+                ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
         }
 
         public static Dictionary<int, IMonster> GetAllMonsters()

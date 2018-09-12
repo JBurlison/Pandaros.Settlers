@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Items
 
         public virtual List<LootPoolEntry> LootPoolList { get; private set; } = new List<LootPoolEntry>();
 
-        public Dictionary<ushort, int> GetDrops(double luckModifier)
+        public Dictionary<ushort, int> GetDrops(double luckModifier = 0)
         {
             var dic = new Dictionary<ushort, int>();
 
