@@ -1,8 +1,7 @@
 ﻿using Pipliz.JSON;
 using System.Collections.Generic;
 
-// TODO: eveluate monster drops.
-// Add lick to player and player magic items.
+
 namespace Pandaros.Settlers.Items
 {
     public interface ILootTable : INameable, IJsonSerializable
