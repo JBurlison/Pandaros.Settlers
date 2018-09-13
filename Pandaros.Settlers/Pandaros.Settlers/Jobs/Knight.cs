@@ -232,7 +232,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.blocknpcs.registerjobs")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         public static void Init()
         {

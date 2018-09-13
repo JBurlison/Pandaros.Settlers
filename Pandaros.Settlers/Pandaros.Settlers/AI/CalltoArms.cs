@@ -54,7 +54,7 @@
 //        public bool IsValid => throw new NotImplementedException();
 
 //        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,GameLoader.NAMESPACE + ".CalltoArms.Init")]
-//        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
+//        [ModLoader.ModCallbackProvidesFor("pipliz.blocknpcs.registerjobs")]
 //        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
 //        public static void Init()
 //        {

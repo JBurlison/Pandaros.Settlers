@@ -924,6 +924,8 @@ namespace Pandaros.Settlers.Items.Armor
 
             public TemperatureType TemperatureRegulated => TemperatureType.None;
 
+            public float Luck => 0;
+
             public void Update()
             {
                 

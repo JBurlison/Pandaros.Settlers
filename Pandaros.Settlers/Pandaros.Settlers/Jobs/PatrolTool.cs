@@ -142,7 +142,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AfterWorldLoad")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.load")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.blocknpcs.registerjobs")]
         public static void AfterWorldLoad()
         {
             foreach (var k in _loadedKnights)

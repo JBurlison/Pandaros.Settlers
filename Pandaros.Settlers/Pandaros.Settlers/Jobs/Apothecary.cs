@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.blocknpcs.registerjobs")]
         public static void RegisterJobs()
         {
             NPCType.AddSettings(new NPCTypeStandardSettings

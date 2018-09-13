@@ -41,7 +41,9 @@ namespace Pandaros.Settlers.Items.Weapons
         public Vector3Int Position { get; set; }
 
         public TemperatureType TemperatureRegulated => TemperatureType.None;
-        
+
+        public float Luck => 0;
+
         Dictionary<DamageType, float> IPandaDamage.Damage => _damage;
 
         public void Update()

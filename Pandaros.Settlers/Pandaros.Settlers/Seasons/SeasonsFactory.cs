@@ -149,7 +149,7 @@ namespace Pandaros.Settlers.Seasons
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]
-        [ModLoader.ModCallbackDependsOn("pipliz.server.bannercheck")] // after banner check so that it doesn't increase our delay-to-next-cooldown by 5x
+        [ModLoader.ModCallbackDependsOn("bannercheck ")] // after banner check so that it doesn't increase our delay-to-next-cooldown by 5x
         static void Process(ChunkUpdating.KeepChunkLoadedData data)
         {
             if (!data.Result)
