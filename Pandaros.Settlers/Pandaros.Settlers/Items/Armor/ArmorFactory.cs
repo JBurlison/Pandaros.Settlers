@@ -118,9 +118,9 @@ namespace Pandaros.Settlers.Items.Armor
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Armor.GetArmor")]
         public static void GetArmor()
         {
-            if (_nextUpdate < DateTime.Now)
+            if (_nextUpdate < DateTime.Now && World.Initialized)
             {
-                foreach (var p in Players.PlayerDatabase.Values)
+                foreach (var p in Players.PlayerDatabase.Values.Where(c => c.ActiveColony != null))
                 {
                     var colony = p.ActiveColony;
                     var state = PlayerState.GetPlayerState(p);

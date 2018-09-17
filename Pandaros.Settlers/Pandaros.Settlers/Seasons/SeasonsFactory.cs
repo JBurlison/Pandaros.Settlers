@@ -43,6 +43,7 @@ namespace Pandaros.Settlers.Seasons
         private static double _midNight;
         private static readonly List<ISeason> _seasons = new List<ISeason>();
         private static HashSet<Chunk> _updatedChunks = new HashSet<Chunk>();
+        private static Dictionary<Vector3Int, double> _temps = new Dictionary<Vector3Int, double>();
 
         public static ISeason CurrentSeason => _seasons[_currentSeason];
 
@@ -149,7 +150,7 @@ namespace Pandaros.Settlers.Seasons
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]
-        [ModLoader.ModCallbackDependsOn("bannercheck ")] // after banner check so that it doesn't increase our delay-to-next-cooldown by 5x
+        [ModLoader.ModCallbackDependsOn("bannercheck")] // after banner check so that it doesn't increase our delay-to-next-cooldown by 5x
         static void Process(ChunkUpdating.KeepChunkLoadedData data)
         {
             if (!data.Result)
@@ -223,7 +224,8 @@ namespace Pandaros.Settlers.Seasons
             if (Time.SecondsSinceStartDouble > _tempUpdate)
                 try
                 {
-                    _tempUpdate = Time.SecondsSinceStartDouble + 10;
+                    _tempUpdate = Time.SecondsSinceStartDouble + 60;
+                    _temps.Clear();
 
                     if (TimeCycle.TotalTime > _nextUpdate)
                     {

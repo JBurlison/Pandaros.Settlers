@@ -744,7 +744,7 @@ namespace Pandaros.Settlers.Managers
                     if (state.ColonyRef.OwnerIsOnline())
                     {
                         // TODO Fix bed count
-                        var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.GetCountNearPosition(state.ColonyRef.RandomBanner.Position, state.ColonyRef.BannerSafeRadius) - state.ColonyRef.FollowerCount;
+                        var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(state.ColonyRef) - state.ColonyRef.FollowerCount;
                         var left          = 0;
 
                         if (remainingBeds >= 0)
