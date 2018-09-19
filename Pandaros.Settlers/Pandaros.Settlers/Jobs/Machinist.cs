@@ -14,7 +14,6 @@ namespace Pandaros.Settlers.Jobs
     public static class MachinistModEntries
     {
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.MachinistModEntries")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]
         public static void AfterDefiningNPCTypes()
         {

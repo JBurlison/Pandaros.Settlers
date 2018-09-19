@@ -19,7 +19,6 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]
         public static void RegisterJobs()
         {

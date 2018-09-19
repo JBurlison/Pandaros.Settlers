@@ -189,7 +189,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.ScienceBagLife
+                ColonyBuiltIn.Research.ScienceBagLife
             };
 
             var research = new PandaResearch(researchDic, 1, ReducedWaste, 0.001f, requirements);
@@ -217,7 +217,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.BronzeAnvil
+                ColonyBuiltIn.Research.BronzeAnvil
             };
 
             RegisterArmorSmithng(researchDic, 1, requirements);
@@ -282,7 +282,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.BronzeAnvil
+                ColonyBuiltIn.Research.BronzeAnvil
             };
 
             RegisterSwordmithng(researchDic, 1, requirements);
@@ -349,7 +349,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.ScienceBagLife
+                ColonyBuiltIn.Research.ScienceBagLife
             };
 
             var research = new PandaResearch(researchDic, 1, ColonistHealth, 10f, requirements);
@@ -380,7 +380,7 @@ namespace Pandaros.Settlers.Research
             var requirements = new List<string>
             {
                 GetResearchKey(SwordSmithing + "1"),
-                ColonyBuiltIn.ScienceBagBasic
+                ColonyBuiltIn.Research.ScienceBagBasic
             };
 
             var research = new PandaResearch(researchDic, 1, Knights, 1f, requirements);
@@ -402,8 +402,8 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.HerbFarming,
-                ColonyBuiltIn.ScienceBagAdvanced
+                ColonyBuiltIn.Research.HerbFarming,
+                ColonyBuiltIn.Research.ScienceBagAdvanced
             };
 
             var research = new PandaResearch(researchDic, 1, Apothecary, 1f, requirements);
@@ -622,7 +622,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.ARCHERY
+                ColonyBuiltIn.Research.ARCHERY
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedBow, .05f, requirements);
@@ -660,7 +660,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.CrossBow
+                ColonyBuiltIn.Research.CrossBow
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .05f, requirements);
@@ -701,7 +701,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.MatchlockGun
+                ColonyBuiltIn.Research.MatchlockGun
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedMatchlockgun, .05f, requirements);
@@ -742,7 +742,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Bloomery
+                ColonyBuiltIn.Research.Bloomery
             };
 
             var research = new PandaResearch(researchDic, 1, Machines, 1f, requirements, 20, false);
@@ -907,7 +907,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.BannerRadius2
+                ColonyBuiltIn.Research.BannerRadius2
             };
 
             ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SettlerChance, 0.1f, requirements));
@@ -928,8 +928,8 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.ScienceBagLife,
-                ColonyBuiltIn.CoinMinting
+                ColonyBuiltIn.Research.ScienceBagLife,
+                ColonyBuiltIn.Research.CoinMinting
             };
 
             ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, TimeBetween, 1f, requirements));

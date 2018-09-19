@@ -218,7 +218,6 @@ namespace Pandaros.Settlers.Entities
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnPlayerConnectedSuperLate")]
-        [ModLoader.ModCallbackDependsOn("pipliz.mods.basegame.sendconstructiondata")]
         public static void OnPlayerConnectedSuperLate(Players.Player p)
         {
             _playerStates[p].Connected = true;

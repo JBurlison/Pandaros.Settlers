@@ -1,6 +1,7 @@
 ﻿using AI;
 using NPC;
 using Pipliz;
+using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -176,6 +177,16 @@ namespace Pandaros.Settlers
         public static T GetRandomItem<T>(this List<T> l)
         {
             return l[Pipliz.Random.Next(l.Count)];
+        }
+
+        public static GuardJobSettings GetGuardJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name)
+        {
+            return callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<GuardJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as GuardJobSettings;
+        }
+
+        public static CraftingJobSettings GetCraftJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name)
+        {
+            return callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as CraftingJobSettings;
         }
     }
 }

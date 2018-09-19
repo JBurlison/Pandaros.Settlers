@@ -239,7 +239,7 @@
     <Compile Include="Monsters\Bosses\Hoarder.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
-    <Compile Include="Research\ColonyBuiltIn.cs" />
+    <Compile Include="ColonyBuiltIn.cs" />
     <Compile Include="Research\JobResearch.cs" />
     <Compile Include="Research\PandaResearch.cs" />
     <Compile Include="Managers\SettlerManager.cs" />
