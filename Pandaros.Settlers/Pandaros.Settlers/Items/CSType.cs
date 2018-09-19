@@ -45,7 +45,7 @@ namespace Pandaros.Settlers.Items
         public virtual bool? blocksPathing => isSolid;
         public virtual ReadOnlyCollection<Colliders> colliders { get; } = new ReadOnlyCollection<Colliders>(new List<Colliders>());
         public virtual ReadOnlyCollection<string> categories { get; } = new ReadOnlyCollection<string>(new List<string>());
-        public virtual ItemRarity Rarity { get; } = ItemRarity.Artifact;
+        public virtual ItemRarity Rarity { get; } = ItemRarity.Common;
 
         public virtual JSONNode JsonSerialize()
         {
@@ -150,7 +150,8 @@ namespace Pandaros.Settlers.Items
             if (categories.Count != 0)
                 node.SetAs(nameof(categories), categories.ToJsonNode());
 
-            node.SetAs(nameof(Rarity), Rarity);
+            if (Rarity != ItemRarity.Common)
+                node.SetAs(nameof(Rarity), Rarity);
 
 #if DEBUG
             PandaLogger.Log(node.ToString());
