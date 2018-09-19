@@ -187,7 +187,7 @@ namespace Pandaros.Settlers
 
         public static bool TryGetCraftJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out CraftingJobSettings craftingJobSettings)
         {
-            craftingJobSettings = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as CraftingJobSettings;
+            craftingJobSettings = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is CraftingJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as CraftingJobSettings;
             return craftingJobSettings != null;
         }
     }
