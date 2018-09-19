@@ -50,133 +50,146 @@ namespace Pandaros.Settlers.Research
 
         private static void AddMerchantTraining(Dictionary<ushort, int> researchDic)
         {
-            _defaultValues[ColonyBuiltIn.Jobs.MERCHANT] = ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.MERCHANT).CraftingCooldown;
-
-            researchDic.Clear();
-
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
-
-            var requirements = new List<string>
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.MERCHANT, out var settings))
             {
-                SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
-            };
+                _defaultValues[ColonyBuiltIn.Jobs.MERCHANT] = settings.CraftingCooldown;
 
-            var research = new PandaResearch(researchDic, 1, MerchantTraining, .05f, requirements);
-            research.ResearchComplete += TrainedMerchant_ResearchComplete;
-            ServerManager.ScienceManager.RegisterResearchable(research);
+                researchDic.Clear();
 
-            for (var i = 2; i <= 5; i++)
-            {
-                research = new PandaResearch(researchDic, i, MerchantTraining, .05f);
+                researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+                researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
+
+                var requirements = new List<string>
+                {
+                    SCIENCEBAGREQ,
+                    ColonyBuiltIn.Research.CoinMinting
+                };
+
+                var research = new PandaResearch(researchDic, 1, MerchantTraining, .05f, requirements);
                 research.ResearchComplete += TrainedMerchant_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
+
+                for (var i = 2; i <= 5; i++)
+                {
+                    research = new PandaResearch(researchDic, i, MerchantTraining, .05f);
+                    research.ResearchComplete += TrainedMerchant_ResearchComplete;
+                    ServerManager.ScienceManager.RegisterResearchable(research);
+                }
             }
         }
 
         private static void TrainedMerchant_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.MERCHANT).CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.MERCHANT] - _defaultValues[ColonyBuiltIn.Jobs.MERCHANT] * e.Research.Value;
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.MERCHANT, out var settings))
+                settings.CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.MERCHANT] - _defaultValues[ColonyBuiltIn.Jobs.MERCHANT] * e.Research.Value;
         }
 
         private static void AddTailorTraining(Dictionary<ushort, int> researchDic)
         {
-            _defaultValues[ColonyBuiltIn.Jobs.TAILOR] = ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.TAILOR).CraftingCooldown;
-
-            researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.LinenBag, 3);
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
-
-            var requirements = new List<string>
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.TAILOR, out var settings))
             {
-                SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
-            };
+                _defaultValues[ColonyBuiltIn.Jobs.TAILOR] = settings.CraftingCooldown;
 
-            var research = new PandaResearch(researchDic, 1, TailorTraining, .05f, requirements);
-            research.ResearchComplete += TrainedTailor_ResearchComplete;
-            ServerManager.ScienceManager.RegisterResearchable(research);
+                researchDic.Clear();
+                researchDic.Add(BuiltinBlocks.LinenBag, 3);
+                researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+                researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
-            for (var i = 2; i <= 5; i++)
-            {
-                research = new PandaResearch(researchDic, i, TailorTraining, .05f);
+                var requirements = new List<string>
+                {
+                    SCIENCEBAGREQ,
+                    ColonyBuiltIn.Research.CoinMinting
+                };
+
+                var research = new PandaResearch(researchDic, 1, TailorTraining, .05f, requirements);
                 research.ResearchComplete += TrainedTailor_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
+
+                for (var i = 2; i <= 5; i++)
+                {
+                    research = new PandaResearch(researchDic, i, TailorTraining, .05f);
+                    research.ResearchComplete += TrainedTailor_ResearchComplete;
+                    ServerManager.ScienceManager.RegisterResearchable(research);
+                }
             }
         }
 
         private static void TrainedTailor_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.TAILOR).CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.TAILOR] -
-                                               _defaultValues[ColonyBuiltIn.Jobs.TAILOR] * e.Research.Value;
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.TAILOR, out var settings))
+                settings.CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.TAILOR] - _defaultValues[ColonyBuiltIn.Jobs.TAILOR] * e.Research.Value;
         }
 
         private static void AddBloomeryTraining(Dictionary<ushort, int> researchDic)
         {
-            _defaultValues[ColonyBuiltIn.Jobs.BLOOMERYJOB] = ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.BLOOMERYJOB).CraftingCooldown;
-
-            researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.IronWrought, 3);
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
-
-            var requirements = new List<string>
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.BLOOMERYJOB, out var settings))
             {
-                SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
-            };
+                _defaultValues[ColonyBuiltIn.Jobs.BLOOMERYJOB] = settings.CraftingCooldown;
 
-            var research = new PandaResearch(researchDic, 1, BloomeryTraining, .05f, requirements);
-            research.ResearchComplete += BloomeryTraining_ResearchComplete;
-            ServerManager.ScienceManager.RegisterResearchable(research);
+                researchDic.Clear();
+                researchDic.Add(BuiltinBlocks.IronWrought, 3);
+                researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+                researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
-            for (var i = 2; i <= 5; i++)
-            {
-                research = new PandaResearch(researchDic, i, BloomeryTraining, .05f);
+                var requirements = new List<string>
+                {
+                    SCIENCEBAGREQ,
+                    ColonyBuiltIn.Research.CoinMinting
+                };
+
+                var research = new PandaResearch(researchDic, 1, BloomeryTraining, .05f, requirements);
                 research.ResearchComplete += BloomeryTraining_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
+
+                for (var i = 2; i <= 5; i++)
+                {
+                    research = new PandaResearch(researchDic, i, BloomeryTraining, .05f);
+                    research.ResearchComplete += BloomeryTraining_ResearchComplete;
+                    ServerManager.ScienceManager.RegisterResearchable(research);
+                }
             }
         }
 
         private static void BloomeryTraining_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.BLOOMERYJOB).CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.BLOOMERYJOB] -
-                                                 _defaultValues[ColonyBuiltIn.Jobs.BLOOMERYJOB] * e.Research.Value;
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.BLOOMERYJOB, out var settings))
+                settings.CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.BLOOMERYJOB] - _defaultValues[ColonyBuiltIn.Jobs.BLOOMERYJOB] * e.Research.Value;
         }
 
         private static void AddFineryForgeTraining(Dictionary<ushort, int> researchDic)
         {
-            _defaultValues[ColonyBuiltIn.Jobs.FINERYFORGEJOB] = ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.FINERYFORGEJOB).CraftingCooldown;
-
-            researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
-
-            var requirements = new List<string>
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.FINERYFORGEJOB, out var settings))
             {
-                SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
-            };
+                _defaultValues[ColonyBuiltIn.Jobs.FINERYFORGEJOB] = settings.CraftingCooldown;
 
-            var research = new PandaResearch(researchDic, 1, FineryForgeTraining, .05f, requirements);
-            research.ResearchComplete += FineryForgeTraining_ResearchComplete;
-            ServerManager.ScienceManager.RegisterResearchable(research);
+                researchDic.Clear();
+                researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
+                researchDic.Add(BuiltinBlocks.ScienceBagBasic, BAG_COST);
+                researchDic.Add(BuiltinBlocks.BronzeCoin, COIN_COST);
 
-            for (var i = 2; i <= 5; i++)
-            {
-                research = new PandaResearch(researchDic, i, FineryForgeTraining, .05f);
+                var requirements = new List<string>
+                {
+                    SCIENCEBAGREQ,
+                    ColonyBuiltIn.Research.CoinMinting
+                };
+
+                var research = new PandaResearch(researchDic, 1, FineryForgeTraining, .05f, requirements);
                 research.ResearchComplete += FineryForgeTraining_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
+
+                for (var i = 2; i <= 5; i++)
+                {
+                    research = new PandaResearch(researchDic, i, FineryForgeTraining, .05f);
+                    research.ResearchComplete += FineryForgeTraining_ResearchComplete;
+                    ServerManager.ScienceManager.RegisterResearchable(research);
+                }
             }
         }
 
         private static void FineryForgeTraining_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            ServerManager.BlockEntityCallbacks.GetCraftJobSettings(ColonyBuiltIn.Jobs.FINERYFORGEJOB).CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.FINERYFORGEJOB] -
-                                                    _defaultValues[ColonyBuiltIn.Jobs.FINERYFORGEJOB] * e.Research.Value;
+            if (ServerManager.BlockEntityCallbacks.TryGetCraftJobSettings(ColonyBuiltIn.Jobs.FINERYFORGEJOB, out var settings))
+                settings.CraftingCooldown = _defaultValues[ColonyBuiltIn.Jobs.FINERYFORGEJOB] - _defaultValues[ColonyBuiltIn.Jobs.FINERYFORGEJOB] * e.Research.Value;
         }
 
         private static void AddFurnaceTraining(Dictionary<ushort, int> researchDic)

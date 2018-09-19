@@ -179,14 +179,16 @@ namespace Pandaros.Settlers
             return l[Pipliz.Random.Next(l.Count)];
         }
 
-        public static GuardJobSettings GetGuardJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name)
+        public static bool TryGetGuardJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out GuardJobSettings guardJobSettings)
         {
-            return callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<GuardJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as GuardJobSettings;
+            guardJobSettings = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<GuardJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as GuardJobSettings;
+            return guardJobSettings != null;
         }
 
-        public static CraftingJobSettings GetCraftJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name)
+        public static bool TryGetCraftJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out CraftingJobSettings craftingJobSettings)
         {
-            return callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as CraftingJobSettings;
+            craftingJobSettings = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as CraftingJobSettings;
+            return craftingJobSettings != null;
         }
     }
 }
