@@ -119,7 +119,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Jobs.OnLoadingColony")]
-        public static void OnLoadingColony(JSONNode n, Colony c)
+        public static void OnLoadingColony(Colony c, JSONNode n)
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Knights", out var knightsNode))
                 foreach (var knightNode in knightsNode.LoopArray())

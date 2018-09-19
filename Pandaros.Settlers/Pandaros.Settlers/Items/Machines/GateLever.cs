@@ -581,7 +581,7 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnLoadingColony")]
-        public static void OnLoadingColony(JSONNode n, Colony c)
+        public static void OnLoadingColony(Colony c, JSONNode n)
         {
             if (n.TryGetChild(GameLoader.NAMESPACE + ".Gates", out var gateNodes))
             {

@@ -76,7 +76,7 @@ namespace Pandaros.Settlers.Managers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnLoadingColony")]
-        public static void OnLoadingColony(JSONNode n, Colony c)
+        public static void OnLoadingColony(Colony c, JSONNode n)
         {
             if (c.ColonyID > -1)
                 return;

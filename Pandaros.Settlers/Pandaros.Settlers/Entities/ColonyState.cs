@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Entities
         public Colony ColonyRef { get; set; }
         public int FaiedBossSpawns { get; set; }
         public bool CallToArmsEnabled { get; set; }
-        public GameDifficulty Difficulty { get; set; }
+        public GameDifficulty Difficulty { get; set; } = Configuration.DefaultDifficulty;
         public bool BossesEnabled { get; set; } = true;
         public bool MonstersEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;
@@ -91,7 +91,7 @@ namespace Pandaros.Settlers.Entities
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Entities.ColonyState.OnLoadingColony")]
-        public static void OnLoadingColony(JSONNode n, Colony c)
+        public static void OnLoadingColony(Colony c, JSONNode n)
         {
             if (!_colonyStates.ContainsKey(c))
                 _colonyStates.Add(c, new ColonyState(c));
