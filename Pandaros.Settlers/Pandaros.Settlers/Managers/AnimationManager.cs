@@ -14,10 +14,10 @@ namespace Pandaros.Settlers.Managers
 
         static AnimationManager()
         {
-            AnimatedObjects[SLINGBULLET] = new AnimatedObject(SLINGBULLET, "gamedata/meshes/slingbullet.obj", "projectile");
-            AnimatedObjects[ARROW] = new AnimatedObject(ARROW, "gamedata/meshes/arrow.obj", "projectile");
-            AnimatedObjects[CROSSBOWBOLT] = new AnimatedObject(CROSSBOWBOLT, "gamedata/meshes/crossbowbolt.obj", "projectile");
-            AnimatedObjects[LEADBULLET] = new AnimatedObject(LEADBULLET, "gamedata/meshes/leadbullet.obj", "projectile");
+            AnimatedObjects[SLINGBULLET] = new AnimatedObject(SLINGBULLET, "gamedata/meshes/slingbullet.ply", "projectile");
+            AnimatedObjects[ARROW] = new AnimatedObject(ARROW, "gamedata/meshes/arrow.ply", "projectile");
+            AnimatedObjects[CROSSBOWBOLT] = new AnimatedObject(CROSSBOWBOLT, "gamedata/meshes/crossbowbolt.ply", "projectile");
+            AnimatedObjects[LEADBULLET] = new AnimatedObject(LEADBULLET, "gamedata/meshes/leadbullet.ply", "projectile");
         }
 
         public static Dictionary<string, AnimatedObject> AnimatedObjects { get; } = new Dictionary<string, AnimatedObject>(StringComparer.OrdinalIgnoreCase);
