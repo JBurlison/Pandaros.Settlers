@@ -24,7 +24,6 @@ namespace Pandaros.Settlers.Monsters
         private static double siegeModeCooldown = 3.0;
         private const double MONSTERS_DELAY_THRESHOLD_SECONDS = 1.0;
         public static PandaMonsterSpawner Instance { get; private set; }
-        public Variables SpawnerVariables { get { return variables; } }
 
         public override void Update()
         {
@@ -40,11 +39,11 @@ namespace Pandaros.Settlers.Monsters
             maxTimePerTick.Reset();
             maxTimePerTick.Start();
             
-            while (coloniesRequiringZombies.Count > 0 && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
+            while (coloniesRequiringZombies.Count > 0 && maxTimePerTick.Elapsed.TotalMilliseconds < ServerManager.ServerSettings.Zombies.MSPerTick)
             {
                 int i = 0;
 
-                while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < variables.MSPerTick)
+                while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < ServerManager.ServerSettings.Zombies.MSPerTick)
                 {
                     Colony colony = coloniesRequiringZombies[i];
                     Banner banner = colony.RandomBanner;

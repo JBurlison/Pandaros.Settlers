@@ -211,7 +211,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            _baseFoodPerHour = ServerManager.ServerVariables.NPCFoodUsePerHour;
+            _baseFoodPerHour = ServerManager.ServerSettings.NPCs.FoodUsePerHour;
 
             foreach (var p in ServerManager.ColonyTracker.ColoniesByID.Values)
                 UpdateFoodUse(ColonyState.GetColonyState(p));
@@ -415,8 +415,8 @@ namespace Pandaros.Settlers.Managers
                         if (npc.Colony.Stockpile.TotalFood < cost ||
                             !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
                         {
-                            PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerVariables.LaborerCost} food required.", ChatColor.red);
-                            npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(ServerManager.ServerVariables.LaborerCost / 3));
+                            PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
+                            npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(ServerManager.ServerSettings.NPCs.RecruitmentCost / 3));
                             npc.health = 0;
                             npc.Update();
                             return;
@@ -522,7 +522,7 @@ namespace Pandaros.Settlers.Managers
                 }
 
                 if (state.ColonyRef.InSiegeMode)
-                    food = food * ServerManager.ServerVariables.NPCfoodUseMultiplierSiegeMode;
+                    food = food * ServerManager.ServerSettings.NPCs.FoodUseMultiplierSiegeMode;
 
                 if (food < _baseFoodPerHour)
                     food = _baseFoodPerHour;

@@ -102,7 +102,7 @@ namespace Pandaros.Settlers.Managers
                 if (BossActive)
                 {
                     var   turnOffBoss   = true;
-                    var   worldSettings = ServerManager.WorldSettings;
+                    var   worldSettings = ServerManager.WorldSettingsVariable;
 
                     foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                     {
