@@ -552,7 +552,7 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnSavingColony")]
-        public static void OnSavingColony(JSONNode n, Colony c)
+        public static void OnSavingColony(Colony c, JSONNode n)
         {
             if (_gatePositions.ContainsKey(c))
             {

@@ -281,6 +281,9 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
+            if (p == null || p.Colonies == null || p.Colonies.Length == 0)
+                return;
+
             if (Configuration.GetorDefault("SettlersEnabled", true) &&
                 Configuration.GetorDefault("MaxSettlersToggle", 4) > 0 &&
                 p.ActiveColony != null)
@@ -322,6 +325,9 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
+            if (p == null || p.Colonies == null || p.Colonies.Length == 0)
+                return;
+
             foreach (Colony c in p.Colonies)
                 SaveOffline(c);
         }

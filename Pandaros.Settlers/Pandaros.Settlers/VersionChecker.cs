@@ -10,7 +10,7 @@ namespace Pandaros.Settlers
 {
     public static class VersionChecker
     {
-        private const string GIT_URL = "http://download.settlersmod.com/";
+        private const string GIT_URL = "https://api.github.com/repos/JBurlison/Pandaros.Settlers/releases/";
         private const string NAME = "\"name\": \"";
         private const string ASSETS = "\"assets\":";
         private const string ZIP = "\"browser_download_url\": \"";
@@ -22,7 +22,7 @@ namespace Pandaros.Settlers
         static VersionChecker()
         {
             ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
-            ServicePointManager.SecurityProtocol                    =  Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             var t = new Thread(() =>
             {
@@ -39,10 +39,9 @@ namespace Pandaros.Settlers
 
         public static string GetReleases()
         {
-            string releases = null;
             ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
-            ServicePointManager.SecurityProtocol                    =  Tls12;
-
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            string releases = null;
             try
             {
                 using (var webClient = new WebClient())
@@ -60,7 +59,9 @@ namespace Pandaros.Settlers
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception) {
+                PandaLogger.Log(ChatColor.yellow, "There was a error getting the server version to check for an update. Unable to check if there is an update to the mod.");
+            }
 
             return releases;
         }

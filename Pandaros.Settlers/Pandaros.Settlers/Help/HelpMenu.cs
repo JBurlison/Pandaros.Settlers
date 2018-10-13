@@ -52,11 +52,12 @@ namespace Pandaros.Settlers.Help
 
         private static void AddHelpMenuToolToStockpile(Players.Player p)
         {
-            foreach (var c in p.Colonies)
-                if (ItemTypes.IndexLookup.TryGetIndex(HelpMenuActivator.NAME, out var helpMenuitem) && !c.Stockpile.Contains(helpMenuitem))
-                {
-                    c.Stockpile.Add(helpMenuitem);
-                }
+            if (p != null && p.Colonies != null && p.Colonies.Length != 0)
+                foreach (var c in p.Colonies)
+                    if (ItemTypes.IndexLookup.TryGetIndex(HelpMenuActivator.NAME, out var helpMenuitem) && !c.Stockpile.Contains(helpMenuitem))
+                    {
+                        c.Stockpile.Add(helpMenuitem);
+                    }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]

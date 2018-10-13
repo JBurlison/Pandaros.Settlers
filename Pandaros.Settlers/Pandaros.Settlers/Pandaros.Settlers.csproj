@@ -433,9 +433,6 @@
     <None Include="Meshes\cow.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Meshes\cow.ply">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Textures\texturemapping.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Jobs.Farmer.Animals
         public bool IsOptional => false;
         public int DefautLimit => 50;
         public override string sideall => "SELF";
-        public override string mesh => GameLoader.MESH_PATH + "cow.ply";
+        public override string mesh => GameLoader.MESH_PATH + "cow.obj";
         public string Job => "pipliz.merchant";
 
         public double RoamUpdate => 0;
