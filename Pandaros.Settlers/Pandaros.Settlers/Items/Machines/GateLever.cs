@@ -598,8 +598,10 @@ namespace Pandaros.Settlers.Items.Machines
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
-                d.RequestedByPlayer == null)
-                return;
+                d.RequestedByPlayer == null ||
+                d.RequestedByPlayer.ID.type == NetworkID.IDType.Server ||
+                d.RequestedByPlayer.ID.type == NetworkID.IDType.Invalid)
+                    return;
 
             if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {

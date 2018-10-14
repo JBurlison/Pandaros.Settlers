@@ -119,8 +119,11 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,  GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
-                return;
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
+                d.RequestedByPlayer == null ||
+                d.RequestedByPlayer.ID.type == NetworkID.IDType.Server ||
+                d.RequestedByPlayer.ID.type == NetworkID.IDType.Invalid)
+                    return;
 
             if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.RequestedByPlayer != null)
                 RemoveObjective(d.RequestedByPlayer.ActiveColony, d.Position);

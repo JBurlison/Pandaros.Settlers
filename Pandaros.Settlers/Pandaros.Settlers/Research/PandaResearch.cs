@@ -175,6 +175,8 @@ namespace Pandaros.Settlers.Research
             AddBuildersWandResearch(researchDic);
             AddBetterBuildersWandResearch(researchDic);
 
+            JobResearch.Register();
+            
             PandaLogger.Log("Panda Research Registering Complete!");
         }
 

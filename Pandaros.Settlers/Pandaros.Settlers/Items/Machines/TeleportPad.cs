@@ -333,8 +333,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         private static void Save()
         {
-            JSONNode n = null;
+            if (string.IsNullOrEmpty(RoamingJobManager.MACHINE_JSON))
+                return;
 
+            JSONNode n = null;
+            
             if (File.Exists(RoamingJobManager.MACHINE_JSON))
                 JSON.Deserialize(RoamingJobManager.MACHINE_JSON, out n);
 

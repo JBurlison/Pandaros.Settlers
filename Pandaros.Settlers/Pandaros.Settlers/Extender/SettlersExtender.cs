@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Extender
         private static List<ISettlersExtension> _settlersExtensions = new List<ISettlersExtension>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnAddResearchables")]
-        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.JobResearch.OnAddResearchables")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()
         {
             foreach (var extension in _settlersExtensions)
