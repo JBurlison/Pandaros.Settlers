@@ -141,12 +141,12 @@ namespace Pandaros.Settlers.Seasons
         public static void AfterWorldLoad()
         {
             _previousSesion = _seasons.Count - 1;
-            var timeToMidDay = TimeCycle.DayLength / 2;
-            var timeToMidNight = TimeCycle.NightLength / 2;
+            var timeToMidDay = TimeCycle.TotalDayLength.Value.TotalHours / 2;
+            var timeToMidNight = TimeCycle.TotalDayLength.Value.TotalHours / 2;
             _midDay = TimeCycle.SunRise + timeToMidDay;
             _midNight = TimeCycle.SunSet + timeToMidNight;
 
-            _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
+            _nextUpdate = TimeCycle.TotalTime.Value.Days + _daysBetweenSeasonChanges;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]
@@ -177,7 +177,7 @@ namespace Pandaros.Settlers.Seasons
                 // unseen chunk since season switch
                 bool didChange = false;
                 bool lockedAlready = data.ChunkLoadedSource != ChunkUpdating.KeepChunkLoadedData.EChunkLoadedSource.Updater;
-                data.CheckedChunk.ForeachDataReplace(ChangeSeason, ref didChange, lockedAlready);
+                data.CheckedChunk.ForeachDataReplaceLocked(ChangeSeason, ref didChange);
                 if (didChange)
                 {
                     Pipliz.Vector3Int position = data.CheckedChunk.Position.Add(8, 8, 8);
@@ -224,7 +224,7 @@ namespace Pandaros.Settlers.Seasons
                     _tempUpdate = Time.SecondsSinceStartDouble + 60;
                     _temps.Clear();
 
-                    if (TimeCycle.TotalTime > _nextUpdate)
+                    if (TimeCycle.TotalTime.Value.Days > _nextUpdate)
                     {
                         _currentSeason = _nextSeason;
                         _nextSeason++;
@@ -238,7 +238,7 @@ namespace Pandaros.Settlers.Seasons
                             _previousSesion = _nextSeason - 1;
 
                         _updatedChunks.Clear();
-                        _nextUpdate = TimeCycle.TotalTime + (24 * _daysBetweenSeasonChanges);
+                        _nextUpdate = TimeCycle.TotalTime.Value.Days + _daysBetweenSeasonChanges;
                         PandaChat.SendToAll($"The season in now {CurrentSeason.Name}", ChatColor.olive, ChatStyle.bold);
                         PandaLogger.Log(ChatColor.olive, $"The season in now {CurrentSeason.Name}");
                     }
@@ -349,14 +349,14 @@ namespace Pandaros.Settlers.Seasons
             {
                 var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
 
-                if (TimeCycle.TimeOfDay <= _midDay)
+                if (TimeCycle.TimeOfDayHours <= _midDay)
                 {
-                    var pct = TimeCycle.TimeOfDay / _midDay;
+                    var pct = TimeCycle.TimeOfDayHours / _midDay;
                     retVal = tempDiff * pct;
                 }
                 else
                 {
-                    var pct = TimeCycle.TimeOfDay / TimeCycle.SunSet;
+                    var pct = TimeCycle.TimeOfDayHours / TimeCycle.SunSet;
                     retVal = tempDiff * pct;
                 }
 
@@ -366,14 +366,14 @@ namespace Pandaros.Settlers.Seasons
             {
                 var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
 
-                if (TimeCycle.TimeOfDay <= _midNight)
+                if (TimeCycle.TimeOfDayHours <= _midNight)
                 {
-                    var pct = TimeCycle.TimeOfDay / _midNight;
+                    var pct = TimeCycle.TimeOfDayHours / _midNight;
                     retVal = tempDiff * pct;
                 }
                 else
                 {
-                    var pct = TimeCycle.TimeOfDay / TimeCycle.SunRise;
+                    var pct = TimeCycle.TimeOfDayHours / TimeCycle.SunRise;
                     retVal = tempDiff * pct;
                 }
 

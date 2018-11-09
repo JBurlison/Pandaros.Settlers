@@ -75,7 +75,7 @@ namespace Pandaros.Settlers.Entities
                     {
                         var ps = GetColonyState(c);
 
-                        if (ps.NextColonistBuyTime != 0 && TimeCycle.TotalTime > ps.NextColonistBuyTime)
+                        if (ps.NextColonistBuyTime != 0 && TimeCycle.TotalTime.Value.Hours > ps.NextColonistBuyTime)
                         {
                             PandaChat.Send(c, "The compounding cost of buying colonists has been reset.", ChatColor.orange);
                             ps.NextColonistBuyTime = 0;

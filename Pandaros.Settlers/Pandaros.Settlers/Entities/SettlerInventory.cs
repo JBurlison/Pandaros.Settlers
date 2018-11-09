@@ -114,12 +114,10 @@ namespace Pandaros.Settlers.Entities
 
         public static SettlerInventory GetSettlerInventory(NPCBase npc)
         {
-            var tempVals = npc.GetTempValues(true);
-
-            if (!tempVals.TryGet(GameLoader.SETTLER_INV, out SettlerInventory inv))
+            if (!npc.CustomData.TryGetAs(GameLoader.SETTLER_INV, out SettlerInventory inv))
             {
                 inv = new SettlerInventory(npc);
-                tempVals.Set(GameLoader.SETTLER_INV, inv);
+                npc.CustomData.SetAs(GameLoader.SETTLER_INV, inv);
             }
 
             return inv;
