@@ -1,6 +1,7 @@
 ﻿using Chatting;
 using Pipliz.JSON;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Pandaros.Settlers
@@ -126,7 +127,7 @@ namespace Pandaros.Settlers
             return chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase);
         }
 
-        public bool TryDoCommand(Players.Player player, string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             if (PermissionsManager.CheckAndWarnPermission(player,
                                                           new PermissionsManager.Permission(GameLoader.NAMESPACE +
@@ -134,7 +135,7 @@ namespace Pandaros.Settlers
             {
                 var array = CommandManager.SplitCommand(chat);
 
-                if (array.Length == 3)
+                if (array.Count == 3)
                 {
                     if (Configuration.HasSetting(array[1]))
                     {

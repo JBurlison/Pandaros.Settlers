@@ -144,7 +144,7 @@ namespace Pandaros.Settlers.Items.Machines
                     machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
                     machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
-                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out var itemBelow))
+                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
                     {
                         var itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
 
@@ -234,24 +234,24 @@ namespace Pandaros.Settlers.Items.Machines
 
             if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
-                if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out var itemBelow))
+                if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out ushort itemBelow))
                     if (CanMineBlock(itemBelow))
                     {
-                        RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony,
-                                                            new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony,
+                        RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony,
+                                                            new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony,
                                                                              nameof(Miner)));
 
                         return;
                     }
 
-                PandaChat.Send(d.RequestedByPlayer, "The mining machine must be placed on stone or ore.", ChatColor.orange);
+                PandaChat.Send(d.RequestOrigin.AsPlayer, "The mining machine must be placed on stone or ore.", ChatColor.orange);
                 d.CallbackState = ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled;
             }
         }
 
         public static bool CanMineBlock(ushort itemMined)
         {
-            return ItemTypes.TryGetType(itemMined, out var item) &&
+            return ItemTypes.TryGetType(itemMined, out ItemTypes.ItemType item) &&
                    item.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
                    minable;
         }

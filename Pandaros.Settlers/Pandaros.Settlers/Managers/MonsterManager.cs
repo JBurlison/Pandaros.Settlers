@@ -1,4 +1,5 @@
 ﻿using AI;
+using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
@@ -106,7 +107,7 @@ namespace Pandaros.Settlers.Managers
 
                     foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                     {
-                        var bannerGoal = colony.RandomBanner;
+                        var bannerGoal = colony.Banners[0];
 
                         if (colony.Banners.Length > 1)
                         {

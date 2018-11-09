@@ -1,4 +1,5 @@
-﻿using NPC;
+﻿using Monsters;
+using NPC;
 using Pandaros.Settlers.Entities;
 using Pipliz;
 using Shared;

@@ -1,9 +1,8 @@
 ﻿using BlockTypes;
+using Jobs;
 using NPC;
 using Pandaros.Settlers.Items;
-using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
-using Pipliz.Mods.BaseGame.BlockNPCs;
 using Recipes;
 using System.Collections.Generic;
 using UnityEngine;

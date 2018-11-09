@@ -58,7 +58,7 @@ namespace Pandaros.Settlers
             return chat.StartsWith("/settlers", StringComparison.OrdinalIgnoreCase);
         }
 
-        public bool TryDoCommand(Players.Player player, string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
@@ -78,7 +78,7 @@ namespace Pandaros.Settlers
             if (HasToggeledMaxTimes(maxToggleTimes, state, player))
                 return true;
 
-            if (array.Length == 1)
+            if (array.Count == 1)
             {
                 PandaChat.Send(player, "Settlers! Settlers are {0}. You have toggled this {1} out of {2} times.",
                                ChatColor.green, state.SettlersEnabled ? "on" : "off",
@@ -87,7 +87,7 @@ namespace Pandaros.Settlers
                 return true;
             }
 
-            if (array.Length == 2 && state.SettlersToggledTimes <= maxToggleTimes)
+            if (array.Count == 2 && state.SettlersToggledTimes <= maxToggleTimes)
             {
                 TurnSettlersOn(player, state, maxToggleTimes, array[1].ToLower().Trim() == "on" || array[1].ToLower().Trim() == "true");
             }

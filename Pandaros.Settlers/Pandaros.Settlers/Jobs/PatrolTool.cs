@@ -281,17 +281,17 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled || d.RequestedByPlayer.ActiveColony == null)
+            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled || d.RequestOrigin.AsPlayer.ActiveColony == null)
                 return;
 
             if (d.TypeOld.ItemIndex == PatrolFlag.ItemIndex)
             {
                 var toRemove = default(Knight);
 
-                if (!Knight.Knights.ContainsKey(d.RequestedByPlayer.ActiveColony))
-                    Knight.Knights.Add(d.RequestedByPlayer.ActiveColony, new List<Knight>());
+                if (!Knight.Knights.ContainsKey(d.RequestOrigin.AsPlayer.ActiveColony))
+                    Knight.Knights.Add(d.RequestOrigin.AsPlayer.ActiveColony, new List<Knight>());
 
-                foreach (var knight in Knight.Knights[d.RequestedByPlayer.ActiveColony])
+                foreach (var knight in Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony])
                     try
                     {
                         if (knight.PatrolPoints.Contains(d.Position))
@@ -300,11 +300,11 @@ namespace Pandaros.Settlers.Jobs
 
                             foreach (var flagPoint in knight.PatrolPoints)
                                 if (flagPoint != d.Position)
-                                    if (World.TryGetTypeAt(flagPoint, out var objType) &&
+                                    if (World.TryGetTypeAt(flagPoint, out ushort objType) &&
                                         objType == PatrolFlag.ItemIndex)
                                     {
                                         ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
-                                        d.RequestedByPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
+                                        d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
                                     }
 
                             break;
@@ -317,23 +317,23 @@ namespace Pandaros.Settlers.Jobs
 
                 if (toRemove != default(Knight))
                 {
-                    PandaChat.Send(d.RequestedByPlayer,
+                    PandaChat.Send(d.RequestOrigin.AsPlayer,
                                    $"Patrol with {toRemove.PatrolPoints.Count} patrol points no longer active.",
                                    ChatColor.orange);
 
-                    Knight.Knights[d.RequestedByPlayer.ActiveColony].Remove(toRemove);
-                    d.RequestedByPlayer.ActiveColony.JobFinder.Remove(toRemove);
-                    d.RequestedByPlayer.ActiveColony.JobFinder.Update();
+                    Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony].Remove(toRemove);
+                    d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Remove(toRemove);
+                    d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Update();
                 }
 
-                var state = PlayerState.GetPlayerState(d.RequestedByPlayer);
+                var state = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
                 if (state.FlagsPlaced.Contains(d.Position))
                 {
                     state.FlagsPlaced.Remove(d.Position);
                     ServerManager.TryChangeBlock(d.Position, BuiltinBlocks.Air);
                 }
 
-                d.RequestedByPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
+                d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
             }
         }
 

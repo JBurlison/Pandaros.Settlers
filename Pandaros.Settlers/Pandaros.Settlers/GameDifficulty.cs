@@ -208,7 +208,7 @@ namespace Pandaros.Settlers
                    chat.StartsWith("/dif", StringComparison.OrdinalIgnoreCase);
         }
 
-        public bool TryDoCommand(Players.Player player, string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
@@ -216,19 +216,19 @@ namespace Pandaros.Settlers
             var array = CommandManager.SplitCommand(chat);
             var state = ColonyState.GetColonyState(player.ActiveColony);
 
-            if (array.Length == 1)
+            if (array.Count == 1)
             {
                 PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
                 return true;
             }
 
-            if (array.Length < 2)
+            if (array.Count < 2)
             {
                 UnknownCommand(player, chat);
                 return true;
             }
 
-            if (array.Length == 2)
+            if (array.Count == 2)
             {
                 var difficulty = array[1].Trim();
 

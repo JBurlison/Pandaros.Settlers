@@ -1,4 +1,5 @@
 ﻿using BlockTypes;
+using Monsters;
 using NPC;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
@@ -223,7 +224,7 @@ namespace Pandaros.Settlers.Items.Machines
                             {
                                 machineState.SubtractFromActionEnergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoValue);
 
-                                if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out var above) && above == BuiltinBlocks.Air)
+                                if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out ushort above) && above == BuiltinBlocks.Air)
                                     Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
                                                                     new IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
                                                                                        TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault().Type));
@@ -805,8 +806,8 @@ namespace Pandaros.Settlers.Items.Machines
                 var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.TypeNew.ItemIndex).Value;
 
                 if (turret != null)
-                    RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony,
-                                                        new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony, turret.Name));
+                    RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony,
+                                                        new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, turret.Name));
             }
         }
 

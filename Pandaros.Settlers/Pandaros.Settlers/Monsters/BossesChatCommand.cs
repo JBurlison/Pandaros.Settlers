@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Monsters
             return chat.StartsWith("/bosses", StringComparison.OrdinalIgnoreCase);
         }
 
-        public bool TryDoCommand(Players.Player player, string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             if (player == null || player.ID == NetworkID.Server)
                 return true;
@@ -64,7 +64,7 @@ namespace Pandaros.Settlers.Monsters
             var array  = CommandManager.SplitCommand(chat);
             var state  = ColonyState.GetColonyState(player.ActiveColony);
 
-            if (array.Length == 1)
+            if (array.Count == 1)
             {
                 PandaChat.Send(player, "Settlers! Bosses are {0}.", ChatColor.green,
                                state.BossesEnabled ? "on" : "off");
@@ -72,7 +72,7 @@ namespace Pandaros.Settlers.Monsters
                 return true;
             }
 
-            if (array.Length == 2 && Configuration.GetorDefault("BossesCanBeDisabled", true))
+            if (array.Count == 2 && Configuration.GetorDefault("BossesCanBeDisabled", true))
             {
                 if (array[1].ToLower().Trim() == "on" || array[1].ToLower().Trim() == "true")
                 {

@@ -1,6 +1,6 @@
 ﻿using Pipliz.JSON;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Pandaros.Settlers.Items
 {
@@ -28,13 +28,11 @@ namespace Pandaros.Settlers.Items
             {
                 weightSum += drop.Weight;
 
-                if (roll > weightSum)
+                if (roll > weightSum && ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(drop.Item, out ItemTypes.ItemType itemAction))
                 {
-                    if (ItemTypesServer.TryGetType(drop.Item, out var itemAction))
-                    {
-                        dic[itemAction.typeMain] = Pipliz.Random.Next(drop.MinCount, drop.MaxCount + 1);
-                    }
+                    dic[itemAction.GetRootParentType().ItemIndex] = Pipliz.Random.Next(drop.MinCount, drop.MaxCount + 1);
                 }
+                
             }
 
             return dic;

@@ -120,13 +120,13 @@ namespace Pandaros.Settlers.Managers
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
-                d.RequestedByPlayer == null ||
-                d.RequestedByPlayer.ID.type == NetworkID.IDType.Server ||
-                d.RequestedByPlayer.ID.type == NetworkID.IDType.Invalid)
+                d.RequestOrigin.AsPlayer == null ||
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Server ||
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid)
                     return;
 
-            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.RequestedByPlayer != null)
-                RemoveObjective(d.RequestedByPlayer.ActiveColony, d.Position);
+            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.RequestOrigin.AsPlayer != null)
+                RemoveObjective(d.RequestOrigin.AsPlayer.ActiveColony, d.Position);
         }
 
         public static void RemoveObjective(Colony c, Vector3Int pos, bool throwEvent = true)

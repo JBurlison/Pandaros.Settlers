@@ -1,7 +1,7 @@
 ﻿using AI;
+using Jobs;
 using NPC;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -189,6 +189,19 @@ namespace Pandaros.Settlers
         {
             craftingJobSettings = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is CraftingJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as CraftingJobSettings;
             return craftingJobSettings != null;
+        }
+
+        public static bool TryGetItem(this Dictionary<ushort, string> itemInedex, string itemName, out ItemTypes.ItemType itemType)
+        {
+            var item = itemInedex.FirstOrDefault(i => i.Value == itemName);
+            itemType = null;
+
+            if (item.Key != 0 && !string.IsNullOrEmpty(item.Value) && ItemTypes.TryGetType(item.Key, out itemType))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

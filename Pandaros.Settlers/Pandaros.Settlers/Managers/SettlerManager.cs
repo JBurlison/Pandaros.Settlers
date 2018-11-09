@@ -1,5 +1,7 @@
 ﻿using AI;
 using BlockTypes;
+using Jobs;
+using Monsters;
 using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Entities;
@@ -34,10 +36,11 @@ namespace Pandaros.Settlers.Managers
 
         private const int _NUMBEROFCRAFTSPERPERCENT = 1000;
         private const int _UPDATE_TIME = 10;
-        public static double BED_LEAVE_HOURS = TimeCycle.SecondsPerHour * 5;
-        public static readonly double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * TimeCycle.SecondsPerHour;
-        public static readonly double COLD_LEAVE_HOURS = TimeCycle.SecondsPerHour * 5;
-        public static readonly double HOT_LEAVE_HOURS = TimeCycle.SecondsPerHour * 6;
+        public static double IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
+        public static double BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
+        public static double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
+        public static double COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
+        public static double HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
         private static float _baseFoodPerHour;
         private static double _updateTime;
         private static double _magicUpdateTime = Time.SecondsSinceStartDouble + Random.Next(2, 5);
@@ -60,7 +63,7 @@ namespace Pandaros.Settlers.Managers
         {
             if (boxedData.item1.clickType == PlayerClickedData.ClickType.Right &&
                 boxedData.item1.rayCastHit.rayHitType == RayHitType.Block &&
-                World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out var blockHit) &&
+                World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out ushort blockHit) &&
                 blockHit == BuiltinBlocks.BerryBush)
             {
                 var inv = Inventory.GetInventory(player);
@@ -212,6 +215,11 @@ namespace Pandaros.Settlers.Managers
         public static void AfterWorldLoad()
         {
             _baseFoodPerHour = ServerManager.ServerSettings.NPCs.FoodUsePerHour;
+            IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
+            BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
+            LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
+            COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
+            HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
 
             foreach (var p in ServerManager.ColonyTracker.ColoniesByID.Values)
                 UpdateFoodUse(ColonyState.GetColonyState(p));
@@ -401,7 +409,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPCBase npc)
         {
-            if (npc.GetTempValues().TryGet(ISSETTLER, out bool settler) && settler)
+            if (npc.CustomData.TryGetAs(ISSETTLER, out bool settler) && settler)
                 return;
 
             var ps = ColonyState.GetColonyState(npc.Colony);
@@ -429,7 +437,7 @@ namespace Pandaros.Settlers.Managers
                         }
 
                         ps.ColonistsBought++;
-                        ps.NextColonistBuyTime = TimeCycle.TotalTime + 24;
+                        ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours +  24;
                     }
 
                     SettlerInventory.GetSettlerInventory(npc);
@@ -453,61 +461,55 @@ namespace Pandaros.Settlers.Managers
         public static void OnNPCLoaded(NPCBase npc, JSONNode node)
         {
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
-                npc.GetTempValues(true).Set(GameLoader.SETTLER_INV, new SettlerInventory(invNode, npc));
-
-            var tmpVals = npc.GetTempValues();
+                npc.CustomData.SetAs(GameLoader.SETTLER_INV, new SettlerInventory(invNode, npc));
 
             if (node.TryGetAs<double>(LEAVETIME_JOB, out var leaveTime))
-                tmpVals.Set(LEAVETIME_JOB, leaveTime);
+                npc.CustomData.SetAs(LEAVETIME_JOB, leaveTime);
 
             if (node.TryGetAs<float>(GameLoader.ALL_SKILLS, out var skills))
-                tmpVals.Set(GameLoader.ALL_SKILLS, skills);
+                npc.CustomData.SetAs(GameLoader.ALL_SKILLS, skills);
 
             if (node.TryGetAs<int>(KNOWN_ITTERATIONS, out var jobItterations))
-                tmpVals.Set(KNOWN_ITTERATIONS, jobItterations);
+                npc.CustomData.SetAs(KNOWN_ITTERATIONS, jobItterations);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCSaved, GameLoader.NAMESPACE + ".SettlerManager.OnNPCSaved")]
         public static void OnNPCSaved(NPCBase npc, JSONNode node)
         {
-            var tmpVals = npc.GetTempValues();
-
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
 
-            if (npc.NPCType.IsLaborer && tmpVals.Contains(LEAVETIME_JOB))
-                node.SetAs(LEAVETIME_JOB, tmpVals.Get<double>(LEAVETIME_JOB));
+            if (npc.NPCType.IsLaborer && npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leave))
+                node.SetAs(LEAVETIME_JOB, leave);
 
-            if (tmpVals.Contains(GameLoader.ALL_SKILLS))
-                node.SetAs(GameLoader.ALL_SKILLS, tmpVals.Get<float>(GameLoader.ALL_SKILLS));
+            if (npc.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
+                node.SetAs(GameLoader.ALL_SKILLS, allSkill);
 
-            if (tmpVals.Contains(KNOWN_ITTERATIONS))
-                node.SetAs(KNOWN_ITTERATIONS, tmpVals.Get<int>(KNOWN_ITTERATIONS));
+            if (npc.CustomData.TryGetAs(KNOWN_ITTERATIONS, out int itt))
+                node.SetAs(KNOWN_ITTERATIONS, itt);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
-            var tmpVals = job.NPC.GetTempValues();
-
-            if (!tmpVals.Contains(KNOWN_ITTERATIONS))
-                tmpVals.Set(KNOWN_ITTERATIONS, 1);
+            if (!job.NPC.CustomData.TryGetAs(KNOWN_ITTERATIONS, out int itt))
+                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
             else
-                tmpVals.Set(KNOWN_ITTERATIONS, tmpVals.Get<int>(KNOWN_ITTERATIONS) + 1);
+                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, itt + 1);
 
-            if (!tmpVals.Contains(GameLoader.ALL_SKILLS))
-                tmpVals.Set(GameLoader.ALL_SKILLS, 0f);
+            if (!job.NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
+                job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, 0f);
 
-            var nextLevel = Pipliz.Math.RoundToInt(tmpVals.Get<float>(GameLoader.ALL_SKILLS) * 100) * _NUMBEROFCRAFTSPERPERCENT;
+            var nextLevel = Pipliz.Math.RoundToInt(allSkill * 100) * _NUMBEROFCRAFTSPERPERCENT;
 
-            if (tmpVals.Get<int>(KNOWN_ITTERATIONS) >= nextLevel)
+            if (itt >= nextLevel)
             {
-                var nextFloat = tmpVals.Get<float>(GameLoader.ALL_SKILLS) + 0.001f;
+                var nextFloat = allSkill + 0.001f;
 
                 if (nextFloat > 0.025f)
                     nextFloat = 0.025f;
 
-                tmpVals.Set(KNOWN_ITTERATIONS, 0);
-                tmpVals.Set(GameLoader.ALL_SKILLS, nextFloat);
+                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 0);
+                job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, nextFloat);
             }
         }
 
@@ -546,7 +548,7 @@ namespace Pandaros.Settlers.Managers
             {
                 if (state.NextGenTime == 0)
                     state.NextGenTime = Time.SecondsSinceStartDouble +
-                                        Random.Next(8, 16 - Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * TimeCycle.SecondsPerHour;
+                                        Random.Next(8, 16 - Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * IN_GAME_HOUR_IN_SECONDS;
 
                 if (Time.SecondsSinceStartDouble > state.NextGenTime && state.ColonyRef.FollowerCount >= MAX_BUYABLE)
                 {
@@ -605,18 +607,14 @@ namespace Pandaros.Settlers.Managers
 
                                 for (var i = 0; i < addCount; i++)
                                 {
-                                    var newGuy = new NPCBase(NPCType.GetByKeyNameOrDefault("pipliz.laborer"),
-                                                             state.ColonyRef.RandomBanner.Position.Vector,
-                                                             state.ColonyRef);
+                                    var newGuy = new NPCBase(state.ColonyRef,
+                                                             state.ColonyRef.GetRandomBanner().Position.Vector);
 
                                     SettlerInventory.GetSettlerInventory(newGuy);
-                                    newGuy.GetTempValues().Set(ISSETTLER, true);
+                                    newGuy.CustomData.SetAs(ISSETTLER, true);
 
                                     if (i <= numbSkilled)
-                                    {
-                                        var npcTemp = newGuy.GetTempValues(true);
-                                        npcTemp.Set(GameLoader.ALL_SKILLS, Random.Next(1, 10) * 0.002f);
-                                    }
+                                        newGuy.CustomData.SetAs(GameLoader.ALL_SKILLS, Random.Next(1, 10) * 0.002f);
 
                                     update = true;
                                     ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
@@ -637,8 +635,7 @@ namespace Pandaros.Settlers.Managers
                     state.NextGenTime = Time.SecondsSinceStartDouble +
                                         Random.Next(8,
                                                     16 - Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween),
-                                                                                               0f))) * TimeCycle
-                                           .SecondsPerHour;
+                                                                                               0f))) * IN_GAME_HOUR_IN_SECONDS;
 
                     state.ColonyRef.SendUpdate();
                 }
@@ -651,7 +648,7 @@ namespace Pandaros.Settlers.Managers
         public static void OnNPCJobChanged(TupleStruct<NPCBase, IJob, IJob> data)
         {
             if (!data.item1.NPCType.IsLaborer)
-                data.item1.GetTempValues().Remove(LEAVETIME_JOB);
+                data.item1.CustomData.SetAs(LEAVETIME_JOB, 0);
         }
 
         private static bool EvaluateLaborers(ColonyState state)
@@ -668,13 +665,12 @@ namespace Pandaros.Settlers.Managers
                     for (var i = 0; i < state.ColonyRef.LaborerCount; i++)
                     {
                         var npc     = state.ColonyRef.FindLaborer(i);
-                        var tmpVals = npc.GetTempValues();
 
-                        if (!tmpVals.Contains(LEAVETIME_JOB))
+                        if (!npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leaveTime))
                         {
-                            tmpVals.Set(LEAVETIME_JOB, Time.SecondsSinceStartDouble + LOABOROR_LEAVE_HOURS);
+                            npc.CustomData.SetAs(LEAVETIME_JOB, Time.SecondsSinceStartDouble + LOABOROR_LEAVE_HOURS);
                         }
-                        else if (tmpVals.Get<double>(LEAVETIME_JOB) < TimeCycle.TotalTime)
+                        else if (leaveTime < Time.SecondsSinceStartDouble)
                         {
                             left++;
                             NPCLeaving(npc);
@@ -691,7 +687,7 @@ namespace Pandaros.Settlers.Managers
                     state.ColonyRef.SendUpdate();
                 }
 
-                _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * TimeCycle.SecondsPerHour;
+                _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * IN_GAME_HOUR_IN_SECONDS;
             }
 
             return update;
@@ -765,7 +761,7 @@ namespace Pandaros.Settlers.Managers
                                 PandaChat.Send(state.ColonyRef, SettlerReasoning.GetNeedBed(), ChatColor.grey);
                             }
 
-                            if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalTime)
+                            if (state.NeedsABed != 0 && state.NeedsABed < Time.SecondsSinceStartDouble)
                             {
                                 foreach (var follower in state.ColonyRef.Followers)
                                     if (follower.UsedBed == null)
@@ -787,7 +783,7 @@ namespace Pandaros.Settlers.Managers
                         state.ColonyRef.SendUpdate();
                     }
 
-                    _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * TimeCycle.SecondsPerHour;
+                    _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * IN_GAME_HOUR_IN_SECONDS;
                 }
             }
             catch (Exception ex)

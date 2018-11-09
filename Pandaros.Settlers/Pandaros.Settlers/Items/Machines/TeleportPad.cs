@@ -411,14 +411,14 @@ namespace Pandaros.Settlers.Items.Machines
 
             if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
-                var ps = PlayerState.GetPlayerState(d.RequestedByPlayer);
-                var ms = new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony, nameof(TeleportPad));
+                var ps = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
+                var ms = new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, nameof(TeleportPad));
 
                 if (ps.TeleporterPlaced == Vector3Int.invalidPos)
                 {
                     ps.TeleporterPlaced = d.Position;
 
-                    PandaChat.Send(d.RequestedByPlayer, $"Place one more teleportation pad to link to.",
+                    PandaChat.Send(d.RequestOrigin.AsPlayer, $"Place one more teleportation pad to link to.",
                                    ChatColor.orange);
                 }
                 else
@@ -427,19 +427,19 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         _paired[ms.Position]           = machineState.Position;
                         _paired[machineState.Position] = ms.Position;
-                        PandaChat.Send(d.RequestedByPlayer, $"Teleportation pads linked!", ChatColor.orange);
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, $"Teleportation pads linked!", ChatColor.orange);
                         ps.TeleporterPlaced = Vector3Int.invalidPos;
                     }
                     else
                     {
                         ps.TeleporterPlaced = d.Position;
 
-                        PandaChat.Send(d.RequestedByPlayer, $"Place one more teleportation pad to link to.",
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, $"Place one more teleportation pad to link to.",
                                        ChatColor.orange);
                     }
                 }
 
-                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony, ms);
+                RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, ms);
             }
         }
 

@@ -189,7 +189,7 @@ namespace Pandaros.Settlers.Items.Machines
                             gate.Value.State == GatePosition.MovingOpen)
                             continue;
 
-                        if (World.TryGetTypeAt(gate.Key, out var gateType))
+                        if (World.TryGetTypeAt(gate.Key, out ushort gateType))
                         {
                             if (gate.Value.Orientation == VoxelSide.None)
                             {
@@ -598,15 +598,15 @@ namespace Pandaros.Settlers.Items.Machines
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
-                d.RequestedByPlayer == null ||
-                d.RequestedByPlayer.ID.type == NetworkID.IDType.Server ||
-                d.RequestedByPlayer.ID.type == NetworkID.IDType.Invalid)
+                d.RequestOrigin.AsPlayer == null ||
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Server ||
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid)
                     return;
 
             if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
             {
-                RoamingJobManager.RegisterRoamingJobState(d.RequestedByPlayer.ActiveColony,
-                                                    new RoamingJobState(d.Position, d.RequestedByPlayer.ActiveColony,
+                RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony,
+                                                    new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony,
                                                                      nameof(GateLever)));
             }
             else if (d.TypeOld.ItemIndex == BuiltinBlocks.Air && (d.TypeNew.ItemIndex == GateItem.ItemIndex ||
@@ -615,23 +615,23 @@ namespace Pandaros.Settlers.Items.Machines
                                                         d.TypeNew.ItemIndex == GateItemZN.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemZP.ItemIndex))
             {
-                if (!_gatePositions.ContainsKey(d.RequestedByPlayer.ActiveColony))
-                    _gatePositions.Add(d.RequestedByPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(d.RequestOrigin.AsPlayer.ActiveColony))
+                    _gatePositions.Add(d.RequestOrigin.AsPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());
 
-                _gatePositions[d.RequestedByPlayer.ActiveColony].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
+                _gatePositions[d.RequestOrigin.AsPlayer.ActiveColony].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
             }
 
             if (d.TypeNew.ItemIndex == BuiltinBlocks.Air)
             {
-                if (!_gatePositions.ContainsKey(d.RequestedByPlayer.ActiveColony))
-                    _gatePositions.Add(d.RequestedByPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());
+                if (!_gatePositions.ContainsKey(d.RequestOrigin.AsPlayer.ActiveColony))
+                    _gatePositions.Add(d.RequestOrigin.AsPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());
 
-                if (_gatePositions[d.RequestedByPlayer.ActiveColony].ContainsKey(d.Position))
+                if (_gatePositions[d.RequestOrigin.AsPlayer.ActiveColony].ContainsKey(d.Position))
                 {
-                    _gatePositions[d.RequestedByPlayer.ActiveColony].Remove(d.Position);
+                    _gatePositions[d.RequestOrigin.AsPlayer.ActiveColony].Remove(d.Position);
 
-                    if (!Inventory.GetInventory(d.RequestedByPlayer).TryAdd(GateItem.ItemIndex))
-                       d.RequestedByPlayer.ActiveColony.Stockpile.Add(GateItem.ItemIndex);
+                    if (!Inventory.GetInventory(d.RequestOrigin.AsPlayer).TryAdd(GateItem.ItemIndex))
+                       d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(GateItem.ItemIndex);
                 }
             }
         }

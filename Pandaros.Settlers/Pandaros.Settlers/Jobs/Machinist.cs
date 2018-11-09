@@ -1,9 +1,9 @@
 ﻿using BlockTypes;
+using Jobs;
 using NPC;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;

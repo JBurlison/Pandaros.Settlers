@@ -1,9 +1,7 @@
 ﻿using AI;
-using BlockEntities.Implementations;
 using Difficulty;
+using Monsters;
 using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
 using System.Collections.Generic;
@@ -46,7 +44,7 @@ namespace Pandaros.Settlers.Monsters
                 while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < ServerManager.ServerSettings.Zombies.MSPerTick)
                 {
                     Colony colony = coloniesRequiringZombies[i];
-                    Banner banner = colony.RandomBanner;
+                    Banner banner = colony.GetRandomBanner();
 
                     IColonyDifficultySetting difficulty = colony.DifficultySetting;
                     float cooldown = difficulty.GetZombieSpawnCooldown(colony);

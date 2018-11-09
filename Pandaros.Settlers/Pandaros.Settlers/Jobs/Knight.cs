@@ -1,5 +1,7 @@
 ﻿using AI;
 using BlockTypes;
+using Jobs;
+using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
@@ -37,7 +39,6 @@ namespace Pandaros.Settlers.Jobs
         private IMonster _target;
         private int _timeAtPatrol;
         private double _timeJob;
-        private BoxedDictionary _tmpVals;
 
         private int _waitingFor;
 
@@ -155,7 +156,7 @@ namespace Pandaros.Settlers.Jobs
                 currentPos = PatrolPoints[_currentPatrolPos];
 
                 // if our flag is gone, remove the job.
-                if (World.TryGetTypeAt(PatrolPoints[_currentPatrolPos], out var objType) &&
+                if (World.TryGetTypeAt(PatrolPoints[_currentPatrolPos], out ushort objType) &&
                     objType != PatrolTool.PatrolFlag.ItemIndex)
                 {
                     UsedNPC.ClearJob();
@@ -163,7 +164,7 @@ namespace Pandaros.Settlers.Jobs
                     Owner.JobFinder.Remove(this);
 
                     foreach (var flagPoint in PatrolPoints)
-                        if (World.TryGetTypeAt(flagPoint, out var flagType) &&
+                        if (World.TryGetTypeAt(flagPoint, out ushort flagType) &&
                             flagType == PatrolTool.PatrolFlag.ItemIndex)
                         {
                             ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
@@ -250,7 +251,7 @@ namespace Pandaros.Settlers.Jobs
         public void OnRemovedNPC()
         {
             UsedNPC = null;
-           Owner.JobFinder.Add(this);
+            Owner.JobFinder.Add(this);
         }
 
         protected void OverrideCooldown(double cooldownLeft)
@@ -335,7 +336,6 @@ namespace Pandaros.Settlers.Jobs
         public void SetNPC(NPCBase npc)
         {
             UsedNPC = npc;
-            _tmpVals = npc.GetTempValues(true);
             _inv = SettlerInventory.GetSettlerInventory(npc);
             _stock = npc.Colony.Stockpile;
         }

@@ -37,12 +37,12 @@ namespace Pandaros.Settlers.Stats
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Stats.StatsCache.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.RequestedByPlayer == null ||
-                d.RequestedByPlayer.ID.type == NetworkID.IDType.Server ||
-                d.RequestedByPlayer.ID.type == NetworkID.IDType.Invalid)
+            if (d.RequestOrigin.AsPlayer == null ||
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Server ||
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid)
                 return;
 
-            var ps = PlayerState.GetPlayerState(d.RequestedByPlayer);
+            var ps = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
 
             if (ps != null)
             {

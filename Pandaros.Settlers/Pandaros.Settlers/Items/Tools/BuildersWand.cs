@@ -92,7 +92,7 @@ namespace Pandaros.Settlers.Items
                 if (ps.BuildersWandPreview.Count != 0)
                 {
                     foreach (var pos in ps.BuildersWandPreview)
-                        if (World.TryGetTypeAt(pos, out var objType) && objType == Selector.ItemIndex)
+                        if (World.TryGetTypeAt(pos, out ushort objType) && objType == Selector.ItemIndex)
                             ServerManager.TryChangeBlock(pos, BuiltinBlocks.Air);
 
                     ps.BuildersWandPreview.Clear();
@@ -449,8 +449,8 @@ namespace Pandaros.Settlers.Items
         {
             var brek = false;
 
-            if (World.TryGetTypeAt(potentialPos.Add(x, y, z), out var itemBehind) && itemBehind != BuiltinBlocks.Air &&
-                World.TryGetTypeAt(potentialPos, out var itemInPotentialPos) && itemInPotentialPos == BuiltinBlocks.Air)
+            if (World.TryGetTypeAt(potentialPos.Add(x, y, z), out ushort itemBehind) && itemBehind != BuiltinBlocks.Air &&
+                World.TryGetTypeAt(potentialPos, out ushort itemInPotentialPos) && itemInPotentialPos == BuiltinBlocks.Air)
             {
                 ServerManager.TryChangeBlock(potentialPos, Selector.ItemIndex);
                 ps.BuildersWandPreview.Add(potentialPos);

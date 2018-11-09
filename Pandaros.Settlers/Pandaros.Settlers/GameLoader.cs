@@ -7,6 +7,7 @@ using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using static ItemTypesServer;
 
 namespace Pandaros.Settlers
 {
@@ -194,33 +195,6 @@ namespace Pandaros.Settlers
             WorldLoaded = false;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".GameLoader.LoadAudioFiles")]
-        [ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
-        private static void RegisterAudioFiles()
-        {
-            var files = JSON.Deserialize(MOD_FOLDER + "/Audio/audioFiles.json", false);
-
-            foreach (var current in files.LoopArray())
-            {
-                foreach (var current2 in current["fileList"].LoopArray())
-                {
-                    current2["path"] = new JSONNode(AUDIO_PATH + current2.GetAs<string>("path"));
-
-                    if (current2.TryGetAs<bool>("isThreeD", out var is3d))
-                        current2["isThreeD"] = new JSONNode(is3d);
-
-                    if (current2.TryGetAs<float>("volume", out var volume))
-                        current2["isThreeD"] = new JSONNode(volume);
-
-                    if (current2.TryGetAs<string>("audioGroup", out var audioGroup))
-                        current2["audioGroup"] = new JSONNode(audioGroup);
-                }
-
-                ItemTypesServer.AudioFilesJSON.AddToArray(current);
-            }
-        }
-
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, NAMESPACE + ".GameLoader.trychangeblock")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {
@@ -294,8 +268,9 @@ namespace Pandaros.Settlers
             }
 
             node.SetAs("fileList", fileListNode);
+            var audioPatch = new AudioPatch(node, int.MaxValue);
 
-            ItemTypesServer.AudioFilesJSON.AddToArray(node);
+            ItemTypesServer.QueueAudioPatch(audioPatch);
         }
     }
 }

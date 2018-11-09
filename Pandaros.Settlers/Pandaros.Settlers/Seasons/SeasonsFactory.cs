@@ -155,9 +155,6 @@ namespace Pandaros.Settlers.Seasons
         {
             if (!data.Result)
             {
-                if (data.CheckedChunk.Data.IsAir)  // don't keep extra air chunks loaded (won't be replacing air)
-                    return;
-
                 // up the keep-loaded-range to include all send chunks
                 for (int i = 0; i < Players.CountConnected; i++)
                 {
@@ -187,14 +184,14 @@ namespace Pandaros.Settlers.Seasons
                     if (data.ChunkLoadedSource == ChunkUpdating.KeepChunkLoadedData.EChunkLoadedSource.Updater)
                     {
                         // updater won't send the change by itself, so manually send it
-                        data.CheckedChunk.LockReadData();
+                        data.CheckedChunk.LockRead();
                         try
                         {
                             Players.SendToNearbyDrawDistance(position, data.CheckedChunk.GetNetworkPacket(), 200000);
                         }
                         finally
                         {
-                            data.CheckedChunk.UnlockReadData();
+                            data.CheckedChunk.UnlockRead();
                         }
                     }
                     else

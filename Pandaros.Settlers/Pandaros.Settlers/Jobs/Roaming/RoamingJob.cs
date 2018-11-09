@@ -1,16 +1,11 @@
-﻿using BlockEntities;
-using BlockTypes;
+﻿using BlockTypes;
+using Jobs;
 using NPC;
-using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using Pipliz;
-using Pipliz.APIProvider.Jobs;
-using Pipliz.JSON;
 using Shared;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Assertions;
 
 namespace Pandaros.Settlers.Jobs.Roaming
 {

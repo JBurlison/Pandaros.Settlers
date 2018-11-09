@@ -1,4 +1,4 @@
-﻿using NPC;
+﻿using Jobs;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;

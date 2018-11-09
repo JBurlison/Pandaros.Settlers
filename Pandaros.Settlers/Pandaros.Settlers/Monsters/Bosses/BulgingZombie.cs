@@ -1,4 +1,5 @@
 ﻿using AI;
+using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pipliz;
@@ -113,7 +114,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var pos = new Vector3Int(boss.Position);
 
                 for (var i = 0; i < numberToSpawn; i++)
-                    PandaMonsterSpawner.CaclulateZombie(boss.OriginalGoal.RandomBanner, boss.OriginalGoal, MonsterSpawner.GetTypeToSpawn(boss.OriginalGoal.FollowerCount));
+                    PandaMonsterSpawner.CaclulateZombie(boss.OriginalGoal.GetClosestBanner(boss.position), boss.OriginalGoal, MonsterSpawner.GetTypeToSpawn(boss.OriginalGoal.FollowerCount));
             }
         }
     }

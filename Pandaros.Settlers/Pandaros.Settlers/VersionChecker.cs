@@ -1,6 +1,7 @@
 ﻿using Chatting;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security.Authentication;
@@ -195,7 +196,7 @@ namespace Pandaros.Settlers
             return chat.StartsWith("/settlersversion", StringComparison.OrdinalIgnoreCase);
         }
 
-        public bool TryDoCommand(Players.Player player, string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             var array = CommandManager.SplitCommand(chat);
 

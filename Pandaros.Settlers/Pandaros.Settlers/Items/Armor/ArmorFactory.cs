@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Items.Armor
             return chat.StartsWith("/armor", StringComparison.OrdinalIgnoreCase);
         }
 
-        public bool TryDoCommand(Players.Player player, string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             var colony = player.ActiveColony;
             var counts = new Dictionary<string, Dictionary<ArmorFactory.ArmorSlot, int>>();

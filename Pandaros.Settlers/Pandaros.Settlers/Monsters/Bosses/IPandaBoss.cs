@@ -1,5 +1,5 @@
 ﻿using AI;
-using NPC;
+using Monsters;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
