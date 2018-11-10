@@ -114,10 +114,27 @@ namespace Pandaros.Settlers.Entities
 
         public static SettlerInventory GetSettlerInventory(NPCBase npc)
         {
-            if (!npc.CustomData.TryGetAs(GameLoader.SETTLER_INV, out SettlerInventory inv))
+            SettlerInventory inv = null;
+
+            if (npc.CustomData == null)
+                npc.CustomData = new JSONNode();
+
+            try
+            {
+                if (!npc.CustomData.TryGetAs(GameLoader.SETTLER_INV, out inv) || inv == null)
+                {
+                    inv = new SettlerInventory(npc);
+                    npc.CustomData.SetAs(GameLoader.SETTLER_INV, inv);
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
+
+            if (inv == null)
             {
                 inv = new SettlerInventory(npc);
-                npc.CustomData.SetAs(GameLoader.SETTLER_INV, inv);
             }
 
             return inv;

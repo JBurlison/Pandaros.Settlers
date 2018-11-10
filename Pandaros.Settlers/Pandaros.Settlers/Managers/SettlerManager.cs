@@ -458,6 +458,9 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCLoaded, GameLoader.NAMESPACE + ".SettlerManager.OnNPCLoaded")]
         public static void OnNPCLoaded(NPCBase npc, JSONNode node)
         {
+            if (npc.CustomData == null)
+                npc.CustomData = new JSONNode();
+
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
                 npc.CustomData.SetAs(GameLoader.SETTLER_INV, new SettlerInventory(invNode, npc));
 
@@ -645,7 +648,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
         public static void OnNPCJobChanged(TupleStruct<NPCBase, IJob, IJob> data)
         {
-            if (!data.item1.NPCType.IsLaborer)
+            if (data != null && data.item1 != null && !data.item1.NPCType.IsLaborer)
                 data.item1.CustomData.SetAs(LEAVETIME_JOB, 0);
         }
 
