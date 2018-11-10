@@ -27,7 +27,7 @@ namespace Pandaros.Settlers.Jobs
                 type = NPCTypeID.GetNextID()
             });
 
-            ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_RECIPE, JOB_NAME)));
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddTextures")]
