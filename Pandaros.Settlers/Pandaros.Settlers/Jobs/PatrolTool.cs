@@ -156,29 +156,36 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnSavingColony")]
         public static void OnSavingColony(JSONNode n, Colony c)
         {
-            if (Knight.Knights.ContainsKey(c))
+            try
             {
-                if (n.HasChild(GameLoader.NAMESPACE + ".Knights"))
-                    n.RemoveChild(GameLoader.NAMESPACE + ".Knights");
-
-                var knightsNode = new JSONNode(NodeType.Array);
-
-                foreach (var knight in Knight.Knights[c])
+                if (Knight.Knights.ContainsKey(c))
                 {
-                    var knightNode = new JSONNode()
-                       .SetAs(nameof(knight.PatrolType), knight.PatrolType);
+                    if (n.HasChild(GameLoader.NAMESPACE + ".Knights"))
+                        n.RemoveChild(GameLoader.NAMESPACE + ".Knights");
 
-                    var patrolPoints = new JSONNode(NodeType.Array);
+                    var knightsNode = new JSONNode(NodeType.Array);
 
-                    foreach (var point in knight.PatrolPoints)
-                        patrolPoints.AddToArray((JSONNode) point);
+                    foreach (var knight in Knight.Knights[c])
+                    {
+                        var knightNode = new JSONNode()
+                           .SetAs(nameof(knight.PatrolType), knight.PatrolType);
 
-                    knightNode.SetAs(nameof(knight.PatrolPoints), patrolPoints);
+                        var patrolPoints = new JSONNode(NodeType.Array);
 
-                    knightsNode.AddToArray(knightNode);
+                        foreach (var point in knight.PatrolPoints)
+                            patrolPoints.AddToArray((JSONNode)point);
+
+                        knightNode.SetAs(nameof(knight.PatrolPoints), patrolPoints);
+
+                        knightsNode.AddToArray(knightNode);
+                    }
+
+                    n[GameLoader.NAMESPACE + ".Knights"] = knightsNode;
                 }
-
-                n[GameLoader.NAMESPACE + ".Knights"] = knightsNode;
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 
@@ -281,59 +288,68 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Jobs.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled || d.RequestOrigin.AsPlayer.ActiveColony == null)
-                return;
-
-            if (d.TypeOld.ItemIndex == PatrolFlag.ItemIndex)
+            try
             {
-                var toRemove = default(Knight);
+                if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
+                    d.RequestOrigin.AsPlayer.ActiveColony == null ||
+                    d.TypeOld == null)
+                    return;
 
-                if (!Knight.Knights.ContainsKey(d.RequestOrigin.AsPlayer.ActiveColony))
-                    Knight.Knights.Add(d.RequestOrigin.AsPlayer.ActiveColony, new List<Knight>());
+                if (d.TypeOld.ItemIndex == PatrolFlag.ItemIndex)
+                {
+                    var toRemove = default(Knight);
 
-                foreach (var knight in Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony])
-                    try
-                    {
-                        if (knight.PatrolPoints.Contains(d.Position))
+                    if (!Knight.Knights.ContainsKey(d.RequestOrigin.AsPlayer.ActiveColony))
+                        Knight.Knights.Add(d.RequestOrigin.AsPlayer.ActiveColony, new List<Knight>());
+
+                    foreach (var knight in Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony])
+                        try
                         {
-                            knight.OnRemove();
+                            if (knight.PatrolPoints.Contains(d.Position))
+                            {
+                                knight.OnRemove();
 
-                            foreach (var flagPoint in knight.PatrolPoints)
-                                if (flagPoint != d.Position)
-                                    if (World.TryGetTypeAt(flagPoint, out ushort objType) &&
-                                        objType == PatrolFlag.ItemIndex)
-                                    {
-                                        ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
-                                        d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
-                                    }
+                                foreach (var flagPoint in knight.PatrolPoints)
+                                    if (flagPoint != d.Position)
+                                        if (World.TryGetTypeAt(flagPoint, out ushort objType) &&
+                                            objType == PatrolFlag.ItemIndex)
+                                        {
+                                            ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
+                                            d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
+                                        }
 
-                            break;
+                                break;
+                            }
                         }
-                    }
-                    catch (Exception ex)
+                        catch (Exception ex)
+                        {
+                            PandaLogger.LogError(ex);
+                        }
+
+                    if (toRemove != default(Knight))
                     {
-                        PandaLogger.LogError(ex);
+                        PandaChat.Send(d.RequestOrigin.AsPlayer,
+                                       $"Patrol with {toRemove.PatrolPoints.Count} patrol points no longer active.",
+                                       ChatColor.orange);
+
+                        Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony].Remove(toRemove);
+                        d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Remove(toRemove);
+                        d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Update();
                     }
 
-                if (toRemove != default(Knight))
-                {
-                    PandaChat.Send(d.RequestOrigin.AsPlayer,
-                                   $"Patrol with {toRemove.PatrolPoints.Count} patrol points no longer active.",
-                                   ChatColor.orange);
+                    var state = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
+                    if (state.FlagsPlaced.Contains(d.Position))
+                    {
+                        state.FlagsPlaced.Remove(d.Position);
+                        ServerManager.TryChangeBlock(d.Position, BuiltinBlocks.Air);
+                    }
 
-                    Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony].Remove(toRemove);
-                    d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Remove(toRemove);
-                    d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Update();
+                    d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
                 }
-
-                var state = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
-                if (state.FlagsPlaced.Contains(d.Position))
-                {
-                    state.FlagsPlaced.Remove(d.Position);
-                    ServerManager.TryChangeBlock(d.Position, BuiltinBlocks.Air);
-                }
-
-                d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 

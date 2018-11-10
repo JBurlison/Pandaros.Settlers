@@ -375,31 +375,35 @@ namespace Pandaros.Settlers.Items.Machines
                     _paired[(Vector3Int) pad.GetAs<JSONNode>("Key")] = (Vector3Int) pad.GetAs<JSONNode>("Value");
         }
 
+        // TODO: uncomment when zun fixes this.
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerMoved, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerMoved")]
-        public static void OnPlayerMoved(Players.Player p)
+        public static void OnPlayerMoved(Players.Player p, UnityEngine.Vector3 oldPosition)
         {
-            var posBelow = new Vector3Int(p.Position);
-
-            if (GetPadAt(posBelow, out var machineState) &&
-                _paired.ContainsKey(machineState.Position) &&
-                GetPadAt(_paired[machineState.Position], out var paired))
+            try
             {
-                var startInt = Time.SecondsSinceStartInt;
+                var posBelow = new Vector3Int(p.Position);
 
-                if (!_cooldown.ContainsKey(p))
-                    _cooldown.Add(p, 0);
-
-                if (_cooldown[p] <= startInt)
+                if (GetPadAt(posBelow, out var machineState) &&
+                    _paired.ContainsKey(machineState.Position) &&
+                    GetPadAt(_paired[machineState.Position], out var paired))
                 {
-                    Teleport.TeleportTo(p, paired.Position.Vector);
+                    var startInt = Time.SecondsSinceStartInt;
 
-                    ServerManager.SendAudio(machineState.Position.Vector,
-                                            GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                    if (!_cooldown.ContainsKey(p))
+                        _cooldown.Add(p, 0);
 
-                    ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
-
-                    _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
+                    if (_cooldown[p] <= startInt)
+                    {
+                        Teleport.TeleportTo(p, paired.Position.Vector);
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 

@@ -600,7 +600,8 @@ namespace Pandaros.Settlers.Items.Machines
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
                 d.RequestOrigin.AsPlayer == null ||
                 d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Server ||
-                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid)
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid ||
+                d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
             if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)

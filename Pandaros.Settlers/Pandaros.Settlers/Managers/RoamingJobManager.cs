@@ -99,20 +99,27 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.PatrolTool.OnSavingColony")]
         public static void OnSavingColony(JSONNode n, Colony c)
         {
-            lock (Objectives)
+            try
             {
-                if (Objectives.ContainsKey(c))
+                lock (Objectives)
                 {
-                    if (n.HasChild(GameLoader.NAMESPACE + ".Objectives"))
-                        n.RemoveChild(GameLoader.NAMESPACE + ".Objectives");
+                    if (Objectives.ContainsKey(c))
+                    {
+                        if (n.HasChild(GameLoader.NAMESPACE + ".Objectives"))
+                            n.RemoveChild(GameLoader.NAMESPACE + ".Objectives");
 
-                    var objectiveNode = new JSONNode(NodeType.Array);
+                        var objectiveNode = new JSONNode(NodeType.Array);
 
-                    foreach (var node in Objectives[c])
-                        objectiveNode.AddToArray(node.Value.ToJsonNode());
+                        foreach (var node in Objectives[c])
+                            objectiveNode.AddToArray(node.Value.ToJsonNode());
 
-                    n[GameLoader.NAMESPACE + ".Objectives"] = objectiveNode;
+                        n[GameLoader.NAMESPACE + ".Objectives"] = objectiveNode;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 
@@ -122,7 +129,8 @@ namespace Pandaros.Settlers.Managers
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
                 d.RequestOrigin.AsPlayer == null ||
                 d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Server ||
-                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid)
+                d.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Invalid ||
+                d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
             if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.RequestOrigin.AsPlayer != null)
