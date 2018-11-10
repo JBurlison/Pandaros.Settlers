@@ -38,6 +38,8 @@ namespace Pandaros.Settlers.Jobs
     public class MachinistSettingsDay : IBlockJobSettings
     {
         static NPCType _Settings;
+        public virtual float NPCShopGameHourMinimum { get { return TimeCycle.Settings.SleepTimeEnd; } }
+        public virtual float NPCShopGameHourMaximum { get { return TimeCycle.Settings.SleepTimeStart; } }
 
         static MachinistSettingsDay()
         {

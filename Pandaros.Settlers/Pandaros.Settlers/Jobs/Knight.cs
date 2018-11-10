@@ -22,6 +22,8 @@ namespace Pandaros.Settlers.Jobs
     {
         private const float COOLDOWN = 2f;
         public static NPCType KnightNPCType;
+        public virtual float NPCShopGameHourMinimum { get { return TimeCycle.Settings.SleepTimeEnd; } }
+        public virtual float NPCShopGameHourMaximum { get { return TimeCycle.Settings.SleepTimeStart; } }
 
         private static readonly NPCTypeStandardSettings _knightNPCSettings = new NPCTypeStandardSettings
         {
