@@ -30,8 +30,7 @@ namespace Pandaros.Settlers.Jobs
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_RECIPE, JOB_NAME)));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
@@ -43,8 +42,7 @@ namespace Pandaros.Settlers.Jobs
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTable", textureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddItemTypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddItemTypes")]
         public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
@@ -61,8 +59,7 @@ namespace Pandaros.Settlers.Jobs
             itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             var iron   = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
