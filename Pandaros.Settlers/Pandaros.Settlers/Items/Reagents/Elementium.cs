@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Items
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
             GameLoader.NAMESPACE + ".Items.Elementium.Add")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)

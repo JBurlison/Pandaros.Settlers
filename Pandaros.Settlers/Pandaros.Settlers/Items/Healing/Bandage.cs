@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Items.Healing
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {

@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Extender
 
         void AfterWorldLoad();
 
-        void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes);
+        void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes);
 
         void AfterSelectedWorld();
 

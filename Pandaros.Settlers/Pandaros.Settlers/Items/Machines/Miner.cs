@@ -203,7 +203,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,  GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddMiner(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {

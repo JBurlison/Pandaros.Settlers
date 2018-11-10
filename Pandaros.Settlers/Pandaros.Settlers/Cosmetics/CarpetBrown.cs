@@ -21,8 +21,8 @@ namespace Pandaros.Settlers.Cosmetics
             Register.AddCarpetTextures(KEY);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AfterAddingBaseTypes")]
-        public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Cosmetics." + KEY + ".AddItemTypes")]
+        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             Item = Register.AddCarpetTypeTypes(itemTypes, KEY);
         }

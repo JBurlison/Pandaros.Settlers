@@ -671,7 +671,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(MATCHLOCK_NAMESPACE + "sides", matchlocktextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
             GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)

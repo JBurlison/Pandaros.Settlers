@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public string InterfaceName => nameof(IArmor);
         public Type ClassType => null;
 
-        public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             
         }

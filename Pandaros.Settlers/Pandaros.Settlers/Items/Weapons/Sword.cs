@@ -84,7 +84,7 @@ namespace Pandaros.Settlers.Items.Weapons
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Sword.AddSwords")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Sword.AddSwords")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddSwords(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {

@@ -108,7 +108,7 @@ namespace Pandaros.Settlers.Items.Machines
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
         public static void AddTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)

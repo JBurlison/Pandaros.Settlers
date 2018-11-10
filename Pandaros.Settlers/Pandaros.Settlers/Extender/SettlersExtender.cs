@@ -76,14 +76,14 @@ namespace Pandaros.Settlers.Extender
                 }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterAddingBaseTypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AddItemTypes")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
-        public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             foreach (var extension in _settlersExtensions)
                 try
                 {
-                    extension.AfterAddingBaseTypes(itemTypes);
+                    extension.AddItemTypes(itemTypes);
                 }
                 catch (Exception ex)
                 {

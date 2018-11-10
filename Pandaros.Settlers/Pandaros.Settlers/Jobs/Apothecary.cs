@@ -43,9 +43,9 @@ namespace Pandaros.Settlers.Jobs
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTable", textureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterAddingBaseTypes")]
-        public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
+            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddItemTypes")]
+        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
                       .SetAs("icon", GameLoader.ICON_PATH + "ApothecaryTable.png")

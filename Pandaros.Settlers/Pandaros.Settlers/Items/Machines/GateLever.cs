@@ -461,7 +461,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Gate", GateTextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddGateLever")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddGateLever")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddGateLever(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {

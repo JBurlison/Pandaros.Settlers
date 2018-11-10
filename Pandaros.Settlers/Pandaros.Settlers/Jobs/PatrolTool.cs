@@ -51,7 +51,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {

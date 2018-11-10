@@ -45,9 +45,9 @@ namespace Pandaros.Settlers.Jobs
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "AdvancedCraftingTableTop", textureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterAddingBaseTypes")]
-        public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
+            GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddItemTypes")]
+        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()
                       .SetAs("icon", GameLoader.ICON_PATH + "AdvancedCraftingTable.png")

@@ -50,10 +50,8 @@ namespace Pandaros.Settlers.Managers
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.RegisterAudio")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadaudiofiles")]
-        [ModLoader.ModCallbackDependsOn("pipliz.server.registeraudiofiles")]
-        public static void RegisterAudio()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.AfterSelectedWorld.Healing")]
+        public static void Healing()
         {
             HealingOverTimeNPC.NewInstance += HealingOverTimeNPC_NewInstance;
         }

@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public string InterfaceName => nameof(ICSType);
         public Type ClassType => null;
 
-        public void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
+        public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             foreach (var item in LoadedAssembalies)
             {

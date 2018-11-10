@@ -94,8 +94,8 @@ namespace Pandaros.Settlers
                                 "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, NAMESPACE + ".addlittypes")]
-        public static void AddLitTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, NAMESPACE + ".addlittypes")]
+        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var monsterNode = new JSONNode();
             monsterNode["icon"] = new JSONNode(ICON_PATH + "NoMonster.png");

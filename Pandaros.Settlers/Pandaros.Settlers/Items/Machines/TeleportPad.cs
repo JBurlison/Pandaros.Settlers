@@ -232,7 +232,7 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".TeleportPad", TeleportPadTextureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes,  GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTeleportPad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTeleportPad")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddTeleportPad(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
