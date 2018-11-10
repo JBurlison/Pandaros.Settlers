@@ -250,27 +250,5 @@ namespace Pandaros.Settlers
         {
             return string.Format("gamedata/savegames/{0}/updatableblocks.json", ServerManager.WorldName);
         }
-
-        public static void AddSoundFile(string key, List<string> fileNames)
-        {
-            var node = new JSONNode();
-            node.SetAs("clipCollectionName", key);
-
-            var fileListNode = new JSONNode(NodeType.Array);
-
-            foreach (var fileName in fileNames)
-            {
-                var audoFileNode = new JSONNode()
-                                  .SetAs("path", fileName)
-                                  .SetAs("audioGroup", "Effects");
-
-                fileListNode.AddToArray(audoFileNode);
-            }
-
-            node.SetAs("fileList", fileListNode);
-            var audioPatch = new AudioPatch(node, int.MaxValue);
-
-            ItemTypesServer.QueueAudioPatch(audioPatch);
-        }
     }
 }

@@ -622,36 +622,6 @@
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "./height/notwater.png"
   },
-  "Pandaros.Settlers.AutoLoad.rainforestslabbottom": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.savannaslabbottom": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasssavanna.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.temperateslabbottom": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstemperate.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.tundraslabbottom": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassTundra.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.taigaslabbottom": {
-    "albedo": "./albedo/grassTaiga.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
   "Pandaros.Settlers.AutoLoad.brickslabtop": {
     "albedo": "gamedata/textures/materials/blocks/albedo/bricks.png",
     "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
@@ -921,36 +891,6 @@
     "normal": "./normal/notwater.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "./height/notwater.png"
-  },
-  "Pandaros.Settlers.AutoLoad.rainforestslabtop": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.savannaslabtop": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasssavanna.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.temperateslabtop": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstemperate.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.tundraslabtop": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassTundra.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.taigaslabtop": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstaiga.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabtop": {
     "albedo": "gamedata/textures/materials/blocks/albedo/cherryBlossom.png",
@@ -1299,126 +1239,6 @@
     "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
-  },
-  "Pandaros.Settlers.AutoLoad.rainforestslableft": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.rainforestslabright": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.rainforestslabfront": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.rainforestslabback": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassrainforest.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.temperateslableft": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstemperate.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.temperateslabright": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstemperate.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.temperateslabfront": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstemperate.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.temperateslabback": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstemperate.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.tundraslableft": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassTundra.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.tundraslabright": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassTundra.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.tundraslabfront": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassTundra.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.tundraslabback": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grassTundra.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.taigaslableft": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstaiga.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.taigaslabright": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstaiga.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.taigaslabfront": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstaiga.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.taigaslabback": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasstaiga.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.savannaslableft": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasssavanna.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.savannaslabright": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasssavanna.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.savannaslabfront": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasssavanna.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
-  },
-  "Pandaros.Settlers.AutoLoad.savannaslabback": {
-    "albedo": "gamedata/textures/materials/blocks/albedo/grasssavanna.png",
-    "normal": "gamedata/textures/materials/blocks/normal/grassGeneric.png",
-    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/grassGeneric.png"
   },
   "Pandaros.Settlers.AutoLoad.strawslableft": {
     "albedo": "gamedata/textures/materials/blocks/albedo/straw.png",
