@@ -181,13 +181,29 @@ namespace Pandaros.Settlers
 
         public static bool TryGetGuardJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out GuardJobSettings guardJobSettings)
         {
-            guardJobSettings = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<GuardJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as GuardJobSettings;
+            guardJobSettings = null;
+
+            var guardJobInstance = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<GuardJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as BlockJobManager<GuardJobInstance>;
+
+            if (guardJobInstance == null)
+                PandaLogger.Log(ChatColor.yellow, "Unable to find guard job settings for {0}", name);
+            else
+                guardJobSettings = guardJobInstance.Settings as GuardJobSettings;
+
             return guardJobSettings != null;
         }
 
         public static bool TryGetCraftJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out CraftingJobSettings craftingJobSettings)
         {
-            craftingJobSettings = callbacks.AutoLoadedInstances.FirstOrDefault(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is CraftingJobSettings set && set.NPCTypeKey == name) as CraftingJobSettings;
+            craftingJobSettings = null;
+
+            var craftJobInstance = callbacks.AutoLoadedInstances.FirstOrDefault(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is CraftingJobSettings set && set.NPCTypeKey == name) as BlockJobManager<CraftingJobInstance>;
+
+            if (craftJobInstance == null)
+                PandaLogger.Log(ChatColor.yellow, "Unable to find craft job settings for {0}", name);
+            else
+                craftingJobSettings = craftJobInstance.Settings as CraftingJobSettings;
+
             return craftingJobSettings != null;
         }
 

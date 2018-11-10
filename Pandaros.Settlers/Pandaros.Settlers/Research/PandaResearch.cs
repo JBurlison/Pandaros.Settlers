@@ -184,8 +184,6 @@ namespace Pandaros.Settlers.Research
             AddTeleporters(researchDic);
             AddBuildersWandResearch(researchDic);
             AddBetterBuildersWandResearch(researchDic);
-
-            JobResearch.Register();
             
             PandaLogger.Log("Panda Research Registering Complete!");
         }

@@ -54,9 +54,11 @@ namespace Pandaros.Settlers.Extender.Providers
                     }
 
                     sb.Append(pandaResearch.Name + ", ");
+                    pandaResearch.OnRegister();
                 }
             }
 
+            PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
         }
     }

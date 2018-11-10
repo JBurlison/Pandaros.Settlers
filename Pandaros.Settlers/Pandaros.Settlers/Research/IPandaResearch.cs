@@ -12,5 +12,7 @@ namespace Pandaros.Settlers.Research
         bool AddLevelToName { get; }       
 
         void ResearchComplete(object sender, ResearchCompleteEventArgs e);
+
+        void OnRegister();
     }
 }
