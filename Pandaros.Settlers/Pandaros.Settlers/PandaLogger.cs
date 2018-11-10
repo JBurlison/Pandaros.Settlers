@@ -85,6 +85,14 @@ namespace Pandaros.Settlers
             _thread.Start();
         }
 
+        public static void LogToFile(string message, params object[] args)
+        {
+            if (args != null && args.Length != 0)
+                GetFormattedMessage(string.Format(message, args));
+            else
+                GetFormattedMessage(message);
+        }
+
         public static void Log(ChatColor color, string message, params object[] args)
         {
             if (args != null && args.Length != 0)

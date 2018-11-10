@@ -103,6 +103,8 @@ namespace Pandaros.Settlers.Research
             if (dependancies != null)
                 foreach (var dep in dependancies)
                     AddDependency(dep);
+
+            PandaLogger.LogToFile($"PandaResearch Added: {name} Level {level}");
         }
 
         public string TmpValueKey { get; } = string.Empty;
@@ -140,6 +142,14 @@ namespace Pandaros.Settlers.Research
         public static string GetResearchKey(string researchName)
         {
             return GameLoader.NAMESPACE + "." + researchName;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, "BLOCKNPCS_WORKAROUND")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
+        static void Dummy()
+        {
+
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
