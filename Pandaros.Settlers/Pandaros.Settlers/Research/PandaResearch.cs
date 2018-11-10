@@ -144,6 +144,9 @@ namespace Pandaros.Settlers.Research
             return GameLoader.NAMESPACE + "." + researchName;
         }
 
+        /// <summary>
+        ///     This is reqquired to make sure jobs get registered before research
+        /// </summary>
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, "BLOCKNPCS_WORKAROUND")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.registerjobs")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
