@@ -168,8 +168,6 @@ namespace Pandaros.Settlers.Managers
                                 lastNPC = follower;
                                 ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".TalkingAudio");
                             }
-
-                        EvaluateComfort(follower);
                     }
                 }
 
@@ -189,24 +187,6 @@ namespace Pandaros.Settlers.Managers
 
             if (_updateTime < Time.SecondsSinceStartDouble && TimeCycle.IsDay)
                 _updateTime = Time.SecondsSinceStartDouble + _UPDATE_TIME;
-        }
-
-        private static void EvaluateComfort(NPCBase follower)
-        {
-            switch (Seasons.SeasonsFactory.GetComfortLevel(follower))
-            {
-                case Seasons.ComfortLevel.TooCold:
-                    // TODO
-                    break;
-
-                case Seasons.ComfortLevel.TooHot:
-
-                    break;
-
-                case Seasons.ComfortLevel.JustRight:
-
-                    break;
-            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
@@ -316,7 +296,7 @@ namespace Pandaros.Settlers.Managers
                         PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'",
                                        ChatColor.orange);
 
-                    PandaChat.Send(p, $"Random Settlers are currently {settlers} and the current season is {Seasons.SeasonsFactory.CurrentSeason.Name}!", ChatColor.orange);
+                    PandaChat.Send(p, $"Random Settlers are currently {settlers}!", ChatColor.orange);
                 }
             }
 

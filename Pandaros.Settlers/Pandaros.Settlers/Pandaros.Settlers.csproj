@@ -144,7 +144,6 @@
     <Compile Include="Extender\Providers\ItemsProvider.cs" />
     <Compile Include="Extender\Providers\ResearchProvider.cs" />
     <Compile Include="Extender\Providers\TextureMappingProvider.cs" />
-    <Compile Include="Extender\Providers\SeasonProvider.cs" />
     <Compile Include="Extender\Providers\RoamingJobObjectiveProvider.cs" />
     <Compile Include="Extender\Providers\ArmorProvider.cs" />
     <Compile Include="Extender\Providers\BossesProvider.cs" />
@@ -216,14 +215,6 @@
     <Compile Include="Items\LootTables.cs" />
     <Compile Include="QueueFactory.cs" />
     <Compile Include="Research\IPandaResearch.cs" />
-    <Compile Include="Seasons\BlockTypeRegistry.cs" />
-    <Compile Include="Seasons\ISeason.cs" />
-    <Compile Include="Seasons\PandaTemperatureProvider.cs" />
-    <Compile Include="Seasons\SeasonsFactory.cs" />
-    <Compile Include="Seasons\Summer.cs" />
-    <Compile Include="Seasons\Spring.cs" />
-    <Compile Include="Seasons\Fall.cs" />
-    <Compile Include="Seasons\Winter.cs" />
     <Compile Include="SettlersChatCommand.cs" />
     <Compile Include="Monsters\MonstersChatCommand.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />
@@ -770,9 +761,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Seasons\Biome\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="icons\adobeslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
