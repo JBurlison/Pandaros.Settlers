@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TerrainGeneration;
-using Math = System.Math;
 
 namespace Pandaros.Settlers.Seasons
 {
