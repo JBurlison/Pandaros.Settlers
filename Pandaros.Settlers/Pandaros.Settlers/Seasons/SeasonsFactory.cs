@@ -27,8 +27,8 @@ namespace Pandaros.Settlers.Seasons
     [ModLoader.ModManager]
     public static class SeasonsFactory
     {
-        public const double COMFORTABLE_TEMP_MIN = 62;
-        public const double COMFORTABLE_TEMP_MAX = 82;
+        public const double COMFORTABLE_TEMP_MIN = 16.66;
+        public const double COMFORTABLE_TEMP_MAX = 27.77;
         public const string DEGREE_SYMBOL = "°";
         private const int CYCLE_SECONDS = 2000;
         private const int RefreshCycleTimeMinMS = 10000;
@@ -146,7 +146,7 @@ namespace Pandaros.Settlers.Seasons
             MidNight = TimeCycle.SunSet + timeToMidNight;
 
             _nextUpdate = TimeCycle.TotalTime.Value.Days + _daysBetweenSeasonChanges;
-            ((TerrainGenerator)ServerManager.TerrainGenerator).TemperatureProvider = new PandaTemperatureProvider();
+            ((TerrainGenerator)ServerManager.TerrainGenerator).TemperatureProvider = new PandaTemperatureProvider(((TerrainGenerator)ServerManager.TerrainGenerator).TemperatureProvider);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]

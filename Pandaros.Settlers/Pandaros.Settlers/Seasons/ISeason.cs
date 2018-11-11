@@ -11,9 +11,7 @@ namespace Pandaros.Settlers.Seasons
         string SeasonAfter { get; }
         float FoodMultiplier { get; }
         float WoodMultiplier { get; }
-        double MinDayTemperature { get; }
-        double MaxDayTemperature { get; }
-        double MinNightTemperature { get; }
-        double MaxNightTemperature { get; }
+        double DayTemperatureDifferance { get; }
+        double NightTemperatureDifferance { get; }
     }
 }

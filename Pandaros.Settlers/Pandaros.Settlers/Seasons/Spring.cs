@@ -11,9 +11,7 @@ namespace Pandaros.Settlers.Seasons
         public string Name { get; } = nameof(Spring);
         public float FoodMultiplier { get; }
         public float WoodMultiplier { get; }
-        public double MinDayTemperature { get; } = 55;
-        public double MaxDayTemperature { get; } = 76;
-        public double MinNightTemperature { get; } = 40;
-        public double MaxNightTemperature { get; } = 70;
+        public double DayTemperatureDifferance { get; } = 0;
+        public double NightTemperatureDifferance { get; } = -10;
     }
 }
