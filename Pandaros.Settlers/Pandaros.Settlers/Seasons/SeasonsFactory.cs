@@ -39,11 +39,10 @@ namespace Pandaros.Settlers.Seasons
         private static int _nextSeason = 1;
         private static double _nextUpdate = 0;
         private static double _tempUpdate = 0;
-        private static double _midDay;
-        private static double _midNight;
+        public static double MidDay { get; set; }
+        public static double MidNight { get; set; }
         private static readonly List<ISeason> _seasons = new List<ISeason>();
         private static HashSet<Chunk> _updatedChunks = new HashSet<Chunk>();
-        private static Dictionary<Vector3Int, double> _temps = new Dictionary<Vector3Int, double>();
 
         public static ISeason CurrentSeason => _seasons[_currentSeason];
 
@@ -143,10 +142,11 @@ namespace Pandaros.Settlers.Seasons
             _previousSesion = _seasons.Count - 1;
             var timeToMidDay = TimeCycle.TotalDayLength.Value.TotalHours / 2;
             var timeToMidNight = TimeCycle.TotalDayLength.Value.TotalHours / 2;
-            _midDay = TimeCycle.SunRise + timeToMidDay;
-            _midNight = TimeCycle.SunSet + timeToMidNight;
+            MidDay = TimeCycle.SunRise + timeToMidDay;
+            MidNight = TimeCycle.SunSet + timeToMidNight;
 
             _nextUpdate = TimeCycle.TotalTime.Value.Days + _daysBetweenSeasonChanges;
+            ((TerrainGenerator)ServerManager.TerrainGenerator).TemperatureProvider.InnerGenerator = new PandaTemperatureProvider();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]
@@ -222,7 +222,6 @@ namespace Pandaros.Settlers.Seasons
                 try
                 {
                     _tempUpdate = Time.SecondsSinceStartDouble + 60;
-                    _temps.Clear();
 
                     if (TimeCycle.TotalTime.Value.Days > _nextUpdate)
                     {
@@ -252,13 +251,12 @@ namespace Pandaros.Settlers.Seasons
         private static ushort ChangeSeason(ref Chunk.DataIteration iteration, ref bool didChange)
         {
             ushort retVal = iteration.DataType;
+            var query = ((TerrainGenerator)ServerManager.TerrainGenerator).QueryData(iteration.Chunk.Position.x, iteration.Chunk.Position.z);
 
             try
             {
                 if (ServerManager.TerrainGenerator is ITerrainGenerator generator)
                 {
-                    var query = ((TerrainGenerator)ServerManager.TerrainGenerator).QueryData(iteration.Chunk.Position.x, iteration.Chunk.Position.z);
-
                     foreach (var type in BlockTypeRegistry.Mappings)
                         if (type.Value.Contains(iteration.DataType) &&
                             PreviousSeason.SeasonalBlocks.ContainsKey(type.Key) &&
@@ -334,53 +332,6 @@ namespace Pandaros.Settlers.Seasons
             }
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
-        }
-
-        // TODO: Fix midnight and noon temps.
-        /// <summary>
-        ///     Get temp based on time of day. The closer to noon the hotter, The closer to midnight the cooler.
-        /// </summary>
-        /// <returns></returns>
-        private static double GetTemprature()
-        {
-            double retVal = 75;
-
-            if (TimeCycle.IsDay)
-            {
-                var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
-
-                if (TimeCycle.TimeOfDayHours <= _midDay)
-                {
-                    var pct = TimeCycle.TimeOfDayHours / _midDay;
-                    retVal = tempDiff * pct;
-                }
-                else
-                {
-                    var pct = TimeCycle.TimeOfDayHours / TimeCycle.SunSet;
-                    retVal = tempDiff * pct;
-                }
-
-                retVal += CurrentSeason.MinDayTemperature;
-            }
-            else
-            {
-                var tempDiff = CurrentSeason.MaxDayTemperature - CurrentSeason.MinDayTemperature;
-
-                if (TimeCycle.TimeOfDayHours <= _midNight)
-                {
-                    var pct = TimeCycle.TimeOfDayHours / _midNight;
-                    retVal = tempDiff * pct;
-                }
-                else
-                {
-                    var pct = TimeCycle.TimeOfDayHours / TimeCycle.SunRise;
-                    retVal = tempDiff * pct;
-                }
-
-                retVal = CurrentSeason.MaxNightTemperature - retVal;
-            }
-
-            return Math.Round(retVal, 2);
         }
     }
 }
