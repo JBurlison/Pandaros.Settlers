@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Seasons
                 temp += SeasonsFactory.CurrentSeason.NightTemperatureDifferance;
             }
 
-            return (float)Math.Round(temp, 2);
+            return (float)Pipliz.Math.Clamp(Math.Round(temp, 2), -10, 33);
         }
     }
 }
