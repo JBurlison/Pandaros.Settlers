@@ -10,17 +10,15 @@ namespace Pandaros.Settlers.Seasons
     public class PandaTemperatureProvider : TerrainGenerator.ITemperatureProvider
     {
         public TerrainGenerator.ITemperatureProvider InnerGenerator { get; set; }
-        private TerrainGenerator.ITemperatureProvider _defaultProvider;
 
         public PandaTemperatureProvider(TerrainGenerator.ITemperatureProvider defaultProvider)
         {
-            _defaultProvider = defaultProvider;
-            InnerGenerator = this;
+            InnerGenerator = defaultProvider;
         }
 
         public float GetTemperature(float height, float worldX, float worldZ, ref TerrainGenerator.MetaBiomePreciseStruct metaBiomeData)
         {
-            double temp = _defaultProvider.GetTemperature(height, worldX, worldZ, ref metaBiomeData);
+            double temp = InnerGenerator.GetTemperature(height, worldX, worldZ, ref metaBiomeData);
 
             if (TimeCycle.IsDay)
             {
