@@ -53,13 +53,11 @@ namespace Pandaros.Settlers
                 }
         }
 
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/settlers", StringComparison.OrdinalIgnoreCase);
-        }
-
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/settlers", StringComparison.OrdinalIgnoreCase))
+                return false;
+
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
 

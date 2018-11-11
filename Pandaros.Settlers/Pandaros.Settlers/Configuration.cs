@@ -122,13 +122,12 @@ namespace Pandaros.Settlers
 
     public class ConfigurationChatCommand : IChatCommand
     {
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase);
-        }
-
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase))
+                return false;
+
+
             if (PermissionsManager.CheckAndWarnPermission(player,
                                                           new PermissionsManager.Permission(GameLoader.NAMESPACE +
                                                                                             ".Permissions.Config")))

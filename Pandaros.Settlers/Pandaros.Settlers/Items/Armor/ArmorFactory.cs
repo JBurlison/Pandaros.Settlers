@@ -16,13 +16,11 @@ namespace Pandaros.Settlers.Items.Armor
 {
     public class ArmorCommand : IChatCommand
     {
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/armor", StringComparison.OrdinalIgnoreCase);
-        }
-
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/armor", StringComparison.OrdinalIgnoreCase))
+                return false;
+
             var colony = player.ActiveColony;
             var counts = new Dictionary<string, Dictionary<ArmorFactory.ArmorSlot, int>>();
             foreach (var npc in colony.Followers)

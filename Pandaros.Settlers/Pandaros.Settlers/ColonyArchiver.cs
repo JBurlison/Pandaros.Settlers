@@ -7,13 +7,11 @@ namespace Pandaros.Settlers
 {
     public class ColonyArchiver : IChatCommand
     {
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/archive", StringComparison.OrdinalIgnoreCase);
-        }
-
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/archive", StringComparison.OrdinalIgnoreCase))
+                return false;
+
             if (player == null || player.ID == NetworkID.Server ||
                 !PermissionsManager.CheckAndWarnPermission(player,
                                                            new PermissionsManager.Permission(GameLoader.NAMESPACE +

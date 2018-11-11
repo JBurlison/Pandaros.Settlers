@@ -51,13 +51,11 @@ namespace Pandaros.Settlers.Monsters
                 }
         }
 
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/monsters", StringComparison.OrdinalIgnoreCase);
-        }
-
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/monsters", StringComparison.OrdinalIgnoreCase))
+                return false;
+
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
 

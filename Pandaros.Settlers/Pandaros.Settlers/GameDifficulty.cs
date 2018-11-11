@@ -202,14 +202,12 @@ namespace Pandaros.Settlers
                 }
         }
 
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/difficulty", StringComparison.OrdinalIgnoreCase) ||
-                   chat.StartsWith("/dif", StringComparison.OrdinalIgnoreCase);
-        }
-
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/difficulty", StringComparison.OrdinalIgnoreCase) ||
+                   !chat.StartsWith("/dif", StringComparison.OrdinalIgnoreCase))
+                return false;
+
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
 

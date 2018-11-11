@@ -191,13 +191,12 @@ namespace Pandaros.Settlers
 
     public class VersionChatCommand : IChatCommand
     {
-        public bool IsCommand(string chat)
-        {
-            return chat.StartsWith("/settlersversion", StringComparison.OrdinalIgnoreCase);
-        }
 
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
+            if (!chat.StartsWith("/settlersversion", StringComparison.OrdinalIgnoreCase))
+                return false;
+
             var array = CommandManager.SplitCommand(chat);
 
             var gitVer         = VersionChecker.GetGitVerion();
