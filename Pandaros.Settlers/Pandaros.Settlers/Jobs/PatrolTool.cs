@@ -291,6 +291,7 @@ namespace Pandaros.Settlers.Jobs
             try
             {
                 if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled ||
+                    d.RequestOrigin.AsPlayer == null ||
                     d.RequestOrigin.AsPlayer.ActiveColony == null ||
                     d.TypeOld == null)
                     return;

@@ -146,7 +146,7 @@ namespace Pandaros.Settlers.Seasons
             MidNight = TimeCycle.SunSet + timeToMidNight;
 
             _nextUpdate = TimeCycle.TotalTime.Value.Days + _daysBetweenSeasonChanges;
-            ((TerrainGenerator)ServerManager.TerrainGenerator).TemperatureProvider.InnerGenerator = new PandaTemperatureProvider();
+            ((TerrainGenerator)ServerManager.TerrainGenerator).TemperatureProvider = new PandaTemperatureProvider();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Seasons.SeasonsFactory.Process")]

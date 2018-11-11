@@ -123,6 +123,11 @@
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
     <Compile Include="EventedDictionary.cs" />
+    <Compile Include="Extender\IAddItemTypes.cs" />
+    <Compile Include="Extender\IAfterItemTypesDefined.cs" />
+    <Compile Include="Extender\IAfterSelectedWorld.cs" />
+    <Compile Include="Extender\IAfterWorldLoad.cs" />
+    <Compile Include="Extender\IOnAddResearchables.cs" />
     <Compile Include="Items\Colliders.cs" />
     <Compile Include="Items\CSType.cs" />
     <Compile Include="Items\ICSRecipe.cs" />

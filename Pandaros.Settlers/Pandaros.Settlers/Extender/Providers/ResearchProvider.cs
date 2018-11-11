@@ -5,32 +5,12 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class ResearchProvider : ISettlersExtension
+    public class ResearchProvider : IOnAddResearchables
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(IPandaResearch);
         public Type ClassType => null;
-
-        public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
-        {
-            
-        }
-
-        public void AfterItemTypesDefined()
-        {
-           
-        }
-
-        public void AfterSelectedWorld()
-        {
-           
-        }
-
-        public void AfterWorldLoad()
-        {
-            
-        }
 
         public void OnAddResearchables()
         {

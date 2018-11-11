@@ -407,6 +407,9 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPCBase npc)
         {
+            if (npc.CustomData == null)
+                npc.CustomData = new JSONNode();
+
             if (npc.CustomData.TryGetAs(ISSETTLER, out bool settler) && settler)
                 return;
 

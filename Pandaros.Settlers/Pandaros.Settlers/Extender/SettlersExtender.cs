@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Extender
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
         public static void Register()
         {
-            foreach (var extension in _settlersExtensions)
+            foreach (var extension in _settlersExtensions.Where(s => s as IOnAddResearchables != null).Select(ex => ex as IOnAddResearchables))
                 try
                 {
                     extension.OnAddResearchables();
@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Extender
         [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Managers.MonsterManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            foreach (var extension in _settlersExtensions)
+            foreach (var extension in _settlersExtensions.Where(s => s as IAfterWorldLoad != null).Select(ex => ex as IAfterWorldLoad))
                 try
                 {
                     extension.AfterWorldLoad();
@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Extender
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterItemTypesDefined")]
         public static void AfterItemTypesDefined()
         {
-            foreach (var extension in _settlersExtensions)
+            foreach (var extension in _settlersExtensions.Where(s => s as IAfterItemTypesDefined != null).Select(ex => ex as IAfterItemTypesDefined))
                 try
                 {
                     extension.AfterItemTypesDefined();
@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.Extender
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AfterSelectedWorld()
         {
-            foreach (var extension in _settlersExtensions)
+            foreach (var extension in _settlersExtensions.Where(s => s as IAfterSelectedWorld != null).Select(ex => ex as IAfterSelectedWorld))
                 try
                 {
                     extension.AfterSelectedWorld();
@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Extender
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
-            foreach (var extension in _settlersExtensions)
+            foreach (var extension in _settlersExtensions.Where(s => s as IAddItemTypes != null).Select(ex => ex as IAddItemTypes))
                 try
                 {
                     extension.AddItemTypes(itemTypes);
@@ -146,6 +146,10 @@ namespace Pandaros.Settlers.Extender
                                 {
                                     _settlersExtensions.Add(extension);
                                 }
+                            }
+                            catch (MissingMethodException)
+                            {
+                                // do nothing, we tried to load a interface.
                             }
                             catch (Exception ex)
                             {

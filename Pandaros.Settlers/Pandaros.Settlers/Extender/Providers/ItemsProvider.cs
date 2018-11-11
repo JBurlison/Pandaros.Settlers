@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class ItemsProvider : ISettlersExtension
+    public class ItemsProvider : IAfterWorldLoad, IAddItemTypes
     {
         StringBuilder _sb = new StringBuilder();
 
@@ -36,26 +36,11 @@ namespace Pandaros.Settlers.Extender.Providers
 
         }
 
-        public void AfterItemTypesDefined()
-        {
-            
-        }
-
-        public void AfterSelectedWorld()
-        {
-            
-        }
-
         public void AfterWorldLoad()
         {
             PandaLogger.Log(ChatColor.lime, "-------------------Items Loaded----------------------");
             PandaLogger.Log(ChatColor.lime, _sb.ToString());
             PandaLogger.Log(ChatColor.lime, "------------------------------------------------------"); 
-        }
-
-        public void OnAddResearchables()
-        {
-
         }
     }
 }

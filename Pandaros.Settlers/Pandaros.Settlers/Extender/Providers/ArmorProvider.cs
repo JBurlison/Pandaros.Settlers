@@ -6,27 +6,12 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class ArmorProvider : ISettlersExtension
+    public class ArmorProvider : IAfterWorldLoad
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(IArmor);
         public Type ClassType => null;
-
-        public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
-        {
-            
-        }
-
-        public void AfterItemTypesDefined()
-        {
-            
-        }
-
-        public void AfterSelectedWorld()
-        {
-           
-        }
 
         public void AfterWorldLoad()
         {
@@ -48,11 +33,6 @@ namespace Pandaros.Settlers.Extender.Providers
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
-        }
-
-        public void OnAddResearchables()
-        {
-            
         }
     }
 }

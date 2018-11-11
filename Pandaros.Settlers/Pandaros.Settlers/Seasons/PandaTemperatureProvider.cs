@@ -11,6 +11,11 @@ namespace Pandaros.Settlers.Seasons
     {
         public TerrainGenerator.ITemperatureProvider InnerGenerator { get; set; }
 
+        public PandaTemperatureProvider()
+        {
+            InnerGenerator = this;
+        }
+
         public float GetTemperature(float height, float worldX, float worldZ, ref TerrainGenerator.MetaBiomePreciseStruct metaBiomeData)
         {
             var temps = new[] { SeasonsFactory.CurrentSeason.MaxDayTemperature, SeasonsFactory.CurrentSeason.MaxNightTemperature, SeasonsFactory.CurrentSeason.MinDayTemperature, SeasonsFactory.CurrentSeason.MinNightTemperature };

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Pandaros.Settlers.Extender
 {
@@ -12,15 +10,5 @@ namespace Pandaros.Settlers.Extender
         string InterfaceName { get; }
 
         Type ClassType { get; }
-
-        void AfterWorldLoad();
-
-        void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes);
-
-        void AfterSelectedWorld();
-
-        void AfterItemTypesDefined();
-
-        void OnAddResearchables();
     }
 }

@@ -5,22 +5,12 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class TextureMappingProvider : ISettlersExtension
+    public class TextureMappingProvider : IAfterSelectedWorld
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(ICSTextureMapping);
         public Type ClassType => null;
-
-        public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
-        {
-            
-        }
-
-        public void AfterItemTypesDefined()
-        {
-           
-        }
 
         public void AfterSelectedWorld()
         {
@@ -39,16 +29,6 @@ namespace Pandaros.Settlers.Extender.Providers
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
-        }
-
-        public void AfterWorldLoad()
-        {
-
-        }
-
-        public void OnAddResearchables()
-        {
-
         }
     }
 }

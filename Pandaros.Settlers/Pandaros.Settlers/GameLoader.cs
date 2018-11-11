@@ -1,5 +1,4 @@
 ﻿using Chatting;
-using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters;
@@ -7,7 +6,6 @@ using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static ItemTypesServer;
 
 namespace Pandaros.Settlers
 {

@@ -8,17 +8,12 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class RoamingJobObjectiveProvider : ISettlersExtension
+    public class RoamingJobObjectiveProvider : IAfterItemTypesDefined
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(IRoamingJobObjective);
         public Type ClassType => null;
-
-        public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
-        {
-            
-        }
 
         public void AfterItemTypesDefined()
         {
@@ -37,21 +32,6 @@ namespace Pandaros.Settlers.Extender.Providers
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
-        }
-
-        public void AfterSelectedWorld()
-        {
-            
-        }
-
-        public void AfterWorldLoad()
-        {
-            
-        }
-
-        public void OnAddResearchables()
-        {
-
         }
     }
 }
