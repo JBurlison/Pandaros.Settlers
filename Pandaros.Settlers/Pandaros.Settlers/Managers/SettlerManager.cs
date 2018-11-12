@@ -671,7 +671,7 @@ namespace Pandaros.Settlers.Managers
                     state.ColonyRef.SendUpdate();
                 }
 
-                _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * IN_GAME_HOUR_IN_SECONDS;
+                _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * IN_GAME_HOUR_IN_SECONDS * 24;
             }
 
             return update;
@@ -767,7 +767,7 @@ namespace Pandaros.Settlers.Managers
                         state.ColonyRef.SendUpdate();
                     }
 
-                    _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * IN_GAME_HOUR_IN_SECONDS;
+                    _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * IN_GAME_HOUR_IN_SECONDS * 24;
                 }
             }
             catch (Exception ex)
