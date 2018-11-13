@@ -245,6 +245,7 @@
     <Compile Include="Buildings\NBTReader\TileEntityFactory.cs" />
     <Compile Include="Buildings\NBTReader\TileTick.cs" />
     <Compile Include="Buildings\NBTReader\Vector.cs" />
+    <Compile Include="Buildings\PandaSchematicLoader.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Cosmetics\CarpetPurple.cs" />
     <Compile Include="Cosmetics\CarpetPink.cs" />
@@ -324,6 +325,8 @@
     <Compile Include="Items\Healing\TreatedBandage.cs" />
     <Compile Include="Items\Weapons\IWeapon.cs" />
     <Compile Include="Items\Weapons\WeaponFactory.cs" />
+    <Compile Include="Jobs\Architect.cs" />
+    <Compile Include="Jobs\SchematicBuilder.cs" />
     <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
     <Compile Include="Jobs\Farmer\FarmerJob.cs" />
     <Compile Include="Jobs\Machinist.cs" />

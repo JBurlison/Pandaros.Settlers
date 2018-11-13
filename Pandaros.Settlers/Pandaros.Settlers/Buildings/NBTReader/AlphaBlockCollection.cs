@@ -40,30 +40,6 @@ namespace Pandaros.Settlers.Buildings.NBTReader
         public delegate AlphaBlockCollection NeighborLookupHandler (int relx, int rely, int relz);
 
         /// <summary>
-        /// Creates a new <see cref="AlphaBlockCollection"/> of a given dimension.
-        /// </summary>
-        /// <param name="xdim">The length of the X-dimension of the collection.</param>
-        /// <param name="ydim">The length of the Y-dimension of the collection.</param>
-        /// <param name="zdim">The length of the Z-dimension of the collection.</param>
-        [Obsolete]
-        public AlphaBlockCollection (int xdim, int ydim, int zdim)
-        {
-            _blocks = new XZYByteArray(xdim, ydim, zdim);
-            _data = new XZYNibbleArray(xdim, ydim, zdim);
-            _blockLight = new XZYNibbleArray(xdim, ydim, zdim);
-            _skyLight = new XZYNibbleArray(xdim, ydim, zdim);
-            _heightMap = new ZXByteArray(xdim, zdim);
-            _tileEntities = new TagNodeList(TagType.TAG_COMPOUND);
-            _tileTicks = new TagNodeList(TagType.TAG_COMPOUND);
-
-            _xdim = xdim;
-            _ydim = ydim;
-            _zdim = zdim;
-
-            Refresh();
-        }
-
-        /// <summary>
         /// Creates a new <see cref="AlphaBlockCollection"/> overlay on top of Alpha-specific units of data.
         /// </summary>
         /// <param name="blocks">An array of Block IDs.</param>
@@ -898,81 +874,5 @@ namespace Pandaros.Settlers.Buildings.NBTReader
 
             _autoFluid = autofluid;
         }
-
-        /*#region IEnumerable<AlphaBlockRef> Members
-
-        public IEnumerator<AlphaBlockRef> GetEnumerator ()
-        {
-            return new AlphaBlockEnumerator(this);
-        }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator ()
-        {
-            return new AlphaBlockEnumerator(this);
-        }
-
-        #endregion
-
-        public class AlphaBlockEnumerator : IEnumerator<AlphaBlockRef>
-        {
-            private AlphaBlockCollection _collection;
-            private int _index;
-            private int _size;
-
-            public AlphaBlockEnumerator (AlphaBlockCollection collection)
-            {
-                _collection = collection;
-                _index = -1;
-                _size = collection.XDim * collection.YDim * collection.ZDim;
-            }
-
-            #region IEnumerator<Entity> Members
-
-            public AlphaBlockRef Current
-            {
-                get
-                {
-                    if (_index == -1 || _index == _size) {
-                        throw new InvalidOperationException();
-                    }
-                    return new AlphaBlockRef(_collection, _index);
-                }
-            }
-
-            #endregion
-
-            #region IDisposable Members
-
-            public void Dispose () { }
-
-            #endregion
-
-            #region IEnumerator Members
-
-            object System.Collections.IEnumerator.Current
-            {
-                get { return Current; }
-            }
-
-            public bool MoveNext ()
-            {
-                if (++_index == _size) {
-                    return false;
-                }
-
-                return true;
-            }
-
-            public void Reset ()
-            {
-                _index = -1;
-            }
-
-            #endregion
-        }*/
     }
 }
