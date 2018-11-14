@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Extender.Providers
                         if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
                             results.Add(new InventoryItem(itemIndex, ri.Value));
 
-                    var newRecipe = new Recipe(recipe.Name, requirements, results, recipe.DefautLimit, recipe.IsOptional, recipe.DefautLimit);
+                    var newRecipe = new Recipe(recipe.Name, requirements, results, recipe.DefautLimit, recipe.IsOptional, (int)recipe.Priority);
 
                     if (recipe.IsOptional)
                         ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(recipe.Job, newRecipe);

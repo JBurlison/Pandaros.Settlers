@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pandaros.Settlers.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,8 @@ namespace Pandaros.Settlers.Items
 
     public interface ICSRecipe : INameable
     {
-        Dictionary<string, int> Requirements { get; }
-        Dictionary<string, int> Results { get; }
+        Dictionary<ItemId, int> Requirements { get; }
+        Dictionary<ItemId, int> Results { get; }
         CraftPriority Priority { get; }
         bool IsOptional { get; }
         int DefautLimit { get; }

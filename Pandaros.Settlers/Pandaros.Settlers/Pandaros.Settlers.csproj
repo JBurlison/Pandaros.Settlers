@@ -351,6 +351,7 @@
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="MethodUtil.cs" />
+    <Compile Include="Models\ItemId.cs" />
     <Compile Include="Monsters\Bosses\BossLoot.cs" />
     <Compile Include="Monsters\Bosses\FallenRanger.cs" />
     <Compile Include="Monsters\Bosses\Phase.cs" />
