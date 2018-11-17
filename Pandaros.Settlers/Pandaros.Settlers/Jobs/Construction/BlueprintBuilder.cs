@@ -1,4 +1,5 @@
-﻿using Jobs;
+﻿using BlockTypes;
+using Jobs;
 using NPC;
 using Pandaros.Settlers.Buildings.NBT;
 using Pipliz.Mods.BaseGame.Construction;
@@ -48,15 +49,19 @@ namespace Pandaros.Settlers.Jobs.Construction
             catch (Exception) { }
 
             if (block == default(Block))
-            {
-                iterationType.MoveNext();
-                return;
-            }
+                block = Block.Air;
 
-            if (World.TryGetTypeAt(iterationType.CurrentPosition, out ushort val))
+            var mapped = block.MappedBlock;
+
+            if (World.TryGetTypeAt(iterationType.CurrentPosition, out ushort val) && mapped.CSIndex != val)
             {
+                if (val != BuiltinBlocks.Air)
+                    job.NPC.Colony.Stockpile.Add(val);
+
                 
             }
+
+            iterationType.MoveNext();
         }
     }
 }

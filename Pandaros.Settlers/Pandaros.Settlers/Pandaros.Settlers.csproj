@@ -112,6 +112,7 @@
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="Buildings\NBT\Block.cs" />
+    <Compile Include="Buildings\NBT\BlockMapping.cs" />
     <Compile Include="Buildings\NBT\RawSchematic.cs" />
     <Compile Include="Buildings\NBT\Schematic.cs" />
     <Compile Include="Buildings\NBT\SchematicReader.cs" />
