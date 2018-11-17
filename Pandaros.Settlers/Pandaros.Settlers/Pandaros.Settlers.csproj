@@ -48,6 +48,9 @@
     <Reference Include="DotNetZip, Version=1.12.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.12.0\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
+    <Reference Include="fNbt, Version=0.6.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\fNbt.0.6.4\lib\net35-client\fNbt.dll</HintPath>
+    </Reference>
     <Reference Include="I18N, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ZipSupport\I18N.dll</HintPath>
@@ -108,144 +111,11 @@
     <Compile Include="AI\IAnimal.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
-    <Compile Include="Buildings\NBTReader\AnvilBiomeCollection.cs" />
-    <Compile Include="Buildings\NBTReader\ChunkRef.cs" />
-    <Compile Include="Buildings\NBTReader\AlphaBlock.cs" />
-    <Compile Include="Buildings\NBTReader\AlphaBlockCollection.cs" />
-    <Compile Include="Buildings\NBTReader\AlphaBlockRef.cs" />
-    <Compile Include="Buildings\NBTReader\BlockInfo.cs" />
-    <Compile Include="Buildings\NBTReader\Core\Base.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BlockFluid.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BlockInterface.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BlockKey.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BlockLight.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BlockTileEntities.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BlockTileTicks.cs" />
-    <Compile Include="Buildings\NBTReader\Core\BoundedBlockInterface.cs" />
-    <Compile Include="Buildings\NBTReader\Core\ByteArray.cs" />
-    <Compile Include="Buildings\NBTReader\Core\ChunkCache.cs" />
-    <Compile Include="Buildings\NBTReader\Core\ChunkFile.cs" />
-    <Compile Include="Buildings\NBTReader\Core\ChunkInterface.cs" />
-    <Compile Include="Buildings\NBTReader\Core\ChunkKey.cs" />
-    <Compile Include="Buildings\NBTReader\Core\CompositeDataArray.cs" />
-    <Compile Include="Buildings\NBTReader\Core\FusedDataArray.cs" />
-    <Compile Include="Buildings\NBTReader\Core\IndexedLinkedList.cs" />
-    <Compile Include="Buildings\NBTReader\Core\Interface.cs" />
-    <Compile Include="Buildings\NBTReader\Core\ItemInterface.cs" />
-    <Compile Include="Buildings\NBTReader\Core\LRUCache.cs" />
-    <Compile Include="Buildings\NBTReader\Core\NBTFile.cs" />
-    <Compile Include="Buildings\NBTReader\Core\NibbleArray.cs" />
-    <Compile Include="Buildings\NBTReader\Core\PlayerFile.cs" />
-    <Compile Include="Buildings\NBTReader\Core\Region.cs" />
-    <Compile Include="Buildings\NBTReader\Core\RegionFile.cs" />
-    <Compile Include="Buildings\NBTReader\Core\RegionInterface.cs" />
-    <Compile Include="Buildings\NBTReader\Core\RegionKey.cs" />
-    <Compile Include="Buildings\NBTReader\Core\RegionManager.cs" />
-    <Compile Include="Buildings\NBTReader\Core\UnboundedBlockInterface.cs" />
-    <Compile Include="Buildings\NBTReader\Data.cs" />
-    <Compile Include="Buildings\NBTReader\Enchantment.cs" />
-    <Compile Include="Buildings\NBTReader\EnchantmentInfo.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityAnimal.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityArrow.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityBlaze.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityBoat.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityCaveSpider.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityChicken.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityCow.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityCreeper.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityEgg.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityEnderDragon.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityEnderEye.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityEnderman.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityEnderPearl.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityFallingSand.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityFireball.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityGhast.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityGiant.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityItem.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMagmaCube.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMinecart.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMinecartChest.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMinecartFurnace.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMob.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMonster.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityMooshroom.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityPainting.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityPig.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityPigZombie.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityPrimedTnt.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySheep.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySilverfish.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySkeleton.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySlime.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySmallFireball.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySnowball.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySnowman.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySpider.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntitySquid.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityThrowable.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityVillager.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityWolf.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityXPOrb.cs" />
-    <Compile Include="Buildings\NBTReader\Entities\EntityZombie.cs" />
-    <Compile Include="Buildings\NBTReader\Entity.cs" />
-    <Compile Include="Buildings\NBTReader\EntityCollection.cs" />
-    <Compile Include="Buildings\NBTReader\EntityFactory.cs" />
-    <Compile Include="Buildings\NBTReader\ICacheTable.cs" />
-    <Compile Include="Buildings\NBTReader\Item.cs" />
-    <Compile Include="Buildings\NBTReader\ItemCollection.cs" />
-    <Compile Include="Buildings\NBTReader\ItemInfo.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\INbtObject.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\JSONSerializer.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\NbtTree.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\NbtVerifier.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNode.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeCompound.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeIntArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeList.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeLongArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeScaler.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeShortArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaNodeString.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\SchemaOptions.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNode.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeByte.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeByteArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeCompound.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeDouble.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeFloat.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeInt.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeIntArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeList.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeLong.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeLongArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeNull.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeShort.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeShortArray.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagNodeString.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\TagType.cs" />
-    <Compile Include="Buildings\NBTReader\Nbt\VerifierLogger.cs" />
-    <Compile Include="Buildings\NBTReader\Orientation.cs" />
-    <Compile Include="Buildings\NBTReader\Schematic.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityBeacon.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityBrewingStand.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityChest.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityControl.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityEnchantmentTable.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityEndPortal.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityFurnace.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityMobSpawner.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityMusic.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityPiston.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityRecordPlayer.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntitySign.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntities\TileEntityTrap.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntity.cs" />
-    <Compile Include="Buildings\NBTReader\TileEntityFactory.cs" />
-    <Compile Include="Buildings\NBTReader\TileTick.cs" />
-    <Compile Include="Buildings\NBTReader\Vector.cs" />
-    <Compile Include="Buildings\PandaSchematicLoader.cs" />
+    <Compile Include="Buildings\NBT\Block.cs" />
+    <Compile Include="Buildings\NBT\RawSchematic.cs" />
+    <Compile Include="Buildings\NBT\Schematic.cs" />
+    <Compile Include="Buildings\NBT\SchematicReader.cs" />
+    <Compile Include="Buildings\NBT\TileEntity.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Cosmetics\CarpetPurple.cs" />
     <Compile Include="Cosmetics\CarpetPink.cs" />
@@ -325,8 +195,10 @@
     <Compile Include="Items\Healing\TreatedBandage.cs" />
     <Compile Include="Items\Weapons\IWeapon.cs" />
     <Compile Include="Items\Weapons\WeaponFactory.cs" />
-    <Compile Include="Jobs\Architect.cs" />
-    <Compile Include="Jobs\SchematicBuilder.cs" />
+    <Compile Include="Jobs\Construction\Architect.cs" />
+    <Compile Include="Jobs\Construction\BlueprintBuilder.cs" />
+    <Compile Include="Jobs\Construction\BlueprintBuilderLoader.cs" />
+    <Compile Include="Jobs\Construction\BlueprintTool.cs" />
     <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
     <Compile Include="Jobs\Farmer\FarmerJob.cs" />
     <Compile Include="Jobs\Machinist.cs" />
@@ -350,6 +222,9 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
+    <None Include="MCtoCSMapping.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="MethodUtil.cs" />
     <Compile Include="Models\ItemId.cs" />
     <Compile Include="Monsters\Bosses\BossLoot.cs" />
@@ -922,6 +797,7 @@
     <Content Include="icons\aloe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Architect.png" />
     <Content Include="icons\Beef.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -964,6 +840,7 @@
     <Content Include="icons\Bluebonnet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Blueprints.png" />
     <Content Include="icons\bow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

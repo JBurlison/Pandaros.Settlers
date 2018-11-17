@@ -29,6 +29,8 @@ namespace Pandaros.Settlers
         public static string GAMEDATA_FOLDER = @"";
         public static string GAME_ROOT = @"";
         public static string SAVE_LOC = "";
+        public static string BLUEPRINT_SAVE_LOC = "";
+        public static string BLUEPRINT_DEFAULT_LOC = "";
 
         public static readonly Version MOD_VER = new Version(0, 8, 2, 0);
         public static bool RUNNING { get; private set; }
@@ -52,6 +54,7 @@ namespace Pandaros.Settlers
             WorldLoaded                 = true;
             SAVE_LOC                    = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
             RoamingJobManager.MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
+            BLUEPRINT_SAVE_LOC = $"{SAVE_LOC}/Blueprints/";
             StubColony = new Colony(-99998);
         }
 
@@ -59,6 +62,7 @@ namespace Pandaros.Settlers
         public static void OnAssemblyLoaded(string path)
         {
             MOD_FOLDER = Path.GetDirectoryName(path);
+            BLUEPRINT_SAVE_LOC = $"{MOD_FOLDER}/Blueprints/";
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
 
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/") + "/";

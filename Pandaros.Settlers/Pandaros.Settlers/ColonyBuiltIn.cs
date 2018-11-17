@@ -39,6 +39,7 @@
             public const string TailorShop = "pipliz.baseresearch.tailorshop";
             public const string TechnologistTable = "pipliz.baseresearch.technologisttable";
             public const string HerbFarming = "pipliz.baseresearch.herbfarming";
+            public const string Builder = "pipliz.baseresearch.constructionbuilder";
         }
 
         public static class Jobs

@@ -55,7 +55,6 @@ namespace Pandaros.Settlers.Research
         public const string Teleporters = "Teleportation";
         public const string MaxSettlers = "MaxSettlers";
         public const string MinSettlers = "MinSettlers";
-        public const string TimeBetween = "TimeBetween";
         public const string SettlerChance = "SettlerChance";
         public const string NumberSkilledLaborer = "NumberSkilledLaborer";
         public const string SkilledLaborer = "SkilledLaborer";
@@ -163,7 +162,6 @@ namespace Pandaros.Settlers.Research
 
             AddMaxSettlers(researchDic);
             AddMinSettlers(researchDic);
-            AddTimeBetween(researchDic);
             AddSettlerChance(researchDic);
             AddSkilledLaborer(researchDic);
             AddNumberSkilledLaborer(researchDic);
@@ -929,28 +927,6 @@ namespace Pandaros.Settlers.Research
                 ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SettlerChance, 0.1f));
         }
 
-        private static void AddTimeBetween(Dictionary<ushort, int> researchDic)
-        {
-            researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 6);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
-            researchDic.Add(BuiltinBlocks.CarpetRed, 5);
-            researchDic.Add(BuiltinBlocks.Bed, 10);
-            researchDic.Add(BuiltinBlocks.CarpetYellow, 5);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
-
-            var requirements = new List<string>
-            {
-                ColonyBuiltIn.Research.ScienceBagLife,
-                ColonyBuiltIn.Research.CoinMinting
-            };
-
-            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, TimeBetween, 1f, requirements));
-
-            for (var i = 2; i <= 5; i++)
-                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, TimeBetween, 1f));
-        }
-
         private static void AddSkilledLaborer(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
@@ -963,8 +939,7 @@ namespace Pandaros.Settlers.Research
             var requirements = new List<string>
             {
                 GetResearchKey(SettlerChance) + "2",
-                GetResearchKey(ReducedWaste) + "2",
-                GetResearchKey(TimeBetween) + "1"
+                GetResearchKey(ReducedWaste) + "2"
             };
 
             ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.02f, requirements));
