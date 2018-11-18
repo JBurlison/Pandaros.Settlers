@@ -17,7 +17,7 @@
     "overrideIconFolder": "./icons/",
     "overrideAudioFolder": "./Audio/",
     "overrideNPCFolder": "./Textures/npc/",
-    "jsonFiles": [
+    "Pandaros.Settlers.jsonFiles": [
       {
         "fileType": "Pandaros.Settlers.MenuFile",
         "index": -1000000,
@@ -38,403 +38,407 @@
         "index": -1000000,
         "relativePath": "Help/Machinists.json"
       },
-      {
-        "fileType": "addOrReplaceAudio",
-        "index": -1000000,
-        "relativePath": "audio/audioFiles.json"
-      },
-      {
-        "fileType": "addOrOverrideTextureMappingEntries",
-        "relativePath": "Textures/texturemapping.json"
-      },
-      {
-        "fileType": "addNewTypes",
-        "relativePath": "types.json"
-      },
-      {
-        "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/en-US.json"
-      },
-      {
-        "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/help/en-US.json"
-      },
-      {
-        "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/science/en-US.json"
-      },
-      {
-        "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/es-ES/es-ES.json"
-      },
-      {
-        "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/ru-RU/ru-RU.json"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/Apothecary.json",
-        "npcType": "Pandaros.Settlers.Apothecary",
-        "limitsUIMapping": [
-          "Pandaros.Settlers.ApothecaryTable"
-        ]
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/AdvancedCrafter.json",
-        "npcType": "Pandaros.Settlers.AdvancedCrafter",
-        "limitsUIMapping": [
-          "Pandaros.Settlers.AdvancedCraftingTable"
-        ]
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/crafting.json",
-        "npcType": "pipliz.crafter"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/tailoring.json",
-        "npcType": "pipliz.tailor"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/grinding.json",
-        "npcType": "pipliz.grinder"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/crafting.json",
-        "npcType": "pipliz.crafter"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/shopping.json",
-        "npcType": "pipliz.merchant"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/minting.json",
-        "npcType": "pipliz.minting"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/technologist.json",
-        "npcType": "pipliz.technologist"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/smelting.json",
-        "npcType": "pipliz.smelter"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/baking.json",
-        "npcType": "pipliz.baker"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/stonemasonry.json",
-        "npcType": "pipliz.stonemason"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/metalsmithing.json",
-        "npcType": "pipliz.metalsmithjob"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/kiln.json",
-        "npcType": "pipliz.kilnjob"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/gunsmith.json",
-        "npcType": "pipliz.gunsmithjob"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/fineryforge.json",
-        "npcType": "pipliz.fineryforgejob"
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/dyeing.json",
-        "npcType": "pipliz.dyer"
-      }
     ],
-    "website": "http://www.settlersmod.com/",
-    "about":
+    "jsonFiles": [
+        {
+          "fileType": "addOrReplaceAudio",
+          "index": -1000000,
+          "relativePath": "audio/audioFiles.json"
+        },
+        {
+          "fileType": "addOrOverrideTextureMappingEntries",
+          "relativePath": "Textures/texturemapping.json"
+        },
+        {
+          "fileType": "addNewTypes",
+          "relativePath": "types.json"
+        },
+        {
+          "fileType": "addOrOverrideLocalization",
+          "relativePath": "localization/en-US/en-US.json"
+        },
+        {
+          "fileType": "addOrOverrideLocalization",
+          "relativePath": "localization/en-US/help/en-US.json"
+        },
+        {
+          "fileType": "addOrOverrideLocalization",
+          "relativePath": "localization/en-US/science/en-US.json"
+        },
+        {
+          "fileType": "addOrOverrideLocalization",
+          "relativePath": "localization/es-ES/es-ES.json"
+        },
+        {
+          "fileType": "addOrOverrideLocalization",
+          "relativePath": "localization/ru-RU/ru-RU.json"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/Apothecary.json",
+          "npcType": "Pandaros.Settlers.Apothecary",
+          "limitsUIMapping": [
+            "Pandaros.Settlers.ApothecaryTable"
+          ]
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/AdvancedCrafter.json",
+          "npcType": "Pandaros.Settlers.AdvancedCrafter",
+          "limitsUIMapping": [
+            "Pandaros.Settlers.AdvancedCraftingTable"
+          ]
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/crafting.json",
+          "npcType": "pipliz.crafter"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/tailoring.json",
+          "npcType": "pipliz.tailor"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/grinding.json",
+          "npcType": "pipliz.grinder"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/crafting.json",
+          "npcType": "pipliz.crafter"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/shopping.json",
+          "npcType": "pipliz.merchant"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/minting.json",
+          "npcType": "pipliz.minting"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/technologist.json",
+          "npcType": "pipliz.technologist"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/smelting.json",
+          "npcType": "pipliz.smelter"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/baking.json",
+          "npcType": "pipliz.baker"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/stonemasonry.json",
+          "npcType": "pipliz.stonemason"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/metalsmithing.json",
+          "npcType": "pipliz.metalsmithjob"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/kiln.json",
+          "npcType": "pipliz.kilnjob"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/gunsmith.json",
+          "npcType": "pipliz.gunsmithjob"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/fineryforge.json",
+          "npcType": "pipliz.fineryforgejob"
+        },
+        {
+          "fileType": "addOrReplaceNPCRecipes",
+          "relativePath": "AutoLoad/dyeing.json",
+          "npcType": "pipliz.dyer"
+        }
+      ],
+      "website",
+      "http://www.settlersmod.com/",
+      "about",
       "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
-    "patchnotes": [
-      {
-        "version": "0.8.2.0",
-        "notes": [
-          "Added Seasons! The grounds and trees now change with the seasons!",
-          "Added in game music. This can be disabled in the banner menu",
-          "Added in game help menu",
-          "Added Magic Items",
-          "Added Sorcerer Job - creates magic items",
-          "Added Mage - AOE guard",
-          "Colonists needs adjust as seasons change. Help keep them comfortable!",
-          "Added Fireplace",
-          "Added Campfire",
-          "Added new clothing types: Light and Heavy",
-          "Added Icebox Job to make cool refreshing drinks and icees!",
-          "Added Olla Job to make warm soups! Yumm!",
-          "Added new machine: Fan. Helps keep your colonists cool in the hot summers!",
-          "Wood use drastically increases as it gets colder outside",
-          "Added Cows (because of the limitations of the game there are no animations for these, they do move though)",
-          "Added Chickens",
-          "Added Dairy Farmer Job",
-          "Added Poultry Farmer Job",
-          "Added Well",
-          "Added Water Purification Job",
-          "Added new foods: Berry Icee, Ice Cold Water, Berry Juice, Butter, Dutch Butter Cake, Beef Stew, Chicken and Dumplings",
-          "Colonists now die if they get too cold. An icon will appear over their head when they are too cold.",
-          "Colonists will leave the colony if they are not comfortable.",
-          "You can give comfort items directly to colonists, by default as items are made colonists in most need will take them.",
-          "Colonists now require a cooling or heating method near their beds in the summer/winter to keep comfortable while they sleep.",
-          "Bosses now start randomly spawning after 50 colonists. Up from 15.",
-          "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
-          "Things that can be extended: Bosses, Armor, Weapons, Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job and Seasons"
-        ]
-      },
-      {
-        "version": "0.8.1.10",
-        "notes": [
-          "Fixed monsters spawning like CRAZY",
-          "Fixed bosses not spawning",
-          "When colonists leave they now tell you what they are taking",
-          "There is now a penalty on top of seige mode for bosses unable to get to your banner."
-        ]
-      },
-      {
-        "version": "0.8.1.9",
-        "notes": [
-          "Added Seasons! The grounds and trees now change with the seasons!",
-          "Colonists needs adjust as seasons change. Help keep them comfortable!",
-          "Added Fireplace",
-          "Added Campfire",
-          "Added new clothing types: Light and Heavy",
-          "Added Icebox Job to make cool refreshing drinks and icees!",
-          "Added Olla Job to make warm soups! Yumm!",
-          "Added new machine: Fan. Helps keep your colonists cool in the hot summers!",
-          "Wood use drastically increases as it gets colder outside",
-          "Added Cows (because of the limitations of the game there are no animations for these, they do move though)",
-          "Added Chickens",
-          "Colonists now die if they get too cold. An icon will appear over their head when they are too cold.",
-          "Colonists will leave the colony if they are not comfortable.",
-          "You can give comfort items directly to colonists, by default as items are made colonists in most need will take them.",
-          "Colonists now require a cooling or heating method near their beds in the summer/winter to keep comfortable while they sleep."
-        ]
-      },
-      {
-        "version": "0.8.1.8",
-        "notes": [
-          "Added 0.6.2.0 support",
-          "Added player configurations to the banners settings menu"
-        ]
-      },
-      {
-        "version": "0.8.1.7",
-        "notes": [
-          "Fixed some blocks not having any texture. this should be all of them fixed now."
-        ]
-      },
-      {
-        "version": "0.8.1.6",
-        "notes": [
-          "Fixed sounds not working",
-          "Fixed some blocks not having any texture. There are still more that are broken at this time.",
-          "Fixed More Linux pathing",
-          "Fixed some items not able to be crafted."
-        ]
-      },
-      {
-        "version": "0.8.1.5",
-        "notes": [
-          "Nefed the reduced waste research",
-          "Gates now close when bosses spawn",
-          "Fixed Linux pathing"
-        ]
-      },
-      {
-        "version": "0.8.1.4",
-        "notes": [
-          "Fixed rotatable blocks"
-        ]
-      },
-      {
-        "version": "0.8.1.3",
-        "notes": [
-          "Added machine types in the code for extendability."
-        ]
-      },
-      {
-        "version": "0.8.1.2",
-        "notes": [
-          "Fixed mod items not in shop.",
-          "Fixed lava"
-        ]
-      },
-      {
-        "version": "0.8.1.1",
-        "notes": [
-          "Fixed Icons and texture mappings."
-        ]
-      },
-      {
-        "version": "0.8.1.0",
-        "notes": [
-          "Added Mod extensions. These are addons to the Settlers core engines. Made for optional additions. Mod makers see the Wiki for more details.",
-          "6.1.0 Colony Survival support",
-          "Cost of Mana, Aether, elementum have their reliance on herbs reduced. But, the cost of other reagents increased",
-          "Chance of getting Void from a elementium craft has been increased."
-        ]
-      },
-      {
-        "version": "0.8.0.15",
-        "notes": [
-          "Fixed slabs so you can walk on them again as stairs.",
-          "Configurations can now be set in game with the /settlersconfig *SETTING* *VALUE* command",
-          "Added Permissions to some commands"
-        ]
-      },
-      {
-        "version": "0.8.0.14",
-        "notes": [
-          "Fixed cases where turrets would not shoot."
-        ]
-      },
-      {
-        "version": "0.8.0.13",
-        "notes": [
-          "Fallen Rangers range reduced by half",
-          "Fallen Ranger now shoots players. Players are prioritized over Colonists.",
-          "Fallen Ranger now respects line of sight.",
-          "Turrets now respect line of sight."
-        ]
-      },
-      {
-        "version": "0.8.0.12",
-        "notes": [
-          "Fixed compounding cost of recruiting settlers not resetting.",
-          "Settlers will now properly leave after 1 in game week of having no job or bed"
-        ]
-      },
-      {
-        "version": "0.8.0.11",
-        "notes": [
-          "The number of settlers that join your colonoy after a wipe is now displayed accurately. Note: There is a HARD max of 30 settlers.",
-          "Fixed Elemental Turret ammo running out after 2 shots. it now lasts 50 shots per 2 stones. 50 shots per 1 void stone.",
-          "Buying colonists no longer costs a % of your food but now a compounding 5 additional food per colonist bought. Example: the first colonist will cost 50, second 55, third 60, ect... This resets after 24 in game hours of not buying any colonists. A message will be displayed when it has reset.",
-          "Fallen rangers damage and ranged attack speed have been halved."
-        ]
-      },
-      {
-        "version": "0.8.0.10",
-        "notes": [
-          "Number of craftable stones by default lowered from 50 to 6.",
-          "Reduced the bonus HP to zombies from 150 hp to 50 hp.",
-          "Number of zombies that are spawned from Hoarder has been reduced."
-        ]
-      },
-      {
-        "version": "0.8.0.9",
-        "notes": [
-          "Added decorative category to the carpet blocks.",
-          "The settlers message will no longer appear if you did not random any.",
-          "Bosses come at random now instead of round robin. The same boss cannot spawn twice in a row."
-        ]
-      },
-      {
-        "version": "0.8.0.8",
-        "notes": [
-          "Settlers now come a little more often but there are less settlers.",
-          "Removed copper coin requirement from researching copper armor.",
-          "Lowered the cost of elemental turret cost of 5 elemental stones to 2.",
-          "Void turrets now cost 1 elemental stone to create and 1 to fuel.",
-          "Fixed Time Between Settlers research to have the proper dependancies."
-        ]
-      },
-      {
-        "version": "0.8.0.7",
-        "notes": [
-          "Settlers now come a little more often but there are less settlers."
-        ]
-      },
-      {
-        "version": "0.8.0.6",
-        "notes": [
-          "Fixed duplicate colonists being addded when Settlers come."
-        ]
-      },
-      {
-        "version": "0.8.0.5",
-        "notes": [
-          "Fixed bug where Settlers take a while to come after closing and re-opening a world."
-        ]
-      },
-      {
-        "version": "0.8.0.4",
-        "notes": [
-          "Fixed settler count properly updating after a colonist laves.",
-          "Fixed settler count properly updating after colonists join your colony.",
-          "Fixed offline colonies not proplery saving saving colonists jobs.",
-          "Armor, difficulty damage reduction and elemental resistances are now properly applied on hit.",
-          "Right clicking on a berry bush now gives you 2 berries to help you recover from a wipe of your colonists early game."
-        ]
-      },
-      {
-        "version": "0.8.0.3",
-        "notes": [
-          "Fix zombies not spawning when a player has over 500 colonists.",
-          "Fixed Max Settlers that can come at a single time",
-          "Updated the tooltips for Mana and Elementium to note their rare drops."
-        ]
-      },
-      {
-        "version": "0.8.0.2",
-        "notes": [
-          "Fix settlers coming too often.",
-          "Fix /settlers off not working.",
-          "Fixed error with settlers after skilled workers are researched."
-        ]
-      },
-      {
-        "version": "0.8.0.1",
-        "notes": [
-          "Fix settlers coming too often after reduced time is researched.",
-          "Fixed Knights unable to get weapons or armor."
-        ]
-      },
-      {
-        "version": "0.8.0.0",
-        "notes": [
-          "Zombies can now be disabled with the /monsters [off|on] command.",
-          "Bosses no longer have max HP. They will scale fully based on difficulty and number of colonists.",
-          "New research added: Elementium, craftable by the Apothecary. Elementium is the base metal for magical items and stones.",
-          "New elemental stones added for magic: Earth, Air, Fire, Water and Void, these are used as reagents and ammo for magic attacks.",
-          "Settlers are back! Along with their original researchables; Max Settlers, Min Settlers, Time Between",
-          "Added Skilled labor researchables. Skilled labor add additional chance for rare items to be crafted. (most rare items are a by-product of a item being crafted with a drop rate of 3% base)",
-          "Added Elemental Turrets.",
-          "Bosses now have different elemental armors along with additional physical resistance.",
-          "Zombies base HP will now scale with colonies that are larger than 500 colonists.",
-          "Knight base damage reduction increased from 65% to 75%.",
-          "Added items to /lootall command.",
-          "Turrets now shoot slower than normal guards, but continue to do the same amount of damage.",
-          "Bosses that move slower have had their HP buffed 25%.",
-          "Zombie Queen now teleports one less monster. The number of monsters teleported is based on difficulty. For example: Medium went from 3 to 2 monsters per teleport cooldown.",
-          "3 new bosses added: Fallen Ranger: Has a ranged bow attack. Jack-b-nimble: super fast! Phase: Attacks vs phase have a chance to miss.",
-          "New Epic bosses. Spawn after your colony reaches 500 colonists.  Void Knight: Void armored, has lance that can reach 2 blocks that is laced with void damage. Void Mage: AoE Void fire attacks.",
-          "Fixed monster spawner. No longer spawns twice as many zombies during bosses.",
-          "Bosses will no longer die if you block their path. They will teleport to the next valid position in their path to prevent cheesing bosses via path blocking.",
-          "Fixed bug where turrets would not shoot from all sides.",
-          "Fixed bug where builders wand could not build on one side in horizontal mode.",
-          "Removed food from auto load. This includes: carrot, egg, flour, milk, meat and cake."
-        ]
-      }
-    ]
+      "patchnotes",
+      [
+        {
+          "version": "0.8.2.0",
+          "notes": [
+            "Added Seasons! The grounds and trees now change with the seasons!",
+            "Added in game music. This can be disabled in the banner menu",
+            "Added in game help menu",
+            "Added Magic Items",
+            "Added Sorcerer Job - creates magic items",
+            "Added Mage - AOE guard",
+            "Colonists needs adjust as seasons change. Help keep them comfortable!",
+            "Added Fireplace",
+            "Added Campfire",
+            "Added new clothing types: Light and Heavy",
+            "Added Icebox Job to make cool refreshing drinks and icees!",
+            "Added Olla Job to make warm soups! Yumm!",
+            "Added new machine: Fan. Helps keep your colonists cool in the hot summers!",
+            "Wood use drastically increases as it gets colder outside",
+            "Added Cows (because of the limitations of the game there are no animations for these, they do move though)",
+            "Added Chickens",
+            "Added Dairy Farmer Job",
+            "Added Poultry Farmer Job",
+            "Added Well",
+            "Added Water Purification Job",
+            "Added new foods: Berry Icee, Ice Cold Water, Berry Juice, Butter, Dutch Butter Cake, Beef Stew, Chicken and Dumplings",
+            "Colonists now die if they get too cold. An icon will appear over their head when they are too cold.",
+            "Colonists will leave the colony if they are not comfortable.",
+            "You can give comfort items directly to colonists, by default as items are made colonists in most need will take them.",
+            "Colonists now require a cooling or heating method near their beds in the summer/winter to keep comfortable while they sleep.",
+            "Bosses now start randomly spawning after 50 colonists. Up from 15.",
+            "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
+            "Things that can be extended: Bosses, Armor, Weapons, Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job and Seasons"
+          ]
+        },
+        {
+          "version": "0.8.1.10",
+          "notes": [
+            "Fixed monsters spawning like CRAZY",
+            "Fixed bosses not spawning",
+            "When colonists leave they now tell you what they are taking",
+            "There is now a penalty on top of seige mode for bosses unable to get to your banner."
+          ]
+        },
+        {
+          "version": "0.8.1.9",
+          "notes": [
+            "Added Seasons! The grounds and trees now change with the seasons!",
+            "Colonists needs adjust as seasons change. Help keep them comfortable!",
+            "Added Fireplace",
+            "Added Campfire",
+            "Added new clothing types: Light and Heavy",
+            "Added Icebox Job to make cool refreshing drinks and icees!",
+            "Added Olla Job to make warm soups! Yumm!",
+            "Added new machine: Fan. Helps keep your colonists cool in the hot summers!",
+            "Wood use drastically increases as it gets colder outside",
+            "Added Cows (because of the limitations of the game there are no animations for these, they do move though)",
+            "Added Chickens",
+            "Colonists now die if they get too cold. An icon will appear over their head when they are too cold.",
+            "Colonists will leave the colony if they are not comfortable.",
+            "You can give comfort items directly to colonists, by default as items are made colonists in most need will take them.",
+            "Colonists now require a cooling or heating method near their beds in the summer/winter to keep comfortable while they sleep."
+          ]
+        },
+        {
+          "version": "0.8.1.8",
+          "notes": [
+            "Added 0.6.2.0 support",
+            "Added player configurations to the banners settings menu"
+          ]
+        },
+        {
+          "version": "0.8.1.7",
+          "notes": [
+            "Fixed some blocks not having any texture. this should be all of them fixed now."
+          ]
+        },
+        {
+          "version": "0.8.1.6",
+          "notes": [
+            "Fixed sounds not working",
+            "Fixed some blocks not having any texture. There are still more that are broken at this time.",
+            "Fixed More Linux pathing",
+            "Fixed some items not able to be crafted."
+          ]
+        },
+        {
+          "version": "0.8.1.5",
+          "notes": [
+            "Nefed the reduced waste research",
+            "Gates now close when bosses spawn",
+            "Fixed Linux pathing"
+          ]
+        },
+        {
+          "version": "0.8.1.4",
+          "notes": [
+            "Fixed rotatable blocks"
+          ]
+        },
+        {
+          "version": "0.8.1.3",
+          "notes": [
+            "Added machine types in the code for extendability."
+          ]
+        },
+        {
+          "version": "0.8.1.2",
+          "notes": [
+            "Fixed mod items not in shop.",
+            "Fixed lava"
+          ]
+        },
+        {
+          "version": "0.8.1.1",
+          "notes": [
+            "Fixed Icons and texture mappings."
+          ]
+        },
+        {
+          "version": "0.8.1.0",
+          "notes": [
+            "Added Mod extensions. These are addons to the Settlers core engines. Made for optional additions. Mod makers see the Wiki for more details.",
+            "6.1.0 Colony Survival support",
+            "Cost of Mana, Aether, elementum have their reliance on herbs reduced. But, the cost of other reagents increased",
+            "Chance of getting Void from a elementium craft has been increased."
+          ]
+        },
+        {
+          "version": "0.8.0.15",
+          "notes": [
+            "Fixed slabs so you can walk on them again as stairs.",
+            "Configurations can now be set in game with the /settlersconfig *SETTING* *VALUE* command",
+            "Added Permissions to some commands"
+          ]
+        },
+        {
+          "version": "0.8.0.14",
+          "notes": [
+            "Fixed cases where turrets would not shoot."
+          ]
+        },
+        {
+          "version": "0.8.0.13",
+          "notes": [
+            "Fallen Rangers range reduced by half",
+            "Fallen Ranger now shoots players. Players are prioritized over Colonists.",
+            "Fallen Ranger now respects line of sight.",
+            "Turrets now respect line of sight."
+          ]
+        },
+        {
+          "version": "0.8.0.12",
+          "notes": [
+            "Fixed compounding cost of recruiting settlers not resetting.",
+            "Settlers will now properly leave after 1 in game week of having no job or bed"
+          ]
+        },
+        {
+          "version": "0.8.0.11",
+          "notes": [
+            "The number of settlers that join your colonoy after a wipe is now displayed accurately. Note: There is a HARD max of 30 settlers.",
+            "Fixed Elemental Turret ammo running out after 2 shots. it now lasts 50 shots per 2 stones. 50 shots per 1 void stone.",
+            "Buying colonists no longer costs a % of your food but now a compounding 5 additional food per colonist bought. Example: the first colonist will cost 50, second 55, third 60, ect... This resets after 24 in game hours of not buying any colonists. A message will be displayed when it has reset.",
+            "Fallen rangers damage and ranged attack speed have been halved."
+          ]
+        },
+        {
+          "version": "0.8.0.10",
+          "notes": [
+            "Number of craftable stones by default lowered from 50 to 6.",
+            "Reduced the bonus HP to zombies from 150 hp to 50 hp.",
+            "Number of zombies that are spawned from Hoarder has been reduced."
+          ]
+        },
+        {
+          "version": "0.8.0.9",
+          "notes": [
+            "Added decorative category to the carpet blocks.",
+            "The settlers message will no longer appear if you did not random any.",
+            "Bosses come at random now instead of round robin. The same boss cannot spawn twice in a row."
+          ]
+        },
+        {
+          "version": "0.8.0.8",
+          "notes": [
+            "Settlers now come a little more often but there are less settlers.",
+            "Removed copper coin requirement from researching copper armor.",
+            "Lowered the cost of elemental turret cost of 5 elemental stones to 2.",
+            "Void turrets now cost 1 elemental stone to create and 1 to fuel.",
+            "Fixed Time Between Settlers research to have the proper dependancies."
+          ]
+        },
+        {
+          "version": "0.8.0.7",
+          "notes": [
+            "Settlers now come a little more often but there are less settlers."
+          ]
+        },
+        {
+          "version": "0.8.0.6",
+          "notes": [
+            "Fixed duplicate colonists being addded when Settlers come."
+          ]
+        },
+        {
+          "version": "0.8.0.5",
+          "notes": [
+            "Fixed bug where Settlers take a while to come after closing and re-opening a world."
+          ]
+        },
+        {
+          "version": "0.8.0.4",
+          "notes": [
+            "Fixed settler count properly updating after a colonist laves.",
+            "Fixed settler count properly updating after colonists join your colony.",
+            "Fixed offline colonies not proplery saving saving colonists jobs.",
+            "Armor, difficulty damage reduction and elemental resistances are now properly applied on hit.",
+            "Right clicking on a berry bush now gives you 2 berries to help you recover from a wipe of your colonists early game."
+          ]
+        },
+        {
+          "version": "0.8.0.3",
+          "notes": [
+            "Fix zombies not spawning when a player has over 500 colonists.",
+            "Fixed Max Settlers that can come at a single time",
+            "Updated the tooltips for Mana and Elementium to note their rare drops."
+          ]
+        },
+        {
+          "version": "0.8.0.2",
+          "notes": [
+            "Fix settlers coming too often.",
+            "Fix /settlers off not working.",
+            "Fixed error with settlers after skilled workers are researched."
+          ]
+        },
+        {
+          "version": "0.8.0.1",
+          "notes": [
+            "Fix settlers coming too often after reduced time is researched.",
+            "Fixed Knights unable to get weapons or armor."
+          ]
+        },
+        {
+          "version": "0.8.0.0",
+          "notes": [
+            "Zombies can now be disabled with the /monsters [off|on] command.",
+            "Bosses no longer have max HP. They will scale fully based on difficulty and number of colonists.",
+            "New research added: Elementium, craftable by the Apothecary. Elementium is the base metal for magical items and stones.",
+            "New elemental stones added for magic: Earth, Air, Fire, Water and Void, these are used as reagents and ammo for magic attacks.",
+            "Settlers are back! Along with their original researchables; Max Settlers, Min Settlers, Time Between",
+            "Added Skilled labor researchables. Skilled labor add additional chance for rare items to be crafted. (most rare items are a by-product of a item being crafted with a drop rate of 3% base)",
+            "Added Elemental Turrets.",
+            "Bosses now have different elemental armors along with additional physical resistance.",
+            "Zombies base HP will now scale with colonies that are larger than 500 colonists.",
+            "Knight base damage reduction increased from 65% to 75%.",
+            "Added items to /lootall command.",
+            "Turrets now shoot slower than normal guards, but continue to do the same amount of damage.",
+            "Bosses that move slower have had their HP buffed 25%.",
+            "Zombie Queen now teleports one less monster. The number of monsters teleported is based on difficulty. For example: Medium went from 3 to 2 monsters per teleport cooldown.",
+            "3 new bosses added: Fallen Ranger: Has a ranged bow attack. Jack-b-nimble: super fast! Phase: Attacks vs phase have a chance to miss.",
+            "New Epic bosses. Spawn after your colony reaches 500 colonists.  Void Knight: Void armored, has lance that can reach 2 blocks that is laced with void damage. Void Mage: AoE Void fire attacks.",
+            "Fixed monster spawner. No longer spawns twice as many zombies during bosses.",
+            "Bosses will no longer die if you block their path. They will teleport to the next valid position in their path to prevent cheesing bosses via path blocking.",
+            "Fixed bug where turrets would not shoot from all sides.",
+            "Fixed bug where builders wand could not build on one side in horizontal mode.",
+            "Removed food from auto load. This includes: carrot, egg, flour, milk, meat and cake."
+          ]
+        }
+      ]
   }
 ]

@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
-            if (GameLoader.ModInfo.TryGetAs("jsonFiles", out JSONNode jsonFilles))
+            if (GameLoader.ModInfo.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
             {
                 foreach (var jsonNode in jsonFilles.LoopArray())
                 {
