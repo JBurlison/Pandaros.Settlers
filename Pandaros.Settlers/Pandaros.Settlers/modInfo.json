@@ -165,11 +165,9 @@
           "npcType": "pipliz.dyer"
         }
       ],
-      "website",
-      "http://www.settlersmod.com/",
-      "about",
-      "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
-      "patchnotes",
+      "website": "http://www.settlersmod.com/",
+      "about": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
+      "patchnotes" :
       [
         {
           "version": "0.8.2.0",
