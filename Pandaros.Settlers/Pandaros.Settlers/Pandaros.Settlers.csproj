@@ -227,6 +227,7 @@
     <None Include="MCtoCSMapping.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="Managers\UIManager.cs" />
     <Compile Include="MethodUtil.cs" />
     <Compile Include="Models\ItemId.cs" />
     <Compile Include="Monsters\Bosses\BossLoot.cs" />

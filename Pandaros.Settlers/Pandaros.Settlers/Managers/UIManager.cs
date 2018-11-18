@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Managers
         //Ref menu is added for change LocalStorage -> avoid client error
         public static IItem LoadItem(JSONNode item, ref NetworkMenu menu)
         {
-            string itemType = item.GetAs<string>("type");
+            string itemType = item.GetAs<string>("type").Trim().ToLower();
 
             //Log.Write(string.Format("<color=lime>ItemType: {0}</color>", itemType));
             IItem newItem = new EmptySpace();
@@ -304,49 +304,38 @@ namespace Pandaros.Settlers.Managers
 
         public static UnityEngine.Color GetColor(string color)
         {
-            switch(color)
+            switch(color.Trim().ToLower())
             {
-                case "Cyan":
                 case "cyan":
                 return UnityEngine.Color.cyan;
-
-                case "Green":
+                    
                 case "green":
                 return UnityEngine.Color.green;
-
-                case "Red":
+                    
                 case "red":
                 return UnityEngine.Color.red;
 
-                case "Black":
                 case "black":
                 return UnityEngine.Color.black;
 
-                case "Yellow":
                 case "yellow":
                 return UnityEngine.Color.yellow;
 
-                case "Blue":
                 case "blue":
                 return UnityEngine.Color.blue;
 
-                case "Magenta":
                 case "magenta":
                 return UnityEngine.Color.magenta;
 
-                case "Gray":
                 case "gray":
                 return UnityEngine.Color.gray;
 
-                case "White":
                 case "white":
                 return UnityEngine.Color.white;
 
-                case "Clear":
                 case "clear":
                 return UnityEngine.Color.clear;
 
-                case "Grey":
                 case "grey":
                 return UnityEngine.Color.grey;
 
@@ -357,18 +346,15 @@ namespace Pandaros.Settlers.Managers
 
         public static UnityEngine.TextAnchor GetAlignement(string alignement)
         {
-            switch(alignement)
+            switch(alignement.Trim().ToLower())
             {
-                case "Left":
                 case "left":
                 default:
                 return UnityEngine.TextAnchor.MiddleLeft;
-
-                case "Center":
+                    
                 case "center":
                 return UnityEngine.TextAnchor.MiddleCenter;
-
-                case "Right":
+                    
                 case "right":
                 return UnityEngine.TextAnchor.MiddleRight;
             }
