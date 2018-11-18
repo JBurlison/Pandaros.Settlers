@@ -16,24 +16,9 @@ namespace Pandaros.Settlers.Jobs.Construction
     //"constructionType" : "GameLoader.NAMESPACE + ".BlueprintBuilder"
     public class BlueprintBuilder : IConstructionType
     {
-        public string BlueprintName { get; private set; }
-        public Schematic BuilderSchematic { get; private set; }
-
         public EAreaType AreaType => EAreaType.BuilderArea;
 
         public EAreaMeshType AreaTypeMesh => EAreaMeshType.ThreeD;
-
-        public BlueprintBuilder(string blueprintName)
-        {
-            BlueprintName = blueprintName;
-
-            if (File.Exists(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName))
-                BuilderSchematic = SchematicReader.LoadSchematic(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName);
-            else if (File.Exists(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName))
-                BuilderSchematic = SchematicReader.LoadSchematic(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName);
-            else
-                PandaLogger.Log(ChatColor.red, "Cannot find blueprint {0}!", BlueprintName);
-        }
 
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
@@ -41,10 +26,18 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             try
             {
-                if (BuilderSchematic.XMax > iterationType.CurrentPosition.x &&
-                    BuilderSchematic.YMax > iterationType.CurrentPosition.y &&
-                    BuilderSchematic.ZMax > iterationType.CurrentPosition.z)
-               block = BuilderSchematic.Blocks[iterationType.CurrentPosition.x, iterationType.CurrentPosition.y, iterationType.CurrentPosition.z];
+                var bpi = iterationType as BlueprintIterator;
+                var adjX = iterationType.CurrentPosition.x - bpi.BuilderSchematic.StartPos.x;
+                var adjY = iterationType.CurrentPosition.y - bpi.BuilderSchematic.StartPos.y;
+                var adjZ = iterationType.CurrentPosition.z - bpi.BuilderSchematic.StartPos.z;
+
+                if (bpi != null &&
+                    bpi.BuilderSchematic.XMax > adjX &&
+                    bpi.BuilderSchematic.YMax > adjY &&
+                    bpi.BuilderSchematic.ZMax > adjZ)
+                    block = bpi.BuilderSchematic.Blocks[adjX, adjY, adjZ];
+                else
+                    PandaLogger.Log(ChatColor.yellow, "Unable to find scematic position {0}", iterationType.CurrentPosition);
             }
             catch (Exception) { }
 
@@ -61,7 +54,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 
             }
 
-            iterationType.MoveNext();
+            
         }
     }
 }

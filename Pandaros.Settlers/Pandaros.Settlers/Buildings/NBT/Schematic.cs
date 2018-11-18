@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pipliz;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Pandaros.Settlers.Buildings.NBT
         public Block[,,] Blocks { get; set; }
         /// <summary>Contains TileEntities such as hoppers and chests</summary>
         public TileEntity[,,] TileEntities { get; set; }
+        public Vector3Int StartPos { get; set; }
 
         public Schematic()
         {
@@ -30,15 +32,16 @@ namespace Pandaros.Settlers.Buildings.NBT
 
         public Schematic(string name, int x, int y, int z) : this(name)
         {
-            this.XMax = x;
-            this.YMax = y;
-            this.ZMax = z;
+            XMax = x;
+            YMax = y;
+            ZMax = z;
         }
 
-        public Schematic(string name, int x, int y, int z, Block[,,] blocks, TileEntity[,,] tileEntities) : this(name, x, y, z)
+        public Schematic(string name, int x, int y, int z, Block[,,] blocks, TileEntity[,,] tileEntities, Vector3Int startPos) : this(name, x, y, z)
         {
-            this.Blocks = blocks;
-            this.TileEntities = tileEntities;
+            Blocks = blocks;
+            TileEntities = tileEntities;
+            StartPos = startPos;
         }
     }
 }

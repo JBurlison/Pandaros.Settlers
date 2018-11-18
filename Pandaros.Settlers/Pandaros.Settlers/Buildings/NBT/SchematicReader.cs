@@ -1,4 +1,5 @@
 ﻿using fNbt;
+using Pipliz;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,18 +11,52 @@ namespace Pandaros.Settlers.Buildings.NBT
 {
     public static class SchematicReader
     {
-        public static Schematic LoadSchematic(string path)
+        static Dictionary<string, Dictionary<Vector3Int, Schematic>> _loadedSchematics = new Dictionary<string, Dictionary<Vector3Int, Schematic>>();
+
+        public static Schematic LoadSchematic(string path, Vector3Int startPos)
         {
+            if (_loadedSchematics.ContainsKey(path))
+                if (_loadedSchematics[path].ContainsKey(startPos))
+                    return _loadedSchematics[path][startPos];
+                else
+                {
+                    var item = _loadedSchematics[path].FirstOrDefault();
+
+                    if (item.Key != null)
+                    {
+                        _loadedSchematics[path][startPos] = item.Value;
+                        return item.Value;
+                    }
+                }
+
             NbtFile file = new NbtFile(path);
-            return LoadSchematic(file);
+            return LoadSchematic(file, startPos);
         }
 
-        private static Schematic LoadSchematic(NbtFile nbtFile)
+        public static void UnloadSchematic(string path, Vector3Int startPos)
+        {
+            if (_loadedSchematics.ContainsKey(path))
+            {
+                if (_loadedSchematics[path].ContainsKey(startPos))
+                    _loadedSchematics[path].Remove(startPos);
+
+                if (_loadedSchematics[path].Count == 0)
+                    _loadedSchematics.Remove(path);
+            }
+        }
+
+        private static Schematic LoadSchematic(NbtFile nbtFile, Vector3Int startPos)
         {
             RawSchematic raw = LoadRaw(nbtFile);
             Block[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.TileEntities);
+            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.TileEntities, startPos);
+
+            if (!_loadedSchematics.ContainsKey(nbtFile.FileName))
+                _loadedSchematics.Add(nbtFile.FileName, new Dictionary<Vector3Int, Schematic>());
+  
+            _loadedSchematics[nbtFile.FileName][startPos] = schematic;
+
             return schematic;
         }
 

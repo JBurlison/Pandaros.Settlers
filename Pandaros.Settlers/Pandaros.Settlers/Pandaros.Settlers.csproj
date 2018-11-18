@@ -199,6 +199,7 @@
     <Compile Include="Jobs\Construction\Architect.cs" />
     <Compile Include="Jobs\Construction\BlueprintBuilder.cs" />
     <Compile Include="Jobs\Construction\BlueprintBuilderLoader.cs" />
+    <Compile Include="Jobs\Construction\BlueprintIterator.cs" />
     <Compile Include="Jobs\Construction\BlueprintTool.cs" />
     <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
     <Compile Include="Jobs\Farmer\FarmerJob.cs" />

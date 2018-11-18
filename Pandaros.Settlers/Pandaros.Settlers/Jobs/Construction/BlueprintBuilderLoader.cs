@@ -24,8 +24,16 @@ namespace Pandaros.Settlers.Jobs.Construction
            if (node.TryGetAs(NAME + ".BlueprintName", out string blueprint))
             {
                 area.SetIterationType(new BottomToTop(area));
-                area.SetConstructionType(new BlueprintBuilder(blueprint));
+                area.SetConstructionType(new BlueprintBuilder());
             }
+        }
+
+        public void SaveTypes(ConstructionArea area, JSONNode node)
+        {
+            var itt = area.IterationType as BlueprintIterator;
+
+            if (itt != null)
+                node.SetAs(NAME + ".BlueprintName", itt.BlueprintName);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Construction.BlueprintBuilderLoader")]
