@@ -14,6 +14,12 @@ namespace Pandaros.Settlers.Managers.Tests
     {
         public static JSONNode LoadedMenus { get; private set; }
 
+        [TestInitialize]
+        public void Init()
+        {
+            GameLoader.OnAssemblyLoaded(@"C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers");
+        }
+
         [TestMethod()]
         public void MergeJsonsTest()
         {
