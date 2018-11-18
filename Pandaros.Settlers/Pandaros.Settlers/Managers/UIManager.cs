@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Managers
                 PandaLogger.Log(ChatColor.yellow, "Missing json files node from modinfo.json. Unable to load UI files.");
         }
 
-        private static void MergeJsons(JSONNode oldNode, JSONNode newNode)
+        public static void MergeJsons(JSONNode oldNode, JSONNode newNode)
         {
             if (newNode.NodeType != NodeType.Array && oldNode.NodeType != NodeType.Array)
             {
