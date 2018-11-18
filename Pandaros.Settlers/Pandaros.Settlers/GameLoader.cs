@@ -78,7 +78,7 @@ namespace Pandaros.Settlers
             BLOCKS_HEIGHT_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
             BLOCKS_NORMAL_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
 
-            ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json");
+            ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json")[0];
 
             var fileWasCopied = false;
 

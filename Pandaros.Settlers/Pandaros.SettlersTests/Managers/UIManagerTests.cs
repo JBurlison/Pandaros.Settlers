@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Managers.Tests
                 {
                     if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
                     {
-                        var newMenu = JSON.Deserialize(GameLoader.MOD_FOLDER + menuFilePath);
+                        var newMenu = JSON.Deserialize(GameLoader.MOD_FOLDER + "\\" + menuFilePath);
 
                         if (LoadedMenus == null)
                             LoadedMenus = newMenu;
