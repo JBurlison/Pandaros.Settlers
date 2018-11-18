@@ -37,27 +37,6 @@ namespace Pandaros.Settlers.Help
     {
         public static readonly string NAMESPACE = GameLoader.NAMESPACE + ".HelpMenu.";
         public static readonly string MAIN_MENU_NAME = NAMESPACE + "MainMenu";
-        public static readonly string ModPath = GameLoader.MOD_FOLDER + "/help.json";
-
-        public static Dictionary<string, JSONNode> Menus { get; } = new Dictionary<string, JSONNode>();
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, ".Help.HelpMenuItem.AfterWorldLoad")]
-        public static void AfterWorldLoad()
-        {
-            if(File.Exists(ModPath))
-            {
-                JSONNode jsonFile = JSON.Deserialize(ModPath);
-
-                foreach(var child in jsonFile.LoopObject())
-                {
-                    Menus.Add(child.Key, child.Value);
-                    Log.Write(string.Format("<color=lime>Adding: {0}</color>", child.Key));
-                }
-                Log.Write("<color=green>" + ModPath + "FOUND</color>");
-            }
-            else
-                Log.Write("<color=red>" + ModPath + "NOT FOUND</color>");
-        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
@@ -91,7 +70,7 @@ namespace Pandaros.Settlers.Help
             if (ItemTypes.IndexLookup.TryGetIndex(HelpMenuActivator.NAME, out var helpMenuitem) &&
                 boxedData.item1.typeSelected == helpMenuitem)
             {
-                UIManager.SendMenu(player, Menus["Wiki"]);
+                UIManager.SendMenu(player, "Wiki.MainMenu");
             }
         }
     }

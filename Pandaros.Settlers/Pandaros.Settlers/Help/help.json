@@ -1,0 +1,52 @@
+{
+  "Wiki": {
+    "MainMenu": {
+      "header": "Menu 1",
+      "width": 400,
+      "height": 300,
+      "Items": [
+        {
+          "type": "label",
+          "text": "Jobs!",
+          "alignement": "Center",
+          "fontsize": 32
+        },
+        {
+          "type": "space",
+          "height": 50
+        },
+        {
+          "type": "link",
+          "url": "wiki_Knights",
+          "width": 100,
+          "height": 25,
+          "label": {
+            "text": "Knights",
+            "color": "blue"
+          },
+        },
+        {
+          "type": "link",
+          "url": "wiki_Machinists",
+          "width": 100,
+          "height": 25,
+          "label": {
+            "text": "Machinists",
+            "color": "blue"
+          },
+        },
+        {
+          "type": "link",
+          "url": "wiki_Apothecary",
+          "width": 100,
+          "height": 25,
+          "label": {
+            "text": "Apothecary",
+            "color": "blue"
+          },
+        }
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,33 @@
+{
+  "Wiki": {
+    "Apothecary": {
+      "header": "Apothecary",
+      "width": 800,
+      "height": 600,
+      "Items": [
+        {
+          "type": "label",
+          "text": "Apothecary!",
+          "alignement": "Center",
+          "fontsize": 32
+        },
+        {
+          "type": "label",
+          "text": "Under construction...",
+          "alignement": "Left"
+        },
+        {
+          "type": "link",
+          "url": "wiki_Wiki",
+          "width": 150,
+          "label": {
+            "text": "Return to main menu",
+            "color": "blue",
+            "alignement": "Center"
+          }
+        }
+      ]
+    }
+  }
+}
+

@@ -46,9 +46,9 @@ namespace Pandaros.Settlers
         public static ushort NOAMMO_Icon { get; private set; }
         public static ushort Poisoned_Icon { get; private set; }
         public static ushort Bow_Icon { get; private set; }
+        public static JSONNode ModInfo { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            NAMESPACE + ".AfterSelectedWorld")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
             WorldLoaded                 = true;
@@ -77,6 +77,8 @@ namespace Pandaros.Settlers
             BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
             BLOCKS_HEIGHT_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
             BLOCKS_NORMAL_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
+
+            ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json");
 
             var fileWasCopied = false;
 

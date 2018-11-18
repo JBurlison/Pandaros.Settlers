@@ -13,22 +13,69 @@ namespace Pandaros.Settlers.Managers
     [ModLoader.ModManager]
     public static class UIManager
     {
-        public static void SendMenu(Players.Player player, string reference)
-        {
-            string url = reference.Substring(reference.IndexOf("_") + 1);
+        public static JSONNode LoadedMenus { get; private set; }
 
-            //look for dictionary
-            if(reference.StartsWith("wiki"))
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, GameLoader.NAMESPACE + ".Managers.OnAssemblyLoaded")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
+        public static void OnAssemblyLoaded(string path)
+        {
+            if (GameLoader.ModInfo.TryGetAs("jsonFiles", out JSONNode jsonFilles))
             {
-                if(HelpMenu.Menus.TryGetValue(url, out JSONNode ui))
-                    SendMenu(player, ui);
-                else
-                    throw new ArgumentException();
+                foreach (var jsonNode in jsonFilles.LoopArray())
+                {
+                    if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
+                    {
+                        var newMenu = JSON.Deserialize(GameLoader.MOD_FOLDER + menuFilePath);
+
+                        if (LoadedMenus == null)
+                            LoadedMenus = newMenu;
+                        else
+                        {
+                            MergeJsons(LoadedMenus, newMenu);
+                        }
+
+                        PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
+                    }
+                }
             }
             else
+                PandaLogger.Log(ChatColor.yellow, "Missing json files node from modinfo.json. Unable to load UI files.");
+        }
+
+        private static void MergeJsons(JSONNode oldNode, JSONNode newNode)
+        {
+            if (newNode.NodeType != NodeType.Array && oldNode.NodeType != NodeType.Array)
             {
-                Log.Write("<color=red>Not dictionary defined in UIManager</color>");
+                foreach(var node in newNode.LoopObject())
+                {
+                    if (oldNode.TryGetChild(node.Key, out JSONNode existingChild))
+                        MergeJsons(existingChild, node.Value);
+                    else
+                        oldNode.SetAs(node.Key, node.Value);
+                }
             }
+        }
+
+        public static void SendMenu(Players.Player player, string reference)
+        {
+            string url = reference;
+
+            if (reference.Contains("_"))
+                url = reference.Substring(reference.IndexOf("_") + 1);
+
+            var splitUrl = url.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            var uiNode = default(JSONNode);
+
+            foreach (var entry in splitUrl)
+            {
+                if (!LoadedMenus.TryGetAs(entry, out uiNode))
+                    break;
+            }
+
+            if (uiNode == default(JSONNode))
+                PandaLogger.Log(ChatColor.red, "Unable to find menu {0}", reference);
+            else
+                SendMenu(player, uiNode);
         }
 
         public static void SendMenu(Players.Player player, JSONNode json)
