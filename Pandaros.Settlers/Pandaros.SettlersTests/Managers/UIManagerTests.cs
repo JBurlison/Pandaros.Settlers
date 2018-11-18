@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Managers.Tests
         [TestInitialize]
         public void Init()
         {
-            GameLoader.OnAssemblyLoaded(@"C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers");
+            GameLoader.OnAssemblyLoaded(@"C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\Pandaros.Settlers.dll");
         }
 
         [TestMethod()]
