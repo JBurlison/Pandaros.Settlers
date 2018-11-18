@@ -531,8 +531,7 @@ namespace Pandaros.Settlers.Managers
             if (state.ColonyRef.OwnerIsOnline())
             {
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = Time.SecondsSinceStartDouble +
-                                        Random.Next(8, 16 - Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween), 0f))) * IN_GAME_HOUR_IN_SECONDS;
+                    state.NextGenTime = Time.SecondsSinceStartDouble + Random.Next(8, 16) * IN_GAME_HOUR_IN_SECONDS;
 
                 if (Time.SecondsSinceStartDouble > state.NextGenTime && state.ColonyRef.FollowerCount >= MAX_BUYABLE)
                 {
@@ -616,10 +615,7 @@ namespace Pandaros.Settlers.Managers
                     }
 
 
-                    state.NextGenTime = Time.SecondsSinceStartDouble +
-                                        Random.Next(8,
-                                                    16 - Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.TimeBetween),
-                                                                                               0f))) * IN_GAME_HOUR_IN_SECONDS;
+                    state.NextGenTime = Time.SecondsSinceStartDouble + Random.Next(8, 16) * IN_GAME_HOUR_IN_SECONDS;
 
                     state.ColonyRef.SendUpdate();
                 }

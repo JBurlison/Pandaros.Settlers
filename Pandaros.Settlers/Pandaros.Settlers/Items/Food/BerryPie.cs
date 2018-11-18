@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Extender;
+using Pandaros.Settlers.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -11,16 +12,16 @@ namespace Pandaros.Settlers.Items.Food
         public override bool? isPlaceable => false;
         public override float? nutritionalValue => 5.5f;
         public override ReadOnlyCollection<string> categories => new ReadOnlyCollection<string>(new List<string>() { "food" });
-        public Dictionary<string, int> Requirements => new Dictionary<string, int>()
+        public Dictionary<ItemId, int> Requirements => new Dictionary<ItemId, int>()
         {
-            { "flour", 4 },
-            { "berry", 4 },
-            { "firewood", 1 }
+            { ItemId.GetItemId("flour"), 4 },
+            { ItemId.GetItemId("berry"), 4 },
+            { ItemId.GetItemId("firewood"), 1 }
         };
 
-        public Dictionary<string, int> Results => new Dictionary<string, int>()
+        public Dictionary<ItemId, int> Results => new Dictionary<ItemId, int>()
         {
-            { Name, 2 }
+            { ItemId.GetItemId(Name), 2 }
         };
 
         public CraftPriority Priority => CraftPriority.High;

@@ -3,6 +3,7 @@ using Jobs;
 using NPC;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -218,17 +219,17 @@ namespace Pandaros.Settlers.Jobs
     {
         public virtual string Name => MachinistDay.JOB_RECIPE;
 
-        public Dictionary<string, int> Requirements => new Dictionary<string, int>()
+        public Dictionary<ItemId, int> Requirements => new Dictionary<ItemId, int>()
         {
-            { "bronzeingot", 2 },
-            { "ironwrought", 2 },
-            { "coppertools", 1 },
-            { "stonebricks", 4 }
+            { ItemId.GetItemId("bronzeingot"), 2 },
+            { ItemId.GetItemId("ironwrought"), 2 },
+            { ItemId.GetItemId("coppertools"), 1 },
+            { ItemId.GetItemId("stonebricks"), 4 }
         };
 
-        public Dictionary<string, int> Results => new Dictionary<string, int>()
+        public Dictionary<ItemId, int> Results => new Dictionary<ItemId, int>()
         {
-            { MachinistDay.JOB_ITEM_KEY, 1 }
+            { ItemId.GetItemId(MachinistDay.JOB_ITEM_KEY), 1 }
         };
 
         public CraftPriority Priority => CraftPriority.Medium;

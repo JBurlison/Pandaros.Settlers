@@ -73,8 +73,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                             if (iterationChunkLocation.y > (positionMax.y & -16))
                             {
-                                SchematicReader.UnloadSchematic(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName);
-                                SchematicReader.UnloadSchematic(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName);
+                                SchematicReader.UnloadSchematic(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName, iterationChunkLocation);
+                                SchematicReader.UnloadSchematic(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName, iterationChunkLocation);
                                 return false;
                             }
                         }

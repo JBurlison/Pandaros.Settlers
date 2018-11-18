@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -17,14 +18,14 @@ namespace Pandaros.Settlers.Jobs.Farmer.Animals
         public override string icon => GameLoader.ICON_PATH + "cow.png";
         public override ReadOnlyCollection<string> categories => new ReadOnlyCollection<string>(new List<string>() { "Animal" });
 
-        public Dictionary<string, int> Requirements => new Dictionary<string, int>()
+        public Dictionary<ItemId, int> Requirements => new Dictionary<ItemId, int>()
         {
-            { "goldcoin", 500 }
+            { ItemId.GetItemId("goldcoin"), 500 }
         };
 
-        public Dictionary<string, int> Results => new Dictionary<string, int>()
+        public Dictionary<ItemId, int> Results => new Dictionary<ItemId, int>()
         {
-            { Name, 1 }
+            { ItemId.GetItemId(Name), 1 }
         };
 
         public CraftPriority Priority => CraftPriority.Medium;
