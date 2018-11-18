@@ -1,9 +1,12 @@
 ﻿using NetworkUI;
 using Pandaros.Settlers.Items;
 using Pipliz;
+using Pipliz.JSON;
 using Shared;
 using System.Collections.Generic;
-using System.Linq;
+
+using Pandaros.Settlers.Managers;
+using System.IO;
 
 namespace Pandaros.Settlers.Help
 {
@@ -34,9 +37,27 @@ namespace Pandaros.Settlers.Help
     {
         public static readonly string NAMESPACE = GameLoader.NAMESPACE + ".HelpMenu.";
         public static readonly string MAIN_MENU_NAME = NAMESPACE + "MainMenu";
+        public static readonly string ModPath = GameLoader.MOD_FOLDER + "/help.json";
 
-        public static Dictionary<string, List<HelpMenuItem>> Menus { get; } = new Dictionary<string, List<HelpMenuItem>>();
+        public static Dictionary<string, JSONNode> Menus { get; } = new Dictionary<string, JSONNode>();
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, ".Help.HelpMenuItem.AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            if(File.Exists(ModPath))
+            {
+                JSONNode jsonFile = JSON.Deserialize(ModPath);
+
+                foreach(var child in jsonFile.LoopObject())
+                {
+                    Menus.Add(child.Key, child.Value);
+                    Log.Write(string.Format("<color=lime>Adding: {0}</color>", child.Key));
+                }
+                Log.Write("<color=green>" + ModPath + "FOUND</color>");
+            }
+            else
+                Log.Write("<color=red>" + ModPath + "NOT FOUND</color>");
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
@@ -63,21 +84,14 @@ namespace Pandaros.Settlers.Help
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
+            //Only launch on RIGHT click
+            if(player == null || boxedData.item1.clickType != PlayerClickedData.ClickType.Right)
+                return;
+
             if (ItemTypes.IndexLookup.TryGetIndex(HelpMenuActivator.NAME, out var helpMenuitem) &&
                 boxedData.item1.typeSelected == helpMenuitem)
             {
-                var nm = new NetworkMenu();
-                nm.Height = 600;
-                nm.Width = 1000;
-                nm.LocalStorage.SetAs("header", NAMESPACE + "title");
-                nm.Identifier = GameLoader.NAMESPACE + ".Help.HelpMenu";
-
-                foreach (var item in Menus[MAIN_MENU_NAME].OrderBy(i => i.Name))
-                {
-                    // TODO  
-                }
-
-                NetworkMenuManager.SendServerPopup(player, nm);
+                UIManager.SendMenu(player, Menus["Wiki"]);
             }
         }
     }
