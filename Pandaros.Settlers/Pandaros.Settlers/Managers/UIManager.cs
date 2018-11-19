@@ -263,7 +263,7 @@ namespace Pandaros.Settlers.Managers
 
                     if(item.HasChild("url"))
                     {
-                        url = "ui.link_" + item.GetAs<string>("url");
+                        url = GameLoader.NAMESPACE + ".link_" + item.GetAs<string>("url");
                     }
                     else
                     {
@@ -409,7 +409,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".UIManager.PressLink")]
         public static void PressButton(ButtonPressCallbackData data)
         {
-            if(data.ButtonIdentifier.StartsWith("ui.link_"))
+            if(data.ButtonIdentifier.StartsWith(GameLoader.NAMESPACE + ".link_"))
             {
                 string url = data.ButtonIdentifier.Substring(data.ButtonIdentifier.IndexOf("_") + 1);
 

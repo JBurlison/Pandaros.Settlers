@@ -8,11 +8,6 @@ using Shared;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
-    //public static void CreateNewAreaJob (string identifier, Pipliz.JSON.JSONNode args, Colony colony, Vector3Int min, Vector3Int max)
-    //on the areajobtracker
-    //identifier = pipliz.constructionarea
-    //then the args node has
-    //"constructionType" : "GameLoader.NAMESPACE + ".BlueprintBuilder"
     public class BlueprintBuilder : IConstructionType
     {
         public EAreaType AreaType => EAreaType.BuilderArea;
