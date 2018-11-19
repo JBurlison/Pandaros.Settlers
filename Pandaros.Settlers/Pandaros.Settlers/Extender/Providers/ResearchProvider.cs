@@ -26,12 +26,13 @@ namespace Pandaros.Settlers.Extender.Providers
                     research.ResearchComplete += pandaResearch.ResearchComplete;
                     ServerManager.ScienceManager.RegisterResearchable(research);
 
-                    for (var i = 2; i <= 5; i++)
-                    {
-                        research = new PandaResearch(pandaResearch.RequiredItems, i, pandaResearch.Name, pandaResearch.BaseValue, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
-                        research.ResearchComplete += pandaResearch.ResearchComplete;
-                        ServerManager.ScienceManager.RegisterResearchable(research);
-                    }
+                    if (pandaResearch.NumberOfLevels > 1)
+                        for (var i = 2; i <= pandaResearch.NumberOfLevels; i++)
+                        {
+                            research = new PandaResearch(pandaResearch.RequiredItems, i, pandaResearch.Name, pandaResearch.BaseValue, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
+                            research.ResearchComplete += pandaResearch.ResearchComplete;
+                            ServerManager.ScienceManager.RegisterResearchable(research);
+                        }
 
                     sb.Append(pandaResearch.Name + ", ");
                     pandaResearch.OnRegister();
