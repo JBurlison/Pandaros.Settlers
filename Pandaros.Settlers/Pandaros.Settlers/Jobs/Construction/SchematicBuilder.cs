@@ -8,7 +8,8 @@ using Shared;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
-    public class BlueprintBuilder : IConstructionType
+
+    public class SchematicBuilder : IConstructionType
     {
         public EAreaType AreaType => EAreaType.BuilderArea;
 
@@ -22,7 +23,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             try
             {
-                var bpi = iterationType as BlueprintIterator;
+                var bpi = iterationType as SchematicIterator;
                 var adjX = jobPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = jobPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = jobPosition.z - bpi.BuilderSchematic.StartPos.z;

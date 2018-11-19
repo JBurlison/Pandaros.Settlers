@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace Pandaros.Settlers.Jobs.Construction
 {
     [ModLoader.ModManager]
-    public class BlueprintBuilderLoader : IConstructionLoader
+    public class SchematicBuilderLoader : IConstructionLoader
     {
-        public static readonly string NAME = GameLoader.NAMESPACE + ".BlueprintBuilder";
+        public static readonly string NAME = GameLoader.NAMESPACE + ".SchematicBuilder";
 
         public string JobName => NAME;
 
@@ -21,26 +21,26 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (node == null)
                 return;
 
-           if (node.TryGetAs(NAME + ".BlueprintName", out string blueprint))
+           if (node.TryGetAs(NAME + ".SchematicName", out string Schematic))
             {
                 area.SetIterationType(new BottomToTop(area));
-                area.SetConstructionType(new BlueprintBuilder());
+                area.SetConstructionType(new SchematicBuilder());
             }
         }
 
         public void SaveTypes(ConstructionArea area, JSONNode node)
         {
-            var itt = area.IterationType as BlueprintIterator;
+            var itt = area.IterationType as SchematicIterator;
 
             if (itt != null)
-                node.SetAs(NAME + ".BlueprintName", itt.BlueprintName);
+                node.SetAs(NAME + ".SchematicName", itt.SchematicName);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Construction.BlueprintBuilderLoader")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicBuilderLoader")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadareajobs")]
         public static void Register()
         {
-            ConstructionArea.RegisterLoader(new BlueprintBuilderLoader());
+            ConstructionArea.RegisterLoader(new SchematicBuilderLoader());
         }
     }
 }

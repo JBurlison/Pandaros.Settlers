@@ -13,6 +13,24 @@ namespace Pandaros.Settlers.Buildings.NBT
     {
         static Dictionary<string, Dictionary<Vector3Int, Schematic>> _loadedSchematics = new Dictionary<string, Dictionary<Vector3Int, Schematic>>();
 
+        public static Schematic GetSchematic(string name, int colonyId, Vector3Int location)
+        {
+            var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
+            Schematic schematic = default(Schematic);
+
+            if (!Directory.Exists(colonySaves))
+                Directory.CreateDirectory(colonySaves);
+
+            if (File.Exists(colonySaves + name))
+                schematic = LoadSchematic(colonySaves + name, location);
+            else if (File.Exists(GameLoader.Schematic_DEFAULT_LOC + name))
+                schematic = LoadSchematic(GameLoader.Schematic_DEFAULT_LOC + name, location);
+            else
+                PandaLogger.Log(ChatColor.red, "Cannot find blueprint {0}!", name);
+
+            return schematic;
+        }
+
         public static Schematic LoadSchematic(string path, Vector3Int startPos)
         {
             if (_loadedSchematics.ContainsKey(path))

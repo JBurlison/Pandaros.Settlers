@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
-    public class BlueprintIterator : IIterationType
+    public class SchematicIterator : IIterationType
     {
         protected ConstructionArea area;
         protected Vector3Int positionMin;
@@ -16,10 +16,10 @@ namespace Pandaros.Settlers.Jobs.Construction
         protected Vector3Int iterationChunkLocation;
         protected int iterationIndex;
 
-        public string BlueprintName { get; private set; }
+        public string SchematicName { get; private set; }
         public Schematic BuilderSchematic { get; private set; }
 
-        public BlueprintIterator(ConstructionArea area, string blueprintName)
+        public SchematicIterator(ConstructionArea area, string SchematicName)
         {
             this.area = area;
             
@@ -29,18 +29,8 @@ namespace Pandaros.Settlers.Jobs.Construction
             iterationChunkLocation = new Vector3Int(positionMin.x & -16, positionMin.y & -16, positionMin.z & -16);
             iterationIndex = -1;
 
-            BlueprintName = blueprintName;
-            var colonySaves = GameLoader.BLUEPRINT_SAVE_LOC + $"\\{area.Owner.ColonyID}\\";
-
-            if (!Directory.Exists(colonySaves))
-                Directory.CreateDirectory(colonySaves);
-
-            if (File.Exists(colonySaves + BlueprintName))
-                BuilderSchematic = SchematicReader.LoadSchematic(colonySaves + BlueprintName, iterationChunkLocation);
-            else if (File.Exists(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName))
-                BuilderSchematic = SchematicReader.LoadSchematic(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName, iterationChunkLocation);
-            else
-                PandaLogger.Log(ChatColor.red, "Cannot find blueprint {0}!", BlueprintName);
+            SchematicName = SchematicName;
+            BuilderSchematic = SchematicReader.GetSchematic(SchematicName, area.Owner.ColonyID, iterationChunkLocation);
 
             MoveNext();
         }
@@ -77,8 +67,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                             if (iterationChunkLocation.y > (positionMax.y & -16))
                             {
-                                SchematicReader.UnloadSchematic(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName, iterationChunkLocation);
-                                SchematicReader.UnloadSchematic(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName, iterationChunkLocation);
+                                SchematicReader.UnloadSchematic(GameLoader.Schematic_SAVE_LOC + SchematicName, iterationChunkLocation);
+                                SchematicReader.UnloadSchematic(GameLoader.Schematic_DEFAULT_LOC + SchematicName, iterationChunkLocation);
                                 return false;
                             }
                         }

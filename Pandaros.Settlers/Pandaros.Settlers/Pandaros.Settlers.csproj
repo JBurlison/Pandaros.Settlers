@@ -197,10 +197,10 @@
     <Compile Include="Items\Weapons\IWeapon.cs" />
     <Compile Include="Items\Weapons\WeaponFactory.cs" />
     <Compile Include="Jobs\Construction\Architect.cs" />
-    <Compile Include="Jobs\Construction\BlueprintBuilder.cs" />
-    <Compile Include="Jobs\Construction\BlueprintBuilderLoader.cs" />
-    <Compile Include="Jobs\Construction\BlueprintIterator.cs" />
-    <Compile Include="Jobs\Construction\BlueprintTool.cs" />
+    <Compile Include="Jobs\Construction\SchematicBuilder.cs" />
+    <Compile Include="Jobs\Construction\SchematicBuilderLoader.cs" />
+    <Compile Include="Jobs\Construction\SchematicIterator.cs" />
+    <Compile Include="Jobs\Construction\SchematicTool.cs" />
     <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
     <Compile Include="Jobs\Farmer\FarmerJob.cs" />
     <Compile Include="Jobs\Machinist.cs" />
@@ -224,7 +224,7 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
-    <None Include="Blueprints\tower-1.schematic">
+    <None Include="Schematics\tower-1.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Help\Apothecary.json">
@@ -860,7 +860,7 @@
     <Content Include="icons\Bluebonnet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\Blueprints.png">
+    <Content Include="icons\Schematics.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\bow.png">
