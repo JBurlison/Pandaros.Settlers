@@ -22,7 +22,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         public BlueprintIterator(ConstructionArea area, string blueprintName)
         {
             this.area = area;
-
+            
             positionMin = area.Minimum;
             positionMax = area.Maximum;
 
@@ -30,9 +30,13 @@ namespace Pandaros.Settlers.Jobs.Construction
             iterationIndex = -1;
 
             BlueprintName = blueprintName;
+            var colonySaves = GameLoader.BLUEPRINT_SAVE_LOC + $"\\{area.Owner.ColonyID}\\";
 
-            if (File.Exists(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName))
-                BuilderSchematic = SchematicReader.LoadSchematic(GameLoader.BLUEPRINT_SAVE_LOC + BlueprintName, iterationChunkLocation);
+            if (!Directory.Exists(colonySaves))
+                Directory.CreateDirectory(colonySaves);
+
+            if (File.Exists(colonySaves + BlueprintName))
+                BuilderSchematic = SchematicReader.LoadSchematic(colonySaves + BlueprintName, iterationChunkLocation);
             else if (File.Exists(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName))
                 BuilderSchematic = SchematicReader.LoadSchematic(GameLoader.BLUEPRINT_DEFAULT_LOC + BlueprintName, iterationChunkLocation);
             else

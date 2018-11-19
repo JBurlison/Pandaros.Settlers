@@ -1,10 +1,13 @@
 ﻿using BlockTypes;
+using NetworkUI;
+using NetworkUI.Items;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Research;
 using Pipliz;
 using Shared;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +20,6 @@ namespace Pandaros.Settlers.Jobs.Construction
     public class Architect
     {
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.BlueprintTool.SetArea")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
-        {
-            if (ItemTypes.IndexLookup.TryGetIndex(BlueprintTool.NAME, out var blueprintItem) &&
-                boxedData.item1.typeSelected == blueprintItem)
-            {
-
-            }
-        }
+        
     }
 }
