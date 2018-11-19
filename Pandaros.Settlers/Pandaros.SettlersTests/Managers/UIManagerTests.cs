@@ -23,27 +23,8 @@ namespace Pandaros.Settlers.Managers.Tests
         [TestMethod()]
         public void MergeJsonsTest()
         {
-            if(GameLoader.ModInfo.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
-            {
-                foreach (var jsonNode in jsonFilles.LoopArray())
-                {
-                    if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
-                    {
-                        var newMenu = JSON.Deserialize(GameLoader.MOD_FOLDER + "\\" + menuFilePath);
-
-                        if (LoadedMenus == null)
-                            LoadedMenus = newMenu;
-                        else
-                        {
-                            UIManager.MergeJsons(LoadedMenus, newMenu);
-                        }
-
-                        PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
-                    }
-                }
-            }
-            else
-                PandaLogger.Log(ChatColor.yellow, "Missing json files node from modinfo.json. Unable to load UI files.");
+            UIManager.OnAssemblyLoaded(@"C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\Pandaros.Settlers.dll");
+            UIManager.SendMenu(new Players.Player(NetworkID.LocalHost), "Wiki.MainMenu");
         }
     }
 }

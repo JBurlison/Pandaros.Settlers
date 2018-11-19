@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-
 using Pipliz;
 using Pipliz.JSON;
 using NetworkUI;
@@ -64,15 +63,15 @@ namespace Pandaros.Settlers.Managers
                 url = reference.Substring(reference.IndexOf("_") + 1);
 
             var splitUrl = url.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            var uiNode = default(JSONNode);
+            var uiNode = LoadedMenus;
 
             foreach (var entry in splitUrl)
             {
-                if (!LoadedMenus.TryGetAs(entry, out uiNode))
+                if (!uiNode.TryGetAs(entry, out uiNode))
                     break;
             }
 
-            if (uiNode == default(JSONNode))
+            if (uiNode == default(JSONNode) || uiNode == LoadedMenus)
                 PandaLogger.Log(ChatColor.red, "Unable to find menu {0}", reference);
             else
                 SendMenu(player, uiNode);
