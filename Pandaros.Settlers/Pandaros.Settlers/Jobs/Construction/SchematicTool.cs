@@ -89,7 +89,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSendAreaHighlights, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.AreaHighlighted")]
-        public static void AreaHighlighted(Players.Player player, List<AreaJobTracker.AreaHighlight> list, List<ItemTypes.ItemType> showWhileHoldingTypes)
+        public static void AreaHighlighted(Players.Player player, List<AreaJobTracker.AreaHighlight> list, List<ushort> showWhileHoldingTypes)
         {
 
         }
