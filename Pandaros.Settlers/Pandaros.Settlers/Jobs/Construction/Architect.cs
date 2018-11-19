@@ -20,8 +20,8 @@ namespace Pandaros.Settlers.Jobs.Construction
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.BlueprintTool.SetArea")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
-            if (ItemTypes.IndexLookup.TryGetIndex(BlueprintTool.NAME, out var helpMenuitem) &&
-                boxedData.item1.typeSelected == helpMenuitem)
+            if (ItemTypes.IndexLookup.TryGetIndex(BlueprintTool.NAME, out var blueprintItem) &&
+                boxedData.item1.typeSelected == blueprintItem)
             {
 
             }

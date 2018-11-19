@@ -406,7 +406,7 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, "Khanx.UIManager.PressLink")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".UIManager.PressLink")]
         public static void PressButton(ButtonPressCallbackData data)
         {
             if(data.ButtonIdentifier.StartsWith("ui.link_"))
