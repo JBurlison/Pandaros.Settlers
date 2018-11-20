@@ -20,9 +20,10 @@ namespace Pandaros.Settlers.Buildings.NBT.Tests
         [TestMethod()]
         public void TryGetSchematicTest()
         {
-            SchematicReader.TryGetSchematic("tower-1.schematic", 1, new Pipliz.Vector3Int(0, 0, 0), out Schematic schematic);
+            
+            SchematicReader.TryGetSchematicMetadata("tower-1.schematic", 1, out var schematic);
 
-                
+            var s = schematic.Blocks;
         }
     }
 }

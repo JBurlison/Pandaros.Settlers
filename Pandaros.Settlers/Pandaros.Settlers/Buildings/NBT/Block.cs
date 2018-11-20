@@ -1,13 +1,13 @@
 ﻿namespace Pandaros.Settlers.Buildings.NBT
 {
-    public class Block
+    public class SchematicBlock
     {
-        static Block()
+        static SchematicBlock()
         {
-            Air = new Block();
+            Air = new SchematicBlock();
         }
 
-        public static Block Air { get; private set; }
+        public static SchematicBlock Air { get; private set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }

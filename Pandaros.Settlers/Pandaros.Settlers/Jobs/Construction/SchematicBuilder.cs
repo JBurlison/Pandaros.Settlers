@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
-            Block block = default(Block);
+            SchematicBlock block = default(SchematicBlock);
             Vector3Int jobPosition = iterationType.CurrentPosition;
 
             try
@@ -38,8 +38,8 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
             catch (System.Exception) { }
 
-            if (block == default(Block))
-                block = Block.Air;
+            if (block == default(SchematicBlock))
+                block = SchematicBlock.Air;
 
             var mapped = block.MappedBlock;
             var buildType = ItemTypes.GetType(mapped.CSIndex);

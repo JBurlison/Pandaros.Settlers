@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Buildings.NBT
     {
         private const string ERROR_MESSAGE = "Schematic builders may not function properly. Undable to deserialize {0}";
         public static readonly string WorldPath = GameLoader.SAVE_LOC + "MCtoCSMapping.json";
-        public static readonly string ModPath = GameLoader.MOD_FOLDER + "MCtoCSMapping.json";
+        public static readonly string ModPath = GameLoader.MOD_FOLDER + "/MCtoCSMapping.json";
 
         public static Dictionary<string, MappingBlock> BlockMappings { get; set; } = new Dictionary<string, MappingBlock>();
         static BlockMapping()

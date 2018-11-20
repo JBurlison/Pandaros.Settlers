@@ -115,6 +115,7 @@
     <Compile Include="Buildings\NBT\BlockMapping.cs" />
     <Compile Include="Buildings\NBT\RawSchematic.cs" />
     <Compile Include="Buildings\NBT\Schematic.cs" />
+    <Compile Include="Buildings\NBT\SchematicMetadata.cs" />
     <Compile Include="Buildings\NBT\SchematicReader.cs" />
     <Compile Include="Buildings\NBT\TileEntity.cs" />
     <Compile Include="Configuration.cs" />

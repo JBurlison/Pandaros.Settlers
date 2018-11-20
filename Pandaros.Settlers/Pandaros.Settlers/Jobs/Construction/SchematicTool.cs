@@ -10,6 +10,7 @@ using Shared;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -43,9 +44,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                 {
                     NetworkMenu menu = new NetworkMenu();
                     menu.LocalStorage.SetAs("header", "Schematic Menu");
-                    List<string> options = GetSchematics(player);
+                    List<FileInfo> options = SchematicReader.GetSchematics(player);
 
-                    menu.Items.Add(new DropDown(GameLoader.NAMESPACE + ".Schematic", "SelectedSchematic", options));
+                    menu.Items.Add(new DropDown(GameLoader.NAMESPACE + ".Schematic", "SelectedSchematic", options.Select(fi => fi.Name).ToList()));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build")));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlaceBuilder", new LabelData("Place Builder")));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
@@ -88,29 +89,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
         }
 
-        public static List<string> GetSchematics(Players.Player player)
-        {
-            var options = new List<string>();
-            var colonySchematics = GameLoader.Schematic_SAVE_LOC + $"\\{player.ActiveColony.ColonyID}\\";
-
-            if (!Directory.Exists(colonySchematics))
-                Directory.CreateDirectory(colonySchematics);
-
-            if (player.ActiveColony != null)
-                foreach (var file in Directory.EnumerateFiles(colonySchematics))
-                {
-                    var fi = new FileInfo(file);
-                    options.Add(fi.Name);
-                }
-
-            foreach (var file in Directory.EnumerateFiles(GameLoader.Schematic_DEFAULT_LOC))
-            {
-                var fi = new FileInfo(file);
-                options.Add(fi.Name);
-            }
-
-            return options;
-        }
+        
 
         //public static void CreateNewAreaJob (string identifier, Pipliz.JSON.JSONNode args, Colony colony, Vector3Int min, Vector3Int max)
         //on the areajobtracker
@@ -130,13 +109,13 @@ namespace Pandaros.Settlers.Jobs.Construction
                     break;
 
                 case GameLoader.NAMESPACE + ".SetBuildArea":
-                    List<string> options = GetSchematics(data.Player);
+                    List<FileInfo> options = SchematicReader.GetSchematics(data.Player);
                     var index = data.Storage.GetAs<int>(Selected_Schematic);
 
                     if (options.Count > index)
                     {
                         var schematic = options[index];
-                        _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.Build, schematic));
+                        _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.Build, schematic.Name));
                         PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
                     }
 
