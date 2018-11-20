@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         public string SchematicName { get; private set; }
         public Schematic BuilderSchematic { get; private set; }
 
-        public SchematicIterator(ConstructionArea area, string SchematicName)
+        public SchematicIterator(ConstructionArea area, string schematicName)
         {
             this.area = area;
             
@@ -29,8 +29,10 @@ namespace Pandaros.Settlers.Jobs.Construction
             iterationChunkLocation = new Vector3Int(positionMin.x & -16, positionMin.y & -16, positionMin.z & -16);
             iterationIndex = -1;
 
-            SchematicName = SchematicName;
-            BuilderSchematic = SchematicReader.GetSchematic(SchematicName, area.Owner.ColonyID, iterationChunkLocation);
+            SchematicName = schematicName;
+
+            if (SchematicReader.TryGetSchematic(SchematicName, area.Owner.ColonyID, iterationChunkLocation, out var schematic))
+                BuilderSchematic = schematic;
 
             MoveNext();
         }

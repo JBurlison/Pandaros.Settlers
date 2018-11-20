@@ -6,15 +6,23 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Research;
 using Pipliz;
 using Shared;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
+    public enum SchematicClickType
+    {
+        Build,
+        Archetect
+    }
+
     [ModLoader.ModManager]
     public class SchematicMenu
     {
         private static readonly string Selected_Schematic = GameLoader.NAMESPACE + ".SelectedSchematic";
+        private static Dictionary<Players.Player, Tuple<SchematicClickType, string>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
@@ -28,15 +36,36 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var SchematicItem) &&
                 boxedData.item1.typeSelected == SchematicItem)
             {
-                NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", "Schematic Menu");
-                List<string> options = GetSchematics(player);
+                if (!_awaitingClick.ContainsKey(player))
+                {
+                    NetworkMenu menu = new NetworkMenu();
+                    menu.LocalStorage.SetAs("header", "Schematic Menu");
+                    List<string> options = GetSchematics(player);
 
-                menu.Items.Add(new DropDown(GameLoader.NAMESPACE + ".Schematic", "SelectedSchematic", options));
-                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build")));
-                menu.LocalStorage.SetAs(Selected_Schematic, 0);
+                    menu.Items.Add(new DropDown(GameLoader.NAMESPACE + ".Schematic", "SelectedSchematic", options));
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build")));
+                    menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
-                NetworkMenuManager.SendServerPopup(player, menu);
+                    NetworkMenuManager.SendServerPopup(player, menu);
+                }
+                else
+                {
+                    var tuple = _awaitingClick[player];
+                    _awaitingClick.Remove(player);
+
+                    switch (tuple.Item1)
+                    {
+                        case SchematicClickType.Build:
+
+
+
+                            break;
+
+                        case SchematicClickType.Archetect:
+
+                            break;
+                    }
+                }
             }
         }
 
@@ -82,8 +111,9 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 if (options.Count > index)
                 {
-                    var Schematic = options[index];
-                    AreaJobTracker.SendData(data.Player);
+                    var schematic = options[index];
+                    _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.Build, schematic));
+                    PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
                 }
             }
         }

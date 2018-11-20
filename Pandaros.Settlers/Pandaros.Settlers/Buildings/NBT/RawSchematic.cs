@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Buildings.NBT
 {
-    internal class RawSchematic
+    public class RawSchematicSize
     {
         public int XMax { get; set; }
         public int YMax { get; set; }
         public int ZMax { get; set; }
+    }
+
+    public class RawSchematic : RawSchematicSize
+    {
         public string Materials { get; set; }
         public byte[] Blocks { get; set; }
         public byte[] Data { get; set; }

@@ -13,25 +13,47 @@ namespace Pandaros.Settlers.Buildings.NBT
     {
         static Dictionary<string, Dictionary<Vector3Int, Schematic>> _loadedSchematics = new Dictionary<string, Dictionary<Vector3Int, Schematic>>();
 
-        public static Schematic GetSchematic(string name, int colonyId, Vector3Int location)
+        public static bool TryGetSchematic(string name, int colonyId, Vector3Int location, out Schematic schematic)
         {
-            var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
-            Schematic schematic = default(Schematic);
+            if (TryGetScematicLocation(name, colonyId, out var scematic))
+                schematic = LoadSchematic(scematic, location);
+            else
+                schematic = null;
+
+            return schematic != null;
+        }
+
+        public static bool GetSchematicSize(string name, int colonyId, out RawSchematicSize size)
+        {
+            if (TryGetScematicLocation(name, colonyId, out var scematic))
+                size = LoadRawSize(new NbtFile(scematic));
+            else
+                size = null;
+
+            return size != null;
+        }
+
+        public static bool TryGetScematicLocation(string name, int colonyId, out string colonySaves)
+        {
+            colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
 
             if (!Directory.Exists(colonySaves))
                 Directory.CreateDirectory(colonySaves);
 
             if (File.Exists(colonySaves + name))
-                schematic = LoadSchematic(colonySaves + name, location);
+                colonySaves = colonySaves + name;
             else if (File.Exists(GameLoader.Schematic_DEFAULT_LOC + name))
-                schematic = LoadSchematic(GameLoader.Schematic_DEFAULT_LOC + name, location);
+                colonySaves = GameLoader.Schematic_DEFAULT_LOC + name;
             else
+            {
                 PandaLogger.Log(ChatColor.red, "Cannot find blueprint {0}!", name);
+                colonySaves = null;
+            }
 
-            return schematic;
+            return !string.IsNullOrWhiteSpace(colonySaves);
         }
 
-        public static Schematic LoadSchematic(string path, Vector3Int startPos)
+        private static Schematic LoadSchematic(string path, Vector3Int startPos)
         {
             if (_loadedSchematics.ContainsKey(path))
                 if (_loadedSchematics[path].ContainsKey(startPos))
@@ -76,6 +98,31 @@ namespace Pandaros.Settlers.Buildings.NBT
             _loadedSchematics[nbtFile.FileName][startPos] = schematic;
 
             return schematic;
+        }
+
+        private static RawSchematicSize LoadRawSize(NbtFile nbtFile)
+        {
+            RawSchematicSize raw = new RawSchematicSize();
+            var rootTag = nbtFile.RootTag;
+
+            foreach (NbtTag tag in rootTag.Tags)
+            {
+                switch (tag.Name)
+                {
+                    case "Width": //Short
+                        raw.XMax = tag.ShortValue;
+                        break;
+                    case "Height": //Short
+                        raw.YMax = tag.ShortValue;
+                        break;
+                    case "Length": //Short
+                        raw.ZMax = tag.ShortValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return raw;
         }
 
         private static RawSchematic LoadRaw(NbtFile nbtFile)
