@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     menu.LocalStorage.SetAs("header", "Schematic Menu");
                     List<FileInfo> options = SchematicReader.GetSchematics(player);
 
-                    menu.Items.Add(new DropDown(GameLoader.NAMESPACE + ".Schematic", "SelectedSchematic", options.Select(fi => fi.Name).ToList()));
+                    menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build")));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlaceBuilder", new LabelData("Place Builder")));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
@@ -69,6 +69,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                             if (SchematicReader.TryGetSchematicSize(tuple.Item2, player.ActiveColony.ColonyID, out RawSchematicSize schematicSize))
                             {
                                 AreaJobTracker.CreateNewAreaJob("pipliz.constructionarea", args, player.ActiveColony, location, location.Add(schematicSize.XMax, schematicSize.YMax, schematicSize.ZMax));
+                                AreaJobTracker.SendData(player);
                             }
 
                             break;
