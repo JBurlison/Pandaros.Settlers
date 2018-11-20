@@ -70,7 +70,10 @@ namespace Pandaros.Settlers.Buildings.NBT
 
                         newBlock.CSIndex = newType;
 
-                        BlockMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
+                        if (newBlock.Meta > 0)
+                            BlockMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
+                        else
+                            BlockMappings[newBlock.Type.ToString()] = newBlock;
                     }
                 }
                 else

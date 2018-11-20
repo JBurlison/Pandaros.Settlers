@@ -18,7 +18,13 @@
         {
             get
             {
-                return BlockMapping.BlockMappings[ItemID];
+                if (BlockMapping.BlockMappings.TryGetValue(ItemID, out var mapping))
+                    return mapping;
+                else
+                {
+                    PandaLogger.Log(ChatColor.yellow, "Unable to find mapping for block {0}", ToString());
+                    return BlockMapping.BlockMappings[BlockTypes.BuiltinBlocks.Air.ToString()];
+                }
             }
         }
 

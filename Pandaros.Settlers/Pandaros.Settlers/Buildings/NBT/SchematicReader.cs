@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Buildings.NBT
 
         public static bool TryGetSchematic(string name, int colonyId, Vector3Int location, out Schematic schematic)
         {
-            if (TryGetScematicLocation(name, colonyId, out var scematic))
+            if (TryGetScematicFilePath(name, colonyId, out var scematic))
                 schematic = LoadSchematic(scematic, location);
             else
                 schematic = null;
@@ -23,9 +23,9 @@ namespace Pandaros.Settlers.Buildings.NBT
             return schematic != null;
         }
 
-        public static bool GetSchematicSize(string name, int colonyId, out RawSchematicSize size)
+        public static bool TryGetSchematicSize(string name, int colonyId, out RawSchematicSize size)
         {
-            if (TryGetScematicLocation(name, colonyId, out var scematic))
+            if (TryGetScematicFilePath(name, colonyId, out var scematic))
                 size = LoadRawSize(new NbtFile(scematic));
             else
                 size = null;
@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             return size != null;
         }
 
-        public static bool TryGetScematicLocation(string name, int colonyId, out string colonySaves)
+        public static bool TryGetScematicFilePath(string name, int colonyId, out string colonySaves)
         {
             colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
 

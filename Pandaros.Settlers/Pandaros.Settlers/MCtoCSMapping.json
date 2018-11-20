@@ -11,315 +11,315 @@
     "meta": 0,
     "name": "Stone",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "stoneblock"
   },
   {
     "type": 1,
     "meta": 1,
     "name": "Granite",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "cobblestonered"
   },
   {
     "type": 1,
     "meta": 2,
     "name": "Polished Granite",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "bricksred"
   },
   {
     "type": 1,
     "meta": 3,
     "name": "Diorite",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "cobblestonegrey"
   },
   {
     "type": 1,
     "meta": 4,
     "name": "Polished Diorite",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "cobblestonegrey"
   },
   {
     "type": 1,
     "meta": 5,
     "name": "Andesite",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "cobblestoneblack"
   },
   {
     "type": 1,
     "meta": 6,
     "name": "Polished Andesite",
     "text_type": "stone",
-    "cs_type": ""
+    "cs_type": "cobblestoneblack"
   },
   {
     "type": 2,
     "meta": 0,
     "name": "Grass",
     "text_type": "grass",
-    "cs_type": ""
+    "cs_type": "grasshotmid"
   },
   {
     "type": 3,
     "meta": 0,
     "name": "Dirt",
     "text_type": "dirt",
-    "cs_type": ""
+    "cs_type": "dirt"
   },
   {
     "type": 3,
     "meta": 1,
     "name": "Coarse Dirt",
     "text_type": "dirt",
-    "cs_type": ""
+    "cs_type": "dirt"
   },
   {
     "type": 3,
     "meta": 2,
     "name": "Podzol",
     "text_type": "dirt",
-    "cs_type": ""
+    "cs_type": "adobe"
   },
   {
     "type": 4,
     "meta": 0,
     "name": "Cobblestone",
     "text_type": "cobblestone",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 5,
     "meta": 0,
     "name": "Oak Wood Plank",
     "text_type": "planks",
-    "cs_type": ""
+    "cs_type": "planks"
   },
   {
     "type": 5,
     "meta": 1,
     "name": "Spruce Wood Plank",
     "text_type": "planks",
-    "cs_type": ""
+    "cs_type": "planks"
   },
   {
     "type": 5,
     "meta": 2,
     "name": "Birch Wood Plank",
     "text_type": "planks",
-    "cs_type": ""
+    "cs_type": "planks"
   },
   {
     "type": 5,
     "meta": 3,
     "name": "Jungle Wood Plank",
     "text_type": "planks",
-    "cs_type": ""
+    "cs_type": "planks"
   },
   {
     "type": 5,
     "meta": 4,
     "name": "Acacia Wood Plank",
     "text_type": "planks",
-    "cs_type": ""
+    "cs_type": "coatedplanks"
   },
   {
     "type": 5,
     "meta": 5,
     "name": "Dark Oak Wood Plank",
     "text_type": "planks",
-    "cs_type": ""
+    "cs_type": "blackplanks"
   },
   {
     "type": 6,
     "meta": 0,
     "name": "Oak Sapling",
     "text_type": "sapling",
-    "cs_type": ""
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 1,
     "name": "Spruce Sapling",
     "text_type": "sapling",
-    "cs_type": ""
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 2,
     "name": "Birch Sapling",
     "text_type": "sapling",
-    "cs_type": ""
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 3,
     "name": "Jungle Sapling",
     "text_type": "sapling",
-    "cs_type": ""
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 4,
     "name": "Acacia Sapling",
     "text_type": "sapling",
-    "cs_type": ""
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 5,
     "name": "Dark Oak Sapling",
     "text_type": "sapling",
-    "cs_type": ""
+    "cs_type": "sappling"
   },
   {
     "type": 7,
     "meta": 0,
     "name": "Bedrock",
     "text_type": "bedrock",
-    "cs_type": ""
+    "cs_type": "darkstone"
   },
   {
     "type": 8,
     "meta": 0,
     "name": "Flowing Water",
     "text_type": "flowing_water",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.AutoLoad.NotWater"
   },
   {
     "type": 9,
     "meta": 0,
     "name": "Still Water",
     "text_type": "water",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.AutoLoad.NotWater"
   },
   {
     "type": 10,
     "meta": 0,
     "name": "Flowing Lava",
     "text_type": "flowing_lava",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
   },
   {
     "type": 11,
     "meta": 0,
     "name": "Still Lava",
     "text_type": "lava",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
   },
   {
     "type": 12,
     "meta": 0,
     "name": "Sand",
     "text_type": "sand",
-    "cs_type": ""
+    "cs_type": "sand"
   },
   {
     "type": 12,
     "meta": 1,
     "name": "Red Sand",
     "text_type": "sand",
-    "cs_type": ""
+    "cs_type": "sand"
   },
   {
     "type": 13,
     "meta": 0,
     "name": "Gravel",
     "text_type": "gravel",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 14,
     "meta": 0,
     "name": "Gold Ore",
     "text_type": "gold_ore",
-    "cs_type": ""
+    "cs_type": "infinitegold"
   },
   {
     "type": 15,
     "meta": 0,
     "name": "Iron Ore",
     "text_type": "iron_ore",
-    "cs_type": ""
+    "cs_type": "infiniteiron"
   },
   {
     "type": 16,
     "meta": 0,
     "name": "Coal Ore",
     "text_type": "coal_ore",
-    "cs_type": ""
+    "cs_type": "infinitecoal"
   },
   {
     "type": 17,
     "meta": 0,
     "name": "Oak Wood",
     "text_type": "log",
-    "cs_type": ""
+    "cs_type": "logtemperate"
   },
   {
     "type": 17,
     "meta": 1,
     "name": "Spruce Wood",
     "text_type": "log",
-    "cs_type": ""
+    "cs_type": "logtaiga"
   },
   {
     "type": 17,
     "meta": 2,
     "name": "Birch Wood",
     "text_type": "log",
-    "cs_type": ""
+    "cs_type": "logtemperate"
   },
   {
     "type": 17,
     "meta": 3,
     "name": "Jungle Wood",
     "text_type": "log",
-    "cs_type": ""
+    "cs_type": "logtemperate"
   },
   {
     "type": 18,
     "meta": 0,
     "name": "Oak Leaves",
     "text_type": "leaves",
-    "cs_type": ""
+    "cs_type": "leavestemperate"
   },
   {
     "type": 18,
     "meta": 1,
     "name": "Spruce Leaves",
     "text_type": "leaves",
-    "cs_type": ""
+    "cs_type": "leavestemperate"
   },
   {
     "type": 18,
     "meta": 2,
     "name": "Birch Leaves",
     "text_type": "leaves",
-    "cs_type": ""
+    "cs_type": "leavestemperate"
   },
   {
     "type": 18,
     "meta": 3,
     "name": "Jungle Leaves",
     "text_type": "leaves",
-    "cs_type": ""
+    "cs_type": "leavesgreendark"
   },
   {
     "type": 19,
     "meta": 0,
     "name": "Sponge",
     "text_type": "sponge",
-    "cs_type": ""
+    "cs_type": "carpetyellow"
   },
   {
     "type": 19,
     "meta": 1,
     "name": "Wet Sponge",
     "text_type": "sponge",
-    "cs_type": ""
+    "cs_type": "carpetyellow"
   },
   {
     "type": 20,
@@ -333,56 +333,56 @@
     "meta": 0,
     "name": "Lapis Lazuli Ore",
     "text_type": "lapis_ore",
-    "cs_type": ""
+    "cs_type": "carpetblue"
   },
   {
     "type": 22,
     "meta": 0,
     "name": "Lapis Lazuli Block",
     "text_type": "lapis_block",
-    "cs_type": ""
+    "cs_type": "carpetblue"
   },
   {
     "type": 23,
     "meta": 0,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 24,
     "meta": 0,
     "name": "Sandstone",
     "text_type": "sandstone",
-    "cs_type": ""
+    "cs_type": "sand"
   },
   {
     "type": 24,
     "meta": 1,
     "name": "Chiseled Sandstone",
     "text_type": "sandstone",
-    "cs_type": ""
+    "cs_type": "sand"
   },
   {
     "type": 24,
     "meta": 2,
     "name": "Smooth Sandstone",
     "text_type": "sandstone",
-    "cs_type": ""
+    "cs_type": "sand"
   },
   {
     "type": 25,
     "meta": 0,
     "name": "Note Block",
     "text_type": "noteblock",
-    "cs_type": ""
+    "cs_type": "planks"
   },
   {
     "type": 26,
     "meta": 0,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": ""
+    "cs_type": "bed"
   },
   {
     "type": 27,
@@ -417,35 +417,35 @@
     "meta": 0,
     "name": "Dead Shrub",
     "text_type": "tallgrass",
-    "cs_type": ""
+    "cs_type": "sapling"
   },
   {
     "type": 31,
     "meta": 1,
     "name": "Grass",
     "text_type": "tallgrass",
-    "cs_type": ""
+    "cs_type": "sapling"
   },
   {
     "type": 31,
     "meta": 2,
     "name": "Fern",
     "text_type": "tallgrass",
-    "cs_type": ""
+    "cs_type": "sapling"
   },
   {
     "type": 32,
     "meta": 0,
     "name": "Dead Bush",
     "text_type": "deadbush",
-    "cs_type": ""
+    "cs_type": "sapling"
   },
   {
     "type": 33,
     "meta": 0,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 34,
@@ -466,105 +466,105 @@
     "meta": 1,
     "name": "Orange Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "carpetwhite"
   },
   {
     "type": 35,
     "meta": 2,
     "name": "Magenta Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetmagenta"
   },
   {
     "type": 35,
     "meta": 3,
     "name": "Light Blue Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetlightblue"
   },
   {
     "type": 35,
     "meta": 4,
     "name": "Yellow Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "carpetyellow"
   },
   {
     "type": 35,
     "meta": 5,
     "name": "Lime Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetgreen"
   },
   {
     "type": 35,
     "meta": 6,
     "name": "Pink Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetpink"
   },
   {
     "type": 35,
     "meta": 7,
     "name": "Gray Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetgrey"
   },
   {
     "type": 35,
     "meta": 8,
     "name": "Light Gray Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetgrey"
   },
   {
     "type": 35,
     "meta": 9,
     "name": "Cyan Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetcyan"
   },
   {
     "type": 35,
     "meta": 10,
     "name": "Purple Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetpurple"
   },
   {
     "type": 35,
     "meta": 11,
     "name": "Blue Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "carpetblue"
   },
   {
     "type": 35,
     "meta": 12,
     "name": "Brown Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetbrown"
   },
   {
     "type": 35,
     "meta": 13,
     "name": "Green Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetgreen"
   },
   {
     "type": 35,
     "meta": 14,
     "name": "Red Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "carpetred"
   },
   {
     "type": 35,
     "meta": 15,
     "name": "Black Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.carpetblack"
   },
   {
     "type": 37,
@@ -814,6 +814,34 @@
   {
     "type": 50,
     "meta": 0,
+    "name": "Torch",
+    "text_type": "torch",
+    "cs_type": "torchx+"
+  },
+  {
+    "type": 50,
+    "meta": 1,
+    "name": "Torch",
+    "text_type": "torch",
+    "cs_type": "torchx-"
+  },
+  {
+    "type": 50,
+    "meta": 2,
+    "name": "Torch",
+    "text_type": "torch",
+    "cs_type": "torchy+"
+  },
+  {
+    "type": 50,
+    "meta": 3,
+    "name": "Torch",
+    "text_type": "torch",
+    "cs_type": "torchz+"
+  },
+  {
+    "type": 50,
+    "meta": 4,
     "name": "Torch",
     "text_type": "torch",
     "cs_type": ""

@@ -5,6 +5,7 @@ using Pandaros.Settlers.Buildings.NBT;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Research;
 using Pipliz;
+using Pipliz.JSON;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,9 @@ namespace Pandaros.Settlers.Jobs.Construction
     public enum SchematicClickType
     {
         Build,
-        Archetect
+        PlaceBuilder,
+        Archetect,
+        PlaceArchetect
     }
 
     [ModLoader.ModManager]
@@ -44,6 +47,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     menu.Items.Add(new DropDown(GameLoader.NAMESPACE + ".Schematic", "SelectedSchematic", options));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build")));
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlaceBuilder", new LabelData("Place Builder")));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
                     NetworkMenuManager.SendServerPopup(player, menu);
@@ -56,12 +60,27 @@ namespace Pandaros.Settlers.Jobs.Construction
                     switch (tuple.Item1)
                     {
                         case SchematicClickType.Build:
+                            Vector3Int location = boxedData.item1.rayCastHit.voxelHit.Add(0, 1, 0);
+                            var args = new JSONNode();
+                            args.SetAs("constructionType", GameLoader.NAMESPACE + ".SchematicBuilder");
+                            args.SetAs(SchematicBuilderLoader.NAME + ".SchematicName", tuple.Item2);
 
+                            if (SchematicReader.TryGetSchematicSize(tuple.Item2, player.ActiveColony.ColonyID, out RawSchematicSize schematicSize))
+                            {
+                                AreaJobTracker.CreateNewAreaJob("pipliz.constructionarea", args, player.ActiveColony, location, location.Add(schematicSize.XMax, schematicSize.YMax, schematicSize.ZMax));
+                            }
 
+                            break;
+
+                        case SchematicClickType.PlaceBuilder:
 
                             break;
 
                         case SchematicClickType.Archetect:
+
+                            break;
+
+                        case SchematicClickType.PlaceArchetect:
 
                             break;
                     }
@@ -104,17 +123,24 @@ namespace Pandaros.Settlers.Jobs.Construction
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
-            if (data.ButtonIdentifier == GameLoader.NAMESPACE + ".SetBuildArea")
+            switch (data.ButtonIdentifier)
             {
-                List<string> options = GetSchematics(data.Player);
-                var index = data.Storage.GetAs<int>(Selected_Schematic);
+                case GameLoader.NAMESPACE + ".PlaceBuilder":
+                    _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.PlaceBuilder, string.Empty));
+                    break;
 
-                if (options.Count > index)
-                {
-                    var schematic = options[index];
-                    _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.Build, schematic));
-                    PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
-                }
+                case GameLoader.NAMESPACE + ".SetBuildArea":
+                    List<string> options = GetSchematics(data.Player);
+                    var index = data.Storage.GetAs<int>(Selected_Schematic);
+
+                    if (options.Count > index)
+                    {
+                        var schematic = options[index];
+                        _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.Build, schematic));
+                        PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+                    }
+
+                    break;
             }
         }
 
