@@ -813,38 +813,38 @@
   },
   {
     "type": 50,
-    "meta": 0,
+    "meta": 1,
     "name": "Torch",
     "text_type": "torch",
     "cs_type": "torchx+"
   },
   {
     "type": 50,
-    "meta": 1,
+    "meta": 2,
     "name": "Torch",
     "text_type": "torch",
     "cs_type": "torchx-"
   },
   {
     "type": 50,
-    "meta": 2,
-    "name": "Torch",
-    "text_type": "torch",
-    "cs_type": "torchy+"
-  },
-  {
-    "type": 50,
     "meta": 3,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz+"
+    "cs_type": "torchz-"
   },
   {
     "type": 50,
     "meta": 4,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torchz+"
+  },
+  {
+    "type": 50,
+    "meta": 5,
+    "name": "Torch",
+    "text_type": "torch",
+    "cs_type": "torchy+"
   },
   {
     "type": 51,
