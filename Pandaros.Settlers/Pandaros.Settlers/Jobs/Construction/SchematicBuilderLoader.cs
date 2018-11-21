@@ -21,9 +21,9 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (node == null)
                 return;
 
-           if (node.TryGetAs(NAME + ".SchematicName", out string Schematic))
+           if (node.TryGetAs(NAME + ".SchematicName", out string schematic))
             {
-                area.SetIterationType(new BottomToTop(area));
+                area.SetIterationType(new SchematicIterator(area, schematic));
                 area.SetConstructionType(new SchematicBuilder());
             }
         }

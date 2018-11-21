@@ -47,8 +47,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                     List<FileInfo> options = SchematicReader.GetSchematics(player);
 
                     menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build")));
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlaceBuilder", new LabelData("Place Builder")));
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black)));
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlaceBuilder", new LabelData("Place Builder", UnityEngine.Color.black)));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
                     NetworkMenuManager.SendServerPopup(player, menu);

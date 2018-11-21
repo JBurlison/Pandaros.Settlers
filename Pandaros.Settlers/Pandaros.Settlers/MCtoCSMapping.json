@@ -811,40 +811,48 @@
     "text_type": "obsidian",
     "cs_type": ""
   },
+
+  {
+    "type": 50,
+    "meta": 0,
+    "name": "Torch",
+    "text_type": "torch",
+    "cs_type": ""
+  },
   {
     "type": 50,
     "meta": 1,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchx+"
+    "cs_type": ""
   },
   {
     "type": 50,
     "meta": 2,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchx-"
+    "cs_type": ""
   },
   {
     "type": 50,
     "meta": 3,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz-"
+    "cs_type": ""
   },
   {
     "type": 50,
     "meta": 4,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz+"
+    "cs_type": ""
   },
   {
     "type": 50,
     "meta": 5,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchy+"
+    "cs_type": ""
   },
   {
     "type": 51,

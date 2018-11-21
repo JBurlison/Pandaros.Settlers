@@ -24,9 +24,11 @@ namespace Pandaros.Settlers.Jobs.Construction
             try
             {
                 var bpi = iterationType as SchematicIterator;
+
                 var adjX = jobPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = jobPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = jobPosition.z - bpi.BuilderSchematic.StartPos.z;
+
 
                 if (bpi != null &&
                     bpi.BuilderSchematic.XMax > adjX &&
@@ -35,6 +37,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     block = bpi.BuilderSchematic.Blocks[adjX, adjY, adjZ];
                 else
                     PandaLogger.Log(ChatColor.yellow, "Unable to find scematic position {0}", jobPosition);
+
             }
             catch (System.Exception) { }
 
@@ -44,82 +47,66 @@ namespace Pandaros.Settlers.Jobs.Construction
             var mapped = block.MappedBlock;
             var buildType = ItemTypes.GetType(mapped.CSIndex);
 
-            if (iterationType == null || buildType == null || buildType.ItemIndex == 0)
+            if (iterationType == null || buildType == null)
             {
                 AreaJobTracker.RemoveJob(areaJob);
                 return;
             }
 
-            int iMax = 4096;
-            while (iMax-- > 0)
-            {
-                if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
-                {
-                    if (foundTypeIndex == 0 || foundTypeIndex == BuiltinBlocks.Water)
-                    {
-                        Stockpile ownerStockPile = areaJob.Owner.Stockpile;
 
-                        if (ownerStockPile.Contains(buildType.ItemIndex))
-                        {
-                            if (ServerManager.TryChangeBlock(jobPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
-                            {
-                                if (--job.StoredItemCount <= 0)
-                                {
-                                    job.ShouldTakeItems = true;
-                                    state.JobIsDone = true;
-                                }
-                                ownerStockPile.TryRemove(buildType.ItemIndex);
-                                if (iterationType.MoveNext())
-                                {
-                                    state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
-                                }
-                                else
-                                {
-                                    // failed to find next position to do job at, self-destruct
-                                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
-                                    AreaJobTracker.RemoveJob(areaJob);
-                                }
-                                return;
-                            }
-                            else
-                            {
-                                // shouldn't really happen, world not loaded (just checked)
-                                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorMissing, true, false));
-                            }
-                        }
-                        else
-                        {
-                            // missing building item
-                            state.SetIndicator(new Shared.IndicatorState(Random.NextFloat(5f, 8f), buildType.ItemIndex, true, false));
-                        }
-                        return; // either changed a block or set indicator, job done
-                    }
-                    else
+            if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
+            {
+                Stockpile ownerStockPile = areaJob.Owner.Stockpile;
+
+                if (buildType.ItemIndex == BuiltinBlocks.Air || ownerStockPile.Contains(buildType.ItemIndex))
+                {
+                    if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
+                        ownerStockPile.Add(foundTypeIndex);
+
+                    if (ServerManager.TryChangeBlock(jobPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                     {
-                        // move iterator, not placing at non-air blocks
+                        if (buildType.ItemIndex != BuiltinBlocks.Air)
+                        {
+                            if (--job.StoredItemCount <= 0)
+                            {
+                                job.ShouldTakeItems = true;
+                                state.JobIsDone = true;
+                            }
+
+                            ownerStockPile.TryRemove(buildType.ItemIndex);
+                        }
+
                         if (iterationType.MoveNext())
                         {
-                            continue; // found non-air, try next loop
+                            state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
                         }
                         else
                         {
                             // failed to find next position to do job at, self-destruct
                             state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                             AreaJobTracker.RemoveJob(areaJob);
-                            return;
                         }
+                        return;
                     }
-                    // unreachable
+                    else
+                    {
+                        // shouldn't really happen, world not loaded (just checked)
+                        state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorMissing, true, false));
+                    }
                 }
                 else
                 {
-                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorMissing, true, false));
-                    return; // end loop, wait for world to load
+                    // missing building item
+                    state.SetIndicator(new Shared.IndicatorState(Random.NextFloat(5f, 8f), buildType.ItemIndex, true, false));
                 }
-                // unreachable
             }
-            // reached loop count limit
-            state.SetCooldown(1.0);
+            else
+            {
+                // failed to find next position to do job at, self-destruct
+                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                AreaJobTracker.RemoveJob(areaJob);
+                return;
+            }
         }
 
         public static float GetCooldown()
