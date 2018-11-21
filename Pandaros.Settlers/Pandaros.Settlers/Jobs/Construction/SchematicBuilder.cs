@@ -107,12 +107,24 @@ namespace Pandaros.Settlers.Jobs.Construction
                     // failed to find next position to do job at, self-destruct
                     state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                     AreaJobTracker.RemoveJob(areaJob);
-                    PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                    PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext at bottom of while. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
                     return;
                 }
             }
 
-            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+            if (iterationType.MoveNext())
+            {
+                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                return;
+            }
+            else
+            {
+                // failed to find next position to do job at, self-destruct
+                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                AreaJobTracker.RemoveJob(areaJob);
+                PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", jobPosition);
+                return;
+            }
         }
 
         public static float GetCooldown()
