@@ -51,8 +51,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                     return;
                 }
 
-                PandaLogger.Log("Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
-
                 if (World.TryGetTypeAt(iterationType.CurrentPosition, out ushort foundTypeIndex))
                 {
                     i++;
