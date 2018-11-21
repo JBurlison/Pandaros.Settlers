@@ -17,9 +17,7 @@ namespace Pandaros.Settlers.Jobs.Construction
     public enum SchematicClickType
     {
         Build,
-        PlaceBuilder,
-        Archetect,
-        PlaceArchetect
+        Archetect
     }
 
     [ModLoader.ModManager]
@@ -74,15 +72,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                             break;
 
-                        case SchematicClickType.PlaceBuilder:
-
-                            break;
-
                         case SchematicClickType.Archetect:
-
-                            break;
-
-                        case SchematicClickType.PlaceArchetect:
 
                             break;
                     }
@@ -105,10 +95,6 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             switch (data.ButtonIdentifier)
             {
-                case GameLoader.NAMESPACE + ".PlaceBuilder":
-                    _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.PlaceBuilder, string.Empty));
-                    break;
-
                 case GameLoader.NAMESPACE + ".SetBuildArea":
                     List<FileInfo> options = SchematicReader.GetSchematics(data.Player);
                     var index = data.Storage.GetAs<int>(Selected_Schematic);
@@ -116,7 +102,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (options.Count > index)
                     {
                         var schematic = options[index];
-                        _awaitingClick.Add(data.Player, Tuple.Create(SchematicClickType.Build, schematic.Name));
+                        _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, schematic.Name);
                         PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
                     }
 

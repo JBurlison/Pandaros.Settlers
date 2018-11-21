@@ -37,5 +37,10 @@ namespace Pandaros.Settlers.Buildings.NBT
             TileEntities = tileEntities;
             StartPos = startPos;
         }
+
+        public override string ToString()
+        {
+            return $"Name: {Name} [{XMax}, {YMax}, {ZMax}]";
+        }
     }
 }

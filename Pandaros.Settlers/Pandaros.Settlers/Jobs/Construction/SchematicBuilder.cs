@@ -20,93 +20,111 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             SchematicBlock block = default(SchematicBlock);
             Vector3Int jobPosition = iterationType.CurrentPosition;
+            int i = 0;
 
-            try
+            while (true) // This is to move past air.
             {
+                if (i > 4000)
+                    break;
+        
                 var bpi = iterationType as SchematicIterator;
 
                 var adjX = jobPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = jobPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = jobPosition.z - bpi.BuilderSchematic.StartPos.z;
-
+                PandaLogger.Log("Scematic position {0} for start pos {1} [{2}, {3}, {4}]. Schematic: {5}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic);
 
                 if (bpi != null &&
                     bpi.BuilderSchematic.XMax > adjX &&
                     bpi.BuilderSchematic.YMax > adjY &&
                     bpi.BuilderSchematic.ZMax > adjZ)
                     block = bpi.BuilderSchematic.Blocks[adjX, adjY, adjZ];
-                else
-                    PandaLogger.Log(ChatColor.yellow, "Unable to find scematic position {0}", jobPosition);
 
-            }
-            catch (System.Exception) { }
+                if (block == default(SchematicBlock))
+                    block = SchematicBlock.Air;
 
-            if (block == default(SchematicBlock))
-                block = SchematicBlock.Air;
+                var mapped = block.MappedBlock;
+                var buildType = ItemTypes.GetType(mapped.CSIndex);
 
-            var mapped = block.MappedBlock;
-            var buildType = ItemTypes.GetType(mapped.CSIndex);
-
-            if (iterationType == null || buildType == null)
-            {
-                AreaJobTracker.RemoveJob(areaJob);
-                return;
-            }
-
-
-            if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
-            {
-                Stockpile ownerStockPile = areaJob.Owner.Stockpile;
-
-                if (buildType.ItemIndex == BuiltinBlocks.Air || ownerStockPile.Contains(buildType.ItemIndex))
+                if (iterationType == null || buildType == null)
                 {
-                    if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
-                        ownerStockPile.Add(foundTypeIndex);
+                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                    AreaJobTracker.RemoveJob(areaJob);
+                    return;
+                }
 
-                    if (ServerManager.TryChangeBlock(jobPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
-                    {
-                        if (buildType.ItemIndex != BuiltinBlocks.Air)
+                if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
+                {
+                    i++;
+
+                    if (foundTypeIndex == buildType.ItemIndex) // check if the blocks are the same, if they are, move past. Most of the time this will be air.
+                        if (iterationType.MoveNext())
+                            continue;
+                        else
                         {
-                            if (--job.StoredItemCount <= 0)
-                            {
-                                job.ShouldTakeItems = true;
-                                state.JobIsDone = true;
-                            }
-
-                            ownerStockPile.TryRemove(buildType.ItemIndex);
+                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                            AreaJobTracker.RemoveJob(areaJob);
+                            return;
                         }
 
-                        if (iterationType.MoveNext())
+                    Stockpile ownerStockPile = areaJob.Owner.Stockpile;
+
+                    if (buildType.ItemIndex == BuiltinBlocks.Air || ownerStockPile.Contains(buildType.ItemIndex))
+                    {
+                        if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
+                            ownerStockPile.Add(foundTypeIndex);
+
+                        if (ServerManager.TryChangeBlock(jobPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                         {
-                            state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
+                            if (buildType.ItemIndex != BuiltinBlocks.Air)
+                            {
+                                if (--job.StoredItemCount <= 0)
+                                {
+                                    job.ShouldTakeItems = true;
+                                    state.JobIsDone = true;
+                                }
+
+                                ownerStockPile.TryRemove(buildType.ItemIndex);
+                            }
+
+                            if (iterationType.MoveNext())
+                            {
+                                state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
+                                return;
+                            }
+                            else
+                            {
+                                // failed to find next position to do job at, self-destruct
+                                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                                AreaJobTracker.RemoveJob(areaJob);
+                                return;
+                            }
+                            
                         }
                         else
                         {
-                            // failed to find next position to do job at, self-destruct
-                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
-                            AreaJobTracker.RemoveJob(areaJob);
+                            // shouldn't really happen, world not loaded (just checked)
+                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorMissing, true, false));
+                            return;
                         }
-                        return;
                     }
                     else
                     {
-                        // shouldn't really happen, world not loaded (just checked)
-                        state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorMissing, true, false));
+                        // missing building item
+                        state.SetIndicator(new Shared.IndicatorState(Random.NextFloat(5f, 8f), buildType.ItemIndex, true, false));
+                        return;
                     }
                 }
                 else
                 {
-                    // missing building item
-                    state.SetIndicator(new Shared.IndicatorState(Random.NextFloat(5f, 8f), buildType.ItemIndex, true, false));
+                    // failed to find next position to do job at, self-destruct
+                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                    AreaJobTracker.RemoveJob(areaJob);
+                    return;
                 }
             }
-            else
-            {
-                // failed to find next position to do job at, self-destruct
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
-                AreaJobTracker.RemoveJob(areaJob);
-                return;
-            }
+
+            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
         }
 
         public static float GetCooldown()
