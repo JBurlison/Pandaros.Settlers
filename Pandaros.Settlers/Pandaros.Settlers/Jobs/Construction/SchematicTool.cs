@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static AreaJobTracker;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -35,8 +36,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                 return;
             }
 
-            if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var SchematicItem) &&
-                boxedData.item1.typeSelected == SchematicItem)
+            if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var schematicItem) &&
+                boxedData.item1.typeSelected == schematicItem)
             {
                 if (!_awaitingClick.ContainsKey(player))
                 {
@@ -46,7 +47,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black)));
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlaceBuilder", new LabelData("Place Builder", UnityEngine.Color.black)));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
                     NetworkMenuManager.SendServerPopup(player, menu);
@@ -80,7 +80,11 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
         }
 
-        
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSendAreaHighlights, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OnSendAreaHighlights")]
+        static void OnSendAreaHighlights(Players.Player goal, List<AreaHighlight> list, List<ushort> showWhileHoldingTypes)
+        {
+            showWhileHoldingTypes.Add(BuiltinBlocks.Bed);
+        }
 
         //public static void CreateNewAreaJob (string identifier, Pipliz.JSON.JSONNode args, Colony colony, Vector3Int min, Vector3Int max)
         //on the areajobtracker
@@ -113,7 +117,8 @@ namespace Pandaros.Settlers.Jobs.Construction
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSendAreaHighlights, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.AreaHighlighted")]
         public static void AreaHighlighted(Players.Player player, List<AreaJobTracker.AreaHighlight> list, List<ushort> showWhileHoldingTypes)
         {
-
+            if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var schematicItem))
+                showWhileHoldingTypes.Add(schematicItem);
         }
     }
 

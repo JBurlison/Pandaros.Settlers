@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Buildings.NBT
 
         public override string ToString()
         {
-            return $"Name: {Name} [{XMax}, {YMax}, {ZMax}]";
+            return $"Name: {Name}  Max Bounds: [{XMax}, {YMax}, {ZMax}]";
         }
     }
 }

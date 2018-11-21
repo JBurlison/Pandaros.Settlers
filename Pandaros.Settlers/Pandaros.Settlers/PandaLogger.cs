@@ -152,11 +152,12 @@ namespace Pandaros.Settlers
 
         private static void Log()
         {
-            while (true)
-            {
-                _loggerSemaphore.WaitOne(2000);
+            using (var sw = new StreamWriter(_logFile, true))
+                while (true)
+                {
+                    _loggerSemaphore.WaitOne(2000);
 
-                using (var sw = new StreamWriter(_logFile, true))
+
                     while (_logQueue.Count != 0)
                     {
                         var queuedMessage = _logQueue.Dequeue();
@@ -174,7 +175,7 @@ namespace Pandaros.Settlers
                             }
                         }
                     }
-            }
+                }
         }
 
         private static void RotateLogs()
@@ -183,7 +184,7 @@ namespace Pandaros.Settlers
 
             FileInfo fix = new FileInfo(_logFile);
             long fixedSize = fix.Length / 1024L; 
-            if (fixedSize >= 10240)
+            if (fixedSize >= 1024)
             {
                 string oldFilename = LOG_DIR + LOG_NAME + ONE_DOT_LOG;
                 if (File.Exists(oldFilename))

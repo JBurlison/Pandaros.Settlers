@@ -32,7 +32,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                 var adjX = jobPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = jobPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = jobPosition.z - bpi.BuilderSchematic.StartPos.z;
-                PandaLogger.Log("Scematic position {0} for start pos {1} [{2}, {3}, {4}]. Schematic: {5}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic);
 
                 if (bpi != null &&
                     bpi.BuilderSchematic.XMax > adjX &&
@@ -46,12 +45,14 @@ namespace Pandaros.Settlers.Jobs.Construction
                 var mapped = block.MappedBlock;
                 var buildType = ItemTypes.GetType(mapped.CSIndex);
 
-                if (iterationType == null || buildType == null)
+                if (buildType == null)
                 {
                     state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                     AreaJobTracker.RemoveJob(areaJob);
                     return;
                 }
+
+                PandaLogger.Log("Itterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
 
                 if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
                 {
