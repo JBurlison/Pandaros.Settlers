@@ -26,7 +26,9 @@ namespace Pandaros.Settlers.Jobs.Construction
             positionMin = area.Minimum;
             positionMax = area.Maximum;
 
-            iterationChunkLocation = new Vector3Int(positionMin.x & -16, positionMin.y & -16, positionMin.z & -16);
+            //iterationChunkLocation = new Vector3Int(positionMin.x & -16, positionMin.y & -16, positionMin.z & -16);
+            iterationChunkLocation = positionMin;
+            cursor = positionMin;
             iterationIndex = -1;
 
             SchematicName = schematicName;
@@ -48,42 +50,31 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public bool MoveNext()
         {
-            while (true)
+            var next = cursor.Add(1, 0, 0);
+
+            if (next.x > positionMax.x)
             {
-                iterationIndex++;
-
-                if (iterationIndex >= 16 * 16 * 16)
-                {
-                    iterationIndex = 0;
-                    iterationChunkLocation.z += 16;
-
-                    if (iterationChunkLocation.z > (positionMax.z & -16))
-                    {
-                        iterationChunkLocation.z = (positionMin.z & -16);
-                        iterationChunkLocation.x += 16;
-
-                        if (iterationChunkLocation.x > (positionMax.x & -16))
-                        {
-                            iterationChunkLocation.x = (positionMin.x & -16);
-                            iterationChunkLocation.y += 16;
-
-                            if (iterationChunkLocation.y > (positionMax.y & -16))
-                            {
-                                SchematicReader.UnloadSchematic(GameLoader.Schematic_SAVE_LOC + SchematicName, iterationChunkLocation);
-                                SchematicReader.UnloadSchematic(GameLoader.Schematic_DEFAULT_LOC + SchematicName, iterationChunkLocation);
-                                return false;
-                            }
-                        }
-                    }
-                }
-
-                cursor = IteratorHelper.ZOrderToPosition(iterationIndex).ToWorld(iterationChunkLocation);
-
-                if (IsInBounds(cursor))
-                {
-                    return true;
-                }
+                next.x = positionMin.x;
+                next = next.Add(0, 0, 1);
             }
+
+            if (next.z > positionMax.z)
+            {
+                next.z = positionMin.z;
+                next = next.Add(0, 1, 0);
+            }
+
+            cursor = next;
+
+            if (IsInBounds(cursor))
+                return true;
+            else
+            {
+                SchematicReader.UnloadSchematic(GameLoader.Schematic_SAVE_LOC + SchematicName, iterationChunkLocation);
+                SchematicReader.UnloadSchematic(GameLoader.Schematic_DEFAULT_LOC + SchematicName, iterationChunkLocation);
+                return false;
+            }
+
         }
     }
 }
