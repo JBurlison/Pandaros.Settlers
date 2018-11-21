@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     return;
                 }
 
-                PandaLogger.Log("Itterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                PandaLogger.Log("Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
 
                 if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
                 {
@@ -87,34 +87,19 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                                 ownerStockPile.TryRemove(buildType.ItemIndex);
                             }
-
-                            if (iterationType.MoveNext())
-                            {
-                                state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
-                                return;
-                            }
-                            else
-                            {
-                                // failed to find next position to do job at, self-destruct
-                                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
-                                AreaJobTracker.RemoveJob(areaJob);
-                                return;
-                            }
-                            
                         }
                         else
-                        {
-                            // shouldn't really happen, world not loaded (just checked)
-                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorMissing, true, false));
-                            return;
-                        }
+                            PandaLogger.Log(ChatColor.yellow, "Failed to TryChangeBlock. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+
                     }
-                    else
-                    {
-                        // missing building item
-                        state.SetIndicator(new Shared.IndicatorState(Random.NextFloat(5f, 8f), buildType.ItemIndex, true, false));
-                        return;
-                    }
+                }
+                else
+                    PandaLogger.Log(ChatColor.yellow, "Failed to TryGetTypeAt. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+
+                if (iterationType.MoveNext())
+                {
+                    state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
+                    return;
                 }
                 else
                 {
