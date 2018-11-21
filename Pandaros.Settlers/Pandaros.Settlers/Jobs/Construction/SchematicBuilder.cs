@@ -19,7 +19,6 @@ namespace Pandaros.Settlers.Jobs.Construction
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
             SchematicBlock block = default(SchematicBlock);
-            Vector3Int jobPosition = iterationType.CurrentPosition;
             int i = 0;
 
             while (true) // This is to move past air.
@@ -29,9 +28,9 @@ namespace Pandaros.Settlers.Jobs.Construction
         
                 var bpi = iterationType as SchematicIterator;
 
-                var adjX = jobPosition.x - bpi.BuilderSchematic.StartPos.x;
-                var adjY = jobPosition.y - bpi.BuilderSchematic.StartPos.y;
-                var adjZ = jobPosition.z - bpi.BuilderSchematic.StartPos.z;
+                var adjX = iterationType.CurrentPosition.x - bpi.BuilderSchematic.StartPos.x;
+                var adjY = iterationType.CurrentPosition.y - bpi.BuilderSchematic.StartPos.y;
+                var adjZ = iterationType.CurrentPosition.z - bpi.BuilderSchematic.StartPos.z;
 
                 if (bpi != null &&
                     bpi.BuilderSchematic.XMax > adjX &&
@@ -52,9 +51,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                     return;
                 }
 
-                PandaLogger.Log("Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                PandaLogger.Log("Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
 
-                if (World.TryGetTypeAt(jobPosition, out ushort foundTypeIndex))
+                if (World.TryGetTypeAt(iterationType.CurrentPosition, out ushort foundTypeIndex))
                 {
                     i++;
 
@@ -65,7 +64,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         {
                             state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                             AreaJobTracker.RemoveJob(areaJob);
-                            PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext when found types are the same. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                            PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext when found types are the same. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
                             return;
                         }
 
@@ -76,7 +75,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
                             ownerStockPile.Add(foundTypeIndex);
 
-                        if (ServerManager.TryChangeBlock(jobPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
+                        if (ServerManager.TryChangeBlock(iterationType.CurrentPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                         {
                             if (buildType.ItemIndex != BuiltinBlocks.Air)
                             {
@@ -90,12 +89,12 @@ namespace Pandaros.Settlers.Jobs.Construction
                             }
                         }
                         else
-                            PandaLogger.Log(ChatColor.yellow, "Failed to TryChangeBlock. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                            PandaLogger.Log(ChatColor.yellow, "Failed to TryChangeBlock. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
 
                     }
                 }
                 else
-                    PandaLogger.Log(ChatColor.yellow, "Failed to TryGetTypeAt. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                    PandaLogger.Log(ChatColor.yellow, "Failed to TryGetTypeAt. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
 
                 if (iterationType.MoveNext())
                 {
@@ -107,7 +106,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     // failed to find next position to do job at, self-destruct
                     state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                     AreaJobTracker.RemoveJob(areaJob);
-                    PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext at bottom of while. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", jobPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                    PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext at bottom of while. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
                     return;
                 }
             }
@@ -122,7 +121,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 // failed to find next position to do job at, self-destruct
                 state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                 AreaJobTracker.RemoveJob(areaJob);
-                PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", jobPosition);
+                PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", iterationType.CurrentPosition);
                 return;
             }
         }
