@@ -62,7 +62,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                         {
                             state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                             AreaJobTracker.RemoveJob(areaJob);
-                            PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext when found types are the same. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
                             return;
                         }
 
@@ -104,7 +103,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                     // failed to find next position to do job at, self-destruct
                     state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                     AreaJobTracker.RemoveJob(areaJob);
-                    PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext at bottom of while. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
                     return;
                 }
             }

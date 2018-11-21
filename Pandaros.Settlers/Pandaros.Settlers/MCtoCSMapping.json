@@ -11,7 +11,7 @@
     "meta": 0,
     "name": "Stone",
     "text_type": "stone",
-    "cs_type": "stoneblock"
+    "cs_type": "stonebricks"
   },
   {
     "type": 1,
@@ -88,7 +88,7 @@
     "meta": 0,
     "name": "Cobblestone",
     "text_type": "cobblestone",
-    "cs_type": "stonebricks"
+    "cs_type": "cobblestonegrey"
   },
   {
     "type": 5,
@@ -137,42 +137,42 @@
     "meta": 0,
     "name": "Oak Sapling",
     "text_type": "sapling",
-    "cs_type": "sappling"
+    "cs_type": "sapling"
   },
   {
     "type": 6,
     "meta": 1,
     "name": "Spruce Sapling",
     "text_type": "sapling",
-    "cs_type": "sappling"
+    "cs_type": "sapling"
   },
   {
     "type": 6,
     "meta": 2,
     "name": "Birch Sapling",
     "text_type": "sapling",
-    "cs_type": "sappling"
+    "cs_type": "sapling"
   },
   {
     "type": 6,
     "meta": 3,
     "name": "Jungle Sapling",
     "text_type": "sapling",
-    "cs_type": "sappling"
+    "cs_type": "sapling"
   },
   {
     "type": 6,
     "meta": 4,
     "name": "Acacia Sapling",
     "text_type": "sapling",
-    "cs_type": "sappling"
+    "cs_type": "sapling"
   },
   {
     "type": 6,
     "meta": 5,
     "name": "Dark Oak Sapling",
     "text_type": "sapling",
-    "cs_type": "sappling"
+    "cs_type": "sapling"
   },
   {
     "type": 7,
@@ -186,14 +186,14 @@
     "meta": 0,
     "name": "Flowing Water",
     "text_type": "flowing_water",
-    "cs_type": "Pandaros.Settlers.AutoLoad.NotWater"
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
   },
   {
     "type": 9,
     "meta": 0,
     "name": "Still Water",
     "text_type": "water",
-    "cs_type": "Pandaros.Settlers.AutoLoad.NotWater"
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
   },
   {
     "type": 10,
@@ -459,14 +459,14 @@
     "meta": 0,
     "name": "White Wool",
     "text_type": "wool",
-    "cs_type": ""
+    "cs_type": "carpetwhite"
   },
   {
     "type": 35,
     "meta": 1,
     "name": "Orange Wool",
     "text_type": "wool",
-    "cs_type": "carpetwhite"
+    "cs_type": "Pandaros.Settlers.carpetorange"
   },
   {
     "type": 35,
@@ -817,42 +817,42 @@
     "meta": 0,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torch"
   },
   {
     "type": 50,
     "meta": 1,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torch"
   },
   {
     "type": 50,
     "meta": 2,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torch"
   },
   {
     "type": 50,
     "meta": 3,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torch"
   },
   {
     "type": 50,
     "meta": 4,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torch"
   },
   {
     "type": 50,
     "meta": 5,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": ""
+    "cs_type": "torch"
   },
   {
     "type": 51,
