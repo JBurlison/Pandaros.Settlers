@@ -1,4 +1,28 @@
 {
+  "Pandaros.Settlers.AutoLoad.sappling": {
+    "categories": [
+      "decorative"
+    ],
+    "colliders": {
+      "boxes": [
+        {
+          "max": [ 0.25, 0, 0.25 ],
+          "min": [ -0.25, -0.5, -0.25 ]
+        }
+      ],
+      "collidePlayer": false
+    },
+    "customData": {
+      "colors": [ "#ff0000->#542909", "#00ff00->#0e6306" ]
+    },
+    "icon": "./textures/icons/sapling.png",
+    "isSolid": false,
+    "mesh": "./meshes/sapling.ply",
+    "needsBase": true,
+    "onPlaceAudio": "woodPlace",
+    "onRemoveAudio": "grassDelete",
+    "sideall": "neutral"
+  },
   "Pandaros.Settlers.AutoLoad.rawmarble": {
     "sideall": "SELF",
     "npcLimit": 0,
