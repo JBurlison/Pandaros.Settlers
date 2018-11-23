@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     NetworkMenu menu = new NetworkMenu();
                     menu.LocalStorage.SetAs("header", "Schematic Menu");
                     List<FileInfo> options = SchematicReader.GetSchematics(player);
-
+                    
                     menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
                     menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
@@ -121,7 +121,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 menu.Width = 600;
                                 menu.Height = 600;
                                 menu.LocalStorage.SetAs("header", selectedSchematic.Name + " Details");
-                                menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).Where(n => n == selectedSchematic.Name).ToList()));
+
+                                menu.Items.Add(new DropDown(new LabelData("Schematic", UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name).Where(n => n == selectedSchematic.Name).ToList()));
                                 menu.Items.Add(new Label(new LabelData("Height: " + schematicMetadata.MaxY, UnityEngine.Color.black)));
                                 menu.Items.Add(new Label(new LabelData("Width: " + schematicMetadata.MaxZ, UnityEngine.Color.black)));
                                 menu.Items.Add(new Label(new LabelData("Length: " + schematicMetadata.MaxX, UnityEngine.Color.black)));
@@ -133,7 +134,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                                     List<IItem> items = new List<IItem>();
                                     items.Add(new ItemIcon(kvp.Key));
-                                    items.Add(new Label(item.Name));
+                                    items.Add(new Label(new LabelData(item.Name, UnityEngine.Color.black)));
                                     items.Add(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)));
                                     menu.Items.Add(new HorizontalGrid(items, 200));
                                 }
