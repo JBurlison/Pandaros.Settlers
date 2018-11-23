@@ -82,7 +82,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             if (node.TryGetAs(nameof(ItemId), out ushort id))
                 ItemId = id;
 
-            if (node.TryGetAs(nameof(Count), out ushort count))
+            if (node.TryGetAs(nameof(Count), out long count))
                 Count = count;
         }
 

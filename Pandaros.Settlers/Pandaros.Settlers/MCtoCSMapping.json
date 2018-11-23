@@ -135,44 +135,44 @@
   {
     "type": 6,
     "meta": 0,
-    "name": "Oak Sapling",
-    "text_type": "sapling",
-    "cs_type": "sapling"
+    "name": "Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 1,
-    "name": "Spruce Sapling",
-    "text_type": "sapling",
-    "cs_type": "sapling"
+    "name": "Spruce sappling",
+    "text_type": "sappling",
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 2,
-    "name": "Birch Sapling",
-    "text_type": "sapling",
-    "cs_type": "sapling"
+    "name": "Birch sappling",
+    "text_type": "sappling",
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 3,
-    "name": "Jungle Sapling",
-    "text_type": "sapling",
-    "cs_type": "sapling"
+    "name": "Jungle sappling",
+    "text_type": "sappling",
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 4,
-    "name": "Acacia Sapling",
-    "text_type": "sapling",
-    "cs_type": "sapling"
+    "name": "Acacia sappling",
+    "text_type": "sappling",
+    "cs_type": "sappling"
   },
   {
     "type": 6,
     "meta": 5,
-    "name": "Dark Oak Sapling",
-    "text_type": "sapling",
-    "cs_type": "sapling"
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "sappling"
   },
   {
     "type": 7,
@@ -191,6 +191,139 @@
   {
     "type": 9,
     "meta": 0,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 1,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 2,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 3,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 4,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 5,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 6,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 7,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 8,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 9,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 10,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 11,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 12,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 13,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 14,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 15,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 16,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 17,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 18,
+    "name": "Still Water",
+    "text_type": "water",
+    "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
+  },
+  {
+    "type": 9,
+    "meta": 19,
     "name": "Still Water",
     "text_type": "water",
     "cs_type": "Pandaros.Settlers.AutoLoad.notwater"
@@ -515,56 +648,56 @@
     "meta": 0,
     "name": "Powered Rail",
     "text_type": "golden_rail",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 28,
     "meta": 0,
     "name": "Detector Rail",
     "text_type": "detector_rail",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 29,
     "meta": 0,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 30,
     "meta": 0,
     "name": "Cobweb",
     "text_type": "web",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 31,
     "meta": 0,
     "name": "Dead Shrub",
     "text_type": "tallgrass",
-    "cs_type": "sapling"
+    "cs_type": "sappling"
   },
   {
     "type": 31,
     "meta": 1,
     "name": "Grass",
     "text_type": "tallgrass",
-    "cs_type": "sapling"
+    "cs_type": "sappling"
   },
   {
     "type": 31,
     "meta": 2,
     "name": "Fern",
     "text_type": "tallgrass",
-    "cs_type": "sapling"
+    "cs_type": "sappling"
   },
   {
     "type": 32,
     "meta": 0,
     "name": "Dead Bush",
     "text_type": "deadbush",
-    "cs_type": "sapling"
+    "cs_type": "sappling"
   },
   {
     "type": 33,
@@ -753,84 +886,84 @@
     "meta": 0,
     "name": "Dandelion",
     "text_type": "yellow_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 0,
     "name": "Poppy",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 1,
     "name": "Blue Orchid",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 2,
     "name": "Allium",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 3,
     "name": "Azure Bluet",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 4,
     "name": "Red Tulip",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 5,
     "name": "Orange Tulip",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 6,
     "name": "White Tulip",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 7,
     "name": "Pink Tulip",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 38,
     "meta": 8,
     "name": "Oxeye Daisy",
     "text_type": "red_flower",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 39,
     "meta": 0,
     "name": "Brown Mushroom",
     "text_type": "brown_mushroom",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 40,
     "meta": 0,
     "name": "Red Mushroom",
     "text_type": "red_mushroom",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 41,
@@ -1097,7 +1230,112 @@
     "meta": 0,
     "name": "Fire",
     "text_type": "fire",
-    "cs_type": ""
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 1,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 2,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 3,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 4,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 5,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 6,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 7,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 8,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 9,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 10,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 11,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 12,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 13,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 14,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
+  },
+  {
+    "type": 51,
+    "meta": 15,
+    "name": "Fire",
+    "text_type": "fire",
+    "cs_type": "torch"
   },
   {
     "type": 52,
@@ -1230,14 +1468,112 @@
     "meta": 0,
     "name": "Wheat Crops",
     "text_type": "wheat",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 1,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 2,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 3,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 4,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 5,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 6,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
+  },
+  {
+    "type": 59,
+    "meta": 7,
+    "name": "Wheat Crops",
+    "text_type": "wheat",
+    "cs_type": "air"
   },
   {
     "type": 60,
     "meta": 0,
     "name": "Farmland",
     "text_type": "farmland",
-    "cs_type": ""
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 1,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 2,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 3,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 4,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 5,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 6,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
+  },
+  {
+    "type": 60,
+    "meta": 7,
+    "name": "Farmland",
+    "text_type": "farmland",
+    "cs_type": "grasstropicwet"
   },
   {
     "type": 61,
@@ -1298,6 +1634,41 @@
   {
     "type": 66,
     "meta": 0,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 1,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 2,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 3,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 4,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 5,
     "name": "Rail",
     "text_type": "rail",
     "cs_type": "air"
@@ -1667,6 +2038,20 @@
     "cs_type": "air"
   },
   {
+    "type": 77,
+    "meta": 4,
+    "name": "Stone Button",
+    "text_type": "stone_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 77,
+    "meta": 5,
+    "name": "Stone Button",
+    "text_type": "stone_button",
+    "cs_type": "air"
+  },
+  {
     "type": 78,
     "meta": 0,
     "name": "Snow",
@@ -1706,7 +2091,35 @@
     "meta": 0,
     "name": "Sugar Canes",
     "text_type": "reeds",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 83,
+    "meta": 1,
+    "name": "Sugar Canes",
+    "text_type": "reeds",
+    "cs_type": "air"
+  },
+  {
+    "type": 83,
+    "meta": 2,
+    "name": "Sugar Canes",
+    "text_type": "reeds",
+    "cs_type": "air"
+  },
+  {
+    "type": 83,
+    "meta": 3,
+    "name": "Sugar Canes",
+    "text_type": "reeds",
+    "cs_type": "air"
+  },
+  {
+    "type": 83,
+    "meta": 4,
+    "name": "Sugar Canes",
+    "text_type": "reeds",
+    "cs_type": "air"
   },
   {
     "type": 84,
@@ -1760,6 +2173,34 @@
   {
     "type": 91,
     "meta": 0,
+    "name": "Jack o'Lantern",
+    "text_type": "lit_pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 91,
+    "meta": 1,
+    "name": "Jack o'Lantern",
+    "text_type": "lit_pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 91,
+    "meta": 2,
+    "name": "Jack o'Lantern",
+    "text_type": "lit_pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 91,
+    "meta": 3,
+    "name": "Jack o'Lantern",
+    "text_type": "lit_pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 91,
+    "meta": 4,
     "name": "Jack o'Lantern",
     "text_type": "lit_pumpkin",
     "cs_type": "lanternorange"
@@ -2210,14 +2651,14 @@
     "meta": 0,
     "name": "Mycelium",
     "text_type": "mycelium",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 111,
     "meta": 0,
     "name": "Lily Pad",
     "text_type": "waterlily",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 112,
@@ -2658,14 +3099,35 @@
     "meta": 0,
     "name": "Tripwire Hook",
     "text_type": "tripwire_hook",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 131,
+    "meta": 1,
+    "name": "Tripwire Hook",
+    "text_type": "tripwire_hook",
+    "cs_type": "air"
+  },
+  {
+    "type": 131,
+    "meta": 2,
+    "name": "Tripwire Hook",
+    "text_type": "tripwire_hook",
+    "cs_type": "air"
+  },
+  {
+    "type": 131,
+    "meta": 3,
+    "name": "Tripwire Hook",
+    "text_type": "tripwire_hook",
+    "cs_type": "air"
   },
   {
     "type": 132,
     "meta": 0,
     "name": "Tripwire",
     "text_type": "tripwire_hook",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 133,
@@ -2903,7 +3365,42 @@
     "meta": 0,
     "name": "Mob Head",
     "text_type": "skull",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 144,
+    "meta": 1,
+    "name": "Mob Head",
+    "text_type": "skull",
+    "cs_type": "air"
+  },
+  {
+    "type": 144,
+    "meta": 2,
+    "name": "Mob Head",
+    "text_type": "skull",
+    "cs_type": "air"
+  },
+  {
+    "type": 144,
+    "meta": 3,
+    "name": "Mob Head",
+    "text_type": "skull",
+    "cs_type": "air"
+  },
+  {
+    "type": 144,
+    "meta": 4,
+    "name": "Mob Head",
+    "text_type": "skull",
+    "cs_type": "air"
+  },
+  {
+    "type": 144,
+    "meta": 5,
+    "name": "Mob Head",
+    "text_type": "skull",
+    "cs_type": "air"
   },
   {
     "type": 145,
@@ -2936,6 +3433,62 @@
   {
     "type": 145,
     "meta": 4,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 5,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 6,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 7,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 8,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 9,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 10,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 11,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 12,
     "name": "Anvil",
     "text_type": "anvil",
     "cs_type": "ironblock"
@@ -2980,28 +3533,28 @@
     "meta": 0,
     "name": "Daylight Sensor",
     "text_type": "daylight_detector",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 152,
     "meta": 0,
     "name": "Redstone Block",
     "text_type": "redstone_block",
-    "cs_type": ""
+    "cs_type": "carpetred"
   },
   {
     "type": 153,
     "meta": 0,
     "name": "Nether Quartz Ore",
     "text_type": "quartz_ore",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.AutoLoad.rawmarble"
   },
   {
     "type": 154,
     "meta": 0,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 155,
@@ -3667,7 +4220,7 @@
     "meta": 0,
     "name": "Barrier",
     "text_type": "barrier",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 167,
@@ -4300,6 +4853,34 @@
     "cs_type": "air"
   },
   {
+    "type": 198,
+    "meta": 2,
+    "name": "End Rod",
+    "text_type": "end_rod",
+    "cs_type": "air"
+  },
+  {
+    "type": 198,
+    "meta": 3,
+    "name": "End Rod",
+    "text_type": "end_rod",
+    "cs_type": "air"
+  },
+  {
+    "type": 198,
+    "meta": 4,
+    "name": "End Rod",
+    "text_type": "end_rod",
+    "cs_type": "air"
+  },
+  {
+    "type": 198,
+    "meta": 5,
+    "name": "End Rod",
+    "text_type": "end_rod",
+    "cs_type": "air"
+  },
+  {
     "type": 199,
     "meta": 0,
     "name": "Chorus Plant",
@@ -4444,7 +5025,7 @@
     "meta": 0,
     "name": "Frosted Ice",
     "text_type": "frosted_ice",
-    "cs_type": ""
+    "cs_type": "snow"
   },
   {
     "type": 213,
@@ -4475,18 +5056,109 @@
     "cs_type": "carpetwhite"
   },
   {
+    "type": 216,
+    "meta": 1,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 2,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 3,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 4,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 5,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 6,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 7,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 216,
+    "meta": 8,
+    "name": "Bone Block",
+    "text_type": "bone_block",
+    "cs_type": "carpetwhite"
+  },
+  {
     "type": 217,
     "meta": 0,
     "name": "Structure Void",
     "text_type": "structure_void",
-    "cs_type": ""
+    "cs_type": "cobblestoneblack"
   },
   {
     "type": 218,
     "meta": 0,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": ""
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 218,
+    "meta": 1,
+    "name": "Observer",
+    "text_type": "observer",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 218,
+    "meta": 2,
+    "name": "Observer",
+    "text_type": "observer",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 218,
+    "meta": 3,
+    "name": "Observer",
+    "text_type": "observer",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 218,
+    "meta": 4,
+    "name": "Observer",
+    "text_type": "observer",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 218,
+    "meta": 5,
+    "name": "Observer",
+    "text_type": "observer",
+    "cs_type": "stonebricks"
   },
   {
     "type": 219,
@@ -6803,28 +7475,28 @@
     "meta": 0,
     "name": "Nether Brick",
     "text_type": "netherbrick",
-    "cs_type": ""
+    "cs_type": "bricksred"
   },
   {
     "type": 406,
     "meta": 0,
     "name": "Nether Quartz",
     "text_type": "quartz",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
   },
   {
     "type": 407,
     "meta": 0,
     "name": "Minecart with TNT",
     "text_type": "tnt_minecart",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 408,
     "meta": 0,
     "name": "Minecart with Hopper",
     "text_type": "hopper_minecart",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 409,
