@@ -18,6 +18,7 @@ namespace Pandaros.Settlers.Buildings.NBT
         public string Materials { get; set; }
         public byte[] Blocks { get; set; }
         public byte[] Data { get; set; }
+        public bool CSFile { get; set; }
         public TileEntity[,,] TileEntities { get; set; }
     }
 }

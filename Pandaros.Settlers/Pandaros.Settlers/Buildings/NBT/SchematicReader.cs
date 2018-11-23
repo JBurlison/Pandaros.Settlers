@@ -257,6 +257,9 @@ namespace Pandaros.Settlers.Buildings.NBT
                         break;
                     case "Icon": //Compound
                         break; //Ignore
+                    case "CSFile":
+                        raw.CSFile = tag.HasValue && tag.ByteValue == 1;
+                        break; 
                     case "SchematicaMapping": //Compound
                         tag.ToString();
                         break; //Ignore
