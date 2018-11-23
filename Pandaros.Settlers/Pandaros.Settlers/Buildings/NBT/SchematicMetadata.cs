@@ -11,6 +11,9 @@ namespace Pandaros.Settlers.Buildings.NBT
     public class SchematicMetadata : IJsonDeserializable, IJsonSerializable
     {
         public string Name { get; set; }
+        public int MaxX { get; set; }
+        public int MaxY { get; set; }
+        public int MaxZ { get; set; }
 
         public Dictionary<ushort, SchematicBlockMetadata> Blocks { get; set; } = new Dictionary<ushort, SchematicBlockMetadata>();
 
@@ -33,6 +36,15 @@ namespace Pandaros.Settlers.Buildings.NBT
 
             if (node.TryGetAs(nameof(Name), out string name))
                 Name = name;
+
+            if (node.TryGetAs(nameof(MaxX), out int maxx))
+                MaxX = maxx;
+
+            if (node.TryGetAs(nameof(MaxY), out int maxy))
+                MaxY = maxy;
+
+            if (node.TryGetAs(nameof(MaxZ), out int maxz))
+                MaxZ = maxz;
         }
 
         public JSONNode JsonSerialize()
@@ -45,6 +57,9 @@ namespace Pandaros.Settlers.Buildings.NBT
 
             json.SetAs(nameof(Blocks), blocks);
             json.SetAs(nameof(Name), Name);
+            json.SetAs(nameof(MaxX), MaxX);
+            json.SetAs(nameof(MaxY), MaxY);
+            json.SetAs(nameof(MaxZ), MaxZ);
 
             return json;
         }

@@ -166,6 +166,10 @@ namespace Pandaros.Settlers.Buildings.NBT
                     }
                 }
 
+                metadata.MaxX = schematic.XMax;
+                metadata.MaxY = schematic.YMax;
+                metadata.MaxZ = schematic.ZMax;
+
                 JSON.Serialize(metadataPath, metadata.JsonSerialize());
 
                 return metadata;

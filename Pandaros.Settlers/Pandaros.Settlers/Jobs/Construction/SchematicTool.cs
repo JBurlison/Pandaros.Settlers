@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     List<FileInfo> options = SchematicReader.GetSchematics(player);
 
                     menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black)));
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
                     menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
                     NetworkMenuManager.SendServerPopup(player, menu);
@@ -99,32 +99,75 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             switch (data.ButtonIdentifier)
             {
-                case GameLoader.NAMESPACE + ".SetBuildArea":
+                case GameLoader.NAMESPACE + ".ShowBuildDetails":
                     List<FileInfo> options = SchematicReader.GetSchematics(data.Player);
                     var index = data.Storage.GetAs<int>(Selected_Schematic);
 
                     if (options.Count > index)
                     {
-                        var schematic = options[index];
+                        var selectedSchematic = options[index];
 
-                        if (SchematicReader.TryGetSchematicMetadata(schematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
+                        if (SchematicReader.TryGetSchematicMetadata(selectedSchematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata schematicMetadata))
                         {
-                            PandaLogger.Log("Schematic {0} blocks required:", schematic);
-                            
-                            foreach (var kvp in metadata.Blocks)
+                            PandaLogger.Log("Schematic {0} blocks required:", selectedSchematic);
+
+                            foreach (var kvp in schematicMetadata.Blocks)
                                 PandaLogger.Log("ID: {0} Count: {1}", kvp.Value.ItemId, kvp.Value.Count);
 
-                            if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
+                            if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(BuiltinBlocks.Air))
                                 PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
                             {
-                                _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, schematic.Name);
-                                PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+                                NetworkMenu menu = new NetworkMenu();
+                                menu.Width = 600;
+                                menu.Height = 600;
+                                menu.LocalStorage.SetAs("header", selectedSchematic.Name + " Details");
+                                menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).Where(n => n == selectedSchematic.Name).ToList()));
+                                menu.Items.Add(new Label(new LabelData("Height: " + schematicMetadata.MaxY, UnityEngine.Color.black)));
+                                menu.Items.Add(new Label(new LabelData("Width: " + schematicMetadata.MaxZ, UnityEngine.Color.black)));
+                                menu.Items.Add(new Label(new LabelData("Length: " + schematicMetadata.MaxX, UnityEngine.Color.black)));
+                                menu.LocalStorage.SetAs(Selected_Schematic, 0);
+
+                                foreach (var kvp in schematicMetadata.Blocks)
+                                {
+                                    var item = ItemTypes.GetType(kvp.Key);
+
+                                    List<IItem> items = new List<IItem>();
+                                    items.Add(new ItemIcon(kvp.Key));
+                                    items.Add(new Label(item.Name));
+                                    items.Add(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)));
+                                    menu.Items.Add(new HorizontalGrid(items, 200));
+                                }
+
+                                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black)));
+                                menu.LocalStorage.SetAs(Selected_Schematic, 0);
+
+                                NetworkMenuManager.SendServerPopup(data.Player, menu);
                             }
                         }
-
-                        
                     }
 
+                    break;
+
+                case GameLoader.NAMESPACE + ".SetBuildArea":
+                    var si = data.Storage.GetAs<int>(Selected_Schematic);
+                    List<FileInfo> so = SchematicReader.GetSchematics(data.Player);
+                    var scem = so[si];
+
+                    if (SchematicReader.TryGetSchematicMetadata(scem.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
+                    {
+                        PandaLogger.Log("Schematic {0} blocks required:", scem.Name);
+                            
+                        foreach (var kvp in metadata.Blocks)
+                            PandaLogger.Log("ID: {0} Count: {1}", kvp.Value.ItemId, kvp.Value.Count);
+
+                        if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
+                            PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
+                        {
+                            _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem.Name);
+                            PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+                        }
+                    }
+        
                     break;
             }
         }

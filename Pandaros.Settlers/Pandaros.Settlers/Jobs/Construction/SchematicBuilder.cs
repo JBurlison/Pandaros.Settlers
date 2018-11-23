@@ -72,8 +72,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (!ok && ownerStockPile.Contains(buildType.ItemIndex))
                         ok = true;
 
-
-                    if (!ok)
+                    if (!ok && !string.IsNullOrWhiteSpace(buildType.ParentType))
                     {
                        var parentType = ItemTypes.GetType(buildType.ParentType);
 
