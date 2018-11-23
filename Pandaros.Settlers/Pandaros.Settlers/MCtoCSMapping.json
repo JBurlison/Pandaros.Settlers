@@ -137,42 +137,42 @@
     "meta": 0,
     "name": "Oak sappling",
     "text_type": "sappling",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 6,
     "meta": 1,
     "name": "Spruce sappling",
     "text_type": "sappling",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 6,
     "meta": 2,
     "name": "Birch sappling",
     "text_type": "sappling",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 6,
     "meta": 3,
     "name": "Jungle sappling",
     "text_type": "sappling",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 6,
     "meta": 4,
     "name": "Acacia sappling",
     "text_type": "sappling",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 6,
     "meta": 5,
     "name": "Dark Oak sappling",
     "text_type": "sappling",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 7,
@@ -676,28 +676,28 @@
     "meta": 0,
     "name": "Dead Shrub",
     "text_type": "tallgrass",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 31,
     "meta": 1,
     "name": "Grass",
     "text_type": "tallgrass",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 31,
     "meta": 2,
     "name": "Fern",
     "text_type": "tallgrass",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 32,
     "meta": 0,
     "name": "Dead Bush",
     "text_type": "deadbush",
-    "cs_type": "sappling"
+    "cs_type": ""
   },
   {
     "type": 33,
