@@ -30,15 +30,15 @@ namespace Pandaros.Settlers.Jobs.Construction
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
-            if (player.ActiveColony == null)
-            {
-                PandaChat.Send(player, "Cannot open Schematic tool when not in range of a colony.", ChatColor.red);
-                return;
-            }
-
             if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var schematicItem) &&
                 boxedData.item1.typeSelected == schematicItem)
             {
+                if (player.ActiveColony == null)
+                {
+                    PandaChat.Send(player, "Cannot open Schematic tool when not in range of a colony.", ChatColor.red);
+                    return;
+                }
+
                 if (!_awaitingClick.ContainsKey(player))
                 {
                     NetworkMenu menu = new NetworkMenu();
