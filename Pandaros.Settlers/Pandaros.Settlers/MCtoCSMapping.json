@@ -1643,7 +1643,28 @@
     "meta": 0,
     "name": "Stone Button",
     "text_type": "stone_button",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 77,
+    "meta": 1,
+    "name": "Stone Button",
+    "text_type": "stone_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 77,
+    "meta": 2,
+    "name": "Stone Button",
+    "text_type": "stone_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 77,
+    "meta": 3,
+    "name": "Stone Button",
+    "text_type": "stone_button",
+    "cs_type": "air"
   },
   {
     "type": 78,
@@ -2322,28 +2343,91 @@
     "meta": 0,
     "name": "End Portal",
     "text_type": "end_portal",
-    "cs_type": ""
+    "cs_type": "lanternpink"
   },
   {
     "type": 120,
     "meta": 0,
     "name": "End Portal Frame",
     "text_type": "end_portal_frame",
-    "cs_type": ""
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 1,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 2,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 3,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 4,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 5,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 6,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 7,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 8,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
+  },
+  {
+    "type": 120,
+    "meta": 9,
+    "name": "End Portal Frame",
+    "text_type": "end_portal_frame",
+    "cs_type": "stonebricksblack"
   },
   {
     "type": 121,
     "meta": 0,
     "name": "End Stone",
     "text_type": "end_stone",
-    "cs_type": ""
+    "cs_type": "cobblestonered"
   },
   {
     "type": 122,
     "meta": 0,
     "name": "Dragon Egg",
     "text_type": "dragon_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 123,

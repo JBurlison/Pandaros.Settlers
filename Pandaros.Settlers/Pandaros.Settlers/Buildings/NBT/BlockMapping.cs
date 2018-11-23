@@ -56,53 +56,53 @@ namespace Pandaros.Settlers.Buildings.NBT
         public static Dictionary<string, MappingBlock> BlockMappings { get; set; } = new Dictionary<string, MappingBlock>();
         static BlockMapping()
         {
-            if (!File.Exists(WorldPath))
-                File.Copy(ModPath, WorldPath);
-
             LoadMappingFile(ModPath);
             LoadMappingFile(WorldPath);
         }
 
         public static void LoadMappingFile(string file)
         {
-            try
+            if (File.Exists(file))
             {
-                if (JSON.Deserialize(file, out var json))
+                try
                 {
-                    foreach (var node in json.LoopArray())
+                    if (JSON.Deserialize(file, out var json))
                     {
-                        MappingBlock newBlock = new MappingBlock();
+                        foreach (var node in json.LoopArray())
+                        {
+                            MappingBlock newBlock = new MappingBlock();
 
-                        if (node.TryGetAs("type", out int type))
-                            newBlock.Type = type;
+                            if (node.TryGetAs("type", out int type))
+                                newBlock.Type = type;
 
-                        if (node.TryGetAs("meta", out int meta))
-                            newBlock.Meta = meta;
+                            if (node.TryGetAs("meta", out int meta))
+                                newBlock.Meta = meta;
 
-                        if (node.TryGetAs("name", out string name))
-                            newBlock.Name = name;
+                            if (node.TryGetAs("name", out string name))
+                                newBlock.Name = name;
 
-                        if (node.TryGetAs("text_type", out string textType))
-                            newBlock.TextType = textType;
+                            if (node.TryGetAs("text_type", out string textType))
+                                newBlock.TextType = textType;
 
-                        if (node.TryGetAs("cs_type", out string csType))
-                            newBlock.CSType = csType;
-                        else
-                            PandaLogger.Log(ChatColor.yellow, "Unable to load item {0} from mapping file. This item will be mapped to air.", name);
+                            if (node.TryGetAs("cs_type", out string csType))
+                                newBlock.CSType = csType;
+                            else
+                                PandaLogger.Log(ChatColor.yellow, "Unable to load item {0} from mapping file. This item will be mapped to air.", name);
 
-                    if (newBlock.Meta > 0)
-                            BlockMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
-                        else
-                            BlockMappings[newBlock.Type.ToString()] = newBlock;
+                            if (newBlock.Meta > 0)
+                                BlockMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
+                            else
+                                BlockMappings[newBlock.Type.ToString()] = newBlock;
+                        }
                     }
+                    else
+                        PandaLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
                 }
-                else
+                catch (Exception ex)
+                {
                     PandaLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
-            }
-            catch (Exception ex)
-            {
-                PandaLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
-                PandaLogger.LogError(ex);
+                    PandaLogger.LogError(ex);
+                }
             }
         }
 
