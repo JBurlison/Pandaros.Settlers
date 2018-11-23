@@ -213,11 +213,12 @@ namespace Pandaros.Settlers
             if (userData.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
+            var suffix = "bottom";
+            var newType = userData.TypeNew;
+
             if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
             {
                 var side    = userData.PlayerClickedData.VoxelSideHit;
-                var newType = userData.TypeNew;
-                var suffix  = string.Empty;
 
                 switch (side)
                 {
@@ -246,14 +247,16 @@ namespace Pandaros.Settlers
                         break;
                 }
 
-                if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType.ItemIndex, out var typename))
-                {
-                    var otherTypename = typename + suffix;
+                
+            }
 
-                    if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out var otherIndex))
-                    {
-                        userData.TypeNew = ItemTypes.GetType(otherIndex);
-                    }
+            if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType.ItemIndex, out var typename))
+            {
+                var otherTypename = typename + suffix;
+
+                if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out var otherIndex))
+                {
+                    userData.TypeNew = ItemTypes.GetType(otherIndex);
                 }
             }
         }

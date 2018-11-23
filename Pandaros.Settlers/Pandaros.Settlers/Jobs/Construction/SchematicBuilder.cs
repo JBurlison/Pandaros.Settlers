@@ -67,7 +67,21 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     Stockpile ownerStockPile = areaJob.Owner.Stockpile;
 
-                    if (buildType.ItemIndex == BuiltinBlocks.Air || ownerStockPile.Contains(buildType.ItemIndex))
+                    bool ok = buildType.ItemIndex == BuiltinBlocks.Air;
+
+                    if (!ok && ownerStockPile.Contains(buildType.ItemIndex))
+                        ok = true;
+
+
+                    if (!ok)
+                    {
+                       var parentType = ItemTypes.GetType(buildType.ParentType);
+
+                        if (!ok && ownerStockPile.Contains(parentType.ItemIndex))
+                            ok = true;
+                    }
+
+                    if (ok)
                     {
                         if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
                             ownerStockPile.Add(foundTypeIndex);
@@ -95,7 +109,11 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 if (iterationType.MoveNext())
                 {
-                    state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
+                    if (buildType.ItemIndex != BuiltinBlocks.Air)
+                        state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
+                    else
+                        state.SetIndicator(new Shared.IndicatorState(GetCooldown(), foundTypeIndex));
+
                     return;
                 }
                 else

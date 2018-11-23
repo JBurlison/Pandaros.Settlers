@@ -4,7 +4,7 @@
     "meta": 0,
     "name": "Air",
     "text_type": "air",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 1,
@@ -88,7 +88,7 @@
     "meta": 0,
     "name": "Cobblestone",
     "text_type": "cobblestone",
-    "cs_type": "cobblestonegrey"
+    "cs_type": "stonebricks"
   },
   {
     "type": 5,
@@ -280,6 +280,48 @@
     "cs_type": "logtemperate"
   },
   {
+    "type": 17,
+    "meta": 4,
+    "name": "Oak Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 5,
+    "name": "Spruce Wood",
+    "text_type": "log",
+    "cs_type": "logtaiga"
+  },
+  {
+    "type": 17,
+    "meta": 6,
+    "name": "Birch Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 7,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 8,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 9,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
     "type": 18,
     "meta": 0,
     "name": "Oak Leaves",
@@ -303,6 +345,90 @@
   {
     "type": 18,
     "meta": 3,
+    "name": "Jungle Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 18,
+    "meta": 4,
+    "name": "Oak Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 5,
+    "name": "Spruce Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 6,
+    "name": "Birch Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 7,
+    "name": "Jungle Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 18,
+    "meta": 8,
+    "name": "Oak Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 9,
+    "name": "Spruce Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 10,
+    "name": "Birch Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 11,
+    "name": "Jungle Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 18,
+    "meta": 12,
+    "name": "Oak Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 13,
+    "name": "Spruce Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 14,
+    "name": "Birch Leaves",
+    "text_type": "leaves",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 18,
+    "meta": 15,
     "name": "Jungle Leaves",
     "text_type": "leaves",
     "cs_type": "leavesgreendark"
@@ -443,6 +569,62 @@
   {
     "type": 33,
     "meta": 0,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 1,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 2,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 3,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 4,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 5,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 6,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 7,
+    "name": "Piston",
+    "text_type": "piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 33,
+    "meta": 8,
     "name": "Piston",
     "text_type": "piston",
     "cs_type": "stonebricks"
@@ -777,6 +959,62 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.whiteclayslab"
   },
   {
+    "type": 44,
+    "meta": 8,
+    "name": "Upper Stone Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
+  },
+  {
+    "type": 44,
+    "meta": 9,
+    "name": "Upper Sandstone Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sandslab"
+  },
+  {
+    "type": 44,
+    "meta": 10,
+    "name": "Upper Wooden Slab",
+    "text_type": "stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+  },
+  {
+    "type": 44,
+    "meta": 11,
+    "name": "Upper Cobblestone Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
+  },
+  {
+    "type": 44,
+    "meta": 12,
+    "name": "Upper Brick Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.brickslab"
+  },
+  {
+    "type": 44,
+    "meta": 13,
+    "name": "Upper Stone Brick Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
+  },
+  {
+    "type": 44,
+    "meta": 14,
+    "name": "Upper Nether Brick Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 44,
+    "meta": 15,
+    "name": "Upper Quartz Slab",
+    "text_type": "upper_stone_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.whiteclayslab"
+  },
+  {
     "type": 45,
     "meta": 0,
     "name": "Bricks",
@@ -824,35 +1062,35 @@
     "meta": 1,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torch"
+    "cs_type": "torchx+"
   },
   {
     "type": 50,
     "meta": 2,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torch"
+    "cs_type": "torchx-"
   },
   {
     "type": 50,
     "meta": 3,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torch"
+    "cs_type": "torchz-"
   },
   {
     "type": 50,
     "meta": 4,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torch"
+    "cs_type": "torchz+"
   },
   {
     "type": 50,
     "meta": 5,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torch"
+    "cs_type": "torchy+"
   },
   {
     "type": 51,
@@ -876,8 +1114,85 @@
     "cs_type": "planks"
   },
   {
+    "type": 53,
+    "meta": 1,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 53,
+    "meta": 2,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 53,
+    "meta": 3,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 53,
+    "meta": 4,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 53,
+    "meta": 5,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 53,
+    "meta": 6,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 53,
+    "meta": 7,
+    "name": "Oak Wood Stairs",
+    "text_type": "oak_stairs",
+    "cs_type": "planks"
+  },
+  {
     "type": 54,
     "meta": 0,
+    "name": "Chest",
+    "text_type": "chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 54,
+    "meta": 1,
+    "name": "Chest",
+    "text_type": "chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 54,
+    "meta": 2,
+    "name": "Chest",
+    "text_type": "chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 54,
+    "meta": 3,
+    "name": "Chest",
+    "text_type": "chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 54,
+    "meta": 4,
     "name": "Chest",
     "text_type": "chest",
     "cs_type": "crate"
@@ -929,42 +1244,63 @@
     "meta": 0,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": ""
+    "cs_type": "oven"
+  },
+  {
+    "type": 61,
+    "meta": 1,
+    "name": "Furnace",
+    "text_type": "furnace",
+    "cs_type": "ovenx-"
+  },
+  {
+    "type": 61,
+    "meta": 2,
+    "name": "Furnace",
+    "text_type": "furnace",
+    "cs_type": "ovenz-"
+  },
+  {
+    "type": 61,
+    "meta": 3,
+    "name": "Furnace",
+    "text_type": "furnace",
+    "cs_type": "ovenz+"
   },
   {
     "type": 62,
     "meta": 0,
     "name": "Burning Furnace",
     "text_type": "lit_furnace",
-    "cs_type": ""
+    "cs_type": "oven"
   },
   {
     "type": 63,
     "meta": 0,
     "name": "Standing Sign Block",
     "text_type": "standing_sign",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 64,
     "meta": 0,
     "name": "Oak Door Block",
     "text_type": "wooden_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 65,
     "meta": 0,
     "name": "Ladder",
     "text_type": "ladder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 66,
     "meta": 0,
     "name": "Rail",
     "text_type": "rail",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 67,
@@ -974,39 +1310,235 @@
     "cs_type": "planks"
   },
   {
+    "type": 67,
+    "meta": 0,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 1,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 2,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 3,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 4,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 5,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 6,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 67,
+    "meta": 7,
+    "name": "Cobblestone Stairs",
+    "text_type": "stone_stairs",
+    "cs_type": "planks"
+  },
+  {
     "type": 68,
     "meta": 0,
     "name": "Wall-mounted Sign Block",
     "text_type": "wall_sign",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 68,
+    "meta": 1,
+    "name": "Wall-mounted Sign Block",
+    "text_type": "wall_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 68,
+    "meta": 2,
+    "name": "Wall-mounted Sign Block",
+    "text_type": "wall_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 68,
+    "meta": 3,
+    "name": "Wall-mounted Sign Block",
+    "text_type": "wall_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 68,
+    "meta": 4,
+    "name": "Wall-mounted Sign Block",
+    "text_type": "wall_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 68,
+    "meta": 5,
+    "name": "Wall-mounted Sign Block",
+    "text_type": "wall_sign",
+    "cs_type": "air"
   },
   {
     "type": 69,
     "meta": 0,
     "name": "Lever",
     "text_type": "lever",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 1,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 2,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 3,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 4,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 5,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 6,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 7,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 8,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 9,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 10,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 11,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 12,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 13,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 14,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
+  },
+  {
+    "type": 69,
+    "meta": 15,
+    "name": "Lever",
+    "text_type": "lever",
+    "cs_type": "air"
   },
   {
     "type": 70,
     "meta": 0,
     "name": "Stone Pressure Plate",
     "text_type": "stone_pressure_plate",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 71,
     "meta": 0,
     "name": "Iron Door Block",
     "text_type": "iron_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 72,
     "meta": 0,
     "name": "Wooden Pressure Plate",
     "text_type": "wooden_pressure_plate",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 73,
@@ -1030,11 +1562,81 @@
     "cs_type": "torch"
   },
   {
+    "type": 75,
+    "meta": 1,
+    "name": "Redstone Torch (off)",
+    "text_type": "unlit_redstone_torch",
+    "cs_type": "torchx+"
+  },
+  {
+    "type": 75,
+    "meta": 2,
+    "name": "Redstone Torch (off)",
+    "text_type": "unlit_redstone_torch",
+    "cs_type": "torchx-"
+  },
+  {
+    "type": 75,
+    "meta": 3,
+    "name": "Redstone Torch (off)",
+    "text_type": "unlit_redstone_torch",
+    "cs_type": "torchz-"
+  },
+  {
+    "type": 75,
+    "meta": 4,
+    "name": "Redstone Torch (off)",
+    "text_type": "unlit_redstone_torch",
+    "cs_type": "torchz+"
+  },
+  {
+    "type": 75,
+    "meta": 5,
+    "name": "Redstone Torch (off)",
+    "text_type": "unlit_redstone_torch",
+    "cs_type": "torchy+"
+  },
+  {
     "type": 76,
     "meta": 0,
     "name": "Redstone Torch (on)",
     "text_type": "redstone_torch",
     "cs_type": "torch"
+  },
+  {
+    "type": 76,
+    "meta": 1,
+    "name": "Redstone Torch (on)",
+    "text_type": "redstone_torch",
+    "cs_type": "torchx+"
+  },
+  {
+    "type": 76,
+    "meta": 2,
+    "name": "Redstone Torch (on)",
+    "text_type": "redstone_torch",
+    "cs_type": "torchx-"
+  },
+  {
+    "type": 76,
+    "meta": 3,
+    "name": "Redstone Torch (on)",
+    "text_type": "redstone_torch",
+    "cs_type": "torchz-"
+  },
+  {
+    "type": 76,
+    "meta": 4,
+    "name": "Redstone Torch (on)",
+    "text_type": "redstone_torch",
+    "cs_type": "torchz+"
+  },
+  {
+    "type": 76,
+    "meta": 5,
+    "name": "Redstone Torch (on)",
+    "text_type": "redstone_torch",
+    "cs_type": "torchy+"
   },
   {
     "type": 77,
@@ -1104,321 +1706,475 @@
     "meta": 0,
     "name": "Pumpkin",
     "text_type": "pumpkin",
-    "cs_type": ""
+    "cs_type": "lanternorange"
   },
   {
     "type": 87,
     "meta": 0,
     "name": "Netherrack",
     "text_type": "netherrack",
-    "cs_type": ""
+    "cs_type": "planksred"
   },
   {
     "type": 88,
     "meta": 0,
     "name": "Soul Sand",
     "text_type": "soul_sand",
-    "cs_type": ""
+    "cs_type": "sand"
   },
   {
     "type": 89,
     "meta": 0,
     "name": "Glowstone",
     "text_type": "glowstone",
-    "cs_type": ""
+    "cs_type": "lanternwhite"
   },
   {
     "type": 90,
     "meta": 0,
     "name": "Nether Portal",
     "text_type": "portal",
-    "cs_type": ""
+    "cs_type": "lanternblue"
   },
   {
     "type": 91,
     "meta": 0,
     "name": "Jack o'Lantern",
     "text_type": "lit_pumpkin",
-    "cs_type": ""
+    "cs_type": "lanternorange"
   },
   {
     "type": 92,
     "meta": 0,
     "name": "Cake Block",
     "text_type": "cake",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 93,
     "meta": 0,
     "name": "Redstone Repeater Block (off)",
     "text_type": "unpowered_repeater",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 94,
     "meta": 0,
     "name": "Redstone Repeater Block (on)",
     "text_type": "powered_repeater",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 0,
     "name": "White Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 1,
     "name": "Orange Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 2,
     "name": "Magenta Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 3,
     "name": "Light Blue Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 4,
     "name": "Yellow Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 5,
     "name": "Lime Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 6,
     "name": "Pink Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 7,
     "name": "Gray Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 8,
     "name": "Light Gray Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 9,
     "name": "Cyan Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 10,
     "name": "Purple Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 11,
     "name": "Blue Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 12,
     "name": "Brown Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 13,
     "name": "Green Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 14,
     "name": "Red Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 95,
     "meta": 15,
     "name": "Black Stained Glass",
     "text_type": "stained_glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 96,
     "meta": 0,
     "name": "Wooden Trapdoor",
     "text_type": "trapdoor",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 1,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 2,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 3,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 4,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 5,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 6,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 7,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 8,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 9,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 10,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 11,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 12,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 13,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 14,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 96,
+    "meta": 15,
+    "name": "Wooden Trapdoor",
+    "text_type": "trapdoor",
+    "cs_type": "air"
   },
   {
     "type": 97,
     "meta": 0,
     "name": "Stone Monster Egg",
     "text_type": "monster_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 97,
     "meta": 1,
     "name": "Cobblestone Monster Egg",
     "text_type": "monster_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 97,
     "meta": 2,
     "name": "Stone Brick Monster Egg",
     "text_type": "monster_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 97,
     "meta": 3,
     "name": "Mossy Stone Brick Monster Egg",
     "text_type": "monster_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 97,
     "meta": 4,
     "name": "Cracked Stone Brick Monster Egg",
     "text_type": "monster_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 97,
     "meta": 5,
     "name": "Chiseled Stone Brick Monster Egg",
     "text_type": "monster_egg",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 98,
     "meta": 0,
     "name": "Stone Bricks",
     "text_type": "stonebrick",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 98,
     "meta": 1,
     "name": "Mossy Stone Bricks",
     "text_type": "stonebrick",
-    "cs_type": ""
+    "cs_type": "stonebricksbrown"
   },
   {
     "type": 98,
     "meta": 2,
     "name": "Cracked Stone Bricks",
     "text_type": "stonebrick",
-    "cs_type": ""
+    "cs_type": "stonebricksblack"
   },
   {
     "type": 98,
     "meta": 3,
     "name": "Chiseled Stone Bricks",
     "text_type": "stonebrick",
-    "cs_type": ""
+    "cs_type": "stonebrickswhite"
   },
   {
     "type": 99,
     "meta": 0,
     "name": "Brown Mushroom Block",
     "text_type": "brown_mushroom_block",
-    "cs_type": ""
+    "cs_type": "dirt"
   },
   {
     "type": 100,
     "meta": 0,
     "name": "Red Mushroom Block",
     "text_type": "red_mushroom_block",
-    "cs_type": ""
+    "cs_type": "carpetred"
   },
   {
     "type": 101,
     "meta": 0,
     "name": "Iron Bars",
     "text_type": "iron_bars",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 102,
     "meta": 0,
     "name": "Glass Pane",
     "text_type": "glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 103,
     "meta": 0,
     "name": "Melon Block",
     "text_type": "melon_block",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 104,
     "meta": 0,
     "name": "Pumpkin Stem",
     "text_type": "pumpkin_stem",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 105,
     "meta": 0,
     "name": "Melon Stem",
     "text_type": "melon_stem",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 106,
     "meta": 0,
     "name": "Vines",
     "text_type": "vine",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 107,
     "meta": 0,
     "name": "Oak Fence Gate",
     "text_type": "fence_gate",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 108,
     "meta": 0,
     "name": "Brick Stairs",
     "text_type": "brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 1,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 2,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 3,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 4,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 5,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 6,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 109,
+    "meta": 7,
+    "name": "Stone Brick Stairs",
+    "text_type": "stone_brick_stairs",
     "cs_type": "planks"
   },
   {
@@ -1447,7 +2203,7 @@
     "meta": 0,
     "name": "Nether Brick",
     "text_type": "nether_brick",
-    "cs_type": ""
+    "cs_type": "bricksdarkred"
   },
   {
     "type": 113,
@@ -1461,7 +2217,56 @@
     "meta": 0,
     "name": "Nether Brick Stairs",
     "text_type": "nether_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 1,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 2,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 3,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 4,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 5,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 6,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 114,
+    "meta": 7,
+    "name": "Nether Brick Stairs",
+    "text_type": "nether_brick_stairs",
+    "cs_type": "redplanks"
   },
   {
     "type": 115,
@@ -1489,7 +2294,28 @@
     "meta": 0,
     "name": "Cauldron",
     "text_type": "cauldron",
-    "cs_type": ""
+    "cs_type": "ovenx+"
+  },
+  {
+    "type": 118,
+    "meta": 1,
+    "name": "Cauldron",
+    "text_type": "cauldron",
+    "cs_type": "ovenx-"
+  },
+  {
+    "type": 118,
+    "meta": 2,
+    "name": "Cauldron",
+    "text_type": "cauldron",
+    "cs_type": "ovenz+"
+  },
+  {
+    "type": 118,
+    "meta": 3,
+    "name": "Cauldron",
+    "text_type": "cauldron",
+    "cs_type": "ovenz-"
   },
   {
     "type": 119,
@@ -1618,6 +2444,55 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.blackplankslab"
   },
   {
+    "type": 126,
+    "meta": 7,
+    "name": "Upper Oak Wood Slab",
+    "text_type": "wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+  },
+  {
+    "type": 126,
+    "meta": 8,
+    "name": "Upper Oak Wood Slab",
+    "text_type": "upper_wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+  },
+  {
+    "type": 126,
+    "meta": 9,
+    "name": "Upper Spruce Wood Slab",
+    "text_type": "upper_wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+  },
+  {
+    "type": 126,
+    "meta": 10,
+    "name": "Upper Birch Wood Slab",
+    "text_type": "upper_wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+  },
+  {
+    "type": 126,
+    "meta": 11,
+    "name": "Upper Jungle Wood Slab",
+    "text_type": "upper_wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+  },
+  {
+    "type": 126,
+    "meta": 12,
+    "name": "Upper Acacia Wood Slab",
+    "text_type": "upper_wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 126,
+    "meta": 13,
+    "name": "Upper Dark Oak Wood Slab",
+    "text_type": "upper_wooden_slab",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blackplankslab"
+  },
+  {
     "type": 127,
     "meta": 0,
     "name": "Cocoa",
@@ -1627,6 +2502,55 @@
   {
     "type": 128,
     "meta": 0,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 1,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 2,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 3,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 4,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 5,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 6,
+    "name": "Sandstone Stairs",
+    "text_type": "sandstone_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 128,
+    "meta": 7,
     "name": "Sandstone Stairs",
     "text_type": "sandstone_stairs",
     "cs_type": "planks"
@@ -1674,6 +2598,55 @@
     "cs_type": "planks"
   },
   {
+    "type": 134,
+    "meta": 1,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 134,
+    "meta": 2,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 134,
+    "meta": 3,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 134,
+    "meta": 4,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 134,
+    "meta": 5,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 134,
+    "meta": 6,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 134,
+    "meta": 7,
+    "name": "Spruce Wood Stairs",
+    "text_type": "spruce_stairs",
+    "cs_type": "planks"
+  },
+  {
     "type": 135,
     "meta": 0,
     "name": "Birch Wood Stairs",
@@ -1681,8 +2654,106 @@
     "cs_type": "planks"
   },
   {
+    "type": 135,
+    "meta": 1,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 135,
+    "meta": 2,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 135,
+    "meta": 3,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 135,
+    "meta": 4,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 135,
+    "meta": 5,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 135,
+    "meta": 6,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 135,
+    "meta": 7,
+    "name": "Birch Wood Stairs",
+    "text_type": "birch_stairs",
+    "cs_type": "planks"
+  },
+  {
     "type": 136,
     "meta": 0,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 1,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 2,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 3,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 4,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 5,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 6,
+    "name": "Jungle Wood Stairs",
+    "text_type": "jungle_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 136,
+    "meta": 7,
     "name": "Jungle Wood Stairs",
     "text_type": "jungle_stairs",
     "cs_type": "planks"
@@ -1706,14 +2777,14 @@
     "meta": 0,
     "name": "Cobblestone Wall",
     "text_type": "cobblestone_wall",
-    "cs_type": ""
+    "cs_type": "stonebricks"
   },
   {
     "type": 139,
     "meta": 1,
     "name": "Mossy Cobblestone Wall",
     "text_type": "cobblestone_wall",
-    "cs_type": ""
+    "cs_type": "stonebricksblack"
   },
   {
     "type": 140,
@@ -1755,7 +2826,35 @@
     "meta": 0,
     "name": "Anvil",
     "text_type": "anvil",
-    "cs_type": ""
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 1,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 2,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 3,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
+  },
+  {
+    "type": 145,
+    "meta": 4,
+    "name": "Anvil",
+    "text_type": "anvil",
+    "cs_type": "ironblock"
   },
   {
     "type": 146,
@@ -1842,8 +2941,142 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.marblepillarbody"
   },
   {
+    "type": 155,
+    "meta": 3,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 4,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 5,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 6,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marblepillarbody"
+  },
+  {
+    "type": 155,
+    "meta": 7,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 8,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 9,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 10,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marblepillarbody"
+  },
+  {
+    "type": 155,
+    "meta": 11,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 12,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+
+  {
+    "type": 155,
+    "meta": 13,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 155,
+    "meta": 14,
+    "name": "Pillar Quartz Block",
+    "text_type": "quartz_block",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marblepillarbody"
+  },
+  {
     "type": 156,
     "meta": 0,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 1,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 2,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 3,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 4,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 5,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 6,
+    "name": "Quartz Stairs",
+    "text_type": "quartz_stairs",
+    "cs_type": "Pandaros.Settlers.AutoLoad.marble"
+  },
+  {
+    "type": 156,
+    "meta": 7,
     "name": "Quartz Stairs",
     "text_type": "quartz_stairs",
     "cs_type": "Pandaros.Settlers.AutoLoad.marble"
@@ -1979,112 +3212,112 @@
     "meta": 0,
     "name": "White Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 1,
     "name": "Orange Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 2,
     "name": "Magenta Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 3,
     "name": "Light Blue Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 4,
     "name": "Yellow Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 5,
     "name": "Lime Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 6,
     "name": "Pink Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 7,
     "name": "Gray Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 8,
     "name": "Light Gray Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 9,
     "name": "Cyan Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 10,
     "name": "Purple Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 11,
     "name": "Blue Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 12,
     "name": "Brown Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 13,
     "name": "Green Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 14,
     "name": "Red Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 160,
     "meta": 15,
     "name": "Black Stained Glass Pane",
     "text_type": "stained_glass_pane",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 161,
@@ -2096,6 +3329,62 @@
   {
     "type": 161,
     "meta": 1,
+    "name": "Dark Oak Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 161,
+    "meta": 4,
+    "name": "Acacia Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 161,
+    "meta": 5,
+    "name": "Dark Oak Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 161,
+    "meta": 6,
+    "name": "Acacia Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 161,
+    "meta": 7,
+    "name": "Dark Oak Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 161,
+    "meta": 8,
+    "name": "Acacia Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 161,
+    "meta": 9,
+    "name": "Dark Oak Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 161,
+    "meta": 12,
+    "name": "Acacia Leaves",
+    "text_type": "leaves2",
+    "cs_type": "leavestemperate"
+  },
+  {
+    "type": 161,
+    "meta": 13,
     "name": "Dark Oak Leaves",
     "text_type": "leaves2",
     "cs_type": "leavesgreendark"
@@ -2115,6 +3404,62 @@
     "cs_type": "logtaiga"
   },
   {
+    "type": 162,
+    "meta": 2,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 3,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 4,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 5,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 6,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 7,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 8,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 9,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
     "type": 163,
     "meta": 0,
     "name": "Acacia Wood Stairs",
@@ -2122,8 +3467,106 @@
     "cs_type": "planks"
   },
   {
+    "type": 163,
+    "meta": 1,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 163,
+    "meta": 2,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 163,
+    "meta": 3,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 163,
+    "meta": 4,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 163,
+    "meta": 5,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 163,
+    "meta": 6,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 163,
+    "meta": 7,
+    "name": "Acacia Wood Stairs",
+    "text_type": "acacia_stairs",
+    "cs_type": "planks"
+  },
+  {
     "type": 164,
     "meta": 0,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 1,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 2,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 3,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 4,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 5,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 6,
+    "name": "Dark Oak Wood Stairs",
+    "text_type": "dark_oak_stairs",
+    "cs_type": "planks"
+  },
+  {
+    "type": 164,
+    "meta": 7,
     "name": "Dark Oak Wood Stairs",
     "text_type": "dark_oak_stairs",
     "cs_type": "planks"
@@ -2147,28 +3590,28 @@
     "meta": 0,
     "name": "Iron Trapdoor",
     "text_type": "iron_trapdoor",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 168,
     "meta": 0,
     "name": "Prismarine",
     "text_type": "prismarine",
-    "cs_type": ""
+    "cs_type": "planksgreen"
   },
   {
     "type": 168,
     "meta": 1,
     "name": "Prismarine Bricks",
     "text_type": "prismarine",
-    "cs_type": ""
+    "cs_type": "planksgreen"
   },
   {
     "type": 168,
     "meta": 2,
     "name": "Dark Prismarine",
     "text_type": "prismarine",
-    "cs_type": ""
+    "cs_type": "planksgreen"
   },
   {
     "type": 169,
@@ -2189,112 +3632,112 @@
     "meta": 0,
     "name": "White Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 1,
     "name": "Orange Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 2,
     "name": "Magenta Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 3,
     "name": "Light Blue Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 4,
     "name": "Yellow Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 5,
     "name": "Lime Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 6,
     "name": "Pink Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 7,
     "name": "Gray Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 8,
     "name": "Light Gray Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 9,
     "name": "Cyan Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 10,
     "name": "Purple Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 11,
     "name": "Blue Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 12,
     "name": "Brown Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 13,
     "name": "Green Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 14,
     "name": "Red Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 171,
     "meta": 15,
     "name": "Black Carpet",
     "text_type": "carpet",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 172,
@@ -2322,42 +3765,84 @@
     "meta": 0,
     "name": "Sunflower",
     "text_type": "double_plant",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 175,
     "meta": 1,
     "name": "Lilac",
     "text_type": "double_plant",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 175,
     "meta": 2,
     "name": "Double Tallgrass",
     "text_type": "double_plant",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 175,
     "meta": 3,
     "name": "Large Fern",
     "text_type": "double_plant",
-    "cs_type": ""
+    "cs_type": "leavesgreendark"
   },
   {
     "type": 175,
     "meta": 4,
     "name": "Rose Bush",
     "text_type": "double_plant",
-    "cs_type": ""
+    "cs_type": "cherryblossom"
   },
   {
     "type": 175,
     "meta": 5,
     "name": "Peony",
     "text_type": "double_plant",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 175,
+    "meta": 6,
+    "name": "Sunflower",
+    "text_type": "double_plant",
+    "cs_type": "air"
+  },
+  {
+    "type": 175,
+    "meta": 7,
+    "name": "Lilac",
+    "text_type": "double_plant",
+    "cs_type": "air"
+  },
+  {
+    "type": 175,
+    "meta": 8,
+    "name": "Double Tallgrass",
+    "text_type": "double_plant",
+    "cs_type": "air"
+  },
+  {
+    "type": 175,
+    "meta": 9,
+    "name": "Large Fern",
+    "text_type": "double_plant",
+    "cs_type": "leavesgreendark"
+  },
+  {
+    "type": 175,
+    "meta": 10,
+    "name": "Rose Bush",
+    "text_type": "double_plant",
+    "cs_type": "cherryblossom"
+  },
+  {
+    "type": 175,
+    "meta": 11,
+    "name": "Peony",
+    "text_type": "double_plant",
+    "cs_type": "air"
   },
   {
     "type": 176,
@@ -2371,7 +3856,42 @@
     "meta": 0,
     "name": "Wall-mounted Banner",
     "text_type": "wall_banner",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 177,
+    "meta": 1,
+    "name": "Wall-mounted Banner",
+    "text_type": "wall_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 177,
+    "meta": 2,
+    "name": "Wall-mounted Banner",
+    "text_type": "wall_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 177,
+    "meta": 3,
+    "name": "Wall-mounted Banner",
+    "text_type": "wall_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 177,
+    "meta": 4,
+    "name": "Wall-mounted Banner",
+    "text_type": "wall_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 177,
+    "meta": 5,
+    "name": "Wall-mounted Banner",
+    "text_type": "wall_banner",
+    "cs_type": "air"
   },
   {
     "type": 178,
@@ -2409,6 +3929,55 @@
     "cs_type": "redplanks"
   },
   {
+    "type": 180,
+    "meta": 1,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 180,
+    "meta": 2,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 180,
+    "meta": 3,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 180,
+    "meta": 4,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 180,
+    "meta": 5,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 180,
+    "meta": 6,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
+    "type": 180,
+    "meta": 7,
+    "name": "Red Sandstone Stairs",
+    "text_type": "red_sandstone_stairs",
+    "cs_type": "redplanks"
+  },
+  {
     "type": 181,
     "meta": 0,
     "name": "Double Red Sandstone Slab",
@@ -2420,6 +3989,111 @@
     "meta": 0,
     "name": "Red Sandstone Slab",
     "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 1,
+    "name": "Purpur Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 2,
+    "name": "Prismarine Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 3,
+    "name": "Prismarine Brick Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 4,
+    "name": "Dark Prismarine Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 5,
+    "name": "Mossy cobblestone Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 6,
+    "name": "Smooth Sandstone Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 7,
+    "name": "Red Nether Brick Slab",
+    "text_type": "stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 8,
+    "name": "Upper Red Sandstone Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 9,
+    "name": "Upper Purpur Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 10,
+    "name": "Upper Prismarine Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 11,
+    "name": "Upper Prismarine Brick Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 12,
+    "name": "Upper Dark Prismarine Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 13,
+    "name": "Upper Mossy cobblestone Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 14,
+    "name": "Upper Smooth Sandstone Slab",
+    "text_type": "upper_stone_slab2",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+  },
+  {
+    "type": 182,
+    "meta": 15,
+    "name": "Upper Red Nether Brick Slab",
+    "text_type": "upper_stone_slab2",
     "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
   },
   {
@@ -2497,42 +4171,49 @@
     "meta": 0,
     "name": "Spruce Door Block",
     "text_type": "spruce_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 194,
     "meta": 0,
     "name": "Birch Door Block",
     "text_type": "birch_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 195,
     "meta": 0,
     "name": "Jungle Door Block",
     "text_type": "jungle_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 196,
     "meta": 0,
     "name": "Acacia Door Block",
     "text_type": "acacia_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 197,
     "meta": 0,
     "name": "Dark Oak Door Block",
     "text_type": "dark_oak_door",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 198,
     "meta": 0,
     "name": "End Rod",
     "text_type": "end_rod",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 198,
+    "meta": 1,
+    "name": "End Rod",
+    "text_type": "end_rod",
+    "cs_type": "air"
   },
   {
     "type": 199,
@@ -2565,6 +4246,55 @@
   {
     "type": 203,
     "meta": 0,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 1,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 2,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 3,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 4,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 5,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 6,
+    "name": "Purpur Stairs",
+    "text_type": "purpur_stairs",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 203,
+    "meta": 7,
     "name": "Purpur Stairs",
     "text_type": "purpur_stairs",
     "cs_type": "Pandaros.Settlers.carpetpurple"
@@ -2794,8 +4524,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.whiteclay"
   },
   {
+    "type": 235,
+    "meta": 1,
+    "name": "White Glazed Terracotta",
+    "text_type": "white_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.whiteclay"
+  },
+  {
+    "type": 235,
+    "meta": 2,
+    "name": "White Glazed Terracotta",
+    "text_type": "white_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.whiteclay"
+  },
+  {
+    "type": 235,
+    "meta": 3,
+    "name": "White Glazed Terracotta",
+    "text_type": "white_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.whiteclay"
+  },
+  {
     "type": 236,
     "meta": 0,
+    "name": "Orange Glazed Terracotta",
+    "text_type": "orange_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.orangeclay"
+  },
+  {
+    "type": 236,
+    "meta": 1,
+    "name": "Orange Glazed Terracotta",
+    "text_type": "orange_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.orangeclay"
+  },
+  {
+    "type": 236,
+    "meta": 2,
+    "name": "Orange Glazed Terracotta",
+    "text_type": "orange_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.orangeclay"
+  },
+  {
+    "type": 236,
+    "meta": 3,
     "name": "Orange Glazed Terracotta",
     "text_type": "orange_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.orangeclay"
@@ -2808,8 +4580,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.magentaclay"
   },
   {
+    "type": 237,
+    "meta": 1,
+    "name": "Magenta Glazed Terracotta",
+    "text_type": "magenta_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.magentaclay"
+  },
+  {
+    "type": 237,
+    "meta": 2,
+    "name": "Magenta Glazed Terracotta",
+    "text_type": "magenta_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.magentaclay"
+  },
+  {
+    "type": 237,
+    "meta": 3,
+    "name": "Magenta Glazed Terracotta",
+    "text_type": "magenta_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.magentaclay"
+  },
+  {
     "type": 238,
     "meta": 0,
+    "name": "Light Blue Glazed Terracotta",
+    "text_type": "light_blue_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blueclay"
+  },
+  {
+    "type": 238,
+    "meta": 1,
+    "name": "Light Blue Glazed Terracotta",
+    "text_type": "light_blue_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blueclay"
+  },
+  {
+    "type": 238,
+    "meta": 2,
+    "name": "Light Blue Glazed Terracotta",
+    "text_type": "light_blue_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blueclay"
+  },
+  {
+    "type": 238,
+    "meta": 3,
     "name": "Light Blue Glazed Terracotta",
     "text_type": "light_blue_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.blueclay"
@@ -2822,8 +4636,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.yellowclay"
   },
   {
+    "type": 239,
+    "meta": 1,
+    "name": "Yellow Glazed Terracotta",
+    "text_type": "yellow_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.yellowclay"
+  },
+  {
+    "type": 239,
+    "meta": 2,
+    "name": "Yellow Glazed Terracotta",
+    "text_type": "yellow_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.yellowclay"
+  },
+  {
+    "type": 239,
+    "meta": 3,
+    "name": "Yellow Glazed Terracotta",
+    "text_type": "yellow_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.yellowclay"
+  },
+  {
     "type": 240,
     "meta": 0,
+    "name": "Lime Glazed Terracotta",
+    "text_type": "lime_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.limeclay"
+  },
+  {
+    "type": 240,
+    "meta": 1,
+    "name": "Lime Glazed Terracotta",
+    "text_type": "lime_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.limeclay"
+  },
+  {
+    "type": 240,
+    "meta": 2,
+    "name": "Lime Glazed Terracotta",
+    "text_type": "lime_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.limeclay"
+  },
+  {
+    "type": 240,
+    "meta": 3,
     "name": "Lime Glazed Terracotta",
     "text_type": "lime_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.limeclay"
@@ -2836,8 +4692,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.pinkclay"
   },
   {
+    "type": 241,
+    "meta": 1,
+    "name": "Pink Glazed Terracotta",
+    "text_type": "pink_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.pinkclay"
+  },
+  {
+    "type": 241,
+    "meta": 2,
+    "name": "Pink Glazed Terracotta",
+    "text_type": "pink_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.pinkclay"
+  },
+  {
+    "type": 241,
+    "meta": 3,
+    "name": "Pink Glazed Terracotta",
+    "text_type": "pink_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.pinkclay"
+  },
+  {
     "type": 242,
     "meta": 0,
+    "name": "Gray Glazed Terracotta",
+    "text_type": "gray_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.greyclay"
+  },
+  {
+    "type": 242,
+    "meta": 1,
+    "name": "Gray Glazed Terracotta",
+    "text_type": "gray_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.greyclay"
+  },
+  {
+    "type": 242,
+    "meta": 2,
+    "name": "Gray Glazed Terracotta",
+    "text_type": "gray_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.greyclay"
+  },
+  {
+    "type": 242,
+    "meta": 3,
     "name": "Gray Glazed Terracotta",
     "text_type": "gray_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.greyclay"
@@ -2850,8 +4748,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.lightgreyclay"
   },
   {
+    "type": 243,
+    "meta": 1,
+    "name": "Light Gray Glazed Terracotta",
+    "text_type": "light_gray_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lightgreyclay"
+  },
+  {
+    "type": 243,
+    "meta": 2,
+    "name": "Light Gray Glazed Terracotta",
+    "text_type": "light_gray_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lightgreyclay"
+  },
+  {
+    "type": 243,
+    "meta": 3,
+    "name": "Light Gray Glazed Terracotta",
+    "text_type": "light_gray_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lightgreyclay"
+  },
+  {
     "type": 244,
     "meta": 0,
+    "name": "Cyan Glazed Terracotta",
+    "text_type": "cyan_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.cyanclay"
+  },
+  {
+    "type": 244,
+    "meta": 1,
+    "name": "Cyan Glazed Terracotta",
+    "text_type": "cyan_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.cyanclay"
+  },
+  {
+    "type": 244,
+    "meta": 2,
+    "name": "Cyan Glazed Terracotta",
+    "text_type": "cyan_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.cyanclay"
+  },
+  {
+    "type": 244,
+    "meta": 3,
     "name": "Cyan Glazed Terracotta",
     "text_type": "cyan_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.cyanclay"
@@ -2864,8 +4804,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.purpleclay"
   },
   {
+    "type": 245,
+    "meta": 1,
+    "name": "Purple Glazed Terracotta",
+    "text_type": "purple_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.purpleclay"
+  },
+  {
+    "type": 245,
+    "meta": 2,
+    "name": "Purple Glazed Terracotta",
+    "text_type": "purple_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.purpleclay"
+  },
+  {
+    "type": 245,
+    "meta": 3,
+    "name": "Purple Glazed Terracotta",
+    "text_type": "purple_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.purpleclay"
+  },
+  {
     "type": 246,
     "meta": 0,
+    "name": "Blue Glazed Terracotta",
+    "text_type": "blue_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.darkblueclay"
+  },
+  {
+    "type": 246,
+    "meta": 1,
+    "name": "Blue Glazed Terracotta",
+    "text_type": "blue_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.darkblueclay"
+  },
+  {
+    "type": 246,
+    "meta": 2,
+    "name": "Blue Glazed Terracotta",
+    "text_type": "blue_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.darkblueclay"
+  },
+  {
+    "type": 246,
+    "meta": 3,
     "name": "Blue Glazed Terracotta",
     "text_type": "blue_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.darkblueclay"
@@ -2878,8 +4860,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.brownclay"
   },
   {
+    "type": 247,
+    "meta": 1,
+    "name": "Brown Glazed Terracotta",
+    "text_type": "brown_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.brownclay"
+  },
+  {
+    "type": 247,
+    "meta": 2,
+    "name": "Brown Glazed Terracotta",
+    "text_type": "brown_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.brownclay"
+  },
+  {
+    "type": 247,
+    "meta": 3,
+    "name": "Brown Glazed Terracotta",
+    "text_type": "brown_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.brownclay"
+  },
+  {
     "type": 248,
     "meta": 0,
+    "name": "Green Glazed Terracotta",
+    "text_type": "green_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.greenclay"
+  },
+  {
+    "type": 248,
+    "meta": 1,
+    "name": "Green Glazed Terracotta",
+    "text_type": "green_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.greenclay"
+  },
+  {
+    "type": 248,
+    "meta": 2,
+    "name": "Green Glazed Terracotta",
+    "text_type": "green_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.greenclay"
+  },
+  {
+    "type": 248,
+    "meta": 3,
     "name": "Green Glazed Terracotta",
     "text_type": "green_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.greenclay"
@@ -2892,8 +4916,50 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.redclay"
   },
   {
+    "type": 249,
+    "meta": 1,
+    "name": "Red Glazed Terracotta",
+    "text_type": "red_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redclay"
+  },
+  {
+    "type": 249,
+    "meta": 2,
+    "name": "Red Glazed Terracotta",
+    "text_type": "red_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redclay"
+  },
+  {
+    "type": 249,
+    "meta": 3,
+    "name": "Red Glazed Terracotta",
+    "text_type": "red_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.redclay"
+  },
+  {
     "type": 250,
     "meta": 0,
+    "name": "Black Glazed Terracotta",
+    "text_type": "black_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blackclay"
+  },
+  {
+    "type": 250,
+    "meta": 1,
+    "name": "Black Glazed Terracotta",
+    "text_type": "black_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blackclay"
+  },
+  {
+    "type": 250,
+    "meta": 2,
+    "name": "Black Glazed Terracotta",
+    "text_type": "black_glazed_terracotta",
+    "cs_type": "Pandaros.Settlers.AutoLoad.blackclay"
+  },
+  {
+    "type": 250,
+    "meta": 3,
     "name": "Black Glazed Terracotta",
     "text_type": "black_glazed_terracotta",
     "cs_type": "Pandaros.Settlers.AutoLoad.blackclay"

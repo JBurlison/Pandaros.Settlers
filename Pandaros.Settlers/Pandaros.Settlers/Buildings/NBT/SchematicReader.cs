@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Buildings.NBT
     [ModLoader.ModManager]
     public static class SchematicReader
     {
-        private const string METADATA_FILEEXT = ".scMetadata";
+        private const string METADATA_FILEEXT = ".metadata.json";
         static Dictionary<string, Dictionary<Vector3Int, Schematic>> _loadedSchematics = new Dictionary<string, Dictionary<Vector3Int, Schematic>>();
 
         public static bool TryGetSchematicMetadata(string name, int colonyId, out SchematicMetadata metadata)
@@ -179,7 +179,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             RawSchematic raw = LoadRaw(nbtFile);
             SchematicBlock[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.TileEntities, startPos);
+            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, startPos);
 
             if (!_loadedSchematics.ContainsKey(nbtFile.FileName))
                 _loadedSchematics.Add(nbtFile.FileName, new Dictionary<Vector3Int, Schematic>());
@@ -194,7 +194,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             RawSchematic raw = LoadRaw(nbtFile);
             SchematicBlock[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            return new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.TileEntities, startPos);
+            return new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, startPos);
         }
 
         private static RawSchematicSize LoadRawSize(NbtFile nbtFile)
@@ -251,9 +251,9 @@ namespace Pandaros.Settlers.Buildings.NBT
                         break;
                     case "Entities": //List
                         break; //Ignore
-                    case "TileEntities": //List
-                        TileEntity[,,] tileEntities = new TileEntity[raw.XMax, raw.YMax, raw.ZMax];
-                        raw.TileEntities = GetTileEntities(tag, tileEntities);
+                    //case "TileEntities": //List
+                    //    TileEntity[,,] tileEntities = new TileEntity[raw.XMax, raw.YMax, raw.ZMax];
+                    //    raw.TileEntities = GetTileEntities(tag, tileEntities);
                         break;
                     case "Icon": //Compound
                         break; //Ignore
@@ -267,23 +267,23 @@ namespace Pandaros.Settlers.Buildings.NBT
             return raw;
         }
 
-        private static TileEntity[,,] GetTileEntities(NbtTag tileEntitiesList, TileEntity[,,] list)
-        {
-            NbtList TileEntities = tileEntitiesList as NbtList;
-            if (TileEntities != null)
-            {
-                foreach (NbtCompound compTag in TileEntities)
-                {
-                    NbtTag xTag = compTag["x"];
-                    NbtTag yTag = compTag["y"];
-                    NbtTag zTag = compTag["z"];
-                    NbtTag idTag = compTag["id"];
-                    TileEntity entity = new TileEntity(xTag.IntValue, yTag.IntValue, zTag.IntValue, idTag.StringValue);
-                    list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = entity;
-                }
-            }
-            return list;
-        }
+        //private static TileEntity[,,] GetTileEntities(NbtTag tileEntitiesList, TileEntity[,,] list)
+        //{
+        //    NbtList TileEntities = tileEntitiesList as NbtList;
+        //    if (TileEntities != null)
+        //    {
+        //        foreach (NbtCompound compTag in TileEntities)
+        //        {
+        //            NbtTag xTag = compTag["x"];
+        //            NbtTag yTag = compTag["y"];
+        //            NbtTag zTag = compTag["z"];
+        //            NbtTag idTag = compTag["id"];
+        //            TileEntity entity = new TileEntity(xTag.IntValue, yTag.IntValue, zTag.IntValue, idTag.StringValue);
+        //            list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = entity;
+        //        }
+        //    }
+        //    return list;
+        //}
 
         private static SchematicBlock[,,] GetBlocks(RawSchematic rawSchematic)
         {

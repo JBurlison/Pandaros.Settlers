@@ -459,7 +459,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Schematics\castle-froidinshire.schematic">
+    <None Include="Schematics\castle-spawn.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Textures\texturemapping.json">

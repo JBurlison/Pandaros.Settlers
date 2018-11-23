@@ -106,8 +106,23 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (options.Count > index)
                     {
                         var schematic = options[index];
-                        _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, schematic.Name);
-                        PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+
+                        if (SchematicReader.TryGetSchematicMetadata(schematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
+                        {
+                            PandaLogger.Log("Schematic {0} blocks required:", schematic);
+                            
+                            foreach (var kvp in metadata.Blocks)
+                                PandaLogger.Log("ID: {0} Count: {1}", kvp.Value.ItemId, kvp.Value.Count);
+
+                            if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
+                                PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
+                            {
+                                _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, schematic.Name);
+                                PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+                            }
+                        }
+
+                        
                     }
 
                     break;
