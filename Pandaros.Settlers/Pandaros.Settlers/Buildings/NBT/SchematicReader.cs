@@ -254,12 +254,12 @@ namespace Pandaros.Settlers.Buildings.NBT
                     //case "TileEntities": //List
                     //    TileEntity[,,] tileEntities = new TileEntity[raw.XMax, raw.YMax, raw.ZMax];
                     //    raw.TileEntities = GetTileEntities(tag, tileEntities);
-                        break;
+                    //    break;
                     case "Icon": //Compound
                         break; //Ignore
-                    case "CSFile":
-                        raw.CSFile = tag.HasValue && tag.ByteValue == 1;
-                        break; 
+                    case "CSBlocks":
+                        raw.CSBlocks = GetCSBlocks(tag, new TileEntity[raw.XMax, raw.YMax, raw.ZMax]);
+                        break;
                     case "SchematicaMapping": //Compound
                         tag.ToString();
                         break; //Ignore
@@ -268,6 +268,25 @@ namespace Pandaros.Settlers.Buildings.NBT
                 }
             }
             return raw;
+        }
+
+        private static TileEntity[,,] GetCSBlocks(NbtTag csBlockTag, TileEntity[,,] list)
+        {
+            NbtList csBlocks = csBlockTag as NbtList;
+
+            if (csBlocks != null)
+            {
+                foreach (NbtCompound compTag in csBlocks)
+                {
+                    NbtTag xTag = compTag["x"];
+                    NbtTag yTag = compTag["y"];
+                    NbtTag zTag = compTag["z"];
+                    NbtTag idTag = compTag["id"];
+                    TileEntity entity = new TileEntity(xTag.IntValue, yTag.IntValue, zTag.IntValue, idTag.StringValue);
+                    list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = entity;
+                }
+            }
+            return list;
         }
 
         //private static TileEntity[,,] GetTileEntities(NbtTag tileEntitiesList, TileEntity[,,] list)
