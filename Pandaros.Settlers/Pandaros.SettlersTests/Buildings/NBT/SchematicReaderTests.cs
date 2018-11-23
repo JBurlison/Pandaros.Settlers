@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Buildings.NBT.Tests
         public void TryGetSchematicTest()
         {
             
-            SchematicReader.TryGetSchematicMetadata("tower-1.schematic", 1, out var schematic);
+            SchematicReader.TryGetSchematicMetadata("castle-froidinshire.schematic", 1, out var schematic);
 
             var s = schematic.Blocks;
         }

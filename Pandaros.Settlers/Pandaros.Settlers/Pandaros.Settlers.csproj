@@ -225,9 +225,6 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
-    <None Include="Schematics\tower-1.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Help\Apothecary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -241,7 +238,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MCtoCSMapping.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="Managers\UIManager.cs" />
     <Compile Include="MethodUtil.cs" />
@@ -462,6 +459,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Schematics\castle-froidinshire.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Textures\texturemapping.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2772,4 +2772,5 @@
   <PropertyGroup>
     <PostBuildEvent>pdb2mdb.exe Pandaros.Settlers.dll</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions />
 </Project>
