@@ -18,27 +18,26 @@ namespace Pandaros.Settlers.WorldGen
         [ModLoader.ModCallbackDependsOn("create_servermanager_trackers")]
         public static void AddOres()
         {
-            if (GameLoader.ModInfo.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
-            {
-                foreach (var jsonNode in jsonFilles.LoopArray())
+            foreach (var info in GameLoader.AllModInfos)
+                if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
                 {
-                    if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".OreLayers" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
+                    foreach (var jsonNode in jsonFilles.LoopArray())
                     {
-                        var newMenu = JSON.Deserialize(GameLoader.MOD_FOLDER + "\\" + menuFilePath);
-
-                        if (LoadedOres == null)
-                            LoadedOres = newMenu;
-                        else
+                        if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".OreLayers" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
                         {
-                            LoadedOres.Merge(newMenu);
-                        }
+                            var newMenu = JSON.Deserialize(info.Key + "\\" + menuFilePath);
 
-                        PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
+                            if (LoadedOres == null)
+                                LoadedOres = newMenu;
+                            else
+                            {
+                                LoadedOres.Merge(newMenu);
+                            }
+
+                            PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
+                        }
                     }
                 }
-            }
-            else
-                PandaLogger.Log(ChatColor.yellow, "Missing json files node from modinfo.json. Unable to load UI files.");
 
             try
             {

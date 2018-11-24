@@ -47,6 +47,7 @@ namespace Pandaros.Settlers
         public static ushort Poisoned_Icon { get; private set; }
         public static ushort Bow_Icon { get; private set; }
         public static JSONNode ModInfo { get; private set; }
+        public static Dictionary<string, JSONNode> AllModInfos { get; private set; } = new Dictionary<string, JSONNode>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
@@ -76,7 +77,7 @@ namespace Pandaros.Settlers
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/");
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
 
-            MODS_FOLDER          = GAMEDATA_FOLDER + "/mods/";
+            MODS_FOLDER          = GAMEDATA_FOLDER + "mods/";
             ICON_PATH            = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
             MESH_PATH            = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
             AUDIO_PATH           = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
@@ -87,6 +88,12 @@ namespace Pandaros.Settlers
             BLOCKS_NORMAL_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
 
             ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json")[0];
+
+            List<string> allinfos = new List<string>();
+            DirSearch(MODS_FOLDER, "*modInfo.json", allinfos);
+
+            foreach (var info in allinfos)
+                AllModInfos[new FileInfo(info).Directory.FullName] = JSON.Deserialize(info)[0];
 
             var fileWasCopied = false;
 
@@ -102,8 +109,25 @@ namespace Pandaros.Settlers
             }
 
             if (fileWasCopied)
-                PandaLogger.Log(ChatColor.red,
-                                "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+                PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+        }
+
+        public static void DirSearch(string sDir, string searchPattern, List<string> found)
+        {
+            try
+            {
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    foreach (string f in Directory.GetFiles(d, searchPattern))
+                        found.Add(f);
+                  
+                    DirSearch(d, searchPattern, found);
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                Console.WriteLine(excpt.Message);
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, NAMESPACE + ".addlittypes")]
