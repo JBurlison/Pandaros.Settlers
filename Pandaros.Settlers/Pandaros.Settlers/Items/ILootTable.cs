@@ -4,14 +4,14 @@ using System.Linq;
 
 namespace Pandaros.Settlers.Items
 {
-    public interface ILootTable : INameable, IJsonSerializable
+    public interface ILootTable : INameable
     {
         List<LootPoolEntry> LootPoolList { get; }
 
         Dictionary<ushort, int> GetDrops(double luckModifier);
     }
 
-    public class LootTable : ILootTable
+    public class LootTable : ILootTable, IJsonSerializable, IJsonDeserializable
     {
         public virtual string Name { get; private set; }
 
@@ -38,6 +38,16 @@ namespace Pandaros.Settlers.Items
             return dic;
         }
 
+        public void JsonDeerialize(JSONNode node)
+        {
+            if (node.TryGetAs(nameof(Name), out string name))
+                Name = name;
+
+            if (node.TryGetAs(nameof(LootPoolList), out JSONNode list))
+                foreach (var item in list.LoopArray())
+                    LootPoolList.Add(new LootPoolEntry(item));
+        }
+
         public JSONNode JsonSerialize()
         {
             JSONNode node = new JSONNode();
@@ -54,7 +64,7 @@ namespace Pandaros.Settlers.Items
         }
     }
 
-    public class LootPoolEntry : IJsonSerializable
+    public class LootPoolEntry : IJsonSerializable, IJsonDeserializable
     {
         public string Item { get; private set; }
 
@@ -72,6 +82,11 @@ namespace Pandaros.Settlers.Items
             MaxCount = max;
         }
 
+        public LootPoolEntry(JSONNode node)
+        {
+            JsonDeerialize(node);
+        }
+
         public JSONNode JsonSerialize()
         {
             JSONNode node = new JSONNode();
@@ -82,6 +97,21 @@ namespace Pandaros.Settlers.Items
             node.SetAs(nameof(MaxCount), MaxCount);
 
             return node;
+        }
+
+        public void JsonDeerialize(JSONNode node)
+        {
+            if (node.TryGetAs(nameof(Item), out string itemName))
+                Item = itemName;
+
+            if (node.TryGetAs(nameof(Weight), out double wight))
+                Weight = wight;
+
+            if (node.TryGetAs(nameof(MinCount), out int minCount))
+                MinCount = minCount;
+
+            if (node.TryGetAs(nameof(Item), out int maxCount))
+                MaxCount = maxCount;
         }
     }
 }
