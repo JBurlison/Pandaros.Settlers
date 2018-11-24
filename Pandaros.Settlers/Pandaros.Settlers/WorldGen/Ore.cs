@@ -51,6 +51,8 @@ namespace Pandaros.Settlers.WorldGen
 
                     if (item != null && item.ItemIndex != BuiltinBlocks.Air)
                         oreGen.AddLayer(depth, item.ItemIndex, chance);
+                    else
+                        PandaLogger.Log(ChatColor.yellow, "Unable to find item {0}", type);
                 }
             }
         }
