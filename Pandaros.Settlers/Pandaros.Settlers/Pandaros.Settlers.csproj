@@ -276,7 +276,9 @@
     <Compile Include="Extender\SettlersExtender.cs" />
     <Compile Include="Stats\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
-    <None Include="WorldGen\OreSettings.json" />
+    <None Include="WorldGen\OreSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="AI\FirstNames.csv">

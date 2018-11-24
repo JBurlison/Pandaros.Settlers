@@ -40,20 +40,35 @@ namespace Pandaros.Settlers.WorldGen
             else
                 PandaLogger.Log(ChatColor.yellow, "Missing json files node from modinfo.json. Unable to load UI files.");
 
-            var stoneGen = ServerManager.TerrainGenerator as TerrainGenerator.InfiniteStoneLayerGenerator;
-            var oreGen = stoneGen.InnerGenerator as TerrainGenerator.OreLayersGenerator;
-
-            foreach (var ore in LoadedOres.LoopArray())
+            try
             {
-                if (ore.TryGetAs("Chance", out byte chance) && ore.TryGetAs("Type", out string type) && ore.TryGetAs("Depth", out byte depth))
-                {
-                    var item = ItemTypes.GetType(type);
+                var terrainGen = ServerManager.TerrainGenerator as TerrainGenerator;
+                var stoneGen = terrainGen.FinalChunkModifier as TerrainGenerator.InfiniteStoneLayerGenerator;
+                var oreGen = stoneGen.InnerGenerator as TerrainGenerator.OreLayersGenerator;
 
-                    if (item != null && item.ItemIndex != BuiltinBlocks.Air)
-                        oreGen.AddLayer(depth, item.ItemIndex, chance);
-                    else
-                        PandaLogger.Log(ChatColor.yellow, "Unable to find item {0}", type);
+                foreach (var ore in LoadedOres.LoopArray())
+                {
+                    if (ore.TryGetAs("Chance", out byte chance) && ore.TryGetAs("Type", out string type) && ore.TryGetAs("Depth", out byte depth))
+                    {
+                        try
+                        {
+                            var item = ItemTypes.GetType(type);
+
+                            if (item != null && item.ItemIndex != BuiltinBlocks.Air)
+                                oreGen.AddLayer(depth, item.ItemIndex, chance);
+                            else
+                                PandaLogger.Log(ChatColor.yellow, "Unable to find item {0}", type);
+                        }
+                        catch (Exception ex)
+                        {
+                            PandaLogger.LogError(ex);
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
     }

@@ -72,6 +72,7 @@
     <Compile Include="Buildings\NBT\SchematicReaderTests.cs" />
     <Compile Include="Managers\UIManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldGen\OreTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
