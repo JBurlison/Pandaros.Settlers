@@ -5,6 +5,7 @@ using Pandaros.Settlers.Buildings.NBT;
 using Pipliz;
 using Pipliz.Mods.BaseGame.Construction;
 using Shared;
+using System.Linq;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -88,8 +89,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (ok)
                     {
                         if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
-                            ownerStockPile.Add(foundTypeIndex);
-
+                        {
+                            var foundItem = ItemTypes.GetType(foundTypeIndex);
+                            ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
+                        }
                         if (ServerManager.TryChangeBlock(iterationType.CurrentPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                         {
                             if (buildType.ItemIndex != BuiltinBlocks.Air)

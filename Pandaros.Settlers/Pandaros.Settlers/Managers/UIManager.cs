@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Managers
                             LoadedMenus = newMenu;
                         else
                         {
-                            MergeJsons(LoadedMenus, newMenu);
+                            LoadedMenus.Merge(newMenu);
                         }
 
                         PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
@@ -39,20 +39,6 @@ namespace Pandaros.Settlers.Managers
             }
             else
                 PandaLogger.Log(ChatColor.yellow, "Missing json files node from modinfo.json. Unable to load UI files.");
-        }
-
-        public static void MergeJsons(JSONNode oldNode, JSONNode newNode)
-        {
-            if (newNode.NodeType != NodeType.Array && oldNode.NodeType != NodeType.Array)
-            {
-                foreach(var node in newNode.LoopObject())
-                {
-                    if (oldNode.TryGetChild(node.Key, out JSONNode existingChild))
-                        MergeJsons(existingChild, node.Value);
-                    else
-                        oldNode.SetAs(node.Key, node.Value);
-                }
-            }
         }
 
         public static void SendMenu(Players.Player player, string reference)

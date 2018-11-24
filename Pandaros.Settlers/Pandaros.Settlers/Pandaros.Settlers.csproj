@@ -111,6 +111,7 @@
     <Compile Include="AI\IAnimal.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
+    <Compile Include="Buildings\ColonyFactory.cs" />
     <Compile Include="Buildings\NBT\Block.cs" />
     <Compile Include="Buildings\NBT\BlockMapping.cs" />
     <Compile Include="Buildings\NBT\RawSchematic.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Extender\IAfterSelectedWorld.cs" />
     <Compile Include="Extender\IAfterWorldLoad.cs" />
     <Compile Include="Extender\IOnAddResearchables.cs" />
+    <Compile Include="Items\Backpack.cs" />
     <Compile Include="Items\Colliders.cs" />
     <Compile Include="Items\CSType.cs" />
     <Compile Include="Items\ICSRecipe.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
+    <Compile Include="WorldGen\Ore.cs" />
     <None Include="Help\Apothecary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -273,6 +276,7 @@
     <Compile Include="Extender\SettlersExtender.cs" />
     <Compile Include="Stats\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
+    <None Include="WorldGen\OreSettings.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AI\FirstNames.csv">
@@ -456,6 +460,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\cow.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\sapling.ply">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -862,6 +869,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Bluebonnet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\sapling.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Schematics.png">

@@ -219,5 +219,19 @@ namespace Pandaros.Settlers
 
             return false;
         }
+
+        public static void Merge(this JSONNode oldNode, JSONNode newNode)
+        {
+            if (newNode.NodeType != NodeType.Array && oldNode.NodeType != NodeType.Array)
+            {
+                foreach (var node in newNode.LoopObject())
+                {
+                    if (oldNode.TryGetChild(node.Key, out JSONNode existingChild))
+                        Merge(existingChild, node.Value);
+                    else
+                        oldNode.SetAs(node.Key, node.Value);
+                }
+            }
+        }
     }
 }

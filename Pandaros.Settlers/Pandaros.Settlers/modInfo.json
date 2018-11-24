@@ -20,23 +20,23 @@
     "Pandaros.Settlers.jsonFiles": [
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "index": -1000000,
         "relativePath": "Help/help.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "index": -1000000,
         "relativePath": "Help/Apothecary.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "index": -1000000,
         "relativePath": "Help/knights.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "index": -1000000,
         "relativePath": "Help/Machinists.json"
+      },
+      {
+        "fileType": "Pandaros.Settlers.OreLayers",
+        "relativePath": "WorldGen/OreSettings.json"
       }
     ],
     "jsonFiles": [

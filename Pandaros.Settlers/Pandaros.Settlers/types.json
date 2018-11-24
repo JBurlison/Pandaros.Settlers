@@ -15,9 +15,9 @@
     "customData": {
       "colors": [ "#ff0000->#542909", "#00ff00->#0e6306" ]
     },
-    "icon": "./textures/icons/sapling.png",
+    "icon": "./icons/sapling.png",
     "isSolid": false,
-    "mesh": "./meshes/sapling.ply",
+    "mesh": "./Meshes/sapling.ply",
     "needsBase": true,
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "grassDelete",
