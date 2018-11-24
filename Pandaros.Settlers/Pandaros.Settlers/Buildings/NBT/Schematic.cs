@@ -12,6 +12,7 @@ namespace Pandaros.Settlers.Buildings.NBT
         public SchematicBlock[,,] Blocks { get; set; }
         /// <summary>Contains TileEntities such as hoppers and chests</summary>
         //public TileEntity[,,] TileEntities { get; set; }
+        public SchematicBlock[,,] CSBlocks { get; set; }
         public Vector3Int StartPos { get; set; }
 
         public Schematic()
@@ -31,10 +32,11 @@ namespace Pandaros.Settlers.Buildings.NBT
             ZMax = z;
         }
 
-        public Schematic(string name, int x, int y, int z, SchematicBlock[,,] blocks, Vector3Int startPos) : this(name, x, y, z)
+        public Schematic(string name, int x, int y, int z, SchematicBlock[,,] blocks, SchematicBlock[,,] scBlocks, Vector3Int startPos) : this(name, x, y, z)
         {
             Blocks = blocks;
-           // TileEntities = tileEntities;
+            CSBlocks = scBlocks;
+            // TileEntities = tileEntities;
             StartPos = startPos;
         }
 

@@ -53,7 +53,8 @@ namespace Pandaros.Settlers.Buildings.NBT
         public static readonly string WorldPath = GameLoader.SAVE_LOC + "MCtoCSMapping.json";
         public static readonly string ModPath = GameLoader.MOD_FOLDER + "/MCtoCSMapping.json";
 
-        public static Dictionary<string, MappingBlock> BlockMappings { get; set; } = new Dictionary<string, MappingBlock>();
+        public static Dictionary<string, MappingBlock> MCtoCSMappings { get; set; } = new Dictionary<string, MappingBlock>();
+        public static Dictionary<string, List<MappingBlock>> CStoMCMappings { get; set; } = new Dictionary<string, List<MappingBlock>>();
         static BlockMapping()
         {
             LoadMappingFile(ModPath);
@@ -85,14 +86,21 @@ namespace Pandaros.Settlers.Buildings.NBT
                                 newBlock.TextType = textType;
 
                             if (node.TryGetAs("cs_type", out string csType))
+                            {
                                 newBlock.CSType = csType;
+
+                                if (!CStoMCMappings.ContainsKey(csType))
+                                    CStoMCMappings.Add(csType, new List<MappingBlock>());
+
+                                CStoMCMappings[csType].Add(newBlock);
+                            }
                             else
                                 PandaLogger.Log(ChatColor.yellow, "Unable to load item {0} from mapping file. This item will be mapped to air.", name);
 
                             if (newBlock.Meta > 0)
-                                BlockMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
+                                MCtoCSMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
                             else
-                                BlockMappings[newBlock.Type.ToString()] = newBlock;
+                                MCtoCSMappings[newBlock.Type.ToString()] = newBlock;
                         }
                     }
                     else

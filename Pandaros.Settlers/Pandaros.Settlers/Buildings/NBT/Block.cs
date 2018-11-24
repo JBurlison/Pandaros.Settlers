@@ -1,4 +1,6 @@
-﻿namespace Pandaros.Settlers.Buildings.NBT
+﻿using System.Linq;
+
+namespace Pandaros.Settlers.Buildings.NBT
 {
     public class SchematicBlock
     {
@@ -11,20 +13,49 @@
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
-        public int BlockID { get; set; }
+        public string BlockID { get; set; }
         public int Data { get; set; }
+        public bool CSBlock { get; set; }
 
         public MappingBlock MappedBlock
         {
             get
             {
-                if (BlockMapping.BlockMappings.TryGetValue(ItemID, out var mapping))
+                if (CSBlock)
+                {
+                    if (BlockMapping.CStoMCMappings.TryGetValue(BlockID, out var mappingBlocks))
+                    {
+                        var map = mappingBlocks.FirstOrDefault();
+
+                        if (map == null)
+                        {
+                            map = new MappingBlock()
+                            {
+                                CSType = BlockID
+                            };
+
+                            BlockMapping.CStoMCMappings[BlockID].Add(map);
+                        }
+
+                        return map;
+                    }
+                    else
+                    {
+                        MappingBlock mappingBlock = new MappingBlock()
+                        {
+                            CSType = BlockID
+                        };
+
+                        BlockMapping.CStoMCMappings.Add(BlockID, new System.Collections.Generic.List<MappingBlock>() { mappingBlock });
+                        return mappingBlock;
+                    }
+                }
+                else if (BlockMapping.MCtoCSMappings.TryGetValue(ItemID, out var mapping))
                     return mapping;
                 else
-                {
-                    PandaLogger.Log(ChatColor.yellow, "Unable to find mapping for block {0}", ToString());
-                    return BlockMapping.BlockMappings[BlockTypes.BuiltinBlocks.Air.ToString()];
-                }
+                    PandaLogger.Log(ChatColor.yellow, "3) Unable to find mapping for block {0}", ToString());
+
+                return BlockMapping.MCtoCSMappings[BlockTypes.BuiltinBlocks.Air.ToString()];
             }
         }
 

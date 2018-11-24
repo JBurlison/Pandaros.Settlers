@@ -36,7 +36,12 @@ namespace Pandaros.Settlers.Jobs.Construction
                     bpi.BuilderSchematic.XMax > adjX &&
                     bpi.BuilderSchematic.YMax > adjY &&
                     bpi.BuilderSchematic.ZMax > adjZ)
-                    block = bpi.BuilderSchematic.Blocks[adjX, adjY, adjZ];
+                {
+                    if (bpi.BuilderSchematic.Blocks != null && bpi.BuilderSchematic.Blocks.Length > 0)
+                        block = bpi.BuilderSchematic.Blocks[adjX, adjY, adjZ];
+                    else
+                        block = bpi.BuilderSchematic.CSBlocks[adjX, adjY, adjZ];
+                }
 
                 if (block == default(SchematicBlock))
                     block = SchematicBlock.Air;

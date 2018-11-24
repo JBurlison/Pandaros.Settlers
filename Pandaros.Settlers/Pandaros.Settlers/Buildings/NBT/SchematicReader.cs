@@ -183,7 +183,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             RawSchematic raw = LoadRaw(nbtFile);
             SchematicBlock[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, startPos);
+            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.CSBlocks, startPos);
 
             if (!_loadedSchematics.ContainsKey(nbtFile.FileName))
                 _loadedSchematics.Add(nbtFile.FileName, new Dictionary<Vector3Int, Schematic>());
@@ -198,7 +198,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             RawSchematic raw = LoadRaw(nbtFile);
             SchematicBlock[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            return new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, startPos);
+            return new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.CSBlocks, startPos);
         }
 
         private static RawSchematicSize LoadRawSize(NbtFile nbtFile)
@@ -262,7 +262,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                     case "Icon": //Compound
                         break; //Ignore
                     case "CSBlocks":
-                        raw.CSBlocks = GetCSBlocks(tag, new TileEntity[raw.XMax, raw.YMax, raw.ZMax]);
+                        raw.CSBlocks = GetCSBlocks(tag, new SchematicBlock[raw.XMax, raw.YMax, raw.ZMax]);
                         break;
                     case "SchematicaMapping": //Compound
                         tag.ToString();
@@ -274,7 +274,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             return raw;
         }
 
-        private static TileEntity[,,] GetCSBlocks(NbtTag csBlockTag, TileEntity[,,] list)
+        private static SchematicBlock[,,] GetCSBlocks(NbtTag csBlockTag, SchematicBlock[,,] list)
         {
             NbtList csBlocks = csBlockTag as NbtList;
 
@@ -286,7 +286,14 @@ namespace Pandaros.Settlers.Buildings.NBT
                     NbtTag yTag = compTag["y"];
                     NbtTag zTag = compTag["z"];
                     NbtTag idTag = compTag["id"];
-                    TileEntity entity = new TileEntity(xTag.IntValue, yTag.IntValue, zTag.IntValue, idTag.StringValue);
+                    SchematicBlock entity = new SchematicBlock()
+                    {
+                        X = xTag.IntValue,
+                        Y = yTag.IntValue,
+                        Z = zTag.IntValue,
+                        BlockID = idTag.StringValue,
+                        CSBlock = true
+                    };
                     list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = entity;
                 }
             }
@@ -323,7 +330,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                     {
                         int index = (Y * rawSchematic.ZMax + Z) * rawSchematic.XMax + X;
                         SchematicBlock block = new SchematicBlock();
-                        block.BlockID = rawSchematic.Blocks[index];
+                        block.BlockID = ((int)rawSchematic.Blocks[index]).ToString();
                         block.Data = rawSchematic.Data[index];
                         block.X = X;
                         block.Y = Y;
