@@ -11,10 +11,10 @@
     "folderNormal": "./textures/materials/blocks/normal/"
   },
   "Pandaros.Settlers.AutoLoad.infiniteemerald": {
-    "albedo": "./albedo/oreEmerald.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "albedo": "./albedo/infiniteemerald.png",
+    "normal": "./normal/infiniteemerald.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/infiniteemerald.png"
   },
   "Pandaros.Settlers.AutoLoad.orangeclay": {
     "albedo": "./albedo/orangeClay.png",
@@ -132,15 +132,15 @@
   },
   "Pandaros.Settlers.AutoLoad.infiniteruby": {
     "albedo": "./albedo/oreRuby.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/oreRuby.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/oreRuby.png"
   },
   "Pandaros.Settlers.AutoLoad.infinitesapphire": {
     "albedo": "./albedo/oresapphire.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/oreRuby.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/oreRuby.png"
   },
   "Pandaros.Settlers.AutoLoad.ironbar": {
     "albedo": "./albedo/ironbar.png",
@@ -198,9 +198,9 @@
   },
   "Pandaros.Settlers.AutoLoad.marblebricks": {
     "albedo": "./albedo/marblebricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/marblebricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/marblebricks.png"
   },
   "Pandaros.Settlers.AutoLoad.notwater": {
     "albedo": "./albedo/notwater.png",
@@ -510,9 +510,9 @@
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabbottom": {
     "albedo": "./albedo/marblebricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/marblebricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/marblebricks.png"
   },
   "Pandaros.Settlers.AutoLoad.marbleslabbottom": {
     "albedo": "./albedo/marble.png",
@@ -1626,27 +1626,27 @@
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslableft": {
     "albedo": "./albedo/marblebricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/marblebricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/marblebricks.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabright": {
     "albedo": "./albedo/marblebricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/marblebricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/marblebricks.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabfront": {
     "albedo": "./albedo/marblebricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/marblebricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/marblebricks.png"
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabback": {
     "albedo": "./albedo/marblebricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "./normal/marblebricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "./height/marblebricks.png"
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslableft": {
     "albedo": "./albedo/stoneSquares.png",

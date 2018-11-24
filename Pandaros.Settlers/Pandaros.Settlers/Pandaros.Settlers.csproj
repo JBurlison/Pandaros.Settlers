@@ -204,8 +204,6 @@
     <Compile Include="Jobs\Construction\SchematicBuilderLoader.cs" />
     <Compile Include="Jobs\Construction\SchematicIterator.cs" />
     <Compile Include="Jobs\Construction\SchematicTool.cs" />
-    <Compile Include="Jobs\Farmer\Animals\Cow.cs" />
-    <Compile Include="Jobs\Farmer\FarmerJob.cs" />
     <Compile Include="Jobs\Machinist.cs" />
     <Compile Include="Jobs\Roaming\RoamingJobState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
@@ -2199,28 +2197,6 @@
     <Content Include="Textures\albedo\allium.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\Autumn\berrybush.png" />
-    <Content Include="Textures\albedo\Autumn\cherryBlossom.png" />
-    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Green.png" />
-    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Orange.png" />
-    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Red.png" />
-    <Content Include="Textures\albedo\Autumn\cherryBlossom_Autumn_Yellow.png" />
-    <Content Include="Textures\albedo\Autumn\grassRainforest.png" />
-    <Content Include="Textures\albedo\Autumn\grassSavanna.png" />
-    <Content Include="Textures\albedo\Autumn\grassTaiga.png" />
-    <Content Include="Textures\albedo\Autumn\grassTemperate.png" />
-    <Content Include="Textures\albedo\Autumn\grassTundra.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTaiga.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Green.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Orange.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Red.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTaiga_Autumn_Yellow.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTemperate.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Green.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Orange.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Red.png" />
-    <Content Include="Textures\albedo\Autumn\leavesTemperate_Autumn_Yellow.png" />
-    <Content Include="Textures\albedo\Autumn\lumberArea.png" />
     <Content Include="Textures\albedo\bench.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2245,36 +2221,24 @@
     <Content Include="Textures\albedo\MachinistBenchTopNight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\Spring\berrybush.png" />
-    <Content Include="Textures\albedo\Spring\cherryBlossom.png" />
-    <Content Include="Textures\albedo\Spring\grassRainforest.png" />
-    <Content Include="Textures\albedo\Spring\grassSavanna.png" />
-    <Content Include="Textures\albedo\Spring\grassTaiga.png" />
-    <Content Include="Textures\albedo\Spring\grassTemperate.png" />
-    <Content Include="Textures\albedo\Spring\grassTundra.png" />
-    <Content Include="Textures\albedo\Spring\leavesTaiga.png" />
-    <Content Include="Textures\albedo\Spring\leavesTemperate.png" />
-    <Content Include="Textures\albedo\Spring\lumberArea.png" />
-    <Content Include="Textures\albedo\Summer\berrybush.png" />
-    <Content Include="Textures\albedo\Summer\cherryBlossom.png" />
-    <Content Include="Textures\albedo\Summer\grassRainforest.png" />
-    <Content Include="Textures\albedo\Summer\grassSavanna.png" />
-    <Content Include="Textures\albedo\Summer\grassTaiga.png" />
-    <Content Include="Textures\albedo\Summer\grassTemperate.png" />
-    <Content Include="Textures\albedo\Summer\grassTundra.png" />
-    <Content Include="Textures\albedo\Summer\leavesTaiga.png" />
-    <Content Include="Textures\albedo\Summer\leavesTemperate.png" />
-    <Content Include="Textures\albedo\Summer\lumberArea.png" />
-    <Content Include="Textures\albedo\Winter\berrybush.png" />
-    <Content Include="Textures\albedo\Winter\cherryBlossom.png" />
-    <Content Include="Textures\albedo\Winter\grassRainforest.png" />
-    <Content Include="Textures\albedo\Winter\grassSavanna.png" />
-    <Content Include="Textures\albedo\Winter\grassTaiga.png" />
-    <Content Include="Textures\albedo\Winter\grassTemperate.png" />
-    <Content Include="Textures\albedo\Winter\grassTundra.png" />
-    <Content Include="Textures\albedo\Winter\leavesTaiga.png" />
-    <Content Include="Textures\albedo\Winter\leavesTemperate.png" />
-    <Content Include="Textures\albedo\Winter\lumberArea.png" />
+    <Content Include="Textures\height\infiniteemerald.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\marblebricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\oreRuby.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\infiniteemerald.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\marblebricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\oreRuby.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\npc\Bulging.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
