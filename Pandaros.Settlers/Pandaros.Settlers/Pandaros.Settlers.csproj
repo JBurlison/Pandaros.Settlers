@@ -225,6 +225,7 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
+    <Compile Include="Managers\TimeManager.cs" />
     <Compile Include="WorldGen\Ore.cs" />
     <None Include="Buildings\apex-medieval-city.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
