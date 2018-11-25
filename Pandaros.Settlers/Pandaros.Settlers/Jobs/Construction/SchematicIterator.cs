@@ -35,8 +35,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             if (SchematicReader.TryGetSchematic(SchematicName, area.Owner.ColonyID, iterationChunkLocation, out var schematic))
                 BuilderSchematic = schematic;
-
-            MoveNext();
         }
 
         public Vector3Int CurrentPosition { get { return cursor; } }
