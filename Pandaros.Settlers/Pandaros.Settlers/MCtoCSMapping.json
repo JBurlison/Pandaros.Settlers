@@ -693,6 +693,13 @@
     "cs_type": "stonebricks"
   },
   {
+    "type": 23,
+    "meta": 5,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
     "type": 24,
     "meta": 0,
     "name": "Sandstone",
@@ -1346,6 +1353,69 @@
   {
     "type": 43,
     "meta": 7,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 8,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 8,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 9,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 10,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 11,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 12,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 13,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 14,
+    "name": "Double Quartz Slab",
+    "text_type": "double_stone_slab",
+    "cs_type": "carpetwhite"
+  },
+  {
+    "type": 43,
+    "meta": 15,
     "name": "Double Quartz Slab",
     "text_type": "double_stone_slab",
     "cs_type": "carpetwhite"
@@ -2472,6 +2542,83 @@
     "cs_type": "air"
   },
   {
+    "type": 71,
+    "meta": 1,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 2,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 3,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 4,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 5,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 6,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 7,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 8,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 9,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 10,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 0,
+    "name": "Iron Door Block",
+    "text_type": "iron_door",
+    "cs_type": "air"
+  },
+  {
     "type": 72,
     "meta": 0,
     "name": "Wooden Pressure Plate",
@@ -2717,6 +2864,41 @@
     "cs_type": "lanternorange"
   },
   {
+    "type": 86,
+    "meta": 1,
+    "name": "Pumpkin",
+    "text_type": "pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 86,
+    "meta": 2,
+    "name": "Pumpkin",
+    "text_type": "pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 86,
+    "meta": 3,
+    "name": "Pumpkin",
+    "text_type": "pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 86,
+    "meta": 4,
+    "name": "Pumpkin",
+    "text_type": "pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
+    "type": 86,
+    "meta": 5,
+    "name": "Pumpkin",
+    "text_type": "pumpkin",
+    "cs_type": "lanternorange"
+  },
+  {
     "type": 87,
     "meta": 0,
     "name": "Netherrack",
@@ -2852,6 +3034,55 @@
   {
     "type": 93,
     "meta": 9,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 10,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 11,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 12,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 13,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 14,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 15,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 16,
     "name": "Redstone Repeater Block (off)",
     "text_type": "unpowered_repeater",
     "cs_type": "air"
@@ -5744,6 +5975,76 @@
   {
     "type": 167,
     "meta": 5,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 6,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 7,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 8,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 9,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 10,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 11,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 12,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 13,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 14,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 15,
     "name": "Iron Trapdoor",
     "text_type": "iron_trapdoor",
     "cs_type": "air"
