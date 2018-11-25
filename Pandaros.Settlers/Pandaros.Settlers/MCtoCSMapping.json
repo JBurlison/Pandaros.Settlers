@@ -676,21 +676,21 @@
     "meta": 1,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedz-"
+    "cs_type": "bedx+"
   },
   {
     "type": 26,
     "meta": 2,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedx+"
+    "cs_type": "bedz-"
   },
   {
     "type": 26,
     "meta": 3,
     "name": "Bed",
-    "text_type": "bedz+",
-    "cs_type": "bed"
+    "text_type": "bed",
+    "cs_type": "bedz+"
   },
   {
     "type": 26,
@@ -1454,28 +1454,28 @@
     "meta": 1,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchx+"
+    "cs_type": "torchx-"
   },
   {
     "type": 50,
     "meta": 2,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchx-"
+    "cs_type": "torchx+"
   },
   {
     "type": 50,
     "meta": 3,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz+"
+    "cs_type": "torchz-"
   },
   {
     "type": 50,
     "meta": 4,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz-"
+    "cs_type": "torchz+"
   },
   {
     "type": 50,
@@ -1958,28 +1958,28 @@
     "meta": 2,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenx+"
+    "cs_type": "ovenx-"
   },
   {
     "type": 61,
     "meta": 3,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenx-"
+    "cs_type": "ovenx+"
   },
   {
     "type": 61,
     "meta": 4,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenz+"
+    "cs_type": "ovenz-"
   },
   {
     "type": 61,
     "meta": 5,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenz-"
+    "cs_type": "ovenz+"
   },
   {
     "type": 62,
@@ -2413,14 +2413,14 @@
     "meta": 1,
     "name": "Redstone Torch (off)",
     "text_type": "unlit_redstone_torch",
-    "cs_type": "torchx+"
+    "cs_type": "torchx-"
   },
   {
     "type": 75,
     "meta": 2,
     "name": "Redstone Torch (off)",
     "text_type": "unlit_redstone_torch",
-    "cs_type": "torchx-"
+    "cs_type": "torchx+"
   },
   {
     "type": 75,
@@ -2455,14 +2455,14 @@
     "meta": 1,
     "name": "Redstone Torch (on)",
     "text_type": "redstone_torch",
-    "cs_type": "torchx+"
+    "cs_type": "torchx-"
   },
   {
     "type": 76,
     "meta": 2,
     "name": "Redstone Torch (on)",
     "text_type": "redstone_torch",
-    "cs_type": "torchx-"
+    "cs_type": "torchx+"
   },
   {
     "type": 76,
@@ -8868,7 +8868,7 @@
     "meta": 0,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 356,
