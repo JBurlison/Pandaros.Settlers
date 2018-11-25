@@ -5,13 +5,26 @@ using Pandaros.Settlers.Buildings.NBT;
 using Pipliz;
 using Pipliz.Mods.BaseGame.Construction;
 using Shared;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
-
+    [ModLoader.ModManager]
     public class SchematicBuilder : IConstructionType
     {
+        private static List<SchematicIterator> _needsChunkLoaded = new List<SchematicIterator>();
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicBuilder.OnShouldKeepChunkLoaded")]
+        public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData data)
+        {
+            foreach (var iterator in _needsChunkLoaded)
+            {
+                if (iterator.CurrentPosition.IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
+                    data.Result = true;
+            }
+        }
+
         public EAreaType AreaType => EAreaType.BuilderArea;
 
         public EAreaMeshType AreaTypeMesh => EAreaMeshType.ThreeD;
@@ -21,20 +34,26 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             SchematicBlock block = default(SchematicBlock);
             int i = 0;
+            var bpi = iterationType as SchematicIterator;
+
+            if (bpi == null)
+            {
+                PandaLogger.Log(ChatColor.yellow, "iterationType must be of type SchematicIterator for the SchematicBuilder.");
+                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                AreaJobTracker.RemoveJob(areaJob);
+                return;
+            }
 
             while (true) // This is to move past air.
             {
                 if (i > 4000)
                     break;
-        
-                var bpi = iterationType as SchematicIterator;
 
                 var adjX = iterationType.CurrentPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = iterationType.CurrentPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = iterationType.CurrentPosition.z - bpi.BuilderSchematic.StartPos.z;
 
-                if (bpi != null &&
-                    bpi.BuilderSchematic.XMax > adjX &&
+                if (bpi.BuilderSchematic.XMax > adjX &&
                     bpi.BuilderSchematic.YMax > adjY &&
                     bpi.BuilderSchematic.ZMax > adjZ)
                 {
@@ -66,6 +85,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                             continue;
                         else
                         {
+                            if (_needsChunkLoaded.Contains(bpi))
+                                _needsChunkLoaded.Remove(bpi);
+
                             state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                             AreaJobTracker.RemoveJob(areaJob);
                             return;
@@ -95,6 +117,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                             if (foundItem != null && foundItem.ItemIndex != BuiltinBlocks.Air && foundItem.OnRemoveItems != null && foundItem.OnRemoveItems.Count > 0)
                                 ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
+
                         if (ServerManager.TryChangeBlock(iterationType.CurrentPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                         {
                             if (buildType.ItemIndex != BuiltinBlocks.Air)
@@ -109,12 +132,26 @@ namespace Pandaros.Settlers.Jobs.Construction
                             }
                         }
                         else
-                            PandaLogger.Log(ChatColor.yellow, "Failed to TryChangeBlock. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                        {
+                            if (!_needsChunkLoaded.Contains(bpi))
+                                _needsChunkLoaded.Add(bpi);
 
+                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                            ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
+                            return;
+                        }
                     }
                 }
                 else
-                    PandaLogger.Log(ChatColor.yellow, "Failed to TryGetTypeAt. Iterator position: {0} Start Pos: {1} Adjusted Pos: [{2}, {3}, {4}]. Schematic: {5} Item To Place: {6}", iterationType.CurrentPosition, bpi.BuilderSchematic.StartPos, adjX, adjY, adjZ, bpi.BuilderSchematic, buildType.ItemIndex);
+                {
+                    if (!_needsChunkLoaded.Contains(bpi))
+                        _needsChunkLoaded.Add(bpi);
+
+                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                    ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
+                    return;
+                }
+
 
                 if (iterationType.MoveNext())
                 {
@@ -127,6 +164,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                 }
                 else
                 {
+                    if (_needsChunkLoaded.Contains(bpi))
+                        _needsChunkLoaded.Remove(bpi);
+
                     // failed to find next position to do job at, self-destruct
                     state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                     AreaJobTracker.RemoveJob(areaJob);
@@ -141,6 +181,9 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
             else
             {
+                if (_needsChunkLoaded.Contains(bpi))
+                    _needsChunkLoaded.Remove(bpi);
+
                 // failed to find next position to do job at, self-destruct
                 state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
                 AreaJobTracker.RemoveJob(areaJob);

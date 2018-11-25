@@ -233,5 +233,13 @@ namespace Pandaros.Settlers
                 }
             }
         }
+
+        public static bool IsWithinBounds(this Vector3Int pos, Vector3Int boundsPos, BoundsInt bounds)
+        {
+            var boundsMax = boundsPos.Add(bounds.Size.x, bounds.Size.y, bounds.Size.z);
+
+            return pos.x >= boundsPos.x && pos.y >= boundsPos.y && pos.z >= boundsPos.z &&
+                    pos.x <= boundsMax.x && pos.y <= boundsMax.y && pos.z <= boundsMax.z;
+        }
     }
 }

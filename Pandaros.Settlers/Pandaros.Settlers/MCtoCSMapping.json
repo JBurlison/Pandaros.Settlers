@@ -854,6 +854,62 @@
     "cs_type": "air"
   },
   {
+    "type": 28,
+    "meta": 1,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 2,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 3,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 4,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 5,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 6,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 7,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 28,
+    "meta": 8,
+    "name": "Detector Rail",
+    "text_type": "detector_rail",
+    "cs_type": "air"
+  },
+  {
     "type": 29,
     "meta": 0,
     "name": "Sticky Piston",
@@ -4618,7 +4674,63 @@
     "meta": 0,
     "name": "Flower Pot",
     "text_type": "flower_pot",
-    "cs_type": "air"
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 1,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 2,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 3,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 4,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 5,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 6,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 7,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 140,
+    "meta": 8,
+    "name": "Flower Pot",
+    "text_type": "flower_pot",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
   },
   {
     "type": 141,
