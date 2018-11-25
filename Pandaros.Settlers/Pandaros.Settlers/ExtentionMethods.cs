@@ -65,12 +65,15 @@ namespace Pandaros.Settlers
 
         public static void Heal(this NPCBase nPC, float heal)
         {
-            nPC.health += heal;
+            if (nPC != null)
+            {
+                nPC.health += heal;
 
-            if (nPC.health > nPC.Colony.NPCHealthMax)
-                nPC.health = nPC.Colony.NPCHealthMax;
+                if (nPC.health > nPC.Colony.NPCHealthMax)
+                    nPC.health = nPC.Colony.NPCHealthMax;
 
-            nPC.Update();
+                nPC.Update();
+            }
         }
 
         public static void Heal(this Players.Player pc, float heal)

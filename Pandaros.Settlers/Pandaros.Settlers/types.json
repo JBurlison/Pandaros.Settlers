@@ -1262,7 +1262,23 @@
   "Pandaros.Settlers.AutoLoad.stonebrickslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
@@ -1347,6 +1363,22 @@
     "customData": {
       "useNormalMap": true,
       "useHeightMap": true
+    },
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
     }
   },
   "Pandaros.Settlers.AutoLoad.plankslabbottom": {
@@ -1412,7 +1444,23 @@
   "Pandaros.Settlers.AutoLoad.brickslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.brickslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.brickslab",
@@ -1473,7 +1521,23 @@
   "Pandaros.Settlers.AutoLoad.coatedplankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.coatedplankslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.coatedplankslab",
@@ -1534,7 +1598,23 @@
   "Pandaros.Settlers.AutoLoad.cherryblossomslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.cherryblossomslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.cherryblossomslab",
@@ -1600,7 +1680,23 @@
   "Pandaros.Settlers.AutoLoad.leavestemperateslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestemperateslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.leavestaigaslab": {
     "icon": "./icons/leavestaigaslab.png",
@@ -1661,7 +1757,23 @@
   "Pandaros.Settlers.AutoLoad.leavestaigaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.leavestaigaslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.waterslab": {
     "customData": {
@@ -1719,7 +1831,23 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.waterslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.waterslab",
@@ -1787,7 +1915,23 @@
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
     "sideall": "SELF",
     "isFertile": true,
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.adobeslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.adobeslab",
@@ -1847,7 +1991,23 @@
   "Pandaros.Settlers.AutoLoad.strawslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.strawslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.strawslab",
@@ -1907,7 +2067,23 @@
   "Pandaros.Settlers.AutoLoad.berrybushslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.berrybushslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.berrybushslab",
@@ -1972,7 +2148,23 @@
   "Pandaros.Settlers.AutoLoad.snowslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.snowslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.sandslab": {
     "icon": "./icons/sandslab.png",
@@ -2029,7 +2221,23 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.sandslabbottom": {
     "icon": "./icons/sandslab.png",
@@ -2093,7 +2301,23 @@
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
     "isFertile": true,
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.dirtslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtslab",
@@ -2154,7 +2378,23 @@
   "Pandaros.Settlers.AutoLoad.carpetyellowslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.carpetyellowslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetyellowslab",
@@ -2220,7 +2460,23 @@
   "Pandaros.Settlers.AutoLoad.carpetblueslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetblueslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.carpetredslab": {
     "icon": "./icons/redcarpetslab.png",
@@ -2276,7 +2532,23 @@
   "Pandaros.Settlers.AutoLoad.carpetredslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.carpetredslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.carpetredslab",
@@ -2337,7 +2609,23 @@
   "Pandaros.Settlers.AutoLoad.stoneblockslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.stoneblockslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.stoneblockslab",
@@ -2399,7 +2687,23 @@
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
     "isFertile": true,
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.dirtbrickslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.dirtbrickslab",
@@ -2460,7 +2764,23 @@
   "Pandaros.Settlers.AutoLoad.logtaigaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.logtaigaslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtaigaslab",
@@ -2521,7 +2841,23 @@
   "Pandaros.Settlers.AutoLoad.logtemperateslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.logtemperateslab",
@@ -2583,7 +2919,23 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.sandstoneslab",
@@ -2643,7 +2995,23 @@
   "Pandaros.Settlers.AutoLoad.limestoneslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.limestoneslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.limestoneslab",
@@ -2705,7 +3073,23 @@
   "Pandaros.Settlers.AutoLoad.marbleslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.marbleslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.rawmarbleslab": {
     "icon": "./icons/rawmarbleslab.png",
@@ -2766,7 +3150,23 @@
   "Pandaros.Settlers.AutoLoad.rawmarbleslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.rawmarbleslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslab": {
     "icon": "./icons/marblebricksslab.png",
@@ -2822,7 +3222,23 @@
   "Pandaros.Settlers.AutoLoad.marblebricksslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.marblebricksslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.marblebricksslab",
@@ -2883,7 +3299,23 @@
   "Pandaros.Settlers.AutoLoad.stonesquaresslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.stonesquaresslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonesquaresslab",
@@ -2973,7 +3405,23 @@
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonesquaresslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslab": {
     "icon": "./icons/mossstonebricksslab.png",
@@ -3085,7 +3533,23 @@
   "Pandaros.Settlers.AutoLoad.mossstoneslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstoneslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
@@ -3095,7 +3559,23 @@
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.mossstonebricksslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.mossstone": {
     "icon": "./icons/mossStone.png",
@@ -3174,7 +3654,23 @@
   "Pandaros.Settlers.AutoLoad.plasterslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.plasterslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.plasterslab",
@@ -3235,7 +3731,23 @@
   "Pandaros.Settlers.AutoLoad.clayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.clayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.clayslab",
@@ -3301,7 +3813,23 @@
   "Pandaros.Settlers.AutoLoad.redplankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.redplankslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.blackplankslab": {
     "icon": "./icons/blackplankslab.png",
@@ -3362,7 +3890,23 @@
   "Pandaros.Settlers.AutoLoad.blackplankslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackplankslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.whiteclayslab": {
     "icon": "./icons/whiteclayslab.png",
@@ -3423,7 +3967,23 @@
   "Pandaros.Settlers.AutoLoad.whiteclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.whiteclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.yellowclayslab": {
     "icon": "./icons/yellowclayslab.png",
@@ -3484,7 +4044,23 @@
   "Pandaros.Settlers.AutoLoad.yellowclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.yellowclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslab": {
     "icon": "./icons/orangeclayslab.png",
@@ -3540,7 +4116,23 @@
   "Pandaros.Settlers.AutoLoad.orangeclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.orangeclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.orangeclayslab",
@@ -3606,7 +4198,23 @@
   "Pandaros.Settlers.AutoLoad.magentaclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.magentaclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.purpleclayslab": {
     "icon": "./icons/purpleclayslab.png",
@@ -3667,7 +4275,23 @@
   "Pandaros.Settlers.AutoLoad.purpleclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.purpleclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.redclayslab": {
     "icon": "./icons/redclayslab.png",
@@ -3728,7 +4352,23 @@
   "Pandaros.Settlers.AutoLoad.redclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.redclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.lightpinkclayslab": {
     "icon": "./icons/lightpinkclayslab.png",
@@ -3789,7 +4429,23 @@
   "Pandaros.Settlers.AutoLoad.lightpinkclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightpinkclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.pinkclayslab": {
     "icon": "./icons/pinkclayslab.png",
@@ -3850,7 +4506,23 @@
   "Pandaros.Settlers.AutoLoad.pinkclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.pinkclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.limeclayslab": {
     "icon": "./icons/limeclayslab.png",
@@ -3911,7 +4583,23 @@
   "Pandaros.Settlers.AutoLoad.limeclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.limeclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.greenclayslab": {
     "icon": "./icons/greenclayslab.png",
@@ -3972,7 +4660,23 @@
   "Pandaros.Settlers.AutoLoad.greenclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.greenclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.lightgreyclayslab": {
     "icon": "./icons/lightgreyclayslab.png",
@@ -4033,7 +4737,23 @@
   "Pandaros.Settlers.AutoLoad.lightgreyclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lightgreyclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.greyclayslab": {
     "icon": "./icons/greyclayslab.png",
@@ -4094,7 +4814,23 @@
   "Pandaros.Settlers.AutoLoad.greyclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.greyclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslab": {
     "icon": "./icons/darkblueclayslab.png",
@@ -4149,7 +4885,23 @@
   "Pandaros.Settlers.AutoLoad.darkblueclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.darkblueclayslabbottom": {
     "parentType": "Pandaros.Settlers.AutoLoad.darkblueclayslab",
@@ -4215,7 +4967,23 @@
   "Pandaros.Settlers.AutoLoad.cyanclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.cyanclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.brownclayslab": {
     "icon": "./icons/brownclayslab.png",
@@ -4276,7 +5044,23 @@
   "Pandaros.Settlers.AutoLoad.brownclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.brownclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.blueclayslab": {
     "icon": "./icons/blueclayslab.png",
@@ -4337,7 +5121,23 @@
   "Pandaros.Settlers.AutoLoad.blueclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.blueclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.blackclayslab": {
     "icon": "./icons/blackclayslab.png",
@@ -4398,7 +5198,23 @@
   "Pandaros.Settlers.AutoLoad.blackclayslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.blackclayslab",
     "sideall": "SELF",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.lava": {
     "color": "#ba2203",
@@ -4486,6 +5302,22 @@
   },
   "Pandaros.Settlers.AutoLoad.lavaslabtop": {
     "parentType": "Pandaros.Settlers.AutoLoad.lavaslab",
-    "mesh": "./Meshes/slabtop.obj"
+    "mesh": "./Meshes/slabtop.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [
+            -0.5,
+            0,
+            -0.5
+          ],
+          "max": [
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    }
   }
 }

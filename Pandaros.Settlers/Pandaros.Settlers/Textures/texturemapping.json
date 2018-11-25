@@ -330,9 +330,9 @@
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricks": {
     "albedo": "./albedo/mossStoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquares": {
     "albedo": "./albedo/mossStoneSquares.png",
@@ -492,9 +492,9 @@
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabbottom": {
     "albedo": "./albedo/mossStoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabbottom": {
     "albedo": "./albedo/mossStoneSquares.png",
@@ -768,9 +768,9 @@
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabtop": {
     "albedo": "./albedo/mossStoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstonesquaresslabtop": {
     "albedo": "./albedo/mossStoneSquares.png",
@@ -1002,39 +1002,39 @@
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabbottom": {
     "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabtop": {
     "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslableft": {
     "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabright": {
     "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabfront": {
     "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabback": {
     "albedo": "gamedata/textures/materials/blocks/albedo/stoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.plankslabtop": {
     "albedo": "gamedata/textures/materials/blocks/albedo/planks.png",
@@ -1716,9 +1716,9 @@
   },
   "Pandaros.Settlers.AutoLoad.mossstonebricksslabback": {
     "albedo": "./albedo/mossStoneBricks.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/stoneBricks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/stoneBricks.png"
   },
   "Pandaros.Settlers.AutoLoad.mossstoneslableft": {
     "albedo": "./albedo/mossStone.png",

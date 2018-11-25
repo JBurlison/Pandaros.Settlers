@@ -74,7 +74,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                 if (string.IsNullOrEmpty(BlockID))
                     BlockID = "0";
 
-                if (Data > 0)
+                if (Data > 0 && BlockID != "0")
                     return BlockID + ":" + Data;
                 else
                     return BlockID;

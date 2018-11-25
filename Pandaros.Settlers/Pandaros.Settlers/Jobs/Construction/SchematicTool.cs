@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.LocalStorage.SetAs("header", "Schematic Menu");
             List<FileInfo> options = SchematicReader.GetSchematics(player);
 
-            menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
+            menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
 

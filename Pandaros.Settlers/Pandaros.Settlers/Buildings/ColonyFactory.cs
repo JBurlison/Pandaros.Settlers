@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Buildings
 {
+    /// defaultstructuregenerator.registerstructurespawnchances
     public class ColonyFactory
     {
 
