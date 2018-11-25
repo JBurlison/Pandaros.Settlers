@@ -175,6 +175,62 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
   },
   {
+    "type": 6,
+    "meta": 6,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 7,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 8,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 9,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 10,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 11,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 12,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 6,
+    "meta": 13,
+    "name": "Dark Oak sappling",
+    "text_type": "sappling",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
     "type": 7,
     "meta": 0,
     "name": "Bedrock",
@@ -3764,14 +3820,14 @@
     "meta": 0,
     "name": "Redstone Lamp (inactive)",
     "text_type": "redstone_lamp",
-    "cs_type": "lanternred"
+    "cs_type": "lanternwhite"
   },
   {
     "type": 124,
     "meta": 0,
     "name": "Redstone Lamp (active)",
     "text_type": "lit_redstone_lamp",
-    "cs_type": "lanternred"
+    "cs_type": "lanternwhite"
   },
   {
     "type": 125,
@@ -3979,6 +4035,48 @@
   {
     "type": 130,
     "meta": 0,
+    "name": "Ender Chest",
+    "text_type": "ender_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 130,
+    "meta": 1,
+    "name": "Ender Chest",
+    "text_type": "ender_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 130,
+    "meta": 2,
+    "name": "Ender Chest",
+    "text_type": "ender_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 130,
+    "meta": 3,
+    "name": "Ender Chest",
+    "text_type": "ender_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 130,
+    "meta": 4,
+    "name": "Ender Chest",
+    "text_type": "ender_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 130,
+    "meta": 5,
+    "name": "Ender Chest",
+    "text_type": "ender_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 130,
+    "meta": 6,
     "name": "Ender Chest",
     "text_type": "ender_chest",
     "cs_type": "crate"

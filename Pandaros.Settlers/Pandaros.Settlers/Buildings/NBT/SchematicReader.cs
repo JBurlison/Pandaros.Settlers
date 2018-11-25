@@ -72,10 +72,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             else if (File.Exists(GameLoader.Schematic_DEFAULT_LOC + name))
                 colonySaves = GameLoader.Schematic_DEFAULT_LOC + name;
             else
-            {
-                PandaLogger.Log(ChatColor.red, "Cannot find blueprint {0}!", name);
                 colonySaves = null;
-            }
 
             return !string.IsNullOrWhiteSpace(colonySaves);
         }
