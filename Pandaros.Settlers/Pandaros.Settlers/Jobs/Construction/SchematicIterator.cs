@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         public string SchematicName { get; private set; }
         public Schematic BuilderSchematic { get; private set; }
 
-        public SchematicIterator(ConstructionArea area, string schematicName)
+        public SchematicIterator(ConstructionArea area, string schematicName, Schematic.Rotation rotation)
         {
             this.area = area;
             
@@ -34,7 +34,18 @@ namespace Pandaros.Settlers.Jobs.Construction
             SchematicName = schematicName;
 
             if (SchematicReader.TryGetSchematic(SchematicName, area.Owner.ColonyID, iterationChunkLocation, out var schematic))
+            {
                 BuilderSchematic = schematic;
+
+                if (rotation >= Schematic.Rotation.Right)
+                    BuilderSchematic.Rotate();
+
+                if (rotation >= Schematic.Rotation.Back)
+                    BuilderSchematic.Rotate();
+
+                if (rotation >= Schematic.Rotation.Left)
+                    BuilderSchematic.Rotate();
+            }
         }
 
         public Vector3Int CurrentPosition { get { return cursor; } }
@@ -67,11 +78,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (IsInBounds(cursor))
                 return true;
             else
-            {
-                SchematicReader.UnloadSchematic(GameLoader.Schematic_SAVE_LOC + SchematicName, iterationChunkLocation);
-                SchematicReader.UnloadSchematic(GameLoader.Schematic_DEFAULT_LOC + SchematicName, iterationChunkLocation);
                 return false;
-            }
 
         }
     }

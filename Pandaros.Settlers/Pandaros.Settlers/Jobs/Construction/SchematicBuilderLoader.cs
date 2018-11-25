@@ -1,4 +1,5 @@
-﻿using Pipliz.JSON;
+﻿using Pandaros.Settlers.Buildings.NBT;
+using Pipliz.JSON;
 using Pipliz.Mods.BaseGame.Construction;
 using Pipliz.Mods.BaseGame.Construction.Iterators;
 using System;
@@ -21,9 +22,9 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (node == null)
                 return;
 
-           if (node.TryGetAs(NAME + ".SchematicName", out string schematic))
+           if (node.TryGetAs(NAME + ".SchematicName", out string schematic) && node.TryGetAs(NAME + ".Rotation", out Schematic.Rotation rotation))
             {
-                area.IterationType = new SchematicIterator(area, schematic);
+                area.IterationType = new SchematicIterator(area, schematic, rotation);
                 area.ConstructionType = new SchematicBuilder();
             }
         }

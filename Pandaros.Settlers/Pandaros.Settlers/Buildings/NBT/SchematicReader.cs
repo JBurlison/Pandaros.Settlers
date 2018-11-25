@@ -15,7 +15,6 @@ namespace Pandaros.Settlers.Buildings.NBT
     public static class SchematicReader
     {
         private const string METADATA_FILEEXT = ".metadata.json";
-        static Dictionary<string, Dictionary<Vector3Int, Schematic>> _loadedSchematics = new Dictionary<string, Dictionary<Vector3Int, Schematic>>();
 
         public static bool TryGetSchematicMetadata(string name, int colonyId, out SchematicMetadata metadata)
         {
@@ -77,18 +76,6 @@ namespace Pandaros.Settlers.Buildings.NBT
             return !string.IsNullOrWhiteSpace(colonySaves);
         }
 
-        public static void UnloadSchematic(string path, Vector3Int startPos)
-        {
-            if (_loadedSchematics.ContainsKey(path))
-            {
-                if (_loadedSchematics[path].ContainsKey(startPos))
-                    _loadedSchematics[path].Remove(startPos);
-
-                if (_loadedSchematics[path].Count == 0)
-                    _loadedSchematics.Remove(path);
-            }
-        }
-
         public static List<FileInfo> GetSchematics(Players.Player player)
         {
             var options = new List<FileInfo>();
@@ -109,20 +96,6 @@ namespace Pandaros.Settlers.Buildings.NBT
 
         private static Schematic LoadSchematic(string path, Vector3Int startPos)
         {
-            if (_loadedSchematics.ContainsKey(path))
-                if (_loadedSchematics[path].ContainsKey(startPos))
-                    return _loadedSchematics[path][startPos];
-                else
-                {
-                    var item = _loadedSchematics[path].FirstOrDefault();
-
-                    if (item.Key != null)
-                    {
-                        _loadedSchematics[path][startPos] = item.Value;
-                        return item.Value;
-                    }
-                }
-
             NbtFile file = new NbtFile(path);
             return LoadSchematic(file, startPos);
         }
@@ -134,7 +107,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                 var metadataPath = path + METADATA_FILEEXT;
                 var metadata = new SchematicMetadata();
                 metadata.Name = name.Substring(0, name.LastIndexOf('.'));
-                Schematic schematic = PeekSchematic(new NbtFile(path), Vector3Int.invalidPos);
+                Schematic schematic = LoadSchematic(new NbtFile(path), Vector3Int.invalidPos);
 
                 for (int Y = 0; Y < schematic.YMax; Y++)
                 {
@@ -188,21 +161,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             SchematicBlock[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
             Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.CSBlocks, startPos);
-
-            if (!_loadedSchematics.ContainsKey(nbtFile.FileName))
-                _loadedSchematics.Add(nbtFile.FileName, new Dictionary<Vector3Int, Schematic>());
-  
-            _loadedSchematics[nbtFile.FileName][startPos] = schematic;
-
             return schematic;
-        }
-
-        internal static Schematic PeekSchematic(NbtFile nbtFile, Vector3Int startPos)
-        {
-            RawSchematic raw = LoadRaw(nbtFile);
-            SchematicBlock[,,] blocks = GetBlocks(raw);
-            string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            return new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.CSBlocks, startPos);
         }
 
         private static RawSchematicSize LoadRawSize(NbtFile nbtFile)

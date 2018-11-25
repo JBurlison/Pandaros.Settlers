@@ -63,6 +63,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         block = bpi.BuilderSchematic.CSBlocks[adjX, adjY, adjZ];
                 }
 
+
                 if (block == default(SchematicBlock))
                     block = SchematicBlock.Air;
 

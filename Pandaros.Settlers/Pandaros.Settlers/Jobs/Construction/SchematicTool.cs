@@ -24,9 +24,17 @@ namespace Pandaros.Settlers.Jobs.Construction
     [ModLoader.ModManager]
     public class SchematicMenu
     {
+        private static readonly List<Schematic.Rotation> _rotation = new List<Schematic.Rotation>()
+        {
+            Schematic.Rotation.Front,
+            Schematic.Rotation.Right,
+            Schematic.Rotation.Back,
+            Schematic.Rotation.Left
+        };
+
         private static readonly string Selected_Schematic = GameLoader.NAMESPACE + ".SelectedSchematic";
 
-        private static Dictionary<Players.Player, Tuple<SchematicClickType, string>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string>>();
+        private static Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
@@ -56,10 +64,20 @@ namespace Pandaros.Settlers.Jobs.Construction
                             var args = new JSONNode();
                             args.SetAs("constructionType", GameLoader.NAMESPACE + ".SchematicBuilder");
                             args.SetAs(SchematicBuilderLoader.NAME + ".SchematicName", tuple.Item2);
+                            args.SetAs(SchematicBuilderLoader.NAME + ".Rotation", tuple.Item3);
 
-                            if (SchematicReader.TryGetSchematicSize(tuple.Item2, player.ActiveColony.ColonyID, out RawSchematicSize schematicSize))
+                            if (SchematicReader.TryGetSchematic(tuple.Item2, player.ActiveColony.ColonyID, location, out var schematic))
                             {
-                                var maxSize = location.Add(schematicSize.XMax, schematicSize.YMax, schematicSize.ZMax);
+                                if (tuple.Item3 >= Schematic.Rotation.Right)
+                                    schematic.Rotate();
+
+                                if (tuple.Item3 >= Schematic.Rotation.Back)
+                                    schematic.Rotate();
+
+                                if (tuple.Item3 >= Schematic.Rotation.Left)
+                                    schematic.Rotate();
+
+                                var maxSize = location.Add(schematic.XMax, schematic.YMax, schematic.ZMax);
                                 AreaJobTracker.CreateNewAreaJob("pipliz.constructionarea", args, player.ActiveColony, location, maxSize);
                                 AreaJobTracker.SendData(player);
                             }
@@ -80,7 +98,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.LocalStorage.SetAs("header", "Schematic Menu");
             List<FileInfo> options = SchematicReader.GetSchematics(player);
 
-            menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
+            menu.Items.Add(new DropDown(new LabelData("Schematic", UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
@@ -144,8 +162,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                                     menu.Items.Add(new HorizontalGrid(items, 200));
                                 }
 
+                                menu.Items.Add(new DropDown(new LabelData("Rotation", UnityEngine.Color.black), Selected_Schematic + ".Rotation", _rotation.Select(r => r.ToString()).ToList()));
                                 menu.Items.Add(new HorizontalSplit(new ButtonCallback(GameLoader.NAMESPACE + ".ShowMainMenu", new LabelData("Back", UnityEngine.Color.black)),
                                                                    new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black))));
+                                menu.LocalStorage.SetAs(Selected_Schematic + ".Rotation", 0);
 
                                 NetworkMenuManager.SendServerPopup(data.Player, menu);
                             }
@@ -156,6 +176,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 case GameLoader.NAMESPACE + ".SetBuildArea":
                     var scem = data.Storage.GetAs<string>(Selected_Schematic);
+                    var rotation = data.Storage.GetAs<int>(Selected_Schematic + ".Rotation");
+
                     PandaLogger.Log("Schematic: {0}", scem);
 
                     if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
@@ -163,7 +185,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
                             PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
                         {
-                            _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem);
+                            _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);
                             PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
                         }
                     }

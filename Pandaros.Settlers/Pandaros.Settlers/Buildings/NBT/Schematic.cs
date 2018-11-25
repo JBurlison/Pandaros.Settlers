@@ -4,6 +4,14 @@ namespace Pandaros.Settlers.Buildings.NBT
 {
     public class Schematic
     {
+        public enum Rotation
+        {
+            Front,
+            Right,
+            Back,
+            Left
+        }
+
         public string Name { get; set; }
         public int XMax { get; set; }
         public int YMax { get; set; }
@@ -42,7 +50,7 @@ namespace Pandaros.Settlers.Buildings.NBT
 
         public void Rotate()
         {
-            SchematicBlock[,,] newBlocks = new SchematicBlock[XMax + 1, YMax + 1, ZMax + 1];
+            SchematicBlock[,,] newBlocks = new SchematicBlock[ZMax, YMax, XMax];
 
             for (int y = 0; y < YMax; y++)
             {
@@ -53,13 +61,19 @@ namespace Pandaros.Settlers.Buildings.NBT
                         int newX = z;
                         int newZ = ZMax - (x + 1);
 
-                        newBlocks[newZ, y, newX] = CSBlocks[z, y, x];
+                        if (CSBlocks != null)
+                            newBlocks[newZ, y, newX] = CSBlocks[z, y, x];
+                        else
+                            newBlocks[newZ, y, newX] = Blocks[z, y, x];
                     }
                 }
             }
 
-            CSBlocks = newBlocks;
-
+            if (CSBlocks != null)
+                CSBlocks = newBlocks;
+            else
+                Blocks = newBlocks;
+    
             int tmpSize = XMax;
             XMax = ZMax;
             ZMax = tmpSize;
