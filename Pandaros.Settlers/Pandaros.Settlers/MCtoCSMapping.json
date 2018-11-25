@@ -2150,6 +2150,13 @@
     "cs_type": "air"
   },
   {
+    "type": 64,
+    "meta": 10,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
     "type": 65,
     "meta": 0,
     "name": "Ladder",

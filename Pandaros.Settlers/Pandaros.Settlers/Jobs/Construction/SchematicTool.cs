@@ -42,15 +42,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 if (!_awaitingClick.ContainsKey(player))
                 {
-                    NetworkMenu menu = new NetworkMenu();
-                    menu.LocalStorage.SetAs("header", "Schematic Menu");
-                    List<FileInfo> options = SchematicReader.GetSchematics(player);
-                    
-                    menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
-                    menu.LocalStorage.SetAs(Selected_Schematic, 0);
-
-                    NetworkMenuManager.SendServerPopup(player, menu);
+                    SendMainMenu(player);
                 }
                 else
                 {
@@ -82,6 +74,19 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
         }
 
+        private static void SendMainMenu(Players.Player player)
+        {
+            NetworkMenu menu = new NetworkMenu();
+            menu.LocalStorage.SetAs("header", "Schematic Menu");
+            List<FileInfo> options = SchematicReader.GetSchematics(player);
+
+            menu.Items.Add(new DropDown("Schematic", Selected_Schematic, options.Select(fi => fi.Name).ToList()));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
+            menu.LocalStorage.SetAs(Selected_Schematic, 0);
+
+            NetworkMenuManager.SendServerPopup(player, menu);
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSendAreaHighlights, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OnSendAreaHighlights")]
         static void OnSendAreaHighlights(Players.Player goal, List<AreaHighlight> list, List<ushort> showWhileHoldingTypes)
         {
@@ -101,6 +106,10 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             switch (data.ButtonIdentifier)
             {
+                case GameLoader.NAMESPACE + ".ShowMainMenu":
+                    SendMainMenu(data.Player);
+                    break;
+
                 case GameLoader.NAMESPACE + ".ShowBuildDetails":
                     List<FileInfo> options = SchematicReader.GetSchematics(data.Player);
                     var index = data.Storage.GetAs<int>(Selected_Schematic);
@@ -135,7 +144,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                                     menu.Items.Add(new HorizontalGrid(items, 200));
                                 }
 
-                                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black)));
+                                menu.Items.Add(new HorizontalSplit(new ButtonCallback(GameLoader.NAMESPACE + ".ShowMainMenu", new LabelData("Back", UnityEngine.Color.black)),
+                                                                   new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black))));
 
                                 NetworkMenuManager.SendServerPopup(data.Player, menu);
                             }
