@@ -40,6 +40,31 @@ namespace Pandaros.Settlers.Buildings.NBT
             StartPos = startPos;
         }
 
+        public void Rotate()
+        {
+            SchematicBlock[,,] newBlocks = new SchematicBlock[XMax + 1, YMax + 1, ZMax + 1];
+
+            for (int y = 0; y < YMax; y++)
+            {
+                for (int x = 0; x < ZMax; x++)
+                {
+                    for (int z = 0; z < XMax; z++)
+                    {
+                        int newX = z;
+                        int newZ = ZMax - (x + 1);
+
+                        newBlocks[newZ, y, newX] = CSBlocks[z, y, x];
+                    }
+                }
+            }
+
+            CSBlocks = newBlocks;
+
+            int tmpSize = XMax;
+            XMax = ZMax;
+            ZMax = tmpSize;
+        }
+
         public override string ToString()
         {
             return $"Name: {Name}  Max Bounds: [{XMax}, {YMax}, {ZMax}]";
