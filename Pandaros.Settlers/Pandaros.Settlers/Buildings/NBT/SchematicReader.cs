@@ -107,7 +107,7 @@ namespace Pandaros.Settlers.Buildings.NBT
             foreach (var file in Directory.EnumerateFiles(GameLoader.Schematic_DEFAULT_LOC, "*.schematic"))
                 options.Add(new FileInfo(file));
 
-            return options;
+            return options.OrderBy(f => f.Name).ToList();
         }
 
         private static Schematic LoadSchematic(string path, Vector3Int startPos)

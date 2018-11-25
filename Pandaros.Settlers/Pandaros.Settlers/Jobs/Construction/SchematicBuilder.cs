@@ -91,7 +91,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
                         {
                             var foundItem = ItemTypes.GetType(foundTypeIndex);
-                            ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
+
+                            if (foundItem != null && foundItem.ItemIndex != BuiltinBlocks.Air && foundItem.OnRemoveItems != null && foundItem.OnRemoveItems.Count > 0)
+                                ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
                         if (ServerManager.TryChangeBlock(iterationType.CurrentPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                         {

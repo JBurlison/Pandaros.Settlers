@@ -25,6 +25,7 @@ namespace Pandaros.Settlers.Jobs.Construction
     public class SchematicMenu
     {
         private static readonly string Selected_Schematic = GameLoader.NAMESPACE + ".SelectedSchematic";
+
         private static Dictionary<Players.Player, Tuple<SchematicClickType, string>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
@@ -66,7 +67,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                             if (SchematicReader.TryGetSchematicSize(tuple.Item2, player.ActiveColony.ColonyID, out RawSchematicSize schematicSize))
                             {
-                                AreaJobTracker.CreateNewAreaJob("pipliz.constructionarea", args, player.ActiveColony, location, location.Add(schematicSize.XMax, schematicSize.YMax, schematicSize.ZMax));
+                                var maxSize = location.Add(schematicSize.XMax, schematicSize.YMax, schematicSize.ZMax);
+                                AreaJobTracker.CreateNewAreaJob("pipliz.constructionarea", args, player.ActiveColony, location, maxSize);
                                 AreaJobTracker.SendData(player);
                             }
 
@@ -117,11 +119,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 menu.Height = 600;
                                 menu.LocalStorage.SetAs("header", selectedSchematic.Name + " Details");
 
-                                menu.Items.Add(new DropDown(new LabelData("Schematic", UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name).Where(n => n == selectedSchematic.Name).ToList()));
                                 menu.Items.Add(new Label(new LabelData("Height: " + schematicMetadata.MaxY, UnityEngine.Color.black)));
                                 menu.Items.Add(new Label(new LabelData("Width: " + schematicMetadata.MaxZ, UnityEngine.Color.black)));
                                 menu.Items.Add(new Label(new LabelData("Length: " + schematicMetadata.MaxX, UnityEngine.Color.black)));
-                                menu.LocalStorage.SetAs(Selected_Schematic, 0);
+                                menu.LocalStorage.SetAs(Selected_Schematic, selectedSchematic.Name);
 
                                 foreach (var kvp in schematicMetadata.Blocks)
                                 {
@@ -135,7 +136,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 }
 
                                 menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black)));
-                                menu.LocalStorage.SetAs(Selected_Schematic, 0);
 
                                 NetworkMenuManager.SendServerPopup(data.Player, menu);
                             }
@@ -145,16 +145,15 @@ namespace Pandaros.Settlers.Jobs.Construction
                     break;
 
                 case GameLoader.NAMESPACE + ".SetBuildArea":
-                    var si = data.Storage.GetAs<int>(Selected_Schematic);
-                    List<FileInfo> so = SchematicReader.GetSchematics(data.Player);
-                    var scem = so[si];
+                    var scem = data.Storage.GetAs<string>(Selected_Schematic);
+                    PandaLogger.Log("Schematic: {0}", scem);
 
-                    if (SchematicReader.TryGetSchematicMetadata(scem.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
+                    if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {
                         if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
                             PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
                         {
-                            _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem.Name);
+                            _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem);
                             PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
                         }
                     }

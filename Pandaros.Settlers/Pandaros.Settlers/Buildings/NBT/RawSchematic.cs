@@ -11,6 +11,11 @@ namespace Pandaros.Settlers.Buildings.NBT
         public int XMax { get; set; }
         public int YMax { get; set; }
         public int ZMax { get; set; }
+
+        public override string ToString()
+        {
+            return $"Max Bounds: [{XMax}, {YMax}, {ZMax}]";
+        }
     }
 
     public class RawSchematic : RawSchematicSize
@@ -20,5 +25,10 @@ namespace Pandaros.Settlers.Buildings.NBT
         public byte[] Data { get; set; }
         public SchematicBlock[,,] CSBlocks { get; set; }
         public TileEntity[,,] TileEntities { get; set; }
+
+        public override string ToString()
+        {
+            return $"Max Bounds: [{XMax}, {YMax}, {ZMax}] CSBlock Count: {CSBlocks.LongLength} Blocks Count: {Blocks.LongLength}";
+        }
     }
 }
