@@ -2605,6 +2605,13 @@
     "cs_type": "planks"
   },
   {
+    "type": 84,
+    "meta": 1,
+    "name": "Jukebox",
+    "text_type": "jukebox",
+    "cs_type": "planks"
+  },
+  {
     "type": 85,
     "meta": 0,
     "name": "Oak Fence",
@@ -3370,6 +3377,34 @@
   {
     "type": 107,
     "meta": 5,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 6,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 7,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 8,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 9,
     "name": "Oak Fence Gate",
     "text_type": "fence_gate",
     "cs_type": "air"
