@@ -293,7 +293,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                     NbtTag yTag = compTag["y"];
                     NbtTag zTag = compTag["z"];
                     NbtTag idTag = compTag["id"];
-                    SchematicBlock entity = new SchematicBlock()
+                    SchematicBlock block = new SchematicBlock()
                     {
                         X = xTag.IntValue,
                         Y = yTag.IntValue,
@@ -301,7 +301,11 @@ namespace Pandaros.Settlers.Buildings.NBT
                         BlockID = idTag.StringValue,
                         CSBlock = true
                     };
-                    list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = entity;
+
+                    if (string.IsNullOrEmpty(block.BlockID))
+                        block.BlockID = "0";
+
+                    list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = block;
                 }
             }
             return list;
@@ -342,6 +346,9 @@ namespace Pandaros.Settlers.Buildings.NBT
                         block.X = X;
                         block.Y = Y;
                         block.Z = Z;
+
+                        if (string.IsNullOrEmpty(block.BlockID))
+                            block.BlockID = "0";
 
                         blocks[X,Y,Z] = block;
                     }

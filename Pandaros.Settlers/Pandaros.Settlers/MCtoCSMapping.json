@@ -1468,14 +1468,14 @@
     "meta": 3,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz-"
+    "cs_type": "torchz+"
   },
   {
     "type": 50,
     "meta": 4,
     "name": "Torch",
     "text_type": "torch",
-    "cs_type": "torchz+"
+    "cs_type": "torchz-"
   },
   {
     "type": 50,
@@ -1972,14 +1972,14 @@
     "meta": 4,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenz-"
+    "cs_type": "ovenz+"
   },
   {
     "type": 61,
     "meta": 5,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenz+"
+    "cs_type": "ovenz-"
   },
   {
     "type": 62,
@@ -2609,7 +2609,7 @@
     "meta": 0,
     "name": "Oak Fence",
     "text_type": "fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 86,
@@ -3374,69 +3374,131 @@
     "text_type": "fence_gate",
     "cs_type": "air"
   },
-
   {
     "type": 108,
     "meta": 0,
     "name": "Brick Stairs",
     "text_type": "brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 1,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 2,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 3,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 4,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 5,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 6,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 7,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 8,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
+  },
+  {
+    "type": 108,
+    "meta": 9,
+    "name": "Brick Stairs",
+    "text_type": "brick_stairs",
+    "cs_type": "bricks"
   },
   {
     "type": 109,
     "meta": 1,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 2,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 3,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 4,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 5,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 6,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 7,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 109,
     "meta": 0,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "planks"
+    "cs_type": "stonebricks"
   },
   {
     "type": 110,
@@ -3464,7 +3526,7 @@
     "meta": 0,
     "name": "Nether Brick Fence",
     "text_type": "nether_brick_fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 114,
@@ -3548,28 +3610,28 @@
     "meta": 0,
     "name": "Cauldron",
     "text_type": "cauldron",
-    "cs_type": "ovenx+"
+    "cs_type": "ironblock"
   },
   {
     "type": 118,
     "meta": 1,
     "name": "Cauldron",
     "text_type": "cauldron",
-    "cs_type": "ovenx-"
+    "cs_type": "ironblock"
   },
   {
     "type": 118,
     "meta": 2,
     "name": "Cauldron",
     "text_type": "cauldron",
-    "cs_type": "ovenz+"
+    "cs_type": "ironblock"
   },
   {
     "type": 118,
     "meta": 3,
     "name": "Cauldron",
     "text_type": "cauldron",
-    "cs_type": "ovenz-"
+    "cs_type": "ironblock"
   },
   {
     "type": 119,
@@ -6433,35 +6495,35 @@
     "meta": 0,
     "name": "Spruce Fence",
     "text_type": "spruce_fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 189,
     "meta": 0,
     "name": "Birch Fence",
     "text_type": "birch_fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 190,
     "meta": 0,
     "name": "Jungle Fence",
     "text_type": "jungle_fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 191,
     "meta": 0,
     "name": "Dark Oak Fence",
     "text_type": "dark_oak_fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 192,
     "meta": 0,
     "name": "Acacia Fence",
     "text_type": "acacia_fence",
-    "cs_type": "Pandaros.Settlers.AutoLoad.fence"
+    "cs_type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
   },
   {
     "type": 193,

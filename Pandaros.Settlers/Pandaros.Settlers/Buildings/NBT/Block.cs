@@ -21,39 +21,46 @@ namespace Pandaros.Settlers.Buildings.NBT
         {
             get
             {
-                if (CSBlock)
+                try
                 {
-                    if (BlockMapping.CStoMCMappings.TryGetValue(BlockID, out var mappingBlocks))
+                    if (CSBlock)
                     {
-                        var map = mappingBlocks.FirstOrDefault();
-
-                        if (map == null)
+                        if (BlockMapping.CStoMCMappings.TryGetValue(BlockID, out var mappingBlocks))
                         {
-                            map = new MappingBlock()
+                            var map = mappingBlocks.FirstOrDefault();
+
+                            if (map == null)
+                            {
+                                map = new MappingBlock()
+                                {
+                                    CSType = BlockID
+                                };
+
+                                BlockMapping.CStoMCMappings[BlockID].Add(map);
+                            }
+
+                            return map;
+                        }
+                        else
+                        {
+                            MappingBlock mappingBlock = new MappingBlock()
                             {
                                 CSType = BlockID
                             };
 
-                            BlockMapping.CStoMCMappings[BlockID].Add(map);
+                            BlockMapping.CStoMCMappings.Add(BlockID, new System.Collections.Generic.List<MappingBlock>() { mappingBlock });
+                            return mappingBlock;
                         }
-
-                        return map;
                     }
+                    else if (BlockMapping.MCtoCSMappings.TryGetValue(ItemID, out var mapping))
+                        return mapping;
                     else
-                    {
-                        MappingBlock mappingBlock = new MappingBlock()
-                        {
-                            CSType = BlockID
-                        };
-
-                        BlockMapping.CStoMCMappings.Add(BlockID, new System.Collections.Generic.List<MappingBlock>() { mappingBlock });
-                        return mappingBlock;
-                    }
+                        PandaLogger.Log(ChatColor.yellow, "1) Unable to find mapping for block {0}", ToString());
                 }
-                else if (BlockMapping.MCtoCSMappings.TryGetValue(ItemID, out var mapping))
-                    return mapping;
-                else
-                    PandaLogger.Log(ChatColor.yellow, "3) Unable to find mapping for block {0}", ToString());
+                catch (System.Exception)
+                {
+                    PandaLogger.Log(ChatColor.yellow, "2) Unable to find mapping for block {0}", ToString());
+                }
 
                 return BlockMapping.MCtoCSMappings[BlockTypes.BuiltinBlocks.Air.ToString()];
             }
@@ -64,10 +71,13 @@ namespace Pandaros.Settlers.Buildings.NBT
         {
             get
             {
+                if (string.IsNullOrEmpty(BlockID))
+                    BlockID = "0";
+
                 if (Data > 0)
                     return BlockID + ":" + Data;
                 else
-                    return BlockID.ToString();
+                    return BlockID;
             }
         }
 
