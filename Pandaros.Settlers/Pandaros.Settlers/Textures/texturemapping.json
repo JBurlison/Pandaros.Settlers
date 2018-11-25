@@ -126,9 +126,9 @@
   },
   "Pandaros.Settlers.AutoLoad.sandstone": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.infiniteruby": {
     "albedo": "./albedo/oreRuby.png",
@@ -528,9 +528,9 @@
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabbottom": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabbottom": {
     "albedo": "gamedata/textures/materials/blocks/albedo/logTemperate.png",
@@ -804,9 +804,9 @@
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabtop": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.logtemperateslabtop": {
     "albedo": "gamedata/textures/materials/blocks/albedo/logTemperate.png",
@@ -1530,27 +1530,27 @@
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslableft": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabright": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabfront": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.sandstoneslabback": {
     "albedo": "./albedo/sandStone.png",
-    "normal": "gamedata/textures/materials/blocks/normal/neutral.png",
+    "normal": "gamedata/textures/materials/blocks/normal/adobe.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
-    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/neutral.png"
+    "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/adobe.png"
   },
   "Pandaros.Settlers.AutoLoad.limestoneslableft": {
     "albedo": "./albedo/limeStone.png",
