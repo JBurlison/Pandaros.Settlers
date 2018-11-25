@@ -725,14 +725,14 @@
     "meta": 0,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedx-"
+    "cs_type": "bedz+"
   },
   {
     "type": 26,
     "meta": 1,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedx+"
+    "cs_type": "bedx-"
   },
   {
     "type": 26,
@@ -746,7 +746,7 @@
     "meta": 3,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedz+"
+    "cs_type": "bedx+"
   },
   {
     "type": 26,
@@ -2014,28 +2014,28 @@
     "meta": 2,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenx-"
+    "cs_type": "ovenz-"
   },
   {
     "type": 61,
     "meta": 3,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenx+"
+    "cs_type": "ovenz+"
   },
   {
     "type": 61,
     "meta": 4,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenz-"
+    "cs_type": "ovenx-"
   },
   {
     "type": 61,
     "meta": 5,
     "name": "Furnace",
     "text_type": "furnace",
-    "cs_type": "ovenz+"
+    "cs_type": "ovenx+"
   },
   {
     "type": 62,
@@ -2043,6 +2043,34 @@
     "name": "Burning Furnace",
     "text_type": "lit_furnace",
     "cs_type": "oven"
+  },
+  {
+    "type": 62,
+    "meta": 2,
+    "name": "Burning Furnace",
+    "text_type": "lit_furnace",
+    "cs_type": "ovenz-"
+  },
+  {
+    "type": 62,
+    "meta": 3,
+    "name": "Burning Furnace",
+    "text_type": "lit_furnace",
+    "cs_type": "ovenz+"
+  },
+  {
+    "type": 62,
+    "meta": 4,
+    "name": "Burning Furnace",
+    "text_type": "lit_furnace",
+    "cs_type": "ovenx-"
+  },
+  {
+    "type": 62,
+    "meta": 5,
+    "name": "Burning Furnace",
+    "text_type": "lit_furnace",
+    "cs_type": "ovenx+"
   },
   {
     "type": 63,
