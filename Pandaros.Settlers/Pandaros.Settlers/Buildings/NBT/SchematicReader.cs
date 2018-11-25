@@ -149,7 +149,14 @@ namespace Pandaros.Settlers.Buildings.NBT
 
                             if (block.CSIndex != BuiltinBlocks.Air)
                             {
-                                if (metadata.Blocks.TryGetValue(block.CSIndex, out var blockMeta))
+                                var buildType = ItemTypes.GetType(block.CSIndex);
+                                var index = block.CSIndex;
+
+                                if (!string.IsNullOrWhiteSpace(buildType.ParentType))
+                                    index = ItemTypes.GetType(buildType.ParentType).ItemIndex;
+
+
+                                if (metadata.Blocks.TryGetValue(index, out var blockMeta))
                                 {
                                     blockMeta.Count++;
                                 }
@@ -157,7 +164,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                                 {
                                     blockMeta = new SchematicBlockMetadata();
                                     blockMeta.Count++;
-                                    blockMeta.ItemId = block.CSIndex;
+                                    blockMeta.ItemId = index;
 
                                     metadata.Blocks.Add(blockMeta.ItemId, blockMeta);
                                 }

@@ -585,7 +585,7 @@
     "meta": 0,
     "name": "Glass",
     "text_type": "glass",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 21,
@@ -604,6 +604,34 @@
   {
     "type": 23,
     "meta": 0,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 1,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 2,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 3,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 4,
     "name": "Dispenser",
     "text_type": "dispenser",
     "cs_type": "stonebricks"
@@ -641,6 +669,111 @@
     "meta": 0,
     "name": "Bed",
     "text_type": "bed",
+    "cs_type": "bedx-"
+  },
+  {
+    "type": 26,
+    "meta": 1,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bedz-"
+  },
+  {
+    "type": 26,
+    "meta": 2,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bedx+"
+  },
+  {
+    "type": 26,
+    "meta": 3,
+    "name": "Bed",
+    "text_type": "bedz+",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 4,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 5,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 6,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 7,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 8,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 9,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 10,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 11,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 12,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 13,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 14,
+    "name": "Bed",
+    "text_type": "bed",
+    "cs_type": "bed"
+  },
+  {
+    "type": 26,
+    "meta": 15,
+    "name": "Bed",
+    "text_type": "bed",
     "cs_type": "bed"
   },
   {
@@ -662,7 +795,70 @@
     "meta": 0,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "air"
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 1,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 2,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 3,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 4,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 5,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 6,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 7,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 8,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 9,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
   },
   {
     "type": 30,
@@ -767,7 +963,70 @@
     "meta": 0,
     "name": "Piston Head",
     "text_type": "piston_head",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 1,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 2,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 3,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 4,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 5,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 6,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 7,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 8,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 9,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
   },
   {
     "type": 35,
@@ -1436,32 +1695,144 @@
     "cs_type": "crate"
   },
   {
+    "type": 54,
+    "meta": 5,
+    "name": "Chest",
+    "text_type": "chest",
+    "cs_type": "crate"
+  },
+  {
     "type": 55,
     "meta": 0,
     "name": "Redstone Wire",
     "text_type": "redstone_wire",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 1,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 2,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 3,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 4,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 5,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 6,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 7,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 8,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 9,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 10,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 11,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 12,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 13,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 14,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
+  },
+  {
+    "type": 55,
+    "meta": 15,
+    "name": "Redstone Wire",
+    "text_type": "redstone_wire",
+    "cs_type": "air"
   },
   {
     "type": 56,
     "meta": 0,
     "name": "Diamond Ore",
     "text_type": "diamond_ore",
-    "cs_type": ""
+    "cs_type": "stoneblock"
   },
   {
     "type": 57,
     "meta": 0,
     "name": "Diamond Block",
     "text_type": "diamond_block",
-    "cs_type": ""
+    "cs_type": "lanternwhite"
   },
   {
     "type": 58,
     "meta": 0,
     "name": "Crafting Table",
     "text_type": "crafting_table",
-    "cs_type": ""
+    "cs_type": "workbench"
   },
   {
     "type": 59,
@@ -1584,21 +1955,28 @@
   },
   {
     "type": 61,
-    "meta": 1,
+    "meta": 2,
+    "name": "Furnace",
+    "text_type": "furnace",
+    "cs_type": "ovenx+"
+  },
+  {
+    "type": 61,
+    "meta": 3,
     "name": "Furnace",
     "text_type": "furnace",
     "cs_type": "ovenx-"
   },
   {
     "type": 61,
-    "meta": 2,
+    "meta": 4,
     "name": "Furnace",
     "text_type": "furnace",
     "cs_type": "ovenz-"
   },
   {
     "type": 61,
-    "meta": 3,
+    "meta": 5,
     "name": "Furnace",
     "text_type": "furnace",
     "cs_type": "ovenz+"
@@ -1625,8 +2003,106 @@
     "cs_type": "air"
   },
   {
+    "type": 64,
+    "meta": 1,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 2,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 3,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 4,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 5,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 6,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 7,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 8,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 9,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
     "type": 65,
     "meta": 0,
+    "name": "Ladder",
+    "text_type": "ladder",
+    "cs_type": "air"
+  },
+  {
+    "type": 65,
+    "meta": 1,
+    "name": "Ladder",
+    "text_type": "ladder",
+    "cs_type": "air"
+  },
+  {
+    "type": 65,
+    "meta": 2,
+    "name": "Ladder",
+    "text_type": "ladder",
+    "cs_type": "air"
+  },
+  {
+    "type": 65,
+    "meta": 3,
+    "name": "Ladder",
+    "text_type": "ladder",
+    "cs_type": "air"
+  },
+  {
+    "type": 65,
+    "meta": 4,
+    "name": "Ladder",
+    "text_type": "ladder",
+    "cs_type": "air"
+  },
+  {
+    "type": 65,
+    "meta": 5,
     "name": "Ladder",
     "text_type": "ladder",
     "cs_type": "air"
@@ -2220,8 +2696,176 @@
     "cs_type": "air"
   },
   {
+    "type": 93,
+    "meta": 1,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 2,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 3,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 4,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 5,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 6,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 7,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 8,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 93,
+    "meta": 9,
+    "name": "Redstone Repeater Block (off)",
+    "text_type": "unpowered_repeater",
+    "cs_type": "air"
+  },
+  {
     "type": 94,
     "meta": 0,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 1,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 2,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 3,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 4,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 5,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 6,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 7,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 8,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 9,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 10,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 11,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 12,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 13,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 14,
+    "name": "Redstone Repeater Block (on)",
+    "text_type": "powered_repeater",
+    "cs_type": "air"
+  },
+  {
+    "type": 94,
+    "meta": 15,
     "name": "Redstone Repeater Block (on)",
     "text_type": "powered_repeater",
     "cs_type": "air"
@@ -2563,8 +3207,120 @@
     "cs_type": "air"
   },
   {
+    "type": 104,
+    "meta": 1,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 2,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 3,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 4,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 5,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 6,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 7,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 104,
+    "meta": 8,
+    "name": "Pumpkin Stem",
+    "text_type": "pumpkin_stem",
+    "cs_type": "air"
+  },
+  {
     "type": 105,
     "meta": 0,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 1,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 2,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 3,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 4,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 5,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 6,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 7,
+    "name": "Melon Stem",
+    "text_type": "melon_stem",
+    "cs_type": "air"
+  },
+  {
+    "type": 105,
+    "meta": 8,
     "name": "Melon Stem",
     "text_type": "melon_stem",
     "cs_type": "air"
@@ -2583,6 +3339,42 @@
     "text_type": "fence_gate",
     "cs_type": "air"
   },
+  {
+    "type": 107,
+    "meta": 1,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 2,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 3,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 4,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 5,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+
   {
     "type": 108,
     "meta": 0,
@@ -3309,7 +4101,35 @@
     "meta": 0,
     "name": "Command Block",
     "text_type": "command_block",
-    "cs_type": ""
+    "cs_type": "planks"
+  },
+  {
+    "type": 137,
+    "meta": 1,
+    "name": "Command Block",
+    "text_type": "command_block",
+    "cs_type": "planks"
+  },
+  {
+    "type": 137,
+    "meta": 2,
+    "name": "Command Block",
+    "text_type": "command_block",
+    "cs_type": "planks"
+  },
+  {
+    "type": 137,
+    "meta": 3,
+    "name": "Command Block",
+    "text_type": "command_block",
+    "cs_type": "planks"
+  },
+  {
+    "type": 137,
+    "meta": 4,
+    "name": "Command Block",
+    "text_type": "command_block",
+    "cs_type": "planks"
   },
   {
     "type": 138,
@@ -3337,28 +4157,161 @@
     "meta": 0,
     "name": "Flower Pot",
     "text_type": "flower_pot",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 141,
     "meta": 0,
     "name": "Carrots",
     "text_type": "carrots",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 1,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 2,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 3,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 4,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 5,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 6,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
+  },
+  {
+    "type": 141,
+    "meta": 7,
+    "name": "Carrots",
+    "text_type": "carrots",
+    "cs_type": "air"
   },
   {
     "type": 142,
     "meta": 0,
     "name": "Potatoes",
     "text_type": "potatoes",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 1,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 2,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 3,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 4,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 5,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 6,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
+  },
+  {
+    "type": 142,
+    "meta": 7,
+    "name": "Potatoes",
+    "text_type": "potatoes",
+    "cs_type": "air"
   },
   {
     "type": 143,
     "meta": 0,
     "name": "Wooden Button",
     "text_type": "wooden_button",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 143,
+    "meta": 1,
+    "name": "Wooden Button",
+    "text_type": "wooden_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 143,
+    "meta": 2,
+    "name": "Wooden Button",
+    "text_type": "wooden_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 143,
+    "meta": 3,
+    "name": "Wooden Button",
+    "text_type": "wooden_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 143,
+    "meta": 4,
+    "name": "Wooden Button",
+    "text_type": "wooden_button",
+    "cs_type": "air"
+  },
+  {
+    "type": 143,
+    "meta": 5,
+    "name": "Wooden Button",
+    "text_type": "wooden_button",
+    "cs_type": "air"
   },
   {
     "type": 144,
@@ -3501,36 +4454,260 @@
     "cs_type": "crate"
   },
   {
+    "type": 146,
+    "meta": 1,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 146,
+    "meta": 2,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 146,
+    "meta": 3,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 146,
+    "meta": 4,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 146,
+    "meta": 5,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 146,
+    "meta": 6,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
+    "type": 146,
+    "meta": 7,
+    "name": "Trapped Chest",
+    "text_type": "trapped_chest",
+    "cs_type": "crate"
+  },
+  {
     "type": 147,
     "meta": 0,
     "name": "Weighted Pressure Plate (light)",
     "text_type": "light_weighted_pressure_plate",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 148,
     "meta": 0,
     "name": "Weighted Pressure Plate (heavy)",
     "text_type": "heavy_weighted_pressure_plate",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 149,
     "meta": 0,
     "name": "Redstone Comparator (inactive)",
     "text_type": "unpowered_comparator",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 1,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 2,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 3,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 4,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 5,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 6,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 7,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 8,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 9,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
+  },
+  {
+    "type": 149,
+    "meta": 10,
+    "name": "Redstone Comparator (inactive)",
+    "text_type": "unpowered_comparator",
+    "cs_type": "air"
   },
   {
     "type": 150,
     "meta": 0,
     "name": "Redstone Comparator (active)",
     "text_type": "powered_comparator",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 151,
     "meta": 0,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 1,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 2,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 3,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 4,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 5,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 6,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 7,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 8,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 9,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 10,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 11,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 12,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 13,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 14,
+    "name": "Daylight Sensor",
+    "text_type": "daylight_detector",
+    "cs_type": "air"
+  },
+  {
+    "type": 151,
+    "meta": 15,
     "name": "Daylight Sensor",
     "text_type": "daylight_detector",
     "cs_type": "air"
@@ -3552,6 +4729,41 @@
   {
     "type": 154,
     "meta": 0,
+    "name": "Hopper",
+    "text_type": "hopper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 154,
+    "meta": 1,
+    "name": "Hopper",
+    "text_type": "hopper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 154,
+    "meta": 2,
+    "name": "Hopper",
+    "text_type": "hopper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 154,
+    "meta": 3,
+    "name": "Hopper",
+    "text_type": "hopper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 154,
+    "meta": 4,
+    "name": "Hopper",
+    "text_type": "hopper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 154,
+    "meta": 5,
     "name": "Hopper",
     "text_type": "hopper",
     "cs_type": "stonebricks"
@@ -3730,7 +4942,42 @@
     "meta": 0,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": ""
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 158,
+    "meta": 1,
+    "name": "Dropper",
+    "text_type": "dropper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 158,
+    "meta": 2,
+    "name": "Dropper",
+    "text_type": "dropper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 158,
+    "meta": 3,
+    "name": "Dropper",
+    "text_type": "dropper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 158,
+    "meta": 4,
+    "name": "Dropper",
+    "text_type": "dropper",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 158,
+    "meta": 5,
+    "name": "Dropper",
+    "text_type": "dropper",
+    "cs_type": "stonebricks"
   },
   {
     "type": 159,
@@ -4230,6 +5477,48 @@
     "cs_type": "air"
   },
   {
+    "type": 167,
+    "meta": 0,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 1,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 2,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 3,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 4,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
+    "type": 167,
+    "meta": 5,
+    "name": "Iron Trapdoor",
+    "text_type": "iron_trapdoor",
+    "cs_type": "air"
+  },
+  {
     "type": 168,
     "meta": 0,
     "name": "Prismarine",
@@ -4262,7 +5551,70 @@
     "meta": 0,
     "name": "Hay Bale",
     "text_type": "hay_block",
-    "cs_type": "leavesfallorange"
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 1,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 2,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 3,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 4,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 5,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 6,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 7,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 8,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
+  },
+  {
+    "type": 170,
+    "meta": 0,
+    "name": "Hay Bale",
+    "text_type": "hay_block",
+    "cs_type": "straw"
   },
   {
     "type": 171,
@@ -4486,7 +5838,105 @@
     "meta": 0,
     "name": "Free-standing Banner",
     "text_type": "standing_banner",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 1,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 2,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 3,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 4,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 5,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 6,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 7,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 8,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 9,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 10,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 11,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 12,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 13,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
+  },
+  {
+    "type": 176,
+    "meta": 14,
+    "name": "Free-standing Banner",
+    "text_type": "standing_banner",
+    "cs_type": "air"
   },
   {
     "type": 177,
@@ -4535,7 +5985,7 @@
     "meta": 0,
     "name": "Inverted Daylight Sensor",
     "text_type": "daylight_detector_inverted",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 179,
@@ -4738,35 +6188,245 @@
     "meta": 0,
     "name": "Spruce Fence Gate",
     "text_type": "spruce_fence_gate",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 1,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 2,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 3,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 4,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 5,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 6,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
   },
   {
     "type": 184,
     "meta": 0,
     "name": "Birch Fence Gate",
     "text_type": "birch_fence_gate",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 184,
+    "meta": 1,
+    "name": "Birch Fence Gate",
+    "text_type": "birch_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 184,
+    "meta": 2,
+    "name": "Birch Fence Gate",
+    "text_type": "birch_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 184,
+    "meta": 3,
+    "name": "Birch Fence Gate",
+    "text_type": "birch_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 184,
+    "meta": 4,
+    "name": "Birch Fence Gate",
+    "text_type": "birch_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 184,
+    "meta": 5,
+    "name": "Birch Fence Gate",
+    "text_type": "birch_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 184,
+    "meta": 6,
+    "name": "Birch Fence Gate",
+    "text_type": "birch_fence_gate",
+    "cs_type": "air"
   },
   {
     "type": 185,
     "meta": 0,
     "name": "Jungle Fence Gate",
     "text_type": "jungle_fence_gate",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 185,
+    "meta": 1,
+    "name": "Jungle Fence Gate",
+    "text_type": "jungle_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 185,
+    "meta": 2,
+    "name": "Jungle Fence Gate",
+    "text_type": "jungle_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 185,
+    "meta": 3,
+    "name": "Jungle Fence Gate",
+    "text_type": "jungle_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 185,
+    "meta": 4,
+    "name": "Jungle Fence Gate",
+    "text_type": "jungle_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 185,
+    "meta": 5,
+    "name": "Jungle Fence Gate",
+    "text_type": "jungle_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 185,
+    "meta": 6,
+    "name": "Jungle Fence Gate",
+    "text_type": "jungle_fence_gate",
+    "cs_type": "air"
   },
   {
     "type": 186,
     "meta": 0,
     "name": "Dark Oak Fence Gate",
     "text_type": "dark_oak_fence_gate",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 186,
+    "meta": 1,
+    "name": "Dark Oak Fence Gate",
+    "text_type": "dark_oak_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 186,
+    "meta": 2,
+    "name": "Dark Oak Fence Gate",
+    "text_type": "dark_oak_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 186,
+    "meta": 3,
+    "name": "Dark Oak Fence Gate",
+    "text_type": "dark_oak_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 186,
+    "meta": 4,
+    "name": "Dark Oak Fence Gate",
+    "text_type": "dark_oak_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 186,
+    "meta": 5,
+    "name": "Dark Oak Fence Gate",
+    "text_type": "dark_oak_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 186,
+    "meta": 6,
+    "name": "Dark Oak Fence Gate",
+    "text_type": "dark_oak_fence_gate",
+    "cs_type": "air"
   },
   {
     "type": 187,
     "meta": 0,
     "name": "Acacia Fence Gate",
     "text_type": "acacia_fence_gate",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 187,
+    "meta": 1,
+    "name": "Acacia Fence Gate",
+    "text_type": "acacia_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 187,
+    "meta": 2,
+    "name": "Acacia Fence Gate",
+    "text_type": "acacia_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 187,
+    "meta": 3,
+    "name": "Acacia Fence Gate",
+    "text_type": "acacia_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 187,
+    "meta": 4,
+    "name": "Acacia Fence Gate",
+    "text_type": "acacia_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 187,
+    "meta": 5,
+    "name": "Acacia Fence Gate",
+    "text_type": "acacia_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 187,
+    "meta": 6,
+    "name": "Acacia Fence Gate",
+    "text_type": "acacia_fence_gate",
+    "cs_type": "air"
   },
   {
     "type": 188,
@@ -4811,8 +6471,148 @@
     "cs_type": "air"
   },
   {
+    "type": 193,
+    "meta": 1,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 2,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 3,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 4,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 5,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 6,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 7,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 8,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 9,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 193,
+    "meta": 10,
+    "name": "Spruce Door Block",
+    "text_type": "spruce_door",
+    "cs_type": "air"
+  },
+  {
     "type": 194,
     "meta": 0,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 1,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 2,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 3,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 4,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 5,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 6,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 7,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 8,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 9,
+    "name": "Birch Door Block",
+    "text_type": "birch_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 194,
+    "meta": 10,
     "name": "Birch Door Block",
     "text_type": "birch_door",
     "cs_type": "air"
@@ -4825,6 +6625,76 @@
     "cs_type": "air"
   },
   {
+    "type": 195,
+    "meta": 1,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 2,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 3,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 4,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 5,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 6,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 7,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 8,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 9,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 195,
+    "meta": 10,
+    "name": "Jungle Door Block",
+    "text_type": "jungle_door",
+    "cs_type": "air"
+  },
+  {
     "type": 196,
     "meta": 0,
     "name": "Acacia Door Block",
@@ -4832,8 +6702,148 @@
     "cs_type": "air"
   },
   {
+    "type": 196,
+    "meta": 1,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 2,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 3,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 4,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 5,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 6,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 7,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 8,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 9,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 196,
+    "meta": 10,
+    "name": "Acacia Door Block",
+    "text_type": "acacia_door",
+    "cs_type": "air"
+  },
+  {
     "type": 197,
     "meta": 0,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 1,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 2,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 3,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 4,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 5,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 6,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 7,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 8,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 9,
+    "name": "Dark Oak Door Block",
+    "text_type": "dark_oak_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 197,
+    "meta": 10,
     "name": "Dark Oak Door Block",
     "text_type": "dark_oak_door",
     "cs_type": "air"

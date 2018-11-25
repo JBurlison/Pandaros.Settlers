@@ -109,11 +109,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                         if (SchematicReader.TryGetSchematicMetadata(selectedSchematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata schematicMetadata))
                         {
-                            PandaLogger.Log("Schematic {0} blocks required:", selectedSchematic);
-
-                            foreach (var kvp in schematicMetadata.Blocks)
-                                PandaLogger.Log("ID: {0} Count: {1}", kvp.Value.ItemId, kvp.Value.Count);
-
                             if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(BuiltinBlocks.Air))
                                 PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
                             {
@@ -156,11 +151,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     if (SchematicReader.TryGetSchematicMetadata(scem.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {
-                        PandaLogger.Log("Schematic {0} blocks required:", scem.Name);
-                            
-                        foreach (var kvp in metadata.Blocks)
-                            PandaLogger.Log("ID: {0} Count: {1}", kvp.Value.ItemId, kvp.Value.Count);
-
                         if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
                             PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
                         {
