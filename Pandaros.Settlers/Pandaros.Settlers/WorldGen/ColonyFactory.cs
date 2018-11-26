@@ -13,35 +13,15 @@ namespace Pandaros.Settlers.WorldGen
     /// defaultstructuregenerator.registerstructurespawnchances
     public class ColonyFactory
     {
+        public static ColonyStructureGenerator Generator { get; set; }
+
         public static void LoadColonies()
         {
             var terrainGen = ServerManager.TerrainGenerator as TerrainGenerator;
             var treeGenerator = terrainGen.StructureGenerator as TerrainGenerator.DefaultTreeStructureGenerator;
-            foreach (var file in Directory.EnumerateFiles(GameLoader.MOD_FOLDER + "/WorldGen/Buildings/", "*.schematic"))
-            {
-                var structure = MapStructure(SchematicReader.LoadSchematic(new fNbt.NbtFile(file), Pipliz.Vector3Int.minimum));
-                treeGenerator.RegisterStructure(structure);
-            }
 
-            TerrainGenerator.BiomeConfigLocation area = new TerrainGenerator.BiomeConfigLocation()
-            {
-                MaxPrecipitationFraction = float.MaxValue,
-                MinPrecipitationFraction = float.MinValue,
-                MaxTemperature = float.MaxValue,
-                MinTemperature = float.MinValue
-            };
-
-            TerrainGenerator.DefaultTreeStructureGenerator.StructuresData data = new TerrainGenerator.DefaultTreeStructureGenerator.StructuresData()
-            {
-
-            };
-
-            TerrainGenerator.MetaBiomeLocationLimits requiresMetaBiome = new TerrainGenerator.MetaBiomeLocationLimits()
-            {
-
-            };
-
-            treeGenerator.RegisterStructureSpawnChances(area, data, requiresMetaBiome);
+            Generator = new ColonyStructureGenerator(treeGenerator.MetaBiomeProvider, treeGenerator.MaximumSteepness);
+            Generator.InnerGenerator = treeGenerator;
         }
 
         public static GeneratedStructure MapStructure(Schematic schematic)
