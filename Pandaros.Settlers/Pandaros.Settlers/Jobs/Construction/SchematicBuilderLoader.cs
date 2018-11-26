@@ -1,12 +1,6 @@
-﻿using Pandaros.Settlers.Buildings.NBT;
+﻿using Pandaros.Settlers.NBT;
 using Pipliz.JSON;
 using Pipliz.Mods.BaseGame.Construction;
-using Pipliz.Mods.BaseGame.Construction.Iterators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {

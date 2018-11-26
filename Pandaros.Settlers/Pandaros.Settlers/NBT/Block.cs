@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Pandaros.Settlers.Buildings.NBT
+namespace Pandaros.Settlers.NBT
 {
     public class SchematicBlock
     {

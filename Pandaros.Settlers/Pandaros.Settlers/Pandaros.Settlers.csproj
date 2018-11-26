@@ -111,14 +111,14 @@
     <Compile Include="AI\IAnimal.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
-    <Compile Include="Buildings\ColonyFactory.cs" />
-    <Compile Include="Buildings\NBT\Block.cs" />
-    <Compile Include="Buildings\NBT\BlockMapping.cs" />
-    <Compile Include="Buildings\NBT\RawSchematic.cs" />
-    <Compile Include="Buildings\NBT\Schematic.cs" />
-    <Compile Include="Buildings\NBT\SchematicMetadata.cs" />
-    <Compile Include="Buildings\NBT\SchematicReader.cs" />
-    <Compile Include="Buildings\NBT\TileEntity.cs" />
+    <Compile Include="WorldGen\ColonyFactory.cs" />
+    <Compile Include="NBT\Block.cs" />
+    <Compile Include="NBT\BlockMapping.cs" />
+    <Compile Include="NBT\RawSchematic.cs" />
+    <Compile Include="NBT\Schematic.cs" />
+    <Compile Include="NBT\SchematicMetadata.cs" />
+    <Compile Include="NBT\SchematicReader.cs" />
+    <Compile Include="NBT\TileEntity.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Cosmetics\CarpetPurple.cs" />
     <Compile Include="Cosmetics\CarpetPink.cs" />
@@ -225,38 +225,39 @@
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
+    <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
-    <None Include="Buildings\apex-medieval-city.schematic">
+    <None Include="WorldGen\Buildings\apex-medieval-city.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\brick-town.schematic">
+    <None Include="WorldGen\Buildings\brick-town.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\exampleton-basic.schematic">
+    <None Include="WorldGen\Buildings\exampleton-basic.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\flying-city.schematic">
+    <None Include="WorldGen\Buildings\flying-city.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\medieval-forest.schematic">
+    <None Include="WorldGen\Buildings\medieval-forest.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\medieval-town-house.schematic">
+    <None Include="WorldGen\Buildings\medieval-town-house.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\medieval-village.schematic">
+    <None Include="WorldGen\Buildings\medieval-village.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\nice-medieval-village.schematic">
+    <None Include="WorldGen\Buildings\nice-medieval-village.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\npc-village-makeover.schematic">
+    <None Include="WorldGen\Buildings\npc-village-makeover.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\rustic-small-town.schematic">
+    <None Include="WorldGen\Buildings\rustic-small-town.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Buildings\stonehill-medieval.schematic">
+    <None Include="WorldGen\Buildings\stonehill-medieval.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Help\Apothecary.json">

@@ -1,6 +1,6 @@
 ﻿using Pipliz;
 
-namespace Pandaros.Settlers.Buildings.NBT
+namespace Pandaros.Settlers.NBT
 {
     public class Schematic
     {
@@ -46,6 +46,21 @@ namespace Pandaros.Settlers.Buildings.NBT
             CSBlocks = scBlocks;
             // TileEntities = tileEntities;
             StartPos = startPos;
+        }
+
+        public SchematicBlock GetBlock(int Y, int Z, int X)
+        {
+            SchematicBlock block = default(SchematicBlock);
+
+            if (CSBlocks != null)
+                block = CSBlocks[X, Y, Z];
+            else
+                block = Blocks[X, Y, Z];
+
+            if (block == default(SchematicBlock))
+                block = SchematicBlock.Air;
+
+            return block;
         }
 
         public void Rotate()

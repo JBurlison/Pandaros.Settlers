@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Pandaros.Settlers.Buildings.NBT
+namespace Pandaros.Settlers.NBT
 {
     public class MappingBlock
     {

@@ -732,112 +732,112 @@
     "meta": 0,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedz-"
+    "cs_type": "bedz+"
   },
   {
     "type": 26,
     "meta": 1,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedx+"
+    "cs_type": "bedx-"
   },
   {
     "type": 26,
     "meta": 2,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedz+"
+    "cs_type": "bedz-"
   },
   {
     "type": 26,
     "meta": 3,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bedx-"
+    "cs_type": "bedx+"
   },
   {
     "type": 26,
     "meta": 4,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 5,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 6,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 7,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 8,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 9,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 10,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 11,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 12,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 13,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 14,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 26,
     "meta": 15,
     "name": "Bed",
     "text_type": "bed",
-    "cs_type": "bed"
+    "cs_type": "air"
   },
   {
     "type": 27,
@@ -2213,6 +2213,62 @@
     "cs_type": "air"
   },
   {
+    "type": 63,
+    "meta": 1,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 2,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 3,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 4,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 5,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 6,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 7,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 8,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
     "type": 64,
     "meta": 0,
     "name": "Oak Door Block",
@@ -2285,6 +2341,13 @@
   {
     "type": 64,
     "meta": 10,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 11,
     "name": "Oak Door Block",
     "text_type": "wooden_door",
     "cs_type": "air"

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pandaros.Settlers.Buildings.NBT
+namespace Pandaros.Settlers.NBT
 {
     [ModLoader.ModManager]
     public static class SchematicReader
@@ -155,7 +155,7 @@ namespace Pandaros.Settlers.Buildings.NBT
                 return null;
         }
 
-        private static Schematic LoadSchematic(NbtFile nbtFile, Vector3Int startPos)
+        public static Schematic LoadSchematic(NbtFile nbtFile, Vector3Int startPos)
         {
             RawSchematic raw = LoadRaw(nbtFile);
             SchematicBlock[,,] blocks = GetBlocks(raw);

@@ -1,7 +1,7 @@
 ﻿using BlockTypes;
 using Jobs;
 using NPC;
-using Pandaros.Settlers.Buildings.NBT;
+using Pandaros.Settlers.NBT;
 using Pipliz;
 using Pipliz.Mods.BaseGame.Construction;
 using Shared;
@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
-            SchematicBlock block = default(SchematicBlock);
+            
             int i = 0;
             var bpi = iterationType as SchematicIterator;
 
@@ -52,21 +52,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 var adjX = iterationType.CurrentPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = iterationType.CurrentPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = iterationType.CurrentPosition.z - bpi.BuilderSchematic.StartPos.z;
-
-                if (bpi.BuilderSchematic.XMax > adjX &&
-                    bpi.BuilderSchematic.YMax > adjY &&
-                    bpi.BuilderSchematic.ZMax > adjZ)
-                {
-                    if (bpi.BuilderSchematic.Blocks != null && bpi.BuilderSchematic.Blocks.Length > 0)
-                        block = bpi.BuilderSchematic.Blocks[adjX, adjY, adjZ];
-                    else
-                        block = bpi.BuilderSchematic.CSBlocks[adjX, adjY, adjZ];
-                }
-
-
-                if (block == default(SchematicBlock))
-                    block = SchematicBlock.Air;
-
+                var block = bpi.BuilderSchematic.GetBlock(adjX, adjY, adjZ);
                 var mapped = block.MappedBlock;
                 var buildType = ItemTypes.GetType(mapped.CSIndex);
 

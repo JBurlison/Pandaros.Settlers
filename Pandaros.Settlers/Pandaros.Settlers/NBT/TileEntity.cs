@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pandaros.Settlers.Buildings.NBT
+namespace Pandaros.Settlers.NBT
 {
     public class TileEntity
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Pandaros.Settlers.Models;
 using Pipliz.JSON;
 
-namespace Pandaros.Settlers.Buildings.NBT
+namespace Pandaros.Settlers.NBT
 {
     public class SchematicMetadata : IJsonDeserializable, IJsonSerializable
     {

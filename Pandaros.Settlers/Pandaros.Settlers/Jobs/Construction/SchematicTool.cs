@@ -1,7 +1,7 @@
 ﻿using BlockTypes;
 using NetworkUI;
 using NetworkUI.Items;
-using Pandaros.Settlers.Buildings.NBT;
+using Pandaros.Settlers.NBT;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Research;
 using Pipliz;
