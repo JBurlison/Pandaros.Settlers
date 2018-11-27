@@ -399,6 +399,118 @@
     "cs_type": "Pandaros.Settlers.AutoLoad.lava"
   },
   {
+    "type": 11,
+    "meta": 1,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 2,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 3,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 4,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 5,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 6,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 7,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 8,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 9,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 10,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 11,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 12,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 13,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 14,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 15,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
+    "type": 11,
+    "meta": 16,
+    "name": "Still Lava",
+    "text_type": "lava",
+    "cs_type": "Pandaros.Settlers.AutoLoad.lava"
+  },
+  {
     "type": 12,
     "meta": 0,
     "name": "Sand",
@@ -506,6 +618,48 @@
   {
     "type": 17,
     "meta": 9,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 10,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 11,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 12,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 13,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 14,
+    "name": "Jungle Wood",
+    "text_type": "log",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 17,
+    "meta": 15,
     "name": "Jungle Wood",
     "text_type": "log",
     "cs_type": "logtemperate"
@@ -847,6 +1001,104 @@
     "cs_type": "air"
   },
   {
+    "type": 27,
+    "meta": 1,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 2,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 3,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 4,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 5,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 6,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 7,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 8,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 9,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 10,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 11,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 12,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 13,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 27,
+    "meta": 14,
+    "name": "Powered Rail",
+    "text_type": "golden_rail",
+    "cs_type": "air"
+  },
+  {
     "type": 28,
     "meta": 0,
     "name": "Detector Rail",
@@ -987,6 +1239,34 @@
     "cs_type": "air"
   },
   {
+    "type": 30,
+    "meta": 1,
+    "name": "Cobweb",
+    "text_type": "web",
+    "cs_type": "air"
+  },
+  {
+    "type": 30,
+    "meta": 2,
+    "name": "Cobweb",
+    "text_type": "web",
+    "cs_type": "air"
+  },
+  {
+    "type": 30,
+    "meta": 3,
+    "name": "Cobweb",
+    "text_type": "web",
+    "cs_type": "air"
+  },
+  {
+    "type": 30,
+    "meta": 4,
+    "name": "Cobweb",
+    "text_type": "web",
+    "cs_type": "air"
+  },
+  {
     "type": 31,
     "meta": 0,
     "name": "Dead Shrub",
@@ -1003,6 +1283,97 @@
   {
     "type": 31,
     "meta": 2,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 3,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 4,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 5,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 6,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 7,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 8,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 9,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 10,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 11,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 12,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 13,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 14,
+    "name": "Fern",
+    "text_type": "tallgrass",
+    "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
+  },
+  {
+    "type": 31,
+    "meta": 15,
     "name": "Fern",
     "text_type": "tallgrass",
     "cs_type": "Pandaros.Settlers.AutoLoad.sappling"
@@ -1265,6 +1636,13 @@
     "name": "Black Wool",
     "text_type": "wool",
     "cs_type": "Pandaros.Settlers.carpetblack"
+  },
+  {
+    "type": 36,
+    "meta": 0,
+    "name": "White Wool",
+    "text_type": "wool",
+    "cs_type": "air"
   },
   {
     "type": 37,
@@ -2269,6 +2647,55 @@
     "cs_type": "air"
   },
   {
+    "type": 63,
+    "meta": 9,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 10,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 11,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 12,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 13,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 14,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
+    "type": 63,
+    "meta": 15,
+    "name": "Standing Sign Block",
+    "text_type": "standing_sign",
+    "cs_type": "air"
+  },
+  {
     "type": 64,
     "meta": 0,
     "name": "Oak Door Block",
@@ -2752,6 +3179,20 @@
     "cs_type": "air"
   },
   {
+    "type": 72,
+    "meta": 1,
+    "name": "Wooden Pressure Plate",
+    "text_type": "wooden_pressure_plate",
+    "cs_type": "air"
+  },
+  {
+    "type": 71,
+    "meta": 0,
+    "name": "Wooden Pressure Plate",
+    "text_type": "wooden_pressure_plate",
+    "cs_type": "air"
+  },
+  {
     "type": 73,
     "meta": 0,
     "name": "Redstone Ore",
@@ -2894,6 +3335,34 @@
   {
     "type": 78,
     "meta": 0,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 1,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 2,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 3,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 4,
     "name": "Snow",
     "text_type": "snow_layer",
     "cs_type": "snow"
@@ -3963,6 +4432,48 @@
     "cs_type": "air"
   },
   {
+    "type": 107,
+    "meta": 10,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 11,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 12,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 13,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 14,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 107,
+    "meta": 15,
+    "name": "Oak Fence Gate",
+    "text_type": "fence_gate",
+    "cs_type": "air"
+  },
+  {
     "type": 108,
     "meta": 0,
     "name": "Brick Stairs",
@@ -4191,7 +4702,70 @@
     "meta": 0,
     "name": "Brewing Stand",
     "text_type": "brewing_stand",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 1,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 2,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 3,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 4,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 5,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 6,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 7,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 8,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
+  },
+  {
+    "type": 117,
+    "meta": 9,
+    "name": "Brewing Stand",
+    "text_type": "brewing_stand",
+    "cs_type": "air"
   },
   {
     "type": 118,
@@ -5265,6 +5839,13 @@
     "cs_type": "air"
   },
   {
+    "type": 148,
+    "meta": 1,
+    "name": "Weighted Pressure Plate (heavy)",
+    "text_type": "heavy_weighted_pressure_plate",
+    "cs_type": "air"
+  },
+  {
     "type": 149,
     "meta": 0,
     "name": "Redstone Comparator (inactive)",
@@ -5683,7 +6264,105 @@
     "meta": 0,
     "name": "Activator Rail",
     "text_type": "activator_rail",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 1,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 2,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 3,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 4,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 5,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 6,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 7,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 8,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 9,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 10,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 11,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 12,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 13,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 157,
+    "meta": 14,
+    "name": "Activator Rail",
+    "text_type": "activator_rail",
+    "cs_type": "air"
   },
   {
     "type": 158,
@@ -6087,6 +6766,48 @@
   {
     "type": 162,
     "meta": 9,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 10,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 11,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 12,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 13,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 14,
+    "name": "Acacia Wood",
+    "text_type": "log2",
+    "cs_type": "logtemperate"
+  },
+  {
+    "type": 162,
+    "meta": 15,
     "name": "Acacia Wood",
     "text_type": "log2",
     "cs_type": "logtemperate"
@@ -6806,6 +7527,111 @@
     "cs_type": "air"
   },
   {
+    "type": 178,
+    "meta": 1,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 2,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 3,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 4,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 5,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 6,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 7,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 8,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 9,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 10,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 11,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 12,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 13,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 14,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
+    "type": 178,
+    "meta": 15,
+    "name": "Inverted Daylight Sensor",
+    "text_type": "daylight_detector_inverted",
+    "cs_type": "air"
+  },
+  {
     "type": 179,
     "meta": 0,
     "name": "Red Sandstone",
@@ -7046,6 +7872,69 @@
   {
     "type": 183,
     "meta": 6,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 7,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 8,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 9,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 10,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 11,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 12,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 13,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 14,
+    "name": "Spruce Fence Gate",
+    "text_type": "spruce_fence_gate",
+    "cs_type": "air"
+  },
+  {
+    "type": 183,
+    "meta": 15,
     "name": "Spruce Fence Gate",
     "text_type": "spruce_fence_gate",
     "cs_type": "air"
@@ -7818,7 +8707,35 @@
     "meta": 0,
     "name": "Beetroot Block",
     "text_type": "beetroots",
-    "cs_type": ""
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 207,
+    "meta": 1,
+    "name": "Beetroot Block",
+    "text_type": "beetroots",
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 207,
+    "meta": 2,
+    "name": "Beetroot Block",
+    "text_type": "beetroots",
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 207,
+    "meta": 3,
+    "name": "Beetroot Block",
+    "text_type": "beetroots",
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 207,
+    "meta": 4,
+    "name": "Beetroot Block",
+    "text_type": "beetroots",
+    "cs_type": "carpetred"
   },
   {
     "type": 208,
@@ -7839,7 +8756,35 @@
     "meta": 0,
     "name": "Repeating Command Block",
     "text_type": "repeating_command_block",
-    "cs_type": ""
+    "cs_type": "planks"
+  },
+  {
+    "type": 210,
+    "meta": 1,
+    "name": "Repeating Command Block",
+    "text_type": "repeating_command_block",
+    "cs_type": "planks"
+  },
+  {
+    "type": 210,
+    "meta": 2,
+    "name": "Repeating Command Block",
+    "text_type": "repeating_command_block",
+    "cs_type": "planks"
+  },
+  {
+    "type": 210,
+    "meta": 3,
+    "name": "Repeating Command Block",
+    "text_type": "repeating_command_block",
+    "cs_type": "planks"
+  },
+  {
+    "type": 210,
+    "meta": 4,
+    "name": "Repeating Command Block",
+    "text_type": "repeating_command_block",
+    "cs_type": "planks"
   },
   {
     "type": 211,

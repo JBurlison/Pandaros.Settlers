@@ -10,18 +10,34 @@ using TerrainGeneration;
 namespace Pandaros.Settlers.WorldGen
 
 {
-    /// defaultstructuregenerator.registerstructurespawnchances
+    [ModLoader.ModManager]
     public class ColonyFactory
     {
         public static ColonyStructureGenerator Generator { get; set; }
 
-        public static void LoadColonies()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".WorldGen.ColonyFactory.LoadColonyGenerator")]
+        [ModLoader.ModCallbackDependsOn("create_servermanager_trackers")]
+        public static void LoadColonyGenerator()
         {
             var terrainGen = ServerManager.TerrainGenerator as TerrainGenerator;
             var treeGenerator = terrainGen.StructureGenerator as TerrainGenerator.DefaultTreeStructureGenerator;
 
             Generator = new ColonyStructureGenerator(treeGenerator.MetaBiomeProvider, treeGenerator.MaximumSteepness);
             Generator.InnerGenerator = treeGenerator;
+
+            foreach (var file in Directory.EnumerateFiles(GameLoader.MOD_FOLDER + "/WorldGen/Buildings/"))
+            {
+                if (file.Contains(".GeneratorSettings.json"))
+                {
+
+                }
+                else
+                {
+                    var schematic = SchematicReader.LoadSchematic(new fNbt.NbtFile(file), Pipliz.Vector3Int.minimum);
+                    var structure = MapStructure(schematic);
+                    Generator.AddGeneratedStructure(structure);
+                }
+            }
         }
 
         public static GeneratedStructure MapStructure(Schematic schematic)
