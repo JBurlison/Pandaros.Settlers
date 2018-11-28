@@ -19,6 +19,7 @@ namespace Pandaros.Settlers.Help
         public override string Name => NAME;
         public override string icon => GameLoader.ICON_PATH + "Help.png";
         public override bool? isPlaceable => false;
+        public override int? maxStackSize => 1;
         public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".HelpMenu" };
     }
 
@@ -27,8 +28,6 @@ namespace Pandaros.Settlers.Help
     {
         public static readonly string NAMESPACE = GameLoader.NAMESPACE + ".HelpMenu.";
         public static readonly string MAIN_MENU_NAME = NAMESPACE + "MainMenu";
-
-        
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)

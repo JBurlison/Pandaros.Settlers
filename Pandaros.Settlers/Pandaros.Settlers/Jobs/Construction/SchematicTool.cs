@@ -21,6 +21,53 @@ namespace Pandaros.Settlers.Jobs.Construction
         Archetect
     }
 
+    public class SchematicTool : CSType
+    {
+        public static string NAME = GameLoader.NAMESPACE + ".SchematicTool";
+        public override string Name => NAME;
+        public override string icon => GameLoader.ICON_PATH + "Schematics.png";
+        public override bool? isPlaceable => false;
+        public override int? maxStackSize => 1;
+        public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
+        {
+            Name = GameLoader.NAMESPACE + ".SchematicTool",
+            RequiredScience = PandaResearch.GetResearchKey("Architect")
+        };
+    }
+
+    public class SchematicToolResearch : IPandaResearch
+    {
+        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        {
+            { BuiltinBlocks.ScienceBagColony, 1 },
+            { BuiltinBlocks.ScienceBagBasic, 3 },
+            { BuiltinBlocks.ScienceBagAdvanced, 1 }
+        };
+
+        public int NumberOfLevels => 1;
+        public float BaseValue => 0.05f;
+        public List<string> Dependancies => new List<string>()
+            {
+                ColonyBuiltIn.Research.Builder,
+                ColonyBuiltIn.Research.ScienceBagAdvanced,
+                ColonyBuiltIn.Research.ScienceBagColony
+            };
+
+        public int BaseIterationCount => 300;
+        public bool AddLevelToName => false;
+        public string Name => "Architect";
+
+        public void OnRegister()
+        {
+
+        }
+
+        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+
+        }
+    }
+
     [ModLoader.ModManager]
     public class SchematicMenu
     {
@@ -199,52 +246,6 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var schematicItem))
                 showWhileHoldingTypes.Add(schematicItem);
-        }
-    }
-
-    public class SchematicTool : CSType
-    {
-        public static string NAME = GameLoader.NAMESPACE + ".SchematicTool";
-        public override string Name => NAME;
-        public override string icon => GameLoader.ICON_PATH + "Schematics.png";
-        public override bool? isPlaceable => false;
-        public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
-        {
-            Name = GameLoader.NAMESPACE + ".SchematicTool",
-            RequiredScience = PandaResearch.GetResearchKey("Architect")
-        };
-    }
-
-    public class SchematicToolResearch : IPandaResearch
-    {
-        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
-        {
-            { BuiltinBlocks.ScienceBagColony, 1 },
-            { BuiltinBlocks.ScienceBagBasic, 3 },
-            { BuiltinBlocks.ScienceBagAdvanced, 1 }
-        };
-
-        public int NumberOfLevels => 1;
-        public float BaseValue => 0.05f;
-        public List<string> Dependancies => new List<string>()
-            {
-                ColonyBuiltIn.Research.Builder,
-                ColonyBuiltIn.Research.ScienceBagAdvanced,
-                ColonyBuiltIn.Research.ScienceBagColony
-            };
-
-        public int BaseIterationCount => 300;
-        public bool AddLevelToName => false;
-        public string Name => "Architect";
-
-        public void OnRegister()
-        {
-
-        }
-
-        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
-        {
-
         }
     }
 }
