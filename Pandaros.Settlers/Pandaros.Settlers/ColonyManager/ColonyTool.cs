@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.ColonyManager
         public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".ColonyManagementTool" };
     }
 
-    class ColonyTool
+    public class ColonyTool
     {
     }
 }

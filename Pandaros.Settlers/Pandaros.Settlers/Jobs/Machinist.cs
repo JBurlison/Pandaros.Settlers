@@ -190,10 +190,10 @@ namespace Pandaros.Settlers.Jobs
         public override string onRemoveAudio => "stoneDelete";
         public override string sideall => "stonebricks";
         public override string sideyp => MachinistNightTexture.NAME;
-        public override ReadOnlyCollection<string> categories => new ReadOnlyCollection<string>(new List<string>()
+        public override List<string> categories => new List<string>()
         {
             "job"
-        });
+        };
     }
 
     public class MachinistJobType : CSType
@@ -204,10 +204,10 @@ namespace Pandaros.Settlers.Jobs
         public override string onRemoveAudio => "stoneDelete";
         public override string sideall => "stonebricks";
         public override string sideyp => MachinistTexture.NAME;
-        public override ReadOnlyCollection<string> categories => new ReadOnlyCollection<string>(new List<string>()
+        public override List<string> categories => new List<string>()
         {
             "job"
-        });
+        };
     }
 
     public class MachinisNighttRecipe : MachinistRecipe
