@@ -7,12 +7,16 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Items
 {
-    public class Colliders : IJsonSerializable
+    [JSON.HintAutoObject]
+    public class Colliders : IJsonSerializable, IJsonDeserializable
     {
-        public class Boxes : IJsonSerializable
+        [JSON.HintAutoObject]
+        public class Boxes : IJsonSerializable, IJsonDeserializable
         {
             public Vector3 min { get; private set; }
             public Vector3 max { get; private set; }
+
+            public Boxes() { }
 
             public Boxes(Vector3 minCollide, Vector3 maxCollide)
             {
@@ -20,30 +24,22 @@ namespace Pandaros.Settlers.Items
                 max = maxCollide;
             }
 
-            public JSONNode JsonSerialize()
+            public void JsonDeerialize(JSONNode node)
             {
-                var node = new JSONNode();
-                var nodemin = new JSONNode(NodeType.Array);
-                var nodemax = new JSONNode(NodeType.Array);
+                JSON.LoadFields(this, node);
+            }
 
-                nodemin.AddToArray(new JSONNode(min.x));
-                nodemin.AddToArray(new JSONNode(min.y));
-                nodemin.AddToArray(new JSONNode(min.z));
-
-                nodemax.AddToArray(new JSONNode(max.x));
-                nodemax.AddToArray(new JSONNode(max.y));
-                nodemax.AddToArray(new JSONNode(max.z));
-
-                node.SetAs(nameof(min), nodemin);
-                node.SetAs(nameof(max), nodemax);
-
-                return node;
+            public virtual JSONNode JsonSerialize()
+            {
+                return JSON.SaveField(this);
             }
         }
 
         public bool collidePlayer { get; private set; }
         public bool collideSelection { get; private set; }
         public Boxes boxes { get; private set; }
+
+        public Colliders() { }
 
         public Colliders (bool colideplayer, bool collideselection, Boxes collider)
         {
@@ -52,15 +48,14 @@ namespace Pandaros.Settlers.Items
             boxes = collider;
         }
 
-        public JSONNode JsonSerialize()
+        public void JsonDeerialize(JSONNode node)
         {
-            var node = new JSONNode();
+            JSON.LoadFields(this, node);
+        }
 
-            node.SetAs(nameof(collidePlayer), collidePlayer);
-            node.SetAs(nameof(collideSelection), collideSelection);
-            node.SetAs(nameof(boxes), boxes.JsonSerialize());
-
-            return node;
+        public virtual JSONNode JsonSerialize()
+        {
+            return JSON.SaveField(this);
         }
     }
 }

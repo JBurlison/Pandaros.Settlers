@@ -25,6 +25,10 @@ namespace Pandaros.Settlers.Extender.Providers
                     {
                         var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.JsonSerialize());
                         itemTypes.Add(itemType.Name, rawItem);
+
+                        if (itemType.StaticItemSettings != null && !string.IsNullOrWhiteSpace(itemType.StaticItemSettings.Name))
+                            StaticItems.List.Add(itemType.StaticItemSettings);
+
                         _sb.Append($"{itemType.Name}, ");
                     }
                 }

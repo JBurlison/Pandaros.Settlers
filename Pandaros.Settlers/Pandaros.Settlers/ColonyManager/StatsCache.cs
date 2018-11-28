@@ -4,13 +4,13 @@ using NetworkUI.Items;
 using Pandaros.Settlers.Entities;
 using System.Collections.Generic;
 
-namespace Pandaros.Settlers.Stats
+namespace Pandaros.Settlers.ColonyManager
 {
     // TODO: More stats?
     [ModLoader.ModManager]
     public static class StatsCache
     {
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructTooltipUI, GameLoader.NAMESPACE + ".Stats.StatsCache.ConstructTooltip")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructTooltipUI, GameLoader.NAMESPACE + ".ColonyManager.StatsCache.ConstructTooltip")]
         static void ConstructTooltip(ConstructTooltipUIData data)
         {
             if (data.hoverType != Shared.ETooltipHoverType.Item ||
@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Stats
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".Stats.StatsCache.OnTryChangeBlockUser")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".ColonyManager.StatsCache.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.RequestOrigin.AsPlayer == null ||

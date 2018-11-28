@@ -1,12 +1,8 @@
-﻿using NetworkUI;
-using Pandaros.Settlers.Items;
-using Pipliz;
-using Pipliz.JSON;
-using Shared;
-using System.Collections.Generic;
-
+﻿using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Managers;
-using System.IO;
+using Pipliz;
+using Shared;
+using static Pandaros.Settlers.Items.StaticItems;
 
 namespace Pandaros.Settlers.Help
 {
@@ -23,13 +19,7 @@ namespace Pandaros.Settlers.Help
         public override string Name => NAME;
         public override string icon => GameLoader.ICON_PATH + "Help.png";
         public override bool? isPlaceable => false;
-    }
-
-    public class HelpMenuItem : IHelpMenuItem
-    {
-        public string MenuName { get; private set; }
-        public IItem Item { get; private set; }
-        public string Name { get; private set; }
+        public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".HelpMenu" };
     }
 
     [ModLoader.ModManager]
@@ -38,27 +28,7 @@ namespace Pandaros.Settlers.Help
         public static readonly string NAMESPACE = GameLoader.NAMESPACE + ".HelpMenu.";
         public static readonly string MAIN_MENU_NAME = NAMESPACE + "MainMenu";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OnPlayerConnectedLate")]
-        public static void OnPlayerConnectedLate(Players.Player p)
-        {
-            AddHelpMenuToolToStockpile(p);
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerRespawn, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OnPlayerRespawn")]
-        public static void OnPlayerRespawn(Players.Player p)
-        {
-            AddHelpMenuToolToStockpile(p);
-        }
-
-        private static void AddHelpMenuToolToStockpile(Players.Player p)
-        {
-            if (p != null && p.Colonies != null && p.Colonies.Length != 0)
-                foreach (var c in p.Colonies)
-                    if (ItemTypes.IndexLookup.TryGetIndex(HelpMenuActivator.NAME, out var helpMenuitem) && !c.Stockpile.Contains(helpMenuitem))
-                    {
-                        c.Stockpile.Add(helpMenuitem);
-                    }
-        }
+        
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)

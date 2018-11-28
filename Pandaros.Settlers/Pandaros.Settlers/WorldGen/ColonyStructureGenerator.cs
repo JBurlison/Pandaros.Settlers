@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.WorldGen
             
         }
 
-        public override void TryAddStructure(ref StructureGeneratorData data)
+        new public void TryAddStructure(ref StructureGeneratorData data)
         {
             if (data.Steepness <= .2)
             {

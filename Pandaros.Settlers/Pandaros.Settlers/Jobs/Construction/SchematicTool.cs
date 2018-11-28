@@ -208,6 +208,11 @@ namespace Pandaros.Settlers.Jobs.Construction
         public override string Name => NAME;
         public override string icon => GameLoader.ICON_PATH + "Schematics.png";
         public override bool? isPlaceable => false;
+        public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
+        {
+            Name = GameLoader.NAMESPACE + ".SchematicTool",
+            RequiredScience = PandaResearch.GetResearchKey("Architect")
+        };
     }
 
     public class SchematicToolResearch : IPandaResearch

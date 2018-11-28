@@ -6,11 +6,14 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items
 {
-    public class OnRemove : IJsonSerializable
+    [JSON.HintAutoObject]
+    public class OnRemove : IJsonSerializable, IJsonDeserializable
     {
         public int amount { get; private set; }
         public float chance { get; private set; }
         public string type { get; private set; }
+
+        public OnRemove() { }
 
         public OnRemove(int dropAmount, float dropChance, string csType)
         {
@@ -19,15 +22,14 @@ namespace Pandaros.Settlers.Items
             type = csType;
         }
 
-        public JSONNode JsonSerialize()
+        public void JsonDeerialize(JSONNode node)
         {
-            var node = new JSONNode();
+            JSON.LoadFields(this, node);
+        }
 
-            node.SetAs(nameof(amount), amount);
-            node.SetAs(nameof(chance), chance);
-            node.SetAs(nameof(type), type);
-
-            return node;
+        public virtual JSONNode JsonSerialize()
+        {
+            return JSON.SaveField(this);
         }
     }
 }

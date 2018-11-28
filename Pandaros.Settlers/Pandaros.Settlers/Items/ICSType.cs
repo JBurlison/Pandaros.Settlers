@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Pipliz.JSON;
 using UnityEngine;
+using static Pandaros.Settlers.Items.StaticItems;
 
 namespace Pandaros.Settlers.Items
 {
@@ -12,11 +14,11 @@ namespace Pandaros.Settlers.Items
         Artifact
     }
 
-    public interface ICSType : IJsonSerializable, INameable
+    public interface ICSType : IJsonSerializable, INameable, IJsonDeserializable
     {
         bool? blocksPathing { get; }
-        ReadOnlyCollection<string> categories { get; }
-        ReadOnlyCollection<Colliders> colliders { get; }
+        List<string> categories { get; }
+        List<Colliders> colliders { get; }
         Color color { get; }
         JSONNode customData { get; }
         int? destructionTime { get; }
@@ -31,7 +33,7 @@ namespace Pandaros.Settlers.Items
         bool? needsBase { get; }
         float? nutritionalValue { get; }
         string onPlaceAudio { get; }
-        ReadOnlyCollection<OnRemove> onRemove { get; }
+        List<OnRemove> onRemove { get; }
         string onRemoveAmount { get; }
         string onRemoveAudio { get; }
         string onRemoveChance { get; }
@@ -49,5 +51,6 @@ namespace Pandaros.Settlers.Items
         string sidezn { get; }
         string sidezp { get; }
         ItemRarity Rarity { get; }
+        StaticItem StaticItemSettings { get; }
     }
 }
