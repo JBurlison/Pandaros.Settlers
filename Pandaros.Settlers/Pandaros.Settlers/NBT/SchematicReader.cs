@@ -160,7 +160,11 @@ namespace Pandaros.Settlers.NBT
             RawSchematic raw = LoadRaw(nbtFile);
             SchematicBlock[,,] blocks = GetBlocks(raw);
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
-            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, raw.CSBlocks, startPos);
+            Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, startPos);
+
+            //if (raw.CSBlocks != null && raw.CSBlocks.Length > 0)
+            //    schematic.Blocks = blocks;
+
             return schematic;
         }
 

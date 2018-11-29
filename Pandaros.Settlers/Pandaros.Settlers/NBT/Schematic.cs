@@ -20,7 +20,6 @@ namespace Pandaros.Settlers.NBT
         public SchematicBlock[,,] Blocks { get; set; }
         /// <summary>Contains TileEntities such as hoppers and chests</summary>
         //public TileEntity[,,] TileEntities { get; set; }
-        public SchematicBlock[,,] CSBlocks { get; set; }
         public Vector3Int StartPos { get; set; }
 
         public Schematic()
@@ -40,10 +39,9 @@ namespace Pandaros.Settlers.NBT
             ZMax = z;
         }
 
-        public Schematic(string name, int x, int y, int z, SchematicBlock[,,] blocks, SchematicBlock[,,] scBlocks, Vector3Int startPos) : this(name, x, y, z)
+        public Schematic(string name, int x, int y, int z, SchematicBlock[,,] blocks, Vector3Int startPos) : this(name, x, y, z)
         {
             Blocks = blocks;
-            CSBlocks = scBlocks;
             // TileEntities = tileEntities;
             StartPos = startPos;
         }
@@ -52,9 +50,9 @@ namespace Pandaros.Settlers.NBT
         {
             SchematicBlock block = default(SchematicBlock);
 
-            if (CSBlocks != null)
-                block = CSBlocks[X, Y, Z];
-            else
+            if (Y < YMax &&
+                X < XMax &&
+                Z < ZMax)
                 block = Blocks[X, Y, Z];
 
             if (block == default(SchematicBlock))
@@ -75,19 +73,12 @@ namespace Pandaros.Settlers.NBT
                     {
                         int newX = z;
                         int newZ = ZMax - (x + 1);
-
-                        if (CSBlocks != null)
-                            newBlocks[newZ, y, newX] = CSBlocks[z, y, x];
-                        else
-                            newBlocks[newZ, y, newX] = Blocks[z, y, x];
+                        newBlocks[newZ, y, newX] = Blocks[z, y, x];
                     }
                 }
             }
 
-            if (CSBlocks != null)
-                CSBlocks = newBlocks;
-            else
-                Blocks = newBlocks;
+            Blocks = newBlocks;
     
             int tmpSize = XMax;
             XMax = ZMax;

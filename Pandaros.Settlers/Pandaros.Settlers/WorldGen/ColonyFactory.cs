@@ -53,7 +53,6 @@ namespace Pandaros.Settlers.WorldGen
                     for (int X = 0; X < schematic.XMax; X++)
                     {
                         SchematicBlock block = schematic.GetBlock(Y, Z, X);
-
                         blocks.Add(new StructureBlock(X, Y, Z, block.MappedBlock.CSIndex));
                     }
                 }
