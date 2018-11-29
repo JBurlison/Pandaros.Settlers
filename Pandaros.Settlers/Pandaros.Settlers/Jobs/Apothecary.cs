@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.Jobs
         public Dictionary<ItemId, int> Results { get; private set; } = new Dictionary<ItemId, int>();
         public CraftPriority Priority => CraftPriority.Medium;
         public bool IsOptional => true;
-        public int DefautLimit => ItemFactory.DEFAULT_LIMIT;
+        public int DefautLimit => 5;
         public string Job => ItemFactory.JOB_CRAFTER;
         public string Name => ApothecaryRegister.JOB_RECIPE;
     }
