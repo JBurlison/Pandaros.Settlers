@@ -233,6 +233,9 @@
     <Compile Include="WorldGen\ColonyStructureGenerator.cs" />
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
+    <None Include="Schematics\Mountan-Top-Castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="WorldGen\Buildings\apex-medieval-city.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

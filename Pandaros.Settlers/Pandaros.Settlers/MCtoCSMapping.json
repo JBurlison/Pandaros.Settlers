@@ -11,7 +11,7 @@
     "meta": 0,
     "name": "Stone",
     "text_type": "stone",
-    "cs_type": "stonebricks"
+    "cs_type": "stoneblock"
   },
   {
     "type": 1,
@@ -1232,6 +1232,48 @@
     "cs_type": "stonebricks"
   },
   {
+    "type": 29,
+    "meta": 10,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 11,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 12,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 13,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 14,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 29,
+    "meta": 15,
+    "name": "Sticky Piston",
+    "text_type": "sticky_piston",
+    "cs_type": "stonebricks"
+  },
+  {
     "type": 30,
     "meta": 0,
     "name": "Cobweb",
@@ -1521,6 +1563,48 @@
   {
     "type": 34,
     "meta": 9,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 10,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 11,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 12,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 13,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 14,
+    "name": "Piston Head",
+    "text_type": "piston_head",
+    "cs_type": "air"
+  },
+  {
+    "type": 34,
+    "meta": 15,
     "name": "Piston Head",
     "text_type": "piston_head",
     "cs_type": "air"
@@ -2864,6 +2948,34 @@
     "cs_type": "air"
   },
   {
+    "type": 66,
+    "meta": 6,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 7,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 8,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
+    "type": 66,
+    "meta": 9,
+    "name": "Rail",
+    "text_type": "rail",
+    "cs_type": "air"
+  },
+  {
     "type": 67,
     "meta": 0,
     "name": "Cobblestone Stairs",
@@ -3166,7 +3278,7 @@
   },
   {
     "type": 71,
-    "meta": 0,
+    "meta": 11,
     "name": "Iron Door Block",
     "text_type": "iron_door",
     "cs_type": "air"
@@ -3363,6 +3475,34 @@
   {
     "type": 78,
     "meta": 4,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 5,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 6,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 7,
+    "name": "Snow",
+    "text_type": "snow_layer",
+    "cs_type": "snow"
+  },
+  {
+    "type": 78,
+    "meta": 8,
     "name": "Snow",
     "text_type": "snow_layer",
     "cs_type": "snow"
@@ -8626,6 +8766,62 @@
     "cs_type": "Pandaros.Settlers.carpetpurple"
   },
   {
+    "type": 202,
+    "meta": 1,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 2,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 3,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 4,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 5,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 6,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 7,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
+    "type": 202,
+    "meta": 8,
+    "name": "Purpur Pillar",
+    "text_type": "purpur_pillar",
+    "cs_type": "Pandaros.Settlers.carpetpurple"
+  },
+  {
     "type": 203,
     "meta": 0,
     "name": "Purpur Stairs",
@@ -9610,35 +9806,35 @@
     "meta": 0,
     "name": "White Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 1,
     "name": "Orange Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 2,
     "name": "Magenta Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 3,
     "name": "Light Blue Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 4,
     "name": "Yellow Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
@@ -9652,77 +9848,77 @@
     "meta": 6,
     "name": "Pink Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 7,
     "name": "Gray Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 8,
     "name": "Light Gray Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 9,
     "name": "Cyan Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 10,
     "name": "Purple Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 11,
     "name": "Blue Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 12,
     "name": "Brown Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 13,
     "name": "Green Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 14,
     "name": "Red Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 252,
     "meta": 15,
     "name": "Black Concrete Powder",
     "text_type": "concrete_powder",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 255,
     "meta": 0,
     "name": "Structure Block",
     "text_type": "structure_block",
-    "cs_type": ""
+    "cs_type": "air"
   },
   {
     "type": 256,

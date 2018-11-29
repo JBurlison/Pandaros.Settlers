@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.NBT
             StartPos = startPos;
         }
 
-        public SchematicBlock GetBlock(int Y, int Z, int X)
+        public SchematicBlock GetBlock(int X, int Y, int Z)
         {
             SchematicBlock block = default(SchematicBlock);
 
