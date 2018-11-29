@@ -317,9 +317,6 @@
     <None Include="Schematics\ambiyafinal.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Schematics\big-church.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Schematics\castle-1.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

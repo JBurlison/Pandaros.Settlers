@@ -10,7 +10,7 @@ using TerrainGeneration;
 namespace Pandaros.Settlers.WorldGen
 
 {
-    [ModLoader.ModManager]
+    //[ModLoader.ModManager]
     public class ColonyFactory
     {
         public static ColonyStructureGenerator Generator { get; set; }

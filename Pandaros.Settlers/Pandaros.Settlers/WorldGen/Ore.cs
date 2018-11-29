@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.WorldGen
                                 LoadedOres.Merge(newMenu);
                             }
 
-                            PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
+                            PandaLogger.Log("Loaded Ore: {0}", menuFilePath);
                         }
                     }
                 }

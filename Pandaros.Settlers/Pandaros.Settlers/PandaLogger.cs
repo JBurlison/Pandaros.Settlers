@@ -80,7 +80,8 @@ namespace Pandaros.Settlers
             if (!Directory.Exists(LOG_DIR))
                 Directory.CreateDirectory(LOG_DIR);
 
-            _logFile = LOG_DIR + LOG_NAME + DOT_LOG;
+            _logFile = LOG_DIR + LOG_NAME + "." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + DOT_LOG;
+            ServerLog.LogAsyncMessage(new LogMessage("Settlers Log file set to: " + _logFile, LogType.Log));
             _thread.IsBackground = true;
             _thread.Start();
         }
@@ -152,12 +153,11 @@ namespace Pandaros.Settlers
 
         private static void Log()
         {
-            using (var sw = new StreamWriter(_logFile, true))
-                while (true)
-                {
-                    _loggerSemaphore.WaitOne(2000);
+            while (true)
+            {
+                _loggerSemaphore.WaitOne(2000);
 
-
+                using (var sw = new StreamWriter(_logFile, true))
                     while (_logQueue.Count != 0)
                     {
                         var queuedMessage = _logQueue.Dequeue();
@@ -171,11 +171,13 @@ namespace Pandaros.Settlers
                             }
                             finally
                             {
-                                RotateLogs();
+
                             }
                         }
                     }
-                }
+
+                RotateLogs();
+            }
         }
 
         private static void RotateLogs()
