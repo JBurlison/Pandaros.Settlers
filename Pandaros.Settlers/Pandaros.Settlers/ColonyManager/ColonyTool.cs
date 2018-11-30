@@ -127,18 +127,18 @@ namespace Pandaros.Settlers.ColonyManager
                             count = job.Value.AvailableCount;
 
                         if (jobCounts.TryGetValue(firedJob, out var firedJobCounts))
+                        {
                             for (int i = 0; i < count; i++)
                             {
-                                if (firedJobCounts.TakenCount < i)
+                                if (firedJobCounts.TakenCount > i)
                                 {
                                     var npc = firedJobCounts.TakenJobs[i].NPC;
-                                    data.Player.ActiveColony.JobFinder.Add(firedJobCounts.TakenJobs[i]);
                                     npc.TakeJob(job.Value.AvailableJobs[i]);
-                                    data.Player.ActiveColony.JobFinder.Remove(job.Value.AvailableJobs[i]);
                                 }
                                 else
                                     break;
                             }
+                        }
 
                         data.Player.ActiveColony.SendUpdate();
                         break;
