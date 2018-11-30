@@ -23,10 +23,8 @@ namespace Pandaros.Settlers.WorldGen
 
         public override void TryAddStructure(ref StructureGeneratorData data)
         {
-            PandaLogger.Log("Gen");
-            if (data.Steepness <= .3)
+            if (data.Steepness <= 0)
             {
-                PandaLogger.Log("steep");
                 if (_next == null)
                 {
                     _next = _structures.GetRandomItem();

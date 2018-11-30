@@ -117,7 +117,8 @@ namespace Pandaros.Settlers.Managers
 
                         var cs = ColonyState.GetColonyState(colony);
 
-                        if (cs.BossesEnabled &&
+                        if (false &&
+                            cs.BossesEnabled &&
                             cs.ColonyRef.OwnerIsOnline() &&
                             colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
                         {

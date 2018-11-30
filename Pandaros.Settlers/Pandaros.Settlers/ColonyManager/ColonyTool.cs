@@ -97,21 +97,20 @@ namespace Pandaros.Settlers.ColonyManager
                 {
                     if (job.Key == firedJob)
                     {
-                        if (count > job.Value.AvailableCount)
+                        if (count > job.Value.TakenCount)
                             count = job.Value.TakenCount;
 
                         for (int i = 0; i < count; i++)
                         {
                             var npc = job.Value.TakenJobs[i].NPC;
-                            job.Value.TakenJobs[i].SetNPC(null);
                             npc.OnDeath();
-                            data.Player.ActiveColony.JobFinder.Add(job.Value.TakenJobs[i]);
                         }
 
                         break;
                     }
                 }
 
+                data.Player.ActiveColony.SendUpdate();
                 jobCounts = GetJobCounts(data.Player.ActiveColony);
                 NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
             }
@@ -142,6 +141,7 @@ namespace Pandaros.Settlers.ColonyManager
                                     break;
                             }
 
+                        data.Player.ActiveColony.SendUpdate();
                         break;
                     }
 
@@ -176,6 +176,7 @@ namespace Pandaros.Settlers.ColonyManager
                                 var newGuy = new NPCBase(data.Player.ActiveColony, data.Player.ActiveColony.GetClosestBanner(new Vector3Int(data.Player.Position)).Position.Vector);
                                 data.Player.ActiveColony.RegisterNPC(newGuy);
                                 SettlerInventory.GetSettlerInventory(newGuy);
+                                NPCTracker.Add(newGuy);
                                 ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
 
                                 if (newGuy.IsValid)

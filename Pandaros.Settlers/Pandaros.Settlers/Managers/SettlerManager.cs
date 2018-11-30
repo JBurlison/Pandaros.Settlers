@@ -593,6 +593,8 @@ namespace Pandaros.Settlers.Managers
                                     var newGuy = new NPCBase(state.ColonyRef,
                                                              state.ColonyRef.GetRandomBanner().Position.Vector);
 
+                                    NPCTracker.Add(newGuy);
+                                    state.ColonyRef.RegisterNPC(newGuy);
                                     SettlerInventory.GetSettlerInventory(newGuy);
                                     newGuy.CustomData.SetAs(ISSETTLER, true);
 

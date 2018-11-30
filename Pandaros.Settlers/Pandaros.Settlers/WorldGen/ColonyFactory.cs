@@ -9,7 +9,7 @@ using TerrainGeneration;
 
 namespace Pandaros.Settlers.WorldGen
 {
-    //[ModLoader.ModManager]
+   //[ModLoader.ModManager]
     public class ColonyFactory
     {
         public static ColonyStructureGenerator Generator { get; set; }
@@ -23,6 +23,7 @@ namespace Pandaros.Settlers.WorldGen
 
             Generator = new ColonyStructureGenerator(treeGenerator.MetaBiomeProvider, treeGenerator.MaximumSteepness);
             Generator.InnerGenerator = treeGenerator;
+            terrainGen.StructureGenerator = Generator;
 
             foreach (var file in Directory.EnumerateFiles(GameLoader.MOD_FOLDER + "/WorldGen/Buildings/"))
             {
