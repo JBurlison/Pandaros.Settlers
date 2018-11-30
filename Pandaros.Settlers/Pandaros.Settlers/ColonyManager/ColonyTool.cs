@@ -103,6 +103,7 @@ namespace Pandaros.Settlers.ColonyManager
                         for (int i = 0; i < count; i++)
                         {
                             var npc = job.Value.TakenJobs[i].NPC;
+                            npc.ClearJob();
                             npc.OnDeath();
                         }
 
@@ -131,11 +132,8 @@ namespace Pandaros.Settlers.ColonyManager
                                 if (firedJobCounts.TakenCount < i)
                                 {
                                     var npc = firedJobCounts.TakenJobs[i].NPC;
-                                    firedJobCounts.TakenJobs[i].SetNPC(null);
-
-                                    job.Value.AvailableJobs[i].SetNPC(npc);
+                                    npc.ClearJob();
                                     npc.TakeJob(job.Value.AvailableJobs[i]);
-                                    data.Player.ActiveColony.JobFinder.Remove(job.Value.AvailableJobs[i]);
                                 }
                                 else
                                     break;
@@ -159,8 +157,6 @@ namespace Pandaros.Settlers.ColonyManager
                         if (count > job.Value.AvailableCount)
                             count = job.Value.AvailableCount;
 
-                        bool sendUpdate = false;
-
                         for (int i = 0; i < count; i++)
                         {
                             var num = 0f;
@@ -181,17 +177,14 @@ namespace Pandaros.Settlers.ColonyManager
 
                                 if (newGuy.IsValid)
                                 {
-                                    job.Value.AvailableJobs[i].SetNPC(newGuy);
                                     newGuy.TakeJob(job.Value.AvailableJobs[i]);
                                     data.Player.ActiveColony.JobFinder.Remove(job.Value.AvailableJobs[i]);
-                                    sendUpdate = true;
                                 }
                             }
                         }
 
 
-                        if (sendUpdate)
-                            data.Player.ActiveColony.SendUpdate();
+                        data.Player.ActiveColony.SendUpdate();
 
                         jobCounts = GetJobCounts(data.Player.ActiveColony);
                         NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
