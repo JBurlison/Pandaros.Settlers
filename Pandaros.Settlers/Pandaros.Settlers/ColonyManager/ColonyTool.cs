@@ -1,6 +1,8 @@
-﻿using NetworkUI;
+﻿using Jobs;
+using NetworkUI;
 using NetworkUI.Items;
 using NPC;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
 using Pipliz;
 using Shared;
@@ -26,8 +28,10 @@ namespace Pandaros.Settlers.ColonyManager
     public class JobCounts
     {
         public string Name { get; set; }
-        public int Free { get; set; }
-        public int Working { get; set; }
+        public int AvailableCount { get; set; }
+        public int TakenCount { get; set; }
+        public List<IJob> AvailableJobs { get; set; } = new List<IJob>();
+        public List<IJob> TakenJobs { get; set; } = new List<IJob>();
     }
 
 
@@ -53,39 +57,211 @@ namespace Pandaros.Settlers.ColonyManager
                 boxedData.item1.typeSelected == toolItem)
             {
                 Dictionary<string, JobCounts> jobCounts = GetJobCounts(player.ActiveColony);
+                NetworkMenuManager.SendServerPopup(player, BuildMenu(player, jobCounts, false, string.Empty, 0));
+            }
+        }
 
-                NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", "Colony Management");
-                menu.Width = 1000;
-                menu.Height = 600;
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.PressButton")]
+        public static void PressButton(ButtonPressCallbackData data)
+        {
+            if ((!data.ButtonIdentifier.Contains(".RecruitButton") && 
+                !data.ButtonIdentifier.Contains(".FireButton") &&
+                !data.ButtonIdentifier.Contains(".MoveFired") &&
+                !data.ButtonIdentifier.Contains(".KillFired")) || data.Player.ActiveColony == null)
+                return;
 
-                List<IItem> header = new List<IItem>();
+            Dictionary<string, JobCounts> jobCounts = GetJobCounts(data.Player.ActiveColony);
 
-                header.Add(new Label(new LabelData("Job", UnityEngine.Color.black)));
-                header.Add(new Label(new LabelData("Working", UnityEngine.Color.black)));
-                header.Add(new Label(new LabelData("Not Working", UnityEngine.Color.black)));
-                header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
-                header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+            if (data.ButtonIdentifier.Contains(".FireButton"))
+            {
+                foreach (var job in jobCounts)
+                    if (data.ButtonIdentifier.Contains(job.Key))
+                    {
+                        var recruit = data.Storage.GetAs<int>(job.Key + ".Recruit");
+                        var count = GetCountValue(recruit);
+                        var menu = BuildMenu(data.Player, jobCounts, true, job.Key, count);
 
-                menu.Items.Add(new HorizontalGrid(header, 200));
+                        menu.LocalStorage.SetAs(GameLoader.NAMESPACE + ".FiredJobName", job.Key);
+                        menu.LocalStorage.SetAs(GameLoader.NAMESPACE + ".FiredJobCount", count);
 
-                foreach (var jobKvp in jobCounts)
+                        NetworkMenuManager.SendServerPopup(data.Player, menu);
+                        break;
+                    }
+            }
+            else if (data.ButtonIdentifier.Contains(".KillFired"))
+            {
+                var firedJob = data.Storage.GetAs<string>(GameLoader.NAMESPACE + ".FiredJobName");
+                var count = data.Storage.GetAs<int>(GameLoader.NAMESPACE + ".FiredJobCount");
+
+                foreach (var job in jobCounts)
                 {
-                    List<IItem> items = new List<IItem>();
+                    if (job.Key == firedJob)
+                    {
+                        if (count > job.Value.AvailableCount)
+                            count = job.Value.TakenCount;
 
-                    items.Add(new Label(new LabelData(jobKvp.Key, UnityEngine.Color.black)));
-                    items.Add(new Label(new LabelData(jobKvp.Value.Working.ToString(), UnityEngine.Color.black)));
-                    items.Add(new Label(new LabelData(jobKvp.Value.Free.ToString(), UnityEngine.Color.black)));
+                        for (int i = 0; i < count; i++)
+                        {
+                            var npc = job.Value.TakenJobs[i].NPC;
+                            job.Value.TakenJobs[i].SetNPC(null);
+                            npc.OnDeath();
+                            data.Player.ActiveColony.JobFinder.Add(job.Value.TakenJobs[i]);
+                        }
+
+                        break;
+                    }
+                }
+
+                jobCounts = GetJobCounts(data.Player.ActiveColony);
+                NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
+            }
+            else if (data.ButtonIdentifier.Contains(".MoveFired"))
+            {
+                var firedJob = data.Storage.GetAs<string>(GameLoader.NAMESPACE + ".FiredJobName");
+                var count = data.Storage.GetAs<int>(GameLoader.NAMESPACE + ".FiredJobCount");
+
+                foreach (var job in jobCounts)
+                    if (data.ButtonIdentifier.Contains(job.Key))
+                    {
+                        if (count > job.Value.AvailableCount)
+                            count = job.Value.AvailableCount;
+
+                        if (jobCounts.TryGetValue(firedJob, out var firedJobCounts))
+                            for (int i = 0; i < count; i++)
+                            {
+                                if (firedJobCounts.TakenCount < i)
+                                {
+                                    var npc = firedJobCounts.TakenJobs[i].NPC;
+                                    firedJobCounts.TakenJobs[i].SetNPC(null);
+
+                                    job.Value.AvailableJobs[i].SetNPC(npc);
+                                    npc.TakeJob(job.Value.AvailableJobs[i]);
+                                    data.Player.ActiveColony.JobFinder.Remove(job.Value.AvailableJobs[i]);
+                                }
+                                else
+                                    break;
+                            }
+
+                        break;
+                    }
+
+                jobCounts = GetJobCounts(data.Player.ActiveColony);
+                NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
+            }
+            else if (data.ButtonIdentifier.Contains(".RecruitButton"))
+            {
+                foreach (var job in jobCounts)
+                    if (data.ButtonIdentifier.Contains(job.Key))
+                    {
+                        var recruit = data.Storage.GetAs<int>(job.Key + ".Recruit");
+                        var count = GetCountValue(recruit);
+
+                        if (count > job.Value.AvailableCount)
+                            count = job.Value.AvailableCount;
+
+                        bool sendUpdate = false;
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            var num = 0f;
+
+                            if (data.Player.ActiveColony.Stockpile.TotalFood < ServerManager.ServerSettings.NPCs.RecruitmentCost ||
+                                !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, ServerManager.ServerSettings.NPCs.RecruitmentCost))
+                            {
+                                PandaChat.Send(data.Player, "Not enough food.", ChatColor.red);
+                                break;
+                            }
+                            else
+                            {
+                                var newGuy = new NPCBase(data.Player.ActiveColony, data.Player.ActiveColony.GetClosestBanner(new Vector3Int(data.Player.Position)).Position.Vector);
+                                data.Player.ActiveColony.RegisterNPC(newGuy);
+                                SettlerInventory.GetSettlerInventory(newGuy);
+                                ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+
+                                if (newGuy.IsValid)
+                                {
+                                    job.Value.AvailableJobs[i].SetNPC(newGuy);
+                                    newGuy.TakeJob(job.Value.AvailableJobs[i]);
+                                    data.Player.ActiveColony.JobFinder.Remove(job.Value.AvailableJobs[i]);
+                                    sendUpdate = true;
+                                }
+                            }
+                        }
+
+
+                        if (sendUpdate)
+                            data.Player.ActiveColony.SendUpdate();
+
+                        jobCounts = GetJobCounts(data.Player.ActiveColony);
+                        NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
+                    }
+            }
+            
+        }
+
+        public static int GetCountValue(int countIndex)
+        {
+            var value = _recruitCount[countIndex];
+            int retval = int.MaxValue;
+
+            if (int.TryParse(value, out int count))
+                retval = count;
+
+            return retval;
+        }
+
+        private static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
+        {
+            NetworkMenu menu = new NetworkMenu();
+            menu.LocalStorage.SetAs("header", "Colony Management");
+            menu.Width = 1000;
+            menu.Height = 600;
+
+            if (fired)
+            {
+                var count = firedCount.ToString();
+
+                if (firedCount == int.MaxValue)
+                    count = "all";
+
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"Kill {count} Fired {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            }
+
+            List<IItem> header = new List<IItem>();
+
+            header.Add(new Label(new LabelData("Job", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData("Working", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData("Not Working", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+
+            menu.Items.Add(new HorizontalGrid(header, 200));
+
+            foreach (var jobKvp in jobCounts)
+            {
+                List<IItem> items = new List<IItem>();
+
+                items.Add(new Label(new LabelData(jobKvp.Key, UnityEngine.Color.black)));
+                items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
+                items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
+
+                if (fired)
+                {
+                    items.Add(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData("Move Fired", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)));
+                }
+                else
+                {
                     items.Add(new DropDown(new LabelData("Amount", UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
                     items.Add(new HorizontalSplit(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData("Recruit", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)),
                                                   new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData("Fire!", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft))));
-                    menu.LocalStorage.SetAs(jobKvp.Key + ".Recruit", 0);
-
-                    menu.Items.Add(new HorizontalGrid(items, 200));
                 }
 
-                NetworkMenuManager.SendServerPopup(player, menu);
+                menu.LocalStorage.SetAs(jobKvp.Key + ".Recruit", 0);
+
+                menu.Items.Add(new HorizontalGrid(items, 200));
             }
+
+            return menu;
         }
 
         public static Dictionary<string, JobCounts> GetJobCounts(Colony colony)
@@ -102,7 +278,8 @@ namespace Pandaros.Settlers.ColonyManager
                         if (!jobCounts.ContainsKey(nPCTypeSettings.PrintName))
                             jobCounts.Add(nPCTypeSettings.PrintName, new JobCounts() { Name = nPCTypeSettings.PrintName });
 
-                        jobCounts[nPCTypeSettings.PrintName].Free++;
+                        jobCounts[nPCTypeSettings.PrintName].AvailableCount++;
+                        jobCounts[nPCTypeSettings.PrintName].AvailableJobs.Add(job);
                     }
                 }
 
@@ -115,7 +292,8 @@ namespace Pandaros.Settlers.ColonyManager
                         if (!jobCounts.ContainsKey(nPCTypeSettings.PrintName))
                             jobCounts.Add(nPCTypeSettings.PrintName, new JobCounts() { Name = nPCTypeSettings.PrintName });
 
-                        jobCounts[nPCTypeSettings.PrintName].Working++;
+                        jobCounts[nPCTypeSettings.PrintName].TakenCount++;
+                        jobCounts[nPCTypeSettings.PrintName].TakenJobs.Add(npc.Job);
                     }
                 }
 

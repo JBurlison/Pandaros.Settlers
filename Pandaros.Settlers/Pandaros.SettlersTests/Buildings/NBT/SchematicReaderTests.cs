@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pandaros.Settlers.Buildings.NBT;
+using Pandaros.Settlers.NBT;
 using System;
 using System.Collections.Generic;
 using System.Linq;

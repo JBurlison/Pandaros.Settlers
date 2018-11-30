@@ -1,46 +1,46 @@
 [
   {
-    "Chance": 10,
+    "Chance": 5,
     "Depth": 15,
     "Type": "Pandaros.Settlers.AutoLoad.infiniteemerald"
   },
   {
-    "Chance": 10,
+    "Chance": 5,
     "Depth": 16,
     "Type": "Pandaros.Settlers.AutoLoad.infiniteemerald"
   },
   {
-    "Chance": 10,
+    "Chance": 5,
     "Depth": 17,
     "Type": "Pandaros.Settlers.AutoLoad.infiniteemerald"
   },
   {
-    "Chance": 10,
+    "Chance": 4,
     "Depth": 25,
     "Type": "Pandaros.Settlers.AutoLoad.infiniteruby"
   },
   {
-    "Chance": 10,
+    "Chance": 4,
     "Depth": 26,
     "Type": "Pandaros.Settlers.AutoLoad.infiniteruby"
   },
   {
-    "Chance": 10,
+    "Chance": 4,
     "Depth": 27,
     "Type": "Pandaros.Settlers.AutoLoad.infiniteruby"
   },
   {
-    "Chance": 10,
+    "Chance": 3,
     "Depth": 35,
     "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
   },
   {
-    "Chance": 10,
+    "Chance": 3,
     "Depth": 36,
     "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
   },
   {
-    "Chance": 10,
+    "Chance": 3,
     "Depth": 37,
     "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
   }

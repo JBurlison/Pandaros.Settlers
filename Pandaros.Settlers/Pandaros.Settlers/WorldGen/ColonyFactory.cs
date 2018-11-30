@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using TerrainGeneration;
 
 namespace Pandaros.Settlers.WorldGen
-
 {
     //[ModLoader.ModManager]
     public class ColonyFactory
