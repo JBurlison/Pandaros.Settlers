@@ -352,8 +352,8 @@ namespace Pandaros.Settlers.Items.Machines
             foreach (var pad in _paired)
             {
                 var kvpNode = new JSONNode();
-                kvpNode.SetAs("Key", (JSONNode) pad.Key);
-                kvpNode.SetAs("Value", (JSONNode) pad.Value);
+                kvpNode.SetAs("Key", pad.Key.ToJSONNode());
+                kvpNode.SetAs("Value", pad.Value.ToJSONNode());
                 teleporters.AddToArray(kvpNode);
             }
 
@@ -372,7 +372,7 @@ namespace Pandaros.Settlers.Items.Machines
                 JSON.Deserialize(RoamingJobManager.MACHINE_JSON, out var n) &&
                 n.TryGetChild(GameLoader.NAMESPACE + ".Teleportpads", out var teleportPads))
                 foreach (var pad in teleportPads.LoopArray())
-                    _paired[(Vector3Int) pad.GetAs<JSONNode>("Key")] = (Vector3Int) pad.GetAs<JSONNode>("Value");
+                    _paired[pad.GetAs<JSONNode>("Key").ToVector3Int()] = pad.GetAs<JSONNode>("Value").ToVector3Int();
         }
 
         // TODO: uncomment when zun fixes this.

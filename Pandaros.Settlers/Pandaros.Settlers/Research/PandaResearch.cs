@@ -623,6 +623,8 @@ namespace Pandaros.Settlers.Research
 
             //GuardSlingerJobNight.CachedSettings.cooldownShot =
             //    _baseSpeed[nameof(GuardSlingerJobNight)] - _baseSpeed[nameof(GuardSlingerJobNight)] * e.Research.Value;
+
+            //foreach (BlockJobManager<GuardJobInstance> w in ServerManager.BlockEntityCallbacks.AutoLoadedInstances.Where(t => t as BlockJobManager<GuardJobInstance> != null))
         }
 
         private static void AddImprovedBows(Dictionary<ushort, int> researchDic)

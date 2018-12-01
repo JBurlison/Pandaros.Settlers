@@ -134,6 +134,7 @@ namespace Pandaros.Settlers.ColonyManager
                                 {
                                     var npc = firedJobCounts.TakenJobs[i].NPC;
                                     npc.TakeJob(job.Value.AvailableJobs[i]);
+                                    data.Player.ActiveColony.JobFinder.Remove(job.Value.AvailableJobs[i]);
                                 }
                                 else
                                     break;

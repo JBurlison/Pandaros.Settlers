@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public RoamingJobState(JSONNode baseNode, Colony colony)
         {
-            Position = (Vector3Int) baseNode[nameof(Position)];
+            Position = baseNode[nameof(Position)].ToVector3Int();
             Colony = colony;
 
             if (baseNode.TryGetAs<string>(nameof(RoamObjective), out var ro))
@@ -149,7 +149,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             var baseNode = new JSONNode();
             var actionLoadNode = new JSONNode();
 
-            baseNode.SetAs(nameof(Position), (JSONNode) Position);
+            baseNode.SetAs(nameof(Position), Position);
 
             foreach (var kvp in ActionEnergy)
                 actionLoadNode.SetAs(kvp.Key.ToString(), kvp.Value);

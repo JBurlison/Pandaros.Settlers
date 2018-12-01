@@ -570,7 +570,7 @@ namespace Pandaros.Settlers.Items.Machines
                         pos.Value.State = GatePosition.Closed;
 
                     var node = new JSONNode()
-                              .SetAs("pos", (JSONNode) pos.Key)
+                              .SetAs("pos", pos.Key.ToJSONNode())
                               .SetAs("state", pos.Value.ToJsonNode());
 
                     gateNode.AddToArray(node);
@@ -589,7 +589,7 @@ namespace Pandaros.Settlers.Items.Machines
                     _gatePositions.Add(c, new Dictionary<Vector3Int, GateState>());
 
                 foreach (var gateNode in gateNodes.LoopArray())
-                    _gatePositions[c].Add((Vector3Int) gateNode.GetAs<JSONNode>("pos"),
+                    _gatePositions[c].Add(gateNode.GetAs<JSONNode>("pos").ToVector3Int(),
                                           new GateState(gateNode.GetAs<JSONNode>("state")));
             }
         }
@@ -650,7 +650,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 State       = (GatePosition) Enum.Parse(typeof(GatePosition), node.GetAs<string>(nameof(State)));
                 Orientation = (VoxelSide) Enum.Parse(typeof(VoxelSide), node.GetAs<string>(nameof(Orientation)));
-                Position    = (Vector3Int) node.GetAs<JSONNode>(nameof(Position));
+                Position    = node.GetAs<JSONNode>(nameof(Position)).ToVector3Int();
             }
 
             public GatePosition State { get; set; }
@@ -663,7 +663,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                 baseNode.SetAs(nameof(State), State.ToString());
                 baseNode.SetAs(nameof(Orientation), Orientation.ToString());
-                baseNode.SetAs(nameof(Position), (JSONNode) Position);
+                baseNode.SetAs(nameof(Position), Position.ToJSONNode());
 
                 return baseNode;
             }

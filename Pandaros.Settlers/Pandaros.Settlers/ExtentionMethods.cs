@@ -244,5 +244,21 @@ namespace Pandaros.Settlers
             return pos.x >= boundsPos.x && pos.y >= boundsPos.y && pos.z >= boundsPos.z &&
                     pos.x <= boundsMax.x && pos.y <= boundsMax.y && pos.z <= boundsMax.z;
         }
+
+        public static JSONNode ToJSONNode(this Vector3Int v)
+        {
+            return new JSONNode()
+                .SetAs("x", v.x)
+                .SetAs("y", v.y)
+                .SetAs("z", v.z);
+        }
+
+        public static Vector3Int ToVector3Int(this JSONNode v)
+        {
+            return new Vector3Int(
+                v["x"].GetAs<int>(),
+                v["y"].GetAs<int>(),
+                v["z"].GetAs<int>());
+        }
     }
 }
