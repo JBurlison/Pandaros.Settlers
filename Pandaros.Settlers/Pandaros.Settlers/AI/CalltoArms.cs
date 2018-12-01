@@ -329,6 +329,7 @@ namespace Pandaros.Settlers.AI
 
                     var armsJob = new CalltoArmsJob();
                     _callToArmsJobs.Add(armsJob);
+                    follower.ClearJob();
                     follower.TakeJob(armsJob);
                 }
             }
