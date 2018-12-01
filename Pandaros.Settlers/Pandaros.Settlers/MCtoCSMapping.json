@@ -1950,56 +1950,56 @@
     "meta": 0,
     "name": "Stone Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslabbottom"
   },
   {
     "type": 44,
     "meta": 1,
     "name": "Sandstone Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.sandstoneslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.sandstoneslabbottom"
   },
   {
     "type": 44,
     "meta": 2,
     "name": "Wooden Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.plankslabtop"
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslabbottom"
   },
   {
     "type": 44,
     "meta": 3,
     "name": "Cobblestone Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslabbottom"
   },
   {
     "type": 44,
     "meta": 4,
     "name": "Brick Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.brickslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.brickslabbottom"
   },
   {
     "type": 44,
     "meta": 5,
     "name": "Stone Brick Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.stonebrickslabbottom"
   },
   {
     "type": 44,
     "meta": 6,
     "name": "Nether Brick Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 44,
     "meta": 7,
     "name": "Quartz Slab",
     "text_type": "stone_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.whiteclayslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.whiteclayslabbottom"
   },
   {
     "type": 44,
@@ -5087,42 +5087,42 @@
     "meta": 0,
     "name": "Oak Wood Slab",
     "text_type": "wooden_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslabbottom"
   },
   {
     "type": 126,
     "meta": 1,
     "name": "Spruce Wood Slab",
     "text_type": "wooden_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslabbottom"
   },
   {
     "type": 126,
     "meta": 2,
     "name": "Birch Wood Slab",
     "text_type": "wooden_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslabbottom"
   },
   {
     "type": 126,
     "meta": 3,
     "name": "Jungle Wood Slab",
     "text_type": "wooden_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.plankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.plankslabbottom"
   },
   {
     "type": 126,
     "meta": 4,
     "name": "Acacia Wood Slab",
     "text_type": "wooden_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 126,
     "meta": 5,
     "name": "Dark Oak Wood Slab",
     "text_type": "wooden_slab",
-    "cs_type": "Pandaros.Settlers.AutoLoad.blackplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.blackplankslabbottom"
   },
   {
     "type": 126,
@@ -7860,56 +7860,56 @@
     "meta": 0,
     "name": "Red Sandstone Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 1,
     "name": "Purpur Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 2,
     "name": "Prismarine Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 3,
     "name": "Prismarine Brick Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 4,
     "name": "Dark Prismarine Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 5,
     "name": "Mossy cobblestone Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 6,
     "name": "Smooth Sandstone Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
     "meta": 7,
     "name": "Red Nether Brick Slab",
     "text_type": "stone_slab2",
-    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslab"
+    "cs_type": "Pandaros.Settlers.AutoLoad.redplankslabbottom"
   },
   {
     "type": 182,
@@ -8889,7 +8889,7 @@
     "meta": 0,
     "name": "Purpur Slab",
     "text_type": "purpur_slab",
-    "cs_type": ""
+    "cs_type": "Pandaros.Settler.purpleclayslabbottom"
   },
   {
     "type": 206,

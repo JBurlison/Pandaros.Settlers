@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.WorldGen
         public string Name { get; set; }
 
         public int DistanceBetweenOtherStructuresMax { get; set; } = -1;
-        public int DistanceBetweenOtherStructuresMin { get; set; } = 300;
+        public int DistanceBetweenOtherStructuresMin { get; set; } = 200;
         public int NumberOfPlacements { get; set; } = 1;
         public float SpawnChance { get; set; } = .05f;
 

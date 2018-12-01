@@ -62,7 +62,7 @@ namespace Pandaros.Settlers
     public static class PandaLogger
     {
         public static readonly string LOG_DIR;
-        const string LOG_NAME = "Pandalog";
+        static string LOG_NAME = "Pandalog";
         const string ONE_DOT_LOG = ".1.log";
         const string DOT_STAR_DOT_LOG = ".*.log";
         const string DOT_LOG = ".log";
@@ -80,7 +80,9 @@ namespace Pandaros.Settlers
             if (!Directory.Exists(LOG_DIR))
                 Directory.CreateDirectory(LOG_DIR);
 
-            _logFile = LOG_DIR + LOG_NAME + "." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + DOT_LOG;
+            LOG_NAME = LOG_NAME + "." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss");
+
+            _logFile = LOG_DIR + LOG_NAME + DOT_LOG;
             ServerLog.LogAsyncMessage(new LogMessage("Settlers Log file set to: " + _logFile, LogType.Log));
             _thread.IsBackground = true;
             _thread.Start();
@@ -135,8 +137,11 @@ namespace Pandaros.Settlers
         {
             ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage("Exception", ChatColor.red), e));
 
-            _logQueue.Enqueue(e.Message);
-            _logQueue.Enqueue(e.StackTrace);
+            lock (_logQueue)
+            {
+                _logQueue.Enqueue(e.Message);
+                _logQueue.Enqueue(e.StackTrace);
+            }
             _loggerSemaphore.Set();
 
             if (e.InnerException != null)
@@ -146,7 +151,9 @@ namespace Pandaros.Settlers
         private static string GetFormattedMessage(string message)
         {
             message = string.Format("[{0}]<Pandaros => Settlers> {1}", DateTime.Now, message);
-            _logQueue.Enqueue(message);
+
+            lock(_logQueue)
+                _logQueue.Enqueue(message);
             _loggerSemaphore.Set();
             return message;
         }
@@ -160,7 +167,10 @@ namespace Pandaros.Settlers
                 using (var sw = new StreamWriter(_logFile, true))
                     while (_logQueue.Count != 0)
                     {
-                        var queuedMessage = _logQueue.Dequeue();
+                        var queuedMessage = string.Empty;
+
+                        lock (_logQueue)
+                            queuedMessage = _logQueue.Dequeue();
 
                         if (!string.IsNullOrEmpty(queuedMessage))
                         {

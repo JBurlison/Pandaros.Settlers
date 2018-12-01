@@ -9,7 +9,7 @@ using TerrainGeneration;
 
 namespace Pandaros.Settlers.WorldGen
 {
-   //[ModLoader.ModManager]
+    //[ModLoader.ModManager]
     public class ColonyFactory
     {
         public static ColonyStructureGenerator Generator { get; set; }
@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.WorldGen
             var terrainGen = ServerManager.TerrainGenerator as TerrainGenerator;
             var treeGenerator = terrainGen.StructureGenerator as TerrainGenerator.DefaultTreeStructureGenerator;
 
-            Generator = new ColonyStructureGenerator(treeGenerator.MetaBiomeProvider, treeGenerator.MaximumSteepness);
+            Generator = new ColonyStructureGenerator(treeGenerator.MetaBiomeProvider, treeGenerator.MaximumSteepness, treeGenerator);
             Generator.InnerGenerator = treeGenerator;
             terrainGen.StructureGenerator = Generator;
 
@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.WorldGen
                 {
                     for (int X = 0; X < schematic.XMax; X++)
                     {
-                        SchematicBlock block = schematic.GetBlock(Y, Z, X);
+                        SchematicBlock block = schematic.GetBlock(X, Y, Z);
                         blocks.Add(new StructureBlock(X, Y, Z, block.MappedBlock.CSIndex));
                     }
                 }
