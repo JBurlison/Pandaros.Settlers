@@ -13,8 +13,8 @@ namespace Pandaros.Settlers.Jobs
 {
     public enum PatrolType
     {
-        RoundRobin,
-        Zipper
+        RoundRobin = 0,
+        Zipper = 1
     }
 
     [ModLoader.ModManager]
@@ -154,7 +154,7 @@ namespace Pandaros.Settlers.Jobs
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnSavingColony")]
-        public static void OnSavingColony(JSONNode n, Colony c)
+        public static void OnSavingColony(Colony c, JSONNode n)
         {
             try
             {
@@ -167,8 +167,7 @@ namespace Pandaros.Settlers.Jobs
 
                     foreach (var knight in Knight.Knights[c])
                     {
-                        var knightNode = new JSONNode()
-                           .SetAs(nameof(knight.PatrolType), knight.PatrolType);
+                        var knightNode = new JSONNode().SetAs(nameof(knight.PatrolType), knight.PatrolType);
 
                         var patrolPoints = new JSONNode(NodeType.Array);
 

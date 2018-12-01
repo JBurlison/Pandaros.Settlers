@@ -149,7 +149,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             var baseNode = new JSONNode();
             var actionLoadNode = new JSONNode();
 
-            baseNode.SetAs(nameof(Position), Position);
+            baseNode.SetAs(nameof(Position), Position.ToJSONNode());
 
             foreach (var kvp in ActionEnergy)
                 actionLoadNode.SetAs(kvp.Key.ToString(), kvp.Value);

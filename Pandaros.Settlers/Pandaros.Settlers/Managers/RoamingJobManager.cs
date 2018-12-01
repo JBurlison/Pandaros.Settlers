@@ -97,7 +97,7 @@ namespace Pandaros.Settlers.Managers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.PatrolTool.OnSavingColony")]
-        public static void OnSavingColony(JSONNode n, Colony c)
+        public static void OnSavingColony(Colony c, JSONNode n)
         {
             try
             {
