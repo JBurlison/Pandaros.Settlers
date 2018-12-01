@@ -283,9 +283,9 @@ namespace Pandaros.Settlers.AI
 
         public bool TryDoCommand(Players.Player player, string chat, List<string> splits)
         {
-            if (chat.StartsWith("/arms", StringComparison.OrdinalIgnoreCase) ||
-                chat.StartsWith("/cta", StringComparison.OrdinalIgnoreCase) ||
-                chat.StartsWith("/call", StringComparison.OrdinalIgnoreCase))
+            if (!chat.StartsWith("/arms", StringComparison.OrdinalIgnoreCase) &&
+                !chat.StartsWith("/cta", StringComparison.OrdinalIgnoreCase) &&
+                !chat.StartsWith("/call", StringComparison.OrdinalIgnoreCase))
                 return false;
 
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
@@ -320,8 +320,6 @@ namespace Pandaros.Settlers.AI
                         {
                             if (job.GetType() != typeof(CalltoArmsJob))
                                 _Jobs[follower] = job;
-
-                            follower.ClearJob();
                         }
                     }
                     catch (Exception ex)
@@ -331,7 +329,6 @@ namespace Pandaros.Settlers.AI
 
                     var armsJob = new CalltoArmsJob();
                     _callToArmsJobs.Add(armsJob);
-                    armsJob.OnAssignedNPC(follower);
                     follower.TakeJob(armsJob);
                 }
             }
@@ -354,7 +351,6 @@ namespace Pandaros.Settlers.AI
                     {
                         assignedWorkers.Add(follower);
                         follower.TakeJob(_Jobs[follower]);
-
                         follower.Colony.JobFinder.Remove(_Jobs[follower]);
                     }
                 }

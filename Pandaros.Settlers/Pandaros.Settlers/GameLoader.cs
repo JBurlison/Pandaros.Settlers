@@ -1,4 +1,5 @@
 ﻿using Chatting;
+using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters;
@@ -209,7 +210,7 @@ namespace Pandaros.Settlers
         {
             RUNNING = true;
             CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-           // TODO CommandManager.RegisterCommand(new CalltoArms());
+            CommandManager.RegisterCommand(new CalltoArms());
             CommandManager.RegisterCommand(new ArmorCommand());
             CommandManager.RegisterCommand(new VersionChatCommand());
             CommandManager.RegisterCommand(new ColonyArchiver());
