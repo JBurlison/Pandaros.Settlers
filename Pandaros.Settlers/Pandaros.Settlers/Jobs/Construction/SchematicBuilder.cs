@@ -32,7 +32,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
-            
             int i = 0;
             var bpi = iterationType as SchematicIterator;
 

@@ -205,7 +205,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                                     List<IItem> items = new List<IItem>();
                                     items.Add(new ItemIcon(kvp.Key));
-                                    items.Add(new Label(new LabelData(item.Name, UnityEngine.Color.black)));
+                                    items.Add(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                                     items.Add(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)));
                                     menu.Items.Add(new HorizontalGrid(items, 200));
                                 }
@@ -235,6 +235,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         {
                             _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);
                             PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+                            NetworkMenuManager.CloseServerPopup(data.Player);
                         }
                     }
         

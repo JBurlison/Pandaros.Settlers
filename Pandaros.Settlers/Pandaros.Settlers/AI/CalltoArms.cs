@@ -18,7 +18,6 @@ using System.Linq;
 
 namespace Pandaros.Settlers.AI
 {
-    // TODO Fix this make it work differently 
     [ModLoader.ModManager]
     public class CalltoArmsJob : IJob
     {
