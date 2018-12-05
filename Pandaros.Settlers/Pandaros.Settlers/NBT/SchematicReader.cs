@@ -94,13 +94,13 @@ namespace Pandaros.Settlers.NBT
             return options.OrderBy(f => f.Name).ToList();
         }
 
-        private static Schematic LoadSchematic(string path, Vector3Int startPos)
+        public static Schematic LoadSchematic(string path, Vector3Int startPos)
         {
             NbtFile file = new NbtFile(path);
             return LoadSchematic(file, startPos);
         }
 
-        private static SchematicMetadata GenerateMetaData(string name, int colonyId)
+        public static SchematicMetadata GenerateMetaData(string name, int colonyId)
         {
             if (TryGetScematicFilePath(name, colonyId, out string path))
             {
@@ -168,12 +168,10 @@ namespace Pandaros.Settlers.NBT
             string name = Path.GetFileNameWithoutExtension(nbtFile.FileName);
             Schematic schematic = new Schematic(name, raw.XMax, raw.YMax, raw.ZMax, blocks, startPos);
 
-            
-
             return schematic;
         }
 
-        private static RawSchematicSize LoadRawSize(NbtFile nbtFile)
+        public static RawSchematicSize LoadRawSize(NbtFile nbtFile)
         {
             RawSchematicSize raw = new RawSchematicSize();
             var rootTag = nbtFile.RootTag;
@@ -198,7 +196,7 @@ namespace Pandaros.Settlers.NBT
             return raw;
         }
 
-        private static RawSchematic LoadRaw(NbtFile nbtFile)
+        public static RawSchematic LoadRaw(NbtFile nbtFile)
         {
             RawSchematic raw = new RawSchematic();
             var rootTag = nbtFile.RootTag;
@@ -246,7 +244,7 @@ namespace Pandaros.Settlers.NBT
             return raw;
         }
 
-        private static SchematicBlock[,,] GetCSBlocks(NbtTag csBlockTag, SchematicBlock[,,] list)
+        public static SchematicBlock[,,] GetCSBlocks(NbtTag csBlockTag, SchematicBlock[,,] list)
         {
             NbtList csBlocks = csBlockTag as NbtList;
 
@@ -294,7 +292,7 @@ namespace Pandaros.Settlers.NBT
         //    return list;
         //}
 
-        private static SchematicBlock[,,] GetBlocks(RawSchematic rawSchematic)
+        public static SchematicBlock[,,] GetBlocks(RawSchematic rawSchematic)
         {
             //Sorted by height (bottom to top) then length then width -- the index of the block at X,Y,Z is (Y×length + Z)×width + X.
             SchematicBlock[,,] blocks = new SchematicBlock[rawSchematic.XMax,rawSchematic.YMax,rawSchematic.ZMax];

@@ -11,8 +11,7 @@ namespace Pandaros.Settlers.WorldGen
 {
     public class ColonyStructureGenerator : IStructureGenerator
     {
-        private Vector3Int _lastSpawned = new Vector3Int(150, 30, 150);
-
+        Dictionary<Vector3Int, GeneratedStructure> _placedStructures = new Dictionary<Vector3Int, GeneratedStructure>();
         List<GeneratedStructure> _structures = new List<GeneratedStructure>();
         GeneratedStructure _next;
 
@@ -25,6 +24,28 @@ namespace Pandaros.Settlers.WorldGen
 
         public void TryAddStructure(ref StructureGeneratorData data)
         {
+            int x = data.WorldX & 15;
+            int z = data.WorldZ & 15;
+
+            foreach(var structure in _placedStructures)
+            {
+                // using vector 2 because I only need 2 points. Y acts as Z
+                var xp = structure.Value.LastPlaced.x + 1;
+                var zp = structure.Value.LastPlaced.y + 1;
+
+                if ((x == xp && z == zp) ||
+                    (x == xp && z == structure.Value.LastPlaced.y) ||
+                    (x == structure.Value.LastPlaced.x && z == zp))
+                {
+                    for (int i = 0; i < structure.Value.SchematicSize.YMax; i++)
+                    {
+
+                    }
+
+                    return;
+                }
+            }
+
             if (data.Steepness <= .1)
             {
                 if (_next == null && _structures.Count > 0)
@@ -42,11 +63,18 @@ namespace Pandaros.Settlers.WorldGen
                     return;
                 }
 
-                int x = data.WorldX & 15;
-                int z = data.WorldZ & 15;
                 var currentPos = new Vector3Int(x, data.WorldY, z);
                 bool canBuild = true;
-                var distance = UnityEngine.Vector3.Distance(_lastSpawned.Vector, currentPos.Vector);
+                var distance = 150f;
+
+                // check of we are too close to another structure
+                foreach (var kvp in _placedStructures)
+                {
+                    var newDist = UnityEngine.Vector3.Distance(kvp.Key.Vector, currentPos.Vector);
+
+                    if (newDist < distance)
+                        distance = newDist;
+                }
 
                 if (_next.DistanceBetweenOtherStructuresMin > 0)
                     canBuild = _next.DistanceBetweenOtherStructuresMin < distance;
@@ -65,7 +93,6 @@ namespace Pandaros.Settlers.WorldGen
                         data.Blocks.Add(structureBlock);
                     }
 
-                    _lastSpawned = currentPos;
                     _next = null;
                     PandaLogger.Log(ChatColor.lime, "Colony Placed at [{0}, {1}, {2}]", x, data.WorldY, z);
                 }

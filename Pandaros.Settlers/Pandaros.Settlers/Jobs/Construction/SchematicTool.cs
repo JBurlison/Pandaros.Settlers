@@ -169,7 +169,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             switch (data.ButtonIdentifier)
             {
                 case GameLoader.NAMESPACE + ".SetArchitectArea":
-
+                    
                     NetworkMenuManager.CloseServerPopup(data.Player);
                     break;
 

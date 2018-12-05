@@ -9,7 +9,7 @@ using TerrainGeneration;
 
 namespace Pandaros.Settlers.WorldGen
 {
-    //[ModLoader.ModManager]
+    [ModLoader.ModManager]
     public class ColonyFactory
     {
         public static ColonyStructureGenerator Generator { get; set; }
@@ -33,34 +33,9 @@ namespace Pandaros.Settlers.WorldGen
                 }
                 else
                 {
-                    var schematic = SchematicReader.LoadSchematic(new fNbt.NbtFile(file), Pipliz.Vector3Int.minimum);
-                    var structure = MapStructure(schematic);
-                    Generator.AddGeneratedStructure(structure);
+                    Generator.AddGeneratedStructure(new GeneratedStructure(new fNbt.NbtFile(file)));
                 }
             }
-        }
-
-        public static GeneratedStructure MapStructure(Schematic schematic)
-        {
-            var structure = new GeneratedStructure();
-            List<StructureBlock> blocks = new List<StructureBlock>();
-            structure.Name = schematic.Name;
-
-            for (int Y = 0; Y < schematic.YMax; Y++)
-            {
-                for (int Z = 0; Z < schematic.ZMax; Z++)
-                {
-                    for (int X = 0; X < schematic.XMax; X++)
-                    {
-                        SchematicBlock block = schematic.GetBlock(X, Y, Z);
-                        blocks.Add(new StructureBlock(X, Y, Z, block.MappedBlock.CSIndex));
-                    }
-                }
-            }
-
-            structure.Blocks = blocks.ToArray();
-
-            return structure;
         }
     }
 }
