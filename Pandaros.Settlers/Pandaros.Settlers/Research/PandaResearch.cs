@@ -124,6 +124,9 @@ namespace Pandaros.Settlers.Research
                     p.GetTempValues(true).Set(LevelKey, Level);
                 }
 
+                manager.Colony.TemporaryData.SetAs(TmpValueKey, Value);
+                manager.Colony.TemporaryData.SetAs(LevelKey, Level);
+
                 if (ResearchComplete != null)
                     ResearchComplete(this, new ResearchCompleteEventArgs(this, manager));
             }

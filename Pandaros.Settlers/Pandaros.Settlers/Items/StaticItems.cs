@@ -1,5 +1,6 @@
 ﻿using Pipliz.JSON;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items
 {
@@ -52,8 +53,13 @@ namespace Pandaros.Settlers.Items
                         {
                             if (string.IsNullOrEmpty(item.RequiredScience))
                                 c.Stockpile.Add(staticItem);
-                            else if (c.TemporaryData.TryGetAs<object>(item.RequiredScience, out var obj))
-                                c.Stockpile.Add(staticItem);
+                            else
+                            {
+                                var sk = c.ScienceData.CompletedCycles.FirstOrDefault(kvp => kvp.Key.Researchable.Researchable.GetKey() == item.RequiredScience).Key;
+                                
+                                if (sk.Researchable != null)
+                                    c.Stockpile.Add(staticItem);
+                            }
                         }
         }
     }

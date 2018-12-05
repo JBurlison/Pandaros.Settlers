@@ -149,6 +149,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.Items.Add(new DropDown(new LabelData("Schematic", UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData("Save Schematic", UnityEngine.Color.black)));
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
@@ -157,21 +158,21 @@ namespace Pandaros.Settlers.Jobs.Construction
         static void OnSendAreaHighlights(Players.Player goal, List<AreaHighlight> list, List<ushort> showWhileHoldingTypes)
         {
             showWhileHoldingTypes.Add(BuiltinBlocks.Bed);
+
+            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(SchematicTool.NAME, out var item))
+                showWhileHoldingTypes.Add(item.ItemIndex);
         }
 
-        //public static void CreateNewAreaJob (string identifier, Pipliz.JSON.JSONNode args, Colony colony, Vector3Int min, Vector3Int max)
-        //on the areajobtracker
-        //identifier = pipliz.constructionarea
-        //then the args node has
-        //"constructionType" : "GameLoader.NAMESPACE + ".SchematicBuilder"
-
-        //you call AreaJobTracker.SendData(player), then that triggers the OnSendAreaHighlights callback in which you can add any area you want. It'll show up for the player till the callback happens again
-        //or you add an actual area to the areajobtracker & then call SendData(player), it'll automatically get the data from that area then
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
             switch (data.ButtonIdentifier)
             {
+                case GameLoader.NAMESPACE + ".SetArchitectArea":
+
+                    NetworkMenuManager.CloseServerPopup(data.Player);
+                    break;
+
                 case GameLoader.NAMESPACE + ".ShowMainMenu":
                     SendMainMenu(data.Player);
                     break;
