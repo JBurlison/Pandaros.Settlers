@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.WorldGen
         Dictionary<Vector3Int, GeneratedStructure> _placedStructures = new Dictionary<Vector3Int, GeneratedStructure>();
         List<GeneratedStructure> _structures = new List<GeneratedStructure>();
         GeneratedStructure _next;
-
+        Vector2Int _spawn = new Vector2Int(0, 0);
         public IStructureGenerator InnerGenerator { get; set; }
 
         public ColonyStructureGenerator(IMetaBiomeProvider metaBiomeProvider, float maxSteepForStructureGlobal, DefaultTreeStructureGenerator tree) 
@@ -73,51 +73,64 @@ namespace Pandaros.Settlers.WorldGen
                     return;
                 }
 
-                var yblock = data.Blocks.LastOrDefault(b => b.Type != default(ushort));
-                var currentPos = new Vector3Int(x, yblock.Position.y, z);
-                bool canBuild = true;
-                var distance = UnityEngine.Vector3.Distance(new UnityEngine.Vector3(0, 0, 0), currentPos.Vector);
+                var yblock = new StructureBlock();
 
-                // check of we are too close to another structure
-                foreach (var kvp in _placedStructures)
+                foreach (var b in data.Blocks)
                 {
-                    var newDist = UnityEngine.Vector3.Distance(kvp.Key.Vector, currentPos.Vector);
-
-                    if (newDist < distance)
-                        distance = newDist;
+                    if (b.Type != default(ushort) && b.Position.y > yblock.Position.y)
+                        yblock = b;
                 }
 
-                if (_next.DistanceBetweenOtherStructuresMin > 0)
-                    canBuild = _next.DistanceBetweenOtherStructuresMin < distance;
-
-                if (canBuild && _next.DistanceBetweenOtherStructuresMax > 0)
-                    canBuild = _next.DistanceBetweenOtherStructuresMax > distance;
-
-                if (canBuild)
+                // are we above ground
+                if (yblock.Position.y < data.WorldY + data.Height)
                 {
-                    //if (yblock.Type != default(ushort))
-                    //{
-                    _next.Ymin = currentPos.y;
-                    //_next.Ymin = currentPos.y;
-                    //currentPos.y = _next.Ymin;
-                    _placedStructures.Add(currentPos, _next);
+                    var currentPos = new Vector3Int(x, yblock.Position.y, z);
+                    bool canBuild = true;
+                    var distance = _spawn.ManhattanDistance(new Vector2Int(currentPos.x, currentPos.z));
 
-                    for (int i = 0; i < _next.SchematicSize.YMax; i++)
+                    // check of we are too close to another structure
+                    foreach (var kvp in _placedStructures)
                     {
-                        var struc = _next.GetBlock(0, i, 0);
-                        PandaLogger.Log("{0} placing initial block {1}", struc.Type, _next.Name);
-                        struc.Position.x = (sbyte)x;
-                        struc.Position.y = (sbyte)(_next.Ymin + i);
-                        struc.Position.z = (sbyte)z;
-                        data.Blocks.Add(struc);
+                        var newDist = (new Vector2Int(kvp.Key.x, kvp.Key.z)).ManhattanDistance(new Vector2Int(currentPos.x, currentPos.z));
+
+                        if (newDist < distance)
+                            distance = newDist;
                     }
 
-                    _next.LastPlaced = new Vector2Int(x, z);
-                    _next = null;
-                    PandaLogger.Log(ChatColor.lime, "Colony Placed at [{0}, {1}, {2}]", currentPos.x, currentPos.y, currentPos.z);
-                    //}
-                    //else
-                    //    InnerGenerator.TryAddStructure(ref data);
+                    if (_next.DistanceBetweenOtherStructuresMin > 0)
+                        canBuild = _next.DistanceBetweenOtherStructuresMin < distance;
+
+                    if (canBuild && _next.DistanceBetweenOtherStructuresMax > 0)
+                        canBuild = _next.DistanceBetweenOtherStructuresMax > distance;
+
+                    if (canBuild)
+                    {
+                        //if (yblock.Type != default(ushort))
+                        //{
+                        _next.Ymin = currentPos.y;
+                        //_next.Ymin = currentPos.y;
+                        //currentPos.y = _next.Ymin;
+                        _placedStructures.Add(currentPos, _next);
+
+                        for (int i = 0; i < _next.SchematicSize.YMax; i++)
+                        {
+                            var struc = _next.GetBlock(0, i, 0);
+                            PandaLogger.Log("{0} placing initial block {1}", struc.Type, _next.Name);
+                            struc.Position.x = (sbyte)x;
+                            struc.Position.y = (sbyte)(_next.Ymin + i);
+                            struc.Position.z = (sbyte)z;
+                            data.Blocks.Add(struc);
+                        }
+
+                        _next.LastPlaced = new Vector2Int(x, z);
+                        _next = null;
+                        PandaLogger.Log(ChatColor.lime, "Colony Placed at [{0}, {1}, {2}]", currentPos.x, currentPos.y, currentPos.z);
+                        //}
+                        //else
+                        //    InnerGenerator.TryAddStructure(ref data);
+                    }
+                    else
+                        InnerGenerator.TryAddStructure(ref data);
                 }
                 else
                     InnerGenerator.TryAddStructure(ref data);

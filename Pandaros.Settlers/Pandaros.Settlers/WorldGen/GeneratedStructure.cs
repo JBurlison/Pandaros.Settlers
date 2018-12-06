@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.WorldGen
         public RawSchematicSize SchematicSize { get; set; }
         public int Ymin { get; set; }
         public int DistanceBetweenOtherStructuresMax { get; set; } = -1;
-        public int DistanceBetweenOtherStructuresMin { get; set; } = 200;
+        public int DistanceBetweenOtherStructuresMin { get; set; } = 20;
         public int NumberOfPlacements { get; set; } = 1;
         public float SpawnChance { get; set; } = .05f;
         public StructureBlock[,,] Blocks { get; set; }

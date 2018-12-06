@@ -260,5 +260,37 @@ namespace Pandaros.Settlers
                 v["y"].GetAs<int>(),
                 v["z"].GetAs<int>());
         }
+
+        public static int ManhattanDistance(this Vector2Int a, Vector2Int b)
+        {
+            checked
+            {
+                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
+            }
+        }
+
+        public static int ManhattanDistance(this UnityEngine.Vector2Int a, UnityEngine.Vector2Int b)
+        {
+            checked
+            {
+                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
+            }
+        }
+
+        public static int ManhattanDistance(this Vector2Int a, UnityEngine.Vector2Int b)
+        {
+            checked
+            {
+                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
+            }
+        }
+
+        public static int ManhattanDistance(this UnityEngine.Vector2Int a, Vector2Int b)
+        {
+            checked
+            {
+                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
+            }
+        }
     }
 }
