@@ -44,6 +44,7 @@ namespace Pandaros.Settlers.WorldGen
                     for (int i = 0; i < structure.Value.SchematicSize.YMax; i++)
                     {
                         var struc = structure.Value.GetBlock(calcX, i, caclZ);
+                        PandaLogger.Log("placing block {0} at [{1}, {2}, {3}]", struc.Type, x, structure.Value.Ymin + i, z);
                         struc.Position.x = (sbyte)x;
                         struc.Position.y = (sbyte)(structure.Value.Ymin + i);
                         struc.Position.z = (sbyte)z;
@@ -72,7 +73,8 @@ namespace Pandaros.Settlers.WorldGen
                     return;
                 }
 
-                var currentPos = new Vector3Int(x, data.WorldY, z);
+                var yblock = data.Blocks.LastOrDefault(b => b.Type != default(ushort));
+                var currentPos = new Vector3Int(x, yblock.Position.y, z);
                 bool canBuild = true;
                 var distance = UnityEngine.Vector3.Distance(new UnityEngine.Vector3(0, 0, 0), currentPos.Vector);
 
@@ -93,18 +95,17 @@ namespace Pandaros.Settlers.WorldGen
 
                 if (canBuild)
                 {
-                    var yblock = data.Blocks.LastOrDefault(b => b.Type != default(ushort));
-
                     //if (yblock.Type != default(ushort))
                     //{
-                    _next.Ymin = yblock.Position.y;
+                    _next.Ymin = currentPos.y;
                     //_next.Ymin = currentPos.y;
-                    currentPos.y = _next.Ymin;
+                    //currentPos.y = _next.Ymin;
                     _placedStructures.Add(currentPos, _next);
 
                     for (int i = 0; i < _next.SchematicSize.YMax; i++)
                     {
                         var struc = _next.GetBlock(0, i, 0);
+                        PandaLogger.Log("{0} placing initial block {1}", struc.Type, _next.Name);
                         struc.Position.x = (sbyte)x;
                         struc.Position.y = (sbyte)(_next.Ymin + i);
                         struc.Position.z = (sbyte)z;
