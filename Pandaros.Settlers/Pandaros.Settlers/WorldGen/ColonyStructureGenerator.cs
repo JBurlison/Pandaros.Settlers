@@ -1,4 +1,5 @@
-﻿using Pipliz;
+﻿using BlockTypes;
+using Pipliz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Pandaros.Settlers.WorldGen
             int x = data.WorldX & 15;
             int z = data.WorldZ & 15;
 
-            foreach(var structure in _placedStructures)
+            foreach (var structure in _placedStructures)
             {
                 // using vector 2 because I only need 2 points. Y acts as Z
                 var xp = structure.Value.LastPlaced.x + 1;
@@ -37,11 +38,19 @@ namespace Pandaros.Settlers.WorldGen
                     (x == xp && z == structure.Value.LastPlaced.y) ||
                     (x == structure.Value.LastPlaced.x && z == zp))
                 {
+                    var calcX = x - structure.Key.x;
+                    var caclZ = z - structure.Key.z;
+                    
                     for (int i = 0; i < structure.Value.SchematicSize.YMax; i++)
                     {
-
+                        var struc = structure.Value.GetBlock(calcX, i, caclZ);
+                        struc.Position.x = (sbyte)x;
+                        struc.Position.y = (sbyte)(structure.Value.Ymin + i);
+                        struc.Position.z = (sbyte)z;
+                        data.Blocks.Add(struc);
                     }
 
+                    structure.Value.LastPlaced = new Vector2Int(x, z);
                     return;
                 }
             }
@@ -65,7 +74,7 @@ namespace Pandaros.Settlers.WorldGen
 
                 var currentPos = new Vector3Int(x, data.WorldY, z);
                 bool canBuild = true;
-                var distance = 150f;
+                var distance = UnityEngine.Vector3.Distance(new UnityEngine.Vector3(0, 0, 0), currentPos.Vector);
 
                 // check of we are too close to another structure
                 foreach (var kvp in _placedStructures)
@@ -84,17 +93,30 @@ namespace Pandaros.Settlers.WorldGen
 
                 if (canBuild)
                 {
-                    for (int i = 0; i < _next.Blocks.Length; ++i)
+                    var yblock = data.Blocks.LastOrDefault(b => b.Type != default(ushort));
+
+                    //if (yblock.Type != default(ushort))
+                    //{
+                    _next.Ymin = yblock.Position.y;
+                    //_next.Ymin = currentPos.y;
+                    currentPos.y = _next.Ymin;
+                    _placedStructures.Add(currentPos, _next);
+
+                    for (int i = 0; i < _next.SchematicSize.YMax; i++)
                     {
-                        StructureBlock structureBlock = _next.Blocks[i];
-                        structureBlock.Position.x += (sbyte)x;
-                        structureBlock.Position.y += (short)data.WorldY;
-                        structureBlock.Position.z += (sbyte)z;
-                        data.Blocks.Add(structureBlock);
+                        var struc = _next.GetBlock(0, i, 0);
+                        struc.Position.x = (sbyte)x;
+                        struc.Position.y = (sbyte)(_next.Ymin + i);
+                        struc.Position.z = (sbyte)z;
+                        data.Blocks.Add(struc);
                     }
 
+                    _next.LastPlaced = new Vector2Int(x, z);
                     _next = null;
-                    PandaLogger.Log(ChatColor.lime, "Colony Placed at [{0}, {1}, {2}]", x, data.WorldY, z);
+                    PandaLogger.Log(ChatColor.lime, "Colony Placed at [{0}, {1}, {2}]", currentPos.x, currentPos.y, currentPos.z);
+                    //}
+                    //else
+                    //    InnerGenerator.TryAddStructure(ref data);
                 }
                 else
                     InnerGenerator.TryAddStructure(ref data);

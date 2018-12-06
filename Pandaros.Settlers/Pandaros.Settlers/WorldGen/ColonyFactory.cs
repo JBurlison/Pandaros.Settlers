@@ -33,9 +33,32 @@ namespace Pandaros.Settlers.WorldGen
                 }
                 else
                 {
-                    Generator.AddGeneratedStructure(new GeneratedStructure(new fNbt.NbtFile(file)));
+                    //Generator.AddGeneratedStructure(new GeneratedStructure(new fNbt.NbtFile(file)));
+                    var schematic = SchematicReader.LoadSchematic(new fNbt.NbtFile(file), Pipliz.Vector3Int.minimum);
+                    var structure = MapStructure(schematic, new fNbt.NbtFile(file));
+                    Generator.AddGeneratedStructure(structure);
                 }
             }
+        }
+
+        public static GeneratedStructure MapStructure(Schematic schematic, fNbt.NbtFile nbt)
+        {
+            var structure = new GeneratedStructure(nbt);
+            structure.Name = schematic.Name;
+
+            for (int Y = 0; Y < schematic.YMax; Y++)
+            {
+                for (int Z = 0; Z < schematic.ZMax; Z++)
+                {
+                    for (int X = 0; X < schematic.XMax; X++)
+                    {
+                        SchematicBlock block = schematic.GetBlock(X, Y, Z);
+                        structure.Blocks[X, Y, Z] = new StructureBlock(X, Y, Z, block.MappedBlock.CSIndex);
+                    }
+                }
+            }
+
+            return structure;
         }
     }
 }

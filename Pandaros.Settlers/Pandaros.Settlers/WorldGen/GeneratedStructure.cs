@@ -16,20 +16,23 @@ namespace Pandaros.Settlers.WorldGen
         public NbtFile File { get; set; }
         public Vector2Int LastPlaced { get; set; }
         public RawSchematicSize SchematicSize { get; set; }
-        public short Ymin { get; set; }
+        public int Ymin { get; set; }
         public int DistanceBetweenOtherStructuresMax { get; set; } = -1;
         public int DistanceBetweenOtherStructuresMin { get; set; } = 200;
         public int NumberOfPlacements { get; set; } = 1;
         public float SpawnChance { get; set; } = .05f;
-
+        public StructureBlock[,,] Blocks { get; set; }
         public GeneratedStructure(NbtFile file)
         {
             SchematicSize = SchematicReader.LoadRawSize(file);
+            Blocks = new StructureBlock[SchematicSize.XMax, SchematicSize.YMax, SchematicSize.ZMax];
             File = file;
         }
 
         public StructureBlock GetBlock(int x, int y, int z)
         {
+            return Blocks[x, y, z];
+
             StructureBlock sb = new StructureBlock();
 
             if (x >= SchematicSize.XMax ||
