@@ -129,7 +129,7 @@ namespace Pandaros.Settlers.WorldGen
                                 _placedStructures.Add(spawnLocation, next);
                                 ChunkQueue.QueueBannerBox(next.Bounds.min, next.Bounds.max);
 
-                                System.Threading.Thread.Sleep(5000);
+                                Thread.Sleep(5000);
 
                                 var itt = new ColonyIterator(next.SchematicSize);
                                 bool canMoveNext = true;
