@@ -14,14 +14,13 @@ namespace Pandaros.Settlers.WorldGen
     {
         public string Name { get; set; }
         public NbtFile File { get; set; }
-        public Vector2Int LastPlaced { get; set; }
+        public BoundsInt Bounds { get; set; }
         public RawSchematicSize SchematicSize { get; set; }
-        public int Ymin { get; set; }
-        public int DistanceBetweenOtherStructuresMax { get; set; } = -1;
-        public int DistanceBetweenOtherStructuresMin { get; set; } = 20;
+        public int DistanceBetweenOtherStructuresMax { get; set; } = 550;
+        public int DistanceBetweenOtherStructuresMin { get; set; } = 250;
         public int NumberOfPlacements { get; set; } = 1;
-        public float SpawnChance { get; set; } = .05f;
         public StructureBlock[,,] Blocks { get; set; }
+
         public GeneratedStructure(NbtFile file)
         {
             SchematicSize = SchematicReader.LoadRawSize(file);

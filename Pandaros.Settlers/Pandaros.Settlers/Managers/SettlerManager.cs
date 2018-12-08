@@ -177,7 +177,7 @@ namespace Pandaros.Settlers.Managers
                     if (EvaluateSettlers(cs) ||
                         EvaluateLaborers(cs) ||
                         EvaluateBeds(cs))
-                        colony.SendUpdate();
+                        colony.SendCommonData();
 
                 UpdateFoodUse(cs);
             }
@@ -303,8 +303,7 @@ namespace Pandaros.Settlers.Managers
             foreach (Colony c in p.Colonies)
             {
                 UpdateFoodUse(ColonyState.GetColonyState(c));
-                c.SendUpdate();
-                c.SendColonistCount();
+                c.SendCommonData();
             }
         }
 
@@ -520,7 +519,7 @@ namespace Pandaros.Settlers.Managers
                     food = _baseFoodPerHour;
 
                 state.ColonyRef.FoodUsePerHour = food;
-                state.ColonyRef.SendUpdate();
+                state.ColonyRef.SendCommonData();
             }
         }
 
@@ -590,8 +589,7 @@ namespace Pandaros.Settlers.Managers
 
                                 for (var i = 0; i < addCount; i++)
                                 {
-                                    var newGuy = new NPCBase(state.ColonyRef,
-                                                             state.ColonyRef.GetRandomBanner().Position.Vector);
+                                    var newGuy = new NPCBase(state.ColonyRef, state.ColonyRef.GetRandomBanner().Position);
 
                                     NPCTracker.Add(newGuy);
                                     state.ColonyRef.RegisterNPC(newGuy);
@@ -619,7 +617,7 @@ namespace Pandaros.Settlers.Managers
 
                     state.NextGenTime = Time.SecondsSinceStartDouble + Random.Next(8, 16) * IN_GAME_HOUR_IN_SECONDS;
 
-                    state.ColonyRef.SendUpdate();
+                    state.ColonyRef.SendCommonData();
                 }
             }
 
@@ -666,7 +664,7 @@ namespace Pandaros.Settlers.Managers
                                        ChatColor.red);
 
                     update = unTrack.Count != 0;
-                    state.ColonyRef.SendUpdate();
+                    state.ColonyRef.SendCommonData();
                 }
 
                 _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * IN_GAME_HOUR_IN_SECONDS * 24;
@@ -762,7 +760,7 @@ namespace Pandaros.Settlers.Managers
                             }
                         }
 
-                        state.ColonyRef.SendUpdate();
+                        state.ColonyRef.SendCommonData();
                     }
 
                     _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * IN_GAME_HOUR_IN_SECONDS * 24;

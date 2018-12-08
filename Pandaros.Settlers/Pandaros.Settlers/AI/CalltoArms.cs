@@ -362,8 +362,7 @@ namespace Pandaros.Settlers.AI
                 armsJob.Owner.JobFinder.Remove(armsJob);
 
             _callToArmsJobs.Clear();
-            colony.SendUpdate();
-            colony.SendColonistCount();
+            colony.SendCommonData();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected,

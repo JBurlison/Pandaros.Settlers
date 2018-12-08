@@ -111,7 +111,7 @@ namespace Pandaros.Settlers.ColonyManager
                     }
                 }
 
-                data.Player.ActiveColony.SendUpdate();
+                data.Player.ActiveColony.SendCommonData();
                 jobCounts = GetJobCounts(data.Player.ActiveColony);
                 NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
             }
@@ -142,7 +142,7 @@ namespace Pandaros.Settlers.ColonyManager
                             }
                         }
 
-                        data.Player.ActiveColony.SendUpdate();
+                        data.Player.ActiveColony.SendCommonData();
                         break;
                     }
 
@@ -163,16 +163,16 @@ namespace Pandaros.Settlers.ColonyManager
                         for (int i = 0; i < count; i++)
                         {
                             var num = 0f;
-
-                            if (data.Player.ActiveColony.Stockpile.TotalFood < ServerManager.ServerSettings.NPCs.RecruitmentCost ||
-                                !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, ServerManager.ServerSettings.NPCs.RecruitmentCost))
+                            data.Player.ActiveColony.HappinessData.RecruitmentCostCalculator.GetCost(data.Player.ActiveColony, out float foodCost);
+                            if (data.Player.ActiveColony.Stockpile.TotalFood < foodCost ||
+                                !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, foodCost))
                             {
                                 PandaChat.Send(data.Player, "Not enough food.", ChatColor.red);
                                 break;
                             }
                             else
                             {
-                                var newGuy = new NPCBase(data.Player.ActiveColony, data.Player.ActiveColony.GetClosestBanner(new Vector3Int(data.Player.Position)).Position.Vector);
+                                var newGuy = new NPCBase(data.Player.ActiveColony, data.Player.ActiveColony.GetClosestBanner(new Vector3Int(data.Player.Position)).Position);
                                 data.Player.ActiveColony.RegisterNPC(newGuy);
                                 SettlerInventory.GetSettlerInventory(newGuy);
                                 NPCTracker.Add(newGuy);
@@ -187,7 +187,7 @@ namespace Pandaros.Settlers.ColonyManager
                         }
 
 
-                        data.Player.ActiveColony.SendUpdate();
+                        data.Player.ActiveColony.SendCommonData();
 
                         jobCounts = GetJobCounts(data.Player.ActiveColony);
                         NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));

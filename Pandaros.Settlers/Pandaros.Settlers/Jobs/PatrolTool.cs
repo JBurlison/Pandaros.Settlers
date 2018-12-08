@@ -280,7 +280,7 @@ namespace Pandaros.Settlers.Jobs
                                    ChatColor.orange);
 
                     player.ActiveColony.JobFinder.Update();
-                    player.ActiveColony.SendUpdate();
+                    player.ActiveColony.SendCommonData();
                 }
             }
         }
