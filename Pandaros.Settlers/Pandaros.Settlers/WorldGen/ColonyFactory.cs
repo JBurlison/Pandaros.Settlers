@@ -138,10 +138,7 @@ namespace Pandaros.Settlers.WorldGen
                                 {
                                     var block = next.GetBlock(itt.CurrentPosition.x, itt.CurrentPosition.y, itt.CurrentPosition.z);
                                     var currentPos = spawnLocation.Add(itt.CurrentPosition.x, itt.CurrentPosition.y, itt.CurrentPosition.z);
-
-                                    if (ItemTypes.TryGetType(block.Type, out var itemType))
-                                        World.TryChangeBlock(currentPos, itemType);
-
+                                    World.TryChangeBlock(currentPos, block.Type);
                                     canMoveNext = itt.MoveNext();
                                 }
 
