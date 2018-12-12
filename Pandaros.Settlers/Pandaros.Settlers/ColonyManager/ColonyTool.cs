@@ -163,7 +163,7 @@ namespace Pandaros.Settlers.ColonyManager
                         for (int i = 0; i < count; i++)
                         {
                             var num = 0f;
-                            data.Player.ActiveColony.HappinessData.RecruitmentCostCalculator.GetCost(data.Player.ActiveColony, out float foodCost);
+                            data.Player.ActiveColony.HappinessData.RecruitmentCostCalculator.GetCost(data.Player.ActiveColony.HappinessData.CachedHappiness, data.Player.ActiveColony, out float foodCost);
                             if (data.Player.ActiveColony.Stockpile.TotalFood < foodCost ||
                                 !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, foodCost))
                             {
