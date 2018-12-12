@@ -190,11 +190,11 @@ namespace Pandaros.Settlers.WorldGen
                     if (Pipliz.Random.NextBool())
                         randZ = randZ * -1;
 
-                    randSpot = start.Add(randX, start.y, randZ);
+                    randSpot = start.Add(randX, 0, randZ);
                     PandaLogger.Log("Proposed Spot: {0}", randSpot);
 
                     // look for ground
-                    while (World.TryGetTypeAt(randSpot, out ushort item) && item != BuiltinBlocks.Air ||
+                    while (World.TryGetTypeAt(randSpot, out ushort item) && item != BuiltinBlocks.Air &&
                             World.TryGetTypeAt(randSpot.Add(0, -1, 0), out ushort underItem) && underItem == BuiltinBlocks.Air)
                     {
                         if (item != BuiltinBlocks.Air)

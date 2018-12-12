@@ -30,6 +30,11 @@ namespace Pandaros.Settlers.WorldGen
 
         public StructureBlock GetBlock(int x, int y, int z)
         {
+            if (x >= SchematicSize.XMax ||
+                y >= SchematicSize.YMax ||
+                z >= SchematicSize.ZMax)
+                return new StructureBlock();
+
             return Blocks[x, y, z];
 
             StructureBlock sb = new StructureBlock();

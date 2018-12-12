@@ -27,9 +27,9 @@ namespace Pandaros.Settlers.WorldGen
 
         public bool IsInBounds(Vector3Int location)
         {
-            return location.x >= positionMin.x && location.x <= positionMax.x
-                && location.y >= positionMin.y && location.y <= positionMax.y
-                && location.z >= positionMin.z && location.z <= positionMax.z;
+            return location.x >= positionMin.x && location.x < positionMax.x
+                && location.y >= positionMin.y && location.y < positionMax.y
+                && location.z >= positionMin.z && location.z < positionMax.z;
         }
 
         public bool MoveNext()
