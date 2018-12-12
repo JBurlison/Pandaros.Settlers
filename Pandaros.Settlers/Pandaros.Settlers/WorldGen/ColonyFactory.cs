@@ -131,16 +131,14 @@ namespace Pandaros.Settlers.WorldGen
 
                                 Thread.Sleep(5000);
 
-                                var itt = new ColonyIterator(next.SchematicSize);
-                                bool canMoveNext = true;
-
-                                while (canMoveNext)
-                                {
-                                    var block = next.GetBlock(itt.CurrentPosition.x, itt.CurrentPosition.y, itt.CurrentPosition.z);
-                                    var currentPos = spawnLocation.Add(itt.CurrentPosition.x, itt.CurrentPosition.y, itt.CurrentPosition.z);
-                                    World.TryChangeBlock(currentPos, block.Type);
-                                    canMoveNext = itt.MoveNext();
-                                }
+                                for (int x = 0; x < next.SchematicSize.XMax; x++)
+                                    for (int y = 0; y < next.SchematicSize.YMax; y++)
+                                        for (int z = 0; z < next.SchematicSize.ZMax; z++)
+                                        {
+                                            var block = next.GetBlock(x, y, z);
+                                            var currentPos = spawnLocation.Add(x, y, z);
+                                            World.TryChangeBlock(currentPos, block.Type);
+                                        }
 
                                 PandaLogger.Log("Spawned {0} at {1}", next.Name, spawnLocation.ToString());
                             }

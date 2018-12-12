@@ -232,7 +232,6 @@
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
-    <Compile Include="WorldGen\ColonyIterator.cs" />
     <None Include="Schematics\Mountan-Top-Castle.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
