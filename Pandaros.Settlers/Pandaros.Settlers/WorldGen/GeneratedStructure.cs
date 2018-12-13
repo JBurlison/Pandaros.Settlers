@@ -16,8 +16,8 @@ namespace Pandaros.Settlers.WorldGen
         public NbtFile File { get; set; }
         public BoundsInt Bounds { get; set; }
         public RawSchematicSize SchematicSize { get; set; }
-        public int DistanceBetweenOtherStructuresMax { get; set; } = 550;
-        public int DistanceBetweenOtherStructuresMin { get; set; } = 250;
+        public int DistanceBetweenOtherStructuresMax { get; set; } = 700;
+        public int DistanceBetweenOtherStructuresMin { get; set; } = 300;
         public int NumberOfPlacements { get; set; } = 1;
 
         public GeneratedStructure(NbtFile file)

@@ -13,12 +13,13 @@ using TerrainGeneration;
 
 namespace Pandaros.Settlers.WorldGen
 {
-    [ModLoader.ModManager]
+    //[ModLoader.ModManager]
     public class ColonyFactory
     {
         public static List<GeneratedStructure> _structures = new List<GeneratedStructure>();
         public static Dictionary<Vector3Int, GeneratedStructure> _placedStructures = new Dictionary<Vector3Int, GeneratedStructure>();
         static string SaveLocation = GameLoader.SAVE_LOC + "WorldGen/Buildings/";
+        static BoundsInt _working = new BoundsInt(Vector3Int.minimum, Vector3Int.minimum);
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".WorldGen.ColonyFactory.LoadColonyGenerator")]
         [ModLoader.ModCallbackDependsOn("create_servermanager_trackers")]
@@ -89,6 +90,9 @@ namespace Pandaros.Settlers.WorldGen
                 if (BoundsInt.Intersects(structure.Value.Bounds, data.CheckedChunk.Bounds))
                     data.Result = true;
             }
+
+            if (BoundsInt.Intersects(_working, data.CheckedChunk.Bounds))
+                data.Result = true;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterNetworkSetup, GameLoader.NAMESPACE + ".WorldGen.ColonyFactory.AfterNetworkSetup")]
@@ -188,26 +192,40 @@ namespace Pandaros.Settlers.WorldGen
                         randZ = randZ * -1;
 
                     randSpot = start.Add(randX, 0, randZ);
-                    PandaLogger.Log("Proposed Spot: {0}", randSpot);
+                    _working = new BoundsInt(randSpot.Add(0, randSpot.x * -1, 0), randSpot.Add(0, 100, 0));
+                    ChunkQueue.QueueBannerBox(_working.min, _working.max);
+                    Thread.Sleep(5000);
+
 
                     // look for ground
-                    while (World.TryGetTypeAt(randSpot, out ushort item) && item != BuiltinBlocks.Air &&
-                            World.TryGetTypeAt(randSpot.Add(0, -1, 0), out ushort underItem) && underItem == BuiltinBlocks.Air)
+                    while (!World.TryGetTypeAt(randSpot, out ItemTypes.ItemType item) || item.ItemIndex != BuiltinBlocks.Air ||
+                            !World.TryGetTypeAt(randSpot.Add(0, -1, 0), out ushort underItem) || (underItem == BuiltinBlocks.Air || underItem == BuiltinBlocks.Water))
                     {
-                        if (item != BuiltinBlocks.Air)
-                            randSpot = randSpot.Add(0, 1, 0);
+                        if (item != null)
+                        {
+                            if (item.ItemIndex != BuiltinBlocks.Air)
+                                randSpot = randSpot.Add(0, 1, 0);
+                            else
+                                randSpot = randSpot.Add(0, -1, 0);
+                        }
                         else
-                            randSpot = randSpot.Add(0, -1, 0);
+                            PandaLogger.Log("cant get item");
                     }
 
-                    bool isClear = true;
+                    PandaLogger.Log("Proposed Spot: {0}", randSpot);
 
-                    for (int x = 1; x < 5; x++)
-                        for (int z = 1; z < 5; z++)
-                            if (World.TryGetTypeAt(randSpot.Add(x, 0, z), out ushort item) && item != BuiltinBlocks.Air)
+                    bool isClear = true;
+                    int size = 2;
+                    _working = new BoundsInt(randSpot.Add(0, -1, 0), randSpot.Add(size, 0, size));
+                    ChunkQueue.QueueBannerBox(_working.min, _working.max);
+                    Thread.Sleep(300);
+
+
+                    for (int x = 0; x < size; x++)
+                        for (int z = 0; z < size; z++)
+                            if (!World.TryGetTypeAt(randSpot.Add(x, 0, z), out ushort item) || item != BuiltinBlocks.Air)
                             {
                                 isClear = false;
-                                PandaLogger.Log("Random Spot not clear");
                             }
 
                     if (isClear)
