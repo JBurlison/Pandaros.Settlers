@@ -18,16 +18,16 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
-            foreach (var info in GameLoader.AllModInfos)
-                if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
+            foreach(var info in GameLoader.AllModInfos)
+                if(info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
                 {
-                    foreach (var jsonNode in jsonFilles.LoopArray())
+                    foreach(var jsonNode in jsonFilles.LoopArray())
                     {
-                        if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
+                        if(jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
                         {
                             var newMenu = JSON.Deserialize(info.Key + "\\" + menuFilePath);
 
-                            if (LoadedMenus == null)
+                            if(LoadedMenus == null)
                                 LoadedMenus = newMenu;
                             else
                             {
@@ -40,23 +40,40 @@ namespace Pandaros.Settlers.Managers
                 }
         }
 
+        public static Dictionary<ushort, Recipes.Recipe> ItemRecipe = new Dictionary<ushort, Recipes.Recipe>();
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Managers.LoadRecipes")]
+        public static void LoadRecipes()
+        {
+
+            foreach(var recipe in ServerManager.RecipeStorage.Recipes.Values)
+            {
+                if(recipe != null && recipe.Results != null)
+                    foreach(var results in recipe.Results)
+                    {
+                        if(!ItemRecipe.ContainsKey(results.Type))
+                            ItemRecipe.Add(results.Type, recipe);
+                    }
+            }
+        }
+
         public static void SendMenu(Players.Player player, string reference)
         {
             string url = reference;
 
-            if (reference.Contains("_"))
+            if(reference.Contains("_"))
                 url = reference.Substring(reference.IndexOf("_") + 1);
 
             var splitUrl = url.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
             var uiNode = LoadedMenus;
 
-            foreach (var entry in splitUrl)
+            foreach(var entry in splitUrl)
             {
-                if (!uiNode.TryGetAs(entry, out uiNode))
+                if(!uiNode.TryGetAs(entry, out uiNode))
                     break;
             }
 
-            if (uiNode == default(JSONNode) || uiNode == LoadedMenus)
+            if(uiNode == default(JSONNode) || uiNode == LoadedMenus)
                 PandaLogger.Log(ChatColor.red, "Unable to find menu {0}", reference);
             else
                 SendMenu(player, uiNode);
@@ -77,13 +94,13 @@ namespace Pandaros.Settlers.Managers
 
 
             foreach(JSONNode item in ( json.GetAs<JSONNode>("Items") ).LoopArray())
-                menu.Items.Add(LoadItem(item, ref menu));
+                menu.Items.Add(LoadItem(item, ref menu, player));
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
 
         //Ref menu is added for change LocalStorage -> avoid client error
-        public static IItem LoadItem(JSONNode item, ref NetworkMenu menu)
+        public static IItem LoadItem(JSONNode item, ref NetworkMenu menu, Players.Player player)
         {
             string itemType = item.GetAs<string>("type").Trim().ToLower();
 
@@ -127,6 +144,58 @@ namespace Pandaros.Settlers.Managers
                     item.TryGetAsOrDefault<string>("name", out string icon, "missingerror");
 
                     newItem = new ItemIcon(icon);
+                }
+                break;
+
+                case "itemrecipe":
+                {
+                    if(!item.HasChild("name"))
+                    {
+                        Log.Write("<color=red>ItemRecipe: Not name defined </color>");
+                        return newItem;
+                    }
+
+                    item.TryGetAs<string>("name", out string name);
+
+                    if(!ItemTypes.IndexLookup.TryGetIndex(name, out ushort index))
+                    {
+                        Log.Write("<color=red>ItemRecipe: Not item found with name: " + name + "</color>");
+                        return newItem;
+                    }
+
+                    if(!ItemRecipe.TryGetValue(index, out var Recipe))
+                    {
+                        Log.Write("<color=red>ItemRecipe: Not recipe found for: " + name + "</color>");
+                        return newItem;
+                    }
+
+                    if(Localization.TryGetType(player.LastKnownLocale, index, out string localeName))
+                    {
+                        menu.Items.Add(new Label(localeName + ":"));
+                    }
+                    else
+                        menu.Items.Add(new Label(name+":"));
+
+                    foreach(var req in Recipe.Requirements)
+                    {
+                        if(req == null)
+                            continue;
+
+                        string reqName = ItemTypes.IndexLookup.GetName(req.Type);
+
+                        ItemIcon icon = new ItemIcon(reqName);
+                        if(Localization.TryGetType(player.LastKnownLocale, req.Type, out string localeReqName))
+                            reqName = localeReqName;
+                        Label labelName = new Label(reqName);
+                        Label labelAmount = new Label(req.Amount.ToString());
+
+                        List<IItem> items = new List<IItem>();
+                        items.Add(icon);
+                        items.Add(labelName);
+                        items.Add(labelAmount);
+
+                        menu.Items.Add(new HorizontalGrid(items, 100));
+                    }
                 }
                 break;
 
@@ -285,7 +354,7 @@ namespace Pandaros.Settlers.Managers
 
                         foreach(JSONNode row in rows.LoopArray())
                         {
-                            items.Add(LoadItem(row, ref menu));
+                            items.Add(LoadItem(row, ref menu, player));
                         }
 
                         if(item.HasChild("position"))
@@ -296,6 +365,7 @@ namespace Pandaros.Settlers.Managers
 
                 }
                 break;
+
 
                 default:
                 {
@@ -339,10 +409,10 @@ namespace Pandaros.Settlers.Managers
             {
                 case "cyan":
                 return UnityEngine.Color.cyan;
-                    
+
                 case "green":
                 return UnityEngine.Color.green;
-                    
+
                 case "red":
                 return UnityEngine.Color.red;
 
@@ -382,10 +452,10 @@ namespace Pandaros.Settlers.Managers
                 case "left":
                 default:
                 return UnityEngine.TextAnchor.MiddleLeft;
-                    
+
                 case "center":
                 return UnityEngine.TextAnchor.MiddleCenter;
-                    
+
                 case "right":
                 return UnityEngine.TextAnchor.MiddleRight;
             }
