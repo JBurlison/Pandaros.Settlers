@@ -34,16 +34,17 @@ namespace Pandaros.Settlers.Items
         {
             var elementium = new InventoryItem(Elementium.Item.ItemIndex, 1);
             var steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 1);
+            var adamantine = new InventoryItem("Pandaros.Settlers.AutoLoad.Adamantine", 2);
             var gold       = new InventoryItem(BuiltinBlocks.GoldIngot, 1);
             var silver     = new InventoryItem(BuiltinBlocks.SilverIngot, 1);
             var aether     = new InventoryItem(Aether.Item.ItemIndex, 4);
 
             var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem> {elementium, aether, steel, gold, silver},
+                                    new List<InventoryItem> {elementium, aether, steel, gold, silver, adamantine},
                                     new InventoryItem(Item.ItemIndex, 1),
                                     5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(SorcererRegister.JOB_NAME, recipe);
         }
 
 
