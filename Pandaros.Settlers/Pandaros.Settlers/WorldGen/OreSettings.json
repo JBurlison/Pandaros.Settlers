@@ -43,6 +43,21 @@
     "Chance": 3,
     "Depth": 37,
     "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
+  },
+  {
+    "Chance": 1,
+    "Depth": 40,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteAdamantine"
+  },
+  {
+    "Chance": 1,
+    "Depth": 41,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteAdamantine"
+  },
+  {
+    "Chance": 1,
+    "Depth": 42,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteAdamantine"
   }
 ]
 

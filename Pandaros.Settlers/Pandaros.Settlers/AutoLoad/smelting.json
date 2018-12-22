@@ -1,2 +1,19 @@
 [
+  {
+    "name": "Pandaros.Settlers.AutoLoad.Adamantine",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.AdamantineNugget",
+        "amount": 5
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  }
 ]

@@ -68,7 +68,6 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Miner
     {
-        private const double MinerCooldown = 4;
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
@@ -144,12 +143,13 @@ namespace Pandaros.Settlers.Items.Machines
                     machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
                     machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
-                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ushort itemBelow))
+                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow))
                     {
-                        var itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
+                        var itemList = ItemTypes.GetType(itemBelow.ItemIndex).OnRemoveItems;
+                        machineState.NextTimeForWork = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime) + Time.SecondsSinceStartDouble;
 
                         Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
-                                                        new IndicatorState((float) MinerCooldown,
+                                                        new IndicatorState((float)machineState.NextTimeForWork,
                                                                            itemList.FirstOrDefault().item.Type));
 
                         for (var i = 0; i < itemList.Count; i++)
@@ -160,7 +160,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                 GameLoader.NAMESPACE + ".MiningMachineAudio");
                     }
 
-                    machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                    
                 }
         }
 

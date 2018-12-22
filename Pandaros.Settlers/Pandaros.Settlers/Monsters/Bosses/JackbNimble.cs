@@ -82,9 +82,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                    .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                    .SetAs("albedo", GameLoader.NPC_PATH + "JackbNimble.png")
-                    .SetAs("normal", GameLoader.NPC_PATH + "ZombieQueen_normal.png")
-                    .SetAs("emissive", GameLoader.NPC_PATH + "ZombieQueen_emissive.png")
+                    .SetAs("albedo", GameLoader.BLOCKS_NPC_PATH + "JackbNimble.png")
+                    .SetAs("normal", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_normal.png")
+                    .SetAs("emissive", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_emissive.png")
                     .SetAs("initialHealth", 2000)
                     .SetAs("movementSpeed", 3.25f)
                     .SetAs("punchCooldownMS", 500)

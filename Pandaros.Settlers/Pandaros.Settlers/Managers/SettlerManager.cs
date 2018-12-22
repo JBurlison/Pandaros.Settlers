@@ -386,47 +386,54 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCRecruited, GameLoader.NAMESPACE + ".SettlerManager.OnNPCRecruited")]
         public static void OnNPCRecruited(NPCBase npc)
         {
-            if (npc.CustomData == null)
-                npc.CustomData = new JSONNode();
-
-            if (npc.CustomData.TryGetAs(ISSETTLER, out bool settler) && settler)
-                return;
-
-            var ps = ColonyState.GetColonyState(npc.Colony);
-
-            if (ps.SettlersEnabled)
+            try
             {
-                if (Configuration.GetorDefault("ColonistsRecruitment", true))
+                if (npc.CustomData == null)
+                    npc.CustomData = new JSONNode();
+
+                if (npc.CustomData.TryGetAs(ISSETTLER, out bool settler) && settler)
+                    return;
+
+                var ps = ColonyState.GetColonyState(npc.Colony);
+
+                if (ps.SettlersEnabled)
                 {
-                    if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
+                    if (Configuration.GetorDefault("ColonistsRecruitment", true))
                     {
-                        var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5) * ps.ColonistsBought;
-                        var num  = 0f;
-
-                        if (cost < 1)
-                            cost = 1;
-
-                        if (npc.Colony.Stockpile.TotalFood < cost ||
-                            !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
+                        if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
                         {
-                            PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
-                            npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(ServerManager.ServerSettings.NPCs.RecruitmentCost / 3));
-                            npc.health = 0;
-                            npc.Update();
-                            return;
+                            var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5) * ps.ColonistsBought;
+                            var num = 0f;
+
+                            if (cost < 1)
+                                cost = 1;
+
+                            if (npc.Colony.Stockpile.TotalFood < cost ||
+                                !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
+                            {
+                                PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
+                                npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(ServerManager.ServerSettings.NPCs.RecruitmentCost / 3));
+                                npc.health = 0;
+                                npc.Update();
+                                return;
+                            }
+
+                            ps.ColonistsBought++;
+                            ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours + 24;
                         }
 
-                        ps.ColonistsBought++;
-                        ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours +  24;
+                        SettlerInventory.GetSettlerInventory(npc);
+                        UpdateFoodUse(ps);
                     }
-
-                    SettlerInventory.GetSettlerInventory(npc);
-                    UpdateFoodUse(ps);
+                    else
+                    {
+                        PandaChat.Send(npc.Colony, "The server administrator has disabled recruitment of colonists while settlers are enabled.");
+                    }
                 }
-                else
-                {
-                    PandaChat.Send(npc.Colony, "The server administrator has disabled recruitment of colonists while settlers are enabled.");
-                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 

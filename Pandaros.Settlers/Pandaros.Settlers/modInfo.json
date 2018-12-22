@@ -9,14 +9,6 @@
     "compatibleversions": [
       "0.7.0"
     ],
-    "overrideAlbedoFolder": "./Textures/albedo/",
-    "overrideEmissiveFolder": "./Textures/emissive/",
-    "overrideNormalFolder": "./Textures/normal/",
-    "overrideHeightFolder": "./Textures/height/",
-    "overrideMeshesFolder": "./Meshes/",
-    "overrideIconFolder": "./icons/",
-    "overrideAudioFolder": "./Audio/",
-    "overrideNPCFolder": "./Textures/npc/",
     "Pandaros.Settlers.jsonFiles": [
       {
         "fileType": "Pandaros.Settlers.MenuFile",
@@ -42,40 +34,49 @@
     "jsonFiles": [
       {
         "fileType": "addOrReplaceAudio",
-        "relativePath": "audio/audioFiles.json"
+        "relativePath": "audio/audioFiles.json",
+        "index": -99999
       },
       {
         "fileType": "addOrOverrideTextureMappingEntries",
-        "relativePath": "Textures/texturemapping.json"
+        "relativePath": "Textures/texturemapping.json",
+        "index": -99999
       },
       {
         "fileType": "addNewTypes",
-        "relativePath": "types.json"
+        "relativePath": "types.json",
+        "index": -99999
       },
       {
         "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/en-US.json"
+        "relativePath": "localization/en-US/en-US.json",
+        "index": -99999
       },
       {
         "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/help/en-US.json"
+        "relativePath": "localization/en-US/help/en-US.json",
+        "index": -99999
       },
       {
         "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/science/en-US.json"
+        "relativePath": "localization/en-US/science/en-US.json",
+        "index": -99999
       },
       {
         "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/es-ES/es-ES.json"
+        "relativePath": "localization/es-ES/es-ES.json",
+        "index": -99999
       },
       {
         "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/ru-RU/ru-RU.json"
+        "relativePath": "localization/ru-RU/ru-RU.json",
+        "index": -99999
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/Apothecary.json",
         "npcType": "Pandaros.Settlers.Apothecary",
+        "index": -99999,
         "limitsUIMapping": [
           "Pandaros.Settlers.ApothecaryTable"
         ]
@@ -84,6 +85,7 @@
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/AdvancedCrafter.json",
         "npcType": "Pandaros.Settlers.AdvancedCrafter",
+        "index": -99999,
         "limitsUIMapping": [
           "Pandaros.Settlers.AdvancedCraftingTable"
         ]
@@ -91,76 +93,91 @@
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/crafting.json",
+        "index": -99999,
         "npcType": "pipliz.crafter"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/tailoring.json",
+        "index": -99999,
         "npcType": "pipliz.tailor"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/grinding.json",
+        "index": -99999,
         "npcType": "pipliz.grinder"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/crafting.json",
+        "index": -99999,
         "npcType": "pipliz.crafter"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/shopping.json",
+        "index": -99999,
         "npcType": "pipliz.merchant"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/minting.json",
+        "index": -99999,
         "npcType": "pipliz.minting"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/technologist.json",
+        "index": -99999,
         "npcType": "pipliz.technologist"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/smelting.json",
+        "index": -99999,
         "npcType": "pipliz.smelter"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/baking.json",
+        "index": -99999,
         "npcType": "pipliz.baker"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/stonemasonry.json",
+        "index": -99999,
         "npcType": "pipliz.stonemason"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/metalsmithing.json",
+        "index": -99999,
         "npcType": "pipliz.metalsmithjob"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/kiln.json",
+        "index": -99999,
         "npcType": "pipliz.kilnjob"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/gunsmith.json",
+        "index": -99999,
         "npcType": "pipliz.gunsmithjob"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/fineryforge.json",
+        "index": -99999,
         "npcType": "pipliz.fineryforgejob"
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/dyeing.json",
+        "index": -99999,
         "npcType": "pipliz.dyer"
       }
     ],
@@ -179,6 +196,7 @@
           "Added Magic Items",
           "Added Sorcerer Job - creates magic items",
           "Added Mage - AOE guard",
+          "Added Colony management too to manage your colonists Jobs.",
           "Bosses now start randomly spawning after 100 colonists. Up from 15.",
           "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
           "Things that can be extended: Bosses, Armor, Weapons, Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, ore generation"

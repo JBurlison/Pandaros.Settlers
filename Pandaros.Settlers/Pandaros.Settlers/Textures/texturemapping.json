@@ -10,6 +10,12 @@
     "folderHeight": "./textures/materials/blocks/heightSmoothnessSpecularity/",
     "folderNormal": "./textures/materials/blocks/normal/"
   },
+  "Pandaros.Settlers.AutoLoad.infiniteAdamantine": {
+    "albedo": "./albedo/infiniteAdamantine.png",
+    "normal": "./normal/infiniteAdamantine.png",
+    "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
+    "height": "./height/infiniteAdamantine.png"
+  },
   "Pandaros.Settlers.AutoLoad.infiniteemerald": {
     "albedo": "./albedo/infiniteemerald.png",
     "normal": "./normal/infiniteemerald.png",

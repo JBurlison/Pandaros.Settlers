@@ -85,9 +85,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                    .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                    .SetAs("albedo", GameLoader.NPC_PATH + "Bulging.png")
-                    .SetAs("normal", GameLoader.NPC_PATH + "Hoarder_normal.png")
-                    .SetAs("emissive", GameLoader.NPC_PATH + "Hoarder_emissive.png")
+                    .SetAs("albedo", GameLoader.BLOCKS_NPC_PATH + "Bulging.png")
+                    .SetAs("normal", GameLoader.BLOCKS_NPC_PATH + "Hoarder_normal.png")
+                    .SetAs("emissive", GameLoader.BLOCKS_NPC_PATH + "Hoarder_emissive.png")
                     .SetAs("initialHealth", 20000)
                     .SetAs("movementSpeed", .75f)
                     .SetAs("punchCooldownMS", 3000)
