@@ -2,6 +2,10 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "Sorcerer1": {
+          "name": "Sorcerer",
+          "description": "Unlocks Sorcerer to create magical item for your colony."
+        },
         "SettlerChance1": {
           "name": "Settler Chance I",
           "description": "Increases chance for settlers to find your colony."

@@ -2,6 +2,7 @@
 using Jobs;
 using NPC;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
 using System.Collections.Generic;
@@ -9,6 +10,39 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {
+    public class SchematicToolResearch : IPandaResearch
+    {
+        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        {
+            { BuiltinBlocks.ScienceBagColony, 1 },
+            { BuiltinBlocks.ScienceBagBasic, 3 },
+            { BuiltinBlocks.ScienceBagAdvanced, 1 }
+        };
+
+        public int NumberOfLevels => 1;
+        public float BaseValue => 0.05f;
+        public List<string> Dependancies => new List<string>()
+            {
+                PandaResearch.GetResearchKey(PandaResearch.Elementium),
+                ColonyBuiltIn.Research.ScienceBagAdvanced,
+                ColonyBuiltIn.Research.ScienceBagColony
+            };
+
+        public int BaseIterationCount => 300;
+        public bool AddLevelToName => false;
+        public string Name => "Sorcerer";
+
+        public void OnRegister()
+        {
+
+        }
+
+        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(SorcererRegister.JOB_ITEM_KEY), true);
+        }
+    }
+
     [ModLoader.ModManager]
     public static class SorcererRegister
     {
