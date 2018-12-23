@@ -1626,7 +1626,7 @@
     <Content Include="icons\Selector.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\SorcererTableTop.png">
+    <Content Include="icons\SorcererTable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Sunflower.png">
