@@ -29,9 +29,10 @@ namespace Pandaros.Settlers.Entities
                 baseNode.TryGetAs<string>(nameof(SettlerName), out var name);
                 SettlerName = name;
 
-                if (baseNode.TryGetAs(nameof(JobSkills), out JSONNode skills))
+                if (baseNode.TryGetAs(nameof(BonusProcs), out JSONNode skills))
                     foreach (var skill in skills.LoopObject())
-                        JobSkills[skill.Key] = skill.Value.GetAs<float>();
+                        if (ushort.TryParse(skill.Key, out ushort item))
+                        BonusProcs[item] = skill.Value.GetAs<long>();
 
                 if (baseNode.TryGetAs(nameof(JobItteration), out JSONNode itterations))
                     foreach (var skill in itterations.LoopObject())
@@ -50,7 +51,7 @@ namespace Pandaros.Settlers.Entities
 
         public string SettlerName { get; set; }
 
-        public Dictionary<string, float> JobSkills { get; set; } = new Dictionary<string, float>();
+        public Dictionary<ushort, long> BonusProcs { get; set; } = new Dictionary<ushort, long>();
 
         public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
 
@@ -64,6 +65,31 @@ namespace Pandaros.Settlers.Entities
                 Armor.Add(armorType, new ItemState());
 
             Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
+        }
+
+        public void AddBonusProc(ushort item, long count = 1)
+        {
+            if (!BonusProcs.ContainsKey(item))
+                BonusProcs.Add(item, 0);
+
+            BonusProcs[item] += count;
+        }
+
+        public float GetSkillModifier()
+        {
+            var totalSkill = 0f;
+
+            if (NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
+                totalSkill = allSkill;
+
+            foreach (var armor in Armor)
+                if (Items.Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var a))
+                    totalSkill += a.Skilled;
+
+            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(Weapon.Id, out var w))
+                totalSkill += w.Skilled;
+
+            return totalSkill;
         }
 
         // TODO: apply armor
@@ -94,10 +120,10 @@ namespace Pandaros.Settlers.Entities
 
             var skills = new JSONNode();
 
-            foreach (var job in JobSkills)
+            foreach (var job in BonusProcs)
                 skills[job.Key] = new JSONNode(job.Value);
 
-            baseNode[nameof(JobSkills)] = skills;
+            baseNode[nameof(BonusProcs)] = skills;
 
             var itterations = new JSONNode();
 

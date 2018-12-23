@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Pandaros.Settlers.Items.Temperature;
 using Pipliz;
 
 namespace Pandaros.Settlers.Items.Weapons
@@ -40,9 +39,9 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public Vector3Int Position { get; set; }
 
-        public TemperatureType TemperatureRegulated => TemperatureType.None;
-
         public float Luck => 0;
+
+        public float Skilled { get; set; }
 
         Dictionary<DamageType, float> IPandaDamage.Damage => _damage;
 

@@ -188,7 +188,6 @@
     <Compile Include="Items\ItemState.cs" />
     <Compile Include="Items\Machines\MachineConstants.cs" />
     <Compile Include="Items\Machines\RefuelMachineAction.cs" />
-    <Compile Include="Items\Temperature\ITemperatureRegulator.cs" />
     <Compile Include="Items\Reagents\Void.cs" />
     <Compile Include="Items\Reagents\Esper.cs" />
     <Compile Include="Items\Machines\ElementalTurrets.cs" />

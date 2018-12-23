@@ -1,5 +1,4 @@
 ﻿using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Items.Temperature;
 using Pandaros.Settlers.Items.Weapons;
 using System;
 using System.Collections.Generic;

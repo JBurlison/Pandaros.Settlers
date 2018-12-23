@@ -32,7 +32,6 @@ namespace Pandaros.Settlers.Items
                 {
                     dic[itemAction.GetRootParentType().ItemIndex] = Pipliz.Random.Next(drop.MinCount, drop.MaxCount + 1);
                 }
-                
             }
 
             return dic;

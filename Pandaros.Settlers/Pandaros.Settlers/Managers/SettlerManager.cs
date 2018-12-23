@@ -493,14 +493,32 @@ namespace Pandaros.Settlers.Managers
 
             if (itt >= nextLevel)
             {
-                var nextFloat = allSkill + 0.001f;
+                var nextFloat = allSkill + 0.005f;
 
-                if (nextFloat > 0.025f)
-                    nextFloat = 0.025f;
+                if (nextFloat > 0.25f)
+                    nextFloat = 0.25f;
 
                 job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 0);
                 job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, nextFloat);
             }
+
+            var inv = SettlerInventory.GetSettlerInventory(job.NPC);
+            double weightSum = 0;
+            double roll = Random.Next() + inv.GetSkillModifier();
+            List<InventoryItem> bonusItems = new List<InventoryItem>();
+
+            foreach (var item in results)
+            {
+                weightSum += 1;
+
+                if (roll > weightSum)
+                {
+                    bonusItems.Add(new InventoryItem(item.Type, item.Amount));
+                }
+            }
+
+            results.AddRange(bonusItems);
+            
         }
 
         public static void UpdateFoodUse(ColonyState state)

@@ -244,6 +244,17 @@ namespace Pandaros.Settlers.Managers
             var cs         = ColonyState.GetColonyState(monster.OriginalGoal);
             var pandaArmor = monster as IPandaArmor;
             var pamdaDamage     = d.HitSourceObject as IPandaDamage;
+            var skilled = 0f;
+
+            if (pamdaDamage == null && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
+            {
+                var npc = d.HitSourceObject as NPCBase;
+                var inv = SettlerInventory.GetSettlerInventory(npc);
+                skilled = inv.GetSkillModifier();
+
+                if (inv.Weapon != null && Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wep))
+                    pamdaDamage = wep;
+            }
 
             if (pandaArmor != null && Random.NextFloat() <= pandaArmor.MissChance)
             {
@@ -262,6 +273,11 @@ namespace Pandaros.Settlers.Managers
                 if (pandaArmor.AdditionalResistance.TryGetValue(DamageType.Physical, out var flatResist))
                     d.ResultDamage = d.ResultDamage - d.ResultDamage * flatResist;
             }
+
+            double skillRoll = Pipliz.Random.Next() + skilled;
+
+            if (skillRoll > skilled)
+                d.ResultDamage += d.ResultDamage;
 
             d.ResultDamage = d.ResultDamage - d.ResultDamage * cs.Difficulty.MonsterDamageReduction;
 

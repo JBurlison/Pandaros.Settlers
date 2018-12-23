@@ -2,7 +2,6 @@
 using Chatting;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items.Temperature;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
@@ -920,9 +919,9 @@ namespace Pandaros.Settlers.Items.Armor
 
             public Vector3Int Position { get; set; }
 
-            public TemperatureType TemperatureRegulated => TemperatureType.None;
-
             public float Luck => 0;
+
+            public float Skilled { get; set; }
 
             public void Update()
             {
