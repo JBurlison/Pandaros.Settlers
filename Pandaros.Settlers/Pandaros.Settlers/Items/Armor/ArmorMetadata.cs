@@ -1,25 +1,35 @@
-﻿using System.Collections.Generic;
-using Pipliz;
+﻿using Pipliz;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static Pandaros.Settlers.Items.Armor.ArmorFactory;
 
-namespace Pandaros.Settlers.Items.Weapons
+namespace Pandaros.Settlers.Items.Armor
 {
-    public class WeaponMetadata : IWeapon
-    {
-        Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
 
-        public WeaponMetadata(float damage, int durability, string name, ItemTypesServer.ItemTypeRaw item)
+    public class ArmorMetadata : IArmor
+    {
+        public ArmorMetadata(float armorRating, int durability, string name,
+                             ItemTypesServer.ItemTypeRaw itemType, ArmorSlot slot)
         {
-            _damage.Add(DamageType.Physical, damage);
-            Name       = name;
-            ItemType   = item;
+            ArmorRating = armorRating;
             Durability = durability;
+            Name = name;
+            ItemType = itemType;
+            Slot = slot;
         }
+
+        public float ArmorRating { get; }
+
+        public int Durability { get; set; }
 
         public string Name { get; }
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public int Durability { get; set; }
+        public ArmorSlot Slot { get; }
 
         public IMagicEffect MagicEffect => null;
 
@@ -33,6 +43,8 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
 
+        public Dictionary<DamageType, float> Damage => new Dictionary<DamageType, float>();
+
         public int RadiusOfTemperatureAdjustment => 0;
 
         public double TemperatureAdjusted => 0;
@@ -44,11 +56,9 @@ namespace Pandaros.Settlers.Items.Weapons
         public float Skilled { get; set; }
         public bool IsMagical { get; set; }
 
-        Dictionary<DamageType, float> IPandaDamage.Damage => _damage;
-
         public void Update()
         {
-            
+
         }
     }
 }

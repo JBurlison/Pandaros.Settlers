@@ -5,6 +5,7 @@ namespace Pandaros.Settlers
 {
     public interface IMagicEffect : IPandaArmor, IPandaDamage, INameable, ILucky
     {
+        bool IsMagical { get; set; }
         float Skilled { get; set; }
         float HPBoost { get; }
         float HPTickRegen { get; }

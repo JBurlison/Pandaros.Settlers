@@ -116,6 +116,7 @@
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\Permission.cs" />
+    <Compile Include="Items\Armor\ArmorMetadata.cs" />
     <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />

@@ -210,7 +210,7 @@ namespace Pandaros.Settlers.Items.Armor
 
             foreach (var armor in ArmorLookup.Where(a => a.Value.Slot == slot && (a.Value as IPlayerMagicItem != null) == player))
                 if (s.Contains(armor.Key) && s.AmountContained(armor.Key) > limit)
-                    if (best == default(ushort) || armor.Value.ArmorRating > ArmorLookup[best].ArmorRating)
+                    if (best == default(ushort) || (!armor.Value.IsMagical && armor.Value.ArmorRating > ArmorLookup[best].ArmorRating))
                         best = armor.Key;
 
             return best;
@@ -874,58 +874,6 @@ namespace Pandaros.Settlers.Items.Armor
             catch (Exception ex)
             {
                 PandaLogger.LogError(ex);
-            }
-        }
-
-        public class ArmorMetadata : IArmor
-        {
-            public ArmorMetadata(float armorRating, int durability, string name,
-                                 ItemTypesServer.ItemTypeRaw itemType, ArmorSlot slot)
-            {
-                ArmorRating = armorRating;
-                Durability = durability;
-                Name = name;
-                ItemType = itemType;
-                Slot = slot;
-            }
-
-            public float ArmorRating { get; }
-
-            public int Durability { get; set; }
-
-            public string Name { get; }
-
-            public ItemTypesServer.ItemTypeRaw ItemType { get; }
-
-            public ArmorSlot Slot { get; }
-
-            public IMagicEffect MagicEffect => null;
-
-            public float HPBoost => 0;
-
-            public float HPTickRegen => 0;
-
-            public float MissChance => 0;
-
-            public DamageType ElementalArmor => DamageType.Physical;
-
-            public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
-
-            public Dictionary<DamageType, float> Damage => new Dictionary<DamageType, float>();
-
-            public int RadiusOfTemperatureAdjustment => 0;
-
-            public double TemperatureAdjusted => 0;
-
-            public Vector3Int Position { get; set; }
-
-            public float Luck => 0;
-
-            public float Skilled { get; set; }
-
-            public void Update()
-            {
-                
             }
         }
     }
