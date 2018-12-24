@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Managers
         public const string ISSETTLER = "isSettler";
         public const string KNOWN_ITTERATIONS = "SKILLED_ITTERATIONS";
 
-        public const int _NUMBEROFCRAFTSPERPERCENT = 1000;
+        public const int _NUMBEROFCRAFTSPERPERCENT = 200;
         public const int _UPDATE_TIME = 10;
         public static double IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
         public static double BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
@@ -533,7 +533,7 @@ namespace Pandaros.Settlers.Managers
                 allSkill = 0.005f;
             }
 
-            nextLevel = Pipliz.Math.RoundToInt(allSkill * 100) * _NUMBEROFCRAFTSPERPERCENT;
+            nextLevel = Pipliz.Math.RoundToInt(allSkill * 1000) * _NUMBEROFCRAFTSPERPERCENT;
         }
 
         public static void UpdateFoodUse(ColonyState state)

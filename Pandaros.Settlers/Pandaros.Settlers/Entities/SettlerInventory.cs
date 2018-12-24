@@ -138,7 +138,7 @@ namespace Pandaros.Settlers.Entities
             foreach (var job in Stats)
                 statsNode[job.Key] = new JSONNode(job.Value);
 
-            baseNode[nameof(statsNode)] = statsNode;
+            baseNode[nameof(Stats)] = statsNode;
 
             foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                 baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();

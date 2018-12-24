@@ -243,7 +243,7 @@ namespace Pandaros.Settlers.Items
             menu.Items.Add(new Label(new LabelData("Skill modifier is the % to do double damage and proc bonus items.", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 13)));
             SettlerManager.GetSkillInformation(job, out var nextLevel, out var itt, out var allSkill);
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Number of Attacks/Crafts to next skill up:", UnityEngine.Color.black)),
-                                                new Label(new LabelData((nextLevel / job.NPC.CustomData.GetAsOrDefault(SettlerManager.KNOWN_ITTERATIONS, 1)).ToString(), UnityEngine.Color.black))));
+                                                new Label(new LabelData((nextLevel - itt).ToString(), UnityEngine.Color.black))));
 
             foreach (var statItem in inv.Stats)
             {
