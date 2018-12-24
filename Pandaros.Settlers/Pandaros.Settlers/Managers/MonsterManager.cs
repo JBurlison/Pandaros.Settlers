@@ -281,6 +281,15 @@ namespace Pandaros.Settlers.Managers
 
             d.ResultDamage = d.ResultDamage - d.ResultDamage * cs.Difficulty.MonsterDamageReduction;
 
+            if (d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
+            {
+                var npc = d.HitSourceObject as NPCBase;
+                var inv = SettlerInventory.GetSettlerInventory(npc);
+                inv.IncrimentStat("Damage Done", d.ResultDamage);
+
+                if (skillRoll > skilled)
+                    inv.IncrimentStat("Double Damage Hits");
+            }
 
             if (d.ResultDamage >= monster.CurrentHealth)
             {

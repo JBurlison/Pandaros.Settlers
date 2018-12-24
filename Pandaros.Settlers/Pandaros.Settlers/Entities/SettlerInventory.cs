@@ -34,9 +34,9 @@ namespace Pandaros.Settlers.Entities
                         if (ushort.TryParse(skill.Key, out ushort item))
                         BonusProcs[item] = skill.Value.GetAs<long>();
 
-                if (baseNode.TryGetAs(nameof(JobItteration), out JSONNode itterations))
+                if (baseNode.TryGetAs(nameof(Stats), out JSONNode itterations))
                     foreach (var skill in itterations.LoopObject())
-                        JobItteration[skill.Key] = skill.Value.GetAs<int>();
+                        Stats[skill.Key] = skill.Value.GetAs<double>();
 
                 foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                     Armor[armorType].FromJsonNode(armorType.ToString(), baseNode);
@@ -53,11 +53,19 @@ namespace Pandaros.Settlers.Entities
 
         public Dictionary<ushort, long> BonusProcs { get; set; } = new Dictionary<ushort, long>();
 
-        public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
+        public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
 
         public EventedDictionary<ArmorFactory.ArmorSlot, ItemState> Armor { get; set; } =  new EventedDictionary<ArmorFactory.ArmorSlot, ItemState>();
 
         public ItemState Weapon { get; set; } = new ItemState();
+
+        public void IncrimentStat(string name, double count = 1)
+        {
+            if (!Stats.ContainsKey(name))
+                Stats.Add(name, 0);
+
+            Stats[name] += count;
+        }
 
         private void SetupArmor()
         {
@@ -125,12 +133,12 @@ namespace Pandaros.Settlers.Entities
 
             baseNode[nameof(BonusProcs)] = skills;
 
-            var itterations = new JSONNode();
+            var statsNode = new JSONNode();
 
-            foreach (var job in JobItteration)
-                itterations[job.Key] = new JSONNode(job.Value);
+            foreach (var job in Stats)
+                statsNode[job.Key] = new JSONNode(job.Value);
 
-            baseNode[nameof(itterations)] = itterations;
+            baseNode[nameof(statsNode)] = statsNode;
 
             foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                 baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();

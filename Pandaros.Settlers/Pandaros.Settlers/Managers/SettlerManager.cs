@@ -28,25 +28,25 @@ namespace Pandaros.Settlers.Managers
         public const int MAX_BUYABLE = 10;
         public const int MIN_PERSPAWN = 1;
         public const int ABSOLUTE_MAX_PERSPAWN = 5;
-        private const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
-        private const string LEAVETIME_JOB = "LeaveTime_JOB";
-        private const string LEAVETIME_BED = "LeaveTime_BED";
-        private const string ISSETTLER = "isSettler";
-        private const string KNOWN_ITTERATIONS = "SKILLED_ITTERATIONS";
+        public const string LAST_KNOWN_JOB_TIME_KEY = "lastKnownTime";
+        public const string LEAVETIME_JOB = "LeaveTime_JOB";
+        public const string LEAVETIME_BED = "LeaveTime_BED";
+        public const string ISSETTLER = "isSettler";
+        public const string KNOWN_ITTERATIONS = "SKILLED_ITTERATIONS";
 
-        private const int _NUMBEROFCRAFTSPERPERCENT = 1000;
-        private const int _UPDATE_TIME = 10;
+        public const int _NUMBEROFCRAFTSPERPERCENT = 1000;
+        public const int _UPDATE_TIME = 10;
         public static double IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
         public static double BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
         public static double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
         public static double COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
         public static double HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
-        private static float _baseFoodPerHour;
-        private static double _updateTime;
-        private static double _magicUpdateTime = Time.SecondsSinceStartDouble + Random.Next(2, 5);
-        private static int _idNext = 1;
-        private static double _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(2, 6);
-        private static double _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(1, 2);
+        public static float _baseFoodPerHour;
+        public static double _updateTime;
+        public static double _magicUpdateTime = Time.SecondsSinceStartDouble + Random.Next(2, 5);
+        public static int _idNext = 1;
+        public static double _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(2, 6);
+        public static double _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(1, 2);
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
 
@@ -481,15 +481,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
-            if (!job.NPC.CustomData.TryGetAs(KNOWN_ITTERATIONS, out int itt))
-                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
-            else
-                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, itt + 1);
-
-            if (!job.NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
-                job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, 0f);
-
-            var nextLevel = Pipliz.Math.RoundToInt(allSkill * 100) * _NUMBEROFCRAFTSPERPERCENT;
+            GetSkillInformation(job, out var nextLevel, out var itt, out var allSkill);
 
             if (itt >= nextLevel)
             {
@@ -498,17 +490,21 @@ namespace Pandaros.Settlers.Managers
                 if (nextFloat > 0.25f)
                     nextFloat = 0.25f;
 
-                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 0);
+                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
                 job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, nextFloat);
             }
 
             var inv = SettlerInventory.GetSettlerInventory(job.NPC);
+            inv.IncrimentStat("Number of Crafts");
+            
             double weightSum = 0;
             double roll = Random.Next() + inv.GetSkillModifier();
             List<InventoryItem> bonusItems = new List<InventoryItem>();
 
             foreach (var item in results)
             {
+                inv.IncrimentStat(ItemTypes.GetType(item.Type).Name, item.Amount);
+
                 weightSum += 1;
 
                 if (roll > weightSum)
@@ -518,7 +514,26 @@ namespace Pandaros.Settlers.Managers
             }
 
             results.AddRange(bonusItems);
-            
+
+        }
+
+        public static void GetSkillInformation(IJob job, out int nextLevel, out int itt, out float allSkill)
+        {
+            if (!job.NPC.CustomData.TryGetAs(KNOWN_ITTERATIONS, out itt))
+            {
+                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
+                itt = 1;
+            }
+            else
+                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, itt + 1);
+
+            if (!job.NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out allSkill))
+            {
+                job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, 0.005f);
+                allSkill = 0.005f;
+            }
+
+            nextLevel = Pipliz.Math.RoundToInt(allSkill * 100) * _NUMBEROFCRAFTSPERPERCENT;
         }
 
         public static void UpdateFoodUse(ColonyState state)

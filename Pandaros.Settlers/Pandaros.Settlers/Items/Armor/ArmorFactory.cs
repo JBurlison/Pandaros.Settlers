@@ -230,6 +230,7 @@ namespace Pandaros.Settlers.Items.Armor
         {
             var inv = GetSettlerInventory(npc);
             DeductArmor(box, inv.Armor);
+            inv.IncrimentStat("Damage Taken", box.HitDamage);
         }
 
         private static void DeductArmor(ModLoader.OnHitData box, EventedDictionary<ArmorSlot, ItemState> entityArmor)
