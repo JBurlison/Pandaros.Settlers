@@ -237,6 +237,7 @@ namespace Pandaros.Settlers.Items
 
                 if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
                 {
+                    PandaLogger.Log("adding item {0}", armor.Value.Id);
                     items.Add(new Label(new LabelData(arm.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                     items.Add(new ButtonCallback(jobKvp.Key + "." + armor.Key + ".arm." + job.NPC.ID + ".AddEquiptmentButton", new LabelData("Swap", UnityEngine.Color.black)));
                     items.Add(new ButtonCallback(jobKvp.Key + "." + armor.Key + ".arm." + job.NPC.ID + ".RemoveEquiptmentButton", new LabelData("Remove", UnityEngine.Color.black)));
