@@ -8,7 +8,6 @@ using static Pandaros.Settlers.Items.Armor.ArmorFactory;
 
 namespace Pandaros.Settlers.Items.Armor
 {
-
     public class ArmorMetadata : IArmor
     {
         public ArmorMetadata(float armorRating, int durability, string name,

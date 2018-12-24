@@ -28,8 +28,7 @@ namespace Pandaros.Settlers.Items
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw Selector { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.BuildersWand.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.BuildersWand.Register")]
         public static void Register()
         {
             var elementium = new InventoryItem(Elementium.Item.ItemIndex, 1);

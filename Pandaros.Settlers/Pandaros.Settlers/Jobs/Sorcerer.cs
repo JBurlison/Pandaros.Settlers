@@ -2,6 +2,7 @@
 using Jobs;
 using NPC;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
@@ -23,7 +24,7 @@ namespace Pandaros.Settlers.Jobs
         public float BaseValue => 0.05f;
         public List<string> Dependancies => new List<string>()
             {
-                PandaResearch.GetResearchKey(PandaResearch.Elementium),
+                PandaResearch.GetResearchKey(PandaResearch.Elementium + 1),
                 ColonyBuiltIn.Research.ScienceBagAdvanced,
                 ColonyBuiltIn.Research.ScienceBagColony
             };
@@ -39,7 +40,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(SorcererRegister.JOB_ITEM_KEY), true);
+            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(SorcererRegister.JOB_RECIPE), true);
         }
     }
 
@@ -64,51 +65,44 @@ namespace Pandaros.Settlers.Jobs
 
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));
         }
+    }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".SorcererRegister.AddTextures")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
-        public static void AddTextures()
+    public class SorcererTexture : CSTextureMapping
+    {
+        public override string Name => GameLoader.NAMESPACE + ".SorcererTableTop";
+        public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "SorcererTableTop.png";
+        public override string height => GameLoader.BLOCKS_HEIGHT_PATH + "SorcererTableTop.png";
+        public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "SorcererTableTop.png";
+    }
+
+    public class SorcererJobItem : CSType
+    {
+        public override string icon => GameLoader.ICON_PATH + "SorcererTable.png";
+        public override string onPlaceAudio => "woodPlace";
+        public override string onRemoveAudio => "woodDeleteLight";
+        public override string sideall => "coatedplanks";
+        public override string sideyp => GameLoader.NAMESPACE + ".SorcererTableTop";
+        public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
+        public override string Name => SorcererRegister.JOB_ITEM_KEY;
+    }
+
+    public class SorcererRecipe : ICSRecipe
+    {
+        public SorcererRecipe()
         {
-            var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "SorcererTableTop.png";
-            textureMapping.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "SorcererTableTop.png";
-            textureMapping.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "SorcererTableTop.png";
-
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "SorcererTableTop", textureMapping);
+            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperNails), 60);
+            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperTools), 6);
+            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.Planks), 6);
+            Requirements.Add(ItemId.GetItemId("Pandaros.Settlers.AutoLoad.Adamantine"), 2);
+            Results.Add(ItemId.GetItemId(SorcererRegister.JOB_ITEM_KEY), 1);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
-            GameLoader.NAMESPACE + ".SorcererRegister.AddItemTypes")]
-        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
-        {
-            var item = new JSONNode()
-                      .SetAs("icon", GameLoader.ICON_PATH + "SorcererTable.png")
-                      .SetAs("onPlaceAudio", "woodPlace")
-                      .SetAs("onRemoveAudio", "woodDeleteLight")
-                      .SetAs("sideall", "coatedplanks")
-                      .SetAs("sidey+", GameLoader.NAMESPACE + "SorcererTableTop")
-                      .SetAs("npcLimit", 0);
-
-            var categories = new JSONNode(NodeType.Array);
-            categories.AddToArray(new JSONNode("job"));
-            item.SetAs("categories", categories);
-
-            itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,  GameLoader.NAMESPACE + ".SorcererRegister.AfterWorldLoad")]
-        public static void AfterWorldLoad()
-        {
-            var iron   = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-            var tools  = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 4);
-
-            var recipe = new Recipe(JOB_RECIPE,
-                                    new List<InventoryItem> {iron, tools, planks},
-                                    new InventoryItem(JOB_ITEM_KEY, 1), 2);
-
-            ServerManager.RecipeStorage.AddPlayerOptionalRecipe(recipe);
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
-        }
+        public Dictionary<ItemId, int> Requirements { get; private set; } = new Dictionary<ItemId, int>();
+        public Dictionary<ItemId, int> Results { get; private set; } = new Dictionary<ItemId, int>();
+        public CraftPriority Priority => CraftPriority.Medium;
+        public bool IsOptional => true;
+        public int DefautLimit => 5;
+        public string Job => ItemFactory.JOB_CRAFTER;
+        public string Name => SorcererRegister.JOB_RECIPE;
     }
 }

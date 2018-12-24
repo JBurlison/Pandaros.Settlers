@@ -207,7 +207,7 @@ namespace Pandaros.Settlers.ColonyManager
             return retval;
         }
 
-        private static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
+        public static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
         {
             NetworkMenu menu = new NetworkMenu();
             menu.LocalStorage.SetAs("header", "Colony Management");
@@ -227,18 +227,20 @@ namespace Pandaros.Settlers.ColonyManager
             List<IItem> header = new List<IItem>();
 
             header.Add(new Label(new LabelData("Job", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("Working", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("Not Working", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
 
-            menu.Items.Add(new HorizontalGrid(header, 200));
+            menu.Items.Add(new HorizontalGrid(header, 166));
 
             foreach (var jobKvp in jobCounts)
             {
                 List<IItem> items = new List<IItem>();
 
                 items.Add(new Label(new LabelData(jobKvp.Key, UnityEngine.Color.black)));
+                items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData("Details", UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
 
@@ -251,11 +253,12 @@ namespace Pandaros.Settlers.ColonyManager
                     items.Add(new DropDown(new LabelData("Amount", UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
                     items.Add(new HorizontalSplit(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData("Recruit", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)),
                                                   new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData("Fire!", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft))));
+                    
                 }
 
                 menu.LocalStorage.SetAs(jobKvp.Key + ".Recruit", 0);
 
-                menu.Items.Add(new HorizontalGrid(items, 200));
+                menu.Items.Add(new HorizontalGrid(items, 166));
             }
 
             return menu;

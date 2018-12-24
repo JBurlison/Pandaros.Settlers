@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Jobs
         public override string onPlaceAudio => "woodPlace";
         public override string onRemoveAudio => "woodDeleteLight";
         public override string sideall => GameLoader.NAMESPACE + ".ApothecaryTable";
-        public override List<string> categories => new List<string>() { "job" };
+        public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
         public override string Name => ApothecaryRegister.JOB_ITEM_KEY;
     }
 

@@ -71,14 +71,12 @@ namespace Pandaros.Settlers.Items.Armor
     {
         public enum ArmorSlot
         {
-            Clothing,
             Helm,
             Chest,
             Gloves,
             Legs,
             Boots,
-            Shield,
-            Neck
+            Shield
         }
 
         public static DateTime _nextUpdate = DateTime.MinValue;
@@ -89,9 +87,7 @@ namespace Pandaros.Settlers.Items.Armor
             {ArmorSlot.Chest, 55},
             {ArmorSlot.Gloves, 65},
             {ArmorSlot.Legs, 90},
-            {ArmorSlot.Boots, 100},
-            {ArmorSlot.Clothing, 0},
-            {ArmorSlot.Neck, 0}
+            {ArmorSlot.Boots, 100}
         };
 
         private static readonly Dictionary<ArmorSlot, int> _hitChanceShield = new Dictionary<ArmorSlot, int>
@@ -101,9 +97,7 @@ namespace Pandaros.Settlers.Items.Armor
             {ArmorSlot.Gloves, 35},
             {ArmorSlot.Legs, 45},
             {ArmorSlot.Boots, 50},
-            {ArmorSlot.Shield, 100},
-            {ArmorSlot.Clothing, 0},
-            {ArmorSlot.Neck, 0}
+            {ArmorSlot.Shield, 100}
         };
 
         private static readonly System.Random _rand = new System.Random();
@@ -126,6 +120,9 @@ namespace Pandaros.Settlers.Items.Armor
                     /// Load up player first.
                     foreach (ArmorSlot slot in ArmorSlotEnum)
                     {
+                        if (!state.Armor[slot].IsEmpty() && ArmorLookup[state.Armor[slot].Id].IsMagical)
+                            continue;
+
                         var bestArmor = GetBestArmorFromStockpile(stockpile, slot, 0, true);
 
                         if (bestArmor != default(ushort))
@@ -172,6 +169,9 @@ namespace Pandaros.Settlers.Items.Armor
         {
             foreach (ArmorSlot slot in ArmorSlotEnum)
             {
+                if (!inv.Armor[slot].IsEmpty() && ArmorLookup[inv.Armor[slot].Id].IsMagical)
+                    continue;
+
                 var bestArmor = GetBestArmorFromStockpile(stockpile, slot, limit, false);
 
                 if (bestArmor != default(ushort))

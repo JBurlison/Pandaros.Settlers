@@ -62,6 +62,7 @@ namespace Pandaros.Settlers.Jobs
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("job"));
+            categories.AddToArray(new JSONNode(GameLoader.NAMESPACE));
             patrolToolNode.SetAs("categories", categories);
 
             Item = new ItemTypesServer.ItemTypeRaw(patrolToolName, patrolToolNode);
@@ -78,6 +79,7 @@ namespace Pandaros.Settlers.Jobs
 
             var patrolFlagCategories = new JSONNode(NodeType.Array);
             patrolFlagCategories.AddToArray(new JSONNode("job"));
+            patrolFlagCategories.AddToArray(new JSONNode(GameLoader.NAMESPACE));
             patrolFlagNode.SetAs("categories", patrolFlagCategories);
 
             PatrolFlag = new ItemTypesServer.ItemTypeRaw(patrolFlagName, patrolFlagNode);
