@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Items
                     if (data.ButtonIdentifier.Contains(jobKvp.Key))
                     {
                         NetworkMenu menu = new NetworkMenu();
-                        menu.LocalStorage.SetAs("header", "Job Details");
+                        menu.LocalStorage.SetAs("header", jobKvp.Key + " Job Details");
                         menu.Width = 1000;
                         menu.Height = 600;
                         var firstGuy = jobKvp.Value.TakenJobs.FirstOrDefault();
@@ -74,43 +74,54 @@ namespace Pandaros.Settlers.Items
             }
             else if (data.ButtonIdentifier.Contains(".AddEquiptmentButton"))
             {
-                NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", "Equiptment");
-                menu.Width = 1000;
-                menu.Height = 600;
-                var newButtonID = data.ButtonIdentifier.Replace(".AddEquiptmentButton", "");
+                Dictionary<string, JobCounts> jobCounts = ColonyTool.GetJobCounts(data.Player.ActiveColony);
 
-                if (data.ButtonIdentifier.Contains(".wep."))
-                {
-                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                foreach (var jobKvp in jobCounts)
+                    if (data.ButtonIdentifier.Contains(jobKvp.Key))
                     {
-                        if (kvp.Value > 0 && Weapons.WeaponFactory.WeaponLookup.TryGetValue(kvp.Key, out var wepItem))
-                        {
-                            List<IItem> items = new List<IItem>();
-                            items.Add(new ItemIcon(kvp.Key));
-                            items.Add(new Label(new LabelData(wepItem.Name, UnityEngine.Color.black)));
-                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black)));
-                            menu.Items.Add(new HorizontalGrid(items, 330));
-                        }
-                    }
-                }
-                else if (data.ButtonIdentifier.Contains(".arm."))
-                {
-                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
-                    {
-                        if (kvp.Value > 0 && Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem))
-                        {
-                            List<IItem> items = new List<IItem>();
-                            items.Add(new ItemIcon(kvp.Key));
-                            items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black)));
-                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black)));
-                            menu.Items.Add(new HorizontalGrid(items, 330));
-                        }
-                    }
-                }
+                        foreach (var job in jobKvp.Value.TakenJobs)
+                            if (data.ButtonIdentifier.Contains("." + job.NPC.ID.ToString() + ".EquiptmentButton"))
+                            {
+                                var inv = Entities.SettlerInventory.GetSettlerInventory(job.NPC);
+                                NetworkMenu menu = new NetworkMenu();
+                                menu.LocalStorage.SetAs("header", inv.SettlerName + " Equiptment");
+                                menu.Width = 1000;
+                                menu.Height = 600;
+                                var newButtonID = data.ButtonIdentifier.Replace(".AddEquiptmentButton", "");
 
-                NetworkMenuManager.SendServerPopup(data.Player, menu);
-                return;
+                                if (data.ButtonIdentifier.Contains(".wep."))
+                                {
+                                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                                    {
+                                        if (kvp.Value > 0 && Weapons.WeaponFactory.WeaponLookup.TryGetValue(kvp.Key, out var wepItem))
+                                        {
+                                            List<IItem> items = new List<IItem>();
+                                            items.Add(new ItemIcon(kvp.Key));
+                                            items.Add(new Label(new LabelData(wepItem.Name, UnityEngine.Color.black)));
+                                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black)));
+                                            menu.Items.Add(new HorizontalGrid(items, 330));
+                                        }
+                                    }
+                                }
+                                else if (data.ButtonIdentifier.Contains(".arm."))
+                                {
+                                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                                    {
+                                        if (kvp.Value > 0 && Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem))
+                                        {
+                                            List<IItem> items = new List<IItem>();
+                                            items.Add(new ItemIcon(kvp.Key));
+                                            items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black)));
+                                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black)));
+                                            menu.Items.Add(new HorizontalGrid(items, 330));
+                                        }
+                                    }
+                                }
+
+                                NetworkMenuManager.SendServerPopup(data.Player, menu);
+                                return;
+                            }
+                    }
             }
             else if (data.ButtonIdentifier.Contains(".AddSelectedEquiptmentButton"))
             {
