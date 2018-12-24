@@ -532,7 +532,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(copperHelmName, copperHelm);
 
                 ArmorLookup.Add(copperHelm.ItemIndex,
-                                new ArmorMetadata(0.05f, 15, "Copper", copperHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.05f, 15, copperHelmName, copperHelm, ArmorSlot.Helm));
 
                 // Chest
                 var copperChestName = GameLoader.NAMESPACE + ".CopperChest";
@@ -546,7 +546,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(copperChestName, copperChest);
 
                 ArmorLookup.Add(copperChest.ItemIndex,
-                                new ArmorMetadata(.1f, 25, "Copper", copperChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.1f, 25, copperChestName, copperChest, ArmorSlot.Chest));
 
                 // Gloves
                 var copperGlovesName = GameLoader.NAMESPACE + ".CopperGloves";
@@ -560,7 +560,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(copperGlovesName, copperGloves);
 
                 ArmorLookup.Add(copperGloves.ItemIndex,
-                                new ArmorMetadata(0.025f, 10, "Copper", copperGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.025f, 10, copperGlovesName, copperGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var copperLegsName = GameLoader.NAMESPACE + ".CopperLegs";
@@ -574,7 +574,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(copperLegsName, copperLegs);
 
                 ArmorLookup.Add(copperLegs.ItemIndex,
-                                new ArmorMetadata(0.07f, 20, "Copper", copperLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.07f, 20, copperLegsName, copperLegs, ArmorSlot.Legs));
 
                 // Boots
                 var copperBootsName = GameLoader.NAMESPACE + ".CopperBoots";
@@ -588,7 +588,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(copperBootsName, copperBoots);
 
                 ArmorLookup.Add(copperBoots.ItemIndex,
-                                new ArmorMetadata(0.025f, 10, "Copper", copperBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.025f, 10, copperBootsName, copperBoots, ArmorSlot.Boots));
 
                 // Shield
                 var copperShieldName = GameLoader.NAMESPACE + ".CopperShield";
@@ -602,7 +602,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(copperShieldName, copperShield);
 
                 ArmorLookup.Add(copperShield.ItemIndex,
-                                new ArmorMetadata(0.05f, 30, "Copper", copperShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.05f, 30, copperShieldName, copperShield, ArmorSlot.Shield));
 
                 // ----------------------------------------
                 // Bronze
@@ -620,7 +620,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(bronzeHelmName, bronzeHelm);
 
                 ArmorLookup.Add(bronzeHelm.ItemIndex,
-                                new ArmorMetadata(0.07f, 20, "Bronze", bronzeHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.07f, 20, bronzeHelmName, bronzeHelm, ArmorSlot.Helm));
 
                 // Chest
                 var bronzeChestName = GameLoader.NAMESPACE + ".BronzeChest";
@@ -634,7 +634,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(bronzeChestName, bronzeChest);
 
                 ArmorLookup.Add(bronzeChest.ItemIndex,
-                                new ArmorMetadata(.15f, 30, "Bronze", bronzeChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.15f, 30, bronzeChestName, bronzeChest, ArmorSlot.Chest));
 
                 // Gloves
                 var bronzeGlovesName = GameLoader.NAMESPACE + ".BronzeGloves";
@@ -648,7 +648,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(bronzeGlovesName, bronzeGloves);
 
                 ArmorLookup.Add(bronzeGloves.ItemIndex,
-                                new ArmorMetadata(0.04f, 15, "Bronze", bronzeGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.04f, 15, bronzeGlovesName, bronzeGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var bronzeLegsName = GameLoader.NAMESPACE + ".BronzeLegs";
@@ -662,7 +662,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(bronzeLegsName, bronzeLegs);
 
                 ArmorLookup.Add(bronzeLegs.ItemIndex,
-                                new ArmorMetadata(0.09f, 25, "Bronze", bronzeLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.09f, 25, bronzeLegsName, bronzeLegs, ArmorSlot.Legs));
 
                 // Boots
                 var bronzeBootsName = GameLoader.NAMESPACE + ".BronzeBoots";
@@ -676,7 +676,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(bronzeBootsName, bronzeBoots);
 
                 ArmorLookup.Add(bronzeBoots.ItemIndex,
-                                new ArmorMetadata(0.04f, 15, "Bronze", bronzeBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.04f, 15, bronzeBootsName, bronzeBoots, ArmorSlot.Boots));
 
                 // Shield
                 var bronzeShieldName = GameLoader.NAMESPACE + ".BronzeShield";
@@ -690,7 +690,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(bronzeShieldName, bronzeShield);
 
                 ArmorLookup.Add(bronzeShield.ItemIndex,
-                                new ArmorMetadata(0.07f, 40, "Bronze", bronzeShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.07f, 40, bronzeShieldName, bronzeShield, ArmorSlot.Shield));
 
                 // ----------------------------------------
                 // Iron
@@ -708,7 +708,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(ironHelmName, ironHelm);
 
                 ArmorLookup.Add(ironHelm.ItemIndex,
-                                new ArmorMetadata(0.09f, 30, "Iron", ironHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.09f, 30, ironHelmName, ironHelm, ArmorSlot.Helm));
 
                 // Chest
                 var ironChestName = GameLoader.NAMESPACE + ".IronChest";
@@ -722,7 +722,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(ironChestName, ironChest);
 
                 ArmorLookup.Add(ironChest.ItemIndex,
-                                new ArmorMetadata(.2f, 40, "Iron", ironChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.2f, 40, ironChestName, ironChest, ArmorSlot.Chest));
 
                 // Gloves
                 var ironGlovesName = GameLoader.NAMESPACE + ".IronGloves";
@@ -736,7 +736,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(ironGlovesName, ironGloves);
 
                 ArmorLookup.Add(ironGloves.ItemIndex,
-                                new ArmorMetadata(0.055f, 25, "Iron", ironGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.055f, 25, ironGlovesName, ironGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var ironLegsName = GameLoader.NAMESPACE + ".IronLegs";
@@ -750,7 +750,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(ironLegsName, ironLegs);
 
                 ArmorLookup.Add(ironLegs.ItemIndex,
-                                new ArmorMetadata(0.11f, 35, "Iron", ironLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.11f, 35, ironLegsName, ironLegs, ArmorSlot.Legs));
 
                 // Boots
                 var ironBootsName = GameLoader.NAMESPACE + ".IronBoots";
@@ -764,7 +764,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(ironBootsName, ironBoots);
 
                 ArmorLookup.Add(ironBoots.ItemIndex,
-                                new ArmorMetadata(0.055f, 25, "Iron", ironBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.055f, 25, ironBootsName, ironBoots, ArmorSlot.Boots));
 
                 // Shield
                 var ironShieldName = GameLoader.NAMESPACE + ".IronShield";
@@ -778,7 +778,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(ironShieldName, ironShield);
 
                 ArmorLookup.Add(ironShield.ItemIndex,
-                                new ArmorMetadata(0.1f, 50, "Iron", ironShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.1f, 50, ironShieldName, ironShield, ArmorSlot.Shield));
 
                 // ----------------------------------------
                 // Steel
@@ -796,7 +796,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(steelHelmName, steelHelm);
 
                 ArmorLookup.Add(steelHelm.ItemIndex,
-                                new ArmorMetadata(0.11f, 40, "Steel", steelHelm, ArmorSlot.Helm));
+                                new ArmorMetadata(0.11f, 40, steelHelmName, steelHelm, ArmorSlot.Helm));
 
                 // Chest
                 var steelChestName = GameLoader.NAMESPACE + ".SteelChest";
@@ -810,7 +810,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(steelChestName, steelChest);
 
                 ArmorLookup.Add(steelChest.ItemIndex,
-                                new ArmorMetadata(.3f, 50, "Steel", steelChest, ArmorSlot.Chest));
+                                new ArmorMetadata(.3f, 50, steelChestName, steelChest, ArmorSlot.Chest));
 
                 // Gloves
                 var steelGlovesName = GameLoader.NAMESPACE + ".SteelGloves";
@@ -824,7 +824,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(steelGlovesName, steelGloves);
 
                 ArmorLookup.Add(steelGloves.ItemIndex,
-                                new ArmorMetadata(0.07f, 35, "Steel", steelGloves, ArmorSlot.Gloves));
+                                new ArmorMetadata(0.07f, 35, steelGlovesName, steelGloves, ArmorSlot.Gloves));
 
                 // Legs
                 var steelLegsName = GameLoader.NAMESPACE + ".SteelLegs";
@@ -838,7 +838,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(steelLegsName, steelLegs);
 
                 ArmorLookup.Add(steelLegs.ItemIndex,
-                                new ArmorMetadata(0.13f, 40, "Steel", steelLegs, ArmorSlot.Legs));
+                                new ArmorMetadata(0.13f, 40, steelLegsName, steelLegs, ArmorSlot.Legs));
 
                 // Boots
                 var steelBootsName = GameLoader.NAMESPACE + ".SteelBoots";
@@ -852,7 +852,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(steelBootsName, steelBoots);
 
                 ArmorLookup.Add(steelBoots.ItemIndex,
-                                new ArmorMetadata(0.07f, 35, "Steel", steelBoots, ArmorSlot.Boots));
+                                new ArmorMetadata(0.07f, 35, steelBootsName, steelBoots, ArmorSlot.Boots));
 
                 // Shield
                 var steelShieldName = GameLoader.NAMESPACE + ".SteelShield";
@@ -866,7 +866,7 @@ namespace Pandaros.Settlers.Items.Armor
                 items.Add(steelShieldName, steelShield);
 
                 ArmorLookup.Add(steelShield.ItemIndex,
-                                new ArmorMetadata(0.12f, 60, "Steel", steelShield, ArmorSlot.Shield));
+                                new ArmorMetadata(0.12f, 60, steelShieldName, steelShield, ArmorSlot.Shield));
 
                 ArmorLookup = ArmorLookup.OrderBy(kvp => kvp.Value.Name).ThenBy(kvp => kvp.Value.ArmorRating)
                                          .ToDictionary(k => k.Key, v => v.Value);
