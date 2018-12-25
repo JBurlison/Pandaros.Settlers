@@ -41,12 +41,13 @@ namespace Pandaros.Settlers.Entities
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
-        
+        List<IPlayerMagicItem> MagicItems { get; set; } = new List<IPlayerMagicItem>();
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public long NextMusicTime { get; set; }
         public bool Connected { get; set; }
-
+        public int MaxMagicItems { get; set; }
+        public DateTime JoinDate { get; set; } = DateTime.Now;
         private void HealingOverTimePC_NewInstance(object sender, EventArgs e)
         {
             var healing = sender as HealingOverTimePC;
@@ -227,15 +228,15 @@ namespace Pandaros.Settlers.Entities
 
             if (n.TryGetChild(GameLoader.NAMESPACE + ".PlayerState", out var stateNode))
             {
-                if (stateNode.TryGetAs(nameof(ItemsPlaced), out JSONNode ItemsPlacedNode) && ItemsPlacedNode.NodeType == NodeType.Object)
+                if (stateNode.TryGetAs(nameof(ItemsPlaced), out JSONNode ItemsPlacedNode))
                     foreach (var aNode in ItemsPlacedNode.LoopObject())
                         _playerStates[p].ItemsPlaced.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
-                if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode) && ItemsRemovedNode.NodeType == NodeType.Object)
+                if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode))
                     foreach (var aNode in ItemsRemovedNode.LoopObject())
                         _playerStates[p].ItemsRemoved.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
-                if (stateNode.TryGetAs(nameof(ItemsInWorld), out JSONNode ItemsInWorldNode) && ItemsInWorldNode.NodeType == NodeType.Object)
+                if (stateNode.TryGetAs(nameof(ItemsInWorld), out JSONNode ItemsInWorldNode))
                     foreach (var aNode in ItemsInWorldNode.LoopObject())
                         _playerStates[p].ItemsInWorld.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
@@ -267,11 +268,19 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(MusicEnabled), out bool music))
                     _playerStates[p].MusicEnabled = music;
 
+                if (stateNode.TryGetAs(nameof(JoinDate), out string joindate))
+                    _playerStates[p].JoinDate = DateTime.Parse(joindate);
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
                     foreach (var node in wandPreview.LoopArray())
                         _playerStates[p].BuildersWandPreview.Add(node.ToVector3Int());
+
+                if (stateNode.TryGetAs(nameof(MagicItems), out JSONNode magicItems))
+                    foreach (var magicItem in magicItems.LoopArray())
+                        if (MagicItemsCache.PlayerMagicItems.TryGetValue(magicItem.GetAs<string>(), out var pmi))
+                            _playerStates[p].MagicItems.Add(pmi);
             }
         }
 
@@ -287,6 +296,10 @@ namespace Pandaros.Settlers.Entities
                 var ItemsInWorldNode    = new JSONNode();
                 var flagsPlaced         = new JSONNode(NodeType.Array);
                 var buildersWandPreview = new JSONNode(NodeType.Array);
+                var equiptMagicItems    = new JSONNode(NodeType.Array);
+
+                foreach (var magicItem in _playerStates[p].MagicItems)
+                    equiptMagicItems.AddToArray(new JSONNode(magicItem.Name));
 
                 foreach (var kvp in _playerStates[p].ItemsPlaced)
                     ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);
@@ -318,6 +331,8 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
                 node.SetAs(nameof(MusicEnabled), _playerStates[p].MusicEnabled);
+                node.SetAs(nameof(MagicItems), equiptMagicItems);
+                node.SetAs(nameof(JoinDate), _playerStates[p].JoinDate);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

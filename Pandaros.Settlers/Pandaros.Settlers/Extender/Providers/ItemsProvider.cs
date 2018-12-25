@@ -29,6 +29,9 @@ namespace Pandaros.Settlers.Extender.Providers
                         if (itemType.StaticItemSettings != null && !string.IsNullOrWhiteSpace(itemType.StaticItemSettings.Name))
                             StaticItems.List.Add(itemType.StaticItemSettings);
 
+                        if (itemType is IPlayerMagicItem pmi)
+                            MagicItemsCache.PlayerMagicItems[pmi.Name] = pmi;
+
                         _sb.Append($"{itemType.Name}, ");
                     }
                 }

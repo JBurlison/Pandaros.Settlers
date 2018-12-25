@@ -118,8 +118,10 @@
     <Compile Include="ColonyManager\Permission.cs" />
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
+    <Compile Include="Items\MagicItemsCache.cs" />
     <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
+    <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
     <Compile Include="NBT\BlockMapping.cs" />

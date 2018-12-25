@@ -2,6 +2,10 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "Architect1": {
+          "name": "Architect",
+          "description": "The Architect builds schematics and allows builders to build them."
+        },
         "Sorcerer1": {
           "name": "Sorcerer",
           "description": "Unlocks Sorcerer to create magical item for your colony."

@@ -120,10 +120,10 @@ namespace Pandaros.Settlers.Items.Armor
                     /// Load up player first.
                     foreach (ArmorSlot slot in ArmorSlotEnum)
                     {
-                        if (!state.Armor[slot].IsEmpty() && ArmorLookup[state.Armor[slot].Id].IsMagical)
+                        if (!state.Armor[slot].IsEmpty() && ArmorLookup.TryGetValue(state.Armor[slot].Id, out var existingArmor) && existingArmor.IsMagical)
                             continue;
 
-                        var bestArmor = GetBestArmorFromStockpile(stockpile, slot, 0, true);
+                        var bestArmor = GetBestArmorFromStockpile(stockpile, slot, 0);
 
                         if (bestArmor != default(ushort))
                         {
@@ -172,7 +172,7 @@ namespace Pandaros.Settlers.Items.Armor
                 if (!inv.Armor[slot].IsEmpty() && ArmorLookup[inv.Armor[slot].Id].IsMagical)
                     continue;
 
-                var bestArmor = GetBestArmorFromStockpile(stockpile, slot, limit, false);
+                var bestArmor = GetBestArmorFromStockpile(stockpile, slot, limit);
 
                 if (bestArmor != default(ushort))
                 {
@@ -204,11 +204,11 @@ namespace Pandaros.Settlers.Items.Armor
             }
         }
 
-        public static ushort GetBestArmorFromStockpile(Stockpile s, ArmorSlot slot, int limit, bool player)
+        public static ushort GetBestArmorFromStockpile(Stockpile s, ArmorSlot slot, int limit)
         {
             var best = default(ushort);
 
-            foreach (var armor in ArmorLookup.Where(a => a.Value.Slot == slot && (a.Value as IPlayerMagicItem != null) == player))
+            foreach (var armor in ArmorLookup.Where(a => a.Value.Slot == slot))
                 if (s.Contains(armor.Key) && s.AmountContained(armor.Key) > limit)
                     if (best == default(ushort) || (!armor.Value.IsMagical && armor.Value.ArmorRating > ArmorLookup[best].ArmorRating))
                         best = armor.Key;

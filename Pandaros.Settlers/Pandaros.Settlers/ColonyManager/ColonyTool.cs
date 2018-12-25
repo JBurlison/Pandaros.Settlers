@@ -228,6 +228,10 @@ namespace Pandaros.Settlers.ColonyManager
 
                 menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"Kill {count} Fired {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
+            else
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlayerDetails", new LabelData("Player Details", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+
+            menu.Items.Add(new Line());
 
             List<IItem> header = new List<IItem>();
 

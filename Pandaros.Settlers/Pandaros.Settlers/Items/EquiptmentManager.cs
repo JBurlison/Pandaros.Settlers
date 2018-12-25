@@ -2,6 +2,7 @@
 using NetworkUI;
 using NetworkUI.Items;
 using Pandaros.Settlers.ColonyManager;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,63 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Items.EquiptmentManager.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
-            if (data.ButtonIdentifier.Contains(".JobDetailsButton"))
+            if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".PlayerDetails"))
+            {
+                NetworkMenu menu = new NetworkMenu();
+                menu.LocalStorage.SetAs("header", "Player Details");
+                menu.Width = 1000;
+                menu.Height = 600;
+
+                var ps = PlayerState.GetPlayerState(data.Player);
+
+                menu.Items.Add(new Label(new LabelData("Stats", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Join Date:", UnityEngine.Color.black)),
+                                                new Label(new LabelData(ps.JoinDate.ToString(), UnityEngine.Color.black))));
+
+                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Placed:", UnityEngine.Color.black)),
+                                                new Label(new LabelData(ps.ItemsPlaced.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
+                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Removed:", UnityEngine.Color.black)),
+                                                new Label(new LabelData(ps.ItemsRemoved.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
+
+                var totalArmor = 0f;
+
+                foreach (var a in ps.Armor)
+                {
+                    if (Armor.ArmorFactory.ArmorLookup.TryGetValue(a.Value.Id, out var armorItem))
+                        totalArmor += armorItem.ArmorRating;
+                }
+
+                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Damage Reduction:", UnityEngine.Color.black)),
+                                                new Label(new LabelData((totalArmor * 100) + "%", UnityEngine.Color.black))));
+
+                menu.Items.Add(new Line(UnityEngine.Color.black));
+                menu.Items.Add(new Label(new LabelData("Equiptment", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+
+                foreach (var armor in ps.Armor)
+                {
+                    List<IItem> items = new List<IItem>();
+                    items.Add(new Label(new LabelData(armor.Key.ToString(), UnityEngine.Color.black)));
+                    items.Add(new ItemIcon(armor.Value.Id));
+
+                    if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
+                    {
+                        items.Add(new Label(new LabelData(arm.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                        items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Swap", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                        items.Add(new ButtonCallback(armor.Key + ".RemoveEquiptmentButton", new LabelData("Remove", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    }
+                    else
+                    {
+                        items.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+                        items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Add", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    }
+
+                    menu.Items.Add(new HorizontalGrid(items, 200));
+                }
+
+                NetworkMenuManager.SendServerPopup(data.Player, menu);
+                return;
+            }
+            else if (data.ButtonIdentifier.Contains(".JobDetailsButton"))
             {
                 Dictionary<string, JobCounts> jobCounts = ColonyTool.GetJobCounts(data.Player.ActiveColony);
 
@@ -28,6 +85,7 @@ namespace Pandaros.Settlers.Items
                         menu.LocalStorage.SetAs("header", jobKvp.Key + " Job Details");
                         menu.Width = 1000;
                         menu.Height = 600;
+
                         var firstGuy = jobKvp.Value.TakenJobs.FirstOrDefault();
                         var firstInv = Entities.SettlerInventory.GetSettlerInventory(firstGuy.NPC);
                         List<IItem> headerItems = new List<IItem>();
@@ -54,6 +112,7 @@ namespace Pandaros.Settlers.Items
                             menu.Items.Add(new HorizontalGrid(items, 100));
                         }
 
+                        menu.Items.Add(new Line());
                         menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData("Back", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
                         NetworkMenuManager.SendServerPopup(data.Player, menu);
@@ -238,9 +297,9 @@ namespace Pandaros.Settlers.Items
             menu.Height = 600;
 
             menu.Items.Add(new Label(new LabelData("Stats", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
-            menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Skill Modifier:", UnityEngine.Color.black)),
-                                                new Label(new LabelData(inv.GetSkillModifier().ToString(), UnityEngine.Color.black))));
-            menu.Items.Add(new Label(new LabelData("Skill modifier is the % to do double damage and proc bonus items.", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 13)));
+            menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Skill Proc Chance:", UnityEngine.Color.black)),
+                                                new Label(new LabelData((inv.GetSkillModifier() * 100) + "%", UnityEngine.Color.black))));
+            menu.Items.Add(new Label(new LabelData("Skill proc chance is the % to do double damage and proc bonus items.", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 13)));
             SettlerManager.GetSkillInformation(job, out var nextLevel, out var itt, out var allSkill);
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Number of Attacks/Crafts to next skill up:", UnityEngine.Color.black)),
                                                 new Label(new LabelData((nextLevel - itt).ToString(), UnityEngine.Color.black))));
@@ -318,6 +377,7 @@ namespace Pandaros.Settlers.Items
 
                 menu.Items.Add(new HorizontalGrid(items, 200));
             }
+
             menu.Items.Add(new Line(UnityEngine.Color.black));
             menu.Items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData("Back", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             NetworkMenuManager.SendServerPopup(data.Player, menu);
