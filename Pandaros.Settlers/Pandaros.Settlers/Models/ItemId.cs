@@ -36,27 +36,57 @@ namespace Pandaros.Settlers.Models
             return item;
         }
 
-        public ushort Id { get; private set; }
-        public string Name { get; private set; }
+        ushort _id;
+        string _name;
+
+        public ushort Id
+        {
+            get
+            {
+                if (_id == default(ushort))
+                {
+                    if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(_name, out var item))
+                        _id = item.ItemIndex;
+                    else
+                        throw new ArgumentException($"name {_name} is not registered as an item type yet. Unable to create ItemId object.");
+                }
+
+                return _id;
+            }
+            private set
+            {
+                _id = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_name))
+                {
+                    if (ItemTypes.IndexLookup.IndexLookupTable.TryGetValue(_id, out string name))
+                        _name = name;
+                    else
+                        throw new ArgumentException($"Id {_id} is not registered as an item type yet. Unable to create ItemId object.");
+                }
+
+                return _name;
+            }
+            private set
+            {
+                _name = value;
+            }
+        }
 
         private ItemId(ushort id)
         {
-            Id = id;
-
-            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetValue(id, out string name))
-                Name = name;
-            else
-                throw new ArgumentException($"Id {id} is not registered as an item type yet. Unable to create ItemId object.");
+            _id = id;
         }
 
         private ItemId(string name)
         {
-            Name = name;
-
-            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(name, out var item))
-                Id = item.ItemIndex;
-            else
-                throw new ArgumentException($"name {name} is not registered as an item type yet. Unable to create ItemId object.");
+            _name = name;
         }
 
         public override int GetHashCode()

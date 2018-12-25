@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {
-    public class SchematicToolResearch : IPandaResearch
+    public class SorcererResearch : IPandaResearch
     {
         public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
         {

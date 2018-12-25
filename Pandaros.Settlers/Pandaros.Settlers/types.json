@@ -7053,14 +7053,5 @@
       "ingredient",
       "raw"
     ]
-  },
-  "Pandaros.Settlers.AutoLoad.Adamantine": {
-    "icon": "./icons/Adamantine.png",
-    "maxStackSize": 600,
-    "isPlaceable": false,
-    "categories": [
-      "ingredient",
-      "Adamantine"
-    ]
   }
 }

@@ -119,6 +119,8 @@
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
+    <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
+    <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
@@ -949,6 +951,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\AdamantineNugget.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\HealthBooster.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\infiniteAdamantine.png">
