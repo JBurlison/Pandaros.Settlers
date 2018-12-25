@@ -36,6 +36,7 @@ namespace Pandaros.Settlers.Entities
         public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
         public bool MusicEnabled { get; set; } = true;
         public ItemState Weapon { get; set; } = new ItemState();
         public BuildersWand.WandMode BuildersWandMode { get; set; }
@@ -85,6 +86,14 @@ namespace Pandaros.Settlers.Entities
             }
 
             Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
+        }
+
+        public void IncrimentStat(string name, double count = 1)
+        {
+            if (!Stats.ContainsKey(name))
+                Stats.Add(name, 0);
+
+            Stats[name] += count;
         }
 
         private void ArmorState_IdChanged(object sender, ItemStateChangedEventArgs e)
@@ -281,6 +290,10 @@ namespace Pandaros.Settlers.Entities
                     foreach (var magicItem in magicItems.LoopArray())
                         if (MagicItemsCache.PlayerMagicItems.TryGetValue(magicItem.GetAs<string>(), out var pmi))
                             _playerStates[p].MagicItems.Add(pmi);
+
+                if (stateNode.TryGetAs(nameof(Stats), out JSONNode itterations))
+                    foreach (var skill in itterations.LoopObject())
+                        _playerStates[p].Stats[skill.Key] = skill.Value.GetAs<double>();
             }
         }
 
@@ -318,6 +331,13 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var preview in _playerStates[p].BuildersWandPreview)
                     buildersWandPreview.AddToArray(preview.ToJSONNode());
+
+                var statsNode = new JSONNode();
+
+                foreach (var job in _playerStates[p].Stats)
+                    statsNode[job.Key] = new JSONNode(job.Value);
+
+                node.SetAs(nameof(Stats), statsNode);
 
                 node.SetAs("Armor", armorNode);
                 node.SetAs("Weapon", _playerStates[p].Weapon.ToJsonNode());

@@ -317,6 +317,16 @@ namespace Pandaros.Settlers.Items
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Removed:", UnityEngine.Color.black)),
                                             new Label(new LabelData(ps.ItemsRemoved.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
 
+            foreach (var statItem in ps.Stats)
+            {
+                if (ItemTypes.IndexLookup.TryGetIndex(statItem.Key, out var itemIndex))
+                    menu.Items.Add(new HorizontalSplit(new Label(new LabelData(statItem.Key, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)),
+                                                new Label(new LabelData(statItem.Value.ToString(), UnityEngine.Color.black))));
+                else
+                    menu.Items.Add(new HorizontalSplit(new Label(new LabelData(statItem.Key, UnityEngine.Color.black)),
+                                                new Label(new LabelData(statItem.Value.ToString(), UnityEngine.Color.black))));
+            }
+
             var totalArmor = 0f;
 
             foreach (var a in ps.Armor)

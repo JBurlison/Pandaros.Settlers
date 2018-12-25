@@ -222,6 +222,7 @@ namespace Pandaros.Settlers.Items.Armor
         {
             var state = PlayerState.GetPlayerState(player);
             DeductArmor(box, state.Armor);
+            state.IncrimentStat("Damage Taken", box.HitDamage);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
