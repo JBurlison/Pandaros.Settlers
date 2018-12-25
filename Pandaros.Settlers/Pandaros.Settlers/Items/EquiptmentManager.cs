@@ -20,59 +20,70 @@ namespace Pandaros.Settlers.Items
         {
             if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".PlayerDetails"))
             {
+                BuildPlayerDetailsMenu(data);
+                return;
+            }
+            else if (data.ButtonIdentifier.Contains(".AddPlayerEquiptmentButton"))
+            {
                 NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", "Player Details");
+                menu.LocalStorage.SetAs("header", "Player Equiptment");
                 menu.Width = 1000;
                 menu.Height = 600;
 
-                var ps = PlayerState.GetPlayerState(data.Player);
-
-                menu.Items.Add(new Label(new LabelData("Stats", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
-                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Join Date:", UnityEngine.Color.black)),
-                                                new Label(new LabelData(ps.JoinDate.ToString(), UnityEngine.Color.black))));
-
-                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Placed:", UnityEngine.Color.black)),
-                                                new Label(new LabelData(ps.ItemsPlaced.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
-                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Removed:", UnityEngine.Color.black)),
-                                                new Label(new LabelData(ps.ItemsRemoved.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
-
-                var totalArmor = 0f;
-
-                foreach (var a in ps.Armor)
+                foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                 {
-                    if (Armor.ArmorFactory.ArmorLookup.TryGetValue(a.Value.Id, out var armorItem))
-                        totalArmor += armorItem.ArmorRating;
-                }
-
-                menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Damage Reduction:", UnityEngine.Color.black)),
-                                                new Label(new LabelData((totalArmor * 100) + "%", UnityEngine.Color.black))));
-
-                menu.Items.Add(new Line(UnityEngine.Color.black));
-                menu.Items.Add(new Label(new LabelData("Equiptment", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
-
-                foreach (var armor in ps.Armor)
-                {
-                    List<IItem> items = new List<IItem>();
-                    items.Add(new Label(new LabelData(armor.Key.ToString(), UnityEngine.Color.black)));
-                    items.Add(new ItemIcon(armor.Value.Id));
-
-                    if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
+                    if (kvp.Value > 0 && Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) && data.ButtonIdentifier.Contains(armItem.Slot + "."))
                     {
-                        items.Add(new Label(new LabelData(arm.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                        items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Swap", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-                        items.Add(new ButtonCallback(armor.Key + ".RemoveEquiptmentButton", new LabelData("Remove", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                        List<IItem> items = new List<IItem>();
+                        items.Add(new ItemIcon(kvp.Key));
+                        items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                        items.Add(new Label(new LabelData("Stockpile: " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                        items.Add(new ButtonCallback(kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                        menu.Items.Add(new HorizontalGrid(items, 250));
                     }
-                    else
-                    {
-                        items.Add(new Label(new LabelData("", UnityEngine.Color.black)));
-                        items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Add", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-                    }
-
-                    menu.Items.Add(new HorizontalGrid(items, 200));
                 }
 
                 NetworkMenuManager.SendServerPopup(data.Player, menu);
-                return;
+            }
+            else if (data.ButtonIdentifier.Contains(".AddPlayerSelectedEquiptmentButton"))
+            {
+
+                foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                {
+                    if (Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) &&
+                        data.ButtonIdentifier.Contains(kvp.Key + ".") &&
+                        data.Player.ActiveColony.Stockpile.TryRemove(kvp.Key))
+                    {
+                        var ps = PlayerState.GetPlayerState(data.Player);
+
+                        if (ps.Armor[armItem.Slot].Id != default(ushort))
+                            data.Player.ActiveColony.Stockpile.Add(ps.Armor[armItem.Slot].Id);
+
+                        ps.Armor[armItem.Slot].Id = kvp.Key;
+                        ps.Armor[armItem.Slot].Durability = armItem.Durability;
+                        BuildPlayerDetailsMenu(data);
+                        return;
+                    }
+                }
+            }
+            else if (data.ButtonIdentifier.Contains(".RemovePlayerEquiptmentButton"))
+            {
+                var ps = PlayerState.GetPlayerState(data.Player);
+
+                foreach (var armor in ps.Armor)
+                {
+                    if (data.ButtonIdentifier.Contains(armor.Key + "."))
+                    {
+                        if (armor.Value.Id != default(ushort))
+                            data.Player.ActiveColony.Stockpile.Add(armor.Value.Id);
+
+                        armor.Value.Id = default(ushort);
+                        armor.Value.Durability = default(int);
+                        break;
+                    }
+                }
+
+                BuildPlayerDetailsMenu(data);
             }
             else if (data.ButtonIdentifier.Contains(".JobDetailsButton"))
             {
@@ -201,7 +212,7 @@ namespace Pandaros.Settlers.Items
                                 {
                                     foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                                     {
-                                        if (Weapons.WeaponFactory.WeaponLookup.TryGetValue(kvp.Key, out var wepItem) && 
+                                        if (Weapons.WeaponFactory.WeaponLookup.TryGetValue(kvp.Key, out var wepItem) &&
                                             data.ButtonIdentifier.Contains("." + kvp.Key + ".") &&
                                             job.NPC.Colony.Stockpile.TryRemove(kvp.Key))
                                         {
@@ -221,7 +232,7 @@ namespace Pandaros.Settlers.Items
                                 {
                                     foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                                     {
-                                        if (Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) && 
+                                        if (Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) &&
                                             data.ButtonIdentifier.Contains("." + kvp.Key + ".") &&
                                             job.NPC.Colony.Stockpile.TryRemove(kvp.Key))
                                         {
@@ -286,6 +297,62 @@ namespace Pandaros.Settlers.Items
                 Dictionary<string, JobCounts> jobCounts = ColonyTool.GetJobCounts(data.Player.ActiveColony);
                 NetworkMenuManager.SendServerPopup(data.Player, ColonyTool.BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
             }
+        }
+
+        private static void BuildPlayerDetailsMenu(ButtonPressCallbackData data)
+        {
+            NetworkMenu menu = new NetworkMenu();
+            menu.LocalStorage.SetAs("header", "Player Details");
+            menu.Width = 1000;
+            menu.Height = 600;
+
+            var ps = PlayerState.GetPlayerState(data.Player);
+
+            menu.Items.Add(new Label(new LabelData("Stats", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+            menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Join Date:", UnityEngine.Color.black)),
+                                            new Label(new LabelData(ps.JoinDate.ToString(), UnityEngine.Color.black))));
+
+            menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Placed:", UnityEngine.Color.black)),
+                                            new Label(new LabelData(ps.ItemsPlaced.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
+            menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Blocks Removed:", UnityEngine.Color.black)),
+                                            new Label(new LabelData(ps.ItemsRemoved.Sum(kvp => kvp.Value).ToString(), UnityEngine.Color.black))));
+
+            var totalArmor = 0f;
+
+            foreach (var a in ps.Armor)
+            {
+                if (Armor.ArmorFactory.ArmorLookup.TryGetValue(a.Value.Id, out var armorItem))
+                    totalArmor += armorItem.ArmorRating;
+            }
+
+            menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Damage Reduction:", UnityEngine.Color.black)),
+                                            new Label(new LabelData((totalArmor * 100) + "%", UnityEngine.Color.black))));
+
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+            menu.Items.Add(new Label(new LabelData("Equiptment", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+
+            foreach (var armor in ps.Armor)
+            {
+                List<IItem> items = new List<IItem>();
+                items.Add(new Label(new LabelData(armor.Key.ToString(), UnityEngine.Color.black)));
+                items.Add(new ItemIcon(armor.Value.Id));
+
+                if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
+                {
+                    items.Add(new Label(new LabelData(arm.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                    items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Swap", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(new ButtonCallback(armor.Key + ".RemovePlayerEquiptmentButton", new LabelData("Remove", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                }
+                else
+                {
+                    items.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+                    items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Add", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                }
+
+                menu.Items.Add(new HorizontalGrid(items, 200));
+            }
+
+            NetworkMenuManager.SendServerPopup(data.Player, menu);
         }
 
         public static void BuildSettlerDetailMenu(ButtonPressCallbackData data, KeyValuePair<string, JobCounts> jobKvp, global::Jobs.IJob job)
