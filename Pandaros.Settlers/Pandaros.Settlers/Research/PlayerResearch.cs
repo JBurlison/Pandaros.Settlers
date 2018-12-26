@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Research
 
         public bool AddLevelToName => true;
 
-        public string Name => GameLoader.NAMESPACE + ".MaxMagicItems";
+        public string Name =>  "MaxMagicItems";
 
         public void OnRegister()
         {

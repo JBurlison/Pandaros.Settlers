@@ -15,6 +15,7 @@ namespace Pandaros.Settlers.Jobs
     {
         public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
         {
+            { ItemId.GetItemId(Items.Reagents.Adamantine.NAME), 1 },
             { BuiltinBlocks.ScienceBagColony, 1 },
             { BuiltinBlocks.ScienceBagBasic, 3 },
             { BuiltinBlocks.ScienceBagAdvanced, 1 }
@@ -31,7 +32,7 @@ namespace Pandaros.Settlers.Jobs
 
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
-        public string Name => SorcererRegister.JOB_NAME;
+        public string Name => "Sorcerer";
 
         public void OnRegister()
         {
@@ -92,7 +93,7 @@ namespace Pandaros.Settlers.Jobs
             Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperNails), 60);
             Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperTools), 6);
             Requirements.Add(ItemId.GetItemId(BuiltinBlocks.Planks), 6);
-            Requirements.Add(ItemId.GetItemId("Pandaros.Settlers.AutoLoad.Adamantine"), 2);
+            Requirements.Add(ItemId.GetItemId(Items.Reagents.Adamantine.NAME), 2);
             Results.Add(ItemId.GetItemId(SorcererRegister.JOB_ITEM_KEY), 1);
         }
 

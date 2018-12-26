@@ -1022,10 +1022,10 @@
     <Content Include="icons\ColonyManager.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\Pandaros.Settlers.MaxMagicItems1.png">
+    <Content Include="icons\MaxMagicItems1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\Pandaros.Settlers.MaxMagicItems2.png">
+    <Content Include="icons\MaxMagicItems2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\sapling.png">
@@ -1640,7 +1640,7 @@
     <Content Include="icons\Selector.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\Pandaros.Settlers.Sorcerer.png">
+    <Content Include="icons\Sorcerer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\SorcererTable.png">
