@@ -15,6 +15,8 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public class EquiptmentManager
     {
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Items.EquiptmentManager.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
@@ -30,16 +32,36 @@ namespace Pandaros.Settlers.Items
                 menu.Width = 1000;
                 menu.Height = 600;
 
-                foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                if (data.ButtonIdentifier.Contains("MagicItem."))
                 {
-                    if (kvp.Value > 0 && Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) && data.ButtonIdentifier.Contains(armItem.Slot + "."))
+                    var id = data.ButtonIdentifier.Replace("AddPlayerEquiptmentButton", "");
+                    
+                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                     {
-                        List<IItem> items = new List<IItem>();
-                        items.Add(new ItemIcon(kvp.Key));
-                        items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                        items.Add(new Label(new LabelData("Stockpile: " + kvp.Value.ToString(), UnityEngine.Color.black)));
-                        items.Add(new ButtonCallback(kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-                        menu.Items.Add(new HorizontalGrid(items, 250));
+                        if (kvp.Value > 0 && ItemTypes.TryGetType(kvp.Key, out var itemType) && MagicItemsCache.PlayerMagicItems.TryGetValue(itemType.Name, out var magicItem))
+                        {
+                            List<IItem> items = new List<IItem>();
+                            items.Add(new ItemIcon(kvp.Key));
+                            items.Add(new Label(new LabelData(magicItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                            items.Add(new Label(new LabelData("Stockpile" + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                            items.Add(new ButtonCallback(id + kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                            menu.Items.Add(new HorizontalGrid(items, 250));
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                    {
+                        if (kvp.Value > 0 && Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) && data.ButtonIdentifier.Contains(armItem.Slot + "."))
+                        {
+                            List<IItem> items = new List<IItem>();
+                            items.Add(new ItemIcon(kvp.Key));
+                            items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                            items.Add(new Label(new LabelData("Stockpile: " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                            items.Add(new ButtonCallback(kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                            menu.Items.Add(new HorizontalGrid(items, 250));
+                        }
                     }
                 }
 
@@ -357,6 +379,28 @@ namespace Pandaros.Settlers.Items
                 {
                     items.Add(new Label(new LabelData("", UnityEngine.Color.black)));
                     items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData("Add", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                }
+
+                menu.Items.Add(new HorizontalGrid(items, 200));
+            }
+
+            for (int i = 0; i <= ps.MaxMagicItems; i++)
+            {
+                List<IItem> items = new List<IItem>();
+                items.Add(new Label(new LabelData(GameLoader.NAMESPACE + ".buildertool.MagicItemLabel", UnityEngine.Color.black)));
+
+                if (ps.MagicItems.Count >= i + 1)
+                {
+                    items.Add(new ItemIcon(ps.MagicItems[i].Name));
+                    items.Add(new Label(new LabelData(ps.MagicItems[i].Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                    items.Add(new ButtonCallback("MagicItem." + i + ".AddPlayerEquiptmentButton", new LabelData("Swap", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(new ButtonCallback("MagicItem." + i + ".RemovePlayerEquiptmentButton", new LabelData("Remove", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                }
+                else
+                {
+                    items.Add(new ItemIcon(BuiltinBlocks.Air));
+                    items.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+                    items.Add(new ButtonCallback("MagicItem." + i + ".AddPlayerEquiptmentButton", new LabelData("Add", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 }
 
                 menu.Items.Add(new HorizontalGrid(items, 200));

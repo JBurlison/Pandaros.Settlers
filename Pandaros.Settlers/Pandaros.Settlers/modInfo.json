@@ -64,6 +64,16 @@
       },
       {
         "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/buildertool/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/colonytool/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/es-ES/es-ES.json",
         "index": -99999
       },

@@ -123,6 +123,7 @@
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
+    <Compile Include="localization\LocalizationHelper.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
@@ -240,6 +241,12 @@
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
     <None Include="AutoLoad\Sorcerer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\buildertool\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\colonytool\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Schematics\Mountan-Top-Castle.schematic">

@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Entities
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
-        List<IPlayerMagicItem> MagicItems { get; set; } = new List<IPlayerMagicItem>();
+        public List<IPlayerMagicItem> MagicItems { get; set; } = new List<IPlayerMagicItem>();
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public long NextMusicTime { get; set; }

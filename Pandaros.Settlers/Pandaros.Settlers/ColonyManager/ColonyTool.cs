@@ -51,6 +51,8 @@ namespace Pandaros.Settlers.ColonyManager
             "Max"
         };
 
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
