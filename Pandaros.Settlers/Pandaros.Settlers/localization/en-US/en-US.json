@@ -82,6 +82,7 @@
     "Pandaros.Settlers.SchematicTool": "Settlers! Schematic Tool",
     "Pandaros.Settlers.ColonyManagementTool": "Colony Management Tool",
     "Pandaros.Settlers.Sorcerer": "Sorcerer",
+    "Pandaros.Settlers.Healthbooster": "Health Booster",
     "Pandaros.Settlers.AutoLoad.Adamantine": "Adamantine",
     "Pandaros.Settlers.AutoLoad.infiniteAdamantine": "Adamantine Ore",
     "Pandaros.Settlers.AutoLoad.AdamantineNugget": "Adamantine Nugget",
@@ -314,6 +315,7 @@
     "Pandaros.Settlers.SchematicTool": "To use: place it on your toolbar and right click. This will bring up a menu that can create builder areas that can build and save schematics.",
     "Pandaros.Settlers.ColonyManagementTool": "To use: place it on your toolbar and right click. The management tool is used to help recruit colonists and assign them directly to the jobs you want. It also shows job stats.",
     "Pandaros.Settlers.Sorcerer": "Sorcerer crafts magical items for players and colonists.",
+    "Pandaros.Settlers.Healthbooster": "Gives 100 player health. Makes you feel slightly more invincible.",
     "Pandaros.Settlers.AutoLoad.AdamantineNugget": "A small amount of a rare metal.",
     "Pandaros.Settlers.AutoLoad.Adamantine": "A rare metal. All it's uses are still unknown.",
     "Pandaros.Settlers.AutoLoad.sappling": "It never grows!",
@@ -363,7 +365,8 @@
     "popup": {
       "limits": {
         "Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Table",
-        "Pandaros.Settlers.Apothecary": "Apothecary Table"
+        "Pandaros.Settlers.Apothecary": "Apothecary Table",
+        "Pandaros.Settlers.Sorcerer": "Sorcerer"
       }
     },
     "Pandaros": {

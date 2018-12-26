@@ -92,6 +92,15 @@
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/Sorcerer.json",
+        "npcType": "Pandaros.Settlers.Sorcerer",
+        "index": -99999,
+        "limitsUIMapping": [
+          "Pandaros.Settlers.SorcererTable"
+        ]
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/crafting.json",
         "index": -99999,
         "npcType": "pipliz.crafter"

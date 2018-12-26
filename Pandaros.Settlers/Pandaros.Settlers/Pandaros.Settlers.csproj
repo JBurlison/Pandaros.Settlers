@@ -239,6 +239,9 @@
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
+    <None Include="AutoLoad\Sorcerer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Schematics\Mountan-Top-Castle.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
