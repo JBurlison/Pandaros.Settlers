@@ -98,7 +98,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             {
                 if (player.ActiveColony == null)
                 {
-                    PandaChat.Send(player, _localizationHelper.LocalizeOrDefault("ErrorOpening", player, "Cannot open Schematic tool when not in range of a colony."), ChatColor.red);
+                    PandaChat.Send(player, _localizationHelper.LocalizeOrDefault("ErrorOpening", player), ChatColor.red);
                     return;
                 }
 
@@ -194,7 +194,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (SchematicReader.TryGetSchematicMetadata(selectedSchematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata schematicMetadata))
                         {
                             if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(BuiltinBlocks.Air))
-                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area."), ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                             {
                                 NetworkMenu menu = new NetworkMenu();
                                 menu.Width = 600;
@@ -238,10 +238,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {
                         if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
-                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area."), ChatColor.red);
+                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                         {
                             _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);
-                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("instructions", data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner."));
+                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("instructions", data.Player));
                             NetworkMenuManager.CloseServerPopup(data.Player);
                         }
                     }

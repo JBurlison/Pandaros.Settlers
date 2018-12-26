@@ -15,16 +15,13 @@ namespace Pandaros.Settlers.localization
             Prefix = prefix;
         }
 
-        public string LocalizeOrDefault(string key, Players.Player p, string defaultString = "")
+        public string LocalizeOrDefault(string key, Players.Player p)
         {
             string fullKey = GetLocalizationKey(key);
-            var newVal = Localization.GetSentence(p.LastKnownLocale, key);
+            var newVal = Localization.GetSentence(p.LastKnownLocale, fullKey);
 
             if (newVal == fullKey)
-                if (!string.IsNullOrEmpty(defaultString))
-                    return defaultString;
-                else
-                    return key;
+                return key;
             else
                 return newVal;
         }

@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Items
             else if (data.ButtonIdentifier.Contains(".AddPlayerEquiptmentButton"))
             {
                 NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("PlayerEquiptment", data.Player, "Player Equiptment"));
+                menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("PlayerEquiptment", data.Player));
                 menu.Width = 1000;
                 menu.Height = 600;
 
@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Items
                     if (data.ButtonIdentifier.Contains(jobKvp.Key))
                     {
                         NetworkMenu menu = new NetworkMenu();
-                        menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), data.Player, jobKvp.Key) + " " + _localizationHelper.LocalizeOrDefault("JobDetails", data.Player));
+                        menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), data.Player) + " " + _localizationHelper.LocalizeOrDefault("JobDetails", data.Player));
                         menu.Width = 1000;
                         menu.Height = 600;
 
@@ -387,7 +387,7 @@ namespace Pandaros.Settlers.Items
             for (int i = 0; i <= ps.MaxMagicItems; i++)
             {
                 List<IItem> items = new List<IItem>();
-                items.Add(new Label(new LabelData(GameLoader.NAMESPACE + ".buildertool.MagicItemLabel", UnityEngine.Color.black)));
+                items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("MagicItemLabel"), UnityEngine.Color.black)));
 
                 if (ps.MagicItems.Count >= i + 1)
                 {

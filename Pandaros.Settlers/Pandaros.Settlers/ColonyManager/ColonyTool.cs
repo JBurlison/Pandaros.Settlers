@@ -179,7 +179,7 @@ namespace Pandaros.Settlers.ColonyManager
                             if (data.Player.ActiveColony.Stockpile.TotalFood < foodCost ||
                                 !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, foodCost))
                             {
-                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("Notenoughfood", data.Player, "Not enough food."), ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("Notenoughfood", data.Player), ChatColor.red);
                                 break;
                             }
                             else
@@ -222,7 +222,7 @@ namespace Pandaros.Settlers.ColonyManager
         public static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
         {
             NetworkMenu menu = new NetworkMenu();
-            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("ColonyManagement", player, "Colony Management"));
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("ColonyManagement", player));
             menu.Width = 1000;
             menu.Height = 600;
 
@@ -255,7 +255,7 @@ namespace Pandaros.Settlers.ColonyManager
             {
                 List<IItem> items = new List<IItem>();
 
-                items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player, jobKvp.Key), UnityEngine.Color.black)));
+                items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player), UnityEngine.Color.black)));
                 items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
