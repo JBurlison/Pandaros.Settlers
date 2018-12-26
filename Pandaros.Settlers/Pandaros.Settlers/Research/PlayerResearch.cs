@@ -41,6 +41,7 @@ namespace Pandaros.Settlers.Research
             {
                 var ps = PlayerState.GetPlayerState(p);
                 ps.MaxMagicItems++;
+                ps.ResizeMaxMagicItems();
             }
         }
     }

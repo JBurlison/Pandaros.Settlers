@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Entities
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
-        public List<IPlayerMagicItem> MagicItems { get; set; } = new List<IPlayerMagicItem>();
+        public IPlayerMagicItem[] MagicItems { get; set; } = new IPlayerMagicItem[0];
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public long NextMusicTime { get; set; }
@@ -86,6 +86,16 @@ namespace Pandaros.Settlers.Entities
             }
 
             Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
+        }
+
+        public void ResizeMaxMagicItems()
+        {
+            var magicItems = MagicItems;
+
+            if (MagicItems.Length < MaxMagicItems)
+                Array.Resize(ref magicItems, MaxMagicItems);
+
+            MagicItems = magicItems;
         }
 
         public void IncrimentStat(string name, double count = 1)
@@ -286,10 +296,14 @@ namespace Pandaros.Settlers.Entities
                     foreach (var node in wandPreview.LoopArray())
                         _playerStates[p].BuildersWandPreview.Add(node.ToVector3Int());
 
+                var playerMagicItems = new List<IPlayerMagicItem>();
+
                 if (stateNode.TryGetAs(nameof(MagicItems), out JSONNode magicItems))
                     foreach (var magicItem in magicItems.LoopArray())
                         if (MagicItemsCache.PlayerMagicItems.TryGetValue(magicItem.GetAs<string>(), out var pmi))
-                            _playerStates[p].MagicItems.Add(pmi);
+                            playerMagicItems.Add(pmi);
+
+                _playerStates[p].MagicItems = playerMagicItems.ToArray();
 
                 if (stateNode.TryGetAs(nameof(Stats), out JSONNode itterations))
                     foreach (var skill in itterations.LoopObject())
@@ -312,7 +326,8 @@ namespace Pandaros.Settlers.Entities
                 var equiptMagicItems    = new JSONNode(NodeType.Array);
 
                 foreach (var magicItem in _playerStates[p].MagicItems)
-                    equiptMagicItems.AddToArray(new JSONNode(magicItem.Name));
+                    if (magicItem != null)
+                        equiptMagicItems.AddToArray(new JSONNode(magicItem.Name));
 
                 foreach (var kvp in _playerStates[p].ItemsPlaced)
                     ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);

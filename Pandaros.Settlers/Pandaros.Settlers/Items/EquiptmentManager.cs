@@ -4,6 +4,7 @@ using NetworkUI.Items;
 using Pandaros.Settlers.ColonyManager;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +40,7 @@ namespace Pandaros.Settlers.Items
                     foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                     {
                         if (kvp.Value > 0 && ItemTypes.TryGetType(kvp.Key, out var itemType) && MagicItemsCache.PlayerMagicItems.TryGetValue(itemType.Name, out var magicItem))
-                        {
-                            List<IItem> items = new List<IItem>();
+                        {                            List<IItem> items = new List<IItem>();
                             items.Add(new ItemIcon(kvp.Key));
                             items.Add(new Label(new LabelData(magicItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                             items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
@@ -69,22 +69,47 @@ namespace Pandaros.Settlers.Items
             }
             else if (data.ButtonIdentifier.Contains(".AddPlayerSelectedEquiptmentButton"))
             {
-
-                foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                if (data.ButtonIdentifier.Contains("MagicItem."))
                 {
-                    if (Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) &&
-                        data.ButtonIdentifier.Contains(kvp.Key + ".") &&
-                        data.Player.ActiveColony.Stockpile.TryRemove(kvp.Key))
+                    var startPos = data.ButtonIdentifier.Replace("MagicItem.", "");
+
+                    if (int.TryParse(startPos.Substring(0, startPos.IndexOf('.')), out var slot))
                     {
-                        var ps = PlayerState.GetPlayerState(data.Player);
+                        var itemId = startPos.Substring(startPos.IndexOf('.') + 1, startPos.LastIndexOf(".") - 2);
 
-                        if (ps.Armor[armItem.Slot].Id != default(ushort))
-                            data.Player.ActiveColony.Stockpile.Add(ps.Armor[armItem.Slot].Id);
+                        if (ushort.TryParse(itemId, out var id))
+                        {
+                            var item = ItemId.GetItemId(id);
 
-                        ps.Armor[armItem.Slot].Id = kvp.Key;
-                        ps.Armor[armItem.Slot].Durability = armItem.Durability;
-                        BuildPlayerDetailsMenu(data);
-                        return;
+                            if (MagicItemsCache.PlayerMagicItems.TryGetValue(item.Name, out var magicItem) && data.Player.ActiveColony.Stockpile.TryRemove(id))
+                            {
+                                var ps = PlayerState.GetPlayerState(data.Player);
+                                ps.MagicItems[slot] = magicItem;
+                            }
+                        }
+                    }
+
+                    BuildPlayerDetailsMenu(data);
+                    return;
+                }
+                else
+                {
+                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                    {
+                        if (Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) &&
+                            data.ButtonIdentifier.Contains(kvp.Key + ".") &&
+                            data.Player.ActiveColony.Stockpile.TryRemove(kvp.Key))
+                        {
+                            var ps = PlayerState.GetPlayerState(data.Player);
+
+                            if (ps.Armor[armItem.Slot].Id != default(ushort))
+                                data.Player.ActiveColony.Stockpile.Add(ps.Armor[armItem.Slot].Id);
+
+                            ps.Armor[armItem.Slot].Id = kvp.Key;
+                            ps.Armor[armItem.Slot].Durability = armItem.Durability;
+                            BuildPlayerDetailsMenu(data);
+                            return;
+                        }
                     }
                 }
             }
@@ -92,16 +117,27 @@ namespace Pandaros.Settlers.Items
             {
                 var ps = PlayerState.GetPlayerState(data.Player);
 
-                foreach (var armor in ps.Armor)
+                if (data.ButtonIdentifier.Contains("MagicItem."))
                 {
-                    if (data.ButtonIdentifier.Contains(armor.Key + "."))
+                    if (int.TryParse(data.ButtonIdentifier.Replace("MagicItem.", "").Replace(".RemovePlayerEquiptmentButton", ""), out var id))
                     {
-                        if (armor.Value.Id != default(ushort))
-                            data.Player.ActiveColony.Stockpile.Add(armor.Value.Id);
+                        data.Player.ActiveColony.Stockpile.Add(ItemId.GetItemId(ps.MagicItems[id].Name));
+                        ps.MagicItems[id] = null;
+                    }
+                }
+                else
+                {
+                    foreach (var armor in ps.Armor)
+                    {
+                        if (data.ButtonIdentifier.Contains(armor.Key + "."))
+                        {
+                            if (armor.Value.Id != default(ushort))
+                                data.Player.ActiveColony.Stockpile.Add(armor.Value.Id);
 
-                        armor.Value.Id = default(ushort);
-                        armor.Value.Durability = default(int);
-                        break;
+                            armor.Value.Id = default(ushort);
+                            armor.Value.Durability = default(int);
+                            break;
+                        }
                     }
                 }
 
@@ -384,12 +420,12 @@ namespace Pandaros.Settlers.Items
                 menu.Items.Add(new HorizontalGrid(items, 200));
             }
 
-            for (int i = 0; i <= ps.MaxMagicItems; i++)
+            for (int i = 0; i < ps.MaxMagicItems; i++)
             {
                 List<IItem> items = new List<IItem>();
                 items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("MagicItemLabel"), UnityEngine.Color.black)));
 
-                if (ps.MagicItems.Count >= i + 1)
+                if (ps.MagicItems[i] != null)
                 {
                     items.Add(new ItemIcon(ps.MagicItems[i].Name));
                     items.Add(new Label(new LabelData(ps.MagicItems[i].Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
