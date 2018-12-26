@@ -12,19 +12,23 @@
     "Pandaros.Settlers.jsonFiles": [
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/help.json"
+        "localization": "en-US",
+        "relativePath": "Help/en-US/help.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/Apothecary.json"
+        "localization": "en-US",
+        "relativePath": "Help/en-US/Apothecary.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/knights.json"
+        "localization": "en-US",
+        "relativePath": "Help/en-US/knights.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/Machinists.json"
+        "localization": "en-US",
+        "relativePath": "Help/en-US/Machinists.json"
       },
       {
         "fileType": "Pandaros.Settlers.OreLayers",

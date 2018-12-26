@@ -273,16 +273,16 @@
     <None Include="WorldGen\Buildings\npc-village-makeover.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\Apothecary.json">
+    <None Include="Help\en-US\Apothecary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\Machinists.json">
+    <None Include="Help\en-US\Machinists.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\Knights.json">
+    <None Include="Help\en-US\Knights.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\help.json">
+    <None Include="Help\en-US\help.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MCtoCSMapping.json">

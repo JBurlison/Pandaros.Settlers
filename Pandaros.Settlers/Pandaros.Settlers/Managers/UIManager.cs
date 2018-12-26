@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Managers
     [ModLoader.ModManager]
     public static class UIManager
     {
-        public static JSONNode LoadedMenus { get; private set; }
+        public static Dictionary<string, JSONNode> LoadedMenus { get; private set; } = new Dictionary<string, JSONNode>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, GameLoader.NAMESPACE + ".Managers.OnAssemblyLoaded")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
@@ -23,15 +23,18 @@ namespace Pandaros.Settlers.Managers
                 {
                     foreach(var jsonNode in jsonFilles.LoopArray())
                     {
-                        if(jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
+                        if(jsonNode.TryGetAs("fileType", out string jsonFileType) && 
+                            jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && 
+                            jsonNode.TryGetAs("relativePath", out string menuFilePath) &&
+                            jsonNode.TryGetAs("localization", out string localization))
                         {
                             var newMenu = JSON.Deserialize(info.Key + "\\" + menuFilePath);
 
-                            if(LoadedMenus == null)
-                                LoadedMenus = newMenu;
+                            if(!LoadedMenus.ContainsKey(localization))
+                                LoadedMenus.Add(localization, newMenu);
                             else
                             {
-                                LoadedMenus.Merge(newMenu);
+                                LoadedMenus[localization].Merge(newMenu);
                             }
 
                             PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
@@ -60,20 +63,25 @@ namespace Pandaros.Settlers.Managers
         public static void SendMenu(Players.Player player, string reference)
         {
             string url = reference;
+            var locale = player.LastKnownLocale;
 
-            if(reference.Contains("_"))
+            if (reference.Contains("_"))
                 url = reference.Substring(reference.IndexOf("_") + 1);
 
             var splitUrl = url.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            var uiNode = LoadedMenus;
 
-            foreach(var entry in splitUrl)
+            if (!LoadedMenus.ContainsKey(locale))
+                locale = "en-US";
+
+            var uiNode = LoadedMenus[locale];
+
+            foreach (var entry in splitUrl)
             {
-                if(!uiNode.TryGetAs(entry, out uiNode))
+                if(!uiNode[locale].TryGetAs(entry, out uiNode))
                     break;
             }
 
-            if(uiNode == default(JSONNode) || uiNode == LoadedMenus)
+            if(uiNode[locale] == default(JSONNode) || uiNode == LoadedMenus[locale])
                 PandaLogger.Log(ChatColor.red, "Unable to find menu {0}", reference);
             else
                 SendMenu(player, uiNode);
