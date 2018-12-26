@@ -28,6 +28,12 @@ namespace Pandaros.Settlers.Jobs.Construction
         public override string icon => GameLoader.ICON_PATH + "Schematics.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "essential",
+            "aaa"
+        };
+
         public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
         {
             Name = GameLoader.NAMESPACE + ".SchematicTool",

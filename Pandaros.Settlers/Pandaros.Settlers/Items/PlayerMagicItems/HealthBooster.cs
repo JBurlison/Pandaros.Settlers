@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Items.PlayerMagicItems
 
         public bool IsOptional { get; set; } = false;
 
-        public int DefautLimit { get; set; } = 0;
+        public int DefautLimit { get; set; } = 1;
 
         public string Job { get; set; } = Jobs.SorcererRegister.JOB_NAME;
 

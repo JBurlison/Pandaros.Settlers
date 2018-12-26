@@ -22,6 +22,11 @@ namespace Pandaros.Settlers.ColonyManager
         public override string icon => GameLoader.ICON_PATH + "ColonyManager.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "essential",
+            "aaa"
+        };
         public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".ColonyManagementTool" };
     }
 

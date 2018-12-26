@@ -364,9 +364,13 @@
   "sentences": {
     "popup": {
       "limits": {
-        "Pandaros.Settlers.AdvancedCrafter": "Advanced Crafting Table",
-        "Pandaros.Settlers.Apothecary": "Apothecary Table",
-        "Pandaros.Settlers.Sorcerer": "Sorcerer"
+        "Pandaros": {
+          "Settlers": {
+            "Sorcerer": "Sorcerer",
+            "Apothecary": "Apothecary Table",
+            "AdvancedCrafter": "Advanced Crafting Table"
+          }
+        }
       }
     },
     "Pandaros": {
