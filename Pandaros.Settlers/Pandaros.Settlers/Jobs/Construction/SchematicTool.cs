@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
         {
             Name = GameLoader.NAMESPACE + ".SchematicTool",
-            RequiredScience = PandaResearch.GetResearchKey("Architect")
+            RequiredScience = PandaResearch.GetResearchKey("Architect") + 1
         };
     }
 
@@ -70,7 +70,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(Name, out var item))
+            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(SchematicTool.NAME, out var item))
                 e.Manager.Colony.Stockpile.Add(item.ItemIndex);
         }
     }
