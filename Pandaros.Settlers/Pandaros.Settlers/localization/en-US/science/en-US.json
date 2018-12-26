@@ -2,6 +2,14 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "MaxMagicItems1": {
+          "name": "Max Magic Items",
+          "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."
+        },
+        "MaxMagicItems2": {
+          "name": "Max Magic Items",
+          "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."
+        },
         "Architect1": {
           "name": "Architect",
           "description": "The Architect builds schematics and allows builders to build them."

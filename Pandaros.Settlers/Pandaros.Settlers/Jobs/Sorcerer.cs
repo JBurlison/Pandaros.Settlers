@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Jobs
 
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
-        public string Name => "Sorcerer";
+        public string Name => SorcererRegister.JOB_NAME;
 
         public void OnRegister()
         {
