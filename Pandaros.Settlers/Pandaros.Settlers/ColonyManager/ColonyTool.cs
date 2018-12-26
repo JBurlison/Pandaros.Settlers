@@ -179,7 +179,7 @@ namespace Pandaros.Settlers.ColonyManager
                             if (data.Player.ActiveColony.Stockpile.TotalFood < foodCost ||
                                 !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, foodCost))
                             {
-                                PandaChat.Send(data.Player, "Not enough food.", ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("Notenoughfood", data.Player, "Not enough food."), ChatColor.red);
                                 break;
                             }
                             else
@@ -222,7 +222,7 @@ namespace Pandaros.Settlers.ColonyManager
         public static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
         {
             NetworkMenu menu = new NetworkMenu();
-            menu.LocalStorage.SetAs("header", "Colony Management");
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("ColonyManagement", player, "Colony Management"));
             menu.Width = 1000;
             menu.Height = 600;
 
@@ -233,19 +233,19 @@ namespace Pandaros.Settlers.ColonyManager
                 if (firedCount == int.MaxValue)
                     count = "all";
 
-                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"Kill {count} Fired {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"{_localizationHelper.LocalizeOrDefault("Kill", player)} {count} {_localizationHelper.LocalizeOrDefault("Fired", player)} {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
             else
-                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlayerDetails", new LabelData("Player Details", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlayerDetails", new LabelData(_localizationHelper.GetLocalizationKey("PlayerDetails"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             menu.Items.Add(new Line());
 
             List<IItem> header = new List<IItem>();
 
-            header.Add(new Label(new LabelData("Job", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Job"), UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("Working", UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("Not Working", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Working"), UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("NotWorking"), UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
 
@@ -255,20 +255,20 @@ namespace Pandaros.Settlers.ColonyManager
             {
                 List<IItem> items = new List<IItem>();
 
-                items.Add(new Label(new LabelData(jobKvp.Key, UnityEngine.Color.black)));
-                items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData("Details", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player, jobKvp.Key), UnityEngine.Color.black)));
+                items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
 
                 if (fired)
                 {
-                    items.Add(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData("Move Fired", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)));
+                    items.Add(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData(_localizationHelper.GetLocalizationKey("MoveFired"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)));
                 }
                 else
                 {
-                    items.Add(new DropDown(new LabelData("Amount", UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
-                    items.Add(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData("Recruit", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-                    items.Add(new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData("Fire!", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
+                    items.Add(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData(_localizationHelper.GetLocalizationKey("Recruit"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData(_localizationHelper.GetLocalizationKey("Fire"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                     
                 }
 

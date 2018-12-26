@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Items
             else if (data.ButtonIdentifier.Contains(".AddPlayerEquiptmentButton"))
             {
                 NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", "Player Equiptment");
+                menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("PlayerEquiptment", data.Player, "Player Equiptment"));
                 menu.Width = 1000;
                 menu.Height = 600;
 
@@ -43,8 +43,8 @@ namespace Pandaros.Settlers.Items
                             List<IItem> items = new List<IItem>();
                             items.Add(new ItemIcon(kvp.Key));
                             items.Add(new Label(new LabelData(magicItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                            items.Add(new Label(new LabelData("Stockpile" + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
-                            items.Add(new ButtonCallback(id + kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                            items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                            items.Add(new ButtonCallback(id + kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                             menu.Items.Add(new HorizontalGrid(items, 250));
                         }
                     }
@@ -58,8 +58,8 @@ namespace Pandaros.Settlers.Items
                             List<IItem> items = new List<IItem>();
                             items.Add(new ItemIcon(kvp.Key));
                             items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                            items.Add(new Label(new LabelData("Stockpile: " + kvp.Value.ToString(), UnityEngine.Color.black)));
-                            items.Add(new ButtonCallback(kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                            items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                            items.Add(new ButtonCallback(kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                             menu.Items.Add(new HorizontalGrid(items, 250));
                         }
                     }
@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Items
                     if (data.ButtonIdentifier.Contains(jobKvp.Key))
                     {
                         NetworkMenu menu = new NetworkMenu();
-                        menu.LocalStorage.SetAs("header", jobKvp.Key + " Job Details");
+                        menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), data.Player, jobKvp.Key) + " " + _localizationHelper.LocalizeOrDefault("JobDetails", data.Player));
                         menu.Width = 1000;
                         menu.Height = 600;
 
@@ -123,11 +123,11 @@ namespace Pandaros.Settlers.Items
                         var firstInv = Entities.SettlerInventory.GetSettlerInventory(firstGuy.NPC);
                         List<IItem> headerItems = new List<IItem>();
 
-                        headerItems.Add(new Label(new LabelData("Name", UnityEngine.Color.black)));
-                        headerItems.Add(new Label(new LabelData("Weapon", UnityEngine.Color.black)));
+                        headerItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Name"), UnityEngine.Color.black)));
+                        headerItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Weapon"), UnityEngine.Color.black)));
 
                         foreach (var a in firstInv.Armor)
-                            headerItems.Add(new Label(new LabelData(a.Key.ToString(), UnityEngine.Color.black)));
+                            headerItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey(a.Key.ToString()), UnityEngine.Color.black)));
 
                         menu.Items.Add(new HorizontalGrid(headerItems, 100));
 
@@ -141,12 +141,12 @@ namespace Pandaros.Settlers.Items
                             foreach (var armor in inv.Armor)
                                 items.Add(new ItemIcon(armor.Value.Id));
 
-                            items.Add(new ButtonCallback(jobKvp.Key + "." + job.NPC.ID + ".EquiptmentButton", new LabelData("Details", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                            items.Add(new ButtonCallback(jobKvp.Key + "." + job.NPC.ID + ".EquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                             menu.Items.Add(new HorizontalGrid(items, 100));
                         }
 
                         menu.Items.Add(new Line());
-                        menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData("Back", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                        menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
                         NetworkMenuManager.SendServerPopup(data.Player, menu);
                         return;
@@ -179,7 +179,7 @@ namespace Pandaros.Settlers.Items
                             {
                                 var inv = Entities.SettlerInventory.GetSettlerInventory(job.NPC);
                                 NetworkMenu menu = new NetworkMenu();
-                                menu.LocalStorage.SetAs("header", inv.SettlerName + " Equiptment");
+                                menu.LocalStorage.SetAs("header", inv.SettlerName + " " + _localizationHelper.LocalizeOrDefault("Equiptment", data.Player));
                                 menu.Width = 1000;
                                 menu.Height = 600;
                                 var newButtonID = data.ButtonIdentifier.Replace(".AddEquiptmentButton", "");
@@ -193,8 +193,8 @@ namespace Pandaros.Settlers.Items
                                             List<IItem> items = new List<IItem>();
                                             items.Add(new ItemIcon(kvp.Key));
                                             items.Add(new Label(new LabelData(wepItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                                            items.Add(new Label(new LabelData("Stockpile: " + kvp.Value.ToString(), UnityEngine.Color.black)));
-                                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                                            items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                                             menu.Items.Add(new HorizontalGrid(items, 250));
                                         }
                                     }
@@ -208,8 +208,8 @@ namespace Pandaros.Settlers.Items
                                             List<IItem> items = new List<IItem>();
                                             items.Add(new ItemIcon(kvp.Key));
                                             items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                                            items.Add(new Label(new LabelData("Stockpile: " + kvp.Value.ToString(), UnityEngine.Color.black)));
-                                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData("Select", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                                            items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
+                                            items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                                             menu.Items.Add(new HorizontalGrid(items, 250));
                                         }
                                     }
@@ -324,13 +324,13 @@ namespace Pandaros.Settlers.Items
         private static void BuildPlayerDetailsMenu(ButtonPressCallbackData data)
         {
             NetworkMenu menu = new NetworkMenu();
-            menu.LocalStorage.SetAs("header", "Player Details");
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("PlayerDetails", data.Player));
             menu.Width = 1000;
             menu.Height = 600;
 
             var ps = PlayerState.GetPlayerState(data.Player);
 
-            menu.Items.Add(new Label(new LabelData("Stats", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+            menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Stats"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData("Join Date:", UnityEngine.Color.black)),
                                             new Label(new LabelData(ps.JoinDate.ToString(), UnityEngine.Color.black))));
 
@@ -405,6 +405,9 @@ namespace Pandaros.Settlers.Items
 
                 menu.Items.Add(new HorizontalGrid(items, 200));
             }
+
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData("Back", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             NetworkMenuManager.SendServerPopup(data.Player, menu);
         }
