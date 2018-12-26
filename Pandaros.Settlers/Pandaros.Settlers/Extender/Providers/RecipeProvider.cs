@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class RecipeProvider : IAfterItemTypesDefined
+    public class RecipeProvider : IAfterWorldLoad
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(ICSRecipe);
         public Type ClassType => null;
 
-        public void AfterItemTypesDefined()
+        public void AfterWorldLoad()
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Recipes Loaded----------------------");

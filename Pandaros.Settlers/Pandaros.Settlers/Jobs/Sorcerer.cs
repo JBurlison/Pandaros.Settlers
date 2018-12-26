@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(SorcererRegister.JOB_RECIPE), true);
+            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(SorcererRegister.JOB_NAME), true);
         }
     }
 
@@ -49,7 +49,6 @@ namespace Pandaros.Settlers.Jobs
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Sorcerer";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".SorcererTable";
-        public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".SorcererRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]
@@ -103,6 +102,6 @@ namespace Pandaros.Settlers.Jobs
         public bool IsOptional => true;
         public int DefautLimit => 5;
         public string Job => ItemFactory.JOB_CRAFTER;
-        public string Name => SorcererRegister.JOB_RECIPE;
+        public string Name => SorcererRegister.JOB_NAME;
     }
 }
