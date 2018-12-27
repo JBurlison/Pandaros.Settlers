@@ -115,11 +115,17 @@
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\Permission.cs" />
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledBoots2.cs" />
     <Compile Include="Items\Armor\Magical\SkilledBoots1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledChest2.cs" />
     <Compile Include="Items\Armor\Magical\SkilledChest1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledGloves2.cs" />
     <Compile Include="Items\Armor\Magical\SkilledGloves1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledHelm2.cs" />
     <Compile Include="Items\Armor\Magical\SkilledHelm1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledLegs2.cs" />
     <Compile Include="Items\Armor\Magical\SkilledLegs1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledShield2.cs" />
     <Compile Include="Items\Armor\Magical\SkilledShield1.cs" />
     <Compile Include="Items\Armor\Magical\SkilledShield.cs" />
     <Compile Include="Items\Armor\Magical\SkilledLegs.cs" />
@@ -133,6 +139,7 @@
     <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
+    <Compile Include="Items\Weapons\SkilledSword2.cs" />
     <Compile Include="Items\Weapons\SkilledSword1.cs" />
     <Compile Include="Items\Weapons\SkilledSword.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />

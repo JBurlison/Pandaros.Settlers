@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public CraftPriority Priority { get; set; } = CraftPriority.Medium;
 
-        public bool IsOptional { get; set; } = false;
+        public bool IsOptional { get; set; } = true;
 
         public int DefautLimit { get; set; } = 1;
 
@@ -52,11 +52,11 @@ namespace Pandaros.Settlers.Items.Weapons
             "MagicItem"
         };
 
-        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledShield1.png";
+        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledSword1.png";
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public int Durability { get; set; }
+        public int Durability { get; set; } = 1500;
 
         public float HPTickRegen => 0;
 

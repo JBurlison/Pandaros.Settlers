@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Items.Weapons
 {
-    public class SkilledSwordRecipe : ICSRecipe
+    public class SkilledSword2Recipe : ICSRecipe
     {
-        public static string NAME = GameLoader.NAMESPACE + ".SkilledSwordRecipe";
+        public static string NAME = GameLoader.NAMESPACE + ".SkilledSword2Recipe";
 
         public Dictionary<ItemId, int> Requirements { get; set; } = new Dictionary<ItemId, int>()
         {
-            { ItemId.GetItemId(Adamantine.NAME), 2 },
-            { ItemId.GetItemId(AirStone.Item.name), 3 },
-            { ItemId.GetItemId(EarthStone.Item.name), 3 },
-            { ItemId.GetItemId(WaterStone.Item.name), 3 },
-            { ItemId.GetItemId(FireStone.Item.name), 3 },
-            { ItemId.GetItemId(Esper.Item.name), 1 },
-            { ItemId.GetItemId("Pandaros.Settlers.SteelSword"), 1 }
+            { ItemId.GetItemId(Adamantine.NAME), 22 },
+            { ItemId.GetItemId(AirStone.Item.name), 23 },
+            { ItemId.GetItemId(EarthStone.Item.name), 23 },
+            { ItemId.GetItemId(WaterStone.Item.name), 23 },
+            { ItemId.GetItemId(FireStone.Item.name), 23 },
+            { ItemId.GetItemId(Esper.Item.name), 21 },
+            { ItemId.GetItemId(SkilledSword1.NAME), 1 }
         };
 
         public Dictionary<ItemId, int> Results { get; set; } = new Dictionary<ItemId, int>()
@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public CraftPriority Priority { get; set; } = CraftPriority.Medium;
 
-        public bool IsOptional { get; set; } = false;
+        public bool IsOptional { get; set; } = true;
 
         public int DefautLimit { get; set; } = 1;
 
@@ -39,9 +39,9 @@ namespace Pandaros.Settlers.Items.Weapons
         public string Name => NAME;
     }
 
-    public class SkilledSword : CSType, IWeapon
+    public class SkilledSword2 : CSType, IWeapon
     {
-        public static string NAME = GameLoader.NAMESPACE + ".SkilledSword";
+        public static string NAME = GameLoader.NAMESPACE + ".SkilledSword2";
 
         public override string Name { get; set; } = NAME;
 
@@ -52,11 +52,11 @@ namespace Pandaros.Settlers.Items.Weapons
             "MagicItem"
         };
 
-        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledSword.png";
+        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledSword2.png";
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public int Durability { get; set; } = 1000;
+        public int Durability { get; set; } = 2000;
 
         public float HPTickRegen => 0;
 
@@ -66,9 +66,9 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
 
-        public float Luck => 0.01f;
+        public float Luck => 0.03f;
 
-        public float Skilled { get; set; } = .01f;
+        public float Skilled { get; set; } = .03f;
         public bool IsMagical { get; set; } = true;
 
         Dictionary<DamageType, float> IPandaDamage.Damage { get; } = new Dictionary<DamageType, float>()

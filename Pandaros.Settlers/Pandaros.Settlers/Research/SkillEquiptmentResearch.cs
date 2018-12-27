@@ -43,13 +43,26 @@ namespace Pandaros.Settlers.Research
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledBoots1Recipe.NAME), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledChest1Recipe.NAME), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledGloves1Recipe.NAME), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledHelm1Recipe.NAME), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledLegs1Recipe.NAME), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledShield1Recipe.NAME), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Weapons.SkilledSword1Recipe.NAME), true);
+            if (e.Research.Level == 1)
+            {
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledBoots1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledChest1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledGloves1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledHelm1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledLegs1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledShield1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Weapons.SkilledSword1Recipe.NAME), true);
+            }
+            else
+            {
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledBoots2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledChest2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledGloves2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledHelm2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledLegs2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledShield2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Weapons.SkilledSword2Recipe.NAME), true);
+            }
         }
     }
 }

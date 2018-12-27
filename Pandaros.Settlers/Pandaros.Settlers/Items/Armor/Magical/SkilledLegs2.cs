@@ -11,24 +11,24 @@ using static Pandaros.Settlers.Items.Armor.ArmorFactory;
 
 namespace Pandaros.Settlers.Items.Armor.Magical
 {
-    public class SkilledBoots1Recipe : ICSRecipe
+    public class SkilledLegs2Recipe : ICSRecipe
     {
-        public static string NAME = GameLoader.NAMESPACE + ".SkilledBoots1Recipe";
+        public static string NAME = GameLoader.NAMESPACE + ".SkilledLegs1Recipe";
 
         public Dictionary<ItemId, int> Requirements { get; set; } = new Dictionary<ItemId, int>()
         {
-            { ItemId.GetItemId(Adamantine.NAME), 12 },
-            { ItemId.GetItemId(AirStone.Item.name), 13 },
-            { ItemId.GetItemId(EarthStone.Item.name), 13 },
-            { ItemId.GetItemId(WaterStone.Item.name), 13 },
-            { ItemId.GetItemId(FireStone.Item.name), 13 },
-            { ItemId.GetItemId(Esper.Item.name), 11 },
-            { ItemId.GetItemId("Pandaros.Settlers.SkilledBoots"), 1 }
+            { ItemId.GetItemId(Adamantine.NAME), 22 },
+            { ItemId.GetItemId(AirStone.Item.name), 23 },
+            { ItemId.GetItemId(EarthStone.Item.name), 23 },
+            { ItemId.GetItemId(WaterStone.Item.name), 23 },
+            { ItemId.GetItemId(FireStone.Item.name), 23 },
+            { ItemId.GetItemId(Esper.Item.name), 21 },
+            { ItemId.GetItemId("Pandaros.Settlers.SkilledLegs1"), 1 }
         };
 
         public Dictionary<ItemId, int> Results { get; set; } = new Dictionary<ItemId, int>()
         {
-            { ItemId.GetItemId(SkilledBoots1.NAME), 1 }
+            { ItemId.GetItemId(SkilledLegs2.NAME), 1 }
         };
 
         public CraftPriority Priority { get; set; } = CraftPriority.Medium;
@@ -42,9 +42,9 @@ namespace Pandaros.Settlers.Items.Armor.Magical
         public string Name => NAME;
     }
 
-    public class SkilledBoots1 : CSType, IArmor, IPlayerMagicItem
+    public class SkilledLegs2 : CSType, IArmor, IPlayerMagicItem
     {
-        public static string NAME = GameLoader.NAMESPACE + ".SkilledBoots1";
+        public static string NAME = GameLoader.NAMESPACE + ".SkilledLegs2";
 
         public override string Name { get; set; } = NAME;
         public override bool? isPlaceable => false;
@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
             "MagicItem"
         };
 
-        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledBoots1.png";
+        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledLegs2.png";
 
         public Players.Player Owner { get; set; }
 
@@ -77,7 +77,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
         public float BuildDistance { get; set; }
 
         public bool IsMagical { get; set; } = true;
-        public float Skilled { get; set; } = .02f;
+        public float Skilled { get; set; } = .03f;
 
         public float HPTickRegen { get; set; }
 
@@ -91,13 +91,13 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public float Luck { get; set; }
 
-        public float ArmorRating { get; } = 0.07f;
+        public float ArmorRating { get; } = .13f;
 
-        public int Durability { get; set; } = 500;
+        public int Durability { get; set; } = 750;
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public ArmorSlot Slot { get; } = ArmorSlot.Boots;
+        public ArmorSlot Slot { get; } = ArmorSlot.Legs;
 
         public void Update()
         {
