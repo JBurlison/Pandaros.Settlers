@@ -16,6 +16,7 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Texture Mapping Loaded----------------------");
+            var i = 0;
 
             foreach (var item in LoadedAssembalies)
             {
@@ -24,6 +25,15 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     ItemTypesServer.SetTextureMapping(texture.Name, new ItemTypesServer.TextureMapping(texture.JsonSerialize()));
                     sb.Append($"{texture.Name}, ");
+                    i++;
+
+                    if (i > 5)
+                    {
+                        sb.Append("</color>");
+                        i = 0;
+                        sb.AppendLine();
+                        sb.Append("<color=lime>");
+                    }
                 }
             }
 

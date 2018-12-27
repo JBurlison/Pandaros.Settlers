@@ -16,6 +16,7 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Research Loaded----------------------");
+            var i = 0;
 
             foreach (var s in LoadedAssembalies)
             {
@@ -27,15 +28,24 @@ namespace Pandaros.Settlers.Extender.Providers
                     ServerManager.ScienceManager.RegisterResearchable(research);
 
                     if (pandaResearch.NumberOfLevels > 1)
-                        for (var i = 2; i <= pandaResearch.NumberOfLevels; i++)
+                        for (var l = 2; l <= pandaResearch.NumberOfLevels; l++)
                         {
-                            research = new PandaResearch(pandaResearch.RequiredItems, i, pandaResearch.Name, pandaResearch.BaseValue, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
+                            research = new PandaResearch(pandaResearch.RequiredItems, l, pandaResearch.Name, pandaResearch.BaseValue, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
                             research.ResearchComplete += pandaResearch.ResearchComplete;
                             ServerManager.ScienceManager.RegisterResearchable(research);
                         }
 
                     sb.Append(pandaResearch.Name + ", ");
                     pandaResearch.OnRegister();
+                    i++;
+
+                    if (i > 5)
+                    {
+                        sb.Append("</color>");
+                        i = 0;
+                        sb.AppendLine();
+                        sb.Append("<color=lime>");
+                    }
                 }
             }
 

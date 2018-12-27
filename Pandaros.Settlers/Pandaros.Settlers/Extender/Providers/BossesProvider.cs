@@ -18,6 +18,7 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Bosses Loaded----------------------");
+            var i = 0;
 
             foreach (var monster in LoadedAssembalies)
             {
@@ -26,6 +27,15 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     sb.Append($"{pandaBoss.Name}, ");
                     MonsterManager.AddBoss(pandaBoss);
+                    i++;
+
+                    if (i > 5)
+                    {
+                        sb.Append("</color>");
+                        i = 0;
+                        sb.AppendLine();
+                        sb.Append("<color=lime>");
+                    }
                 }
             }
 

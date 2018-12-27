@@ -17,6 +17,7 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Recipes Loaded----------------------");
+            var i = 0;
 
             foreach (var item in LoadedAssembalies)
             {
@@ -42,6 +43,15 @@ namespace Pandaros.Settlers.Extender.Providers
                         ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(recipe.Job, newRecipe);
 
                     sb.Append($"{recipe.Name}, ");
+                    i++;
+
+                    if (i > 5)
+                    {
+                        sb.Append("</color>");
+                        i = 0;
+                        sb.AppendLine();
+                        sb.Append("<color=lime>");
+                    }
                 }
             }
 
