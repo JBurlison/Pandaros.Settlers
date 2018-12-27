@@ -160,8 +160,20 @@ namespace Pandaros.Settlers.Entities
             _playerVariables.SetAs("JumpPower", _playerVariables.GetAs<float>("JumpPower") + playerMagicItem.JumpPower);
             _playerVariables.SetAs("FlySpeedBase", _playerVariables.GetAs<float>("FlySpeedBase") + playerMagicItem.FlySpeed);
             _playerVariables.SetAs("LightRange", _playerVariables.GetAs<float>("LightRange") + playerMagicItem.MovementSpeed);
-            _playerVariables.SetAs("FallDamageBaseDamage", _playerVariables.GetAs<float>("FallDamageBaseDamage") + playerMagicItem.FallDamage);
-            _playerVariables.SetAs("FallDamagePerUnit", _playerVariables.GetAs<float>("FallDamagePerUnit") + playerMagicItem.FallDamagePerUnit);
+
+            var fallDmg = _playerVariables.GetAs<float>("FallDamageBaseDamage") + playerMagicItem.FallDamage;
+
+            if (fallDmg < 0)
+                fallDmg = 0;
+
+            _playerVariables.SetAs("FallDamageBaseDamage", fallDmg);
+
+            var falldmgUnit = _playerVariables.GetAs<float>("FallDamagePerUnit") + playerMagicItem.FallDamagePerUnit;
+
+            if (falldmgUnit < 0)
+                falldmgUnit = 0;
+
+            _playerVariables.SetAs("FallDamagePerUnit", falldmgUnit);
             _playerVariables.SetAs("BuildDistance", _playerVariables.GetAs<float>("BuildDistance") + playerMagicItem.BuildDistance);
         }
 
