@@ -7,7 +7,6 @@ namespace Pandaros.Settlers
     {
         bool IsMagical { get; set; }
         float Skilled { get; set; }
-        float HPBoost { get; }
         float HPTickRegen { get; }
         void Update();
     }

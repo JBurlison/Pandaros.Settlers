@@ -109,9 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\Animal.cs" />
     <Compile Include="AI\CalltoArms.cs" />
-    <Compile Include="AI\IAnimal.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManager\ColonyTool.cs" />

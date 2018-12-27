@@ -85,6 +85,7 @@ namespace Pandaros.Settlers.Items
                             {
                                 var ps = PlayerState.GetPlayerState(data.Player);
                                 ps.MagicItems[slot] = magicItem;
+                                ps.RecaclculateMagicItems();
                             }
                         }
                     }
@@ -123,6 +124,7 @@ namespace Pandaros.Settlers.Items
                     {
                         data.Player.ActiveColony.Stockpile.Add(ItemId.GetItemId(ps.MagicItems[id].Name));
                         ps.MagicItems[id] = null;
+                        ps.RecaclculateMagicItems();
                     }
                 }
                 else

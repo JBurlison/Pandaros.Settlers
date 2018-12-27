@@ -116,7 +116,15 @@ namespace Pandaros.Settlers.Managers
                                         follower.Heal(armor.HPTickRegen);
                                 }
 
-                            var hasBandages = colony.Stockpile.Contains(TreatedBandage.Item.ItemIndex) ||
+                                if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wep))
+                                {
+                                    wep.Update();
+
+                                    if (wep.HPTickRegen != 0)
+                                        follower.Heal(wep.HPTickRegen);
+                                }
+
+                                var hasBandages = colony.Stockpile.Contains(TreatedBandage.Item.ItemIndex) ||
                                       colony.Stockpile.Contains(Bandage.Item.ItemIndex);
 
                             if (hasBandages &&

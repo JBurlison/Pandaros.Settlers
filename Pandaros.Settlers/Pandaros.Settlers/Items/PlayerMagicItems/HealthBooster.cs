@@ -73,9 +73,7 @@ namespace Pandaros.Settlers.Items.PlayerMagicItems
         public bool IsMagical { get; set; }
         public float Skilled { get; set; }
 
-        public float HPBoost { get; set; } = 100;
-
-        public float HPTickRegen { get; set; }
+        public float HPTickRegen { get; set; } = 5;
 
         public float MissChance { get; set; }
 
