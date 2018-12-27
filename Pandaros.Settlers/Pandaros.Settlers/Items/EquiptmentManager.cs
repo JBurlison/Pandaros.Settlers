@@ -39,8 +39,13 @@ namespace Pandaros.Settlers.Items
                     
                     foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                     {
-                        if (kvp.Value > 0 && ItemTypes.TryGetType(kvp.Key, out var itemType) && MagicItemsCache.PlayerMagicItems.TryGetValue(itemType.Name, out var magicItem))
-                        {                            List<IItem> items = new List<IItem>();
+                        if (kvp.Value > 0 && 
+                            ItemTypes.TryGetType(kvp.Key, out var itemType) && 
+                            MagicItemsCache.PlayerMagicItems.TryGetValue(itemType.Name, out var magicItem) &&
+                            !Armor.ArmorFactory.ArmorLookup.ContainsKey(kvp.Key) &&
+                            !Weapons.WeaponFactory.WeaponLookup.ContainsKey(kvp.Key))
+                        {
+                            List<IItem> items = new List<IItem>();
                             items.Add(new ItemIcon(kvp.Key));
                             items.Add(new Label(new LabelData(magicItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                             items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
