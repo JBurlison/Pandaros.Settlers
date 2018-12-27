@@ -202,7 +202,7 @@ namespace Pandaros.Settlers.Managers
             cs.FaiedBossSpawns++;
 
             if (cs.FaiedBossSpawns > 10)
-                PandaChat.SendThrottle(cs, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f)} food.", ChatColor.red);
+                PandaChat.SendThrottle(cs, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f) * 100 + "%"} food.", ChatColor.red);
 
             cs.ColonyRef.OnZombieSpawn(false);
         }
