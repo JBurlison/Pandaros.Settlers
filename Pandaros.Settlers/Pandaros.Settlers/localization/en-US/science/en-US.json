@@ -2,6 +2,14 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "SkillEquiptmentResearch1": {
+          "name": "+1 Skill Equiptment",
+          "description": "Allows you to craft +1 skill equiptment."
+        },
+        "SkillEquiptmentResearch2": {
+          "name": "+2 Skill Equiptment",
+          "description": "Allows you to craft +2 skill equiptment."
+        },
         "MaxMagicItems1": {
           "name": "Max Magic Items",
           "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."

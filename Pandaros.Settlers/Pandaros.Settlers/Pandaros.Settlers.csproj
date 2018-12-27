@@ -115,14 +115,29 @@
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\Permission.cs" />
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledBoots1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledChest1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledGloves1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledHelm1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledLegs1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledShield1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledShield.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledLegs.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledHelm.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledGloves.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledChest.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledBoots.cs" />
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
     <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
+    <Compile Include="Items\Weapons\SkilledSword1.cs" />
+    <Compile Include="Items\Weapons\SkilledSword.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
+    <Compile Include="Research\SkillEquiptmentResearch.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
@@ -242,10 +257,10 @@
     <None Include="AutoLoad\Sorcerer.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\en-US\buildertool\en-US.json">
+    <None Include="localization\en-US\colonytool\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\en-US\colonytool\en-US.json">
+    <None Include="localization\en-US\buildertool\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Schematics\Mountan-Top-Castle.schematic">
@@ -1650,6 +1665,75 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkillEquiptmentResearch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkillEquiptmentResearch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Sorcerer.png">

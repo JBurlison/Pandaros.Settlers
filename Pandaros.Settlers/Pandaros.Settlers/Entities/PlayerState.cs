@@ -199,6 +199,20 @@ namespace Pandaros.Settlers.Entities
             Player.SendHealthPacket();
         }
 
+        public float GetSkillModifier()
+        {
+            var totalSkill = 0f;
+
+            foreach (var armor in Armor)
+                if (Items.Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var a))
+                    totalSkill += a.Skilled;
+
+            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(Weapon.Id, out var w))
+                totalSkill += w.Skilled;
+
+            return totalSkill;
+        }
+
         public static PlayerState GetPlayerState(Players.Player p)
         {
             if (p != null)

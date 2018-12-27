@@ -11,24 +11,24 @@ using static Pandaros.Settlers.Items.Armor.ArmorFactory;
 
 namespace Pandaros.Settlers.Items.Armor.Magical
 {
-    public class BootsOfFallingRecipe : ICSRecipe
+    public class SkilledBootsRecipe : ICSRecipe
     {
-        public static string NAME = GameLoader.NAMESPACE + ".BootsOfFallingRecipe";
+        public static string NAME = GameLoader.NAMESPACE + ".SkilledBootsRecipe";
 
         public Dictionary<ItemId, int> Requirements { get; set; } = new Dictionary<ItemId, int>()
         {
-            { ItemId.GetItemId(Adamantine.NAME), 20 },
-            { ItemId.GetItemId(Elementium.Item.name), 30 },
-            { ItemId.GetItemId(AirStone.Item.name), 30 },
-            { ItemId.GetItemId(EarthStone.Item.name), 30 },
-            { ItemId.GetItemId(WaterStone.Item.name), 30 },
+            { ItemId.GetItemId(Adamantine.NAME), 2 },
+            { ItemId.GetItemId(AirStone.Item.name), 3 },
+            { ItemId.GetItemId(EarthStone.Item.name), 3 },
+            { ItemId.GetItemId(WaterStone.Item.name), 3 },
+            { ItemId.GetItemId(FireStone.Item.name), 3 },
             { ItemId.GetItemId(Esper.Item.name), 1 },
-            { ItemId.GetItemId(Mana.Item.name), 50 }
+            { ItemId.GetItemId("Pandaros.Settlers.SteelBoots"), 1 }
         };
 
         public Dictionary<ItemId, int> Results { get; set; } = new Dictionary<ItemId, int>()
         {
-            { ItemId.GetItemId(BootsOfFalling.NAME), 1 }
+            { ItemId.GetItemId(SkilledBoots.NAME), 1 }
         };
 
         public CraftPriority Priority { get; set; } = CraftPriority.Medium;
@@ -42,9 +42,9 @@ namespace Pandaros.Settlers.Items.Armor.Magical
         public string Name => NAME;
     }
 
-    public class BootsOfFalling : CSType, IArmor, IPlayerMagicItem
+    public class SkilledBoots : CSType, IArmor, IPlayerMagicItem
     {
-        public static string NAME = GameLoader.NAMESPACE + ".BootsOfFalling";
+        public static string NAME = GameLoader.NAMESPACE + ".SkilledBoots";
 
         public override string Name { get; set; } = NAME;
         public override bool? isPlaceable => false;
@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
             "MagicItem"
         };
 
-        public override string icon { get; set; } = GameLoader.ICON_PATH + "BootsOfFalling.png";
+        public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledBoots.png";
 
         public Players.Player Owner { get; set; }
 
@@ -70,14 +70,14 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public UnityEngine.Color LightColor { get; set; }
 
-        public float FallDamage { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamageBaseDamage") * -1;
+        public float FallDamage { get; set; }
 
-        public float FallDamagePerUnit { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamagePerUnit") * -1;
+        public float FallDamagePerUnit { get; set; }
 
         public float BuildDistance { get; set; }
 
         public bool IsMagical { get; set; } = true;
-        public float Skilled { get; set; }
+        public float Skilled { get; set; } = .01f;
 
         public float HPTickRegen { get; set; }
 
@@ -91,9 +91,9 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public float Luck { get; set; }
 
-        public float ArmorRating { get; }
+        public float ArmorRating { get; } = 0.07f;
 
-        public int Durability { get; set; } = int.MaxValue;
+        public int Durability { get; set; } = 250;
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
