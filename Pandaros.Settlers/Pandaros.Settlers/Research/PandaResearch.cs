@@ -382,6 +382,9 @@ namespace Pandaros.Settlers.Research
         {
             var maxHp = e.Manager.Colony.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".MAXCOLONISTHP", e.Manager.Colony.NPCHealthMax);
             e.Manager.Colony.NPCHealthMax = maxHp + e.Research.Level * e.Research.BaseValue;
+
+            foreach (var follower in e.Manager.Colony.Followers)
+                follower.health = e.Manager.Colony.NPCHealthMax;
         }
 
         private static void AddKnightResearch(Dictionary<ushort, int> researchDic)

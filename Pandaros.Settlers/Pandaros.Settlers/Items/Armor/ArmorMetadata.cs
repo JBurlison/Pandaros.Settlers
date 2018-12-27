@@ -30,10 +30,6 @@ namespace Pandaros.Settlers.Items.Armor
 
         public ArmorSlot Slot { get; }
 
-        public IMagicEffect MagicEffect => null;
-
-        public float HPBoost => 0;
-
         public float HPTickRegen => 0;
 
         public float MissChance => 0;
@@ -43,10 +39,6 @@ namespace Pandaros.Settlers.Items.Armor
         public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
 
         public Dictionary<DamageType, float> Damage => new Dictionary<DamageType, float>();
-
-        public int RadiusOfTemperatureAdjustment => 0;
-
-        public double TemperatureAdjusted => 0;
 
         public Vector3Int Position { get; set; }
 

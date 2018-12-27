@@ -108,6 +108,7 @@ namespace Pandaros.Settlers.Items
 
                             ps.Armor[armItem.Slot].Id = kvp.Key;
                             ps.Armor[armItem.Slot].Durability = armItem.Durability;
+                            ps.RecaclculateMagicItems();
                             BuildPlayerDetailsMenu(data);
                             return;
                         }
@@ -124,7 +125,6 @@ namespace Pandaros.Settlers.Items
                     {
                         data.Player.ActiveColony.Stockpile.Add(ItemId.GetItemId(ps.MagicItems[id].Name));
                         ps.MagicItems[id] = null;
-                        ps.RecaclculateMagicItems();
                     }
                 }
                 else
@@ -143,6 +143,7 @@ namespace Pandaros.Settlers.Items
                     }
                 }
 
+                ps.RecaclculateMagicItems();
                 BuildPlayerDetailsMenu(data);
             }
             else if (data.ButtonIdentifier.Contains(".JobDetailsButton"))

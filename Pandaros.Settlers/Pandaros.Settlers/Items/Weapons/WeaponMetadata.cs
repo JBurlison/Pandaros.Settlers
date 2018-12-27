@@ -21,10 +21,6 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public int Durability { get; set; }
 
-        public IMagicEffect MagicEffect => null;
-
-        public float HPBoost => 0;
-
         public float HPTickRegen => 0;
 
         public float MissChance => 0;
@@ -32,12 +28,6 @@ namespace Pandaros.Settlers.Items.Weapons
         public DamageType ElementalArmor => DamageType.Physical;
 
         public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
-
-        public int RadiusOfTemperatureAdjustment => 0;
-
-        public double TemperatureAdjusted => 0;
-
-        public Vector3Int Position { get; set; }
 
         public float Luck => 0;
 

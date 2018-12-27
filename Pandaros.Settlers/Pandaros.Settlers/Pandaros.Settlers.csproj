@@ -115,6 +115,7 @@
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\Permission.cs" />
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
+    <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
     <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
@@ -959,6 +960,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\AdamantineNugget.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BootsOfFalling.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\HealthBooster.png">
