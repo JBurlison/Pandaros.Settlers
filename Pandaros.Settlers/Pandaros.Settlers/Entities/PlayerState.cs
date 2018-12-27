@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Entities
             SetupArmor();
 
             HealingOverTimePC.NewInstance += HealingOverTimePC_NewInstance;
-            _playerVariables = JSON.Deserialize("gamedata/settings/serverperclient.json");
+            _playerVariables = GetPlayerVariables();
         }
 
         public JSONNode _playerVariables = new JSONNode();
@@ -146,7 +146,12 @@ namespace Pandaros.Settlers.Entities
 
         private void ResetPlayerVars()
         {
-            _playerVariables = JSON.Deserialize("gamedata/settings/serverperclient.json");
+            _playerVariables = GetPlayerVariables();
+        }
+
+        public static JSONNode GetPlayerVariables()
+        {
+            return JSON.Deserialize("gamedata/settings/serverperclient.json");
         }
 
         private void AddMagicEffect(IPlayerMagicItem playerMagicItem)
@@ -167,6 +172,7 @@ namespace Pandaros.Settlers.Entities
 
         private void UpdatePlayerVariables()
         {
+            PandaLogger.Log("Sending Player Variables");
             using (ByteBuilder bRaw = ByteBuilder.Get())
             {
                 bRaw.Write(ClientMessageType.ReceiveServerPerClientSettings);
@@ -259,6 +265,7 @@ namespace Pandaros.Settlers.Entities
         public static void OnPlayerConnectedSuperLate(Players.Player p)
         {
             _playerStates[p].Connected = true;
+            _playerStates[p].RecaclculateMagicItems();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]

@@ -1,4 +1,5 @@
-﻿using Pandaros.Settlers.Items.Reagents;
+﻿using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Items.Reagents;
 using Pandaros.Settlers.Models;
 using Pipliz;
 using System;
@@ -69,9 +70,9 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public UnityEngine.Color LightColor { get; set; }
 
-        public float FallDamage { get; set; } = float.MinValue;
+        public float FallDamage { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamageBaseDamage") * -1;
 
-        public float FallDamagePerUnit { get; set; } = float.MinValue;
+        public float FallDamagePerUnit { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamagePerUnit") * -1;
 
         public float BuildDistance { get; set; }
 
