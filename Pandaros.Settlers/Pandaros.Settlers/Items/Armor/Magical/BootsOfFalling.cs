@@ -93,7 +93,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public float ArmorRating { get; }
 
-        public int Durability { get; set; }
+        public int Durability { get; set; } = int.MaxValue;
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
