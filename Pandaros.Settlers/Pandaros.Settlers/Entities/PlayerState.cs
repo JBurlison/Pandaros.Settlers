@@ -28,6 +28,7 @@ namespace Pandaros.Settlers.Entities
             _playerVariables = GetPlayerVariables();
         }
 
+        public Dictionary<ushort, int> Backpack { get; set; }
         public JSONNode _playerVariables = new JSONNode();
         public Random Rand { get; set; }
         public static List<HealingOverTimePC> HealingSpells { get; } = new List<HealingOverTimePC>();
@@ -321,6 +322,10 @@ namespace Pandaros.Settlers.Entities
                     foreach (var aNode in ItemsInWorldNode.LoopObject())
                         _playerStates[p].ItemsInWorld.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
+                if (stateNode.TryGetAs(nameof(Backpack), out JSONNode backpack))
+                    foreach (var aNode in backpack.LoopObject())
+                        _playerStates[p].Backpack.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
                 if (stateNode.TryGetAs("Armor", out JSONNode armorNode) && armorNode.NodeType == NodeType.Object)
                     foreach (var aNode in armorNode.LoopObject())
                         _playerStates[p].Armor[(ArmorFactory.ArmorSlot) Enum.Parse(typeof(ArmorFactory.ArmorSlot), aNode.Key)] =
@@ -339,7 +344,7 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs(nameof(BuildersWandMode), out string wandMode))
                     _playerStates[p].BuildersWandMode = (BuildersWand.WandMode) Enum.Parse(typeof(BuildersWand.WandMode), wandMode);
-
+                
                 if (stateNode.TryGetAs(nameof(BuildersWandCharge), out int wandCharge))
                     _playerStates[p].BuildersWandCharge = wandCharge;
 
@@ -385,6 +390,7 @@ namespace Pandaros.Settlers.Entities
                 var ItemsPlacedNode     = new JSONNode();
                 var ItemsRemovedNode    = new JSONNode();
                 var ItemsInWorldNode    = new JSONNode();
+                var backpackNode        = new JSONNode();
                 var flagsPlaced         = new JSONNode(NodeType.Array);
                 var buildersWandPreview = new JSONNode(NodeType.Array);
                 var equiptMagicItems    = new JSONNode(NodeType.Array);
@@ -401,6 +407,9 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var kvp in _playerStates[p].ItemsInWorld)
                     ItemsInWorldNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                foreach (var kvp in _playerStates[p].Backpack)
+                    backpackNode.SetAs(kvp.Key.ToString(), kvp.Value);
 
                 foreach (var armor in _playerStates[p].Armor)
                     armorNode.SetAs(armor.Key.ToString(), armor.Value.ToJsonNode());
@@ -429,6 +438,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
+                node.SetAs(nameof(Backpack), backpackNode);
                 node.SetAs(nameof(MusicEnabled), _playerStates[p].MusicEnabled);
                 node.SetAs(nameof(MagicItems), equiptMagicItems);
                 node.SetAs(nameof(JoinDate), _playerStates[p].JoinDate);

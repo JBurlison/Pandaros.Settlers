@@ -1,5 +1,6 @@
 {
   "types": {
+    "Pandaros.Settlers.Backpack": "Backpack",
     "Pandaros.Settlers.CopperHelm": "Copper Helm",
     "Pandaros.Settlers.CopperChest": "Copper Breastplate",
     "Pandaros.Settlers.CopperGloves": "Copper Gauntlets",
@@ -272,6 +273,7 @@
     "Pandaros.Settlers.AutoLoad.Flowers1": "Morning Glory"
   },
   "typeuses": {
+    "Pandaros.Settlers.Backpack": "To use: place it on your toolbar and right click. Your own personal stockpile!",
     "Pandaros.Settlers.CopperHelm": "Provides 5% damage reduction.",
     "Pandaros.Settlers.CopperChest": "Provides 10% damage reduction.",
     "Pandaros.Settlers.CopperGloves": "Provides 2.5% damage reduction.",

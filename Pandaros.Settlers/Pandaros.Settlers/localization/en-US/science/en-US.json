@@ -2,6 +2,10 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "Backpack1": {
+          "name": "Backpack",
+          "description": "Gives you a backpack that you can carry items in."
+        },
         "SkillEquiptmentResearch1": {
           "name": "+1 Skill Equiptment",
           "description": "Allows you to craft +1 skill equiptment."
