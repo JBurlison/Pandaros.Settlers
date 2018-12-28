@@ -78,6 +78,11 @@
       },
       {
         "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/backpack/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/es-ES/es-ES.json",
         "index": -99999
       },

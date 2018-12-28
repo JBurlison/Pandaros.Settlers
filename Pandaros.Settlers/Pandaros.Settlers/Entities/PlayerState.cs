@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Entities
             _playerVariables = GetPlayerVariables();
         }
 
-        public Dictionary<ushort, int> Backpack { get; set; }
+        public Dictionary<ushort, int> Backpack { get; set; } = new Dictionary<ushort, int>();
         public JSONNode _playerVariables = new JSONNode();
         public Random Rand { get; set; }
         public static List<HealingOverTimePC> HealingSpells { get; } = new List<HealingOverTimePC>();

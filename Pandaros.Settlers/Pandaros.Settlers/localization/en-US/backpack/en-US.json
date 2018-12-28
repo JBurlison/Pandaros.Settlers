@@ -1,0 +1,17 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "backpack": {
+          "Backpack": "Backpack",
+          "Select": "Select",
+          "MoveItemsToStockpile": "Move Items To Stockpile",
+          "MoveItemsToToolbar": "Move Items To Toolbar",
+          "GetItemsFromStockpile": "Get Items From Stockpile",
+          "GetItemsFromToolbar": "Get Items From Toolbar",
+          "Numberofitems": "Number of items: "
+        }
+      }
+    }
+  }
+}
