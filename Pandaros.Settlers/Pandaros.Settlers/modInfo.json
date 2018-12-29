@@ -231,6 +231,8 @@
           "Added antigrief for players who are not in your colony.",
           "Added prompt to accept or reject new settlers. Settlers no longer auto join your colony.",
           "Bosses now start randomly spawning after 100 colonists. Up from 15.",
+          "Machinists now have a day and night job.",
+          "Added serveral new ores that generate in the map: Adamantine, Emerald, Ruby, Saphire",
           "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
           "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation"
         ]

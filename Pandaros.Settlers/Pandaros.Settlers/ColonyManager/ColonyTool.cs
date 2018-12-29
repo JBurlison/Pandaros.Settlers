@@ -243,20 +243,25 @@ namespace Pandaros.Settlers.ColonyManager
             List<IItem> header = new List<IItem>();
 
             header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Job"), UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+
+            if (!fired)
+                header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+
             header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Working"), UnityEngine.Color.black)));
             header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("NotWorking"), UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
 
-            menu.Items.Add(new HorizontalGrid(header, 166));
+            menu.Items.Add(new HorizontalGrid(header, 140));
 
             foreach (var jobKvp in jobCounts)
             {
                 List<IItem> items = new List<IItem>();
 
                 items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player), UnityEngine.Color.black)));
-                items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+
+                if (!fired)
+                    items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
 
@@ -274,7 +279,7 @@ namespace Pandaros.Settlers.ColonyManager
 
                 menu.LocalStorage.SetAs(jobKvp.Key + ".Recruit", 0);
 
-                menu.Items.Add(new HorizontalGrid(items, 142));
+                menu.Items.Add(new HorizontalGrid(items, 140));
             }
 
             return menu;
