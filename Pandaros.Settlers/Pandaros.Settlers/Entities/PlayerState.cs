@@ -6,6 +6,7 @@ using Pipliz.JSON;
 using Shared.Networking;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Random = System.Random;
 
 namespace Pandaros.Settlers.Entities
@@ -15,6 +16,7 @@ namespace Pandaros.Settlers.Entities
     {
         private static readonly Dictionary<Players.Player, PlayerState> _playerStates = new Dictionary<Players.Player, PlayerState>();
         private static string _Enviorment = GameLoader.NAMESPACE + ".Enviorment";
+        private static double MagicItemUpdateTime = Time.SecondsSinceStartDouble;
 
         public PlayerState(Players.Player p)
         {
@@ -23,9 +25,10 @@ namespace Pandaros.Settlers.Entities
             SetupArmor();
 
             HealingOverTimePC.NewInstance += HealingOverTimePC_NewInstance;
-            _playerVariables = JSON.Deserialize("gamedata/settings/serverperclient.json");
+            _playerVariables = GetPlayerVariables();
         }
 
+        public Dictionary<ushort, int> Backpack { get; set; } = new Dictionary<ushort, int>();
         public JSONNode _playerVariables = new JSONNode();
         public Random Rand { get; set; }
         public static List<HealingOverTimePC> HealingSpells { get; } = new List<HealingOverTimePC>();
@@ -36,17 +39,19 @@ namespace Pandaros.Settlers.Entities
         public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
         public bool MusicEnabled { get; set; } = true;
         public ItemState Weapon { get; set; } = new ItemState();
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
         public int BuildersWandMaxCharge { get; set; }
-        
+        public IPlayerMagicItem[] MagicItems { get; set; } = new IPlayerMagicItem[0];
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
         public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
         public long NextMusicTime { get; set; }
         public bool Connected { get; set; }
-
+        public int MaxMagicItems { get; set; }
+        public DateTime JoinDate { get; set; } = DateTime.Now;
         private void HealingOverTimePC_NewInstance(object sender, EventArgs e)
         {
             var healing = sender as HealingOverTimePC;
@@ -86,23 +91,27 @@ namespace Pandaros.Settlers.Entities
             Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
         }
 
+        public void ResizeMaxMagicItems()
+        {
+            var magicItems = MagicItems;
+
+            if (MagicItems.Length < MaxMagicItems)
+                Array.Resize(ref magicItems, MaxMagicItems);
+
+            MagicItems = magicItems;
+        }
+
+        public void IncrimentStat(string name, double count = 1)
+        {
+            if (!Stats.ContainsKey(name))
+                Stats.Add(name, 0);
+
+            Stats[name] += count;
+        }
+
         private void ArmorState_IdChanged(object sender, ItemStateChangedEventArgs e)
         {
-            var state = sender as ItemState;
             RecaclculateMagicItems();
-
-            if (state != null && 
-                ArmorFactory.ArmorLookup.TryGetValue(state.Id, out var armor))
-            {
-                if (armor.HPBoost != 0)
-                {
-                    var tempVal = Player.GetTempValues(true);
-                    tempVal.Set("pipliz.healthmax", tempVal.GetOrDefault<float>("pipliz.healthmax", 100) + armor.HPBoost);
-                }
-            }
-
-
-            UpdatePlayerVariables();
         }
 
         private void Weapon_IdChanged(object sender, ItemStateChangedEventArgs e)
@@ -110,7 +119,7 @@ namespace Pandaros.Settlers.Entities
             RecaclculateMagicItems();
         }
 
-        private void RecaclculateMagicItems()
+        public void RecaclculateMagicItems()
         {
             ResetPlayerVars();
 
@@ -119,7 +128,7 @@ namespace Pandaros.Settlers.Entities
             {
                 AddMagicEffect(playerWep);
             }
-
+            
             foreach(var arm in Armor)
             {
                 if(ArmorFactory.ArmorLookup.TryGetValue(arm.Value.Id, out var armor) &&
@@ -129,23 +138,50 @@ namespace Pandaros.Settlers.Entities
                 }
             }
 
+            foreach (var item in MagicItems)
+                if (item != null)
+                    AddMagicEffect(item);
+
             UpdatePlayerVariables();
         }
 
         private void ResetPlayerVars()
         {
-            _playerVariables = JSON.Deserialize("gamedata/settings/serverperclient.json");
+            _playerVariables = GetPlayerVariables();
+        }
+
+        public static JSONNode GetPlayerVariables()
+        {
+            return JSON.Deserialize("gamedata/settings/serverperclient.json");
         }
 
         private void AddMagicEffect(IPlayerMagicItem playerMagicItem)
         {
-            _playerVariables.SetAs("MovementSpeed", _playerVariables.GetAs<float>("MovementSpeed") + playerMagicItem.MovementSpeed);
+            if (playerMagicItem.color != default(UnityEngine.Color))
+            {
+                _playerVariables.SetAs("LightColorR", playerMagicItem.color.r);
+                _playerVariables.SetAs("LightColorG", playerMagicItem.color.g);
+                _playerVariables.SetAs("LightColorB", playerMagicItem.color.b);
+            }
+
+            _playerVariables.SetAs("MovePower", _playerVariables.GetAs<float>("MovePower") + playerMagicItem.MovementSpeed);
             _playerVariables.SetAs("JumpPower", _playerVariables.GetAs<float>("JumpPower") + playerMagicItem.JumpPower);
-            _playerVariables.SetAs("FlySpeed", _playerVariables.GetAs<float>("FlySpeed") + playerMagicItem.FlySpeed);
-            _playerVariables.SetAs("MoveSpeed", _playerVariables.GetAs<float>("MoveSpeed") + playerMagicItem.MoveSpeed);
+            _playerVariables.SetAs("FlySpeedBase", _playerVariables.GetAs<float>("FlySpeedBase") + playerMagicItem.FlySpeed);
             _playerVariables.SetAs("LightRange", _playerVariables.GetAs<float>("LightRange") + playerMagicItem.MovementSpeed);
-            _playerVariables.SetAs("FallDamage", _playerVariables.GetAs<float>("FallDamage") + playerMagicItem.FallDamage);
-            _playerVariables.SetAs("FallDamagePerUnit", _playerVariables.GetAs<float>("FallDamagePerUnit") + playerMagicItem.FallDamagePerUnit);
+
+            var fallDmg = _playerVariables.GetAs<float>("FallDamageBaseDamage") + playerMagicItem.FallDamage;
+
+            if (fallDmg < 0)
+                fallDmg = 0;
+
+            _playerVariables.SetAs("FallDamageBaseDamage", fallDmg);
+
+            var falldmgUnit = _playerVariables.GetAs<float>("FallDamagePerUnit") + playerMagicItem.FallDamagePerUnit;
+
+            if (falldmgUnit < 0)
+                falldmgUnit = 0;
+
+            _playerVariables.SetAs("FallDamagePerUnit", falldmgUnit);
             _playerVariables.SetAs("BuildDistance", _playerVariables.GetAs<float>("BuildDistance") + playerMagicItem.BuildDistance);
         }
 
@@ -156,6 +192,7 @@ namespace Pandaros.Settlers.Entities
 
         private void UpdatePlayerVariables()
         {
+            PandaLogger.Log("Sending Player Variables");
             using (ByteBuilder bRaw = ByteBuilder.Get())
             {
                 bRaw.Write(ClientMessageType.ReceiveServerPerClientSettings);
@@ -166,6 +203,22 @@ namespace Pandaros.Settlers.Entities
                 }
                 NetworkWrapper.Send(bRaw.ToArray(), Player.ID);
             }
+
+            Player.SendHealthPacket();
+        }
+
+        public float GetSkillModifier()
+        {
+            var totalSkill = 0f;
+
+            foreach (var armor in Armor)
+                if (Items.Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var a))
+                    totalSkill += a.Skilled;
+
+            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(Weapon.Id, out var w))
+                totalSkill += w.Skilled;
+
+            return totalSkill;
         }
 
         public static PlayerState GetPlayerState(Players.Player p)
@@ -188,19 +241,48 @@ namespace Pandaros.Settlers.Entities
             {
                 if (p.IsConnected)
                 {
+                    var ps = GetPlayerState(p);
+
                     try
                     {
-                        var ps = GetPlayerState(p);
-
                         if (ps.Connected && ps.MusicEnabled && Time.MillisecondsSinceStart > ps.NextMusicTime)
                         {
                             ServerManager.SendAudio(GameLoader.NAMESPACE + ".Environment", p);
-                            ps.NextMusicTime = 170700 + Time.MillisecondsSinceStart;
+                            ps.NextMusicTime = 178700 + Time.MillisecondsSinceStart;
                         }
                     }
                     catch (Exception ex)
                     {
                         PandaLogger.LogError(ex);
+                    }
+
+                    if (MagicItemUpdateTime < Time.SecondsSinceStartDouble)
+                    {
+                        foreach (var a in ps.Armor.Select(kvp => ArmorFactory.ArmorLookup.TryGetValue(kvp.Value.Id, out var arm) ? arm : null).Where(armor => armor != null))
+                        {
+                            a.Update();
+
+                            if (a.HPTickRegen != 0)
+                                p.Heal(a.HPTickRegen);
+                        }
+
+                        if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(ps.Weapon.Id, out var wep))
+                        {
+                            wep.Update();
+
+                            if (wep.HPTickRegen != 0)
+                                p.Heal(wep.HPTickRegen);
+                        }
+
+                        foreach (var mi in ps.MagicItems.Where(m => m != null))
+                        {
+                            mi.Update();
+
+                            if (mi.HPTickRegen != 0)
+                                p.Heal(mi.HPTickRegen);
+                        }
+
+                        MagicItemUpdateTime += 5000;
                     }
                 }
             }
@@ -217,6 +299,7 @@ namespace Pandaros.Settlers.Entities
         public static void OnPlayerConnectedSuperLate(Players.Player p)
         {
             _playerStates[p].Connected = true;
+            _playerStates[p].RecaclculateMagicItems();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]
@@ -227,17 +310,21 @@ namespace Pandaros.Settlers.Entities
 
             if (n.TryGetChild(GameLoader.NAMESPACE + ".PlayerState", out var stateNode))
             {
-                if (stateNode.TryGetAs(nameof(ItemsPlaced), out JSONNode ItemsPlacedNode) && ItemsPlacedNode.NodeType == NodeType.Object)
+                if (stateNode.TryGetAs(nameof(ItemsPlaced), out JSONNode ItemsPlacedNode))
                     foreach (var aNode in ItemsPlacedNode.LoopObject())
                         _playerStates[p].ItemsPlaced.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
-                if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode) && ItemsRemovedNode.NodeType == NodeType.Object)
+                if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode))
                     foreach (var aNode in ItemsRemovedNode.LoopObject())
                         _playerStates[p].ItemsRemoved.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
-                if (stateNode.TryGetAs(nameof(ItemsInWorld), out JSONNode ItemsInWorldNode) && ItemsInWorldNode.NodeType == NodeType.Object)
+                if (stateNode.TryGetAs(nameof(ItemsInWorld), out JSONNode ItemsInWorldNode))
                     foreach (var aNode in ItemsInWorldNode.LoopObject())
                         _playerStates[p].ItemsInWorld.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
+                if (stateNode.TryGetAs(nameof(Backpack), out JSONNode backpack))
+                    foreach (var aNode in backpack.LoopObject())
+                        _playerStates[p].Backpack.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
                 if (stateNode.TryGetAs("Armor", out JSONNode armorNode) && armorNode.NodeType == NodeType.Object)
                     foreach (var aNode in armorNode.LoopObject())
@@ -257,7 +344,7 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs(nameof(BuildersWandMode), out string wandMode))
                     _playerStates[p].BuildersWandMode = (BuildersWand.WandMode) Enum.Parse(typeof(BuildersWand.WandMode), wandMode);
-
+                
                 if (stateNode.TryGetAs(nameof(BuildersWandCharge), out int wandCharge))
                     _playerStates[p].BuildersWandCharge = wandCharge;
 
@@ -267,11 +354,29 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(MusicEnabled), out bool music))
                     _playerStates[p].MusicEnabled = music;
 
+                if (stateNode.TryGetAs(nameof(JoinDate), out string joindate))
+                    _playerStates[p].JoinDate = DateTime.Parse(joindate);
+
                 _playerStates[p].BuildersWandPreview.Clear();
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
                     foreach (var node in wandPreview.LoopArray())
                         _playerStates[p].BuildersWandPreview.Add(node.ToVector3Int());
+
+                var playerMagicItems = new List<IPlayerMagicItem>();
+
+                if (stateNode.TryGetAs(nameof(MagicItems), out JSONNode magicItems))
+                    foreach (var magicItem in magicItems.LoopArray())
+                        if (MagicItemsCache.PlayerMagicItems.TryGetValue(magicItem.GetAs<string>(), out var pmi))
+                            playerMagicItems.Add(pmi);
+
+                _playerStates[p].MagicItems = playerMagicItems.ToArray();
+
+                if (stateNode.TryGetAs(nameof(Stats), out JSONNode itterations))
+                    foreach (var skill in itterations.LoopObject())
+                        _playerStates[p].Stats[skill.Key] = skill.Value.GetAs<double>();
+
+                _playerStates[p].RecaclculateMagicItems();
             }
         }
 
@@ -285,8 +390,14 @@ namespace Pandaros.Settlers.Entities
                 var ItemsPlacedNode     = new JSONNode();
                 var ItemsRemovedNode    = new JSONNode();
                 var ItemsInWorldNode    = new JSONNode();
+                var backpackNode        = new JSONNode();
                 var flagsPlaced         = new JSONNode(NodeType.Array);
                 var buildersWandPreview = new JSONNode(NodeType.Array);
+                var equiptMagicItems    = new JSONNode(NodeType.Array);
+
+                foreach (var magicItem in _playerStates[p].MagicItems)
+                    if (magicItem != null)
+                        equiptMagicItems.AddToArray(new JSONNode(magicItem.Name));
 
                 foreach (var kvp in _playerStates[p].ItemsPlaced)
                     ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);
@@ -297,6 +408,9 @@ namespace Pandaros.Settlers.Entities
                 foreach (var kvp in _playerStates[p].ItemsInWorld)
                     ItemsInWorldNode.SetAs(kvp.Key.ToString(), kvp.Value);
 
+                foreach (var kvp in _playerStates[p].Backpack)
+                    backpackNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
                 foreach (var armor in _playerStates[p].Armor)
                     armorNode.SetAs(armor.Key.ToString(), armor.Value.ToJsonNode());
 
@@ -305,6 +419,13 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var preview in _playerStates[p].BuildersWandPreview)
                     buildersWandPreview.AddToArray(preview.ToJSONNode());
+
+                var statsNode = new JSONNode();
+
+                foreach (var job in _playerStates[p].Stats)
+                    statsNode[job.Key] = new JSONNode(job.Value);
+
+                node.SetAs(nameof(Stats), statsNode);
 
                 node.SetAs("Armor", armorNode);
                 node.SetAs("Weapon", _playerStates[p].Weapon.ToJsonNode());
@@ -317,7 +438,10 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
+                node.SetAs(nameof(Backpack), backpackNode);
                 node.SetAs(nameof(MusicEnabled), _playerStates[p].MusicEnabled);
+                node.SetAs(nameof(MagicItems), equiptMagicItems);
+                node.SetAs(nameof(JoinDate), _playerStates[p].JoinDate);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
             }

@@ -74,13 +74,13 @@ namespace Pandaros.Settlers.Research
             TmpValueKey = GetResearchKey(name);
             LevelKey    = GetLevelKey(name);
 
-            key  = TmpValueKey + level;
-            icon = GameLoader.ICON_PATH + name + level + ".png";
+            Key = TmpValueKey + level;
+            Icon = GameLoader.ICON_PATH + name + level + ".png";
 
             if (!addLevelToName)
-                icon = GameLoader.ICON_PATH + name + ".png";
+                Icon = GameLoader.ICON_PATH + name + ".png";
 
-            iterationCount = baseIterationCount + 2 * level;
+            IterationCount = baseIterationCount + 2 * level;
 
             foreach (var kvp in requiredItems)
             {
@@ -382,6 +382,9 @@ namespace Pandaros.Settlers.Research
         {
             var maxHp = e.Manager.Colony.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".MAXCOLONISTHP", e.Manager.Colony.NPCHealthMax);
             e.Manager.Colony.NPCHealthMax = maxHp + e.Research.Level * e.Research.BaseValue;
+
+            foreach (var follower in e.Manager.Colony.Followers)
+                follower.health = e.Manager.Colony.NPCHealthMax;
         }
 
         private static void AddKnightResearch(Dictionary<ushort, int> researchDic)

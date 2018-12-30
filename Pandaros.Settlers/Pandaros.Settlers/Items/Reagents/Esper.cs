@@ -32,20 +32,19 @@ namespace Pandaros.Settlers.Items
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe,
-            GameLoader.NAMESPACE + ".Items.Esper.OnNPCCraftedRecipe")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".Items.Esper.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
         {
             if (recipe.Name == Mana.Item.name && job.NPC != null)
             {
                 var inv    = SettlerInventory.GetSettlerInventory(job.NPC);
-                var chance = 0.03f;
-
-                if (inv.JobSkills.ContainsKey(ApothecaryRegister.JOB_NAME))
-                    chance += inv.JobSkills[ApothecaryRegister.JOB_NAME];
+                var chance = 0.03f + inv.GetSkillModifier();
 
                 if (Random.NextFloat() <= chance)
+                {
+                    inv.AddBonusProc(Item.ItemIndex);
                     results.Add(new InventoryItem(Item.ItemIndex));
+                }
             }
         }
     }

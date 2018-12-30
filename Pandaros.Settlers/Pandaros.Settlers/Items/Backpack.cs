@@ -1,12 +1,467 @@
-﻿using System;
+﻿using BlockTypes;
+using NetworkUI;
+using NetworkUI.Items;
+using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Research;
+using Pipliz;
+using Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Pandaros.Settlers.Items.StaticItems;
 
 namespace Pandaros.Settlers.Items
 {
-    public  class Backpack
+    public class BackpackResearch : IPandaResearch
     {
+        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        {
+            { BuiltinBlocks.ScienceBagBasic, 1 },
+        };
+
+        public int NumberOfLevels => 1;
+        public float BaseValue => 0.05f;
+        public List<string> Dependancies => new List<string>()
+            {
+                ColonyBuiltIn.Research.ScienceBagBasic
+            };
+
+        public int BaseIterationCount => 50;
+        public bool AddLevelToName => true;
+        public string Name => "Backpack";
+
+        public void OnRegister()
+        {
+
+        }
+
+        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(Backpack.NAME, out var item) &&
+                !e.Manager.Colony.Stockpile.Contains(item.ItemIndex))
+                e.Manager.Colony.Stockpile.Add(item.ItemIndex);
+        }
+    }
+
+    public class Backpack : CSType
+    {
+        public static string NAME = GameLoader.NAMESPACE + ".Backpack";
+        public override string Name => NAME;
+        public override string icon => GameLoader.ICON_PATH + "Backpack.png";
+        public override bool? isPlaceable => false;
+        public override int? maxStackSize => 1;
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "essential",
+            "aaa"
+        };
+
+        public override StaticItem StaticItemSettings => new StaticItem()
+        {
+            Name = NAME,
+            RequiredScience = NAME + 1
+        };
+    }
+
+    [ModLoader.ModManager]
+    public class BackpackCallbacks
+    {
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("backpack");
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Backpack.OpenMenu")]
+        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        {
+            //Only launch on RIGHT click
+            if (player == null || boxedData.item1.clickType != PlayerClickedData.ClickType.Right)
+                return;
+
+            if (ItemTypes.IndexLookup.TryGetIndex(GameLoader.NAMESPACE + ".Backpack", out var backpackItem) &&
+                boxedData.item1.typeSelected == backpackItem)
+            {
+                NetworkMenuManager.SendServerPopup(player, MainMenu(player));
+            }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Items.Backpack.PressButton")]
+        public static void PressButton(ButtonPressCallbackData data)
+        {
+            if (data.ButtonIdentifier == "Backpack.GetItemsFromStockpile")
+            {
+                NetworkMenu menu = StockpileMenu(data);
+                NetworkMenuManager.SendServerPopup(data.Player, menu);
+            }
+            else if (data.ButtonIdentifier == "Backpack.MainMenu")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player));
+            }
+            else if (data.ButtonIdentifier == "Backpack.GetItemsFromToolbar")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, ToolbarMenu(data));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectAllInBackpack")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, StockpileMenu(data, false, true));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectNoneInBackpack")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, StockpileMenu(data, false, false));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectAllInToolbar")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, ToolbarMenu(data, false, true));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectNoneInToolbar")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, ToolbarMenu(data, false, false));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectNoneInBackpackMain")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, false, true));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectAllInBackpackMain")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, false, false));
+            }
+            else if (data.ButtonIdentifier == "Backpack.MoveItemsToStockpile")
+            {
+                if (data.Storage.TryGetAs("Backpack.NumberOfItems", out string strNumItems) && int.TryParse(strNumItems, out int numItems))
+                {
+                    Dictionary<ushort, int> removeItems = new Dictionary<ushort, int>();
+                    var ps = PlayerState.GetPlayerState(data.Player);
+
+                    foreach (var itemKvp in ps.Backpack)
+                    {
+                        if (data.Storage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out bool selected) && selected)
+                        {
+                            int takeNum = System.Math.Min(numItems, itemKvp.Value);
+                            removeItems[itemKvp.Key] = takeNum;
+                        }
+                    }
+
+                    foreach (var item in removeItems)
+                    {
+                        ps.Backpack[item.Key] -= item.Value;
+
+                        if (ps.Backpack[item.Key] <= 0)
+                            ps.Backpack.Remove(item.Key);
+
+                        data.Player.ActiveColony.Stockpile.Add(item.Key, item.Value);
+                    }
+
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player));
+                }
+                else
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, true));
+
+            }
+            else if (data.ButtonIdentifier == "Backpack.MoveItemsToToolbar")
+            {
+                if (data.Storage.TryGetAs("Backpack.NumberOfItems", out string strNumItems) && int.TryParse(strNumItems, out int numItems))
+                {
+                    Dictionary<ushort, int> removeItems = new Dictionary<ushort, int>();
+                    var ps = PlayerState.GetPlayerState(data.Player);
+                    var invRef = Inventory.GetInventory(data.Player);
+
+                    foreach (var itemKvp in ps.Backpack)
+                    {
+                        if (data.Storage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out bool selected) && selected)
+                        {
+                            int takeNum = System.Math.Min(numItems, itemKvp.Value);
+                            removeItems[itemKvp.Key] = takeNum;
+                        }
+                    }
+
+                    foreach (var item in removeItems)
+                    {
+                        if (invRef.TryAdd(item.Key, item.Value))
+                        {
+                            ps.Backpack[item.Key] -= item.Value;
+
+                            if (ps.Backpack[item.Key] <= 0)
+                                ps.Backpack.Remove(item.Key);
+                        }
+                        else
+                            break;
+                    }
+
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player));
+                }
+                else
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, true));
+            }
+            else if (data.ButtonIdentifier == "Backpack.MoveItemsToBackpackFromStockpile")
+            {
+                if (data.Storage.TryGetAs("Backpack.NumberOfItems", out string strNumItems) && int.TryParse(strNumItems, out int numItems))
+                {
+                    Dictionary<ushort, int> removeItems = new Dictionary<ushort, int>();
+                    var ps = PlayerState.GetPlayerState(data.Player);
+                    var backpackID = ItemId.GetItemId(Backpack.NAME);
+
+                    foreach (var itemKvp in data.Player.ActiveColony.Stockpile.Items)
+                    {
+                        if (itemKvp.Key != backpackID && data.Storage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out bool selected) && selected)
+                        {
+                            int takeNum = System.Math.Min(numItems, itemKvp.Value);
+                            removeItems[itemKvp.Key] = takeNum;
+                        }
+                    }
+
+                    foreach (var item in removeItems)
+                    {
+                        data.Player.ActiveColony.Stockpile.TryRemove(item.Key, item.Value);
+
+                        if (!ps.Backpack.ContainsKey(item.Key))
+                            ps.Backpack.Add(item.Key, item.Value);
+                        else
+                            ps.Backpack[item.Key] += item.Value;
+                    }
+
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player));
+                }
+                else
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, true));
+            }
+            else if (data.ButtonIdentifier == "Backpack.MoveItemsToBackpackFromToolbar")
+            {
+                if (data.Storage.TryGetAs("Backpack.NumberOfItems", out string strNumItems) && int.TryParse(strNumItems, out int numItems))
+                {
+                    Dictionary<ushort, int> removeItems = new Dictionary<ushort, int>();
+                    var ps = PlayerState.GetPlayerState(data.Player);
+                    var invRef = Inventory.GetInventory(data.Player);
+                    var backpackID = ItemId.GetItemId(Backpack.NAME);
+
+                    foreach (var itemKvp in invRef.Items)
+                    {
+                        if (itemKvp.Type != backpackID && data.Storage.TryGetAs("Backpack." + itemKvp.Type + ".ItemSelected", out bool selected) && selected)
+                        {
+                            int takeNum = System.Math.Min(numItems, itemKvp.Amount);
+                            removeItems[itemKvp.Type] = takeNum;
+                        }
+                    }
+
+                    foreach (var item in removeItems)
+                    {
+                        if (invRef.TryRemove(item.Key, item.Value))
+                        {
+                            if (!ps.Backpack.ContainsKey(item.Key))
+                                ps.Backpack.Add(item.Key, item.Value);
+                            else
+                                ps.Backpack[item.Key] += item.Value;
+                        }
+                    }
+
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player));
+                }
+                else
+                    NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, true));
+            }
+        }
+
+        private static NetworkMenu StockpileMenu(ButtonPressCallbackData data, bool error = false, bool? selectAll = null)
+        {
+            NetworkMenu menu = new NetworkMenu();
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("MoveItemsToBackpack", data.Player));
+            menu.Width = 1000;
+            menu.Height = 600;
+
+            try
+            {
+                if (error)
+                    menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("invalidNumber"), UnityEngine.Color.red)));
+
+                List<IItem> headerItems = new List<IItem>();
+                headerItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)));
+                headerItems.Add(new InputField("Backpack.NumberOfItems"));
+                headerItems.Add(new ButtonCallback("Backpack.MoveItemsToBackpackFromStockpile", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToBackpack"), UnityEngine.Color.black)));
+                menu.Items.Add(new HorizontalGrid(headerItems, 333));
+                menu.Items.Add(new Line(UnityEngine.Color.black));
+
+                List<IItem> items = new List<IItem>();
+                items.Add(new ButtonCallback("Backpack.MainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black)));
+                items.Add(new EmptySpace());
+                items.Add(new EmptySpace());
+
+                bool selected = false;
+
+                if (selectAll == true)
+                    selected = true;
+                else if (selectAll == false)
+                    selected = false;
+
+                if (selected)
+                    items.Add(new ButtonCallback("Backpack.SelectNoneInBackpack", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)));
+                else
+                    items.Add(new ButtonCallback("Backpack.SelectAllInBackpack", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)));
+
+                menu.Items.Add(new HorizontalGrid(items, 250));
+                menu.Items.Add(new Line(UnityEngine.Color.black));
+                var backpackID = ItemId.GetItemId(Backpack.NAME);
+
+                foreach (var itemKvp in data.Player.ActiveColony.Stockpile.Items)
+                {
+                    if (itemKvp.Key != backpackID)
+                    {
+                        items = new List<IItem>();
+                        items.Add(new ItemIcon(itemKvp.Key));
+                        items.Add(new Label(new LabelData(ItemId.GetItemId(itemKvp.Key), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                        items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + itemKvp.Value.ToString(), UnityEngine.Color.black)));
+                        items.Add(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", data.Player), UnityEngine.Color.black), "Backpack." + itemKvp.Key + ".ItemSelected"));
+
+                        if (selectAll == null)
+                            menu.LocalStorage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out selected);
+
+                        menu.LocalStorage.SetAs("Backpack." + itemKvp.Key + ".ItemSelected", selected);
+                        menu.Items.Add(new HorizontalGrid(items, 250));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
+
+            return menu;
+        }
+
+        public static NetworkMenu ToolbarMenu(ButtonPressCallbackData data, bool error = false, bool? selectAll = null)
+        {
+            NetworkMenu menu = new NetworkMenu();
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("MoveItemsToBackpack", data.Player));
+            menu.Width = 1000;
+            menu.Height = 600;
+
+            try
+            {
+                if (error)
+                    menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("invalidNumber"), UnityEngine.Color.red)));
+
+                List<IItem> headerItems = new List<IItem>();
+                headerItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)));
+                headerItems.Add(new InputField("Backpack.NumberOfItems"));
+                headerItems.Add(new ButtonCallback("Backpack.MoveItemsToBackpackFromToolbar", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToBackpack"), UnityEngine.Color.black)));
+                menu.Items.Add(new HorizontalGrid(headerItems, 333));
+                menu.Items.Add(new Line(UnityEngine.Color.black));
+
+                List<IItem> items = new List<IItem>();
+                items.Add(new ButtonCallback("Backpack.MainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black)));
+                items.Add(new EmptySpace());
+                items.Add(new EmptySpace());
+
+                bool selected = false;
+
+                if (selectAll == true)
+                    selected = true;
+                else if (selectAll == false)
+                    selected = false;
+
+                if (selected)
+                    items.Add(new ButtonCallback("Backpack.SelectNoneInBackpackToolbar", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)));
+                else
+                    items.Add(new ButtonCallback("Backpack.SelectAllInBackpackToolbar", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)));
+
+                menu.Items.Add(new HorizontalGrid(items, 250));
+                menu.Items.Add(new Line(UnityEngine.Color.black));
+                var invRef = Inventory.GetInventory(data.Player);
+                var backpackID = ItemId.GetItemId(Backpack.NAME);
+
+                foreach (var itemKvp in invRef.Items)
+                {
+                    if (itemKvp.Type != BuiltinBlocks.Air && itemKvp.Type != backpackID)
+                    {
+                        items = new List<IItem>();
+                        items.Add(new ItemIcon(itemKvp.Type));
+                        items.Add(new Label(new LabelData(ItemId.GetItemId(itemKvp.Type), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                        items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Toolbar", data.Player) + ": " + itemKvp.Amount.ToString(), UnityEngine.Color.black)));
+                        items.Add(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", data.Player), UnityEngine.Color.black), "Backpack." + itemKvp.Type + ".ItemSelected"));
+
+                        if (selectAll == null)
+                            menu.LocalStorage.TryGetAs("Backpack." + itemKvp.Type + ".ItemSelected", out selected);
+
+                        menu.LocalStorage.SetAs("Backpack." + itemKvp.Type + ".ItemSelected", selected);
+                        menu.Items.Add(new HorizontalGrid(items, 250));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
+
+            return menu;
+        }
+
+        public static NetworkMenu MainMenu(Players.Player player, bool error = false, bool? selectAll = null)
+        {
+            var ps = PlayerState.GetPlayerState(player);
+
+            NetworkMenu menu = new NetworkMenu();
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("Backpack", player));
+            menu.Width = 1000;
+            menu.Height = 600;
+
+            if (error)
+                menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("invalidNumber"), UnityEngine.Color.red)));
+
+            if (player.ActiveColony != null)
+                menu.Items.Add(new HorizontalSplit(new ButtonCallback("Backpack.GetItemsFromStockpile", new LabelData(_localizationHelper.GetLocalizationKey("GetItemsFromStockpile"), UnityEngine.Color.black)),
+                                                   new ButtonCallback("Backpack.GetItemsFromToolbar", new LabelData(_localizationHelper.GetLocalizationKey("GetItemsFromToolbar"), UnityEngine.Color.black))));
+            else
+                menu.Items.Add(new ButtonCallback("Backpack.GetItemsFromToolbar", new LabelData(_localizationHelper.GetLocalizationKey("GetItemsFromToolbar"), UnityEngine.Color.black)));
+
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+
+            List<IItem> headerItems = new List<IItem>();
+            headerItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)));
+            headerItems.Add(new InputField("Backpack.NumberOfItems"));
+
+            if (player.ActiveColony != null)
+                headerItems.Add(new ButtonCallback("Backpack.MoveItemsToStockpile", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToStockpile"), UnityEngine.Color.black)));
+
+            headerItems.Add(new ButtonCallback("Backpack.MoveItemsToToolbar", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToToolbar"), UnityEngine.Color.black)));
+           
+            menu.Items.Add(new HorizontalGrid(headerItems, 250));
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+
+            List<IItem> items = new List<IItem>();
+            items.Add(new EmptySpace());
+            items.Add(new EmptySpace());
+            items.Add(new EmptySpace());
+
+            bool selected = false;
+
+            if (selectAll == true)
+                selected = true;
+            else if (selectAll == false)
+                selected = false;
+
+            if (selected)
+                items.Add(new ButtonCallback("Backpack.SelectNoneInBackpackMain", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)));
+            else
+                items.Add(new ButtonCallback("Backpack.SelectAllInBackpackMain", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)));
+
+            menu.Items.Add(new HorizontalGrid(items, 250));
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+
+
+            foreach (var itemKvp in ps.Backpack)
+            {
+                items = new List<IItem>();
+                items.Add(new ItemIcon(itemKvp.Key));
+                items.Add(new Label(new LabelData(ItemId.GetItemId(itemKvp.Key), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Backpack", player) + ": " + itemKvp.Value.ToString(), UnityEngine.Color.black)));
+                items.Add(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", player), UnityEngine.Color.black), "Backpack." + itemKvp.Key + ".ItemSelected"));
+
+                if (selectAll == null)
+                    menu.LocalStorage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out selected);
+
+                menu.LocalStorage.SetAs("Backpack." + itemKvp.Key + ".ItemSelected", selected);
+                menu.Items.Add(new HorizontalGrid(items, 250));
+            }
+
+            return menu;
+        }
     }
 }

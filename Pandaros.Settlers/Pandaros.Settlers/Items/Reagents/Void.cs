@@ -37,13 +37,11 @@ namespace Pandaros.Settlers.Items
             if (recipe.Name == Elementium.Item.name && job.NPC != null)
             {
                 var inv    = SettlerInventory.GetSettlerInventory(job.NPC);
-                var chance = 0.05f;
-
-                if (inv.JobSkills.ContainsKey(ApothecaryRegister.JOB_NAME))
-                    chance += inv.JobSkills[ApothecaryRegister.JOB_NAME];
+                var chance = 0.05f + inv.GetSkillModifier();
 
                 if (Random.NextFloat() <= chance)
                 {
+                    inv.AddBonusProc(Item.ItemIndex);
                     results.Add(new InventoryItem(Item.ItemIndex));
 
                     PandaChat.Send(job.NPC.Colony,

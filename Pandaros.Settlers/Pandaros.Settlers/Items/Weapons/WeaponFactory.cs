@@ -47,14 +47,18 @@ namespace Pandaros.Settlers.Items.Weapons
                 {
                     if (MonsterTracker.TryGetMonsterByID(rayCastHit.hitNPCID, out var monster))
                     {
-                        monster.OnHit(WeaponLookup[click.typeSelected].Damage.TotalDamage());
+                        var dmg = WeaponLookup[click.typeSelected].Damage.TotalDamage();
+                        state.IncrimentStat("Damage Delt", dmg);
+                        monster.OnHit(dmg);
                         state.Weapon.Durability--;
                         ServerManager.SendAudio(monster.PositionToAimFor, "punch");
                     }
                 }
                 else if (NPCTracker.TryGetNPC(rayCastHit.hitNPCID, out var nPCBase))
                 {
-                    nPCBase.OnHit(WeaponLookup[click.typeSelected].Damage.TotalDamage(), player, ModLoader.OnHitData.EHitSourceType.PlayerClick);
+                    var dmg = WeaponLookup[click.typeSelected].Damage.TotalDamage();
+                    state.IncrimentStat("Damage Delt", dmg);
+                    nPCBase.OnHit(dmg, player, ModLoader.OnHitData.EHitSourceType.PlayerClick);
                     state.Weapon.Durability--;
                     ServerManager.SendAudio(nPCBase.Position.Vector, "punch");
                 }

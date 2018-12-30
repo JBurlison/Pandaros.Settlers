@@ -16,6 +16,8 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
+            var i = 0;
+
             foreach (var item in LoadedAssembalies)
             {
                 try
@@ -29,7 +31,19 @@ namespace Pandaros.Settlers.Extender.Providers
                         if (itemType.StaticItemSettings != null && !string.IsNullOrWhiteSpace(itemType.StaticItemSettings.Name))
                             StaticItems.List.Add(itemType.StaticItemSettings);
 
+                        if (itemType is IPlayerMagicItem pmi)
+                            MagicItemsCache.PlayerMagicItems[pmi.Name] = pmi;
+
                         _sb.Append($"{itemType.Name}, ");
+                        i++;
+
+                        if (i > 5)
+                        {
+                            _sb.Append("</color>");
+                            i = 0;
+                            _sb.AppendLine();
+                            _sb.Append("<color=lime>");
+                        }
                     }
                 }
                 catch (Exception ex)

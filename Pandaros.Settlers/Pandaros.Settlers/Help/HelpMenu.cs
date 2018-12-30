@@ -2,6 +2,7 @@
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Shared;
+using System.Collections.Generic;
 using static Pandaros.Settlers.Items.StaticItems;
 
 namespace Pandaros.Settlers.Help
@@ -20,6 +21,11 @@ namespace Pandaros.Settlers.Help
         public override string icon => GameLoader.ICON_PATH + "Help.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "essential",
+            "aaa"
+        };
         public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".HelpMenu" };
     }
 

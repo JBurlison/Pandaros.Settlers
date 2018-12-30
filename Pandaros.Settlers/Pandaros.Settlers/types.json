@@ -1354,7 +1354,7 @@
           "max": [ 0.5, 0.5, 0 ]
         }
       ]
-    },
+    }
   },
   "Pandaros.Settlers.AutoLoad.stonebrickslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.stonebrickslab",
@@ -1437,7 +1437,7 @@
           "max": [ 0.5, 0.5, 0 ]
         }
       ]
-    },
+    }
   },
   "Pandaros.Settlers.AutoLoad.plankslabback": {
     "parentType": "Pandaros.Settlers.AutoLoad.plankslab",
@@ -7015,5 +7015,43 @@
         }
       ]
     }
+  },
+  "Pandaros.Settlers.AutoLoad.infiniteAdamantine": {
+    "icon": "./icons/infiniteAdamantine.png",
+    "onPlaceAudio": "stonePlace",
+    "onRemoveAudio": "stoneDelete",
+    "destructionTime": 20000,
+    "sideall": "SELF",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "isDestructible": true,
+    "customData": {
+      "minerIsMineable": true,
+      "minerMiningTime": 20
+    },
+    "onRemove": [
+      {
+        "amount": 1,
+        "chance": 1,
+        "type": "Pandaros.Settlers.AutoLoad.AdamantineNugget"
+      },
+      {
+        "amount": 1,
+        "chance": 0.01,
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine"
+      }
+    ],
+    "categories": [
+      "ore"
+    ]
+  },
+  "Pandaros.Settlers.AutoLoad.AdamantineNugget": {
+    "icon": "./icons/AdamantineNugget.png",
+    "maxStackSize": 600,
+    "isPlaceable": false,
+    "categories": [
+      "ingredient",
+      "raw"
+    ]
   }
 }

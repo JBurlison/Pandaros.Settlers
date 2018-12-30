@@ -2,6 +2,34 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "Backpack1": {
+          "name": "Backpack",
+          "description": "Gives you a backpack that you can carry items in."
+        },
+        "SkillEquiptmentResearch1": {
+          "name": "+1 Skill Equiptment",
+          "description": "Allows you to craft +1 skill equiptment."
+        },
+        "SkillEquiptmentResearch2": {
+          "name": "+2 Skill Equiptment",
+          "description": "Allows you to craft +2 skill equiptment."
+        },
+        "MaxMagicItems1": {
+          "name": "Max Magic Items",
+          "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."
+        },
+        "MaxMagicItems2": {
+          "name": "Max Magic Items",
+          "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."
+        },
+        "Architect1": {
+          "name": "Architect",
+          "description": "The Architect builds schematics and allows builders to build them."
+        },
+        "Sorcerer1": {
+          "name": "Sorcerer",
+          "description": "Unlocks Sorcerer to create magical item for your colony."
+        },
         "SettlerChance1": {
           "name": "Settler Chance I",
           "description": "Increases chance for settlers to find your colony."

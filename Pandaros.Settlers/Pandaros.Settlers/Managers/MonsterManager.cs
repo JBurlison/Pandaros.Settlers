@@ -202,7 +202,7 @@ namespace Pandaros.Settlers.Managers
             cs.FaiedBossSpawns++;
 
             if (cs.FaiedBossSpawns > 10)
-                PandaChat.SendThrottle(cs, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f)} food.", ChatColor.red);
+                PandaChat.SendThrottle(cs, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f) * 100 + "%"} food.", ChatColor.red);
 
             cs.ColonyRef.OnZombieSpawn(false);
         }
@@ -244,6 +244,17 @@ namespace Pandaros.Settlers.Managers
             var cs         = ColonyState.GetColonyState(monster.OriginalGoal);
             var pandaArmor = monster as IPandaArmor;
             var pamdaDamage     = d.HitSourceObject as IPandaDamage;
+            var skilled = 0f;
+
+            if (pamdaDamage == null && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
+            {
+                var npc = d.HitSourceObject as NPCBase;
+                var inv = SettlerInventory.GetSettlerInventory(npc);
+                skilled = inv.GetSkillModifier();
+
+                if (inv.Weapon != null && Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wep))
+                    pamdaDamage = wep;
+            }
 
             if (pandaArmor != null && Random.NextFloat() <= pandaArmor.MissChance)
             {
@@ -263,8 +274,22 @@ namespace Pandaros.Settlers.Managers
                     d.ResultDamage = d.ResultDamage - d.ResultDamage * flatResist;
             }
 
+            double skillRoll = Pipliz.Random.Next() + skilled;
+
+            if (skillRoll > skilled)
+                d.ResultDamage += d.ResultDamage;
+
             d.ResultDamage = d.ResultDamage - d.ResultDamage * cs.Difficulty.MonsterDamageReduction;
 
+            if (d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
+            {
+                var npc = d.HitSourceObject as NPCBase;
+                var inv = SettlerInventory.GetSettlerInventory(npc);
+                inv.IncrimentStat("Damage Done", d.ResultDamage);
+
+                if (skillRoll > skilled)
+                    inv.IncrimentStat("Double Damage Hits");
+            }
 
             if (d.ResultDamage >= monster.CurrentHealth)
             {

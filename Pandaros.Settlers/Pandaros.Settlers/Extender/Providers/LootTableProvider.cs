@@ -17,6 +17,7 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Loot Tables Loaded----------------------");
+            var i = 0;
 
             foreach (var item in LoadedAssembalies)
             {
@@ -25,7 +26,15 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     LootTables.Lookup[lootTable.Name] = lootTable;
                     sb.Append($"{lootTable.Name}, ");
-                    
+                    i++;
+
+                    if (i > 5)
+                    {
+                        sb.Append("</color>");
+                        i = 0;
+                        sb.AppendLine();
+                        sb.Append("<color=lime>");
+                    }
                 }
             }
 

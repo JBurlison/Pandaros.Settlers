@@ -1,5 +1,4 @@
 ﻿using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Items.Temperature;
 using Pandaros.Settlers.Items.Weapons;
 using System;
 using System.Collections.Generic;
@@ -18,6 +17,7 @@ namespace Pandaros.Settlers.Extender.Providers
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Weapons Loaded----------------------");
+            var i = 0;
 
             foreach (var item in LoadedAssembalies)
             {
@@ -28,6 +28,15 @@ namespace Pandaros.Settlers.Extender.Providers
                     {
                         WeaponFactory.WeaponLookup[index] = weapon;
                         sb.Append($"{weapon.Name}, ");
+                        i++;
+
+                        if (i > 5)
+                        {
+                            sb.Append("</color>");
+                            i = 0;
+                            sb.AppendLine();
+                            sb.Append("<color=lime>");
+                        }
                     }
                 }
             }

@@ -22,6 +22,11 @@ namespace Pandaros.Settlers.ColonyManager
         public override string icon => GameLoader.ICON_PATH + "ColonyManager.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "essential",
+            "aaa"
+        };
         public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".ColonyManagementTool" };
     }
 
@@ -46,6 +51,8 @@ namespace Pandaros.Settlers.ColonyManager
             "Max"
         };
 
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OpenMenu")]
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
@@ -67,12 +74,17 @@ namespace Pandaros.Settlers.ColonyManager
             if ((!data.ButtonIdentifier.Contains(".RecruitButton") && 
                 !data.ButtonIdentifier.Contains(".FireButton") &&
                 !data.ButtonIdentifier.Contains(".MoveFired") &&
+                !data.ButtonIdentifier.Contains(".ColonyToolMainMenu") &&
                 !data.ButtonIdentifier.Contains(".KillFired")) || data.Player.ActiveColony == null)
                 return;
 
             Dictionary<string, JobCounts> jobCounts = GetJobCounts(data.Player.ActiveColony);
 
-            if (data.ButtonIdentifier.Contains(".FireButton"))
+            if (data.ButtonIdentifier.Contains(".ColonyToolMainMenu"))
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
+            }
+            else if (data.ButtonIdentifier.Contains(".FireButton"))
             {
                 foreach (var job in jobCounts)
                     if (data.ButtonIdentifier.Contains(job.Key))
@@ -167,7 +179,7 @@ namespace Pandaros.Settlers.ColonyManager
                             if (data.Player.ActiveColony.Stockpile.TotalFood < foodCost ||
                                 !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, foodCost))
                             {
-                                PandaChat.Send(data.Player, "Not enough food.", ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("Notenoughfood", data.Player), ChatColor.red);
                                 break;
                             }
                             else
@@ -207,10 +219,10 @@ namespace Pandaros.Settlers.ColonyManager
             return retval;
         }
 
-        private static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
+        public static NetworkMenu BuildMenu(Players.Player player, Dictionary<string, JobCounts> jobCounts, bool fired, string firedName, int firedCount)
         {
             NetworkMenu menu = new NetworkMenu();
-            menu.LocalStorage.SetAs("header", "Colony Management");
+            menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("ColonyManagement", player));
             menu.Width = 1000;
             menu.Height = 600;
 
@@ -221,41 +233,53 @@ namespace Pandaros.Settlers.ColonyManager
                 if (firedCount == int.MaxValue)
                     count = "all";
 
-                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"Kill {count} Fired {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"{_localizationHelper.LocalizeOrDefault("Kill", player)} {count} {_localizationHelper.LocalizeOrDefault("Fired", player)} {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
+            else
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlayerDetails", new LabelData(_localizationHelper.GetLocalizationKey("PlayerDetails"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+
+            menu.Items.Add(new Line());
 
             List<IItem> header = new List<IItem>();
 
-            header.Add(new Label(new LabelData("Job", UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("Working", UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("Not Working", UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Job"), UnityEngine.Color.black)));
+
+            if (!fired)
+                header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+
+            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Working"), UnityEngine.Color.black)));
+            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("NotWorking"), UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
 
-            menu.Items.Add(new HorizontalGrid(header, 200));
+            menu.Items.Add(new HorizontalGrid(header, 140));
 
             foreach (var jobKvp in jobCounts)
             {
                 List<IItem> items = new List<IItem>();
 
-                items.Add(new Label(new LabelData(jobKvp.Key, UnityEngine.Color.black)));
+                items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player), UnityEngine.Color.black)));
+
+                if (!fired)
+                    items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
 
                 if (fired)
                 {
-                    items.Add(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData("Move Fired", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)));
+                    items.Add(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData(_localizationHelper.GetLocalizationKey("MoveFired"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)));
                 }
                 else
                 {
-                    items.Add(new DropDown(new LabelData("Amount", UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
-                    items.Add(new HorizontalSplit(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData("Recruit", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)),
-                                                  new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData("Fire!", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft))));
+                    items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
+                    items.Add(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData(_localizationHelper.GetLocalizationKey("Recruit"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData(_localizationHelper.GetLocalizationKey("Fire"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    
                 }
 
                 menu.LocalStorage.SetAs(jobKvp.Key + ".Recruit", 0);
 
-                menu.Items.Add(new HorizontalGrid(items, 200));
+                menu.Items.Add(new HorizontalGrid(items, 140));
             }
 
             return menu;

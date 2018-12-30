@@ -109,13 +109,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\Animal.cs" />
     <Compile Include="AI\CalltoArms.cs" />
-    <Compile Include="AI\IAnimal.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManager\ColonyTool.cs" />
+    <Compile Include="ColonyManager\Permission.cs" />
+    <Compile Include="Items\Armor\ArmorMetadata.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledBoots2.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledBoots1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledChest2.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledChest1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledGloves2.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledGloves1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledHelm2.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledHelm1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledLegs2.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledLegs1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledShield2.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledShield1.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledShield.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledLegs.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledHelm.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledGloves.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledChest.cs" />
+    <Compile Include="Items\Armor\Magical\SkilledBoots.cs" />
+    <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
+    <Compile Include="Items\EquiptmentManager.cs" />
+    <Compile Include="Items\MagicItemsCache.cs" />
+    <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
+    <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
+    <Compile Include="Items\Weapons\SkilledSword2.cs" />
+    <Compile Include="Items\Weapons\SkilledSword1.cs" />
+    <Compile Include="Items\Weapons\SkilledSword.cs" />
+    <Compile Include="Jobs\Sorcerer.cs" />
+    <Compile Include="localization\LocalizationHelper.cs" />
+    <Compile Include="Research\SkillEquiptmentResearch.cs" />
+    <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
     <Compile Include="NBT\BlockMapping.cs" />
@@ -186,7 +216,6 @@
     <Compile Include="Items\ItemState.cs" />
     <Compile Include="Items\Machines\MachineConstants.cs" />
     <Compile Include="Items\Machines\RefuelMachineAction.cs" />
-    <Compile Include="Items\Temperature\ITemperatureRegulator.cs" />
     <Compile Include="Items\Reagents\Void.cs" />
     <Compile Include="Items\Reagents\Esper.cs" />
     <Compile Include="Items\Machines\ElementalTurrets.cs" />
@@ -232,6 +261,18 @@
     <Compile Include="Managers\MonsterManager.cs" />
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
+    <None Include="AutoLoad\Sorcerer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\backpack\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\colonytool\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\buildertool\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Schematics\Mountan-Top-Castle.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -256,16 +297,16 @@
     <None Include="WorldGen\Buildings\npc-village-makeover.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\Apothecary.json">
+    <None Include="Help\en-US\Apothecary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\Machinists.json">
+    <None Include="Help\en-US\Machinists.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\Knights.json">
+    <None Include="Help\en-US\Knights.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Help\help.json">
+    <None Include="Help\en-US\help.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MCtoCSMapping.json">
@@ -940,6 +981,27 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="icons\Adamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\AdamantineNugget.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Backpack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Backpack1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BootsOfFalling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\HealthBooster.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\adobeslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1001,6 +1063,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\ColonyManager.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\MaxMagicItems1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\MaxMagicItems2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\sapling.png">
@@ -1613,6 +1681,81 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkillEquiptmentResearch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkillEquiptmentResearch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Sorcerer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SorcererTable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Sunflower.png">
@@ -2314,6 +2457,9 @@
     <Content Include="pdb2mdb.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\AirBossTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2350,6 +2496,12 @@
     <Content Include="Textures\albedo\MachinistBenchTopNight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\SorcererTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\height\infiniteemerald.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2359,7 +2511,13 @@
     <Content Include="Textures\height\oreRuby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\height\SorcererTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\height\stoneSquares.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\infiniteAdamantine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\infiniteemerald.png">
@@ -2371,7 +2529,34 @@
     <Content Include="Textures\normal\oreRuby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\normal\SorcererTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\normal\stoneSquares.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_albedoa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_albedob.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_albedoc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_specu_emiss_smooth_mask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_npc_albedo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_npc_normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_npc_specu_emiss_smooth_mask.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\npc\Bulging.png">
@@ -2615,6 +2800,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\pad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\monster_a_normal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\npc\Phase.png">

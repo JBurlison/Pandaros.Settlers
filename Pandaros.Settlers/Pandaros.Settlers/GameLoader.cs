@@ -16,16 +16,17 @@ namespace Pandaros.Settlers
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
-        public static string MESH_PATH = "gamedata/meshes/";
-        public static string AUDIO_PATH = "gamedata/Audio/";
-        public static string ICON_PATH = "gamedata/textures/icons/";
+        public static string MESH_PATH = "gamedata/mods/Pandaros/Settlers/meshes/";
+        public static string AUDIO_PATH = "gamedata/mods/Pandaros/Settlers/Audio/";
+        public static string ICON_PATH = "gamedata/mods/Pandaros/Settlers/icons/";
         public static string BLOCKS_ALBEDO_PATH = "Textures/albedo/";
         public static string BLOCKS_EMISSIVE_PATH = "Textures/emissive/";
         public static string BLOCKS_HEIGHT_PATH = "Textures/height/";
         public static string BLOCKS_NORMAL_PATH = "Textures/normal/";
+        public static string BLOCKS_NPC_PATH = "gamedata/mods/Pandaros/Settlers/Textures/npc/";
         public static string TEXTURE_FOLDER_PANDA = "Textures";
         public static string NPC_PATH = "gamedata/textures/materials/npc/";
-        public static string MOD_FOLDER = @"gamedata/mods/Pandaros/settlers";
+        public static string MOD_FOLDER = @"gamedata/mods/Pandaros/Settlers";
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";
         public static string GAME_ROOT = @"";
@@ -87,6 +88,7 @@ namespace Pandaros.Settlers
             BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
             BLOCKS_HEIGHT_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
             BLOCKS_NORMAL_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
+            BLOCKS_NPC_PATH      = Path.Combine(TEXTURE_FOLDER_PANDA, "npc").Replace("\\", "/") + "/";
 
             ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json")[0];
 

@@ -100,7 +100,7 @@ namespace Pandaros.Settlers.Items.Weapons
             var copperSword = new ItemTypesServer.ItemTypeRaw(copperSwordName, copperSwordNode);
             items.Add(copperSwordName, copperSword);
 
-            WeaponFactory.WeaponLookup.Add(copperSword.ItemIndex, new WeaponMetadata(50f, 50, "Copper Sword", copperSword));
+            WeaponFactory.WeaponLookup.Add(copperSword.ItemIndex, new WeaponMetadata(50f, 50, copperSwordName, copperSword));
 
             var bronzeSwordName = GameLoader.NAMESPACE + ".BronzeSword";
             var bronzeSwordNode = new JSONNode();
@@ -112,7 +112,7 @@ namespace Pandaros.Settlers.Items.Weapons
             var bronzeSword = new ItemTypesServer.ItemTypeRaw(bronzeSwordName, bronzeSwordNode);
             items.Add(bronzeSwordName, bronzeSword);
 
-            WeaponFactory.WeaponLookup.Add(bronzeSword.ItemIndex, new WeaponMetadata(100f, 75, "Bronze Sword", bronzeSword));
+            WeaponFactory.WeaponLookup.Add(bronzeSword.ItemIndex, new WeaponMetadata(100f, 75, bronzeSwordName, bronzeSword));
 
             var IronSwordName = GameLoader.NAMESPACE + ".IronSword";
             var IronSwordNode = new JSONNode();
@@ -124,7 +124,7 @@ namespace Pandaros.Settlers.Items.Weapons
             var IronSword = new ItemTypesServer.ItemTypeRaw(IronSwordName, IronSwordNode);
             items.Add(IronSwordName, IronSword);
 
-            WeaponFactory.WeaponLookup.Add(IronSword.ItemIndex, new WeaponMetadata(250f, 100, "Iron Sword", IronSword));
+            WeaponFactory.WeaponLookup.Add(IronSword.ItemIndex, new WeaponMetadata(250f, 100, IronSwordName, IronSword));
 
             var steelSwordName = GameLoader.NAMESPACE + ".SteelSword";
             var steelSwordNode = new JSONNode();
@@ -136,7 +136,7 @@ namespace Pandaros.Settlers.Items.Weapons
             var steelSword = new ItemTypesServer.ItemTypeRaw(steelSwordName, steelSwordNode);
             items.Add(steelSwordName, steelSword);
 
-            WeaponFactory.WeaponLookup.Add(steelSword.ItemIndex, new WeaponMetadata(500f, 150, "Steel Sword", steelSword));
+            WeaponFactory.WeaponLookup.Add(steelSword.ItemIndex, new WeaponMetadata(500f, 150, steelSwordName, steelSword));
         }
     }
 }

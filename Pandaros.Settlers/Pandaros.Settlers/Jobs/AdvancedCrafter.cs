@@ -16,8 +16,7 @@ namespace Pandaros.Settlers.Jobs
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".AdvancedCraftingTable";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]
         public static void RegisterJobs()
         {
@@ -32,8 +31,7 @@ namespace Pandaros.Settlers.Jobs
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddTextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddTextures")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
@@ -45,8 +43,7 @@ namespace Pandaros.Settlers.Jobs
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "AdvancedCraftingTableTop", textureMapping);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
-            GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddItemTypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AddItemTypes")]
         public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var item = new JSONNode()

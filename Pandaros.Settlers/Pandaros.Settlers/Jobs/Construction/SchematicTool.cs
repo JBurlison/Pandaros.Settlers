@@ -28,10 +28,16 @@ namespace Pandaros.Settlers.Jobs.Construction
         public override string icon => GameLoader.ICON_PATH + "Schematics.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "essential",
+            "aaa"
+        };
+
         public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
         {
             Name = GameLoader.NAMESPACE + ".SchematicTool",
-            RequiredScience = PandaResearch.GetResearchKey("Architect")
+            RequiredScience = PandaResearch.GetResearchKey("Architect") + 1
         };
     }
 
@@ -64,7 +70,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(Name, out var item))
+            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(SchematicTool.NAME, out var item) &&
+                !e.Manager.Colony.Stockpile.Contains(item.ItemIndex))
                 e.Manager.Colony.Stockpile.Add(item.ItemIndex);
         }
     }
@@ -81,7 +88,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         };
 
         private static readonly string Selected_Schematic = GameLoader.NAMESPACE + ".SelectedSchematic";
-
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("buildertool");
         private static Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
@@ -92,7 +99,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             {
                 if (player.ActiveColony == null)
                 {
-                    PandaChat.Send(player, "Cannot open Schematic tool when not in range of a colony.", ChatColor.red);
+                    PandaChat.Send(player, _localizationHelper.LocalizeOrDefault("ErrorOpening", player), ChatColor.red);
                     return;
                 }
 
@@ -146,10 +153,10 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.LocalStorage.SetAs("header", "Schematic Menu");
             List<FileInfo> options = SchematicReader.GetSchematics(player);
 
-            menu.Items.Add(new DropDown(new LabelData("Schematic", UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData("Details", UnityEngine.Color.black)));
+            menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Schematic"), UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData("Save Schematic", UnityEngine.Color.black)));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
@@ -188,16 +195,16 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (SchematicReader.TryGetSchematicMetadata(selectedSchematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata schematicMetadata))
                         {
                             if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(BuiltinBlocks.Air))
-                                PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                             {
                                 NetworkMenu menu = new NetworkMenu();
                                 menu.Width = 600;
                                 menu.Height = 600;
-                                menu.LocalStorage.SetAs("header", selectedSchematic.Name + " Details");
+                                menu.LocalStorage.SetAs("header", selectedSchematic.Name.Replace(".schematic","") + " " + _localizationHelper.LocalizeOrDefault("Details", data.Player));
 
-                                menu.Items.Add(new Label(new LabelData("Height: " + schematicMetadata.MaxY, UnityEngine.Color.black)));
-                                menu.Items.Add(new Label(new LabelData("Width: " + schematicMetadata.MaxZ, UnityEngine.Color.black)));
-                                menu.Items.Add(new Label(new LabelData("Length: " + schematicMetadata.MaxX, UnityEngine.Color.black)));
+                                menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Height", data.Player) + ": " + schematicMetadata.MaxY, UnityEngine.Color.black)));
+                                menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Width", data.Player) + ": " + schematicMetadata.MaxZ, UnityEngine.Color.black)));
+                                menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Length", data.Player) + ": " + schematicMetadata.MaxX, UnityEngine.Color.black)));
                                 menu.LocalStorage.SetAs(Selected_Schematic, selectedSchematic.Name);
 
                                 foreach (var kvp in schematicMetadata.Blocks)
@@ -211,9 +218,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                                     menu.Items.Add(new HorizontalGrid(items, 200));
                                 }
 
-                                menu.Items.Add(new DropDown(new LabelData("Rotation", UnityEngine.Color.black), Selected_Schematic + ".Rotation", _rotation.Select(r => r.ToString()).ToList()));
-                                menu.Items.Add(new HorizontalSplit(new ButtonCallback(GameLoader.NAMESPACE + ".ShowMainMenu", new LabelData("Back", UnityEngine.Color.black)),
-                                                                   new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black))));
+                                menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Rotation"), UnityEngine.Color.black), Selected_Schematic + ".Rotation", _rotation.Select(r => r.ToString()).ToList()));
+                                menu.Items.Add(new HorizontalSplit(new ButtonCallback(GameLoader.NAMESPACE + ".ShowMainMenu", new LabelData("Back", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)),
+                                                                   new ButtonCallback(GameLoader.NAMESPACE + ".SetBuildArea", new LabelData("Build", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter))));
                                 menu.LocalStorage.SetAs(Selected_Schematic + ".Rotation", 0);
 
                                 NetworkMenuManager.SendServerPopup(data.Player, menu);
@@ -232,10 +239,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {
                         if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
-                            PandaChat.Send(data.Player, "Unable to validate schematic. Schematic is all air. Cannot place area.", ChatColor.red);
+                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                         {
                             _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);
-                            PandaChat.Send(data.Player, "Right click on the top of a block to place the scematic. This will be the front left corner.");
+                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("instructions", data.Player));
                             NetworkMenuManager.CloseServerPopup(data.Player);
                         }
                     }
