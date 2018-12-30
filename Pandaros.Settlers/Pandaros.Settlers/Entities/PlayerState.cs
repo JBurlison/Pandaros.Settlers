@@ -195,7 +195,7 @@ namespace Pandaros.Settlers.Entities
                         if (ps.Connected && ps.MusicEnabled && Time.MillisecondsSinceStart > ps.NextMusicTime)
                         {
                             ServerManager.SendAudio(GameLoader.NAMESPACE + ".Environment", p);
-                            ps.NextMusicTime = 175700 + Time.MillisecondsSinceStart;
+                            ps.NextMusicTime = 170700 + Time.MillisecondsSinceStart;
                         }
                     }
                     catch (Exception ex)
