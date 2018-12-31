@@ -268,7 +268,7 @@
     "clipCollectionName": "Pandaros.Settlers.Environment",
     "fileList": [
       {
-        "audioGroup": "Effects",
+        "audioGroup": "AmbientLoop",
         "isThreeD": false,
         "path": "./Environment.ogg"
       }
