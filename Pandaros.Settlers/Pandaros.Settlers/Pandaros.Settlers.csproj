@@ -112,6 +112,7 @@
     <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
+    <Compile Include="ColonyManager\BlockTracker.cs" />
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\Permission.cs" />
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
