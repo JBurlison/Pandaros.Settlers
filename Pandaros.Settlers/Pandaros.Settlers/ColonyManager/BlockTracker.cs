@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Pipliz;
 
 namespace Pandaros.Settlers.ColonyManager
 {
@@ -40,10 +41,73 @@ namespace Pandaros.Settlers.ColonyManager
     public class BlockTracker
     {
         static QueueFactory<Tuple<Players.Player, TrackedPosition>> _recordPositionFactory = new QueueFactory<Tuple<Players.Player, TrackedPosition>>("RecordPositions");
+        static Dictionary<Vector3Int, ushort> _queuedPositions = new Dictionary<Vector3Int, ushort>();
+
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicBuilder.OnShouldKeepChunkLoaded")]
+        public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData data)
+        {
+            foreach (var iterator in _queuedPositions.Keys)
+            {
+                if (iterator.IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
+                    data.Result = true;
+            }
+        }
 
         static BlockTracker()
         {
             _recordPositionFactory.DoWork += _recordPositionFactory_DoWork;
+        }
+
+        public static void RewindPlayersBlocks(Players.Player player)
+        {
+            var saveLoc = GameLoader.SAVE_LOC + "players/" + player.ID + "/";
+
+            if (Directory.Exists(saveLoc))
+            {
+                saveLoc += "originalBlocks.json";
+
+                using (var fileStream = new FileStream(saveLoc, FileMode.OpenOrCreate))
+                {
+                    var buffLength = 35;
+                    var buffIndex = 0;
+
+                    while (fileStream.Length > buffIndex)
+                    {
+                        var buffAll = new byte[buffLength];
+                        var count = fileStream.Read(buffAll, buffIndex, buffLength);
+
+                        if (count == 0)
+                            break;
+
+                        buffIndex += count;
+                        var x = new byte[10];
+                        var y = new byte[10];
+                        var z = new byte[10];
+                        var id = new byte[5];
+
+                        Array.Copy(buffAll, 0, x, 0, 10);
+                        Array.Copy(buffAll, 10, y, 0, 10);
+                        Array.Copy(buffAll, 20, z, 0, 10);
+                        Array.Copy(buffAll, 30, id, 0, 5);
+
+                        if (int.TryParse(ASCIIEncoding.ASCII.GetString(x), out int intX) &&
+                            int.TryParse(ASCIIEncoding.ASCII.GetString(y), out int intY) &&
+                            int.TryParse(ASCIIEncoding.ASCII.GetString(z), out int intZ) &&
+                            ushort.TryParse(ASCIIEncoding.ASCII.GetString(id), out ushort intId))
+                        {
+                            var pos = new Vector3Int(intX, intY, intZ);
+                            _queuedPositions[pos] = intId;
+                            ChunkQueue.QueuePlayerRequest(pos, player);
+                        }
+
+                        System.Threading.Thread.Sleep(5000);
+
+                        foreach (var posKvp in _queuedPositions)
+                            World.TryChangeBlock(posKvp.Key, posKvp.Value);
+                    }
+                }
+            }
         }
 
         private static void _recordPositionFactory_DoWork(object sender, Tuple<Players.Player, TrackedPosition> e)
