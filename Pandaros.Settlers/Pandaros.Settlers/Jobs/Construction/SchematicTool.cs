@@ -70,9 +70,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(SchematicTool.NAME, out var item) &&
-                !e.Manager.Colony.Stockpile.Contains(item.ItemIndex))
-                e.Manager.Colony.Stockpile.Add(item.ItemIndex);
+            foreach (var p in e.Manager.Colony.Owners)
+                StaticItems.AddStaticItemToStockpile(p);
         }
     }
 

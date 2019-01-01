@@ -282,6 +282,12 @@ namespace Pandaros.Settlers.ColonyManager
                 menu.Items.Add(new HorizontalGrid(items, 140));
             }
 
+            if (!fired)
+            {
+                menu.Items.Add(new Line(UnityEngine.Color.black));
+                header.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ResetPlayer", new LabelData(_localizationHelper.GetLocalizationKey("ResetPlayer"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            }
+
             return menu;
         }
 

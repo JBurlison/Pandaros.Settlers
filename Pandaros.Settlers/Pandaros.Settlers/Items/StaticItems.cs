@@ -12,6 +12,7 @@ namespace Pandaros.Settlers.Items
         {
             public string Name { get; set; }
             public string RequiredScience { get; set; }
+            public string RequiredPermission { get; set; }
 
             public void JsonDeerialize(JSONNode node)
             {
@@ -44,22 +45,31 @@ namespace Pandaros.Settlers.Items
             AddStaticItemToStockpile(p);
         }
 
-        private static void AddStaticItemToStockpile(Players.Player p)
+        public static void AddStaticItemToStockpile(Players.Player p)
         {
             foreach (var item in List)
                 if (p != null && p.Colonies != null && p.Colonies.Length != 0)
                     foreach (var c in p.Colonies)
                         if (ItemTypes.IndexLookup.TryGetIndex(item.Name, out var staticItem) && !c.Stockpile.Contains(staticItem))
                         {
-                            if (string.IsNullOrEmpty(item.RequiredScience))
-                                c.Stockpile.Add(staticItem);
-                            else
+                            bool canAdd = true;
+
+                            if (!string.IsNullOrEmpty(item.RequiredScience))
                             {
                                 var sk = c.ScienceData.CompletedCycles.FirstOrDefault(kvp => kvp.Key.Researchable.Researchable.GetKey() == item.RequiredScience).Key;
-                                
-                                if (sk.Researchable != null)
-                                    c.Stockpile.Add(staticItem);
+
+                                if (sk.Researchable == null)
+                                    canAdd = false;
                             }
+
+                            if (!string.IsNullOrEmpty(item.RequiredPermission))
+                            {
+                                if (!PermissionsManager.HasPermission(p, new PermissionsManager.Permission(item.RequiredPermission)))
+                                    canAdd = false;
+                            }
+
+                            if (canAdd)
+                                c.Stockpile.Add(staticItem);
                         }
         }
     }

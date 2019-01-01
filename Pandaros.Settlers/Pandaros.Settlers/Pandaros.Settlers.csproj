@@ -145,6 +145,7 @@
     <Compile Include="Items\Weapons\SkilledSword.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
+    <Compile Include="Managers\ServerManager.cs" />
     <Compile Include="Research\SkillEquiptmentResearch.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
@@ -1682,6 +1683,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Selector.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ServerManagementTool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\SkillEquiptmentResearch1.png">
