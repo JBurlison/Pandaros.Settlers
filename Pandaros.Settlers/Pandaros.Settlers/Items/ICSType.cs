@@ -31,7 +31,9 @@ namespace Pandaros.Settlers.Items
         int? maxStackSize { get; }
         string mesh { get; }
         bool? needsBase { get; }
-        float? nutritionalValue { get; }
+        float? foodValue { get; }
+        float? happiness { get; }
+        float? dailyFoodFractionOptimal { get; }
         string onPlaceAudio { get; }
         List<OnRemove> onRemove { get; }
         string onRemoveAmount { get; }

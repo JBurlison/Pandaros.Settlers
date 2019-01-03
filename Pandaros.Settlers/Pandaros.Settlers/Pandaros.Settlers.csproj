@@ -145,7 +145,7 @@
     <Compile Include="Items\Weapons\SkilledSword.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
-    <Compile Include="Managers\ServerManager.cs" />
+    <Compile Include="Managers\ServerManagement.cs" />
     <Compile Include="Research\SkillEquiptmentResearch.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
@@ -328,7 +328,6 @@
     <Compile Include="QueueFactory.cs" />
     <Compile Include="Research\IPandaResearch.cs" />
     <Compile Include="SettlersChatCommand.cs" />
-    <Compile Include="Monsters\MonstersChatCommand.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />
     <Compile Include="Monsters\Bosses\PutridCorpse.cs" />
     <Compile Include="Monsters\Bosses\BulgingZombie.cs" />

@@ -20,7 +20,9 @@ namespace Pandaros.Settlers.Items
         public virtual bool? isPlaceable { get; }
         public virtual bool? needsBase { get; }
         public virtual int? maxStackSize { get; }
-        public virtual float? nutritionalValue { get; }
+        public virtual float? foodValue { get; }
+        public virtual float? happiness { get; }
+        public virtual float? dailyFoodFractionOptimal { get; }
         public virtual string mesh { get; set; }
         public virtual string icon { get; set; }
         public virtual string onRemoveAudio { get; set; }
@@ -80,8 +82,14 @@ namespace Pandaros.Settlers.Items
             if (maxStackSize != null)
                 node.SetAs(nameof(maxStackSize), maxStackSize);
 
-            if (nutritionalValue != null)
-                node.SetAs(nameof(nutritionalValue), nutritionalValue);
+            if (foodValue != null)
+                node.SetAs(nameof(foodValue), foodValue);
+
+            if (happiness != null)
+                node.SetAs(nameof(happiness), happiness);
+
+            if (foodValue != null)
+                node.SetAs(nameof(dailyFoodFractionOptimal), dailyFoodFractionOptimal);
 
             if (mesh != null)
                 node.SetAs(nameof(mesh), mesh);

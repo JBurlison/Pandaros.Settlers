@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Managers
         };
     }
 
-    public static class ServerManager
+    public static class ServerManagement
     {
         static readonly localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("servermanager");
 

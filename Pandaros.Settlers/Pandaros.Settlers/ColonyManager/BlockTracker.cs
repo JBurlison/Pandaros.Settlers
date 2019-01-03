@@ -103,8 +103,14 @@ namespace Pandaros.Settlers.ColonyManager
 
                         System.Threading.Thread.Sleep(5000);
 
+                        List<Vector3Int> replaced = new List<Vector3Int>();
+
                         foreach (var posKvp in _queuedPositions)
-                            World.TryChangeBlock(posKvp.Key, posKvp.Value);
+                            if (World.TryChangeBlock(posKvp.Key, posKvp.Value))
+                                replaced.Add(posKvp.Key);
+
+                        foreach (var replace in replaced)
+                            _queuedPositions.Remove(replace);
                     }
                 }
             }

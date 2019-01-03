@@ -218,7 +218,6 @@ namespace Pandaros.Settlers
             CommandManager.RegisterCommand(new ColonyArchiver());
             CommandManager.RegisterCommand(new ConfigurationChatCommand());
             CommandManager.RegisterCommand(new BossesChatCommand());
-            CommandManager.RegisterCommand(new MonstersChatCommand());
             CommandManager.RegisterCommand(new SettlersChatCommand());
 
             VersionChecker.WriteVersionsToConsole();

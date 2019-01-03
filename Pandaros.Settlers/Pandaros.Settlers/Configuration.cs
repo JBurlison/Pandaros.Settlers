@@ -70,10 +70,10 @@ namespace Pandaros.Settlers
         {
             Reload();
             GetorDefault("BossesCanBeDisabled", true);
-            GetorDefault("MonstersCanBeDisabled", true);
             GetorDefault("MaxSettlersToggle", 4);
             GetorDefault("SettlersEnabled", true);
             GetorDefault("ColonistsRecruitment", true);
+            GetorDefault("AllowPlayerToResetThemself", true);
             GetorDefault("CompoundingFoodRecruitmentCost", 5);
             Save();
         }

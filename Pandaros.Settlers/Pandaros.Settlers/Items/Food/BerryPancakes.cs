@@ -10,7 +10,9 @@ namespace Pandaros.Settlers.Items.Food
         public override string Name => GameLoader.NAMESPACE + ".BerryPancakes";
         public override string icon => GameLoader.ICON_PATH + "BerryPancakes.png";
         public override bool? isPlaceable => false;
-        public override float? nutritionalValue => 4f;
+        public override float? foodValue => .3f;
+        public override float? happiness => 10f;
+        public override float? dailyFoodFractionOptimal => .5f;
         public override List<string> categories => new List<string>() { "food" };
 
         public Dictionary<ItemId, int> Requirements => new Dictionary<ItemId, int>()
