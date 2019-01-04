@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.ColonyManager
         static Dictionary<Vector3Int, ushort> _queuedPositions = new Dictionary<Vector3Int, ushort>();
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicBuilder.OnShouldKeepChunkLoaded")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".ColonyManager.BlockTracker.OnShouldKeepChunkLoaded")]
         public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData data)
         {
             foreach (var iterator in _queuedPositions.Keys)
