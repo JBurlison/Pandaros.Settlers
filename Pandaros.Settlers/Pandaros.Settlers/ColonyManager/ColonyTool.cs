@@ -307,7 +307,7 @@ namespace Pandaros.Settlers.ColonyManager
             if (!fired && Configuration.GetorDefault("AllowPlayerToResetThemself", true))
             {
                 menu.Items.Add(new Line(UnityEngine.Color.black));
-                header.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ResetPlayer." + player.ID, new LabelData(_localizationHelper.GetLocalizationKey("ResetPlayer"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ResetPlayer." + player.ID, new LabelData(_localizationHelper.GetLocalizationKey("ResetPlayer"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
 
             return menu;

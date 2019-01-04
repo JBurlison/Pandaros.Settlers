@@ -3,11 +3,13 @@
     "Pandaros": {
       "Settlers": {
         "colonytool": {
+          "ResetPlayer": "Reset Player",
           "MagicItemLabel": "Magic Item",
           "Notenoughfood": "Not enough food.",
           "ColonyManagement": "Colony Management",
           "Colonist": "Colonist",
           "Kill": "Kill",
+          "Fire": "Fire",
           "Fired": "Fired",
           "Select": "Select",
           "Count": "Count",

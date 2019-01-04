@@ -57,48 +57,62 @@ namespace Pandaros.Settlers.ColonyManager
         static BlockTracker()
         {
             _recordPositionFactory.DoWork += _recordPositionFactory_DoWork;
+            _recordPositionFactory.Start();
         }
 
         public static void RewindPlayersBlocks(Players.Player player)
         {
-            var saveLoc = GameLoader.SAVE_LOC + "players/" + player.ID + "/";
-
-            if (Directory.Exists(saveLoc))
+            Task.Run(() =>
             {
-                saveLoc += "originalBlocks.json";
+                var saveLoc = GameLoader.SAVE_LOC + "players/" + player.ID + "/";
 
-                using (var fileStream = new FileStream(saveLoc, FileMode.OpenOrCreate))
+                if (Directory.Exists(saveLoc))
                 {
-                    var buffLength = 35;
-                    var buffIndex = 0;
+                    saveLoc += "originalBlocks.bin";
 
-                    while (fileStream.Length > buffIndex)
+                    using (var fileStream = new FileStream(saveLoc, FileMode.OpenOrCreate, FileAccess.Read))
                     {
-                        var buffAll = new byte[buffLength];
-                        var count = fileStream.Read(buffAll, buffIndex, buffLength);
+                        var buffLength = 35;
+                        var buffIndex = 0;
 
-                        if (count == 0)
-                            break;
-
-                        buffIndex += count;
-                        var x = new byte[10];
-                        var y = new byte[10];
-                        var z = new byte[10];
-                        var id = new byte[5];
-
-                        Array.Copy(buffAll, 0, x, 0, 10);
-                        Array.Copy(buffAll, 10, y, 0, 10);
-                        Array.Copy(buffAll, 20, z, 0, 10);
-                        Array.Copy(buffAll, 30, id, 0, 5);
-
-                        if (int.TryParse(ASCIIEncoding.ASCII.GetString(x), out int intX) &&
-                            int.TryParse(ASCIIEncoding.ASCII.GetString(y), out int intY) &&
-                            int.TryParse(ASCIIEncoding.ASCII.GetString(z), out int intZ) &&
-                            ushort.TryParse(ASCIIEncoding.ASCII.GetString(id), out ushort intId))
+                        while (fileStream.Length > buffIndex + buffLength)
                         {
-                            var pos = new Vector3Int(intX, intY, intZ);
-                            _queuedPositions[pos] = intId;
-                            ChunkQueue.QueuePlayerRequest(pos, player);
+                            try
+                            {
+                                var buffAll = new byte[buffLength];
+                                var count = fileStream.Read(buffAll, buffIndex, buffLength);
+
+                                if (count == 0)
+                                    break;
+
+                                buffIndex += count;
+                                var x = new byte[10];
+                                var y = new byte[10];
+                                var z = new byte[10];
+                                var id = new byte[5];
+
+                                Array.Copy(buffAll, 0, x, 0, 10);
+                                Array.Copy(buffAll, 10, y, 0, 10);
+                                Array.Copy(buffAll, 20, z, 0, 10);
+                                Array.Copy(buffAll, 30, id, 0, 5);
+
+                                if (int.TryParse(ASCIIEncoding.ASCII.GetString(x), out int intX) &&
+                                    int.TryParse(ASCIIEncoding.ASCII.GetString(y), out int intY) &&
+                                    int.TryParse(ASCIIEncoding.ASCII.GetString(z), out int intZ) &&
+                                    ushort.TryParse(ASCIIEncoding.ASCII.GetString(id), out ushort intId))
+                                {
+                                    var pos = new Vector3Int(intX, intY, intZ);
+                                    _queuedPositions[pos] = intId;
+                                    ChunkQueue.QueuePlayerRequest(pos, player);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.Log("File Length: {0} Index: {1}", fileStream.Length, buffIndex);
+                                PandaLogger.LogError(ex);
+
+                                System.Threading.Thread.Sleep(1000);
+                            }
                         }
 
                         System.Threading.Thread.Sleep(5000);
@@ -112,8 +126,10 @@ namespace Pandaros.Settlers.ColonyManager
                         foreach (var replace in replaced)
                             _queuedPositions.Remove(replace);
                     }
+
+                    File.Delete(saveLoc);
                 }
-            }
+            });
         }
 
         private static void _recordPositionFactory_DoWork(object sender, Tuple<Players.Player, TrackedPosition> e)
@@ -123,9 +139,9 @@ namespace Pandaros.Settlers.ColonyManager
             if (!Directory.Exists(saveLoc))
                 Directory.CreateDirectory(saveLoc);
 
-            saveLoc += "originalBlocks.json";
+            saveLoc += "originalBlocks.bin";
  
-            using (var fileStream = new FileStream(saveLoc, FileMode.OpenOrCreate))
+            using (var fileStream = new FileStream(saveLoc, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
                 var buffLength = 35;
                 var buffIndex = 0;
@@ -157,14 +173,10 @@ namespace Pandaros.Settlers.ColonyManager
 
                 fileStream.Seek(0, SeekOrigin.End);
 
-                using (StreamWriter sw = new StreamWriter(fileStream))
-                {
-                    sw.Write(Encoding.ASCII.GetBytes(e.Item2.X.ToString().PadLeft(10, '0')));
-                    sw.Write(Encoding.ASCII.GetBytes(e.Item2.X.ToString().PadLeft(10, '0')));
-                    sw.Write(Encoding.ASCII.GetBytes(e.Item2.X.ToString().PadLeft(10, '0')));
-                    sw.Write(Encoding.ASCII.GetBytes(e.Item2.Id.ToString().PadLeft(5, '0')));
-                }
-                
+                fileStream.Write(Encoding.ASCII.GetBytes(e.Item2.X.ToString().PadLeft(10, '0')), 0, 10);
+                fileStream.Write(Encoding.ASCII.GetBytes(e.Item2.X.ToString().PadLeft(10, '0')), 0, 10);
+                fileStream.Write(Encoding.ASCII.GetBytes(e.Item2.X.ToString().PadLeft(10, '0')), 0, 10);
+                fileStream.Write(Encoding.ASCII.GetBytes(e.Item2.Id.ToString().PadLeft(5, '0')), 0, 5);
             }
         }
 
