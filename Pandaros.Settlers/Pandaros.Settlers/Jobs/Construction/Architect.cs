@@ -19,9 +19,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 {
     public class Architect : IConstructionType
     {
-        public EAreaType AreaType => EAreaType.BuilderArea;
-        public EAreaMeshType AreaTypeMesh => EAreaMeshType.ThreeD;
-
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
             var bpi = iterationType as SchematicIterator;

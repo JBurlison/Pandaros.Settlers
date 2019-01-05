@@ -25,10 +25,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
         }
 
-        public EAreaType AreaType => EAreaType.BuilderArea;
-
-        public EAreaMeshType AreaTypeMesh => EAreaMeshType.ThreeD;
-        System.Collections.Generic.List<ItemTypes.ItemTypeDrops> _gatherResults = new System.Collections.Generic.List<ItemTypes.ItemTypeDrops>();
+        List<ItemTypes.ItemTypeDrops> _gatherResults = new List<ItemTypes.ItemTypeDrops>();
 
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
