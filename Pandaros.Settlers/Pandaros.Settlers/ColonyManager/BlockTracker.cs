@@ -99,6 +99,7 @@ namespace Pandaros.Settlers.ColonyManager
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".ColonyManager.BlockTracker.OnShouldKeepChunkLoaded")]
         public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData data)
         {
+            lock(_queuedPositions)
             foreach (var iterator in _queuedPositions)
             {
                 if (iterator.GetVector().IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
@@ -126,8 +127,9 @@ namespace Pandaros.Settlers.ColonyManager
                     foreach (var trackedPos in trackedPositions)
                         if (!_queuedPositions.Contains(trackedPos))
                         {
-                            _queuedPositions.Add(trackedPos);
-                            ChunkQueue.QueuePlayerRequest(trackedPos.GetVector(), player);
+                            lock (_queuedPositions)
+                                _queuedPositions.Add(trackedPos);
+                            ChunkQueue.QueuePlayerRequest(trackedPos.GetVector().ToChunk(), player);
                         }
 
                     System.Threading.Thread.Sleep(5000);
@@ -135,12 +137,12 @@ namespace Pandaros.Settlers.ColonyManager
                     List<TrackedPosition> replaced = new List<TrackedPosition>();
 
                     foreach (var trackedPos in _queuedPositions)
-                        if (World.TryChangeBlock(trackedPos.GetVector(), trackedPos.Id))
+                        if (ServerManager.TryChangeBlock(trackedPos.GetVector(), trackedPos.Id) == EServerChangeBlockResult.Success)
                             replaced.Add(trackedPos);
 
-                    foreach (var replace in replaced)
-                        _queuedPositions.Remove(replace);
-
+                    lock (_queuedPositions)
+                        foreach (var replace in replaced)
+                            _queuedPositions.Remove(replace);
 
                     File.Delete(saveLoc);
                 }
@@ -160,8 +162,9 @@ namespace Pandaros.Settlers.ColonyManager
                     foreach (var trackedPos in trackedPositions)
                         if (!_queuedPositions.Contains(trackedPos))
                         {
-                            _queuedPositions.Add(trackedPos);
-                            ChunkQueue.QueuePlayerRequest(trackedPos.GetVector(), colony.Owners.FirstOrDefault());
+                            lock (_queuedPositions)
+                                _queuedPositions.Add(trackedPos);
+                            ChunkQueue.QueuePlayerRequest(trackedPos.GetVector().ToChunk(), colony.Owners.FirstOrDefault());
                         }
 
                     System.Threading.Thread.Sleep(5000);
@@ -169,12 +172,12 @@ namespace Pandaros.Settlers.ColonyManager
                     List<TrackedPosition> replaced = new List<TrackedPosition>();
 
                     foreach (var trackedPos in _queuedPositions)
-                        if (World.TryChangeBlock(trackedPos.GetVector(), trackedPos.Id))
+                        if (ServerManager.TryChangeBlock(trackedPos.GetVector(), trackedPos.Id) == EServerChangeBlockResult.Success)
                             replaced.Add(trackedPos);
 
-                    foreach (var replace in replaced)
-                        _queuedPositions.Remove(replace);
-
+                    lock (_queuedPositions)
+                        foreach (var replace in replaced)
+                            _queuedPositions.Remove(replace);
 
                     File.Delete(saveLoc);
                 }
@@ -215,11 +218,10 @@ namespace Pandaros.Settlers.ColonyManager
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".ColonyManager.BlockTracker.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
-            if (d.RequestOrigin.AsPlayer != null ||
-                d.RequestOrigin.AsPlayer.ID.type != NetworkID.IDType.Server ||
+            if (d.RequestOrigin.AsPlayer != null &&
+                d.RequestOrigin.AsPlayer.ID.type != NetworkID.IDType.Server &&
                 d.RequestOrigin.AsPlayer.ID.type != NetworkID.IDType.Invalid)
             {
-
                 _recordPositionFactoryPlayer.Enqueue(new Tuple<Players.Player, TrackedPosition>(d.RequestOrigin.AsPlayer, new TrackedPosition()
                 {
                     Id = d.TypeOld.ItemIndex,
@@ -228,6 +230,17 @@ namespace Pandaros.Settlers.ColonyManager
                     Z = d.Position.z
                 }));
             }
+            else if (d.RequestOrigin.AsColony != null)
+            {
+                _recordPositionFactoryColony.Enqueue(new Tuple<Colony, TrackedPosition>(d.RequestOrigin.AsColony, new TrackedPosition()
+                {
+                    Id = d.TypeOld.ItemIndex,
+                    X = d.Position.x,
+                    Y = d.Position.y,
+                    Z = d.Position.z
+                }));
+            }
+
         }
     }
 }
