@@ -631,7 +631,7 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     _gatePositions[d.RequestOrigin.AsPlayer.ActiveColony].Remove(d.Position);
 
-                    if (!Inventory.GetInventory(d.RequestOrigin.AsPlayer).TryAdd(GateItem.ItemIndex))
+                    if (!d.RequestOrigin.AsPlayer.Inventory.TryAdd(GateItem.ItemIndex))
                        d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(GateItem.ItemIndex);
                 }
             }

@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Managers.Tests
         public void MergeJsonsTest()
         {
             UIManager.OnAssemblyLoaded(@"C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\Pandaros.Settlers.dll");
-            UIManager.SendMenu(new Players.Player(NetworkID.LocalHost), "Wiki.MainMenu");
+
         }
     }
 }

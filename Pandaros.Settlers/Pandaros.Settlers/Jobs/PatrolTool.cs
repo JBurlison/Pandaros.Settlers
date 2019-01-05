@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Jobs
             var playerStockpile = p.ActiveColony?.Stockpile;
             var hasTool         = false;
 
-            foreach (var item in Inventory.GetInventory(p).Items)
+            foreach (var item in p.Inventory.Items)
                 if (item.Type == Item.ItemIndex)
                 {
                     hasTool = true;

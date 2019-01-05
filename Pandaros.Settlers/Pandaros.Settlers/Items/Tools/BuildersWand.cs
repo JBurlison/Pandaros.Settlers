@@ -129,7 +129,7 @@ namespace Pandaros.Settlers.Items
 
                     if (ps.BuildersWandCharge <= 0)
                     {
-                        var inv = Inventory.GetInventory(player);
+                        var inv = player.Inventory;
                         inv.TryRemove(Item.ItemIndex);
                         ps.BuildersWandCharge = DURABILITY + ps.BuildersWandMaxCharge;
 

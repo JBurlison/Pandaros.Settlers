@@ -43,7 +43,7 @@ namespace Pandaros.Settlers
             foreach (var item in list)
                 saveNode.AddToArray(item.JsonSerialize());
 
-            JSON.Serialize(file, saveNode);
+            JSON.Serialize(file, saveNode, 0);
         }
     }
 }

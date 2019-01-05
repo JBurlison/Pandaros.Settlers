@@ -7,6 +7,7 @@ using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace Pandaros.Settlers
 {
@@ -50,6 +51,7 @@ namespace Pandaros.Settlers
         public static ushort Bow_Icon { get; private set; }
         public static JSONNode ModInfo { get; private set; }
         public static Dictionary<string, JSONNode> AllModInfos { get; private set; } = new Dictionary<string, JSONNode>();
+        public static bool FileWasCopied { get; set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
@@ -62,6 +64,9 @@ namespace Pandaros.Settlers
             if (!Directory.Exists(Schematic_SAVE_LOC))
                 Directory.CreateDirectory(Schematic_SAVE_LOC);
 
+            if (!File.Exists(SAVE_LOC + "pandaros.settlers.sqlite"))
+                File.Copy(MOD_FOLDER + "/pandaros.settlers.sqlite", SAVE_LOC + "pandaros.settlers.sqlite");
+
             StubColony = new Colony(-99998);
         }
 
@@ -70,7 +75,7 @@ namespace Pandaros.Settlers
         {
             MOD_FOLDER = Path.GetDirectoryName(path);
             Schematic_DEFAULT_LOC = $"{MOD_FOLDER}/Schematics/";
-
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
             if (!Directory.Exists(Schematic_DEFAULT_LOC))
                 Directory.CreateDirectory(Schematic_DEFAULT_LOC);
 
@@ -98,7 +103,11 @@ namespace Pandaros.Settlers
             foreach (var info in allinfos)
                 AllModInfos[new FileInfo(info).Directory.FullName] = JSON.Deserialize(info)[0];
 
-            var fileWasCopied = false;
+            if (!File.Exists(GAME_ROOT + "colonyserver.exe.config"))
+            {
+                File.Copy(MODS_FOLDER + "App.config", GAME_ROOT + "colonyserver.exe.config");
+                FileWasCopied = true;
+            }
 
             foreach (var file in Directory.GetFiles(MOD_FOLDER + "/ZipSupport"))
             {
@@ -106,13 +115,47 @@ namespace Pandaros.Settlers
 
                 if (!File.Exists(destFile))
                 {
-                    fileWasCopied = true;
+                    FileWasCopied = true;
                     File.Copy(file, destFile);
                 }
             }
 
-            if (fileWasCopied)
+            if (FileWasCopied)
                 PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+        }
+
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            PandaLogger.Log(args.Name);
+            try
+            {
+                if (args.Name.Contains("System.Xml.Linq"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Xml.Linq.dll");
+
+                if (args.Name.Contains("System.ComponentModel.DataAnnotations"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.ComponentModel.DataAnnotations.dll");
+
+                if (args.Name.Contains("System.Numerics"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Numerics.dll");
+
+                if (args.Name.Contains("System.Runtime.Serialization"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Runtime.Serialization.dll");
+
+                if (args.Name.Contains("System.Transactions"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Transactions.dll");
+
+                if (args.Name.Contains("System.Data.SQLite"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Data.SQLite.dll");
+
+                if (args.Name.Contains("System.Data"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Data.dll");
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
+
+            return null;
         }
 
         public static void DirSearch(string sDir, string searchPattern, List<string> found)

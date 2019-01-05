@@ -162,7 +162,7 @@ namespace Pandaros.Settlers.Items
                 {
                     Dictionary<ushort, int> removeItems = new Dictionary<ushort, int>();
                     var ps = PlayerState.GetPlayerState(data.Player);
-                    var invRef = Inventory.GetInventory(data.Player);
+                    var invRef = data.Player.Inventory;
 
                     foreach (var itemKvp in ps.Backpack)
                     {
@@ -229,7 +229,7 @@ namespace Pandaros.Settlers.Items
                 {
                     Dictionary<ushort, int> removeItems = new Dictionary<ushort, int>();
                     var ps = PlayerState.GetPlayerState(data.Player);
-                    var invRef = Inventory.GetInventory(data.Player);
+                    var invRef = data.Player.Inventory;
                     var backpackID = ItemId.GetItemId(Backpack.NAME);
 
                     foreach (var itemKvp in invRef.Items)
@@ -363,7 +363,7 @@ namespace Pandaros.Settlers.Items
 
                 menu.Items.Add(new HorizontalGrid(items, 250));
                 menu.Items.Add(new Line(UnityEngine.Color.black));
-                var invRef = Inventory.GetInventory(data.Player);
+                var invRef = data.Player.Inventory;
                 var backpackID = ItemId.GetItemId(Backpack.NAME);
 
                 foreach (var itemKvp in invRef.Items)

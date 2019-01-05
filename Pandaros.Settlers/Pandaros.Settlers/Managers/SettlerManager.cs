@@ -64,7 +64,7 @@ namespace Pandaros.Settlers.Managers
                 World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out ushort blockHit) &&
                 blockHit == BuiltinBlocks.BerryBush)
             {
-                var inv = Inventory.GetInventory(player);
+                var inv = player.Inventory;
                 inv.TryAdd(BuiltinBlocks.Berry, 2);
             }
         }

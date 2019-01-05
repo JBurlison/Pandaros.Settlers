@@ -300,6 +300,9 @@ namespace Pandaros.Settlers.Entities
         {
             _playerStates[p].Connected = true;
             _playerStates[p].RecaclculateMagicItems();
+
+            if (GameLoader.FileWasCopied)
+                PandaChat.Send(p, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.", ChatColor.red);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]

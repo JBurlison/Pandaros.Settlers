@@ -1,98 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 
 namespace Pandaros.Settlers.ColonyManager
 {
-    public class TrackedPosition : IEquatable<TrackedPosition>, IJsonDeserializable, IJsonSerializable
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Z { get; set; }
-        public ushort Id { get; set; }
-
-        public TrackedPosition() { }
-
-        public TrackedPosition(JSONNode node)
-        {
-            JsonDeerialize(node);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var result = 0;
-                result = (result * Id) ^ X;
-                result = (result * Id) ^ Y;
-                result = (result * Id) ^ Z;
-                return result;
-            }
-        }
-
-        public bool Equals(TrackedPosition other)
-        {
-            if (other == null)
-                return false;
-
-            return other.X == X && other.Y == Y && other.Z == Z;
-        }
-
-        public bool Equals(Vector3Int other)
-        {
-            if (other == null)
-                return false;
-
-            return other.x == X && other.y == Y && other.z == Z;
-        }
-
-        public Vector3Int GetVector()
-        {
-            return new Vector3Int(X, Y, Z);
-        }
-
-        public override string ToString()
-        {
-            return X.ToString().PadLeft(10) + Y.ToString().PadLeft(10) + Z.ToString().PadLeft(10) + Id.ToString().PadLeft(5);
-        }
-
-        public void JsonDeerialize(JSONNode node)
-        {
-            if (node.TryGetAs(nameof(X), out int x))
-                X = x;
-
-            if (node.TryGetAs(nameof(Y), out int y))
-                Y = y;
-
-            if (node.TryGetAs(nameof(Z), out int z))
-                Z = z;
-
-            if (node.TryGetAs(nameof(Id), out ushort id))
-                Id = id;
-        }
-
-        public JSONNode JsonSerialize()
-        {
-            JSONNode retVal = new JSONNode();
-            retVal[nameof(X)] = new JSONNode(X);
-            retVal[nameof(Y)] = new JSONNode(Y);
-            retVal[nameof(Z)] = new JSONNode(Z);
-            retVal[nameof(Id)] = new JSONNode(Id);
-            return retVal;
-        }
-    }
-
     [ModLoader.ModManager]
     public class BlockTracker
     {
-        static QueueFactory<Tuple<Players.Player, TrackedPosition>> _recordPositionFactoryPlayer = new QueueFactory<Tuple<Players.Player, TrackedPosition>>("RecordPositionsPlayer", 1);
-        static QueueFactory<Tuple<Colony, TrackedPosition>> _recordPositionFactoryColony = new QueueFactory<Tuple<Colony, TrackedPosition>>("RecordPositionsColony", 1);
+        static QueueFactory<TrackedPosition> _recordPositionFactory = new QueueFactory<TrackedPosition>("RecordPositions", 1);
         static List<TrackedPosition> _queuedPositions = new List<TrackedPosition>();
         private static readonly byte[] _SOH = new[] { (byte)0x02 };
 
@@ -109,42 +31,46 @@ namespace Pandaros.Settlers.ColonyManager
 
         static BlockTracker()
         {
-            _recordPositionFactoryPlayer.DoWork += _recordPositionFactory_DoWork;
-            _recordPositionFactoryColony.DoWork += _recordPositionFactoryColony_DoWork;
-            _recordPositionFactoryPlayer.Start();
-            _recordPositionFactoryColony.Start();
+            _recordPositionFactory.DoWork += _recordPositionFactory_DoWork;
+            _recordPositionFactory.Start();
         }
 
         public static void RewindPlayersBlocks(Players.Player player)
         {
             Task.Run(() =>
             {
-                var saveLoc = string.Concat(GameLoader.SAVE_LOC, "players/", player.ID, "/", "originalBlocks.json");
-                var trackedPositions = JSONExtentionMethods.GetSimpleListFromFile<TrackedPosition>(saveLoc);
-
-                if (trackedPositions.Count > 0)
+                using (TrackedPositionContext db = new TrackedPositionContext())
                 {
-                    foreach (var trackedPos in trackedPositions)
-                        if (!_queuedPositions.Contains(trackedPos))
+                    if (db.Positions.Any())
+                    {
+                        foreach (var trackedPos in db.Positions.Where(p => p.PlayerId == player.ID.ToString()))
                         {
-                            lock (_queuedPositions)
-                                _queuedPositions.Add(trackedPos);
-                            ChunkQueue.QueuePlayerRequest(trackedPos.GetVector().ToChunk(), player);
+                            var oldest = db.Positions.Where(o => o.X == trackedPos.X && o.Y == trackedPos.Y && o.Z == trackedPos.Z).OrderBy(tp => tp.TimeTracked).FirstOrDefault();
+
+                            if (!_queuedPositions.Any(pos => pos.Equals(oldest)))
+                            {
+                                lock (_queuedPositions)
+                                    _queuedPositions.Add(oldest);
+
+                                ChunkQueue.QueuePlayerRequest(oldest.GetVector().ToChunk(), player);
+                            }
                         }
 
-                    System.Threading.Thread.Sleep(5000);
+                        System.Threading.Thread.Sleep(5000);
 
-                    List<TrackedPosition> replaced = new List<TrackedPosition>();
+                        List<TrackedPosition> replaced = new List<TrackedPosition>();
 
-                    foreach (var trackedPos in _queuedPositions)
-                        if (ServerManager.TryChangeBlock(trackedPos.GetVector(), trackedPos.Id) == EServerChangeBlockResult.Success)
-                            replaced.Add(trackedPos);
+                        foreach (var trackedPos in _queuedPositions)
+                            if (ServerManager.TryChangeBlock(trackedPos.GetVector(), (ushort)trackedPos.BlockId) == EServerChangeBlockResult.Success)
+                                replaced.Add(trackedPos);
 
-                    lock (_queuedPositions)
-                        foreach (var replace in replaced)
-                            _queuedPositions.Remove(replace);
+                        lock (_queuedPositions)
+                            foreach (var replace in replaced)
+                                _queuedPositions.Remove(replace);
 
-                    File.Delete(saveLoc);
+                        db.Positions.RemoveRange(db.Positions.Where(p => p.PlayerId == player.ID.ToString()));
+                        db.SaveChanges();
+                    }
                 }
             });
         }
@@ -154,65 +80,70 @@ namespace Pandaros.Settlers.ColonyManager
         {
             Task.Run(() =>
             {
-                var saveLoc = string.Concat(GameLoader.SAVE_LOC, "colonies/", colony.Name, "/", "originalBlocks.json");
-                var trackedPositions = JSONExtentionMethods.GetSimpleListFromFile<TrackedPosition>(saveLoc);
-
-                if (trackedPositions.Count > 0)
+                using (TrackedPositionContext db = new TrackedPositionContext())
                 {
-                    foreach (var trackedPos in trackedPositions)
-                        if (!_queuedPositions.Contains(trackedPos))
+                    if (db.Positions.Any())
+                    {
+                        foreach (var trackedPos in db.Positions.Where(p => p.ColonyId == colony.Name))
                         {
-                            lock (_queuedPositions)
-                                _queuedPositions.Add(trackedPos);
-                            ChunkQueue.QueuePlayerRequest(trackedPos.GetVector().ToChunk(), colony.Owners.FirstOrDefault());
+                            var oldest = db.Positions.Where(o => o.X == trackedPos.X && o.Y == trackedPos.Y && o.Z == trackedPos.Z).OrderBy(tp => tp.TimeTracked).FirstOrDefault();
+
+                            if (!_queuedPositions.Any(pos => pos.Equals(oldest)))
+                            {
+                                lock (_queuedPositions)
+                                    _queuedPositions.Add(oldest);
+
+                                ChunkQueue.QueuePlayerRequest(oldest.GetVector().ToChunk(), colony.Owners.FirstOrDefault());
+                            }
                         }
 
-                    System.Threading.Thread.Sleep(5000);
+                        System.Threading.Thread.Sleep(5000);
 
-                    List<TrackedPosition> replaced = new List<TrackedPosition>();
+                        List<TrackedPosition> replaced = new List<TrackedPosition>();
 
-                    foreach (var trackedPos in _queuedPositions)
-                        if (ServerManager.TryChangeBlock(trackedPos.GetVector(), trackedPos.Id) == EServerChangeBlockResult.Success)
-                            replaced.Add(trackedPos);
+                        foreach (var trackedPos in _queuedPositions)
+                            if (ServerManager.TryChangeBlock(trackedPos.GetVector(), (ushort)trackedPos.BlockId) == EServerChangeBlockResult.Success)
+                                replaced.Add(trackedPos);
 
-                    lock (_queuedPositions)
-                        foreach (var replace in replaced)
-                            _queuedPositions.Remove(replace);
+                        lock (_queuedPositions)
+                            foreach (var replace in replaced)
+                                _queuedPositions.Remove(replace);
 
-                    File.Delete(saveLoc);
+                        db.Positions.RemoveRange(db.Positions.Where(p => p.ColonyId == colony.Name));
+                        db.SaveChanges();
+                    }
                 }
             });
         }
 
-        private static void _recordPositionFactoryColony_DoWork(object sender, Tuple<Colony, TrackedPosition> e)
+
+        private static void _recordPositionFactory_DoWork(object sender, TrackedPosition pos)
         {
-            var saveLoc = string.Concat(GameLoader.SAVE_LOC, "colonies/", e.Item1.Name, "/", "originalBlocks.json");
-            var trackedPositions = JSONExtentionMethods.GetSimpleListFromFile<TrackedPosition>(saveLoc);
+            try
+            {
+                using (TrackedPositionContext db = new TrackedPositionContext())
+                {
+                    db.Positions.Add(pos);
+                    db.SaveChanges();
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
 
-            if (trackedPositions.Count > 0 && trackedPositions.Contains(e.Item2))
-                return;
-
-            trackedPositions.Add(e.Item2);
-            JSONExtentionMethods.SaveSimpleListToJson(saveLoc, trackedPositions);
-        }
-
-        private static void _recordPositionFactory_DoWork(object sender, Tuple<Players.Player, TrackedPosition> e)
-        {
-            var saveLoc = string.Concat(GameLoader.SAVE_LOC, "players/", e.Item1.ID, "/", "originalBlocks.json");
-            var trackedPositions = JSONExtentionMethods.GetSimpleListFromFile<TrackedPosition>(saveLoc);
-
-            if (trackedPositions.Count > 0 && trackedPositions.Contains(e.Item2))
-                return;
-
-            trackedPositions.Add(e.Item2);
-            JSONExtentionMethods.SaveSimpleListToJson(saveLoc, trackedPositions);
+                    foreach (var ve in eve.ValidationErrors)
+                        PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                }
+                throw;
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, GameLoader.NAMESPACE + ".ColonyManager.BlockTracker.OnQuitLate")]
         public static void OnQuitLate()
         {
-            _recordPositionFactoryPlayer.Dispose();
-            _recordPositionFactoryColony.Dispose();
+            _recordPositionFactory.Dispose();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".ColonyManager.BlockTracker.OnTryChangeBlockUser")]
@@ -222,23 +153,27 @@ namespace Pandaros.Settlers.ColonyManager
                 d.RequestOrigin.AsPlayer.ID.type != NetworkID.IDType.Server &&
                 d.RequestOrigin.AsPlayer.ID.type != NetworkID.IDType.Invalid)
             {
-                _recordPositionFactoryPlayer.Enqueue(new Tuple<Players.Player, TrackedPosition>(d.RequestOrigin.AsPlayer, new TrackedPosition()
+                _recordPositionFactory.Enqueue(new TrackedPosition()
                 {
-                    Id = d.TypeOld.ItemIndex,
+                    BlockId = d.TypeOld.ItemIndex,
                     X = d.Position.x,
                     Y = d.Position.y,
-                    Z = d.Position.z
-                }));
+                    Z = d.Position.z,
+                    TimeTracked = DateTime.UtcNow,
+                    PlayerId = d.RequestOrigin.AsPlayer.ID.ToString()
+                });
             }
             else if (d.RequestOrigin.AsColony != null)
             {
-                _recordPositionFactoryColony.Enqueue(new Tuple<Colony, TrackedPosition>(d.RequestOrigin.AsColony, new TrackedPosition()
+                _recordPositionFactory.Enqueue(new TrackedPosition()
                 {
-                    Id = d.TypeOld.ItemIndex,
+                    BlockId = d.TypeOld.ItemIndex,
                     X = d.Position.x,
                     Y = d.Position.y,
-                    Z = d.Position.z
-                }));
+                    Z = d.Position.z,
+                    TimeTracked = DateTime.UtcNow,
+                    ColonyId = d.RequestOrigin.AsColony.Name
+                });
             }
 
         }

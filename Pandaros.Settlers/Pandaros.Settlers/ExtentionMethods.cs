@@ -21,7 +21,7 @@ namespace Pandaros.Settlers
         public static bool TakeItemFromInventory(this Players.Player player, ushort itemType)
         {
             var hasItem = false;
-            var invRef  = Inventory.GetInventory(player);
+            var invRef = player.Inventory;
 
             if (invRef != null)
                 invRef.TryRemove(itemType);

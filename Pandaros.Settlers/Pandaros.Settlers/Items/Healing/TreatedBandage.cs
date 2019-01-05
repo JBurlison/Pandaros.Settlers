@@ -84,9 +84,7 @@ namespace Pandaros.Settlers.Items.Healing
                 _coolDown[player]            = Time.MillisecondsSinceStart + COOLDOWN;
                 boxedData.item1.consumedType = PlayerClickedData.ConsumedType.UsedByMod;
                 ServerManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
-
-                if (Inventory.TryGetInventory(player, out var inv))
-                    inv.TryRemove(Item.ItemIndex);
+                player.Inventory.TryRemove(Item.ItemIndex);
             }
         }
     }
