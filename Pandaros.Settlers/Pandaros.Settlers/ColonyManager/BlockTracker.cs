@@ -41,7 +41,7 @@ namespace Pandaros.Settlers.ColonyManager
             {
                 using (TrackedPositionContext db = new TrackedPositionContext())
                 {
-                    if (db.Positions.Any())
+                    if (db.Positions.LongCount() > 0)
                     {
                         foreach (var trackedPos in db.Positions.Where(p => p.PlayerId == player.ID.ToString()))
                         {
@@ -82,7 +82,7 @@ namespace Pandaros.Settlers.ColonyManager
             {
                 using (TrackedPositionContext db = new TrackedPositionContext())
                 {
-                    if (db.Positions.Any())
+                    if (db.Positions.LongCount() > 0)
                     {
                         foreach (var trackedPos in db.Positions.Where(p => p.ColonyId == colony.Name))
                         {
