@@ -275,15 +275,21 @@ namespace Pandaros.Settlers.ColonyManager
             header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
 
             menu.Items.Add(new HorizontalGrid(header, 140));
+            int jobCount = 0;
 
             foreach (var jobKvp in jobCounts)
             {
+                if (fired && jobKvp.Value.AvailableCount == 0)
+                    continue;
+
+                jobCount++;
                 List<IItem> items = new List<IItem>();
 
                 items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player), UnityEngine.Color.black)));
 
                 if (!fired)
                     items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+
                 items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
                 items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
 
@@ -303,6 +309,9 @@ namespace Pandaros.Settlers.ColonyManager
 
                 menu.Items.Add(new HorizontalGrid(items, 140));
             }
+
+            if (jobCount == 0)
+                menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("NoJobs", player), UnityEngine.Color.black)));
 
             if (!fired && Configuration.GetorDefault("AllowPlayerToResetThemself", true))
             {

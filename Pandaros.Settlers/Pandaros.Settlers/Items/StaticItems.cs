@@ -64,8 +64,12 @@ namespace Pandaros.Settlers.Items
 
                             if (!string.IsNullOrEmpty(item.RequiredPermission))
                             {
-                                if (!PermissionsManager.HasPermission(p, new PermissionsManager.Permission(item.RequiredPermission)))
-                                    canAdd = false;
+                                try
+                                {
+                                    if (!PermissionsManager.HasPermission(p, new PermissionsManager.Permission(item.RequiredPermission)))
+                                        canAdd = false;
+                                }
+                                catch { }
                             }
 
                             if (canAdd)

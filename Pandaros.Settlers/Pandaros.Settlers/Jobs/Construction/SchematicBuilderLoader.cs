@@ -32,7 +32,6 @@ namespace Pandaros.Settlers.Jobs.Construction
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicBuilderLoader")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadareajobs")]
         public static void Register()
         {
             ConstructionArea.RegisterLoader(new SchematicBuilderLoader());

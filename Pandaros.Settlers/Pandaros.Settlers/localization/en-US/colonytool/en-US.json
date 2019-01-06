@@ -91,7 +91,8 @@
           "Laborer": "Laborer",
           "WheatFarmer": "Wheat Farmer",
           "Knight": "Knight",
-          "Machinist": "Machinist"
+          "Machinist": "Machinist",
+          "NoJobs": "No Jobs Available"
         }
       }
     }
