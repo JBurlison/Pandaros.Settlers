@@ -79,13 +79,7 @@ namespace Pandaros.Settlers.ColonyManager
                 }
                 catch (DbEntityValidationException e)
                 {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-
-                        foreach (var ve in eve.ValidationErrors)
-                            PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                    }
+                    ProcessEntityException(e);
                 }
                 catch (Exception ex)
                 {
@@ -139,13 +133,7 @@ namespace Pandaros.Settlers.ColonyManager
                 }
                 catch (DbEntityValidationException e)
                 {
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-
-                        foreach (var ve in eve.ValidationErrors)
-                            PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                    }
+                    ProcessEntityException(e);
                 }
                 catch (Exception ex)
                 {
@@ -154,6 +142,16 @@ namespace Pandaros.Settlers.ColonyManager
             });
         }
 
+        private static void ProcessEntityException(DbEntityValidationException e)
+        {
+            foreach (var eve in e.EntityValidationErrors)
+            {
+                PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+
+                foreach (var ve in eve.ValidationErrors)
+                    PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+            }
+        }
 
         private static void _recordPositionFactory_DoWork(object sender, TrackedPosition pos)
         {
@@ -167,13 +165,7 @@ namespace Pandaros.Settlers.ColonyManager
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
-
-                    foreach (var ve in eve.ValidationErrors)
-                        PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
-                }
+                ProcessEntityException(e);
                 throw;
             }
         }
