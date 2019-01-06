@@ -50,5 +50,10 @@ namespace Pandaros.Settlers.Models
             return other.x == X && other.y == Y && other.z == Z;
         }
 
+        public override string ToString()
+        {
+            var id = PlayerId == null ? ColonyId : PlayerId;
+            return $"[{BlockId}-{X}:{Y}:{Z}-({id})-{TimeTracked}]";
+        }
     }
 }

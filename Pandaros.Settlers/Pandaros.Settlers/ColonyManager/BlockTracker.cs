@@ -39,11 +39,13 @@ namespace Pandaros.Settlers.ColonyManager
         {
             Task.Run(() =>
             {
-                using (TrackedPositionContext db = new TrackedPositionContext())
+                var playerId = player.ID.ToString();
+
+                try
                 {
-                    if (db.Positions.LongCount() > 0)
+                    using (TrackedPositionContext db = new TrackedPositionContext())
                     {
-                        foreach (var trackedPos in db.Positions.Where(p => p.PlayerId == player.ID.ToString()))
+                        foreach (var trackedPos in db.Positions.Where(p => p.PlayerId == playerId))
                         {
                             var oldest = db.Positions.Where(o => o.X == trackedPos.X && o.Y == trackedPos.Y && o.Z == trackedPos.Z).OrderBy(tp => tp.TimeTracked).FirstOrDefault();
 
@@ -56,6 +58,9 @@ namespace Pandaros.Settlers.ColonyManager
                             }
                         }
 
+                        if (_queuedPositions.Count <= 0)
+                            return;
+
                         System.Threading.Thread.Sleep(5000);
 
                         List<TrackedPosition> replaced = new List<TrackedPosition>();
@@ -68,9 +73,23 @@ namespace Pandaros.Settlers.ColonyManager
                             foreach (var replace in replaced)
                                 _queuedPositions.Remove(replace);
 
-                        db.Positions.RemoveRange(db.Positions.Where(p => p.PlayerId == player.ID.ToString()));
+                        db.Positions.RemoveRange(db.Positions.Where(p => p.PlayerId == playerId));
                         db.SaveChanges();
                     }
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+
+                        foreach (var ve in eve.ValidationErrors)
+                            PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
                 }
             });
         }
@@ -80,11 +99,13 @@ namespace Pandaros.Settlers.ColonyManager
         {
             Task.Run(() =>
             {
-                using (TrackedPositionContext db = new TrackedPositionContext())
+                try
                 {
-                    if (db.Positions.LongCount() > 0)
+                    var colonyName = colony.Name;
+
+                    using (TrackedPositionContext db = new TrackedPositionContext())
                     {
-                        foreach (var trackedPos in db.Positions.Where(p => p.ColonyId == colony.Name))
+                        foreach (var trackedPos in db.Positions.Where(p => p.ColonyId == colonyName))
                         {
                             var oldest = db.Positions.Where(o => o.X == trackedPos.X && o.Y == trackedPos.Y && o.Z == trackedPos.Z).OrderBy(tp => tp.TimeTracked).FirstOrDefault();
 
@@ -97,6 +118,9 @@ namespace Pandaros.Settlers.ColonyManager
                             }
                         }
 
+                        if (_queuedPositions.Count <= 0)
+                            return;
+
                         System.Threading.Thread.Sleep(5000);
 
                         List<TrackedPosition> replaced = new List<TrackedPosition>();
@@ -109,9 +133,23 @@ namespace Pandaros.Settlers.ColonyManager
                             foreach (var replace in replaced)
                                 _queuedPositions.Remove(replace);
 
-                        db.Positions.RemoveRange(db.Positions.Where(p => p.ColonyId == colony.Name));
+                        db.Positions.RemoveRange(db.Positions.Where(p => p.ColonyId == colonyName));
                         db.SaveChanges();
                     }
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        PandaLogger.Log(ChatColor.red, "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State);
+
+                        foreach (var ve in eve.ValidationErrors)
+                            PandaLogger.Log(ChatColor.red, "- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
                 }
             });
         }

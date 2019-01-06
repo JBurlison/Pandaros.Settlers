@@ -103,9 +103,9 @@ namespace Pandaros.Settlers
             foreach (var info in allinfos)
                 AllModInfos[new FileInfo(info).Directory.FullName] = JSON.Deserialize(info)[0];
 
-            if (!File.Exists(GAME_ROOT + "colonyserver.exe.config"))
+            if (!File.Exists(GAME_ROOT + "/colonyserver.exe.config"))
             {
-                File.Copy(MODS_FOLDER + "App.config", GAME_ROOT + "colonyserver.exe.config");
+                File.Copy(MOD_FOLDER + "/App.config", GAME_ROOT + "/colonyserver.exe.config");
                 FileWasCopied = true;
             }
 
