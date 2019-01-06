@@ -49,6 +49,9 @@ namespace Pandaros.Settlers.ColonyManager
                         {
                             var oldest = db.Positions.Where(o => o.X == trackedPos.X && o.Y == trackedPos.Y && o.Z == trackedPos.Z && o.TimeTracked < trackedPos.TimeTracked).OrderBy(tp => tp.TimeTracked).FirstOrDefault();
 
+                            if (oldest == default(TrackedPosition))
+                                oldest = trackedPos;
+
                             if (!_queuedPositions.Any(pos => pos.Equals(oldest)))
                             {
                                 lock (_queuedPositions)
@@ -102,6 +105,9 @@ namespace Pandaros.Settlers.ColonyManager
                         foreach (var trackedPos in db.Positions.Where(p => p.ColonyId == colonyName))
                         {
                             var oldest = db.Positions.Where(o => o.X == trackedPos.X && o.Y == trackedPos.Y && o.Z == trackedPos.Z && o.TimeTracked < trackedPos.TimeTracked).OrderBy(tp => tp.TimeTracked).FirstOrDefault();
+
+                            if (oldest == default(TrackedPosition))
+                                oldest = trackedPos;
 
                             if (!_queuedPositions.Any(pos => pos.Equals(oldest)))
                             {
