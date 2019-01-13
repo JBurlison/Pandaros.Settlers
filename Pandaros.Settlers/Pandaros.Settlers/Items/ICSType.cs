@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using Pipliz.JSON;
 using UnityEngine;
 using static Pandaros.Settlers.Items.StaticItems;
@@ -41,16 +42,26 @@ namespace Pandaros.Settlers.Items
         string onRemoveChance { get; }
         string onRemoveType { get; }
         string parentType { get; }
+        [JsonProperty("rotatablex-")]
         string rotatablexn { get; }
+        [JsonProperty("rotatablex+")]
         string rotatablexp { get; }
+        [JsonProperty("rotatablez-")]
         string rotatablezn { get; }
+        [JsonProperty("rotatablez+")]
         string rotatablezp { get; }
         string sideall { get; }
+        [JsonProperty("sidex-")]
         string sidexn { get; }
+        [JsonProperty("sidex+")]
         string sidexp { get; }
+        [JsonProperty("sidey-")]
         string sideyn { get; }
+        [JsonProperty("sidey+")]
         string sideyp { get; }
+        [JsonProperty("sidez-")]
         string sidezn { get; }
+        [JsonProperty("sidez+")]
         string sidezp { get; }
         ItemRarity Rarity { get; }
         StaticItem StaticItemSettings { get; }
