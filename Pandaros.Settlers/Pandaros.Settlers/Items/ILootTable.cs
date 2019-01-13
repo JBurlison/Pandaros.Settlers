@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Items
         Dictionary<ushort, int> GetDrops(double luckModifier);
     }
 
-    public class LootTable : ILootTable, IJsonSerializable, IJsonDeserializable
+    public class LootTable : ILootTable
     {
         public virtual string Name { get; private set; }
 
@@ -36,34 +36,9 @@ namespace Pandaros.Settlers.Items
 
             return dic;
         }
-
-        public void JsonDeerialize(JSONNode node)
-        {
-            if (node.TryGetAs(nameof(Name), out string name))
-                Name = name;
-
-            if (node.TryGetAs(nameof(LootPoolList), out JSONNode list))
-                foreach (var item in list.LoopArray())
-                    LootPoolList.Add(new LootPoolEntry(item));
-        }
-
-        public JSONNode JsonSerialize()
-        {
-            JSONNode node = new JSONNode();
-            JSONNode lootPools = new JSONNode(NodeType.Array);
-
-            node.SetAs(nameof(Name), Name);
-
-            foreach (var pool in LootPoolList)
-                lootPools.AddToArray(pool.JsonSerialize());
-
-            node.SetAs(nameof(LootPoolList), LootPoolList);
-
-            return node;
-        }
     }
 
-    public class LootPoolEntry : IJsonSerializable, IJsonDeserializable
+    public class LootPoolEntry
     {
         public string Item { get; private set; }
 
@@ -73,44 +48,14 @@ namespace Pandaros.Settlers.Items
 
         public int MaxCount { get; private set; }
 
+        public LootPoolEntry() { }
+
         public LootPoolEntry(string item, int min, int max, double weight = 0)
         {
             Item = item;
             Weight = weight;
             MinCount = min;
             MaxCount = max;
-        }
-
-        public LootPoolEntry(JSONNode node)
-        {
-            JsonDeerialize(node);
-        }
-
-        public JSONNode JsonSerialize()
-        {
-            JSONNode node = new JSONNode();
-
-            node.SetAs(nameof(Item), Item);
-            node.SetAs(nameof(Weight), Weight);
-            node.SetAs(nameof(MinCount), MinCount);
-            node.SetAs(nameof(MaxCount), MaxCount);
-
-            return node;
-        }
-
-        public void JsonDeerialize(JSONNode node)
-        {
-            if (node.TryGetAs(nameof(Item), out string itemName))
-                Item = itemName;
-
-            if (node.TryGetAs(nameof(Weight), out double wight))
-                Weight = wight;
-
-            if (node.TryGetAs(nameof(MinCount), out int minCount))
-                MinCount = minCount;
-
-            if (node.TryGetAs(nameof(Item), out int maxCount))
-                MaxCount = maxCount;
         }
     }
 }

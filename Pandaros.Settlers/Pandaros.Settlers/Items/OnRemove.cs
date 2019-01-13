@@ -6,8 +6,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Items
 {
-    [JSON.HintAutoObject]
-    public class OnRemove : IJsonSerializable, IJsonDeserializable
+    public class OnRemove
     {
         public int amount { get; private set; }
         public float chance { get; private set; }
@@ -20,16 +19,6 @@ namespace Pandaros.Settlers.Items
             amount = dropAmount;
             chance = dropChance;
             type = csType;
-        }
-
-        public void JsonDeerialize(JSONNode node)
-        {
-            JSON.LoadFields(this, node);
-        }
-
-        public virtual JSONNode JsonSerialize()
-        {
-            return JSON.SaveField(this);
         }
     }
 }

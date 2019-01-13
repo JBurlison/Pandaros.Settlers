@@ -1,5 +1,6 @@
 ﻿using AI;
 using Jobs;
+using Newtonsoft.Json;
 using NPC;
 using Pipliz;
 using Pipliz.JSON;
@@ -129,7 +130,7 @@ namespace Pandaros.Settlers
             return string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b));
         }
 
-        public static JSONNode ToJsonNode<T>(this IEnumerable<T> convertableCollection) where T : IJsonSerializable
+        public static JSONNode ToJsonNode<T>(this IEnumerable<T> convertableCollection)
         {
             var newNode = new JSONNode(NodeType.Array);
 
@@ -245,22 +246,6 @@ namespace Pandaros.Settlers
                     pos.x <= boundsMax.x && pos.y <= boundsMax.y && pos.z <= boundsMax.z;
         }
 
-        public static JSONNode ToJSONNode(this Vector3Int v)
-        {
-            return new JSONNode()
-                .SetAs("x", v.x)
-                .SetAs("y", v.y)
-                .SetAs("z", v.z);
-        }
-
-        public static Vector3Int ToVector3Int(this JSONNode v)
-        {
-            return new Vector3Int(
-                v["x"].GetAs<int>(),
-                v["y"].GetAs<int>(),
-                v["z"].GetAs<int>());
-        }
-
         public static int ManhattanDistance(this Vector2Int a, Vector2Int b)
         {
             checked
@@ -291,6 +276,16 @@ namespace Pandaros.Settlers
             {
                 return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
             }
+        }
+
+        public static JSONNode JsonSerialize(this object obj)
+        {
+            return JSON.DeserializeString(JsonConvert.SerializeObject(obj));
+        }
+
+        public static T JsonDeerialize<T>(this JSONNode node)
+        {
+            return JsonConvert.DeserializeObject<T>(node.ToString());
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers
 {
     public static class JSONExtentionMethods
     {
-        public static List<T> GetSimpleListFromFile<T>(string file) where T : IJsonDeserializable, new()
+        public static List<T> GetSimpleListFromFile<T>(string file) where T : new()
         {
             var retval = new List<T>();
 
@@ -24,16 +24,14 @@ namespace Pandaros.Settlers
                 if (jsonFile.NodeType == NodeType.Array && jsonFile.ChildCount > 0)
                     foreach (var pos in jsonFile.LoopArray())
                     {
-                        var noteType = new T();
-                        noteType.JsonDeerialize(pos);
-                        retval.Add(noteType);
+                        retval.Add(pos.JsonDeerialize<T>());
                     }
             }
 
                 return retval;
         }
 
-        public static void SaveSimpleListToJson<T>(string file, List<T> list) where T : IJsonSerializable
+        public static void SaveSimpleListToJson<T>(string file, List<T> list)
         {
             if (!Directory.Exists(file.Substring(0, file.LastIndexOf('/'))))
                 Directory.CreateDirectory(file.Substring(0, file.LastIndexOf('/')));

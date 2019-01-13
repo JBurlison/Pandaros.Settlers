@@ -4,25 +4,13 @@ using System.Linq;
 
 namespace Pandaros.Settlers.Items
 {
-    [ModLoader.ModManager]
     public static class StaticItems
     {
-        [JSON.HintAutoObject]
-        public class StaticItem : IJsonDeserializable, IJsonSerializable
+        public class StaticItem
         {
             public string Name { get; set; }
             public string RequiredScience { get; set; }
             public string RequiredPermission { get; set; }
-
-            public void JsonDeerialize(JSONNode node)
-            {
-                JSON.LoadFields(this, node);
-            }
-
-            public virtual JSONNode JsonSerialize()
-            {
-                return JSON.SaveField(this);
-            }
         }
 
         public static List<StaticItem> List { get; set; } = new List<StaticItem>();

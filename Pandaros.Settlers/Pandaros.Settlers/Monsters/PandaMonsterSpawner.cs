@@ -3,6 +3,7 @@ using Difficulty;
 using Monsters;
 using NPC;
 using Pandaros.Settlers.Monsters.Bosses;
+using Pandaros.Settlers.Monsters.Normal;
 using Pipliz;
 using System.Collections.Generic;
 using System.Reflection;
@@ -124,7 +125,7 @@ namespace Pandaros.Settlers.Monsters
             PandaLogger.Log("PandaMonsterSpawner Initialized!");
         }
 
-        public bool SpawnForBanner(Banner banner, IColonyDifficultySetting difficulty, Colony colony, float cooldown, IPandaBoss boss)
+        public bool SpawnForBanner(Banner banner, IColonyDifficultySetting difficulty, Colony colony, float cooldown, IPandaZombie boss)
         {
             int recycleFrequency = MonsterSpawner.GetPathRecycleFrequency(1f / cooldown);
             NPCType zombieTypeToSpawn = difficulty.GetZombieTypeToSpawn(colony);
@@ -132,7 +133,7 @@ namespace Pandaros.Settlers.Monsters
             return CaclulateZombie(banner, colony, zombieTypeToSpawn, recycleFrequency, maxPathDistance);
         }
 
-        public static bool CaclulateZombie(Banner banner, Colony colony, NPCType typeToSpawn, int RecycleFrequency = 1, float maxSpawnWalkDistance = 500f, IPandaBoss boss = null)
+        public static bool CaclulateZombie(Banner banner, Colony colony, NPCType typeToSpawn, int RecycleFrequency = 1, float maxSpawnWalkDistance = 500f, IPandaZombie boss = null)
         {
             Path path;
             if (RecycleFrequency > 1 && PathCache.TryGetPath(RecycleFrequency, banner.Position, maxSpawnWalkDistance, out path))
@@ -165,7 +166,7 @@ namespace Pandaros.Settlers.Monsters
             }
         }
 
-        public static void SpawnPandaZombie(NPCType typeToSpawn, Path path, Colony colony, IPandaBoss boss)
+        public static void SpawnPandaZombie(NPCType typeToSpawn, Path path, Colony colony, IPandaZombie boss)
         {
             var monster = new Zombie(typeToSpawn, path, colony);
 
@@ -180,7 +181,7 @@ namespace Pandaros.Settlers.Monsters
                     fi.SetValue(monster, (float) fi.GetValue(monster) + boss.ZombieHPBonus);
                 }
 
-            if (colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
+            if (boss.GetType() == typeof(IPandaBoss) && colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
             {
                 var fi = monster
                         .GetType().GetField("health",

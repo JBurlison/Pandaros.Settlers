@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Items
         Artifact
     }
 
-    public interface ICSType : IJsonSerializable, INameable, IJsonDeserializable
+    public interface ICSType : INameable
     {
         bool? blocksPathing { get; }
         List<string> categories { get; }

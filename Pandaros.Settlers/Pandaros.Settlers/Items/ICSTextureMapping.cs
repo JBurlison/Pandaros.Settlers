@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Items
 {
-    public interface ICSTextureMapping : IJsonSerializable, INameable
+    public interface ICSTextureMapping : INameable
     {
         string emissive { get; }
         string albedo { get; }

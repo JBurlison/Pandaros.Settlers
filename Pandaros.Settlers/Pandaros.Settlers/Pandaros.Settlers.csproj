@@ -87,6 +87,9 @@
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
     </Reference>
@@ -172,6 +175,9 @@
     <Compile Include="localization\LocalizationHelper.cs" />
     <Compile Include="Managers\ServerManagement.cs" />
     <Compile Include="Models\TrackedPosition.cs" />
+    <Compile Include="Monsters\IMonsterNPCType.cs" />
+    <Compile Include="Monsters\MonsterNPCData.cs" />
+    <Compile Include="Monsters\Normal\IPandaZombie.cs" />
     <Compile Include="Research\SkillEquiptmentResearch.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
@@ -212,7 +218,6 @@
     <Compile Include="Items\CSTextureMapping.cs" />
     <Compile Include="Items\ICSTextureMapping.cs" />
     <Compile Include="Items\ICSType.cs" />
-    <Compile Include="IJsonSerializable.cs" />
     <Compile Include="INameable.cs" />
     <Compile Include="Items\ILucky.cs" />
     <Compile Include="Items\OnRemove.cs" />
