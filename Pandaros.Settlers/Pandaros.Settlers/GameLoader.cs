@@ -334,5 +334,74 @@ namespace Pandaros.Settlers
         {
             return string.Format("gamedata/savegames/{0}/updatableblocks.json", ServerManager.WorldName);
         }
+
+        public static Dictionary<string, List<JSONNode>> GetJSONSettings(string fileType)
+        {
+            Dictionary<string, List<JSONNode>> retval = new Dictionary<string, List<JSONNode>>();
+
+            foreach (var modInfoKvP in GameLoader.AllModInfos)
+            {
+                foreach (var info in GameLoader.AllModInfos)
+                    if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
+                    {
+                        foreach (var jsonNode in jsonFilles.LoopArray())
+                        {
+                            if (jsonNode.TryGetAs("fileType", out string jsonFileType) &&
+                                jsonFileType == fileType)
+                            {
+                                if (!retval.ContainsKey(modInfoKvP.Key))
+                                    retval.Add(modInfoKvP.Key, new List<JSONNode>());
+
+                                retval[modInfoKvP.Key].Add(jsonNode);
+                                PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, modInfoKvP.Key);
+                            }
+                            else
+                            {
+                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", modInfoKvP.Value);
+                            }
+                        }
+                    }
+            }
+
+            return retval;
+        }
+
+        public static Dictionary<string, List<string>> GetJSONSettingPaths(string fileType)
+        {
+            Dictionary<string, List<string>> retval = new Dictionary<string, List<string>>();
+            
+            foreach (var modInfoKvP in GameLoader.AllModInfos)
+            {
+                foreach (var info in GameLoader.AllModInfos)
+                    if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
+                    {
+                        foreach (var jsonNode in jsonFilles.LoopArray())
+                        {
+                            if (jsonNode.TryGetAs("fileType", out string jsonFileType) &&
+                                jsonFileType == fileType)
+                            {
+                                if (jsonFilles.TryGetAs("relativePath", out string itemsPath))
+                                {
+                                    if (!retval.ContainsKey(modInfoKvP.Key))
+                                        retval.Add(modInfoKvP.Key, new List<string>());
+
+                                    retval[modInfoKvP.Key].Add(itemsPath);
+                                    PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, modInfoKvP.Key);
+                                }
+                                else
+                                {
+                                    PandaLogger.Log(ChatColor.red, "Unable to read relativePath for fileType {0} from file {1}", itemsPath, modInfoKvP.Value);
+                                }
+                            }
+                            else
+                            {
+                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", modInfoKvP.Value);
+                            }
+                        }
+                    }
+            }
+
+            return retval;
+        }
     }
 }

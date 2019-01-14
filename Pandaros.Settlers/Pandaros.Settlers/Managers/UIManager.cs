@@ -18,21 +18,13 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
-            foreach(var info in GameLoader.AllModInfos)
-                if(info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
-                {
-                    foreach(var jsonNode in jsonFilles.LoopArray())
-                    {
-                        if(jsonNode.TryGetAs("fileType", out string jsonFileType) && 
-                            jsonFileType == GameLoader.NAMESPACE + ".MenuFile" && 
-                            jsonNode.TryGetAs("relativePath", out string menuFilePath))
-                        {
-                            var newMenu = JSON.Deserialize(info.Key + "\\" + menuFilePath);
-                            LoadedMenus.Merge(newMenu);
+            var settings = GameLoader.GetJSONSettingPaths(GameLoader.NAMESPACE + ".MenuFile");
 
-                            PandaLogger.Log("Loaded Menu: {0}", menuFilePath);
-                        }
-                    }
+            foreach(var info in settings)
+                foreach(var jsonNode in info.Value)
+                {
+                    var newMenu = JSON.Deserialize(info.Key + "\\" + jsonNode);
+                    LoadedMenus.Merge(newMenu);
                 }
         }
 

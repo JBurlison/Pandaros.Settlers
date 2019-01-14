@@ -37,28 +37,21 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            foreach (var modInfoKvP in GameLoader.AllModInfos)
+            var settings = GameLoader.GetJSONSettings(GameLoader.NAMESPACE + ".CSItems");
+            
+            foreach (var modInfo in settings)
             {
-                foreach (var info in GameLoader.AllModInfos)
-                    if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
+                foreach (var path in modInfo.Value)
+                {
+                    try
                     {
-                        foreach (var jsonNode in jsonFilles.LoopArray())
-                        {
-                            if (jsonNode.TryGetAs("fileType", out string jsonFileType) &&
-                                jsonFileType == GameLoader.NAMESPACE + ".CSItems" &&
-                                jsonNode.TryGetAs("relativePath", out string itemsPath))
-                            {
-                                try
-                                {
-                                    loadedItems.AddRange(JSONExtentionMethods.GetSimpleListFromFile<CSType>(itemsPath));
-                                }
-                                catch (Exception ex)
-                                {
-                                    PandaLogger.LogError(ex);
-                                }
-                            }
-                        }
+                        loadedItems.AddRange(JSONExtentionMethods.GetSimpleListFromFile<CSType>(modInfo.Key + "\\" + path));
                     }
+                    catch (Exception ex)
+                    {
+                        PandaLogger.LogError(ex);
+                    }
+                }
             }
 
             foreach (var itemType in loadedItems)

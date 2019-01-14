@@ -18,26 +18,22 @@ namespace Pandaros.Settlers.WorldGen
         [ModLoader.ModCallbackDependsOn("create_servermanager_trackers")]
         public static void AddOres()
         {
-            foreach (var info in GameLoader.AllModInfos)
-                if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
+            var settings = GameLoader.GetJSONSettingPaths(GameLoader.NAMESPACE + ".OreLayers");
+
+            foreach (var modInfo in settings)
+            {
+                foreach (var path in modInfo.Value)
                 {
-                    foreach (var jsonNode in jsonFilles.LoopArray())
+                    var newMenu = JSON.Deserialize(modInfo.Key + "\\" + path);
+
+                    if (LoadedOres == null)
+                        LoadedOres = newMenu;
+                    else
                     {
-                        if (jsonNode.TryGetAs("fileType", out string jsonFileType) && jsonFileType == GameLoader.NAMESPACE + ".OreLayers" && jsonNode.TryGetAs("relativePath", out string menuFilePath))
-                        {
-                            var newMenu = JSON.Deserialize(info.Key + "\\" + menuFilePath);
-
-                            if (LoadedOres == null)
-                                LoadedOres = newMenu;
-                            else
-                            {
-                                LoadedOres.Merge(newMenu);
-                            }
-
-                            PandaLogger.Log("Loaded Ore: {0}", menuFilePath);
-                        }
+                        LoadedOres.Merge(newMenu);
                     }
                 }
+            }
 
             try
             {
