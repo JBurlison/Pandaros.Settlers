@@ -215,7 +215,7 @@ namespace Pandaros.Settlers.Items.Machines
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {crystal, steel, rivets, sbb, sbc, sba, crystal, stone},
-                                    new InventoryItem(Item.ItemIndex),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
                                     6);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
@@ -352,8 +352,8 @@ namespace Pandaros.Settlers.Items.Machines
             foreach (var pad in _paired)
             {
                 var kvpNode = new JSONNode();
-                kvpNode.SetAs("Key", pad.Key.ToJSONNode());
-                kvpNode.SetAs("Value", pad.Value.ToJSONNode());
+                kvpNode.SetAs("Key", (JSONNode)pad.Key);
+                kvpNode.SetAs("Value", (JSONNode)pad.Value);
                 teleporters.AddToArray(kvpNode);
             }
 
@@ -372,7 +372,7 @@ namespace Pandaros.Settlers.Items.Machines
                 JSON.Deserialize(RoamingJobManager.MACHINE_JSON, out var n) &&
                 n.TryGetChild(GameLoader.NAMESPACE + ".Teleportpads", out var teleportPads))
                 foreach (var pad in teleportPads.LoopArray())
-                    _paired[pad.GetAs<JSONNode>("Key").ToVector3Int()] = pad.GetAs<JSONNode>("Value").ToVector3Int();
+                    _paired[(Vector3Int)pad.GetAs<JSONNode>("Key")] = (Vector3Int)pad.GetAs<JSONNode>("Value");
         }
 
         // TODO: uncomment when zun fixes this.

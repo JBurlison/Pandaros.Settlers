@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Extender.Providers
                     !string.IsNullOrEmpty(recipe.Name))
                 {
                     var requirements = new List<InventoryItem>();
-                    var results = new List<InventoryItem>();
+                    var results = new List<ItemTypes.ItemTypeDrops>();
 
                     foreach (var ri in recipe.Requirements)
                         if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Extender.Providers
 
                     foreach (var ri in recipe.Results)
                         if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
-                            results.Add(new InventoryItem(itemIndex, ri.Value));
+                            results.Add(new ItemTypes.ItemTypeDrops(itemIndex, ri.Value));
 
                     var newRecipe = new Recipe(recipe.Name, requirements, results, recipe.DefautLimit, recipe.IsOptional, (int)recipe.Priority);
 

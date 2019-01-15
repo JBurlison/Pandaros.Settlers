@@ -299,7 +299,7 @@ namespace Pandaros.Settlers.Items.Machines
                                              sling,
                                              stoneAmmo
                                          },
-                                         new InventoryItem(TurretSettings[STONE].TurretItem.ItemIndex),
+                                         new ItemTypes.ItemTypeDrops(TurretSettings[STONE].TurretItem.ItemIndex),
                                          5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
@@ -316,7 +316,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                    arrow,
                                                    bow
                                                },
-                                               new InventoryItem(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
+                                               new ItemTypes.ItemTypeDrops(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
                                                5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
@@ -333,7 +333,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                 bolt,
                                                 crossbow
                                             },
-                                            new InventoryItem(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
+                                            new ItemTypes.ItemTypeDrops(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
                                             5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
@@ -351,7 +351,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                  gunpowder,
                                                  matchlock
                                              },
-                                             new InventoryItem(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
+                                             new ItemTypes.ItemTypeDrops(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
                                              5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);

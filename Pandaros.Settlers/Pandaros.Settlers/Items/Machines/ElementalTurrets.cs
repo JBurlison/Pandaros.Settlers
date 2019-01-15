@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Items.Machines
 
             var airRecipe = new Recipe(AIRTURRET_NAMESPACE,
                                        new List<InventoryItem> {planks, elemen, mana, tools, stone, airStone, esper},
-                                       new InventoryItem(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
+                                       new ItemTypes.ItemTypeDrops(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
                                        5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
@@ -63,14 +63,14 @@ namespace Pandaros.Settlers.Items.Machines
                                              earthStone,
                                              esper
                                          },
-                                         new InventoryItem(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
+                                         new ItemTypes.ItemTypeDrops(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
                                          5, true);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
 
             var fireRecipe = new Recipe(FIRETURRET_NAMESPACE,
                                         new List<InventoryItem> {planks, elemen, mana, tools, stone, fireStone, esper},
-                                        new InventoryItem(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
+                                        new ItemTypes.ItemTypeDrops(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
                                         5, true);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
@@ -86,7 +86,7 @@ namespace Pandaros.Settlers.Items.Machines
                                              waterStone,
                                              esper
                                          },
-                                         new InventoryItem(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
+                                         new ItemTypes.ItemTypeDrops(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
                                          5, true);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
@@ -102,7 +102,7 @@ namespace Pandaros.Settlers.Items.Machines
                                             voidStone,
                                             esperMax
                                         },
-                                        new InventoryItem(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
+                                        new ItemTypes.ItemTypeDrops(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
                                         5, true);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);

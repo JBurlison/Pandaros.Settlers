@@ -1,5 +1,6 @@
 ﻿using BlockTypes;
 using fNbt;
+using Newtonsoft.Json;
 using Pipliz;
 using Pipliz.JSON;
 using System;
@@ -23,7 +24,7 @@ namespace Pandaros.Settlers.NBT
                 if (TryGetScematicFilePath(name + METADATA_FILEEXT, colonyId, out string savePath))
                 {
                     var json = JSON.Deserialize(savePath);
-                    metadata = new SchematicMetadata(json);
+                    metadata = JsonConvert.DeserializeObject<SchematicMetadata>(json.ToString());
                 }
                 else
                 {

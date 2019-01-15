@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Items
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {mana, cryastal},
-                                    new InventoryItem(Item.ItemIndex, 1),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
                                     20);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);

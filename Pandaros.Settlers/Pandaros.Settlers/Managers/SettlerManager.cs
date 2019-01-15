@@ -234,7 +234,7 @@ namespace Pandaros.Settlers.Managers
                                 ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
 
                                 foreach (var job in new List<IJob>(c.JobFinder.JobsData.OpenJobs))
-                                    if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == pos.ToVector3Int())
+                                    if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
                                     {
                                         if (job.IsValid && job.NeedsNPC)
                                         {
@@ -360,7 +360,7 @@ namespace Pandaros.Settlers.Managers
 
                             if (job != null && job.GetJobLocation() != Vector3Int.invalidPos)
                             {
-                                jobloc  = job.GetJobLocation().ToJSONNode();
+                                jobloc  = (JSONNode)job.GetJobLocation();
                                 job.SetNPC(null);
                                 follower.ClearJob();
                             }

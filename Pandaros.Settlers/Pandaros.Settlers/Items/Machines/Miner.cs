@@ -187,7 +187,7 @@ namespace Pandaros.Settlers.Items.Machines
                                         planks,
                                         pickaxe
                                     },
-                                    new InventoryItem(Item.ItemIndex),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
                                     5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);

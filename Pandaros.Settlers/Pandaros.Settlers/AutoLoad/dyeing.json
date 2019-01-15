@@ -813,5 +813,328 @@
     ],
     "defaultLimit": 0,
     "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetbrown",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetbrown"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "wolfsbane",
+        "amount": 1
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetblack",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetblack"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "alkanet",
+        "amount": 1
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetcyan",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetbrown"
+      }
+    ],
+    "requires": [
+      {
+        "type": "alkanet",
+        "amount": 2
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetgreen",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetgreen"
+      }
+    ],
+    "requires": [
+      {
+        "type": "wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "alkanet",
+        "amount": 1
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetgrey",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetgrey"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "alkanet",
+        "amount": 1
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetlightblue",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetlightblue"
+      }
+    ],
+    "requires": [
+      {
+        "type": "gypsum",
+        "amount": 1
+      },
+      {
+        "type": "akanet",
+        "amount": 2
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetlime",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetlime"
+      }
+    ],
+    "requires": [
+      {
+        "type": "wolfsbane",
+        "amount": 1
+      },
+      {
+        "type": "alkanet",
+        "amount": 1
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetmagenta",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetmagenta"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "alkanet",
+        "amount": 1
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetorange",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetorange"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "wolfsbane",
+        "amount": 2
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetpink",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetpink"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 1
+      },
+      {
+        "type": "gypsum",
+        "amount": 2
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.carpetpurple",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.carpetpurple"
+      }
+    ],
+    "requires": [
+      {
+        "type": "hollyhock",
+        "amount": 2
+      },
+      {
+        "type": "alkanet",
+        "amount": 2
+      },
+      {
+        "amount": 1,
+        "type": "planks"
+      },
+      {
+        "amount": 1,
+        "type": "1inen"
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
   }
 ]

@@ -337,10 +337,10 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs("FlagsPlaced", out JSONNode flagsPlaced) &&
                     flagsPlaced.NodeType == NodeType.Array)
                     foreach (var aNode in flagsPlaced.LoopArray())
-                        _playerStates[p].FlagsPlaced.Add(aNode.ToVector3Int());
+                        _playerStates[p].FlagsPlaced.Add((Vector3Int)aNode);
 
                 if (stateNode.TryGetAs("TeleporterPlaced", out JSONNode teleporterPlaced))
-                    _playerStates[p].TeleporterPlaced = teleporterPlaced.ToVector3Int();
+                    _playerStates[p].TeleporterPlaced = (Vector3Int)teleporterPlaced;
 
                 if (stateNode.TryGetAs("Weapon", out JSONNode wepNode))
                     _playerStates[p].Weapon = new ItemState(wepNode);
@@ -364,7 +364,7 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs(nameof(BuildersWandPreview), out JSONNode wandPreview))
                     foreach (var node in wandPreview.LoopArray())
-                        _playerStates[p].BuildersWandPreview.Add(node.ToVector3Int());
+                        _playerStates[p].BuildersWandPreview.Add((Vector3Int)node);
 
                 var playerMagicItems = new List<IPlayerMagicItem>();
 
@@ -418,10 +418,10 @@ namespace Pandaros.Settlers.Entities
                     armorNode.SetAs(armor.Key.ToString(), armor.Value.ToJsonNode());
 
                 foreach (var flag in _playerStates[p].FlagsPlaced)
-                    flagsPlaced.AddToArray(flag.ToJSONNode());
+                    flagsPlaced.AddToArray((JSONNode)flag);
 
                 foreach (var preview in _playerStates[p].BuildersWandPreview)
-                    buildersWandPreview.AddToArray(preview.ToJSONNode());
+                    buildersWandPreview.AddToArray((JSONNode)preview);
 
                 var statsNode = new JSONNode();
 
@@ -433,7 +433,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs("Armor", armorNode);
                 node.SetAs("Weapon", _playerStates[p].Weapon.ToJsonNode());
                 node.SetAs("FlagsPlaced", flagsPlaced);
-                node.SetAs("TeleporterPlaced", _playerStates[p].TeleporterPlaced.ToJSONNode());
+                node.SetAs("TeleporterPlaced", (JSONNode)_playerStates[p].TeleporterPlaced);
                 node.SetAs(nameof(BuildersWandPreview), buildersWandPreview);
                 node.SetAs(nameof(BuildersWandMode), _playerStates[p].BuildersWandMode.ToString());
                 node.SetAs(nameof(BuildersWandCharge), _playerStates[p].BuildersWandCharge);

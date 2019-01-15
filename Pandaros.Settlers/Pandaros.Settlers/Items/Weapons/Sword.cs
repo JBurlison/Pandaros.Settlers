@@ -77,7 +77,7 @@ namespace Pandaros.Settlers.Items.Weapons
                     items.AddRange(new[] {steel, steelParts, coppertools, planks});
                 }
 
-                var invItem = new InventoryItem(a.Value.ItemType.ItemIndex);
+                var invItem = new ItemTypes.ItemTypeDrops(a.Value.ItemType.ItemIndex);
                 var recipe  = new Recipe(a.Value.ItemType.name, items, invItem, 5);
 
                 ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);

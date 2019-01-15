@@ -433,14 +433,14 @@ namespace Pandaros.Settlers.Items.Machines
                                         tools,
                                         planks
                                     },
-                                    new InventoryItem(Item.ItemIndex),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
                                     5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
 
             var gate = new Recipe(GateItem.name,
                                   new List<InventoryItem> {iron, rivets, tools},
-                                  new InventoryItem(GateItem.ItemIndex),
+                                  new ItemTypes.ItemTypeDrops(GateItem.ItemIndex),
                                   24);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
@@ -570,7 +570,7 @@ namespace Pandaros.Settlers.Items.Machines
                         pos.Value.State = GatePosition.Closed;
 
                     var node = new JSONNode()
-                              .SetAs("pos", pos.Key.ToJSONNode())
+                              .SetAs("pos", (Vector3Int)pos.Key)
                               .SetAs("state", pos.Value.ToJsonNode());
 
                     gateNode.AddToArray(node);
@@ -589,7 +589,7 @@ namespace Pandaros.Settlers.Items.Machines
                     _gatePositions.Add(c, new Dictionary<Vector3Int, GateState>());
 
                 foreach (var gateNode in gateNodes.LoopArray())
-                    _gatePositions[c].Add(gateNode.GetAs<JSONNode>("pos").ToVector3Int(),
+                    _gatePositions[c].Add((Vector3Int)gateNode.GetAs<JSONNode>("pos"),
                                           new GateState(gateNode.GetAs<JSONNode>("state")));
             }
         }
@@ -650,7 +650,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 State       = (GatePosition) Enum.Parse(typeof(GatePosition), node.GetAs<string>(nameof(State)));
                 Orientation = (VoxelSide) Enum.Parse(typeof(VoxelSide), node.GetAs<string>(nameof(Orientation)));
-                Position    = node.GetAs<JSONNode>(nameof(Position)).ToVector3Int();
+                Position    = (Vector3Int)node.GetAs<JSONNode>(nameof(Position));
             }
 
             public GatePosition State { get; set; }
@@ -663,7 +663,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                 baseNode.SetAs(nameof(State), State.ToString());
                 baseNode.SetAs(nameof(Orientation), Orientation.ToString());
-                baseNode.SetAs(nameof(Position), Position.ToJSONNode());
+                baseNode.SetAs(nameof(Position), (JSONNode)Position);
 
                 return baseNode;
             }

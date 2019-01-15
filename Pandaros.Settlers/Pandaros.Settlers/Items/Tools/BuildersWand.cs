@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Items
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {elementium, aether, steel, gold, silver, adamantine},
-                                    new InventoryItem(Item.ItemIndex, 1),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
                                     5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(SorcererRegister.JOB_NAME, recipe);

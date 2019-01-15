@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Jobs
 
             var recipe = new Recipe(PatrolFlag.name,
                                     new List<InventoryItem> {planks, carpet},
-                                    new InventoryItem(PatrolFlag.ItemIndex, 2),
+                                    new ItemTypes.ItemTypeDrops(PatrolFlag.ItemIndex, 2),
                                     5);
 
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
@@ -129,7 +129,7 @@ namespace Pandaros.Settlers.Jobs
                     var points = new List<Vector3Int>();
 
                     foreach (var point in knightNode["PatrolPoints"].LoopArray())
-                        points.Add(point.ToVector3Int());
+                        points.Add((Vector3Int)point);
 
                     if (knightNode.TryGetAs("PatrolType", out string patrolTypeStr))
                     {
@@ -174,7 +174,7 @@ namespace Pandaros.Settlers.Jobs
                         var patrolPoints = new JSONNode(NodeType.Array);
 
                         foreach (var point in knight.PatrolPoints)
-                            patrolPoints.AddToArray(point.ToJSONNode());
+                            patrolPoints.AddToArray((JSONNode)point);
 
                         knightNode.SetAs(nameof(knight.PatrolPoints), patrolPoints);
 
