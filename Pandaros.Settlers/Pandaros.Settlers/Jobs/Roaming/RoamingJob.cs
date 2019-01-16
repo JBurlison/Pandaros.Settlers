@@ -15,7 +15,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".Jobs.Roaming.RoamingJobRegister.OnDeath")]
         public static void OnDeath(NPCBase nPC)
         {
-            
             if (nPC.Job != null && nPC.Job.GetType() == typeof(RoamingJob) && ((RoamingJob)nPC.Job).TargetObjective != null)
                 ((RoamingJob)nPC.Job).TargetObjective.JobRef = null;
         }
