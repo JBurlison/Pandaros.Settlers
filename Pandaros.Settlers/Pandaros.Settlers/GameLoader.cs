@@ -101,7 +101,15 @@ namespace Pandaros.Settlers
             DirSearch(MODS_FOLDER, "*modInfo.json", allinfos);
 
             foreach (var info in allinfos)
-                AllModInfos[new FileInfo(info).Directory.FullName] = JSON.Deserialize(info)[0];
+            {
+                var modJson = JSON.Deserialize(info)[0];
+
+                if (modJson.TryGetAs("enabled", out bool isEnabled) && isEnabled)
+                {
+                    PandaLogger.Log("ModInfo Found: {0}", info);
+                    AllModInfos[new FileInfo(info).Directory.FullName] = modJson;
+                }
+            }
 
             if (!File.Exists(GAME_ROOT + "/colonyserver.exe.config"))
             {
@@ -339,28 +347,34 @@ namespace Pandaros.Settlers
         {
             Dictionary<string, List<JSONNode>> retval = new Dictionary<string, List<JSONNode>>();
 
-            foreach (var modInfoKvP in GameLoader.AllModInfos)
+            try
             {
                 foreach (var info in GameLoader.AllModInfos)
                     if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
                     {
                         foreach (var jsonNode in jsonFilles.LoopArray())
                         {
-                            if (jsonNode.TryGetAs("fileType", out string jsonFileType) &&
-                                jsonFileType == fileType)
+                            if (jsonNode.TryGetAs("fileType", out string jsonFileType))
                             {
-                                if (!retval.ContainsKey(modInfoKvP.Key))
-                                    retval.Add(modInfoKvP.Key, new List<JSONNode>());
+                                if (jsonFileType == fileType)
+                                {
+                                    if (!retval.ContainsKey(info.Key))
+                                        retval.Add(info.Key, new List<JSONNode>());
 
-                                retval[modInfoKvP.Key].Add(jsonNode);
-                                PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, modInfoKvP.Key);
+                                    retval[info.Key].Add(jsonNode);
+                                    PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, info.Key);
+                                }
                             }
                             else
                             {
-                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", modInfoKvP.Value);
+                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", info.Value);
                             }
                         }
                     }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
 
             return retval;
@@ -369,36 +383,40 @@ namespace Pandaros.Settlers
         public static Dictionary<string, List<string>> GetJSONSettingPaths(string fileType)
         {
             Dictionary<string, List<string>> retval = new Dictionary<string, List<string>>();
-            
-            foreach (var modInfoKvP in GameLoader.AllModInfos)
+
+            try
             {
                 foreach (var info in GameLoader.AllModInfos)
                     if (info.Value.TryGetAs(GameLoader.NAMESPACE + ".jsonFiles", out JSONNode jsonFilles))
                     {
                         foreach (var jsonNode in jsonFilles.LoopArray())
                         {
-                            if (jsonNode.TryGetAs("fileType", out string jsonFileType) &&
-                                jsonFileType == fileType)
+                            if (jsonNode.TryGetAs("fileType", out string jsonFileType))
                             {
-                                if (jsonFilles.TryGetAs("relativePath", out string itemsPath))
-                                {
-                                    if (!retval.ContainsKey(modInfoKvP.Key))
-                                        retval.Add(modInfoKvP.Key, new List<string>());
+                                if (jsonFileType == fileType)
+                                    if (jsonNode.TryGetAs("relativePath", out string itemsPath))
+                                    {
+                                        if (!retval.ContainsKey(info.Key))
+                                            retval.Add(info.Key, new List<string>());
 
-                                    retval[modInfoKvP.Key].Add(itemsPath);
-                                    PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, modInfoKvP.Key);
-                                }
-                                else
-                                {
-                                    PandaLogger.Log(ChatColor.red, "Unable to read relativePath for fileType {0} from file {1}", itemsPath, modInfoKvP.Value);
-                                }
+                                        retval[info.Key].Add(itemsPath);
+                                        PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, info.Key);
+                                    }
+                                    else
+                                    {
+                                        PandaLogger.Log(ChatColor.red, "Unable to read relativePath for fileType {0} from file {1}", itemsPath, info.Key);
+                                    }
                             }
                             else
                             {
-                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", modInfoKvP.Value);
+                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", info.Key);
                             }
                         }
                     }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
 
             return retval;
