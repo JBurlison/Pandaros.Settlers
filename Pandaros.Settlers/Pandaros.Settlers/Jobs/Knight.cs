@@ -311,7 +311,7 @@ namespace Pandaros.Settlers.Jobs
                             _inv.Weapon = new ItemState
                             {
                                 Id         = bestWeapon.ItemType.ItemIndex,
-                                Durability = bestWeapon.Durability
+                                Durability = bestWeapon.WepDurability
                             };
                         }
                 }

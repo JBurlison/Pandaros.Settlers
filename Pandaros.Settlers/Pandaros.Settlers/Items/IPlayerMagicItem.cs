@@ -6,7 +6,6 @@ namespace Pandaros.Settlers.Items
 {
     public interface IPlayerMagicItem : ICSType, IMagicEffect
     {
-        Players.Player Owner { get; set; }
         float MovementSpeed { get; }
         float JumpPower { get; }
         float FlySpeed { get; }

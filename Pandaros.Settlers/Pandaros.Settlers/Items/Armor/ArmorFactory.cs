@@ -314,7 +314,7 @@ namespace Pandaros.Settlers.Items.Armor
 
             List<InventoryItem> items;
 
-            foreach (var a in ArmorLookup)
+            foreach (var a in ArmorLookup.Where(a => a.Value is ArmorMetadata metadata))
             {
                 items = new List<InventoryItem>();
 
@@ -502,8 +502,10 @@ namespace Pandaros.Settlers.Items.Armor
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
-                var invItem = new ItemTypes.ItemTypeDrops(a.Value.ItemType.ItemIndex);
-                var recipe = new Recipe(a.Value.ItemType.name, items, invItem, 5, false, -100);
+
+                var metaData = (ArmorMetadata)a.Value; 
+                var invItem = new ItemTypes.ItemTypeDrops(metaData.ItemType.ItemIndex);
+                var recipe = new Recipe(metaData.ItemType.name, items, invItem, 5, false, -100);
 
                 ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
             }

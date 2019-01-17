@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Items.PlayerMagicItems
         };
         public override string icon { get; set; } = GameLoader.ICON_PATH + "HealthBooster.png";
 
-        public Players.Player Owner { get; set; }
+        
 
         public float MovementSpeed { get; set; }
 

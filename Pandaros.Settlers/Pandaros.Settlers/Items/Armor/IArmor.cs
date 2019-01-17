@@ -7,6 +7,5 @@ namespace Pandaros.Settlers.Items.Armor
         ArmorSlot Slot { get; }
         float ArmorRating { get; }
         int Durability { get; set; }
-        ItemTypesServer.ItemTypeRaw ItemType { get; }
     }
 }

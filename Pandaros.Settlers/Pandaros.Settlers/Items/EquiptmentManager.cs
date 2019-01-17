@@ -288,7 +288,7 @@ namespace Pandaros.Settlers.Items
                                                 job.NPC.Colony.Stockpile.Add(inv.Weapon.Id);
 
                                             inv.Weapon.Id = kvp.Key;
-                                            inv.Weapon.Durability = wepItem.Durability;
+                                            inv.Weapon.Durability = wepItem.WepDurability;
                                             BuildSettlerDetailMenu(data, jobKvp, job);
                                             return;
                                         }

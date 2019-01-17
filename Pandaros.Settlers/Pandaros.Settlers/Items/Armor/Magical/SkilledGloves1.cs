@@ -56,7 +56,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public override string icon { get; set; } = GameLoader.ICON_PATH + "SkilledGloves1.png";
 
-        public Players.Player Owner { get; set; }
+        
 
         public float MovementSpeed { get; set; }
 

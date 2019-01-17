@@ -162,8 +162,10 @@
     <Compile Include="Items\Armor\Magical\SkilledChest.cs" />
     <Compile Include="Items\Armor\Magical\SkilledBoots.cs" />
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
+    <Compile Include="Items\Armor\MagicArmor.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
+    <Compile Include="Items\PlayerMagicItem.cs" />
     <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
@@ -232,7 +234,6 @@
     <Compile Include="Items\Reagents\EarthStone.cs" />
     <Compile Include="Items\ILootTable.cs" />
     <Compile Include="Items\IPlayerMagicItem.cs" />
-    <Compile Include="Items\INpcMagicItem.cs" />
     <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\ItemState.cs" />
     <Compile Include="Items\Machines\MachineConstants.cs" />

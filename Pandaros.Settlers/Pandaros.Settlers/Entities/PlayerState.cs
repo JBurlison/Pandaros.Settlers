@@ -192,7 +192,6 @@ namespace Pandaros.Settlers.Entities
 
         private void UpdatePlayerVariables()
         {
-            PandaLogger.Log("Sending Player Variables");
             using (ByteBuilder bRaw = ByteBuilder.Get())
             {
                 bRaw.Write(ClientMessageType.ReceiveServerPerClientSettings);

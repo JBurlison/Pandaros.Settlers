@@ -284,8 +284,8 @@ namespace Pandaros.Settlers.Research
                     break;
             }
 
-            foreach (var item in armor)
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.ItemType.name), true);
+            foreach (var item in armor.Where(a => a is ArmorMetadata metadata && metadata.ItemType != null))
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.Name), true);
         }
 
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,18 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     try
                     {
-                        loadedItems.AddRange(JSONExtentionMethods.GetSimpleListFromFile<CSType>(modInfo.Key + "\\" + path));
+                        var jsonFile = JSON.Deserialize(modInfo.Key + "\\" + path);
+
+                        if (jsonFile.NodeType == NodeType.Array && jsonFile.ChildCount > 0)
+                            foreach (var item in jsonFile.LoopArray())
+                            {
+                                if (item.TryGetAs("Durability", out int durability))
+                                    loadedItems.Add(item.JsonDeerialize<MagicArmor>());
+                                else if (item.TryGetAs("IsMagical", out bool isMagic))
+                                    loadedItems.Add(item.JsonDeerialize<PlayerMagicItem>());
+                                else
+                                    loadedItems.Add(item.JsonDeerialize<CSType>());
+                            }
                     }
                     catch (Exception ex)
                     {

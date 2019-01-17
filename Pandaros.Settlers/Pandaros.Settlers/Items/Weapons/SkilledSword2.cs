@@ -56,7 +56,7 @@ namespace Pandaros.Settlers.Items.Weapons
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public int Durability { get; set; } = 2000;
+        public int WepDurability { get; set; } = 2000;
 
         public float HPTickRegen => 0;
 

@@ -12,14 +12,14 @@ namespace Pandaros.Settlers.Items.Weapons
             _damage.Add(DamageType.Physical, damage);
             Name       = name;
             ItemType   = item;
-            Durability = durability;
+            WepDurability = durability;
         }
 
         public string Name { get; }
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public int Durability { get; set; }
+        public int WepDurability { get; set; }
 
         public float HPTickRegen => 0;
 

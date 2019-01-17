@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Items.Weapons
                     state.Weapon = new ItemState
                     {
                         Id         = click.typeSelected,
-                        Durability = WeaponLookup[click.typeSelected].Durability
+                        Durability = WeaponLookup[click.typeSelected].WepDurability
                     };
 
                 if (Players.LastPunches.TryGetValue(player, out var num) &&
