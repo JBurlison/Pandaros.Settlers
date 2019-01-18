@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Items.Healing
         {
             var herbs  = new InventoryItem(BuiltinBlocks.Hollyhock, 2);
             var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 2);
-            var oil    = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
+            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL, 1);
             var flour  = new InventoryItem(BuiltinBlocks.Flour, 2);
 
             var recipe = new Recipe(Item.name,

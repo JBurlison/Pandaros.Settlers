@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public float LightRange { get; set; }
 
-        public UnityEngine.Color LightColor { get; set; }
+        public string LightColor { get; set; }
 
         public float FallDamage { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamageBaseDamage") * -1;
 

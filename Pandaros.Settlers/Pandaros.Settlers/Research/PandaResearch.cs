@@ -203,7 +203,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.ScienceBagLife
+                ColonyBuiltIn.Research.SCIENCEBAGLIFE
             };
 
             var research = new PandaResearch(researchDic, 1, ReducedWaste, 0.001f, requirements);
@@ -231,7 +231,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.BronzeAnvil
+                ColonyBuiltIn.Research.BRONZEANVIL
             };
 
             RegisterArmorSmithng(researchDic, 1, requirements);
@@ -296,7 +296,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.BronzeAnvil
+                ColonyBuiltIn.Research.BRONZEANVIL
             };
 
             RegisterSwordmithng(researchDic, 1, requirements);
@@ -363,7 +363,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.ScienceBagLife
+                ColonyBuiltIn.Research.SCIENCEBAGLIFE
             };
 
             var research = new PandaResearch(researchDic, 1, ColonistHealth, 10f, requirements);
@@ -397,7 +397,7 @@ namespace Pandaros.Settlers.Research
             var requirements = new List<string>
             {
                 GetResearchKey(SwordSmithing + "1"),
-                ColonyBuiltIn.Research.ScienceBagBasic
+                ColonyBuiltIn.Research.SCIENCEBAGBASIC
             };
 
             var research = new PandaResearch(researchDic, 1, Knights, 1f, requirements);
@@ -419,8 +419,9 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.HerbFarming,
-                ColonyBuiltIn.Research.ScienceBagAdvanced
+                ColonyBuiltIn.Research.HERBFARMING,
+                ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
+                ColonyBuiltIn.Research.OLIVEFARMER
             };
 
             var research = new PandaResearch(researchDic, 1, Apothecary, 1f, requirements);
@@ -461,7 +462,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.Alkanet, 10);
             researchDic.Add(BuiltinBlocks.Wolfsbane, 10);
             researchDic.Add(BuiltinBlocks.Hollyhock, 10);
-            researchDic.Add(BuiltinBlocks.LinseedOil, 10);
+            researchDic.Add(BuiltinBlocks.Gypsum, 10);
             researchDic.Add(BuiltinBlocks.Crystal, 10);
 
             var requirements = new List<string>
@@ -679,7 +680,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.CrossBow
+                ColonyBuiltIn.Research.CROSSBOW
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .05f, requirements);
@@ -720,7 +721,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.MatchlockGun
+                ColonyBuiltIn.Research.MATCHLOCKGUN
             };
 
             var research = new PandaResearch(researchDic, 1, ImprovedMatchlockgun, .05f, requirements);
@@ -761,7 +762,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.Bloomery
+                ColonyBuiltIn.Research.BLOOMERY
             };
 
             var research = new PandaResearch(researchDic, 1, Machines, 1f, requirements, 20, false);
@@ -900,7 +901,7 @@ namespace Pandaros.Settlers.Research
             researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
             researchDic.Add(BuiltinBlocks.Bricks, 5);
             researchDic.Add(BuiltinBlocks.CoatedPlanks, 5);
-            researchDic.Add(BuiltinBlocks.Clothing, 5);
+            researchDic.Add(BuiltinBlocks.Bed, 5);
             researchDic.Add(BuiltinBlocks.GoldCoin, 20);
 
             var requirements = new List<string>
@@ -926,7 +927,7 @@ namespace Pandaros.Settlers.Research
 
             var requirements = new List<string>
             {
-                ColonyBuiltIn.Research.BannerRadius2
+                ColonyBuiltIn.Research.BANNERRADIUS2
             };
 
             ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SettlerChance, 0.1f, requirements));

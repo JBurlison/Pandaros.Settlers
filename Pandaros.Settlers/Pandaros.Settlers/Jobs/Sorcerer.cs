@@ -28,8 +28,8 @@ namespace Pandaros.Settlers.Jobs
                 PandaResearch.GetResearchKey(PandaResearch.ArmorSmithing + 4),
                 PandaResearch.GetResearchKey(PandaResearch.SwordSmithing + 4),
                 PandaResearch.GetResearchKey(PandaResearch.Elementium + 1),
-                ColonyBuiltIn.Research.ScienceBagAdvanced,
-                ColonyBuiltIn.Research.ScienceBagColony
+                ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
+                ColonyBuiltIn.Research.SCIENCEBAGCOLONY
             };
 
         public int BaseIterationCount => 300;

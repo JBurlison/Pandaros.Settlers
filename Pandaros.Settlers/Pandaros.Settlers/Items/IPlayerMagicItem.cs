@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Items
         float FlySpeed { get; }
         float MoveSpeed { get; }
         float LightRange { get; }
-        UnityEngine.Color LightColor { get; }
+        string LightColor { get; }
         float FallDamage { get; }
         float FallDamagePerUnit { get; }
         float BuildDistance { get; }

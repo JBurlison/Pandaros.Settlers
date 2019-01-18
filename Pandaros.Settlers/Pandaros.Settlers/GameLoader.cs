@@ -84,16 +84,16 @@ namespace Pandaros.Settlers
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/");
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
 
-            MODS_FOLDER          = GAMEDATA_FOLDER + "mods/";
-            ICON_PATH            = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
-            MESH_PATH            = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
-            AUDIO_PATH           = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
+            MODS_FOLDER = GAMEDATA_FOLDER + "mods/";
+            ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
+            MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
+            AUDIO_PATH = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
             TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/") + "/";
-            BLOCKS_ALBEDO_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
+            BLOCKS_ALBEDO_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
             BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
-            BLOCKS_HEIGHT_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
-            BLOCKS_NORMAL_PATH   = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
-            BLOCKS_NPC_PATH      = Path.Combine(TEXTURE_FOLDER_PANDA, "npc").Replace("\\", "/") + "/";
+            BLOCKS_HEIGHT_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
+            BLOCKS_NORMAL_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
+            BLOCKS_NPC_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "npc").Replace("\\", "/") + "/";
 
             ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json")[0];
 
@@ -128,8 +128,54 @@ namespace Pandaros.Settlers
                 }
             }
 
+            GenerateBuiltinBlocks();
+
             if (FileWasCopied)
                 PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+        }
+
+        private static void GenerateBuiltinBlocks()
+        {
+            if (File.Exists(MOD_FOLDER + "/ColonyBuiltin.cs"))
+                File.Delete(MOD_FOLDER + "/ColonyBuiltin.cs");
+
+            using (var fs = File.OpenWrite(MOD_FOLDER + "/ColonyBuiltin.cs"))
+            using (var sr = new StreamWriter(fs))
+            {
+                sr.WriteLine("namespace Pandaros.Settlers");
+                sr.WriteLine("{");
+                sr.WriteLine("  public static class ColonyBuiltIn");
+                sr.WriteLine("  {");
+                sr.WriteLine("      public static class Research");
+                sr.WriteLine("      {");
+
+                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "science.json").LoopArray())
+                    if (node.TryGetAs("key", out string scienceKey))
+                        sr.WriteLine($"          public const string {scienceKey.Substring(scienceKey.LastIndexOf('.') + 1).ToUpper()} = \"{scienceKey}\";");
+
+                sr.WriteLine("      }");
+                sr.WriteLine();
+
+                sr.WriteLine("      public static class NpcTypes");
+                sr.WriteLine("      {");
+
+                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "npcTypes.json").LoopArray())
+                    if (node.TryGetAs("keyName", out string npcType))
+                        sr.WriteLine($"          public const string {npcType.Substring(npcType.LastIndexOf('.') + 1).ToUpper()} = \"{npcType}\";");
+
+                sr.WriteLine("      }");
+                sr.WriteLine();
+
+                sr.WriteLine("      public static class ItemTypes");
+                sr.WriteLine("      {");
+
+                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "types.json").LoopObject())
+                        sr.WriteLine($"          public const string {node.Key.Replace('+', 'p').Replace('-', 'n').ToUpper()} = \"{node.Key}\";");
+
+                sr.WriteLine("      }");
+                sr.WriteLine("  }");
+                sr.WriteLine("}");
+            }
         }
 
         private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

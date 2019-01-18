@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Items
         public float BaseValue => 0.05f;
         public List<string> Dependancies => new List<string>()
             {
-                ColonyBuiltIn.Research.ScienceBagBasic
+                ColonyBuiltIn.Research.SCIENCEBAGBASIC
             };
 
         public int BaseIterationCount => 50;

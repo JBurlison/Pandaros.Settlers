@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Items.PlayerMagicItems
 
         public float LightRange { get; set; }
 
-        public Color LightColor { get; set; }
+        public string LightColor { get; set; }
 
         public float FallDamage { get; set; }
 

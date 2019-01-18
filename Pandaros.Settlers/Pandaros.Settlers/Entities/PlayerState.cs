@@ -157,11 +157,11 @@ namespace Pandaros.Settlers.Entities
 
         private void AddMagicEffect(IPlayerMagicItem playerMagicItem)
         {
-            if (playerMagicItem.color != default(UnityEngine.Color))
+            if (!string.IsNullOrEmpty(playerMagicItem.LightColor) && UnityEngine.ColorUtility.TryParseHtmlString(playerMagicItem.LightColor, out var color))
             {
-                _playerVariables.SetAs("LightColorR", playerMagicItem.color.r);
-                _playerVariables.SetAs("LightColorG", playerMagicItem.color.g);
-                _playerVariables.SetAs("LightColorB", playerMagicItem.color.b);
+                _playerVariables.SetAs("LightColorR", color.r);
+                _playerVariables.SetAs("LightColorG", color.g);
+                _playerVariables.SetAs("LightColorB", color.b);
             }
 
             _playerVariables.SetAs("MovePower", _playerVariables.GetAs<float>("MovePower") + playerMagicItem.MovementSpeed);

@@ -54,9 +54,9 @@ namespace Pandaros.Settlers.Jobs.Construction
         public float BaseValue => 0.05f;
         public List<string> Dependancies => new List<string>()
             {
-                ColonyBuiltIn.Research.Builder,
-                ColonyBuiltIn.Research.ScienceBagAdvanced,
-                ColonyBuiltIn.Research.ScienceBagColony
+                ColonyBuiltIn.Research.CONSTRUCTIONBUILDER,
+                ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
+                ColonyBuiltIn.Research.SCIENCEBAGCOLONY
             };
 
         public int BaseIterationCount => 300;

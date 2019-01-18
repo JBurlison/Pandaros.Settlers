@@ -278,14 +278,16 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static JSONNode JsonSerialize(this object obj)
+        public static JSONNode JsonSerialize<T>(this T obj)
         {
-            return JSON.DeserializeString(JsonConvert.SerializeObject(obj));
+            var objStr = JsonConvert.SerializeObject(obj, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            PandaLogger.LogToFile(objStr);
+            return JSON.DeserializeString(objStr);
         }
 
         public static T JsonDeerialize<T>(this JSONNode node)
         {
-            return JsonConvert.DeserializeObject<T>(node.ToString());
+            return JsonConvert.DeserializeObject<T>(node.ToString(), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
         }
     }
 }

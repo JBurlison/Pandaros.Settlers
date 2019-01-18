@@ -51,13 +51,13 @@ namespace Pandaros.Settlers.Items
         public virtual string sidezp { get; set; }
         [JsonProperty("sidez-")]
         public virtual string sidezn { get; set; }
-        public virtual Color color { get; set; } 
+        public virtual string color { get; set; } 
         public virtual string onRemoveType { get; set; }
         public virtual string onRemoveAmount { get; set; }
         public virtual string onRemoveChance { get; set; }
         public virtual List<OnRemove> onRemove { get; set; } = new List<OnRemove>();
         public virtual bool? blocksPathing => isSolid;
-        public virtual List<Colliders> colliders { get; set; } = new List<Colliders>();
+        public virtual Colliders colliders { get; set; }
         public virtual List<string> categories { get; set; } = new List<string>();
         public virtual ItemRarity Rarity { get; set; } = ItemRarity.Common;
         public virtual StaticItem StaticItemSettings { get; set; }

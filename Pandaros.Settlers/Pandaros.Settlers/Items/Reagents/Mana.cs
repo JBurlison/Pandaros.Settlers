@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Items
         {
             var herbs  = new InventoryItem(BuiltinBlocks.Hollyhock, 10);
             var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 10);
-            var oil    = new InventoryItem(BuiltinBlocks.LinseedOil, 10);
+            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL, 10);
             var herbs3 = new InventoryItem(BuiltinBlocks.Wolfsbane, 10);
 
             var recipe = new Recipe(Item.name,

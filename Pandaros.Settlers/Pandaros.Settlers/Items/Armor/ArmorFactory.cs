@@ -298,7 +298,7 @@ namespace Pandaros.Settlers.Items.Armor
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var clothing = new InventoryItem(BuiltinBlocks.Clothing, 1);
+            var clothing = new InventoryItem(ColonyBuiltIn.ItemTypes.UNDERSHIRT, 1);
 
             var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
             var copper = new InventoryItem(BuiltinBlocks.Copper, 5);

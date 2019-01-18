@@ -19,8 +19,8 @@ namespace Pandaros.Settlers.Items
     {
         bool? blocksPathing { get; }
         List<string> categories { get; }
-        List<Colliders> colliders { get; }
-        Color color { get; }
+        Colliders colliders { get; }
+        string color { get; }
         JSONNode customData { get; }
         int? destructionTime { get; }
         string icon { get; }

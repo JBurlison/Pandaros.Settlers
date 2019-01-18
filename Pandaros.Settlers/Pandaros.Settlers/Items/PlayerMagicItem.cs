@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Items
 
         public virtual float LightRange { get; set; }
 
-        public virtual Color LightColor { get; set; }
+        public virtual string LightColor { get; set; }
 
         public virtual float FallDamage { get; set; }
 

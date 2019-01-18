@@ -22,7 +22,7 @@ namespace Pandaros.Settlers.Items.Healing
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
         public static void Register()
         {
-            var oil   = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
+            var oil   = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL, 1);
             var linen = new InventoryItem(BuiltinBlocks.Linen, 1);
 
             var recipe = new Recipe(Item.name,

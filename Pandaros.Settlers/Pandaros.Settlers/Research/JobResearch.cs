@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Research
         public const string WorkBenchTraining = "WorkBenchTraining";
         public const string MasterOfAll = "MasterOfAll";
 
-        private const string SCIENCEBAGREQ = ColonyBuiltIn.Research.ScienceBagBasic;
+        private const string SCIENCEBAGREQ = ColonyBuiltIn.Research.SCIENCEBAGBASIC;
         private const int BAG_COST = 2;
         private const int COIN_COST = 5;
 
@@ -63,7 +63,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -74,12 +74,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.MERCHANT);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.MERCHANT);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.MERCHANT, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.MERCHANT, e.Research.Value);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -110,12 +110,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.TAILOR);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.TAILOR);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.TAILOR, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.TAILOR, e.Research.Value);
             }
         }
 
@@ -135,7 +135,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -146,12 +146,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.BLOOMERYJOB);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.BLOOMERYJOB);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.BLOOMERYJOB, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.BLOOMERYJOB, e.Research.Value);
             }
         }
 
@@ -171,7 +171,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -182,12 +182,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.FINERYFORGEJOB);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.FINERYFORGEJOB);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.FINERYFORGEJOB, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.FINERYFORGEJOB, e.Research.Value);
             }
         }
 
@@ -207,7 +207,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -218,12 +218,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.SMELTER);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.SMELTER);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.SMELTER, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.SMELTER, e.Research.Value);
             }
         }
 
@@ -243,7 +243,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -254,12 +254,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.GRINDER);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.GRINDER);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.GRINDER, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.GRINDER, e.Research.Value);
             }
         }
 
@@ -279,7 +279,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -290,12 +290,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.GUNSMITHJOB);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.GUNSMITHJOB);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.GUNSMITHJOB, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.GUNSMITHJOB, e.Research.Value);
             }
         }
 
@@ -315,7 +315,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -326,12 +326,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.KILNJOB);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.KILNJOB);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.KILNJOB, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.KILNJOB, e.Research.Value);
             }
         }
 
@@ -351,7 +351,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -362,12 +362,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.METALSMITHJOB);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.METALSMITHJOB);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.METALSMITHJOB, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.METALSMITHJOB, e.Research.Value);
             }
         }
 
@@ -386,7 +386,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -397,12 +397,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.MINTER);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.MINTER);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.MINTER, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.MINTER, e.Research.Value);
             }
         }
 
@@ -422,7 +422,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -433,12 +433,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.BAKER);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.BAKER);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.BAKER, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.BAKER, e.Research.Value);
             }
         }
 
@@ -458,7 +458,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -469,12 +469,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.WOODCUTTER);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.WOODCUTTER);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.WOODCUTTER, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.WOODCUTTER, e.Research.Value);
             }
         }
         public class WorkBenchTrainingResearch : IPandaResearch
@@ -493,7 +493,7 @@ namespace Pandaros.Settlers.Research
             public List<string> Dependancies => new List<string>()
             {
                 SCIENCEBAGREQ,
-                ColonyBuiltIn.Research.CoinMinting
+                ColonyBuiltIn.Research.FINERYFORGE
             };
 
             public int BaseIterationCount => 10;
@@ -504,12 +504,12 @@ namespace Pandaros.Settlers.Research
 
             public void OnRegister()
             {
-                SetCraftingCooldown(ColonyBuiltIn.Jobs.CRAFTER);
+                SetCraftingCooldown(ColonyBuiltIn.NpcTypes.CRAFTER);
             }
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                DecreaseCraftingCooldown(ColonyBuiltIn.Jobs.CRAFTER, e.Research.Value);
+                DecreaseCraftingCooldown(ColonyBuiltIn.NpcTypes.CRAFTER, e.Research.Value);
             }
         }
 
@@ -560,19 +560,19 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SetCooldown(e, ColonyBuiltIn.Jobs.CRAFTER, WorkBenchTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.WOODCUTTER, WoodcutterTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.BAKER, OvenTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.MINTER, MintTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.METALSMITHJOB, MetalSmithTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.KILNJOB, KilnTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.GUNSMITHJOB, GunSmithTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.GRINDER, GrinderTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.SMELTER, FurnaceTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.FINERYFORGEJOB, FineryForgeTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.BLOOMERYJOB, BloomeryTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.TAILOR, TailorTraining);
-                SetCooldown(e, ColonyBuiltIn.Jobs.MERCHANT, MerchantTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.CRAFTER, WorkBenchTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.WOODCUTTER, WoodcutterTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.BAKER, OvenTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.MINTER, MintTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.METALSMITHJOB, MetalSmithTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.KILNJOB, KilnTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.GUNSMITHJOB, GunSmithTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.GRINDER, GrinderTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.SMELTER, FurnaceTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.FINERYFORGEJOB, FineryForgeTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.BLOOMERYJOB, BloomeryTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.TAILOR, TailorTraining);
+                SetCooldown(e, ColonyBuiltIn.NpcTypes.MERCHANT, MerchantTraining);
             }
 
             private static void SetCooldown(ResearchCompleteEventArgs e, string name, string researchKey)
