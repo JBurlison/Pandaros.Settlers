@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Pandaros.Settlers.Items
 {
+    [ModLoader.ModManager]
     public static class StaticItems
     {
         public class StaticItem

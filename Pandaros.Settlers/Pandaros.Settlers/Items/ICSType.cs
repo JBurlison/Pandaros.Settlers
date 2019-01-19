@@ -9,10 +9,10 @@ namespace Pandaros.Settlers.Items
 {
     public enum ItemRarity
     {
-        Common,
-        Uncommon,
-        Rare,
-        Artifact
+        Common = 0,
+        Uncommon = 1,
+        Rare = 2,
+        Artifact = 3
     }
 
     public interface ICSType : INameable
