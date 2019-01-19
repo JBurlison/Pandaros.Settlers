@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementText => "I've got you in my sights!";
         public string DeathText => "Looks like I have to work on my aim.";
-        public string Name => "Fallen Ranger";
+        public string name => "Fallen Ranger";
         public override float TotalHealth => _totalHealth;
 
         public bool KilledBefore

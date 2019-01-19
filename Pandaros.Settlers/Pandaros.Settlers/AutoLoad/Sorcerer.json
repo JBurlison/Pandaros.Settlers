@@ -1,2 +1,979 @@
 [
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledSword1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledSword",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledSword2Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledSword",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledSword",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledSword1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelSword",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledSword",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledSwordRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 20
+      },
+      {
+        "type": "Pandaros.Settlers.Elementium",
+        "amount": 30
+      },
+      {
+        "type": "sciencebagadvanced",
+        "amount": 30
+      },
+      {
+        "type": "Pandaros.Settlers.Mana",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.Healthbooster",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.HealthboosterRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 20
+      },
+      {
+        "type": "Pandaros.Settlers.Elementium",
+        "amount": 30
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 30
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 30
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 30
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.Mana",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.BootsOfFalling",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.BootsOfFallingRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelBoots",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledBoots",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledBootsRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledBoots",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledBoots1",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledBoots1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledBoots1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledBoots2",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledBoots2Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelChest",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledChest",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledChestRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledChest",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledChest1",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledChest1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledChest1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledChest2",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledChest2Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelGloves",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledGloves",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledGlovesRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledGloves",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledGloves1",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledGloves1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledGloves1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledGloves2",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledGloves2Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelHelm",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledHelm",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledHelmRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledHelm",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledHelm1",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledHelm1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledHelm1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledHelm2",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledHelm2Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelLegs",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledLegs",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledLegsRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledLegs",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledLegs1",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledLegs1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledLegs1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledLegs2",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledLegs1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 3
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 1
+      },
+      {
+        "type": "Pandaros.Settlers.SteelShield",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledShield",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledShieldRecipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 12
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 13
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 11
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledShield",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledShield1",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledShield1Recipe"
+  },
+  {
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
+        "amount": 22
+      },
+      {
+        "type": "Pandaros.Settlers.AirStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.EarthStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.WaterStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.FireStone",
+        "amount": 23
+      },
+      {
+        "type": "Pandaros.Settlers.Esper",
+        "amount": 21
+      },
+      {
+        "type": "Pandaros.Settlers.SkilledShield1",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.SkilledShield2",
+        "amount": 1
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": true,
+    "defaultLimit": 1,
+    "Job": "Pandaros.Settlers.Sorcerer",
+    "name": "Pandaros.Settlers.SkilledShield2Recipe"
+  }
 ]

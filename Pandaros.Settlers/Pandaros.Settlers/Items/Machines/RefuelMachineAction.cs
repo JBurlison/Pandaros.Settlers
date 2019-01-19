@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Items.Machines
             FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
         }
 
-        string INameable.Name => MachineConstants.REFUEL;
+        string INameable.name => MachineConstants.REFUEL;
 
         float IRoamingJobObjectiveAction.TimeToPreformAction => 4;
 

@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Items.Machines
 {
     public class TeleportPadRegister : IRoamingJobObjective
     {
-        public string Name => nameof(TeleportPad);
+        public string name => nameof(TeleportPad);
         public float WorkTime => 10;
         public ushort ItemIndex => TeleportPad.Item.ItemIndex;
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class RepairTeleportPad : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.REPAIR;
+        public string name => MachineConstants.REPAIR;
 
         public float TimeToPreformAction => 10;
 
@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class ReloadTeleportPad : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.RELOAD;
+        public string name => MachineConstants.RELOAD;
 
         public float TimeToPreformAction => 5;
 
@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class RefuelTeleportPad : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.REFUEL;
+        public string name => MachineConstants.REFUEL;
 
         public float TimeToPreformAction => 4;
 

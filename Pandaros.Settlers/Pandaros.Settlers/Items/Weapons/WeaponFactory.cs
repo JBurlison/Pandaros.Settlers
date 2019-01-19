@@ -69,7 +69,7 @@ namespace Pandaros.Settlers.Items.Weapons
                     player.TakeItemFromInventory(click.typeSelected);
 
                     PandaChat.Send(player,
-                                   $"Your {WeaponLookup[click.typeSelected].Name} has broke!",
+                                   $"Your {WeaponLookup[click.typeSelected].name} has broke!",
                                    ChatColor.orange);
                 }
             }

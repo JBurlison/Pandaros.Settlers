@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Items
 {
     public class CSType : ICSType
     {
-        public virtual string Name { get; set; }
+        public virtual string name { get; set; }
         public virtual bool? isDestructible { get; }
         public virtual bool? isRotatable { get; }
         public virtual bool? isSolid { get; }

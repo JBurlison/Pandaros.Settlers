@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Items
                         {
                             List<IItem> items = new List<IItem>();
                             items.Add(new ItemIcon(kvp.Key));
-                            items.Add(new Label(new LabelData(magicItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                            items.Add(new Label(new LabelData(magicItem.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                             items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
                             items.Add(new ButtonCallback(id + kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                             menu.Items.Add(new HorizontalGrid(items, 250));
@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Items
                         {
                             List<IItem> items = new List<IItem>();
                             items.Add(new ItemIcon(kvp.Key));
-                            items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                            items.Add(new Label(new LabelData(armItem.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                             items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
                             items.Add(new ButtonCallback(kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                             menu.Items.Add(new HorizontalGrid(items, 250));
@@ -128,7 +128,7 @@ namespace Pandaros.Settlers.Items
                 {
                     if (int.TryParse(data.ButtonIdentifier.Replace("MagicItem.", "").Replace(".RemovePlayerEquiptmentButton", ""), out var id))
                     {
-                        data.Player.ActiveColony.Stockpile.Add(ItemId.GetItemId(ps.MagicItems[id].Name));
+                        data.Player.ActiveColony.Stockpile.Add(ItemId.GetItemId(ps.MagicItems[id].name));
                         ps.MagicItems[id] = null;
                     }
                 }
@@ -236,7 +236,7 @@ namespace Pandaros.Settlers.Items
                                         {
                                             List<IItem> items = new List<IItem>();
                                             items.Add(new ItemIcon(kvp.Key));
-                                            items.Add(new Label(new LabelData(wepItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                                            items.Add(new Label(new LabelData(wepItem.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                                             items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
                                             items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                                             menu.Items.Add(new HorizontalGrid(items, 250));
@@ -251,7 +251,7 @@ namespace Pandaros.Settlers.Items
                                         {
                                             List<IItem> items = new List<IItem>();
                                             items.Add(new ItemIcon(kvp.Key));
-                                            items.Add(new Label(new LabelData(armItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                                            items.Add(new Label(new LabelData(armItem.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                                             items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)));
                                             items.Add(new ButtonCallback(newButtonID + "." + kvp.Key + ".AddSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                                             menu.Items.Add(new HorizontalGrid(items, 250));
@@ -419,7 +419,7 @@ namespace Pandaros.Settlers.Items
 
                 if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
                 {
-                    items.Add(new Label(new LabelData(arm.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                    items.Add(new Label(new LabelData(arm.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                     items.Add(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Swap"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                     items.Add(new ButtonCallback(armor.Key + ".RemovePlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Remove"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 }
@@ -439,8 +439,8 @@ namespace Pandaros.Settlers.Items
 
                 if (ps.MagicItems[i] != null)
                 {
-                    items.Add(new ItemIcon(ps.MagicItems[i].Name));
-                    items.Add(new Label(new LabelData(ps.MagicItems[i].Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                    items.Add(new ItemIcon(ps.MagicItems[i].name));
+                    items.Add(new Label(new LabelData(ps.MagicItems[i].name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                     items.Add(new ButtonCallback("MagicItem." + i + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Swap"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                     items.Add(new ButtonCallback("MagicItem." + i + ".RemovePlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Remove"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 }
@@ -517,7 +517,7 @@ namespace Pandaros.Settlers.Items
 
             if (Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wepItem))
             {
-                wep.Add(new Label(new LabelData(wepItem.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                wep.Add(new Label(new LabelData(wepItem.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                 wep.Add(new ButtonCallback(jobKvp.Key + ".wep." + job.NPC.ID + ".AddEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Swap"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 wep.Add(new ButtonCallback(jobKvp.Key + ".wep." + job.NPC.ID + ".RemoveEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Remove"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
@@ -537,7 +537,7 @@ namespace Pandaros.Settlers.Items
 
                 if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
                 {
-                    items.Add(new Label(new LabelData(arm.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
+                    items.Add(new Label(new LabelData(arm.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
                     items.Add(new ButtonCallback(jobKvp.Key + "." + armor.Key + ".arm." + job.NPC.ID + ".AddEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Swap"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                     items.Add(new ButtonCallback(jobKvp.Key + "." + armor.Key + ".arm." + job.NPC.ID + ".RemoveEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Remove"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 }

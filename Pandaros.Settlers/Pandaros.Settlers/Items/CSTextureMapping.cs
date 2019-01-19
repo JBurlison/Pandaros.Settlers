@@ -8,7 +8,7 @@ namespace Pandaros.Settlers.Items
 {
     public class CSTextureMapping : ICSTextureMapping
     {
-        public virtual string Name => null;
+        public virtual string name => null;
 
         public virtual string emissive => null;
 

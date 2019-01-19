@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementText => "Get them my pretties!";
 
-        public string Name => "ZombieQueen";
+        public string name => "ZombieQueen";
 
         public override float TotalHealth => _totalHealth;
 

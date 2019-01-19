@@ -21,10 +21,10 @@ namespace Pandaros.Settlers.Extender.Providers
             foreach (var item in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(item) is ICSTextureMapping texture &&
-                    !string.IsNullOrEmpty(texture.Name))
+                    !string.IsNullOrEmpty(texture.name))
                 {
-                    ItemTypesServer.SetTextureMapping(texture.Name, new ItemTypesServer.TextureMapping(texture.JsonSerialize()));
-                    sb.Append($"{texture.Name}, ");
+                    ItemTypesServer.SetTextureMapping(texture.name, new ItemTypesServer.TextureMapping(texture.JsonSerialize()));
+                    sb.Append($"{texture.name}, ");
                     i++;
 
                     if (i > 5)

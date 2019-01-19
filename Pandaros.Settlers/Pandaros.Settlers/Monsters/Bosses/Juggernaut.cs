@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementText => "IM THE JUGGERNAUT B$#CH!";
         public string DeathText => "Juggernaut want to smash.....";
-        public string Name => "Juggernaut";
+        public string name => "Juggernaut";
         public override float TotalHealth => _totalHealth;
 
         public bool KilledBefore

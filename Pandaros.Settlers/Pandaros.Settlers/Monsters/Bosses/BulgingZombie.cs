@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string AnnouncementText => "I DONT FEEL SO GOOD";
         public string DeathText => "Boom.";
 
-        public string Name => "Bulging";
+        public string name => "Bulging";
 
         public override float TotalHealth => _totalHealth;
 

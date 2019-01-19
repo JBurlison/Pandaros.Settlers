@@ -13,6 +13,12 @@ namespace Pandaros.Settlers.Extender.Providers
     {
         StringBuilder _sb = new StringBuilder();
 
+        List<string> _fixRelativePaths = new List<string>()
+        {
+            "icon",
+            "mash"
+        };
+
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(ICSType);
@@ -28,7 +34,7 @@ namespace Pandaros.Settlers.Extender.Providers
                 try
                 {
                     if (Activator.CreateInstance(item) is ICSType itemType &&
-                        !string.IsNullOrEmpty(itemType.Name))
+                        !string.IsNullOrEmpty(itemType.name))
                     {
                         loadedItems.Add(itemType);            
                     }
@@ -39,7 +45,7 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            var settings = GameLoader.GetJSONSettings(GameLoader.NAMESPACE + ".CSItems");
+            var settings = GameLoader.GetJSONSettingPaths(GameLoader.NAMESPACE + ".CSItems");
             
             foreach (var modInfo in settings)
             {
@@ -52,6 +58,10 @@ namespace Pandaros.Settlers.Extender.Providers
                         if (jsonFile.NodeType == NodeType.Object && jsonFile.ChildCount > 0)
                             foreach (var item in jsonFile.LoopObject())
                             {
+                                foreach (var property in _fixRelativePaths)
+                                if (item.Value.TryGetAs(property, out string propertyPath) && propertyPath.StartsWith("./"))
+                                    item.Value[property] = new JSONNode(modInfo.Key + "\\" + propertyPath.Substring(2));
+
                                 if (item.Value.TryGetAs("Durability", out int durability))
                                     loadedItems.Add(item.Value.JsonDeerialize<MagicArmor>());
                                 else if (item.Value.TryGetAs("WepDurability", out bool wepDurability))
@@ -71,16 +81,23 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var itemType in loadedItems)
             {
-                var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.Name, itemType.JsonSerialize());
-                itemTypes.Add(itemType.Name, rawItem);
+                var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.name, itemType.JsonSerialize());
+
+                if (itemTypes.ContainsKey(itemType.name))
+                {
+                    PandaLogger.Log(ChatColor.yellow, "Item {0} already loaded...Overriding item.", itemType.name);
+                    itemTypes[itemType.name] = rawItem;
+                }
+                else
+                    itemTypes.Add(itemType.name, rawItem);
 
                 if (itemType.StaticItemSettings != null && !string.IsNullOrWhiteSpace(itemType.StaticItemSettings.Name))
                     StaticItems.List.Add(itemType.StaticItemSettings);
 
                 if (itemType is IPlayerMagicItem pmi)
-                    MagicItemsCache.PlayerMagicItems[pmi.Name] = pmi;
+                    MagicItemsCache.PlayerMagicItems[pmi.name] = pmi;
 
-                _sb.Append($"{itemType.Name}, ");
+                _sb.Append($"{itemType.name}, ");
                 i++;
 
                 if (i > 5)

@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         private void Initialize()
         {
             foreach (var roamAction in RoamingJobSettings.ActionCallbacks.Values)
-                SetActionsMaxEnergy(roamAction.Name, Colony, RoamingJobSettings.ObjectiveCategory, DEFAULT_MAX);
+                SetActionsMaxEnergy(roamAction.name, Colony, RoamingJobSettings.ObjectiveCategory, DEFAULT_MAX);
         }
 
         public void ResetActionToMaxLoad(string action)

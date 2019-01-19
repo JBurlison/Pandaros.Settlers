@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string AnnouncementText => "Hehehe Smell that?!?!?! Come a little closer...";
         public string DeathText => "ffffffaaarrt....";
 
-        public string Name => "Putrid Corpse";
+        public string name => "Putrid Corpse";
 
         public override float TotalHealth => _totalHealth;
 

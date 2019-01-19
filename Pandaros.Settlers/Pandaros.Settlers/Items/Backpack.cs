@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Items
 
         public int BaseIterationCount => 50;
         public bool AddLevelToName => true;
-        public string Name => "Backpack";
+        public string name => "Backpack";
 
         public void OnRegister()
         {
@@ -48,7 +48,7 @@ namespace Pandaros.Settlers.Items
     public class Backpack : CSType
     {
         public static string NAME = GameLoader.NAMESPACE + ".Backpack";
-        public override string Name => NAME;
+        public override string name => NAME;
         public override string icon => GameLoader.ICON_PATH + "Backpack.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;

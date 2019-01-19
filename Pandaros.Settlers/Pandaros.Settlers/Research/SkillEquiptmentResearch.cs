@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Research
 
         public bool AddLevelToName => true;
 
-        public string Name => "SkillEquiptmentResearch";
+        public string name => "SkillEquiptmentResearch";
 
         public void OnRegister()
         {
@@ -45,23 +45,23 @@ namespace Pandaros.Settlers.Research
         {
             if (e.Research.Level == 1)
             {
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledBoots1Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledChest1Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledGloves1Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledHelm1Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledLegs1Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledShield1Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Weapons.SkilledSword1Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledBoots1"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledChest1"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledGloves1"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledHelm1"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledLegs1"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledShield1"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledSword1"), true);
             }
             else
             {
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledBoots2Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledChest2Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledGloves2Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledHelm2Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledLegs2Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Armor.Magical.SkilledShield2Recipe.NAME), true);
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Weapons.SkilledSword2Recipe.NAME), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledBoots2"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledChest2"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledGloves2"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledHelm2"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledLegs2"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledShield2"), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + "SkilledSword2"), true);
             }
         }
     }

@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Jobs.Construction
     public class SchematicTool : CSType
     {
         public static string NAME = GameLoader.NAMESPACE + ".SchematicTool";
-        public override string Name => NAME;
+        public override string name => NAME;
         public override string icon => GameLoader.ICON_PATH + "Schematics.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;
@@ -61,7 +61,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
-        public string Name => "Architect";
+        public string name => "Architect";
 
         public void OnRegister()
         {

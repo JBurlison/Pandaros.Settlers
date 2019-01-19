@@ -70,7 +70,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => MerchantTraining;
+            public string name => MerchantTraining;
 
             public void OnRegister()
             {
@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => TailorTraining;
+            public string name => TailorTraining;
 
             public void OnRegister()
             {
@@ -142,7 +142,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => BloomeryTraining;
+            public string name => BloomeryTraining;
 
             public void OnRegister()
             {
@@ -178,7 +178,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => FineryForgeTraining;
+            public string name => FineryForgeTraining;
 
             public void OnRegister()
             {
@@ -214,7 +214,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => FurnaceTraining;
+            public string name => FurnaceTraining;
 
             public void OnRegister()
             {
@@ -250,7 +250,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => GrinderTraining;
+            public string name => GrinderTraining;
 
             public void OnRegister()
             {
@@ -286,7 +286,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => GunSmithTraining;
+            public string name => GunSmithTraining;
 
             public void OnRegister()
             {
@@ -322,7 +322,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => KilnTraining;
+            public string name => KilnTraining;
 
             public void OnRegister()
             {
@@ -358,7 +358,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => MetalSmithTraining;
+            public string name => MetalSmithTraining;
 
             public void OnRegister()
             {
@@ -393,7 +393,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => MintTraining;
+            public string name => MintTraining;
 
             public void OnRegister()
             {
@@ -429,7 +429,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => OvenTraining;
+            public string name => OvenTraining;
 
             public void OnRegister()
             {
@@ -465,7 +465,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => WoodcutterTraining;
+            public string name => WoodcutterTraining;
 
             public void OnRegister()
             {
@@ -500,7 +500,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => WorkBenchTraining;
+            public string name => WorkBenchTraining;
 
             public void OnRegister()
             {
@@ -551,7 +551,7 @@ namespace Pandaros.Settlers.Research
 
             public bool AddLevelToName => true;
 
-            public string Name => MasterOfAll;
+            public string name => MasterOfAll;
 
             public void OnRegister()
             {

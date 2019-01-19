@@ -18,12 +18,12 @@ namespace Pandaros.Settlers.Items.Machines
     {
         public TurretRegister(Turret.TurretSetting setting)
         {
-            Name = setting.Name;
+            name = setting.Name;
             WorkTime = setting.WorkTime;
             ItemIndex = Turret.TurretTypes[setting.Name].ItemIndex;
         }
 
-        public string Name { get; private set; }
+        public string name { get; private set; }
         public float WorkTime { get; private set; }
         public ushort ItemIndex { get; private set; }
 
@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class RepairTurret : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.REPAIR;
+        public string name => MachineConstants.REPAIR;
 
         public float TimeToPreformAction => 10;
 
@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class ReloadTurret : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.RELOAD;
+        public string name => MachineConstants.RELOAD;
 
         public float TimeToPreformAction => 5;
 
@@ -691,7 +691,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("isPlaceable", true)
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", STONE_NAMESPACE + "sides")
@@ -719,7 +719,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("isPlaceable", true)
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", BRONZEARROW_NAMESPACE + "sides")
@@ -747,7 +747,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("isPlaceable", true)
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", CROSSBOW_NAMESPACE + "sides")
@@ -775,7 +775,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("isPlaceable", true)
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", MATCHLOCK_NAMESPACE + "sides")

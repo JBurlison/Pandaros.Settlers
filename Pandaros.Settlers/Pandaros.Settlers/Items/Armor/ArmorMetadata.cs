@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items.Armor
         {
             ArmorRating = armorRating;
             Durability = durability;
-            Name = name;
+            this.name = name;
             ItemType = itemType;
             Slot = slot;
         }
@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Items.Armor
 
         public int Durability { get; set; }
 
-        public string Name { get; }
+        public string name { get; }
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 

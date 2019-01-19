@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Jobs
 
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
-        public string Name => "Sorcerer";
+        public string name => "Sorcerer";
 
         public void OnRegister()
         {
@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Jobs
 
     public class SorcererTexture : CSTextureMapping
     {
-        public override string Name => GameLoader.NAMESPACE + ".SorcererTableTop";
+        public override string name => GameLoader.NAMESPACE + ".SorcererTableTop";
         public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "SorcererTableTop.png";
         public override string height => GameLoader.BLOCKS_HEIGHT_PATH + "SorcererTableTop.png";
         public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "SorcererTableTop.png";
@@ -85,26 +85,26 @@ namespace Pandaros.Settlers.Jobs
         public override string sideall => "coatedplanks";
         public override string sideyp => GameLoader.NAMESPACE + ".SorcererTableTop";
         public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
-        public override string Name => SorcererRegister.JOB_ITEM_KEY;
+        public override string name => SorcererRegister.JOB_ITEM_KEY;
     }
 
     public class SorcererRecipe : ICSRecipe
     {
         public SorcererRecipe()
         {
-            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperNails), 60);
-            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperTools), 6);
-            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.Planks), 6);
-            Requirements.Add(ItemId.GetItemId(Items.Reagents.Adamantine.NAME), 2);
-            Results.Add(ItemId.GetItemId(SorcererRegister.JOB_ITEM_KEY), 1);
+            requires.Add(new RecipeItem(BuiltinBlocks.CopperNails, 60));
+            requires.Add(new RecipeItem(BuiltinBlocks.CopperTools, 6));
+            requires.Add(new RecipeItem(BuiltinBlocks.Planks, 6));
+            requires.Add(new RecipeItem(Items.Reagents.Adamantine.NAME, 2));
+            results.Add(new RecipeItem(SorcererRegister.JOB_ITEM_KEY, 1));
         }
 
-        public Dictionary<ItemId, int> Requirements { get; private set; } = new Dictionary<ItemId, int>();
-        public Dictionary<ItemId, int> Results { get; private set; } = new Dictionary<ItemId, int>();
-        public CraftPriority Priority => CraftPriority.Medium;
-        public bool IsOptional => true;
-        public int DefautLimit => 5;
+        public List<RecipeItem> requires { get; private set; } = new List<RecipeItem>();
+        public List<RecipeItem> results { get; private set; } = new List<RecipeItem>();
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public bool isOptional => true;
+        public int defaultLimit => 5;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
-        public string Name => SorcererRegister.JOB_NAME;
+        public string name => SorcererRegister.JOB_NAME;
     }
 }

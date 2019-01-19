@@ -302,7 +302,7 @@ namespace Pandaros.Settlers.Jobs
 
                     if (bestWeapon != null)
                     {
-                        var wepId = ItemId.GetItemId(bestWeapon.Name);
+                        var wepId = ItemId.GetItemId(bestWeapon.name);
                         if (hasItem && _inv.Weapon.Id != wepId || !hasItem)
                         {
                             hasItem = true;

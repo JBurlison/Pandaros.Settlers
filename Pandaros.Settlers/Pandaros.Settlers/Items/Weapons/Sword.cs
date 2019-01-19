@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 // Copper
                 // ----------------------------------------
 
-                if (a.Value.Name == "Copper Sword")
+                if (a.Value.name == "Copper Sword")
                 {
                     copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
                     copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 // Bronze
                 // ----------------------------------------
 
-                if (a.Value.Name == "Bronze Sword")
+                if (a.Value.name == "Bronze Sword")
                 {
                     bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
                     bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 // Iron
                 // ----------------------------------------
 
-                if (a.Value.Name == "Iron Sword")
+                if (a.Value.name == "Iron Sword")
                 {
                     ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
                     iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 // Steel
                 // ----------------------------------------
 
-                if (a.Value.Name == "Steel Sword")
+                if (a.Value.name == "Steel Sword")
                 {
                     steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
                     steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);

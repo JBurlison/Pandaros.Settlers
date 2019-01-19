@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Items.Machines
 {
     public class MinerRegister : IRoamingJobObjective
     {
-        public string Name => nameof(Miner);
+        public string name => nameof(Miner);
         public float WorkTime => 4;
         public ushort ItemIndex => Miner.Item.ItemIndex;
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class RepairMiner : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.REPAIR;
+        public string name => MachineConstants.REPAIR;
 
         public float TimeToPreformAction => 10;
 
@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class ReloadMiner : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.RELOAD;
+        public string name => MachineConstants.RELOAD;
 
         public float TimeToPreformAction => 5;
 

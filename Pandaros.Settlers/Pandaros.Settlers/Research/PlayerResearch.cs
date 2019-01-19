@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Research
     {
         public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
         {
-            {  ItemId.GetItemId(Items.PlayerMagicItems.HealthBooster.NAME), 1 }
+            {  ItemId.GetItemId("Pandaros.Settlers.Healthbooster"), 1 }
         };
 
         public int NumberOfLevels => 2;
@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Research
 
         public bool AddLevelToName => true;
 
-        public string Name =>  "MaxMagicItems";
+        public string name =>  "MaxMagicItems";
 
         public void OnRegister()
         {

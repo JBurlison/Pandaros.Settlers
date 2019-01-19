@@ -399,7 +399,7 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var magicItem in _playerStates[p].MagicItems)
                     if (magicItem != null)
-                        equiptMagicItems.AddToArray(new JSONNode(magicItem.Name));
+                        equiptMagicItems.AddToArray(new JSONNode(magicItem.name));
 
                 foreach (var kvp in _playerStates[p].ItemsPlaced)
                     ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);

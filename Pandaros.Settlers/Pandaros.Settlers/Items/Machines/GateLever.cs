@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Items.Machines
 {
     public class GateLeverRegister : IRoamingJobObjective
     {
-        public string Name => nameof(GateLever);
+        public string name => nameof(GateLever);
         public float WorkTime => 4;
         public ushort ItemIndex => GateLever.Item.ItemIndex;
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class RepairGateLever : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.REPAIR;
+        public string name => MachineConstants.REPAIR;
 
         public float TimeToPreformAction => 10;
 
@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class ReloadGateLever : IRoamingJobObjectiveAction
     {
-        public string Name => MachineConstants.RELOAD;
+        public string name => MachineConstants.RELOAD;
 
         public float TimeToPreformAction => 5;
 

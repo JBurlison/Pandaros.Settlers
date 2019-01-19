@@ -22,27 +22,28 @@ namespace Pandaros.Settlers.Extender.Providers
             foreach (var item in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(item) is ICSRecipe recipe &&
-                    !string.IsNullOrEmpty(recipe.Name))
+                    !string.IsNullOrEmpty(recipe.name))
                 {
                     var requirements = new List<InventoryItem>();
                     var results = new List<ItemTypes.ItemTypeDrops>();
+                    recipe.JsonSerialize();
 
-                    foreach (var ri in recipe.Requirements)
-                        if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
-                            requirements.Add(new InventoryItem(itemIndex, ri.Value));
+                    foreach (var ri in recipe.requires)
+                        if (ItemTypes.IndexLookup.TryGetIndex(ri.type, out var itemIndex))
+                            requirements.Add(new InventoryItem(itemIndex, ri.amount));
 
-                    foreach (var ri in recipe.Results)
-                        if (ItemTypes.IndexLookup.TryGetIndex(ri.Key, out var itemIndex))
-                            results.Add(new ItemTypes.ItemTypeDrops(itemIndex, ri.Value));
+                    foreach (var ri in recipe.results)
+                        if (ItemTypes.IndexLookup.TryGetIndex(ri.type, out var itemIndex))
+                            results.Add(new ItemTypes.ItemTypeDrops(itemIndex, ri.amount));
 
-                    var newRecipe = new Recipe(recipe.Name, requirements, results, recipe.DefautLimit, recipe.IsOptional, (int)recipe.Priority);
+                    var newRecipe = new Recipe(recipe.name, requirements, results, recipe.defaultLimit, recipe.isOptional, (int)recipe.defaultPriority);
 
-                    if (recipe.IsOptional)
+                    if (recipe.isOptional)
                         ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(recipe.Job, newRecipe);
                     else
                         ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(recipe.Job, newRecipe);
 
-                    sb.Append($"{recipe.Name}, ");
+                    sb.Append($"{recipe.name}, ");
                     i++;
 
                     if (i > 5)

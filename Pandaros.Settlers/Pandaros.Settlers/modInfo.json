@@ -11,23 +11,23 @@
     ],
     "Pandaros.Settlers.jsonFiles": [
       {
+        "fileType": "Pandaros.Settlers.CSItems",
+        "relativePath": "SettlersItems.json"
+      },
+      {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "localization": "en-US",
         "relativePath": "Help/en-US/help.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "localization": "en-US",
         "relativePath": "Help/en-US/Apothecary.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "localization": "en-US",
         "relativePath": "Help/en-US/knights.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "localization": "en-US",
         "relativePath": "Help/en-US/Machinists.json"
       },
       {

@@ -167,7 +167,7 @@ namespace Pandaros.Settlers.Jobs
     public class MachinistTexture : CSTextureMapping
     {
         public const string NAME = GameLoader.NAMESPACE + ".MachinistBenchTop";
-        public override string Name => NAME;
+        public override string name => NAME;
         public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "MachinistBenchTop.png";
         public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "MachinistBenchTop.png";
         public override string height => GameLoader.BLOCKS_HEIGHT_PATH + "MachinistBenchTop.png";
@@ -176,7 +176,7 @@ namespace Pandaros.Settlers.Jobs
     public class MachinistNightTexture : CSTextureMapping
     {
         public const string NAME = GameLoader.NAMESPACE + ".MachinistBenchTopNight";
-        public override string Name => NAME;
+        public override string name => NAME;
         public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "MachinistBenchTopNight.png";
         public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "MachinistBenchTop.png";
         public override string height => GameLoader.BLOCKS_HEIGHT_PATH + "MachinistBenchTop.png";
@@ -184,51 +184,51 @@ namespace Pandaros.Settlers.Jobs
 
     public class MachinistJobTypeNight : CSType
     {
-        public override string Name => MachinistNight.JOB_ITEM_KEY;
+        public override string name => MachinistNight.JOB_ITEM_KEY;
         public override string icon => GameLoader.ICON_PATH + "MachinistBenchNight.png";
         public override string onPlaceAudio => "stonePlace";
         public override string onRemoveAudio => "stoneDelete";
-        public override string sideall => "stonebricks";
+        public override string sideall => ColonyBuiltIn.ItemTypes.STONEBRICKS;
         public override string sideyp => MachinistNightTexture.NAME;
         public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
     }
 
     public class MachinistJobType : CSType
     {
-        public override string Name => MachinistDay.JOB_ITEM_KEY;
+        public override string name => MachinistDay.JOB_ITEM_KEY;
         public override string icon => GameLoader.ICON_PATH + "MachinistBench.png";
         public override string onPlaceAudio => "stonePlace";
         public override string onRemoveAudio => "stoneDelete";
-        public override string sideall => "stonebricks";
+        public override string sideall => ColonyBuiltIn.ItemTypes.STONEBRICKS;
         public override string sideyp => MachinistTexture.NAME;
         public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
     }
 
     public class MachinisNighttRecipe : MachinistRecipe
     {
-        public override string Name => MachinistNight.JOB_RECIPE;
+        public override string name => MachinistNight.JOB_RECIPE;
     }
 
     public class MachinistRecipe : ICSRecipe
     {
-        public virtual string Name => MachinistDay.JOB_RECIPE;
+        public virtual string name => MachinistDay.JOB_RECIPE;
 
-        public Dictionary<ItemId, int> Requirements => new Dictionary<ItemId, int>()
+        public List<RecipeItem> requires => new List<RecipeItem>()
         {
-            { ItemId.GetItemId("bronzeingot"), 2 },
-            { ItemId.GetItemId("ironwrought"), 2 },
-            { ItemId.GetItemId("coppertools"), 1 },
-            { ItemId.GetItemId("stonebricks"), 4 }
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS, 1) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS, 4) }
         };
 
-        public Dictionary<ItemId, int> Results => new Dictionary<ItemId, int>()
+        public List<RecipeItem> results => new List<RecipeItem>()
         {
-            { ItemId.GetItemId(MachinistDay.JOB_ITEM_KEY), 1 }
+            { new RecipeItem(MachinistDay.JOB_ITEM_KEY, 1) }
         };
 
-        public CraftPriority Priority => CraftPriority.Medium;
-        public bool IsOptional => true;
-        public int DefautLimit => 2;
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public bool isOptional => true;
+        public int defaultLimit => 2;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
     }
 }

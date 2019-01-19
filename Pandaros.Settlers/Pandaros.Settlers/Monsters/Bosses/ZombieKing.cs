@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string AnnouncementText => "YOU WILL DO MY BIDDING!";
         public string DeathText => "UGH Help me you useless bags of meat......";
 
-        public string Name => "ZombieKing";
+        public string name => "ZombieKing";
 
         public override float TotalHealth => _totalHealth;
 

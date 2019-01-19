@@ -271,21 +271,21 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Copper"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Copper"));
                     break;
                 case 2:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Bronze"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Bronze"));
                     break;
                 case 3:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Iron"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Iron"));
                     break;
                 case 4:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.Name == "Steel"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Steel"));
                     break;
             }
 
             foreach (var item in armor.Where(a => a is ArmorMetadata metadata && metadata.ItemType != null))
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.Name), true);
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.name), true);
         }
 
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
@@ -336,16 +336,16 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Copper Sword"));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Copper Sword"));
                     break;
                 case 2:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Bronze Sword"));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Bronze Sword"));
                     break;
                 case 3:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Iron Sword"));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Iron Sword"));
                     break;
                 case 4:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.Name == "Steel Sword"));
+                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Steel Sword"));
                     break;
             }
 

@@ -97,7 +97,7 @@ namespace Pandaros.Settlers.Managers
                     bossType   = GetMonsterType();
 
                     if (Players.CountConnected != 0)
-                        PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is: {bossType.Name}");
+                        PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is: {bossType.name}");
                 }
 
                 if (BossActive)
@@ -143,7 +143,7 @@ namespace Pandaros.Settlers.Managers
                                             MonsterTracker.Add(pandaboss);
                                             colony.OnZombieSpawn(true);
                                             cs.FaiedBossSpawns = 0;
-                                            PandaChat.Send(cs, $"[{pandaboss.Name}] {pandaboss.AnnouncementText}", ChatColor.red);
+                                            PandaChat.Send(cs, $"[{pandaboss.name}] {pandaboss.AnnouncementText}", ChatColor.red);
 
                                             if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
                                                colony.ForEachOwner(o => ServerManager.SendAudio(o.Position, pandaboss.AnnouncementAudio));
@@ -185,7 +185,7 @@ namespace Pandaros.Settlers.Managers
                             {
                                 PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
                                 var boss = _spawnedBosses.FirstOrDefault().Value;
-                                PandaChat.SendToAll($"[{boss.Name}] {boss.DeathText}", ChatColor.red);
+                                PandaChat.SendToAll($"[{boss.name}] {boss.DeathText}", ChatColor.red);
                             }
 
                             BossActive = false;

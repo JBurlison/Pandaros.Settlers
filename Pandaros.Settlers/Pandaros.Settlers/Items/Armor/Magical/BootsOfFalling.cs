@@ -15,38 +15,38 @@ namespace Pandaros.Settlers.Items.Armor.Magical
     {
         public static string NAME = GameLoader.NAMESPACE + ".BootsOfFallingRecipe";
 
-        public Dictionary<ItemId, int> Requirements { get; set; } = new Dictionary<ItemId, int>()
+        public List<RecipeItem> requires { get; set; } = new List<RecipeItem>()
         {
-            { ItemId.GetItemId(Adamantine.NAME), 20 },
-            { ItemId.GetItemId(Elementium.Item.name), 30 },
-            { ItemId.GetItemId(AirStone.Item.name), 30 },
-            { ItemId.GetItemId(EarthStone.Item.name), 30 },
-            { ItemId.GetItemId(WaterStone.Item.name), 30 },
-            { ItemId.GetItemId(Esper.Item.name), 1 },
-            { ItemId.GetItemId(Mana.Item.name), 50 }
+            { new RecipeItem(Adamantine.NAME, 20) },
+            { new RecipeItem(Elementium.Item.name, 30) },
+            { new RecipeItem(AirStone.Item.name, 30) },
+            { new RecipeItem(EarthStone.Item.name, 30) },
+            { new RecipeItem(WaterStone.Item.name, 30) },
+            { new RecipeItem(Esper.Item.name, 1) },
+            { new RecipeItem(Mana.Item.name, 50) }
         };
 
-        public Dictionary<ItemId, int> Results { get; set; } = new Dictionary<ItemId, int>()
+        public List<RecipeItem> results { get; set; } = new List<RecipeItem>()
         {
-            { ItemId.GetItemId(BootsOfFalling.NAME), 1 }
+            { new RecipeItem(BootsOfFalling.NAME, 1) }
         };
 
-        public CraftPriority Priority { get; set; } = CraftPriority.Medium;
+        public CraftPriority defaultPriority { get; set; } = CraftPriority.Medium;
 
-        public bool IsOptional { get; set; } = false;
+        public bool isOptional { get; set; } = false;
 
-        public int DefautLimit { get; set; } = 1;
+        public int defaultLimit { get; set; } = 1;
 
         public string Job { get; set; } = Jobs.SorcererRegister.JOB_NAME;
 
-        public string Name => NAME;
+        public string name => NAME;
     }
 
     public class BootsOfFalling : CSType, IArmor, IPlayerMagicItem
     {
         public static string NAME = GameLoader.NAMESPACE + ".BootsOfFalling";
 
-        public override string Name { get; set; } = NAME;
+        public override string name { get; set; } = NAME;
         public override bool? isPlaceable => false;
         public override List<string> categories { get; set; } = new List<string>()
         {

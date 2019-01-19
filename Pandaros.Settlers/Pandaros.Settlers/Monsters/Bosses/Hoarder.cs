@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string AnnouncementText => "FEAR THE ZOMBIE HORDE!";
         public string DeathText => "Gughghgugggghrrrghghgfggg......";
 
-        public string Name => "Hoarder";
+        public string name => "Hoarder";
 
         public override float TotalHealth => _totalHealth;
 

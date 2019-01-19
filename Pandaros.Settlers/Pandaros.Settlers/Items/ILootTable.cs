@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Items
 
     public class LootTable : ILootTable
     {
-        public virtual string Name { get; private set; }
+        public virtual string name { get; private set; }
 
         public virtual List<LootPoolEntry> LootPoolList { get; private set; } = new List<LootPoolEntry>();
 

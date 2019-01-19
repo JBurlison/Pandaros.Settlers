@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
     {
         public const string LootTableName = "Pandaros.Settlers.Monsters.Bosses";
 
-        public override string Name => LootTableName;
+        public override string name => LootTableName;
 
         public BossLoot()
         {

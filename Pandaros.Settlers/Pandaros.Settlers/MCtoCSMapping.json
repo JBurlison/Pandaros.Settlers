@@ -88,7 +88,7 @@
     "meta": 0,
     "name": "Cobblestone",
     "text_type": "cobblestone",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 5,
@@ -529,7 +529,7 @@
     "meta": 0,
     "name": "Gravel",
     "text_type": "gravel",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 14,
@@ -816,42 +816,42 @@
     "meta": 0,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 23,
     "meta": 1,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 23,
     "meta": 2,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 23,
     "meta": 3,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 23,
     "meta": 4,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 23,
     "meta": 5,
     "name": "Dispenser",
     "text_type": "dispenser",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 24,
@@ -1166,112 +1166,112 @@
     "meta": 0,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 1,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 2,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 3,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 4,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 5,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 6,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 7,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 8,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 9,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 10,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 11,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 12,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 13,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 14,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 29,
     "meta": 15,
     "name": "Sticky Piston",
     "text_type": "sticky_piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 30,
@@ -1432,70 +1432,70 @@
     "meta": 0,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 1,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 2,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 3,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 4,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 5,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 6,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 7,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 8,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 33,
     "meta": 9,
     "name": "Piston",
     "text_type": "piston",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 34,
@@ -1831,7 +1831,7 @@
     "meta": 0,
     "name": "Double Stone Slab",
     "text_type": "double_stone_slab",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 43,
@@ -1852,7 +1852,7 @@
     "meta": 3,
     "name": "Double Cobblestone Slab",
     "text_type": "double_stone_slab",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 43,
@@ -1866,7 +1866,7 @@
     "meta": 5,
     "name": "Double Stone Brick Slab",
     "text_type": "double_stone_slab",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 43,
@@ -2062,7 +2062,7 @@
     "meta": 0,
     "name": "Bricks",
     "text_type": "brick_block",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 46,
@@ -4205,7 +4205,7 @@
     "meta": 0,
     "name": "Stone Bricks",
     "text_type": "stonebrick",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 98,
@@ -4688,56 +4688,56 @@
     "meta": 1,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 2,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 3,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 4,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 5,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 6,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 7,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 109,
     "meta": 0,
     "name": "Stone Brick Stairs",
     "text_type": "stone_brick_stairs",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 110,
@@ -5549,7 +5549,7 @@
     "meta": 0,
     "name": "Cobblestone Wall",
     "text_type": "cobblestone_wall",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 139,
@@ -6200,42 +6200,42 @@
     "meta": 0,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 154,
     "meta": 1,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 154,
     "meta": 2,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 154,
     "meta": 3,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 154,
     "meta": 4,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 154,
     "meta": 5,
     "name": "Hopper",
     "text_type": "hopper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 155,
@@ -6509,42 +6509,42 @@
     "meta": 0,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 158,
     "meta": 1,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 158,
     "meta": 2,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 158,
     "meta": 3,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 158,
     "meta": 4,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 158,
     "meta": 5,
     "name": "Dropper",
     "text_type": "dropper",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 159,
@@ -9092,42 +9092,42 @@
     "meta": 0,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 218,
     "meta": 1,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 218,
     "meta": 2,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 218,
     "meta": 3,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 218,
     "meta": 4,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 218,
     "meta": 5,
     "name": "Observer",
     "text_type": "observer",
-    "cs_type": "stonebricks"
+    "cs_type": ColonyBuiltIn.ItemTypes.STONEBRICKS
   },
   {
     "type": 219,

@@ -1131,69 +1131,6 @@
     "parentType": "Pandaros.Settlers.AutoLoad.woodencatwalk",
     "mesh": "./Meshes/woodencatwalkz.obj"
   },
-  "Pandaros.Settlers.AutoLoad.bench": {
-    "onPlaceAudio": "woodPlace",
-    "onRemoveAudio": "woodDeleteLight",
-    "icon": "./icons/bench.png",
-    "isRotatable": true,
-    "isSolid": false,
-    "needsBase": true,
-    "sideall": "SELF",
-    "npcLimit": 0,
-    "maxStackSize": 600,
-    "rotatablex+": "Pandaros.Settlers.AutoLoad.benchleftx+",
-    "rotatablex-": "Pandaros.Settlers.AutoLoad.benchleftx-",
-    "rotatablez+": "Pandaros.Settlers.AutoLoad.benchleftz+",
-    "rotatablez-": "Pandaros.Settlers.AutoLoad.benchleftz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
-  },
-  "Pandaros.Settlers.AutoLoad.benchleftx+": {
-    "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "./Meshes/benchleftx+.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchleftx-": {
-    "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "./Meshes/benchleftx-.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchleftz+": {
-    "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "./Meshes/benchleftz+.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchleftz-": {
-    "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "mesh": "./Meshes/benchleftz-.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchright": {
-    "parentType": "Pandaros.Settlers.AutoLoad.bench",
-    "isRotatable": true,
-    "rotatablex+": "Pandaros.Settlers.AutoLoad.benchrightx+",
-    "rotatablex-": "Pandaros.Settlers.AutoLoad.benchrightx-",
-    "rotatablez+": "Pandaros.Settlers.AutoLoad.benchrightz+",
-    "rotatablez-": "Pandaros.Settlers.AutoLoad.benchrightz-",
-    "categories": [
-      "decorative",
-      "wood"
-    ]
-  },
-  "Pandaros.Settlers.AutoLoad.benchrightx+": {
-    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "./Meshes/benchrightx+.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchrightx-": {
-    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "./Meshes/benchrightx-.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchrightz+": {
-    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "./Meshes/benchrightz+.obj"
-  },
-  "Pandaros.Settlers.AutoLoad.benchrightz-": {
-    "parentType": "Pandaros.Settlers.AutoLoad.benchright",
-    "mesh": "./Meshes/benchrightz-.obj"
-  },
   "Pandaros.Settlers.AutoLoad.woodbarrel": {
     "icon": "./icons/woodbarrel.png",
     "onPlaceAudio": "woodPlace",

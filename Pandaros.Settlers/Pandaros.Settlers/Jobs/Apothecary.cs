@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Jobs
 
     public class ApothecaryTexture : CSTextureMapping
     {
-        public override string Name => GameLoader.NAMESPACE + ".ApothecaryTable";
+        public override string name => GameLoader.NAMESPACE + ".ApothecaryTable";
         public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "ApothecaryTable.png";
         public override string height => GameLoader.BLOCKS_HEIGHT_PATH + "ApothecaryTable.png";
         public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "ApothecaryTable.png";
@@ -48,25 +48,25 @@ namespace Pandaros.Settlers.Jobs
         public override string onRemoveAudio => "woodDeleteLight";
         public override string sideall => GameLoader.NAMESPACE + ".ApothecaryTable";
         public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
-        public override string Name => ApothecaryRegister.JOB_ITEM_KEY;
+        public override string name => ApothecaryRegister.JOB_ITEM_KEY;
     }
 
     public class ApothecaryRecipe : ICSRecipe
     {
         public ApothecaryRecipe()
         {
-            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.BronzeIngot), 2);
-            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.CopperTools), 1);
-            Requirements.Add(ItemId.GetItemId(BuiltinBlocks.Planks), 4);
-            Results.Add(ItemId.GetItemId(ApothecaryRegister.JOB_ITEM_KEY), 1);
+            requires.Add(new RecipeItem(BuiltinBlocks.BronzeIngot, 2));
+            requires.Add(new RecipeItem(BuiltinBlocks.CopperTools, 1));
+            requires.Add(new RecipeItem(BuiltinBlocks.Planks, 4));
+            results.Add(new RecipeItem(ApothecaryRegister.JOB_ITEM_KEY, 1));
         }
 
-        public Dictionary<ItemId, int> Requirements { get; private set; } = new Dictionary<ItemId, int>();
-        public Dictionary<ItemId, int> Results { get; private set; } = new Dictionary<ItemId, int>();
-        public CraftPriority Priority => CraftPriority.Medium;
-        public bool IsOptional => true;
-        public int DefautLimit => 5;
+        public List<RecipeItem> requires { get; private set; } = new List<RecipeItem>();
+        public List<RecipeItem> results { get; private set; } = new List<RecipeItem>();
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public bool isOptional => true;
+        public int defaultLimit => 5;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
-        public string Name => ApothecaryRegister.JOB_RECIPE;
+        public string name => ApothecaryRegister.JOB_RECIPE;
     }
 }

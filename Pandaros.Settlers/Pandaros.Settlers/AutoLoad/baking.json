@@ -16,5 +16,59 @@
     "fuelPerCraft": 0.26,
     "defaultLimit": 0,
     "defaultPriority": -100
+  },
+  {
+    "requires": [
+      {
+        "type": "flour",
+        "amount": 3
+      },
+      {
+        "type": "berry",
+        "amount": 3
+      },
+      {
+        "type": "firewood",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.BerryPancakes",
+        "amount": 2
+      }
+    ],
+    "defaultPriority": 0,
+    "isOptional": false,
+    "defaultLimit": 50,
+    "Job": "pipliz.baker",
+    "name": "Pandaros.Settlers.BerryPancakes"
+  },
+  {
+    "requires": [
+      {
+        "type": "flour",
+        "amount": 4
+      },
+      {
+        "type": "berry",
+        "amount": 4
+      },
+      {
+        "type": "firewood",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "Pandaros.Settlers.BerryPie",
+        "amount": 2
+      }
+    ],
+    "defaultPriority": 100,
+    "isOptional": false,
+    "defaultLimit": 50,
+    "Job": "pipliz.baker",
+    "name": "Pandaros.Settlers.BerryPie"
   }
 ]

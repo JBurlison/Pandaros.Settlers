@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementText => "Catch me if you can!";
         public string DeathText => "I just was not fast enough...";
-        public string Name => "Jack-b-Nimble";
+        public string name => "Jack-b-Nimble";
         public override float TotalHealth => _totalHealth;
 
         public bool KilledBefore

@@ -23,9 +23,9 @@ namespace Pandaros.Settlers.Extender.Providers
             foreach (var monster in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(monster) is IPandaBoss pandaBoss &&
-                    !string.IsNullOrEmpty(pandaBoss.Name))
+                    !string.IsNullOrEmpty(pandaBoss.name))
                 {
-                    sb.Append($"{pandaBoss.Name}, ");
+                    sb.Append($"{pandaBoss.name}, ");
                     MonsterManager.AddBoss(pandaBoss);
                     i++;
 

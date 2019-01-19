@@ -10,12 +10,12 @@ namespace Pandaros.Settlers.Items.Weapons
         public WeaponMetadata(float damage, int durability, string name, ItemTypesServer.ItemTypeRaw item)
         {
             _damage.Add(DamageType.Physical, damage);
-            Name       = name;
+            this.name       = name;
             ItemType   = item;
             WepDurability = durability;
         }
 
-        public string Name { get; }
+        public string name { get; }
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 

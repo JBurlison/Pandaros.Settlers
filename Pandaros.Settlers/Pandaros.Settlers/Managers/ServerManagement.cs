@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Managers
     public class ServerManagementTool : CSType
     {
         public static string NAME = GameLoader.NAMESPACE + ".ServerManagementTool";
-        public override string Name => NAME;
+        public override string name => NAME;
         public override string icon => GameLoader.ICON_PATH + "ServerManagementTool.png";
         public override bool? isPlaceable => false;
         public override int? maxStackSize => 1;

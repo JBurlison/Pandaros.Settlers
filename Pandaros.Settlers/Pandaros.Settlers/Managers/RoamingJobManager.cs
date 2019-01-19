@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Managers
 
         public static void RegisterObjectiveType(IRoamingJobObjective objective)
         {
-            ObjectiveCallbacks[objective.Name] = objective;
+            ObjectiveCallbacks[objective.name] = objective;
         }
 
         public static IRoamingJobObjective GetCallbacks(string objectiveName)

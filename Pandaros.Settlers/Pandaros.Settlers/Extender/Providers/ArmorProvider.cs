@@ -25,13 +25,13 @@ namespace Pandaros.Settlers.Extender.Providers
             foreach (var item in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(item) is IArmor armor &&
-                    !string.IsNullOrEmpty(armor.Name))
+                    !string.IsNullOrEmpty(armor.name))
                 {
                     armors.Add(armor);
                 }
             }
 
-            var settings = GameLoader.GetJSONSettings(GameLoader.NAMESPACE + ".CSItems");
+            var settings = GameLoader.GetJSONSettingPaths(GameLoader.NAMESPACE + ".CSItems");
 
             foreach (var modInfo in settings)
             {
@@ -57,10 +57,10 @@ namespace Pandaros.Settlers.Extender.Providers
             
             foreach (var armor in armors)
             {
-                if (ItemTypes.IndexLookup.TryGetIndex(armor.Name, out var index))
+                if (ItemTypes.IndexLookup.TryGetIndex(armor.name, out var index))
                 {
                     ArmorFactory.ArmorLookup[index] = armor;
-                    sb.Append($"{armor.Name}, ");
+                    sb.Append($"{armor.name}, ");
                     i++;
 
                     if (i > 5)

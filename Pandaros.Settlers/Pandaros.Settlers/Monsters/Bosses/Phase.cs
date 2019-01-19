@@ -34,7 +34,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string AnnouncementText => "You cant see me....";
         public string DeathText => "I just wanted to stay out of sight.";
-        public string Name => "Phase";
+        public string name => "Phase";
         public override float TotalHealth => _totalHealth;
 
         public bool KilledBefore

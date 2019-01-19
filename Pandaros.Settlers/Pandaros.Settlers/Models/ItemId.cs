@@ -115,5 +115,21 @@ namespace Pandaros.Settlers.Models
         {
             return itemId.Id;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() == typeof(string))
+                return obj as string == Name;
+
+            if (obj.GetType() == typeof(ushort))
+                return (ushort)obj == Id;
+
+            return base.Equals(obj);
+        }
     }
 }

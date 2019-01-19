@@ -8,18 +8,37 @@ namespace Pandaros.Settlers.Items
 {
     public enum CraftPriority
     {
-        Low = 0,
-        Medium = 50,
+        Low = -100,
+        Medium = 0,
         High = 100
+    }
+
+    public class RecipeItem
+    {
+        public RecipeItem() { }
+        public RecipeItem(string itemName, int count = 1)
+        {
+            type = itemName;
+            amount = count;
+        }
+
+        public RecipeItem(ushort itemId, int count = 1)
+        {
+            type = ItemTypes.IndexLookup.IndexLookupTable[itemId];
+            amount = count;
+        }
+
+        public string type { get; set; }
+        public int amount { get; set; }
     }
 
     public interface ICSRecipe : INameable
     {
-        Dictionary<ItemId, int> Requirements { get; }
-        Dictionary<ItemId, int> Results { get; }
-        CraftPriority Priority { get; }
-        bool IsOptional { get; }
-        int DefautLimit { get; }
+        List<RecipeItem> requires { get; }
+        List<RecipeItem> results { get; }
+        CraftPriority defaultPriority { get; }
+        bool isOptional { get; }
+        int defaultLimit { get; }
         string Job { get; }
     }
 }

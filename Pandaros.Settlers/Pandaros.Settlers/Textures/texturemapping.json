@@ -359,7 +359,7 @@
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/bricks.png"
   },
   "Pandaros.Settlers.AutoLoad.blackplankslabbottom": {
-    "albedo": "./albedo/blackplanks.png",
+    "albedo": "gamedata/textures/materials/blocks/albedo/blackplanks.png",
     "normal": "gamedata/textures/materials/blocks/normal/planks.png",
     "emissive": "gamedata/textures/materials/blocks/emissiveMaskAlpha/neutral.png",
     "height": "gamedata/textures/materials/blocks/heightSmoothnessSpecularity/coatedplanks.png"
