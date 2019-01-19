@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Items
             {
                 weightSum += drop.Weight;
 
-                if (roll > weightSum && ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(drop.Item, out ItemTypes.ItemType itemAction))
+                if (roll > weightSum && ItemTypes.IndexLookup.StringLookupTable.TryGetItem(drop.Item, out ItemTypes.ItemType itemAction))
                 {
                     dic[itemAction.GetRootParentType().ItemIndex] = Pipliz.Random.Next(drop.MinCount, drop.MaxCount + 1);
                 }

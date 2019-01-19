@@ -7,6 +7,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Weapons;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.Collections;
 using Shared;
@@ -293,27 +294,30 @@ namespace Pandaros.Settlers.Jobs
                     if (hasItem)
                         bestWeapon = WeaponFactory.WeaponLookup[_inv.Weapon.Id];
 
-                    foreach (var wep in WeaponFactory.WeaponLookup.Values.Where(w => w as IPlayerMagicItem == null && w.ItemType != null))
+                    foreach (var wep in WeaponFactory.WeaponLookup.Values.Where(w => w as IPlayerMagicItem == null && w is WeaponMetadata weaponMetadata && weaponMetadata.ItemType != null).Cast<WeaponMetadata>())
                         if (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null ||
                             _stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null &&
                             bestWeapon.Damage.TotalDamage() < wep.Damage.TotalDamage())
                             bestWeapon = wep;
 
                     if (bestWeapon != null)
-                        if (hasItem && _inv.Weapon.Id != bestWeapon.ItemType.ItemIndex || !hasItem)
+                    {
+                        var wepId = ItemId.GetItemId(bestWeapon.Name);
+                        if (hasItem && _inv.Weapon.Id != wepId || !hasItem)
                         {
                             hasItem = true;
-                            _stock.TryRemove(bestWeapon.ItemType.ItemIndex);
+                            _stock.TryRemove(wepId);
 
                             if (!_inv.Weapon.IsEmpty())
                                 _stock.Add(_inv.Weapon.Id);
 
                             _inv.Weapon = new ItemState
                             {
-                                Id         = bestWeapon.ItemType.ItemIndex,
+                                Id = wepId,
                                 Durability = bestWeapon.WepDurability
                             };
                         }
+                    }
                 }
             }
             catch (Exception ex)

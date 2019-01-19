@@ -2,6 +2,7 @@
 using Pipliz.JSON;
 using Recipes;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items.Weapons
 {
@@ -29,7 +30,7 @@ namespace Pandaros.Settlers.Items.Weapons
 
             List<InventoryItem> items;
 
-            foreach (var a in WeaponFactory.WeaponLookup)
+            foreach (var a in WeaponFactory.WeaponLookup.Where(wepKvp => wepKvp.Value is WeaponMetadata weaponMetadata))
             {
                 items = new List<InventoryItem>();
 
@@ -77,8 +78,9 @@ namespace Pandaros.Settlers.Items.Weapons
                     items.AddRange(new[] {steel, steelParts, coppertools, planks});
                 }
 
-                var invItem = new ItemTypes.ItemTypeDrops(a.Value.ItemType.ItemIndex);
-                var recipe  = new Recipe(a.Value.ItemType.name, items, invItem, 5);
+                var metadata = a.Value as WeaponMetadata;
+                var invItem = new ItemTypes.ItemTypeDrops(metadata.ItemType.ItemIndex);
+                var recipe  = new Recipe(metadata.ItemType.name, items, invItem, 5);
 
                 ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
             }

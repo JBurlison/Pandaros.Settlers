@@ -211,12 +211,11 @@ namespace Pandaros.Settlers
             return craftingJobSettings != null;
         }
 
-        public static bool TryGetItem(this Dictionary<ushort, string> itemInedex, string itemName, out ItemTypes.ItemType itemType)
+        public static bool TryGetItem(this Dictionary<string, ushort> itemInedex, string itemName, out ItemTypes.ItemType itemType)
         {
-            var item = itemInedex.FirstOrDefault(i => i.Value == itemName);
             itemType = null;
 
-            if (item.Key != 0 && !string.IsNullOrEmpty(item.Value) && ItemTypes.TryGetType(item.Key, out itemType))
+            if (itemInedex.TryGetValue(itemName, out ushort itemId) && ItemTypes.TryGetType(itemId, out itemType))
             {
                 return true;
             }

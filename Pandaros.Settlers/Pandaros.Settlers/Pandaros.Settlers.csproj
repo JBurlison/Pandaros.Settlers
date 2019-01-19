@@ -169,6 +169,7 @@
     <Compile Include="Items\PlayerMagicItems\HealthBooster.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
+    <Compile Include="Items\Weapons\MagicWeapon.cs" />
     <Compile Include="Items\Weapons\SkilledSword2.cs" />
     <Compile Include="Items\Weapons\SkilledSword1.cs" />
     <Compile Include="Items\Weapons\SkilledSword.cs" />
@@ -287,6 +288,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AutoLoad\Sorcerer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Items\SettlersItems.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="localization\en-US\backpack\en-US.json">

@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Items.Weapons
         public float Skilled { get; set; } = .03f;
         public bool IsMagical { get; set; } = true;
 
-        Dictionary<DamageType, float> IPandaDamage.Damage { get; } = new Dictionary<DamageType, float>()
+        public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>()
         {
             { DamageType.Physical, 500f }
         };

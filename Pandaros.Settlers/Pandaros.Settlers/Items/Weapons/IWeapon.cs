@@ -3,6 +3,5 @@
     public interface IWeapon : IMagicEffect
     {
         int WepDurability { get; set; }
-        ItemTypesServer.ItemTypeRaw ItemType { get; }
     }
 }

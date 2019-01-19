@@ -165,7 +165,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             showWhileHoldingTypes.Add(BuiltinBlocks.Bed);
 
-            if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(SchematicTool.NAME, out var item))
+            if (ItemTypes.IndexLookup.StringLookupTable.TryGetItem(SchematicTool.NAME, out var item))
                 showWhileHoldingTypes.Add(item.ItemIndex);
         }
 

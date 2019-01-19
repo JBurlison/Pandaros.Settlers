@@ -349,7 +349,7 @@ namespace Pandaros.Settlers.Research
                     break;
             }
 
-            foreach (var item in sword)
+            foreach (var item in sword.Where(w => w is WeaponMetadata weaponMetadata).Cast<WeaponMetadata>())
                 e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.ItemType.name), true);
         }
 

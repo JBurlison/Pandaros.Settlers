@@ -8,30 +8,37 @@ namespace Pandaros.Settlers.Models
 {
     public class ItemId : IEquatable<ItemId>
     {
-        static List<ItemId> _cache = new List<ItemId>();
+        static Dictionary<string, ItemId> _cacheString = new Dictionary<string, ItemId>();
+        static Dictionary<ushort, ItemId> _cacheUshort = new Dictionary<ushort, ItemId>();
 
         public static ItemId GetItemId(string name)
         {
-            var item = _cache.FirstOrDefault(i =>i.Name == name);
+            ItemId item = null;
 
-            if (item == null)
-            {
-                item = new ItemId(name);
-                _cache.Add(item);
-            }
+            lock (_cacheString)
+                lock(_cacheUshort)
+                    if (!_cacheString.TryGetValue(name, out item))
+                    {
+                        item = new ItemId(name);
+                        _cacheString.Add(item.Name, item);
+                        _cacheUshort.Add(item.Id, item);
+                    }
 
             return item;
         }
 
         public static ItemId GetItemId(ushort id)
         {
-            var item = _cache.FirstOrDefault(i => i.Id == id);
+            ItemId item = null;
 
-            if (item == null)
-            {
-                item = new ItemId(id);
-                _cache.Add(item);
-            }
+            lock (_cacheString)
+                lock (_cacheUshort)
+                    if (!_cacheUshort.TryGetValue(id, out item))
+                    {
+                        item = new ItemId(id);
+                        _cacheString.Add(item.Name, item);
+                        _cacheUshort.Add(item.Id, item);
+                    }
 
             return item;
         }
@@ -45,8 +52,8 @@ namespace Pandaros.Settlers.Models
             {
                 if (_id == default(ushort))
                 {
-                    if (ItemTypes.IndexLookup.IndexLookupTable.TryGetItem(_name, out var item))
-                        _id = item.ItemIndex;
+                    if (ItemTypes.IndexLookup.StringLookupTable.TryGetValue(_name, out var item))
+                        _id = item;
                     else
                         throw new ArgumentException($"name {_name} is not registered as an item type yet. Unable to create ItemId object.");
                 }

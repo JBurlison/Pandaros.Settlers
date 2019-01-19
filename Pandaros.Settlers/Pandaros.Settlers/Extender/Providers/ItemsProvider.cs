@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
+using Pandaros.Settlers.Items.Weapons;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -48,15 +49,17 @@ namespace Pandaros.Settlers.Extender.Providers
                     {
                         var jsonFile = JSON.Deserialize(modInfo.Key + "\\" + path);
 
-                        if (jsonFile.NodeType == NodeType.Array && jsonFile.ChildCount > 0)
-                            foreach (var item in jsonFile.LoopArray())
+                        if (jsonFile.NodeType == NodeType.Object && jsonFile.ChildCount > 0)
+                            foreach (var item in jsonFile.LoopObject())
                             {
-                                if (item.TryGetAs("Durability", out int durability))
-                                    loadedItems.Add(item.JsonDeerialize<MagicArmor>());
-                                else if (item.TryGetAs("IsMagical", out bool isMagic))
-                                    loadedItems.Add(item.JsonDeerialize<PlayerMagicItem>());
+                                if (item.Value.TryGetAs("Durability", out int durability))
+                                    loadedItems.Add(item.Value.JsonDeerialize<MagicArmor>());
+                                else if (item.Value.TryGetAs("WepDurability", out bool wepDurability))
+                                    loadedItems.Add(item.Value.JsonDeerialize<MagicWeapon>());
+                                else if (item.Value.TryGetAs("IsMagical", out bool isMagic))
+                                    loadedItems.Add(item.Value.JsonDeerialize<PlayerMagicItem>());
                                 else
-                                    loadedItems.Add(item.JsonDeerialize<CSType>());
+                                    loadedItems.Add(item.Value.JsonDeerialize<CSType>());
                             }
                     }
                     catch (Exception ex)
