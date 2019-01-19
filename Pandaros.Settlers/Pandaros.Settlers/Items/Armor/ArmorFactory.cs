@@ -507,7 +507,7 @@ namespace Pandaros.Settlers.Items.Armor
                 var invItem = new ItemTypes.ItemTypeDrops(metaData.ItemType.ItemIndex);
                 var recipe = new Recipe(metaData.ItemType.name, items, invItem, 5, false, -100);
 
-                ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_METALSMITH, recipe);
+                ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
             }
         }
 

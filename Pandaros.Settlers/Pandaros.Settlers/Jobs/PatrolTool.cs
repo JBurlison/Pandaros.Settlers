@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Jobs
                                     new ItemTypes.ItemTypeDrops(PatrolFlag.ItemIndex, 2),
                                     5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
         }
 
 

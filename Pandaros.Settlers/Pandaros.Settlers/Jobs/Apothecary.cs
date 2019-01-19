@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Jobs
         public CraftPriority Priority => CraftPriority.Medium;
         public bool IsOptional => true;
         public int DefautLimit => 5;
-        public string Job => ItemFactory.JOB_CRAFTER;
+        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
         public string Name => ApothecaryRegister.JOB_RECIPE;
     }
 }
