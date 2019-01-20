@@ -487,27 +487,16 @@ namespace Pandaros.Settlers.Managers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
-        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
+        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<ItemTypes.ItemTypeDrops> results)
         {
-            GetSkillInformation(job, out var nextLevel, out var itt, out var allSkill);
-
-            if (itt >= nextLevel)
-            {
-                var nextFloat = allSkill + 0.005f;
-
-                if (nextFloat > 0.25f)
-                    nextFloat = 0.25f;
-
-                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
-                job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, nextFloat);
-            }
+            IncrimentSkill(job.NPC);
 
             var inv = SettlerInventory.GetSettlerInventory(job.NPC);
             inv.IncrimentStat("Number of Crafts");
-            
+
             double weightSum = 0;
             double roll = Random.Next() + inv.GetSkillModifier();
-            List<InventoryItem> bonusItems = new List<InventoryItem>();
+            List<ItemTypes.ItemTypeDrops> bonusItems = new List<ItemTypes.ItemTypeDrops>();
 
             foreach (var item in results)
             {
@@ -516,28 +505,42 @@ namespace Pandaros.Settlers.Managers
                 weightSum += 1;
 
                 if (roll > weightSum)
-                {
-                    bonusItems.Add(new InventoryItem(item.Type, item.Amount));
-                }
+                    bonusItems.Add(new ItemTypes.ItemTypeDrops(item.Type, item.Amount));
             }
 
             results.AddRange(bonusItems);
 
         }
 
-        public static void GetSkillInformation(IJob job, out int nextLevel, out int itt, out float allSkill)
+        public static void IncrimentSkill(NPCBase npc)
         {
-            if (!job.NPC.CustomData.TryGetAs(KNOWN_ITTERATIONS, out itt))
+            GetSkillInformation(npc, out var nextLevel, out var itt, out var allSkill);
+
+            if (itt >= nextLevel)
             {
-                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
+                var nextFloat = allSkill + 0.005f;
+
+                if (nextFloat > 0.25f)
+                    nextFloat = 0.25f;
+
+                npc.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
+                npc.CustomData.SetAs(GameLoader.ALL_SKILLS, nextFloat);
+            }
+        }
+
+        public static void GetSkillInformation(NPCBase npc, out int nextLevel, out int itt, out float allSkill)
+        {
+            if (!npc.CustomData.TryGetAs(KNOWN_ITTERATIONS, out itt))
+            {
+                npc.CustomData.SetAs(KNOWN_ITTERATIONS, 1);
                 itt = 1;
             }
             else
-                job.NPC.CustomData.SetAs(KNOWN_ITTERATIONS, itt + 1);
+                npc.CustomData.SetAs(KNOWN_ITTERATIONS, itt + 1);
 
-            if (!job.NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out allSkill))
+            if (!npc.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out allSkill))
             {
-                job.NPC.CustomData.SetAs(GameLoader.ALL_SKILLS, 0.005f);
+                npc.CustomData.SetAs(GameLoader.ALL_SKILLS, 0.005f);
                 allSkill = 0.005f;
             }
 

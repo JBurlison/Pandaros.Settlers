@@ -250,6 +250,7 @@ namespace Pandaros.Settlers.Managers
             {
                 var npc = d.HitSourceObject as NPCBase;
                 var inv = SettlerInventory.GetSettlerInventory(npc);
+                SettlerManager.IncrimentSkill(npc);
                 skilled = inv.GetSkillModifier();
 
                 if (inv.Weapon != null && Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wep))

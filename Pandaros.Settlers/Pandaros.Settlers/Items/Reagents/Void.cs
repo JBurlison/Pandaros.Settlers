@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Items
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".Items.Void.OnNPCCraftedRecipe")]
-        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<InventoryItem> results)
+        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<ItemTypes.ItemTypeDrops> results)
         {
             if (recipe.Name == Elementium.Item.name && job.NPC != null)
             {
@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Items
                 if (Random.NextFloat() <= chance)
                 {
                     inv.AddBonusProc(Item.ItemIndex);
-                    results.Add(new InventoryItem(Item.ItemIndex));
+                    results.Add(new ItemTypes.ItemTypeDrops(Item.ItemIndex));
 
                     PandaChat.Send(job.NPC.Colony,
                                    $"{inv.SettlerName} the Apothecary has discovered a Void Stone while crafting Elementium!",

@@ -472,7 +472,7 @@ namespace Pandaros.Settlers.Items
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.GetLocalizationKey("SkillProcChance"), UnityEngine.Color.black)),
                                                 new Label(new LabelData((inv.GetSkillModifier() * 100) + "%", UnityEngine.Color.black))));
             menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("SkillProcChanceDesc"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 13)));
-            SettlerManager.GetSkillInformation(job, out var nextLevel, out var itt, out var allSkill);
+            SettlerManager.GetSkillInformation(job.NPC, out var nextLevel, out var itt, out var allSkill);
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.GetLocalizationKey("ToNextSkillUp"), UnityEngine.Color.black)),
                                                 new Label(new LabelData((nextLevel - itt).ToString(), UnityEngine.Color.black))));
 
