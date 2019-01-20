@@ -45,12 +45,11 @@ namespace Pandaros.Settlers.Monsters
                 while (i < coloniesRequiringZombies.Count && maxTimePerTick.Elapsed.TotalMilliseconds < ServerManager.ServerSettings.Zombies.MSPerTick)
                 {
                     Colony colony = coloniesRequiringZombies[i];
-                    Banner banner = colony.GetRandomBanner();
 
                     IColonyDifficultySetting difficulty = colony.DifficultySetting;
                     float cooldown = difficulty.GetZombieSpawnCooldown(colony);
 
-                    if (SpawnForBanner(banner, difficulty, colony, cooldown, null))
+                    if (CalculateZombieType(difficulty, colony, cooldown, null))
                     {
                         double nextZombieSpawn = NextZombieSpawnTimes.GetValueOrDefault(colony, 0.0) + cooldown;
                         NextZombieSpawnTimes[colony] = nextZombieSpawn;
@@ -125,24 +124,29 @@ namespace Pandaros.Settlers.Monsters
             PandaLogger.Log("PandaMonsterSpawner Initialized!");
         }
 
-        public bool SpawnForBanner(Banner banner, IColonyDifficultySetting difficulty, Colony colony, float cooldown, IPandaZombie boss)
+        public bool CalculateZombieType(IColonyDifficultySetting difficulty, Colony colony, float cooldown, IPandaZombie boss)
         {
             int recycleFrequency = MonsterSpawner.GetPathRecycleFrequency(1f / cooldown);
             NPCType zombieTypeToSpawn = difficulty.GetZombieTypeToSpawn(colony);
-            float maxPathDistance = difficulty.GetMaxPathDistance(colony, zombieTypeToSpawn, banner.SafeRadius);
-            return CaclulateZombie(banner, colony, zombieTypeToSpawn, recycleFrequency, maxPathDistance);
+            Banner randomBanner = colony.GetRandomBanner();
+            float maxPathDistance = difficulty.GetMaxPathDistance(colony, zombieTypeToSpawn, randomBanner.SafeRadius);
+            return CaclulateZombie(randomBanner, colony, zombieTypeToSpawn, recycleFrequency, maxPathDistance, boss);
         }
 
         public static bool CaclulateZombie(Banner banner, Colony colony, NPCType typeToSpawn, int RecycleFrequency = 1, float maxSpawnWalkDistance = 500f, IPandaZombie boss = null)
         {
             Path path;
+
             if (RecycleFrequency > 1 && PathCache.TryGetPath(RecycleFrequency, banner.Position, maxSpawnWalkDistance, out path))
             {
                 SpawnPandaZombie(typeToSpawn, path, colony, boss);
                 return true;
             }
+
+            int maximumZombieSpawnRadius = ServerManager.ServerSettings.Banner.MaximumZombieSpawnRadius;
             Vector3Int positionFinal;
-            switch (MonsterSpawner.TryGetSpawnLocation(banner.Position, 100, 200, maxSpawnWalkDistance, out positionFinal))
+
+            switch (MonsterSpawner.TryGetSpawnLocation(banner.Position, banner.SafeRadius, maximumZombieSpawnRadius, maxSpawnWalkDistance, out positionFinal))
             {
                 case MonsterSpawner.ESpawnResult.Success:
                     if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, banner.Position, out path, 2000000000) == EPathFindingResult.Success)
@@ -171,6 +175,7 @@ namespace Pandaros.Settlers.Monsters
             var monster = new Zombie(typeToSpawn, path, colony);
 
             if (boss != null)
+            {
                 if (boss.ZombieHPBonus != 0)
                 {
                     var fi = monster
@@ -178,16 +183,17 @@ namespace Pandaros.Settlers.Monsters
                                                 BindingFlags.GetField | BindingFlags.NonPublic |
                                                 BindingFlags.Instance);
 
-                    fi.SetValue(monster, (float) fi.GetValue(monster) + boss.ZombieHPBonus);
+                    fi.SetValue(monster, (float)fi.GetValue(monster) + boss.ZombieHPBonus);
                 }
 
-            if (boss.GetType() == typeof(IPandaBoss) && colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
-            {
-                var fi = monster
-                        .GetType().GetField("health",
-                                            BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (boss.GetType() == typeof(IPandaBoss) && colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 50))
+                {
+                    var fi = monster
+                            .GetType().GetField("health",
+                                                BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
 
-                fi.SetValue(monster, (float) fi.GetValue(monster) + colony.FollowerCount * .05f);
+                    fi.SetValue(monster, (float)fi.GetValue(monster) + colony.FollowerCount * .05f);
+                }
             }
 
             ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, monster);
