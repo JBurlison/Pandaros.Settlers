@@ -486,6 +486,15 @@ namespace Pandaros.Settlers.Managers
                 node.SetAs(KNOWN_ITTERATIONS, itt);
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCGathered, GameLoader.NAMESPACE + ".SettlerManager.OnNPCGathered")]
+        public static void OnNPCGathered(IJob job, Vector3Int location, List<ItemTypes.ItemTypeDrops> results)
+        {
+            var inv = SettlerInventory.GetSettlerInventory(job.NPC);
+
+            foreach (var item in results)
+                inv.IncrimentStat(ItemTypes.GetType(item.Type).Name, item.Amount);
+        }
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<ItemTypes.ItemTypeDrops> results)
         {
@@ -500,12 +509,12 @@ namespace Pandaros.Settlers.Managers
 
             foreach (var item in results)
             {
-                inv.IncrimentStat(ItemTypes.GetType(item.Type).Name, item.Amount);
-
                 weightSum += 1;
 
                 if (roll > weightSum)
                     bonusItems.Add(new ItemTypes.ItemTypeDrops(item.Type, item.Amount));
+
+                inv.IncrimentStat(ItemTypes.GetType(item.Type).Name, item.Amount);
             }
 
             results.AddRange(bonusItems);

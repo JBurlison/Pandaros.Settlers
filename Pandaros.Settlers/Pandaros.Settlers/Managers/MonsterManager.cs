@@ -277,7 +277,7 @@ namespace Pandaros.Settlers.Managers
 
             double skillRoll = Pipliz.Random.Next() + skilled;
 
-            if (skillRoll > skilled)
+            if (skillRoll < skilled)
                 d.ResultDamage += d.ResultDamage;
 
             d.ResultDamage = d.ResultDamage - d.ResultDamage * cs.Difficulty.MonsterDamageReduction;
@@ -288,7 +288,7 @@ namespace Pandaros.Settlers.Managers
                 var inv = SettlerInventory.GetSettlerInventory(npc);
                 inv.IncrimentStat("Damage Done", d.ResultDamage);
 
-                if (skillRoll > skilled)
+                if (skillRoll < skilled)
                     inv.IncrimentStat("Double Damage Hits");
             }
 
