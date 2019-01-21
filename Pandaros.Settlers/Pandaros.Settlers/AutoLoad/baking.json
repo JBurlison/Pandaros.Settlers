@@ -30,7 +30,8 @@
       {
         "type": "firewood",
         "amount": 1
-      }
+      },
+      { "type": "bucketwater" }
     ],
     "results": [
       {
@@ -57,7 +58,8 @@
       {
         "type": "firewood",
         "amount": 1
-      }
+      },
+      { "type": "bucketwater" }
     ],
     "results": [
       {

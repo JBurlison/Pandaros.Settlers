@@ -489,10 +489,16 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCGathered, GameLoader.NAMESPACE + ".SettlerManager.OnNPCGathered")]
         public static void OnNPCGathered(IJob job, Vector3Int location, List<ItemTypes.ItemTypeDrops> results)
         {
-            var inv = SettlerInventory.GetSettlerInventory(job.NPC);
+            if (job.NPC != null && results != null && results.Count > 0)
+            {
+                var inv = SettlerInventory.GetSettlerInventory(job.NPC);
 
-            foreach (var item in results)
-                inv.IncrimentStat(ItemTypes.GetType(item.Type).Name, item.Amount);
+                foreach (var item in results)
+                {
+                    if (ItemTypes.TryGetType(item.Type, out var itemType))
+                        inv.IncrimentStat(itemType.Name, item.Amount);
+                }
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]

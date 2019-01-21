@@ -1,24 +1,4 @@
 {
-  "Pandaros.Settlers.BerryPancakes": {
-    "Name": "Pandaros.Settlers.BerryPancakes",
-    "icon": "./icons/BerryPancakes.png",
-    "isPlaceable": false,
-    "foodValue": 0.3,
-    "happiness": 10.0,
-    "dailyFoodFractionOptimal": 0.5,
-    "categories": [ "food" ],
-    "Rarity": 0
-  },
-  "Pandaros.Settlers.BerryPie": {
-    "Name": "Pandaros.Settlers.BerryPie",
-    "icon": "./icons/BerryPie.png",
-    "isPlaceable": false,
-    "foodValue": 0.5,
-    "happiness": 10.0,
-    "dailyFoodFractionOptimal": 0.5,
-    "categories": [ "food" ],
-    "Rarity": 0
-  },
   "Pandaros.Settlers.SkilledSword2": {
     "Name": "Pandaros.Settlers.SkilledSword2",
     "isPlaceable": false,
