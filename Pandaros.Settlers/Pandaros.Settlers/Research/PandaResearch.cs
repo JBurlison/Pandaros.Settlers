@@ -271,20 +271,20 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Copper"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name.Contains("Copper")));
                     break;
                 case 2:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Bronze"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name.Contains("Bronze")));
                     break;
                 case 3:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Iron"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name.Contains("Iron")));
                     break;
                 case 4:
-                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name == "Steel"));
+                    armor.AddRange(ArmorFactory.ArmorLookup.Values.Where(a => a.name.Contains("Steel")));
                     break;
             }
 
-            foreach (var item in armor.Where(a => a is ArmorMetadata metadata && metadata.ItemType != null))
+            foreach (var item in armor.Where(a => a.IsMagical == false))
                 e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.name), true);
         }
 
@@ -349,8 +349,8 @@ namespace Pandaros.Settlers.Research
                     break;
             }
 
-            foreach (var item in sword.Where(w => w is WeaponMetadata weaponMetadata).Cast<WeaponMetadata>())
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.ItemType.name), true);
+            foreach (var item in sword)
+                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.name), true);
         }
 
         private static void AddColonistHealth(Dictionary<ushort, int> researchDic)

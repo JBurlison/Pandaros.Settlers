@@ -130,10 +130,40 @@ namespace Pandaros.Settlers.Jobs
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
+            var nPCGoal = NPCBase.NPCGoal.Bed;
+            
             if (TimeCycle.IsDay)
-                return NPCBase.NPCGoal.Job;
-            else
-                return NPCBase.NPCGoal.Bed;
+                nPCGoal = Caclulate(ref state);
+
+            if (nPCGoal != LastNPCGoal)
+            {
+                Settings.OnGoalChanged(this, LastNPCGoal, nPCGoal);
+                LastNPCGoal = nPCGoal;
+            }
+
+            return nPCGoal;
+        }
+
+        public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state)
+        {
+            if (state.NextNPCShopVisitTimeGameTicks >= TimeCycle.TotalTime.Value.Ticks)
+            {
+                float shopHoursMin = NPCShopGameHourMinimum;
+                float shopHoursMax = NPCShopGameHourMaximum;
+                float hoursOfDay = TimeCycle.TimeOfDayHours;
+                float hoursTillMinShopHours = shopHoursMin - hoursOfDay + (hoursOfDay <= shopHoursMin ? 0f : 24f);
+                float hoursTillMaxShopHours = hoursTillMinShopHours + (shopHoursMax - shopHoursMin);
+                float hoursTillVisit = Pipliz.Random.NextFloat(hoursTillMinShopHours, hoursTillMaxShopHours);
+                state.NextNPCShopVisitTimeGameTicks = TimeCycle.TotalTime.Value.Add(System.TimeSpan.FromHours(hoursTillVisit)).Ticks;
+            }
+
+            if (ActionsPreformed > 6)
+            {
+                ActionsPreformed = 0;
+                return NPCBase.NPCGoal.Stockpile;
+            }
+
+            return NPCBase.NPCGoal.Job;
         }
     }
 
@@ -157,10 +187,18 @@ namespace Pandaros.Settlers.Jobs
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
-            if (TimeCycle.IsDay)
-                return NPCBase.NPCGoal.Bed;
-            else
-                return NPCBase.NPCGoal.Job;
+            var nPCGoal = NPCBase.NPCGoal.Bed;
+
+            if (!TimeCycle.IsDay)
+                nPCGoal = Caclulate(ref state);
+
+            if (nPCGoal != LastNPCGoal)
+            {
+                Settings.OnGoalChanged(this, LastNPCGoal, nPCGoal);
+                LastNPCGoal = nPCGoal;
+            }
+
+            return nPCGoal;
         }
     }
 
@@ -204,14 +242,31 @@ namespace Pandaros.Settlers.Jobs
         public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
     }
 
-    public class MachinisNighttRecipe : MachinistRecipe
+    public class MachinisNighttRecipe : ICSRecipe
     {
-        public override string name => MachinistNight.JOB_RECIPE;
+        public string name => MachinistNight.JOB_RECIPE;
+        public List<RecipeItem> requires => new List<RecipeItem>()
+        {
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS, 1) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS, 4) }
+        };
+
+        public List<RecipeItem> results => new List<RecipeItem>()
+        {
+            { new RecipeItem(MachinistNight.JOB_ITEM_KEY, 1) }
+        };
+
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public bool isOptional => true;
+        public int defaultLimit => 2;
+        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
     }
 
     public class MachinistRecipe : ICSRecipe
     {
-        public virtual string name => MachinistDay.JOB_RECIPE;
+        public string name => MachinistDay.JOB_RECIPE;
 
         public List<RecipeItem> requires => new List<RecipeItem>()
         {

@@ -49,6 +49,7 @@ namespace Pandaros.Settlers.Managers
         public static double _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(1, 2);
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
+        private static localization.LocalizationHelper _LocalizationHelper = new localization.LocalizationHelper("SettlerManager");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.AfterSelectedWorld.Healing")]
         public static void Healing()
@@ -289,7 +290,7 @@ namespace Pandaros.Settlers.Managers
                                    string
                                       .Format("Recruiting over {0} colonists will cost the base food cost plus a compounding {1} food. This compounding value resets once per in game day. If you build it... they will come.",
                                               MAX_BUYABLE,
-                                              Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5)),
+                                              Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2)),
                                    ChatColor.orange);
 
                 if (cs.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 4))
@@ -410,7 +411,7 @@ namespace Pandaros.Settlers.Managers
                     {
                         if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
                         {
-                            var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 5) * ps.ColonistsBought;
+                            var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
                             var num = 0f;
 
                             if (cost < 1)
@@ -420,7 +421,11 @@ namespace Pandaros.Settlers.Managers
                                 !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
                             {
                                 PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
-                                npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(ServerManager.ServerSettings.NPCs.RecruitmentCost / 3));
+                                npc.Colony.HappinessData.RecruitmentCostCalculator.GetCost(npc.Colony.HappinessData.CachedHappiness, npc.Colony, out float foodCost);
+
+                                if (ItemTypes.TryGetType(ColonyBuiltIn.ItemTypes.BREAD, out var bread))
+                                    npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(foodCost / bread.FoodValue));
+
                                 npc.health = 0;
                                 npc.Update();
                                 return;
@@ -489,7 +494,7 @@ namespace Pandaros.Settlers.Managers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCGathered, GameLoader.NAMESPACE + ".SettlerManager.OnNPCGathered")]
         public static void OnNPCGathered(IJob job, Vector3Int location, List<ItemTypes.ItemTypeDrops> results)
         {
-            if (job.NPC != null && results != null && results.Count > 0)
+            if (job != null && job.NPC != null && results != null && results.Count > 0)
             {
                 var inv = SettlerInventory.GetSettlerInventory(job.NPC);
 

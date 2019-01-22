@@ -2,8 +2,8 @@
   "Wiki": {
     "MainMenu": {
       "header": "Settlers Help",
-      "width": 400,
-      "height": 300,
+      "width": 1000,
+      "height": 600,
       "Items": [
         {
           "type": "label",
@@ -18,31 +18,31 @@
         {
           "type": "link",
           "url": "Wiki.Knights",
-          "width": 100,
+          "width": 700,
           "height": 25,
           "label": {
             "text": "Knights",
-            "color": "blue"
+            "color": "black"
           }
         },
         {
           "type": "link",
           "url": "Wiki.Machinists",
-          "width": 100,
+          "width": 700,
           "height": 25,
           "label": {
             "text": "Machinists",
-            "color": "blue"
+            "color": "black"
           }
         },
         {
           "type": "link",
           "url": "Wiki.Apothecary",
-          "width": 100,
+          "width": 700,
           "height": 25,
           "label": {
             "text": "Apothecary",
-            "color": "blue"
+            "color": "black"
           }
         }
       ]

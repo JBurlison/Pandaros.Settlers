@@ -45,6 +45,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public Vector3Int OriginalPosition { get; private set; }
         public virtual string JobItemKey => null;
         public virtual List<string> ObjectiveCategories => new List<string>();
+        public virtual int ActionsPreformed { get; set; }
 
         public override Vector3Int GetJobLocation()
         {
@@ -115,7 +116,10 @@ namespace Pandaros.Settlers.Jobs.Roaming
             CheckIfValidObjective();
 
             if (OkStatus.Contains(status))
+            {
+                ActionsPreformed++;
                 _stuckCount = 0;
+            }
             else if (status != 0)
                 _stuckCount++;
 
@@ -130,7 +134,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 if (_stuckCount > 5)
                 {
                     PreviousObjective         = TargetObjective;
-                    TargetObjective.JobRef = null;
+                    TargetObjective.JobRef    = null;
                     TargetObjective           = null;
                 }
             }

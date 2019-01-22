@@ -262,6 +262,23 @@ namespace Pandaros.Settlers.ColonyManager
 
             menu.Items.Add(new Line());
 
+            if (!fired)
+            {
+                if (Configuration.GetorDefault("ColonistsRecruitment", true))
+                {
+                    ColonyState ps = ColonyState.GetColonyState(player.ActiveColony);
+                    player.ActiveColony.HappinessData.RecruitmentCostCalculator.GetCost(player.ActiveColony.HappinessData.CachedHappiness, player.ActiveColony, out float num);
+                    var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
+
+                    if (cost < 1)
+                        cost = 1;
+
+                    menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.GetLocalizationKey("RecruitmentCost"), UnityEngine.Color.black)),
+                                                       new Label(new LabelData((cost + num).ToString(), UnityEngine.Color.black))));
+                }
+            }
+
+
             List<IItem> header = new List<IItem>();
 
             header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Job"), UnityEngine.Color.black)));
