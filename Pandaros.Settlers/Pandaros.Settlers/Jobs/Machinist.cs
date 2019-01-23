@@ -130,10 +130,7 @@ namespace Pandaros.Settlers.Jobs
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
-            var nPCGoal = NPCBase.NPCGoal.Bed;
-            
-            if (TimeCycle.IsDay)
-                nPCGoal = Caclulate(ref state);
+            var nPCGoal = Caclulate(ref state, true);
 
             if (nPCGoal != LastNPCGoal)
             {
@@ -144,7 +141,7 @@ namespace Pandaros.Settlers.Jobs
             return nPCGoal;
         }
 
-        public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state)
+        public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state, bool day)
         {
             if (state.NextNPCShopVisitTimeGameTicks >= TimeCycle.TotalTime.Value.Ticks)
             {
@@ -155,6 +152,7 @@ namespace Pandaros.Settlers.Jobs
                 float hoursTillMaxShopHours = hoursTillMinShopHours + (shopHoursMax - shopHoursMin);
                 float hoursTillVisit = Pipliz.Random.NextFloat(hoursTillMinShopHours, hoursTillMaxShopHours);
                 state.NextNPCShopVisitTimeGameTicks = TimeCycle.TotalTime.Value.Add(System.TimeSpan.FromHours(hoursTillVisit)).Ticks;
+                return NPCBase.NPCGoal.NPCShop;
             }
 
             if (ActionsPreformed > 6)
@@ -162,6 +160,12 @@ namespace Pandaros.Settlers.Jobs
                 ActionsPreformed = 0;
                 return NPCBase.NPCGoal.Stockpile;
             }
+
+            if (day && !TimeCycle.IsDay)
+                return NPCBase.NPCGoal.Bed;
+
+            if (TimeCycle.IsDay && !day)
+                return NPCBase.NPCGoal.Bed;
 
             return NPCBase.NPCGoal.Job;
         }
@@ -187,10 +191,7 @@ namespace Pandaros.Settlers.Jobs
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
-            var nPCGoal = NPCBase.NPCGoal.Bed;
-
-            if (!TimeCycle.IsDay)
-                nPCGoal = Caclulate(ref state);
+            var nPCGoal = Caclulate(ref state, false);
 
             if (nPCGoal != LastNPCGoal)
             {
