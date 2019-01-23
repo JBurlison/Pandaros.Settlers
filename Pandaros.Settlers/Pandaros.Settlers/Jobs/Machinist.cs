@@ -141,6 +141,12 @@ namespace Pandaros.Settlers.Jobs
             return nPCGoal;
         }
 
+        public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
+        {
+            ActionsPreformed = 0;
+            base.OnNPCAtStockpile(ref state);
+        }
+
         public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state, bool day)
         {
             if (state.NextNPCShopVisitTimeGameTicks >= TimeCycle.TotalTime.Value.Ticks)
@@ -156,10 +162,7 @@ namespace Pandaros.Settlers.Jobs
             }
 
             if (ActionsPreformed > 6)
-            {
-                ActionsPreformed = 0;
                 return NPCBase.NPCGoal.Stockpile;
-            }
 
             if (day && !TimeCycle.IsDay)
                 return NPCBase.NPCGoal.Bed;
@@ -260,9 +263,9 @@ namespace Pandaros.Settlers.Jobs
         };
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
-        public bool isOptional => true;
+        public bool isOptional => false;
         public int defaultLimit => 2;
-        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
+        public string Job => AdvancedCrafterRegister.JOB_NAME;
     }
 
     public class MachinistRecipe : ICSRecipe
@@ -283,8 +286,8 @@ namespace Pandaros.Settlers.Jobs
         };
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
-        public bool isOptional => true;
+        public bool isOptional => false;
         public int defaultLimit => 2;
-        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
+        public string Job => AdvancedCrafterRegister.JOB_NAME;
     }
 }
