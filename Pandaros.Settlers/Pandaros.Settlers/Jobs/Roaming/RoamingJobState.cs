@@ -14,9 +14,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
         
         public RoamingJobState(Vector3Int pos, Colony colony, string objectiveType, IRoamingJobObjective settings = null)
         {
-            Position    = pos;
-            RoamObjective = objectiveType;
-            Colony       = colony;
+            Position        = pos;
+            RoamObjective   = objectiveType;
+            Colony          = colony;
 
             if (settings == null)
                 RoamingJobSettings = RoamingJobManager.GetCallbacks(objectiveType);

@@ -604,13 +604,7 @@ namespace Pandaros.Settlers.Items.Machines
                 d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
-            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
-            {
-                RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony,
-                                                    new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony,
-                                                                     nameof(GateLever)));
-            }
-            else if (d.TypeOld.ItemIndex == BuiltinBlocks.Air && (d.TypeNew.ItemIndex == GateItem.ItemIndex ||
+            if (d.TypeOld.ItemIndex == BuiltinBlocks.Air && (d.TypeNew.ItemIndex == GateItem.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemXN.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemXP.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemZN.ItemIndex ||

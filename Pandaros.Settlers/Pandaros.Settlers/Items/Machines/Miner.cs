@@ -135,7 +135,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if ((!colony.OwnerIsOnline() && Configuration.OfflineColonies) || colony.OwnerIsOnline())
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
@@ -143,7 +143,10 @@ namespace Pandaros.Settlers.Items.Machines
                     machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
                     machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
-                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow))
+                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow) && 
+                        itemBelow.CustomDataNode != null && 
+                        itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) && 
+                        minable)
                     {
                         var itemList = ItemTypes.GetType(itemBelow.ItemIndex).OnRemoveItems;
                         machineState.NextTimeForWork = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime) + Time.SecondsSinceStartDouble;
@@ -156,10 +159,15 @@ namespace Pandaros.Settlers.Items.Machines
                             if (Random.NextDouble() <= itemList[i].chance)
                                 colony.Stockpile.Add(itemList[i].item);
 
-                        ServerManager.SendAudio(machineState.Position.Vector,
-                                                GameLoader.NAMESPACE + ".MiningMachineAudio");
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
                     }
-
+                    else
+                    {
+                        machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime;
+                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
+                                                        new IndicatorState((float)machineState.NextTimeForWork,
+                                                                           BuiltinBlocks.ErrorIdle));
+                    }
                     
                 }
         }
@@ -224,29 +232,6 @@ namespace Pandaros.Settlers.Items.Machines
 
             Item = new ItemTypesServer.ItemTypeRaw(minerName, minerFlagNode);
             items.Add(minerName, Item);
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,  GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
-        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
-        {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
-                return;
-
-            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
-            {
-                if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out ushort itemBelow))
-                    if (CanMineBlock(itemBelow))
-                    {
-                        RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony,
-                                                            new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony,
-                                                                             nameof(Miner)));
-
-                        return;
-                    }
-
-                PandaChat.Send(d.RequestOrigin.AsPlayer, "The mining machine must be placed on stone or ore.", ChatColor.orange);
-                d.CallbackState = ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled;
-            }
         }
 
         public static bool CanMineBlock(ushort itemMined)

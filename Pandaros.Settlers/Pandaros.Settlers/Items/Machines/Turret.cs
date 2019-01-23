@@ -794,23 +794,6 @@ namespace Pandaros.Settlers.Items.Machines
             items.Add(turretName, item);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,
-            GameLoader.NAMESPACE + ".Items.Machines.Turret.OnTryChangeBlockUser")]
-        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
-        {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
-                return;
-
-            if (d.TypeOld.ItemIndex == BuiltinBlocks.Air)
-            {
-                var turret = TurretSettings.FirstOrDefault(t => t.Value.TurretItem.ItemIndex == d.TypeNew.ItemIndex).Value;
-
-                if (turret != null)
-                    RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony,
-                                                        new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, turret.Name));
-            }
-        }
-
         public class TurretSetting : IPandaDamage
         {
             private float _ammoReloadVal = -1;

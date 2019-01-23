@@ -442,8 +442,6 @@ namespace Pandaros.Settlers.Items.Machines
                                        ChatColor.orange);
                     }
                 }
-
-                RoamingJobManager.RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, ms);
             }
         }
 

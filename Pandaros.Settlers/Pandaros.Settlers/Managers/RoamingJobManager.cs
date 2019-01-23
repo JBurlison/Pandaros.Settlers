@@ -19,8 +19,9 @@ namespace Pandaros.Settlers.Managers
         public static string MACHINE_JSON = "";
 
         public static Dictionary<string, IRoamingJobObjective> ObjectiveCallbacks = new Dictionary<string, IRoamingJobObjective>(StringComparer.OrdinalIgnoreCase);
+        public static Dictionary<ushort, IRoamingJobObjective> ObjectiveCallbacksIndex = new Dictionary<ushort, IRoamingJobObjective>();
 
-        
+
         private static double _nextUpdate;
 
         public static Dictionary<Colony, Dictionary<Vector3Int, RoamingJobState>> Objectives { get; } = new Dictionary<Colony, Dictionary<Vector3Int, RoamingJobState>>();
@@ -30,6 +31,7 @@ namespace Pandaros.Settlers.Managers
         public static void RegisterObjectiveType(IRoamingJobObjective objective)
         {
             ObjectiveCallbacks[objective.name] = objective;
+            ObjectiveCallbacksIndex[objective.ItemIndex] = objective;
         }
 
         public static IRoamingJobObjective GetCallbacks(string objectiveName)
@@ -75,25 +77,51 @@ namespace Pandaros.Settlers.Managers
             }
         }
 
+        static Dictionary<Colony, JSONNode> _loadedColonies = new Dictionary<Colony, JSONNode>();
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnLoadingColony")]
         public static void OnLoadingColony(Colony c, JSONNode n)
         {
-            if (c.ColonyID > -1)
+            if (c.ColonyID <= 0)
                 return;
 
-            if (n.TryGetChild(GameLoader.NAMESPACE + ".Objectives", out var objectivesNode) || n.TryGetChild(GameLoader.NAMESPACE + ".Machines", out objectivesNode))
-                lock (Objectives)
-                {
-                    foreach (var node in objectivesNode.LoopArray())
-                        RegisterRoamingJobState(c, new RoamingJobState(node, c));
+            _loadedColonies[c] = n;
+        }
 
-                    if (Objectives.ContainsKey(c))
-                        PandaLogger.Log(ChatColor.lime, $"{Objectives[c].Count} objectives loaded from save for {c.ColonyID}!");
-                    else
-                        PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
-                }
-            else
-                PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.AfterItemTypesDefined")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterItemTypesDefined")]
+        public static void AfterItemTypesDefined()
+        {
+            PandaLogger.Log("{0} objective types loaded", ObjectiveCallbacks.Count);
+
+            foreach (var cKvp in _loadedColonies)
+            {
+                var c = cKvp.Key;
+                var n = cKvp.Value;
+
+                if (n.TryGetChild(GameLoader.NAMESPACE + ".Objectives", out var objectivesNode))
+                    lock (Objectives)
+                    {
+                        int countLoaded = 0;
+                        foreach (var node in objectivesNode.LoopArray())
+                            try
+                            {
+                                RegisterRoamingJobState(c, new RoamingJobState(node, c));
+                                countLoaded++;
+                            }
+                            catch (Exception ex)
+                            {
+                                PandaLogger.LogError(ex, node.ToString());
+                            }
+
+                        if (Objectives.ContainsKey(c))
+                            PandaLogger.Log(ChatColor.lime, $"{countLoaded} of {Objectives[c].Count} objectives loaded from save for {c.ColonyID}!");
+                        else
+                            PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
+                    }
+                else
+                    PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.PatrolTool.OnSavingColony")]
@@ -133,8 +161,10 @@ namespace Pandaros.Settlers.Managers
                 d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
-            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.RequestOrigin.AsPlayer != null)
+            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air)
                 RemoveObjective(d.RequestOrigin.AsPlayer.ActiveColony, d.Position);
+            else if (ObjectiveCallbacksIndex.TryGetValue(d.TypeNew.ItemIndex, out var objective))
+                RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, objective.name));
         }
 
         public static void RemoveObjective(Colony c, Vector3Int pos, bool throwEvent = true)
@@ -143,7 +173,6 @@ namespace Pandaros.Settlers.Managers
             {
                 if (!Objectives.ContainsKey(c))
                     Objectives.Add(c, new Dictionary<Vector3Int, RoamingJobState>());
-
 
                 if (Objectives[c].ContainsKey(pos))
                 {
