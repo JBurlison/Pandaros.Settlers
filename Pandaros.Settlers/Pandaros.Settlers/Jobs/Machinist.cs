@@ -150,16 +150,7 @@ namespace Pandaros.Settlers.Jobs
         public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state, bool day)
         {
             if (state.NextNPCShopVisitTimeGameTicks >= TimeCycle.TotalTime.Value.Ticks)
-            {
-                float shopHoursMin = NPCShopGameHourMinimum;
-                float shopHoursMax = NPCShopGameHourMaximum;
-                float hoursOfDay = TimeCycle.TimeOfDayHours;
-                float hoursTillMinShopHours = shopHoursMin - hoursOfDay + (hoursOfDay <= shopHoursMin ? 0f : 24f);
-                float hoursTillMaxShopHours = hoursTillMinShopHours + (shopHoursMax - shopHoursMin);
-                float hoursTillVisit = Pipliz.Random.NextFloat(hoursTillMinShopHours, hoursTillMaxShopHours);
-                state.NextNPCShopVisitTimeGameTicks = TimeCycle.TotalTime.Value.Add(System.TimeSpan.FromHours(hoursTillVisit)).Ticks;
                 return NPCBase.NPCGoal.NPCShop;
-            }
 
             if (ActionsPreformed > 6)
                 return NPCBase.NPCGoal.Stockpile;

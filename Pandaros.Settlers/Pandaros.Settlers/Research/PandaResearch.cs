@@ -331,26 +331,22 @@ namespace Pandaros.Settlers.Research
 
         private static void SwordResearch_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            var sword = new List<IWeapon>();
-
             switch (e.Research.Level)
             {
                 case 1:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Copper Sword"));
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Copper Sword"), true);
                     break;
                 case 2:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Bronze Sword"));
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Bronze Sword"), true);
                     break;
                 case 3:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Iron Sword"));
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Iron Sword"), true);
                     break;
                 case 4:
-                    sword.AddRange(WeaponFactory.WeaponLookup.Values.Where(a => a.name == "Steel Sword"));
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Steel Sword"), true);
                     break;
             }
-
-            foreach (var item in sword)
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.name), true);
+                
         }
 
         private static void AddColonistHealth(Dictionary<ushort, int> researchDic)
