@@ -567,9 +567,12 @@ namespace Pandaros.Settlers.Research
         private static void BetterBuildersWand_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             // TODO: make global
-            //var ps = PlayerState.GetPlayerState(e.Manager.Player);
-            //ps.BuildersWandMaxCharge =  (int) e.Research.Value;
-            //ps.BuildersWandCharge    += ps.BuildersWandMaxCharge;
+            foreach (var p in e.Manager.Colony.Owners)
+            {
+                var ps = PlayerState.GetPlayerState(p);
+                ps.BuildersWandMaxCharge = (int)e.Research.Value;
+                ps.BuildersWandCharge += ps.BuildersWandMaxCharge;
+            }
         }
 
         private static void AddTeleporters(Dictionary<ushort, int> researchDic)
@@ -615,6 +618,9 @@ namespace Pandaros.Settlers.Research
         private static void ImprovedSlings_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             // TODO 
+
+            //e.Manager.Colony.TemporaryData
+
             //if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobDay)))
             //    _baseSpeed.Add(nameof(GuardSlingerJobDay), GuardSlingerJobDay.GetGuardSettings().cooldownShot);
 

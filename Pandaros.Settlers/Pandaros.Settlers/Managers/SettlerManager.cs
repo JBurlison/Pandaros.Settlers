@@ -700,6 +700,32 @@ namespace Pandaros.Settlers.Managers
         {
             if (data != null && data.item1 != null && !data.item1.NPCType.IsLaborer)
                 data.item1.CustomData.SetAs(LEAVETIME_JOB, 0);
+
+            if (data.item3 is GuardJobInstance guardJob)
+            {
+                var settings = (GuardJobSettings)guardJob.Settings;
+                guardJob.Settings = new GuardJobSettings()
+                {
+                    BlockTypes = settings.BlockTypes,
+                    CooldownMissingItem = settings.CooldownMissingItem,
+                    CooldownSearchingTarget = settings.CooldownSearchingTarget,
+                    CooldownShot = settings.CooldownShot,
+                    Damage = settings.Damage,
+                    NPCType = settings.NPCType,
+                    NPCTypeKey = settings.NPCTypeKey,
+                    OnHitAudio = settings.OnHitAudio,
+                    OnShootAudio = settings.OnShootAudio,
+                    OnShootResultItem = settings.OnShootResultItem,
+                    Range = settings.Range,
+                    RecruitmentItem = settings.RecruitmentItem,
+                    ShootItem = settings.ShootItem,
+                    SleepType = settings.SleepType
+                };
+            }
+            else if (data.item3 is CraftingJobInstance craftingJob)
+            {
+
+            }
         }
 
         private static bool EvaluateLaborers(ColonyState state)
