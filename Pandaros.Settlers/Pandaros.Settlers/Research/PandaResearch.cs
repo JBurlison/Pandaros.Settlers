@@ -40,10 +40,6 @@ namespace Pandaros.Settlers.Research
         public const string ColonistHealth = "ColonistHealth";
         public const string Knights = "Knights";
         public const string Apothecary = "Apothecaries";
-        public const string ImprovedSling = "ImprovedSling";
-        public const string ImprovedBow = "ImprovedBow";
-        public const string ImprovedCrossbow = "ImprovedCrossbow";
-        public const string ImprovedMatchlockgun = "ImprovedMatchlockgun";
         public const string ImprovedDurability = "ImprovedDurability";
         public const string ImprovedFuelCapacity = "ImprovedFuelCapacity";
         public const string IncreasedCapacity = "IncreasedCapacity";
@@ -609,7 +605,7 @@ namespace Pandaros.Settlers.Research
 
             for (var i = 1; i <= 5; i++)
             {
-                var research = new PandaResearch(researchDic, i, ImprovedSling, .05f);
+                var research = new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDSLINGERDAY.Replace("day", ""), .05f);
                 research.ResearchComplete += ImprovedSlings_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -617,23 +613,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedSlings_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            // TODO 
-
-            //e.Manager.Colony.TemporaryData
-
-            //if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobDay)))
-            //    _baseSpeed.Add(nameof(GuardSlingerJobDay), GuardSlingerJobDay.GetGuardSettings().cooldownShot);
-
-            //if (!_baseSpeed.ContainsKey(nameof(GuardSlingerJobNight)))
-            //    _baseSpeed.Add(nameof(GuardSlingerJobNight), GuardSlingerJobNight.GetGuardSettings().cooldownShot);
-
-            //GuardSlingerJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardSlingerJobDay)] -
-            //                                                 _baseSpeed[nameof(GuardSlingerJobDay)] * e.Research.Value;
-
-            //GuardSlingerJobNight.CachedSettings.cooldownShot =
-            //    _baseSpeed[nameof(GuardSlingerJobNight)] - _baseSpeed[nameof(GuardSlingerJobNight)] * e.Research.Value;
-
-            //foreach (BlockJobManager<GuardJobInstance> w in ServerManager.BlockEntityCallbacks.AutoLoadedInstances.Where(t => t as BlockJobManager<GuardJobInstance> != null))
+            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
 
         private static void AddImprovedBows(Dictionary<ushort, int> researchDic)
@@ -647,13 +627,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.ARCHERY
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedBow, .05f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDBOWDAY.Replace("day", ""), .05f, requirements);
             research.ResearchComplete += ImprovedBows_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ImprovedBow, .05f);
+                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDBOWDAY.Replace("day", ""), .05f);
                 research.ResearchComplete += ImprovedBows_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -661,17 +641,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedBows_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            //if (!_baseSpeed.ContainsKey(nameof(GuardBowJobDay)))
-            //    _baseSpeed.Add(nameof(GuardBowJobDay), GuardBowJobDay.GetGuardSettings().cooldownShot);
-
-            //if (!_baseSpeed.ContainsKey(nameof(GuardBowJobNight)))
-            //    _baseSpeed.Add(nameof(GuardBowJobNight), GuardBowJobNight.GetGuardSettings().cooldownShot);
-
-            //GuardBowJobDay.CachedSettings.cooldownShot =
-            //    _baseSpeed[nameof(GuardBowJobDay)] - _baseSpeed[nameof(GuardBowJobDay)] * e.Research.Value;
-
-            //GuardBowJobNight.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardBowJobNight)] -
-            //                                               _baseSpeed[nameof(GuardBowJobNight)] * e.Research.Value;
+            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
 
         private static void AddImprovedCrossbows(Dictionary<ushort, int> researchDic)
@@ -685,13 +655,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.CROSSBOW
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedCrossbow, .05f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDCROSSBOWDAY.Replace("day", ""), .05f, requirements);
             research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ImprovedCrossbow, .05f);
+                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDCROSSBOWDAY.Replace("day", ""), .05f);
                 research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -699,19 +669,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedCrossbows_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            //if (!_baseSpeed.ContainsKey(nameof(GuardCrossbowJobDay)))
-            //    _baseSpeed.Add(nameof(GuardCrossbowJobDay), GuardCrossbowJobDay.GetGuardSettings().cooldownShot);
-
-            //if (!_baseSpeed.ContainsKey(nameof(GuardCrossbowJobNight)))
-            //    _baseSpeed.Add(nameof(GuardCrossbowJobNight), GuardCrossbowJobNight.GetGuardSettings().cooldownShot);
-
-            //GuardCrossbowJobDay.CachedSettings.cooldownShot = _baseSpeed[nameof(GuardCrossbowJobDay)] -
-            //                                                  _baseSpeed[nameof(GuardCrossbowJobDay)] *
-            //                                                  e.Research.Value;
-
-            //GuardCrossbowJobNight.CachedSettings.cooldownShot =
-            //    _baseSpeed[nameof(GuardCrossbowJobNight)] -
-            //    _baseSpeed[nameof(GuardCrossbowJobNight)] * e.Research.Value;
+            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
 
         private static void AddImprovedMatchlockgun(Dictionary<ushort, int> researchDic)
@@ -726,13 +684,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.MATCHLOCKGUN
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedMatchlockgun, .05f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDMATCHLOCKDAY.Replace("day", ""), .05f, requirements);
             research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ImprovedMatchlockgun, .05f);
+                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDMATCHLOCKDAY.Replace("day", ""), .05f);
                 research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -740,18 +698,7 @@ namespace Pandaros.Settlers.Research
 
         private static void ImprovedMatchlockguns_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            //if (!_baseSpeed.ContainsKey(nameof(GuardMatchlockJobDay)))
-            //    _baseSpeed.Add(nameof(GuardMatchlockJobDay), GuardMatchlockJobDay.GetGuardSettings().cooldownShot);
-
-            //if (!_baseSpeed.ContainsKey(nameof(GuardMatchlockJobNight)))
-            //    _baseSpeed.Add(nameof(GuardMatchlockJobNight), GuardMatchlockJobNight.GetGuardSettings().cooldownShot);
-
-            //GuardMatchlockJobDay.CachedSettings.cooldownShot =
-            //    _baseSpeed[nameof(GuardMatchlockJobDay)] - _baseSpeed[nameof(GuardMatchlockJobDay)] * e.Research.Value;
-
-            //GuardMatchlockJobNight.CachedSettings.cooldownShot =
-            //    _baseSpeed[nameof(GuardMatchlockJobNight)] -
-            //    _baseSpeed[nameof(GuardMatchlockJobNight)] * e.Research.Value;
+            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
 
         private static void AddMachines(Dictionary<ushort, int> researchDic)

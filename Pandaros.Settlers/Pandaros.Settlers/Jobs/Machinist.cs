@@ -149,7 +149,7 @@ namespace Pandaros.Settlers.Jobs
 
         public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state, bool day)
         {
-            if (state.NextNPCShopVisitTimeGameTicks >= TimeCycle.TotalTime.Value.Ticks)
+            if (state.ShouldMoveToNPCShop)
                 return NPCBase.NPCGoal.NPCShop;
 
             if (ActionsPreformed > 6)

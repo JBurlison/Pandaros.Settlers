@@ -130,47 +130,6 @@
       "ore"
     ]
   },
-  "Pandaros.Settlers.AutoLoad.milk": {
-    "icon": "./icons/milk.png",
-    "isPlaceable": false,
-    "npcLimit": 0,
-    "maxStackSize": 600,
-    "nutritionalValue": 1
-  },
-  "Pandaros.Settlers.AutoLoad.egg": {
-    "icon": "./icons/egg.png",
-    "isPlaceable": false,
-    "npcLimit": 0,
-    "maxStackSize": 600
-  },
-  "Pandaros.Settlers.AutoLoad.cake": {
-    "icon": "./icons/cake.png",
-    "isPlaceable": false,
-    "npcLimit": 0,
-    "maxStackSize": 600,
-    "nutritionalValue": 5
-  },
-  "Pandaros.Settlers.AutoLoad.beef": {
-    "icon": "./icons/Beef.png",
-    "isPlaceable": false,
-    "npcLimit": 0,
-    "maxStackSize": 600,
-    "nutritionalValue": 4
-  },
-  "Pandaros.Settlers.AutoLoad.carrot": {
-    "icon": "./icons/Carrot.png",
-    "isPlaceable": false,
-    "npcLimit": 0,
-    "maxStackSize": 600,
-    "nutritionalValue": 0.6
-  },
-  "Pandaros.Settlers.AutoLoad.cheese": {
-    "icon": "./icons/Cheese.png",
-    "isPlaceable": false,
-    "npcLimit": 0,
-    "maxStackSize": 600,
-    "nutritionalValue": 0.6
-  },
   "Pandaros.Settlers.AutoLoad.chisel": {
     "icon": "./icons/chisel.png",
     "npcLimit": 0,

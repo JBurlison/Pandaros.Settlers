@@ -125,31 +125,6 @@ namespace Pandaros.Settlers
             typeof(oT).GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
         }
 
-        public static string ToRGBHex(this UnityEngine.Color c)
-        {
-            return string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b));
-        }
-
-        public static JSONNode ToJsonNode<T>(this IEnumerable<T> convertableCollection)
-        {
-            var newNode = new JSONNode(NodeType.Array);
-
-            foreach (var n in convertableCollection)
-                newNode.AddToArray(n.JsonSerialize());
-
-            return newNode;
-        }
-
-        public static JSONNode ToJsonNode(this IEnumerable<string> convertableCollection)
-        {
-            var newNode = new JSONNode(NodeType.Array);
-
-            foreach (var n in convertableCollection)
-                newNode.AddToArray(new JSONNode(n));
-
-            return newNode;
-        }
-
         public static float TotalDamage(this Dictionary<DamageType, float> damage)
         {
             return damage.Sum(kvp => kvp.Value);
@@ -181,34 +156,6 @@ namespace Pandaros.Settlers
         public static T GetRandomItem<T>(this List<T> l)
         {
             return l[Pipliz.Random.Next(l.Count)];
-        }
-
-        public static bool TryGetGuardJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out GuardJobSettings guardJobSettings)
-        {
-            guardJobSettings = null;
-
-            var guardJobInstance = callbacks.AutoLoadedInstances.Where(o => o is BlockJobManager<GuardJobInstance> manager && manager.Settings is GuardJobSettings set && set.NPCTypeKey == name).FirstOrDefault() as BlockJobManager<GuardJobInstance>;
-
-            if (guardJobInstance == null)
-                PandaLogger.Log(ChatColor.yellow, "Unable to find guard job settings for {0}", name);
-            else
-                guardJobSettings = guardJobInstance.Settings as GuardJobSettings;
-
-            return guardJobSettings != null;
-        }
-
-        public static bool TryGetCraftJobSettings(this BlockEntities.BlockEntityCallbacks callbacks, string name, out CraftingJobSettings craftingJobSettings)
-        {
-            craftingJobSettings = null;
-
-            var craftJobInstance = callbacks.AutoLoadedInstances.FirstOrDefault(o => o is BlockJobManager<CraftingJobInstance> manager && manager.Settings is CraftingJobSettings set && set.NPCTypeKey == name) as BlockJobManager<CraftingJobInstance>;
-
-            if (craftJobInstance == null)
-                PandaLogger.Log(ChatColor.yellow, "Unable to find craft job settings for {0}", name);
-            else
-                craftingJobSettings = craftJobInstance.Settings as CraftingJobSettings;
-
-            return craftingJobSettings != null;
         }
 
         public static bool TryGetItem(this Dictionary<string, ushort> itemInedex, string itemName, out ItemTypes.ItemType itemType)
@@ -243,38 +190,6 @@ namespace Pandaros.Settlers
 
             return pos.x >= boundsPos.x && pos.y >= boundsPos.y && pos.z >= boundsPos.z &&
                     pos.x <= boundsMax.x && pos.y <= boundsMax.y && pos.z <= boundsMax.z;
-        }
-
-        public static int ManhattanDistance(this Vector2Int a, Vector2Int b)
-        {
-            checked
-            {
-                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
-            }
-        }
-
-        public static int ManhattanDistance(this UnityEngine.Vector2Int a, UnityEngine.Vector2Int b)
-        {
-            checked
-            {
-                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
-            }
-        }
-
-        public static int ManhattanDistance(this Vector2Int a, UnityEngine.Vector2Int b)
-        {
-            checked
-            {
-                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
-            }
-        }
-
-        public static int ManhattanDistance(this UnityEngine.Vector2Int a, Vector2Int b)
-        {
-            checked
-            {
-                return UnityEngine.Mathf.Abs(a.x - b.x) + UnityEngine.Mathf.Abs(a.y - b.y);
-            }
         }
 
         public static JSONNode JsonSerialize<T>(this T obj)

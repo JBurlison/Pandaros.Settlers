@@ -724,8 +724,26 @@ namespace Pandaros.Settlers.Managers
             }
             else if (data.item3 is CraftingJobInstance craftingJob)
             {
-
+                var settings = (CraftingJobSettings)craftingJob.Settings;
+                craftingJob.Settings = new CraftingJobSettings()
+                {
+                    BlockTypes = settings.BlockTypes,
+                    CraftingCooldown = settings.CraftingCooldown,
+                    MaxCraftsPerHaul = settings.MaxCraftsPerHaul,
+                    NPCType = settings.NPCType,
+                    NPCTypeKey = settings.NPCTypeKey,
+                    OnCraftedAudio = settings.OnCraftedAudio,
+                    RecruitmentItem = settings.RecruitmentItem
+                };
             }
+
+            data.item1.ApplyJobResearch();
+        }
+
+        public static void ApplyJobCooldownsToNPCs(Colony c)
+        {
+            foreach (var npc in c.Followers)
+                npc.ApplyJobResearch();
         }
 
         private static bool EvaluateLaborers(ColonyState state)
