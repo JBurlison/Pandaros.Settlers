@@ -120,7 +120,7 @@ namespace Pandaros.Settlers.Entities
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Entities.ColonyState.OnSavingColony")]
-        public static void OnSavingColony(JSONNode n, Colony c)
+        public static void OnSavingColony(Colony c, JSONNode n)
         {
             if (_colonyStates.ContainsKey(c))
             {

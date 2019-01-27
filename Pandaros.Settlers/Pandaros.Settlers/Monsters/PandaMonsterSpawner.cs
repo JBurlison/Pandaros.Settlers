@@ -2,6 +2,7 @@
 using Difficulty;
 using Monsters;
 using NPC;
+using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pandaros.Settlers.Monsters.Normal;
 using Pipliz;
@@ -83,7 +84,7 @@ namespace Pandaros.Settlers.Monsters
 
             IColonyDifficultySetting difficultyColony = colony.DifficultySetting;
 
-            if (!difficultyColony.ShouldSpawnZombies(colony))
+            if (!MonsterManager.BossActive && !difficultyColony.ShouldSpawnZombies(colony))
             {
                 colony.OnZombieSpawn(true);
                 return;
