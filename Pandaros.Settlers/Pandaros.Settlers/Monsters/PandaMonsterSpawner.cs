@@ -192,7 +192,7 @@ namespace Pandaros.Settlers.Monsters
                             .GetType().GetField("health",
                                                 BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
 
-                    fi.SetValue(monster, (float)fi.GetValue(monster) + colony.FollowerCount * .05f);
+                    fi.SetValue(monster, (float)fi.GetValue(monster) + colony.FollowerCount * .08f);
                 }
             }
 

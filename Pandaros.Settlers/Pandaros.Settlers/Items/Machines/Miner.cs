@@ -148,25 +148,30 @@ namespace Pandaros.Settlers.Items.Machines
                         itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) && 
                         minable)
                     {
-                        var itemList = ItemTypes.GetType(itemBelow.ItemIndex).OnRemoveItems;
-                        machineState.NextTimeForWork = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime) + Time.SecondsSinceStartDouble;
+                        var itemList = itemBelow.OnRemoveItems;
 
-                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
-                                                        new IndicatorState((float)machineState.NextTimeForWork,
-                                                                           itemList.FirstOrDefault().item.Type));
+                        if (itemList != null && itemList.Count > 0)
+                        {
+                            var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
+                            machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
 
-                        for (var i = 0; i < itemList.Count; i++)
-                            if (Random.NextDouble() <= itemList[i].chance)
-                                colony.Stockpile.Add(itemList[i].item);
+                            for (var i = 0; i < itemList.Count; i++)
+                                if (Random.NextDouble() <= itemList[i].chance)
+                                    colony.Stockpile.Add(itemList[i].item);
 
-                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
+                            ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, itemList.FirstOrDefault().item.Type));
+                        }
+                        else
+                        {
+                            machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, BuiltinBlocks.ErrorIdle));
+                        }
                     }
                     else
                     {
-                        machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime;
-                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
-                                                        new IndicatorState((float)machineState.NextTimeForWork,
-                                                                           BuiltinBlocks.ErrorIdle));
+                        machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, BuiltinBlocks.ErrorIdle));
                     }
                     
                 }

@@ -107,18 +107,11 @@ namespace Pandaros.Settlers.Managers
 
                     foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                     {
-                        var bannerGoal = colony.Banners[0];
-
-                        if (colony.Banners.Length > 1)
-                        {
-                            var next = Pipliz.Random.Next(colony.Banners.Length);
-                            bannerGoal = colony.Banners[next];
-                        }
+                        var bannerGoal = colony.Banners.ToList().GetRandomItem();
 
                         var cs = ColonyState.GetColonyState(colony);
 
-                        if (false &&
-                            cs.BossesEnabled &&
+                        if (cs.BossesEnabled &&
                             cs.ColonyRef.OwnerIsOnline() &&
                             colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
                         {
