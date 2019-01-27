@@ -127,42 +127,6 @@ namespace Pandaros.Settlers.Jobs
                 GameLoader.Repairing_Icon,
                 GameLoader.Waiting_Icon
             };
-
-        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
-        {
-            var nPCGoal = Caclulate(ref state, true);
-
-            if (nPCGoal != LastNPCGoal)
-            {
-                Settings.OnGoalChanged(this, LastNPCGoal, nPCGoal);
-                LastNPCGoal = nPCGoal;
-            }
-
-            return nPCGoal;
-        }
-
-        public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
-        {
-            ActionsPreformed = 0;
-            base.OnNPCAtStockpile(ref state);
-        }
-
-        public NPCBase.NPCGoal Caclulate(ref NPCBase.NPCState state, bool day)
-        {
-            if (state.ShouldMoveToNPCShop)
-                return NPCBase.NPCGoal.NPCShop;
-
-            if (ActionsPreformed > 6)
-                return NPCBase.NPCGoal.Stockpile;
-
-            if (day && !TimeCycle.IsDay)
-                return NPCBase.NPCGoal.Bed;
-
-            if (TimeCycle.IsDay && !day)
-                return NPCBase.NPCGoal.Bed;
-
-            return NPCBase.NPCGoal.Job;
-        }
     }
 
     public class MachinistNight : MachinistDay
@@ -185,15 +149,7 @@ namespace Pandaros.Settlers.Jobs
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
-            var nPCGoal = Caclulate(ref state, false);
-
-            if (nPCGoal != LastNPCGoal)
-            {
-                Settings.OnGoalChanged(this, LastNPCGoal, nPCGoal);
-                LastNPCGoal = nPCGoal;
-            }
-
-            return nPCGoal;
+            return base.CalculateGoal(ref state, false);
         }
     }
 

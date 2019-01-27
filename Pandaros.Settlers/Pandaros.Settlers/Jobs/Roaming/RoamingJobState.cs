@@ -144,6 +144,11 @@ namespace Pandaros.Settlers.Jobs.Roaming
             return Position != null;
         }
 
+        public bool CanBeWorked(List<string> catagories)
+        {
+            return JobRef == null && catagories.Contains(RoamingJobSettings.ObjectiveCategory);
+        }
+
         public virtual JSONNode ToJsonNode()
         {
             var baseNode = new JSONNode();

@@ -53,10 +53,8 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
             if (TargetObjective == null)
             {
-                if (RoamingJobManager.Objectives.ContainsKey(Owner))
-                    foreach (var objective in RoamingJobManager
-                                           .Objectives[Owner].Values
-                                           .Where(m => m.JobRef == null && ObjectiveCategories.Contains(m.RoamingJobSettings.ObjectiveCategory)))
+                if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic))
+                    foreach (var objective in roamingJobObjectiveDic.Values.Where(m => m.CanBeWorked(ObjectiveCategories)))
                         if (objective != PreviousObjective && objective.PositionIsValid())
                         {
                             var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
@@ -160,7 +158,33 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
-            return NPCBase.NPCGoal.Job;
+            return CalculateGoal(ref state, true);
+        }
+
+        public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
+        {
+            ActionsPreformed = 0;
+            base.OnNPCAtStockpile(ref state);
+        }
+
+        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state, bool sleepAtNight)
+        {
+            var nPCGoal = NPCBase.NPCGoal.Job;
+
+            if (ActionsPreformed > 6)
+                nPCGoal = NPCBase.NPCGoal.Stockpile;
+            else if (sleepAtNight && !TimeCycle.IsDay)
+                nPCGoal = NPCBase.NPCGoal.Bed;
+            else if (TimeCycle.IsDay && !sleepAtNight)
+                nPCGoal = NPCBase.NPCGoal.Bed;
+
+            if (nPCGoal != LastNPCGoal)
+            {
+                Settings.OnGoalChanged(this, LastNPCGoal, nPCGoal);
+                LastNPCGoal = nPCGoal;
+            }
+
+            return nPCGoal;
         }
        
     }

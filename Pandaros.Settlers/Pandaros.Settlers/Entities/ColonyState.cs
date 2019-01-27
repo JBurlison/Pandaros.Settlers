@@ -67,6 +67,7 @@ namespace Pandaros.Settlers.Entities
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.ColonyState.OnUpdate")]
         public static void OnUpdate()
         {
+            if (ServerManager.ColonyTracker != null)
             foreach (var c in ServerManager.ColonyTracker.ColoniesByID.Values)
             {
                 if (c.OwnerIsOnline())

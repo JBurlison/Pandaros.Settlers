@@ -115,8 +115,7 @@ namespace Pandaros.Settlers.Managers
                             cs.ColonyRef.OwnerIsOnline() &&
                             colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
                         {
-                            if (bossType != null &&
-                                !_spawnedBosses.ContainsKey(cs))
+                            if (bossType != null && !_spawnedBosses.ContainsKey(cs))
                             {
                                 Vector3Int positionFinal;
                                 switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
@@ -127,11 +126,9 @@ namespace Pandaros.Settlers.Managers
                                             var pandaboss = bossType.GetNewBoss(path, colony);
                                             _spawnedBosses.Add(cs, pandaboss);
 
-                                            BossSpawned?.Invoke(MonsterTracker.MonsterSpawner,
-                                                                new BossSpawnedEvent(cs, pandaboss));
+                                            BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new BossSpawnedEvent(cs, pandaboss));
 
-                                            ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned,
-                                                                                    pandaboss);
+                                            ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, pandaboss);
 
                                             MonsterTracker.Add(pandaboss);
                                             colony.OnZombieSpawn(true);
@@ -151,23 +148,23 @@ namespace Pandaros.Settlers.Managers
                                         CantSpawnBoss(cs);
                                         break;
                                 }
+                            }
 
-                                if (_spawnedBosses.ContainsKey(cs) &&
+                            if (_spawnedBosses.ContainsKey(cs) &&
                                     _spawnedBosses[cs].IsValid &&
                                     _spawnedBosses[cs].CurrentHealth > 0)
+                            {
+                                if (colony.TemporaryData.GetAsOrDefault("BossIndicator", 0) < Time.SecondsSinceStartInt)
                                 {
-                                    if (colony.TemporaryData.GetAsOrDefault("BossIndicator", 0) < Time.SecondsSinceStartInt)
-                                    {
-                                        Indicator.SendIconIndicatorNear(new Vector3Int(_spawnedBosses[cs].Position),
-                                                                        _spawnedBosses[cs].ID,
-                                                                        new IndicatorState(1, GameLoader.Poisoned_Icon,
-                                                                                            false, false));
+                                    Indicator.SendIconIndicatorNear(new Vector3Int(_spawnedBosses[cs].Position),
+                                                                    _spawnedBosses[cs].ID,
+                                                                    new IndicatorState(1, GameLoader.Poisoned_Icon,
+                                                                                        false, false));
 
-                                        colony.TemporaryData.SetAs("BossIndicator", Time.SecondsSinceStartInt + 1);
-                                    }
-
-                                    turnOffBoss = false;
+                                    colony.TemporaryData.SetAs("BossIndicator", Time.SecondsSinceStartInt + 1);
                                 }
+
+                                turnOffBoss = false;
                             }
                         }
 
