@@ -1,20 +1,15 @@
 ﻿using Happiness;
-using Newtonsoft.Json;
-using Pandaros.Settlers.Items;
-using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ItemTypesServer;
 
 namespace Pandaros.Settlers.ColonyManager
 {
-    public class SettlerLeaving : IHappinessCause
+    public class CloseBeds : IHappinessCause
     {
-        public static Dictionary<Colony, int> LeaveCount { get; set; } = new Dictionary<Colony, int>();
+        public static Dictionary<Colony, int> CloseBedCount { get; set; } = new Dictionary<Colony, int>();
 
         public float Evaluate(Colony colony)
         {

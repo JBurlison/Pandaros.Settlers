@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Entities
 {
+    [ModLoader.ModManager]
     public class ColonyState
     {
         private static readonly Dictionary<Colony, ColonyState> _colonyStates = new Dictionary<Colony, ColonyState>();
