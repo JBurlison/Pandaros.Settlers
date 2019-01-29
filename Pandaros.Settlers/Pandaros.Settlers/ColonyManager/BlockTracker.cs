@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jobs;
 using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
@@ -37,6 +38,10 @@ namespace Pandaros.Settlers.ColonyManager
 
         public static void RewindPlayersBlocks(Players.Player player)
         {
+            foreach (var colony in player.Colonies)
+                if (colony.Owners.Length == 1)
+                    RewindColonyBlocks(colony);
+
             Task.Run(() =>
             {
                 var playerId = player.ID.ToString();
@@ -64,7 +69,7 @@ namespace Pandaros.Settlers.ColonyManager
                         if (_queuedPositions.Count <= 0)
                             return;
 
-                        System.Threading.Thread.Sleep(5000);
+                        System.Threading.Thread.Sleep(10000);
 
                         List<TrackedPosition> replaced = new List<TrackedPosition>();
 
@@ -94,6 +99,28 @@ namespace Pandaros.Settlers.ColonyManager
 
         public static void RewindColonyBlocks(Colony colony)
         {
+            foreach (var npc in colony.Followers)
+            {
+                npc.health = 0;
+
+                if (npc.Job is IAreaJob areaJob)
+                    AreaJobTracker.RemoveJob(areaJob);
+
+                npc.ClearJob();
+                npc.OnDeath();
+            }
+
+            Managers.RoamingJobManager.Objectives.Remove(colony);
+
+            ServerManager.ColonyTracker.ColoniesLock.EnterWriteLock();
+            ServerManager.ColonyTracker.ColoniesByID.Remove(colony.ColonyID);
+            Colony newcolony = new Colony(colony.ColonyID);
+            newcolony.Stockpile.AddEnumerable(from unresolved in ServerManager.WorldSettingsReadOnly.InitialStockpile
+                                              select new InventoryItem(unresolved.type, unresolved.amount));
+            ServerManager.ColonyTracker.ColoniesByID.Add(newcolony.ColonyID, newcolony);
+            ServerManager.ColonyTracker.ColoniesLock.ExitWriteLock();
+            ServerManager.ColonyTracker.Save();
+
             Task.Run(() =>
             {
                 try
@@ -121,7 +148,7 @@ namespace Pandaros.Settlers.ColonyManager
                         if (_queuedPositions.Count <= 0)
                             return;
 
-                        System.Threading.Thread.Sleep(5000);
+                        System.Threading.Thread.Sleep(10000);
 
                         List<TrackedPosition> replaced = new List<TrackedPosition>();
 
@@ -211,7 +238,6 @@ namespace Pandaros.Settlers.ColonyManager
                     ColonyId = d.RequestOrigin.AsColony.Name
                 });
             }
-
         }
     }
 }
