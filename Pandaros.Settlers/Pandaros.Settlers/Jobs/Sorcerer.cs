@@ -13,12 +13,12 @@ namespace Pandaros.Settlers.Jobs
 {
     public class SorcererResearch : IPandaResearch
     {
-        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
         {
             { ItemId.GetItemId(Items.Reagents.Adamantine.NAME), 1 },
-            { BuiltinBlocks.ScienceBagColony, 1 },
-            { BuiltinBlocks.ScienceBagBasic, 3 },
-            { BuiltinBlocks.ScienceBagAdvanced, 1 }
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY, 1 },
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 3 },
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 }
         };
 
         public int NumberOfLevels => 1;
@@ -92,9 +92,9 @@ namespace Pandaros.Settlers.Jobs
     {
         public SorcererRecipe()
         {
-            requires.Add(new RecipeItem(BuiltinBlocks.CopperNails, 60));
-            requires.Add(new RecipeItem(BuiltinBlocks.CopperTools, 6));
-            requires.Add(new RecipeItem(BuiltinBlocks.Planks, 6));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 60));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 6));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 6));
             requires.Add(new RecipeItem(Items.Reagents.Adamantine.NAME, 2));
             results.Add(new RecipeItem(SorcererRegister.JOB_ITEM_KEY, 1));
         }

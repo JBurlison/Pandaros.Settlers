@@ -9,6 +9,7 @@ using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Models;
 using Science;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,18 @@ namespace Pandaros.Settlers.Research
         public const string SkilledLaborer = "SkilledLaborer";
         private static readonly Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
 
-        public PandaResearch(Dictionary<ushort, int> requiredItems, 
+        public PandaResearch(Dictionary<ItemId, int> requiredItems,
+                            int level,
+                            string name,
+                            float baseValue,
+                            List<string> dependancies = null,
+                            int baseIterationCount = 10,
+                            bool addLevelToName = true) : 
+            this(requiredItems.ToDictionary(k => k.Key.Id, v => v.Value), level, name, baseValue, dependancies, baseIterationCount, addLevelToName)
+        {
+
+        }
+            public PandaResearch(Dictionary<ushort, int> requiredItems, 
                              int level, 
                              string name,
                              float baseValue,
@@ -191,11 +203,11 @@ namespace Pandaros.Settlers.Research
         private static void AddReducedWaste(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
-            researchDic.Add(BuiltinBlocks.Berry, 2);
-            researchDic.Add(BuiltinBlocks.Bread, 2);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BERRY.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BREAD.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10);
 
             var requirements = new List<string>
             {
@@ -222,8 +234,8 @@ namespace Pandaros.Settlers.Research
         private static void AddArmorSmithing(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.CopperParts, 2);
-            researchDic.Add(BuiltinBlocks.CopperNails, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERPARTS.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERNAILS.Id, 3);
 
             var requirements = new List<string>
             {
@@ -232,23 +244,23 @@ namespace Pandaros.Settlers.Research
 
             RegisterArmorSmithng(researchDic, 1, requirements);
 
-            researchDic.Remove(BuiltinBlocks.CopperParts);
-            researchDic.Remove(BuiltinBlocks.CopperNails);
-            researchDic.Add(BuiltinBlocks.BronzePlate, 3);
-            researchDic.Add(BuiltinBlocks.BronzeAxe, 1);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.COPPERPARTS.Id);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.COPPERNAILS.Id);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Id, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRONZEAXE.Id, 1);
             RegisterArmorSmithng(researchDic, 2);
 
-            researchDic.Add(BuiltinBlocks.IronRivet, 3);
-            researchDic.Add(BuiltinBlocks.IronSword, 1);
-            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 1);
-            researchDic.Remove(BuiltinBlocks.BronzePlate);
-            researchDic.Remove(BuiltinBlocks.BronzeAxe);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONRIVET.Id, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONSWORD.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGMILITARY.Id, 1);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Id);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.BRONZEAXE.Id);
             RegisterArmorSmithng(researchDic, 3);
 
-            researchDic.Add(BuiltinBlocks.SteelParts, 3);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 1);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
-            researchDic.Remove(BuiltinBlocks.IronRivet);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELPARTS.Id, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.IRONRIVET.Id);
             RegisterArmorSmithng(researchDic, 4);
         }
 
@@ -287,8 +299,8 @@ namespace Pandaros.Settlers.Research
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.CopperParts, 2);
-            researchDic.Add(BuiltinBlocks.CopperNails, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERPARTS.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERNAILS.Id, 3);
 
             var requirements = new List<string>
             {
@@ -297,23 +309,23 @@ namespace Pandaros.Settlers.Research
 
             RegisterSwordmithng(researchDic, 1, requirements);
 
-            researchDic.Remove(BuiltinBlocks.CopperParts);
-            researchDic.Remove(BuiltinBlocks.CopperNails);
-            researchDic.Add(BuiltinBlocks.BronzePlate, 3);
-            researchDic.Add(BuiltinBlocks.BronzeAxe, 1);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.COPPERPARTS.Id);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.COPPERNAILS.Id);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Id, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRONZEAXE.Id, 1);
             RegisterSwordmithng(researchDic, 2);
 
-            researchDic.Add(BuiltinBlocks.IronRivet, 3);
-            researchDic.Add(BuiltinBlocks.IronSword, 1);
-            researchDic.Add(BuiltinBlocks.ScienceBagMilitary, 1);
-            researchDic.Remove(BuiltinBlocks.BronzePlate);
-            researchDic.Remove(BuiltinBlocks.BronzeAxe);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONRIVET.Id, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONSWORD.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGMILITARY.Id, 1);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Id);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.BRONZEAXE.Id);
             RegisterSwordmithng(researchDic, 3);
 
-            researchDic.Add(BuiltinBlocks.SteelParts, 3);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 1);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
-            researchDic.Remove(BuiltinBlocks.IronRivet);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELPARTS.Id, 3);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10);
+            researchDic.Remove(ColonyBuiltIn.ItemTypes.IRONRIVET.Id);
             RegisterSwordmithng(researchDic, 4);
         }
 
@@ -348,10 +360,10 @@ namespace Pandaros.Settlers.Research
         private static void AddColonistHealth(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
-            researchDic.Add(BuiltinBlocks.Linen, 5);
-            researchDic.Add(BuiltinBlocks.BronzeCoin, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.LINEN.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRONZECOIN.Id, 10);
 
             var requirements = new List<string>
             {
@@ -382,9 +394,9 @@ namespace Pandaros.Settlers.Research
         private static void AddKnightResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.CopperTools, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.Linen, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.LINEN.Id, 2);
 
             var requirements = new List<string>
             {
@@ -406,8 +418,8 @@ namespace Pandaros.Settlers.Research
         private static void AddApocthResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 4);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 2);
 
             var requirements = new List<string>
             {
@@ -429,8 +441,8 @@ namespace Pandaros.Settlers.Research
         private static void AddAdvanceApocthResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 4);
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 4);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 2);
 
             var requirements = new List<string>
             {
@@ -451,11 +463,11 @@ namespace Pandaros.Settlers.Research
         private static void AddManaResearch(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.Alkanet, 10);
-            researchDic.Add(BuiltinBlocks.Wolfsbane, 10);
-            researchDic.Add(BuiltinBlocks.Hollyhock, 10);
-            researchDic.Add(BuiltinBlocks.Gypsum, 10);
-            researchDic.Add(BuiltinBlocks.Crystal, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.ALKANET.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.WOLFSBANE.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GYPSUM.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 10);
 
             var requirements = new List<string>
             {
@@ -477,12 +489,12 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(Aether.Item.ItemIndex, 1);
-            researchDic.Add(BuiltinBlocks.Copper, 20);
-            researchDic.Add(BuiltinBlocks.IronOre, 20);
-            researchDic.Add(BuiltinBlocks.Tin, 20);
-            researchDic.Add(BuiltinBlocks.GoldOre, 20);
-            researchDic.Add(BuiltinBlocks.GalenaSilver, 20);
-            researchDic.Add(BuiltinBlocks.GalenaLead, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPER.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONORE.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.TIN.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDORE.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GALENASILVER.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GALENALEAD.Id, 20);
 
             var requirements = new List<string>
             {
@@ -512,9 +524,9 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(Aether.Item.ItemIndex, 2);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 10);
-            researchDic.Add(BuiltinBlocks.GoldIngot, 10);
-            researchDic.Add(BuiltinBlocks.SilverIngot, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDINGOT.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SILVERINGOT.Id, 10);
             researchDic.Add(Items.Elementium.Item.ItemIndex, 1);
 
             var requirements = new List<string>
@@ -536,10 +548,10 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(Aether.Item.ItemIndex, 2);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 10);
-            researchDic.Add(BuiltinBlocks.GoldIngot, 10);
-            researchDic.Add(BuiltinBlocks.SilverIngot, 10);
-            researchDic.Add(BuiltinBlocks.Planks, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDINGOT.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SILVERINGOT.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.PLANKS.Id, 10);
 
             var requirements = new List<string>
             {
@@ -575,11 +587,11 @@ namespace Pandaros.Settlers.Research
         {
             researchDic.Clear();
             researchDic.Add(Items.Mana.Item.ItemIndex, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
-            researchDic.Add(BuiltinBlocks.StoneBricks, 20);
-            researchDic.Add(BuiltinBlocks.Crystal, 20);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20);
 
             var requirements = new List<string>
             {
@@ -600,8 +612,8 @@ namespace Pandaros.Settlers.Research
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.Sling, 1);
-            researchDic.Add(BuiltinBlocks.SlingBullet, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SLING.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SLINGBULLET.Id, 5);
 
             for (var i = 1; i <= 5; i++)
             {
@@ -619,8 +631,8 @@ namespace Pandaros.Settlers.Research
         private static void AddImprovedBows(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.Bow, 1);
-            researchDic.Add(BuiltinBlocks.BronzeArrow, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BOW.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRONZEARROW.Id, 5);
 
             var requirements = new List<string>
             {
@@ -647,8 +659,8 @@ namespace Pandaros.Settlers.Research
         private static void AddImprovedCrossbows(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.Crossbow, 1);
-            researchDic.Add(BuiltinBlocks.CrossbowBolt, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.CROSSBOW.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.CROSSBOWBOLT.Id, 5);
 
             var requirements = new List<string>
             {
@@ -675,9 +687,9 @@ namespace Pandaros.Settlers.Research
         private static void AddImprovedMatchlockgun(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.MatchlockGun, 1);
-            researchDic.Add(BuiltinBlocks.LeadBullet, 5);
-            researchDic.Add(BuiltinBlocks.GunpowderPouch, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.MATCHLOCKGUN.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.LEADBULLET.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GUNPOWDERPOUCH.Id, 2);
 
             var requirements = new List<string>
             {
@@ -704,10 +716,10 @@ namespace Pandaros.Settlers.Research
         private static void AddMachines(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.IronWrought, 1);
-            researchDic.Add(BuiltinBlocks.CopperTools, 1);
-            researchDic.Add(BuiltinBlocks.Planks, 5);
-            researchDic.Add(BuiltinBlocks.Linen, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.PLANKS.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.LINEN.Id, 2);
 
             var requirements = new List<string>
             {
@@ -734,10 +746,10 @@ namespace Pandaros.Settlers.Research
         private static void AddImprovedDuarability(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.IronBlock, 1);
-            researchDic.Add(BuiltinBlocks.Planks, 5);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 2);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONBLOCK.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.PLANKS.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10);
 
             var requirements = new List<string>
             {
@@ -764,10 +776,10 @@ namespace Pandaros.Settlers.Research
         private static void AddImprovedFuelCapacity(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.IronBlock, 1);
-            researchDic.Add(BuiltinBlocks.Planks, 5);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 2);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONBLOCK.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.PLANKS.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10);
 
             var requirements = new List<string>
             {
@@ -794,10 +806,10 @@ namespace Pandaros.Settlers.Research
         private static void AddIncreasedCapacity(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.IronBlock, 1);
-            researchDic.Add(BuiltinBlocks.Planks, 5);
-            researchDic.Add(BuiltinBlocks.SteelIngot, 2);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONBLOCK.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.PLANKS.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10);
 
             var requirements = new List<string>
             {
@@ -824,12 +836,12 @@ namespace Pandaros.Settlers.Research
         private static void AddMaxSettlers(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
-            researchDic.Add(BuiltinBlocks.PlasterBlock, 5);
-            researchDic.Add(BuiltinBlocks.IronIngot, 5);
-            researchDic.Add(BuiltinBlocks.Bed, 10);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.PLASTERBLOCK.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONINGOT.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BED.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20);
 
             var requirements = new List<string>
             {
@@ -845,12 +857,12 @@ namespace Pandaros.Settlers.Research
         private static void AddMinSettlers(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 2);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 1);
-            researchDic.Add(BuiltinBlocks.Bricks, 5);
-            researchDic.Add(BuiltinBlocks.CoatedPlanks, 5);
-            researchDic.Add(BuiltinBlocks.Bed, 5);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BRICKS.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BED.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20);
 
             var requirements = new List<string>
             {
@@ -866,12 +878,12 @@ namespace Pandaros.Settlers.Research
         private static void AddSettlerChance(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 1);
-            researchDic.Add(BuiltinBlocks.ScienceBagLife, 2);
-            researchDic.Add(BuiltinBlocks.Torch, 5);
-            researchDic.Add(BuiltinBlocks.StoneBricks, 10);
-            researchDic.Add(BuiltinBlocks.Bed, 5);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 1);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.TORCH.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.BED.Id, 5);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20);
 
             var requirements = new List<string>
             {
@@ -887,11 +899,11 @@ namespace Pandaros.Settlers.Research
         private static void AddSkilledLaborer(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagBasic, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
-            researchDic.Add(BuiltinBlocks.CopperTools, 20);
-            researchDic.Add(BuiltinBlocks.IronBlock, 2);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 30);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONBLOCK.Id, 2);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 30);
 
             var requirements = new List<string>
             {
@@ -908,13 +920,13 @@ namespace Pandaros.Settlers.Research
         private static void AddNumberSkilledLaborer(Dictionary<ushort, int> researchDic)
         {
             researchDic.Clear();
-            researchDic.Add(BuiltinBlocks.ScienceBagAdvanced, 10);
-            researchDic.Add(BuiltinBlocks.ScienceBagColony, 10);
-            researchDic.Add(BuiltinBlocks.CopperParts, 20);
-            researchDic.Add(BuiltinBlocks.CopperNails, 30);
-            researchDic.Add(BuiltinBlocks.Tin, 10);
-            researchDic.Add(BuiltinBlocks.IronRivet, 20);
-            researchDic.Add(BuiltinBlocks.GoldCoin, 30);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERPARTS.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.COPPERNAILS.Id, 30);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.TIN.Id, 10);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.IRONRIVET.Id, 20);
+            researchDic.Add(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 30);
 
             var requirements = new List<string>
             {

@@ -12,20 +12,20 @@ namespace Pandaros.Settlers.Items.Weapons
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,  GameLoader.NAMESPACE + ".Sword.RegisterRecipes")]
         public static void RegisterRecipes()
         {
-            var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks      = new InventoryItem(BuiltinBlocks.Planks, 1);
+            var coppertools = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var planks      = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1);
 
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
-            var copper      = new InventoryItem(BuiltinBlocks.Copper, 5);
+            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 5);
+            var copper      = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 5);
 
-            var bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
-            var bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 5);
+            var bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 5);
+            var bronze      = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 5);
 
-            var ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
-            var iron      = new InventoryItem(BuiltinBlocks.IronWrought, 5);
+            var ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 5);
+            var iron      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 5);
 
-            var steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
-            var steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
+            var steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 5);
+            var steel      = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 5);
 
 
             List<InventoryItem> items;
@@ -40,8 +40,8 @@ namespace Pandaros.Settlers.Items.Weapons
 
                 if (a.Value.name == "Copper Sword")
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
-                    copper      = new InventoryItem(BuiltinBlocks.Copper, 2);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 3);
+                    copper      = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 2);
                     items.AddRange(new[] {copper, copperParts, coppertools, planks});
                 }
 
@@ -51,8 +51,8 @@ namespace Pandaros.Settlers.Items.Weapons
 
                 if (a.Value.name == "Bronze Sword")
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
-                    bronze      = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 3);
+                    bronze      = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
                     items.AddRange(new[] {bronze, bronzePlate, coppertools, planks});
                 }
 
@@ -62,8 +62,8 @@ namespace Pandaros.Settlers.Items.Weapons
 
                 if (a.Value.name == "Iron Sword")
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
-                    iron      = new InventoryItem(BuiltinBlocks.IronIngot, 2);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 3);
+                    iron      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 2);
                     items.AddRange(new[] {iron, ironRivet, coppertools, planks});
                 }
 
@@ -73,8 +73,8 @@ namespace Pandaros.Settlers.Items.Weapons
 
                 if (a.Value.name == "Steel Sword")
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
-                    steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 3);
+                    steel      = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 2);
                     items.AddRange(new[] {steel, steelParts, coppertools, planks});
                 }
 

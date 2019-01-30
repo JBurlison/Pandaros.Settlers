@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Items
         public static void Register()
         {
             var aether = new InventoryItem(Elementium.Item.ItemIndex, 2);
-            var torch  = new InventoryItem(BuiltinBlocks.BronzeArrow, 20);
+            var torch  = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEARROW.Name, 20);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, torch},

@@ -170,7 +170,7 @@ namespace Pandaros.Settlers.Jobs
                         if (World.TryGetTypeAt(flagPoint, out ushort flagType) &&
                             flagType == PatrolTool.PatrolFlag.ItemIndex)
                         {
-                            ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
+                            ServerManager.TryChangeBlock(flagPoint, ColonyBuiltIn.ItemTypes.AIR.Id);
                             _stock.Add(PatrolTool.PatrolFlag.ItemIndex);
                         }
                 }

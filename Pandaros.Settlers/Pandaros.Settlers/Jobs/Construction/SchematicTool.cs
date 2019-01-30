@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static AreaJobTracker;
+using Pandaros.Settlers.Models;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -43,11 +44,11 @@ namespace Pandaros.Settlers.Jobs.Construction
 
     public class SchematicToolResearch : IPandaResearch
     {
-        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
         {
-            { BuiltinBlocks.ScienceBagColony, 1 },
-            { BuiltinBlocks.ScienceBagBasic, 3 },
-            { BuiltinBlocks.ScienceBagAdvanced, 1 }
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY, 1 },
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 3 },
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 }
         };
 
         public int NumberOfLevels => 1;
@@ -163,7 +164,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSendAreaHighlights, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OnSendAreaHighlights")]
         static void OnSendAreaHighlights(Players.Player goal, List<AreaHighlight> list, List<ushort> showWhileHoldingTypes)
         {
-            showWhileHoldingTypes.Add(BuiltinBlocks.Bed);
+            showWhileHoldingTypes.Add(ColonyBuiltIn.ItemTypes.BED.Id);
 
             if (ItemTypes.IndexLookup.StringLookupTable.TryGetItem(SchematicTool.NAME, out var item))
                 showWhileHoldingTypes.Add(item.ItemIndex);
@@ -193,7 +194,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                         if (SchematicReader.TryGetSchematicMetadata(selectedSchematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata schematicMetadata))
                         {
-                            if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(BuiltinBlocks.Air))
+                            if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(ColonyBuiltIn.ItemTypes.AIR.Id))
                                 PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                             {
                                 NetworkMenu menu = new NetworkMenu();
@@ -237,7 +238,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {
-                        if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(BuiltinBlocks.Air))
+                        if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(ColonyBuiltIn.ItemTypes.AIR.Id))
                             PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                         {
                             _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);

@@ -64,9 +64,9 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,  GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            var iron   = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-            var tools  = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 4);
+            var iron   = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
+            var tools  = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var planks = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
 
             var recipe = new Recipe(JOB_RECIPE,
                                     new List<InventoryItem> {iron, tools, planks},

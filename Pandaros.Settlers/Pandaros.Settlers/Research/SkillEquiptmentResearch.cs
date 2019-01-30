@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Research
 {
     public class SkillEquiptmentResearch : IPandaResearch
     {
-        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
         {
             { ItemId.GetItemId(Adamantine.NAME), 1 },
             { ItemId.GetItemId(AirStone.Item.name), 1 },

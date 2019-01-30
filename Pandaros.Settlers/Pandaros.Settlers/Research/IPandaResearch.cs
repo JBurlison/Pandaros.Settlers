@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Pandaros.Settlers.Models;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
 {
     public interface IPandaResearch : INameable
     {
-        Dictionary<ushort, int> RequiredItems { get; }
+        Dictionary<ItemId, int> RequiredItems { get; }
         int NumberOfLevels { get; }
         float BaseValue { get; }
         List<string> Dependancies { get; }

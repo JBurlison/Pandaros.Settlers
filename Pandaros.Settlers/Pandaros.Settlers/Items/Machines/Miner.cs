@@ -83,26 +83,26 @@ namespace Pandaros.Settlers.Items.Machines
                     var requiredForFix = new List<InventoryItem>();
                     var stockpile = colony.Stockpile;
 
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1));
 
                     if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                     {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                     }
                     else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                     {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                     }
                     else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                     {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                     }
 
                     if (stockpile.Contains(requiredForFix))
@@ -165,13 +165,13 @@ namespace Pandaros.Settlers.Items.Machines
                         else
                         {
                             machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
-                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, BuiltinBlocks.ErrorIdle));
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                         }
                     }
                     else
                     {
                         machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
-                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, BuiltinBlocks.ErrorIdle));
+                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     }
                     
                 }
@@ -180,13 +180,13 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
         public static void RegisterMiner()
         {
-            var rivets      = new InventoryItem(BuiltinBlocks.IronRivet, 6);
-            var iron        = new InventoryItem(BuiltinBlocks.IronWrought, 2);
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 6);
-            var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
-            var tools       = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks      = new InventoryItem(BuiltinBlocks.Planks, 4);
-            var pickaxe     = new InventoryItem(BuiltinBlocks.BronzePickaxe, 2);
+            var rivets      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
+            var iron        = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2);
+            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 6);
+            var copperNails = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 6);
+            var tools       = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var planks      = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
+            var pickaxe     = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPICKAXE.Name, 2);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>

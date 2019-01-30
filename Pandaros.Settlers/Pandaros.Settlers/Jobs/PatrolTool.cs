@@ -28,8 +28,8 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.PatrolTool.RegisterPatrolTool")]
         public static void RegisterPatrolTool()
         {
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 2);
-            var carpet = new InventoryItem(BuiltinBlocks.CarpetRed, 2);
+            var planks = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 2);
+            var carpet = new InventoryItem(ColonyBuiltIn.ItemTypes.CARPETRED.Name, 2);
 
             var recipe = new Recipe(PatrolFlag.name,
                                     new List<InventoryItem> {planks, carpet},
@@ -317,7 +317,7 @@ namespace Pandaros.Settlers.Jobs
                                         if (World.TryGetTypeAt(flagPoint, out ushort objType) &&
                                             objType == PatrolFlag.ItemIndex)
                                         {
-                                            ServerManager.TryChangeBlock(flagPoint, BuiltinBlocks.Air);
+                                            ServerManager.TryChangeBlock(flagPoint, ColonyBuiltIn.ItemTypes.AIR.Id);
                                             d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);
                                         }
 
@@ -344,7 +344,7 @@ namespace Pandaros.Settlers.Jobs
                     if (state.FlagsPlaced.Contains(d.Position))
                     {
                         state.FlagsPlaced.Remove(d.Position);
-                        ServerManager.TryChangeBlock(d.Position, BuiltinBlocks.Air);
+                        ServerManager.TryChangeBlock(d.Position, ColonyBuiltIn.ItemTypes.AIR.Id);
                     }
 
                     d.RequestOrigin.AsPlayer.ActiveColony.Stockpile.Add(PatrolFlag.ItemIndex);

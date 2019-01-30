@@ -17,9 +17,9 @@ namespace Pandaros.Settlers.Items
 {
     public class BackpackResearch : IPandaResearch
     {
-        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
         {
-            { BuiltinBlocks.ScienceBagBasic, 1 },
+            { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 1 },
         };
 
         public int NumberOfLevels => 1;
@@ -368,7 +368,7 @@ namespace Pandaros.Settlers.Items
 
                 foreach (var itemKvp in invRef.Items)
                 {
-                    if (itemKvp.Type != BuiltinBlocks.Air && itemKvp.Type != backpackID)
+                    if (itemKvp.Type != ColonyBuiltIn.ItemTypes.AIR.Id && itemKvp.Type != backpackID)
                     {
                         items = new List<IItem>();
                         items.Add(new ItemIcon(itemKvp.Type));

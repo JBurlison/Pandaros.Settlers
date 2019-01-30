@@ -161,7 +161,7 @@ namespace Pandaros.Settlers.Managers
                 d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
-            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
                 RemoveObjective(d.RequestOrigin.AsPlayer.ActiveColony, d.Position);
             else if (ObjectiveCallbacksIndex.TryGetValue(d.TypeNew.ItemIndex, out var objective))
                 RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, objective.name));

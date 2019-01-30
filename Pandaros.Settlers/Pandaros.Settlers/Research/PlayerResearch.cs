@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Research
 {
     public class MaxMagicItems : IPandaResearch
     {
-        public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
         {
             {  ItemId.GetItemId("Pandaros.Settlers.Healthbooster"), 1 }
         };

@@ -198,12 +198,12 @@ namespace Pandaros.Settlers.WorldGen
 
 
                     // look for ground
-                    while (!World.TryGetTypeAt(randSpot, out ItemTypes.ItemType item) || item.ItemIndex != BuiltinBlocks.Air ||
-                            !World.TryGetTypeAt(randSpot.Add(0, -1, 0), out ushort underItem) || (underItem == BuiltinBlocks.Air || underItem == BuiltinBlocks.Water))
+                    while (!World.TryGetTypeAt(randSpot, out ItemTypes.ItemType item) || item.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id ||
+                            !World.TryGetTypeAt(randSpot.Add(0, -1, 0), out ushort underItem) || (underItem == ColonyBuiltIn.ItemTypes.AIR.Id || underItem == ColonyBuiltIn.ItemTypes.WATER.Id))
                     {
                         if (item != null)
                         {
-                            if (item.ItemIndex != BuiltinBlocks.Air)
+                            if (item.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                                 randSpot = randSpot.Add(0, 1, 0);
                             else
                                 randSpot = randSpot.Add(0, -1, 0);
@@ -223,7 +223,7 @@ namespace Pandaros.Settlers.WorldGen
 
                     for (int x = 0; x < size; x++)
                         for (int z = 0; z < size; z++)
-                            if (!World.TryGetTypeAt(randSpot.Add(x, 0, z), out ushort item) || item != BuiltinBlocks.Air)
+                            if (!World.TryGetTypeAt(randSpot.Add(x, 0, z), out ushort item) || item != ColonyBuiltIn.ItemTypes.AIR.Id)
                             {
                                 isClear = false;
                             }

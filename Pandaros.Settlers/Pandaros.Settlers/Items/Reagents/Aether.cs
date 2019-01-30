@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items
         public static void Register()
         {
             var mana     = new InventoryItem(Mana.Item.ItemIndex, 1);
-            var cryastal = new InventoryItem(BuiltinBlocks.Crystal, 3);
+            var cryastal = new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 3);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {mana, cryastal},

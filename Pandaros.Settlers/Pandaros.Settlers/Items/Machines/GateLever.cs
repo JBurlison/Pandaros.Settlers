@@ -118,21 +118,21 @@ namespace Pandaros.Settlers.Items.Machines
                 var repaired       = false;
                 var requiredForFix = new List<InventoryItem>();
 
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1));
 
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1));
                 }
                 else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 3));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 3));
                 }
                 else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2));
                 }
 
                 if (colony.Stockpile.Contains(requiredForFix))
@@ -278,7 +278,7 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         _gatePositions[colony].Add(mkvp.Value, mkvp.Key);
 
-                        ServerManager.TryChangeBlock(mkvp.Key.Position, BuiltinBlocks.Air);
+                        ServerManager.TryChangeBlock(mkvp.Key.Position, ColonyBuiltIn.ItemTypes.AIR.Id);
 
                         var newOffset = -1;
 
@@ -415,12 +415,12 @@ namespace Pandaros.Settlers.Items.Machines
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterGateLever")]
         public static void RegisterGateLever()
         {
-            var rivets      = new InventoryItem(BuiltinBlocks.IronRivet, 6);
-            var iron        = new InventoryItem(BuiltinBlocks.IronWrought, 2);
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 6);
-            var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
-            var tools       = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks      = new InventoryItem(BuiltinBlocks.Planks, 4);
+            var rivets      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
+            var iron        = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2);
+            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 6);
+            var copperNails = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 6);
+            var tools       = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var planks      = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>
@@ -604,7 +604,7 @@ namespace Pandaros.Settlers.Items.Machines
                 d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
-            if (d.TypeOld.ItemIndex == BuiltinBlocks.Air && (d.TypeNew.ItemIndex == GateItem.ItemIndex ||
+            if (d.TypeOld.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id && (d.TypeNew.ItemIndex == GateItem.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemXN.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemXP.ItemIndex ||
                                                         d.TypeNew.ItemIndex == GateItemZN.ItemIndex ||
@@ -616,7 +616,7 @@ namespace Pandaros.Settlers.Items.Machines
                 _gatePositions[d.RequestOrigin.AsPlayer.ActiveColony].Add(d.Position, new GateState(GatePosition.Closed, VoxelSide.None, d.Position));
             }
 
-            if (d.TypeNew.ItemIndex == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
             {
                 if (!_gatePositions.ContainsKey(d.RequestOrigin.AsPlayer.ActiveColony))
                     _gatePositions.Add(d.RequestOrigin.AsPlayer.ActiveColony, new Dictionary<Vector3Int, GateState>());

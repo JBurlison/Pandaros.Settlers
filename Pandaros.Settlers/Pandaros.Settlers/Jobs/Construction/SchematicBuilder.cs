@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (bpi == null)
             {
                 PandaLogger.Log(ChatColor.yellow, "iterationType must be of type SchematicIterator for the SchematicBuilder.");
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
                 return;
             }
@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 if (buildType == null)
                 {
-                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                    state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     AreaJobTracker.RemoveJob(areaJob);
                     return;
                 }
@@ -71,14 +71,14 @@ namespace Pandaros.Settlers.Jobs.Construction
                             if (_needsChunkLoaded.Contains(bpi))
                                 _needsChunkLoaded.Remove(bpi);
 
-                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                            state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                             AreaJobTracker.RemoveJob(areaJob);
                             return;
                         }
 
                     Stockpile ownerStockPile = areaJob.Owner.Stockpile;
 
-                    bool ok = buildType.ItemIndex == BuiltinBlocks.Air;
+                    bool ok = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id;
 
                     if (!ok && ownerStockPile.Contains(buildType.ItemIndex))
                         ok = true;
@@ -93,17 +93,17 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     if (ok)
                     {
-                        if (foundTypeIndex != BuiltinBlocks.Air && foundTypeIndex != BuiltinBlocks.Water)
+                        if (foundTypeIndex != ColonyBuiltIn.ItemTypes.AIR.Id && foundTypeIndex != ColonyBuiltIn.ItemTypes.WATER.Id)
                         {
                             var foundItem = ItemTypes.GetType(foundTypeIndex);
 
-                            if (foundItem != null && foundItem.ItemIndex != BuiltinBlocks.Air && foundItem.OnRemoveItems != null && foundItem.OnRemoveItems.Count > 0)
+                            if (foundItem != null && foundItem.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && foundItem.OnRemoveItems != null && foundItem.OnRemoveItems.Count > 0)
                                 ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
 
                         if (ServerManager.TryChangeBlock(iterationType.CurrentPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
                         {
-                            if (buildType.ItemIndex != BuiltinBlocks.Air)
+                            if (buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                             {
                                 if (--job.StoredItemCount <= 0)
                                 {
@@ -119,7 +119,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                             if (!_needsChunkLoaded.Contains(bpi))
                                 _needsChunkLoaded.Add(bpi);
 
-                            state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                            state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                             ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
                             return;
                         }
@@ -130,7 +130,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (!_needsChunkLoaded.Contains(bpi))
                         _needsChunkLoaded.Add(bpi);
 
-                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                    state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
                     return;
                 }
@@ -138,7 +138,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 if (iterationType.MoveNext())
                 {
-                    if (buildType.ItemIndex != BuiltinBlocks.Air)
+                    if (buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                         state.SetIndicator(new Shared.IndicatorState(GetCooldown(), buildType.ItemIndex));
                     else
                         state.SetIndicator(new Shared.IndicatorState(GetCooldown(), foundTypeIndex));
@@ -151,7 +151,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         _needsChunkLoaded.Remove(bpi);
 
                     // failed to find next position to do job at, self-destruct
-                    state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                    state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     AreaJobTracker.RemoveJob(areaJob);
                     return;
                 }
@@ -159,7 +159,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             if (iterationType.MoveNext())
             {
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 return;
             }
             else
@@ -168,7 +168,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     _needsChunkLoaded.Remove(bpi);
 
                 // failed to find next position to do job at, self-destruct
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
                 PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", iterationType.CurrentPosition);
                 return;

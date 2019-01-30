@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Entities
         public int BuildersWandMaxCharge { get; set; }
         public IPlayerMagicItem[] MagicItems { get; set; } = new IPlayerMagicItem[0];
         public List<Vector3Int> BuildersWandPreview { get; set; } = new List<Vector3Int>();
-        public ushort BuildersWandTarget { get; set; } = BuiltinBlocks.Air;
+        public ushort BuildersWandTarget { get; set; } = ColonyBuiltIn.ItemTypes.AIR.Id;
         public long NextMusicTime { get; set; }
         public bool Connected { get; set; }
         public int MaxMagicItems { get; set; }

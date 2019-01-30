@@ -14,10 +14,10 @@ namespace Pandaros.Settlers.Items.Healing
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
         public static void Register()
         {
-            var herbs  = new InventoryItem(BuiltinBlocks.Hollyhock, 2);
-            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 2);
-            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL, 1);
-            var flour  = new InventoryItem(BuiltinBlocks.Flour, 2);
+            var herbs  = new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Name, 2);
+            var herbs2 = new InventoryItem(ColonyBuiltIn.ItemTypes.ALKANET.Name, 2);
+            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 1);
+            var flour  = new InventoryItem(ColonyBuiltIn.ItemTypes.FLOUR.Name, 2);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {flour, oil, herbs, herbs2},

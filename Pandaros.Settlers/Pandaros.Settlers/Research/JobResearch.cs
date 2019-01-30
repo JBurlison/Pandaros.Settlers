@@ -1,6 +1,7 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.ColonyManager;
 using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Models;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -16,10 +17,10 @@ namespace Pandaros.Settlers.Research
 
         public class MerchantTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -51,11 +52,11 @@ namespace Pandaros.Settlers.Research
 
         public class TailorTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.LinenBag, 3 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.LINENBAG, 3 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -87,11 +88,11 @@ namespace Pandaros.Settlers.Research
 
         public class BloomeryTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.IronWrought, 3 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.IRONWROUGHT, 3 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -123,11 +124,11 @@ namespace Pandaros.Settlers.Research
 
         public class FineryForgeTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.CrossbowBolt, 5 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.CROSSBOWBOLT, 5 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -159,11 +160,11 @@ namespace Pandaros.Settlers.Research
 
         public class FurnaceTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.Bricks, 5 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.BRICKS, 5 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -195,11 +196,11 @@ namespace Pandaros.Settlers.Research
 
         public class GrinderTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.Flour, 5 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.FLOUR, 5 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -231,11 +232,11 @@ namespace Pandaros.Settlers.Research
 
         public class GunSmithTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.LeadBullet, 5 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.LEADBULLET, 5 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -267,11 +268,11 @@ namespace Pandaros.Settlers.Research
 
         public class KilnTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.Charcoal, 3 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.CHARCOAL, 3 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -303,11 +304,11 @@ namespace Pandaros.Settlers.Research
 
         public class MetalSmithTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.BronzePlate, 3 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.BRONZEPLATE, 3 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -339,10 +340,10 @@ namespace Pandaros.Settlers.Research
 
         public class MintTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -374,11 +375,11 @@ namespace Pandaros.Settlers.Research
 
         public class OvenTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.Bread, 3 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.BREAD, 3 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -410,11 +411,11 @@ namespace Pandaros.Settlers.Research
 
         public class WoodcutterTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.Planks, 5 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.PLANKS, 5 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -445,11 +446,11 @@ namespace Pandaros.Settlers.Research
         }
         public class WorkBenchTrainingResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.WorkBench, 3 },
-                { BuiltinBlocks.ScienceBagBasic, BAG_COST },
-                { BuiltinBlocks.BronzeCoin, COIN_COST }
+                { ColonyBuiltIn.ItemTypes.WORKBENCH, 3 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
 
             public int NumberOfLevels => 5;
@@ -481,15 +482,15 @@ namespace Pandaros.Settlers.Research
 
         public class MasterOfAllResearch : IPandaResearch
         {
-            public Dictionary<ushort, int> RequiredItems => new Dictionary<ushort, int>()
+            public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
             {
-                { BuiltinBlocks.ScienceBagBasic, 1 },
-                { BuiltinBlocks.ScienceBagLife, 1 },
-                { BuiltinBlocks.ScienceBagAdvanced, 1 },
-                { BuiltinBlocks.ScienceBagColony, 1 },
-                { BuiltinBlocks.ScienceBagMilitary, 1 },
-                { BuiltinBlocks.GoldCoin, 10 },
-                { BuiltinBlocks.BronzeCoin, 10 }
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 1 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE, 1 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY, 1 },
+                { ColonyBuiltIn.ItemTypes.SCIENCEBAGMILITARY, 1 },
+                { ColonyBuiltIn.ItemTypes.GOLDCOIN, 10 },
+                { ColonyBuiltIn.ItemTypes.BRONZECOIN, 10 }
             };
 
             public int NumberOfLevels => 10;

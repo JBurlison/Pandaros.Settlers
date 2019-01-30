@@ -446,7 +446,7 @@ namespace Pandaros.Settlers.Items
                 }
                 else
                 {
-                    items.Add(new ItemIcon(BuiltinBlocks.Air));
+                    items.Add(new ItemIcon(ColonyBuiltIn.ItemTypes.AIR.Id));
                     items.Add(new Label(new LabelData("", UnityEngine.Color.black)));
                     items.Add(new ButtonCallback("MagicItem." + i + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Add"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
                 }

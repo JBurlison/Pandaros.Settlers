@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (bpi == null)
             {
                 PandaLogger.Log(ChatColor.yellow, "iterationType must be of type SchematicIterator for the Archetect.");
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
                 return;
             }
@@ -39,13 +39,13 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             if (iterationType.MoveNext())
             {
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 return;
             }
             else
             {
                 // failed to find next position to do job at, self-destruct
-                state.SetIndicator(new Shared.IndicatorState(5f, BuiltinBlocks.ErrorIdle));
+                state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
                 PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", iterationType.CurrentPosition);
                 return;

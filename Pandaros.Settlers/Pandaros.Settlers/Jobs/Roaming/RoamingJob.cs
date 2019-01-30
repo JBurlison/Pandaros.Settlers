@@ -142,7 +142,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             else if (status != 0)
                 state.SetIndicator(new IndicatorState(cooldown, status, true));
             else
-                state.SetIndicator(new IndicatorState(cooldown, BuiltinBlocks.ErrorMissing));
+                state.SetIndicator(new IndicatorState(cooldown, ColonyBuiltIn.ItemTypes.MISSINGERROR.Name));
 
             state.SetCooldown(cooldown);
         }

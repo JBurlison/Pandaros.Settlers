@@ -55,9 +55,9 @@ namespace Pandaros.Settlers.Jobs
     {
         public ApothecaryRecipe()
         {
-            requires.Add(new RecipeItem(BuiltinBlocks.BronzeIngot, 2));
-            requires.Add(new RecipeItem(BuiltinBlocks.CopperTools, 1));
-            requires.Add(new RecipeItem(BuiltinBlocks.Planks, 4));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4));
             results.Add(new RecipeItem(ApothecaryRegister.JOB_ITEM_KEY, 1));
         }
 

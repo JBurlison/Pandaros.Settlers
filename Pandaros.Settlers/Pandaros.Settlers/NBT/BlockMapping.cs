@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.NBT
             {
                 if (_index == ushort.MaxValue)
                 {
-                    var newType = BuiltinBlocks.Air;
+                    var newType = ColonyBuiltIn.ItemTypes.AIR.Id;
                     
                     if (!string.IsNullOrWhiteSpace(CSType))
                     {
@@ -30,13 +30,13 @@ namespace Pandaros.Settlers.NBT
                         else
                         {
                             PandaLogger.Log(ChatColor.yellow, "Unable to find CSType {0} from the itemType table for block {1} from mapping the file. This item will be mapped to air.", CSType, Name);
-                            _index = BuiltinBlocks.Air;
+                            _index = ColonyBuiltIn.ItemTypes.AIR.Id;
                         }
                     }
                     else
                     { 
                         PandaLogger.Log(ChatColor.yellow, "Item {0} from mapping file has a blank cstype. This item will be mapped to air.", Name);
-                        _index = BuiltinBlocks.Air;
+                        _index = ColonyBuiltIn.ItemTypes.AIR.Id;
                     }
 
                     _index = newType;

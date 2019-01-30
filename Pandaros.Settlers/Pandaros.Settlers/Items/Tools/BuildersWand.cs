@@ -32,10 +32,10 @@ namespace Pandaros.Settlers.Items
         public static void Register()
         {
             var elementium = new InventoryItem(Elementium.Item.ItemIndex, 1);
-            var steel      = new InventoryItem(BuiltinBlocks.SteelIngot, 1);
+            var steel      = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 1);
             var adamantine = new InventoryItem("Pandaros.Settlers.AutoLoad.Adamantine", 2);
-            var gold       = new InventoryItem(BuiltinBlocks.GoldIngot, 1);
-            var silver     = new InventoryItem(BuiltinBlocks.SilverIngot, 1);
+            var gold       = new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDINGOT.Name, 1);
+            var silver     = new InventoryItem(ColonyBuiltIn.ItemTypes.SILVERINGOT.Name, 1);
             var aether     = new InventoryItem(Aether.Item.ItemIndex, 4);
 
             var recipe = new Recipe(Item.name,
@@ -93,10 +93,10 @@ namespace Pandaros.Settlers.Items
                 {
                     foreach (var pos in ps.BuildersWandPreview)
                         if (World.TryGetTypeAt(pos, out ushort objType) && objType == Selector.ItemIndex)
-                            ServerManager.TryChangeBlock(pos, BuiltinBlocks.Air);
+                            ServerManager.TryChangeBlock(pos, ColonyBuiltIn.ItemTypes.AIR.Id);
 
                     ps.BuildersWandPreview.Clear();
-                    ps.BuildersWandTarget = BuiltinBlocks.Air;
+                    ps.BuildersWandTarget = ColonyBuiltIn.ItemTypes.AIR.Id;
                 }
                 else
                 {
@@ -121,11 +121,11 @@ namespace Pandaros.Settlers.Items
                         }
                         else
                         {
-                            ServerManager.TryChangeBlock(pos, BuiltinBlocks.Air);
+                            ServerManager.TryChangeBlock(pos, ColonyBuiltIn.ItemTypes.AIR.Id);
                         }
 
                     ps.BuildersWandPreview.Clear();
-                    ps.BuildersWandTarget = BuiltinBlocks.Air;
+                    ps.BuildersWandTarget = ColonyBuiltIn.ItemTypes.AIR.Id;
 
                     if (ps.BuildersWandCharge <= 0)
                     {
@@ -449,8 +449,8 @@ namespace Pandaros.Settlers.Items
         {
             var brek = false;
 
-            if (World.TryGetTypeAt(potentialPos.Add(x, y, z), out ushort itemBehind) && itemBehind != BuiltinBlocks.Air &&
-                World.TryGetTypeAt(potentialPos, out ushort itemInPotentialPos) && itemInPotentialPos == BuiltinBlocks.Air)
+            if (World.TryGetTypeAt(potentialPos.Add(x, y, z), out ushort itemBehind) && itemBehind != ColonyBuiltIn.ItemTypes.AIR.Id &&
+                World.TryGetTypeAt(potentialPos, out ushort itemInPotentialPos) && itemInPotentialPos == ColonyBuiltIn.ItemTypes.AIR.Id)
             {
                 ServerManager.TryChangeBlock(potentialPos, Selector.ItemIndex);
                 ps.BuildersWandPreview.Add(potentialPos);

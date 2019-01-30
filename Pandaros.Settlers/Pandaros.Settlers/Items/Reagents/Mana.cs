@@ -14,10 +14,10 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Mana.Register")]
         public static void Register()
         {
-            var herbs  = new InventoryItem(BuiltinBlocks.Hollyhock, 10);
-            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 10);
-            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL, 10);
-            var herbs3 = new InventoryItem(BuiltinBlocks.Wolfsbane, 10);
+            var herbs  = new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Name, 10);
+            var herbs2 = new InventoryItem(ColonyBuiltIn.ItemTypes.ALKANET.Name, 10);
+            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 10);
+            var herbs3 = new InventoryItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Name, 10);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {herbs3, oil, herbs, herbs2},

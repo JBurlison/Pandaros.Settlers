@@ -63,10 +63,10 @@ namespace Pandaros.Settlers.Managers
             if (boxedData.item1.clickType == PlayerClickedData.ClickType.Right &&
                 boxedData.item1.rayCastHit.rayHitType == RayHitType.Block &&
                 World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out ushort blockHit) &&
-                blockHit == BuiltinBlocks.BerryBush)
+                blockHit == ColonyBuiltIn.ItemTypes.BERRYBUSH)
             {
                 var inv = player.Inventory;
-                inv.TryAdd(BuiltinBlocks.Berry, 2);
+                inv.TryAdd(ColonyBuiltIn.ItemTypes.BERRY, 2);
             }
         }
 
@@ -423,8 +423,8 @@ namespace Pandaros.Settlers.Managers
                                 PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
                                 npc.Colony.HappinessData.RecruitmentCostCalculator.GetCost(npc.Colony.HappinessData.CachedHappiness, npc.Colony, out float foodCost);
 
-                                if (ItemTypes.TryGetType(ColonyBuiltIn.ItemTypes.BREAD, out var bread))
-                                    npc.Colony.Stockpile.Add(BuiltinBlocks.Bread, (int)Math.Floor(foodCost / bread.FoodValue));
+                                if (ItemTypes.TryGetType(ColonyBuiltIn.ItemTypes.BREAD.Name, out var bread))
+                                    npc.Colony.Stockpile.Add(ColonyBuiltIn.ItemTypes.BREAD, (int)Math.Floor(foodCost / bread.FoodValue));
 
                                 npc.health = 0;
                                 npc.Update();
@@ -804,7 +804,7 @@ namespace Pandaros.Settlers.Managers
                     var randItem = Random.Next(npc.Colony.Stockpile.ItemCount);
                     var item     = npc.Colony.Stockpile.GetByIndex(randItem);
 
-                    if (item.Type != BuiltinBlocks.Air && item.Amount != 0)
+                    if (item.Type != ColonyBuiltIn.ItemTypes.AIR.Id && item.Amount != 0)
                     {
                         var leaveTax = Pipliz.Math.RoundToInt(item.Amount * .10);
                         npc.Colony.Stockpile.TryRemove(item.Type, leaveTax);

@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.NBT
                     PandaLogger.Log(ChatColor.yellow, "2) Unable to find mapping for block {0}", ToString());
                 }
 
-                return BlockMapping.MCtoCSMappings[BlockTypes.BuiltinBlocks.Air.ToString()];
+                return BlockMapping.MCtoCSMappings[ColonyBuiltIn.ItemTypes.AIR.Id.ToString()];
             }
         }
 

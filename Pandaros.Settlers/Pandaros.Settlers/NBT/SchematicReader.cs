@@ -118,7 +118,7 @@ namespace Pandaros.Settlers.NBT
                         {
                             var block = schematic.Blocks[X, Y, Z].MappedBlock;
 
-                            if (block.CSIndex != BuiltinBlocks.Air)
+                            if (block.CSIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                             {
                                 var buildType = ItemTypes.GetType(block.CSIndex);
                                 var index = block.CSIndex;

@@ -297,20 +297,20 @@ namespace Pandaros.Settlers.Items.Armor
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Armor.RegisterRecipes")]
         public static void RegisterRecipes()
         {
-            var coppertools = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var clothing = new InventoryItem(ColonyBuiltIn.ItemTypes.LINEN, 1);
+            var coppertools = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var clothing = new InventoryItem(ColonyBuiltIn.ItemTypes.LINEN.Name, 1);
 
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
-            var copper = new InventoryItem(BuiltinBlocks.Copper, 5);
+            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 5);
+            var copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 5);
 
-            var bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
-            var bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 5);
+            var bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 5);
+            var bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 5);
 
-            var ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
-            var iron = new InventoryItem(BuiltinBlocks.IronWrought, 5);
+            var ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 5);
+            var iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 5);
 
-            var steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
-            var steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
+            var steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 5);
+            var steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 5);
 
             List<InventoryItem> items;
 
@@ -324,43 +324,43 @@ namespace Pandaros.Settlers.Items.Armor
 
                 if (a.Value.name.Contains("Copper") && a.Value.Slot == ArmorSlot.Helm)
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
-                    copper = new InventoryItem(BuiltinBlocks.Copper, 2);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 3);
+                    copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 2);
                     items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Copper") && a.Value.Slot == ArmorSlot.Chest)
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 5);
-                    copper = new InventoryItem(BuiltinBlocks.Copper, 5);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 5);
+                    copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 5);
                     items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Copper") && a.Value.Slot == ArmorSlot.Gloves)
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
-                    copper = new InventoryItem(BuiltinBlocks.Copper, 2);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2);
+                    copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 2);
                     items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Copper") && a.Value.Slot == ArmorSlot.Legs)
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 3);
-                    copper = new InventoryItem(BuiltinBlocks.Copper, 3);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 3);
+                    copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 3);
                     items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Copper") && a.Value.Slot == ArmorSlot.Boots)
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
-                    copper = new InventoryItem(BuiltinBlocks.Copper, 2);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2);
+                    copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 2);
                     items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Copper") && a.Value.Slot == ArmorSlot.Shield)
                 {
-                    copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 2);
-                    copper = new InventoryItem(BuiltinBlocks.Copper, 2);
+                    copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2);
+                    copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 2);
                     items.AddRange(new[] { copper, copperParts, coppertools, clothing });
                 }
 
@@ -370,43 +370,43 @@ namespace Pandaros.Settlers.Items.Armor
 
                 if (a.Value.name.Contains("Bronze") && a.Value.Slot == ArmorSlot.Helm)
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
-                    bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 3);
+                    bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
                     items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Bronze") && a.Value.Slot == ArmorSlot.Chest)
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 5);
-                    bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 5);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 5);
+                    bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 5);
                     items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Bronze") && a.Value.Slot == ArmorSlot.Gloves)
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
-                    bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 2);
+                    bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
                     items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Bronze") && a.Value.Slot == ArmorSlot.Legs)
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 3);
-                    bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 3);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 3);
+                    bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 3);
                     items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Bronze") && a.Value.Slot == ArmorSlot.Boots)
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
-                    bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 2);
+                    bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
                     items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Bronze") && a.Value.Slot == ArmorSlot.Shield)
                 {
-                    bronzePlate = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
-                    bronze = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
+                    bronzePlate = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 2);
+                    bronze = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
                     items.AddRange(new[] { bronze, bronzePlate, coppertools, clothing });
                 }
 
@@ -416,43 +416,43 @@ namespace Pandaros.Settlers.Items.Armor
 
                 if (a.Value.name.Contains("Iron") && a.Value.Slot == ArmorSlot.Helm)
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
-                    iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 3);
+                    iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 2);
                     items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Iron") && a.Value.Slot == ArmorSlot.Chest)
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 5);
-                    iron = new InventoryItem(BuiltinBlocks.IronIngot, 5);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 5);
+                    iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 5);
                     items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Iron") && a.Value.Slot == ArmorSlot.Gloves)
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
-                    iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 2);
+                    iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 2);
                     items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Iron") && a.Value.Slot == ArmorSlot.Legs)
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 3);
-                    iron = new InventoryItem(BuiltinBlocks.IronIngot, 3);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 3);
+                    iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 3);
                     items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Iron") && a.Value.Slot == ArmorSlot.Boots)
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
-                    iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 2);
+                    iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 2);
                     items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Iron") && a.Value.Slot == ArmorSlot.Shield)
                 {
-                    ironRivet = new InventoryItem(BuiltinBlocks.IronRivet, 2);
-                    iron = new InventoryItem(BuiltinBlocks.IronIngot, 2);
+                    ironRivet = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 2);
+                    iron = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Name, 2);
                     items.AddRange(new[] { iron, ironRivet, coppertools, clothing });
                 }
 
@@ -462,43 +462,43 @@ namespace Pandaros.Settlers.Items.Armor
 
                 if (a.Value.name.Contains("Steel") && a.Value.Slot == ArmorSlot.Helm)
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
-                    steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 3);
+                    steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 2);
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Steel") && a.Value.Slot == ArmorSlot.Chest)
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 5);
-                    steel = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 5);
+                    steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 5);
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Steel") && a.Value.Slot == ArmorSlot.Gloves)
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
-                    steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 2);
+                    steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 2);
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Steel") && a.Value.Slot == ArmorSlot.Legs)
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 3);
-                    steel = new InventoryItem(BuiltinBlocks.SteelIngot, 3);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 3);
+                    steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 3);
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Steel") && a.Value.Slot == ArmorSlot.Boots)
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
-                    steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 2);
+                    steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 2);
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 
                 if (a.Value.name.Contains("Steel") && a.Value.Slot == ArmorSlot.Shield)
                 {
-                    steelParts = new InventoryItem(BuiltinBlocks.SteelParts, 2);
-                    steel = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
+                    steelParts = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 2);
+                    steel = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 2);
                     items.AddRange(new[] { steel, steelParts, coppertools, clothing });
                 }
 

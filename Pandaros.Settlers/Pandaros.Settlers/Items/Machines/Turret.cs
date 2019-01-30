@@ -156,8 +156,8 @@ namespace Pandaros.Settlers.Items.Machines
                             {
                                 machineState.AddToActionEmergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoReloadValue);
 
-                                if (TurretSettings[machineState.RoamObjective].Ammo.Any(itm => itm.Type == BuiltinBlocks.GunpowderPouch))
-                                    stockpile.Add(BuiltinBlocks.LinenPouch);
+                                if (TurretSettings[machineState.RoamObjective].Ammo.Any(itm => itm.Type == ColonyBuiltIn.ItemTypes.GUNPOWDERPOUCH))
+                                    stockpile.Add(ColonyBuiltIn.ItemTypes.LINENPOUCH);
                             }
 
                         if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
@@ -224,7 +224,7 @@ namespace Pandaros.Settlers.Items.Machines
                             {
                                 machineState.SubtractFromActionEnergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoValue);
 
-                                if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out ushort above) && above == BuiltinBlocks.Air)
+                                if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out ushort above) && above == ColonyBuiltIn.ItemTypes.AIR.Id)
                                     Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
                                                                     new IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
                                                                                        TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault().Type));
@@ -258,30 +258,30 @@ namespace Pandaros.Settlers.Items.Machines
             GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
         public static void RegisterTurret()
         {
-            var rivets      = new InventoryItem(BuiltinBlocks.IronRivet, 6);
-            var iron        = new InventoryItem(BuiltinBlocks.IronWrought, 2);
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 6);
-            var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
-            var tools       = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks      = new InventoryItem(BuiltinBlocks.Planks, 2);
-            var stone       = new InventoryItem(BuiltinBlocks.StoneBricks, 4);
-            var bronze      = new InventoryItem(BuiltinBlocks.BronzePlate, 2);
-            var bronzeIngot = new InventoryItem(BuiltinBlocks.BronzeIngot, 3);
-            var steelParts  = new InventoryItem(BuiltinBlocks.SteelParts, 6);
-            var steelIngot  = new InventoryItem(BuiltinBlocks.SteelIngot, 2);
+            var rivets      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
+            var iron        = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2);
+            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 6);
+            var copperNails = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 6);
+            var tools       = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var planks      = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 2);
+            var stone       = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 4);
+            var bronze      = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPLATE.Name, 2);
+            var bronzeIngot = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 3);
+            var steelParts  = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 6);
+            var steelIngot  = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 2);
 
-            var stoneAmmo = new InventoryItem(BuiltinBlocks.SlingBullet, 10);
-            var sling     = new InventoryItem(BuiltinBlocks.Sling, 2);
+            var stoneAmmo = new InventoryItem(ColonyBuiltIn.ItemTypes.SLINGBULLET.Name, 10);
+            var sling     = new InventoryItem(ColonyBuiltIn.ItemTypes.SLING.Name, 2);
 
-            var arrow = new InventoryItem(BuiltinBlocks.BronzeArrow, 10);
-            var bow   = new InventoryItem(BuiltinBlocks.Bow, 2);
+            var arrow = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEARROW.Name, 10);
+            var bow   = new InventoryItem(ColonyBuiltIn.ItemTypes.BOW.Name, 2);
 
-            var bolt     = new InventoryItem(BuiltinBlocks.BronzeArrow, 10);
-            var crossbow = new InventoryItem(BuiltinBlocks.Crossbow, 2);
+            var bolt     = new InventoryItem(ColonyBuiltIn.ItemTypes.CROSSBOWBOLT.Name, 10);
+            var crossbow = new InventoryItem(ColonyBuiltIn.ItemTypes.CROSSBOW.Name, 2);
 
-            var bullet    = new InventoryItem(BuiltinBlocks.LeadBullet, 10);
-            var gunpowder = new InventoryItem(BuiltinBlocks.GunpowderPouch, 3);
-            var matchlock = new InventoryItem(BuiltinBlocks.MatchlockGun, 2);
+            var bullet    = new InventoryItem(ColonyBuiltIn.ItemTypes.LEADBULLET.Name, 10);
+            var gunpowder = new InventoryItem(ColonyBuiltIn.ItemTypes.GUNPOWDERPOUCH.Name, 3);
+            var matchlock = new InventoryItem(ColonyBuiltIn.ItemTypes.MATCHLOCKGUN.Name, 2);
 
             AddStoneTurretSettings();
             AddBronzeArrowTurretSettings();
@@ -366,7 +366,7 @@ namespace Pandaros.Settlers.Items.Machines
             var turretSettings = new TurretSetting
             {
                 TurretItem          = TurretTypes[STONE],
-                Ammo                = new List<InventoryItem> {new InventoryItem(BuiltinBlocks.SlingBullet)},
+                Ammo                = new List<InventoryItem> {new InventoryItem(ColonyBuiltIn.ItemTypes.SLINGBULLET.Name)},
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.005f,
                 FuelPerDoWork       = 0.003f,
@@ -384,40 +384,40 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
-                            new InventoryItem(BuiltinBlocks.Sling, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.SLING.Name, 1)
                         }
                     },
                     {
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
-                            new InventoryItem(BuiltinBlocks.Sling, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.SLING.Name, 2)
                         }
                     }
                 },
@@ -434,7 +434,7 @@ namespace Pandaros.Settlers.Items.Machines
             var turretSettings = new TurretSetting
             {
                 TurretItem          = TurretTypes[BRONZEARROW],
-                Ammo                = new List<InventoryItem> {new InventoryItem(BuiltinBlocks.BronzeArrow)},
+                Ammo                = new List<InventoryItem> {new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEARROW.Name)},
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.003f,
                 FuelPerDoWork       = 0.01f,
@@ -452,40 +452,40 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
-                            new InventoryItem(BuiltinBlocks.Bow, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.BOW.Name, 1)
                         }
                     },
                     {
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.CopperParts, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
-                            new InventoryItem(BuiltinBlocks.Bow, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.BOW.Name, 2)
                         }
                     }
                 },
@@ -502,7 +502,7 @@ namespace Pandaros.Settlers.Items.Machines
             var turretSettings = new TurretSetting
             {
                 TurretItem          = TurretTypes[CROSSBOW],
-                Ammo                = new List<InventoryItem> {new InventoryItem(BuiltinBlocks.CrossbowBolt)},
+                Ammo                = new List<InventoryItem> {new InventoryItem(ColonyBuiltIn.ItemTypes.CROSSBOWBOLT.Name)},
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.005f,
                 FuelPerDoWork       = 0.02f,
@@ -520,40 +520,40 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.IronRivet, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.IronRivet, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 2),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.IronRivet, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
-                            new InventoryItem(BuiltinBlocks.Crossbow, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.CROSSBOW.Name, 1)
                         }
                     },
                     {
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.IronRivet, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
-                            new InventoryItem(BuiltinBlocks.Crossbow, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.CROSSBOW.Name, 2)
                         }
                     }
                 },
@@ -572,8 +572,8 @@ namespace Pandaros.Settlers.Items.Machines
                 TurretItem = TurretTypes[MATCHLOCK],
                 Ammo = new List<InventoryItem>
                 {
-                    new InventoryItem(BuiltinBlocks.LeadBullet),
-                    new InventoryItem(BuiltinBlocks.GunpowderPouch)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.LEADBULLET.Name),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GUNPOWDERPOUCH.Name)
                 },
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.008f,
@@ -592,40 +592,40 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.SteelParts, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.SteelParts, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 2),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.SteelParts, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
-                            new InventoryItem(BuiltinBlocks.MatchlockGun, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.MATCHLOCKGUN.Name, 1)
                         }
                     },
                     {
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 1),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
-                            new InventoryItem(BuiltinBlocks.SteelParts, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
-                            new InventoryItem(BuiltinBlocks.MatchlockGun, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.MATCHLOCKGUN.Name, 2)
                         }
                     }
                 },

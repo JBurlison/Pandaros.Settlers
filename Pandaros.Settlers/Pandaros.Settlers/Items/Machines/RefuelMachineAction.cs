@@ -13,11 +13,11 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.SetFuelValues")]
         public static void SetFuelValues()
         {
-            FuelValues[BuiltinBlocks.Coalore] = .20f;
-            FuelValues[BuiltinBlocks.Firewood] = .10f;
-            FuelValues[BuiltinBlocks.Straw] = .05f;
-            FuelValues[BuiltinBlocks.LeavesTemperate] = .02f;
-            FuelValues[BuiltinBlocks.LeavesTaiga] = .02f;
+            FuelValues[ColonyBuiltIn.ItemTypes.COALORE] = .20f;
+            FuelValues[ColonyBuiltIn.ItemTypes.FIREWOOD] = .10f;
+            FuelValues[ColonyBuiltIn.ItemTypes.STRAW] = .05f;
+            FuelValues[ColonyBuiltIn.ItemTypes.LEAVESTEMPERATE] = .02f;
+            FuelValues[ColonyBuiltIn.ItemTypes.LEAVESTAIGA] = .02f;
         }
 
         string INameable.name => MachineConstants.REFUEL;
@@ -38,8 +38,8 @@ namespace Pandaros.Settlers.Items.Machines
 
                     foreach (var item in FuelValues)
                         while ((stockpile.AmountContained(item.Key) > 100 ||
-                                item.Key == BuiltinBlocks.Firewood ||
-                                item.Key == BuiltinBlocks.Coalore) &&
+                                item.Key == ColonyBuiltIn.ItemTypes.FIREWOOD ||
+                                item.Key == ColonyBuiltIn.ItemTypes.COALORE) &&
                                 machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                         {
                             stockpile.TryRemove(item.Key);

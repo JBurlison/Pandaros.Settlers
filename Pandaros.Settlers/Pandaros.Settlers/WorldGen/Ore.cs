@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.WorldGen
                         {
                             var item = ItemTypes.GetType(type);
 
-                            if (item != null && item.ItemIndex != BuiltinBlocks.Air)
+                            if (item != null && item.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                                 oreGen.AddLayer(depth, item.ItemIndex, chance);
                             else
                                 PandaLogger.Log(ChatColor.yellow, "Unable to find item {0}", type);

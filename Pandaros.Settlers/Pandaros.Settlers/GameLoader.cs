@@ -168,9 +168,10 @@ namespace Pandaros.Settlers
 
                 sr.WriteLine("      public static class ItemTypes");
                 sr.WriteLine("      {");
+                sr.WriteLine("          public static readonly ItemId BED = ItemId.GetItemId(\"bed\");");
 
                 foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "types.json").LoopObject())
-                        sr.WriteLine($"          public const string {node.Key.Replace('+', 'p').Replace('-', 'n').ToUpper()} = \"{node.Key}\";");
+                        sr.WriteLine($"          public static readonly ItemId {node.Key.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{node.Key}\");");
 
                 sr.WriteLine("      }");
                 sr.WriteLine("  }");

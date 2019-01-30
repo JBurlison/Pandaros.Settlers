@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.ColonyManager
 
             if (ps != null)
             {
-                if (d.TypeNew.ItemIndex != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeNew.ItemIndex, out var item))
+                if (d.TypeNew.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && ItemTypes.TryGetType(d.TypeNew.ItemIndex, out var item))
                 {
                     ushort itemId = GetParentId(d.TypeNew.ItemIndex, item);
 
@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.ColonyManager
                     ps.ItemsInWorld[itemId]++;
                 }
 
-                if (d.TypeNew.ItemIndex == BuiltinBlocks.Air && d.TypeOld.ItemIndex != BuiltinBlocks.Air && ItemTypes.TryGetType(d.TypeOld.ItemIndex, out var itemOld))
+                if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id && d.TypeOld.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && ItemTypes.TryGetType(d.TypeOld.ItemIndex, out var itemOld))
                 {
                     ushort itemId = GetParentId(d.TypeOld.ItemIndex, itemOld);
 

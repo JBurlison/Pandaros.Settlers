@@ -101,25 +101,25 @@ namespace Pandaros.Settlers.Items.Machines
                 var requiredForFix = new List<InventoryItem>();
                 var stockpile      = colony.Stockpile;
 
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.StoneBricks, 5));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagBasic, 2));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 5));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 2));
 
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 2));
                 }
                 else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 2));
                 }
                 else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 1));
                 }
 
                 if (stockpile.Contains(requiredForFix))
@@ -204,13 +204,13 @@ namespace Pandaros.Settlers.Items.Machines
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterTeleportPad")]
         public static void RegisterTeleportPad()
         {
-            var rivets  = new InventoryItem(BuiltinBlocks.IronRivet, 6);
-            var steel   = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
-            var sbb     = new InventoryItem(BuiltinBlocks.ScienceBagBasic, 20);
-            var sbc     = new InventoryItem(BuiltinBlocks.ScienceBagColony, 20);
-            var sba     = new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 20);
-            var crystal = new InventoryItem(BuiltinBlocks.Crystal, 5);
-            var stone   = new InventoryItem(BuiltinBlocks.StoneBricks, 50);
+            var rivets  = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
+            var steel   = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 5);
+            var sbb     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 20);
+            var sbc     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 20);
+            var sba     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 20);
+            var crystal = new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 5);
+            var stone   = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 50);
             var mana    = new InventoryItem(Mana.Item.ItemIndex, 100);
 
             var recipe = new Recipe(Item.name,
@@ -413,7 +413,7 @@ namespace Pandaros.Settlers.Items.Machines
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
             {
                 var ps = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
                 var ms = new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, nameof(TeleportPad));
@@ -462,7 +462,7 @@ namespace Pandaros.Settlers.Items.Machines
                         _paired.Remove(paired.Position);
 
                     RoamingJobManager.RemoveObjective(machineState.Colony, paired.Position, false);
-                    ServerManager.TryChangeBlock(paired.Position, BuiltinBlocks.Air);
+                    ServerManager.TryChangeBlock(paired.Position, ColonyBuiltIn.ItemTypes.AIR.Id);
                     machineState.Colony.Stockpile.Add(Item.ItemIndex);
                 }
 

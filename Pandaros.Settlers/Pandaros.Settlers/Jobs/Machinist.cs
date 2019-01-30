@@ -63,7 +63,7 @@ namespace Pandaros.Settlers.Jobs
 
         public NPCType NPCType => _Settings;
 
-        public virtual InventoryItem RecruitmentItem => new InventoryItem(BuiltinBlocks.CopperTools);
+        public virtual InventoryItem RecruitmentItem => new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name);
 
         public virtual bool ToSleep => !TimeCycle.IsDay;
 
@@ -198,10 +198,10 @@ namespace Pandaros.Settlers.Jobs
         public string name => MachinistNight.JOB_RECIPE;
         public List<RecipeItem> requires => new List<RecipeItem>()
         {
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT, 2) },
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT, 2) },
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS, 1) },
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS, 4) }
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 4) }
         };
 
         public List<RecipeItem> results => new List<RecipeItem>()
@@ -221,10 +221,10 @@ namespace Pandaros.Settlers.Jobs
 
         public List<RecipeItem> requires => new List<RecipeItem>()
         {
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT, 2) },
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT, 2) },
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS, 1) },
-            { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS, 4) }
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1) },
+            { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 4) }
         };
 
         public List<RecipeItem> results => new List<RecipeItem>()
