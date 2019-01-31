@@ -79,7 +79,7 @@ namespace Pandaros.Settlers.Extender
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnCreatedColony, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnCreatedColony")]
         public static void OnCreatedColony(Colony c)
         {
-            foreach (var extension in _settlersExtensions.Where(s => s as ISettersExtension != null).Select(ex => ex as ISettersExtension))
+            foreach (var extension in _settlersExtensions.Where(s => s as IOnColonyCreated != null).Select(ex => ex as IOnColonyCreated))
                 try
                 {
                     extension.ColonyCreated(c);
