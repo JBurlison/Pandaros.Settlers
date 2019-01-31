@@ -1,4 +1,5 @@
 ﻿using Happiness;
+using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class HappinessEffectProvider : IOnColonyCreated
+    public class HappinessEffectProvider : IOnColonyCreated, IOnLoadingColony
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
@@ -41,6 +42,11 @@ namespace Pandaros.Settlers.Extender.Providers
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+        }
+
+        public void OnLoadingColony(Colony c, JSONNode n)
+        {
+            ColonyCreated(c);
         }
     }
 }

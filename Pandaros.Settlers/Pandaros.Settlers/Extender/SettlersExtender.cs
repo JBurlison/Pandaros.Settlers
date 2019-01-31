@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pipliz.JSON;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +19,20 @@ namespace Pandaros.Settlers.Extender
                 try
                 {
                     extension.OnAddResearchables();
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingColony, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnLoadingColony")]
+        public static void OnLoadingColony(Colony c, JSONNode n)
+        {
+            foreach (var extension in _settlersExtensions.Where(s => s as IOnLoadingColony != null).Select(ex => ex as IOnLoadingColony))
+                try
+                {
+                    extension.OnLoadingColony(c, n);
                 }
                 catch (Exception ex)
                 {
