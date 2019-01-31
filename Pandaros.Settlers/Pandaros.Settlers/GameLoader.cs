@@ -142,6 +142,8 @@ namespace Pandaros.Settlers
             using (var fs = File.OpenWrite(MOD_FOLDER + "/ColonyBuiltin.cs"))
             using (var sr = new StreamWriter(fs))
             {
+                sr.WriteLine("using Pandaros.Settlers.Models;");
+                sr.WriteLine();
                 sr.WriteLine("namespace Pandaros.Settlers");
                 sr.WriteLine("{");
                 sr.WriteLine("  public static class ColonyBuiltIn");
@@ -168,7 +170,10 @@ namespace Pandaros.Settlers
 
                 sr.WriteLine("      public static class ItemTypes");
                 sr.WriteLine("      {");
-                sr.WriteLine("          public static readonly ItemId BED = ItemId.GetItemId(\"bed\");");
+
+                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "generateblocks.json").LoopArray())
+                    if (node.TryGetAs("generateType", out string genType) && genType == "rotateBlock" && node.TryGetAs("typeName", out string itemName))
+                            sr.WriteLine($"          public static readonly ItemId {itemName.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{itemName}\");");
 
                 foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "types.json").LoopObject())
                         sr.WriteLine($"          public static readonly ItemId {node.Key.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{node.Key}\");");
