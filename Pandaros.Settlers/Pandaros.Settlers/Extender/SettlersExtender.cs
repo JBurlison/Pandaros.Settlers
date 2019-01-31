@@ -8,7 +8,7 @@ namespace Pandaros.Settlers.Extender
     [ModLoader.ModManager]
     public static class SettlersExtender
     {
-        private static List<ISettlersExtension> _settlersExtensions = new List<ISettlersExtension>();
+        private static List<ISettersExtension> _settlersExtensions = new List<ISettersExtension>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnAddResearchables")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
@@ -69,6 +69,20 @@ namespace Pandaros.Settlers.Extender
                 try
                 {
                     extension.AfterSelectedWorld();
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnCreatedColony, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnCreatedColony")]
+        public static void OnCreatedColony(Colony c)
+        {
+            foreach (var extension in _settlersExtensions.Where(s => s as ISettersExtension != null).Select(ex => ex as ISettersExtension))
+                try
+                {
+                    extension.ColonyCreated(c);
                 }
                 catch (Exception ex)
                 {
@@ -141,8 +155,8 @@ namespace Pandaros.Settlers.Extender
                         foreach (var iface in ifaces)
                             try
                             {
-                                if (iface.Name == nameof(ISettlersExtension) &&
-                                    Activator.CreateInstance(type) is ISettlersExtension extension)
+                                if (iface.Name == nameof(ISettersExtension) &&
+                                    Activator.CreateInstance(type) is ISettersExtension extension)
                                 {
                                     _settlersExtensions.Add(extension);
                                 }

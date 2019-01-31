@@ -27,11 +27,5 @@ namespace Pandaros.Settlers.ColonyManager
         }
     }
 
-    public class SlowGather : IHappinessEffect
-    {
-        public string GetDescription(Colony colony, Players.Player player)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }

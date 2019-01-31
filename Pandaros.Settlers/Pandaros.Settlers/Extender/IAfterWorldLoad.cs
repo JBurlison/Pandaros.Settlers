@@ -1,6 +1,6 @@
 ﻿namespace Pandaros.Settlers.Extender
 {
-    public interface IAfterWorldLoad : ISettlersExtension
+    public interface IAfterWorldLoad : ISettersExtension
     {
         void AfterWorldLoad();
     }

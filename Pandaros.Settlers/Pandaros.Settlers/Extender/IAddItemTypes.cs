@@ -2,7 +2,7 @@
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface IAddItemTypes : ISettlersExtension
+    public interface IAddItemTypes : ISettersExtension
     {
         void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes);
     }

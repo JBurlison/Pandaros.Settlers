@@ -1,6 +1,6 @@
 ﻿namespace Pandaros.Settlers.Extender
 {
-    public interface IAfterSelectedWorld : ISettlersExtension
+    public interface IAfterSelectedWorld : ISettersExtension
     {
         void AfterSelectedWorld();
     }

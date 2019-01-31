@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface IAfterItemTypesDefined : ISettersExtension
+    public interface IOnColonyCreated : ISettersExtension
     {
-        void AfterItemTypesDefined();
+        void ColonyCreated(Colony c);
     }
 }
