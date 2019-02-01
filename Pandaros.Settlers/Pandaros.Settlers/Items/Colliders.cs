@@ -11,21 +11,21 @@ namespace Pandaros.Settlers.Items
     {
         public class Boxes
         {
-            public Vector3 min { get; private set; }
-            public Vector3 max { get; private set; }
+            public List<float> min { get; set; }
+            public List<float> max { get; set; }
 
             public Boxes() { }
 
-            public Boxes(Vector3 minCollide, Vector3 maxCollide)
+            public Boxes(List<float> minCollide, List<float> maxCollide)
             {
                 min = minCollide;
                 max = maxCollide;
             }
         }
 
-        public bool collidePlayer { get; private set; }
-        public bool collideSelection { get; private set; }
-        public List<Boxes> boxes { get; private set; } = new List<Boxes>();
+        public bool collidePlayer { get; set; }
+        public bool collideSelection { get; set; }
+        public List<Boxes> boxes { get; set; } = new List<Boxes>();
 
         public Colliders() { }
 

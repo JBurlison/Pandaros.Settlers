@@ -2,6 +2,7 @@
 using Jobs;
 using Newtonsoft.Json;
 using NPC;
+using Pandaros.Settlers.Items;
 using Pipliz;
 using Pipliz.JSON;
 using System;
@@ -196,7 +197,12 @@ namespace Pandaros.Settlers
         {
             var objStr = JsonConvert.SerializeObject(obj, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
             PandaLogger.LogToFile(objStr);
-            return JSON.DeserializeString(objStr);
+            var json = JSON.DeserializeString(objStr);
+
+            if (obj is ICSType csType)
+                json.SetAs("customData", csType.customData);
+
+            return json;
         }
 
         public static T JsonDeerialize<T>(this JSONNode node)
