@@ -122,7 +122,7 @@ namespace Pandaros.Settlers.Extender
 
         private static void LoadImplementation(List<ModLoader.ModDescription> list)
         {
-            foreach (var mod in list.Where(m => m.HasAssembly))
+            foreach (var mod in list.Where(m => m.HasAssembly && !string.IsNullOrEmpty(m.assemblyPath) && !m.assemblyPath.Contains("Pipliz\\modInfo.json")))
                 try
                 {
                     // Get all Types available in the assembly in an array
