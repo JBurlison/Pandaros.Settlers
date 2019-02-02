@@ -375,7 +375,7 @@ namespace Pandaros.Settlers.Items.Machines
                     _paired[(Vector3Int)pad.GetAs<JSONNode>("Key")] = (Vector3Int)pad.GetAs<JSONNode>("Value");
         }
 
-        // TODO: uncomment when zun fixes this.
+        
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerMoved, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerMoved")]
         public static void OnPlayerMoved(Players.Player p, UnityEngine.Vector3 oldPosition)
         {

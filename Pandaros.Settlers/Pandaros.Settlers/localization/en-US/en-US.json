@@ -427,6 +427,9 @@
         },
         "SettlerManager": {
 
+        },
+        "Happiness": {
+          "BedsClose": "Beds too close"
         }
       }
     }

@@ -44,9 +44,13 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            sb.Replace(',', ']', sb.Length - 1, 1);
-            PandaLogger.Log(sb.ToString());
-            ItemTypesServer.BlockRotator.Patches.AddPatch(new ItemTypesServer.BlockRotator.BlockGeneratePatch(GameLoader.MOD_FOLDER, -99999, JSON.DeserializeString(json.ToString())));
+            if (sb.Length > 3)
+            {
+                sb.Replace(',', ']', sb.Length - 1, 1);
+                PandaLogger.Log(sb.ToString());
+                ItemTypesServer.BlockRotator.Patches.AddPatch(new ItemTypesServer.BlockRotator.BlockGeneratePatch(GameLoader.MOD_FOLDER, -99999, JSON.DeserializeString(json.ToString())));
+            }
+
             PandaLogger.Log(ChatColor.lime, sb.ToString());
             PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
         }
