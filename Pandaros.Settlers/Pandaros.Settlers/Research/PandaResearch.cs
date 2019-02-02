@@ -342,16 +342,16 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Copper Sword"), true);
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".CopperSword"), true);
                     break;
                 case 2:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Bronze Sword"), true);
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".BronzeSword"), true);
                     break;
                 case 3:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Iron Sword"), true);
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".IronSword"), true);
                     break;
                 case 4:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey("Steel Sword"), true);
+                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".SteelSword"), true);
                     break;
             }
                 
