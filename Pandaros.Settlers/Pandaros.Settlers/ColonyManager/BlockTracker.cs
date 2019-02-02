@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.ColonyManager
         {
             foreach (var colony in player.Colonies)
                 if (colony.Owners.Length == 1)
-                    RewindColonyBlocks(colony);
+                     RewindColonyBlocks(colony);
 
             Task.Run(() =>
             {
@@ -78,10 +78,12 @@ namespace Pandaros.Settlers.ColonyManager
                                 replaced.Add(trackedPos);
 
                         lock (_queuedPositions)
+                        {
+                            db.Positions.RemoveRange(_queuedPositions);
                             foreach (var replace in replaced)
                                 _queuedPositions.Remove(replace);
-
-                        db.Positions.RemoveRange(db.Positions.Where(p => p.PlayerId == playerId));
+                        }
+                        
                         db.SaveChanges();
                     }
                 }
@@ -97,9 +99,9 @@ namespace Pandaros.Settlers.ColonyManager
         }
 
 
-        public static void RewindColonyBlocks(Colony colony)
+        public static async void RewindColonyBlocks(Colony colony)
         {
-            foreach (var npc in colony.Followers)
+            foreach (var npc in colony.Followers.ToList())
             {
                 npc.health = 0;
 
@@ -121,7 +123,7 @@ namespace Pandaros.Settlers.ColonyManager
             ServerManager.ColonyTracker.ColoniesLock.ExitWriteLock();
             ServerManager.ColonyTracker.Save();
 
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 try
                 {
@@ -157,10 +159,12 @@ namespace Pandaros.Settlers.ColonyManager
                                 replaced.Add(trackedPos);
 
                         lock (_queuedPositions)
+                        {
+                            db.Positions.RemoveRange(_queuedPositions);
                             foreach (var replace in replaced)
                                 _queuedPositions.Remove(replace);
-
-                        db.Positions.RemoveRange(db.Positions.Where(p => p.ColonyId == colonyName));
+                        }
+                        
                         db.SaveChanges();
                     }
                 }

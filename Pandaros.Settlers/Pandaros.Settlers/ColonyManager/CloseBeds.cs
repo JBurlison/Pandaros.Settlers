@@ -13,6 +13,8 @@ namespace Pandaros.Settlers.ColonyManager
 
         public float Evaluate(Colony colony)
         {
+            ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount
+
             return 0;
         }
 
