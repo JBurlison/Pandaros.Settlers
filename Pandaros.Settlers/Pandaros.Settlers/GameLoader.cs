@@ -6,6 +6,7 @@ using Pandaros.Settlers.Monsters;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Reflection;
 
@@ -14,6 +15,8 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public static class GameLoader
     {
+        public static readonly ReadOnlyCollection<string> BLOCK_ROTATIONS = new ReadOnlyCollection<string>(new List<string>() { "x+", "x-", "z+", "z-" });
+
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
@@ -173,7 +176,12 @@ namespace Pandaros.Settlers
 
                 foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "generateblocks.json").LoopArray())
                     if (node.TryGetAs("generateType", out string genType) && genType == "rotateBlock" && node.TryGetAs("typeName", out string itemName))
-                            sr.WriteLine($"          public static readonly ItemId {itemName.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{itemName}\");");
+                    {
+                        sr.WriteLine($"          public static readonly ItemId {itemName.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{itemName}\");");
+
+                        foreach (var rotation in BLOCK_ROTATIONS)
+                            sr.WriteLine($"          public static readonly ItemId {(itemName + rotation).Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{(itemName + rotation)}\");");
+                    }
 
                 foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "types.json").LoopObject())
                         sr.WriteLine($"          public static readonly ItemId {node.Key.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{node.Key}\");");
