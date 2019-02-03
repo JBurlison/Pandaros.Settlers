@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface IOnLoadingColony : ISettersExtension
+    public interface IOnLoadingColony : ISettlersExtension
     {
         void OnLoadingColony(Colony c, JSONNode n);
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface IAfterItemTypesDefined : ISettersExtension
+    public interface IAfterItemTypesDefined : ISettlersExtension
     {
         void AfterItemTypesDefined();
     }

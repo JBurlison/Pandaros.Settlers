@@ -9,7 +9,26 @@ namespace Pandaros.Settlers.Extender
     [ModLoader.ModManager]
     public static class SettlersExtender
     {
-        private static List<ISettersExtension> _settlersExtensions = new List<ISettersExtension>();
+        private static List<ISettlersExtension> _settlersExtensions = new List<ISettlersExtension>();
+        private static List<IOnTimedUpdate> _timedUpdate = new List<IOnTimedUpdate>();
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnUpdate")]
+        public static void OnUpdate()
+        {
+            foreach (var extension in _timedUpdate)
+                try
+                {
+                    if (extension.NextUpdateTime < TimeCycle.TotalTime.Value.TotalSeconds)
+                    {
+                        extension.OnTimedUpdate();
+                        extension.NextUpdateTime = TimeCycle.TotalTime.Value.TotalSeconds + Pipliz.Random.NextDouble(extension.NextUpdateTimeMin, extension.NextUpdateTimeMax);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAddResearchables, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnAddResearchables")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Research.PandaResearch.OnAddResearchables")]
@@ -134,6 +153,7 @@ namespace Pandaros.Settlers.Extender
                         var ifaces = type.GetInterfaces();
 
                         foreach (var iface in ifaces)
+                        {
                             foreach (var e in _settlersExtensions)
                                 if (!string.IsNullOrEmpty(e.InterfaceName) && e.InterfaceName == iface.Name && !type.IsInterface)
                                 {
@@ -142,6 +162,18 @@ namespace Pandaros.Settlers.Extender
                                     if (constructor != null)
                                         e.LoadedAssembalies.Add(type);
                                 }
+
+                            if (!string.IsNullOrEmpty(iface.Name) && nameof(IOnTimedUpdate) == iface.Name && !type.IsInterface)
+                            {
+                                var constructor = type.GetConstructor(Type.EmptyTypes);
+
+                                if (constructor != null && Activator.CreateInstance(type) is IOnTimedUpdate onUpdateCallback)
+                                {
+                                    PandaLogger.Log(ChatColor.lime, "OnTimedUpdateLoaded: {0}", onUpdateCallback.GetType().Name);
+                                    _timedUpdate.Add(onUpdateCallback);
+                                }
+                            }
+                        }
 
                         foreach (var e in _settlersExtensions)
                             if (e.ClassType != null && type.Equals(e.ClassType))
@@ -170,8 +202,8 @@ namespace Pandaros.Settlers.Extender
                         foreach (var iface in ifaces)
                             try
                             {
-                                if (iface.Name == nameof(ISettersExtension) &&
-                                    Activator.CreateInstance(type) is ISettersExtension extension)
+                                if (iface.Name == nameof(ISettlersExtension) &&
+                                    Activator.CreateInstance(type) is ISettlersExtension extension)
                                 {
                                     _settlersExtensions.Add(extension);
                                 }

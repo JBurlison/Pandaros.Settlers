@@ -13,8 +13,9 @@ namespace Pandaros.Settlers.ColonyManager
         {
             var localizationHelper = new localization.LocalizationHelper("Happiness");
 
+            // if (colony.HappinessData.CachedHappiness < 0)
 
-            return localizationHelper.LocalizeOrDefault("SlowGather", player);
+            return ""; //localizationHelper.LocalizeOrDefault("SlowGather", player);
         }
     }
 }

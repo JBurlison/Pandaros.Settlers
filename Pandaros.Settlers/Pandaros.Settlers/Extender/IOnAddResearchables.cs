@@ -1,6 +1,6 @@
 ﻿namespace Pandaros.Settlers.Extender
 {
-    public interface IOnAddResearchables : ISettersExtension
+    public interface IOnAddResearchables : ISettlersExtension
     {
         void OnAddResearchables();
     }

@@ -429,7 +429,8 @@
 
         },
         "Happiness": {
-          "BedsClose": "Confined living space"
+          "BedsClose": "Confined living space",
+          "ColonistDied": "Colonist Died"
         }
       }
     }

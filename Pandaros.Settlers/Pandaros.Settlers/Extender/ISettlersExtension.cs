@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Extender
 {
-    public interface ISettersExtension
+    public interface ISettlersExtension
     {
         List<Type> LoadedAssembalies { get; }
 

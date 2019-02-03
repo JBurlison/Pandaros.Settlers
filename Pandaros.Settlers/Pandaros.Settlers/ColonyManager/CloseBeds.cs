@@ -21,6 +21,12 @@ namespace Pandaros.Settlers.ColonyManager
         public static Dictionary<Colony, int> CachedHappiness { get; set; } = new Dictionary<Colony, int>();
         public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper("Happiness");
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".ColonyManager.CloseBeds.AfterWorldLoad")]
+        public static void AfterWorldLoad()
+        {
+            foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
+                CalculateBeds(colony);
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".ColonyManager.CloseBeds.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)

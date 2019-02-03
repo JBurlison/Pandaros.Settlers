@@ -148,6 +148,7 @@
     <Compile Include="Database\PandaContext.cs" />
     <Compile Include="Extender\IOnColonyCreated.cs" />
     <Compile Include="Extender\IOnLoadingColony.cs" />
+    <Compile Include="Extender\IOnTimedUpdate.cs" />
     <Compile Include="Extender\Providers\GenerateTypesProvider.cs" />
     <Compile Include="Extender\Providers\HappinessCausesProvider.cs" />
     <Compile Include="Extender\Providers\HappinessEffectProvider.cs" />

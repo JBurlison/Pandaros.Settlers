@@ -87,7 +87,7 @@ namespace Pandaros.Settlers
                 if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
                     foreach (var diff in diffs.LoopArray())
                     {
-                        var newDiff = new GameDifficulty(diff);
+                        var newDiff = diff.JsonDeerialize<GameDifficulty>();
                         GameDifficulty.GameDifficulties[newDiff.Name] = newDiff;
                     }
             }
