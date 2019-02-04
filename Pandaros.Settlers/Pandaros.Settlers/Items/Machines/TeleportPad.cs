@@ -396,13 +396,13 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         if (machineState.GetActionEnergy(MachineConstants.REPAIR) <= 0)
                         {
-                            PandaChat.Send(p, "This teleporter is in need of repair", ChatColor.red);
+                            PandaChat.Send(p, "This teleporter is in need of repair. Make sure a machinist is near by to maintain it!", ChatColor.red);
                             return;
                         }
 
                         if (machineState.GetActionEnergy(MachineConstants.REFUEL) <= 0)
                         {
-                            PandaChat.Send(p, "This teleporter is in need of mana", ChatColor.red);
+                            PandaChat.Send(p, "This teleporter is in need of mana. Make sure a machinist is near by to maintain it!", ChatColor.red);
                             return;
                         }
 
