@@ -110,6 +110,8 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public static float GetActionsMaxEnergy(string actionName, Colony colony, string category)
         {
+            var cs = Entities.ColonyState.GetColonyState(colony);
+
             if (!_maxActionEnergy.ContainsKey(actionName))
                 _maxActionEnergy.Add(actionName, new Dictionary<Colony, Dictionary<string, float>>());
 
@@ -117,13 +119,15 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 _maxActionEnergy[actionName].Add(colony, new Dictionary<string, float>());
 
             if (!_maxActionEnergy[actionName][colony].ContainsKey(category))
-                _maxActionEnergy[actionName][colony].Add(category, DEFAULT_MAX);
+                _maxActionEnergy[actionName][colony].Add(category, DEFAULT_MAX + cs.Difficulty.RoamingJobActionEnergy);
 
             return _maxActionEnergy[actionName][colony][category];
         }
 
         public static void SetActionsMaxEnergy(string actionName, Colony colony, string category, float maxLoad)
         {
+            var cs = Entities.ColonyState.GetColonyState(colony);
+
             if (!_maxActionEnergy.ContainsKey(actionName))
                 _maxActionEnergy.Add(actionName, new Dictionary<Colony, Dictionary<string, float>>());
 
@@ -131,7 +135,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 _maxActionEnergy[actionName].Add(colony, new Dictionary<string, float>());
 
             if (!_maxActionEnergy[actionName][colony].ContainsKey(category))
-                _maxActionEnergy[actionName][colony].Add(category, DEFAULT_MAX);
+                _maxActionEnergy[actionName][colony].Add(category, DEFAULT_MAX + cs.Difficulty.RoamingJobActionEnergy);
 
             _maxActionEnergy[actionName][colony][category] = maxLoad;
         }

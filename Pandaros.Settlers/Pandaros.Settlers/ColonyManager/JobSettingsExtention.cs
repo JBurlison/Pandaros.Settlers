@@ -117,7 +117,7 @@ namespace Pandaros.Settlers
 
         public static void ApplyJobResearch(this IJob job)
         {
-            if (job == null)
+            if (job == null || !job.IsValid)
                 return;
 
             job.Owner.TemporaryData.TryGetAs(PandaResearch.GetResearchKey(JobResearch.MasterOfAll), out float masterOfAll);

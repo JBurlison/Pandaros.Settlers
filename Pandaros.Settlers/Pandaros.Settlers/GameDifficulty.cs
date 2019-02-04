@@ -24,7 +24,8 @@ namespace Pandaros.Settlers
                 ZombieQueenTargetTeleportCooldownSeconds = 30,
                 AdditionalChance                         = 0f,
                 TimeUnhappyAfterColonistDeathSeconds     = 0f,
-                UnhappinessPerColonistDeath              = 0f
+                UnhappinessPerColonistDeath              = 0f,
+                UnhappyGuardsMultiplyRate                = 0f
             };
 
             Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f)
@@ -35,7 +36,8 @@ namespace Pandaros.Settlers
                 ZombieQueenTargetTeleportCooldownSeconds = 3,
                 AdditionalChance                         = 0.4f,
                 TimeUnhappyAfterColonistDeathSeconds     = 300,
-                UnhappinessPerColonistDeath              = 1
+                UnhappinessPerColonistDeath              = 1,
+                UnhappyGuardsMultiplyRate                = 0.5f
             };
 
             Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f)
@@ -46,7 +48,8 @@ namespace Pandaros.Settlers
                 ZombieQueenTargetTeleportCooldownSeconds = 15,
                 AdditionalChance                         = 0f,
                 TimeUnhappyAfterColonistDeathSeconds     = 900,
-                UnhappinessPerColonistDeath              = 2
+                UnhappinessPerColonistDeath              = 2,
+                UnhappyGuardsMultiplyRate                = 1
             };
 
             Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f)
@@ -57,7 +60,8 @@ namespace Pandaros.Settlers
                 ZombieQueenTargetTeleportCooldownSeconds = 10,
                 AdditionalChance                         = -0.2f,
                 TimeUnhappyAfterColonistDeathSeconds     = 900,
-                UnhappinessPerColonistDeath              = 3
+                UnhappinessPerColonistDeath              = 3,
+                UnhappyGuardsMultiplyRate                = 1.5f
             };
 
             new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f)
@@ -68,7 +72,8 @@ namespace Pandaros.Settlers
                 ZombieQueenTargetTeleportCooldownSeconds = 5,
                 AdditionalChance                         = -0.4f,
                 TimeUnhappyAfterColonistDeathSeconds     = 1800,
-                UnhappinessPerColonistDeath              = 4
+                UnhappinessPerColonistDeath              = 4,
+                UnhappyGuardsMultiplyRate                = 2
             };
         }
 
@@ -76,13 +81,13 @@ namespace Pandaros.Settlers
         {
         }
 
-        public GameDifficulty(string name, float foodMultiplier, float machineThreashHold, float monsterDr,
+        public GameDifficulty(string name, float foodMultiplier, float roamingJobActionEnergy, float monsterDr,
                               float  monsterDamage)
         {
             Name                   = name;
             FoodMultiplier         = foodMultiplier;
             GameDifficulties[name] = this;
-            MachineThreashHold     = machineThreashHold;
+            RoamingJobActionEnergy = roamingJobActionEnergy;
             MonsterDamageReduction = monsterDr;
             MonsterDamage          = monsterDamage;
         }
@@ -99,7 +104,7 @@ namespace Pandaros.Settlers
 
         public float FoodMultiplier { get; set; }
 
-        public float MachineThreashHold { get; set; }
+        public float RoamingJobActionEnergy { get; set; }
 
         public float MonsterDamageReduction { get; set; }
         public float AdditionalChance { get; set; }
@@ -109,6 +114,7 @@ namespace Pandaros.Settlers
         public float BossHPPerColonist { get; set; } = 30;
         public double UnhappinessPerColonistDeath { get; set; } = 2;
         public double TimeUnhappyAfterColonistDeathSeconds { get; set; } = 900;
+        public float UnhappyGuardsMultiplyRate = 1;
 
         public void Print(Players.Player player)
         {

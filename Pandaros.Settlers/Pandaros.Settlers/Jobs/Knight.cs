@@ -21,6 +21,22 @@ namespace Pandaros.Settlers.Jobs
     [ModLoader.ModManager]
     public class Knight : IJob
     {
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
+        public static void Init()
+        {
+            NPCType.AddSettings(_knightNPCSettings);
+            KnightNPCType = NPCType.GetByKeyNameOrDefault(_knightNPCSettings.keyName);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit")]
+        [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
+        public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
+        {
+            if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Knight))
+                box.ResultDamage = box.ResultDamage - box.ResultDamage * .75f;
+        }
+
         private const float COOLDOWN = 2f;
         public static NPCType KnightNPCType;
         public virtual float NPCShopGameHourMinimum { get { return TimeCycle.Settings.SleepTimeEnd; } }
@@ -68,16 +84,14 @@ namespace Pandaros.Settlers.Jobs
         public bool NeedsNPC => UsedNPC == null || !UsedNPC.IsValid;
         public NPCType NPCType => KnightNPCType;
 
-        public InventoryItem RecruitementItem => InventoryItem.Empty;
+        public InventoryItem RecruitmentItem => InventoryItem.Empty;
 
         public NPCBase NPC
         {
             get => UsedNPC;
             set => UsedNPC = value;
         }
-
-        public InventoryItem RecruitmentItem => throw new NotImplementedException();
-
+        
         public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
         {
             var inv = SettlerInventory.GetSettlerInventory(UsedNPC);
@@ -97,8 +111,8 @@ namespace Pandaros.Settlers.Jobs
 
             if (_target != null) return currentPos;
 
-            _target = MonsterTracker.Find(PatrolPoints[_currentPatrolPos], 10,
-                                          WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
+            if (PatrolType == PatrolType.Zipper || PatrolType == PatrolType.RoundRobin)
+                _target = MonsterTracker.Find(PatrolPoints[_currentPatrolPos], 10, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
 
             if (_target != null)
             {
@@ -129,7 +143,8 @@ namespace Pandaros.Settlers.Jobs
                 _waitingFor   = 0;
 
                 if (PatrolPoints.Count > 1)
-                    if (PatrolType == PatrolType.RoundRobin || _forward && PatrolType == PatrolType.Zipper)
+                    if ((PatrolType == PatrolType.RoundRobin || PatrolType == PatrolType.WaitRoundRobin) || 
+                        _forward && (PatrolType == PatrolType.Zipper || PatrolType == PatrolType.WaitZipper))
                     {
                         _currentPatrolPos++;
 
@@ -228,38 +243,6 @@ namespace Pandaros.Settlers.Jobs
 
             if (!hasItem)
                 state.SetIndicator(new IndicatorState(COOLDOWN, WeaponFactory.WeaponLookup.FirstOrDefault().Key, true));
-        }
-
-        public NPCTypeStandardSettings GetNPCTypeDefinition()
-        {
-            return _knightNPCSettings;
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
-        public static void Init()
-        {
-            NPCType.AddSettings(_knightNPCSettings);
-            KnightNPCType = NPCType.GetByKeyNameOrDefault(_knightNPCSettings.keyName);
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Jobs.Knight.OnNPCHit")]
-        [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Armor.OnNPCHit")]
-        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
-        public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData box)
-        {
-            if (npc != null && npc.Job != null && npc.Job.GetType() == typeof(Knight))
-                box.ResultDamage = box.ResultDamage - box.ResultDamage * .75f;
-        }
-
-        public void OnRemovedNPC()
-        {
-            UsedNPC = null;
-            Owner.JobFinder.Add(this);
-        }
-
-        protected void OverrideCooldown(double cooldownLeft)
-        {
-            _timeJob = Time.SecondsSinceStartDouble + cooldownLeft;
         }
 
         protected virtual bool CheckTime()

@@ -270,7 +270,7 @@ namespace Pandaros.Settlers.AI
 
         public void SetNPC(NPCBase npc)
         {
-            throw new NotImplementedException();
+            
         }
     }
 

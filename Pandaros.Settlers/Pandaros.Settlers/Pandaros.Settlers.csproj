@@ -144,7 +144,7 @@
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\JobSettingsExtention.cs" />
     <Compile Include="ColonyManager\Permission.cs" />
-    <Compile Include="ColonyManager\SlowGather.cs" />
+    <Compile Include="ColonyManager\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
     <Compile Include="Extender\IOnColonyCreated.cs" />
     <Compile Include="Extender\IOnLoadingColony.cs" />

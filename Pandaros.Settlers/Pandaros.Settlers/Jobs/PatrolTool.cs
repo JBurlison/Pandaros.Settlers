@@ -14,7 +14,9 @@ namespace Pandaros.Settlers.Jobs
     public enum PatrolType
     {
         RoundRobin = 0,
-        Zipper = 1
+        Zipper = 1,
+        WaitRoundRobin = 2,
+        WaitZipper = 3
     }
 
     [ModLoader.ModManager]
@@ -244,16 +246,22 @@ namespace Pandaros.Settlers.Jobs
 
                             if (knight.PatrolType == PatrolType.RoundRobin)
                             {
-                                patrol =
-                                    "The knight will patrol from the first to last point, then, work its way backwords to the first. Good for patrolling a secion of a wall";
-
+                                patrol = "The knight will patrol from the first to last point, start over at the first point. The knight will wait for monsters to come to them. Good for circles";
+                                knight.PatrolType = PatrolType.WaitRoundRobin;
+                            }
+                            if (knight.PatrolType == PatrolType.WaitRoundRobin)
+                            {
+                                patrol = "The knight will patrol from the first to last point, then, work its way backwords to the first. Good for patrolling a secion of a wall";
                                 knight.PatrolType = PatrolType.Zipper;
+                            }
+                            if (knight.PatrolType == PatrolType.Zipper)
+                            {
+                                patrol = "The knight will patrol from the first to last point, then, work its way backwords to the first.  The knight will wait for monsters to come to them. Good for patrolling a secion of a wall";
+                                knight.PatrolType = PatrolType.WaitZipper;
                             }
                             else
                             {
-                                patrol =
-                                    "The knight will patrol from the first to last point, start over at the first point. Good for circles";
-
+                                patrol = "The knight will patrol from the first to last point, start over at the first point. Good for circles";
                                 knight.PatrolType = PatrolType.RoundRobin;
                             }
 
