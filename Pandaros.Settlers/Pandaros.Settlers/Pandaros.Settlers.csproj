@@ -141,6 +141,7 @@
     <Compile Include="ColonyManager\BlockTracker.cs" />
     <Compile Include="ColonyManager\CloseBeds.cs" />
     <Compile Include="ColonyManager\ColonistDied.cs" />
+    <Compile Include="ColonyManager\ColonyArchive.cs" />
     <Compile Include="ColonyManager\ColonyTool.cs" />
     <Compile Include="ColonyManager\JobSettingsExtention.cs" />
     <Compile Include="ColonyManager\Permission.cs" />

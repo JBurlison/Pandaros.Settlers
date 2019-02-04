@@ -19,7 +19,7 @@ namespace Pandaros.Settlers
                 return true;
 
             foreach (var c in ServerManager.ColonyTracker.ColoniesByID.Values)
-                SettlerManager.SaveOffline(c);
+                ColonyManager.ColonyArchive.SaveOffline(c);
 
             return true;
         }

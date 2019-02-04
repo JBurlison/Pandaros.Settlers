@@ -394,6 +394,18 @@ namespace Pandaros.Settlers.Items.Machines
 
                     if (_cooldown[p] <= startInt)
                     {
+                        if (machineState.GetActionEnergy(MachineConstants.REPAIR) <= 0)
+                        {
+                            PandaChat.Send(p, "This teleporter is in need of repair", ChatColor.red);
+                            return;
+                        }
+
+                        if (machineState.GetActionEnergy(MachineConstants.REFUEL) <= 0)
+                        {
+                            PandaChat.Send(p, "This teleporter is in need of mana", ChatColor.red);
+                            return;
+                        }
+
                         Teleport.TeleportTo(p, paired.Position.Vector);
                         ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                         ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
