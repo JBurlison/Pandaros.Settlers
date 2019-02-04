@@ -318,6 +318,7 @@ namespace Pandaros.Settlers.Jobs
                         {
                             if (knight.PatrolPoints.Contains(d.Position))
                             {
+                                toRemove = knight;
                                 knight.OnRemove();
 
                                 foreach (var flagPoint in knight.PatrolPoints)
