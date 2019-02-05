@@ -235,6 +235,7 @@
           "Knights now have a wait mode that will wait for monsters to come to them while patrolling",
           "Knights now sleep durning the day",
           "Bosses now only spawn during the day",
+          "Slabs, Fence, Iron bar and doors now have proper colliders",
           "Added serveral new ores that generate in the map: Adamantine, Emerald, Ruby, Saphire",
           "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
           "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation"
