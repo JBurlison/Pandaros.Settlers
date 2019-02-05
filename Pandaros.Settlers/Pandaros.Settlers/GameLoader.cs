@@ -70,7 +70,7 @@ namespace Pandaros.Settlers
             if (!File.Exists(SAVE_LOC + "pandaros.settlers.sqlite"))
                 File.Copy(MOD_FOLDER + "/pandaros.settlers.sqlite", SAVE_LOC + "pandaros.settlers.sqlite");
 
-            StubColony = new Colony(-99998);
+            StubColony = Colony.CreateStub(-99998);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
