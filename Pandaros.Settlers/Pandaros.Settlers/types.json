@@ -424,19 +424,51 @@
   },
   "Pandaros.Settlers.AutoLoad.ironbarx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "./Meshes/ironbarx+.obj"
+    "mesh": "./Meshes/ironbarx+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ -0.4, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "./Meshes/ironbarx-.obj"
+    "mesh": "./Meshes/ironbarx-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ 0.4, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "./Meshes/ironbarz+.obj"
+    "mesh": "./Meshes/ironbarz+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, -0.4 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
-    "mesh": "./Meshes/ironbarz-.obj"
+    "mesh": "./Meshes/ironbarz-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarcorner": {
     "icon": "./icons/ironbarcorner.png",
@@ -457,19 +489,67 @@
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "./Meshes/ironbarcornerx+.obj"
+    "mesh": "./Meshes/ironbarcornerx+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ -0.4, 0.5, 0.5 ]
+        },
+        {
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "./Meshes/ironbarcornerx-.obj"
+    "mesh": "./Meshes/ironbarcornerx-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ 0.4, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        },
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, -0.4 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "./Meshes/ironbarcornerz+.obj"
+    "mesh": "./Meshes/ironbarcornerz+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, -0.4 ]
+        },
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ -0.4, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
-    "mesh": "./Meshes/ironbarcornerz-.obj"
+    "mesh": "./Meshes/ironbarcornerz-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        },
+        {
+          "min": [ 0.4, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.irondoor": {
     "onPlaceAudio": "metalPlace",
@@ -490,19 +570,52 @@
   },
   "Pandaros.Settlers.AutoLoad.irondoorx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "./Meshes/irondoorx+.obj"
+    "mesh": "./Meshes/irondoorx+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ -0.4, 1.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.irondoorx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "./Meshes/irondoorx-.obj"
+    "mesh": "./Meshes/irondoorx-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ 0.4, -0.5, -0.5 ],
+          "max": [ 0.5, 1.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.irondoorz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "./Meshes/irondoorz+.obj"
+    "mesh": "./Meshes/irondoorz+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 1.5, -0.4 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.irondoorz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
-    "mesh": "./Meshes/irondoorz-.obj"
+    "mesh": "./Meshes/irondoorz-.obj",
+    
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 1.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.marblepillarbase": {
     "icon": "./icons/marblepillarbase.png",
@@ -651,7 +764,7 @@
     "colliders": {
       "boxes": [
         {
-          "min": [ 0, -0.5, -0.5 ],
+          "min": [ 0.4, -0.5, -0.5 ],
           "max": [ 0.5, 0.5, 0.5 ]
         }
       ]
@@ -664,7 +777,7 @@
       "boxes": [
         {
           "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0, 0.5, 0.5 ]
+          "max": [ -0.4, 0.5, 0.5 ]
         }
       ]
     }
@@ -675,8 +788,8 @@
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, -0.5 ],
-          "max": [ 0.5, 0.5, 0 ]
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 0.5, 0.5 ]
         }
       ]
     }
@@ -687,8 +800,8 @@
     "colliders": {
       "boxes": [
         {
-          "min": [ -0.5, -0.5, 0 ],
-          "max": [ 0.5, 0.5, 0.5 ]
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, -0.4 ]
         }
       ]
     }
@@ -712,19 +825,67 @@
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "./Meshes/woodfencecornerx+.obj"
+    "mesh": "./Meshes/woodfencecornerx+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ 0.4, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        },
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, -0.4 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerx-": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "./Meshes/woodfencecornerx-.obj"
+    "mesh": "./Meshes/woodfencecornerx-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ -0.4, 0.5, 0.5 ]
+        },
+        {
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerz+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "./Meshes/woodfencecornerz+.obj"
+    "mesh": "./Meshes/woodfencecornerz+.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, 0.4 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        },
+        {
+          "min": [ 0.4, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
-    "mesh": "./Meshes/woodfencecornerz-.obj"
+    "mesh": "./Meshes/woodfencecornerz-.obj",
+    "colliders": {
+      "boxes": [
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ 0.5, 0.5, -0.4 ]
+        },
+        {
+          "min": [ -0.5, -0.5, -0.5 ],
+          "max": [ -0.4, 0.5, 0.5 ]
+        }
+      ]
+    }
   },
   "Pandaros.Settlers.AutoLoad.window": {
     "icon": "./icons/window.png",
