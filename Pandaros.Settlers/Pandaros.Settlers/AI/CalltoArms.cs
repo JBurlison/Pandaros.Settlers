@@ -70,18 +70,6 @@ namespace Pandaros.Settlers.AI
             CallToArmsNPCType = NPCType.GetByKeyNameOrDefault(_callToArmsNPCSettings.keyName);
         }
 
-        public void OnAssignedNPC(NPCBase npc)
-        {
-            Owner = npc.Colony;
-            NPC = npc;
-            NeedsNPC = false;
-            IsValid = true;
-            _tmpVals = npc.CustomData;
-            _colony = npc.Colony;
-            _colonyState = ColonyState.GetColonyState(_colony);
-            _stock = npc.Colony.Stockpile;
-        }
-
         public Vector3Int GetJobLocation()
         {
             var currentPos = NPC.Position;
@@ -270,16 +258,36 @@ namespace Pandaros.Settlers.AI
 
         public void SetNPC(NPCBase npc)
         {
-            
+            NPC = npc;
+
+            if (npc != null)
+            {
+                NeedsNPC = false;
+                IsValid = true;
+                Owner = npc.Colony;
+                _tmpVals = npc.CustomData;
+                _colony = npc.Colony;
+                _colonyState = ColonyState.GetColonyState(_colony);
+                _stock = npc.Colony.Stockpile;
+            }
+            else
+            {
+                NeedsNPC = true;
+                IsValid = false;
+                Owner = null;
+                _tmpVals = null;
+                _colony = null;
+                _colonyState = null;
+                _stock = null;
+            }
         }
     }
 
     [ModLoader.ModManager]
     public class CalltoArms : IChatCommand
     {
-        private readonly List<CalltoArmsJob> _callToArmsJobs = new List<CalltoArmsJob>();
-        private readonly Dictionary<NPCBase, IJob> _Jobs = new Dictionary<NPCBase, IJob>();
-
+        private static readonly Dictionary<Colony, List<CalltoArmsJob>> _callToArmsJobs = new Dictionary<Colony, List<CalltoArmsJob>>();
+        private static readonly Dictionary<Colony, Dictionary<NPCBase, IJob>> _Jobs = new Dictionary<Colony, Dictionary<NPCBase, IJob>>();
         public bool TryDoCommand(Players.Player player, string chat, List<string> splits)
         {
             if (!chat.StartsWith("/arms", StringComparison.OrdinalIgnoreCase) &&
@@ -291,77 +299,82 @@ namespace Pandaros.Settlers.AI
                 return true;
 
             var array = CommandManager.SplitCommand(chat);
-            var colony = player.ActiveColony;
-            ProcesssCallToArms(player, colony);
+            ProcesssCallToArms(player, player.ActiveColony);
 
             return true;
         }
 
-        private void ProcesssCallToArms(Players.Player player, Colony colony)
+        public static void ProcesssCallToArms(Players.Player player, Colony colony)
         {
             var state = ColonyState.GetColonyState(colony);
             state.CallToArmsEnabled = !state.CallToArmsEnabled;
 
-            if (state.CallToArmsEnabled)
+            if (!_Jobs.ContainsKey(colony))
+                _Jobs.Add(colony, new Dictionary<NPCBase, IJob>());
+
+            try
             {
-                PandaChat.Send(player, "Call to arms activated!", ChatColor.red, ChatStyle.bold);
 
-                foreach (var follower in colony.Followers)
+                if (state.CallToArmsEnabled)
                 {
-                    var job = follower.Job;
+                    PandaChat.Send(player, "Call to arms activated!", ChatColor.red, ChatStyle.bold);
 
-                    if (!CanCallToArms(job))
-                        continue;
-
-                    try
+                    
+                    foreach (var follower in colony.Followers)
                     {
-                        if (job != null)
+                        var job = follower.Job;
+
+                        if (job != null && CantCallToArms(job))
+                            continue;
+
+                        try
                         {
-                            if (job.GetType() != typeof(CalltoArmsJob))
-                                _Jobs[follower] = job;
+                            if (job != null)
+                            {
+                                if (job.GetType() != typeof(CalltoArmsJob))
+                                    _Jobs[colony][follower] = job;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            PandaLogger.LogError(ex);
+                        }
+
+                        var armsJob = new CalltoArmsJob();
+                        follower.TakeJob(armsJob);
+                    }
+                }
+                else
+                {
+                    PandaChat.Send(player, "Call to arms deactivated.", ChatColor.green, ChatStyle.bold);
+                    var assignedWorkers = new List<NPCBase>();
+
+                    foreach (var follower in colony.Followers)
+                    {
+                        var job = follower.Job;
+
+                        if (job != null && job.GetType() == typeof(CalltoArmsJob))
+                        {
+                            follower.ClearJob();
+                            job.SetNPC(null);
+                        }
+
+                        if (_Jobs[colony].ContainsKey(follower) && _Jobs[colony][follower].NeedsNPC)
+                        {
+                            assignedWorkers.Add(follower);
+                            follower.TakeJob(_Jobs[colony][follower]);
+                            follower.Colony.JobFinder.Remove(_Jobs[colony][follower]);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        PandaLogger.LogError(ex);
-                    }
 
-                    var armsJob = new CalltoArmsJob();
-                    _callToArmsJobs.Add(armsJob);
-                    follower.ClearJob();
-                    follower.TakeJob(armsJob);
+                    _Jobs[colony].Clear();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                PandaChat.Send(player, "Call to arms deactivated.", ChatColor.green, ChatStyle.bold);
-                var assignedWorkers = new List<NPCBase>();
-
-                foreach (var follower in colony.Followers)
-                {
-                    var job = follower.Job;
-
-                    if (job != null && job.GetType() == typeof(CalltoArmsJob))
-                    {
-                        follower.ClearJob();
-                        follower.Colony.JobFinder.JobsData.OpenJobs.Remove(job);
-                    }
-
-                    if (_Jobs.ContainsKey(follower) && _Jobs[follower].NeedsNPC)
-                    {
-                        assignedWorkers.Add(follower);
-                        follower.TakeJob(_Jobs[follower]);
-                        follower.Colony.JobFinder.Remove(_Jobs[follower]);
-                    }
-                }
-
-                _Jobs.Clear();
+                PandaLogger.LogError(ex);
             }
 
-            foreach (var armsJob in _callToArmsJobs)
-                armsJob.Owner.JobFinder.Remove(armsJob);
-
-            _callToArmsJobs.Clear();
             colony.SendCommonData();
         }
 
@@ -379,11 +392,11 @@ namespace Pandaros.Settlers.AI
             }
         }
 
-        public static bool CanCallToArms(IJob job)
+        public static bool CantCallToArms(IJob job)
         {
-            return !(job is GuardJobInstance) &&
-                   !(job is Knight) &&
-                   !(job is RoamingJob);
+            return (job is GuardJobInstance) ||
+                   (job is Knight) ||
+                   (job is RoamingJob);
         }
     }
 }

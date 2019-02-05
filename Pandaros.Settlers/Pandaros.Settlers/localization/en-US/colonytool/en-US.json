@@ -93,7 +93,9 @@
           "WheatFarmer": "Wheat Farmer",
           "Knight": "Knight",
           "Machinist": "Machinist",
-          "NoJobs": "No Jobs Available"
+          "NoJobs": "No Jobs Available",
+          "DeactivateCallToArms": "Deactivate Call To Arms",
+          "ActivateCallToArms": "Activate Call To Arms"
         }
       }
     }

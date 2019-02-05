@@ -93,11 +93,12 @@ namespace Pandaros.Settlers.ColonyManager
                 return;
             }
 
-            if ((!data.ButtonIdentifier.Contains(".RecruitButton") && 
+            if ((!data.ButtonIdentifier.Contains(".RecruitButton") &&
                 !data.ButtonIdentifier.Contains(".FireButton") &&
                 !data.ButtonIdentifier.Contains(".MoveFired") &&
                 !data.ButtonIdentifier.Contains(".ColonyToolMainMenu") &&
-                !data.ButtonIdentifier.Contains(".KillFired")) || data.Player.ActiveColony == null)
+                !data.ButtonIdentifier.Contains(".KillFired") &&
+                !data.ButtonIdentifier.Contains(".CallToArms")) || data.Player.ActiveColony == null)
                 return;
 
             Dictionary<string, JobCounts> jobCounts = GetJobCounts(data.Player.ActiveColony);
@@ -227,7 +228,11 @@ namespace Pandaros.Settlers.ColonyManager
                         NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
                     }
             }
-            
+            else if (data.ButtonIdentifier.Contains(".CallToArms"))
+            {
+                AI.CalltoArms.ProcesssCallToArms(data.Player, data.Player.ActiveColony);
+                NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
+            }
         }
 
         public static int GetCountValue(int countIndex)
@@ -264,9 +269,10 @@ namespace Pandaros.Settlers.ColonyManager
 
             if (!fired)
             {
+                ColonyState ps = ColonyState.GetColonyState(player.ActiveColony);
+
                 if (Configuration.GetorDefault("ColonistsRecruitment", true))
-                {
-                    ColonyState ps = ColonyState.GetColonyState(player.ActiveColony);
+                {                  
                     player.ActiveColony.HappinessData.RecruitmentCostCalculator.GetCost(player.ActiveColony.HappinessData.CachedHappiness, player.ActiveColony, out float num);
                     var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
 
@@ -276,6 +282,11 @@ namespace Pandaros.Settlers.ColonyManager
                     menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.GetLocalizationKey("RecruitmentCost"), UnityEngine.Color.black)),
                                                        new Label(new LabelData((cost + num).ToString(), UnityEngine.Color.black))));
                 }
+
+                if(ps.CallToArmsEnabled)
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".CallToArms", new LabelData(_localizationHelper.GetLocalizationKey("DeactivateCallToArms"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                else
+                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".CallToArms", new LabelData(_localizationHelper.GetLocalizationKey("ActivateCallToArms"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
 
 
@@ -330,11 +341,11 @@ namespace Pandaros.Settlers.ColonyManager
             if (jobCount == 0)
                 menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("NoJobs", player), UnityEngine.Color.black)));
 
-            if (!fired && Configuration.GetorDefault("AllowPlayerToResetThemself", true))
-            {
-                menu.Items.Add(new Line(UnityEngine.Color.black));
-                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ResetPlayer." + player.ID, new LabelData(_localizationHelper.GetLocalizationKey("ResetPlayer"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-            }
+            //if (!fired && Configuration.GetorDefault("AllowPlayerToResetThemself", true))
+            //{
+            //    menu.Items.Add(new Line(UnityEngine.Color.black));
+            //    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ResetPlayer." + player.ID, new LabelData(_localizationHelper.GetLocalizationKey("ResetPlayer"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            //}
 
             return menu;
         }

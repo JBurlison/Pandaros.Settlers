@@ -374,6 +374,10 @@ namespace Pandaros.Settlers.Items
 
             var ps = PlayerState.GetPlayerState(data.Player);
 
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+
             menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Stats"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("JoinDate", data.Player) + ":", UnityEngine.Color.black)),
                                             new Label(new LabelData(ps.JoinDate.ToString(), UnityEngine.Color.black))));
@@ -453,10 +457,7 @@ namespace Pandaros.Settlers.Items
 
                 menu.Items.Add(new HorizontalGrid(items, 200));
             }
-
-            menu.Items.Add(new Line(UnityEngine.Color.black));
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-
+            
             NetworkMenuManager.SendServerPopup(data.Player, menu);
         }
 
@@ -464,9 +465,14 @@ namespace Pandaros.Settlers.Items
         {
             var inv = Entities.SettlerInventory.GetSettlerInventory(job.NPC);
             NetworkMenu menu = new NetworkMenu();
+           
             menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("Colonist", data.Player) + " " + inv.SettlerName + " " + _localizationHelper.LocalizeOrDefault("Details", data.Player));
             menu.Width = 1000;
             menu.Height = 600;
+
+            menu.Items.Add(new Line(UnityEngine.Color.black));
+            menu.Items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            menu.Items.Add(new Line(UnityEngine.Color.black));
 
             menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Stats"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.GetLocalizationKey("SkillProcChance"), UnityEngine.Color.black)),
@@ -550,8 +556,7 @@ namespace Pandaros.Settlers.Items
                 menu.Items.Add(new HorizontalGrid(items, 200));
             }
 
-            menu.Items.Add(new Line(UnityEngine.Color.black));
-            menu.Items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            
             NetworkMenuManager.SendServerPopup(data.Player, menu);
         }
     }
