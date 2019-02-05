@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Jobs
         public static void RegisterPatrolTool()
         {
             var planks = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 2);
-            var carpet = new InventoryItem(ColonyBuiltIn.ItemTypes.CARPETRED.Name, 2);
+            var carpet = new InventoryItem(ColonyBuiltIn.ItemTypes.CARPETWHITE.Name, 2);
 
             var recipe = new Recipe(PatrolFlag.name,
                                     new List<InventoryItem> {planks, carpet},
