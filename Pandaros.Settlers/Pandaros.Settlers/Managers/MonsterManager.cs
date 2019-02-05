@@ -90,7 +90,8 @@ namespace Pandaros.Settlers.Managers
             if (World.Initialized &&
                 !AIManager.IsBusy())
             {
-                if (!BossActive &&
+                if (!TimeCycle.IsDay && 
+                    !BossActive &&
                     _nextBossUpdateTime <= secondsSinceStartDouble)
                 {
                     BossActive = true;
