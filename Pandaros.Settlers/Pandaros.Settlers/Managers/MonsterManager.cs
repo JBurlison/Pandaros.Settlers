@@ -22,7 +22,7 @@ namespace Pandaros.Settlers.Managers
         private static double _nextUpdateTime;
         private static int _nextBossUpdateTime = int.MaxValue;
 
-        private static readonly Dictionary<ColonyState, IPandaBoss> _spawnedBosses =  new Dictionary<ColonyState, IPandaBoss>();
+        public static Dictionary<ColonyState, IPandaBoss> SpawnedBosses { get; private set; } = new Dictionary<ColonyState, IPandaBoss>();
 
         private static readonly List<IPandaBoss> _bossList = new List<IPandaBoss>();
 
@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Managers
                             cs.ColonyRef.OwnerIsOnline() &&
                             colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
                         {
-                            if (bossType != null && !_spawnedBosses.ContainsKey(cs))
+                            if (bossType != null && !SpawnedBosses.ContainsKey(cs))
                             {
                                 Vector3Int positionFinal;
                                 switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
@@ -124,7 +124,7 @@ namespace Pandaros.Settlers.Managers
                                         if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
                                         {
                                             var pandaboss = bossType.GetNewBoss(path, colony);
-                                            _spawnedBosses.Add(cs, pandaboss);
+                                            SpawnedBosses.Add(cs, pandaboss);
 
                                             BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new BossSpawnedEvent(cs, pandaboss));
 
@@ -150,14 +150,14 @@ namespace Pandaros.Settlers.Managers
                                 }
                             }
 
-                            if (_spawnedBosses.ContainsKey(cs) &&
-                                    _spawnedBosses[cs].IsValid &&
-                                    _spawnedBosses[cs].CurrentHealth > 0)
+                            if (SpawnedBosses.ContainsKey(cs) &&
+                                    SpawnedBosses[cs].IsValid &&
+                                    SpawnedBosses[cs].CurrentHealth > 0)
                             {
                                 if (colony.TemporaryData.GetAsOrDefault("BossIndicator", 0) < Time.SecondsSinceStartInt)
                                 {
-                                    Indicator.SendIconIndicatorNear(new Vector3Int(_spawnedBosses[cs].Position),
-                                                                    _spawnedBosses[cs].ID,
+                                    Indicator.SendIconIndicatorNear(new Vector3Int(SpawnedBosses[cs].Position),
+                                                                    SpawnedBosses[cs].ID,
                                                                     new IndicatorState(1, GameLoader.Poisoned_Icon,
                                                                                         false, false));
 
@@ -171,15 +171,15 @@ namespace Pandaros.Settlers.Managers
 
                         if (turnOffBoss)
                         {
-                            if (Players.CountConnected != 0 && _spawnedBosses.Count != 0)
+                            if (Players.CountConnected != 0 && SpawnedBosses.Count != 0)
                             {
                                 PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
-                                var boss = _spawnedBosses.FirstOrDefault().Value;
+                                var boss = SpawnedBosses.FirstOrDefault().Value;
                                 PandaChat.SendToAll($"[{boss.name}] {boss.DeathText}", ChatColor.red);
                             }
 
                             BossActive = false;
-                            _spawnedBosses.Clear();
+                            SpawnedBosses.Clear();
                             GetNextBossSpawnTime();
                         }
                     }

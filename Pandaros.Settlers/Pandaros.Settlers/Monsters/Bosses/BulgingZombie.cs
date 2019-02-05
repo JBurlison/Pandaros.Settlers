@@ -114,7 +114,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var pos = new Vector3Int(boss.Position);
 
                 for (var i = 0; i < numberToSpawn; i++)
-                    PandaMonsterSpawner.CaclulateZombie(boss.OriginalGoal.GetClosestBanner(boss.position), boss.OriginalGoal, MonsterSpawner.GetTypeToSpawn(boss.OriginalGoal.FollowerCount));
+                    MonsterSpawner.SpawnZombie(boss.OriginalGoal.GetClosestBanner(boss.position), boss.OriginalGoal, MonsterSpawner.GetTypeToSpawn(boss.OriginalGoal.FollowerCount));
             }
         }
     }
