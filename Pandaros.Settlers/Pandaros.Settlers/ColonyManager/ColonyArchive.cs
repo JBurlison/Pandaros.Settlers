@@ -24,40 +24,46 @@ namespace Pandaros.Settlers.ColonyManager
             {
                 foreach (Colony c in p.Colonies)
                 {
-                    var file = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/NPCArchive/{c.ColonyID}.json";
-
-                    if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
+                    if (c.Owners.Count(own => own.IsConnected) == 1)
                     {
-                        File.Delete(file);
-                        PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is reconnected. Restoring Colony.");
+                        var file = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/NPCArchive/{c.ColonyID}.json";
 
-                        foreach (var node in followersNode.LoopArray())
-                            try
-                            {
-                                node.SetAs("id", GetAIID());
+                        if (File.Exists(file) && JSON.Deserialize(file, out var followersNode, false))
+                        {
+                            File.Delete(file);
+                            PandaLogger.Log(ChatColor.cyan, $"Player {p.ID.steamID} is reconnected. Restoring Colony.");
 
-                                var npc = new NPCBase(c, node);
-                                ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+                            foreach (var node in followersNode.LoopArray())
+                                try
+                                {
+                                    node.SetAs("id", GetAIID());
 
-                                foreach (var job in new List<IJob>(c.JobFinder.JobsData.OpenJobs))
-                                    if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
-                                    {
-                                        if (job.IsValid && job.NeedsNPC)
+                                    var npc = new NPCBase(c, node);
+                                    c.RegisterNPC(npc);
+                                    NPCTracker.Add(npc);
+                                    ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+
+                                    foreach (var job in new List<IJob>(c.JobFinder.JobsData.OpenJobs))
+                                        if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
                                         {
-                                            npc.TakeJob(job);
-                                            c.JobFinder.Remove(job);
+                                            if (job.IsValid && job.NeedsNPC)
+                                            {
+                                                npc.TakeJob(job);
+                                                c.JobFinder.Remove(job);
+                                            }
+
+                                            break;
                                         }
+                                }
+                                catch (Exception ex)
+                                {
+                                    PandaLogger.LogError(ex);
+                                }
 
-                                        break;
-                                    }
-                            }
-                            catch (Exception ex)
-                            {
-                                PandaLogger.LogError(ex);
-                            }
-
-                        JSON.Serialize(file, new JSONNode(NodeType.Array));
-                        c.JobFinder.Update();
+                            JSON.Serialize(file, new JSONNode(NodeType.Array));
+                            c.JobFinder.Update();
+                            c.SendCommonData();
+                        }
                     }
                 }
             }
