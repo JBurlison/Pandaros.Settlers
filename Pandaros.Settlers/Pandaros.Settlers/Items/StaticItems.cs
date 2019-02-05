@@ -45,7 +45,7 @@ namespace Pandaros.Settlers.Items
 
                             if (!string.IsNullOrEmpty(item.RequiredScience))
                             {
-                                var sk = c.ScienceData.CompletedCycles.FirstOrDefault(kvp => kvp.Key.Researchable.Researchable.GetKey() == item.RequiredScience).Key;
+                                var sk = c.ScienceData.CompletedCycles.FirstOrDefault(kvp => kvp.Key.Researchable.GetKey() == item.RequiredScience).Key;
 
                                 if (sk.Researchable == null)
                                     canAdd = false;
