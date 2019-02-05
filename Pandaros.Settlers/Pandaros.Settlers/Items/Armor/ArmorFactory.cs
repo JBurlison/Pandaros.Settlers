@@ -158,6 +158,7 @@ namespace Pandaros.Settlers.Items.Armor
                     {
                         var inv = GetSettlerInventory(npc);
                         GetBestArmorForNPC(stockpile, npc, inv, 4);
+                        Weapons.WeaponFactory.GetBestWeapon(npc, 4);
                     }
                 }
 

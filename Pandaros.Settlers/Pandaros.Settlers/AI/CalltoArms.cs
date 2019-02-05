@@ -22,7 +22,7 @@ namespace Pandaros.Settlers.AI
     public class CalltoArmsJob : IJob
     {
         private const int CALL_RAD = 500;
-
+        private const float COOLDOWN = 2f;
         private static readonly string COOLDOWN_KEY = GameLoader.NAMESPACE + ".CallToArmsCooldown";
         private static readonly Dictionary<InventoryItem, bool> _hadAmmo = new Dictionary<InventoryItem, bool>();
 
@@ -39,6 +39,7 @@ namespace Pandaros.Settlers.AI
         private Colony _colony;
         private ColonyState _colonyState;
         private Stockpile _stock;
+        private SettlerInventory _inv;
         private IMonster _target;
         private JSONNode _tmpVals;
         private int _waitingFor;
@@ -145,78 +146,104 @@ namespace Pandaros.Settlers.AI
                 var currentposition = NPC.Position;
                 _hadAmmo.Clear();
 
-                if (_target == null || !_target.IsValid || !VoxelPhysics.CanSee(NPC.Position.Vector, _target.Position))
-                    _target = MonsterTracker.Find(currentposition, _weapon.Range, _weapon.Damage);
-
-                if (_target != null && VoxelPhysics.CanSee(NPC.Position.Vector, _target.Position))
+                if (_inv.Weapon != null && !_inv.Weapon.IsEmpty())
                 {
-                    foreach (var projectile in _weapon.ShootItem)
+                    if (_target == null || !_target.IsValid)
+                        _target = MonsterTracker.Find(currentposition, 100, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
+
+                    if (_target != null && _target.IsValid)
                     {
-                        _hadAmmo[projectile] = false;
-
-                        if (NPC.Inventory.Contains(projectile))
-                        {
-                            _hadAmmo[projectile] = true;
-                            continue;
-                        }
-
-                        if (_stock.Contains(projectile))
-                            _hadAmmo[projectile] = true;
-                    }
-
-                    if (!_hadAmmo.Any(a => !a.Value))
-                    {
-                        state.SetIndicator(new IndicatorState(_weapon.CooldownShot, _weapon.ShootItem[0].Type));
-
-                        foreach (var ammo in _hadAmmo)
-                        {
-                            if (NPC.Inventory.Contains(ammo.Key))
-                            {
-                                NPC.Inventory.TryRemove(ammo.Key);
-                                continue;
-                            }
-
-                            if (_stock.Contains(ammo.Key))
-                                _stock.TryRemove(ammo.Key);
-                        }
-
+                        state.SetIndicator(new IndicatorState(COOLDOWN, _inv.Weapon.Id));
+                        state.SetCooldown(COOLDOWN);
                         NPC.LookAt(_target.Position);
+                        ServerManager.SendAudio(_target.PositionToAimFor, "punch");
 
-                        if (_weapon.OnShootAudio != null)
-                            ServerManager.SendAudio(Position.Vector, _weapon.OnShootAudio);
-
-                        if (_weapon.OnHitAudio != null)
-                            ServerManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
-
-                        if (_weapon.ShootItem.Count > 0)
-                            foreach (var proj in _weapon.ShootItem)
-                            {
-                                var projName = ItemTypes.IndexLookup.GetName(proj.Type);
-
-                                if (AnimationManager.AnimatedObjects.ContainsKey(projName))
-                                {
-                                    AnimationManager.AnimatedObjects[projName].SendMoveToInterpolatedOnce(Position.Vector, _target.PositionToAimFor);
-
-                                    break;
-                                }
-                            }
-
-                        ServerManager.SendParticleTrail(currentposition.Vector, _target.PositionToAimFor, 2);
-                        _target.OnHit(_weapon.Damage);
-                        state.SetCooldown(_weapon.CooldownShot);
+                        _target.OnHit(WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
                         _waitingFor = 0;
                     }
                     else
                     {
-                        state.SetIndicator(new IndicatorState(_weapon.CooldownMissingItem, _weapon.ShootItem[0].Type, true));
-                        state.SetCooldown(_weapon.CooldownMissingItem);
+                        state.SetIndicator(new IndicatorState(COOLDOWN, GameLoader.MissingMonster_Icon, true));
+                        state.SetCooldown(COOLDOWN);
+                        _waitingFor++;
+                        _target = null;
                     }
                 }
                 else
                 {
-                    state.SetIndicator(new IndicatorState(_weapon.CooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
-                    state.SetCooldown(_weapon.CooldownMissingItem);
-                    _target = null;
+                    if (_target == null || !_target.IsValid || !VoxelPhysics.CanSee(NPC.Position.Vector, _target.Position))
+                        _target = MonsterTracker.Find(currentposition, _weapon.Range, _weapon.Damage);
+
+                    if (_target != null && _target.IsValid && VoxelPhysics.CanSee(NPC.Position.Vector, _target.Position))
+                    {
+                        foreach (var projectile in _weapon.ShootItem)
+                        {
+                            _hadAmmo[projectile] = false;
+
+                            if (NPC.Inventory.Contains(projectile))
+                            {
+                                _hadAmmo[projectile] = true;
+                                continue;
+                            }
+
+                            if (_stock.Contains(projectile))
+                                _hadAmmo[projectile] = true;
+                        }
+
+                        if (!_hadAmmo.Any(a => !a.Value))
+                        {
+                            state.SetIndicator(new IndicatorState(_weapon.CooldownShot, _weapon.ShootItem[0].Type));
+
+                            foreach (var ammo in _hadAmmo)
+                            {
+                                if (NPC.Inventory.Contains(ammo.Key))
+                                {
+                                    NPC.Inventory.TryRemove(ammo.Key);
+                                    continue;
+                                }
+
+                                if (_stock.Contains(ammo.Key))
+                                    _stock.TryRemove(ammo.Key);
+                            }
+
+                            NPC.LookAt(_target.Position);
+
+                            if (_weapon.OnShootAudio != null)
+                                ServerManager.SendAudio(Position.Vector, _weapon.OnShootAudio);
+
+                            if (_weapon.OnHitAudio != null)
+                                ServerManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
+
+                            if (_weapon.ShootItem.Count > 0)
+                                foreach (var proj in _weapon.ShootItem)
+                                {
+                                    var projName = ItemTypes.IndexLookup.GetName(proj.Type);
+
+                                    if (AnimationManager.AnimatedObjects.ContainsKey(projName))
+                                    {
+                                        AnimationManager.AnimatedObjects[projName].SendMoveToInterpolatedOnce(Position.Vector, _target.PositionToAimFor);
+
+                                        break;
+                                    }
+                                }
+
+                            ServerManager.SendParticleTrail(currentposition.Vector, _target.PositionToAimFor, 2);
+                            _target.OnHit(_weapon.Damage);
+                            state.SetCooldown(_weapon.CooldownShot);
+                            _waitingFor = 0;
+                        }
+                        else
+                        {
+                            state.SetIndicator(new IndicatorState(_weapon.CooldownMissingItem, _weapon.ShootItem[0].Type, true));
+                            state.SetCooldown(_weapon.CooldownMissingItem);
+                        }
+                    }
+                    else
+                    {
+                        state.SetIndicator(new IndicatorState(_weapon.CooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
+                        state.SetCooldown(_weapon.CooldownMissingItem);
+                        _target = null;
+                    }
                 }
             }
             catch (Exception)
@@ -267,6 +294,7 @@ namespace Pandaros.Settlers.AI
                 Owner = npc.Colony;
                 _tmpVals = npc.CustomData;
                 _colony = npc.Colony;
+                _inv = SettlerInventory.GetSettlerInventory(npc);
                 _colonyState = ColonyState.GetColonyState(_colony);
                 _stock = npc.Colony.Stockpile;
             }
@@ -275,6 +303,7 @@ namespace Pandaros.Settlers.AI
                 NeedsNPC = true;
                 IsValid = false;
                 Owner = null;
+                _inv = null;
                 _tmpVals = null;
                 _colony = null;
                 _colonyState = null;

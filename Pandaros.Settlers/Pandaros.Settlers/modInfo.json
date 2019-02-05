@@ -218,7 +218,6 @@
           "Fixed stone slab name",
           "Fixed bug where colonists would be hurt after researching colonist health",
           "Mining machines no longer mine faster. They are still more efficient than manual as you can have 4-5 mining machines per Machinist",
-          "all slabs and auto load items now have texture and collision.",
           "Added the ability to build minecraft schematics with the schematic tool",
           "Added schematic tool research, requires builders.",
           "Added the ability so save schematics. they save on a per colony and player basis.",
@@ -236,6 +235,9 @@
           "Knights now sleep durning the day",
           "Bosses now only spawn during the day",
           "Slabs, Fence, Iron bar and doors now have proper colliders",
+          "Call to arms will use equipt swords now",
+          "Colonists will now puch zombies when they come close to them. Its configured as ColonistPunchDamage and defaults to 30 damage",
+          "Swords will auto equit to colonists now but always leave at least 4 in the stockpile. This is similar to armor.",
           "Added serveral new ores that generate in the map: Adamantine, Emerald, Ruby, Saphire",
           "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
           "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation"

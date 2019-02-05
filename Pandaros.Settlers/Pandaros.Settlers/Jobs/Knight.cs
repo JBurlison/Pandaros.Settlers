@@ -214,7 +214,7 @@ namespace Pandaros.Settlers.Jobs
                         !VoxelPhysics.CanSee(UsedNPC.Position.Vector, _target.Position))
                         _target = MonsterTracker.Find(currentposition, 1, WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
 
-                    if (_target != null && VoxelPhysics.CanSee(UsedNPC.Position.Vector, _target.Position))
+                    if (_target != null && _target.IsValid && VoxelPhysics.CanSee(UsedNPC.Position.Vector, _target.Position))
                     {
                         state.SetIndicator(new IndicatorState(COOLDOWN, _inv.Weapon.Id));
                         UsedNPC.LookAt(_target.Position);
