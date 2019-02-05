@@ -81,6 +81,8 @@
     "Pandaros.Settlers.HerbalistBench.recipe": "Herbalist Bench",
     "Pandaros.Settlers.HerbalistBench": "Herbalist Bench",
     "Pandaros.Settlers.ApothecaryTable": "Apothecary Table",
+    "Pandaros.Settlers.SorcererTable": "Sorcerer Table",
+    "Pandaros.Settlers.Apothecary": "Apothecary",
     "Pandaros.Settlers.Anitbiotic": "Anitbiotic",
     "Pandaros.Settlers.Antidote": "Antidote",
     "Pandaros.Settlers.Bandage": "Bandage",
@@ -417,6 +419,7 @@
     },
     "Pandaros": {
       "Settlers": {
+        "Apothecary": "Apothecary",
         "inventory": {
           "NumberPlaced": "Total Placed",
           "NumberRemoved": "Total Removed",
