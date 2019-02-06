@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Items.Weapons
 
                             if (inv.Weapon != null && !inv.Weapon.IsEmpty())
                             {
-                                var target = MonsterTracker.Find(npc.Position, 1, punchDamage);
+                                var target = MonsterTracker.Find(npc.Position, 2, punchDamage);
 
                                 if (target != null && target.IsValid)
                                 {
