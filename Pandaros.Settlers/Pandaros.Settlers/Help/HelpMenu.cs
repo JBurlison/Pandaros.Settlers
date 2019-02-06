@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Help
             "essential",
             "aaa"
         };
-        public override StaticItem StaticItemSettings => new StaticItem() { Name = GameLoader.NAMESPACE + ".HelpMenu" };
+        public override StaticItem StaticItemSettings => new StaticItem() { Name = NAME };
     }
 
     [ModLoader.ModManager]

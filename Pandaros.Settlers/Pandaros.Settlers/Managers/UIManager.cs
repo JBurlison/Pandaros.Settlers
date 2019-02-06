@@ -53,15 +53,15 @@ namespace Pandaros.Settlers.Managers
                 url = reference.Substring(reference.IndexOf("_") + 1);
 
             var splitUrl = url.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            JSONNode uiNode = default(JSONNode);
+            JSONNode uiNode = LoadedMenus;
 
-            foreach (var entry in splitUrl)
+            for (int i = 0; i < splitUrl.Length; i++)
             {
-                if(!LoadedMenus.TryGetAs(entry, out uiNode))
+                if(!uiNode.TryGetAs(splitUrl[i], out uiNode))
                     break;
             }
 
-            if (uiNode != default(JSONNode))
+            if (uiNode != LoadedMenus)
                 SendMenu(player, uiNode);
         }
 
