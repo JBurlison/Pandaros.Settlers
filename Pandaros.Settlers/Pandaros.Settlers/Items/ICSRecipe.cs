@@ -30,6 +30,7 @@ namespace Pandaros.Settlers.Items
 
         public string type { get; set; }
         public int amount { get; set; }
+        public float? chance { get; set; }
     }
 
     public interface ICSRecipe : INameable
