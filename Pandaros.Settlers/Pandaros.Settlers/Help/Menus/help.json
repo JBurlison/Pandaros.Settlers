@@ -1,13 +1,13 @@
 {
   "Wiki": {
     "MainMenu": {
-      "header": "Settlers Help",
+      "header": "Pandaros.Settlers.Wiki.MainMenu.Title",
       "width": 1000,
       "height": 600,
       "Items": [
         {
           "type": "label",
-          "text": "Jobs!",
+          "text": "Pandaros.Settlers.Wiki.MainMenu.JobsHeader",
           "alignement": "Center",
           "fontsize": 32
         },
@@ -31,7 +31,7 @@
           "width": 700,
           "height": 25,
           "label": {
-            "text": "Machinists",
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Machinists",
             "color": "black"
           }
         },
@@ -41,7 +41,7 @@
           "width": 700,
           "height": 25,
           "label": {
-            "text": "Apothecary",
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Apothecary",
             "color": "black"
           }
         }

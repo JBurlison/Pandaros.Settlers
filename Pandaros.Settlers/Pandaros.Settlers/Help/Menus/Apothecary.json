@@ -1,19 +1,13 @@
 {
   "Wiki": {
     "Apothecary": {
-      "header": "Apothecary",
+      "header": "Pandaros.Settlers.Wiki.Apothecary.Title",
       "width": 800,
       "height": 600,
       "Items": [
         {
           "type": "label",
-          "text": "Apothecary!",
-          "alignement": "Center",
-          "fontsize": 32
-        },
-        {
-          "type": "label",
-          "text": "Under construction...",
+          "text": "Pandaros.Settlers.Wiki.Apothecary.Description",
           "alignement": "Left"
         },
         {

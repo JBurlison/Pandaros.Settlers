@@ -373,20 +373,25 @@ namespace Pandaros.Settlers.Managers
 
         public static LabelData GetLabelData(JSONNode json)
         {
-            json.TryGetAsOrDefault<string>("text", out string text, "Text key not found");
+            json.TryGetAsOrDefault("text", out string text, "Text key not found");
 
             UnityEngine.Color color = UnityEngine.Color.white;
-            UnityEngine.TextAnchor alignement = UnityEngine.TextAnchor.MiddleLeft;
+            UnityEngine.TextAnchor alignement = UnityEngine.TextAnchor.MiddleCenter;
 
             if(json.HasChild("color"))
                 color = GetColor(json.GetAs<string>("color"));
 
-            if(json.HasChild("alignement"))
-                alignement = GetAlignement(json.GetAs<string>("alignement"));
+            if (json.TryGetAs("alignement", out string alignementStr))
+                Enum.TryParse(alignementStr, true, out alignement);
 
-            json.TryGetAsOrDefault<int>("fontsize", out int fontSize, 18);
+            json.TryGetAsOrDefault("fontsize", out int fontSize, 18);
 
-            return new LabelData(text, color, alignement, fontSize);
+            LabelData.ELocalizationType localizationType = LabelData.ELocalizationType.Sentence;
+
+            if (json.TryGetAs("localizationType", out string localizationString))
+                Enum.TryParse(localizationString, true, out localizationType);
+
+            return new LabelData(text, color, alignement, fontSize, localizationType);
         }
 
         public static UnityEngine.Color GetColor(string color)
@@ -428,22 +433,6 @@ namespace Pandaros.Settlers.Managers
 
                 default:
                 return UnityEngine.Color.white;
-            }
-        }
-
-        public static UnityEngine.TextAnchor GetAlignement(string alignement)
-        {
-            switch(alignement.Trim().ToLower())
-            {
-                case "left":
-                default:
-                return UnityEngine.TextAnchor.MiddleLeft;
-
-                case "center":
-                return UnityEngine.TextAnchor.MiddleCenter;
-
-                case "right":
-                return UnityEngine.TextAnchor.MiddleRight;
             }
         }
 

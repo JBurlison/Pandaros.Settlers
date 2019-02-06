@@ -16,19 +16,19 @@
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/en-US/help.json"
+        "relativePath": "Help/Menus/help.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/en-US/Apothecary.json"
+        "relativePath": "Help/Menus/Apothecary.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/en-US/knights.json"
+        "relativePath": "Help/Menus/Knights.json"
       },
       {
         "fileType": "Pandaros.Settlers.MenuFile",
-        "relativePath": "Help/en-US/Machinists.json"
+        "relativePath": "Help/Menus/Machinists.json"
       },
       {
         "fileType": "Pandaros.Settlers.OreLayers",
@@ -59,6 +59,11 @@
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/help/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/mainMenu/en-US.json",
         "index": -99999
       },
       {
