@@ -214,7 +214,6 @@
     <Compile Include="Extender\Providers\BossesProvider.cs" />
     <Compile Include="GameDifficulty.cs" />
     <Compile Include="Help\HelpMenu.cs" />
-    <Compile Include="Help\IHelpMenuItem.cs" />
     <Compile Include="IMagicEffect.cs" />
     <Compile Include="IPandaArmor.cs" />
     <Compile Include="IPandaDamage.cs" />

@@ -90,7 +90,7 @@ namespace Pandaros.Settlers.Managers
         {
             string itemType = item.GetAs<string>("type").Trim().ToLower();
 
-            //Log.Write(string.Format("<color=lime>ItemType: {0}</color>", itemType));
+            //PandaLogger.Log(string.Format("<color=lime>ItemType: {0}</color>", itemType));
             IItem newItem = new EmptySpace();
 
             switch(itemType)
@@ -137,7 +137,7 @@ namespace Pandaros.Settlers.Managers
                 {
                     if(!item.HasChild("name"))
                     {
-                        Log.Write("<color=red>ItemRecipe: Not name defined </color>");
+                        PandaLogger.Log("<color=red>ItemRecipe: Not name defined </color>");
                         return newItem;
                     }
 
@@ -145,13 +145,13 @@ namespace Pandaros.Settlers.Managers
 
                     if(!ItemTypes.IndexLookup.TryGetIndex(name, out ushort index))
                     {
-                        Log.Write("<color=red>ItemRecipe: Not item found with name: " + name + "</color>");
+                        PandaLogger.Log("<color=red>ItemRecipe: Not item found with name: " + name + "</color>");
                         return newItem;
                     }
 
                     if(!ItemRecipe.TryGetValue(index, out var Recipe))
                     {
-                        Log.Write("<color=red>ItemRecipe: Not recipe found for: " + name + "</color>");
+                        PandaLogger.Log("<color=red>ItemRecipe: Not recipe found for: " + name + "</color>");
                         return newItem;
                     }
 
@@ -196,7 +196,7 @@ namespace Pandaros.Settlers.Managers
                     else
                     {
                         id = "dropdown";
-                        Log.Write("<color=red>Dropdown without ID defined, default: dropdown</color>");
+                        PandaLogger.Log("<color=red>Dropdown without ID defined, default: dropdown</color>");
                     }
 
                     List<string> options = new List<string>();
@@ -211,7 +211,7 @@ namespace Pandaros.Settlers.Managers
                     else
                     {
                         options.Add("No options available");
-                        Log.Write(string.Format("<color=red>dropdown {0} without options</color>", id));
+                        PandaLogger.Log(string.Format("<color=red>dropdown {0} without options</color>", id));
                     }
 
                     item.TryGetAsOrDefault<int>("height", out int height, 30);
@@ -245,7 +245,7 @@ namespace Pandaros.Settlers.Managers
                     else
                     {
                         id = "toggle";
-                        Log.Write("<color=red>Toggle without ID defined, default: toggle</color>");
+                        PandaLogger.Log("<color=red>Toggle without ID defined, default: toggle</color>");
                     }
 
                     item.TryGetAsOrDefault<int>("height", out int height, 25);
@@ -278,7 +278,7 @@ namespace Pandaros.Settlers.Managers
                     else
                     {
                         id = "button";
-                        Log.Write("<color=red>Button without ID defined, default: button</color>");
+                        PandaLogger.Log("<color=red>Button without ID defined, default: button</color>");
                     }
 
                     item.TryGetAsOrDefault<int>("width", out int width, -1);
@@ -291,7 +291,7 @@ namespace Pandaros.Settlers.Managers
                     }
                     else
                     {
-                        Log.Write(string.Format("<color=red>Button {0} without label</color>", id));
+                        PandaLogger.Log(string.Format("<color=red>Button {0} without label</color>", id));
                         newItem = new ButtonCallback(id, new LabelData("Key label not defined"), width, height);
                     }
                 }
@@ -307,11 +307,11 @@ namespace Pandaros.Settlers.Managers
                     }
                     else
                     {
-                        Log.Write("<color=red>Link without URL defined</color>");
+                        PandaLogger.Log("<color=red>Link without URL defined</color>");
                         return new EmptySpace();
                     }
 
-                    //Log.Write("<color=red>"+ url + "</color>");
+                    //PandaLogger.Log("<color=red>"+ url + "</color>");
 
                     item.TryGetAsOrDefault<int>("width", out int width, -1);
                     item.TryGetAsOrDefault<int>("height", out int height, 25);
@@ -323,7 +323,7 @@ namespace Pandaros.Settlers.Managers
                     }
                     else
                     {
-                        Log.Write(string.Format("<color=red>Link {0} without label</color>", url));
+                        PandaLogger.Log(string.Format("<color=red>Link {0} without label</color>", url));
                         newItem = new ButtonCallback(url, new LabelData("Key label not defined"), width, height);
                     }
                 }
@@ -355,7 +355,7 @@ namespace Pandaros.Settlers.Managers
 
                 default:
                 {
-                    Log.Write(string.Format("<color=red>It doesn't exist an item of type: {0}</color>", itemType));
+                    PandaLogger.Log(string.Format("<color=red>It doesn't exist an item of type: {0}</color>", itemType));
                     newItem = new EmptySpace();
                 }
                 break;
