@@ -3,64 +3,122 @@ using System.Collections.Generic;
 using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.Armor;
 using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Entities
 {
     public class SettlerInventory
     {
-        public SettlerInventory(int id)
+        public SettlerInventory(NPCBase id)
         {
-            SettlerId   = id;
+            SettlerId   = id.ID;
+            NPC = id;
             SettlerName = NameGenerator.GetName();
             SetupArmor();
         }
 
-        public SettlerInventory(JSONNode baseNode)
+        public SettlerInventory(JSONNode baseNode, NPCBase nPC)
         {
             if (baseNode.TryGetAs<int>(nameof(SettlerId), out var settlerId))
             {
+                NPC = nPC;
                 SetupArmor();
                 SettlerId = settlerId;
 
                 baseNode.TryGetAs<string>(nameof(SettlerName), out var name);
                 SettlerName = name;
 
-                if (baseNode.TryGetAs<double>(nameof(Happyness), out var happy))
-                    Happyness = happy;
-
-                if (baseNode.TryGetAs(nameof(JobSkills), out JSONNode skills))
+                if (baseNode.TryGetAs(nameof(BonusProcs), out JSONNode skills))
                     foreach (var skill in skills.LoopObject())
-                        JobSkills[skill.Key] = skill.Value.GetAs<float>();
+                        if (ushort.TryParse(skill.Key, out ushort item))
+                        BonusProcs[item] = skill.Value.GetAs<long>();
 
-                if (baseNode.TryGetAs(nameof(JobItteration), out JSONNode itterations))
+                if (baseNode.TryGetAs(nameof(Stats), out JSONNode itterations))
                     foreach (var skill in itterations.LoopObject())
-                        JobItteration[skill.Key] = skill.Value.GetAs<int>();
+                        Stats[skill.Key] = skill.Value.GetAs<double>();
 
-                foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+                foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                     Armor[armorType].FromJsonNode(armorType.ToString(), baseNode);
             }
         }
 
+        public double MagicItemUpdateTime { get; set; } = Pipliz.Time.SecondsSinceStartDouble + Pipliz.Random.Next(1, 10);
+
         public int SettlerId { get; set; }
+
+        public double PunchCooldown { get; set; }
+        
+        public NPCBase NPC { get; private set; }
 
         public string SettlerName { get; set; }
 
-        public double Happyness { get; set; } = 1;
+        public Dictionary<ushort, long> BonusProcs { get; set; } = new Dictionary<ushort, long>();
 
-        public Dictionary<string, float> JobSkills { get; set; } = new Dictionary<string, float>();
+        public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
 
-        public Dictionary<string, int> JobItteration { get; set; } = new Dictionary<string, int>();
+        public EventedDictionary<ArmorFactory.ArmorSlot, ItemState> Armor { get; set; } =  new EventedDictionary<ArmorFactory.ArmorSlot, ItemState>();
 
-        public Dictionary<Armor.ArmorSlot, ArmorState> Armor { get; set; } =
-            new Dictionary<Armor.ArmorSlot, ArmorState>();
+        public ItemState Weapon { get; set; } = new ItemState();
 
-        public ArmorState Weapon { get; set; } = new ArmorState();
+        public void IncrimentStat(string name, double count = 1)
+        {
+            if (!Stats.ContainsKey(name))
+                Stats.Add(name, 0);
+
+            Stats[name] += count;
+        }
 
         private void SetupArmor()
         {
-            foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
-                Armor.Add(armorType, new ArmorState());
+            foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
+                Armor.Add(armorType, new ItemState());
+
+            Armor.OnDictionaryChanged += Armor_OnDictionaryChanged;
+        }
+
+        public void AddBonusProc(ushort item, long count = 1)
+        {
+            if (!BonusProcs.ContainsKey(item))
+                BonusProcs.Add(item, 0);
+
+            BonusProcs[item] += count;
+        }
+
+        public float GetSkillModifier()
+        {
+            var totalSkill = 0f;
+
+            if (NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
+                totalSkill = allSkill;
+
+            foreach (var armor in Armor)
+                if (Items.Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var a))
+                    totalSkill += a.Skilled;
+
+            if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(Weapon.Id, out var w))
+                totalSkill += w.Skilled;
+
+            return totalSkill;
+        }
+
+        // TODO: apply armor
+        private void Armor_OnDictionaryChanged(object sender, DictionaryChangedEventArgs<ArmorFactory.ArmorSlot, ItemState> e)
+        {
+            switch (e.EventType)
+            {
+                case DictionaryEventType.AddItem:
+                    
+                    break;
+
+                case DictionaryEventType.ChangeItem:
+
+                    break;
+
+                case DictionaryEventType.RemoveItem:
+
+                    break;
+            }
         }
 
         public JSONNode ToJsonNode()
@@ -69,23 +127,22 @@ namespace Pandaros.Settlers.Entities
 
             baseNode[nameof(SettlerId)]   = new JSONNode(SettlerId);
             baseNode[nameof(SettlerName)] = new JSONNode(SettlerName);
-            baseNode[nameof(Happyness)]   = new JSONNode(Happyness);
 
             var skills = new JSONNode();
 
-            foreach (var job in JobSkills)
+            foreach (var job in BonusProcs)
                 skills[job.Key] = new JSONNode(job.Value);
 
-            baseNode[nameof(JobSkills)] = skills;
+            baseNode[nameof(BonusProcs)] = skills;
 
-            var itterations = new JSONNode();
+            var statsNode = new JSONNode();
 
-            foreach (var job in JobItteration)
-                itterations[job.Key] = new JSONNode(job.Value);
+            foreach (var job in Stats)
+                statsNode[job.Key] = new JSONNode(job.Value);
 
-            baseNode[nameof(itterations)] = itterations;
+            baseNode[nameof(Stats)] = statsNode;
 
-            foreach (Armor.ArmorSlot armorType in Items.Armor.ArmorSlotEnum)
+            foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
                 baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();
 
             return baseNode;
@@ -93,63 +150,32 @@ namespace Pandaros.Settlers.Entities
 
         public static SettlerInventory GetSettlerInventory(NPCBase npc)
         {
-            var tempVals = npc.GetTempValues(true);
+            SettlerInventory inv = null;
 
-            if (!tempVals.TryGet(GameLoader.SETTLER_INV, out SettlerInventory inv))
+            if (npc.CustomData == null)
+                npc.CustomData = new JSONNode();
+
+            try
             {
-                inv = new SettlerInventory(npc.ID);
-                tempVals.Set(GameLoader.SETTLER_INV, inv);
+                if (!npc.CustomData.TryGetAs(GameLoader.SETTLER_INV, out inv) || inv == null)
+                {
+                    inv = new SettlerInventory(npc);
+                    npc.CustomData.SetAs(GameLoader.SETTLER_INV, inv);
+                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
+
+            if (inv == null)
+            {
+                inv = new SettlerInventory(npc);
             }
 
             return inv;
         }
 
-        [Serializable]
-        public class ArmorState
-        {
-            public ArmorState()
-            {
-            }
-
-            public ArmorState(JSONNode node)
-            {
-                if (node.TryGetAs(nameof(Id), out ushort id))
-                    Id = id;
-
-                if (node.TryGetAs(nameof(Durability), out int durablility))
-                    Durability = durablility;
-            }
-
-            public ushort Id { get; set; }
-
-            public int Durability { get; set; }
-
-            public bool IsEmpty()
-            {
-                return Id == default(ushort);
-            }
-
-            public void FromJsonNode(string nodeName, JSONNode node)
-            {
-                if (node.TryGetAs(nodeName, out JSONNode stateNode))
-                {
-                    if (stateNode.TryGetAs(nameof(Id), out ushort id))
-                        Id = id;
-
-                    if (stateNode.TryGetAs(nameof(Durability), out int durablility))
-                        Durability = durablility;
-                }
-            }
-
-            public JSONNode ToJsonNode()
-            {
-                var baseNode = new JSONNode();
-
-                baseNode[nameof(Id)]         = new JSONNode(Id);
-                baseNode[nameof(Durability)] = new JSONNode(Durability);
-
-                return baseNode;
-            }
-        }
+        
     }
 }

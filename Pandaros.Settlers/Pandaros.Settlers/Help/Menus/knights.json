@@ -1,0 +1,141 @@
+{
+  "Wiki": {
+    "Knights": {
+      "header": "Knights",
+      "width": 800,
+      "height": 600,
+      "Items": [
+        {
+          "type": "label",
+          "text": "Knights!",
+          "alignement": "Center",
+          "fontsize": 32
+        },
+        {
+          "type": "label",
+          "text": "Once researched you can craft Patrol Banners at the workbench. Knight patrols require Swords. They will always use the best sword in the stockpile. Knights also get first pick (after the player) of armor. Knights are also tougher than other colonists and take 60% less damage before any armor is applied. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:",
+          "alignement": "Left"
+        },
+        {
+          "type": "label",
+          "text": "Left Click: Place a Patrol Flag",
+          "alignement": "Left",
+          "position": 50
+        },
+        {
+          "type": "label",
+          "text": "Right Click: Comfirm Patrol and start Job",
+          "alignement": "Left",
+          "position": 50
+        },
+        {
+          "type": "label",
+          "text": "To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.",
+          "alignement": "Left"
+        },
+        {
+          "type": "label",
+          "text": "NOTE Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!",
+          "alignement": "Left"
+        },
+        {
+          "type": "table",
+          "row_height": 70,
+          "col_width": 200,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "text": "Icon"
+              },
+              {
+                "type": "label",
+                "text": "Description"
+              }
+            ],
+            [
+              {
+                "type": "Icon",
+                "name": "Pandaros.Settlers.PatrolTool"
+              },
+              {
+                "type": "label",
+                "text": "Knight Patrol Tool"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.PatrolFlag"
+              },
+              {
+                "type": "label",
+                "text": "Knight Patrol Flag."
+              }
+            ]
+          ]
+        },
+        {
+          "type": "label",
+          "text": "Patrol Types:",
+          "alignement": "Left",
+          "position": 50
+        },
+        {
+          "type": "label",
+          "text": "You may left click on a existing banner control to change the patrol type:",
+          "alignement": "Left",
+          "position": 50
+        },
+        {
+          "type": "table",
+          "row_height": 50,
+          "col_width": 100,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "text": "Type"
+              },
+              {
+                "type": "label",
+                "text": "Description"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Round Robin"
+              },
+              {
+                "type": "label",
+                "text": "The patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will walk back to the first flag and start again. This is good for making circles."
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Zipper"
+              },
+              {
+                "type": "label",
+                "text": "The Patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will go backwords back to the first flag. This is good for patrolling a line."
+              }
+            ]
+          ]
+        },
+        {
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 150,
+          "label": {
+            "text": "Return to main menu",
+            "color": "blue",
+            "alignement": "Center"
+          }
+        }
+      ]
+    }
+  }
+}
+

@@ -1,18 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using BlockTypes.Builtin;
-using ChatCommands.Implementations;
+﻿using BlockTypes;
+using Chatting.Commands;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManagerAttribute]
+    public class TeleportPadRegister : IRoamingJobObjective
+    {
+        public string name => nameof(TeleportPad);
+        public float WorkTime => 10;
+        public ushort ItemIndex => TeleportPad.Item.ItemIndex;
+        public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
+        {
+            { MachineConstants.REFUEL, new RefuelTeleportPad() },
+            { MachineConstants.REPAIR, new RepairTeleportPad() },
+            { MachineConstants.RELOAD, new ReloadTeleportPad() }
+        };
+
+        public string ObjectiveCategory => MachineConstants.MECHANICAL;
+
+        public void DoWork(Colony colony, RoamingJobState state)
+        {
+            TeleportPad.DoWork(colony, state);
+        }
+    }
+
+    public class RepairTeleportPad : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.REPAIR;
+
+        public float TimeToPreformAction => 10;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+
+        public ushort PreformAction(Colony player, RoamingJobState state)
+        {
+            return TeleportPad.Repair(player, state);
+        }
+    }
+
+    public class ReloadTeleportPad : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.RELOAD;
+
+        public float TimeToPreformAction => 5;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+
+        public ushort PreformAction(Colony colony, RoamingJobState state)
+        {
+            return TeleportPad.Reload(colony, state);
+        }
+    }
+
+    public class RefuelTeleportPad : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.REFUEL;
+
+        public float TimeToPreformAction => 4;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+
+        public ushort PreformAction(Colony player, RoamingJobState state)
+        {
+            return TeleportPad.Refuel(player, state);
+        }
+    }
+
+
+    [ModLoader.ModManager]
     public static class TeleportPad
     {
         private static readonly Dictionary<Vector3Int, Vector3Int> _paired = new Dictionary<Vector3Int, Vector3Int>();
@@ -20,47 +91,35 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterMachines")]
-        public static void RegisterMachines()
-        {
-            MachineManager.MachineRemoved += MachineManager_MachineRemoved;
-
-            MachineManager.RegisterMachineType(new MachineManager.MachineSettings(nameof(TeleportPad), Item.ItemIndex,
-                                                                                  Repair, Refuel, Reload, DoWork, 10, 4,
-                                                                                  5, 10));
-        }
-
-        public static ushort Repair(Players.Player player, MachineState machineState)
+        public static ushort Repair(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
-            var ps     = PlayerState.GetPlayerState(player);
 
-            if (machineState.Durability < .75f)
+            if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
                 var repaired       = false;
                 var requiredForFix = new List<InventoryItem>();
-                var stockpile      = Stockpile.GetStockPile(player);
+                var stockpile      = colony.Stockpile;
 
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.StoneBricks, 5));
-                requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagBasic, 2));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 5));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 2));
 
-                if (machineState.Durability < .10f)
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 2));
                 }
-                else if (machineState.Durability < .30f)
+                else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagColony, 2));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 2));
                 }
-                else if (machineState.Durability < .50f)
+                else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                 {
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Crystal, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 1));
                 }
 
                 if (stockpile.Contains(requiredForFix))
@@ -78,108 +137,92 @@ namespace Pandaros.Settlers.Items.Machines
                         }
                 }
 
-                if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                    MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
                 if (repaired)
                 {
-                    machineState.Durability = MachineState.MAX_DURABILITY[player];
+                    machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
 
                     if (_paired.ContainsKey(machineState.Position) &&
                         GetPadAt(_paired[machineState.Position], out var ms))
-                        ms.Durability = MachineState.MAX_DURABILITY[player];
+                        ms.ResetActionToMaxLoad(MachineConstants.REPAIR);
                 }
             }
 
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, MachineState machineState)
+        public static ushort Reload(Colony colony, RoamingJobState machineState)
         {
             return GameLoader.Waiting_Icon;
         }
 
-        public static ushort Refuel(Players.Player player, MachineState machineState)
+        public static ushort Refuel(Colony colony, RoamingJobState machineState)
         {
-            var ps = PlayerState.GetPlayerState(player);
-
-            if (machineState.Fuel < .75f)
+            if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
             {
-                MachineState paired = null;
+                RoamingJobState paired = null;
 
                 if (_paired.ContainsKey(machineState.Position))
                     GetPadAt(_paired[machineState.Position], out paired);
 
-                if (!MachineState.MAX_FUEL.ContainsKey(player))
-                    MachineState.MAX_FUEL[player] = MachineState.DEFAULT_MAX_FUEL;
-
-                var stockpile = Stockpile.GetStockPile(player);
+                var stockpile = colony.Stockpile;
 
                 while (stockpile.TryRemove(Mana.Item.ItemIndex) &&
-                       machineState.Fuel < MachineState.MAX_FUEL[player])
+                       machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                 {
-                    machineState.Fuel += 0.20f;
+                    machineState.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
 
                     if (paired != null)
-                        paired.Fuel += 0.20f;
+                        paired.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
                 }
 
-                if (machineState.Fuel < MachineState.MAX_FUEL[player])
+                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                     return Mana.Item.ItemIndex;
             }
 
             return GameLoader.Refuel_Icon;
         }
 
-        public static void DoWork(Players.Player player, MachineState machineState)
+        public static void DoWork(Colony colony, RoamingJobState machineState)
         {
             if (!Configuration.TeleportPadsRequireMachinists)
                 return;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var ms) &&
-                    machineState.Durability > 0 &&
-                    machineState.Fuel > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    machineState.Durability -= 0.01f;
-                    machineState.Fuel       -= 0.05f;
+                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.01f);
+                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
-                    if (machineState.Durability < 0)
-                        machineState.Durability = 0;
-
-                    if (machineState.Fuel <= 0)
-                        machineState.Fuel = 0;
-
-                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                    machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                 }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterTeleportPad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterTeleportPad")]
         public static void RegisterTeleportPad()
         {
-            var rivets  = new InventoryItem(BuiltinBlocks.IronRivet, 6);
-            var steel   = new InventoryItem(BuiltinBlocks.SteelIngot, 5);
-            var sbb     = new InventoryItem(BuiltinBlocks.ScienceBagBasic, 20);
-            var sbc     = new InventoryItem(BuiltinBlocks.ScienceBagColony, 20);
-            var sba     = new InventoryItem(BuiltinBlocks.ScienceBagAdvanced, 20);
-            var crystal = new InventoryItem(BuiltinBlocks.Crystal, 5);
-            var stone   = new InventoryItem(BuiltinBlocks.StoneBricks, 50);
+            var rivets  = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
+            var steel   = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 5);
+            var sbb     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 20);
+            var sbc     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 20);
+            var sba     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 20);
+            var crystal = new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 5);
+            var stone   = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 50);
             var mana    = new InventoryItem(Mana.Item.ItemIndex, 100);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {crystal, steel, rivets, sbb, sbc, sba, crystal, stone},
-                                    new InventoryItem(Item.ItemIndex),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
                                     6);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var TeleportPadTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -189,9 +232,8 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".TeleportPad", TeleportPadTextureMapping);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTeleportPad")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTeleportPad")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddTeleportPad(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var TeleportPadName = GameLoader.NAMESPACE + ".TeleportPad";
@@ -246,16 +288,16 @@ namespace Pandaros.Settlers.Items.Machines
             items.Add(TeleportPadName, Item);
         }
 
-        public static bool GetPadAt(Vector3Int pos, out MachineState state)
+        public static bool GetPadAt(Vector3Int pos, out RoamingJobState state)
         {
             try
             {
                 if (pos != null)
-                    lock (MachineManager.Machines)
+                    lock (RoamingJobManager.Objectives)
                     {
-                        foreach (var p in MachineManager.Machines)
+                        foreach (var p in RoamingJobManager.Objectives)
                             if (p.Value.ContainsKey(pos))
-                                if (p.Value[pos].MachineType == nameof(TeleportPad))
+                                if (p.Value[pos].RoamObjective == nameof(TeleportPad))
                                 {
                                     state = p.Value[pos];
                                     return true;
@@ -271,22 +313,19 @@ namespace Pandaros.Settlers.Items.Machines
             return false;
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnAutoSaveWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnAutoSaveWorld")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAutoSaveWorld, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnAutoSaveWorld")]
         public static void OnAutoSaveWorld()
         {
             Save();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnQuitEarly,
-            GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnQuitEarly")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitEarly, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnQuitEarly")]
         public static void OnQuitEarly()
         {
             Save();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerDisconnected,
-            GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerDisconnected")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
             Save();
@@ -294,10 +333,13 @@ namespace Pandaros.Settlers.Items.Machines
 
         private static void Save()
         {
-            JSONNode n = null;
+            if (string.IsNullOrEmpty(RoamingJobManager.MACHINE_JSON))
+                return;
 
-            if (File.Exists(MachineManager.MACHINE_JSON))
-                JSON.Deserialize(MachineManager.MACHINE_JSON, out n);
+            JSONNode n = null;
+            
+            if (File.Exists(RoamingJobManager.MACHINE_JSON))
+                JSON.Deserialize(RoamingJobManager.MACHINE_JSON, out n);
 
             if (n == null)
                 n = new JSONNode();
@@ -310,76 +352,89 @@ namespace Pandaros.Settlers.Items.Machines
             foreach (var pad in _paired)
             {
                 var kvpNode = new JSONNode();
-                kvpNode.SetAs("Key", (JSONNode) pad.Key);
-                kvpNode.SetAs("Value", (JSONNode) pad.Value);
+                kvpNode.SetAs("Key", (JSONNode)pad.Key);
+                kvpNode.SetAs("Value", (JSONNode)pad.Value);
                 teleporters.AddToArray(kvpNode);
             }
 
             n[GameLoader.NAMESPACE + ".Teleportpads"] = teleporters;
 
-            using (var writer = File.CreateText(MachineManager.MACHINE_JSON))
+            using (var writer = File.CreateText(RoamingJobManager.MACHINE_JSON))
             {
                 n.Serialize(writer, 1, 1);
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.AfterWorldLoad")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            if (File.Exists(MachineManager.MACHINE_JSON) &&
-                JSON.Deserialize(MachineManager.MACHINE_JSON, out var n) &&
+            if (File.Exists(RoamingJobManager.MACHINE_JSON) &&
+                JSON.Deserialize(RoamingJobManager.MACHINE_JSON, out var n) &&
                 n.TryGetChild(GameLoader.NAMESPACE + ".Teleportpads", out var teleportPads))
                 foreach (var pad in teleportPads.LoopArray())
-                    _paired[(Vector3Int) pad.GetAs<JSONNode>("Key")] = (Vector3Int) pad.GetAs<JSONNode>("Value");
+                    _paired[(Vector3Int)pad.GetAs<JSONNode>("Key")] = (Vector3Int)pad.GetAs<JSONNode>("Value");
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerMoved,
-            GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerMoved")]
-        public static void OnPlayerMoved(Players.Player p)
+        
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerMoved, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnPlayerMoved")]
+        public static void OnPlayerMoved(Players.Player p, UnityEngine.Vector3 oldPosition)
         {
-            var posBelow = new Vector3Int(p.Position);
-
-            if (GetPadAt(posBelow, out var machineState) &&
-                _paired.ContainsKey(machineState.Position) &&
-                GetPadAt(_paired[machineState.Position], out var paired))
+            try
             {
-                var startInt = Time.SecondsSinceStartInt;
+                var posBelow = new Vector3Int(p.Position);
 
-                if (!_cooldown.ContainsKey(p))
-                    _cooldown.Add(p, 0);
-
-                if (_cooldown[p] <= startInt)
+                if (GetPadAt(posBelow, out var machineState) &&
+                    _paired.ContainsKey(machineState.Position) &&
+                    GetPadAt(_paired[machineState.Position], out var paired))
                 {
-                    Teleport.TeleportTo(p, paired.Position.Vector);
+                    var startInt = Time.SecondsSinceStartInt;
 
-                    ServerManager.SendAudio(machineState.Position.Vector,
-                                            GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                    if (!_cooldown.ContainsKey(p))
+                        _cooldown.Add(p, 0);
 
-                    ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                    if (_cooldown[p] <= startInt)
+                    {
+                        if (machineState.GetActionEnergy(MachineConstants.REPAIR) <= 0)
+                        {
+                            PandaChat.Send(p, "This teleporter is in need of repair. Make sure a machinist is near by to maintain it!", ChatColor.red);
+                            return;
+                        }
 
-                    _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
+                        if (machineState.GetActionEnergy(MachineConstants.REFUEL) <= 0)
+                        {
+                            PandaChat.Send(p, "This teleporter is in need of mana. Make sure a machinist is near by to maintain it!", ChatColor.red);
+                            return;
+                        }
+
+                        Teleport.TeleportTo(p, paired.Position.Vector);
+                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
             }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
-            GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnTryChangeBlockUser")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock,  GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
         {
             if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
                 return;
 
-            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
+            if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
             {
-                var ps = PlayerState.GetPlayerState(d.RequestedByPlayer);
-                var ms = new MachineState(d.Position, d.RequestedByPlayer, nameof(TeleportPad));
+                var ps = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
+                var ms = new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, nameof(TeleportPad));
 
                 if (ps.TeleporterPlaced == Vector3Int.invalidPos)
                 {
                     ps.TeleporterPlaced = d.Position;
 
-                    PandaChat.Send(d.RequestedByPlayer, $"Place one more teleportation pad to link to.",
+                    PandaChat.Send(d.RequestOrigin.AsPlayer, $"Place one more teleportation pad to link to.",
                                    ChatColor.orange);
                 }
                 else
@@ -388,31 +443,27 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         _paired[ms.Position]           = machineState.Position;
                         _paired[machineState.Position] = ms.Position;
-                        PandaChat.Send(d.RequestedByPlayer, $"Teleportation pads linked!", ChatColor.orange);
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, $"Teleportation pads linked!", ChatColor.orange);
                         ps.TeleporterPlaced = Vector3Int.invalidPos;
                     }
                     else
                     {
                         ps.TeleporterPlaced = d.Position;
 
-                        PandaChat.Send(d.RequestedByPlayer, $"Place one more teleportation pad to link to.",
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, $"Place one more teleportation pad to link to.",
                                        ChatColor.orange);
                     }
                 }
-
-                MachineManager.RegisterMachineState(d.RequestedByPlayer, ms);
             }
         }
 
         private static void MachineManager_MachineRemoved(object sender, EventArgs e)
         {
-            var machineState = sender as MachineState;
+            var machineState = sender as RoamingJobState;
 
             if (machineState != null &&
-                machineState.MachineType == nameof(TeleportPad))
+                machineState.RoamObjective == nameof(TeleportPad))
             {
-                var ps = PlayerState.GetPlayerState(machineState.Owner);
-
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var paired))
                 {
@@ -422,18 +473,14 @@ namespace Pandaros.Settlers.Items.Machines
                     if (_paired.ContainsKey(paired.Position))
                         _paired.Remove(paired.Position);
 
-                    MachineManager.RemoveMachine(machineState.Owner, paired.Position, false);
-                    ServerManager.TryChangeBlock(paired.Position, BuiltinBlocks.Air);
-
-                    if (!Inventory.GetInventory(machineState.Owner).TryAdd(Item.ItemIndex))
-                    {
-                        var stockpile = Stockpile.GetStockPile(machineState.Owner);
-                        stockpile.Add(Item.ItemIndex);
-                    }
+                    RoamingJobManager.RemoveObjective(machineState.Colony, paired.Position, false);
+                    ServerManager.TryChangeBlock(paired.Position, ColonyBuiltIn.ItemTypes.AIR.Id);
+                    machineState.Colony.Stockpile.Add(Item.ItemIndex);
                 }
 
-                if (machineState.Position == ps.TeleporterPlaced)
-                    ps.TeleporterPlaced = Vector3Int.invalidPos;
+                // TODO where is this called from?
+                //if (machineState.Position == ps.TeleporterPlaced)
+                //    ps.TeleporterPlaced = Vector3Int.invalidPos;
             }
         }
     }

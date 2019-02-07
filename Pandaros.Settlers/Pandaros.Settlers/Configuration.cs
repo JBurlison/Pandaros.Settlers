@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using ChatCommands;
-using Permissions;
+﻿using Chatting;
 using Pipliz.JSON;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Pandaros.Settlers
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Configuration
     {
         private static readonly string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
@@ -64,17 +64,16 @@ namespace Pandaros.Settlers
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Configuration.AfterSelectedWorld")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
             Reload();
             GetorDefault("BossesCanBeDisabled", true);
-            GetorDefault("MonstersCanBeDisabled", true);
             GetorDefault("MaxSettlersToggle", 4);
             GetorDefault("SettlersEnabled", true);
             GetorDefault("ColonistsRecruitment", true);
+            GetorDefault("AllowPlayerToResetThemself", true);
             GetorDefault("CompoundingFoodRecruitmentCost", 5);
             Save();
         }
@@ -88,7 +87,7 @@ namespace Pandaros.Settlers
                 if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
                     foreach (var diff in diffs.LoopArray())
                     {
-                        var newDiff = new GameDifficulty(diff);
+                        var newDiff = diff.JsonDeerialize<GameDifficulty>();
                         GameDifficulty.GameDifficulties[newDiff.Name] = newDiff;
                     }
             }
@@ -123,20 +122,19 @@ namespace Pandaros.Settlers
 
     public class ConfigurationChatCommand : IChatCommand
     {
-        public bool IsCommand(string chat)
+        public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
-            return chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase);
-        }
+            if (!chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase))
+                return false;
 
-        public bool TryDoCommand(Players.Player player, string chat)
-        {
+
             if (PermissionsManager.CheckAndWarnPermission(player,
                                                           new PermissionsManager.Permission(GameLoader.NAMESPACE +
                                                                                             ".Permissions.Config")))
             {
                 var array = CommandManager.SplitCommand(chat);
 
-                if (array.Length == 3)
+                if (array.Count == 3)
                 {
                     if (Configuration.HasSetting(array[1]))
                     {

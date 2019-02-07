@@ -4,7 +4,7 @@ using Pipliz;
 
 namespace Pandaros.Settlers.Entities
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class HealingOverTimePC
     {
         private static long _nextUpdate;
@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Entities
                 Complete(this, null);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnUpdate,
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
             GameLoader.NAMESPACE + ".Entities.HealingOverTimePC.Update")]
         public static void Update()
         {

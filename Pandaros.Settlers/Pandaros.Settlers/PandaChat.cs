@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Chatting;
+using Pandaros.Settlers.Entities;
 using Pipliz;
-using Pipliz.Chatting;
 
 namespace Pandaros.Settlers
 {
@@ -49,57 +50,110 @@ namespace Pandaros.Settlers
             return Time.SecondsSinceStartDouble > _nextSendTime[p];
         }
 
-        public static void SendThrottle(Players.Player  ply, string message, ChatColor color = ChatColor.white,
+        public static void SendThrottle(Players.Player  player, string message, ChatColor color = ChatColor.white,
                                         params string[] args)
         {
-            if (CanSendMesssage(ply))
+            if (CanSendMesssage(player))
             {
                 var messageBuilt = BuildMessage(string.Format(message, args), color);
-                Chat.Send(ply, messageBuilt);
-                _nextSendTime[ply] = Time.SecondsSinceStartDouble + 10;
+                Chat.Send(player, messageBuilt);
+                _nextSendTime[player] = Time.SecondsSinceStartDouble + 10;
             }
         }
 
-        public static void SendThrottle(Players.Player ply, string message, ChatColor color = ChatColor.white,
+        public static void SendThrottle(Players.Player player, string message, ChatColor color = ChatColor.white,
                                         ChatStyle      style  = ChatStyle.normal,
-                                        ChatSenderType sender = ChatSenderType.Server)
+                                        EChatSendOptions sender = EChatSendOptions.Default)
         {
-            if (CanSendMesssage(ply))
+            if (CanSendMesssage(player))
             {
                 var messageBuilt = BuildMessage(message, color, style);
-                Chat.Send(ply, messageBuilt, sender);
-                _nextSendTime[ply] = Time.SecondsSinceStartDouble + 10;
+                Chat.Send(player, messageBuilt, sender);
+                _nextSendTime[player] = Time.SecondsSinceStartDouble + 10;
             }
         }
 
-        public static void Send(Players.Player  ply, string message, ChatColor color = ChatColor.white,
+        public static void SendThrottle(Colony colony, string message, ChatColor color = ChatColor.white, params string[] args)
+        {
+            colony.ForEachOwner(o => SendThrottle(o, message, color, args));
+        }
+
+        public static void SendThrottle(Colony colony, string message, ChatColor color = ChatColor.white,
+                                        ChatStyle style = ChatStyle.normal,
+                                        EChatSendOptions sender = EChatSendOptions.Default)
+        {
+            colony.ForEachOwner(o => SendThrottle(o, message, color, style, sender));
+        }
+
+        public static void SendThrottle(ColonyState colony, string message, ChatColor color = ChatColor.white, params string[] args)
+        {
+            colony.ColonyRef.ForEachOwner(o => SendThrottle(o, message, color, args));
+        }
+
+        public static void SendThrottle(ColonyState colony, string message, ChatColor color = ChatColor.white,
+                                        ChatStyle style = ChatStyle.normal,
+                                        EChatSendOptions sender = EChatSendOptions.Default)
+        {
+            colony.ColonyRef.ForEachOwner(o => SendThrottle(o, message, color, style, sender));
+        }
+
+        public static void Send(Players.Player  player, string message, ChatColor color = ChatColor.white,
                                 params string[] args)
         {
             var messageBuilt = BuildMessage(string.Format(message, args), color);
-            Chat.Send(ply, messageBuilt);
+            Chat.Send(player, messageBuilt);
         }
 
-        public static void Send(Players.Player ply, string message,
+        public static void Send(Players.Player player, string message,
                                 ChatColor      color = ChatColor.white,
-                                ChatStyle      style = ChatStyle.normal, ChatSenderType sender = ChatSenderType.Server)
+                                ChatStyle      style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
         {
             var messageBuilt = BuildMessage(message, color, style);
-            Chat.Send(ply, messageBuilt, sender);
+            Chat.Send(player, messageBuilt, sender);
+        }
+        public static void Send(Colony colony, string message, ChatColor color = ChatColor.white,
+                                params string[] args)
+        {
+            var messageBuilt = BuildMessage(string.Format(message, args), color);
+            colony.ForEachOwner(o => Chat.Send(o, messageBuilt));
+        }
+
+        public static void Send(Colony colony, string message,
+                                ChatColor color = ChatColor.white,
+                                ChatStyle style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
+        {
+            var messageBuilt = BuildMessage(message, color, style);
+            colony.ForEachOwner(o => Chat.Send(o, messageBuilt, sender));
+        }
+
+        public static void Send(ColonyState colony, string message, ChatColor color = ChatColor.white,
+                                params string[] args)
+        {
+            var messageBuilt = BuildMessage(string.Format(message, args), color);
+            colony.ColonyRef.ForEachOwner(o => Chat.Send(o, messageBuilt));
+        }
+
+        public static void Send(ColonyState colony, string message,
+                                ChatColor color = ChatColor.white,
+                                ChatStyle style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
+        {
+            var messageBuilt = BuildMessage(message, color, style);
+            colony.ColonyRef.ForEachOwner(o => Chat.Send(o, messageBuilt, sender));
         }
 
         public static void SendToAll(string    message,                  ChatColor      color  = ChatColor.white,
-                                     ChatStyle style = ChatStyle.normal, ChatSenderType sender = ChatSenderType.Server)
+                                     ChatStyle style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
         {
             var messageBuilt = BuildMessage(message, color, style);
-            Chat.SendToAll(messageBuilt, sender);
+            Chat.SendToConnected(messageBuilt, sender);
         }
 
-        public static void SendToAllBut(Players.Player ply, string message, ChatColor color = ChatColor.white,
+        public static void SendToAllBut(Players.Player player, string message, ChatColor color = ChatColor.white,
                                         ChatStyle      style  = ChatStyle.normal,
-                                        ChatSenderType sender = ChatSenderType.Server)
+                                        EChatSendOptions sender = EChatSendOptions.Default)
         {
             var messageBuilt = BuildMessage(message, color, style);
-            Chat.SendToAllBut(ply, messageBuilt, sender);
+            Chat.SendToConnectedBut(player, messageBuilt, sender);
         }
 
 

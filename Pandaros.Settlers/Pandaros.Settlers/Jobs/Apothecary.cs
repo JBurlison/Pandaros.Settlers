@@ -1,106 +1,72 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
+using Jobs;
+using NPC;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pipliz.JSON;
-using Pipliz.Mods.APIProvider.Jobs;
-using Server.NPCs;
+using Recipes;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class ApothecaryRegister
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Apothecary";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".ApothecaryTable";
         public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
         public static void RegisterJobs()
         {
-            BlockJobManagerTracker.Register<ApothecaryJob>(JOB_ITEM_KEY);
-        }
+            NPCType.AddSettings(new NPCTypeStandardSettings
+            {
+                keyName = JOB_NAME,
+                printName = "Apothecary",
+                maskColor1 = new Color32(101, 121, 123, 255),
+                type = NPCTypeID.GetNextID()
+            });
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
-        public static void AddTextures()
-        {
-            var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            textureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "ApothecaryTable.png";
-            textureMapping.HeightPath = GameLoader.BLOCKS_HEIGHT_PATH + "ApothecaryTable.png";
-            textureMapping.NormalPath = GameLoader.BLOCKS_NORMAL_PATH + "ApothecaryTable.png";
-
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + "ApothecaryTable", textureMapping);
-        }
-
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterAddingBaseTypes")]
-        public static void AfterAddingBaseTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
-        {
-            var item = new JSONNode()
-                      .SetAs("icon", GameLoader.ICON_PATH + "ApothecaryTable.png")
-                      .SetAs("onPlaceAudio", "woodPlace")
-                      .SetAs("onRemoveAudio", "woodDeleteLight")
-                      .SetAs("sideall", GameLoader.NAMESPACE + "ApothecaryTable")
-                      .SetAs("npcLimit", 0);
-
-            var categories = new JSONNode(NodeType.Array);
-            categories.AddToArray(new JSONNode("job"));
-            item.SetAs("categories", categories);
-
-            itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
-        }
-
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterWorldLoad,
-            GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.AfterWorldLoad")]
-        public static void AfterWorldLoad()
-        {
-            var iron   = new InventoryItem(BuiltinBlocks.BronzeIngot, 2);
-            var tools  = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks = new InventoryItem(BuiltinBlocks.Planks, 4);
-
-            var recipe = new Recipe(JOB_RECIPE,
-                                    new List<InventoryItem> {iron, tools, planks},
-                                    new InventoryItem(JOB_ITEM_KEY, 1), 2);
-
-            //ItemTypesServer.LoadSortOrder(JOB_ITEM_KEY, GameLoader.GetNextItemSortIndex());
-            RecipePlayer.AddOptionalRecipe(recipe);
-            RecipeStorage.AddOptionalLimitTypeRecipe(ItemFactory.JOB_CRAFTER, recipe);
+            ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));
         }
     }
 
-    public class ApothecaryJob : CraftingJobBase, IBlockJobBase, INPCTypeDefiner
+    public class ApothecaryTexture : CSTextureMapping
     {
-        public static float StaticCraftingCooldown = 15f;
+        public override string name => GameLoader.NAMESPACE + ".ApothecaryTable";
+        public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "ApothecaryTable.png";
+        public override string height => GameLoader.BLOCKS_HEIGHT_PATH + "ApothecaryTable.png";
+        public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "ApothecaryTable.png";
+    }
 
-        public override string NPCTypeKey => ApothecaryRegister.JOB_NAME;
+    public class ApothecaryJobItem : CSType
+    {
+        public override string icon => GameLoader.ICON_PATH + "ApothecaryTable.png";
+        public override string onPlaceAudio => "woodPlace";
+        public override string onRemoveAudio => "woodDeleteLight";
+        public override string sideall => GameLoader.NAMESPACE + ".ApothecaryTable";
+        public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
+        public override string name => ApothecaryRegister.JOB_ITEM_KEY;
+    }
 
-        public override int MaxRecipeCraftsPerHaul => 1;
-
-        public override float CraftingCooldown
+    public class ApothecaryRecipe : ICSRecipe
+    {
+        public ApothecaryRecipe()
         {
-            get => StaticCraftingCooldown;
-            set => StaticCraftingCooldown = value;
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
+            requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4));
+            results.Add(new RecipeItem(ApothecaryRegister.JOB_ITEM_KEY, 1));
         }
 
-        NPCTypeStandardSettings INPCTypeDefiner.GetNPCTypeDefinition()
-        {
-            return new NPCTypeStandardSettings
-            {
-                keyName    = NPCTypeKey,
-                printName  = "Apothecary",
-                maskColor1 = new Color32(101, 121, 123, 255),
-                type       = NPCTypeID.GetNextID()
-            };
-        }
-
-        protected override void OnRecipeCrafted()
-        {
-            base.OnRecipeCrafted();
-            ServerManager.SendAudio(position.Vector, ".crafting");
-        }
+        public List<RecipeItem> requires { get; private set; } = new List<RecipeItem>();
+        public List<RecipeItem> results { get; private set; } = new List<RecipeItem>();
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public bool isOptional => true;
+        public int defaultLimit => 5;
+        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
+        public string name => ApothecaryRegister.JOB_RECIPE;
     }
 }

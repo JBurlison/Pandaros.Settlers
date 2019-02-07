@@ -4,7 +4,7 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Bandage.ogg"
+        "path": "./Bandage.ogg"
       }
     ]
   },
@@ -13,23 +13,23 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Talking1.ogg"
+        "path": "./Talking1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Talking2.ogg"
+        "path": "./Talking2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Talking3.ogg"
+        "path": "./Talking3.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Talking4.ogg"
+        "path": "./Talking4.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Talking5.ogg"
+        "path": "./Talking5.ogg"
       }
     ]
   },
@@ -38,7 +38,7 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "CastleDoorOpen.ogg"
+        "path": "./CastleDoorOpen.ogg"
       }
     ]
   },
@@ -47,7 +47,7 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Metal.ogg"
+        "path": "./Metal.ogg"
       }
     ]
   },
@@ -56,7 +56,7 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "MetalRemove.ogg"
+        "path": "./MetalRemove.ogg"
       }
     ]
   },
@@ -65,7 +65,7 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "MiningMachine.ogg"
+        "path": "./MiningMachine.ogg"
       }
     ]
   },
@@ -74,23 +74,23 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "AirTurret1.ogg"
+        "path": "./AirTurret1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "AirTurret2.ogg"
+        "path": "./AirTurret2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "AirTurret3.ogg"
+        "path": "./AirTurret3.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "AirTurret4.ogg"
+        "path": "./AirTurret4.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "AirTurret5.ogg"
+        "path": "./AirTurret5.ogg"
       }
     ]
   },
@@ -99,15 +99,15 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "EarthTurret1.ogg"
+        "path": "./EarthTurret1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "EarthTurret2.ogg"
+        "path": "./EarthTurret2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "EarthTurret3.ogg"
+        "path": "./EarthTurret3.ogg"
       }
     ]
   },
@@ -116,11 +116,11 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "FireTurret1.ogg"
+        "path": "./FireTurret1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "FireTurret2.ogg"
+        "path": "./FireTurret2.ogg"
       }
     ]
   },
@@ -129,15 +129,15 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "WaterTurret1.ogg"
+        "path": "./WaterTurret1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "WaterTurret2.ogg"
+        "path": "./WaterTurret2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "WaterTurret3.ogg"
+        "path": "./WaterTurret3.ogg"
       }
     ]
   },
@@ -146,15 +146,15 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "VoidTurret1.ogg"
+        "path": "./VoidTurret1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "VoidTurret2.ogg"
+        "path": "./VoidTurret2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "VoidTurret3.ogg"
+        "path": "./VoidTurret3.ogg"
       }
     ]
   },
@@ -163,19 +163,19 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Hammer1.ogg"
+        "path": "./Hammer1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Hammer2.ogg"
+        "path": "./Hammer2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Hammer3.ogg"
+        "path": "./Hammer3.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Hammer4.ogg"
+        "path": "./Hammer4.ogg"
       }
     ]
   },
@@ -184,15 +184,15 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Reloading1.ogg"
+        "path": "./Reloading1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Reloading2.ogg"
+        "path": "./Reloading2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Reloading3.ogg"
+        "path": "./Reloading3.ogg"
       }
     ]
   },
@@ -201,19 +201,19 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Zombie1.ogg"
+        "path": "./Zombie1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Zombie2.ogg"
+        "path": "./Zombie2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Zombie3.ogg"
+        "path": "./Zombie3.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Zombie4.ogg"
+        "path": "./Zombie4.ogg"
       }
     ]
   },
@@ -222,7 +222,7 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Teleport.ogg"
+        "path": "./Teleport.ogg"
       }
     ]
   },
@@ -231,19 +231,19 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Hammer1.ogg"
+        "path": "./Hammer1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Hammer2.ogg"
+        "path": "./Hammer2.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Hammer3.ogg"
+        "path": "./Hammer3.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Hammer4.ogg"
+        "path": "./Hammer4.ogg"
       }
     ]
   },
@@ -252,15 +252,25 @@
     "fileList": [
       {
         "audioGroup": "Effects",
-        "path": "Reloading1.ogg"
+        "path": "./Reloading1.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Reloading3.ogg"
+        "path": "./Reloading3.ogg"
       },
       {
         "audioGroup": "Effects",
-        "path": "Reloading3.ogg"
+        "path": "./Reloading3.ogg"
+      }
+    ]
+  },
+  {
+    "clipCollectionName": "Pandaros.Settlers.Environment",
+    "fileList": [
+      {
+        "audioGroup": "AmbientLoop",
+        "isThreeD": false,
+        "path": "./Environment.ogg"
       }
     ]
   }

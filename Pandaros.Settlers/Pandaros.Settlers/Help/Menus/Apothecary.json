@@ -1,0 +1,27 @@
+{
+  "Wiki": {
+    "Apothecary": {
+      "header": "Pandaros.Settlers.Wiki.Apothecary.Title",
+      "width": 800,
+      "height": 600,
+      "Items": [
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.Apothecary.Description",
+          "alignement": "Left"
+        },
+        {
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 150,
+          "label": {
+            "text": "Return to main menu",
+            "color": "blue",
+            "alignement": "Center"
+          }
+        }
+      ]
+    }
+  }
+}
+

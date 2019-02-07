@@ -1,36 +1,35 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pandaros.Settlers.Jobs;
 using Pipliz.JSON;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Healing
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Anitbiotic
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
         public static void Register()
         {
-            var herbs  = new InventoryItem(BuiltinBlocks.Hollyhock, 2);
-            var herbs2 = new InventoryItem(BuiltinBlocks.Alkanet, 2);
-            var oil    = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
-            var flour  = new InventoryItem(BuiltinBlocks.Flour, 2);
+            var herbs  = new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Name, 2);
+            var herbs2 = new InventoryItem(ColonyBuiltIn.ItemTypes.ALKANET.Name, 2);
+            var oil    = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 1);
+            var flour  = new InventoryItem(ColonyBuiltIn.ItemTypes.FLOUR.Name, 2);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {flour, oil, herbs, herbs2},
-                                    new InventoryItem(Item.ItemIndex, 1),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
                                     50);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Add")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Anitbiotic";

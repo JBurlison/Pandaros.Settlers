@@ -1,0 +1,96 @@
+{
+  "Wiki": {
+    "Machinists": {
+      "header": "Machinists",
+      "width": 800,
+      "height": 600,
+      "Items": [
+        {
+          "type": "label",
+          "text": "Machinists!",
+          "alignement": "Center",
+          "fontsize": 32
+        },
+        {
+          "type": "label",
+          "text": "Machines need Machinists nearby to repair, fuel an reload your machines. A Machinists bench must be within 20 blocks of a machine in order for the machinist to operate it. Machinists will repair a machine at 50% durability, refuel a machine when it drops below 30% of fuel or reload a machine when it drops below 30% of items it requires (such as ammo).",
+          "alignement": "Left"
+        },
+        {
+          "type": "label",
+          "text": "Indicators:",
+          "alignement": "Left"
+        },
+        {
+          "type": "table",
+          "row_height": 50,
+          "col_width": 100,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "text": "Icon"
+              },
+              {
+                "type": "label",
+                "text": "Description"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "water"
+              },
+              {
+                "type": "label",
+                "text": "Waiting for a machine to need servicing."
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "water"
+              },
+              {
+                "type": "label",
+                "text": "Repairing the machine."
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "water"
+              },
+              {
+                "type": "label",
+                "text": "Refueling the machine."
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "water"
+              },
+              {
+                "type": "label",
+                "text": "Reloading the machine with items"
+              }
+            ]
+          ]
+        },
+        {
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 150,
+          "label": {
+            "text": "Return to main menu",
+            "color": "blue",
+            "alignement": "Center"
+          }
+        },
+
+      ]
+    }
+  }
+}
+

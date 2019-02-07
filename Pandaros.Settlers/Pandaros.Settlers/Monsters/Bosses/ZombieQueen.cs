@@ -1,56 +1,44 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using AI;
+using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
 using Pipliz;
 using Pipliz.JSON;
-using Server.AI;
-using Server.Monsters;
-using Server.NPCs;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public class ZombieQueen : Zombie, IPandaBoss
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen";
         private static NPCTypeMonsterSettings _mts;
 
-        private static readonly Dictionary<ushort, int> REWARDS = new Dictionary<ushort, int>
-        {
-            {Mana.Item.ItemIndex, 10}
-        };
-
-        private readonly float _totalHealth = 20000;
+        private float _totalHealth = 20000;
         private double _updateTime;
 
         public ZombieQueen() :
-            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), new Players.Player(NetworkID.Invalid))
+            base(NPCType.GetByKeyNameOrDefault(Key), new Path(), GameLoader.StubColony)
         {
         }
 
-        public ZombieQueen(Path path, Players.Player originalGoal) :
+        public ZombieQueen(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var c  = Colony.Get(originalGoal);
-            var ps = PlayerState.GetPlayerState(originalGoal);
-            var hp = c.FollowerCount * ps.Difficulty.BossHPPerColonist;
-
-            if (hp < _totalHealth)
-                _totalHealth = hp;
-
+            var ps = ColonyState.GetColonyState(originalGoal);
+            _totalHealth = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
             health = _totalHealth;
         }
 
-        public IPandaBoss GetNewBoss(Path path, Players.Player p)
+        public IPandaBoss GetNewBoss(Path path, Colony p)
         {
             return new ZombieQueen(path, p);
         }
 
         public string AnnouncementText => "Get them my pretties!";
 
-        public string Name => "ZombieQueen";
+        public string name => "ZombieQueen";
 
         public override float TotalHealth => _totalHealth;
 
@@ -66,8 +54,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public string DeathText => "I'll get you next time my pretties!";
 
-        public Dictionary<ushort, int> KillRewards => REWARDS;
-
         public float ZombieHPBonus => 0;
         public float MissChance => 0.05f;
 
@@ -81,19 +67,24 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public Dictionary<DamageType, float> AdditionalResistance { get; } = new Dictionary<DamageType, float>();
 
+        public string LootTableName => BossLoot.LootTableName;
+
         public override bool Update()
         {
             killedBefore = false;
 
             if (_updateTime < Time.SecondsSinceStartDouble)
             {
-                var ps                = PlayerState.GetPlayerState(OriginalGoal);
-                var c                 = Colony.Get(ps.Player);
                 var alreadyTeleported = new List<IMonster>();
-
-                for (var i = 0; i < ps.Difficulty.Rank - 1; i++)
+                var ps = ColonyState.GetColonyState(OriginalGoal);
+                var rank = ps.Difficulty.Rank;
+                var teleportHP = ps.Difficulty.ZombieQueenTargetTeleportHp;
+                var cooldown = ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
+     
+        
+                for (var i = 0; i < rank - 1; i++)
                 {
-                    var monster = MonsterTracker.Find(position, 20, ps.Difficulty.ZombieQueenTargetTeleportHp);
+                    var monster = MonsterTracker.Find(position, 20, teleportHP);
                     var zombie  = monster as Zombie;
 
                     if (zombie != null &&
@@ -127,16 +118,15 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     }
                 }
 
-                _updateTime = Time.SecondsSinceStartDouble + ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
+                _updateTime = Time.SecondsSinceStartDouble + cooldown;
             }
 
             return base.Update();
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen.Register")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.server.loadnpctypes")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registermonstertextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,  GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen.Register")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
         {
             var m = new JSONNode()
@@ -145,9 +135,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                    .SetAs("npcType", "monster");
 
             var ms = new JSONNode()
-                    .SetAs("albedo", GameLoader.NPC_PATH + "ZombieQueen.png")
-                    .SetAs("normal", GameLoader.NPC_PATH + "ZombieQueen_normal.png")
-                    .SetAs("emissive", GameLoader.NPC_PATH + "ZombieQueen_emissive.png")
+                    .SetAs("albedo", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen.png")
+                    .SetAs("normal", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_normal.png")
+                    .SetAs("emissive", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_emissive.png")
                     .SetAs("initialHealth", 20000)
                     .SetAs("movementSpeed", 1.3f)
                     .SetAs("punchCooldownMS", 2000)

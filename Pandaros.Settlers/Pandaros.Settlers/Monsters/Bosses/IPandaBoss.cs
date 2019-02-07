@@ -1,17 +1,16 @@
-﻿using Server.AI;
-using Server.Monsters;
+﻿using AI;
+using Monsters;
+using Pandaros.Settlers.Monsters.Normal;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
-    public interface IPandaBoss : IMonster, IPandaDamage, IPandaArmor, IKillReward
+    public interface IPandaBoss : IPandaZombie
     {
-        string Name { get; }
         string AnnouncementText { get; }
         string DeathText { get; }
         string AnnouncementAudio { get; }
         float ZombieMultiplier { get; }
-        float ZombieHPBonus { get; }
         bool KilledBefore { get; set; }
-        IPandaBoss GetNewBoss(Path path, Players.Player p);
+        IPandaBoss GetNewBoss(Path path, Colony c);
     }
 }

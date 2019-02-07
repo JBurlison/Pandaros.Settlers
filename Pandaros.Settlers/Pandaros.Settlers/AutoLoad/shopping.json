@@ -1,56 +1,5 @@
 [
   {
-    "name": "Pandaros.Settlers.AutoLoad.aloe",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.aloe",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.tulip",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.tulip",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.Flowers1",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.Flowers1",
-        "amount": 3
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
     "name": "Pandaros.Settlers.AutoLoad.infiniteemerald",
     "results": [
       {
@@ -171,7 +120,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.mossstone",
-    "results": [{ "type": "Pandaros.Settlers.AutoLoad.mossstone" }],
+    "results": [ { "type": "Pandaros.Settlers.AutoLoad.mossstone" } ],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedruby",
@@ -183,7 +132,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.mossstonebricks",
-    "results": [{ "type": "Pandaros.Settlers.AutoLoad.mossstonebricks" }],
+    "results": [ { "type": "Pandaros.Settlers.AutoLoad.mossstonebricks" } ],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedruby",
@@ -195,96 +144,11 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.mossstonesquares",
-    "results": [{ "type": "Pandaros.Settlers.AutoLoad.mossstonesquares" }],
+    "results": [ { "type": "Pandaros.Settlers.AutoLoad.mossstonesquares" } ],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedruby",
         "amount": 60
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "grassrainforest",
-    "results": [
-      {
-        "type": "grassrainforest",
-        "amount": 2
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
-        "amount": 5
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "grasssavanna",
-    "results": [
-      {
-        "type": "grasssavanna",
-        "amount": 2
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
-        "amount": 5
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "grasstaiga",
-    "results": [
-      {
-        "type": "grasstaiga",
-        "amount": 2
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
-        "amount": 5
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "grasstundra",
-    "results": [
-      {
-        "type": "grasstundra",
-        "amount": 2
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
-        "amount": 5
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "grasstemperate",
-    "results": [
-      {
-        "type": "grasstemperate",
-        "amount": 2
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
-        "amount": 5
       }
     ],
     "defaultLimit": 0,
@@ -343,7 +207,7 @@
   },
   {
     "name": "snow",
-    "results": [{ "type": "snow" }],
+    "results": [ { "type": "snow" } ],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",
@@ -355,7 +219,7 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.notwater",
-    "results": [{ "type": "Pandaros.Settlers.AutoLoad.notwater" }],
+    "results": [ { "type": "Pandaros.Settlers.AutoLoad.notwater" } ],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",
@@ -367,11 +231,28 @@
   },
   {
     "name": "Pandaros.Settlers.AutoLoad.lava",
-    "results": [{ "type": "Pandaros.Settlers.AutoLoad.lava" }],
+    "results": [ { "type": "Pandaros.Settlers.AutoLoad.lava" } ],
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedsapphire",
         "amount": 50
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.sappling",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.sappling",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.refinedemerald",
+        "amount": 1
       }
     ],
     "defaultLimit": 0,

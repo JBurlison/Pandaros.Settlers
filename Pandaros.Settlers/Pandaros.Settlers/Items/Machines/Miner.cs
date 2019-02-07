@@ -1,66 +1,108 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
-using Server;
+using Recipes;
 using Shared;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManagerAttribute]
+    public class MinerRegister : IRoamingJobObjective
+    {
+        public string name => nameof(Miner);
+        public float WorkTime => 4;
+        public ushort ItemIndex => Miner.Item.ItemIndex;
+        public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
+        {
+            { MachineConstants.REFUEL, new RefuelMachineAction() },
+            { MachineConstants.REPAIR, new RepairMiner() },
+            { MachineConstants.RELOAD, new ReloadMiner() }
+        };
+
+        public string ObjectiveCategory => MachineConstants.MECHANICAL;
+
+        public void DoWork(Colony player, RoamingJobState state)
+        {
+            Miner.DoWork(player, state);
+        }
+    }
+
+    public class RepairMiner : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.REPAIR;
+
+        public float TimeToPreformAction => 10;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+
+        public ushort PreformAction(Colony player, RoamingJobState state)
+        {
+            return Miner.Repair(player, state);
+        }
+    }
+
+    public class ReloadMiner : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.RELOAD;
+
+        public float TimeToPreformAction => 5;
+
+        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+
+        public ushort PreformAction(Colony player, RoamingJobState state)
+        {
+            return Miner.Reload(player, state);
+        }
+    }
+
+
+    [ModLoader.ModManager]
     public static class Miner
     {
-        private const double MinerCooldown = 4;
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMachines")]
-        public static void RegisterMachines()
-        {
-            MachineManager.RegisterMachineType(new MachineManager.MachineSettings(nameof(Miner), Item.ItemIndex, Repair,
-                                                                                  MachineManager.Refuel, Reload, DoWork,
-                                                                                  10, 4, 5, 4));
-        }
-
-        public static ushort Repair(Players.Player player, MachineState machineState)
+        public static ushort Repair(Colony colony, RoamingJobState machineState)
         {
             var retval = GameLoader.Repairing_Icon;
 
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
+            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
             {
-                var ps = PlayerState.GetPlayerState(player);
-
-                if (machineState.Durability < .75f)
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
                 {
                     var repaired       = false;
                     var requiredForFix = new List<InventoryItem>();
-                    var stockpile      = Stockpile.GetStockPile(player);
+                    var stockpile = colony.Stockpile;
 
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.Planks, 1));
-                    requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperNails, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1));
 
-                    if (machineState.Durability < .10f)
+                    if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                     {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 4));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronRivet, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                     }
-                    else if (machineState.Durability < .30f)
+                    else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                     {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.IronWrought, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 2));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                     }
-                    else if (machineState.Durability < .50f)
+                    else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                     {
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperParts, 1));
-                        requiredForFix.Add(new InventoryItem(BuiltinBlocks.CopperTools, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1));
+                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                     }
 
                     if (stockpile.Contains(requiredForFix))
@@ -78,69 +120,73 @@ namespace Pandaros.Settlers.Items.Machines
                             }
                     }
 
-                    if (!MachineState.MAX_DURABILITY.ContainsKey(player))
-                        MachineState.MAX_DURABILITY[player] = MachineState.DEFAULT_MAX_DURABILITY;
-
                     if (repaired)
-                        machineState.Durability = MachineState.MAX_DURABILITY[player];
+                        machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
                 }
             }
 
             return retval;
         }
 
-        public static ushort Reload(Players.Player player, MachineState machineState)
+        public static ushort Reload(Colony player, RoamingJobState machineState)
         {
             return GameLoader.Waiting_Icon;
         }
 
-        public static void DoWork(Players.Player player, MachineState machineState)
+        public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!player.IsConnected && Configuration.OfflineColonies || player.IsConnected)
-                if (machineState.Durability > 0 &&
-                    machineState.Fuel > 0 &&
+            if ((!colony.OwnerIsOnline() && Configuration.OfflineColonies) || colony.OwnerIsOnline())
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    machineState.Durability -= 0.02f;
-                    machineState.Fuel       -= 0.05f;
+                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
+                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
-                    if (machineState.Durability < 0)
-                        machineState.Durability = 0;
-
-                    if (machineState.Fuel <= 0)
-                        machineState.Fuel = 0;
-
-                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out var itemBelow))
+                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow) && 
+                        itemBelow.CustomDataNode != null && 
+                        itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) && 
+                        minable)
                     {
-                        var itemList = ItemTypes.GetType(itemBelow).OnRemoveItems;
+                        var itemList = itemBelow.OnRemoveItems;
 
-                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
-                                                        new IndicatorState((float) MinerCooldown,
-                                                                           itemList.FirstOrDefault().item.Type));
+                        if (itemList != null && itemList.Count > 0)
+                        {
+                            var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
+                            machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
 
-                        for (var i = 0; i < itemList.Count; i++)
-                            if (Random.NextDouble() <= itemList[i].chance)
-                                Stockpile.GetStockPile(player).Add(itemList[i].item);
+                            for (var i = 0; i < itemList.Count; i++)
+                                if (Random.NextDouble() <= itemList[i].chance)
+                                    colony.Stockpile.Add(itemList[i].item);
 
-                        ServerManager.SendAudio(machineState.Position.Vector,
-                                                GameLoader.NAMESPACE + ".MiningMachineAudio");
+                            ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, itemList.FirstOrDefault().item.Type));
+                        }
+                        else
+                        {
+                            machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                        }
                     }
-
-                    machineState.NextTimeForWork = machineState.MachineSettings.WorkTime + Time.SecondsSinceStartDouble;
+                    else
+                    {
+                        machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                    }
+                    
                 }
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
         public static void RegisterMiner()
         {
-            var rivets      = new InventoryItem(BuiltinBlocks.IronRivet, 6);
-            var iron        = new InventoryItem(BuiltinBlocks.IronWrought, 2);
-            var copperParts = new InventoryItem(BuiltinBlocks.CopperParts, 6);
-            var copperNails = new InventoryItem(BuiltinBlocks.CopperNails, 6);
-            var tools       = new InventoryItem(BuiltinBlocks.CopperTools, 1);
-            var planks      = new InventoryItem(BuiltinBlocks.Planks, 4);
-            var pickaxe     = new InventoryItem(BuiltinBlocks.BronzePickaxe, 2);
+            var rivets      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
+            var iron        = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2);
+            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 6);
+            var copperNails = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 6);
+            var tools       = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
+            var planks      = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
+            var pickaxe     = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPICKAXE.Name, 2);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem>
@@ -154,15 +200,14 @@ namespace Pandaros.Settlers.Items.Machines
                                         planks,
                                         pickaxe
                                     },
-                                    new InventoryItem(Item.ItemIndex),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
                                     5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var minerTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -171,9 +216,8 @@ namespace Pandaros.Settlers.Items.Machines
             ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void AddMiner(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var minerName     = GameLoader.NAMESPACE + ".Miner";
@@ -195,35 +239,9 @@ namespace Pandaros.Settlers.Items.Machines
             items.Add(minerName, Item);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnTryChangeBlock,
-            GameLoader.NAMESPACE + ".Items.Machines.Miner.OnTryChangeBlockUser")]
-        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData d)
-        {
-            if (d.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
-                return;
-
-            if (d.TypeNew == Item.ItemIndex && d.TypeOld == BuiltinBlocks.Air)
-            {
-                if (World.TryGetTypeAt(d.Position.Add(0, -1, 0), out var itemBelow))
-                    if (CanMineBlock(itemBelow))
-                    {
-                        MachineManager.RegisterMachineState(d.RequestedByPlayer,
-                                                            new MachineState(d.Position, d.RequestedByPlayer,
-                                                                             nameof(Miner)));
-
-                        return;
-                    }
-
-                PandaChat.Send(d.RequestedByPlayer, "The mining machine must be placed on stone or ore.",
-                               ChatColor.orange);
-
-                d.CallbackState = ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled;
-            }
-        }
-
         public static bool CanMineBlock(ushort itemMined)
         {
-            return ItemTypes.TryGetType(itemMined, out var item) &&
+            return ItemTypes.TryGetType(itemMined, out ItemTypes.ItemType item) &&
                    item.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
                    minable;
         }

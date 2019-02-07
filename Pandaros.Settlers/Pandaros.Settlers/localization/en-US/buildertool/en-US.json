@@ -1,0 +1,20 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "buildertool": {
+          "ErrorOpening": "Cannot open Schematic tool when not in range of a colony.",
+          "Schematic": "Schematic",
+          "Details": "Details",
+          "Save": "Save Schematic",
+          "invlaidSchematic": "Unable to validate schematic. Schematic is all air. Cannot place area.",
+          "Height": "Height",
+          "Width": "Width",
+          "Length": "Length",
+          "Rotation": "Rotation",
+          "instructions": "Right click on the top of a block to place the scematic. This will be the front left corner."
+        }
+      }
+    }
+  }
+}

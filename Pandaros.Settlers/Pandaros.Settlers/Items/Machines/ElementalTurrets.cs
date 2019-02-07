@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Managers;
 using Pipliz.JSON;
+using Recipes;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Machines
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class ElementalTurrets
     {
         public const string AIRTURRET = "Air Turret";
@@ -21,14 +22,13 @@ namespace Pandaros.Settlers.Items.Machines
         public static readonly string WATERTURRET_NAMESPACE = GameLoader.NAMESPACE + ".WaterTurret";
         public static readonly string VOIDTURRET_NAMESPACE = GameLoader.NAMESPACE + ".VoidTurret";
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.RegisterTurret")]
-        [ModLoader.ModCallbackProvidesForAttribute(GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.RegisterTurret")]
+        [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
         public static void RegisterTurret()
         {
-            var planks     = new InventoryItem(BuiltinBlocks.Planks, 50);
-            var stone      = new InventoryItem(BuiltinBlocks.StoneBricks, 100);
-            var tools      = new InventoryItem(BuiltinBlocks.CopperTools, 20);
+            var planks     = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 50);
+            var stone      = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 100);
+            var tools      = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 20);
             var mana       = new InventoryItem(Mana.Item.ItemIndex, 4);
             var elemen     = new InventoryItem(Elementium.Item.ItemIndex, 2);
             var esper      = new InventoryItem(Esper.Item.ItemIndex, 1);
@@ -47,10 +47,10 @@ namespace Pandaros.Settlers.Items.Machines
 
             var airRecipe = new Recipe(AIRTURRET_NAMESPACE,
                                        new List<InventoryItem> {planks, elemen, mana, tools, stone, airStone, esper},
-                                       new InventoryItem(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
+                                       new ItemTypes.ItemTypeDrops(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
                                        5);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
 
             var earthRecipe = new Recipe(EARTHTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -63,17 +63,17 @@ namespace Pandaros.Settlers.Items.Machines
                                              earthStone,
                                              esper
                                          },
-                                         new InventoryItem(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
+                                         new ItemTypes.ItemTypeDrops(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
                                          5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
 
             var fireRecipe = new Recipe(FIRETURRET_NAMESPACE,
                                         new List<InventoryItem> {planks, elemen, mana, tools, stone, fireStone, esper},
-                                        new InventoryItem(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
+                                        new ItemTypes.ItemTypeDrops(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
                                         5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
 
             var waterRecipe = new Recipe(WATERTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -86,10 +86,10 @@ namespace Pandaros.Settlers.Items.Machines
                                              waterStone,
                                              esper
                                          },
-                                         new InventoryItem(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
+                                         new ItemTypes.ItemTypeDrops(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
                                          5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
 
             var voidRecipe = new Recipe(VOIDTURRET_NAMESPACE,
                                         new List<InventoryItem>
@@ -102,16 +102,15 @@ namespace Pandaros.Settlers.Items.Machines
                                             voidStone,
                                             esperMax
                                         },
-                                        new InventoryItem(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
+                                        new ItemTypes.ItemTypeDrops(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
                                         5, true);
 
-            RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
+            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
-        [ModLoader.ModCallbackDependsOnAttribute(GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Items.Machines.Turret.AddTurret")]
         public static void AddTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             AddAirTurret(items);
@@ -121,9 +120,8 @@ namespace Pandaros.Settlers.Items.Machines
             AddVoidTurret(items);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterSelectedWorld,
-            GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTextures")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.server.registertexturemappingtextures")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,  GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTextures")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
         public static void AddTextures()
         {
             var textureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
@@ -186,9 +184,9 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1),
                             new InventoryItem(Esper.Item.ItemIndex, 1)
                         }
                     },
@@ -196,9 +194,9 @@ namespace Pandaros.Settlers.Items.Machines
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2),
                             new InventoryItem(Esper.Item.ItemIndex, 2)
                         }
                     },
@@ -206,10 +204,10 @@ namespace Pandaros.Settlers.Items.Machines
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 15),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 15),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
                             new InventoryItem(Esper.Item.ItemIndex, 3),
                             new InventoryItem(Void.Item.ItemIndex, 1)
                         }
@@ -218,10 +216,10 @@ namespace Pandaros.Settlers.Items.Machines
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 20),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 20),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
                             new InventoryItem(Esper.Item.ItemIndex, 4),
                             new InventoryItem(Void.Item.ItemIndex, 2)
                         }
@@ -260,28 +258,28 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 15),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 15),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
                             new InventoryItem(Esper.Item.ItemIndex, 1)
                         }
                     },
@@ -289,10 +287,10 @@ namespace Pandaros.Settlers.Items.Machines
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 20),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 20),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
                             new InventoryItem(Esper.Item.ItemIndex, 2)
                         }
                     }
@@ -330,28 +328,28 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 15),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 15),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
                             new InventoryItem(Esper.Item.ItemIndex, 1)
                         }
                     },
@@ -359,10 +357,10 @@ namespace Pandaros.Settlers.Items.Machines
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 20),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 20),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
                             new InventoryItem(Esper.Item.ItemIndex, 2)
                         }
                     }
@@ -400,28 +398,28 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 15),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 15),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
                             new InventoryItem(Esper.Item.ItemIndex, 1)
                         }
                     },
@@ -429,10 +427,10 @@ namespace Pandaros.Settlers.Items.Machines
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 20),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 20),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
                             new InventoryItem(Esper.Item.ItemIndex, 2)
                         }
                     }
@@ -470,28 +468,28 @@ namespace Pandaros.Settlers.Items.Machines
                         75f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 1),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 1)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1)
                         }
                     },
                     {
                         50f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 10),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 10),
                             new InventoryItem(Mana.Item.ItemIndex, 2),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 2)
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 2)
                         }
                     },
                     {
                         30f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 15),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 15),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 3),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 3),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 3),
                             new InventoryItem(Esper.Item.ItemIndex, 1)
                         }
                     },
@@ -499,10 +497,10 @@ namespace Pandaros.Settlers.Items.Machines
                         10f,
                         new List<InventoryItem>
                         {
-                            new InventoryItem(BuiltinBlocks.StoneBricks, 20),
-                            new InventoryItem(BuiltinBlocks.Planks, 1),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 20),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1),
                             new InventoryItem(Mana.Item.ItemIndex, 4),
-                            new InventoryItem(BuiltinBlocks.CopperNails, 4),
+                            new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 4),
                             new InventoryItem(Esper.Item.ItemIndex, 2)
                         }
                     }
@@ -526,7 +524,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", VOIDTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", VOIDTURRET_NAMESPACE + "sides")
@@ -555,7 +553,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", WATERTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", WATERTURRET_NAMESPACE + "sides")
@@ -584,7 +582,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", EARTHTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", EARTHTURRET_NAMESPACE + "sides")
@@ -613,7 +611,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", FIRETURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", FIRETURRET_NAMESPACE + "sides")
@@ -642,7 +640,7 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
-                            .SetAs("sideall", "stonebricks")
+                            .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
                             .SetAs("isSolid", true)
                             .SetAs("sidex+", AIRTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", AIRTURRET_NAMESPACE + "sides")

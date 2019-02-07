@@ -1,0 +1,782 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "pipliz": {
+          "merchant1": {
+            "name": "Merchant Training I",
+            "description": "Decreases time to craft for Merchant by 5%."
+          },
+          "merchant2": {
+            "name": "Merchant Training II",
+            "description": "Decreases time to craft for Merchant by 10%."
+          },
+          "merchant3": {
+            "name": "Merchant Training III",
+            "description": "Decreases time to craft for Merchant by 15%."
+          },
+          "merchant4": {
+            "name": "Merchant Training IV",
+            "description": "Decreases time to craft for Merchant by 20%."
+          },
+          "merchant5": {
+            "name": "Merchant Training V",
+            "description": "Decreases time to craft for Merchant by 25%."
+          },
+          "tailor1": {
+            "name": "Tailor Training I",
+            "description": "Decreases time to craft for Tailor by 5%."
+          },
+          "tailor2": {
+            "name": "Tailor Training II",
+            "description": "Decreases time to craft for Tailor by 10%."
+          },
+          "tailor3": {
+            "name": "Tailor Training III",
+            "description": "Decreases time to craft for Tailor by 15%."
+          },
+          "tailor4": {
+            "name": "Tailor Training IV",
+            "description": "Decreases time to craft for Tailor by 20%."
+          },
+          "tailor5": {
+            "name": "Tailor Training V",
+            "description": "Decreases time to craft for Tailor by 25%."
+          },
+          "bloomeryjob1": {
+            "name": "Bloomery Training I",
+            "description": "Decreases time to craft for Bloomery by 5%."
+          },
+          "bloomeryjob2": {
+            "name": "Bloomery Training II",
+            "description": "Decreases time to craft for Bloomery by 10%."
+          },
+          "bloomeryjob3": {
+            "name": "Bloomery Training III",
+            "description": "Decreases time to craft for Bloomery by 15%."
+          },
+          "bloomeryjob4": {
+            "name": "Bloomery Training IV",
+            "description": "Decreases time to craft for Bloomery by 20%."
+          },
+          "bloomeryjob5": {
+            "name": "Bloomery Training V",
+            "description": "Decreases time to craft for Bloomery by 25%."
+          },
+          "fineryforgejob1": {
+            "name": "FineryForge Training I",
+            "description": "Decreases time to craft for FineryForge by 5%."
+          },
+          "fineryforgejob2": {
+            "name": "FineryForge Training II",
+            "description": "Decreases time to craft for FineryForge by 10%."
+          },
+          "fineryforgejob3": {
+            "name": "FineryForge Training III",
+            "description": "Decreases time to craft for FineryForge by 15%."
+          },
+          "fineryforgejob4": {
+            "name": "FineryForge Training IV",
+            "description": "Decreases time to craft for FineryForge by 20%."
+          },
+          "fineryforgejob5": {
+            "name": "FineryForge Training V",
+            "description": "Decreases time to craft for FineryForge by 25%."
+          },
+          "smelter1": {
+            "name": "Furnace Training I",
+            "description": "Decreases time to craft for Furnace by 5%."
+          },
+          "smelter2": {
+            "name": "Furnace Training II",
+            "description": "Decreases time to craft for Furnace by 10%."
+          },
+          "smelter3": {
+            "name": "Furnace Training III",
+            "description": "Decreases time to craft for Furnace by 15%."
+          },
+          "smelter4": {
+            "name": "Furnace Training IV",
+            "description": "Decreases time to craft for Furnace by 20%."
+          },
+          "smelter5": {
+            "name": "Furnace Training V",
+            "description": "Decreases time to craft for Furnace by 25%."
+          },
+          "grinder1": {
+            "name": "Grinder Training I",
+            "description": "Decreases time to craft for Grinder by 5%."
+          },
+          "grinder2": {
+            "name": "Grinder Training II",
+            "description": "Decreases time to craft for Grinder by 10%."
+          },
+          "grinder3": {
+            "name": "Grinder Training III",
+            "description": "Decreases time to craft for Grinder by 15%."
+          },
+          "grinder4": {
+            "name": "Grinder Training IV",
+            "description": "Decreases time to craft for Grinder by 20%."
+          },
+          "grinder5": {
+            "name": "Grinder Training V",
+            "description": "Decreases time to craft for Grinder by 25%."
+          },
+          "gunsmithjob1": {
+            "name": "GunSmith Training I",
+            "description": "Decreases time to craft for GunSmith by 5%."
+          },
+          "gunsmithjob2": {
+            "name": "GunSmith Training II",
+            "description": "Decreases time to craft for GunSmith by 10%."
+          },
+          "gunsmithjob3": {
+            "name": "GunSmith Training III",
+            "description": "Decreases time to craft for GunSmith by 15%."
+          },
+          "gunsmithjob4": {
+            "name": "GunSmith Training IV",
+            "description": "Decreases time to craft for GunSmith by 20%."
+          },
+          "gunsmithjob5": {
+            "name": "GunSmith Training V",
+            "description": "Decreases time to craft for GunSmith by 25%."
+          },
+          "kilnjob1": {
+            "name": "Kiln Training I",
+            "description": "Decreases time to craft for Kiln by 5%."
+          },
+          "kilnjob2": {
+            "name": "Kiln Training II",
+            "description": "Decreases time to craft for Kiln by 10%."
+          },
+          "kilnjob3": {
+            "name": "Kiln Training III",
+            "description": "Decreases time to craft for Kiln by 15%."
+          },
+          "kilnjob4": {
+            "name": "Kiln Training IV",
+            "description": "Decreases time to craft for Kiln by 20%."
+          },
+          "kilnjob5": {
+            "name": "Kiln Training V",
+            "description": "Decreases time to craft for Kiln by 25%."
+          },
+          "metalsmithjob1": {
+            "name": "MetalSmith Training I",
+            "description": "Decreases time to craft for MetalSmith by 5%."
+          },
+          "metalsmithjob2": {
+            "name": "MetalSmith Training II",
+            "description": "Decreases time to craft for MetalSmith by 10%."
+          },
+          "metalsmithjob3": {
+            "name": "MetalSmith Training III",
+            "description": "Decreases time to craft for MetalSmith by 15%."
+          },
+          "metalsmithjob4": {
+            "name": "MetalSmith Training IV",
+            "description": "Decreases time to craft for MetalSmith by 20%."
+          },
+          "metalsmithjob5": {
+            "name": "MetalSmith Training V",
+            "description": "Decreases time to craft for MetalSmith by 25%."
+          },
+          "minter1": {
+            "name": "Mint Training I",
+            "description": "Decreases time to craft for Mint by 5%."
+          },
+          "minter2": {
+            "name": "Mint Training II",
+            "description": "Decreases time to craft for Mint by 10%."
+          },
+          "minter3": {
+            "name": "Mint Training III",
+            "description": "Decreases time to craft for Mint by 15%."
+          },
+          "minter4": {
+            "name": "Mint Training IV",
+            "description": "Decreases time to craft for Mint by 20%."
+          },
+          "minter5": {
+            "name": "Mint Training V",
+            "description": "Decreases time to craft for Mint by 25%."
+          },
+          "baker1": {
+            "name": "Oven Training I",
+            "description": "Decreases time to craft for Oven by 5%."
+          },
+          "baker2": {
+            "name": "Oven Training II",
+            "description": "Decreases time to craft for Oven by 10%."
+          },
+          "baker3": {
+            "name": "Oven Training III",
+            "description": "Decreases time to craft for Oven by 15%."
+          },
+          "baker4": {
+            "name": "Oven Training IV",
+            "description": "Decreases time to craft for Oven by 20%."
+          },
+          "baker5": {
+            "name": "Oven Training V",
+            "description": "Decreases time to craft for Oven by 25%."
+          },
+          "woodcutter": {
+            "name": "Woodcutter Training I",
+            "description": "Decreases time to craft for Woodcutter by 5%."
+          },
+          "woodcutter2": {
+            "name": "Woodcutter Training II",
+            "description": "Decreases time to craft for Woodcutter by 10%."
+          },
+          "woodcutter3": {
+            "name": "Woodcutter Training III",
+            "description": "Decreases time to craft for Woodcutter by 15%."
+          },
+          "woodcutter4": {
+            "name": "Woodcutter Training IV",
+            "description": "Decreases time to craft for Woodcutter by 20%."
+          },
+          "woodcutter5": {
+            "name": "Woodcutter Training V",
+            "description": "Decreases time to craft for Woodcutter by 25%."
+          },
+          "crafter1": {
+            "name": "WorkBench Training I",
+            "description": "Decreases time to craft for WorkBench by 5%."
+          },
+          "crafter2": {
+            "name": "WorkBench Training II",
+            "description": "Decreases time to craft for WorkBench by 10%."
+          },
+          "crafter3": {
+            "name": "WorkBench Training III",
+            "description": "Decreases time to craft for WorkBench by 15%."
+          },
+          "crafter4": {
+            "name": "WorkBench Training IV",
+            "description": "Decreases time to craft for WorkBench by 20%."
+          },
+          "crafter5": {
+            "name": "WorkBench Training V",
+            "description": "Decreases time to craft for WorkBench by 25%."
+          },
+          "guardslinger1": {
+            "name": "Sling Training I",
+            "description": "Increases reload speed of slings by 5%."
+          },
+          "guardslinger2": {
+            "name": "Sling Training II",
+            "description": "Increases reload speed of slings by 10%."
+          },
+          "guardslinger3": {
+            "name": "Sling Training III",
+            "description": "Increases reload speed of slings by 15%."
+          },
+          "guardslinger4": {
+            "name": "Sling Training IV",
+            "description": "Increases reload speed of slings by 20%."
+          },
+          "guardslinger5": {
+            "name": "Sling Training V",
+            "description": "Increases reload speed of slings by 25%."
+          },
+          "guardbow1": {
+            "name": "Bow Training I",
+            "description": "Increases reload speed of Bows by 5%."
+          },
+          "guardbow2": {
+            "name": "Bow Training II",
+            "description": "Increases reload speed of Bows by 10%."
+          },
+          "guardbow3": {
+            "name": "Bow Training III",
+            "description": "Increases reload speed of Bows by 15%."
+          },
+          "guardbow4": {
+            "name": "Bow Training IV",
+            "description": "Increases reload speed of Bows by 20%."
+          },
+          "guardbow5": {
+            "name": "Bow Training V",
+            "description": "Increases reload speed of Bows by 25%."
+          },
+          "guardcrossbow1": {
+            "name": "Crossbow Training I",
+            "description": "Increases reload speed of Crossbows by 5%."
+          },
+          "guardcrossbow2": {
+            "name": "Crossbow Training II",
+            "description": "Increases reload speed of Crossbows by 10%."
+          },
+          "guardcrossbow3": {
+            "name": "Crossbow Training III",
+            "description": "Increases reload speed of Crossbows by 15%."
+          },
+          "guardcrossbow4": {
+            "name": "Crossbow Training IV",
+            "description": "Increases reload speed of Crossbows by 20%."
+          },
+          "guardcrossbow5": {
+            "name": "Crossbow Training V",
+            "description": "Increases reload speed of Crossbows by 25%."
+          },
+          "guardmatchlock1": {
+            "name": "Matchlockgun Training I",
+            "description": "Increases reload speed of Matchlockguns by 5%."
+          },
+          "guardmatchlock2": {
+            "name": "Matchlockgun Training II",
+            "description": "Increases reload speed of Matchlockguns by 10%."
+          },
+          "guardmatchlock3": {
+            "name": "Matchlockgun Training III",
+            "description": "Increases reload speed of Matchlockguns by 15%."
+          },
+          "guardmatchlock4": {
+            "name": "Matchlockgun Training IV",
+            "description": "Increases reload speed of Matchlockguns by 20%."
+          },
+          "guardmatchlock5": {
+            "name": "Matchlockgun Training V",
+            "description": "Increases reload speed of Matchlockguns by 25%."
+          }
+        },
+        "Backpack1": {
+          "name": "Backpack",
+          "description": "Gives you a backpack that you can carry items in."
+        },
+        "SkillEquiptmentResearch1": {
+          "name": "+1 Skill Equiptment",
+          "description": "Allows you to craft +1 skill equiptment."
+        },
+        "SkillEquiptmentResearch2": {
+          "name": "+2 Skill Equiptment",
+          "description": "Allows you to craft +2 skill equiptment."
+        },
+        "MaxMagicItems1": {
+          "name": "Max Magic Items",
+          "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."
+        },
+        "MaxMagicItems2": {
+          "name": "Max Magic Items",
+          "description": "Allows you to carry an addional magic item. Must an ower of the colony when researched. Stacks with multiple colonies."
+        },
+        "Architect1": {
+          "name": "Architect",
+          "description": "The Architect builds schematics and allows builders to build them."
+        },
+        "Sorcerer1": {
+          "name": "Sorcerer",
+          "description": "Unlocks Sorcerer to create magical item for your colony."
+        },
+        "SettlerChance1": {
+          "name": "Settler Chance I",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance2": {
+          "name": "Settler Chance II",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance3": {
+          "name": "Settler Chance III",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance4": {
+          "name": "Settler Chance IV",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "SettlerChance5": {
+          "name": "Settler Chance V",
+          "description": "Increases chance for settlers to find your colony."
+        },
+        "MaxSettlers1": {
+          "name": "Max Settler I",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers2": {
+          "name": "Max Settler II",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers3": {
+          "name": "Max Settler III",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers4": {
+          "name": "Max Settler IV",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers5": {
+          "name": "Max Settler V",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers6": {
+          "name": "Max Settler VI",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers7": {
+          "name": "Max Settler VII",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers8": {
+          "name": "Max Settler VIII",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers9": {
+          "name": "Max Settler IX",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MaxSettlers10": {
+          "name": "Max Settler X",
+          "description": "Increases maximum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers1": {
+          "name": "Min Settler I",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers2": {
+          "name": "Min Settler II",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers3": {
+          "name": "Min Settler III",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers4": {
+          "name": "Min Settler IV",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers5": {
+          "name": "Min Settler V",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers6": {
+          "name": "Min Settler VI",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers7": {
+          "name": "Min Settler VII",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers8": {
+          "name": "Min Settler VIII",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers9": {
+          "name": "Min Settler IX",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "MinSettlers10": {
+          "name": "Min Settler X",
+          "description": "Increases minimum number of potential settlers received when they find your colony."
+        },
+        "ReducedWaste1": {
+          "name": "Reduced Food Waste I",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste2": {
+          "name": "Reduced Food Waste II",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste3": {
+          "name": "Reduced Food Waste III",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste4": {
+          "name": "Reduced Food Waste IV",
+          "description": "Reduces food waste in your colony."
+        },
+        "ReducedWaste5": {
+          "name": "Reduced Food Waste V",
+          "description": "Reduces food waste in your colony."
+        },
+        "TimeBetween1": {
+          "name": "Reduced Time Between I",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween2": {
+          "name": "Reduced Time Between II",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween3": {
+          "name": "Reduced Time Between III",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween4": {
+          "name": "Reduced Time Between IV",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "TimeBetween5": {
+          "name": "Reduced Time Between V",
+          "description": "Reduces time between chances for settlers to join your colony."
+        },
+        "SkilledLaborer1": {
+          "name": "Skilled Laborer I",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer2": {
+          "name": "Skilled Laborer II",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer3": {
+          "name": "Skilled Laborer III",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer4": {
+          "name": "Skilled Laborer IV",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer5": {
+          "name": "Skilled Laborer V",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer6": {
+          "name": "Skilled Laborer VI",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer7": {
+          "name": "Skilled Laborer VII",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer8": {
+          "name": "Skilled Laborer VIII",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer9": {
+          "name": "Skilled Laborer IX",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "SkilledLaborer10": {
+          "name": "Skilled Laborer X",
+          "description": "Increases chance of getting skilled laborers when settlers to find your colony. Skilled laborers have an increased chance to discover rare items when crafting and a chance to do bonus damage as a guard."
+        },
+        "NumberSkilledLaborer1": {
+          "name": "Number of Skilled Laborer I",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer2": {
+          "name": "Number of Skilled Laborer II",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer3": {
+          "name": "Number of Skilled Laborer III",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer4": {
+          "name": "Number of Skilled Laborer IV",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "NumberSkilledLaborer5": {
+          "name": "Number of Skilled Laborer V",
+          "description": "Increases maximum number of potential skilled settlers received when they find your colony."
+        },
+        "ArmorSmithing1": {
+          "name": "Armor Smithing I - Copper",
+          "description": "Allows crafting of copper armors for your colonists."
+        },
+        "ArmorSmithing2": {
+          "name": "Armor Smithing II - Bronze",
+          "description": "Allows crafting of bronze armors for your colonists."
+        },
+        "ArmorSmithing3": {
+          "name": "Armor Smithing III - Iron",
+          "description": "Allows crafting of iron armors for your colonists."
+        },
+        "ArmorSmithing4": {
+          "name": "Armor Smithing IV - Steel",
+          "description": "Allows crafting of steel armors for your colonists."
+        },
+        "ColonistHealth1": {
+          "name": "Increased Colonist Health I",
+          "description": "Increases colonist health by 10."
+        },
+        "ColonistHealth2": {
+          "name": "Increased Colonist Health II",
+          "description": "Increases colonist health by 20."
+        },
+        "ColonistHealth3": {
+          "name": "Increased Colonist Health III",
+          "description": "Increases colonist health by 30."
+        },
+        "ColonistHealth4": {
+          "name": "Increased Colonist Health IV",
+          "description": "Increases colonist health by 40."
+        },
+        "ColonistHealth5": {
+          "name": "Increased Colonist Health V",
+          "description": "Increases colonist health by 50."
+        },
+        "SwordSmithing1": {
+          "name": "Sword Smithing I - Copper",
+          "description": "Allows crafting of copper swords for you and your colonists."
+        },
+        "SwordSmithing2": {
+          "name": "Sword Smithing II - Bronze",
+          "description": "Allows crafting of bronze swords for you and your colonists."
+        },
+        "SwordSmithing3": {
+          "name": "Sword Smithing III - Iron",
+          "description": "Allows crafting of iron swords for you and your colonists."
+        },
+        "SwordSmithing4": {
+          "name": "Sword Smithing IV - Steel",
+          "description": "Allows crafting of steel swords for you and your colonists."
+        },
+        "Knights1": {
+          "name": "Knights",
+          "description": "Allows for placing knight patrols and crafting Patrol Flags."
+        },
+        "Machines1": {
+          "name": "Machines!",
+          "description": "Allows crafting of machines for crafters. Adds the machinist job."
+        },
+        "ImprovedDurability1": {
+          "name": "Improved Durability I",
+          "description": "Increases all machines durability by 10%. Machines will need repairing less often."
+        },
+        "ImprovedDurability2": {
+          "name": "Improved Durability II",
+          "description": "Increases all machines durability by 20%. Machines will need repairing less often."
+        },
+        "ImprovedDurability3": {
+          "name": "Improved Durability III",
+          "description": "Increases all machines durability by 30%. Machines will need repairing less often."
+        },
+        "ImprovedDurability4": {
+          "name": "Improved Durability IV",
+          "description": "Increases all machines durability by 40%. Machines will need repairing less often."
+        },
+        "ImprovedDurability5": {
+          "name": "Improved Durability V",
+          "description": "Increases all machines durability by 50%. Machines will need repairing less often."
+        },
+        "ImprovedFuelCapacity1": {
+          "name": "Improved Fuel Capacity I",
+          "description": "Increases all machines fuel capacity by 10%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity2": {
+          "name": "Improved Fuel Capacity II",
+          "description": "Increases all machines fuel capacity by 20%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity3": {
+          "name": "Improved Fuel Capacity III",
+          "description": "Increases all machines fuel capacity by 30%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity4": {
+          "name": "Improved Fuel Capacity IV",
+          "description": "Increases all machines fuel capacity by 40%. Machines will need refueling less often."
+        },
+        "ImprovedFuelCapacity5": {
+          "name": "Improved Fuel Capacity V",
+          "description": "Increases all machines fuel capacity by 50%. Machines will need refueling less often."
+        },
+        "IncreasedCapacity1": {
+          "name": "Increased Item Capacity I",
+          "description": "Increases all machines item capacity by 20%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity2": {
+          "name": "Increased Item Capacity II",
+          "description": "Increases all machines item capacity by 40%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity3": {
+          "name": "Increased Item Capacity III",
+          "description": "Increases all machines item capacity by 60%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity4": {
+          "name": "Increased Item Capacity IV",
+          "description": "Increases all machines item capacity by 80%. Machines will need ammo/items less often."
+        },
+        "IncreasedCapacity5": {
+          "name": "Increased Item Capacity V",
+          "description": "Increases all machines item capacity by 100%. Machines will need ammo/items less often."
+        },
+        "MasterOfAll1": {
+          "name": "Master Of All I",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 3%. Stacks with training."
+        },
+        "MasterOfAll2": {
+          "name": "Master Of All II",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 6%. Stacks with training."
+        },
+        "MasterOfAll3": {
+          "name": "Master Of All III",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 9%. Stacks with training."
+        },
+        "MasterOfAll4": {
+          "name": "Master Of All IV",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 12%. Stacks with training."
+        },
+        "MasterOfAll5": {
+          "name": "Master Of All V",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 15%. Stacks with training."
+        },
+        "MasterOfAll6": {
+          "name": "Master Of All VI",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 18%. Stacks with training."
+        },
+        "MasterOfAll7": {
+          "name": "Master Of All VII",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 21%. Stacks with training."
+        },
+        "MasterOfAll8": {
+          "name": "Master Of All VIII",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 24%. Stacks with training."
+        },
+        "MasterOfAll9": {
+          "name": "Master Of All IX",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 27%. Stacks with training."
+        },
+        "MasterOfAll10": {
+          "name": "Master Of All X",
+          "description": "True masters hone their skills deeper. Reduces crafting times by an additional 30%. Stacks with training."
+        },
+        "Apothecaries1": {
+          "name": "Apothecary",
+          "description": "Apothecary creates magical reagents such as mana and bandages for you and your colonists."
+        },
+        "AdvancedApothecary1": {
+          "name": "Advanced Apothecary",
+          "description": "Apothecaries learn how to make Treated bandages for powerful healing."
+        },
+        "Mana1": {
+          "name": "Mana!",
+          "description": "Unlocks mana that can be used for magical things!"
+        },
+        "Teleportation1": {
+          "name": "Teleportation!",
+          "description": "Unlocks Teleporters! Can be crafted, placed in pairs. One side must be maintained by a machinist."
+        },
+        "BuildersWand1": {
+          "name": "Builders Wand",
+          "description": "Unlocks the Builders Wand! Used to lay out a large number of blocks at a time. Can lay out 750 blocks before it breaks."
+        },
+        "BetterBuildersWand1": {
+          "name": "Better Builders Wand",
+          "description": "Upgrades the Builders Wand to lay out 1000 blocks before it breaks!"
+        },
+        "BetterBuildersWand2": {
+          "name": "Even Better Builders Wand",
+          "description": "Upgrades the Builders Wand to lay out 1250 blocks before it breaks!"
+        },
+        "BetterBuildersWand3": {
+          "name": "Super Builders Wand",
+          "description": "Upgrades the Builders Wand to lay out 1500 blocks before it breaks!"
+        },
+        "BetterBuildersWand4": {
+          "name": "Ultra Builders Wand",
+          "description": "Upgrades the Builders Wand to lay out 1750 blocks before it breaks!"
+        },
+        "BetterBuildersWand5": {
+          "name": "Perfect Builders Wand",
+          "description": "Upgrades the Builders Wand to lay out 2000 blocks before it breaks!"
+        },
+        "Elementium1": {
+          "name": "Elementium",
+          "description": "Unlocks Elementium. Elementium is transmuted by Apothecary and is used to create powerful magic items and elemental weapons."
+        }
+      }
+    }
+  }
+}

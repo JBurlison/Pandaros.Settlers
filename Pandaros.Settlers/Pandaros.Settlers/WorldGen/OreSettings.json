@@ -1,0 +1,63 @@
+[
+  {
+    "Chance": 1,
+    "Depth": 20,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteemerald"
+  },
+  {
+    "Chance": 1,
+    "Depth": 21,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteemerald"
+  },
+  {
+    "Chance": 1,
+    "Depth": 22,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteemerald"
+  },
+  {
+    "Chance": 1,
+    "Depth": 25,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteruby"
+  },
+  {
+    "Chance": 1,
+    "Depth": 26,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteruby"
+  },
+  {
+    "Chance": 1,
+    "Depth": 27,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteruby"
+  },
+  {
+    "Chance": 1,
+    "Depth": 35,
+    "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
+  },
+  {
+    "Chance": 1,
+    "Depth": 36,
+    "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
+  },
+  {
+    "Chance": 1,
+    "Depth": 37,
+    "Type": "Pandaros.Settlers.AutoLoad.infinitesapphire"
+  },
+  {
+    "Chance": 1,
+    "Depth": 40,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteAdamantine"
+  },
+  {
+    "Chance": 1,
+    "Depth": 41,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteAdamantine"
+  },
+  {
+    "Chance": 1,
+    "Depth": 42,
+    "Type": "Pandaros.Settlers.AutoLoad.infiniteAdamantine"
+  }
+]
+

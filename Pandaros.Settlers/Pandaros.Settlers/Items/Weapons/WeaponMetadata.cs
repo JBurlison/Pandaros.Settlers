@@ -1,26 +1,44 @@
-﻿namespace Pandaros.Settlers.Items
+﻿using System.Collections.Generic;
+using Pipliz;
+
+namespace Pandaros.Settlers.Items.Weapons
 {
-    public class WeaponMetadata
+    public class WeaponMetadata : IWeapon
     {
-        public WeaponMetadata(float                       damage, int durability, MetalType metalType,
-                              WeaponType                  weaponType,
-                              ItemTypesServer.ItemTypeRaw item)
+        Dictionary<DamageType, float> _damage = new Dictionary<DamageType, float>();
+
+        public WeaponMetadata(float damage, int durability, string name, ItemTypesServer.ItemTypeRaw item)
         {
-            Damage     = damage;
-            Metal      = metalType;
-            WeaponType = weaponType;
+            _damage.Add(DamageType.Physical, damage);
+            this.name       = name;
             ItemType   = item;
-            Durability = durability;
+            WepDurability = durability;
         }
 
-        public MetalType Metal { get; }
-
-        public WeaponType WeaponType { get; }
-
-        public float Damage { get; }
+        public string name { get; }
 
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
-        public int Durability { get; set; }
+        public int WepDurability { get; set; }
+
+        public float HPTickRegen => 0;
+
+        public float MissChance => 0;
+
+        public DamageType ElementalArmor => DamageType.Physical;
+
+        public Dictionary<DamageType, float> AdditionalResistance => new Dictionary<DamageType, float>();
+
+        public float Luck => 0;
+
+        public float Skilled { get; set; }
+        public bool IsMagical { get; set; }
+
+        public Dictionary<DamageType, float> Damage => _damage;
+
+        public void Update()
+        {
+            
+        }
     }
 }

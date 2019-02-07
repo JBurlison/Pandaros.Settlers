@@ -1,19 +1,13 @@
-﻿namespace Pandaros.Settlers
+﻿using Pandaros.Settlers.Extender;
+using Pandaros.Settlers.Items;
+
+namespace Pandaros.Settlers
 {
-    public interface IMagicEffect
+    public interface IMagicEffect : IPandaArmor, IPandaDamage, INameable, ILucky
     {
-        IPandaArmor SpecialArmor { get; set; }
-
-        IPandaDamage SpecialDamage { get; set; }
-
-        float HPBoost { get; set; }
-
-        float HPTickRegen { get; set; }
-
-        float AuraRange { get; set; }
-
-        float CraftingSpeed { get; set; }
-
-        float MovementSpeed { get; set; }
+        bool IsMagical { get; set; }
+        float Skilled { get; set; }
+        float HPTickRegen { get; }
+        void Update();
     }
 }

@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using BlockTypes.Builtin;
+﻿using BlockTypes;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
 using Shared;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Healing
 {
-    [ModLoader.ModManagerAttribute]
+    [ModLoader.ModManager]
     public static class Bandage
     {
         public const double COOLDOWN = 5;
@@ -18,25 +19,23 @@ namespace Pandaros.Settlers.Items.Healing
         private static readonly Dictionary<Players.Player, double> _coolDown = new Dictionary<Players.Player, double>();
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
         public static void Register()
         {
-            var oil   = new InventoryItem(BuiltinBlocks.LinseedOil, 1);
-            var linen = new InventoryItem(BuiltinBlocks.Linen, 1);
+            var oil   = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 1);
+            var linen = new InventoryItem(ColonyBuiltIn.ItemTypes.LINEN.Name, 1);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {linen, oil},
-                                    new InventoryItem(Item.ItemIndex, 1),
+                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
                                     50);
 
-            RecipeStorage.AddDefaultLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.AfterAddingBaseTypes,
-            GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
-        [ModLoader.ModCallbackDependsOnAttribute("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
+        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Bandage";
@@ -52,8 +51,7 @@ namespace Pandaros.Settlers.Items.Healing
             items.Add(name, Item);
         }
 
-        [ModLoader.ModCallbackAttribute(ModLoader.EModCallbackType.OnPlayerClicked,
-            GameLoader.NAMESPACE + ".Items.Healing.Bandage.Click")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Click")]
         public static void Click(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             var healed = false;
@@ -87,9 +85,7 @@ namespace Pandaros.Settlers.Items.Healing
                 _coolDown[player]            = Time.SecondsSinceStartDouble + COOLDOWN;
                 boxedData.item1.consumedType = PlayerClickedData.ConsumedType.UsedByMod;
                 ServerManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
-
-                if (Inventory.TryGetInventory(player, out var inv))
-                    inv.TryRemove(Item.ItemIndex);
+                player.Inventory.TryRemove(Item.ItemIndex);
             }
         }
     }

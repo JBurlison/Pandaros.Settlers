@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pandaros.Settlers", "Pandaros.Settlers\Pandaros.Settlers.csproj", "{4FCBF9CE-32EB-41EA-A70C-774E11CA8818}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pandaros.SettlersTests", "Pandaros.SettlersTests\Pandaros.SettlersTests.csproj", "{6308E73C-D0ED-49BE-9FF4-6E460E2FA02A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4FCBF9CE-32EB-41EA-A70C-774E11CA8818}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FCBF9CE-32EB-41EA-A70C-774E11CA8818}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FCBF9CE-32EB-41EA-A70C-774E11CA8818}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6308E73C-D0ED-49BE-9FF4-6E460E2FA02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6308E73C-D0ED-49BE-9FF4-6E460E2FA02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6308E73C-D0ED-49BE-9FF4-6E460E2FA02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6308E73C-D0ED-49BE-9FF4-6E460E2FA02A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

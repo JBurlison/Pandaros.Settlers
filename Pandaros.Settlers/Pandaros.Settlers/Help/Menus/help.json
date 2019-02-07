@@ -1,0 +1,52 @@
+{
+  "Wiki": {
+    "MainMenu": {
+      "header": "Pandaros.Settlers.Wiki.MainMenu.Title",
+      "width": 1000,
+      "height": 600,
+      "Items": [
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.MainMenu.JobsHeader",
+          "alignement": "Center",
+          "fontsize": 32
+        },
+        {
+          "type": "space",
+          "height": 50
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Knights",
+          "width": 700,
+          "height": 25,
+          "label": {
+            "text": "Knights",
+            "color": "black"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Machinists",
+          "width": 700,
+          "height": 25,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Machinists",
+            "color": "black"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Apothecary",
+          "width": 700,
+          "height": 25,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Apothecary",
+            "color": "black"
+          }
+        }
+      ]
+    }
+  }
+}
+

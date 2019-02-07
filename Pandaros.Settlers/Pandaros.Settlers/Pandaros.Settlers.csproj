@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SQLite.3.13.0\build\net45\SQLite.props" Condition="Exists('..\packages\SQLite.3.13.0\build\net45\SQLite.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pandaros.Settlers</RootNamespace>
     <AssemblyName>Pandaros.Settlers</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +25,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,12 +36,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="APIProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pipliz\APIProvider\APIProvider.dll</HintPath>
-    </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\Assembly-CSharp.dll</HintPath>
@@ -44,21 +48,87 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pipliz\BaseGame\BaseGame.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+    <Reference Include="DotNetZip, Version=1.12.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.12.0\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="fNbt, Version=0.6.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\fNbt.0.6.4\lib\net35-client\fNbt.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>ZipSupport\I18N.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.CJK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ZipSupport\I18N.CJK.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.MidEast, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ZipSupport\I18N.MidEast.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.Other, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ZipSupport\I18N.Other.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.Rare, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ZipSupport\I18N.Rare.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.West, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ZipSupport\I18N.West.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="Steamworks.NET">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyclient_Data\Managed\Steamworks.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.Linq.3.5.21022.801\lib\net20\System.Xml.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyclient_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\UnityEngine.UI.dll</HintPath>
@@ -66,55 +136,125 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\CalltoArms.cs" />
-    <Compile Include="AI\Job.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
+    <Compile Include="ColonyManager\BlockTracker.cs" />
+    <Compile Include="ColonyManager\CloseBeds.cs" />
+    <Compile Include="ColonyManager\ColonistDied.cs" />
+    <Compile Include="ColonyManager\ColonyArchive.cs" />
+    <Compile Include="ColonyManager\ColonyTool.cs" />
+    <Compile Include="ColonyManager\JobSettingsExtention.cs" />
+    <Compile Include="ColonyManager\Permission.cs" />
+    <Compile Include="ColonyManager\SlowerGuards.cs" />
+    <Compile Include="Database\PandaContext.cs" />
+    <Compile Include="Extender\IOnColonyCreated.cs" />
+    <Compile Include="Extender\IOnLoadingColony.cs" />
+    <Compile Include="Extender\IOnTimedUpdate.cs" />
+    <Compile Include="Extender\Providers\GenerateTypesProvider.cs" />
+    <Compile Include="Extender\Providers\HappinessCausesProvider.cs" />
+    <Compile Include="Extender\Providers\HappinessEffectProvider.cs" />
+    <Compile Include="Items\Armor\ArmorMetadata.cs" />
+    <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
+    <Compile Include="Items\Armor\MagicArmor.cs" />
+    <Compile Include="Items\CSGenerateType.cs" />
+    <Compile Include="Items\EquiptmentManager.cs" />
+    <Compile Include="Items\IGenerateType.cs" />
+    <Compile Include="Items\MagicItemsCache.cs" />
+    <Compile Include="Items\PlayerMagicItem.cs" />
+    <Compile Include="Items\Reagents\Adamantine.cs" />
+    <Compile Include="Items\StaticItems.cs" />
+    <Compile Include="Items\Weapons\MagicWeapon.cs" />
+    <Compile Include="Jobs\Sorcerer.cs" />
+    <Compile Include="JSONExtentionMethods.cs" />
+    <Compile Include="localization\LocalizationHelper.cs" />
+    <Compile Include="Managers\ServerManagement.cs" />
+    <Compile Include="Models\TrackedPosition.cs" />
+    <Compile Include="Monsters\IMonsterNPCType.cs" />
+    <Compile Include="Monsters\MonsterNPCData.cs" />
+    <Compile Include="Monsters\Normal\IPandaZombie.cs" />
+    <Compile Include="Research\SkillEquiptmentResearch.cs" />
+    <Compile Include="Research\PlayerResearch.cs" />
+    <Compile Include="WorldGen\ColonyFactory.cs" />
+    <Compile Include="NBT\Block.cs" />
+    <Compile Include="NBT\BlockMapping.cs" />
+    <Compile Include="NBT\RawSchematic.cs" />
+    <Compile Include="NBT\Schematic.cs" />
+    <Compile Include="NBT\SchematicMetadata.cs" />
+    <Compile Include="NBT\SchematicReader.cs" />
+    <Compile Include="NBT\TileEntity.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="Cosmetics\CarpetPurple.cs" />
-    <Compile Include="Cosmetics\CarpetPink.cs" />
-    <Compile Include="Cosmetics\CarpetOrange.cs" />
-    <Compile Include="Cosmetics\CarpetMagenta.cs" />
-    <Compile Include="Cosmetics\CarpetBrown.cs" />
-    <Compile Include="Cosmetics\CarpetLime.cs" />
-    <Compile Include="Cosmetics\CarpetLightBlue.cs" />
-    <Compile Include="Cosmetics\CarpetGreen.cs" />
-    <Compile Include="Cosmetics\CarpetCyan.cs" />
-    <Compile Include="Cosmetics\CarpetGrey.cs" />
-    <Compile Include="Cosmetics\CarpetBlack.cs" />
-    <Compile Include="Cosmetics\Register.cs" />
     <Compile Include="DamageType.cs" />
+    <Compile Include="Entities\ColonyState.cs" />
     <Compile Include="Entities\HealingOverTimePC.cs" />
     <Compile Include="Entities\HealingOverTimeNPC.cs" />
+    <Compile Include="EventedDictionary.cs" />
+    <Compile Include="Extender\IAddItemTypes.cs" />
+    <Compile Include="Extender\IAfterItemTypesDefined.cs" />
+    <Compile Include="Extender\IAfterSelectedWorld.cs" />
+    <Compile Include="Extender\IAfterWorldLoad.cs" />
+    <Compile Include="Extender\IOnAddResearchables.cs" />
+    <Compile Include="Items\Backpack.cs" />
+    <Compile Include="Items\Colliders.cs" />
+    <Compile Include="Items\CSType.cs" />
+    <Compile Include="Items\ICSRecipe.cs" />
+    <Compile Include="Items\CSTextureMapping.cs" />
+    <Compile Include="Items\ICSTextureMapping.cs" />
+    <Compile Include="Items\ICSType.cs" />
+    <Compile Include="INameable.cs" />
+    <Compile Include="Items\ILucky.cs" />
+    <Compile Include="Items\OnRemove.cs" />
+    <Compile Include="Extender\Providers\LootTableProvider.cs" />
+    <Compile Include="Extender\Providers\WeaponProvider.cs" />
+    <Compile Include="Extender\Providers\RecipeProvider.cs" />
+    <Compile Include="Extender\Providers\ItemsProvider.cs" />
+    <Compile Include="Extender\Providers\ResearchProvider.cs" />
+    <Compile Include="Extender\Providers\TextureMappingProvider.cs" />
+    <Compile Include="Extender\Providers\RoamingJobObjectiveProvider.cs" />
+    <Compile Include="Extender\Providers\ArmorProvider.cs" />
+    <Compile Include="Extender\Providers\BossesProvider.cs" />
     <Compile Include="GameDifficulty.cs" />
+    <Compile Include="Help\HelpMenu.cs" />
     <Compile Include="IMagicEffect.cs" />
     <Compile Include="IPandaArmor.cs" />
     <Compile Include="IPandaDamage.cs" />
     <Compile Include="IKillReward.cs" />
-    <Compile Include="Items\AirStone.cs" />
-    <Compile Include="Items\EarthStone.cs" />
-    <Compile Include="Items\IMagicItem.cs" />
-    <Compile Include="Items\Void.cs" />
-    <Compile Include="Items\Esper.cs" />
+    <Compile Include="Extender\ISettlersExtension.cs" />
+    <Compile Include="Items\Reagents\AirStone.cs" />
+    <Compile Include="Items\Armor\ArmorFactory.cs" />
+    <Compile Include="Items\Armor\IArmor.cs" />
+    <Compile Include="Items\Reagents\EarthStone.cs" />
+    <Compile Include="Items\ILootTable.cs" />
+    <Compile Include="Items\IPlayerMagicItem.cs" />
+    <Compile Include="Items\ItemFactory.cs" />
+    <Compile Include="Items\ItemState.cs" />
+    <Compile Include="Items\Machines\MachineConstants.cs" />
+    <Compile Include="Items\Machines\RefuelMachineAction.cs" />
+    <Compile Include="Items\Reagents\Void.cs" />
+    <Compile Include="Items\Reagents\Esper.cs" />
     <Compile Include="Items\Machines\ElementalTurrets.cs" />
-    <Compile Include="Items\WaterStone.cs" />
-    <Compile Include="Items\FireStone.cs" />
-    <Compile Include="Items\Elementium.cs" />
-    <Compile Include="Items\BuildersWand.cs" />
+    <Compile Include="Items\Reagents\WaterStone.cs" />
+    <Compile Include="Items\Reagents\FireStone.cs" />
+    <Compile Include="Items\Reagents\Elementium.cs" />
+    <Compile Include="Items\Tools\BuildersWand.cs" />
     <Compile Include="Items\Machines\TeleportPad.cs" />
-    <Compile Include="Items\Aether.cs" />
-    <Compile Include="Items\Mana.cs" />
-    <Compile Include="Items\Armor.cs" />
-    <Compile Include="Items\Food\BerryPancakes.cs" />
-    <Compile Include="Items\Food\BerryPie.cs" />
+    <Compile Include="Items\Reagents\Aether.cs" />
+    <Compile Include="Items\Reagents\Mana.cs" />
     <Compile Include="Items\Healing\Anitbiotic.cs" />
     <Compile Include="Items\Healing\Bandage.cs" />
     <Compile Include="Items\Healing\TreatedBandage.cs" />
-    <Compile Include="Items\ItemFactory.cs" />
-    <Compile Include="Items\Machines\MachineState.cs" />
+    <Compile Include="Items\Weapons\IWeapon.cs" />
+    <Compile Include="Items\Weapons\WeaponFactory.cs" />
+    <Compile Include="Jobs\Construction\Architect.cs" />
+    <Compile Include="Jobs\Construction\SchematicBuilder.cs" />
+    <Compile Include="Jobs\Construction\SchematicBuilderLoader.cs" />
+    <Compile Include="Jobs\Construction\SchematicIterator.cs" />
+    <Compile Include="Jobs\Construction\SchematicTool.cs" />
+    <Compile Include="Jobs\Machinist.cs" />
+    <Compile Include="Jobs\Roaming\RoamingJobState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
-    <Compile Include="Items\Machines\IMachineSettings.cs" />
-    <Compile Include="Managers\MachineManager.cs" />
+    <Compile Include="Jobs\Roaming\IRoamingJobObjective.cs" />
+    <Compile Include="Managers\RoamingJobManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
@@ -122,28 +262,96 @@
     <Compile Include="Items\Weapons\WeaponMetadata.cs" />
     <Compile Include="Jobs\AdvancedCrafter.cs" />
     <Compile Include="Jobs\Knight.cs" />
-    <Compile Include="Jobs\Machinist.cs" />
+    <Compile Include="Jobs\Roaming\RoamingJob.cs" />
     <Compile Include="Jobs\PatrolTool.cs" />
-    <Compile Include="Managers\BannerManager.cs" />
     <Compile Include="AI\NameGenerator.cs" />
     <Compile Include="Entities\PlayerState.cs" />
     <Compile Include="Entities\SettlerInventory.cs" />
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
     <Compile Include="Managers\MonsterManager.cs" />
+    <Compile Include="WorldGen\GeneratedStructure.cs" />
+    <Compile Include="WorldGen\Ore.cs" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="AutoLoad\Sorcerer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\help\Apothecary\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\help\mainMenu\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SettlersItems.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\backpack\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\colonytool\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\buildertool\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\basket.ply">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="pandaros.settlers.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Mountan-Top-Castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\exampleton-basic.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\flying-city.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\large-town.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\medieval-forest.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\medieval-village.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\nice-medieval-village.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\npc-village-makeover.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Help\Menus\Apothecary.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Help\Menus\Machinists.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Help\Menus\Knights.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Help\Menus\help.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MCtoCSMapping.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Managers\UIManager.cs" />
     <Compile Include="MethodUtil.cs" />
+    <Compile Include="Models\ItemId.cs" />
+    <Compile Include="Monsters\Bosses\BossLoot.cs" />
     <Compile Include="Monsters\Bosses\FallenRanger.cs" />
     <Compile Include="Monsters\Bosses\Phase.cs" />
     <Compile Include="Monsters\Bosses\JackbNimble.cs" />
-    <Compile Include="Seasons\BlockTypeRegistry.cs" />
-    <Compile Include="Seasons\ISeason.cs" />
-    <Compile Include="Seasons\SeasonsFactory.cs" />
-    <Compile Include="Seasons\Summer.cs" />
-    <Compile Include="Seasons\Spring.cs" />
-    <Compile Include="Seasons\Fall.cs" />
-    <Compile Include="Seasons\Winter.cs" />
+    <Compile Include="Items\LootTables.cs" />
+    <Compile Include="QueueFactory.cs" />
+    <Compile Include="Research\IPandaResearch.cs" />
     <Compile Include="SettlersChatCommand.cs" />
-    <Compile Include="Monsters\MonstersChatCommand.cs" />
     <Compile Include="Monsters\BossesChatCommand.cs" />
     <Compile Include="Monsters\Bosses\PutridCorpse.cs" />
     <Compile Include="Monsters\Bosses\BulgingZombie.cs" />
@@ -154,17 +362,122 @@
     <Compile Include="Monsters\BossSpawnedEvent.cs" />
     <Compile Include="Monsters\PandaMonsterSpawner.cs" />
     <Compile Include="Monsters\Bosses\Hoarder.cs" />
-    <Compile Include="Monsters\PandaZombie.cs" />
     <Compile Include="PandaChat.cs" />
     <Compile Include="PandaLogger.cs" />
-    <Compile Include="Research\ColonyBuiltIn.cs" />
+    <Compile Include="ColonyBuiltIn.cs" />
     <Compile Include="Research\JobResearch.cs" />
     <Compile Include="Research\PandaResearch.cs" />
     <Compile Include="Managers\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ColonyArchiver.cs" />
-    <Compile Include="SettlersExtender.cs" />
+    <Compile Include="Extender\SettlersExtender.cs" />
+    <Compile Include="ColonyManager\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
+    <None Include="Schematics\ambiyafinal.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\castle-1.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\castle-froidinshire.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\castle-unfurnished.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\ender-castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\fantasy-fort-2.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\fantasy-fort.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\grand-colosseum.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\grand-hotel.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\jar9-castle-finished.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\large-medieval-castle-2.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\large-medieval-castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\large-medieval-house.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\medieval-castle-2.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\medieval-castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\medieval-fortified.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Medieval-Home.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\medieval-house.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\medieval-town-house.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Medium-House.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\mordern-castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\oakheart-castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Old-Cottage.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\palace-of-khalduun.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\royal-castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\Rural-house.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\rustic-mansion-large.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\saint-kailana-cathedral.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\small-cozy-house.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\the-tavern.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\victorian-house.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\watchtower.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schematics\wizard-tower.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\Buildings\riverwood-skyrim.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WorldGen\OreSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="AI\FirstNames.csv">
@@ -186,6 +499,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Audio\EarthTurret3.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\Environment.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Audio\FireTurret1.ogg">
@@ -338,6 +654,22 @@
     <None Include="AutoLoad\technologist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="localization\en-US\science\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="localization\en-US\help\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\cow.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\sapling.ply">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Schematics\XXL-Castle.schematic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Textures\texturemapping.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -407,9 +739,6 @@
     <None Include="Meshes\cutcubetesttriangle.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Meshes\daisy.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Meshes\door.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -420,9 +749,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\flaxstage2.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Meshes\Flowers1.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\halfslabtest.obj">
@@ -521,9 +847,6 @@
     <None Include="Meshes\PatrolFlag.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Meshes\rose.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Meshes\Selector.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -575,13 +898,7 @@
     <None Include="Meshes\stairz-.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Meshes\Sunflower.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Meshes\TeleportPad.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Meshes\tulip.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\upsidedownstairsx+.obj">
@@ -692,6 +1009,30 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="icons\Adamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\AdamantineNugget.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Backpack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Backpack1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\BootsOfFalling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\bow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\HealthBooster.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\adobeslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -704,13 +1045,7 @@
     <Content Include="icons\AirTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\aloe.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\Beef.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\bench.png">
+    <Content Include="icons\Architect.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\berrybushslab.png">
@@ -746,16 +1081,283 @@
     <Content Include="icons\blackplanksslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\Bluebonnet.png">
+    <Content Include="icons\ColonyManager.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\bow.png">
+    <Content Include="icons\MaxMagicItems1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\MaxMagicItems2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.baker1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.baker2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.baker3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.baker4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.baker5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.bloomeryjob1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.bloomeryjob2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.bloomeryjob3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.bloomeryjob4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.bloomeryjob5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.crafter1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.crafter2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.crafter3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.crafter4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.crafter5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.fineryforgejob1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.fineryforgejob2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.fineryforgejob3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.fineryforgejob4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.fineryforgejob5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.grinder1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.grinder2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.grinder3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.grinder4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.grinder5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardbow1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardbow2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardbow3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardbow4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardbow5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardcrossbow1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardcrossbow2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardcrossbow3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardcrossbow4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardcrossbow5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardmatchlock1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardmatchlock2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardmatchlock3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardmatchlock4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardmatchlock5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardslinger1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardslinger2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardslinger3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardslinger4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.guardslinger5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.gunsmithjob1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.gunsmithjob2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.gunsmithjob3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.gunsmithjob4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.gunsmithjob5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.kilnjob1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.kilnjob2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.kilnjob3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.kilnjob4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.kilnjob5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.merchant1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.merchant2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.merchant3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.merchant4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.merchant5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.metalsmithjob1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.metalsmithjob2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.metalsmithjob3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.metalsmithjob4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.metalsmithjob5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.minter1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.minter2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.minter3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.minter4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.minter5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.smelter1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.smelter2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.smelter3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.smelter4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.smelter5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.tailor1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.tailor2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.tailor3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.tailor4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.tailor5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.woodcutter1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.woodcutter2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.woodcutter3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.woodcutter4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\pipliz.woodcutter5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\sapling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Schematics.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\BuildersWand1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\BuildersWand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\cow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\EarthBossTurret.png">
@@ -782,6 +1384,12 @@
     <Content Include="icons\FireTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\MachinistBenchNight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Mana1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -792,9 +1400,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\blueclayslab.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\bread.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\brickslab.png">
@@ -812,16 +1417,7 @@
     <Content Include="icons\buildhammer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\cake.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\Carrot.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\chalk.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\Cheese.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\cherryblossom.png">
@@ -860,9 +1456,6 @@
     <Content Include="icons\cyanclayslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\daisy.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\darkblueClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -887,13 +1480,7 @@
     <Content Include="icons\dirtslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\egg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\Empty.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\Flowers1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\furnace.png">
@@ -986,21 +1573,6 @@
     <Content Include="icons\BerryPie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\BloomeryTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\BloomeryTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\BloomeryTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\BloomeryTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\BloomeryTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\bluebottle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1064,70 +1636,10 @@
     <Content Include="icons\emptybottle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\FineryForgeTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FineryForgeTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FineryForgeTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FineryForgeTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FineryForgeTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FurnaceTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FurnaceTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FurnaceTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FurnaceTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\FurnaceTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\Gate.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\greenbottle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GrinderTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GrinderTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GrinderTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GrinderTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GrinderTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GunSmithTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GunSmithTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GunSmithTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GunSmithTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\GunSmithTraining5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\herb.png">
@@ -1140,36 +1652,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\herbstage1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedBow1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedBow2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedBow3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedBow4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedBow5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedCrossbow1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedCrossbow2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedCrossbow3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedCrossbow4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedCrossbow5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\ImprovedDurability1.png">
@@ -1202,36 +1684,6 @@
     <Content Include="icons\ImprovedFuelCapacity5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\ImprovedMatchlockgun1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedMatchlockgun2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedMatchlockgun3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedMatchlockgun4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedMatchlockgun5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedSling1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedSling2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedSling3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedSling4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\ImprovedSling5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\IncreasedCapacity1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1248,21 +1700,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Infection.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\KilnTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\KilnTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\KilnTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\KilnTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\KilnTraining5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Knights1.png">
@@ -1292,70 +1729,94 @@
     <Content Include="icons\MatchlockTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\MerchantTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MerchantTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MerchantTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MerchantTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MerchantTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MetalSmithTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MetalSmithTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MetalSmithTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MetalSmithTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MetalSmithTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\MiningMachine.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MintTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MintTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MintTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MintTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\MintTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\rose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Selector.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\Sunflower.png">
+    <Content Include="icons\ServerManagementTool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkillEquiptmentResearch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkillEquiptmentResearch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledBoots2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledChest2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledGloves2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledHelm2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledLegs2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Skilledshield2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SkilledSword2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Sorcerer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\SorcererTable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Teleportation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\TeleportPad.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\tulip.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\void.png">
@@ -1365,21 +1826,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\water.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\OvenTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\OvenTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\OvenTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\OvenTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\OvenTraining5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\PatrolFlagItem.png">
@@ -1664,21 +2110,6 @@
     <Content Include="icons\SteelSword.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\TailorTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\TailorTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\TailorTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\TailorTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\TailorTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\TimeBetween1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1707,36 +2138,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\WaterTurret.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WoodcutterTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WoodcutterTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WoodcutterTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WoodcutterTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WoodcutterTraining5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WorkBenchTraining1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WorkBenchTraining2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WorkBenchTraining3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WorkBenchTraining4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\WorkBenchTraining5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\MasterOfAll1.png">
@@ -1808,9 +2209,6 @@
     <Content Include="icons\leavestemperateslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\lettuce.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\lightgreyClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1833,9 +2231,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\limestoneslab.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\linseedoil.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\logtaiga.png">
@@ -1908,9 +2303,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\oreSaphire.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="icons\pickaxe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\pinkClay.png">
@@ -2006,9 +2398,6 @@
     <Content Include="icons\Saw.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="icons\shop.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icons\simplechair.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2042,6 +2431,31 @@
     <Content Include="icons\strawslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="pdb2mdb.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.ComponentModel.DataAnnotations.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Data.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Numerics.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Runtime.Serialization.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Transactions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System.Xml.Linq.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\basket.png" />
+    <Content Include="Textures\albedo\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\AirBossTurret.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2063,9 +2477,6 @@
     <Content Include="Textures\albedo\blackClay.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\blackplanks.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Textures\albedo\Bluebonnet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2073,6 +2484,75 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\brownClay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\cow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\MachinistBenchTopNight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\SorcererTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\infiniteemerald.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\marblebricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\oreRuby.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\SorcererTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\stoneSquares.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\infiniteAdamantine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\infiniteemerald.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\marblebricks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\oreRuby.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\SorcererTableTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\stoneSquares.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_albedoa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_albedob.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_albedoc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_monster_specu_emiss_smooth_mask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_npc_albedo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_npc_normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\npc\base_npc_specu_emiss_smooth_mask.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\npc\Bulging.png">
@@ -2315,10 +2795,10 @@
     <Content Include="Textures\albedo\oreSapphire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\oreStone.png">
+    <Content Include="Textures\albedo\pad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\pad.png">
+    <Content Include="Textures\npc\monster_a_normal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\npc\Phase.png">
@@ -2361,9 +2841,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\stair.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\albedo\stoneblock.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\stonebrickstair.png">
@@ -2585,7 +3062,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>pdb2mdb.exe Pandaros.Settlers.dll</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
 </Project>

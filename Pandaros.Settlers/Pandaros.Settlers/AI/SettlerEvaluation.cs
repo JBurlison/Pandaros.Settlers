@@ -10,10 +10,10 @@ namespace Pandaros.Settlers.AI
     {
         private static readonly double _minFoodHours = TimeSpan.FromDays(3).TotalHours;
 
-        public static float SpawnChance(Players.Player p, Colony c, PlayerState state)
+        public static float SpawnChance(ColonyState state)
         {
             var chance        = .3f;
-            var remainingBeds = BedBlockTracker.GetCount(p) - c.FollowerCount;
+            var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(state.ColonyRef) - state.ColonyRef.FollowerCount;
 
             if (remainingBeds < 1)
                 chance -= 0.1f;
@@ -23,12 +23,12 @@ namespace Pandaros.Settlers.AI
             else if (remainingBeds > SettlerManager.MIN_PERSPAWN)
                 chance += 0.15f;
 
-            var hoursofFood = Stockpile.GetStockPile(p).TotalFood / c.FoodUsePerHour;
+            var hoursofFood = state.ColonyRef.Stockpile.TotalFood / state.ColonyRef.FoodUsePerHour;
 
             if (hoursofFood > _minFoodHours)
                 chance += 0.2f;
 
-            var jobCount = JobTracker.GetOpenJobCount(p);
+            var jobCount = state.ColonyRef.JobFinder.OpenJobCount;
 
             if (jobCount > state.MaxPerSpawn)
                 chance += 0.4f;
@@ -37,10 +37,10 @@ namespace Pandaros.Settlers.AI
             else
                 chance -= 0.2f;
 
-            if (state.Difficulty != GameDifficulty.Easy)
-                if (c.InSiegeMode ||
-                    c.LastSiegeModeSpawn != 0 &&
-                    Time.SecondsSinceStartDouble - c.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
+            if (state.Difficulty != GameDifficulty.Easy && state.Difficulty != GameDifficulty.Normal)
+                if (state.ColonyRef.InSiegeMode ||
+                    state.ColonyRef.LastSiegeModeSpawn != 0 &&
+                    Time.SecondsSinceStartDouble - state.ColonyRef.LastSiegeModeSpawn > TimeSpan.FromMinutes(5).TotalSeconds)
                     chance -= 0.4f;
 
             return chance;

@@ -1,8 +1,14 @@
-﻿using System;
-using System.Reflection;
+﻿using AI;
+using Jobs;
+using Newtonsoft.Json;
 using NPC;
+using Pandaros.Settlers.Items;
 using Pipliz;
-using Server.AI;
+using Pipliz.JSON;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Random = System.Random;
 
 namespace Pandaros.Settlers
@@ -17,7 +23,7 @@ namespace Pandaros.Settlers
         public static bool TakeItemFromInventory(this Players.Player player, ushort itemType)
         {
             var hasItem = false;
-            var invRef  = Inventory.GetInventory(player);
+            var invRef = player.Inventory;
 
             if (invRef != null)
                 invRef.TryRemove(itemType);
@@ -61,12 +67,15 @@ namespace Pandaros.Settlers
 
         public static void Heal(this NPCBase nPC, float heal)
         {
-            nPC.health += heal;
+            if (nPC != null)
+            {
+                nPC.health += heal;
 
-            if (nPC.health > NPCBase.MaxHealth)
-                nPC.health = NPCBase.MaxHealth;
+                if (nPC.health > nPC.Colony.NPCHealthMax)
+                    nPC.health = nPC.Colony.NPCHealthMax;
 
-            nPC.Update();
+                nPC.Update();
+            }
         }
 
         public static void Heal(this Players.Player pc, float heal)
@@ -115,6 +124,93 @@ namespace Pandaros.Settlers
         public static void SetFieldValue<oT>(this object o, string fieldName, object fieldValue)
         {
             typeof(oT).GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).SetValue(o, fieldValue);
+        }
+
+        public static float TotalDamage(this Dictionary<DamageType, float> damage)
+        {
+            return damage.Sum(kvp => kvp.Value);
+        }
+
+        private static byte ToByte(float f)
+        {
+            f = UnityEngine.Mathf.Clamp01(f);
+            return (byte)(f * 255);
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            foreach (var item in source)
+                action(item);
+        }
+
+        public static void ForEachOwner(this Colony source, Action<Players.Player> action)
+        {
+            foreach (var item in source.Owners)
+                action(item);
+        }
+
+        public static bool OwnerIsOnline(this Colony source)
+        {
+            return source.Owners.Any(o => o.IsConnected);
+        }
+
+        public static T GetRandomItem<T>(this List<T> l)
+        {
+            return l[Pipliz.Random.Next(l.Count)];
+        }
+
+        public static bool TryGetItem(this Dictionary<string, ushort> itemInedex, string itemName, out ItemTypes.ItemType itemType)
+        {
+            itemType = null;
+
+            if (itemInedex.TryGetValue(itemName, out ushort itemId) && ItemTypes.TryGetType(itemId, out itemType))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static void Merge(this JSONNode oldNode, JSONNode newNode)
+        {
+            if (newNode.NodeType != NodeType.Array && oldNode.NodeType != NodeType.Array)
+            {
+                foreach (var node in newNode.LoopObject())
+                {
+                    if (oldNode.TryGetChild(node.Key, out JSONNode existingChild))
+                        Merge(existingChild, node.Value);
+                    else
+                        oldNode.SetAs(node.Key, node.Value);
+                }
+            }
+        }
+
+        public static bool IsWithinBounds(this Vector3Int pos, Vector3Int boundsPos, BoundsInt bounds)
+        {
+            var boundsMax = boundsPos.Add(bounds.Size.x, bounds.Size.y, bounds.Size.z);
+
+            return pos.x >= boundsPos.x && pos.y >= boundsPos.y && pos.z >= boundsPos.z &&
+                    pos.x <= boundsMax.x && pos.y <= boundsMax.y && pos.z <= boundsMax.z;
+        }
+
+        public static JSONNode JsonSerialize<T>(this T obj)
+        {
+            var objStr = JsonConvert.SerializeObject(obj, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            PandaLogger.LogToFile(objStr);
+            var json = JSON.DeserializeString(objStr);
+
+            if (obj is ICSType csType && csType.customData != null)
+                json.SetAs("customData", csType.customData);
+
+            if (obj is ICSGenerateType csGenType && csGenType.baseType != null && csGenType.baseType.customData != null)
+                json.GetAs<JSONNode>("baseType").SetAs("customData", csGenType.baseType.customData);
+
+            return json;
+        }
+
+        public static T JsonDeerialize<T>(this JSONNode node)
+        {
+            return JsonConvert.DeserializeObject<T>(node.ToString(), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
         }
     }
 }
