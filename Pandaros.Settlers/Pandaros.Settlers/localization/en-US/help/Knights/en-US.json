@@ -1,0 +1,18 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "Wiki": {
+          "Knights": {
+            "Title": "Knights",
+            "Description": "Once researched you can craft Patrol Banners at the workbench. Knight patrols require Swords. They will always use the best sword in the stockpile. Knights also get first pick (after the player) of armor. Knights are also tougher than other colonists and take 60% less damage before any armor is applied. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:",
+            "LeftClickAction": "Left Click: Place a Patrol Flag",
+            "RightClickAction": "Right Click: Comfirm Patrol and start Job",
+            "DestroyBanner": "To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.",
+            "Note": "NOTE: Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!"
+          }
+        }
+      }
+    }
+  }
+}

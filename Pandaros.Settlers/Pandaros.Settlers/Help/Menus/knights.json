@@ -1,47 +1,44 @@
 {
   "Wiki": {
     "Knights": {
-      "header": "Knights",
-      "width": 1000,
-      "height": 700,
+      "header": "Pandaros.Settlers.Wiki.Knights.Title",
       "Items": [
         {
-          "type": "label",
-          "text": "Knights!",
-          "alignement": "Center",
-          "fontsize": 32
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.HelpMenu.ReturnToMainMenu",
+            "alignement": "MiddleCenter"
+          }
         },
         {
           "type": "label",
-          "text": "Once researched you can craft Patrol Banners at the workbench. Knight patrols require Swords. They will always use the best sword in the stockpile. Knights also get first pick (after the player) of armor. Knights are also tougher than other colonists and take 60% less damage before any armor is applied. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:",
-          "alignement": "Left"
+          "text": "Pandaros.Settlers.Wiki.Knights.Description"
         },
         {
           "type": "label",
-          "text": "Left Click: Place a Patrol Flag",
-          "alignement": "Left",
+          "text": "Pandaros.Settlers.Wiki.Knights.LeftClickAction",
           "position": 50
         },
         {
           "type": "label",
-          "text": "Right Click: Comfirm Patrol and start Job",
-          "alignement": "Left",
+          "text": "Pandaros.Settlers.Wiki.Knights.RightClickAction",
           "position": 50
         },
         {
           "type": "label",
-          "text": "To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.",
+          "text": "Pandaros.Settlers.Wiki.Knights.DestroyBanner",
           "alignement": "Left"
         },
         {
           "type": "label",
-          "text": "NOTE Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!",
+          "text": "Pandaros.Settlers.Wiki.Knights.Note",
           "alignement": "Left"
         },
         {
           "type": "table",
-          "row_height": 70,
-          "col_width": 200,
           "rows": [
             [
               {

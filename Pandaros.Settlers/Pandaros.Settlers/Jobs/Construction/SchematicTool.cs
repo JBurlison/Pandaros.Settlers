@@ -211,11 +211,11 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 {
                                     var item = ItemTypes.GetType(kvp.Key);
 
-                                    List<IItem> items = new List<IItem>();
-                                    items.Add(new ItemIcon(kvp.Key));
-                                    items.Add(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)));
-                                    items.Add(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)));
-                                    menu.Items.Add(new HorizontalGrid(items, 200));
+                                    List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
+                                    items.Add(TupleStruct.Create<IItem, int>(new ItemIcon(kvp.Key), 200));
+                                    items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 200));
+                                    items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)), 200));
+                                    menu.Items.Add(new HorizontalRow(items));
                                 }
 
                                 menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Rotation"), UnityEngine.Color.black), Selected_Schematic + ".Rotation", _rotation.Select(r => r.ToString()).ToList()));

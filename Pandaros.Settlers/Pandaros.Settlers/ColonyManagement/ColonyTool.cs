@@ -290,19 +290,19 @@ namespace Pandaros.Settlers.ColonyManagement
             }
 
 
-            List<IItem> header = new List<IItem>();
+            List<TupleStruct<IItem, int>> header = new List<TupleStruct<IItem, int>>();
 
-            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Job"), UnityEngine.Color.black)));
+            header.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Job"), UnityEngine.Color.black)), 140));
 
             if (!fired)
-                header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+                header.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 140));
 
-            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Working"), UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("NotWorking"), UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
-            header.Add(new Label(new LabelData("", UnityEngine.Color.black)));
+            header.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Working"), UnityEngine.Color.black)), 140));
+            header.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("NotWorking"), UnityEngine.Color.black)), 140));
+            header.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 140));
+            header.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 140));
 
-            menu.Items.Add(new HorizontalGrid(header, 140));
+            menu.Items.Add(new HorizontalRow(header));
             int jobCount = 0;
 
             foreach (var jobKvp in jobCounts)
@@ -311,31 +311,31 @@ namespace Pandaros.Settlers.ColonyManagement
                     continue;
 
                 jobCount++;
-                List<IItem> items = new List<IItem>();
+                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
 
-                items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player), UnityEngine.Color.black)));
+                items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault(jobKvp.Key.Replace(" ", ""), player), UnityEngine.Color.black)), 140));
 
                 if (!fired)
-                    items.Add(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback(jobKvp.Key + ".JobDetailsButton", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 140));
 
-                items.Add(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)));
-                items.Add(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)));
+                items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(jobKvp.Value.TakenCount.ToString(), UnityEngine.Color.black)), 140));
+                items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(jobKvp.Value.AvailableCount.ToString(), UnityEngine.Color.black)), 140));
 
                 if (fired)
                 {
-                    items.Add(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData(_localizationHelper.GetLocalizationKey("MoveFired"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)));
+                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback(jobKvp.Key + ".MoveFired", new LabelData(_localizationHelper.GetLocalizationKey("MoveFired"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft)), 140));
                 }
                 else
                 {
-                    items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount));
-                    items.Add(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData(_localizationHelper.GetLocalizationKey("Recruit"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-                    items.Add(new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData(_localizationHelper.GetLocalizationKey("Fire"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+                    items.Add(TupleStruct.Create<IItem, int>(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black), jobKvp.Key + ".Recruit", _recruitCount), 140));
+                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback(jobKvp.Key + ".RecruitButton", new LabelData(_localizationHelper.GetLocalizationKey("Recruit"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 140));
+                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback(jobKvp.Key + ".FireButton", new LabelData(_localizationHelper.GetLocalizationKey("Fire"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 140));
                     
                 }
 
                 menu.LocalStorage.SetAs(jobKvp.Key + ".Recruit", 0);
 
-                menu.Items.Add(new HorizontalGrid(items, 140));
+                menu.Items.Add(new HorizontalRow(items));
             }
 
             if (jobCount == 0)
