@@ -198,13 +198,6 @@ namespace Pandaros.Settlers
             var objStr = JsonConvert.SerializeObject(obj, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
             PandaLogger.LogToFile(objStr);
             var json = JSON.DeserializeString(objStr);
-
-            if (obj is ICSType csType && csType.customData != null)
-                json.SetAs("customData", csType.customData);
-
-            if (obj is ICSGenerateType csGenType && csGenType.baseType != null && csGenType.baseType.customData != null)
-                json.GetAs<JSONNode>("baseType").SetAs("customData", csGenType.baseType.customData);
-
             return json;
         }
 
