@@ -13,16 +13,16 @@ namespace Pandaros.Settlers.Items
     public class CSType : ICSType
     {
         public virtual string name { get; set; }
-        public virtual bool? isDestructible { get; }
-        public virtual bool? isRotatable { get; }
-        public virtual bool? isSolid { get; }
-        public virtual bool? isFertile { get; }
-        public virtual bool? isPlaceable { get; }
-        public virtual bool? needsBase { get; }
-        public virtual int? maxStackSize { get; }
-        public virtual float? foodValue { get; }
-        public virtual float? happiness { get; }
-        public virtual float? dailyFoodFractionOptimal { get; }
+        public virtual bool? isDestructible { get; set; }
+        public virtual bool? isRotatable { get; set; }
+        public virtual bool? isSolid { get; set; }
+        public virtual bool? isFertile { get; set; }
+        public virtual bool? isPlaceable { get; set; }
+        public virtual bool? needsBase { get; set; }
+        public virtual int? maxStackSize { get; set; }
+        public virtual float? foodValue { get; set; }
+        public virtual float? happiness { get; set; }
+        public virtual float? dailyFoodFractionOptimal { get; set; }
         public virtual string mesh { get; set; }
         public virtual string icon { get; set; }
         public virtual string onRemoveAudio { get; set; }
@@ -55,11 +55,12 @@ namespace Pandaros.Settlers.Items
         public virtual string onRemoveType { get; set; }
         public virtual string onRemoveAmount { get; set; }
         public virtual string onRemoveChance { get; set; }
-        public virtual List<OnRemove> onRemove { get; set; } = new List<OnRemove>();
+        public virtual List<OnRemove> onRemove { get; set; }
         public virtual bool? blocksPathing => isSolid;
         public virtual Colliders colliders { get; set; }
-        public virtual List<string> categories { get; set; } = new List<string>();
+        public virtual List<string> categories { get; set; }
         public virtual ItemRarity Rarity { get; set; } = ItemRarity.Common;
         public virtual StaticItem StaticItemSettings { get; set; }
+        public virtual OpenMenuSettings OpensMenuSettings { get; set; }
     }
 }

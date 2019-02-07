@@ -97,6 +97,9 @@ namespace Pandaros.Settlers.Extender.Providers
                 if (itemType is IPlayerMagicItem pmi)
                     MagicItemsCache.PlayerMagicItems[pmi.name] = pmi;
 
+                if (itemType.OpensMenuSettings != null && !string.IsNullOrEmpty(itemType.OpensMenuSettings.ItemName))
+                    Help.UIManager.OpenMenuItems.Add(itemType.OpensMenuSettings);
+
                 _sb.Append($"{itemType.name}, ");
                 i++;
 

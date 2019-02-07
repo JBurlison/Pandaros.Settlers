@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Pandaros.Settlers.Managers;
-using Pipliz;
+﻿using Pipliz;
 using Pipliz.Collections;
 using Pipliz.JSON;
+using System.Collections.Generic;
 using Random = System.Random;
 
 namespace Pandaros.Settlers.Jobs.Roaming

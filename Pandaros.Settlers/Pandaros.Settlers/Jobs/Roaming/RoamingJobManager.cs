@@ -1,6 +1,5 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Jobs.Roaming;
 using Pipliz;
 using Pipliz.JSON;
 using Shared;
@@ -10,7 +9,7 @@ using System.Linq;
 using Math = Pipliz.Math;
 using Time = Pipliz.Time;
 
-namespace Pandaros.Settlers.Managers
+namespace Pandaros.Settlers.Jobs.Roaming
 {
     [ModLoader.ModManager]
     public static class RoamingJobManager

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     [ModLoader.ModManager]
     public class Permission

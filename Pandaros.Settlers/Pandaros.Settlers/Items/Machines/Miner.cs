@@ -1,8 +1,5 @@
-﻿using BlockTypes;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Jobs;
+﻿using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;

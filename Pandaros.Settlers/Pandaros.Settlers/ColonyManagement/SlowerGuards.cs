@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     public class SlowerGuards : IHappinessEffect
     {

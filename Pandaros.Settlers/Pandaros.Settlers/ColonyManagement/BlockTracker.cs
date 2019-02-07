@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Jobs;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     [ModLoader.ModManager]
     public class BlockTracker
@@ -18,6 +19,8 @@ namespace Pandaros.Settlers.ColonyManager
         static QueueFactory<TrackedPosition> _recordPositionFactory = new QueueFactory<TrackedPosition>("RecordPositions", 1);
         static List<TrackedPosition> _queuedPositions = new List<TrackedPosition>();
         private static readonly byte[] _SOH = new[] { (byte)0x02 };
+
+        public static object Managers { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".ColonyManager.BlockTracker.OnShouldKeepChunkLoaded")]
         public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData data)
@@ -112,7 +115,7 @@ namespace Pandaros.Settlers.ColonyManager
                 npc.OnDeath();
             }
 
-            Managers.RoamingJobManager.Objectives.Remove(colony);
+            RoamingJobManager.Objectives.Remove(colony);
 
             ServerManager.ColonyTracker.ColoniesLock.EnterWriteLock();
             ServerManager.ColonyTracker.ColoniesByID.Remove(colony.ColonyID);

@@ -1,15 +1,13 @@
-﻿using BlockTypes;
-using MeshedObjects;
+﻿using MeshedObjects;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Monsters;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Time = Pipliz.Time;
 

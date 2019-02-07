@@ -1,9 +1,8 @@
 ﻿using Chatting;
-using Pandaros.Settlers.Managers;
 using System;
 using System.Collections.Generic;
 
-namespace Pandaros.Settlers
+namespace Pandaros.Settlers.ColonyManagement
 {
     public class ColonyArchiver : IChatCommand
     {
@@ -19,7 +18,7 @@ namespace Pandaros.Settlers
                 return true;
 
             foreach (var c in ServerManager.ColonyTracker.ColoniesByID.Values)
-                ColonyManager.ColonyArchive.SaveOffline(c);
+                ColonyArchive.SaveOffline(c);
 
             return true;
         }

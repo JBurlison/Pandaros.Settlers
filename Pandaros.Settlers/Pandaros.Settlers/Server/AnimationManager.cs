@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Managers
+namespace Pandaros.Settlers.Server
 {
     public static class AnimationManager
     {

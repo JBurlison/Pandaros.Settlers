@@ -1,12 +1,8 @@
-﻿using Pandaros.Settlers.Managers;
+﻿using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Research;
-using Pipliz;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Entities
 {

@@ -20,7 +20,7 @@ using Math = System.Math;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
 
-namespace Pandaros.Settlers.Managers
+namespace Pandaros.Settlers.ColonyManagement
 {
     [ModLoader.ModManager]
     public static class SettlerManager

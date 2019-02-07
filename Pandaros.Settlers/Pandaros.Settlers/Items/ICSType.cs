@@ -65,5 +65,6 @@ namespace Pandaros.Settlers.Items
         string sidezp { get; }
         ItemRarity Rarity { get; }
         StaticItem StaticItemSettings { get; }
+        OpenMenuSettings OpensMenuSettings { get; }
     }
 }

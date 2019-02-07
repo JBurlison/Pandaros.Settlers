@@ -12,7 +12,7 @@ using static ItemTypesServer;
 using Pandaros.Settlers.Extender;
 using Pandaros.Settlers.Entities;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     public class ColonistDiedTracker : IOnTimedUpdate
     {

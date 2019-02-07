@@ -138,14 +138,14 @@
     <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
-    <Compile Include="ColonyManager\BlockTracker.cs" />
-    <Compile Include="ColonyManager\CloseBeds.cs" />
-    <Compile Include="ColonyManager\ColonistDied.cs" />
-    <Compile Include="ColonyManager\ColonyArchive.cs" />
-    <Compile Include="ColonyManager\ColonyTool.cs" />
-    <Compile Include="ColonyManager\JobSettingsExtention.cs" />
-    <Compile Include="ColonyManager\Permission.cs" />
-    <Compile Include="ColonyManager\SlowerGuards.cs" />
+    <Compile Include="ColonyManagement\BlockTracker.cs" />
+    <Compile Include="ColonyManagement\CloseBeds.cs" />
+    <Compile Include="ColonyManagement\ColonistDied.cs" />
+    <Compile Include="ColonyManagement\ColonyArchive.cs" />
+    <Compile Include="ColonyManagement\ColonyTool.cs" />
+    <Compile Include="ColonyManagement\JobSettingsExtention.cs" />
+    <Compile Include="ColonyManagement\Permission.cs" />
+    <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
     <Compile Include="Extender\IOnColonyCreated.cs" />
     <Compile Include="Extender\IOnLoadingColony.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Items\EquiptmentManager.cs" />
     <Compile Include="Items\IGenerateType.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
+    <Compile Include="Items\OpenMenuSettings.cs" />
     <Compile Include="Items\PlayerMagicItem.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
@@ -167,7 +168,7 @@
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="JSONExtentionMethods.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
-    <Compile Include="Managers\ServerManagement.cs" />
+    <Compile Include="Server\ServerManagement.cs" />
     <Compile Include="Models\TrackedPosition.cs" />
     <Compile Include="Monsters\IMonsterNPCType.cs" />
     <Compile Include="Monsters\MonsterNPCData.cs" />
@@ -254,10 +255,10 @@
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
     <Compile Include="Jobs\Roaming\IRoamingJobObjective.cs" />
-    <Compile Include="Managers\RoamingJobManager.cs" />
+    <Compile Include="Jobs\Roaming\RoamingJobManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
-    <Compile Include="Managers\AnimationManager.cs" />
+    <Compile Include="Server\AnimationManager.cs" />
     <Compile Include="Items\Weapons\Sword.cs" />
     <Compile Include="Items\Weapons\WeaponMetadata.cs" />
     <Compile Include="Jobs\AdvancedCrafter.cs" />
@@ -269,7 +270,7 @@
     <Compile Include="Entities\SettlerInventory.cs" />
     <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
-    <Compile Include="Managers\MonsterManager.cs" />
+    <Compile Include="Monsters\MonsterManager.cs" />
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
     <None Include="App.config">
@@ -341,7 +342,7 @@
     <None Include="MCtoCSMapping.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="Managers\UIManager.cs" />
+    <Compile Include="Help\UIManager.cs" />
     <Compile Include="MethodUtil.cs" />
     <Compile Include="Models\ItemId.cs" />
     <Compile Include="Monsters\Bosses\BossLoot.cs" />
@@ -367,11 +368,11 @@
     <Compile Include="ColonyBuiltIn.cs" />
     <Compile Include="Research\JobResearch.cs" />
     <Compile Include="Research\PandaResearch.cs" />
-    <Compile Include="Managers\SettlerManager.cs" />
+    <Compile Include="ColonyManagement\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ColonyArchiver.cs" />
+    <Compile Include="ColonyManagement\ColonyArchiver.cs" />
     <Compile Include="Extender\SettlersExtender.cs" />
-    <Compile Include="ColonyManager\StatsCache.cs" />
+    <Compile Include="ColonyManagement\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
     <None Include="Schematics\ambiyafinal.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,4 +1,4 @@
-﻿using Pandaros.Settlers.Managers;
+﻿using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Monsters.Bosses;
 using System;
 using System.Collections.Generic;

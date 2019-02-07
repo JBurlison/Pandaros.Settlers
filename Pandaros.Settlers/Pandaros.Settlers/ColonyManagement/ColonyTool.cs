@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Pandaros.Settlers.Items.StaticItems;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     public class ColonyManagementTool : CSType
     {

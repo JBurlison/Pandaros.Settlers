@@ -4,7 +4,7 @@ using NetworkUI.Items;
 using Pandaros.Settlers.Entities;
 using System.Collections.Generic;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     // TODO: More stats?
     [ModLoader.ModManager]

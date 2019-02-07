@@ -1,7 +1,5 @@
-﻿using BlockTypes;
-using Jobs;
+﻿using Jobs;
 using NPC;
-using Pandaros.Settlers.Managers;
 using Pipliz;
 using Shared;
 using System.Collections.Generic;

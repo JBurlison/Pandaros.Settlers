@@ -1,6 +1,7 @@
 ﻿using AI;
 using Monsters;
 using NPC;
+using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Monsters;
@@ -14,7 +15,7 @@ using System.Reflection;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
 
-namespace Pandaros.Settlers.Managers
+namespace Pandaros.Settlers.Monsters
 {
     [ModLoader.ModManager]
     public static class MonsterManager

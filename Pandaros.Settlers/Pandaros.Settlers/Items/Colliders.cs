@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Items
 
         public bool collidePlayer { get; set; }
         public bool collideSelection { get; set; }
-        public List<Boxes> boxes { get; set; } = new List<Boxes>();
+        public List<Boxes> boxes { get; set; }
 
         public Colliders() { }
 

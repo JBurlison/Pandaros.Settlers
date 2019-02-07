@@ -1,6 +1,6 @@
 ﻿using Chatting;
+using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Managers;
 using Pipliz;
 using Pipliz.JSON;
 using System;

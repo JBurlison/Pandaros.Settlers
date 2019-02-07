@@ -1,7 +1,8 @@
 ﻿using Chatting;
 using Pandaros.Settlers.AI;
+using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Items.Armor;
-using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Monsters;
 using Pipliz.JSON;
 using System;

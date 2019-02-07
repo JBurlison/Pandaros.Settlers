@@ -7,15 +7,39 @@ using Pipliz.JSON;
 using NetworkUI;
 using NetworkUI.Items;
 using Pandaros.Settlers.Help;
+using Pandaros.Settlers.Items;
+using Shared;
+using Pandaros.Settlers.Models;
 
-namespace Pandaros.Settlers.Managers
+namespace Pandaros.Settlers.Help
 {
     [ModLoader.ModManager]
     public static class UIManager
     {
         public static JSONNode LoadedMenus { get; private set; } = new JSONNode();
         private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("HelpMenu");
+        public static List<OpenMenuSettings> OpenMenuItems { get; private set; } = new List<OpenMenuSettings>();
 
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
+        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        {
+            if (player == null)
+                return;
+
+            foreach (var item in OpenMenuItems)
+            {
+                if (boxedData.item1.clickType != item.ActivateClickType)
+                    continue;
+
+                if (ItemTypes.IndexLookup.TryGetIndex(item.ItemName, out var menuItem) &&
+                    boxedData.item1.typeSelected == menuItem)
+                {
+                    SendMenu(player, item.UIUrl);
+                }
+            }
+        }
+        
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, GameLoader.NAMESPACE + ".Managers.OnAssemblyLoaded")]
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".OnAssemblyLoaded")]
@@ -428,6 +452,12 @@ namespace Pandaros.Settlers.Managers
                 items.Add(chance);
 
                 menu.Items.Add(new HorizontalGrid(items, menu.Width / items.Count));
+
+                if (Localization.TryGetTypeUse(player.LastKnownLocale, req.Type, out var description))
+                    menu.Items.Add(new Label(new LabelData(description, UnityEngine.Color.black)));
+
+                if (Localization.TryGetSentence(player.LastKnownLocale, _localizationHelper.GetLocalizationKey("ItemDetails." + ItemId.GetItemId(req.Type).Name), out var extendedDetail))
+                    menu.Items.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)));
             }
 
             menu.Items.Add(new Line(UnityEngine.Color.black, 1));

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Pandaros.Settlers.Items.StaticItems;
 
-namespace Pandaros.Settlers.Managers
+namespace Pandaros.Settlers.Server
 {
     public class ServerManagementTool : CSType
     {

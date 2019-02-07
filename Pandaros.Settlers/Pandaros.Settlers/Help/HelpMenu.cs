@@ -1,5 +1,4 @@
 ﻿using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Managers;
 using Pipliz;
 using Shared;
 using System.Collections.Generic;
@@ -27,26 +26,11 @@ namespace Pandaros.Settlers.Help
             "aaa"
         };
         public override StaticItem StaticItemSettings => new StaticItem() { Name = NAME };
-    }
-
-    [ModLoader.ModManager]
-    public static class HelpMenu
-    {
-        public static readonly string NAMESPACE = GameLoader.NAMESPACE + ".HelpMenu.";
-        public static readonly string MAIN_MENU_NAME = NAMESPACE + "MainMenu";
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        public override OpenMenuSettings OpensMenuSettings => new OpenMenuSettings()
         {
-            //Only launch on RIGHT click
-            if(player == null || boxedData.item1.clickType != PlayerClickedData.ClickType.Right)
-                return;
-
-            if (ItemTypes.IndexLookup.TryGetIndex(HelpMenuActivator.NAME, out var helpMenuitem) &&
-                boxedData.item1.typeSelected == helpMenuitem)
-            {
-                UIManager.SendMenu(player, "Wiki.MainMenu");
-            }
-        }
+            ActivateClickType = PlayerClickedData.ClickType.Right,
+            ItemName = NAME,
+            UIUrl = "Wiki.MainMenu"
+        };
     }
 }

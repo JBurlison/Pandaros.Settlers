@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static BlockEntities.Implementations.BedTracker;
 
-namespace Pandaros.Settlers.ColonyManager
+namespace Pandaros.Settlers.ColonyManagement
 {
     [ModLoader.ModManager]
     public class CloseBeds : IHappinessCause

@@ -8,7 +8,14 @@
           "Results": "Results:",
           "Item": "Item",
           "Amount": "Amount",
-          "Chance": "Chance"
+          "Chance": "Chance",
+          "ItemDetails": {
+            "Pandaros": {
+              "Settlers": {
+                "Esper": "Used for Magic Items and Elemental Turrets!"
+              }
+            }
+          }
         }
       }
     }

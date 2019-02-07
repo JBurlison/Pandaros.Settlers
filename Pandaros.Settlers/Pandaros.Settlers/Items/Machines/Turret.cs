@@ -1,9 +1,7 @@
-﻿using BlockTypes;
-using Monsters;
-using NPC;
+﻿using Monsters;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;

@@ -7,7 +7,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Managers;
+using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.Collections;
 using Pipliz.JSON;

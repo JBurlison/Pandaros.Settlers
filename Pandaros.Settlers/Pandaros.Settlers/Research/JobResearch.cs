@@ -1,6 +1,4 @@
-﻿using BlockTypes;
-using Pandaros.Settlers.ColonyManager;
-using Pandaros.Settlers.Managers;
+﻿using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Models;
 using System.Collections.Generic;
 

@@ -1,14 +1,11 @@
-﻿using BlockTypes;
-using NPC;
+﻿using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Healing;
 using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Managers;
 using Pandaros.Settlers.Models;
 using Science;
 using System;

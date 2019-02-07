@@ -1,7 +1,4 @@
-﻿using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Managers;
-using Pandaros.Settlers.Monsters.Bosses;
+﻿using Pandaros.Settlers.Jobs.Roaming;
 using System;
 using System.Collections.Generic;
 using System.Text;

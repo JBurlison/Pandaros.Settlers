@@ -1,7 +1,7 @@
 ﻿using System;
 using NPC;
+using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Managers;
 using Pipliz;
 
 namespace Pandaros.Settlers.AI
