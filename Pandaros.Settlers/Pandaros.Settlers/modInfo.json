@@ -68,6 +68,11 @@
       },
       {
         "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/Apothecary/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/science/en-US.json",
         "index": -99999
       },
