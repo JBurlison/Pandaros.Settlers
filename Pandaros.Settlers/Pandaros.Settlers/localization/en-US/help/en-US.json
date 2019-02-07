@@ -9,6 +9,7 @@
           "Item": "Item",
           "Amount": "Amount",
           "Chance": "Chance",
+          "ReturnToMainMenu": "Return to main menu",
           "ItemDetails": {
             "Pandaros": {
               "Settlers": {

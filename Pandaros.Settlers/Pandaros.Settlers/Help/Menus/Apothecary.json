@@ -2,9 +2,17 @@
   "Wiki": {
     "Apothecary": {
       "header": "Pandaros.Settlers.Wiki.Apothecary.Title",
-      "width": 800,
-      "height": 600,
       "Items": [
+        {
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.HelpMenu.ReturnToMainMenu",
+            "alignement": "MiddleCenter"
+          }
+        },
         {
           "type": "label",
           "text": "Pandaros.Settlers.Wiki.Apothecary.Description"
@@ -12,14 +20,6 @@
         {
           "type": "JobRecipies",
           "job": "Pandaros.Settlers.Apothecary"
-        },
-        {
-          "type": "link",
-          "url": "Wiki.MainMenu",
-          "width": 150,
-          "label": {
-            "text": "Return to main menu"
-          }
         }
       ]
     }

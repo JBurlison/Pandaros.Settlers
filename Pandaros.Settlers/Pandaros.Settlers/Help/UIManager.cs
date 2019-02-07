@@ -98,12 +98,15 @@ namespace Pandaros.Settlers.Help
             json.TryGetAsOrDefault("header", out string header, "Title");
             menu.LocalStorage.SetAs("header", header);
 
-            if(json.HasChild("width"))
+            if (json.HasChild("width"))
                 menu.Width = json.GetAs<int>("width");
+            else
+                menu.Width = Configuration.GetorDefault("MenuWidth", 1000);
 
-            if(json.HasChild("height"))
+            if (json.HasChild("height"))
                 menu.Height = json.GetAs<int>("height");
-
+            else
+                menu.Height = Configuration.GetorDefault("MenuHeight", 700);
 
             foreach(JSONNode item in ( json.GetAs<JSONNode>("Items") ).LoopArray())
                 menu.Items.Add(LoadItem(item, ref menu, player));
