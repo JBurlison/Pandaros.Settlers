@@ -167,12 +167,12 @@ namespace Pandaros.Settlers
 
         public bool TryGetValue(K key, out V value)
         {
-            throw new NotImplementedException();
+            return _innerDict.TryGetValue(key, out value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _innerDict.GetEnumerator();
         }
     }
 }
