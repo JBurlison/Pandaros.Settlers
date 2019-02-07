@@ -11,8 +11,7 @@ namespace Pandaros.Settlers.Items
     {
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Items.Elementium.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Elementium.Register")]
         public static void Register()
         {
             var aether = new InventoryItem(Aether.Item.ItemIndex, 1);
@@ -28,12 +27,13 @@ namespace Pandaros.Settlers.Items
                                     new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
                                     10);
 
+            recipe.Results.Add(new ItemTypes.ItemTypeDrops(Void.Item.ItemIndex, 1, 0.03f));
+
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
-            GameLoader.NAMESPACE + ".Items.Elementium.Add")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Elementium.Add")]
         [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {

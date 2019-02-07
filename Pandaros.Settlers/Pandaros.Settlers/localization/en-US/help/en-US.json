@@ -3,7 +3,12 @@
     "Pandaros": {
       "Settlers": {
         "HelpMenu": {
-          "title": "Settlers! Mod Help"
+          "title": "Settlers! Mod Help",
+          "Requirements": "Requirements:",
+          "Results": "Results:",
+          "Item": "Item",
+          "Amount": "Amount",
+          "Chance": "Chance"
         }
       }
     }

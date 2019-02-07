@@ -7,17 +7,18 @@
       "Items": [
         {
           "type": "label",
-          "text": "Pandaros.Settlers.Wiki.Apothecary.Description",
-          "alignement": "Left"
+          "text": "Pandaros.Settlers.Wiki.Apothecary.Description"
+        },
+        {
+          "type": "JobRecipies",
+          "job": "Pandaros.Settlers.Apothecary"
         },
         {
           "type": "link",
           "url": "Wiki.MainMenu",
           "width": 150,
           "label": {
-            "text": "Return to main menu",
-            "color": "blue",
-            "alignement": "Center"
+            "text": "Return to main menu"
           }
         }
       ]

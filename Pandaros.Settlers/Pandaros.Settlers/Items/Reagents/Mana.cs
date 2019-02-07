@@ -24,6 +24,7 @@ namespace Pandaros.Settlers.Items
                                     new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
                                     50);
 
+            recipe.Results.Add(new ItemTypes.ItemTypeDrops(Esper.Item.ItemIndex, 1, 0.03f));
             ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
         }
 
