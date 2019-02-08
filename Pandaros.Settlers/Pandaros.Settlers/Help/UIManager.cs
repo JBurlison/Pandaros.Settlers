@@ -178,10 +178,11 @@ namespace Pandaros.Settlers.Help
 
                 case "jobrecipies":
                     {
-                        List<Recipes.Recipe> recipes = new List<Recipes.Recipe>();
-
                         if (item.TryGetAs("job", out string job))
                         {
+                            List<Recipes.Recipe> recipes = new List<Recipes.Recipe>();
+                            menuItem = new List<IItem>();
+
                             if (ServerManager.RecipeStorage.DefaultRecipesPerLimitType.TryGetValue(job, out var recipesDefault))
                                 recipes.AddRange(recipesDefault);
 
@@ -247,6 +248,7 @@ namespace Pandaros.Settlers.Help
                             PandaLogger.Log("ItemRecipe: Not recipe found for: " + name );
                             return found;
                         }
+
                         menuItem = new List<IItem>();
                         
                         if (Localization.TryGetType(player.LastKnownLocale, index, out string localeName))
@@ -411,25 +413,29 @@ namespace Pandaros.Settlers.Help
                     {
                         item.TryGetAsOrDefault<int>("row_height", out int height, 30);
 
-                        foreach(JSONNode rows in ( item.GetAs<JSONNode>("rows") ).LoopArray())
+                        if (item.TryGetAs("rows", out JSONNode rows) && rows.ChildCount != 0)
                         {
-                            List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-                            var width = menu.Width / rows.ChildCount;
-
-                            foreach(JSONNode row in rows.LoopArray())
-                            {
-                                if (LoadItem(row, ref menu, player, out var newMenuItems))
-                                    foreach (var newItem in newMenuItems)
-                                        if (row.TryGetAs("col_width", out int setWidth))
-                                            items.Add(TupleStruct.Create(newItem, setWidth));
-                                        else
-                                            items.Add(TupleStruct.Create(newItem, width));
-                            }
-
-                            menuItem = new List<IItem>() { new HorizontalRow(items, height).ApplyPosition(item) };
+                            menuItem = new List<IItem>();
                             found = true;
-                        }
 
+                            foreach (JSONNode row in rows.LoopArray())
+                            {
+                                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
+                                var width = menu.Width / row.ChildCount;
+
+                                foreach (JSONNode col in row.LoopArray())
+                                {
+                                    if (LoadItem(col, ref menu, player, out var newMenuItems))
+                                        foreach (var newItem in newMenuItems)
+                                            if (col.TryGetAs("col_width", out int setWidth))
+                                                items.Add(TupleStruct.Create(newItem, setWidth));
+                                            else
+                                                items.Add(TupleStruct.Create(newItem, width));
+                                }
+
+                                menuItem.Add(new HorizontalRow(items, height).ApplyPosition(item));
+                            }
+                        }
                     }
                     break;
 

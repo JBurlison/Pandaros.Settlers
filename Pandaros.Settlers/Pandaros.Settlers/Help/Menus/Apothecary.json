@@ -14,12 +14,16 @@
           }
         },
         {
+          "type": "space"
+        },
+        {
           "type": "label",
           "text": "Pandaros.Settlers.Wiki.Apothecary.Description"
         },
         {
           "type": "JobRecipies",
-          "job": "Pandaros.Settlers.Apothecary"
+          "job": "Pandaros.Settlers.Apothecary",
+          "position": 50
         }
       ]
     }
