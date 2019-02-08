@@ -2,14 +2,16 @@
   "Wiki": {
     "Machinists": {
       "header": "Machinists",
-      "width": 1000,
-      "height": 700,
       "Items": [
         {
-          "type": "label",
-          "text": "Machinists!",
-          "alignement": "Center",
-          "fontsize": 32
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.HelpMenu.ReturnToMainMenu",
+            "alignement": "MiddleCenter"
+          }
         },
         {
           "type": "label",
@@ -87,7 +89,7 @@
             "color": "blue",
             "alignement": "Center"
           }
-        },
+        }
 
       ]
     }

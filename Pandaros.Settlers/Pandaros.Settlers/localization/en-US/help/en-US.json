@@ -2,13 +2,16 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
-        "HelpMenu": {
+        "Wiki": {
           "title": "Settlers! Mod Help",
           "Requirements": "Requirements:",
           "Results": "Results:",
           "Item": "Item",
+          "Icon": "Icon",
+          "Description": "Description",
           "Amount": "Amount",
           "Chance": "Chance",
+          "Type":  "Type",
           "ReturnToMainMenu": "Return to main menu",
           "ItemDetails": {
             "Pandaros": {

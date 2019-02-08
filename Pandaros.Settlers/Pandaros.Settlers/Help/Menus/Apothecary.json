@@ -9,7 +9,7 @@
           "width": 700,
           "position": 150,
           "label": {
-            "text": "Pandaros.Settlers.HelpMenu.ReturnToMainMenu",
+            "text": "Pandaros.Settlers.Wiki.ReturnToMainMenu",
             "alignement": "MiddleCenter"
           }
         },

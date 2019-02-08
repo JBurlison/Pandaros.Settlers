@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Help
     public static class UIManager
     {
         public static JSONNode LoadedMenus { get; private set; } = new JSONNode();
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("HelpMenu");
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("Wiki");
         public static List<OpenMenuSettings> OpenMenuItems { get; private set; } = new List<OpenMenuSettings>();
 
 
@@ -119,7 +119,7 @@ namespace Pandaros.Settlers.Help
         {
             string itemType = item.GetAs<string>("type").Trim().ToLower();
 
-            //PandaLogger.Log(string.Format("<color=lime>ItemType: {0}</color>", itemType));
+            //PandaLogger.Log(string.Format("<color=lime>ItemType: {0}", itemType));
             IItem newItem = new EmptySpace();
 
             switch(itemType)
@@ -132,7 +132,7 @@ namespace Pandaros.Settlers.Help
 
                 case "space":
                     {
-                        item.TryGetAsOrDefault<int>("height", out int height, 4);
+                        item.TryGetAsOrDefault<int>("height", out int height, 10);
                         newItem = new EmptySpace(height);
                     }
                     break;
@@ -177,11 +177,11 @@ namespace Pandaros.Settlers.Help
                     }
                     break;
 
-                case "itemrecipe":
+                case "item":
                     {
                         if (!item.HasChild("name"))
                         {
-                            PandaLogger.Log("<color=red>ItemRecipe: Not name defined </color>");
+                            PandaLogger.Log("Item: Not name defined");
                             return newItem;
                         }
 
@@ -189,13 +189,37 @@ namespace Pandaros.Settlers.Help
 
                         if (!ItemTypes.IndexLookup.TryGetIndex(name, out ushort index))
                         {
-                            PandaLogger.Log("<color=red>ItemRecipe: Not item found with name: " + name + "</color>");
+                            PandaLogger.Log("Item: Not item found with name: " + name);
+                            return newItem;
+                        }
+
+                        if (Localization.TryGetType(player.LastKnownLocale, index, out string localeName) && Localization.TryGetTypeUse(player.LastKnownLocale, index, out var description))
+                            menu.Items.Add(new HorizontalSplit(new ItemIcon(index), new Label(new LabelData(localeName + Environment.NewLine + description, UnityEngine.Color.black)), 30, .3f));
+
+                        if (Localization.TryGetSentence(player.LastKnownLocale, _localizationHelper.GetLocalizationKey("ItemDetails." + name), out var extendedDetail))
+                            menu.Items.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)));
+                    }
+                    break;
+
+                case "itemrecipe":
+                    {
+                        if (!item.HasChild("name"))
+                        {
+                            PandaLogger.Log("ItemRecipe: Not name defined");
+                            return newItem;
+                        }
+
+                        item.TryGetAs<string>("name", out string name);
+
+                        if (!ItemTypes.IndexLookup.TryGetIndex(name, out ushort index))
+                        {
+                            PandaLogger.Log("ItemRecipe: Not item found with name: " + name );
                             return newItem;
                         }
 
                         if (!ItemRecipe.TryGetValue(index, out var recipe))
                         {
-                            PandaLogger.Log("<color=red>ItemRecipe: Not recipe found for: " + name + "</color>");
+                            PandaLogger.Log("ItemRecipe: Not recipe found for: " + name );
                             return newItem;
                         }
 
@@ -221,7 +245,7 @@ namespace Pandaros.Settlers.Help
                         else
                         {
                             id = "dropdown";
-                            PandaLogger.Log("<color=red>Dropdown without ID defined, default: dropdown</color>");
+                            PandaLogger.Log("Dropdown without ID defined, default: dropdown");
                         }
 
                         List<string> options = new List<string>();
@@ -236,7 +260,7 @@ namespace Pandaros.Settlers.Help
                         else
                         {
                             options.Add("No options available");
-                            PandaLogger.Log(string.Format("<color=red>dropdown {0} without options</color>", id));
+                            PandaLogger.Log(string.Format("dropdown {0} without options", id));
                         }
 
                         item.TryGetAsOrDefault<int>("height", out int height, 30);
@@ -269,7 +293,7 @@ namespace Pandaros.Settlers.Help
                         else
                         {
                             id = "toggle";
-                            PandaLogger.Log("<color=red>Toggle without ID defined, default: toggle</color>");
+                            PandaLogger.Log("Toggle without ID defined, default: toggle");
                         }
 
                         item.TryGetAsOrDefault<int>("height", out int height, 25);
@@ -301,7 +325,7 @@ namespace Pandaros.Settlers.Help
                         else
                         {
                             id = "button";
-                            PandaLogger.Log("<color=red>Button without ID defined, default: button</color>");
+                            PandaLogger.Log("Button without ID defined, default: button");
                         }
 
                         item.TryGetAsOrDefault<int>("width", out int width, -1);
@@ -314,7 +338,7 @@ namespace Pandaros.Settlers.Help
                         }
                         else
                         {
-                            PandaLogger.Log(string.Format("<color=red>Button {0} without label</color>", id));
+                            PandaLogger.Log(string.Format("Button {0} without label", id));
                             newItem = new ButtonCallback(id, new LabelData("Key label not defined"), width, height);
                         }
                     }
@@ -330,7 +354,7 @@ namespace Pandaros.Settlers.Help
                         }
                         else
                         {
-                            PandaLogger.Log("<color=red>Link without URL defined</color>");
+                            PandaLogger.Log("Link without URL defined");
                             return new EmptySpace();
                         }
 
@@ -344,7 +368,7 @@ namespace Pandaros.Settlers.Help
                         }
                         else
                         {
-                            PandaLogger.Log(string.Format("<color=red>Link {0} without label</color>", url));
+                            PandaLogger.Log(string.Format("Link {0} without label", url));
                             newItem = new ButtonCallback(url, new LabelData("Key label not defined"), width, height);
                         }
                     }
@@ -361,7 +385,7 @@ namespace Pandaros.Settlers.Help
 
                             foreach(JSONNode row in rows.LoopArray())
                             {
-                                if (row.TryGetAs("width", out int setWidth))
+                                if (row.TryGetAs("row_width", out int setWidth))
                                     items.Add(TupleStruct.Create<IItem, int>(LoadItem(row, ref menu, player), setWidth));
                                 else
                                     items.Add(TupleStruct.Create<IItem, int>(LoadItem(row, ref menu, player), width));
@@ -376,7 +400,7 @@ namespace Pandaros.Settlers.Help
 
                 default:
                     {
-                        PandaLogger.Log(string.Format("<color=red>It doesn't exist an item of type: {0}</color>", itemType));
+                        PandaLogger.Log(string.Format("It doesn't exist an item of type: {0}", itemType));
                         newItem = new EmptySpace();
                     }
                     break;

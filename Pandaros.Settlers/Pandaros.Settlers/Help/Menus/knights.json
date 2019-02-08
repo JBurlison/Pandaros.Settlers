@@ -9,13 +9,16 @@
           "width": 700,
           "position": 150,
           "label": {
-            "text": "Pandaros.Settlers.HelpMenu.ReturnToMainMenu",
+            "text": "Pandaros.Settlers.Wiki.ReturnToMainMenu",
             "alignement": "MiddleCenter"
           }
         },
         {
           "type": "label",
           "text": "Pandaros.Settlers.Wiki.Knights.Description"
+        },
+        {
+          "type": "space"
         },
         {
           "type": "label",
@@ -28,14 +31,24 @@
           "position": 50
         },
         {
-          "type": "label",
-          "text": "Pandaros.Settlers.Wiki.Knights.DestroyBanner",
-          "alignement": "Left"
+          "type": "space"
         },
         {
           "type": "label",
-          "text": "Pandaros.Settlers.Wiki.Knights.Note",
-          "alignement": "Left"
+          "text": "Pandaros.Settlers.Wiki.Knights.DestroyFlag"
+        },
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.Knights.Note"
+        },
+        {
+          "type": "space"
+        },
+        {
+          "type": "label",
+          "fontsize": 20,
+          "text": "Pandaros.Settlers.Wiki.Knights.PatrolItems",
+          "position": 15
         },
         {
           "type": "table",
@@ -43,46 +56,37 @@
             [
               {
                 "type": "label",
-                "text": "Icon"
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.Icon"
               },
               {
                 "type": "label",
-                "text": "Description"
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.Description"
               }
             ],
             [
               {
-                "type": "Icon",
+                "type": "item",
                 "name": "Pandaros.Settlers.PatrolTool"
-              },
-              {
-                "type": "label",
-                "text": "Knight Patrol Tool"
               }
             ],
             [
               {
-                "type": "icon",
+                "type": "item",
                 "name": "Pandaros.Settlers.PatrolFlag"
-              },
-              {
-                "type": "label",
-                "text": "Knight Patrol Flag."
               }
             ]
           ]
         },
         {
           "type": "label",
-          "text": "Patrol Types:",
-          "alignement": "Left",
-          "position": 50
+          "text": "Pandaros.Settlers.Wiki.Knights.PatrolTypes",
+          "fontsize": 20
         },
         {
           "type": "label",
-          "text": "You may left click on a existing banner control to change the patrol type:",
-          "alignement": "Left",
-          "position": 50
+          "text": "Pandaros.Settlers.Wiki.Knights.PatrolTypesDescription"
         },
         {
           "type": "table",
@@ -92,44 +96,42 @@
             [
               {
                 "type": "label",
-                "text": "Type"
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.Type",
+                "row_width": 200
               },
               {
                 "type": "label",
-                "text": "Description"
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.Description",
+                "row_width": 800
               }
             ],
             [
               {
                 "type": "label",
-                "text": "Round Robin"
+                "text": "Pandaros.Settlers.Wiki.Knights.RoundRobin",
+                "row_width": 200
               },
               {
                 "type": "label",
-                "text": "The patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will walk back to the first flag and start again. This is good for making circles."
+                "text": "Pandaros.Settlers.Wiki.Knights.RoundRobinDescription",
+                "row_width": 800
               }
             ],
             [
               {
                 "type": "label",
-                "text": "Zipper"
+                "text": "Pandaros.Settlers.Wiki.Knights.Zipper",
+                "row_width": 200
               },
               {
                 "type": "label",
-                "text": "The Patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will go backwords back to the first flag. This is good for patrolling a line."
+                "text": "Pandaros.Settlers.Wiki.Knights.ZipperDescription",
+                "row_width": 800
               }
             ]
           ]
-        },
-        {
-          "type": "link",
-          "url": "Wiki.MainMenu",
-          "width": 150,
-          "label": {
-            "text": "Return to main menu",
-            "color": "blue",
-            "alignement": "Center"
-          }
         }
       ]
     }

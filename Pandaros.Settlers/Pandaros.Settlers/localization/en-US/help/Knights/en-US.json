@@ -5,11 +5,18 @@
         "Wiki": {
           "Knights": {
             "Title": "Knights",
-            "Description": "Once researched you can craft Patrol Banners at the workbench. Knight patrols require Swords. They will always use the best sword in the stockpile. Knights also get first pick (after the player) of armor. Knights are also tougher than other colonists and take 60% less damage before any armor is applied. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:",
+            "Description": "Once researched you can craft Patrol Flags at the workbench. Knight patrols require Swords. They will always use the best sword in the stockpile. Knights also get first pick (after the player) of armor. Knights are also tougher than other colonists and take 60% less damage before any armor is applied. Use the Patrol Tool (it goes into your stockpile after its researched) on your toolbar to do the following:",
             "LeftClickAction": "Left Click: Place a Patrol Flag",
             "RightClickAction": "Right Click: Comfirm Patrol and start Job",
-            "DestroyBanner": "To remove a patrol simply destroy any banner in the patrol. It will return all banners from the patrol to your inventory.",
-            "Note": "NOTE: Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!"
+            "DestroyFlag": "To remove a patrol simply destroy any flag in the patrol. It will return all flag from the patrol to your inventory.",
+            "Note": "NOTE: Knight patrols will only check for monsters to fight at the Patrol Flags! Not while walking inbetween!",
+            "PatrolItems": "Patrol Items",
+            "PatrolTypes": "Patrol Types",
+            "PatrolTypesDescription": "You may left click on a existing flag control to change the patrol type",
+            "RoundRobin": "Round Robin",
+            "RoundRobinDescription": "The patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will walk back to the first flag and start again. This is good for making circles.",
+            "Zipper": "Zipper",
+            "ZipperDescription": "The Patrol will go from the first flag to the last flag. Once the patrol reaches the last flag it will go backwords back to the first flag. This is good for patrolling a line."
           }
         }
       }
