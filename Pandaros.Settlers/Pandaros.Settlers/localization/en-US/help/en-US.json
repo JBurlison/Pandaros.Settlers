@@ -11,7 +11,8 @@
           "Description": "Description",
           "Amount": "Amount",
           "Chance": "Chance",
-          "Type":  "Type",
+          "Type": "Type",
+          "Value": "Value",
           "ReturnToMainMenu": "Return to main menu",
           "ItemDetails": {
             "Pandaros": {

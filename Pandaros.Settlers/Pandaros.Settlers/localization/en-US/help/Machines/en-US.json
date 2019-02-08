@@ -6,7 +6,13 @@
           "Machines": {
             "Description": "Machines help your colonists out a bit! They need to be researched to be activated and Machinists to maintain them.",
             "Title": "Machines",
-            "MachineTypes": "Machine Types:"
+            "MachineTypes": "Machine Types:",
+            "Fuel": "Fuel Types",
+            "FuelDescription": "The machinests will use the fuel in the order shown up to the max fuel % (100% by default 150% fully researched).",
+            "LeftInStockpile": "Will leave in Stockpile",
+            "MagicalMachiesOnly": "0 - Teleporters Only! See Mana",
+            "MachineRepairs": "Machine Repairs",
+            "MachineRepairsDescription": "The less damaged a machine the cheaper it is to fix"
           }
         }
       }

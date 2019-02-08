@@ -553,8 +553,8 @@ namespace Pandaros.Settlers.Help
 
             LabelData.ELocalizationType localizationType = LabelData.ELocalizationType.Sentence;
 
-            if (json.TryGetAs("localizationType", out string localizationString))
-                Enum.TryParse(localizationString, true, out localizationType);
+            if (json.TryGetAs("localizationType", out string localizationString) && Enum.TryParse(localizationString, true, out LabelData.ELocalizationType newLocalization))
+                localizationType = newLocalization;
 
             return new LabelData(text, color, alignement, fontSize, localizationType);
         }

@@ -36,8 +36,7 @@
         {
           "type": "label",
           "fontsize": 20,
-          "text": "Pandaros.Settlers.Wiki.Machines.MachineTypes",
-          "position": 15
+          "text": "Pandaros.Settlers.Wiki.Machines.MachineTypes"
         },
         {
           "type": "table",
@@ -134,6 +133,193 @@
               }
             ]
           ]
+        },
+        {
+          "type": "label",
+          "fontsize": 20,
+          "text": "Pandaros.Settlers.Wiki.Machines.Fuel",
+        },
+        {
+          "type": "label",
+          
+          "text": "Pandaros.Settlers.Wiki.Machines.FuelDescription",
+          "position": 15
+        },
+        {
+          "type": "table",
+          "position": 50,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "fontsize": 20,
+                "col_width": 70,
+                "text": "Pandaros.Settlers.Wiki.Icon"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "col_width": 100,
+                "text": "Pandaros.Settlers.Wiki.Type"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "col_width": 100,
+                "text": "Pandaros.Settlers.Wiki.Value"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "col_width": 650,
+                "text": "Pandaros.Settlers.Wiki.Machines.LeftInStockpile"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "coalore",
+                "col_width": 70
+              },
+              {
+                "type": "label",
+                "localizationType": "Type",
+                "text": "coalore",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "text": "20%",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "col_width": 650,
+                "text": "0"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "firewood",
+                "col_width": 70
+              },
+              {
+                "type": "label",
+                "localizationType": "Type",
+                "text": "firewood",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "text": "10%",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "col_width": 650,
+                "text": "0"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "straw",
+                "col_width": 70
+              },
+              {
+                "type": "label",
+                "localizationType": "Type",
+                "text": "straw",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "text": "5%",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "col_width": 650,
+                "text": "100"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "col_width": 70,
+                "name": "leavestaiga"
+              },
+              {
+                "type": "label",
+                "localizationType": "Type",
+                "text": "leaves",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "text": "2%",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "col_width": 650,
+                "text": "100"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "col_width": 70,
+                "name": "Pandaros.Settlers.Mana"
+              },
+              {
+                "type": "label",
+                "localizationType": "Type",
+                "text": "Pandaros.Settlers.Mana",
+                "col_width": 100
+              },
+              {
+                "type": "label",
+                "text": "20%",
+                "col_width": 100
+              },
+              {
+                "type": "table",
+                "col_width": 650,
+                "rows": [
+                  [
+                    {
+                      "type": "label",
+                      "col_width": 500,
+                      "text": "Pandaros.Settlers.Wiki.Machines.MagicalMachiesOnly"
+                    },
+                    {
+                      "type": "link",
+                      "col_width": 150,
+                      "url": "Wiki.Apothecary",
+                      "label": {
+                        "text": "Pandaros.Settlers.Wiki.MainMenu.Apothecary",
+                        "alignement": "MiddleCenter"
+                      }
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "type": "label",
+          "fontsize": 20,
+          "text": "Pandaros.Settlers.Wiki.Machines.MachineRepairs",
+          "position": 15
+        },
+        {
+          "type": "label",
+          "fontsize": 20,
+          "text": "Pandaros.Settlers.Wiki.Machines.MachineRepairsDescription",
+          "position": 50
         }
       ]
     }
