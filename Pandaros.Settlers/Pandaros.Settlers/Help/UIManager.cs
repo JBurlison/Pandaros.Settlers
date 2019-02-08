@@ -47,11 +47,25 @@ namespace Pandaros.Settlers.Help
         {
             var settings = GameLoader.GetJSONSettingPaths(GameLoader.NAMESPACE + ".MenuFile");
 
-            foreach(var info in settings)
-                foreach(var jsonNode in info.Value)
+            foreach (var info in settings)
+                try
                 {
-                    var newMenu = JSON.Deserialize(info.Key + "\\" + jsonNode);
-                    LoadedMenus.Merge(newMenu);
+                    foreach (var jsonNode in info.Value)
+                    {
+                        try
+                        {
+                            var newMenu = JSON.Deserialize(info.Key + "\\" + jsonNode);
+                            LoadedMenus.Merge(newMenu);
+                        }
+                        catch (Exception ex)
+                        {
+                            PandaLogger.LogError(ex, "Error loading settings node " + jsonNode);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex, "Error loading settings file " + info.Key + " values " + string.Join(", ", info.Value.ToArray()));
                 }
         }
 
@@ -108,32 +122,34 @@ namespace Pandaros.Settlers.Help
             else
                 menu.Height = Configuration.GetorDefault("MenuHeight", 700);
 
-            foreach(JSONNode item in ( json.GetAs<JSONNode>("Items") ).LoopArray())
-                menu.Items.Add(LoadItem(item, ref menu, player));
+            foreach (JSONNode item in (json.GetAs<JSONNode>("Items")).LoopArray())
+                if (LoadItem(item, ref menu, player, out var menuItem))
+                    menu.Items.Add(menuItem);
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
 
         //Ref menu is added for change LocalStorage -> avoid client error
-        public static IItem LoadItem(JSONNode item, ref NetworkMenu menu, Players.Player player)
+        public static bool LoadItem(JSONNode item, ref NetworkMenu menu, Players.Player player, out List<IItem> menuItem)
         {
             string itemType = item.GetAs<string>("type").Trim().ToLower();
-
-            //PandaLogger.Log(string.Format("<color=lime>ItemType: {0}", itemType));
-            IItem newItem = new EmptySpace();
+            bool found = false;
+            menuItem = null;
 
             switch(itemType)
             {
                 case "label":
                     {
-                        newItem = new Label(GetLabelData(item));
+                        menuItem = new List<IItem>() { new Label(GetLabelData(item)).ApplyPosition(item) };
+                        found = true;
                     }
                     break;
 
                 case "space":
                     {
                         item.TryGetAsOrDefault<int>("height", out int height, 10);
-                        newItem = new EmptySpace(height);
+                        menuItem = new List<IItem>() { new EmptySpace(height).ApplyPosition(item) };
+                        found = true;
                     }
                     break;
 
@@ -147,14 +163,16 @@ namespace Pandaros.Settlers.Help
                         item.TryGetAsOrDefault<int>("height", out int height, 4);
                         item.TryGetAsOrDefault<int>("width", out int width, -1);
 
-                        newItem = new Line(color, height, width);
+                        menuItem = new List<IItem>() { new Line(color, height, width).ApplyPosition(item) };
+                        found = true;
                     }
                     break;
 
                 case "icon":
                     {
                         item.TryGetAsOrDefault<string>("name", out string icon, "missingerror");
-                        newItem = new ItemIcon(icon);
+                        menuItem = new List<IItem>() { new ItemIcon(icon).ApplyPosition(item) };
+                        found = true;
                     }
                     break;
 
@@ -170,18 +188,10 @@ namespace Pandaros.Settlers.Help
                             if (ServerManager.RecipeStorage.OptionalRecipesPerLimitType.TryGetValue(job, out var recipiesOptional))
                                 recipes.AddRange(recipiesOptional);
 
-                            List<IItem> allRecipes = new List<IItem>();
-
                             foreach (var recipe in recipes.OrderBy(r => r.Name))
-                                allRecipes.AddRange(PrintRecipe(menu, player, recipe));
+                               menuItem.Add(RecipeLines(menu, player, recipe, item));
 
-                            foreach (var recipe in allRecipes)
-                                if (item.HasChild("position"))
-                                    menu.Items.Add(new HorizontalSplit(new EmptySpace(), newItem, 0, 0, HorizontalSplit.ESplitType.Relative, 0, item.GetAs<int>("position")));
-                                else
-                                    menu.Items.Add(recipe);
-
-                            return newItem;
+                            found = true;
                         }
 
                     }
@@ -192,7 +202,7 @@ namespace Pandaros.Settlers.Help
                         if (!item.HasChild("name"))
                         {
                             PandaLogger.Log("Item: Not name defined");
-                            return newItem;
+                            return found;
                         }
 
                         item.TryGetAs<string>("name", out string name);
@@ -200,11 +210,19 @@ namespace Pandaros.Settlers.Help
                         if (!ItemTypes.IndexLookup.TryGetIndex(name, out ushort index))
                         {
                             PandaLogger.Log("Item: Not item found with name: " + name);
-                            return newItem;
+                            return found;
                         }
 
+                        if (!Localization.TryGetSentence(player.LastKnownLocale, _localizationHelper.GetLocalizationKey("ItemDetails." + name), out var extendedDetail))
+                            extendedDetail = "";
+                        else
+                            extendedDetail = Environment.NewLine + extendedDetail;
+
                         if (Localization.TryGetType(player.LastKnownLocale, index, out string localeName) && Localization.TryGetTypeUse(player.LastKnownLocale, index, out var description))
-                            newItem = new HorizontalSplit(new ItemIcon(index), new Label(new LabelData(localeName + Environment.NewLine + description, UnityEngine.Color.black)), 30, .3f);
+                        {
+                            menuItem = new List<IItem>() { new HorizontalSplit(new ItemIcon(index), new Label(new LabelData(localeName + Environment.NewLine + description + extendedDetail, UnityEngine.Color.black)), 30, .3f).ApplyPosition(item) };
+                            found = true;
+                        }
                     }
                     break;
 
@@ -213,7 +231,7 @@ namespace Pandaros.Settlers.Help
                         if (!item.HasChild("name"))
                         {
                             PandaLogger.Log("ItemRecipe: Not name defined");
-                            return newItem;
+                            return found;
                         }
 
                         item.TryGetAs<string>("name", out string name);
@@ -221,23 +239,25 @@ namespace Pandaros.Settlers.Help
                         if (!ItemTypes.IndexLookup.TryGetIndex(name, out ushort index))
                         {
                             PandaLogger.Log("ItemRecipe: Not item found with name: " + name );
-                            return newItem;
+                            return found;
                         }
 
                         if (!ItemRecipe.TryGetValue(index, out var recipe))
                         {
                             PandaLogger.Log("ItemRecipe: Not recipe found for: " + name );
-                            return newItem;
+                            return found;
                         }
-
+                        menuItem = new List<IItem>();
+                        
                         if (Localization.TryGetType(player.LastKnownLocale, index, out string localeName))
                         {
-                            menu.Items.Add(new Label(localeName + ":"));
+                            menuItem.Add(new Label(localeName + ":").ApplyPosition(item));
                         }
                         else
-                            menu.Items.Add(new Label(name + ":"));
+                            menuItem.Add(new Label(name + ":").ApplyPosition(item));
 
-                        PrintRecipe(menu, player, recipe);
+                        menuItem.Add(RecipeLines(menu, player, recipe, item));
+                        found = true;
                     }
                     break;
 
@@ -278,14 +298,15 @@ namespace Pandaros.Settlers.Help
                         if(item.TryGetChild("label", out JSONNode labelj))
                         {
                             LabelData label = GetLabelData(labelj);
-                            newItem = new DropDown(label.text, id, options);
+                            menuItem = new List<IItem>() { new DropDown(label.text, id, options).ApplyPosition(item) };
                         }
                         else
                         {
-                            newItem = new DropDownNoLabel(id, options, height);
+                            menuItem = new List<IItem>() { new DropDownNoLabel(id, options, height).ApplyPosition(item) };
                         }
 
                         menu.LocalStorage.SetAs(id, 0);
+                        found = true;
                     }
                     break;
 
@@ -307,16 +328,17 @@ namespace Pandaros.Settlers.Help
                         item.TryGetAsOrDefault<int>("toggleSize", out int toggleSize, 20);
 
                         // if label toggle else togglenolabel
-                        if(item.TryGetChild("label", out JSONNode labelj))
+                        if (item.TryGetChild("label", out JSONNode labelj))
                         {
                             LabelData label = GetLabelData(labelj);
-                            newItem = new Toggle(label, id, height, toggleSize);
+                            menuItem = new List<IItem>() { new Toggle(label, id, height, toggleSize).ApplyPosition(item) };
                         }
                         else
                         {
-                            newItem = new ToggleNoLabel(id, toggleSize);
+                            menuItem = new List<IItem>() { new ToggleNoLabel(id, toggleSize).ApplyPosition(item) };
                         }
 
+                        found = true;
                         menu.LocalStorage.SetAs(id, false);
                     }
                     break;
@@ -341,13 +363,15 @@ namespace Pandaros.Settlers.Help
                         if(item.TryGetChild("label", out JSONNode labelj))
                         {
                             LabelData label = GetLabelData(labelj);
-                            newItem = new ButtonCallback(id, label, width, height);
+                            menuItem = new List<IItem>() { new ButtonCallback(id, label, width, height).ApplyPosition(item) };
                         }
                         else
                         {
                             PandaLogger.Log(string.Format("Button {0} without label", id));
-                            newItem = new ButtonCallback(id, new LabelData("Key label not defined"), width, height);
+                            menuItem = new List<IItem>() { new ButtonCallback(id, new LabelData("Key label not defined"), width, height).ApplyPosition(item) };
                         }
+
+                        found = true;
                     }
                     break;
 
@@ -362,7 +386,7 @@ namespace Pandaros.Settlers.Help
                         else
                         {
                             PandaLogger.Log("Link without URL defined");
-                            return new EmptySpace();
+                            return found;
                         }
 
                         item.TryGetAsOrDefault<int>("width", out int width, -1);
@@ -371,13 +395,15 @@ namespace Pandaros.Settlers.Help
                         if(item.TryGetChild("label", out JSONNode labelj))
                         {
                             LabelData label = GetLabelData(labelj);
-                            newItem = new ButtonCallback(url, label, width, height);
+                            menuItem = new List<IItem>() { new ButtonCallback(url, label, width, height).ApplyPosition(item) };
                         }
                         else
                         {
                             PandaLogger.Log(string.Format("Link {0} without label", url));
-                            newItem = new ButtonCallback(url, new LabelData("Key label not defined"), width, height);
+                            menuItem = new List<IItem>() { new ButtonCallback(url, new LabelData("Key label not defined"), width, height).ApplyPosition(item) };
                         }
+
+                        found = true;
                     }
                     break;
 
@@ -392,13 +418,16 @@ namespace Pandaros.Settlers.Help
 
                             foreach(JSONNode row in rows.LoopArray())
                             {
-                                if (row.TryGetAs("col_width", out int setWidth))
-                                    items.Add(TupleStruct.Create<IItem, int>(LoadItem(row, ref menu, player), setWidth));
-                                else
-                                    items.Add(TupleStruct.Create<IItem, int>(LoadItem(row, ref menu, player), width));
+                                if (LoadItem(row, ref menu, player, out var newMenuItems))
+                                    foreach (var newItem in newMenuItems)
+                                        if (row.TryGetAs("col_width", out int setWidth))
+                                            items.Add(TupleStruct.Create(newItem, setWidth));
+                                        else
+                                            items.Add(TupleStruct.Create(newItem, width));
                             }
 
-                            newItem = new HorizontalRow(items, height);
+                            menuItem = new List<IItem>() { new HorizontalRow(items, height).ApplyPosition(item) };
+                            found = true;
                         }
 
                     }
@@ -408,27 +437,27 @@ namespace Pandaros.Settlers.Help
                 default:
                     {
                         PandaLogger.Log(string.Format("It doesn't exist an item of type: {0}", itemType));
-                        newItem = new EmptySpace();
                     }
                     break;
             }
 
-            if(item.HasChild("position"))
-            {
-                HorizontalSplit horizontalSplit = new HorizontalSplit(new EmptySpace(), newItem, 0, 0, HorizontalSplit.ESplitType.Relative, 0, item.GetAs<int>("position"));
+            return found;
+        }
 
-                return horizontalSplit;
-            }
+        public static IItem ApplyPosition(this IItem newItem, JSONNode item)
+        {
+            if (item.TryGetAs("position", out int pos))
+                return new HorizontalSplit(new EmptySpace(), newItem, 0, 0, HorizontalSplit.ESplitType.Relative, 0, pos);
             else
                 return newItem;
         }
 
-        private static List<IItem> PrintRecipe(NetworkMenu menu, Players.Player player, Recipes.Recipe recipe)
+        private static List<IItem> RecipeLines(NetworkMenu menu, Players.Player player, Recipes.Recipe recipe, JSONNode item)
         {
             List<IItem> menuItems = new List<IItem>();
 
-            menuItems.Add(new Label(new LabelData(recipe.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter, 30, LabelData.ELocalizationType.Type)));
-            menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Requirements"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+            menuItems.Add(new Label(new LabelData(recipe.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter, 30, LabelData.ELocalizationType.Type)).ApplyPosition(item));
+            menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Requirements"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)).ApplyPosition(item));
 
             List<TupleStruct<IItem, int>> headerItems = new List<TupleStruct<IItem, int>>();
 
@@ -436,7 +465,7 @@ namespace Pandaros.Settlers.Help
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Item"), UnityEngine.Color.black)), 150));
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
 
-            menuItems.Add(new HorizontalRow(headerItems));
+            menuItems.Add(new HorizontalRow(headerItems).ApplyPosition(item));
 
             foreach (var req in recipe.Requirements)
             {
@@ -457,10 +486,10 @@ namespace Pandaros.Settlers.Help
                 items.Add(TupleStruct.Create<IItem, int>(labelName, 150));
                 items.Add(TupleStruct.Create<IItem, int>(labelAmount, 100));
 
-                menuItems.Add(new HorizontalRow(items));
+                menuItems.Add(new HorizontalRow(items).ApplyPosition(item));
             }
 
-            menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Results"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+            menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Results"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)).ApplyPosition(item));
 
             headerItems = new List<TupleStruct<IItem, int>>();
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 70));
@@ -468,7 +497,7 @@ namespace Pandaros.Settlers.Help
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Chance"), UnityEngine.Color.black)), 100));
 
-            menuItems.Add(new HorizontalRow(headerItems));
+            menuItems.Add(new HorizontalRow(headerItems).ApplyPosition(item));
 
             foreach (var req in recipe.Results)
             {
@@ -487,13 +516,13 @@ namespace Pandaros.Settlers.Help
                 items.Add(TupleStruct.Create<IItem, int>(labelAmount, 100));
                 items.Add(TupleStruct.Create<IItem, int>(chance, 100));
 
-                menuItems.Add(new HorizontalRow(items));
+                menuItems.Add(new HorizontalRow(items).ApplyPosition(item));
 
                 if (Localization.TryGetTypeUse(player.LastKnownLocale, req.Type, out var description))
-                    menuItems.Add(new Label(new LabelData(description, UnityEngine.Color.black)));
+                    menuItems.Add(new Label(new LabelData(description, UnityEngine.Color.black)).ApplyPosition(item));
 
                 if (Localization.TryGetSentence(player.LastKnownLocale, _localizationHelper.GetLocalizationKey("ItemDetails." + ItemId.GetItemId(req.Type).Name), out var extendedDetail))
-                    menuItems.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)));
+                    menuItems.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)).ApplyPosition(item));
             }
 
             menuItems.Add(new Line(UnityEngine.Color.black, 1));

@@ -7,7 +7,18 @@
             "JobsHeader": "Jobs!",
             "Machinists": "Machinists",
             "Apothecary": "Apothecary",
-            "Title": "Settlers Help"
+            "Knights": "Knights",
+            "Title": "Settlers Help",
+            "FeaturesHeader": "Features!",
+            "Machines": "Machines",
+            "ItemDetails": {
+              "Pandaros": {
+                "Settlers": {
+                  "Gate": "When within range of a lever, at night the gate will close and during the day the gate will open. The gate opens 2 spaces from the bottom regardless of how tall or wide it is. The game must have 2 blocks above it empty, otherwise, it will destroy whatever is in these spots. Iron gates do not require a machinist.",
+                  "TeleportPad": "Teleporters may only be used once every 30 seconds!"
+                }
+              }
+            }
           }
         }
       }

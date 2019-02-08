@@ -31,6 +31,10 @@
         "relativePath": "Help/Menus/Machinists.json"
       },
       {
+        "fileType": "Pandaros.Settlers.MenuFile",
+        "relativePath": "Help/Menus/Machines.json"
+      },
+      {
         "fileType": "Pandaros.Settlers.OreLayers",
         "relativePath": "WorldGen/OreSettings.json"
       }
@@ -79,6 +83,11 @@
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/help/Machinists/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/Machines/en-US.json",
         "index": -99999
       },
       {

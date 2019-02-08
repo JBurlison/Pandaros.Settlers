@@ -696,7 +696,8 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("sidex-", STONE_NAMESPACE + "sides")
                             .SetAs("sidez+", STONE_NAMESPACE + "sides")
                             .SetAs("sidez-", STONE_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("npcLimit", 0)
+                            .SetAs("maxStackSize", 300);
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -724,7 +725,8 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("sidex-", BRONZEARROW_NAMESPACE + "sides")
                             .SetAs("sidez+", BRONZEARROW_NAMESPACE + "sides")
                             .SetAs("sidez-", BRONZEARROW_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("npcLimit", 0)
+                            .SetAs("maxStackSize", 300);
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -752,7 +754,8 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("sidex-", CROSSBOW_NAMESPACE + "sides")
                             .SetAs("sidez+", CROSSBOW_NAMESPACE + "sides")
                             .SetAs("sidez-", CROSSBOW_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("npcLimit", 0)
+                            .SetAs("maxStackSize", 300);
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -780,7 +783,8 @@ namespace Pandaros.Settlers.Items.Machines
                             .SetAs("sidex-", MATCHLOCK_NAMESPACE + "sides")
                             .SetAs("sidez+", MATCHLOCK_NAMESPACE + "sides")
                             .SetAs("sidez-", MATCHLOCK_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("npcLimit", 0)
+                            .SetAs("maxStackSize", 300);
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));

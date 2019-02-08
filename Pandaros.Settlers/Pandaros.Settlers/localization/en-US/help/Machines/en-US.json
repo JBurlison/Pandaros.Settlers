@@ -1,0 +1,15 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "Wiki": {
+          "Machines": {
+            "Description": "Machines help your colonists out a bit! They need to be researched to be activated and Machinists to maintain them.",
+            "Title": "Machines",
+            "MachineTypes": "Machine Types:"
+          }
+        }
+      }
+    }
+  }
+}
