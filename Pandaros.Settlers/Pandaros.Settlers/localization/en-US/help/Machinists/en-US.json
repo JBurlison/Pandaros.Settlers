@@ -1,0 +1,19 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "Wiki": {
+          "Machinists": {
+            "Description": "Machines need Machinists nearby to repair, fuel an reload your machines. A Machinists bench must be within 20 blocks of a machine in order for the machinist to operate it. Machinists will repair a machine at 50% durability, refuel a machine when it drops below 30% of fuel or reload a machine when it drops below 30% of items it requires (such as ammo).",
+            "Title": "Machinists",
+            "Indicators": "Indicators:",
+            "Waiting": "Waiting for a machine to need servicing.",
+            "Repairing": "Repairing the machine.",
+            "Refueling": "Refueling the machine.",
+            "Reloading": "Reloading the machine with items."
+          }
+        }
+      }
+    }
+  }
+}

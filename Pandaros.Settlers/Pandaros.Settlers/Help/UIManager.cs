@@ -170,8 +170,18 @@ namespace Pandaros.Settlers.Help
                             if (ServerManager.RecipeStorage.OptionalRecipesPerLimitType.TryGetValue(job, out var recipiesOptional))
                                 recipes.AddRange(recipiesOptional);
 
+                            List<IItem> allRecipes = new List<IItem>();
+
                             foreach (var recipe in recipes.OrderBy(r => r.Name))
-                                PrintRecipe(menu, player, recipe);
+                                allRecipes.AddRange(PrintRecipe(menu, player, recipe));
+
+                            foreach (var recipe in allRecipes)
+                                if (item.HasChild("position"))
+                                    menu.Items.Add(new HorizontalSplit(new EmptySpace(), newItem, 0, 0, HorizontalSplit.ESplitType.Relative, 0, item.GetAs<int>("position")));
+                                else
+                                    menu.Items.Add(recipe);
+
+                            return newItem;
                         }
 
                     }
@@ -194,10 +204,7 @@ namespace Pandaros.Settlers.Help
                         }
 
                         if (Localization.TryGetType(player.LastKnownLocale, index, out string localeName) && Localization.TryGetTypeUse(player.LastKnownLocale, index, out var description))
-                            menu.Items.Add(new HorizontalSplit(new ItemIcon(index), new Label(new LabelData(localeName + Environment.NewLine + description, UnityEngine.Color.black)), 30, .3f));
-
-                        if (Localization.TryGetSentence(player.LastKnownLocale, _localizationHelper.GetLocalizationKey("ItemDetails." + name), out var extendedDetail))
-                            menu.Items.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)));
+                            newItem = new HorizontalSplit(new ItemIcon(index), new Label(new LabelData(localeName + Environment.NewLine + description, UnityEngine.Color.black)), 30, .3f);
                     }
                     break;
 
@@ -385,13 +392,13 @@ namespace Pandaros.Settlers.Help
 
                             foreach(JSONNode row in rows.LoopArray())
                             {
-                                if (row.TryGetAs("row_width", out int setWidth))
+                                if (row.TryGetAs("col_width", out int setWidth))
                                     items.Add(TupleStruct.Create<IItem, int>(LoadItem(row, ref menu, player), setWidth));
                                 else
                                     items.Add(TupleStruct.Create<IItem, int>(LoadItem(row, ref menu, player), width));
                             }
 
-                            menu.Items.Add(new HorizontalRow(items, height));
+                            newItem = new HorizontalRow(items, height);
                         }
 
                     }
@@ -416,10 +423,12 @@ namespace Pandaros.Settlers.Help
                 return newItem;
         }
 
-        private static void PrintRecipe(NetworkMenu menu, Players.Player player, Recipes.Recipe recipe)
+        private static List<IItem> PrintRecipe(NetworkMenu menu, Players.Player player, Recipes.Recipe recipe)
         {
-            menu.Items.Add(new Label(new LabelData(recipe.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter, 30, LabelData.ELocalizationType.Type)));
-            menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Requirements"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+            List<IItem> menuItems = new List<IItem>();
+
+            menuItems.Add(new Label(new LabelData(recipe.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter, 30, LabelData.ELocalizationType.Type)));
+            menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Requirements"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
 
             List<TupleStruct<IItem, int>> headerItems = new List<TupleStruct<IItem, int>>();
 
@@ -427,7 +436,7 @@ namespace Pandaros.Settlers.Help
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Item"), UnityEngine.Color.black)), 150));
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
 
-            menu.Items.Add(new HorizontalRow(headerItems));
+            menuItems.Add(new HorizontalRow(headerItems));
 
             foreach (var req in recipe.Requirements)
             {
@@ -448,10 +457,10 @@ namespace Pandaros.Settlers.Help
                 items.Add(TupleStruct.Create<IItem, int>(labelName, 150));
                 items.Add(TupleStruct.Create<IItem, int>(labelAmount, 100));
 
-                menu.Items.Add(new HorizontalRow(items));
+                menuItems.Add(new HorizontalRow(items));
             }
 
-            menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Results"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
+            menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Results"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
 
             headerItems = new List<TupleStruct<IItem, int>>();
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 70));
@@ -459,7 +468,7 @@ namespace Pandaros.Settlers.Help
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
             headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Chance"), UnityEngine.Color.black)), 100));
 
-            menu.Items.Add(new HorizontalRow(headerItems));
+            menuItems.Add(new HorizontalRow(headerItems));
 
             foreach (var req in recipe.Results)
             {
@@ -478,16 +487,18 @@ namespace Pandaros.Settlers.Help
                 items.Add(TupleStruct.Create<IItem, int>(labelAmount, 100));
                 items.Add(TupleStruct.Create<IItem, int>(chance, 100));
 
-                menu.Items.Add(new HorizontalRow(items));
+                menuItems.Add(new HorizontalRow(items));
 
                 if (Localization.TryGetTypeUse(player.LastKnownLocale, req.Type, out var description))
-                    menu.Items.Add(new Label(new LabelData(description, UnityEngine.Color.black)));
+                    menuItems.Add(new Label(new LabelData(description, UnityEngine.Color.black)));
 
                 if (Localization.TryGetSentence(player.LastKnownLocale, _localizationHelper.GetLocalizationKey("ItemDetails." + ItemId.GetItemId(req.Type).Name), out var extendedDetail))
-                    menu.Items.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)));
+                    menuItems.Add(new Label(new LabelData(extendedDetail, UnityEngine.Color.black)));
             }
 
-            menu.Items.Add(new Line(UnityEngine.Color.black, 1));
+            menuItems.Add(new Line(UnityEngine.Color.black, 1));
+
+            return menuItems;
         }
 
         public static LabelData GetLabelData(JSONNode json)

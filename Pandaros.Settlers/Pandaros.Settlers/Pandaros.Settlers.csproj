@@ -279,10 +279,13 @@
     <None Include="AutoLoad\Sorcerer.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="localization\en-US\help\Apothecary\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="localization\en-US\help\Knights\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\en-US\help\Apothecary\en-US.json">
+    <None Include="localization\en-US\help\Machinists\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="localization\en-US\help\mainMenu\en-US.json">

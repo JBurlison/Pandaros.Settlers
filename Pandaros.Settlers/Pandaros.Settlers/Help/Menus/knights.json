@@ -90,45 +90,43 @@
         },
         {
           "type": "table",
-          "row_height": 50,
-          "col_width": 100,
           "rows": [
             [
               {
                 "type": "label",
                 "fontsize": 20,
                 "text": "Pandaros.Settlers.Wiki.Type",
-                "row_width": 200
+                "col_width": 200
               },
               {
                 "type": "label",
                 "fontsize": 20,
                 "text": "Pandaros.Settlers.Wiki.Description",
-                "row_width": 800
+                "col_width": 750
               }
             ],
             [
               {
                 "type": "label",
                 "text": "Pandaros.Settlers.Wiki.Knights.RoundRobin",
-                "row_width": 200
+                "col_width": 200
               },
               {
                 "type": "label",
                 "text": "Pandaros.Settlers.Wiki.Knights.RoundRobinDescription",
-                "row_width": 800
+                "col_width": 750
               }
             ],
             [
               {
                 "type": "label",
                 "text": "Pandaros.Settlers.Wiki.Knights.Zipper",
-                "row_width": 200
+                "col_width": 200
               },
               {
                 "type": "label",
                 "text": "Pandaros.Settlers.Wiki.Knights.ZipperDescription",
-                "row_width": 800
+                "col_width": 750
               }
             ]
           ]

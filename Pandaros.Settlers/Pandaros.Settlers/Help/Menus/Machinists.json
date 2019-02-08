@@ -9,88 +9,88 @@
           "width": 700,
           "position": 150,
           "label": {
-            "text": "Pandaros.Settlers.HelpMenu.ReturnToMainMenu",
+            "text": "Pandaros.Settlers.Wiki.ReturnToMainMenu",
             "alignement": "MiddleCenter"
           }
         },
         {
           "type": "label",
-          "text": "Machines need Machinists nearby to repair, fuel an reload your machines. A Machinists bench must be within 20 blocks of a machine in order for the machinist to operate it. Machinists will repair a machine at 50% durability, refuel a machine when it drops below 30% of fuel or reload a machine when it drops below 30% of items it requires (such as ammo).",
-          "alignement": "Left"
+          "text": "Pandaros.Settlers.Wiki.Machinists.Description"
+        },
+        {
+          "type": "space"
         },
         {
           "type": "label",
-          "text": "Indicators:",
-          "alignement": "Left"
+          "text": "Pandaros.Settlers.Wiki.Machinists.Indicators",
+          "fontsize": 20
         },
         {
           "type": "table",
-          "row_height": 50,
-          "col_width": 100,
+          "position": 50,
           "rows": [
             [
               {
                 "type": "label",
-                "text": "Icon"
+                "text": "Pandaros.Settlers.Wiki.Icon",
+                "col_width": 100
               },
               {
                 "type": "label",
-                "text": "Description"
+                "text": "Pandaros.Settlers.Wiki.Description",
+                "col_width": 850
               }
             ],
             [
               {
                 "type": "icon",
-                "name": "water"
+                "name": "Pandaros.Settlers.Waiting",
+                "col_width": 100
               },
               {
                 "type": "label",
-                "text": "Waiting for a machine to need servicing."
+                "text": "Pandaros.Settlers.Wiki.Machinists.Waiting",
+                "col_width": 850
               }
             ],
             [
               {
                 "type": "icon",
-                "name": "water"
+                "name": "Pandaros.Settlers.Repairing",
+                "col_width": 100
               },
               {
                 "type": "label",
-                "text": "Repairing the machine."
+                "text": "Pandaros.Settlers.Wiki.Machinists.Repairing",
+                "col_width": 850
               }
             ],
             [
               {
                 "type": "icon",
-                "name": "water"
+                "name": "Pandaros.Settlers.Refuel",
+                "col_width": 100
               },
               {
                 "type": "label",
-                "text": "Refueling the machine."
+                "text": "Pandaros.Settlers.Wiki.Machinists.Refueling",
+                "col_width": 850
               }
             ],
             [
               {
                 "type": "icon",
-                "name": "water"
+                "name": "Pandaros.Settlers.Reload",
+                "col_width": 100
               },
               {
                 "type": "label",
-                "text": "Reloading the machine with items"
+                "text": "Pandaros.Settlers.Wiki.Machinists.Reloading",
+                "col_width": 850
               }
             ]
           ]
-        },
-        {
-          "type": "link",
-          "url": "Wiki.MainMenu",
-          "width": 150,
-          "label": {
-            "text": "Return to main menu",
-            "color": "blue",
-            "alignement": "Center"
-          }
         }
-
       ]
     }
   }
