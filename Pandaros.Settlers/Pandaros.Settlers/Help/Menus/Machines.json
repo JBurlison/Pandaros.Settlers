@@ -137,11 +137,11 @@
         {
           "type": "label",
           "fontsize": 20,
-          "text": "Pandaros.Settlers.Wiki.Machines.Fuel",
+          "text": "Pandaros.Settlers.Wiki.Machines.Fuel"
         },
         {
           "type": "label",
-          
+
           "text": "Pandaros.Settlers.Wiki.Machines.FuelDescription",
           "position": 15
         },
@@ -320,6 +320,111 @@
           "fontsize": 20,
           "text": "Pandaros.Settlers.Wiki.Machines.MachineRepairsDescription",
           "position": 50
+        },
+        {
+          "type": "table",
+          "position": 50,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.Icon"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.75orLess"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.50orLess"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.30orLess"
+              },
+              {
+                "type": "label",
+                "fontsize": 20,
+                "text": "Pandaros.Settlers.Wiki.10orLess"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.Miner"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.StoneTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.BronzeArrowTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.CrossbowTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.MatchlockTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.AirTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.EarthTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.FireTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.WaterTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.VoidTurret"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.GateLever"
+              }
+            ],
+            [
+              {
+                "type": "icon",
+                "name": "Pandaros.Settlers.TeleportPad"
+              }
+            ]
+          ]
         }
       ]
     }

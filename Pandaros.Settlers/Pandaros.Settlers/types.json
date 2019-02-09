@@ -558,6 +558,7 @@
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
+    "destructionTime": 20,
     "isRotatable": true,
     "rotatablex+": "Pandaros.Settlers.AutoLoad.irondoorx+",
     "rotatablex-": "Pandaros.Settlers.AutoLoad.irondoorx-",
@@ -565,7 +566,8 @@
     "rotatablez-": "Pandaros.Settlers.AutoLoad.irondoorz-",
     "categories": [
       "decorative",
-      "iron"
+      "iron",
+      "door"
     ]
   },
   "Pandaros.Settlers.AutoLoad.irondoorx+": {
@@ -607,7 +609,6 @@
   "Pandaros.Settlers.AutoLoad.irondoorz-": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
     "mesh": "./Meshes/irondoorz-.obj",
-    
     "colliders": {
       "boxes": [
         {

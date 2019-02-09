@@ -162,6 +162,7 @@
     <Compile Include="Items\MagicItemsCache.cs" />
     <Compile Include="Items\OpenMenuSettings.cs" />
     <Compile Include="Items\PlayerMagicItem.cs" />
+    <Compile Include="Items\DoorManager.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Items\Weapons\MagicWeapon.cs" />

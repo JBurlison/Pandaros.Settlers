@@ -12,7 +12,11 @@
             "LeftInStockpile": "Will leave in Stockpile",
             "MagicalMachiesOnly": "0 - Teleporters Only! See Mana",
             "MachineRepairs": "Machine Repairs",
-            "MachineRepairsDescription": "The less damaged a machine the cheaper it is to fix"
+            "MachineRepairsDescription": "The less damaged a machine the cheaper it is to fix",
+            "75orLess": "75% or less",
+            "50orLess": "50% or less",
+            "30orLess": "30% or less",
+            "10orLess": "10% or less"
           }
         }
       }
