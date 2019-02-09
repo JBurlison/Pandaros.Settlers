@@ -140,7 +140,7 @@ namespace Pandaros.Settlers.WorldGen
                                         {
                                             var block = next.GetBlock(x, y, z);
                                             var currentPos = spawnLocation.Add(x, y, z);
-                                            World.TryChangeBlock(currentPos, block.Type);
+                                            ServerManager.TryChangeBlock(currentPos, block.Type);
                                         }
 
                                 PandaLogger.Log("Spawned {0} at {1}", next.Name, spawnLocation.ToString());
