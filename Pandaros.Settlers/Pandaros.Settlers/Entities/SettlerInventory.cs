@@ -125,25 +125,32 @@ namespace Pandaros.Settlers.Entities
         {
             var baseNode = new JSONNode();
 
-            baseNode[nameof(SettlerId)]   = new JSONNode(SettlerId);
-            baseNode[nameof(SettlerName)] = new JSONNode(SettlerName);
+            try
+            {
+                baseNode[nameof(SettlerId)] = new JSONNode(SettlerId);
+                baseNode[nameof(SettlerName)] = new JSONNode(SettlerName);
 
-            var skills = new JSONNode();
+                var skills = new JSONNode();
 
-            foreach (var job in BonusProcs)
-                skills[job.Key] = new JSONNode(job.Value);
+                foreach (var job in BonusProcs)
+                    skills[job.Key.ToString()] = new JSONNode(job.Value);
 
-            baseNode[nameof(BonusProcs)] = skills;
+                baseNode[nameof(BonusProcs)] = skills;
 
-            var statsNode = new JSONNode();
+                var statsNode = new JSONNode();
 
-            foreach (var job in Stats)
-                statsNode[job.Key] = new JSONNode(job.Value);
+                foreach (var job in Stats)
+                    statsNode[job.Key] = new JSONNode(job.Value);
 
-            baseNode[nameof(Stats)] = statsNode;
+                baseNode[nameof(Stats)] = statsNode;
 
-            foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
-                baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();
+                foreach (ArmorFactory.ArmorSlot armorType in ArmorFactory.ArmorSlotEnum)
+                    baseNode[armorType.ToString()] = Armor[armorType].ToJsonNode();
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
 
             return baseNode;
         }

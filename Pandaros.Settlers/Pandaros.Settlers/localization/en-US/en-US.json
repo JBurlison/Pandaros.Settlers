@@ -434,7 +434,8 @@
         "Happiness": {
           "BedsClose": "Confined living space",
           "ColonistDied": "Colonist Died",
-          "SlowGuards": "Guard shoot rate deduced by"
+          "SlowGuards": "Guard shoot rate deduced by",
+          "NotEnoughBeds": "Not Enough Beds"
         }
       }
     }

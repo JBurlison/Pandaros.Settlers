@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 blockHit == ColonyBuiltIn.ItemTypes.BERRYBUSH)
             {
                 var inv = player.Inventory;
-                inv.TryAdd(ColonyBuiltIn.ItemTypes.BERRY, 2);
+                inv.TryAdd(ColonyBuiltIn.ItemTypes.BERRY, 1);
             }
         }
 
