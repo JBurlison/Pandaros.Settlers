@@ -13,7 +13,7 @@ using Pipliz.JSON;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
-    [ModLoader.ModManager]
+   // [ModLoader.ModManager]
     public class BlockTracker
     {
         static QueueFactory<TrackedPosition> _recordPositionFactory = new QueueFactory<TrackedPosition>("RecordPositions", 1);
