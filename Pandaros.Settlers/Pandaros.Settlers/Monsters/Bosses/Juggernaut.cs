@@ -25,7 +25,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
         {
             var ps = ColonyState.GetColonyState(originalGoal);
             _totalHealth = originalGoal.FollowerCount * (ps.Difficulty.BossHPPerColonist * 2.25f);
-            health = _totalHealth;
+            TotalHealth = _totalHealth;
+            CurrentHealth = _totalHealth;
         }
 
         public IPandaBoss GetNewBoss(Path path, Colony p)
