@@ -73,6 +73,13 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public override bool Update()
         {
             killedBefore = false;
+            return base.Update();
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen.OnUpdate")]
+        public void OnUpdate()
+        {
+            killedBefore = false;
 
             if (_updateTime < Time.SecondsSinceStartDouble)
             {
@@ -81,12 +88,12 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var rank = ps.Difficulty.Rank;
                 var teleportHP = ps.Difficulty.ZombieQueenTargetTeleportHp;
                 var cooldown = ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
-     
-        
+
+
                 for (var i = 0; i < rank - 1; i++)
                 {
                     var monster = MonsterTracker.Find(position, 20, teleportHP);
-                    var zombie  = monster as Zombie;
+                    var zombie = monster as Zombie;
 
                     if (zombie != null &&
                         NPCTracker.TryGetNear(Position, 50, out var npc) &&
@@ -98,7 +105,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                                     .GetType().GetMethod("SetPosition", BindingFlags.NonPublic | BindingFlags.Instance);
 
                         setPos.Invoke(zombie,
-                                      new object[] {AIManager.ClosestPositionNotAt(npc.Position, npc.Position)});
+                                      new object[] { AIManager.ClosestPositionNotAt(npc.Position, npc.Position) });
 
                         zombie.SendUpdate();
 
@@ -121,8 +128,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
                 _updateTime = Time.SecondsSinceStartDouble + cooldown;
             }
-
-            return base.Update();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,  GameLoader.NAMESPACE + ".Monsters.Bosses.ZombieQueen.Register")]

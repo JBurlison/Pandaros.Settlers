@@ -70,6 +70,13 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public override bool Update()
         {
+            killedBefore = false;
+            return base.Update();
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger.OnUpdate")]
+        public void OnUpdate()
+        {
             if (Time.SecondsSinceStartDouble > _cooldown)
             {
                 if (Players.FindClosestAlive(Position, out var p, out var dis) &&
@@ -101,11 +108,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
             }
 
             killedBefore = false;
-            return base.Update();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,  GameLoader.NAMESPACE + ".Monsters.Bosses.FallenRanger.Register")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()

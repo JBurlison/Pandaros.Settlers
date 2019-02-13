@@ -68,6 +68,12 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public float MissChance => 0.05f;
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging.OnUpdate")]
+        public void OnUpdate()
+        {
+            killedBefore = false;
+        }
+
         public override bool Update()
         {
             killedBefore = false;

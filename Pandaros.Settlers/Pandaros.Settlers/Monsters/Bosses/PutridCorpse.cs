@@ -71,6 +71,13 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public override bool Update()
         {
+            killedBefore = false;
+            return base.Update();
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse.OnUpdate")]
+        public void OnUpdate()
+        {
             if (_nextBossUpdateTime < Time.SecondsSinceStartInt)
             {
                 foreach (var follower in originalGoal.Followers)
@@ -92,11 +99,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
 
             killedBefore = false;
-            return base.Update();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
-            GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse.Register")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse.Register")]
         [ModLoader.ModCallbackDependsOn("pipliz.server.loadnpctypes")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.registermonstertextures")]
         public static void Register()
