@@ -248,11 +248,11 @@ namespace Pandaros.Settlers
                     PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green,
                                    state.Difficulty.Name);
 
-                    NetworkUI.NetworkMenuManager.SendWorldSettingsUI(player);
+                    NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
                     return true;
                 }
 
-                NetworkUI.NetworkMenuManager.SendWorldSettingsUI(player);
+                NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
                 PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.",
                                ChatColor.green, Configuration.MinDifficulty.Name);
             }

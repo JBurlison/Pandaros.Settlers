@@ -43,10 +43,11 @@ namespace Pandaros.Settlers
                                 var enabled = data.item2.GetAsOrDefault(_Setters, def);
 
                                 if (def != enabled)
+                                {
                                     TurnSettlersOn(data.item1, ps, maxToggleTimes, enabled != 0);
+                                    PandaChat.Send(data.item1, "Settlers! Mod Settlers are now " + (ps.SettlersEnabled ? "on" : "off"), ChatColor.green);
+                                }
                             }
-
-                            PandaChat.Send(data.item1, "Settlers! Mod Settlers are now " + (ps.SettlersEnabled ? "on" : "off"), ChatColor.green);
                         }
 
                         break;
@@ -118,7 +119,7 @@ namespace Pandaros.Settlers
                            $"Settlers! Mod Settlers are now on. You have toggled this {state.SettlersToggledTimes} out of {maxToggleTimes} times.",
                            ChatColor.green);
 
-            NetworkUI.NetworkMenuManager.SendWorldSettingsUI(player);
+            NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
         }
     }
 }

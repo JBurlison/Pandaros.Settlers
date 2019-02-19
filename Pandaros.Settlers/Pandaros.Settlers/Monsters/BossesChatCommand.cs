@@ -84,7 +84,7 @@ namespace Pandaros.Settlers.Monsters
                 }
             }
 
-            NetworkUI.NetworkMenuManager.SendWorldSettingsUI(player);
+            NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
             if (!Configuration.GetorDefault("BossesCanBeDisabled", true))
                 PandaChat.Send(player, "The server administrator had disabled the changing of bosses.",
                                 ChatColor.red);
