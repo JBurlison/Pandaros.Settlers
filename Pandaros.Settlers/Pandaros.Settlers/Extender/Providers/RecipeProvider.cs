@@ -43,7 +43,6 @@ namespace Pandaros.Settlers.Extender.Providers
                     if (recipe.isOptional)
                         ServerManager.RecipeStorage.AddScienceRequirement(newRecipe);
                         
-
                     sb.Append($"{recipe.name}, ");
                     i++;
 
