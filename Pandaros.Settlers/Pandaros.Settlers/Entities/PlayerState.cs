@@ -297,6 +297,8 @@ namespace Pandaros.Settlers.Entities
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnPlayerConnectedSuperLate")]
         public static void OnPlayerConnectedSuperLate(Players.Player p)
         {
+            GetPlayerState(p);
+
             _playerStates[p].Connected = true;
             _playerStates[p].RecaclculateMagicItems();
 
