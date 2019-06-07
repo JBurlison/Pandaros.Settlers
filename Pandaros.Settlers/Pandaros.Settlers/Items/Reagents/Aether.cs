@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Items
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Aether.Add")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Aether";

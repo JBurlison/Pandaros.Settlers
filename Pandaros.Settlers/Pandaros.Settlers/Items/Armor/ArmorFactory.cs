@@ -515,7 +515,7 @@ namespace Pandaros.Settlers.Items.Armor
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
             GameLoader.NAMESPACE + ".Armor.AddArmor")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void AddArmor(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             try

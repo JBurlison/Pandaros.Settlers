@@ -460,7 +460,7 @@ namespace Pandaros.Settlers.Entities
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Entities.PlayerState.ChangedSetting")]
-        public static void ChangedSetting(Tuple<Players.Player, JSONNode, string> data)
+        public static void ChangedSetting(ValueTuple<Players.Player, JSONNode, string> data)
         {
             switch (data.Item3)
             {

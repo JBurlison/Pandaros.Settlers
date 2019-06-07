@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Jobs
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Jobs.PatrolTool.AddPatrolTool")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void AddPatrolTool(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var patrolToolName = GameLoader.NAMESPACE + ".PatrolTool";
@@ -194,12 +194,12 @@ namespace Pandaros.Settlers.Jobs
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.PlacePatrol")]
-        public static void PlacePatrol(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void PlacePatrol(Players.Player player, PlayerClickedData playerClickData)
         {
-            if (boxedData.item1.IsConsumed || player.ActiveColony == null || boxedData.item1.HitType != PlayerClickedData.EHitType.Block)
+            if (playerClickData.IsConsumed || player.ActiveColony == null || playerClickData.HitType != PlayerClickedData.EHitType.Block)
                 return;
 
-            var click      = boxedData.item1;
+            var click      = playerClickData;
             var state      = PlayerState.GetPlayerState(player);
             var rayCastHit = click.GetVoxelHit();
 

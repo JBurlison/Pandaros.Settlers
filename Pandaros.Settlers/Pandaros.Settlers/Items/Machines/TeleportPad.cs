@@ -233,7 +233,7 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTeleportPad")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void AddTeleportPad(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var TeleportPadName = GameLoader.NAMESPACE + ".TeleportPad";

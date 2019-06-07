@@ -53,12 +53,12 @@ namespace Pandaros.Settlers.Items.Weapons
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Weapons.WeaponFactory.WeaponAttack")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.players.hitnpc")]
-        public static void WeaponAttack(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void WeaponAttack(Players.Player player, PlayerClickedData playerClickData)
         {
-            if (boxedData.item1.IsConsumed)
+            if (playerClickData.IsConsumed)
                 return;
 
-            var click      = boxedData.item1;
+            var click      = playerClickData;
             var state      = PlayerState.GetPlayerState(player);
 
             if (WeaponLookup.ContainsKey(click.TypeSelected) &&
@@ -78,7 +78,7 @@ namespace Pandaros.Settlers.Items.Weapons
                     millisecondsSinceStart - num < Players.PlayerPunchCooldownMS) return;
 
                 Players.LastPunches[player]  = millisecondsSinceStart;
-                boxedData.item1.ConsumedType = PlayerClickedData.EConsumedType.UsedByMod;
+                playerClickData.ConsumedType = PlayerClickedData.EConsumedType.UsedByMod;
                 var rayCastHit = click.GetNPCHit();
 
                 if (ZombieID.IsZombieID(rayCastHit.NPCID))

@@ -13,11 +13,11 @@ namespace Pandaros.Settlers.Items
     public static class DoorManager
     {
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.DoorManager.OnPlayerClicked")]
-        public static void OnPlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OnPlayerClicked(Players.Player player, PlayerClickedData playerClickData)
         {
-            if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Right &&
-                boxedData.item1.HitType == PlayerClickedData.EHitType.Block &&
-               ItemTypes.TryGetType(boxedData.item1.GetVoxelHit().TypeHit, out ItemTypes.ItemType itemHit))
+            if (playerClickData.ClickType == PlayerClickedData.EClickType.Right &&
+                playerClickData.HitType == PlayerClickedData.EHitType.Block &&
+               ItemTypes.TryGetType(playerClickData.GetVoxelHit().TypeHit, out ItemTypes.ItemType itemHit))
             {
                 var baseType = itemHit.GetRootParentType();
 
@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items
                         replacement = ItemId.GetItemId(baseType.RotatedXPlus);
 
                     if (replacement != ColonyBuiltIn.ItemTypes.AIR)
-                        ServerManager.TryChangeBlock(boxedData.item1.GetVoxelHit().BlockHit, replacement, new BlockChangeRequestOrigin(player));
+                        ServerManager.TryChangeBlock(playerClickData.GetVoxelHit().BlockHit, replacement, new BlockChangeRequestOrigin(player));
                 }
             }
         }

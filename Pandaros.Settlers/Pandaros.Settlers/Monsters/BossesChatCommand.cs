@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.Monsters
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Bosses.ChangedSetting")]
-        public static void ChangedSetting(Tuple<Players.Player, JSONNode, string> data)
+        public static void ChangedSetting(ValueTuple<Players.Player, JSONNode, string> data)
         {
             if (data.Item1.ActiveColony != null)
 

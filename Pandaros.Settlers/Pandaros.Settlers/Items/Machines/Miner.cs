@@ -215,7 +215,7 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void AddMiner(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var minerName     = GameLoader.NAMESPACE + ".Miner";

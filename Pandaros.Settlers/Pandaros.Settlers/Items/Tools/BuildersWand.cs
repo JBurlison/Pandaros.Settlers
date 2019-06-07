@@ -49,7 +49,7 @@ namespace Pandaros.Settlers.Items
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.BuildersWand.Add")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".BuildersWand";
@@ -79,12 +79,12 @@ namespace Pandaros.Settlers.Items
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
             GameLoader.NAMESPACE + ".Items.BuildersWand.PlayerClicked")]
-        public static void PlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void PlayerClicked(Players.Player player, PlayerClickedData playerClickData)
         {
-            if (boxedData.item1.IsConsumed || boxedData.item1.TypeSelected != Item.ItemIndex)
+            if (playerClickData.IsConsumed || playerClickData.TypeSelected != Item.ItemIndex)
                 return;
 
-            var click      = boxedData.item1;
+            var click      = playerClickData;
             var rayCastHit = click.GetVoxelHit();
             var ps         = PlayerState.GetPlayerState(player);
 

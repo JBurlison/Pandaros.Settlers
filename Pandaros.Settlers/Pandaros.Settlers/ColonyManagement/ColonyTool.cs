@@ -54,14 +54,14 @@ namespace Pandaros.Settlers.ColonyManagement
         static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OpenMenu")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
         {
             //Only launch on RIGHT click
-            if (player == null || boxedData.item1.ClickType != PlayerClickedData.EClickType.Right || player.ActiveColony == null)
+            if (player == null || playerClickData.ClickType != PlayerClickedData.EClickType.Right || player.ActiveColony == null)
                 return;
-
+           
             if (ItemTypes.IndexLookup.TryGetIndex(GameLoader.NAMESPACE + ".ColonyManagementTool", out var toolItem) &&
-                boxedData.item1.TypeSelected == toolItem)
+                playerClickData.TypeSelected == toolItem)
             {
                 Dictionary<string, JobCounts> jobCounts = GetJobCounts(player.ActiveColony);
                 NetworkMenuManager.SendServerPopup(player, BuildMenu(player, jobCounts, false, string.Empty, 0));

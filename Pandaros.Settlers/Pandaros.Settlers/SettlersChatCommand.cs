@@ -24,7 +24,7 @@ namespace Pandaros.Settlers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Settlers.ChangedSetting")]
-        public static void ChangedSetting(Tuple<Players.Player, JSONNode, string> data)
+        public static void ChangedSetting(ValueTuple<Players.Player, JSONNode, string> data)
         {
             if (data.Item1.ActiveColony != null)
                 switch (data.Item3)

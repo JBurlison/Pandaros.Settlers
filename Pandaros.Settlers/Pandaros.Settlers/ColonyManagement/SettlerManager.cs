@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TerrainGeneration;
+using static ItemTypes;
 using Math = System.Math;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
@@ -57,11 +58,11 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,  GameLoader.NAMESPACE + ".SettlerManager.OnPlayerClicked")]
-        public static void OnPlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OnPlayerClicked(Players.Player player, PlayerClickedData playerClickData)
         {
-            if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Right &&
-                boxedData.item1.HitType == PlayerClickedData.EHitType.Block &&
-                World.TryGetTypeAt(boxedData.item1.GetVoxelHit().BlockHit, out ushort blockHit) &&
+            if (playerClickData.ClickType == PlayerClickedData.EClickType.Right &&
+                playerClickData.HitType == PlayerClickedData.EHitType.Block &&
+                World.TryGetTypeAt(playerClickData.GetVoxelHit().BlockHit, out ushort blockHit) &&
                 blockHit == ColonyBuiltIn.ItemTypes.BERRYBUSH)
             {
                 var inv = player.Inventory;
@@ -356,12 +357,12 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCGathered, GameLoader.NAMESPACE + ".SettlerManager.OnNPCGathered")]
-        public static void OnNPCGathered(IJob job, Vector3Int location, List<RecipeResult> results)
+        public static void OnNPCGathered(IJob job, Vector3Int location, List<ItemTypeDrops> results)
         {
             if (job != null && job.NPC != null && results != null && results.Count > 0)
             {
                 var inv = SettlerInventory.GetSettlerInventory(job.NPC);
-
+               
                 foreach (var item in results)
                 {
                     if (ItemTypes.TryGetType(item.Type, out var itemType))
@@ -559,11 +560,11 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
-        public static void OnNPCJobChanged(Tuple<NPCBase, IJob, IJob> data)
+        public static void OnNPCJobChanged(ValueTuple<NPCBase, IJob, IJob> data)
         {
-            if (data != null && data.Item1 != null && !data.Item1.NPCType.IsLaborer)
+            if (data.Item1 != null && !data.Item1.NPCType.IsLaborer)
                 data.Item1.CustomData.SetAs(LEAVETIME_JOB, 0);
-
+            
             if (data.Item3 is GuardJobInstance guardJob)
             {
                 var settings = (GuardJobSettings)guardJob.Settings;

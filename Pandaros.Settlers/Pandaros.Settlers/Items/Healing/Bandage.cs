@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Items.Healing
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Add")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var name = GameLoader.NAMESPACE + ".Bandage";
@@ -53,15 +53,15 @@ namespace Pandaros.Settlers.Items.Healing
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Click")]
-        public static void Click(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void Click(Players.Player player, PlayerClickedData playerClickData)
         {
             var healed = false;
 
             if (!_coolDown.ContainsKey(player))
                 _coolDown.Add(player, 0);
 
-            if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Right &&
-                boxedData.item1.TypeSelected == Item.ItemIndex)
+            if (playerClickData.ClickType == PlayerClickedData.EClickType.Right &&
+                playerClickData.TypeSelected == Item.ItemIndex)
             {
                 if (Time.SecondsSinceStartDouble > _coolDown[player])
                 {
@@ -69,11 +69,11 @@ namespace Pandaros.Settlers.Items.Healing
                     healed = true;
                 }
             }
-            else if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Left &&
-                     boxedData.item1.TypeSelected == Item.ItemIndex &&
-                     boxedData.item1.HitType == PlayerClickedData.EHitType.NPC)
+            else if (playerClickData.ClickType == PlayerClickedData.EClickType.Left &&
+                     playerClickData.TypeSelected == Item.ItemIndex &&
+                     playerClickData.HitType == PlayerClickedData.EHitType.NPC)
             {
-                if (NPCTracker.TryGetNPC(boxedData.item1.GetNPCHit().NPCID, out var npc))
+                if (NPCTracker.TryGetNPC(playerClickData.GetNPCHit().NPCID, out var npc))
                     if (Time.SecondsSinceStartDouble > _coolDown[player])
                     {
                         var heal = new HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5, Item.ItemIndex);
@@ -84,7 +84,7 @@ namespace Pandaros.Settlers.Items.Healing
             if (healed)
             {
                 _coolDown[player]            = Time.SecondsSinceStartDouble + COOLDOWN;
-                boxedData.item1.ConsumedType = PlayerClickedData.EConsumedType.UsedByMod;
+                playerClickData.ConsumedType = PlayerClickedData.EConsumedType.UsedByMod;
                 AudioManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
                 player.Inventory.TryRemove(Item.ItemIndex);
             }

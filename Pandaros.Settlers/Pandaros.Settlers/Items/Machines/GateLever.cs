@@ -461,7 +461,7 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddGateLever")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void AddGateLever(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
         {
             var GateLeverName = GameLoader.NAMESPACE + ".GateLever";

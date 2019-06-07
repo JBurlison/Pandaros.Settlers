@@ -125,7 +125,7 @@ namespace Pandaros.Settlers.Extender
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AddItemTypes")]
-        [ModLoader.ModCallbackDependsOn("pipliz.blocknpcs.addlittypes")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
         public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             foreach (var extension in _settlersExtensions.Where(s => s as IAddItemTypes != null).Select(ex => ex as IAddItemTypes))

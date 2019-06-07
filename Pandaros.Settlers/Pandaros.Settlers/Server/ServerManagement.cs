@@ -36,14 +36,14 @@ namespace Pandaros.Settlers.Server
         static readonly localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("servermanager");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Managers.ServerManager.OpenMenu")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
         {
             //Only launch on RIGHT click
-            if (player == null || boxedData.item1.ClickType != PlayerClickedData.EClickType.Right || player.ActiveColony == null)
+            if (player == null || playerClickData.ClickType != PlayerClickedData.EClickType.Right || player.ActiveColony == null)
                 return;
 
             if (ItemTypes.IndexLookup.TryGetIndex(GameLoader.NAMESPACE + ".ServerManagementTool", out var toolItem) &&
-                boxedData.item1.TypeSelected == toolItem)
+                playerClickData.TypeSelected == toolItem)
             {
                 NetworkMenuManager.SendServerPopup(player, MainMenu(player));
             }

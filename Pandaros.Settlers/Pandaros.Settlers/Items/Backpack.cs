@@ -71,14 +71,14 @@ namespace Pandaros.Settlers.Items
         static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("backpack");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Backpack.OpenMenu")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
         {
             //Only launch on RIGHT click
-            if (player == null || boxedData.item1.ClickType != PlayerClickedData.EClickType.Right)
+            if (player == null || playerClickData.ClickType != PlayerClickedData.EClickType.Right)
                 return;
 
             if (ItemTypes.IndexLookup.TryGetIndex(GameLoader.NAMESPACE + ".Backpack", out var backpackItem) &&
-                boxedData.item1.TypeSelected == backpackItem)
+                playerClickData.TypeSelected == backpackItem)
             {
                 NetworkMenuManager.SendServerPopup(player, MainMenu(player));
             }

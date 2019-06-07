@@ -92,10 +92,10 @@ namespace Pandaros.Settlers.Jobs.Construction
         private static Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
         {
             if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var schematicItem) &&
-                boxedData.item1.TypeSelected == schematicItem)
+                playerClickData.TypeSelected == schematicItem)
             {
                 if (player.ActiveColony == null)
                 {
@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     switch (tuple.Item1)
                     {
                         case SchematicClickType.Build:
-                            Vector3Int location = boxedData.item1.GetVoxelHit().BlockHit.Add(0, 1, 0);
+                            Vector3Int location = playerClickData.GetVoxelHit().BlockHit.Add(0, 1, 0);
                             var args = new JSONNode();
                             args.SetAs("constructionType", GameLoader.NAMESPACE + ".SchematicBuilder");
                             args.SetAs(SchematicBuilderLoader.NAME + ".SchematicName", tuple.Item2);

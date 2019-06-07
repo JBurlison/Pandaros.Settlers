@@ -22,18 +22,18 @@ namespace Pandaros.Settlers.Help
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
-        public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
+        public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
         {
             if (player == null)
                 return;
 
             foreach (var item in OpenMenuItems)
             {
-                if (boxedData.item1.ClickType != item.ActivateClickType)
+                if (playerClickData.ClickType != item.ActivateClickType)
                     continue;
 
                 if (ItemTypes.IndexLookup.TryGetIndex(item.ItemName, out var menuItem) &&
-                    boxedData.item1.TypeSelected == menuItem)
+                    playerClickData.TypeSelected == menuItem)
                 {
                     SendMenu(player, item.UIUrl);
                 }
