@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pandaros.Settlers.Help;
 using Pandaros.Settlers.Managers;
 using Pipliz.JSON;
 using System;
