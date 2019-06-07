@@ -533,7 +533,7 @@ namespace Pandaros.Settlers.Items.Machines
                         pos.Value.State = GatePosition.Closed;
 
                     var node = new JSONNode()
-                              .SetAs("pos", (Vector3Int)pos.Key)
+                              .SetAs("pos", (JSONNode)pos.Key)
                               .SetAs("state", pos.Value.ToJsonNode());
 
                     gateNode.AddToArray(node);
