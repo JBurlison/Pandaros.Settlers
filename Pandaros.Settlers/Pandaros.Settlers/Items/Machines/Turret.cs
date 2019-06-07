@@ -235,7 +235,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                                 TurretSettings[machineState.RoamObjective]
                                    .ProjectileAnimation
-                                   .SendMoveToInterpolatedOnce(machineState.Position.Vector, monster.PositionToAimFor);
+                                   .SendMoveToInterpolated(machineState.Position.Vector, monster.PositionToAimFor);
 
                                 ServerManager.SendParticleTrail(machineState.Position.Vector, monster.PositionToAimFor, 2);
                                 monster.OnHit(totalDamage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);

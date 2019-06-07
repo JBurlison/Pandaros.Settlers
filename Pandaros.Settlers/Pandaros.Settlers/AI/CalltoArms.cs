@@ -221,7 +221,7 @@ namespace Pandaros.Settlers.AI
 
                                     if (AnimationManager.AnimatedObjects.ContainsKey(projName))
                                     {
-                                        AnimationManager.AnimatedObjects[projName].SendMoveToInterpolatedOnce(Position.Vector, _target.PositionToAimFor);
+                                        AnimationManager.AnimatedObjects[projName].SendMoveToInterpolated(Position.Vector, _target.PositionToAimFor);
 
                                         break;
                                     }
