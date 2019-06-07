@@ -186,9 +186,6 @@ namespace Pandaros.Settlers.Help
                             if (ServerManager.RecipeStorage.RecipesPerLimitType.TryGetValue(job, out var recipesDefault))
                                 recipes.AddRange(recipesDefault);
 
-                            if (ServerManager.RecipeStorage.RecipesPerLimitType.TryGetValue(job, out var recipiesOptional))
-                                recipes.AddRange(recipiesOptional);
-
                             foreach (var recipe in recipes.OrderBy(r => r.Name))
                                menuItem.Add(RecipeLines(menu, player, recipe, item));
 
