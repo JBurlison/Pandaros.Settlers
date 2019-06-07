@@ -524,17 +524,16 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "VoidTurret.png")
-                            .SetAs("isPlaceable")
+                            .SetAs("isPlaceable", "true")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS.Name)
-                            .SetAs("isSolid")
+                            .SetAs("isSolid", "true")
                             .SetAs("sidex+", VOIDTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", VOIDTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", VOIDTURRET_NAMESPACE + "sides")
-                            .SetAs("sidez-", VOIDTURRET_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("sidez-", VOIDTURRET_NAMESPACE + "sides");
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -553,17 +552,16 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "WaterTurret.png")
-                            .SetAs("isPlaceable")
+                            .SetAs("isPlaceable", "true")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS.Name)
-                            .SetAs("isSolid")
+                            .SetAs("isSolid", "true")
                             .SetAs("sidex+", WATERTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", WATERTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", WATERTURRET_NAMESPACE + "sides")
-                            .SetAs("sidez-", WATERTURRET_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("sidez-", WATERTURRET_NAMESPACE + "sides");
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -582,17 +580,16 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "EarthTurret.png")
-                            .SetAs("isPlaceable")
+                            .SetAs("isPlaceable", "true")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS.Name)
-                            .SetAs("isSolid")
+                            .SetAs("isSolid", "true")
                             .SetAs("sidex+", EARTHTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", EARTHTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", EARTHTURRET_NAMESPACE + "sides")
-                            .SetAs("sidez-", EARTHTURRET_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("sidez-", EARTHTURRET_NAMESPACE + "sides");
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -611,17 +608,16 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "FireTurret.png")
-                            .SetAs("isPlaceable")
+                            .SetAs("isPlaceable", "true")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS.Name)
-                            .SetAs("isSolid")
+                            .SetAs("isSolid", "true")
                             .SetAs("sidex+", FIRETURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", FIRETURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", FIRETURRET_NAMESPACE + "sides")
-                            .SetAs("sidez-", FIRETURRET_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("sidez-", FIRETURRET_NAMESPACE + "sides");
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
@@ -640,17 +636,16 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "AirTurret.png")
-                            .SetAs("isPlaceable")
+                            .SetAs("isPlaceable", "true")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS.Name)
-                            .SetAs("isSolid")
+                            .SetAs("isSolid", "true")
                             .SetAs("sidex+", AIRTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", AIRTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", AIRTURRET_NAMESPACE + "sides")
-                            .SetAs("sidez-", AIRTURRET_NAMESPACE + "sides")
-                            .SetAs("npcLimit", 0);
+                            .SetAs("sidez-", AIRTURRET_NAMESPACE + "sides");
 
             var categories = new JSONNode(NodeType.Array);
             categories.AddToArray(new JSONNode("machine"));
