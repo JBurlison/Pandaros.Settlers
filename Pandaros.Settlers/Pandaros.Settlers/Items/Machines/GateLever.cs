@@ -3,6 +3,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Monsters;
+using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
@@ -81,21 +82,10 @@ namespace Pandaros.Settlers.Items.Machines
         private const string DoorOpen = "DoorOpen";
         private const float TravelTime = 4.0f;
 
-        private static readonly MeshedObjectTypeSettings _gateXMinusItemObjSettings =
-            new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateXMinusAnimated",
-                                         GameLoader.MESH_PATH + "gatex-.obj", GameLoader.NAMESPACE + ".Gate");
-
-        private static readonly MeshedObjectTypeSettings _gateXPlusItemObjSettings =
-            new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateXPlusAnimated",
-                                         GameLoader.MESH_PATH + "gatex+.obj", GameLoader.NAMESPACE + ".Gate");
-
-        private static readonly MeshedObjectTypeSettings _gateZMinusItemObjSettings =
-            new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZMinusAnimated",
-                                         GameLoader.MESH_PATH + "gatez-.obj", GameLoader.NAMESPACE + ".Gate");
-
-        private static readonly MeshedObjectTypeSettings _gateZPlusItemObjSettings =
-            new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".GateZPlusAnimated",
-                                         GameLoader.MESH_PATH + "gatez+.obj", GameLoader.NAMESPACE + ".Gate");
+        private static readonly AnimationManager.AnimatedObject _gateXMinusItemObjSettings = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".GateXMinusAnimated", GameLoader.MESH_PATH + "gatex-.obj", GameLoader.NAMESPACE + ".Gate");
+        private static readonly AnimationManager.AnimatedObject _gateXPlusItemObjSettings = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".GateXPlusAnimated", GameLoader.MESH_PATH + "gatex+.obj", GameLoader.NAMESPACE + ".Gate");
+        private static readonly AnimationManager.AnimatedObject _gateZMinusItemObjSettings = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".GateZMinusAnimated", GameLoader.MESH_PATH + "gatez-.obj", GameLoader.NAMESPACE + ".Gate");
+        private static readonly AnimationManager.AnimatedObject _gateZPlusItemObjSettings = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".GateZPlusAnimated", GameLoader.MESH_PATH + "gatez+.obj", GameLoader.NAMESPACE + ".Gate");
 
         private static readonly Dictionary<Colony, Dictionary<Vector3Int, GateState>> _gatePositions = new Dictionary<Colony, Dictionary<Vector3Int, GateState>>();
 
@@ -290,51 +280,30 @@ namespace Pandaros.Settlers.Items.Machines
                             newOffset = 1;
                         }
 
-                        // TODO
-                        //switch (mkvp.Key.Orientation)
-                        //{
-                        //    case VoxelSide.xMin:
+                        var newPos = mkvp.Value.Add(0, newOffset, 0).Vector;
+                        
+                        switch (mkvp.Key.Orientation)
+                        {
+                            case VoxelSide.xMin:
+                                _gateXMinusItemObjSettings.SendMoveToInterpolated(mkvp.Key.Position.Vector, newPos, TravelTime);
+                                break;
 
-                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                        //                                                            mkvp.Value.Add(0, newOffset, 0)
-                        //                                                                .Vector, TravelTime,
-                        //                                                            _gateXMinusItemObjSettings);
+                            case VoxelSide.xPlus:
+                                _gateXPlusItemObjSettings.SendMoveToInterpolated(mkvp.Key.Position.Vector, newPos, TravelTime);
+                                break;
 
-                        //        break;
-                        //    case VoxelSide.xPlus:
+                            case VoxelSide.zMin:
+                                _gateZMinusItemObjSettings.SendMoveToInterpolated(mkvp.Key.Position.Vector, newPos, TravelTime);
+                                break;
 
-                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                        //                                                            mkvp.Value.Add(0, newOffset, 0)
-                        //                                                                .Vector, TravelTime,
-                        //                                                            _gateXPlusItemObjSettings);
+                            case VoxelSide.zPlus:
+                                _gateZPlusItemObjSettings.SendMoveToInterpolated(mkvp.Key.Position.Vector, newPos, TravelTime);
+                                break;
 
-                        //        break;
-                        //    case VoxelSide.zMin:
-
-                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                        //                                                            mkvp.Value.Add(0, newOffset, 0)
-                        //                                                                .Vector, TravelTime,
-                        //                                                            _gateZMinusItemObjSettings);
-
-                        //        break;
-                        //    case VoxelSide.zPlus:
-
-                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                        //                                                            mkvp.Value.Add(0, newOffset, 0)
-                        //                                                                .Vector, TravelTime,
-                        //                                                            _gateZPlusItemObjSettings);
-
-                        //        break;
-
-                        //    default:
-
-                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                        //                                                            mkvp.Value.Add(0, newOffset, 0)
-                        //                                                                .Vector, TravelTime,
-                        //                                                            _gateXMinusItemObjSettings);
-
-                        //        break;
-                        //}
+                            default:
+                                _gateXMinusItemObjSettings.SendMoveToInterpolated(mkvp.Key.Position.Vector, newPos, TravelTime);
+                                break;
+                        }
 
                         var moveState = GatePosition.MovingClosed;
 
@@ -543,11 +512,6 @@ namespace Pandaros.Settlers.Items.Machines
             GateZplusNode.SetAs("mesh", GameLoader.MESH_PATH + "gatez+.obj");
             GateItemZP = new ItemTypesServer.ItemTypeRaw(GateZplusName, GateZplusNode);
             items.Add(GateZplusName, GateItemZP);
-
-            MeshedObjectType.Register(_gateXMinusItemObjSettings);
-            MeshedObjectType.Register(_gateXPlusItemObjSettings);
-            MeshedObjectType.Register(_gateZMinusItemObjSettings);
-            MeshedObjectType.Register(_gateZPlusItemObjSettings);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSavingColony, GameLoader.NAMESPACE + ".Items.Machines.GateLever.OnSavingColony")]

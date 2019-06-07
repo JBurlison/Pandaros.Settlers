@@ -24,6 +24,7 @@ namespace Pandaros.Settlers.Monsters
     public class MonsterManager : IPathingThreadAction
     {
         private static double _nextUpdateTime;
+        private static double _justQueued;
         private static int _nextBossUpdateTime = int.MaxValue;
         private static MonsterManager _monsterManager = new MonsterManager();
         private static Queue<IPandaBoss> _pandaBossesSpawnQueue = new Queue<IPandaBoss>();
@@ -145,12 +146,13 @@ namespace Pandaros.Settlers.Monsters
                     var bossType   = GetMonsterType();
                     _monsterManager.CurrentPandaBoss = bossType;
                     ServerManager.PathingManager.QueueAction(_monsterManager);
+                    _justQueued = secondsSinceStartDouble + 5;
 
                     if (Players.CountConnected != 0)
                         PandaLogger.Log(ChatColor.yellow, $"Boss Active! Boss is: {bossType.name}");
                 }
 
-                if (BossActive)
+                if (BossActive && _justQueued < secondsSinceStartDouble) 
                 {
                     var   turnOffBoss   = true;
 

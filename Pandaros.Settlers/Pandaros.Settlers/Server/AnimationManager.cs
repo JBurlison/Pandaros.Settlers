@@ -1,6 +1,7 @@
 ﻿using MeshedObjects;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Server
@@ -22,6 +23,13 @@ namespace Pandaros.Settlers.Server
 
         public static Dictionary<string, AnimatedObject> AnimatedObjects { get; } = new Dictionary<string, AnimatedObject>(StringComparer.OrdinalIgnoreCase);
 
+        public static AnimatedObject RegisterNewAnimatedObject(string key, string meshPath, string textureMapping)
+        {
+            AnimatedObjects[key] = new AnimatedObject(key, meshPath, textureMapping);
+            return AnimatedObjects[key];
+        }
+
+
         public class AnimatedObject
         {
             public AnimatedObject(string key, string meshPath, string textureMapping)
@@ -31,19 +39,20 @@ namespace Pandaros.Settlers.Server
             }
 
             public string Name { get; private set; }
-
             public MeshedObjectType ObjType { get; }
             public MeshedObjectTypeSettings ObjSettings { get; }
-
-            public void SendMoveToInterpolatedOnce(Vector3 start, Vector3 end, float deltaTime = 1f)
-            {
-               // TODO ClientMeshedObject.SendMoveOnceInterpolatedPositionAutoRotation(start, end, deltaTime, ObjSettings);
-            }
 
             public ClientMeshedObject SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = 1f)
             {
                 var obj = new ClientMeshedObject(ObjType);
-                // obj.SendMoveToInterpolated(start, end, deltaTime);
+                obj.SendMoveToInterpolated(start, new Quaternion(end.x, end.y, end.z, 0), deltaTime, ObjSettings);
+
+                Task.Run(() =>
+                {
+                    System.Threading.Thread.Sleep((int)(deltaTime * 1001));
+                    obj.SendRemoval(end, ObjSettings);
+                });
+
                 return obj;
             }
         }
