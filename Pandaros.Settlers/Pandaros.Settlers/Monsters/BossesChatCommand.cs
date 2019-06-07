@@ -24,23 +24,23 @@ namespace Pandaros.Settlers.Monsters
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Bosses.ChangedSetting")]
-        public static void ChangedSetting(TupleStruct<Players.Player, JSONNode, string> data)
+        public static void ChangedSetting(Tuple<Players.Player, JSONNode, string> data)
         {
-            if (data.item1.ActiveColony != null)
+            if (data.Item1.ActiveColony != null)
 
-                switch (data.item3)
+                switch (data.Item3)
                 {
                     case "world_settings":
-                        var ps = ColonyState.GetColonyState(data.item1.ActiveColony);
+                        var ps = ColonyState.GetColonyState(data.Item1.ActiveColony);
 
-                        if (ps != null && data.item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != Convert.ToInt32(ps.BossesEnabled))
+                        if (ps != null && data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != Convert.ToInt32(ps.BossesEnabled))
                         {
                             if (!Configuration.GetorDefault("BossesCanBeDisabled", true))
-                                PandaChat.Send(data.item1, "The server administrator had disabled the changing of bosses.", ChatColor.red);
+                                PandaChat.Send(data.Item1, "The server administrator had disabled the changing of bosses.", ChatColor.red);
                             else
-                                ps.BossesEnabled = data.item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != 0;
+                                ps.BossesEnabled = data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != 0;
 
-                            PandaChat.Send(data.item1, "Settlers! Mod Bosses are now " + (ps.BossesEnabled ? "on" : "off"), ChatColor.green);
+                            PandaChat.Send(data.Item1, "Settlers! Mod Bosses are now " + (ps.BossesEnabled ? "on" : "off"), ChatColor.green);
                         }
 
                         break;
@@ -59,7 +59,8 @@ namespace Pandaros.Settlers.Monsters
             if (player.ActiveColony == null)
                 PandaChat.Send(player, "You must be near a colony to set its difficulty", ChatColor.red);
 
-            var array  = CommandManager.SplitCommand(chat);
+            var array = new List<string>();
+            CommandManager.SplitCommand(chat, array);
             var state  = ColonyState.GetColonyState(player.ActiveColony);
 
             if (array.Count == 1)

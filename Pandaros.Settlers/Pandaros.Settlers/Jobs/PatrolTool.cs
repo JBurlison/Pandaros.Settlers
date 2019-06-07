@@ -35,10 +35,11 @@ namespace Pandaros.Settlers.Jobs
 
             var recipe = new Recipe(PatrolFlag.name,
                                     new List<InventoryItem> {planks, carpet},
-                                    new ItemTypes.ItemTypeDrops(PatrolFlag.ItemIndex, 2),
+                                    new RecipeResult(PatrolFlag.ItemIndex, 2),
                                     5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 
@@ -195,21 +196,20 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.PlacePatrol")]
         public static void PlacePatrol(Players.Player player, Box<PlayerClickedData> boxedData)
         {
-            if (boxedData.item1.IsConsumed || player.ActiveColony == null)
+            if (boxedData.item1.IsConsumed || player.ActiveColony == null || boxedData.item1.HitType != PlayerClickedData.EHitType.Block)
                 return;
 
             var click      = boxedData.item1;
-            var rayCastHit = click.rayCastHit;
             var state      = PlayerState.GetPlayerState(player);
+            var rayCastHit = click.GetVoxelHit();
 
-            if (rayCastHit.rayHitType == RayHitType.Block &&
-                click.typeSelected == Item.ItemIndex)
+            if (click.TypeSelected == Item.ItemIndex)
             {
-                if (click.typeHit != PatrolFlag.ItemIndex)
+                if (rayCastHit.TypeHit != PatrolFlag.ItemIndex)
                 {
-                    var flagPoint = rayCastHit.voxelHit.Add(0, 1, 0);
+                    var flagPoint = rayCastHit.BlockHit.Add(0, 1, 0);
 
-                    if (click.clickType == PlayerClickedData.ClickType.Left)
+                    if (click.ClickType == PlayerClickedData.EClickType.Left)
                     {
                         var hasFlags = player.TakeItemFromInventory(PatrolFlag.ItemIndex);
 
@@ -240,7 +240,7 @@ namespace Pandaros.Settlers.Jobs
                 else
                 {
                     foreach (var knight in Knight.Knights[player.ActiveColony])
-                        if (knight.PatrolPoints.Contains(rayCastHit.voxelHit))
+                        if (knight.PatrolPoints.Contains(rayCastHit.BlockHit))
                         {
                             var patrol = string.Empty;
 
@@ -272,7 +272,7 @@ namespace Pandaros.Settlers.Jobs
                 }
             }
 
-            if (click.typeSelected == Item.ItemIndex && click.clickType == PlayerClickedData.ClickType.Right)
+            if (click.TypeSelected == Item.ItemIndex && click.ClickType == PlayerClickedData.EClickType.Right)
             {
                 if (state.FlagsPlaced.Count == 0)
                 {

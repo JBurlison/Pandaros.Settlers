@@ -4,6 +4,7 @@ using NPC;
 using Pandaros.Settlers.NBT;
 using Pipliz;
 using Pipliz.Mods.BaseGame.Construction;
+using Recipes;
 using Shared;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
         }
 
-        List<ItemTypes.ItemTypeDrops> _gatherResults = new List<ItemTypes.ItemTypeDrops>();
+        public int OnStockpileNewItemCount => 1;
 
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {

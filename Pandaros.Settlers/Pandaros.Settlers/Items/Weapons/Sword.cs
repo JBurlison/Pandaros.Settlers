@@ -79,10 +79,11 @@ namespace Pandaros.Settlers.Items.Weapons
                 }
 
                 var metadata = a.Value as WeaponMetadata;
-                var invItem = new ItemTypes.ItemTypeDrops(metadata.ItemType.ItemIndex);
+                var invItem = new RecipeResult(metadata.ItemType.ItemIndex);
                 var recipe  = new Recipe(metadata.ItemType.name, items, invItem, 5);
 
-                ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
+                ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
+                ServerManager.RecipeStorage.AddScienceRequirement(recipe);
             }
         }
 

@@ -21,11 +21,12 @@ namespace Pandaros.Settlers.Items
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {herbs3, oil, herbs, herbs2},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
+                                    new RecipeResult(Item.ItemIndex, 1),
                                     50);
 
-            recipe.Results.Add(new ItemTypes.ItemTypeDrops(Esper.Item.ItemIndex, 1, 0.03f));
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            recipe.Results.Add(new RecipeResult(Esper.Item.ItemIndex, 1, 0.03f));
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

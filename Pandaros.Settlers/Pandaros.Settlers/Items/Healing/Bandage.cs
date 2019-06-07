@@ -27,10 +27,11 @@ namespace Pandaros.Settlers.Items.Healing
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {linen, oil},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
+                                    new RecipeResult(Item.ItemIndex, 1),
                                     50);
 
-            ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 
@@ -59,8 +60,8 @@ namespace Pandaros.Settlers.Items.Healing
             if (!_coolDown.ContainsKey(player))
                 _coolDown.Add(player, 0);
 
-            if (boxedData.item1.clickType == PlayerClickedData.ClickType.Right &&
-                boxedData.item1.typeSelected == Item.ItemIndex)
+            if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Right &&
+                boxedData.item1.TypeSelected == Item.ItemIndex)
             {
                 if (Time.SecondsSinceStartDouble > _coolDown[player])
                 {
@@ -68,11 +69,11 @@ namespace Pandaros.Settlers.Items.Healing
                     healed = true;
                 }
             }
-            else if (boxedData.item1.clickType == PlayerClickedData.ClickType.Left &&
-                     boxedData.item1.typeSelected == Item.ItemIndex &&
-                     boxedData.item1.rayCastHit.rayHitType == RayHitType.NPC)
+            else if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Left &&
+                     boxedData.item1.TypeSelected == Item.ItemIndex &&
+                     boxedData.item1.HitType == PlayerClickedData.EHitType.NPC)
             {
-                if (NPCTracker.TryGetNPC(boxedData.item1.rayCastHit.hitNPCID, out var npc))
+                if (NPCTracker.TryGetNPC(boxedData.item1.GetNPCHit().NPCID, out var npc))
                     if (Time.SecondsSinceStartDouble > _coolDown[player])
                     {
                         var heal = new HealingOverTimeNPC(npc, INITIALHEAL, TOTALHOT, 5, Item.ItemIndex);
@@ -83,8 +84,8 @@ namespace Pandaros.Settlers.Items.Healing
             if (healed)
             {
                 _coolDown[player]            = Time.SecondsSinceStartDouble + COOLDOWN;
-                boxedData.item1.consumedType = PlayerClickedData.ConsumedType.UsedByMod;
-                ServerManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
+                boxedData.item1.ConsumedType = PlayerClickedData.EConsumedType.UsedByMod;
+                AudioManager.SendAudio(player.Position, GameLoader.NAMESPACE + ".Bandage");
                 player.Inventory.TryRemove(Item.ItemIndex);
             }
         }

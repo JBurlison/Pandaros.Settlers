@@ -99,13 +99,12 @@ namespace Pandaros.Settlers.Monsters.Bosses
                         NPCTracker.TryGetNear(Position, 50, out var npc) &&
                         !alreadyTeleported.Contains(monster))
                     {
-                        ServerManager.SendAudio(zombie.Position, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        AudioManager.SendAudio(zombie.Position, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
 
-                        var setPos = zombie
-                                    .GetType().GetMethod("SetPosition", BindingFlags.NonPublic | BindingFlags.Instance);
+                        var setPos = zombie.GetType().GetMethod("SetPosition", BindingFlags.NonPublic | BindingFlags.Instance);
 
-                        setPos.Invoke(zombie,
-                                      new object[] { AIManager.ClosestPositionNotAt(npc.Position, npc.Position) });
+                        if (PathingManager.TryCanStandNearNotAt(npc.Position, out var posFound, out var position) && posFound)
+                            setPos.Invoke(zombie, new object[] { position });
 
                         zombie.SendUpdate();
 
@@ -121,7 +120,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                                                     BindingFlags.Instance);
 
                         fi.SetValue(zombie, default(ZombieDecision));
-                        ServerManager.SendAudio(npc.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        AudioManager.SendAudio(npc.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                         alreadyTeleported.Add(zombie);
                     }
                 }

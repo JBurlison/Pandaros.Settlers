@@ -338,7 +338,7 @@ namespace Pandaros.Settlers
 #endif
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitLate, NAMESPACE + ".OnQuitLate")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuit, NAMESPACE + ".OnQuitLate")]
         public static void OnQuitLate()
         {
             RUNNING     = false;
@@ -356,7 +356,7 @@ namespace Pandaros.Settlers
 
             if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
             {
-                var side    = userData.PlayerClickedData.VoxelSideHit;
+                var side    = userData.PlayerClickedData.GetVoxelHit().SideHit;
 
                 switch (side)
                 {

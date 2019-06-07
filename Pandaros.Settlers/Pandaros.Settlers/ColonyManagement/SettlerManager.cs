@@ -59,9 +59,9 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,  GameLoader.NAMESPACE + ".SettlerManager.OnPlayerClicked")]
         public static void OnPlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
         {
-            if (boxedData.item1.clickType == PlayerClickedData.ClickType.Right &&
-                boxedData.item1.rayCastHit.rayHitType == RayHitType.Block &&
-                World.TryGetTypeAt(boxedData.item1.rayCastHit.voxelHit, out ushort blockHit) &&
+            if (boxedData.item1.ClickType == PlayerClickedData.EClickType.Right &&
+                boxedData.item1.HitType == PlayerClickedData.EHitType.Block &&
+                World.TryGetTypeAt(boxedData.item1.GetVoxelHit().BlockHit, out ushort blockHit) &&
                 blockHit == ColonyBuiltIn.ItemTypes.BERRYBUSH)
             {
                 var inv = player.Inventory;
@@ -97,24 +97,24 @@ namespace Pandaros.Settlers.ColonyManagement
         public static void OnUpdate()
         {
             if (ServerManager.ColonyTracker != null)
-            foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
-            {
-                if (_magicUpdateTime < Time.SecondsSinceStartDouble)
+                foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                 {
-                    foreach (var follower in colony.Followers)
+                    if (_magicUpdateTime < Time.SecondsSinceStartDouble)
                     {
-                        var inv = SettlerInventory.GetSettlerInventory(follower);
-
-                        if (inv.MagicItemUpdateTime < Time.SecondsSinceStartDouble)
+                        foreach (var follower in colony.Followers)
                         {
-                            foreach (var item in inv.Armor)
-                                if (item.Value.Id != 0 && ArmorFactory.ArmorLookup.TryGetValue(item.Value.Id, out var armor))
-                                {
-                                    armor.Update();
+                            var inv = SettlerInventory.GetSettlerInventory(follower);
 
-                                    if (armor.HPTickRegen != 0)
-                                        follower.Heal(armor.HPTickRegen);
-                                }
+                            if (inv.MagicItemUpdateTime < Time.SecondsSinceStartDouble)
+                            {
+                                foreach (var item in inv.Armor)
+                                    if (item.Value.Id != 0 && ArmorFactory.ArmorLookup.TryGetValue(item.Value.Id, out var armor))
+                                    {
+                                        armor.Update();
+
+                                        if (armor.HPTickRegen != 0)
+                                            follower.Heal(armor.HPTickRegen);
+                                    }
 
                                 if (Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wep))
                                 {
@@ -127,69 +127,69 @@ namespace Pandaros.Settlers.ColonyManagement
                                 var hasBandages = colony.Stockpile.Contains(TreatedBandage.Item.ItemIndex) ||
                                       colony.Stockpile.Contains(Bandage.Item.ItemIndex);
 
-                            if (hasBandages &&
-                                follower.health < follower.Colony.NPCHealthMax &&
-                                !HealingOverTimeNPC.NPCIsBeingHealed(follower))
-                            {
-                                var healing = false;
-
-                                if (follower.Colony.NPCHealthMax - follower.health > TreatedBandage.INITIALHEAL)
+                                if (hasBandages &&
+                                    follower.health < follower.Colony.NPCHealthMax &&
+                                    !HealingOverTimeNPC.NPCIsBeingHealed(follower))
                                 {
-                                    colony.Stockpile.TryRemove(TreatedBandage.Item.ItemIndex);
-                                    healing = true;
-                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+                                    var healing = false;
 
-                                    var heal = new HealingOverTimeNPC(follower, TreatedBandage.INITIALHEAL,
-                                                                      TreatedBandage.TOTALHOT, 5,
-                                                                      TreatedBandage.Item.ItemIndex);
+                                    if (follower.Colony.NPCHealthMax - follower.health > TreatedBandage.INITIALHEAL)
+                                    {
+                                        colony.Stockpile.TryRemove(TreatedBandage.Item.ItemIndex);
+                                        healing = true;
+                                        AudioManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+
+                                        var heal = new HealingOverTimeNPC(follower, TreatedBandage.INITIALHEAL,
+                                                                          TreatedBandage.TOTALHOT, 5,
+                                                                          TreatedBandage.Item.ItemIndex);
+                                    }
+
+                                    if (!healing)
+                                    {
+                                        colony.Stockpile.TryRemove(Bandage.Item.ItemIndex);
+                                        healing = true;
+                                        AudioManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
+
+                                        var heal = new HealingOverTimeNPC(follower, Bandage.INITIALHEAL, Bandage.TOTALHOT, 5,
+                                                                          Bandage.Item.ItemIndex);
+                                    }
                                 }
 
-                                if (!healing)
-                                {
-                                    colony.Stockpile.TryRemove(Bandage.Item.ItemIndex);
-                                    healing = true;
-                                    ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".Bandage");
 
-                                    var heal = new HealingOverTimeNPC(follower, Bandage.INITIALHEAL, Bandage.TOTALHOT, 5,
-                                                                      Bandage.Item.ItemIndex);
-                                }
+                                inv.MagicItemUpdateTime += 5000;
                             }
-
-
-                            inv.MagicItemUpdateTime += 5000;
                         }
                     }
-                }
-                    
 
-                if (_updateTime < Time.SecondsSinceStartDouble && colony.OwnerIsOnline())
-                {
-                    NPCBase lastNPC = null;
 
-                    foreach (var follower in colony.Followers)
+                    if (_updateTime < Time.SecondsSinceStartDouble && colony.OwnerIsOnline())
                     {
-                        if (TimeCycle.IsDay)
-                            if (lastNPC == null ||
-                            UnityEngine.Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 &&
-                            Random.NextBool())
-                            {
-                                lastNPC = follower;
-                                ServerManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".TalkingAudio");
-                            }
+                        NPCBase lastNPC = null;
+
+                        foreach (var follower in colony.Followers)
+                        {
+                            if (TimeCycle.IsDay)
+                                if (lastNPC == null ||
+                                UnityEngine.Vector3.Distance(lastNPC.Position.Vector, follower.Position.Vector) > 15 &&
+                                Random.NextBool())
+                                {
+                                    lastNPC = follower;
+                                    AudioManager.SendAudio(follower.Position.Vector, GameLoader.NAMESPACE + ".TalkingAudio");
+                                }
+                        }
                     }
+
+                    var cs = ColonyState.GetColonyState(colony);
+
+                    if (cs.SettlersEnabled)
+                        if (EvaluateSettlers(cs) ||
+                            EvaluateLaborers(cs) ||
+                            EvaluateBeds(cs))
+                            colony.SendCommonData();
+
+                    UpdateFoodUse(cs);
                 }
 
-                var cs = ColonyState.GetColonyState(colony);
-
-                if (cs.SettlersEnabled)
-                    if (EvaluateSettlers(cs) ||
-                        EvaluateLaborers(cs) ||
-                        EvaluateBeds(cs))
-                        colony.SendCommonData();
-
-                UpdateFoodUse(cs);
-            }
-            
             if (_magicUpdateTime < Time.SecondsSinceStartDouble)
                 _magicUpdateTime = Time.SecondsSinceStartDouble + 1;
 
@@ -356,7 +356,7 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCGathered, GameLoader.NAMESPACE + ".SettlerManager.OnNPCGathered")]
-        public static void OnNPCGathered(IJob job, Vector3Int location, List<ItemTypes.ItemTypeDrops> results)
+        public static void OnNPCGathered(IJob job, Vector3Int location, List<RecipeResult> results)
         {
             if (job != null && job.NPC != null && results != null && results.Count > 0)
             {
@@ -371,7 +371,7 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".SettlerManager.OnNPCCraftedRecipe")]
-        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<ItemTypes.ItemTypeDrops> results)
+        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<RecipeResult> results)
         {
             IncrimentSkill(job.NPC);
 
@@ -380,14 +380,14 @@ namespace Pandaros.Settlers.ColonyManagement
 
             double weightSum = 0;
             double roll = Random.Next() + inv.GetSkillModifier();
-            List<ItemTypes.ItemTypeDrops> bonusItems = new List<ItemTypes.ItemTypeDrops>();
+            List<RecipeResult> bonusItems = new List<RecipeResult>();
 
             foreach (var item in results)
             {
                 weightSum += 1;
 
                 if (roll > weightSum)
-                    bonusItems.Add(new ItemTypes.ItemTypeDrops(item.Type, item.Amount));
+                    bonusItems.Add(new RecipeResult(item.Type, item.Amount));
 
                 inv.IncrimentStat(ItemTypes.GetType(item.Type).Name, item.Amount);
             }
@@ -433,8 +433,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public static void UpdateFoodUse(ColonyState state)
         {
-            if (ServerManager.TerrainGenerator != null &&
-                AIManager.NPCPathFinder != null)
+            if (ServerManager.TerrainGenerator != null)
             {
                 var food   = _baseFoodPerHour;
 
@@ -535,7 +534,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                         newGuy.CustomData.SetAs(GameLoader.ALL_SKILLS, Random.Next(1, 10) * 0.002f);
 
                                     update = true;
-                                    ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCRecruited, newGuy);
+                                    ModLoader.Callbacks.OnNPCRecruited.Invoke(newGuy);
                                 }
                             }
                         }
@@ -560,12 +559,12 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
-        public static void OnNPCJobChanged(TupleStruct<NPCBase, IJob, IJob> data)
+        public static void OnNPCJobChanged(Tuple<NPCBase, IJob, IJob> data)
         {
-            if (data != null && data.item1 != null && !data.item1.NPCType.IsLaborer)
-                data.item1.CustomData.SetAs(LEAVETIME_JOB, 0);
+            if (data != null && data.Item1 != null && !data.Item1.NPCType.IsLaborer)
+                data.Item1.CustomData.SetAs(LEAVETIME_JOB, 0);
 
-            if (data.item3 is GuardJobInstance guardJob)
+            if (data.Item3 is GuardJobInstance guardJob)
             {
                 var settings = (GuardJobSettings)guardJob.Settings;
                 guardJob.Settings = new GuardJobSettings()
@@ -586,7 +585,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     SleepType = settings.SleepType
                 };
             }
-            else if (data.item3 is CraftingJobInstance craftingJob)
+            else if (data.Item3 is CraftingJobInstance craftingJob)
             {
                 var settings = (CraftingJobSettings)craftingJob.Settings;
                 craftingJob.Settings = new CraftingJobSettings()
@@ -601,7 +600,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 };
             }
 
-            data.item1.ApplyJobResearch();
+            data.Item1.ApplyJobResearch();
         }
 
         public static void ApplyJobCooldownsToNPCs(Colony c)

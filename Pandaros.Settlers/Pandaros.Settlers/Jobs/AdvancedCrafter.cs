@@ -70,10 +70,10 @@ namespace Pandaros.Settlers.Jobs
 
             var recipe = new Recipe(JOB_RECIPE,
                                     new List<InventoryItem> {iron, tools, planks},
-                                    new ItemTypes.ItemTypeDrops(ItemTypes.IndexLookup.StringLookupTable[JOB_ITEM_KEY], 1), 2);
+                                    new RecipeResult(ItemTypes.IndexLookup.StringLookupTable[JOB_ITEM_KEY], 1), 2);
 
-            ServerManager.RecipeStorage.AddPlayerOptionalRecipe(recipe);
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
         }
     }
 }

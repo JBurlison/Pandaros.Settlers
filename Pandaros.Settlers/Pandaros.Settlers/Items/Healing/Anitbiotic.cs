@@ -21,10 +21,11 @@ namespace Pandaros.Settlers.Items.Healing
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {flour, oil, herbs, herbs2},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
+                                    new RecipeResult(Item.ItemIndex, 1),
                                     50);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

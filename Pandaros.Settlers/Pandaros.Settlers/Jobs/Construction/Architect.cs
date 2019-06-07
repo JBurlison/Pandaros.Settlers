@@ -19,6 +19,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 {
     public class Architect : IConstructionType
     {
+        public int OnStockpileNewItemCount => 1;
+
         public void DoJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ref NPCBase.NPCState state)
         {
             var bpi = iterationType as SchematicIterator;
@@ -30,12 +32,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                 AreaJobTracker.RemoveJob(areaJob);
                 return;
             }
-
-            if (World.TryGetTypeAt(iterationType.CurrentPosition, out ushort foundTypeIndex))
-            {
-
-            }
-          
 
             if (iterationType.MoveNext())
             {

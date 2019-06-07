@@ -20,10 +20,11 @@ namespace Pandaros.Settlers.Items
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, torch},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
+                                    new RecipeResult(Item.ItemIndex, 1),
                                     6);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

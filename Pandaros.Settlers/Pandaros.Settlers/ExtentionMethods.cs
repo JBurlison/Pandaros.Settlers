@@ -5,6 +5,8 @@ using NPC;
 using Pandaros.Settlers.Items;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
+using Science;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,11 @@ namespace Pandaros.Settlers
 {
     public static class ExtentionMethods
     {
+        public static bool IsConnected(this Players.Player p)
+        {
+            return p.ConnectionState == Players.EConnectionState.Connected;
+        }
+
         public static double NextDouble(this Random rng, double min, double max)
         {
             return rng.NextDouble() * (max - min) + min;
@@ -31,20 +38,17 @@ namespace Pandaros.Settlers
             return hasItem;
         }
 
-        public static Vector3Int GetClosestPositionWithinY(this Vector3Int goalPosition, Vector3Int currentPosition,
-                                                           int             minMaxY)
+        public static Vector3Int GetClosestPositionWithinY(this Vector3Int goalPosition, Vector3Int currentPosition, int minMaxY)
         {
-            var pos = AIManager.ClosestPosition(goalPosition, currentPosition);
+            var pos = currentPosition;
 
-            if (pos == Vector3Int.invalidPos)
+            if (PathingManager.TryCanStandNear(goalPosition, out var canStand, out pos) && !canStand)
             {
                 var y    = -1;
                 var negY = minMaxY * -1;
 
-                while (pos == Vector3Int.invalidPos)
+                while (PathingManager.TryCanStandNear(goalPosition.Add(0, y, 0), out var canStandNow, out pos) && !canStandNow)
                 {
-                    pos = AIManager.ClosestPosition(goalPosition.Add(0, y, 0), currentPosition);
-
                     if (y > 0)
                     {
                         y++;
@@ -151,7 +155,7 @@ namespace Pandaros.Settlers
 
         public static bool OwnerIsOnline(this Colony source)
         {
-            return source.Owners.Any(o => o.IsConnected);
+            return source.Owners.Any(o => o.IsConnected());
         }
 
         public static T GetRandomItem<T>(this List<T> l)

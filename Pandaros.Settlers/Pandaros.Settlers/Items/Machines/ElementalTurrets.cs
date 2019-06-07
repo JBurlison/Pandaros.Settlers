@@ -46,10 +46,11 @@ namespace Pandaros.Settlers.Items.Machines
 
             var airRecipe = new Recipe(AIRTURRET_NAMESPACE,
                                        new List<InventoryItem> {planks, elemen, mana, tools, stone, airStone, esper},
-                                       new ItemTypes.ItemTypeDrops(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
+                                       new RecipeResult(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
                                        5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(airRecipe);
 
             var earthRecipe = new Recipe(EARTHTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -62,17 +63,19 @@ namespace Pandaros.Settlers.Items.Machines
                                              earthStone,
                                              esper
                                          },
-                                         new ItemTypes.ItemTypeDrops(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
-                                         5, true);
+                                         new RecipeResult(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
+                                         5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(earthRecipe);
 
             var fireRecipe = new Recipe(FIRETURRET_NAMESPACE,
                                         new List<InventoryItem> {planks, elemen, mana, tools, stone, fireStone, esper},
-                                        new ItemTypes.ItemTypeDrops(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
-                                        5, true);
+                                        new RecipeResult(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
+                                        5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(fireRecipe);
 
             var waterRecipe = new Recipe(WATERTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -85,10 +88,11 @@ namespace Pandaros.Settlers.Items.Machines
                                              waterStone,
                                              esper
                                          },
-                                         new ItemTypes.ItemTypeDrops(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
-                                         5, true);
+                                         new RecipeResult(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
+                                         5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(waterRecipe);
 
             var voidRecipe = new Recipe(VOIDTURRET_NAMESPACE,
                                         new List<InventoryItem>
@@ -101,10 +105,11 @@ namespace Pandaros.Settlers.Items.Machines
                                             voidStone,
                                             esperMax
                                         },
-                                        new ItemTypes.ItemTypeDrops(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
-                                        5, true);
+                                        new RecipeResult(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
+                                        5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(voidRecipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
@@ -519,12 +524,12 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "VoidTurret.png")
-                            .SetAs("isPlaceable", true)
+                            .SetAs("isPlaceable")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
-                            .SetAs("isSolid", true)
+                            .SetAs("isSolid")
                             .SetAs("sidex+", VOIDTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", VOIDTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", VOIDTURRET_NAMESPACE + "sides")
@@ -548,12 +553,12 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "WaterTurret.png")
-                            .SetAs("isPlaceable", true)
+                            .SetAs("isPlaceable")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
-                            .SetAs("isSolid", true)
+                            .SetAs("isSolid")
                             .SetAs("sidex+", WATERTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", WATERTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", WATERTURRET_NAMESPACE + "sides")
@@ -577,12 +582,12 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "EarthTurret.png")
-                            .SetAs("isPlaceable", true)
+                            .SetAs("isPlaceable")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
-                            .SetAs("isSolid", true)
+                            .SetAs("isSolid")
                             .SetAs("sidex+", EARTHTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", EARTHTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", EARTHTURRET_NAMESPACE + "sides")
@@ -606,12 +611,12 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "FireTurret.png")
-                            .SetAs("isPlaceable", true)
+                            .SetAs("isPlaceable")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
-                            .SetAs("isSolid", true)
+                            .SetAs("isSolid")
                             .SetAs("sidex+", FIRETURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", FIRETURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", FIRETURRET_NAMESPACE + "sides")
@@ -635,12 +640,12 @@ namespace Pandaros.Settlers.Items.Machines
 
             var turretNode = new JSONNode()
                             .SetAs("icon", GameLoader.ICON_PATH + "AirTurret.png")
-                            .SetAs("isPlaceable", true)
+                            .SetAs("isPlaceable")
                             .SetAs("onPlaceAudio", "stonePlace")
                             .SetAs("onRemoveAudio", "stoneDelete")
                             .SetAs("onRemoveAmount", 1)
                             .SetAs("sideall", ColonyBuiltIn.ItemTypes.STONEBRICKS)
-                            .SetAs("isSolid", true)
+                            .SetAs("isSolid")
                             .SetAs("sidex+", AIRTURRET_NAMESPACE + "sides")
                             .SetAs("sidex-", AIRTURRET_NAMESPACE + "sides")
                             .SetAs("sidez+", AIRTURRET_NAMESPACE + "sides")

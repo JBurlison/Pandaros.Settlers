@@ -39,11 +39,11 @@ namespace Pandaros.Settlers.Server
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             //Only launch on RIGHT click
-            if (player == null || boxedData.item1.clickType != PlayerClickedData.ClickType.Right || player.ActiveColony == null)
+            if (player == null || boxedData.item1.ClickType != PlayerClickedData.EClickType.Right || player.ActiveColony == null)
                 return;
 
             if (ItemTypes.IndexLookup.TryGetIndex(GameLoader.NAMESPACE + ".ServerManagementTool", out var toolItem) &&
-                boxedData.item1.typeSelected == toolItem)
+                boxedData.item1.TypeSelected == toolItem)
             {
                 NetworkMenuManager.SendServerPopup(player, MainMenu(player));
             }

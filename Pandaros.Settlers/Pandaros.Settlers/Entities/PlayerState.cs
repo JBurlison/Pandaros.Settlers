@@ -238,7 +238,7 @@ namespace Pandaros.Settlers.Entities
         {
             foreach (var p in Players.PlayerDatabase.Values)
             {
-                if (p.IsConnected)
+                if (p.IsConnected())
                 {
                     var ps = GetPlayerState(p);
 
@@ -246,7 +246,7 @@ namespace Pandaros.Settlers.Entities
                     {
                         if (ps.Connected && ps.MusicEnabled && Time.MillisecondsSinceStart > ps.NextMusicTime)
                         {
-                            ServerManager.SendAudio(GameLoader.NAMESPACE + ".Environment", p);
+                            AudioManager.SendAudio(p, GameLoader.NAMESPACE + ".Environment");
                             ps.NextMusicTime = 178700 + Time.MillisecondsSinceStart;
                         }
                     }
@@ -460,25 +460,25 @@ namespace Pandaros.Settlers.Entities
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Entities.PlayerState.ChangedSetting")]
-        public static void ChangedSetting(TupleStruct<Players.Player, JSONNode, string> data)
+        public static void ChangedSetting(Tuple<Players.Player, JSONNode, string> data)
         {
-            switch (data.item3)
+            switch (data.Item3)
             {
                 case "world_settings":
-                    var ps = PlayerState.GetPlayerState(data.item1);
+                    var ps = PlayerState.GetPlayerState(data.Item1);
 
                     if (ps != null)
                     {
                         var def = Convert.ToInt32(ps.MusicEnabled);
-                        var enabled = data.item2.GetAsOrDefault(_Enviorment, def);
+                        var enabled = data.Item2.GetAsOrDefault(_Enviorment, def);
 
                         if (def != enabled)
                         {
                             ps.MusicEnabled = enabled != 0;
-                            PandaChat.Send(data.item1, "Music is now " + (ps.MusicEnabled ? "on" : "off"), ChatColor.green);
+                            PandaChat.Send(data.Item1, "Music is now " + (ps.MusicEnabled ? "on" : "off"), ChatColor.green);
 
                             if (!ps.MusicEnabled)
-                                PandaChat.Send(data.item1, "Music can take up to 3 minutes to turn off.", ChatColor.green);
+                                PandaChat.Send(data.Item1, "Music can take up to 3 minutes to turn off.", ChatColor.green);
                         }
                     }
 

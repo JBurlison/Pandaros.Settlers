@@ -95,7 +95,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             if (ItemTypes.IndexLookup.TryGetIndex(SchematicTool.NAME, out var schematicItem) &&
-                boxedData.item1.typeSelected == schematicItem)
+                boxedData.item1.TypeSelected == schematicItem)
             {
                 if (player.ActiveColony == null)
                 {
@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     switch (tuple.Item1)
                     {
                         case SchematicClickType.Build:
-                            Vector3Int location = boxedData.item1.rayCastHit.voxelHit.Add(0, 1, 0);
+                            Vector3Int location = boxedData.item1.GetVoxelHit().BlockHit.Add(0, 1, 0);
                             var args = new JSONNode();
                             args.SetAs("constructionType", GameLoader.NAMESPACE + ".SchematicBuilder");
                             args.SetAs(SchematicBuilderLoader.NAME + ".SchematicName", tuple.Item2);
@@ -211,10 +211,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 {
                                     var item = ItemTypes.GetType(kvp.Key);
 
-                                    List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-                                    items.Add(TupleStruct.Create<IItem, int>(new ItemIcon(kvp.Key), 200));
-                                    items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 200));
-                                    items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)), 200));
+                                    List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+                                    items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(kvp.Key), 200));
+                                    items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 200));
+                                    items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)), 200));
                                     menu.Items.Add(new HorizontalRow(items));
                                 }
 

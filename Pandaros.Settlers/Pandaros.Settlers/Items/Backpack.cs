@@ -74,11 +74,11 @@ namespace Pandaros.Settlers.Items
         public static void OpenMenu(Players.Player player, Box<PlayerClickedData> boxedData)
         {
             //Only launch on RIGHT click
-            if (player == null || boxedData.item1.clickType != PlayerClickedData.ClickType.Right)
+            if (player == null || boxedData.item1.ClickType != PlayerClickedData.EClickType.Right)
                 return;
 
             if (ItemTypes.IndexLookup.TryGetIndex(GameLoader.NAMESPACE + ".Backpack", out var backpackItem) &&
-                boxedData.item1.typeSelected == backpackItem)
+                boxedData.item1.TypeSelected == backpackItem)
             {
                 NetworkMenuManager.SendServerPopup(player, MainMenu(player));
             }
@@ -271,17 +271,17 @@ namespace Pandaros.Settlers.Items
                 if (error)
                     menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("invalidNumber"), UnityEngine.Color.red)));
 
-                List<TupleStruct<IItem, int>> headerItems = new List<TupleStruct<IItem, int>>();
-                headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)), 333));
-                headerItems.Add(TupleStruct.Create<IItem, int>(new InputField("Backpack.NumberOfItems"), 333));
-                headerItems.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToBackpackFromStockpile", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToBackpack"), UnityEngine.Color.black)), 333));
+                List<ValueTuple<IItem, int>> headerItems = new List<ValueTuple<IItem, int>>();
+                headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)), 333));
+                headerItems.Add(ValueTuple.Create<IItem, int>(new InputField("Backpack.NumberOfItems"), 333));
+                headerItems.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToBackpackFromStockpile", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToBackpack"), UnityEngine.Color.black)), 333));
                 menu.Items.Add(new HorizontalRow(headerItems));
                 menu.Items.Add(new Line(UnityEngine.Color.black));
 
-                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-                items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.MainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black)), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
+                List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+                items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.MainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black)), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
 
                 bool selected = false;
 
@@ -291,9 +291,9 @@ namespace Pandaros.Settlers.Items
                     selected = false;
 
                 if (selected)
-                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.SelectNoneInBackpack", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)), 250));
+                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.SelectNoneInBackpack", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)), 250));
                 else
-                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.SelectAllInBackpack", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)), 250));
+                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.SelectAllInBackpack", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)), 250));
 
                 menu.Items.Add(new HorizontalRow(items));
                 menu.Items.Add(new Line(UnityEngine.Color.black));
@@ -303,11 +303,11 @@ namespace Pandaros.Settlers.Items
                 {
                     if (itemKvp.Key != backpackID)
                     {
-                        items = new List<TupleStruct<IItem, int>>();
-                        items.Add(TupleStruct.Create<IItem, int>(new ItemIcon(itemKvp.Key), 250));
-                        items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(ItemId.GetItemId(itemKvp.Key), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
-                        items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + itemKvp.Value.ToString(), UnityEngine.Color.black)), 250));
-                        items.Add(TupleStruct.Create<IItem, int>(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", data.Player), UnityEngine.Color.black), "Backpack." + itemKvp.Key + ".ItemSelected"), 250));
+                        items = new List<ValueTuple<IItem, int>>();
+                        items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(itemKvp.Key), 250));
+                        items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(ItemId.GetItemId(itemKvp.Key), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
+                        items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + itemKvp.Value.ToString(), UnityEngine.Color.black)), 250));
+                        items.Add(ValueTuple.Create<IItem, int>(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", data.Player), UnityEngine.Color.black), "Backpack." + itemKvp.Key + ".ItemSelected"), 250));
 
                         if (selectAll == null)
                             menu.LocalStorage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out selected);
@@ -337,17 +337,17 @@ namespace Pandaros.Settlers.Items
                 if (error)
                     menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("invalidNumber"), UnityEngine.Color.red)));
 
-                List<TupleStruct<IItem, int>> headerItems = new List<TupleStruct<IItem, int>>();
-                headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)), 333));
-                headerItems.Add(TupleStruct.Create<IItem, int>(new InputField("Backpack.NumberOfItems"), 333));
-                headerItems.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToBackpackFromToolbar", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToBackpack"), UnityEngine.Color.black)), 333));
+                List<ValueTuple<IItem, int>> headerItems = new List<ValueTuple<IItem, int>>();
+                headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)), 333));
+                headerItems.Add(ValueTuple.Create<IItem, int>(new InputField("Backpack.NumberOfItems"), 333));
+                headerItems.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToBackpackFromToolbar", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToBackpack"), UnityEngine.Color.black)), 333));
                 menu.Items.Add(new HorizontalRow(headerItems));
                 menu.Items.Add(new Line(UnityEngine.Color.black));
 
-                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-                items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.MainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black)), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
+                List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+                items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.MainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black)), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
 
                 bool selected = false;
 
@@ -357,9 +357,9 @@ namespace Pandaros.Settlers.Items
                     selected = false;
 
                 if (selected)
-                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.SelectNoneInBackpackToolbar", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)), 250));
+                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.SelectNoneInBackpackToolbar", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)), 250));
                 else
-                    items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.SelectAllInBackpackToolbar", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)), 250));
+                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.SelectAllInBackpackToolbar", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)), 250));
 
                 menu.Items.Add(new HorizontalRow(items));
                 menu.Items.Add(new Line(UnityEngine.Color.black));
@@ -370,11 +370,11 @@ namespace Pandaros.Settlers.Items
                 {
                     if (itemKvp.Type != ColonyBuiltIn.ItemTypes.AIR.Id && itemKvp.Type != backpackID)
                     {
-                        items = new List<TupleStruct<IItem, int>>();
-                        items.Add(TupleStruct.Create<IItem, int>(new ItemIcon(itemKvp.Type), 250));
-                        items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(ItemId.GetItemId(itemKvp.Type), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
-                        items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Toolbar", data.Player) + ": " + itemKvp.Amount.ToString(), UnityEngine.Color.black)), 250));
-                        items.Add(TupleStruct.Create<IItem, int>(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", data.Player), UnityEngine.Color.black), "Backpack." + itemKvp.Type + ".ItemSelected"), 250));
+                        items = new List<ValueTuple<IItem, int>>();
+                        items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(itemKvp.Type), 250));
+                        items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(ItemId.GetItemId(itemKvp.Type), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
+                        items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Toolbar", data.Player) + ": " + itemKvp.Amount.ToString(), UnityEngine.Color.black)), 250));
+                        items.Add(ValueTuple.Create<IItem, int>(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", data.Player), UnityEngine.Color.black), "Backpack." + itemKvp.Type + ".ItemSelected"), 250));
 
                         if (selectAll == null)
                             menu.LocalStorage.TryGetAs("Backpack." + itemKvp.Type + ".ItemSelected", out selected);
@@ -412,22 +412,22 @@ namespace Pandaros.Settlers.Items
 
             menu.Items.Add(new Line(UnityEngine.Color.black));
 
-            List<TupleStruct<IItem, int>> headerItems = new List<TupleStruct<IItem, int>>();
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)), 250));
-            headerItems.Add(TupleStruct.Create<IItem, int>(new InputField("Backpack.NumberOfItems"), 250));
+            List<ValueTuple<IItem, int>> headerItems = new List<ValueTuple<IItem, int>>();
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Numberofitems"), UnityEngine.Color.black)), 250));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new InputField("Backpack.NumberOfItems"), 250));
 
             if (player.ActiveColony != null)
-                headerItems.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToStockpile", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToStockpile"), UnityEngine.Color.black)), 250));
+                headerItems.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToStockpile", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToStockpile"), UnityEngine.Color.black)), 250));
 
-            headerItems.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToToolbar", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToToolbar"), UnityEngine.Color.black)), 250));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.MoveItemsToToolbar", new LabelData(_localizationHelper.GetLocalizationKey("MoveItemsToToolbar"), UnityEngine.Color.black)), 250));
            
             menu.Items.Add(new HorizontalRow(headerItems));
             menu.Items.Add(new Line(UnityEngine.Color.black));
 
-            List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-            items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
-            items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
-            items.Add(TupleStruct.Create<IItem, int>(new EmptySpace(), 250));
+            List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+            items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
+            items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
+            items.Add(ValueTuple.Create<IItem, int>(new EmptySpace(), 250));
 
             bool selected = false;
 
@@ -437,9 +437,9 @@ namespace Pandaros.Settlers.Items
                 selected = false;
 
             if (selected)
-                items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.SelectNoneInBackpackMain", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.SelectNoneInBackpackMain", new LabelData(_localizationHelper.GetLocalizationKey("SelectNone"), UnityEngine.Color.black)), 250));
             else
-                items.Add(TupleStruct.Create<IItem, int>(new ButtonCallback("Backpack.SelectAllInBackpackMain", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback("Backpack.SelectAllInBackpackMain", new LabelData(_localizationHelper.GetLocalizationKey("SelectAll"), UnityEngine.Color.black)), 250));
 
             menu.Items.Add(new HorizontalRow(items));
             menu.Items.Add(new Line(UnityEngine.Color.black));
@@ -447,11 +447,11 @@ namespace Pandaros.Settlers.Items
 
             foreach (var itemKvp in ps.Backpack)
             {
-                items = new List<TupleStruct<IItem, int>>();
-                items.Add(TupleStruct.Create<IItem, int>(new ItemIcon(itemKvp.Key), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(ItemId.GetItemId(itemKvp.Key), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Backpack", player) + ": " + itemKvp.Value.ToString(), UnityEngine.Color.black)), 250));
-                items.Add(TupleStruct.Create<IItem, int>(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", player), UnityEngine.Color.black), "Backpack." + itemKvp.Key + ".ItemSelected"), 250));
+                items = new List<ValueTuple<IItem, int>>();
+                items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(itemKvp.Key), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(ItemId.GetItemId(itemKvp.Key), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Backpack", player) + ": " + itemKvp.Value.ToString(), UnityEngine.Color.black)), 250));
+                items.Add(ValueTuple.Create<IItem, int>(new Toggle(new LabelData(_localizationHelper.LocalizeOrDefault("Select", player), UnityEngine.Color.black), "Backpack." + itemKvp.Key + ".ItemSelected"), 250));
 
                 if (selectAll == null)
                     menu.LocalStorage.TryGetAs("Backpack." + itemKvp.Key + ".ItemSelected", out selected);

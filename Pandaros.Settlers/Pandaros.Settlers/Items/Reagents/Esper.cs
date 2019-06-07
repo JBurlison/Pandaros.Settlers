@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Items
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".Items.Esper.OnNPCCraftedRecipe")]
-        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<ItemTypes.ItemTypeDrops> results)
+        public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<RecipeResult> results)
         {
             if (recipe.Name == Mana.Item.name && job.NPC != null)
             {
@@ -43,7 +43,7 @@ namespace Pandaros.Settlers.Items
                 if (Random.NextFloat() <= chance)
                 {
                     inv.AddBonusProc(Item.ItemIndex);
-                    results.Add(new ItemTypes.ItemTypeDrops(Item.ItemIndex));
+                    results.Add(new RecipeResult(Item.ItemIndex));
                 }
             }
         }

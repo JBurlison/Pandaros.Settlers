@@ -228,10 +228,10 @@ namespace Pandaros.Settlers.Items.Machines
                                                                                        TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault().Type));
 
                                 if (TurretSettings[machineState.RoamObjective].OnShootAudio != null)
-                                    ServerManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.RoamObjective].OnShootAudio);
+                                    AudioManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.RoamObjective].OnShootAudio);
 
                                 if (TurretSettings[machineState.RoamObjective].OnHitAudio != null)
-                                    ServerManager.SendAudio(monster.PositionToAimFor,TurretSettings[machineState.RoamObjective].OnHitAudio);
+                                    AudioManager.SendAudio(monster.PositionToAimFor,TurretSettings[machineState.RoamObjective].OnHitAudio);
 
                                 TurretSettings[machineState.RoamObjective]
                                    .ProjectileAnimation
@@ -297,10 +297,11 @@ namespace Pandaros.Settlers.Items.Machines
                                              sling,
                                              stoneAmmo
                                          },
-                                         new ItemTypes.ItemTypeDrops(TurretSettings[STONE].TurretItem.ItemIndex),
+                                         new RecipeResult(TurretSettings[STONE].TurretItem.ItemIndex),
                                          5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(stonerecipe);
 
             var bronzeArrowrecipe = new Recipe(BRONZEARROW_NAMESPACE,
                                                new List<InventoryItem>
@@ -314,10 +315,11 @@ namespace Pandaros.Settlers.Items.Machines
                                                    arrow,
                                                    bow
                                                },
-                                               new ItemTypes.ItemTypeDrops(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
+                                               new RecipeResult(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
                                                5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(bronzeArrowrecipe);
 
             var crossbowrecipe = new Recipe(CROSSBOW_NAMESPACE,
                                             new List<InventoryItem>
@@ -331,10 +333,11 @@ namespace Pandaros.Settlers.Items.Machines
                                                 bolt,
                                                 crossbow
                                             },
-                                            new ItemTypes.ItemTypeDrops(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
+                                            new RecipeResult(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
                                             5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(crossbowrecipe);
 
             var matchlockrecipe = new Recipe(MATCHLOCK_NAMESPACE,
                                              new List<InventoryItem>
@@ -349,10 +352,11 @@ namespace Pandaros.Settlers.Items.Machines
                                                  gunpowder,
                                                  matchlock
                                              },
-                                             new ItemTypes.ItemTypeDrops(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
+                                             new RecipeResult(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
                                              5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(matchlockrecipe);
 
             foreach (var turret in TurretSettings)
                 RoamingJobManager.RegisterObjectiveType(new TurretRegister(turret.Value));

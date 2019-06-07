@@ -116,10 +116,10 @@ namespace Pandaros.Settlers.Jobs
 
             if (_target != null)
             {
-                KeyLocation = new Vector3Int(_target.Position).Add(1, 0, 0);
-                KeyLocation = AIManager.ClosestPosition(KeyLocation, currentPos);
+                if (PathingManager.TryCanStandNear(currentPos, out var canStandNear, out var newLoc))
+                    KeyLocation = newLoc;
 
-                if (!AIManager.CanStandAt(KeyLocation))
+                if (!canStandNear || (!PathingManager.TryCanStandAt(KeyLocation, out var canStand) && canStand))
                     _waitingFor++;
                 else
                     return KeyLocation;
@@ -218,7 +218,7 @@ namespace Pandaros.Settlers.Jobs
                     {
                         state.SetIndicator(new IndicatorState(COOLDOWN, _inv.Weapon.Id));
                         UsedNPC.LookAt(_target.Position);
-                        ServerManager.SendAudio(_target.PositionToAimFor, "punch");
+                        AudioManager.SendAudio(_target.PositionToAimFor, "punch");
 
                         _target.OnHit(WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
                         _waitingFor = 0;
@@ -327,6 +327,11 @@ namespace Pandaros.Settlers.Jobs
             UsedNPC = npc;
             _inv = SettlerInventory.GetSettlerInventory(npc);
             _stock = npc.Colony.Stockpile;
+        }
+
+        public void OnNPCCouldNotPathToGoal()
+        {
+            
         }
     }
 }

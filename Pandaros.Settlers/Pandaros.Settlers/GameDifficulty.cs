@@ -169,20 +169,20 @@ namespace Pandaros.Settlers
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Difficulty.ChangedSetting")]
-        public static void ChangedSetting(TupleStruct<Players.Player, JSONNode, string> data)
+        public static void ChangedSetting(Tuple<Players.Player, JSONNode, string> data)
         {
-            if (data.item1.ActiveColony != null)
-                switch (data.item3)
+            if (data.Item1.ActiveColony != null)
+                switch (data.Item3)
                 {
                     case "world_settings":
-                        var ps = ColonyState.GetColonyState(data.item1.ActiveColony);
+                        var ps = ColonyState.GetColonyState(data.Item1.ActiveColony);
 
-                        if (ps != null && data.item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank) != ps.Difficulty.Rank)
+                        if (ps != null && data.Item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank) != ps.Difficulty.Rank)
                         {
-                            var difficulty = GameDifficulty.GameDifficulties.FirstOrDefault(kvp => kvp.Value.Rank == data.item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank)).Key;
+                            var difficulty = GameDifficulty.GameDifficulties.FirstOrDefault(kvp => kvp.Value.Rank == data.Item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank)).Key;
 
                             if (difficulty != null)
-                                ChangeDifficulty(data.item1, ps, difficulty);
+                                ChangeDifficulty(data.Item1, ps, difficulty);
                         }
 
                         break;
@@ -198,7 +198,9 @@ namespace Pandaros.Settlers
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
 
-            var array = CommandManager.SplitCommand(chat);
+            var array = new List<string>();
+            CommandManager.SplitCommand(chat, array);
+
             var state = ColonyState.GetColonyState(player.ActiveColony);
 
             if (array.Count == 1)

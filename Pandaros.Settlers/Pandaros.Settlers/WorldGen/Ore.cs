@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.WorldGen
                             var item = ItemTypes.GetType(type);
 
                             if (item != null && item.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
-                                oreGen.AddLayer(depth, item.ItemIndex, chance);
+                                oreGen.AddLayer(new TerrainGenerator.Settings.OreLayer() { Depth = depth, Type = item.Name, Chance = chance });
                             else
                                 PandaLogger.Log(ChatColor.yellow, "Unable to find item {0}", type);
                         }

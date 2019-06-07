@@ -9,7 +9,7 @@ namespace Pandaros.Settlers.Items
     public class OpenMenuSettings
     {
         public string UIUrl { get; set; }
-        public Shared.PlayerClickedData.ClickType ActivateClickType { get; set; } = Shared.PlayerClickedData.ClickType.Right;
+        public Shared.PlayerClickedData.EClickType ActivateClickType { get; set; } = Shared.PlayerClickedData.EClickType.Right;
         public string ItemName { get; set; }
     }
 }

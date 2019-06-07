@@ -197,8 +197,8 @@ namespace Pandaros.Settlers
             if (!chat.StartsWith("/settlersversion", StringComparison.OrdinalIgnoreCase))
                 return false;
 
-            var array = CommandManager.SplitCommand(chat);
-
+            var array = new List<string>();
+            CommandManager.SplitCommand(chat, array);
             var gitVer         = VersionChecker.GetGitVerion();
             var versionCompare = GameLoader.MOD_VER.Major.CompareTo(gitVer.Major);
 

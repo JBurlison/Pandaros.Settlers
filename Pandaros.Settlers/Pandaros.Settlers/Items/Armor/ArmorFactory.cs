@@ -505,10 +505,11 @@ namespace Pandaros.Settlers.Items.Armor
 
 
                 var metaData = (ArmorMetadata)a.Value; 
-                var invItem = new ItemTypes.ItemTypeDrops(metaData.ItemType.ItemIndex);
-                var recipe = new Recipe(metaData.ItemType.name, items, invItem, 5, false, -100);
+                var invItem = new RecipeResult(metaData.ItemType.ItemIndex);
+                var recipe = new Recipe(metaData.ItemType.name, items, invItem, 5, 0, -100);
 
-                ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
+                ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
+                ServerManager.RecipeStorage.AddScienceRequirement(recipe);
             }
         }
 

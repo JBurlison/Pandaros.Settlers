@@ -24,12 +24,13 @@ namespace Pandaros.Settlers.Items
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, copper, iron, tin, gold, silver, lead},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
+                                    new RecipeResult(Item.ItemIndex, 1),
                                     10);
 
-            recipe.Results.Add(new ItemTypes.ItemTypeDrops(Void.Item.ItemIndex, 1, 0.03f));
+            recipe.Results.Add(new RecipeResult(Void.Item.ItemIndex, 1, 0.03f));
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

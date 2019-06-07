@@ -29,11 +29,11 @@ namespace Pandaros.Settlers.Help
 
             foreach (var item in OpenMenuItems)
             {
-                if (boxedData.item1.clickType != item.ActivateClickType)
+                if (boxedData.item1.ClickType != item.ActivateClickType)
                     continue;
 
                 if (ItemTypes.IndexLookup.TryGetIndex(item.ItemName, out var menuItem) &&
-                    boxedData.item1.typeSelected == menuItem)
+                    boxedData.item1.TypeSelected == menuItem)
                 {
                     SendMenu(player, item.UIUrl);
                 }
@@ -183,10 +183,10 @@ namespace Pandaros.Settlers.Help
                             List<Recipes.Recipe> recipes = new List<Recipes.Recipe>();
                             menuItem = new List<IItem>();
 
-                            if (ServerManager.RecipeStorage.DefaultRecipesPerLimitType.TryGetValue(job, out var recipesDefault))
+                            if (ServerManager.RecipeStorage.RecipesPerLimitType.TryGetValue(job, out var recipesDefault))
                                 recipes.AddRange(recipesDefault);
 
-                            if (ServerManager.RecipeStorage.OptionalRecipesPerLimitType.TryGetValue(job, out var recipiesOptional))
+                            if (ServerManager.RecipeStorage.RecipesPerLimitType.TryGetValue(job, out var recipiesOptional))
                                 recipes.AddRange(recipiesOptional);
 
                             foreach (var recipe in recipes.OrderBy(r => r.Name))
@@ -420,7 +420,7 @@ namespace Pandaros.Settlers.Help
 
                             foreach (JSONNode row in rows.LoopArray())
                             {
-                                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
+                                List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
                                 var width = menu.Width / row.ChildCount;
 
                                 foreach (JSONNode col in row.LoopArray())
@@ -428,9 +428,9 @@ namespace Pandaros.Settlers.Help
                                     if (LoadItem(col, ref menu, player, out var newMenuItems))
                                         foreach (var newItem in newMenuItems)
                                             if (col.TryGetAs("col_width", out int setWidth))
-                                                items.Add(TupleStruct.Create(newItem, setWidth));
+                                                items.Add(ValueTuple.Create(newItem, setWidth));
                                             else
-                                                items.Add(TupleStruct.Create(newItem, width));
+                                                items.Add(ValueTuple.Create(newItem, width));
                                 }
 
                                 menuItem.Add(new HorizontalRow(items, height).ApplyPosition(item));
@@ -465,11 +465,11 @@ namespace Pandaros.Settlers.Help
             menuItems.Add(new Label(new LabelData(recipe.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter, 30, LabelData.ELocalizationType.Type)).ApplyPosition(item));
             menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Requirements"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)).ApplyPosition(item));
 
-            List<TupleStruct<IItem, int>> headerItems = new List<TupleStruct<IItem, int>>();
+            List<ValueTuple<IItem, int>> headerItems = new List<ValueTuple<IItem, int>>();
 
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 70));
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Item"), UnityEngine.Color.black)), 150));
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 70));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Item"), UnityEngine.Color.black)), 150));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
 
             menuItems.Add(new HorizontalRow(headerItems).ApplyPosition(item));
 
@@ -487,21 +487,21 @@ namespace Pandaros.Settlers.Help
                 Label labelName = new Label(new LabelData(reqName, UnityEngine.Color.black));
                 Label labelAmount = new Label(new LabelData(req.Amount.ToString(), UnityEngine.Color.black));
 
-                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-                items.Add(TupleStruct.Create<IItem, int>(icon, 70));
-                items.Add(TupleStruct.Create<IItem, int>(labelName, 150));
-                items.Add(TupleStruct.Create<IItem, int>(labelAmount, 100));
+                List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+                items.Add(ValueTuple.Create<IItem, int>(icon, 70));
+                items.Add(ValueTuple.Create<IItem, int>(labelName, 150));
+                items.Add(ValueTuple.Create<IItem, int>(labelAmount, 100));
 
                 menuItems.Add(new HorizontalRow(items).ApplyPosition(item));
             }
 
             menuItems.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Results"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)).ApplyPosition(item));
 
-            headerItems = new List<TupleStruct<IItem, int>>();
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 70));
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Item"), UnityEngine.Color.black)), 150));
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
-            headerItems.Add(TupleStruct.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Chance"), UnityEngine.Color.black)), 100));
+            headerItems = new List<ValueTuple<IItem, int>>();
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 70));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Item"), UnityEngine.Color.black)), 150));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Amount"), UnityEngine.Color.black)), 100));
+            headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Chance"), UnityEngine.Color.black)), 100));
 
             menuItems.Add(new HorizontalRow(headerItems).ApplyPosition(item));
 
@@ -515,12 +515,12 @@ namespace Pandaros.Settlers.Help
 
                 Label labelName = new Label(new LabelData(reqName, UnityEngine.Color.black));
                 Label labelAmount = new Label(new LabelData(req.Amount.ToString(), UnityEngine.Color.black));
-                Label chance = new Label(new LabelData(req.chance * 100 + "%", UnityEngine.Color.black));
-                List<TupleStruct<IItem, int>> items = new List<TupleStruct<IItem, int>>();
-                items.Add(TupleStruct.Create<IItem, int>(icon, 70));
-                items.Add(TupleStruct.Create<IItem, int>(labelName, 150));
-                items.Add(TupleStruct.Create<IItem, int>(labelAmount, 100));
-                items.Add(TupleStruct.Create<IItem, int>(chance, 100));
+                Label chance = new Label(new LabelData(req.Chance * 100 + "%", UnityEngine.Color.black));
+                List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+                items.Add(ValueTuple.Create<IItem, int>(icon, 70));
+                items.Add(ValueTuple.Create<IItem, int>(labelName, 150));
+                items.Add(ValueTuple.Create<IItem, int>(labelAmount, 100));
+                items.Add(ValueTuple.Create<IItem, int>(chance, 100));
 
                 menuItems.Add(new HorizontalRow(items).ApplyPosition(item));
 

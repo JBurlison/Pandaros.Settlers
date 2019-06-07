@@ -67,7 +67,7 @@ namespace Pandaros.Settlers.Monsters
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
         public static void OnUpdate()
         {
-            if (!World.Initialized || AIManager.IsBusy())
+            if (!World.Initialized)
                 return;
 
             var secondsSinceStartDouble = Time.SecondsSinceStartDouble;
@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Monsters
                     if (m == null || UnityEngine.Vector3.Distance(monster.Value.Position, m.Position) > 15 && Random.NextBool())
                     {
                         m = monster.Value;
-                        ServerManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + ".ZombieAudio");
+                        AudioManager.SendAudio(monster.Value.Position, GameLoader.NAMESPACE + ".ZombieAudio");
                     }
 
                 _nextUpdateTime = secondsSinceStartDouble + 5;
@@ -88,8 +88,7 @@ namespace Pandaros.Settlers.Monsters
 
             IPandaBoss bossType = null;
 
-            if (World.Initialized &&
-                !AIManager.IsBusy())
+            if (World.Initialized)
             {
                 if (!TimeCycle.IsDay && 
                     !BossActive &&
@@ -106,11 +105,11 @@ namespace Pandaros.Settlers.Monsters
                 {
                     var   turnOffBoss   = true;
                     var   worldSettings = ServerManager.WorldSettingsVariable;
-
+                    
                     foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                     {
                         var bannerGoal = colony.Banners.ToList().GetRandomItem();
-
+                        
                         var cs = ColonyState.GetColonyState(colony);
 
                         if (cs.BossesEnabled &&
@@ -119,37 +118,38 @@ namespace Pandaros.Settlers.Monsters
                         {
                             if (bossType != null && !SpawnedBosses.ContainsKey(cs))
                             {
-                                Vector3Int positionFinal;
-                                switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
-                                {
-                                    case MonsterSpawner.ESpawnResult.Success:
-                                        if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
-                                        {
-                                            var pandaboss = bossType.GetNewBoss(path, colony);
-                                            SpawnedBosses.Add(cs, pandaboss);
+                                // TODO
+                                //Vector3Int positionFinal;
+                                //switch (MonsterSpawner.TryGetSpawnLocation(bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
+                                //{
+                                //    case MonsterSpawner.ESpawnResult.Success:
+                                //        if (AIManager.ZombiePathFinder.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
+                                //        {
+                                //            var pandaboss = bossType.GetNewBoss(path, colony);
+                                //            SpawnedBosses.Add(cs, pandaboss);
+                                //            //((MonsterSpawner)MonsterTracker.MonsterSpawner).QueueSpawnZombie()
+                                //            BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new BossSpawnedEvent(cs, pandaboss));
 
-                                            BossSpawned?.Invoke(MonsterTracker.MonsterSpawner, new BossSpawnedEvent(cs, pandaboss));
+                                //            ModLoader.Callbacks.OnMonsterSpawned.Invoke(pandaboss);
 
-                                            ModLoader.TriggerCallbacks<IMonster>(ModLoader.EModCallbackType.OnMonsterSpawned, pandaboss);
+                                //            MonsterTracker.Add(pandaboss);
+                                //            colony.OnZombieSpawn(true);
+                                //            cs.FaiedBossSpawns = 0;
+                                //            PandaChat.Send(cs, $"[{pandaboss.name}] {pandaboss.AnnouncementText}", ChatColor.red);
 
-                                            MonsterTracker.Add(pandaboss);
-                                            colony.OnZombieSpawn(true);
-                                            cs.FaiedBossSpawns = 0;
-                                            PandaChat.Send(cs, $"[{pandaboss.name}] {pandaboss.AnnouncementText}", ChatColor.red);
+                                //            if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
+                                //               colony.ForEachOwner(o => AudioManager.SendAudio(o.Position, pandaboss.AnnouncementAudio));
+                                //        }
 
-                                            if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
-                                               colony.ForEachOwner(o => ServerManager.SendAudio(o.Position, pandaboss.AnnouncementAudio));
-                                        }
-
-                                        break;
-                                    case MonsterSpawner.ESpawnResult.NotLoaded:
-                                    case MonsterSpawner.ESpawnResult.Impossible:
-                                        colony.OnZombieSpawn(true);
-                                        break;
-                                    case MonsterSpawner.ESpawnResult.Fail:
-                                        CantSpawnBoss(cs);
-                                        break;
-                                }
+                                //        break;
+                                //    case MonsterSpawner.ESpawnResult.NotLoaded:
+                                //    case MonsterSpawner.ESpawnResult.Impossible:
+                                //        colony.OnZombieSpawn(true);
+                                //        break;
+                                //    case MonsterSpawner.ESpawnResult.Fail:
+                                //        CantSpawnBoss(cs);
+                                //        break;
+                                //}
                             }
 
                             if (SpawnedBosses.ContainsKey(cs) &&
@@ -332,7 +332,7 @@ namespace Pandaros.Settlers.Monsters
                 }
             }
             else if (Random.NextFloat() > .5f)
-                ServerManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
+                AudioManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
         }
 
         public static Dictionary<int, IMonster> GetAllMonsters()

@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Extender.Providers
                     !string.IsNullOrEmpty(recipe.name))
                 {
                     var requirements = new List<InventoryItem>();
-                    var results = new List<ItemTypes.ItemTypeDrops>();
+                    var results = new List<RecipeResult>();
                     recipe.JsonSerialize();
 
                     foreach (var ri in recipe.requires)
@@ -34,14 +34,15 @@ namespace Pandaros.Settlers.Extender.Providers
 
                     foreach (var ri in recipe.results)
                         if (ItemTypes.IndexLookup.TryGetIndex(ri.type, out var itemIndex))
-                            results.Add(new ItemTypes.ItemTypeDrops(itemIndex, ri.amount));
+                            results.Add(new RecipeResult(itemIndex, ri.amount));
 
-                    var newRecipe = new Recipe(recipe.name, requirements, results, recipe.defaultLimit, recipe.isOptional, (int)recipe.defaultPriority);
+                    var newRecipe = new Recipe(recipe.name, requirements, results, recipe.defaultLimit, 0, (int)recipe.defaultPriority);
+
+                    ServerManager.RecipeStorage.AddLimitTypeRecipe(recipe.Job, newRecipe);
 
                     if (recipe.isOptional)
-                        ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(recipe.Job, newRecipe);
-                    else
-                        ServerManager.RecipeStorage.AddDefaultLimitTypeRecipe(recipe.Job, newRecipe);
+                        ServerManager.RecipeStorage.AddScienceRequirement(newRecipe);
+                        
 
                     sb.Append($"{recipe.name}, ");
                     i++;

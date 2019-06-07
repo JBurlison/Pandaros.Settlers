@@ -43,7 +43,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(SorcererRegister.JOB_NAME), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(SorcererRegister.JOB_NAME));
         }
     }
 

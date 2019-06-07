@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pandaros.Settlers</RootNamespace>
     <AssemblyName>Pandaros.Settlers</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -228,7 +228,6 @@
     <Compile Include="Items\Reagents\EarthStone.cs" />
     <Compile Include="Items\ILootTable.cs" />
     <Compile Include="Items\IPlayerMagicItem.cs" />
-    <Compile Include="Items\ItemFactory.cs" />
     <Compile Include="Items\ItemState.cs" />
     <Compile Include="Items\Machines\MachineConstants.cs" />
     <Compile Include="Items\Machines\RefuelMachineAction.cs" />
@@ -2446,6 +2445,7 @@
     <Content Include="icons\strawslab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="mscorlib.dll" />
     <Content Include="pdb2mdb.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

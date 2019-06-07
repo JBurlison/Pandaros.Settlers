@@ -128,11 +128,10 @@ namespace Pandaros.Settlers
                 return false;
 
 
-            if (PermissionsManager.CheckAndWarnPermission(player,
-                                                          new PermissionsManager.Permission(GameLoader.NAMESPACE +
-                                                                                            ".Permissions.Config")))
+            if (PermissionsManager.CheckAndWarnPermission(player, new PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Config")))
             {
-                var array = CommandManager.SplitCommand(chat);
+                var array = new List<string>();
+                CommandManager.SplitCommand(chat, array);
 
                 if (array.Count == 3)
                 {

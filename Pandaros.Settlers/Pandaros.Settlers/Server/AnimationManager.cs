@@ -37,13 +37,13 @@ namespace Pandaros.Settlers.Server
 
             public void SendMoveToInterpolatedOnce(Vector3 start, Vector3 end, float deltaTime = 1f)
             {
-                ClientMeshedObject.SendMoveOnceInterpolatedPositionAutoRotation(start, end, deltaTime, ObjSettings);
+               // TODO ClientMeshedObject.SendMoveOnceInterpolatedPositionAutoRotation(start, end, deltaTime, ObjSettings);
             }
 
             public ClientMeshedObject SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = 1f)
             {
                 var obj = new ClientMeshedObject(ObjType);
-                obj.SendMoveToInterpolated(start, end, deltaTime);
+                // obj.SendMoveToInterpolated(start, end, deltaTime);
                 return obj;
             }
         }

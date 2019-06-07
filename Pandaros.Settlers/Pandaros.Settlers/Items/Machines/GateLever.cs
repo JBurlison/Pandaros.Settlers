@@ -290,50 +290,51 @@ namespace Pandaros.Settlers.Items.Machines
                             newOffset = 1;
                         }
 
-                        switch (mkvp.Key.Orientation)
-                        {
-                            case VoxelSide.xMin:
+                        // TODO
+                        //switch (mkvp.Key.Orientation)
+                        //{
+                        //    case VoxelSide.xMin:
 
-                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                                                                                    mkvp.Value.Add(0, newOffset, 0)
-                                                                                        .Vector, TravelTime,
-                                                                                    _gateXMinusItemObjSettings);
+                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
+                        //                                                            mkvp.Value.Add(0, newOffset, 0)
+                        //                                                                .Vector, TravelTime,
+                        //                                                            _gateXMinusItemObjSettings);
 
-                                break;
-                            case VoxelSide.xPlus:
+                        //        break;
+                        //    case VoxelSide.xPlus:
 
-                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                                                                                    mkvp.Value.Add(0, newOffset, 0)
-                                                                                        .Vector, TravelTime,
-                                                                                    _gateXPlusItemObjSettings);
+                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
+                        //                                                            mkvp.Value.Add(0, newOffset, 0)
+                        //                                                                .Vector, TravelTime,
+                        //                                                            _gateXPlusItemObjSettings);
 
-                                break;
-                            case VoxelSide.zMin:
+                        //        break;
+                        //    case VoxelSide.zMin:
 
-                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                                                                                    mkvp.Value.Add(0, newOffset, 0)
-                                                                                        .Vector, TravelTime,
-                                                                                    _gateZMinusItemObjSettings);
+                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
+                        //                                                            mkvp.Value.Add(0, newOffset, 0)
+                        //                                                                .Vector, TravelTime,
+                        //                                                            _gateZMinusItemObjSettings);
 
-                                break;
-                            case VoxelSide.zPlus:
+                        //        break;
+                        //    case VoxelSide.zPlus:
 
-                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                                                                                    mkvp.Value.Add(0, newOffset, 0)
-                                                                                        .Vector, TravelTime,
-                                                                                    _gateZPlusItemObjSettings);
+                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
+                        //                                                            mkvp.Value.Add(0, newOffset, 0)
+                        //                                                                .Vector, TravelTime,
+                        //                                                            _gateZPlusItemObjSettings);
 
-                                break;
+                        //        break;
 
-                            default:
+                        //    default:
 
-                                ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
-                                                                                    mkvp.Value.Add(0, newOffset, 0)
-                                                                                        .Vector, TravelTime,
-                                                                                    _gateXMinusItemObjSettings);
+                        //        ClientMeshedObject.SendMoveOnceInterpolatedPosition(mkvp.Key.Position.Vector,
+                        //                                                            mkvp.Value.Add(0, newOffset, 0)
+                        //                                                                .Vector, TravelTime,
+                        //                                                            _gateXMinusItemObjSettings);
 
-                                break;
-                        }
+                        //        break;
+                        //}
 
                         var moveState = GatePosition.MovingClosed;
 
@@ -398,9 +399,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                     if (moveGates.Count > 0)
                     {
-                        ServerManager.SendAudio(machineState.Position.Vector,
-                                                GameLoader.NAMESPACE + ".GateLeverMachineAudio");
-
+                        AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".GateLeverMachineAudio");
                         machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.01f);
                         machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.03f);
                     }
@@ -431,17 +430,19 @@ namespace Pandaros.Settlers.Items.Machines
                                         tools,
                                         planks
                                     },
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
+                                    new RecipeResult(Item.ItemIndex),
                                     5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
 
             var gate = new Recipe(GateItem.name,
                                   new List<InventoryItem> {iron, rivets, tools},
-                                  new ItemTypes.ItemTypeDrops(GateItem.ItemIndex),
+                                  new RecipeResult(GateItem.ItemIndex),
                                   24);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
+            ServerManager.RecipeStorage.AddScienceRequirement(gate);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddTextures")]

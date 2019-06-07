@@ -20,11 +20,11 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
         public static void OnPlayerConnectedEarly(Players.Player p)
         {
-            if (p.IsConnected && !Configuration.OfflineColonies)
+            if (p.IsConnected() && !Configuration.OfflineColonies)
             {
                 foreach (Colony c in p.Colonies)
                 {
-                    if (c.Owners.Count(own => own.IsConnected) == 1)
+                    if (c.Owners.Count(own => own.IsConnected()) == 1)
                     {
                         var file = $"{GameLoader.GAMEDATA_FOLDER}/savegames/{ServerManager.WorldName}/NPCArchive/{c.ColonyID}.json";
 
@@ -41,7 +41,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                     var npc = new NPCBase(c, node);
                                     c.RegisterNPC(npc);
                                     NPCTracker.Add(npc);
-                                    ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCLoaded, npc, node);
+                                    ModLoader.Callbacks.OnNPCLoaded.Invoke(npc, node);
 
                                     foreach (var job in new List<IJob>(c.JobFinder.JobsData.OpenJobs))
                                         if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
@@ -139,7 +139,7 @@ namespace Pandaros.Settlers.ColonyManagement
                             if (jobloc != null)
                                 node.SetAs("JobPoS", jobloc);
 
-                            ModLoader.TriggerCallbacks(ModLoader.EModCallbackType.OnNPCSaved, follower, node);
+                            ModLoader.Callbacks.OnNPCSaved.Invoke(follower, node);
                             followers.AddToArray(node);
                             copyOfFollowers.Add(follower);
                         }

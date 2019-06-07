@@ -86,9 +86,9 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(2, GameLoader.Bow_Icon));
 
-                    ServerManager.SendAudio(Position, "bowShoot");
+                    AudioManager.SendAudio(Position, "bowShoot");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
-                    ServerManager.SendAudio(p.Position, "fleshHit");
+                    AudioManager.SendAudio(p.Position, "fleshHit");
                     _cooldown = Time.SecondsSinceStartDouble + 4;
                 }
                 else if (NPCTracker.TryGetNear(Position, 30, out var npc) &&
@@ -97,12 +97,12 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(2, GameLoader.Bow_Icon));
 
-                    ServerManager.SendAudio(Position, "bowShoot");
+                    AudioManager.SendAudio(Position, "bowShoot");
 
                     npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this,
                               ModLoader.OnHitData.EHitSourceType.Monster);
 
-                    ServerManager.SendAudio(npc.Position.Vector, "fleshHit");
+                    AudioManager.SendAudio(npc.Position.Vector, "fleshHit");
                     _cooldown = Time.SecondsSinceStartDouble + 4;
                 }
             }

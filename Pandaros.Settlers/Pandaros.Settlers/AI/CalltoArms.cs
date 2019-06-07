@@ -94,9 +94,9 @@ namespace Pandaros.Settlers.AI
                         ranged = 1;
 
                     Position = new Vector3Int(_target.Position).Add(ranged, 0, ranged);
-                    Position = AIManager.ClosestPosition(Position, currentPos);
+                    PathingManager.TryCanStandNear(Position, out var canStandNear, out var newPosition);
 
-                    if (!AIManager.CanStandAt(Position))
+                    if (!canStandNear || (!PathingManager.TryCanStandAt(newPosition, out var canStand) && canStand))
                     {
                         _tmpVals.SetAs(COOLDOWN_KEY, _weapon.CooldownMissingItem);
                         _waitingFor++;
@@ -156,7 +156,7 @@ namespace Pandaros.Settlers.AI
                         state.SetIndicator(new IndicatorState(COOLDOWN, _inv.Weapon.Id));
                         state.SetCooldown(COOLDOWN);
                         NPC.LookAt(_target.Position);
-                        ServerManager.SendAudio(_target.PositionToAimFor, "punch");
+                        AudioManager.SendAudio(_target.PositionToAimFor, "punch");
 
                         _target.OnHit(WeaponFactory.WeaponLookup[_inv.Weapon.Id].Damage.TotalDamage());
                         _waitingFor = 0;
@@ -209,10 +209,10 @@ namespace Pandaros.Settlers.AI
                             NPC.LookAt(_target.Position);
 
                             if (_weapon.OnShootAudio != null)
-                                ServerManager.SendAudio(Position.Vector, _weapon.OnShootAudio);
+                                AudioManager.SendAudio(Position.Vector, _weapon.OnShootAudio);
 
                             if (_weapon.OnHitAudio != null)
-                                ServerManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
+                                AudioManager.SendAudio(_target.PositionToAimFor, _weapon.OnHitAudio);
 
                             if (_weapon.ShootItem.Count > 0)
                                 foreach (var proj in _weapon.ShootItem)
@@ -310,6 +310,11 @@ namespace Pandaros.Settlers.AI
                 _stock = null;
             }
         }
+
+        public void OnNPCCouldNotPathToGoal()
+        {
+            
+        }
     }
 
     [ModLoader.ModManager]
@@ -327,7 +332,6 @@ namespace Pandaros.Settlers.AI
             if (player == null || player.ID == NetworkID.Server || player.ActiveColony == null)
                 return true;
 
-            var array = CommandManager.SplitCommand(chat);
             ProcesssCallToArms(player, player.ActiveColony);
 
             return true;
@@ -407,8 +411,7 @@ namespace Pandaros.Settlers.AI
             colony.SendCommonData();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected,
-            GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".CallToArms.OnPlayerDisconnected")]
         public void OnPlayerDisconnected(Players.Player p)
         {
 

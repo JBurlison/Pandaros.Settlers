@@ -214,10 +214,11 @@ namespace Pandaros.Settlers.Items.Machines
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {crystal, steel, rivets, sbb, sbc, sba, crystal, stone},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
+                                    new RecipeResult(Item.ItemIndex),
                                     6);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.AddTextures")]
@@ -318,7 +319,7 @@ namespace Pandaros.Settlers.Items.Machines
             Save();
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuitEarly, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnQuitEarly")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnQuit, GameLoader.NAMESPACE + ".Items.Machines.Teleportpad.OnQuitEarly")]
         public static void OnQuitEarly()
         {
             Save();
@@ -406,8 +407,8 @@ namespace Pandaros.Settlers.Items.Machines
                         }
 
                         Teleport.TeleportTo(p, paired.Position.Vector);
-                        ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
-                        ServerManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
+                        AudioManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                         _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
                     }
                 }

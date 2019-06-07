@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items.Weapons
                                 if (target != null && target.IsValid)
                                 {
                                     npc.LookAt(target.Position);
-                                    ServerManager.SendAudio(target.PositionToAimFor, "punch");
+                                    AudioManager.SendAudio(target.PositionToAimFor, "punch");
 
                                     if (inv.Weapon != null && !inv.Weapon.IsEmpty())
                                         target.OnHit(WeaponFactory.WeaponLookup[inv.Weapon.Id].Damage.TotalDamage());
@@ -59,55 +59,55 @@ namespace Pandaros.Settlers.Items.Weapons
                 return;
 
             var click      = boxedData.item1;
-            var rayCastHit = click.rayCastHit;
             var state      = PlayerState.GetPlayerState(player);
 
-            if (WeaponLookup.ContainsKey(click.typeSelected) &&
-                click.rayCastHit.rayHitType == RayHitType.NPC &&
-                click.clickType == PlayerClickedData.ClickType.Left)
+            if (WeaponLookup.ContainsKey(click.TypeSelected) &&
+                click.HitType == PlayerClickedData.EHitType.NPC &&
+                click.ClickType == PlayerClickedData.EClickType.Left)
             {
                 var millisecondsSinceStart = Time.MillisecondsSinceStart;
 
-                if (state.Weapon.IsEmpty() || state.Weapon.Id != click.typeSelected)
+                if (state.Weapon.IsEmpty() || state.Weapon.Id != click.TypeSelected)
                     state.Weapon = new ItemState
                     {
-                        Id         = click.typeSelected,
-                        Durability = WeaponLookup[click.typeSelected].WepDurability
+                        Id         = click.TypeSelected,
+                        Durability = WeaponLookup[click.TypeSelected].WepDurability
                     };
 
                 if (Players.LastPunches.TryGetValue(player, out var num) &&
                     millisecondsSinceStart - num < Players.PlayerPunchCooldownMS) return;
 
                 Players.LastPunches[player]  = millisecondsSinceStart;
-                boxedData.item1.consumedType = PlayerClickedData.ConsumedType.UsedByMod;
+                boxedData.item1.ConsumedType = PlayerClickedData.EConsumedType.UsedByMod;
+                var rayCastHit = click.GetNPCHit();
 
-                if (ZombieID.IsZombieID(rayCastHit.hitNPCID))
+                if (ZombieID.IsZombieID(rayCastHit.NPCID))
                 {
-                    if (MonsterTracker.TryGetMonsterByID(rayCastHit.hitNPCID, out var monster))
+                    if (MonsterTracker.TryGetMonsterByID(rayCastHit.NPCID, out var monster))
                     {
-                        var dmg = WeaponLookup[click.typeSelected].Damage.TotalDamage();
+                        var dmg = WeaponLookup[click.TypeSelected].Damage.TotalDamage();
                         state.IncrimentStat("Damage Delt", dmg);
                         monster.OnHit(dmg);
                         state.Weapon.Durability--;
-                        ServerManager.SendAudio(monster.PositionToAimFor, "punch");
+                        AudioManager.SendAudio(monster.PositionToAimFor, "punch");
                     }
                 }
-                else if (NPCTracker.TryGetNPC(rayCastHit.hitNPCID, out var nPCBase))
+                else if (NPCTracker.TryGetNPC(rayCastHit.NPCID, out var nPCBase))
                 {
-                    var dmg = WeaponLookup[click.typeSelected].Damage.TotalDamage();
+                    var dmg = WeaponLookup[click.TypeSelected].Damage.TotalDamage();
                     state.IncrimentStat("Damage Delt", dmg);
                     nPCBase.OnHit(dmg, player, ModLoader.OnHitData.EHitSourceType.PlayerClick);
                     state.Weapon.Durability--;
-                    ServerManager.SendAudio(nPCBase.Position.Vector, "punch");
+                    AudioManager.SendAudio(nPCBase.Position.Vector, "punch");
                 }
 
                 if (state.Weapon.Durability <= 0)
                 {
                     state.Weapon = new ItemState();
-                    player.TakeItemFromInventory(click.typeSelected);
+                    player.TakeItemFromInventory(click.TypeSelected);
 
                     PandaChat.Send(player,
-                                   $"Your {WeaponLookup[click.typeSelected].name} has broke!",
+                                   $"Your {WeaponLookup[click.TypeSelected].name} has broke!",
                                    ChatColor.orange);
                 }
             }

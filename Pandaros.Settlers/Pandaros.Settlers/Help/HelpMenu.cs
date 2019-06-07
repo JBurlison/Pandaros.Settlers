@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Help
         public override StaticItem StaticItemSettings => new StaticItem() { Name = NAME };
         public override OpenMenuSettings OpensMenuSettings => new OpenMenuSettings()
         {
-            ActivateClickType = PlayerClickedData.ClickType.Right,
+            ActivateClickType = PlayerClickedData.EClickType.Right,
             ItemName = NAME,
             UIUrl = "Wiki.MainMenu"
         };

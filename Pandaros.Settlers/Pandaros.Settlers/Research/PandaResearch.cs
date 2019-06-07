@@ -139,6 +139,8 @@ namespace Pandaros.Settlers.Research
             {
                 PandaLogger.LogError(ex, $"Error OnResearchComplete for {TmpValueKey} Level: {Level}.");
             }
+
+            base.OnResearchComplete(manager, reason);
         }
 
         public static string GetLevelKey(string researchName)
@@ -290,7 +292,7 @@ namespace Pandaros.Settlers.Research
             }
 
             foreach (var item in armor.Where(a => a.IsMagical == false))
-                e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(item.name), true);
+                e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(item.name));
         }
 
         private static void AddSwordSmithing(Dictionary<ushort, int> researchDic)
@@ -339,16 +341,16 @@ namespace Pandaros.Settlers.Research
             switch (e.Research.Level)
             {
                 case 1:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".CopperSword"), true);
+                     e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".CopperSword"));
                     break;
                 case 2:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".BronzeSword"), true);
+                     e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".BronzeSword"));
                     break;
                 case 3:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".IronSword"), true);
+                     e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".IronSword"));
                     break;
                 case 4:
-                     e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".SteelSword"), true);
+                     e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".SteelSword"));
                     break;
             }
                 
@@ -409,7 +411,7 @@ namespace Pandaros.Settlers.Research
         private static void Knights_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
             e.Manager.Colony.ForEachOwner(o => PatrolTool.GivePlayerPatrolTool(o));
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(PatrolTool.PatrolFlag.name), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(PatrolTool.PatrolFlag.name));
         }
 
         private static void AddApocthResearch(Dictionary<ushort, int> researchDic)
@@ -432,7 +434,7 @@ namespace Pandaros.Settlers.Research
 
         private static void Apocth_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE));
         }
 
         private static void AddAdvanceApocthResearch(Dictionary<ushort, int> researchDic)
@@ -453,8 +455,8 @@ namespace Pandaros.Settlers.Research
 
         private static void AdvanceApocth_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Anitbiotic.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(TreatedBandage.Item.name), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Anitbiotic.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(TreatedBandage.Item.name));
         }
 
         private static void AddManaResearch(Dictionary<ushort, int> researchDic)
@@ -478,8 +480,8 @@ namespace Pandaros.Settlers.Research
 
         private static void Mana_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Mana.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Aether.Item.name), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Items.Mana.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Aether.Item.name));
         }
 
         private static void AddElementiumResearch(Dictionary<ushort, int> researchDic)
@@ -505,16 +507,16 @@ namespace Pandaros.Settlers.Research
 
         private static void Elementium_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.Elementium.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(EarthStone.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(FireStone.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(WaterStone.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(AirStone.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(ElementalTurrets.AIRTURRET_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(ElementalTurrets.FIRETURRET_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(ElementalTurrets.EARTHTURRET_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(ElementalTurrets.WATERTURRET_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(ElementalTurrets.VOIDTURRET_NAMESPACE), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Items.Elementium.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(EarthStone.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(FireStone.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(WaterStone.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(AirStone.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ElementalTurrets.AIRTURRET_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ElementalTurrets.FIRETURRET_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ElementalTurrets.EARTHTURRET_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ElementalTurrets.WATERTURRET_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ElementalTurrets.VOIDTURRET_NAMESPACE));
         }
 
         private static void AddBuildersWandResearch(Dictionary<ushort, int> researchDic)
@@ -538,7 +540,7 @@ namespace Pandaros.Settlers.Research
 
         private static void BuildersWand_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Items.BuildersWand.Item.name), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Items.BuildersWand.Item.name));
         }
 
         private static void AddBetterBuildersWandResearch(Dictionary<ushort, int> researchDic)
@@ -603,7 +605,7 @@ namespace Pandaros.Settlers.Research
 
         private static void Teleporters_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(TeleportPad.Item.name), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(TeleportPad.Item.name));
         }
 
         private static void AddImprovedSlings(Dictionary<ushort, int> researchDic)
@@ -730,14 +732,14 @@ namespace Pandaros.Settlers.Research
 
         private static void Machiness_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Miner.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GateLever.Item.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(GateLever.GateItem.name), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Turret.BRONZEARROW_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Turret.STONE_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Turret.CROSSBOW_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(Turret.MATCHLOCK_NAMESPACE), true);
-            e.Manager.Colony.RecipeData.SetRecipeAvailability(new Recipes.RecipeKey(AdvancedCrafterRegister.JOB_RECIPE), true);
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Miner.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GateLever.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GateLever.GateItem.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Turret.BRONZEARROW_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Turret.STONE_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Turret.CROSSBOW_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Turret.MATCHLOCK_NAMESPACE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(AdvancedCrafterRegister.JOB_RECIPE));
         }
 
         private static void AddImprovedDuarability(Dictionary<ushort, int> researchDic)

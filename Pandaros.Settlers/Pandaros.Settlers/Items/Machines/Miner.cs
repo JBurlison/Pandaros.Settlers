@@ -156,7 +156,7 @@ namespace Pandaros.Settlers.Items.Machines
                                 if (Random.NextDouble() <= itemList[i].chance)
                                     colony.Stockpile.Add(itemList[i].item);
 
-                            ServerManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
+                            AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
                             Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, itemList.FirstOrDefault().item.Type));
                         }
                         else
@@ -197,10 +197,11 @@ namespace Pandaros.Settlers.Items.Machines
                                         planks,
                                         pickaxe
                                     },
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex),
+                                    new RecipeResult(Item.ItemIndex),
                                     5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]

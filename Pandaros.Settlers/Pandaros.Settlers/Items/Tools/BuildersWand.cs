@@ -40,10 +40,11 @@ namespace Pandaros.Settlers.Items
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {elementium, aether, steel, gold, silver, adamantine},
-                                    new ItemTypes.ItemTypeDrops(Item.ItemIndex, 1),
+                                    new RecipeResult(Item.ItemIndex, 1),
                                     5);
 
-            ServerManager.RecipeStorage.AddOptionalLimitTypeRecipe(SorcererRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddLimitTypeRecipe(SorcererRegister.JOB_NAME, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 
@@ -80,14 +81,14 @@ namespace Pandaros.Settlers.Items
             GameLoader.NAMESPACE + ".Items.BuildersWand.PlayerClicked")]
         public static void PlayerClicked(Players.Player player, Box<PlayerClickedData> boxedData)
         {
-            if (boxedData.item1.IsConsumed || boxedData.item1.typeSelected != Item.ItemIndex)
+            if (boxedData.item1.IsConsumed || boxedData.item1.TypeSelected != Item.ItemIndex)
                 return;
 
             var click      = boxedData.item1;
-            var rayCastHit = click.rayCastHit;
+            var rayCastHit = click.GetVoxelHit();
             var ps         = PlayerState.GetPlayerState(player);
 
-            if (click.clickType != PlayerClickedData.ClickType.Right)
+            if (click.ClickType != PlayerClickedData.EClickType.Right)
             {
                 if (ps.BuildersWandPreview.Count != 0)
                 {
@@ -140,43 +141,43 @@ namespace Pandaros.Settlers.Items
                 }
                 else
                 {
-                    var startingPos = click.VoxelHit;
-                    ps.BuildersWandTarget = click.typeHit;
+                    var startingPos = rayCastHit.BlockHit;
+                    ps.BuildersWandTarget = rayCastHit.TypeHit;
 
                     switch (ps.BuildersWandMode)
                     {
                         case WandMode.Horizontal:
 
-                            switch (click.VoxelSideHit)
+                            switch (rayCastHit.SideHit)
                             {
                                 case VoxelSide.xMin:
-                                    startingPos = click.VoxelHit.Add(-1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(-1, 0, 0);
                                     zxPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xPlus:
-                                    startingPos = click.VoxelHit.Add(1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(1, 0, 0);
                                     zxNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
-                                    startingPos = click.VoxelHit.Add(0, 0, -1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, -1);
                                     xzPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zPlus:
-                                    startingPos = click.VoxelHit.Add(0, 0, 1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, 1);
                                     xzNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.yMin:
-                                    startingPos = click.VoxelHit.Add(0, -1, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(0, -1, 0);
                                     xyPos(ps, startingPos);
                                     zyPos(ps, startingPos, true);
                                     break;
 
                                 case VoxelSide.yPlus:
-                                    startingPos = click.VoxelHit.Add(0, 1, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 1, 0);
                                     xyNeg(ps, startingPos);
                                     zyNeg(ps, startingPos, true);
                                     break;
@@ -186,25 +187,25 @@ namespace Pandaros.Settlers.Items
 
                         case WandMode.Vertical:
 
-                            switch (click.VoxelSideHit)
+                            switch (rayCastHit.SideHit)
                             {
                                 case VoxelSide.xMin:
-                                    startingPos = click.VoxelHit.Add(-1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(-1, 0, 0);
                                     yxPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xPlus:
-                                    startingPos = click.VoxelHit.Add(1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(1, 0, 0);
                                     yxNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
-                                    startingPos = click.VoxelHit.Add(0, 0, -1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, -1);
                                     yzPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zPlus:
-                                    startingPos = click.VoxelHit.Add(0, 0, 1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, 1);
                                     yzNeg(ps, startingPos);
                                     break;
 
@@ -221,35 +222,35 @@ namespace Pandaros.Settlers.Items
 
                         case WandMode.TopAndBottomX:
 
-                            switch (click.VoxelSideHit)
+                            switch (rayCastHit.SideHit)
                             {
                                 case VoxelSide.yMin:
-                                    startingPos = click.VoxelHit.Add(0, -1, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(0, -1, 0);
                                     xyPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.yPlus:
-                                    startingPos = click.VoxelHit.Add(0, 1, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 1, 0);
                                     xyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xMin:
-                                    startingPos = click.VoxelHit.Add(-1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(-1, 0, 0);
                                     xyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xPlus:
-                                    startingPos = click.VoxelHit.Add(1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(1, 0, 0);
                                     xyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
-                                    startingPos = click.VoxelHit.Add(0, 0, -1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, -1);
                                     xyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zPlus:
-                                    startingPos = click.VoxelHit.Add(0, 0, 1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, 1);
                                     xyNeg(ps, startingPos);
                                     break;
 
@@ -266,35 +267,35 @@ namespace Pandaros.Settlers.Items
 
                         case WandMode.TopAndBottomZ:
 
-                            switch (click.VoxelSideHit)
+                            switch (rayCastHit.SideHit)
                             {
                                 case VoxelSide.yMin:
-                                    startingPos = click.VoxelHit.Add(0, -1, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(0, -1, 0);
                                     zyPos(ps, startingPos);
                                     break;
 
                                 case VoxelSide.yPlus:
-                                    startingPos = click.VoxelHit.Add(0, 1, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 1, 0);
                                     zyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xMin:
-                                    startingPos = click.VoxelHit.Add(-1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(-1, 0, 0);
                                     zyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.xPlus:
-                                    startingPos = click.VoxelHit.Add(1, 0, 0);
+                                    startingPos = rayCastHit.BlockHit.Add(1, 0, 0);
                                     zyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zMin:
-                                    startingPos = click.VoxelHit.Add(0, 0, -1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, -1);
                                     zyNeg(ps, startingPos);
                                     break;
 
                                 case VoxelSide.zPlus:
-                                    startingPos = click.VoxelHit.Add(0, 0, 1);
+                                    startingPos = rayCastHit.BlockHit.Add(0, 0, 1);
                                     zyNeg(ps, startingPos);
                                     break;
 
