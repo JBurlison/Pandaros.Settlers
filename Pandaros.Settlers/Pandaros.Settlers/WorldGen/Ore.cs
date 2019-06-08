@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.WorldGen
             {
                 foreach (var path in modInfo.Value)
                 {
-                    var newMenu = JSON.Deserialize(modInfo.Key + "\\" + path);
+                    var newMenu = JSON.Deserialize(modInfo.Key + "/" + path);
 
                     if (LoadedOres == null)
                         LoadedOres = newMenu;

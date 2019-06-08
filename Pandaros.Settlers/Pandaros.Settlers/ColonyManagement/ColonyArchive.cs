@@ -46,12 +46,8 @@ namespace Pandaros.Settlers.ColonyManagement
                                     foreach (var job in new List<IJob>(c.JobFinder.JobsData.OpenJobs))
                                         if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
                                         {
-                                            if (job.IsValid && job.NeedsNPC)
-                                            {
-                                                npc.TakeJob(job);
-                                                c.JobFinder.Remove(job);
-                                            }
-
+                                            npc.TakeJob(job);
+                                            c.JobFinder.Remove(job);
                                             break;
                                         }
                                 }

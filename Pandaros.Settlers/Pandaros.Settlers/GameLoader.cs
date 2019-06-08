@@ -85,19 +85,19 @@ namespace Pandaros.Settlers
 
             PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
 
-            GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("\\", "/");
-            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("\\", "/") + "/";
+            GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("/", "/");
+            GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("/", "/") + "/";
 
             MODS_FOLDER = GAMEDATA_FOLDER + "mods/";
-            ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
-            MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
-            AUDIO_PATH = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
-            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("\\", "/") + "/";
-            BLOCKS_ALBEDO_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("\\", "/") + "/";
-            BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("\\", "/") + "/";
-            BLOCKS_HEIGHT_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("\\", "/") + "/";
-            BLOCKS_NORMAL_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("\\", "/") + "/";
-            BLOCKS_NPC_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "npc").Replace("\\", "/") + "/";
+            ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("/", "/") + "/";
+            MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("/", "/") + "/";
+            AUDIO_PATH = Path.Combine(MOD_FOLDER, "Audio").Replace("/", "/") + "/";
+            TEXTURE_FOLDER_PANDA = Path.Combine(MOD_FOLDER, "Textures").Replace("/", "/") + "/";
+            BLOCKS_ALBEDO_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "albedo").Replace("/", "/") + "/";
+            BLOCKS_EMISSIVE_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "emissive").Replace("/", "/") + "/";
+            BLOCKS_HEIGHT_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "height").Replace("/", "/") + "/";
+            BLOCKS_NORMAL_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "normal").Replace("/", "/") + "/";
+            BLOCKS_NPC_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "npc").Replace("/", "/") + "/";
 
             ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json")[0];
 

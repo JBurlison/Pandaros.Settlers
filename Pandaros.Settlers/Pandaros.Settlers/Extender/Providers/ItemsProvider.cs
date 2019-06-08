@@ -53,14 +53,14 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     try
                     {
-                        var jsonFile = JSON.Deserialize(modInfo.Key + "\\" + path);
+                        var jsonFile = JSON.Deserialize(modInfo.Key + "/" + path);
 
                         if (jsonFile.NodeType == NodeType.Object && jsonFile.ChildCount > 0)
                             foreach (var item in jsonFile.LoopObject())
                             {
                                 foreach (var property in _fixRelativePaths)
                                     if (item.Value.TryGetAs(property, out string propertyPath) && propertyPath.StartsWith("./"))
-                                        item.Value[property] = new JSONNode(modInfo.Key + "\\" + propertyPath.Substring(2));
+                                        item.Value[property] = new JSONNode(modInfo.Key + "/" + propertyPath.Substring(2));
 
                                 if (item.Value.TryGetAs("Durability", out int durability))
                                 {

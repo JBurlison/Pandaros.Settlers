@@ -39,7 +39,7 @@ namespace Pandaros.Settlers.Extender.Providers
                 {
                     try
                     {
-                        var jsonFile = JSON.Deserialize(modInfo.Key + "\\" + path);
+                        var jsonFile = JSON.Deserialize(modInfo.Key + "/" + path);
 
                         if (jsonFile.NodeType == NodeType.Array && jsonFile.ChildCount > 0)
                             foreach (var item in jsonFile.LoopArray())
