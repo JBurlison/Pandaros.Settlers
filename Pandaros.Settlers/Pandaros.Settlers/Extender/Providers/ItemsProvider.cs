@@ -27,7 +27,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var i = 0;
-            List<ICSType> loadedItems = new List<ICSType>();
+            Dictionary<string, ICSType> loadedItems = new Dictionary<string, ICSType>();
 
             foreach (var item in LoadedAssembalies)
             {
@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Extender.Providers
                     if (Activator.CreateInstance(item) is ICSType itemType &&
                         !string.IsNullOrEmpty(itemType.name))
                     {
-                        loadedItems.Add(itemType);            
+                        loadedItems[itemType.name] = itemType;            
                     }
                 }
                 catch (Exception ex)
@@ -59,17 +59,29 @@ namespace Pandaros.Settlers.Extender.Providers
                             foreach (var item in jsonFile.LoopObject())
                             {
                                 foreach (var property in _fixRelativePaths)
-                                if (item.Value.TryGetAs(property, out string propertyPath) && propertyPath.StartsWith("./"))
-                                    item.Value[property] = new JSONNode(modInfo.Key + "\\" + propertyPath.Substring(2));
+                                    if (item.Value.TryGetAs(property, out string propertyPath) && propertyPath.StartsWith("./"))
+                                        item.Value[property] = new JSONNode(modInfo.Key + "\\" + propertyPath.Substring(2));
 
                                 if (item.Value.TryGetAs("Durability", out int durability))
-                                    loadedItems.Add(item.Value.JsonDeerialize<MagicArmor>());
+                                {
+                                    var ma = item.Value.JsonDeerialize<MagicArmor>();
+                                    loadedItems[ma.name] = ma;
+                                }
                                 else if (item.Value.TryGetAs("WepDurability", out bool wepDurability))
-                                    loadedItems.Add(item.Value.JsonDeerialize<MagicWeapon>());
+                                {
+                                    var mw = item.Value.JsonDeerialize<MagicWeapon>();
+                                    loadedItems[mw.name] = mw;
+                                }
                                 else if (item.Value.TryGetAs("IsMagical", out bool isMagic))
-                                    loadedItems.Add(item.Value.JsonDeerialize<PlayerMagicItem>());
+                                {
+                                    var mi = item.Value.JsonDeerialize<PlayerMagicItem>();
+                                    loadedItems[mi.name] = mi;
+                                }
                                 else
-                                    loadedItems.Add(item.Value.JsonDeerialize<CSType>());
+                                {
+                                    var newItem = item.Value.JsonDeerialize<CSType>();
+                                    loadedItems[newItem.name] = newItem;
+                                }
                             }
                     }
                     catch (Exception ex)
@@ -79,7 +91,7 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            foreach (var itemType in loadedItems)
+            foreach (var itemType in loadedItems.Values)
             {
                 var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.name, itemType.JsonSerialize());
 

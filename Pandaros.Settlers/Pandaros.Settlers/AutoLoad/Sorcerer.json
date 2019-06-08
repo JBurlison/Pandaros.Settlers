@@ -161,48 +161,6 @@
     "requires": [
       {
         "type": "Pandaros.Settlers.AutoLoad.Adamantine",
-        "amount": 20
-      },
-      {
-        "type": "Pandaros.Settlers.Elementium",
-        "amount": 30
-      },
-      {
-        "type": "Pandaros.Settlers.AirStone",
-        "amount": 30
-      },
-      {
-        "type": "Pandaros.Settlers.EarthStone",
-        "amount": 30
-      },
-      {
-        "type": "Pandaros.Settlers.WaterStone",
-        "amount": 30
-      },
-      {
-        "type": "Pandaros.Settlers.Esper",
-        "amount": 1
-      },
-      {
-        "type": "Pandaros.Settlers.Mana",
-        "amount": 50
-      }
-    ],
-    "results": [
-      {
-        "type": "Pandaros.Settlers.BootsOfFalling",
-        "amount": 1
-      }
-    ],
-    "defaultPriority": 0,
-    "defaultLimit": 1,
-    "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.BootsOfFalling"
-  },
-  {
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.Adamantine",
         "amount": 2
       },
       {
