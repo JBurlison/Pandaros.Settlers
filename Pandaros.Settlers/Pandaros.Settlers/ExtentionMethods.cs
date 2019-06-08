@@ -19,7 +19,7 @@ namespace Pandaros.Settlers
     {
         public static bool IsConnected(this Players.Player p)
         {
-            return p.ConnectionState == Players.EConnectionState.Connected;
+            return p.ConnectionState == Players.EConnectionState.Connected || p.ConnectionState == Players.EConnectionState.Connecting;
         }
 
         public static double NextDouble(this Random rng, double min, double max)

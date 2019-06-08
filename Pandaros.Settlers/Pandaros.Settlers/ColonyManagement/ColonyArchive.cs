@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.ColonyManagement
     {
         public static int _idNext = 1;
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".ColonyArchive.OnPlayerConnectedEarly")]
         public static void OnPlayerConnectedEarly(Players.Player p)
         {
             if (!Configuration.OfflineColonies)
@@ -83,7 +83,7 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerDisconnected")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerDisconnected, GameLoader.NAMESPACE + ".ColonyArchive.OnPlayerDisconnected")]
         public static void OnPlayerDisconnected(Players.Player p)
         {
             if (p == null || p.Colonies == null || p.Colonies.Length == 0)
