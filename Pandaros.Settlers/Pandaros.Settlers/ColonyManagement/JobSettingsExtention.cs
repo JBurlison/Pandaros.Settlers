@@ -112,7 +112,7 @@ namespace Pandaros.Settlers
 
         public static void ApplyJobResearch(this NPC.NPCBase npc)
         {
-            ApplyJobResearch(npc.Job);
+            ApplyJobResearch(npc?.Job);
         }
 
         public static void ApplyJobResearch(this IJob job)

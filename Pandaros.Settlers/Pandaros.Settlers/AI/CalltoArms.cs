@@ -389,14 +389,12 @@ namespace Pandaros.Settlers.AI
                         if (job != null && job.GetType() == typeof(CalltoArmsJob))
                         {
                             follower.ClearJob();
-                            job.SetNPC(null);
                         }
 
                         if (_Jobs[colony].ContainsKey(follower) && _Jobs[colony][follower].NeedsNPC)
                         {
                             assignedWorkers.Add(follower);
                             follower.TakeJob(_Jobs[colony][follower]);
-                            follower.Colony.JobFinder.Remove(_Jobs[colony][follower]);
                         }
                     }
 

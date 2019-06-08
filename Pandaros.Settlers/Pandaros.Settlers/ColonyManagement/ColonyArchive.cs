@@ -47,9 +47,11 @@ namespace Pandaros.Settlers.ColonyManagement
                                         if (node.TryGetAs("JobPoS", out JSONNode pos) && job.GetJobLocation() == (Vector3Int)pos)
                                         {
                                             npc.TakeJob(job);
-                                            c.JobFinder.Remove(job);
+
                                             break;
                                         }
+
+                                    c.JobFinder.JobsData.OpenJobs.Remove(npc.Job);
                                 }
                                 catch (Exception ex)
                                 {
@@ -57,6 +59,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                 }
 
                             JSON.Serialize(file, new JSONNode(NodeType.Array));
+
                             c.JobFinder.Update();
                             c.SendCommonData();
                         }
@@ -125,7 +128,6 @@ namespace Pandaros.Settlers.ColonyManagement
                             if (job != null && job.GetJobLocation() != Vector3Int.invalidPos)
                             {
                                 jobloc = (JSONNode)job.GetJobLocation();
-                                job.SetNPC(null);
                                 follower.ClearJob();
                             }
                         }

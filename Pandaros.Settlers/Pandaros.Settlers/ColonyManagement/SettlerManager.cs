@@ -611,46 +611,53 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]
         public static void OnNPCJobChanged(ValueTuple<NPCBase, IJob, IJob> data)
         {
-            if (data.Item1 != null && !data.Item1.NPCType.IsLaborer)
-                data.Item1.CustomData.SetAs(LEAVETIME_JOB, 0);
-            
-            if (data.Item3 is GuardJobInstance guardJob)
+            try
             {
-                var settings = (GuardJobSettings)guardJob.Settings;
-                guardJob.Settings = new GuardJobSettings()
-                {
-                    BlockTypes = settings.BlockTypes,
-                    CooldownMissingItem = settings.CooldownMissingItem,
-                    CooldownSearchingTarget = settings.CooldownSearchingTarget,
-                    CooldownShot = settings.CooldownShot,
-                    Damage = settings.Damage,
-                    NPCType = settings.NPCType,
-                    NPCTypeKey = settings.NPCTypeKey,
-                    OnHitAudio = settings.OnHitAudio,
-                    OnShootAudio = settings.OnShootAudio,
-                    OnShootResultItem = settings.OnShootResultItem,
-                    Range = settings.Range,
-                    RecruitmentItem = settings.RecruitmentItem,
-                    ShootItem = settings.ShootItem,
-                    SleepType = settings.SleepType
-                };
-            }
-            else if (data.Item3 is CraftingJobInstance craftingJob)
-            {
-                var settings = (CraftingJobSettings)craftingJob.Settings;
-                craftingJob.Settings = new CraftingJobSettings()
-                {
-                    BlockTypes = settings.BlockTypes,
-                    CraftingCooldown = settings.CraftingCooldown,
-                    MaxCraftsPerHaul = settings.MaxCraftsPerHaul,
-                    NPCType = settings.NPCType,
-                    NPCTypeKey = settings.NPCTypeKey,
-                    OnCraftedAudio = settings.OnCraftedAudio,
-                    RecruitmentItem = settings.RecruitmentItem
-                };
-            }
+                if (data.Item1 != null && !data.Item1.NPCType.IsLaborer)
+                    data.Item1.CustomData.SetAs(LEAVETIME_JOB, 0);
 
-            data.Item1.ApplyJobResearch();
+                if (data.Item3 is GuardJobInstance guardJob)
+                {
+                    var settings = (GuardJobSettings)guardJob.Settings;
+                    guardJob.Settings = new GuardJobSettings()
+                    {
+                        BlockTypes = settings.BlockTypes,
+                        CooldownMissingItem = settings.CooldownMissingItem,
+                        CooldownSearchingTarget = settings.CooldownSearchingTarget,
+                        CooldownShot = settings.CooldownShot,
+                        Damage = settings.Damage,
+                        NPCType = settings.NPCType,
+                        NPCTypeKey = settings.NPCTypeKey,
+                        OnHitAudio = settings.OnHitAudio,
+                        OnShootAudio = settings.OnShootAudio,
+                        OnShootResultItem = settings.OnShootResultItem,
+                        Range = settings.Range,
+                        RecruitmentItem = settings.RecruitmentItem,
+                        ShootItem = settings.ShootItem,
+                        SleepType = settings.SleepType
+                    };
+                }
+                else if (data.Item3 is CraftingJobInstance craftingJob)
+                {
+                    var settings = (CraftingJobSettings)craftingJob.Settings;
+                    craftingJob.Settings = new CraftingJobSettings()
+                    {
+                        BlockTypes = settings.BlockTypes,
+                        CraftingCooldown = settings.CraftingCooldown,
+                        MaxCraftsPerHaul = settings.MaxCraftsPerHaul,
+                        NPCType = settings.NPCType,
+                        NPCTypeKey = settings.NPCTypeKey,
+                        OnCraftedAudio = settings.OnCraftedAudio,
+                        RecruitmentItem = settings.RecruitmentItem
+                    };
+                }
+
+                data.Item1?.ApplyJobResearch();
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
         }
 
         public static void ApplyJobCooldownsToNPCs(Colony c)
