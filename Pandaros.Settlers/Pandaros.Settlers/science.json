@@ -1,7 +1,7 @@
 [
   {
     "dependencies": [
-      "Pandaros.Settlers.Pandaros.Settlers.Sorcerer1"
+      "Pandaros.Settlers.Sorcerer1"
     ],
     "icon": "./icons/SkillEquiptmentResearch1.png",
     "iterationCount": 200,
