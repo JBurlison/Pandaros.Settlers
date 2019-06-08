@@ -40,7 +40,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledSword2Recipe"
+    "name": "Pandaros.Settlers.SkilledSword2"
   },
   {
     "requires": [
@@ -83,7 +83,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledSword1Recipe"
+    "name": "Pandaros.Settlers.SkilledSword1"
   },
   {
     "requires": [
@@ -125,7 +125,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledSwordRecipe"
+    "name": "Pandaros.Settlers.SkilledSword"
   },
   {
     "requires": [
@@ -155,7 +155,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.HealthboosterRecipe"
+    "name": "Pandaros.Settlers.Healthbooster"
   },
   {
     "requires": [
@@ -197,7 +197,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.BootsOfFallingRecipe"
+    "name": "Pandaros.Settlers.BootsOfFalling"
   },
   {
     "requires": [
@@ -239,7 +239,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledBootsRecipe"
+    "name": "Pandaros.Settlers.SkilledBoots"
   },
   {
     "requires": [
@@ -282,7 +282,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledBoots1Recipe"
+    "name": "Pandaros.Settlers.SkilledBoots1"
   },
   {
     "requires": [
@@ -325,7 +325,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledBoots2Recipe"
+    "name": "Pandaros.Settlers.SkilledBoots2"
   },
   {
     "requires": [
@@ -367,7 +367,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledChestRecipe"
+    "name": "Pandaros.Settlers.SkilledChest"
   },
   {
     "requires": [
@@ -410,7 +410,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledChest1Recipe"
+    "name": "Pandaros.Settlers.SkilledChest1"
   },
   {
     "requires": [
@@ -453,7 +453,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledChest2Recipe"
+    "name": "Pandaros.Settlers.SkilledChest2"
   },
   {
     "requires": [
@@ -495,7 +495,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledGlovesRecipe"
+    "name": "Pandaros.Settlers.SkilledGloves"
   },
   {
     "requires": [
@@ -538,7 +538,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledGloves1Recipe"
+    "name": "Pandaros.Settlers.SkilledGloves1"
   },
   {
     "requires": [
@@ -581,7 +581,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledGloves2Recipe"
+    "name": "Pandaros.Settlers.SkilledGloves2"
   },
   {
     "requires": [
@@ -623,7 +623,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledHelmRecipe"
+    "name": "Pandaros.Settlers.SkilledHelm"
   },
   {
     "requires": [
@@ -666,7 +666,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledHelm1Recipe"
+    "name": "Pandaros.Settlers.SkilledHelm1"
   },
   {
     "requires": [
@@ -709,7 +709,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledHelm2Recipe"
+    "name": "Pandaros.Settlers.SkilledHelm2"
   },
   {
     "requires": [
@@ -751,7 +751,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledLegsRecipe"
+    "name": "Pandaros.Settlers.SkilledLegs"
   },
   {
     "requires": [
@@ -794,7 +794,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledLegs1Recipe"
+    "name": "Pandaros.Settlers.SkilledLegs1"
   },
   {
     "requires": [
@@ -837,7 +837,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledLegs2Recipe"
+    "name": "Pandaros.Settlers.SkilledLegs2"
   },
   {
     "requires": [
@@ -879,7 +879,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledShieldRecipe"
+    "name": "Pandaros.Settlers.SkilledShield"
   },
   {
     "requires": [
@@ -922,7 +922,7 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledShield1Recipe"
+    "name": "Pandaros.Settlers.SkilledShield1"
   },
   {
     "requires": [
@@ -965,6 +965,6 @@
     "defaultPriority": 0,
     "defaultLimit": 1,
     "Job": "Pandaros.Settlers.Sorcerer",
-    "name": "Pandaros.Settlers.SkilledShield2Recipe"
+    "name": "Pandaros.Settlers.SkilledShield2"
   }
 ]
