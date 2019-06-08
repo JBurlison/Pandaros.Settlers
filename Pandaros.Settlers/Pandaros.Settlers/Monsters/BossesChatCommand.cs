@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Monsters
 
                 switch (data.Item3)
                 {
-                    case "world_settings":
+                    case "server_popup":
                         var ps = ColonyState.GetColonyState(data.Item1.ActiveColony);
 
                         if (ps != null && data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != Convert.ToInt32(ps.BossesEnabled))

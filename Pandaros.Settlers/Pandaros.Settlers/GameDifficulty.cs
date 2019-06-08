@@ -174,7 +174,7 @@ namespace Pandaros.Settlers
             if (data.Item1.ActiveColony != null)
                 switch (data.Item3)
                 {
-                    case "world_settings":
+                    case "server_popup":
                         var ps = ColonyState.GetColonyState(data.Item1.ActiveColony);
 
                         if (ps != null && data.Item2.GetAsOrDefault(_Difficulty, ps.Difficulty.Rank) != ps.Difficulty.Rank)

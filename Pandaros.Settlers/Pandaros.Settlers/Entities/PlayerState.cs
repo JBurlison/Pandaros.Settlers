@@ -466,7 +466,7 @@ namespace Pandaros.Settlers.Entities
         {
             switch (data.Item3)
             {
-                case "world_settings":
+                case "server_popup":
                     var ps = PlayerState.GetPlayerState(data.Item1);
 
                     if (ps != null)
