@@ -71,28 +71,6 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
-            //if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".ResetPlayer."))
-            //{
-            //    var id = data.ButtonIdentifier.Replace(GameLoader.NAMESPACE + ".ResetPlayer.", "");
-
-            //    if (data.Player.ID.ToString() == id)
-            //    {
-            //        BlockTracker.RewindPlayersBlocks(data.Player);
-            //    }
-            //    else
-            //    {
-            //        foreach (var p in Players.PlayerDatabase)
-            //            if (p.Key.ToString() == id)
-            //            {
-            //                BlockTracker.RewindPlayersBlocks(p.Value);
-            //                break;
-            //            }
-            //    }
-
-            //    NetworkMenuManager.CloseServerPopup(data.Player);
-            //    return;
-            //}
-
             if ((!data.ButtonIdentifier.Contains(".RecruitButton") &&
                 !data.ButtonIdentifier.Contains(".FireButton") &&
                 !data.ButtonIdentifier.Contains(".MoveFired") &&
@@ -340,12 +318,6 @@ namespace Pandaros.Settlers.ColonyManagement
 
             if (jobCount == 0)
                 menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("NoJobs", player), UnityEngine.Color.black)));
-
-            //if (!fired && Configuration.GetorDefault("AllowPlayerToResetThemself", true))
-            //{
-            //    menu.Items.Add(new Line(UnityEngine.Color.black));
-            //    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ResetPlayer." + player.ID, new LabelData(_localizationHelper.GetLocalizationKey("ResetPlayer"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-            //}
 
             return menu;
         }

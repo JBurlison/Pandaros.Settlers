@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Server
             {
                 var obj = new ClientMeshedObject(ObjType);
                 obj.SendMoveToInterpolated(start, new Quaternion(end.x, end.y, end.z, 0), deltaTime, ObjSettings);
-
+                
                 Task.Run(() =>
                 {
                     System.Threading.Thread.Sleep((int)(deltaTime * 1001));

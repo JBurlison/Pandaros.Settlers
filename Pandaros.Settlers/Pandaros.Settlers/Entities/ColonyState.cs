@@ -17,6 +17,7 @@ namespace Pandaros.Settlers.Entities
         public GameDifficulty Difficulty { get; set; } = Configuration.DefaultDifficulty;
         public bool BossesEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;
+        public bool NotifySettlers { get; set; } = true;
         public int ColonistsBought { get; set; }
         public double NextColonistBuyTime { get; set; }
         public double NeedsABed { get; set; }
@@ -101,8 +102,11 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(BossesEnabled), out bool bosses))
                     _colonyStates[c].BossesEnabled = bosses;
 
-                if (stateNode.TryGetAs(nameof(SettlersEnabled), out bool settlers))
-                    _colonyStates[c].SettlersEnabled = settlers;
+                if (stateNode.TryGetAs(nameof(NotifySettlers), out bool settlers))
+                    _colonyStates[c].NotifySettlers = settlers;
+
+                if (stateNode.TryGetAs(nameof(SettlersEnabled), out bool notify))
+                    _colonyStates[c].SettlersEnabled = notify;
 
                 if (stateNode.TryGetAs(nameof(HighestColonistCount), out int hsc))
                     _colonyStates[c].HighestColonistCount = hsc;
@@ -127,6 +131,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(SettlersEnabled), _colonyStates[c].SettlersEnabled);
                 node.SetAs(nameof(HighestColonistCount), _colonyStates[c].HighestColonistCount);
                 node.SetAs(nameof(SettlersToggledTimes), _colonyStates[c].SettlersToggledTimes);
+                node.SetAs(nameof(NotifySettlers), _colonyStates[c].NotifySettlers);
 
                 n.SetAs(GameLoader.NAMESPACE + ".ColonyState", node);
             }

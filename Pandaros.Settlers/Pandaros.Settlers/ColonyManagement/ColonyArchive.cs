@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedEarly")]
         public static void OnPlayerConnectedEarly(Players.Player p)
         {
-            if (p.IsConnected() && !Configuration.OfflineColonies)
+            if (!Configuration.OfflineColonies)
             {
                 foreach (Colony c in p.Colonies)
                 {

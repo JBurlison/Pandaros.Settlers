@@ -2,6 +2,8 @@
 using BlockTypes;
 using Jobs;
 using Monsters;
+using NetworkUI;
+using NetworkUI.Items;
 using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Entities;
@@ -49,7 +51,7 @@ namespace Pandaros.Settlers.ColonyManagement
         public static double _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(1, 2);
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
-        private static localization.LocalizationHelper _LocalizationHelper = new localization.LocalizationHelper("SettlerManager");
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("SettlerManager");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.AfterSelectedWorld.Healing")]
         public static void Healing()
@@ -512,31 +514,28 @@ namespace Pandaros.Settlers.ColonyManagement
                                 if (addCount > 30)
                                     addCount = 30;
 
-                                var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
+                                if (!state.NotifySettlers)
+                                    AddNewSettlers(addCount, numbSkilled, state);
+                                else
+                                    foreach (var p in state.ColonyRef.Owners)
+                                    {
+                                        NetworkMenu menu = new NetworkMenu();
+                                        menu.LocalStorage.SetAs("header", addCount + _localizationHelper.LocalizeOrDefault("NewSettlers", p));
+                                        menu.Width = 600;
+                                        menu.Height = 300;
 
-                                if (numbSkilled > 0)
-                                    if (numbSkilled == 1)
-                                        reason += string.Format(" {0} of them is skilled!", numbSkilled);
-                                    else
-                                        reason += string.Format(" {0} of them are skilled!", numbSkilled);
+                                        menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Accept." + addCount + "." + numbSkilled, 
+                                                                          new LabelData(_localizationHelper.GetLocalizationKey("Accept"), 
+                                                                          UnityEngine.Color.black, 
+                                                                          UnityEngine.TextAnchor.MiddleCenter)));
 
-                                PandaChat.Send(state.ColonyRef, reason, ChatColor.magenta);
+                                        menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Decline",
+                                                                          new LabelData(_localizationHelper.GetLocalizationKey("Decline"),
+                                                                          UnityEngine.Color.black,
+                                                                          UnityEngine.TextAnchor.MiddleCenter)));
 
-                                for (var i = 0; i < addCount; i++)
-                                {
-                                    var newGuy = new NPCBase(state.ColonyRef, state.ColonyRef.GetRandomBanner().Position);
-
-                                    NPCTracker.Add(newGuy);
-                                    state.ColonyRef.RegisterNPC(newGuy);
-                                    SettlerInventory.GetSettlerInventory(newGuy);
-                                    newGuy.CustomData.SetAs(ISSETTLER, true);
-
-                                    if (i <= numbSkilled)
-                                        newGuy.CustomData.SetAs(GameLoader.ALL_SKILLS, Random.Next(1, 10) * 0.002f);
-
-                                    update = true;
-                                    ModLoader.Callbacks.OnNPCRecruited.Invoke(newGuy);
-                                }
+                                        NetworkMenuManager.SendServerPopup(p, menu);
+                                    }
                             }
                         }
                         catch (Exception ex)
@@ -557,6 +556,56 @@ namespace Pandaros.Settlers.ColonyManagement
             }
 
             return update;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.PressButton")]
+        public static void PressButton(ButtonPressCallbackData data)
+        {
+            if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Accept.") &&
+                !data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
+                return;
+
+            foreach (var p in data.Player.ActiveColony.Owners)
+                NetworkMenuManager.CloseServerPopup(p);
+
+            if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Accept."))
+            {
+                var recruitmentInfoStr = data.ButtonIdentifier.Replace(GameLoader.NAMESPACE + ".NewSettlers.Accept.", "");
+                var unparsedString = recruitmentInfoStr.Split('.');
+                var addCount = int.Parse(unparsedString[0]);
+                var numbSkilled = int.Parse(unparsedString[1]);
+                var state = ColonyState.GetColonyState(data.Player.ActiveColony);
+
+                AddNewSettlers(addCount, numbSkilled, state);
+            }
+        }
+
+        private static void AddNewSettlers(double addCount, int numbSkilled, ColonyState state)
+        {
+            var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
+
+            if (numbSkilled > 0)
+                if (numbSkilled == 1)
+                    reason += string.Format(" {0} of them is skilled!", numbSkilled);
+                else
+                    reason += string.Format(" {0} of them are skilled!", numbSkilled);
+
+            PandaChat.Send(state.ColonyRef, reason, ChatColor.magenta);
+
+            for (var i = 0; i < addCount; i++)
+            {
+                var newGuy = new NPCBase(state.ColonyRef, state.ColonyRef.GetRandomBanner().Position);
+
+                NPCTracker.Add(newGuy);
+                state.ColonyRef.RegisterNPC(newGuy);
+                SettlerInventory.GetSettlerInventory(newGuy);
+                newGuy.CustomData.SetAs(ISSETTLER, true);
+
+                if (i <= numbSkilled)
+                    newGuy.CustomData.SetAs(GameLoader.ALL_SKILLS, Random.Next(1, 10) * 0.002f);
+
+                ModLoader.Callbacks.OnNPCRecruited.Invoke(newGuy);
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCJobChanged, GameLoader.NAMESPACE + ".SettlerManager.OnNPCJobChanged")]

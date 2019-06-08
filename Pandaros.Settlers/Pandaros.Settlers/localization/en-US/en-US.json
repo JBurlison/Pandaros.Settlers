@@ -429,7 +429,9 @@
           "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: "
         },
         "SettlerManager": {
-
+          "Accept": "Accept",
+          "Decline": "Decline",
+          "NewSettlers": " settlers would like to join your colony!"
         },
         "Happiness": {
           "BedsClose": "Confined living space",
