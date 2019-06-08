@@ -25,7 +25,7 @@
   },
   {
     "dependencies": [
-      "Pandaros.Settlers.SkillEquiptmentResearch2"
+      "Pandaros.Settlers.SkillEquiptmentResearch1"
     ],
     "icon": "./icons/SkillEquiptmentResearch2.png",
     "iterationCount": 300,
