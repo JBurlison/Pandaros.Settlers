@@ -519,22 +519,25 @@ namespace Pandaros.Settlers.ColonyManagement
                                 else
                                     foreach (var p in state.ColonyRef.Owners)
                                     {
-                                        NetworkMenu menu = new NetworkMenu();
-                                        menu.LocalStorage.SetAs("header", addCount + _localizationHelper.LocalizeOrDefault("NewSettlers", p));
-                                        menu.Width = 600;
-                                        menu.Height = 300;
+                                        if (p.IsConnected())
+                                        {
+                                            NetworkMenu menu = new NetworkMenu();
+                                            menu.LocalStorage.SetAs("header", addCount + _localizationHelper.LocalizeOrDefault("NewSettlers", p));
+                                            menu.Width = 600;
+                                            menu.Height = 300;
 
-                                        menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Accept." + addCount + "." + numbSkilled, 
-                                                                          new LabelData(_localizationHelper.GetLocalizationKey("Accept"), 
-                                                                          UnityEngine.Color.black, 
-                                                                          UnityEngine.TextAnchor.MiddleCenter)));
+                                            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Accept." + addCount + "." + numbSkilled,
+                                                                              new LabelData(_localizationHelper.GetLocalizationKey("Accept"),
+                                                                              UnityEngine.Color.black,
+                                                                              UnityEngine.TextAnchor.MiddleCenter)));
 
-                                        menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Decline",
-                                                                          new LabelData(_localizationHelper.GetLocalizationKey("Decline"),
-                                                                          UnityEngine.Color.black,
-                                                                          UnityEngine.TextAnchor.MiddleCenter)));
+                                            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Decline",
+                                                                              new LabelData(_localizationHelper.GetLocalizationKey("Decline"),
+                                                                              UnityEngine.Color.black,
+                                                                              UnityEngine.TextAnchor.MiddleCenter)));
 
-                                        NetworkMenuManager.SendServerPopup(p, menu);
+                                            NetworkMenuManager.SendServerPopup(p, menu);
+                                        }
                                     }
                             }
                         }
@@ -566,7 +569,8 @@ namespace Pandaros.Settlers.ColonyManagement
                 return;
 
             foreach (var p in data.Player.ActiveColony.Owners)
-                NetworkMenuManager.CloseServerPopup(p);
+                if (p.IsConnected())
+                    NetworkMenuManager.CloseServerPopup(p);
 
             if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Accept."))
             {
@@ -619,37 +623,41 @@ namespace Pandaros.Settlers.ColonyManagement
                 if (data.Item3 is GuardJobInstance guardJob)
                 {
                     var settings = (GuardJobSettings)guardJob.Settings;
-                    guardJob.Settings = new GuardJobSettings()
-                    {
-                        BlockTypes = settings.BlockTypes,
-                        CooldownMissingItem = settings.CooldownMissingItem,
-                        CooldownSearchingTarget = settings.CooldownSearchingTarget,
-                        CooldownShot = settings.CooldownShot,
-                        Damage = settings.Damage,
-                        NPCType = settings.NPCType,
-                        NPCTypeKey = settings.NPCTypeKey,
-                        OnHitAudio = settings.OnHitAudio,
-                        OnShootAudio = settings.OnShootAudio,
-                        OnShootResultItem = settings.OnShootResultItem,
-                        Range = settings.Range,
-                        RecruitmentItem = settings.RecruitmentItem,
-                        ShootItem = settings.ShootItem,
-                        SleepType = settings.SleepType
-                    };
+
+                    if (settings != null)
+                        guardJob.Settings = new GuardJobSettings()
+                        {
+                            BlockTypes = settings.BlockTypes,
+                            CooldownMissingItem = settings.CooldownMissingItem,
+                            CooldownSearchingTarget = settings.CooldownSearchingTarget,
+                            CooldownShot = settings.CooldownShot,
+                            Damage = settings.Damage,
+                            NPCType = settings.NPCType,
+                            NPCTypeKey = settings.NPCTypeKey,
+                            OnHitAudio = settings.OnHitAudio,
+                            OnShootAudio = settings.OnShootAudio,
+                            OnShootResultItem = settings.OnShootResultItem,
+                            Range = settings.Range,
+                            RecruitmentItem = settings.RecruitmentItem,
+                            ShootItem = settings.ShootItem,
+                            SleepType = settings.SleepType
+                        };
                 }
                 else if (data.Item3 is CraftingJobInstance craftingJob)
                 {
                     var settings = (CraftingJobSettings)craftingJob.Settings;
-                    craftingJob.Settings = new CraftingJobSettings()
-                    {
-                        BlockTypes = settings.BlockTypes,
-                        CraftingCooldown = settings.CraftingCooldown,
-                        MaxCraftsPerHaul = settings.MaxCraftsPerHaul,
-                        NPCType = settings.NPCType,
-                        NPCTypeKey = settings.NPCTypeKey,
-                        OnCraftedAudio = settings.OnCraftedAudio,
-                        RecruitmentItem = settings.RecruitmentItem
-                    };
+
+                    if (settings != null)
+                        craftingJob.Settings = new CraftingJobSettings()
+                        {
+                            BlockTypes = settings.BlockTypes,
+                            CraftingCooldown = settings.CraftingCooldown,
+                            MaxCraftsPerHaul = settings.MaxCraftsPerHaul,
+                            NPCType = settings.NPCType,
+                            NPCTypeKey = settings.NPCTypeKey,
+                            OnCraftedAudio = settings.OnCraftedAudio,
+                            RecruitmentItem = settings.RecruitmentItem
+                        };
                 }
 
                 data.Item1?.ApplyJobResearch();

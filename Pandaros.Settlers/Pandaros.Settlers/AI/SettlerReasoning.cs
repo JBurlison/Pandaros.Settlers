@@ -15,9 +15,9 @@ namespace Pandaros.Settlers.AI
         private static readonly List<string> _noJob = new List<string>
         {
             "I wish there was a job for me to do.. I guess I will have to find another colony.",
-            "I dont feel like I am contrubuting... off to the next chapter in my life.",
+            "I dont feel like I am contrubuting... off to the next chapter in my life. Goodby colony.",
             "Why are there no jobs? I'm out of here!",
-            "BORING! CYA!"
+            "Having no job is really boring! CYA!"
         };
 
         private static readonly List<string> _settleReasons = new List<string>
