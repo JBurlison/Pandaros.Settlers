@@ -1,0 +1,50 @@
+[
+  {
+    "dependencies": [
+      "Pandaros.Settlers.Pandaros.Settlers.Sorcerer1"
+    ],
+    "icon": "./icons/SkillEquiptmentResearch1.png",
+    "iterationCount": 200,
+    "iterationRequirements": [
+      { "type": "Pandaros.Settlers.AutoLoad.Adamantine" },
+      { "type": "Pandaros.Settlers.AirStone" },
+      { "type": "Pandaros.Settlers.EarthStone" },
+      { "type": "Pandaros.Settlers.WaterStone" },
+      { "type": "Pandaros.Settlers.FireStone" }
+    ],
+    "key": "Pandaros.Settlers.SkillEquiptmentResearch1",
+    "unlocksRecipes": [
+      "Pandaros.Settlers.SkilledBoots1",
+      "Pandaros.Settlers.SkilledChest1",
+      "Pandaros.Settlers.SkilledGloves1",
+      "Pandaros.Settlers.SkilledHelm1",
+      "Pandaros.Settlers.SkilledLegs1",
+      "Pandaros.Settlers.SkilledShield1",
+      "Pandaros.Settlers.SkilledSword1"
+    ]
+  },
+  {
+    "dependencies": [
+      "Pandaros.Settlers.SkillEquiptmentResearch2"
+    ],
+    "icon": "./icons/SkillEquiptmentResearch2.png",
+    "iterationCount": 300,
+    "iterationRequirements": [
+      { "type": "Pandaros.Settlers.AutoLoad.Adamantine" },
+      { "type": "Pandaros.Settlers.AirStone" },
+      { "type": "Pandaros.Settlers.EarthStone" },
+      { "type": "Pandaros.Settlers.WaterStone" },
+      { "type": "Pandaros.Settlers.FireStone" }
+    ],
+    "key": "Pandaros.Settlers.SkillEquiptmentResearch2",
+    "unlocksRecipes": [
+      "Pandaros.Settlers.SkilledBoots2",
+      "Pandaros.Settlers.SkilledChest2",
+      "Pandaros.Settlers.SkilledGloves2",
+      "Pandaros.Settlers.SkilledHelm2",
+      "Pandaros.Settlers.SkilledLegs2",
+      "Pandaros.Settlers.SkilledShield2",
+      "Pandaros.Settlers.SkilledSword2"
+    ]
+  }
+]

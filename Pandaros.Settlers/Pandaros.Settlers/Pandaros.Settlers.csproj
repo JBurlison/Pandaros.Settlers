@@ -175,7 +175,6 @@
     <Compile Include="Monsters\IMonsterNPCType.cs" />
     <Compile Include="Monsters\MonsterNPCData.cs" />
     <Compile Include="Monsters\Normal\IPandaZombie.cs" />
-    <Compile Include="Research\SkillEquiptmentResearch.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
@@ -296,6 +295,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="localization\en-US\help\mainMenu\en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="science.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="SettlersItems.json">

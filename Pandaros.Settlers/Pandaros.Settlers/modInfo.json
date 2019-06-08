@@ -121,6 +121,11 @@
         "index": -99999
       },
       {
+        "fileType": "addScience",
+        "index": -99999,
+        "relativePath": "science.json"
+      },
+      {
         "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/Apothecary.json",
         "npcType": "Pandaros.Settlers.Apothecary",
