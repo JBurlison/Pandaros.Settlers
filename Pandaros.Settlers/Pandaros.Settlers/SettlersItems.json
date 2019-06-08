@@ -9,7 +9,8 @@
     "Skilled": 0.03,
     "Damage": { "Physical": 500.0 },
     "IsMagical": true,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledSword1": {
     "Name": "Pandaros.Settlers.SkilledSword1",
@@ -21,7 +22,8 @@
     "Skilled": 0.02,
     "Damage": { "Physical": 500.0 },
     "IsMagical": true,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledSword": {
     "Name": "Pandaros.Settlers.SkilledSword",
@@ -33,7 +35,8 @@
     "Skilled": 0.01,
     "Damage": { "Physical": 500.0 },
     "IsMagical": true,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.Healthbooster": {
     "Name": "Pandaros.Settlers.Healthbooster",
@@ -43,7 +46,8 @@
     "IsMagical": true,
     "HPTickRegen": 5.0,
     "ElementalArmor": 0,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledBoots2": {
     "Name": "Pandaros.Settlers.SkilledBoots2",
@@ -55,7 +59,8 @@
     "ArmorRating": 0.07,
     "Durability": 750,
     "Slot": 4,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledBoots1": {
     "Name": "Pandaros.Settlers.SkilledBoots1",
@@ -67,7 +72,8 @@
     "ArmorRating": 0.07,
     "Durability": 500,
     "Slot": 4,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledChest2": {
     "Name": "Pandaros.Settlers.SkilledChest2",
@@ -79,7 +85,8 @@
     "ArmorRating": 0.3,
     "Durability": 750,
     "Slot": 1,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledChest1": {
     "Name": "Pandaros.Settlers.SkilledChest1",
@@ -91,7 +98,8 @@
     "ArmorRating": 0.3,
     "Durability": 500,
     "Slot": 1,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledGloves2": {
     "Name": "Pandaros.Settlers.SkilledGloves2",
@@ -103,7 +111,8 @@
     "ArmorRating": 0.07,
     "Durability": 750,
     "Slot": 2,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledGloves1": {
     "Name": "Pandaros.Settlers.SkilledGloves1",
@@ -115,7 +124,8 @@
     "ArmorRating": 0.07,
     "Durability": 500,
     "Slot": 2,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledHelm2": {
     "Name": "Pandaros.Settlers.SkilledHelm2",
@@ -127,7 +137,8 @@
     "ArmorRating": 0.11,
     "Durability": 750,
     "Slot": 0,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledHelm1": {
     "Name": "Pandaros.Settlers.SkilledHelm1",
@@ -139,7 +150,8 @@
     "ArmorRating": 0.11,
     "Durability": 500,
     "Slot": 0,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledLegs2": {
     "Name": "Pandaros.Settlers.SkilledLegs2",
@@ -151,7 +163,8 @@
     "ArmorRating": 0.13,
     "Durability": 750,
     "Slot": 3,
-    "Rarity": 0, "Optional":  true, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledLegs1": {
     "Name": "Pandaros.Settlers.SkilledLegs1",
@@ -163,7 +176,8 @@
     "ArmorRating": 0.13,
     "Durability": 500,
     "Slot": 3,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledShield2": {
     "Name": "Pandaros.Settlers.SkilledShield2",
@@ -175,7 +189,8 @@
     "ArmorRating": 0.13,
     "Durability": 750,
     "Slot": 5,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledShield1": {
     "Name": "Pandaros.Settlers.SkilledShield1",
@@ -187,7 +202,8 @@
     "ArmorRating": 0.13,
     "Durability": 500,
     "Slot": 5,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledShield": {
     "Name": "Pandaros.Settlers.SkilledShield",
@@ -199,7 +215,8 @@
     "ArmorRating": 0.13,
     "Durability": 250,
     "Slot": 5,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledLegs": {
     "Name": "Pandaros.Settlers.SkilledLegs",
@@ -211,7 +228,8 @@
     "ArmorRating": 0.13,
     "Durability": 250,
     "Slot": 3,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledHelm": {
     "Name": "Pandaros.Settlers.SkilledHelm",
@@ -223,7 +241,8 @@
     "ArmorRating": 0.11,
     "Durability": 250,
     "Slot": 0,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledGloves": {
     "Name": "Pandaros.Settlers.SkilledGloves",
@@ -235,7 +254,8 @@
     "ArmorRating": 0.07,
     "Durability": 250,
     "Slot": 2,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledChest": {
     "Name": "Pandaros.Settlers.SkilledChest",
@@ -247,7 +267,8 @@
     "ArmorRating": 0.3,
     "Durability": 250,
     "Slot": 1,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   },
   "Pandaros.Settlers.SkilledBoots": {
     "Name": "Pandaros.Settlers.SkilledBoots",
@@ -259,7 +280,7 @@
     "ArmorRating": 0.07,
     "Durability": 250,
     "Slot": 4,
-    "Rarity": 0, "Optional":  true
+    "Rarity": 0,
+    "isOptional": true
   }
-
 }
