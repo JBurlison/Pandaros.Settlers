@@ -54,7 +54,7 @@ namespace Pandaros.Settlers.Help
                     {
                         try
                         {
-                            var newMenu = JSON.Deserialize(info.Key + "\\" + jsonNode);
+                            var newMenu = JSON.Deserialize(info.Key + "/" + jsonNode);
                             LoadedMenus.Merge(newMenu);
                         }
                         catch (Exception ex)
