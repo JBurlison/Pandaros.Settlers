@@ -328,100 +328,357 @@
             [
               {
                 "type": "label",
+                "col_width": 70,
                 "fontsize": 20,
                 "text": "Pandaros.Settlers.Wiki.Icon"
               },
               {
                 "type": "label",
                 "fontsize": 20,
-                "text": "Pandaros.Settlers.Wiki.75orLess"
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.75orLess"
               },
               {
                 "type": "label",
                 "fontsize": 20,
-                "text": "Pandaros.Settlers.Wiki.50orLess"
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.50orLess"
               },
               {
                 "type": "label",
                 "fontsize": 20,
-                "text": "Pandaros.Settlers.Wiki.30orLess"
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.30orLess"
               },
               {
                 "type": "label",
                 "fontsize": 20,
-                "text": "Pandaros.Settlers.Wiki.10orLess"
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.Miner"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.Miner.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.Miner.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.Miner.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.Miner.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.StoneTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.StoneTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.StoneTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.StoneTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.StoneTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.BronzeArrowTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.BronzeArrowTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.BronzeArrowTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.BronzeArrowTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.BronzeArrowTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.CrossbowTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.CrossbowTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.CrossbowTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.CrossbowTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.CrossbowTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.MatchlockTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.MatchlockTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.MatchlockTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.MatchlockTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.MatchlockTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.AirTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.AirTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.AirTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.AirTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.AirTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.EarthTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.EarthTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.EarthTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.EarthTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.EarthTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.FireTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.FireTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.FireTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.FireTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.FireTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.WaterTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.WaterTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.WaterTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.WaterTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.WaterTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.VoidTurret"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.VoidTurret.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.VoidTurret.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.VoidTurret.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.VoidTurret.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.GateLever"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.GateLever.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.GateLever.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.GateLever.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.GateLever.10orLess"
               }
             ],
             [
               {
                 "type": "icon",
+                "col_width": 70,
                 "name": "Pandaros.Settlers.TeleportPad"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.TeleportPad.75orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.TeleportPad.50orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.TeleportPad.30orLess"
+              },
+              {
+                "type": "label",
+                "col_width": 210,
+                "text": "Pandaros.Settlers.Wiki.Machines.TeleportPad.10orLess"
               }
             ]
           ]

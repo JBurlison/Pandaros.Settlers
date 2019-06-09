@@ -16,7 +16,79 @@
             "75orLess": "75% or less",
             "50orLess": "50% or less",
             "30orLess": "30% or less",
-            "10orLess": "10% or less"
+            "10orLess": "10% or less",
+            "Miner": {
+              "75orLess": " 1x Planks \r\n 1x Iron Rivet \r\n 1x Copper Nails \r\n 1x Copper Tools",
+              "50orLess": " 1x Planks \r\n 1x Iron Rivet \r\n 1x Copper Nails \r\n 1x Copper Tools \r\n 1x Copper Parts",
+              "30orLess": " 1x Planks \r\n 1x Iron Rivet \r\n 1x Copper Nails \r\n 1x Copper Tools \r\n 2x Copper Parts \r\n 1x Wrought Iron",
+              "10orLess": " 1x Planks \r\n 1x Iron Rivet \r\n 1x Copper Nails \r\n 1x Copper Tools \r\n 4x Copper Parts \r\n 1x Wrought Iron"
+            },
+            "StoneTurret": {
+              "75orLess": " 1x Stone Bricks \r\n 1x Copper Parts \r\n 1x Copper Nails",
+              "50orLess": " 1x Stone Bricks \r\n 2x Copper Parts \r\n 2x Copper Nails",
+              "30orLess": " 1x Stone Bricks \r\n 3x Copper Parts \r\n 3x Copper Nails \r\n 1x Sling",
+              "10orLess": " 1x Stone Bricks \r\n 4x Copper Parts \r\n 4x Copper Nails \r\n 2x Sling"
+            },
+            "BronzeArrowTurret": {
+              "75orLess": " 1x Stone Bricks \r\n 1x Copper Parts \r\n 1x Copper Nails",
+              "50orLess": " 1x Stone Bricks \r\n 2x Copper Parts \r\n 2x Copper Nails",
+              "30orLess": " 1x Stone Bricks \r\n 3x Copper Parts \r\n 3x Copper Nails \r\n 1x Bow",
+              "10orLess": " 1x Stone Bricks \r\n 4x Copper Parts \r\n 4x Copper Nails \r\n 2x Bow"
+            },
+            "CrossbowTurret": {
+              "75orLess": " 1x Stone Bricks \r\n 1x Iron Rivet \r\n 1x Copper Nails",
+              "50orLess": " 1x Stone Bricks \r\n 2x Iron Rivet \r\n 2x Copper Nails",
+              "30orLess": " 1x Stone Bricks \r\n 3x Iron Rivet \r\n 3x Copper Nails \r\n 1x Crossbow",
+              "10orLess": " 1x Stone Bricks \r\n 4x Iron Rivet \r\n 4x Copper Nails \r\n 2x Crossbow"
+            },
+            "MatchlockTurret": {
+              "75orLess": " 1x Stone Bricks \r\n 1x Steel Parts \r\n 1x Copper Nails",
+              "50orLess": " 1x Stone Bricks \r\n 2x Steel Parts \r\n 2x Copper Nails",
+              "30orLess": " 1x Stone Bricks \r\n 3x Steel Parts \r\n 3x Copper Nails \r\n 1x Matchlock Gun",
+              "10orLess": " 1x Stone Bricks \r\n 4x Steel Parts \r\n 4x Copper Nails \r\n 2x Matchlock Gun"
+            },
+            "AirTurret": {
+              "75orLess": " 10x Stone Bricks \r\n 1x Mana \r\n 1x Copper Nails",
+              "50orLess": " 10x Stone Bricks \r\n 2x Mana \r\n 2x Copper Nails",
+              "30orLess": " 15x Stone Bricks \r\n 3x Mana \r\n 3x Copper Nails \r\n 1x Planks \r\n 1x Esper",
+              "10orLess": " 20x Stone Bricks \r\n 4x Mana \r\n 4x Copper Nails \r\n 1x Planks \r\n 2x Esper"
+            },
+            "EarthTurret": {
+              "75orLess": " 10x Stone Bricks \r\n 1x Mana \r\n 1x Copper Nails",
+              "50orLess": " 10x Stone Bricks \r\n 2x Mana \r\n 2x Copper Nails",
+              "30orLess": " 15x Stone Bricks \r\n 3x Mana \r\n 3x Copper Nails \r\n 1x Planks \r\n 1x Esper",
+              "10orLess": " 20x Stone Bricks \r\n 4x Mana \r\n 4x Copper Nails \r\n 1x Planks \r\n 2x Esper"
+            },
+            "FireTurret": {
+              "75orLess": " 10x Stone Bricks \r\n 1x Mana \r\n 1x Copper Nails",
+              "50orLess": " 10x Stone Bricks \r\n 2x Mana \r\n 2x Copper Nails",
+              "30orLess": " 15x Stone Bricks \r\n 3x Mana \r\n 3x Copper Nails \r\n 1x Planks \r\n 1x Esper",
+              "10orLess": " 20x Stone Bricks \r\n 4x Mana \r\n 4x Copper Nails \r\n 1x Planks \r\n 2x Esper"
+            },
+            "WaterTurret": {
+              "75orLess": " 10x Stone Bricks \r\n 1x Mana \r\n 1x Copper Nails",
+              "50orLess": " 10x Stone Bricks \r\n 2x Mana \r\n 2x Copper Nails",
+              "30orLess": " 15x Stone Bricks \r\n 3x Mana \r\n 3x Copper Nails \r\n 1x Planks \r\n 1x Esper",
+              "10orLess": " 20x Stone Bricks \r\n 4x Mana \r\n 4x Copper Nails \r\n 1x Planks \r\n 2x Esper"
+            },
+            "VoidTurret": {
+              "75orLess": " 10x Stone Bricks \r\n 1x Mana \r\n 1x Copper Nails",
+              "50orLess": " 10x Stone Bricks \r\n 2x Mana \r\n 2x Copper Nails",
+              "30orLess": " 15x Stone Bricks \r\n 3x Mana \r\n 3x Copper Nails \r\n 1x Planks \r\n 1x Esper",
+              "10orLess": " 20x Stone Bricks \r\n 4x Mana \r\n 4x Copper Nails \r\n 1x Planks \r\n 2x Esper"
+            },
+            "GateLever": {
+              "75orLess": " 1x Copper Tools \r\n 1x Copper Parts",
+              "50orLess": " 1x Copper Tools \r\n 2x Copper Parts",
+              "30orLess": " 1x Copper Tools \r\n 3x Copper Parts",
+              "10orLess": " 1x Copper Tools \r\n 4x Copper Parts \r\n 1x Planks"
+            },
+            "TeleportPad": {
+              "75orLess": " 5x Stone Bricks \r\n 2x Science Bag Basic",
+              "50orLess": " 5x Stone Bricks \r\n 2x Science Bag Basic \r\n 1x Science Bag Advanced \r\n 1x Crystal",
+              "30orLess": " 5x Stone Bricks \r\n 2x Science Bag Basic \r\n 1x Science Bag Advanced \r\n 2x Crystal \r\n 2x Science Bag Colony",
+              "10orLess": " 5x Stone Bricks \r\n 2x Science Bag Basic \r\n 2x Science Bag Advanced \r\n 2x Crystal \r\n 2x Science Bag Colony"
+            }
           }
         }
       }

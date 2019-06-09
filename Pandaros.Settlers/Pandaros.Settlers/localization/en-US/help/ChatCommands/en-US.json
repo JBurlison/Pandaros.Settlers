@@ -1,0 +1,56 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "Wiki": {
+          "ChatCommands": {
+            "Description": "All chat commands available in Settlers!",
+            "Title": "Chat Commands",
+            "Permission": "Permission",
+            "Command": "Command",
+            "settlersversion": {
+              "Command": "/settlersversion",
+              "Permission": "",
+              "Description": "Checks to see if the server needs a restart due to an update to the mod. Checks the mod version."
+            },
+            "archive": {
+              "Command": "/archive",
+              "Permission": "Pandaros.Settlers.Permissions.Archive",
+              "Description": "Should be used only once when you turn archive on and no one has used it yet. Using this command more than once will wipe ALL the colonists from the server."
+            },
+            "cta": {
+              "Command": "/cta",
+              "Description": "Call to Arms, calls your colonists to take up arms and fight.",
+              "Permission": ""
+            },
+            "armor": {
+              "Command": "/armor",
+              "Permission": "",
+              "Description": "Shows the armor you and your colonists are wearing"
+            },
+            "difficulty": {
+              "Command": "/difficulty",
+              "Permission": "",
+              "Description": "Shows the current game difficulty"
+            },
+            "bosses": {
+              "Command": "/bosses",
+              "Permission": "",
+              "Description": "/bosses [on|off]"
+            },
+            "settlers": {
+              "Command": "/settlers",
+              "Permission": "",
+              "Description": "/settlers [on|off] this can only be used a max of 4 times to prevent abuse. This is configurable."
+            },
+            "settlersconfig": {
+              "Command": "/settlersconfig",
+              "Permission": "Pandaros.Settlers.Permissions.Config",
+              "Description": "Configurations can now be set in game with the /settlersconfig [SETTING] [VALUE] command"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "Wiki": {
+    "ChatCommands": {
+      "header": "ChatCommands",
+      "Items": [
+        {
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.ReturnToMainMenu",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "space"
+        },
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.ChatCommands.Description"
+        },
+        {
+          "type": "space"
+        },
+        {
+          "type": "table",
+          "position": 50,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.Command",
+                "col_width": 200
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersversion.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersversion.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersversion.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.archive.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.archive.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.archive.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.cta.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.cta.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.cta.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.armor.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.armor.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.armor.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.difficulty.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.difficulty.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.difficulty.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.bosses.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.bosses.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.bosses.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.settlers.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlers.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlers.Description",
+                "col_width": 500
+              }
+            ],
+            [
+              {
+                "type": "link",
+                "url": "Wiki.Apothecary",
+                "col_width": 200,
+                "width": 190,
+                "label": {
+                  "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersconfig.Command",
+                  "alignement": "MiddleCenter"
+                }
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersconfig.Permission",
+                "col_width": 250
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersconfig.Description",
+                "col_width": 500
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}
+
