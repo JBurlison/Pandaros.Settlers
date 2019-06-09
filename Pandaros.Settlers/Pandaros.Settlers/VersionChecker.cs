@@ -1,5 +1,6 @@
 ﻿using Chatting;
 using ICSharpCode.SharpZipLib.Zip;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,13 +12,10 @@ namespace Pandaros.Settlers
 {
     public static class VersionChecker
     {
-        private const string GIT_URL = "https://api.github.com/repos/JBurlison/Pandaros.Settlers/releases/";
-        private const string NAME = "\"name\": \"";
-        private const string ASSETS = "\"assets\":";
-        private const string ZIP = "\"browser_download_url\": \"";
+        private const string GIT_URL = "https://api.github.com/repos/JBurlison/Pandaros.Settlers/releases";
         private const int HOUR = 3600000;
-        public const SslProtocols _Tls12 = (SslProtocols) 0x00000C00;
-        public const SecurityProtocolType Tls12 = (SecurityProtocolType) _Tls12;
+        public const SslProtocols _Tls12 = (SslProtocols)0x00000C00;
+        public const SecurityProtocolType Tls12 = (SecurityProtocolType)_Tls12;
         internal static bool NewVer;
 
         static VersionChecker()
@@ -60,8 +58,10 @@ namespace Pandaros.Settlers
                     }
                 }
             }
-            catch (Exception) {
+            catch (Exception ex)
+            {
                 PandaLogger.Log(ChatColor.yellow, "There was a error getting the server version to check for an update. Unable to check if there is an update to the mod.");
+                PandaLogger.LogToFile(ex.Message);
             }
 
             return releases;
@@ -69,18 +69,23 @@ namespace Pandaros.Settlers
 
         public static Version GetGitVerion()
         {
-            Version version  = null;
-            var     releases = GetReleases();
+            Version version = null;
+            var releases = JsonConvert.DeserializeObject<List<GithubRelease>>(GetReleases());
+            GithubRelease githubRelease = null;
 
-            if (!string.IsNullOrEmpty(releases))
+            if (releases != null)
             {
-                var iName     = releases.IndexOf(NAME);
-                var nameSub   = releases.Substring(iName + NAME.Length);
-                var iEndName  = nameSub.IndexOf("\"");
-                var verString = nameSub.Substring(0, iEndName);
+                foreach (var release in  releases)
+                {
+                    if (release.prerelease)
+                        continue;
 
-                PandaLogger.Log(verString);
-                version = new Version(verString);
+                    githubRelease = release;
+                    break;
+                }
+
+                PandaLogger.Log("Current Github Version: " + githubRelease.name);
+                version = new Version(githubRelease.name);
             }
 
             return version;
@@ -103,13 +108,21 @@ namespace Pandaros.Settlers
                     PandaLogger.Log(ChatColor.red, "Settlers! version is out of date. Downloading new version from: {0}",
                                     GIT_URL);
 
-                    var releases = GetReleases();
-                    var iName = releases.IndexOf(ASSETS);
-                    var nameSub = releases.Substring(iName + ASSETS.Length);
-                    var zip = releases.IndexOf(ZIP);
-                    var zipSub = releases.Substring(zip + ZIP.Length);
-                    var iEndName = zipSub.IndexOf("\"");
-                    var verString = zipSub.Substring(0, iEndName);
+                    var releases = JsonConvert.DeserializeObject<List<GithubRelease>>(GetReleases());
+                    GithubRelease githubRelease = null;
+
+                    if (releases != null)
+                    {
+                        foreach (var release in releases)
+                        {
+                            if (release.prerelease)
+                                continue;
+
+                            githubRelease = release;
+                            break;
+                        }
+                    }
+
                     var newVer = GameLoader.MODS_FOLDER + $"/{gitVer}.zip";
                     var oldVer = GameLoader.MODS_FOLDER + $"/{GameLoader.MOD_VER}.zip";
                     ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
@@ -182,7 +195,7 @@ namespace Pandaros.Settlers
                     };
 
 
-                    webClient.DownloadFileAsync(new Uri(verString), newVer);
+                    webClient.DownloadFileAsync(new Uri(githubRelease.assets[0].browser_download_url), newVer);
                 }
             }
             catch (Exception) { }
@@ -199,7 +212,7 @@ namespace Pandaros.Settlers
 
             var array = new List<string>();
             CommandManager.SplitCommand(chat, array);
-            var gitVer         = VersionChecker.GetGitVerion();
+            var gitVer = VersionChecker.GetGitVerion();
             var versionCompare = GameLoader.MOD_VER.Major.CompareTo(gitVer.Major);
 
             PandaChat.Send(player, "Settlers! Mod version: {0}.", ChatColor.green, GameLoader.MOD_VER.ToString());
@@ -224,4 +237,90 @@ namespace Pandaros.Settlers
             return true;
         }
     }
+
+
+
+    public class GithubRelease
+    {
+        public string url { get; set; }
+        public string assets_url { get; set; }
+        public string upload_url { get; set; }
+        public string html_url { get; set; }
+        public int id { get; set; }
+        public string node_id { get; set; }
+        public string tag_name { get; set; }
+        public string target_commitish { get; set; }
+        public string name { get; set; }
+        public bool draft { get; set; }
+        public Author author { get; set; }
+        public bool prerelease { get; set; }
+        public DateTime created_at { get; set; }
+        public DateTime published_at { get; set; }
+        public Asset[] assets { get; set; }
+        public string tarball_url { get; set; }
+        public string zipball_url { get; set; }
+        public string body { get; set; }
+    }
+
+    public class Author
+    {
+        public string login { get; set; }
+        public int id { get; set; }
+        public string node_id { get; set; }
+        public string avatar_url { get; set; }
+        public string gravatar_id { get; set; }
+        public string url { get; set; }
+        public string html_url { get; set; }
+        public string followers_url { get; set; }
+        public string following_url { get; set; }
+        public string gists_url { get; set; }
+        public string starred_url { get; set; }
+        public string subscriptions_url { get; set; }
+        public string organizations_url { get; set; }
+        public string repos_url { get; set; }
+        public string events_url { get; set; }
+        public string received_events_url { get; set; }
+        public string type { get; set; }
+        public bool site_admin { get; set; }
+    }
+
+    public class Asset
+    {
+        public string url { get; set; }
+        public int id { get; set; }
+        public string node_id { get; set; }
+        public string name { get; set; }
+        public object label { get; set; }
+        public Uploader uploader { get; set; }
+        public string content_type { get; set; }
+        public string state { get; set; }
+        public int size { get; set; }
+        public int download_count { get; set; }
+        public DateTime created_at { get; set; }
+        public DateTime updated_at { get; set; }
+        public string browser_download_url { get; set; }
+    }
+
+    public class Uploader
+    {
+        public string login { get; set; }
+        public int id { get; set; }
+        public string node_id { get; set; }
+        public string avatar_url { get; set; }
+        public string gravatar_id { get; set; }
+        public string url { get; set; }
+        public string html_url { get; set; }
+        public string followers_url { get; set; }
+        public string following_url { get; set; }
+        public string gists_url { get; set; }
+        public string starred_url { get; set; }
+        public string subscriptions_url { get; set; }
+        public string organizations_url { get; set; }
+        public string repos_url { get; set; }
+        public string events_url { get; set; }
+        public string received_events_url { get; set; }
+        public string type { get; set; }
+        public bool site_admin { get; set; }
+    }
+
 }
