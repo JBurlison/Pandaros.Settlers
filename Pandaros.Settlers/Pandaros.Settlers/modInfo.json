@@ -39,6 +39,10 @@
         "relativePath": "Help/Menus/ChatCommands.json"
       },
       {
+        "fileType": "Pandaros.Settlers.MenuFile",
+        "relativePath": "Help/Menus/DamageMatrix.json"
+      },
+      {
         "fileType": "Pandaros.Settlers.OreLayers",
         "relativePath": "WorldGen/OreSettings.json"
       }
@@ -97,6 +101,11 @@
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/help/ChatCommands/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/DamageMatrix/en-US.json",
         "index": -99999
       },
       {

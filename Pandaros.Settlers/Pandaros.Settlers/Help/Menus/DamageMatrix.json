@@ -1,0 +1,265 @@
+{
+  "Wiki": {
+    "DamageMatrix": {
+      "header": "DamageMatrix",
+      "Items": [
+        {
+          "type": "link",
+          "url": "Wiki.MainMenu",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.ReturnToMainMenu",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "space"
+        },
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.DamageMatrix.Description"
+        },
+        {
+          "type": "space"
+        },
+        {
+          "type": "table",
+          "position": 50,
+          "rows": [
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Attacker"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Physical"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Air"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Fire"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Water"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Earth"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Void"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Physical"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.0",
+                "color": "red"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Air"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.0",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.200",
+                "color": "green"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Fire"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.200",
+                "color": "grreen"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.0",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Water"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.200",
+                "color": "green"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.0",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Earth"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.50",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.200",
+                "color": "green"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.0",
+                "color": "red"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              }
+            ],
+            [
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.Void"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.200",
+                "color": "green"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.100"
+              },
+              {
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.DamageMatrix.200",
+                "color": "green"
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}
+

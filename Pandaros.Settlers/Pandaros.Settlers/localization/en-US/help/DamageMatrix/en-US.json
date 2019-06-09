@@ -1,0 +1,25 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "Wiki": {
+          "DamageMatrix": {
+            "Description": "Damage matrix shows how much damage specific types of damage do to other types. All Bosses have elemental armor. There are Elemental Turrets that deal elemental damage.",
+            "Title": "Damage Matrix",
+            "Attacker": "Attacker",
+            "Physical": "Physical",
+            "Air": "Air",
+            "Fire": "Fire",
+            "Water": "Water",
+            "Earth": "Earth",
+            "Void": "Void",
+            "100": "100%",
+            "0": "0%",
+            "50": "50%",
+            "200":  "200%"
+          }
+        }
+      }
+    }
+  }
+}
