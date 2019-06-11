@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Research
         public bool AddLevelToName => true;
 
         public string name =>  "MaxMagicItems";
-
+        public string IconDirectory => GameLoader.ICON_PATH;
         public void OnRegister()
         {
             

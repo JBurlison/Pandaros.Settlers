@@ -58,10 +58,11 @@ namespace Pandaros.Settlers.Research
                             int level,
                             string name,
                             float baseValue,
+                            string iconPath,
                             List<string> dependancies = null,
                             int baseIterationCount = 10,
                             bool addLevelToName = true) : 
-            this(requiredItems.ToDictionary(k => k.Key.Id, v => v.Value), level, name, baseValue, dependancies, baseIterationCount, addLevelToName)
+            this(requiredItems.ToDictionary(k => k.Key.Id, v => v.Value), level, name, baseValue, iconPath, dependancies, baseIterationCount, addLevelToName)
         {
 
         }
@@ -69,6 +70,7 @@ namespace Pandaros.Settlers.Research
                              int level, 
                              string name,
                              float baseValue,
+                             string iconPath,
                              List<string> dependancies = null, 
                              int baseIterationCount = 10,
                              bool addLevelToName = true)
@@ -80,10 +82,10 @@ namespace Pandaros.Settlers.Research
             LevelKey    = GetLevelKey(name);
 
             Key = TmpValueKey + level;
-            Icon = GameLoader.ICON_PATH + name + level + ".png";
+            Icon = iconPath + name + level + ".png";
 
             if (!addLevelToName)
-                Icon = GameLoader.ICON_PATH + name + ".png";
+                Icon = iconPath + name + ".png";
 
             IterationCount = baseIterationCount + 2 * level;
 
@@ -131,7 +133,7 @@ namespace Pandaros.Settlers.Research
 
                 manager.Colony.TemporaryData.SetAs(TmpValueKey, Value);
                 manager.Colony.TemporaryData.SetAs(LevelKey, Level);
-
+                
                 if (ResearchComplete != null)
                     ResearchComplete(this, new ResearchCompleteEventArgs(this, manager));
             }
@@ -213,13 +215,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.SCIENCEBAGLIFE
             };
 
-            var research = new PandaResearch(researchDic, 1, ReducedWaste, 0.001f, requirements);
+            var research = new PandaResearch(researchDic, 1, ReducedWaste, 0.001f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += ReducedWaste_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ReducedWaste, 0.001f, requirements);
+                research                  =  new PandaResearch(researchDic, i, ReducedWaste, 0.001f, GameLoader.ICON_PATH, requirements);
                 research.ResearchComplete += ReducedWaste_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -266,7 +268,7 @@ namespace Pandaros.Settlers.Research
         private static void RegisterArmorSmithng(Dictionary<ushort, int> researchDic, int level,
                                                  List<string>            requirements = null)
         {
-            var research = new PandaResearch(researchDic, level, ArmorSmithing, 1f, requirements);
+            var research = new PandaResearch(researchDic, level, ArmorSmithing, 1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += Research_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -331,7 +333,7 @@ namespace Pandaros.Settlers.Research
         private static void RegisterSwordmithng(Dictionary<ushort, int> researchDic, int level,
                                                 List<string>            requirements = null)
         {
-            var research = new PandaResearch(researchDic, level, SwordSmithing, 1f, requirements);
+            var research = new PandaResearch(researchDic, level, SwordSmithing, 1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += SwordResearch_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -369,13 +371,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.SCIENCEBAGLIFE
             };
 
-            var research = new PandaResearch(researchDic, 1, ColonistHealth, 10f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonistHealth, 10f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += Research_ResearchComplete1;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ColonistHealth, 10f);
+                research                  =  new PandaResearch(researchDic, i, ColonistHealth, 10f, GameLoader.ICON_PATH);
                 research.ResearchComplete += Research_ResearchComplete1;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -403,7 +405,7 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.SCIENCEBAGBASIC
             };
 
-            var research = new PandaResearch(researchDic, 1, Knights, 1f, requirements);
+            var research = new PandaResearch(researchDic, 1, Knights, 1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += Knights_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -427,7 +429,7 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.OLIVEFARMER
             };
 
-            var research = new PandaResearch(researchDic, 1, Apothecary, 1f, requirements);
+            var research = new PandaResearch(researchDic, 1, Apothecary, 1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += Apocth_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -448,7 +450,7 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Apothecary + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, AdvancedApothecary, 1f, requirements);
+            var research = new PandaResearch(researchDic, 1, AdvancedApothecary, 1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += AdvanceApocth_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -473,7 +475,7 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Apothecary + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, Mana, 1f, requirements, 50);
+            var research = new PandaResearch(researchDic, 1, Mana, 1f, GameLoader.ICON_PATH, requirements, 50);
             research.ResearchComplete += Mana_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -500,7 +502,7 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Mana + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, Elementium, 1f, requirements, 50);
+            var research = new PandaResearch(researchDic, 1, Elementium, 1f, GameLoader.ICON_PATH, requirements, 50);
             research.ResearchComplete += Elementium_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -533,7 +535,7 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Elementium + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, BuildersWand, 1f, requirements, 50);
+            var research = new PandaResearch(researchDic, 1, BuildersWand, 1f, GameLoader.ICON_PATH, requirements, 50);
             research.ResearchComplete += BuildersWand_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -557,14 +559,14 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(BuildersWand + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, BetterBuildersWand, 250f, requirements, 50);
+            var research = new PandaResearch(researchDic, 1, BetterBuildersWand, 250f, GameLoader.ICON_PATH, requirements, 50);
             research.ResearchComplete += BetterBuildersWand_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
                 research =
-                    new PandaResearch(researchDic, i, BetterBuildersWand, 250f, requirements, 50);
+                    new PandaResearch(researchDic, i, BetterBuildersWand, 250f, GameLoader.ICON_PATH, requirements, 50);
 
                 research.ResearchComplete += BetterBuildersWand_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
@@ -598,7 +600,7 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Machines + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, Teleporters, 1f, requirements, 100, false);
+            var research = new PandaResearch(researchDic, 1, Teleporters, 1f, GameLoader.ICON_PATH, requirements, 100, false);
             research.ResearchComplete += Teleporters_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -616,7 +618,7 @@ namespace Pandaros.Settlers.Research
 
             for (var i = 1; i <= 5; i++)
             {
-                var research = new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDSLINGERDAY.Replace("day", ""), .05f);
+                var research = new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDSLINGERDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH);
                 research.ResearchComplete += ImprovedSlings_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -638,13 +640,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.ARCHERY
             };
 
-            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDBOWDAY.Replace("day", ""), .05f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDBOWDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += ImprovedBows_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDBOWDAY.Replace("day", ""), .05f);
+                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDBOWDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH);
                 research.ResearchComplete += ImprovedBows_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -666,13 +668,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.CROSSBOW
             };
 
-            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDCROSSBOWDAY.Replace("day", ""), .05f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDCROSSBOWDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDCROSSBOWDAY.Replace("day", ""), .05f);
+                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDCROSSBOWDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH);
                 research.ResearchComplete += ImprovedCrossbows_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -695,13 +697,13 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.MATCHLOCKGUN
             };
 
-            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDMATCHLOCKDAY.Replace("day", ""), .05f, requirements);
+            var research = new PandaResearch(researchDic, 1, ColonyBuiltIn.NpcTypes.GUARDMATCHLOCKDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDMATCHLOCKDAY.Replace("day", ""), .05f);
+                research                  =  new PandaResearch(researchDic, i, ColonyBuiltIn.NpcTypes.GUARDMATCHLOCKDAY.Replace("day", ""), .05f, GameLoader.ICON_PATH);
                 research.ResearchComplete += ImprovedMatchlockguns_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -725,7 +727,7 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.BLOOMERY
             };
 
-            var research = new PandaResearch(researchDic, 1, Machines, 1f, requirements, 20, false);
+            var research = new PandaResearch(researchDic, 1, Machines, 1f, GameLoader.ICON_PATH, requirements, 20, false);
             research.ResearchComplete += Machiness_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
         }
@@ -755,13 +757,13 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Machines + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedDurability, .1f, requirements);
+            var research = new PandaResearch(researchDic, 1, ImprovedDurability, .1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += ImprovedDuarability_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ImprovedDurability, .1f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedDurability, .1f, GameLoader.ICON_PATH);
                 research.ResearchComplete += ImprovedDuarability_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -785,13 +787,13 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Machines + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, ImprovedFuelCapacity, .1f, requirements);
+            var research = new PandaResearch(researchDic, 1, ImprovedFuelCapacity, .1f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += ImprovedFuelCapacity_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, ImprovedFuelCapacity, .1f);
+                research                  =  new PandaResearch(researchDic, i, ImprovedFuelCapacity, .1f, GameLoader.ICON_PATH);
                 research.ResearchComplete += ImprovedFuelCapacity_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -815,13 +817,13 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(Machines + "1")
             };
 
-            var research = new PandaResearch(researchDic, 1, IncreasedCapacity, .2f, requirements);
+            var research = new PandaResearch(researchDic, 1, IncreasedCapacity, .2f, GameLoader.ICON_PATH, requirements);
             research.ResearchComplete += IncreasedCapacity_ResearchComplete;
             ServerManager.ScienceManager.RegisterResearchable(research);
 
             for (var i = 2; i <= 5; i++)
             {
-                research                  =  new PandaResearch(researchDic, i, IncreasedCapacity, .2f);
+                research                  =  new PandaResearch(researchDic, i, IncreasedCapacity, .2f, GameLoader.ICON_PATH);
                 research.ResearchComplete += IncreasedCapacity_ResearchComplete;
                 ServerManager.ScienceManager.RegisterResearchable(research);
             }
@@ -847,10 +849,10 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(SettlerChance) + "1"
             };
 
-            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MaxSettlers, 1f, requirements));
+            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MaxSettlers, 1f, GameLoader.ICON_PATH, requirements));
 
             for (var i = 2; i <= 10; i++)
-                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MaxSettlers, 1f));
+                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MaxSettlers, 1f, GameLoader.ICON_PATH));
         }
 
         private static void AddMinSettlers(Dictionary<ushort, int> researchDic)
@@ -868,10 +870,10 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(MaxSettlers) + "3"
             };
 
-            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MinSettlers, 1f, requirements));
+            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, MinSettlers, 1f, GameLoader.ICON_PATH, requirements));
 
             for (var i = 2; i <= 10; i++)
-                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MinSettlers, 1f));
+                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, MinSettlers, 1f, GameLoader.ICON_PATH));
         }
 
         private static void AddSettlerChance(Dictionary<ushort, int> researchDic)
@@ -889,10 +891,10 @@ namespace Pandaros.Settlers.Research
                 ColonyBuiltIn.Research.BANNERRADIUS2
             };
 
-            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SettlerChance, 0.1f, requirements));
+            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SettlerChance, 0.1f, GameLoader.ICON_PATH, requirements));
 
             for (var i = 2; i <= 5; i++)
-                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SettlerChance, 0.1f));
+                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SettlerChance, 0.1f, GameLoader.ICON_PATH));
         }
 
         private static void AddSkilledLaborer(Dictionary<ushort, int> researchDic)
@@ -910,10 +912,10 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(ReducedWaste) + "2"
             };
 
-            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.02f, requirements));
+            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, SkilledLaborer, 0.02f, GameLoader.ICON_PATH, requirements));
 
             for (var i = 2; i <= 10; i++)
-                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.02f));
+                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, SkilledLaborer, 0.02f, GameLoader.ICON_PATH));
         }
 
         private static void AddNumberSkilledLaborer(Dictionary<ushort, int> researchDic)
@@ -932,11 +934,10 @@ namespace Pandaros.Settlers.Research
                 GetResearchKey(SkilledLaborer) + "1"
             };
 
-            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, NumberSkilledLaborer, 1f,
-                                                                  requirements));
+            ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, 1, NumberSkilledLaborer, 1f, GameLoader.ICON_PATH, requirements));
 
             for (var i = 2; i <= 5; i++)
-                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, NumberSkilledLaborer, 1f));
+                ServerManager.ScienceManager.RegisterResearchable(new PandaResearch(researchDic, i, NumberSkilledLaborer, 1f, GameLoader.ICON_PATH));
         }
     }
 }

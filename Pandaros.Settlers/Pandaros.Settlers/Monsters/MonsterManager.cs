@@ -17,7 +17,14 @@ using static AI.PathingManager;
 using static AI.PathingManager.PathFinder;
 using Random = Pipliz.Random;
 using Time = Pipliz.Time;
-
+/*
+* Jogger (runs pretty fast)
+* Elusive Zombie (40% miss chance for attacks)
+* Bahemoth (Double hp)
+* Rock thrower (throws rocks that deal 50 damage)
+* Ooze Zombie (killing this zombie will make 2 more zombies appear each with 1/2 the life of the original, happens once)
+* Elemental Zombies (Air, Fire, Earth, Water, Void) 
+    */
 namespace Pandaros.Settlers.Monsters
 {
     [ModLoader.ModManager]

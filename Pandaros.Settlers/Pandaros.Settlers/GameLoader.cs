@@ -331,7 +331,8 @@ namespace Pandaros.Settlers
             CommandManager.RegisterCommand(new BossesChatCommand());
             CommandManager.RegisterCommand(new SettlersChatCommand());
 
-            VersionChecker.WriteVersionsToConsole();
+            if (Configuration.GetorDefault("AutoUpdate", true))
+                VersionChecker.WriteVersionsToConsole();
 #if Debug
             ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
 #endif

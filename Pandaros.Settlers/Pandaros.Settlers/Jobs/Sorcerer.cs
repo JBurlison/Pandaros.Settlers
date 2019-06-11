@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Jobs
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
         public string name => "Sorcerer";
-
+        public string IconDirectory => GameLoader.ICON_PATH;
         public void OnRegister()
         {
 

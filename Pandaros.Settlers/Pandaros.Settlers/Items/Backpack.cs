@@ -33,6 +33,8 @@ namespace Pandaros.Settlers.Items
         public bool AddLevelToName => true;
         public string name => "Backpack";
 
+        public string IconDirectory => GameLoader.ICON_PATH;
+
         public void OnRegister()
         {
 

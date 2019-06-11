@@ -37,6 +37,8 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.MERCHANT;
 
+            public string IconDirectory => GameLoader.ICON_PATH;
+
             public void OnRegister()
             {
                 
@@ -72,7 +74,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.TAILOR;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -108,7 +110,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.BLOOMERYJOB;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -144,7 +146,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.FINERYFORGEJOB;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -180,7 +182,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.SMELTER;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -216,7 +218,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.GRINDER;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -252,7 +254,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.GUNSMITHJOB;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -288,7 +290,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.KILNJOB;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -324,7 +326,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.METALSMITHJOB;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -359,7 +361,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.MINTER;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -395,7 +397,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.BAKER;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -431,7 +433,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.WOODCUTTER;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -466,7 +468,7 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => ColonyBuiltIn.NpcTypes.CRAFTER;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public void OnRegister()
             {
                 
@@ -494,7 +496,7 @@ namespace Pandaros.Settlers.Research
             public int NumberOfLevels => 10;
 
             public float BaseValue => 0.03f;
-
+            public string IconDirectory => GameLoader.ICON_PATH;
             public List<string> Dependancies => new List<string>()
             {
                 PandaResearch.GetResearchKey(ColonyBuiltIn.NpcTypes.MERCHANT + "5"),
