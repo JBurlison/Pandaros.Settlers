@@ -132,9 +132,48 @@ namespace Pandaros.Settlers
             }
 
             GenerateBuiltinBlocks();
+            GenerateSettlersBuiltin();
 
             if (FileWasCopied)
                 PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+        }
+
+        private static void GenerateSettlersBuiltin()
+        {
+            if (File.Exists(MOD_FOLDER + "/SettlersBuiltin.cs"))
+                File.Delete(MOD_FOLDER + "/SettlersBuiltin.cs");
+
+            using (var fs = File.OpenWrite(MOD_FOLDER + "/SettlersBuiltin.cs"))
+            using (var sr = new StreamWriter(fs))
+            {
+                sr.WriteLine("using Pandaros.Settlers.Models;");
+                sr.WriteLine();
+                sr.WriteLine("namespace Pandaros.Settlers");
+                sr.WriteLine("{");
+                sr.WriteLine("  public static class SettlersBuiltIn");
+                sr.WriteLine("  {");
+                sr.WriteLine("      public static class Research");
+                sr.WriteLine("      {");
+
+                foreach (var node in JSON.Deserialize(MOD_FOLDER + "/localization/en-US/science/en-US.json")["sentences"]["Pandaros"]["Settlers"].LoopObject())
+                        sr.WriteLine($"          public const string {node.Key.ToUpper()} = \"{GameLoader.NAMESPACE}.{node.Key}\";");
+
+                foreach (var node in JSON.Deserialize(MOD_FOLDER + "/localization/en-US/science/en-US.json")["sentences"]["Pandaros"]["Settlers"]["pipliz"].LoopObject())
+                        sr.WriteLine($"          public const string {node.Key.ToUpper()} = \"{GameLoader.NAMESPACE}.pipliz.{node.Key}\";");
+
+                sr.WriteLine("      }");
+                sr.WriteLine();
+
+                sr.WriteLine("      public static class ItemTypes");
+                sr.WriteLine("      {");
+
+                foreach (var node in JSON.Deserialize(MOD_FOLDER + "/localization/en-US/en-US.json")["types"].LoopObject())
+                    sr.WriteLine($"          public static readonly ItemId {node.Key.Replace('+', 'p').Replace('-', 'n').Replace(GameLoader.NAMESPACE + ".AutoLoad.", "").Replace(GameLoader.NAMESPACE + ".", "").Replace(".", "_").ToUpper()} = ItemId.GetItemId(\"{node.Key}\");");
+
+                sr.WriteLine("      }");
+                sr.WriteLine("  }");
+                sr.WriteLine("}");
+            }
         }
 
         private static void GenerateBuiltinBlocks()
@@ -330,9 +369,7 @@ namespace Pandaros.Settlers
             CommandManager.RegisterCommand(new ConfigurationChatCommand());
             CommandManager.RegisterCommand(new BossesChatCommand());
             CommandManager.RegisterCommand(new SettlersChatCommand());
-
-            if (Configuration.GetorDefault("AutoUpdate", true))
-                VersionChecker.WriteVersionsToConsole();
+            VersionChecker.WriteVersionsToConsole();
 #if Debug
             ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
 #endif

@@ -179,6 +179,7 @@
     <Compile Include="Monsters\MonsterNPCData.cs" />
     <Compile Include="Monsters\Normal\IPandaZombie.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
+    <Compile Include="SettlersBuiltin.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
     <Compile Include="NBT\BlockMapping.cs" />
