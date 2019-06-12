@@ -29,8 +29,13 @@ namespace Pandaros.Settlers.Items
         bool? isPlaceable { get; }
         bool? isRotatable { get; }
         bool? isSolid { get; }
+        bool? requiresFertileBelow { get; }
         int? maxStackSize { get; }
+        float? luxuryHours { get; }
         string mesh { get; }
+        MeshRotationEuler meshRotationEuler { get; }
+        MeshOffset meshOffset { get; }
+        MeshScale meshScale { get; }
         bool? needsBase { get; }
         float? foodValue { get; }
         float? happiness { get; }

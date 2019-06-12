@@ -10,5 +10,11 @@ namespace Pandaros.Settlers.Energy
     public class ManaPipe : CSType
     {
         public override string name { get; set; }
+
+        public override string icon { get; set; }
+
+        public override int? destructionTime { get; } = 10;
+
+        
     }
 }

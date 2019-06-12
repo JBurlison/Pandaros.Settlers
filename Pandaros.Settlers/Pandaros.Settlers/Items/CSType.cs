@@ -19,11 +19,16 @@ namespace Pandaros.Settlers.Items
         public virtual bool? isFertile { get; set; }
         public virtual bool? isPlaceable { get; set; }
         public virtual bool? needsBase { get; set; }
+        public virtual bool? requiresFertileBelow { get; set; }
         public virtual int? maxStackSize { get; set; }
         public virtual float? foodValue { get; set; }
         public virtual float? happiness { get; set; }
         public virtual float? dailyFoodFractionOptimal { get; set; }
         public virtual string mesh { get; set; }
+        public virtual MeshRotationEuler meshRotationEuler { get; set; }
+        public virtual MeshOffset meshOffset { get; set; }
+        public virtual MeshScale meshScale { get; set; }
+        public virtual float? luxuryHours { get; set; }
         public virtual string icon { get; set; }
         public virtual string onRemoveAudio { get; set; }
         public virtual string onPlaceAudio { get; set; }
