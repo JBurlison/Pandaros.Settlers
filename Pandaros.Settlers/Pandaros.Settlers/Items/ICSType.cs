@@ -17,59 +17,59 @@ namespace Pandaros.Settlers.Items
 
     public interface ICSType : INameable
     {
-        bool? blocksPathing { get; }
-        List<string> categories { get; }
-        Colliders colliders { get; }
-        string color { get; }
-        dynamic customData { get; }
-        int? destructionTime { get; }
-        string icon { get; }
-        bool? isDestructible { get; }
-        bool? isFertile { get; }
-        bool? isPlaceable { get; }
-        bool? isRotatable { get; }
-        bool? isSolid { get; }
-        bool? requiresFertileBelow { get; }
-        int? maxStackSize { get; }
-        float? luxuryHours { get; }
-        string mesh { get; }
-        MeshRotationEuler meshRotationEuler { get; }
-        MeshOffset meshOffset { get; }
-        MeshScale meshScale { get; }
-        bool? needsBase { get; }
-        float? foodValue { get; }
-        float? happiness { get; }
-        float? dailyFoodFractionOptimal { get; }
-        string onPlaceAudio { get; }
-        List<OnRemove> onRemove { get; }
-        string onRemoveAmount { get; }
-        string onRemoveAudio { get; }
-        string onRemoveChance { get; }
-        string onRemoveType { get; }
-        string parentType { get; }
+        bool? blocksPathing { get; set; }
+        List<string> categories { get; set; }
+        Colliders colliders { get; set; }
+        string color { get; set; }
+        dynamic customData { get; set; }
+        int? destructionTime { get; set; }
+        string icon { get; set; }
+        bool? isDestructible { get; set; }
+        bool? isFertile { get; set; }
+        bool? isPlaceable { get; set; }
+        bool? isRotatable { get; set; }
+        bool? isSolid { get; set; }
+        bool? requiresFertileBelow { get; set; }
+        int? maxStackSize { get; set; }
+        float? luxuryHours { get; set; }
+        string mesh { get; set; }
+        MeshRotationEuler meshRotationEuler { get; set; }
+        MeshOffset meshOffset { get; set; }
+        MeshScale meshScale { get; set; }
+        bool? needsBase { get; set; }
+        float? foodValue { get; set; }
+        float? happiness { get; set; }
+        float? dailyFoodFractionOptimal { get; set; }
+        string onPlaceAudio { get; set; }
+        List<OnRemove> onRemove { get; set; }
+        string onRemoveAmount { get; set; }
+        string onRemoveAudio { get; set; }
+        string onRemoveChance { get; set; }
+        string onRemoveType { get; set; }
+        string parentType { get; set; }
         [JsonProperty("rotatablex-")]
-        string rotatablexn { get; }
+        string rotatablexn { get; set; }
         [JsonProperty("rotatablex+")]
-        string rotatablexp { get; }
+        string rotatablexp { get; set; }
         [JsonProperty("rotatablez-")]
-        string rotatablezn { get; }
+        string rotatablezn { get; set; }
         [JsonProperty("rotatablez+")]
-        string rotatablezp { get; }
-        string sideall { get; }
+        string rotatablezp { get; set; }
+        string sideall { get; set; }
         [JsonProperty("sidex-")]
-        string sidexn { get; }
+        string sidexn { get; set; }
         [JsonProperty("sidex+")]
-        string sidexp { get; }
+        string sidexp { get; set; }
         [JsonProperty("sidey-")]
-        string sideyn { get; }
+        string sideyn { get; set; }
         [JsonProperty("sidey+")]
-        string sideyp { get; }
+        string sideyp { get; set; }
         [JsonProperty("sidez-")]
-        string sidezn { get; }
+        string sidezn { get; set; }
         [JsonProperty("sidez+")]
-        string sidezp { get; }
-        ItemRarity Rarity { get; }
-        StaticItem StaticItemSettings { get; }
-        OpenMenuSettings OpensMenuSettings { get; }
+        string sidezp { get; set; }
+        ItemRarity Rarity { get; set; }
+        StaticItem StaticItemSettings { get; set; }
+        OpenMenuSettings OpensMenuSettings { get; set; }
     }
 }
