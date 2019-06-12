@@ -32,7 +32,7 @@ namespace Pandaros.Settlers.Items
         public virtual string icon { get; set; }
         public virtual string onRemoveAudio { get; set; }
         public virtual string onPlaceAudio { get; set; }
-        public virtual int? destructionTime { get; }
+        public virtual int? destructionTime { get; set; }
         public virtual dynamic customData { get; set; }
         public virtual string parentType { get; set; }
         [JsonProperty("rotatablex+")]
@@ -61,7 +61,7 @@ namespace Pandaros.Settlers.Items
         public virtual string onRemoveAmount { get; set; }
         public virtual string onRemoveChance { get; set; }
         public virtual List<OnRemove> onRemove { get; set; }
-        public virtual bool? blocksPathing => isSolid;
+        public virtual bool? blocksPathing { get; set; }
         public virtual Colliders colliders { get; set; }
         public virtual List<string> categories { get; set; }
         public virtual ItemRarity Rarity { get; set; } = ItemRarity.Common;
