@@ -10,11 +10,62 @@ using System.Linq;
 
 namespace Pandaros.Settlers.Items.Machines
 {
+    public class MinerBlock : CSType
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".Miner";
+        public override string icon { get; set; } = GameLoader.ICON_PATH + "MiningMachine.png";
+        public override bool? isPlaceable { get; set; } = true;
+        public override string onPlaceAudio { get; set; } = "stonePlace";
+        public override string onRemoveAudio { get; set; } = "stoneDelete";
+        public override bool? isSolid { get; set; } = true;
+        public override string sideall { get; set; } = "SELF";
+        public override string mesh { get; set; } = GameLoader.MESH_PATH + "MiningMachine.obj";
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "machine"
+        };
+    }
+
+    public class MinerTexture : CSTextureMapping
+    {
+        public override string name => GameLoader.NAMESPACE + ".Miner";
+        public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "MiningMachine.png";
+    }
+
+    public class MinerRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
+        {
+            new RecipeItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 6),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 6),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEPICKAXE.Name, 2)
+        };
+
+        public List<RecipeItem> results => new List<RecipeItem>()
+        {
+            new RecipeItem(GameLoader.NAMESPACE + ".Miner")
+        };
+
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 5;
+
+        public string Job => AdvancedCrafterRegister.JOB_NAME;
+
+        public string name => GameLoader.NAMESPACE + ".Miner";
+    }
+
     public class MinerRegister : IRoamingJobObjective
     {
-        public string name => nameof(Miner);
+        public string name => "Miner";
         public float WorkTime => 4;
-        public ItemId ItemIndex => ItemId.GetItemId(Miner.Item.ItemIndex);
+        public ItemId ItemIndex => ItemId.GetItemId(GameLoader.NAMESPACE + ".Miner");
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
         {
             { MachineConstants.REFUEL, new RefuelMachineAction() },
@@ -24,9 +75,48 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
-        public void DoWork(Colony player, RoamingJobState state)
+        public void DoWork(Colony colony, RoamingJobState machineState)
         {
-            Miner.DoWork(player, state);
+            if ((!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies) || colony.OwnerIsOnline())
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
+                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+                {
+                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
+                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
+
+                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow) &&
+                        itemBelow.CustomDataNode != null &&
+                        itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
+                        minable)
+                    {
+                        var itemList = itemBelow.OnRemoveItems;
+
+                        if (itemList != null && itemList.Count > 0)
+                        {
+                            var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
+                            machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
+
+                            for (var i = 0; i < itemList.Count; i++)
+                                if (Random.NextDouble() <= itemList[i].chance)
+                                    colony.Stockpile.Add(itemList[i].item);
+
+                            AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, itemList.FirstOrDefault().item.Type));
+                        }
+                        else
+                        {
+                            machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                        }
+                    }
+                    else
+                    {
+                        machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                    }
+
+                }
         }
     }
 
@@ -40,36 +130,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-        public ItemId PreformAction(Colony player, RoamingJobState state)
-        {
-            return Miner.Repair(player, state);
-        }
-    }
-
-    public class ReloadMiner : IRoamingJobObjectiveAction
-    {
-        public string name => MachineConstants.RELOAD;
-
-        public float TimeToPreformAction => 5;
-
-        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
-
-        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
-
-        public ItemId PreformAction(Colony player, RoamingJobState state)
-        {
-            return Miner.Reload(player, state);
-        }
-    }
-
-
-    [ModLoader.ModManager]
-    public static class Miner
-    {
-
-        public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
-
-        public static ItemId Repair(Colony colony, RoamingJobState machineState)
+        public ItemId PreformAction(Colony colony, RoamingJobState machineState)
         {
             var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
@@ -77,7 +138,7 @@ namespace Pandaros.Settlers.Items.Machines
             {
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
                 {
-                    var repaired       = false;
+                    var repaired = false;
                     var requiredForFix = new List<InventoryItem>();
                     var stockpile = colony.Stockpile;
 
@@ -125,124 +186,21 @@ namespace Pandaros.Settlers.Items.Machines
 
             return retval;
         }
+    }
 
-        public static ItemId Reload(Colony player, RoamingJobState machineState)
+    public class ReloadMiner : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.RELOAD;
+
+        public float TimeToPreformAction => 5;
+
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
+
+        public ItemId PreformAction(Colony player, RoamingJobState state)
         {
             return ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
-        }
-
-        public static void DoWork(Colony colony, RoamingJobState machineState)
-        {
-            if ((!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies) || colony.OwnerIsOnline())
-                if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
-                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
-                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
-                {
-                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
-                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
-
-                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow) && 
-                        itemBelow.CustomDataNode != null && 
-                        itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) && 
-                        minable)
-                    {
-                        var itemList = itemBelow.OnRemoveItems;
-
-                        if (itemList != null && itemList.Count > 0)
-                        {
-                            var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
-                            machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
-
-                            for (var i = 0; i < itemList.Count; i++)
-                                if (Random.NextDouble() <= itemList[i].chance)
-                                    colony.Stockpile.Add(itemList[i].item);
-
-                            AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
-                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, itemList.FirstOrDefault().item.Type));
-                        }
-                        else
-                        {
-                            machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
-                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
-                        }
-                    }
-                    else
-                    {
-                        machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
-                        Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
-                    }
-                    
-                }
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.Miner.RegisterMiner")]
-        public static void RegisterMiner()
-        {
-            var rivets      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
-            var iron        = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 2);
-            var copperParts = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 6);
-            var copperNails = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 6);
-            var tools       = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
-            var planks      = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
-            var pickaxe     = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEPICKAXE.Name, 2);
-
-            var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem>
-                                    {
-                                        planks,
-                                        iron,
-                                        rivets,
-                                        copperParts,
-                                        copperNails,
-                                        tools,
-                                        planks,
-                                        pickaxe
-                                    },
-                                    new RecipeResult(Item.ItemIndex),
-                                    5);
-
-            ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.Miner.AddTextures")]
-        [ModLoader.ModCallbackProvidesFor("pipliz.server.registertexturemappingtextures")]
-        public static void AddTextures()
-        {
-            var minerTextureMapping = new ItemTypesServer.TextureMapping(new JSONNode());
-            minerTextureMapping.AlbedoPath = GameLoader.BLOCKS_ALBEDO_PATH + "MiningMachine.png";
-
-            ItemTypesServer.SetTextureMapping(GameLoader.NAMESPACE + ".Miner", minerTextureMapping);
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,  GameLoader.NAMESPACE + ".Items.Machines.Miner.AddMiner")]
-        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
-        public static void AddMiner(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
-        {
-            var minerName     = GameLoader.NAMESPACE + ".Miner";
-            var minerFlagNode = new JSONNode();
-            minerFlagNode["icon"]        = new JSONNode(GameLoader.ICON_PATH + "MiningMachine.png");
-            minerFlagNode["isPlaceable"] = new JSONNode(true);
-            minerFlagNode.SetAs("onRemoveAmount", 1);
-            minerFlagNode.SetAs("onPlaceAudio", "stonePlace");
-            minerFlagNode.SetAs("onRemoveAudio", "stoneDelete");
-            minerFlagNode.SetAs("isSolid", true);
-            minerFlagNode.SetAs("sideall", "SELF");
-            minerFlagNode.SetAs("mesh", GameLoader.MESH_PATH + "MiningMachine.obj");
-
-            var categories = new JSONNode(NodeType.Array);
-            categories.AddToArray(new JSONNode("machine"));
-            minerFlagNode.SetAs("categories", categories);
-
-            Item = new ItemTypesServer.ItemTypeRaw(minerName, minerFlagNode);
-            items.Add(minerName, Item);
-        }
-
-        public static bool CanMineBlock(ushort itemMined)
-        {
-            return ItemTypes.TryGetType(itemMined, out ItemTypes.ItemType item) &&
-                   item.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
-                   minable;
         }
     }
 }
