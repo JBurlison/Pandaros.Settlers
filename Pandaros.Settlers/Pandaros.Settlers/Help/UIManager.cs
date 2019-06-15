@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Help
         public static JSONNode LoadedMenus { get; private set; } = new JSONNode();
         private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("Wiki");
         public static List<OpenMenuSettings> OpenMenuItems { get; private set; } = new List<OpenMenuSettings>();
-
+        public static Dictionary<ushort, Recipes.Recipe> ItemRecipe = new Dictionary<ushort, Recipes.Recipe>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Help.HelpMenuItem.OpenMenu")]
         public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
@@ -57,7 +57,7 @@ namespace Pandaros.Settlers.Help
                     {
                         try
                         {
-                            jObject.Merge(JsonConvert.DeserializeObject<JObject>(info.Key + "/" + jsonNode), new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Union, MergeNullValueHandling = MergeNullValueHandling.Ignore, PropertyNameComparison = StringComparison.InvariantCultureIgnoreCase });
+                            jObject.Merge(JsonConvert.DeserializeObject<JObject>(File.ReadAllText(info.Key + "/" + jsonNode)), new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Union, MergeNullValueHandling = MergeNullValueHandling.Ignore, PropertyNameComparison = StringComparison.InvariantCultureIgnoreCase });
                         }
                         catch (Exception ex)
                         {
@@ -72,8 +72,6 @@ namespace Pandaros.Settlers.Help
 
             LoadedMenus = JSON.DeserializeString(JsonConvert.SerializeObject(jObject));
         }
-
-        public static Dictionary<ushort, Recipes.Recipe> ItemRecipe = new Dictionary<ushort, Recipes.Recipe>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Managers.LoadRecipes")]
         public static void LoadRecipes()

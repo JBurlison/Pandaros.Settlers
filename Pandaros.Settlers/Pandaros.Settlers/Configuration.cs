@@ -69,14 +69,21 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".AfterSelectedWorld")]
         public static void AfterSelectedWorld()
         {
-            Reload();
-            GetorDefault("BossesCanBeDisabled", true);
-            GetorDefault("MaxSettlersToggle", 4);
-            GetorDefault("SettlersEnabled", true);
-            GetorDefault("ColonistsRecruitment", true);
-            GetorDefault("AllowPlayerToResetThemself", true);
-            GetorDefault("CompoundingFoodRecruitmentCost", 5);
-            Save();
+            try
+            {
+                Reload();
+                GetorDefault("BossesCanBeDisabled", true);
+                GetorDefault("MaxSettlersToggle", 4);
+                GetorDefault("SettlersEnabled", true);
+                GetorDefault("ColonistsRecruitment", true);
+                GetorDefault("AllowPlayerToResetThemself", true);
+                GetorDefault("CompoundingFoodRecruitmentCost", 5);
+                Save();
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
         }
 
         public static void Reload()
@@ -85,7 +92,7 @@ namespace Pandaros.Settlers
             {
                 _configuration.SettingsRoot = config;
 
-                if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
+                if (config.TryGetAs("GameDifficulties", out JSONNode diffs) && diffs.NodeType == NodeType.Array)
                     foreach (var diff in diffs.LoopArray())
                     {
                         var newDiff = diff.JsonDeerialize<GameDifficulty>();
@@ -141,7 +148,6 @@ namespace Pandaros.Settlers
 
         public void Save()
         {
-            File.WriteAllText(SaveFile, JsonConvert.SerializeObject(SettingsRoot));
             JSON.Serialize(SaveFile, SettingsRoot);
         }
 

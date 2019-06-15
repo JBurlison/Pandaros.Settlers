@@ -164,6 +164,8 @@ namespace Pandaros.Settlers
         {
             ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(message), ChatColor.red), e));
 
+            LogError(e);
+
             if (e.InnerException != null)
                 LogError(e.InnerException);
         }
