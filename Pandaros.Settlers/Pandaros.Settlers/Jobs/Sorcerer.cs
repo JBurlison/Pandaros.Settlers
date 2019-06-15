@@ -6,6 +6,7 @@ using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
+using Science;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Pandaros.Settlers.Jobs
             { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 3 },
             { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 }
         };
-
+        public List<IResearchableCondition> Conditions => null;
         public int NumberOfLevels => 1;
         public float BaseValue => 0.05f;
         public List<string> Dependancies => new List<string>()

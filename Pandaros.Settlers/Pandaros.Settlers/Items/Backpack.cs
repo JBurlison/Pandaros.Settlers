@@ -5,6 +5,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
 using Pipliz;
+using Science;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,8 @@ namespace Pandaros.Settlers.Items
         public string name => "Backpack";
 
         public string IconDirectory => GameLoader.ICON_PATH;
+
+        public List<IResearchableCondition> Conditions => null;
 
         public void OnRegister()
         {

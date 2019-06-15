@@ -1,5 +1,6 @@
 ﻿using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Models;
+using Science;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -20,7 +21,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -58,7 +59,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -94,7 +95,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -130,7 +131,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -166,7 +167,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -202,7 +203,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -238,7 +239,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -274,7 +275,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -310,7 +311,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -345,7 +346,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -381,7 +382,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -417,7 +418,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -452,7 +453,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, BAG_COST },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, COIN_COST }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 5;
 
             public float BaseValue => 0.05f;
@@ -492,7 +493,7 @@ namespace Pandaros.Settlers.Research
                 { ColonyBuiltIn.ItemTypes.GOLDCOIN, 10 },
                 { ColonyBuiltIn.ItemTypes.BRONZECOIN, 10 }
             };
-
+            public List<IResearchableCondition> Conditions => null;
             public int NumberOfLevels => 10;
 
             public float BaseValue => 0.03f;

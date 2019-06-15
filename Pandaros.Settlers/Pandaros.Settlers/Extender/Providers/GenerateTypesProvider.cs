@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Extender.Providers
             if (json.Count != 0)
             {
                 var strValue = JsonConvert.SerializeObject(json, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
-                PandaLogger.Log(strValue);
+                PandaLogger.LogToFile(strValue);
                 ItemTypesServer.BlockRotator.Patches.AddPatch(new ItemTypesServer.BlockRotator.BlockGeneratePatch(GameLoader.MOD_FOLDER, -99999, JSON.DeserializeString(strValue)));
             }
 

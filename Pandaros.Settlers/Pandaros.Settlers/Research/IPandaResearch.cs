@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Models;
+using Science;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -7,6 +8,7 @@ namespace Pandaros.Settlers.Research
     {
         string IconDirectory { get; }
         Dictionary<ItemId, int> RequiredItems { get; }
+        List<IResearchableCondition> Conditions { get; }
         int NumberOfLevels { get; }
         float BaseValue { get; }
         List<string> Dependancies { get; }

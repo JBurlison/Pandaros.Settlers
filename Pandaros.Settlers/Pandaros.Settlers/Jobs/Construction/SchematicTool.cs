@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using static AreaJobTracker;
 using Pandaros.Settlers.Models;
+using Science;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -50,7 +51,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 3 },
             { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 }
         };
-
+        public List<IResearchableCondition> Conditions => null;
         public int NumberOfLevels => 1;
         public float BaseValue => 0.05f;
         public List<string> Dependancies => new List<string>()

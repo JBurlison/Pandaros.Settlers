@@ -1,5 +1,6 @@
 ﻿using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Models;
+using Science;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Pandaros.Settlers.Research
         {
             {  ItemId.GetItemId("Pandaros.Settlers.Healthbooster"), 1 }
         };
-
+        public List<IResearchableCondition> Conditions => null;
         public int NumberOfLevels => 2;
 
         public float BaseValue => 1;

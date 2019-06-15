@@ -178,6 +178,8 @@
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="JSONExtentionMethods.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
+    <Compile Include="Research\GeneralResearch.cs" />
+    <Compile Include="Research\ResearchCompleteEventArgs.cs" />
     <Compile Include="Server\ServerManagement.cs" />
     <Compile Include="Models\TrackedPosition.cs" />
     <Compile Include="Monsters\IMonsterNPCType.cs" />
