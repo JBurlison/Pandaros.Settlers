@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
 
         public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
@@ -140,7 +140,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ItemId Reload(Colony colony, RoamingJobState machineState)
         {
-            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
+            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
 
             if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 try

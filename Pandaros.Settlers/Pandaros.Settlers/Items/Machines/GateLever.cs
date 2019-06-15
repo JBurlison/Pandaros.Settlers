@@ -59,7 +59,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
 
         public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
