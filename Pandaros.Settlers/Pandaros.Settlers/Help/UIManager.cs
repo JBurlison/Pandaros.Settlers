@@ -10,6 +10,8 @@ using Pandaros.Settlers.Help;
 using Pandaros.Settlers.Items;
 using Shared;
 using Pandaros.Settlers.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Pandaros.Settlers.Help
 {
@@ -46,6 +48,7 @@ namespace Pandaros.Settlers.Help
         public static void OnAssemblyLoaded(string path)
         {
             var settings = GameLoader.GetJSONSettingPaths(GameLoader.NAMESPACE + ".MenuFile");
+            JObject jObject = new JObject();
 
             foreach (var info in settings)
                 try
@@ -54,8 +57,7 @@ namespace Pandaros.Settlers.Help
                     {
                         try
                         {
-                            var newMenu = JSON.Deserialize(info.Key + "/" + jsonNode);
-                            LoadedMenus.Merge(newMenu);
+                            jObject.Merge(JsonConvert.DeserializeObject<JObject>(info.Key + "/" + jsonNode), new JsonMergeSettings() { MergeArrayHandling = MergeArrayHandling.Union, MergeNullValueHandling = MergeNullValueHandling.Ignore, PropertyNameComparison = StringComparison.InvariantCultureIgnoreCase });
                         }
                         catch (Exception ex)
                         {
@@ -67,6 +69,8 @@ namespace Pandaros.Settlers.Help
                 {
                     PandaLogger.LogError(ex, "Error loading settings file " + info.Key + " values " + string.Join(", ", info.Value.ToArray()));
                 }
+
+            LoadedMenus = JSON.DeserializeString(JsonConvert.SerializeObject(jObject));
         }
 
         public static Dictionary<ushort, Recipes.Recipe> ItemRecipe = new Dictionary<ushort, Recipes.Recipe>();

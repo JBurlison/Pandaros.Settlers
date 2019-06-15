@@ -734,7 +734,7 @@ namespace Pandaros.Settlers.Research
 
         private static void Machiness_ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Miner.Item.name));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GameLoader.NAMESPACE + ".Miner"));
             e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GateLever.Item.name));
             e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(GateLever.GateItem.name));
             e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Turret.BRONZEARROW_NAMESPACE));

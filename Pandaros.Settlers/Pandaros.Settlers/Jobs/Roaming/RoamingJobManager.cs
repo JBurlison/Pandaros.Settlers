@@ -38,8 +38,8 @@ namespace Pandaros.Settlers.Jobs.Roaming
             if (ObjectiveCallbacks.ContainsKey(objectiveName))
                 return ObjectiveCallbacks[objectiveName];
 
-            PandaLogger.Log($"Unknown objective {objectiveName}. Returning {nameof(Miner)}.");
-            return ObjectiveCallbacks[nameof(Miner)];
+            PandaLogger.Log($"Unknown objective {objectiveName}. Returning {GameLoader.NAMESPACE + ".Miner"}.");
+            return ObjectiveCallbacks[GameLoader.NAMESPACE + ".Miner"];
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.OnUpdate")]
