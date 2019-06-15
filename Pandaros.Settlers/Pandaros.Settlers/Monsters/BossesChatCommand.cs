@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Monsters
 
                         if (ps != null && data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != Convert.ToInt32(ps.BossesEnabled))
                         {
-                            if (!Configuration.GetorDefault("BossesCanBeDisabled", true))
+                            if (!SettlersConfiguration.GetorDefault("BossesCanBeDisabled", true))
                                 PandaChat.Send(data.Item1, "The server administrator had disabled the changing of bosses.", ChatColor.red);
                             else
                                 ps.BossesEnabled = data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != 0;
@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Monsters
                 return true;
             }
 
-            if (array.Count == 2 && Configuration.GetorDefault("BossesCanBeDisabled", true))
+            if (array.Count == 2 && SettlersConfiguration.GetorDefault("BossesCanBeDisabled", true))
             {
                 if (array[1].ToLower().Trim() == "on" || array[1].ToLower().Trim() == "true")
                 {
@@ -86,7 +86,7 @@ namespace Pandaros.Settlers.Monsters
             }
 
             NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
-            if (!Configuration.GetorDefault("BossesCanBeDisabled", true))
+            if (!SettlersConfiguration.GetorDefault("BossesCanBeDisabled", true))
                 PandaChat.Send(player, "The server administrator had disabled the changing of bosses.",
                                 ChatColor.red);
             

@@ -2,6 +2,7 @@
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Server;
 using Pipliz;
@@ -18,7 +19,7 @@ namespace Pandaros.Settlers.Items.Machines
     {
         public string name => nameof(GateLever);
         public float WorkTime => 4;
-        public ushort ItemIndex => GateLever.Item.ItemIndex;
+        public ItemId ItemIndex => ItemId.GetItemId(GateLever.Item.ItemIndex);
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
         {
             { MachineConstants.REFUEL, new RefuelMachineAction() },
@@ -40,11 +41,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 10;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".HammerAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-        public ushort PreformAction(Colony colony, RoamingJobState state)
+        public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
             return GateLever.Repair(colony, state);
         }
@@ -56,11 +57,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 5;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
 
-        public ushort PreformAction(Colony colony, RoamingJobState state)
+        public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
             return GateLever.Reload(colony, state);
         }
@@ -97,9 +98,9 @@ namespace Pandaros.Settlers.Items.Machines
         public static ItemTypesServer.ItemTypeRaw GateItemZN { get; private set; }
 
 
-        public static ushort Repair(Colony colony, RoamingJobState machineState)
+        public static ItemId Repair(Colony colony, RoamingJobState machineState)
         {
-            var retval = GameLoader.Repairing_Icon;
+            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
             if (colony.OwnerIsOnline() && machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
@@ -133,7 +134,7 @@ namespace Pandaros.Settlers.Items.Machines
                     foreach (var item in requiredForFix)
                         if (!colony.Stockpile.Contains(item))
                         {
-                            retval = item.Type;
+                            retval = ItemId.GetItemId(item.Type);
                             break;
                         }
                 }
@@ -146,17 +147,17 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Colony colony, RoamingJobState machineState)
+        public static ItemId Reload(Colony colony, RoamingJobState machineState)
         {
             if (colony.OwnerIsOnline())
                 machineState.ResetActionToMaxLoad(MachineConstants.RELOAD);
 
-            return GameLoader.Reload_Icon;
+            return ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
         }
 
         public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.RELOAD) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&

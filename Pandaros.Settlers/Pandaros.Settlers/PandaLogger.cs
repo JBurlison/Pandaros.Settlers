@@ -51,8 +51,8 @@ namespace Pandaros.Settlers
                 }
                 else
                 {
-                    int xval = PandaLogger.GetNumFromFilename(x);
-                    int yval = PandaLogger.GetNumFromFilename(y);
+                    int xval = CSConsoleAndFileLogger.GetNumFromFilename(x);
+                    int yval = CSConsoleAndFileLogger.GetNumFromFilename(y);
                     return ((new CaseInsensitiveComparer()).Compare(xval, yval));
                 }
             }
@@ -61,34 +61,77 @@ namespace Pandaros.Settlers
 
     public static class PandaLogger
     {
-        public static readonly string LOG_DIR;
-        static string LOG_NAME = "Pandalog";
+        private static CSConsoleAndFileLogger _logger = new CSConsoleAndFileLogger(GameLoader.NAMESPACE, "PandaLog", "<Panaros => Settlers>");
+
+        public static void LogToFile(string message, params object[] args)
+        {
+            _logger.LogToFile(message, args);
+        }
+
+        public static void Log(ChatColor color, string message, params object[] args)
+        {
+            _logger.Log(color, message, args);
+        }
+
+        public static void Log(string message, params object[] args)
+        {
+            _logger.Log(message, args);
+        }
+
+        public static void Log(string message)
+        {
+            _logger.Log(message);
+        }
+
+        public static void LogError(Exception e, string message)
+        {
+            _logger.LogError(e, message);
+        }
+
+        public static void LogError(Exception e, string message, params object[] args)
+        {
+            _logger.LogError(e, message, args);
+        }
+
+        public static void LogError(Exception e)
+        {
+            _logger.LogError(e);
+        }
+    }
+
+    public class CSConsoleAndFileLogger
+    {
+        public readonly string LOG_DIR;
+        string LOG_NAME;
         const string ONE_DOT_LOG = ".1.log";
         const string DOT_STAR_DOT_LOG = ".*.log";
         const string DOT_LOG = ".log";
         static readonly char[] dot = new char[] { '.' };
-        const int LOGGER_TRY = 1000; 
-        static Thread _thread = new Thread(new ThreadStart(Log));
-        static Queue<string> _logQueue = new Queue<string>();
-        static AutoResetEvent _loggerSemaphore = new AutoResetEvent(false);
-        static string _logFile;
+        const int LOGGER_TRY = 1000;
+        Thread _thread;
+        Queue<string> _logQueue = new Queue<string>();
+        AutoResetEvent _loggerSemaphore = new AutoResetEvent(false);
+        string _logFile;
+        string _consolePrefix;
 
-        static PandaLogger()
+        public CSConsoleAndFileLogger(string namespaceStr, string logName, string consolePrefix)
         {
-            LOG_DIR = GameLoader.GAME_ROOT + "Logs/" + GameLoader.NAMESPACE + "/";
+            LOG_DIR = GameLoader.GAME_ROOT + "Logs/" + namespaceStr + "/";
+            _consolePrefix = consolePrefix;
 
             if (!Directory.Exists(LOG_DIR))
                 Directory.CreateDirectory(LOG_DIR);
 
-            LOG_NAME = LOG_NAME + "." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss");
+            LOG_NAME = logName + "." + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss");
 
             _logFile = LOG_DIR + LOG_NAME + DOT_LOG;
             ServerLog.LogAsyncMessage(new LogMessage("Settlers Log file set to: " + _logFile, LogType.Log));
+            _thread = new Thread(new ThreadStart(Log));
             _thread.IsBackground = true;
             _thread.Start();
         }
 
-        public static void LogToFile(string message, params object[] args)
+        public void LogToFile(string message, params object[] args)
         {
             if (args != null && args.Length != 0)
                 GetFormattedMessage(string.Format(message, args));
@@ -96,7 +139,7 @@ namespace Pandaros.Settlers
                 GetFormattedMessage(message);
         }
 
-        public static void Log(ChatColor color, string message, params object[] args)
+        public void Log(ChatColor color, string message, params object[] args)
         {
             if (args != null && args.Length != 0)
                 ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args)), color), LogType.Log));
@@ -104,7 +147,7 @@ namespace Pandaros.Settlers
                 ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(message), color), LogType.Log));
         }
 
-        public static void Log(string message, params object[] args)
+        public void Log(string message, params object[] args)
         {
             if (args != null && args.Length != 0)
                 ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args))), LogType.Log));
@@ -112,12 +155,12 @@ namespace Pandaros.Settlers
                 ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(message)), LogType.Log));
         }
 
-        public static void Log(string message)
+        public void Log(string message)
         {
             ServerLog.LogAsyncMessage(new LogMessage(GetFormattedMessage(message), LogType.Log));
         }
 
-        public static void LogError(Exception e, string message)
+        public void LogError(Exception e, string message)
         {
             ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(message), ChatColor.red), e));
 
@@ -125,7 +168,7 @@ namespace Pandaros.Settlers
                 LogError(e.InnerException);
         }
 
-        public static void LogError(Exception e, string message, params object[] args)
+        public void LogError(Exception e, string message, params object[] args)
         {
             ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args)), ChatColor.red), e));
 
@@ -133,7 +176,7 @@ namespace Pandaros.Settlers
                 LogError(e.InnerException);
         }
 
-        public static void LogError(Exception e)
+        public void LogError(Exception e)
         {
             ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage("Exception", ChatColor.red), e));
 
@@ -148,9 +191,9 @@ namespace Pandaros.Settlers
                 LogError(e.InnerException);
         }
 
-        private static string GetFormattedMessage(string message)
+        private string GetFormattedMessage(string message)
         {
-            message = string.Format("[{0}]<Pandaros => Settlers> {1}", DateTime.Now, message);
+            message = string.Format("[{0}]{1} {2}", DateTime.Now, _consolePrefix, message);
 
             lock(_logQueue)
                 _logQueue.Enqueue(message);
@@ -158,7 +201,7 @@ namespace Pandaros.Settlers
             return message;
         }
 
-        private static void Log()
+        private void Log()
         {
             while (true)
             {
@@ -190,7 +233,7 @@ namespace Pandaros.Settlers
             }
         }
 
-        private static void RotateLogs()
+        private void RotateLogs()
         {
             if (!File.Exists(_logFile)) return;
 
@@ -212,7 +255,7 @@ namespace Pandaros.Settlers
             }
         }
 
-        private static void RotateOld(string logFileDir)
+        private void RotateOld(string logFileDir)
         {
             string[] raw = Directory.GetFiles(logFileDir, LOG_NAME + DOT_STAR_DOT_LOG);
             ArrayList files = new ArrayList();
@@ -251,7 +294,7 @@ namespace Pandaros.Settlers
             }
         }
 
-        private static bool LoggerCheck(string f, string oldFilename, FileAction action)
+        private bool LoggerCheck(string f, string oldFilename, FileAction action)
         {
             if (File.Exists(f))
             {

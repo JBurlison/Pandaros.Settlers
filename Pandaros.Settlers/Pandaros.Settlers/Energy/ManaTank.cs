@@ -1,26 +1,70 @@
 ﻿using Pandaros.Settlers.Items;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Energy
 {
-    public class ManaTank : CSType
+    public class ManaTankTextureMapping : CSTextureMapping
     {
-        public override string name { get; set; }
+        public override string name => GameLoader.NAMESPACE + ".Tank";
+        public override string albedo => Path.Combine(GameLoader.BLOCKS_ALBEDO_PATH, "Tank_Albedo.png");
+        public override string emissive => Path.Combine(GameLoader.BLOCKS_EMISSIVE_PATH, "Tank_Emissive.png");
+        public override string normal => Path.Combine(GameLoader.BLOCKS_NORMAL_PATH, "Tank_Normal.png");
     }
-    /*
-     Mana Machines
-        * Increased Guard damage (10%)
-        * Monster AoE Damage 10 per 5/sec, 4 block each direction (advanced)
-        * Invisible wall (5x2) rotatable (normal blocks, just invisible)
-        * +2% Luck 4 blocks each direction (Luck in settlers is used for crit chance and bonus item procs (bonus items are rare items sometimes crafted with settlers items)
-        *  Happiness Generator (Colonists are hypnotized by its beauty) +10 happiness while running. (Advanced)
 
-    All machines have to be maintained by a Artificer, a roaming job similar to machinist .  Machines need to be connected by mana pipes and consume 1 mana every in game hour.
 
-    These mana pipes need a mana pump attached to a mana tank (also maintained and filled by a Artificer)
-    */
+    public class ManaTankBase : CSType
+    {
+        public override List<string> categories { get; set; } = new List<string>()
+            {
+                "Mana",
+                "Energy",
+                "Machine"
+            };
+        public override string icon { get; set; } = Path.Combine(GameLoader.ICON_PATH, "Tank.png");
+        public override string onPlaceAudio { get; set; } = "Pandaros.Settlers.Metal";
+        public override string onRemoveAudio { get; set; } = "Pandaros.Settlers.MetalRemove";
+        public override int? maxStackSize { get; set; } = 300;
+        public override int? destructionTime { get; set; } = 5000;
+        public override string sideall { get; set; } = GameLoader.NAMESPACE + ".Tank";
+        public override List<OnRemove> onRemove { get; set; } = new List<OnRemove>()
+        {
+            new OnRemove(1, 1, GameLoader.NAMESPACE + ".TankEmpty")
+        };
+    }
+
+
+    public class ManaTankGenerate : ManaTankBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".TankFull";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Tank_Full.obj");
+    }
+
+    public class ManaTankEmptyGenerate : ManaTankBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".TankEmpty";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Tank_empty.obj");
+    }
+
+    public class ManaTankQuarterGenerate : ManaTankBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".TankQuarter";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Tank_quarter.obj");
+    }
+
+    public class ManaTankThreeQuarterGenerate : ManaTankBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".TankThreeQuarter";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Tank_3quarter.obj");
+    }
+
+    public class ManaTankHalfGenerate : ManaTankBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".TankHalf";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Tank_half.obj");
+    }
 }

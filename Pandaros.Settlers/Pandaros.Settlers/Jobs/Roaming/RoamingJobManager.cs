@@ -50,7 +50,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 lock (Objectives)
                 {
                     foreach (var machine in Objectives)
-                        if (!machine.Key.OwnerIsOnline() && Configuration.OfflineColonies || machine.Key.OwnerIsOnline())
+                        if (!machine.Key.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || machine.Key.OwnerIsOnline())
                             foreach (var state in machine.Value)
                                 try
                                 {
@@ -61,7 +61,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                         if (objectiveLoad.Value <= 0)
                                             Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, 
                                                                             new IndicatorState(OBJECTIVE_REFRESH,
-                                                                            state.Value.RoamingJobSettings.ActionCallbacks[objectiveLoad.Key].ObjectiveLoadEmptyIcon, 
+                                                                            state.Value.RoamingJobSettings.ActionCallbacks[objectiveLoad.Key].ObjectiveLoadEmptyIcon.Id, 
                                                                             true,
                                                                             false));
                                     }

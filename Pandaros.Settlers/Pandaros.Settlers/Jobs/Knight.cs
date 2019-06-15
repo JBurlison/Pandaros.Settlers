@@ -225,7 +225,7 @@ namespace Pandaros.Settlers.Jobs
                     }
                     else
                     {
-                        state.SetIndicator(new IndicatorState(COOLDOWN, GameLoader.MissingMonster_Icon, true));
+                        state.SetIndicator(new IndicatorState(COOLDOWN, ItemId.GetItemId(GameLoader.NAMESPACE + ".Monster").Id, true));
                         _waitingFor++;
                         _target = null;
                     }

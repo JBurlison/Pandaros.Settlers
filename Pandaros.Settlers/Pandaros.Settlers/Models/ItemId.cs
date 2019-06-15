@@ -112,6 +112,16 @@ namespace Pandaros.Settlers.Models
             return itemId.Id;
         }
 
+        public static implicit operator ItemId(ushort id)
+        {
+            return GetItemId(id);
+        }
+
+        public static implicit operator ItemId(string name)
+        {
+            return GetItemId(name);
+        }
+
         public override string ToString()
         {
             return Name;

@@ -3,6 +3,7 @@ using Chatting.Commands;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
@@ -17,7 +18,7 @@ namespace Pandaros.Settlers.Items.Machines
     {
         public string name => nameof(TeleportPad);
         public float WorkTime => 10;
-        public ushort ItemIndex => TeleportPad.Item.ItemIndex;
+        public ItemId ItemIndex => ItemId.GetItemId(TeleportPad.Item.ItemIndex);
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
         {
             { MachineConstants.REFUEL, new RefuelTeleportPad() },
@@ -39,11 +40,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 10;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".HammerAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Repair");
 
-        public ushort PreformAction(Colony player, RoamingJobState state)
+        public ItemId PreformAction(Colony player, RoamingJobState state)
         {
             return TeleportPad.Repair(player, state);
         }
@@ -55,11 +56,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 5;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
 
-        public ushort PreformAction(Colony colony, RoamingJobState state)
+        public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
             return TeleportPad.Reload(colony, state);
         }
@@ -71,11 +72,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 4;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
 
-        public ushort PreformAction(Colony player, RoamingJobState state)
+        public ItemId PreformAction(Colony player, RoamingJobState state)
         {
             return TeleportPad.Refuel(player, state);
         }
@@ -90,9 +91,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
-        public static ushort Repair(Colony colony, RoamingJobState machineState)
+        public static ItemId Repair(Colony colony, RoamingJobState machineState)
         {
-            var retval = GameLoader.Repairing_Icon;
+            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
             if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
@@ -131,7 +132,7 @@ namespace Pandaros.Settlers.Items.Machines
                     foreach (var item in requiredForFix)
                         if (!stockpile.Contains(item))
                         {
-                            retval = item.Type;
+                            retval = ItemId.GetItemId(item.Type);
                             break;
                         }
                 }
@@ -149,12 +150,12 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Colony colony, RoamingJobState machineState)
+        public static ItemId Reload(Colony colony, RoamingJobState machineState)
         {
-            return GameLoader.Waiting_Icon;
+            return ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
         }
 
-        public static ushort Refuel(Colony colony, RoamingJobState machineState)
+        public static ItemId Refuel(Colony colony, RoamingJobState machineState)
         {
             if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
             {
@@ -175,18 +176,18 @@ namespace Pandaros.Settlers.Items.Machines
                 }
 
                 if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
-                    return Mana.Item.ItemIndex;
+                    return ItemId.GetItemId(Mana.Item.ItemIndex);
             }
 
-            return GameLoader.Refuel_Icon;
+            return ItemId.GetItemId(GameLoader.NAMESPACE + ".Refuel");
         }
 
         public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!Configuration.TeleportPadsRequireMachinists)
+            if (!SettlersConfiguration.TeleportPadsRequireMachinists)
                 return;
 
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var ms) &&
                     machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
@@ -409,7 +410,7 @@ namespace Pandaros.Settlers.Items.Machines
                         Teleport.TeleportTo(p, paired.Position.Vector);
                         AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
                         AudioManager.SendAudio(paired.Position.Vector, GameLoader.NAMESPACE + ".TeleportPadMachineAudio");
-                        _cooldown[p] = Configuration.GetorDefault("TeleportPadCooldown", 15) + startInt;
+                        _cooldown[p] = SettlersConfiguration.GetorDefault("TeleportPadCooldown", 15) + startInt;
                     }
                 }
             }

@@ -31,11 +31,11 @@ namespace Pandaros.Settlers
                 {
                     case "server_popup":
                         var ps = ColonyState.GetColonyState(data.Item1.ActiveColony);
-                        var maxToggleTimes = Configuration.GetorDefault("MaxSettlersToggle", 4);
+                        var maxToggleTimes = SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4);
 
                         if (ps != null)
                         {
-                            if (!Configuration.GetorDefault("SettlersEnabled", true))
+                            if (!SettlersConfiguration.GetorDefault("SettlersEnabled", true))
                                 PandaChat.Send(data.Item1, "The server administrator had disabled the changing of Settlers.", ChatColor.red);
                             else if (!HasToggeledMaxTimes(maxToggleTimes, ps, data.Item1))
                             {
@@ -65,9 +65,9 @@ namespace Pandaros.Settlers
             var array = new List<string>();
             CommandManager.SplitCommand(chat, array);
             var state          = ColonyState.GetColonyState(player.ActiveColony);
-            var maxToggleTimes = Configuration.GetorDefault("MaxSettlersToggle", 4);
+            var maxToggleTimes = SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4);
 
-            if (maxToggleTimes == 0 && !Configuration.GetorDefault("SettlersEnabled", true))
+            if (maxToggleTimes == 0 && !SettlersConfiguration.GetorDefault("SettlersEnabled", true))
             {
                 PandaChat.Send(player, "The server administrator had disabled the changing of Settlers.",
                                ChatColor.red);

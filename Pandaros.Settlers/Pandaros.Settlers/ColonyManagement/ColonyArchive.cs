@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedEarly, GameLoader.NAMESPACE + ".ColonyArchive.OnPlayerConnectedEarly")]
         public static void OnPlayerConnectedEarly(Players.Player p)
         {
-            if (!Configuration.OfflineColonies)
+            if (!SettlersConfiguration.OfflineColonies)
             {
                 foreach (Colony c in p.Colonies)
                 {
@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 var file = $"{folder}{colony.ColonyID}.json";
 
-                if (!Configuration.OfflineColonies)
+                if (!SettlersConfiguration.OfflineColonies)
                 {
                     if (!JSON.Deserialize(file, out var followers, false))
                         followers = new JSONNode(NodeType.Array);

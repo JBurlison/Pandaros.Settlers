@@ -120,12 +120,12 @@ namespace Pandaros.Settlers.Jobs
 
         public override List<string> ObjectiveCategories => new List<string>() { Items.Machines.MachineConstants.MECHANICAL };
         public override string JobItemKey => JOB_ITEM_KEY;
-        public override List<uint> OkStatus => new List<uint>
+        public override List<ItemId> OkStatus => new List<ItemId>
             {
-                GameLoader.Refuel_Icon,
-                GameLoader.Reload_Icon,
-                GameLoader.Repairing_Icon,
-                GameLoader.Waiting_Icon
+                ItemId.GetItemId(GameLoader.NAMESPACE + ".Refuel"),
+                ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload"),
+                ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing"),
+                ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting")
             };
     }
 

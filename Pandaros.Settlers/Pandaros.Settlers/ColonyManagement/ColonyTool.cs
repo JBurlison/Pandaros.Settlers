@@ -249,10 +249,10 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 ColonyState ps = ColonyState.GetColonyState(player.ActiveColony);
 
-                if (Configuration.GetorDefault("ColonistsRecruitment", true))
+                if (SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
                 {                  
                     player.ActiveColony.HappinessData.RecruitmentCostCalculator.GetCost(player.ActiveColony.HappinessData.CachedHappiness, player.ActiveColony, out float num);
-                    var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
+                    var cost = SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
 
                     if (cost < 1)
                         cost = 1;

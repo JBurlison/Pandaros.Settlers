@@ -1,5 +1,6 @@
 ﻿using Jobs;
 using NPC;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Shared;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             OriginalPosition = position;
         }
 
-        public virtual List<uint> OkStatus { get; } = new List<uint>();
+        public virtual List<ItemId> OkStatus { get; } = new List<ItemId>();
         public RoamingJobState TargetObjective { get; set; }
         public RoamingJobState PreviousObjective { get; set; }
         public Vector3Int OriginalPosition { get; private set; }
@@ -81,7 +82,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public override void OnNPCAtJob(ref NPCBase.NPCState state)
         {
-            var status        = GameLoader.Waiting_Icon;
+            var status        = ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
             var cooldown      = COOLDOWN;
             var allActionsComplete = false;
 
@@ -95,7 +96,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                     {
                         status   = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].PreformAction(Owner, TargetObjective);
                         cooldown = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].TimeToPreformAction;
-                        AudioManager.SendAudio(TargetObjective.Position.Vector, TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].AudoKey);
+                        AudioManager.SendAudio(TargetObjective.Position.Vector, TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].AudioKey);
                         actionFound = true;
                     }
 
@@ -122,7 +123,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
             if (_stuckCount > 5 || TargetObjective == null)
             {
                 state.JobIsDone = true;
-                status          = GameLoader.Waiting_Icon;
+                status          = ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
 
                 if (allActionsComplete)
                     cooldown = 0.5f;
@@ -136,9 +137,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
             }
 
             if (OkStatus.Contains(status))
-                state.SetIndicator(new IndicatorState(cooldown, status));
+                state.SetIndicator(new IndicatorState(cooldown, status.Id));
             else if (status != 0)
-                state.SetIndicator(new IndicatorState(cooldown, status, true));
+                state.SetIndicator(new IndicatorState(cooldown, status.Id, true));
             else
                 state.SetIndicator(new IndicatorState(cooldown, ColonyBuiltIn.ItemTypes.MISSINGERROR.Name));
 

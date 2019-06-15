@@ -2,6 +2,7 @@
 using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 using Shared;
@@ -84,7 +85,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     VoxelPhysics.CanSee(Position, p.Position))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
-                                                    new IndicatorState(2, GameLoader.Bow_Icon));
+                                                    new IndicatorState(2, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
 
                     AudioManager.SendAudio(Position, "bowShoot");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
@@ -95,7 +96,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                          VoxelPhysics.CanSee(Position, npc.Position.Vector))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
-                                                    new IndicatorState(2, GameLoader.Bow_Icon));
+                                                    new IndicatorState(2, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
 
                     AudioManager.SendAudio(Position, "bowShoot");
 

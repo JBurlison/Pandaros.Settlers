@@ -7,6 +7,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.Collections;
@@ -163,7 +164,7 @@ namespace Pandaros.Settlers.AI
                     }
                     else
                     {
-                        state.SetIndicator(new IndicatorState(COOLDOWN, GameLoader.MissingMonster_Icon, true));
+                        state.SetIndicator(new IndicatorState(COOLDOWN, ItemId.GetItemId(GameLoader.NAMESPACE + ".Monster").Id, true));
                         state.SetCooldown(COOLDOWN);
                         _waitingFor++;
                         _target = null;
@@ -240,7 +241,7 @@ namespace Pandaros.Settlers.AI
                     }
                     else
                     {
-                        state.SetIndicator(new IndicatorState(_weapon.CooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
+                        state.SetIndicator(new IndicatorState(_weapon.CooldownSearchingTarget, ItemId.GetItemId(GameLoader.NAMESPACE + ".Monster").Id, true));
                         state.SetCooldown(_weapon.CooldownMissingItem);
                         _target = null;
                     }
@@ -248,7 +249,7 @@ namespace Pandaros.Settlers.AI
             }
             catch (Exception)
             {
-                state.SetIndicator(new IndicatorState(_weapon.CooldownSearchingTarget, GameLoader.MissingMonster_Icon, true));
+                state.SetIndicator(new IndicatorState(_weapon.CooldownSearchingTarget, ItemId.GetItemId(GameLoader.NAMESPACE + ".Monster").Id, true));
                 state.SetCooldown(_weapon.CooldownMissingItem);
                 _target = null;
             }

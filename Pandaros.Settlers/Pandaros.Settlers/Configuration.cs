@@ -1,4 +1,6 @@
 ﻿using Chatting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -7,10 +9,9 @@ using System.IO;
 namespace Pandaros.Settlers
 {
     [ModLoader.ModManager]
-    public static class Configuration
+    public static class SettlersConfiguration
     {
-        private static readonly string _saveFileName = $"{GameLoader.SAVE_LOC}/{GameLoader.NAMESPACE}.json";
-        private static JSONNode _rootSettings = new JSONNode();
+        private static CSModConfiguration _configuration = new CSModConfiguration(GameLoader.NAMESPACE);
 
         public static GameDifficulty MinDifficulty
         {
@@ -60,7 +61,7 @@ namespace Pandaros.Settlers
 
         public static bool HasSetting(string setting)
         {
-            return _rootSettings.HasChild(setting);
+            return _configuration.HasSetting(setting);
         }
 
 
@@ -80,9 +81,9 @@ namespace Pandaros.Settlers
 
         public static void Reload()
         {
-            if (File.Exists(_saveFileName) && JSON.Deserialize(_saveFileName, out var config))
+            if (File.Exists(_configuration.SaveFile) && JSON.Deserialize(_configuration.SaveFile, out var config))
             {
-                _rootSettings = config;
+                _configuration.SettingsRoot = config;
 
                 if (config.TryGetAs("GameDifficulties", out JSONNode diffs))
                     foreach (var diff in diffs.LoopArray())
@@ -100,22 +101,66 @@ namespace Pandaros.Settlers
             foreach (var diff in GameDifficulty.GameDifficulties.Values)
                 diffs.AddToArray(diff.ToJson());
 
-            _rootSettings.SetAs("GameDifficulties", diffs);
+            _configuration.SettingsRoot.SetAs("GameDifficulties", diffs);
 
-            JSON.Serialize(_saveFileName, _rootSettings);
+            _configuration.Save();
         }
 
         public static T GetorDefault<T>(string key, T defaultVal)
         {
-            if (!_rootSettings.HasChild(key))
-                SetValue(key, defaultVal);
-
-            return _rootSettings.GetAs<T>(key);
+            return _configuration.GetorDefault(key, defaultVal);
         }
 
         public static void SetValue<T>(string key, T val)
         {
-            _rootSettings.SetAs(key, val);
+            _configuration.SetValue(key, val);
+        }
+    }
+
+
+    public class CSModConfiguration
+    {
+        public string SaveFile { get; }
+        public JSONNode SettingsRoot { get; set; }
+
+        public CSModConfiguration(string configurationFileName)
+        {
+            SaveFile = $"{GameLoader.SAVE_LOC}/{configurationFileName}.json";
+
+            if (File.Exists(SaveFile))
+                SettingsRoot = JSON.Deserialize(SaveFile);
+            else
+                SettingsRoot = new JSONNode();
+        }
+
+        public void Reload()
+        {
+            if (File.Exists(SaveFile) && JSON.Deserialize(SaveFile, out var config))
+                SettingsRoot = config;
+        }
+
+        public void Save()
+        {
+            File.WriteAllText(SaveFile, JsonConvert.SerializeObject(SettingsRoot));
+            JSON.Serialize(SaveFile, SettingsRoot);
+        }
+
+        public bool HasSetting(string setting)
+        {
+            return SettingsRoot.HasChild(setting);
+        }
+
+        public T GetorDefault<T>(string key, T defaultVal)
+        {
+            if (!SettingsRoot.HasChild(key))
+                SetValue(key, defaultVal);
+
+            return SettingsRoot.GetAs<T>(key);
+        }
+
+        public void SetValue<T>(string key, T val)
+        {
+            SettingsRoot.SetAs<T>(key, val);
             Save();
         }
     }
@@ -135,16 +180,16 @@ namespace Pandaros.Settlers
 
                 if (array.Count == 3)
                 {
-                    if (Configuration.HasSetting(array[1]))
+                    if (SettlersConfiguration.HasSetting(array[1]))
                     {
                         if (int.TryParse(array[2], out var set))
-                            Configuration.SetValue(array[1], set);
+                            SettlersConfiguration.SetValue(array[1], set);
                         else if (float.TryParse(array[2], out var fset))
-                            Configuration.SetValue(array[1], fset);
+                            SettlersConfiguration.SetValue(array[1], fset);
                         else if (bool.TryParse(array[2], out var bset))
-                            Configuration.SetValue(array[1], bset);
+                            SettlersConfiguration.SetValue(array[1], bset);
                         else
-                            Configuration.SetValue(array[1], array[2]);
+                            SettlersConfiguration.SetValue(array[1], array[2]);
                     }
                     else
                     {
@@ -153,7 +198,7 @@ namespace Pandaros.Settlers
                 }
                 else
                 {
-                    Configuration.Reload();
+                    SettlersConfiguration.Reload();
                 }
             }
 

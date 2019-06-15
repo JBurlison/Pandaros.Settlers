@@ -222,27 +222,27 @@ namespace Pandaros.Settlers.ColonyManagement
             if (p == null || p.Colonies == null || p.Colonies.Length == 0)
                 return;
 
-            if (Configuration.GetorDefault("SettlersEnabled", true) &&
-                Configuration.GetorDefault("MaxSettlersToggle", 4) > 0 &&
+            if (SettlersConfiguration.GetorDefault("SettlersEnabled", true) &&
+                SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4) > 0 &&
                 p.ActiveColony != null)
             {
                 var cs = ColonyState.GetColonyState(p.ActiveColony);
 
-                if (cs.SettlersEnabled && Configuration.GetorDefault("ColonistsRecruitment", true))
+                if (cs.SettlersEnabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
                     PandaChat.Send(p,
                                    string
                                       .Format("Recruiting over {0} colonists will cost the base food cost plus a compounding {1} food. This compounding value resets once per in game day. If you build it... they will come.",
                                               MAX_BUYABLE,
-                                              Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2)),
+                                              SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", 2)),
                                    ChatColor.orange);
 
-                if (cs.SettlersToggledTimes < Configuration.GetorDefault("MaxSettlersToggle", 4))
+                if (cs.SettlersToggledTimes < SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4))
                 {
                     var settlers = cs.SettlersEnabled ? "on" : "off";
 
-                    if (Configuration.GetorDefault("MaxSettlersToggle", 4) > 0)
+                    if (SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4) > 0)
                         PandaChat.Send(p,
-                                       $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {Configuration.GetorDefault("MaxSettlersToggle", 4)} times.",
+                                       $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4)} times.",
                                        ChatColor.orange);
                     else
                         PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'",
@@ -274,11 +274,11 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 if (ps.SettlersEnabled)
                 {
-                    if (Configuration.GetorDefault("ColonistsRecruitment", true))
+                    if (SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
                     {
                         if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
                         {
-                            var cost = Configuration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
+                            var cost = SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
                             var num = 0f;
 
                             if (cost < 1)

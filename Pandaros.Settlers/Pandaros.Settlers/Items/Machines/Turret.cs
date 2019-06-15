@@ -1,6 +1,7 @@
 ﻿using Monsters;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.JSON;
@@ -18,12 +19,12 @@ namespace Pandaros.Settlers.Items.Machines
         {
             name = setting.Name;
             WorkTime = setting.WorkTime;
-            ItemIndex = Turret.TurretTypes[setting.Name].ItemIndex;
+            ItemIndex = ItemId.GetItemId(Turret.TurretTypes[setting.Name].ItemIndex);
         }
 
         public string name { get; private set; }
         public float WorkTime { get; private set; }
-        public ushort ItemIndex { get; private set; }
+        public ItemId ItemIndex { get; private set; }
 
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
         {
@@ -46,11 +47,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 10;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".HammerAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".HammerAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Repairing_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-        public ushort PreformAction(Colony colony, RoamingJobState state)
+        public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
             return Turret.Repair(colony, state);
         }
@@ -62,11 +63,11 @@ namespace Pandaros.Settlers.Items.Machines
 
         public float TimeToPreformAction => 5;
 
-        public string AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        public ushort ObjectiveLoadEmptyIcon => GameLoader.Reload_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
 
-        public ushort PreformAction(Colony colony, RoamingJobState state)
+        public ItemId PreformAction(Colony colony, RoamingJobState state)
         {
             return Turret.Reload(colony, state);
         }
@@ -89,11 +90,11 @@ namespace Pandaros.Settlers.Items.Machines
         public static readonly string CROSSBOW_NAMESPACE = GameLoader.NAMESPACE + ".CrossbowTurret";
         public static readonly string MATCHLOCK_NAMESPACE = GameLoader.NAMESPACE + ".MatchlockTurret";
 
-        public static ushort Repair(Colony colony, RoamingJobState machineState)
+        public static ItemId Repair(Colony colony, RoamingJobState machineState)
         {
-            var retval = GameLoader.Repairing_Icon;
+            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 try
                 {
                     if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
@@ -120,7 +121,7 @@ namespace Pandaros.Settlers.Items.Machines
                             foreach (var item in requiredForFix)
                                 if (!stockpile.Contains(item) && item.Type != 0)
                                 {
-                                    retval = item.Type;
+                                    retval = ItemId.GetItemId(item.Type);
                                     break;
                                 }
                         }
@@ -137,11 +138,11 @@ namespace Pandaros.Settlers.Items.Machines
             return retval;
         }
 
-        public static ushort Reload(Colony colony, RoamingJobState machineState)
+        public static ItemId Reload(Colony colony, RoamingJobState machineState)
         {
-            var retval = GameLoader.Reload_Icon;
+            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Reloading");
 
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 try
                 {
                     if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.GetActionEnergy(MachineConstants.RELOAD) < .75f)
@@ -159,7 +160,7 @@ namespace Pandaros.Settlers.Items.Machines
                             }
 
                         if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
-                            retval = TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type;
+                            retval = ItemId.GetItemId(TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type);
                     }
                 }
                 catch (Exception ex)
@@ -172,7 +173,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 try
                 {
                     if (TurretSettings.ContainsKey(machineState.RoamObjective) &&

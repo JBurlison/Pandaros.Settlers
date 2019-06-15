@@ -1,4 +1,5 @@
-﻿using Pandaros.Settlers.Items;
+﻿using Newtonsoft.Json;
+using Pandaros.Settlers.Items;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -20,16 +21,14 @@ namespace Pandaros.Settlers.Extender.Providers
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Generate Type Loaded----------------------");
             var i = 0;
-            StringBuilder json = new StringBuilder();
-            json.AppendLine("[");
+            List<ICSGenerateType> json = new List<ICSGenerateType>();
 
             foreach (var item in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(item) is ICSGenerateType generateType &&
                     !string.IsNullOrEmpty(generateType.typeName))
                 {
-                    json.AppendLine(generateType.JsonSerialize().ToString());
-                    json.Append(",");
+                    json.Add(generateType);
                     
                     sb.Append($"{generateType.typeName}, ");
                     i++;
@@ -44,11 +43,11 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            if (sb.Length > 3)
+            if (json.Count != 0)
             {
-                sb.Replace(',', ']', sb.Length - 1, 1);
-                PandaLogger.Log(sb.ToString());
-                ItemTypesServer.BlockRotator.Patches.AddPatch(new ItemTypesServer.BlockRotator.BlockGeneratePatch(GameLoader.MOD_FOLDER, -99999, JSON.DeserializeString(json.ToString())));
+                var strValue = JsonConvert.SerializeObject(json, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+                PandaLogger.Log(strValue);
+                ItemTypesServer.BlockRotator.Patches.AddPatch(new ItemTypesServer.BlockRotator.BlockGeneratePatch(GameLoader.MOD_FOLDER, -99999, JSON.DeserializeString(strValue)));
             }
 
             PandaLogger.Log(ChatColor.lime, sb.ToString());

@@ -1,5 +1,6 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public class RefuelMachineAction : IRoamingJobObjectiveAction
     {
-        public static Dictionary<ushort, float> FuelValues = new Dictionary<ushort, float>();
+        public static Dictionary<ItemId, float> FuelValues = new Dictionary<ItemId, float>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.SetFuelValues")]
         public static void SetFuelValues()
@@ -20,17 +21,17 @@ namespace Pandaros.Settlers.Items.Machines
             FuelValues[ColonyBuiltIn.ItemTypes.LEAVESTAIGA] = .02f;
         }
 
-        string INameable.name => MachineConstants.REFUEL;
+        public string name => MachineConstants.REFUEL;
 
-        float IRoamingJobObjectiveAction.TimeToPreformAction => 4;
+        public float TimeToPreformAction => 4;
 
-        string IRoamingJobObjectiveAction.AudoKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
 
-        ushort IRoamingJobObjectiveAction.ObjectiveLoadEmptyIcon => GameLoader.Refuel_Icon;
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Refuel");
 
-        ushort IRoamingJobObjectiveAction.PreformAction(Colony colony, RoamingJobState machineState)
+        public ItemId PreformAction(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && Configuration.OfflineColonies || colony.OwnerIsOnline())
+            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
             {
                 if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
                 {
@@ -51,8 +52,7 @@ namespace Pandaros.Settlers.Items.Machines
                 }
             }
 
-            return GameLoader.Refuel_Icon;
-            
+            return ObjectiveLoadEmptyIcon;
         }
     }
 }

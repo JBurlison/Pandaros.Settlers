@@ -5,6 +5,7 @@ using NPC;
 using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Monsters.Bosses;
 using Pipliz;
@@ -44,10 +45,10 @@ namespace Pandaros.Settlers.Monsters
         public static bool BossActive { get; private set; }
 
         public static int MinBossSpawnTimeSeconds // 15 minutes
-            => Configuration.GetorDefault(nameof(MinBossSpawnTimeSeconds), 900);
+            => SettlersConfiguration.GetorDefault(nameof(MinBossSpawnTimeSeconds), 900);
 
         public static int MaxBossSpawnTimeSeconds // 1/2 hour
-            => Configuration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 1800);
+            => SettlersConfiguration.GetorDefault(nameof(MaxBossSpawnTimeSeconds), 1800);
 
         public static event EventHandler<BossSpawnedEvent> BossSpawned;
 
@@ -90,7 +91,7 @@ namespace Pandaros.Settlers.Monsters
 
                     if (cs.BossesEnabled &&
                         cs.ColonyRef.OwnerIsOnline() &&
-                        colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
+                        colony.FollowerCount > SettlersConfiguration.GetorDefault("MinColonistsCountForBosses", 100))
                     {
                         if (CurrentPandaBoss != null && !SpawnedBosses.ContainsKey(cs))
                         {
@@ -186,7 +187,7 @@ namespace Pandaros.Settlers.Monsters
 
                         if (cs.BossesEnabled &&
                             cs.ColonyRef.OwnerIsOnline() &&
-                            colony.FollowerCount > Configuration.GetorDefault("MinColonistsCountForBosses", 100))
+                            colony.FollowerCount > SettlersConfiguration.GetorDefault("MinColonistsCountForBosses", 100))
                         {
 
                             if (SpawnedBosses.ContainsKey(cs) &&
@@ -197,7 +198,7 @@ namespace Pandaros.Settlers.Monsters
                                 {
                                     Indicator.SendIconIndicatorNear(new Vector3Int(SpawnedBosses[cs].Position),
                                                                     SpawnedBosses[cs].ID,
-                                                                    new IndicatorState(1, GameLoader.Poisoned_Icon,
+                                                                    new IndicatorState(1, ItemId.GetItemId(GameLoader.NAMESPACE + ".Poisoned").Id,
                                                                                         false, false));
 
                                     colony.TemporaryData.SetAs("BossIndicator", Time.SecondsSinceStartInt + 1);

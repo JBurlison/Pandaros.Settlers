@@ -1,6 +1,7 @@
 ﻿using Chatting;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.ColonyManagement;
+using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Monsters;
@@ -42,16 +43,6 @@ namespace Pandaros.Settlers
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
-        public static ushort MissingMonster_Icon { get; private set; }
-        public static ushort Repairing_Icon { get; private set; }
-        public static ushort Refuel_Icon { get; private set; }
-        public static ushort Waiting_Icon { get; private set; }
-        public static ushort Reload_Icon { get; private set; }
-        public static ushort Broken_Icon { get; private set; }
-        public static ushort Empty_Icon { get; private set; }
-        public static ushort NOAMMO_Icon { get; private set; }
-        public static ushort Poisoned_Icon { get; private set; }
-        public static ushort Bow_Icon { get; private set; }
         public static JSONNode ModInfo { get; private set; }
         public static Dictionary<string, JSONNode> AllModInfos { get; private set; } = new Dictionary<string, JSONNode>();
         public static bool FileWasCopied { get; set; }
@@ -281,80 +272,6 @@ namespace Pandaros.Settlers
             {
                 Console.WriteLine(excpt.Message);
             }
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, NAMESPACE + ".addlittypes")]
-        public static void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
-        {
-            var monsterNode = new JSONNode();
-            monsterNode["icon"] = new JSONNode(ICON_PATH + "NoMonster.png");
-            var monster = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Monster", monsterNode);
-            MissingMonster_Icon = monster.ItemIndex;
-
-            items.Add(NAMESPACE + ".Monster", monster);
-
-            var repairingNode = new JSONNode();
-            repairingNode["icon"] = new JSONNode(ICON_PATH + "Repairing.png");
-            var repairing = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Repairing", repairingNode);
-            Repairing_Icon = repairing.ItemIndex;
-
-            items.Add(NAMESPACE + ".Repairing", repairing);
-
-            var refuelNode = new JSONNode();
-            refuelNode["icon"] = new JSONNode(ICON_PATH + "Refuel.png");
-            var refuel = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Refuel", refuelNode);
-            Refuel_Icon = refuel.ItemIndex;
-
-            items.Add(NAMESPACE + ".Refuel", refuel);
-
-            var waitingNode = new JSONNode();
-            waitingNode["icon"] = new JSONNode(ICON_PATH + "Waiting.png");
-            var waiting = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Waiting", waitingNode);
-            Waiting_Icon = waiting.ItemIndex;
-
-            items.Add(NAMESPACE + ".Waiting", waiting);
-
-            var reloadNode = new JSONNode();
-            reloadNode["icon"] = new JSONNode(ICON_PATH + "Reload.png");
-            var reload = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Reload", reloadNode);
-            Reload_Icon = reload.ItemIndex;
-
-            items.Add(NAMESPACE + ".Reload", reload);
-
-            var brokenNode = new JSONNode();
-            brokenNode["icon"] = new JSONNode(ICON_PATH + "Broken.png");
-            var broken = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Broken", brokenNode);
-            Broken_Icon = broken.ItemIndex;
-
-            items.Add(NAMESPACE + ".Broken", broken);
-
-            var emptyNode = new JSONNode();
-            emptyNode["icon"] = new JSONNode(ICON_PATH + "Empty.png");
-            var empty = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Empty", emptyNode);
-            Empty_Icon = empty.ItemIndex;
-
-            items.Add(NAMESPACE + ".Empty", empty);
-
-            var noAmmoNode = new JSONNode();
-            noAmmoNode["icon"] = new JSONNode(ICON_PATH + "NoAmmo.png");
-            var noAmmo = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".NoAmmo", emptyNode);
-            NOAMMO_Icon = noAmmo.ItemIndex;
-
-            items.Add(NAMESPACE + ".NoAmmo", noAmmo);
-
-            var poisonedNode = new JSONNode();
-            poisonedNode["icon"] = new JSONNode(ICON_PATH + "Poisoned.png");
-            var poisoned = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".Poisoned", poisonedNode);
-            Poisoned_Icon = poisoned.ItemIndex;
-
-            items.Add(NAMESPACE + ".Poisoned", poisoned);
-
-            var bowNode = new JSONNode();
-            bowNode["icon"] = new JSONNode(ICON_PATH + "bow.png");
-            var bow = new ItemTypesServer.ItemTypeRaw(NAMESPACE + ".BowIcon", bowNode);
-            Bow_Icon = bow.ItemIndex;
-
-            items.Add(NAMESPACE + ".BowIcon", bow);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, NAMESPACE + ".AfterStartup")]

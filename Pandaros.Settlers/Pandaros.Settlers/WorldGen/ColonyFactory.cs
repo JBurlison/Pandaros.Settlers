@@ -98,7 +98,7 @@ namespace Pandaros.Settlers.WorldGen
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterNetworkSetup, GameLoader.NAMESPACE + ".WorldGen.ColonyFactory.AfterNetworkSetup")]
         public static void AfterNetworkSetup()
         {
-            bool placed = Configuration.GetorDefault("NpcColoniesPlaced", false);
+            bool placed = SettlersConfiguration.GetorDefault("NpcColoniesPlaced", false);
 
             if (!placed)
             {
@@ -152,7 +152,7 @@ namespace Pandaros.Settlers.WorldGen
                         }
                     }
 
-                    Configuration.SetValue("NpcColoniesPlaced", true);
+                    SettlersConfiguration.SetValue("NpcColoniesPlaced", true);
                 });
 
                 t.IsBackground = true;

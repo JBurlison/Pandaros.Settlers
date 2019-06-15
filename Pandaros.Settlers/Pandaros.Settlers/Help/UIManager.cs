@@ -115,12 +115,12 @@ namespace Pandaros.Settlers.Help
             if (json.HasChild("width"))
                 menu.Width = json.GetAs<int>("width");
             else
-                menu.Width = Configuration.GetorDefault("MenuWidth", 1000);
+                menu.Width = SettlersConfiguration.GetorDefault("MenuWidth", 1000);
 
             if (json.HasChild("height"))
                 menu.Height = json.GetAs<int>("height");
             else
-                menu.Height = Configuration.GetorDefault("MenuHeight", 700);
+                menu.Height = SettlersConfiguration.GetorDefault("MenuHeight", 700);
 
             foreach (JSONNode item in (json.GetAs<JSONNode>("Items")).LoopArray())
                 if (LoadItem(item, ref menu, player, out var menuItem))

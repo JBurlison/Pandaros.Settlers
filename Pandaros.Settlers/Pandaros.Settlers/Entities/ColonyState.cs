@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Entities
         public Colony ColonyRef { get; set; }
         public int FaiedBossSpawns { get; set; }
         public bool CallToArmsEnabled { get; set; }
-        public GameDifficulty Difficulty { get; set; } = Configuration.DefaultDifficulty;
+        public GameDifficulty Difficulty { get; set; } = SettlersConfiguration.DefaultDifficulty;
         public bool BossesEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;
         public bool NotifySettlers { get; set; } = true;
@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Entities
             get
             {
                 if (Difficulty == null)
-                    Difficulty = Configuration.DefaultDifficulty;
+                    Difficulty = SettlersConfiguration.DefaultDifficulty;
 
                 return Difficulty.Name;
             }
@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Entities
             set
             {
                 if (value != null && !GameDifficulty.GameDifficulties.ContainsKey(value))
-                    Difficulty = Configuration.DefaultDifficulty;
+                    Difficulty = SettlersConfiguration.DefaultDifficulty;
                 else
                     Difficulty = GameDifficulty.GameDifficulties[value];
             }

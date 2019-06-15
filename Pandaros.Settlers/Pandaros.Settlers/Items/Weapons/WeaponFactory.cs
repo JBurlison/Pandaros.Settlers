@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Items.Weapons
         {
             if (ServerManager.ColonyTracker != null)
             {
-                var punchDamage = Configuration.GetorDefault("ColonistPunchDamage", 30);
+                var punchDamage = SettlersConfiguration.GetorDefault("ColonistPunchDamage", 30);
 
                 foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                 {

@@ -146,8 +146,8 @@ namespace Pandaros.Settlers
             {
                 var cs = ColonyState.GetColonyState(colony);
 
-                if (cs != null && cs.Difficulty.Rank < Configuration.MinDifficulty.Rank)
-                    cs.Difficulty = Configuration.MinDifficulty;
+                if (cs != null && cs.Difficulty.Rank < SettlersConfiguration.MinDifficulty.Rank)
+                    cs.Difficulty = SettlersConfiguration.MinDifficulty;
             }
         }
     }
@@ -222,7 +222,7 @@ namespace Pandaros.Settlers
                 return ChangeDifficulty(player, state, difficulty);
             }
 
-            if (!Configuration.DifficutlyCanBeChanged)
+            if (!SettlersConfiguration.DifficutlyCanBeChanged)
                 PandaChat.Send(player, "The server administrator had disabled the changing of game difficulty.",
                                ChatColor.green);
 
@@ -231,7 +231,7 @@ namespace Pandaros.Settlers
 
         public static bool ChangeDifficulty(Players.Player player, ColonyState state, string difficulty)
         {
-            if (Configuration.DifficutlyCanBeChanged)
+            if (SettlersConfiguration.DifficutlyCanBeChanged)
             {
                 if (!GameDifficulty.GameDifficulties.ContainsKey(difficulty))
                 {
@@ -241,7 +241,7 @@ namespace Pandaros.Settlers
 
                 var newDiff = GameDifficulty.GameDifficulties[difficulty];
 
-                if (newDiff.Rank >= Configuration.MinDifficulty.Rank)
+                if (newDiff.Rank >= SettlersConfiguration.MinDifficulty.Rank)
                 {
                     state.Difficulty = newDiff;
                     SettlerManager.UpdateFoodUse(state);
@@ -256,7 +256,7 @@ namespace Pandaros.Settlers
 
                 NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
                 PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.",
-                               ChatColor.green, Configuration.MinDifficulty.Name);
+                               ChatColor.green, SettlersConfiguration.MinDifficulty.Name);
             }
 
             return true;
