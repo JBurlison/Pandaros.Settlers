@@ -443,7 +443,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
                 {
                     var multiplier = .7 / state.ColonyRef.FollowerCount -
-                                     state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.ReducedWaste), 0f);
+                                     state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(GeneralResearch.ReducedWaste), 0f);
 
                     food += (float) (_baseFoodPerHour * multiplier);
                     food *= state.Difficulty.FoodMultiplier;
@@ -472,7 +472,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 if (Time.SecondsSinceStartDouble > state.NextGenTime && state.ColonyRef.FollowerCount >= MAX_BUYABLE)
                 {
                     var chance =
-                        state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.SettlerChance), 0f) +
+                        state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(GeneralResearch.SettlerChance), 0f) +
                         state.Difficulty.AdditionalChance;
 
                     chance += SettlerEvaluation.SpawnChance(state);
@@ -492,7 +492,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                         try
                         {
-                            var skillChance = state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.SkilledLaborer), 0f);
+                            var skillChance = state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(GeneralResearch.SkilledLaborer), 0f);
                             var numbSkilled = 0;
                             rand = Random.NextFloat();
 
@@ -500,7 +500,7 @@ namespace Pandaros.Settlers.ColonyManagement
                             {
                                 if (skillChance > rand)
                                     numbSkilled = Pipliz.Random.Next(1,
-                                                        2 + Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(PandaResearch.NumberSkilledLaborer), 0f)));
+                                                        2 + Pipliz.Math.RoundToInt(state.ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(GeneralResearch.NumberSkilledLaborer), 0f)));
                             }
                             catch (Exception ex)
                             {

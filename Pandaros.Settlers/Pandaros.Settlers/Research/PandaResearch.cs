@@ -27,8 +27,140 @@ namespace Pandaros.Settlers.Research
         public ColonyScienceState Manager { get; }
     }
 
+    public class PandaResearch : AbstractResearchable
+    {
+        public string TmpValueKey { get; } = string.Empty;
+        public int Level { get; } = 1;
+        public float Value { get; }
+        public float BaseValue { get; }
+        public string LevelKey { get; } = string.Empty;
+        public override string RequiredScienceBiome { get; set; }
+        public string Key { get; private set; }
+        public string Icon { get; private set; }
+        public int IterationCount { get; private set; }
+        public List<string> Dependantcies { get; private set; } = new List<string>();
+        public List<IResearchableCondition> Conditions { get; private set; } = new List<IResearchableCondition>();
+
+        public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
+
+        public PandaResearch(Dictionary<ItemId, int> requiredItems,
+                           int level,
+                           string name,
+                           float baseValue,
+                           string iconPath,
+                           List<string> dependancies = null,
+                           int baseIterationCount = 10,
+                           bool addLevelToName = true) :
+           this(requiredItems.ToDictionary(k => k.Key.Id, v => v.Value), level, name, baseValue, iconPath, dependancies, baseIterationCount, addLevelToName)
+        {
+
+        }
+
+        public PandaResearch(Dictionary<ushort, int> requiredItems,
+                         int level,
+                         string name,
+                         float baseValue,
+                         string iconPath,
+                         List<string> dependancies = null,
+                         int baseIterationCount = 10,
+                         bool addLevelToName = true)
+        {
+            BaseValue = baseValue;
+            Value = baseValue * level;
+            Level = level;
+            TmpValueKey = GetResearchKey(name);
+            LevelKey = GetLevelKey(name);
+
+            Key = TmpValueKey + level;
+            Icon = iconPath + name + level + ".png";
+
+            if (!addLevelToName)
+                Icon = iconPath + name + ".png";
+
+            IterationCount = baseIterationCount + 2 * level;
+            List<InventoryItem> iterationItems = new List<InventoryItem>();
+
+            foreach (var kvp in requiredItems)
+            {
+                var val = kvp.Value;
+
+                if (level > 1)
+                    for (var i = 1; i <= level; i++)
+                        if (i % 2 == 0)
+                            val += kvp.Value * 2;
+                        else
+                            val += kvp.Value;
+
+                iterationItems.Add(new InventoryItem(kvp.Key, val));
+            }
+
+            Conditions.Add(new ScientistCyclesCondition() { CycleCount = IterationCount, ItemsPerCycle = iterationItems });
+
+            if (level != 1)
+                Dependantcies.Add(TmpValueKey + (level - 1));
+
+            if (dependancies != null)
+                foreach (var dep in dependancies)
+                    Dependantcies.Add(dep);
+
+            PandaLogger.LogToFile($"PandaResearch Added: {name} Level {level}");
+        }
+
+        public override void OnResearchComplete(ColonyScienceState manager, EResearchCompletionReason reason)
+        {
+            try
+            {
+                foreach (var p in manager.Colony.Owners)
+                {
+                    p.GetTempValues(true).Set(TmpValueKey, Value);
+                    p.GetTempValues(true).Set(LevelKey, Level);
+                }
+
+                manager.Colony.TemporaryData.SetAs(TmpValueKey, Value);
+                manager.Colony.TemporaryData.SetAs(LevelKey, Level);
+
+                if (ResearchComplete != null)
+                    ResearchComplete(this, new ResearchCompleteEventArgs(this, manager));
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex, $"Error OnResearchComplete for {TmpValueKey} Level: {Level}.");
+            }
+        }
+
+        public override string GetKey()
+        {
+            return Key;
+        }
+
+        public override string GetIcon()
+        {
+            return Icon;
+        }
+
+        public override IList<string> GetDependencies()
+        {
+            return Dependantcies;
+        }
+
+        public override List<IResearchableCondition> GetConditions()
+        {
+            return Conditions;
+        }
+
+        public static string GetLevelKey(string researchName)
+        {
+            return GetResearchKey(researchName) + "_Level";
+        }
+
+        public static string GetResearchKey(string researchName)
+        {
+            return GameLoader.NAMESPACE + "." + researchName;
+        }
+    }
+
     [ModLoader.ModManager]
-    public class PandaResearch : BaseResearchable
+    public class GeneralResearch
     {
         public const string Settlement = "Settlement";
         public const string Machines = "Machines";
@@ -53,102 +185,6 @@ namespace Pandaros.Settlers.Research
         public const string NumberSkilledLaborer = "NumberSkilledLaborer";
         public const string SkilledLaborer = "SkilledLaborer";
         private static readonly Dictionary<string, float> _baseSpeed = new Dictionary<string, float>();
-
-        public PandaResearch(Dictionary<ItemId, int> requiredItems,
-                            int level,
-                            string name,
-                            float baseValue,
-                            string iconPath,
-                            List<string> dependancies = null,
-                            int baseIterationCount = 10,
-                            bool addLevelToName = true) : 
-            this(requiredItems.ToDictionary(k => k.Key.Id, v => v.Value), level, name, baseValue, iconPath, dependancies, baseIterationCount, addLevelToName)
-        {
-
-        }
-            public PandaResearch(Dictionary<ushort, int> requiredItems, 
-                             int level, 
-                             string name,
-                             float baseValue,
-                             string iconPath,
-                             List<string> dependancies = null, 
-                             int baseIterationCount = 10,
-                             bool addLevelToName = true)
-        {
-            BaseValue   = baseValue;
-            Value       = baseValue * level;
-            Level       = level;
-            TmpValueKey = GetResearchKey(name);
-            LevelKey    = GetLevelKey(name);
-
-            Key = TmpValueKey + level;
-            Icon = iconPath + name + level + ".png";
-
-            if (!addLevelToName)
-                Icon = iconPath + name + ".png";
-
-            IterationCount = baseIterationCount + 2 * level;
-
-            foreach (var kvp in requiredItems)
-            {
-                var val = kvp.Value;
-
-                if (level > 1)
-                    for (var i = 1; i <= level; i++)
-                        if (i % 2 == 0)
-                            val += kvp.Value * 2;
-                        else
-                            val += kvp.Value;
-
-                AddIterationRequirement(kvp.Key, val);
-            }
-
-            if (level != 1)
-                AddDependency(TmpValueKey + (level - 1));
-
-            if (dependancies != null)
-                foreach (var dep in dependancies)
-                    AddDependency(dep);
-
-            PandaLogger.LogToFile($"PandaResearch Added: {name} Level {level}");
-        }
-
-        public string TmpValueKey { get; } = string.Empty;
-        public int Level { get; } = 1;
-        public float Value { get; }
-        public float BaseValue { get; }
-        public string LevelKey { get; } = string.Empty;
-
-        public event EventHandler<ResearchCompleteEventArgs> ResearchComplete;
-
-        public override void OnResearchComplete(ColonyScienceState manager, EResearchCompletionReason reason)
-        {
-            try
-            {
-                foreach (var p in manager.Colony.Owners)
-                {
-                    p.GetTempValues(true).Set(TmpValueKey, Value);
-                    p.GetTempValues(true).Set(LevelKey, Level);
-                }
-
-                manager.Colony.TemporaryData.SetAs(TmpValueKey, Value);
-                manager.Colony.TemporaryData.SetAs(LevelKey, Level);
-                
-                if (ResearchComplete != null)
-                    ResearchComplete(this, new ResearchCompleteEventArgs(this, manager));
-            }
-            catch (Exception ex)
-            {
-                PandaLogger.LogError(ex, $"Error OnResearchComplete for {TmpValueKey} Level: {Level}.");
-            }
-
-            base.OnResearchComplete(manager, reason);
-        }
-
-        public static string GetLevelKey(string researchName)
-        {
-            return GetResearchKey(researchName) + "_Level";
-        }
 
         public static string GetResearchKey(string researchName)
         {

@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Items
                             {
                                 var sk = c.ScienceData.CompletedCycles.FirstOrDefault(kvp => kvp.Key.Researchable.GetKey() == item.RequiredScience).Key;
 
-                                if (sk.Researchable == null || sk.Researchable.GetResearchIterationCount() != c.ScienceData.CompletedCycles[sk])
+                                if (sk.Researchable == null || sk.Researchable.AreConditionsMet(c.ScienceData))
                                     canAdd = false;
                             }
 

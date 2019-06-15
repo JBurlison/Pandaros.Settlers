@@ -25,9 +25,9 @@ namespace Pandaros.Settlers.Jobs
         public float BaseValue => 0.05f;
         public List<string> Dependancies => new List<string>()
             {
-                PandaResearch.GetResearchKey(PandaResearch.ArmorSmithing + 4),
-                PandaResearch.GetResearchKey(PandaResearch.SwordSmithing + 4),
-                PandaResearch.GetResearchKey(PandaResearch.Elementium + 1),
+                PandaResearch.GetResearchKey(GeneralResearch.ArmorSmithing + 4),
+                PandaResearch.GetResearchKey(GeneralResearch.SwordSmithing + 4),
+                PandaResearch.GetResearchKey(GeneralResearch.Elementium + 1),
                 ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
                 ColonyBuiltIn.Research.SCIENCEBAGCOLONY
             };

@@ -93,14 +93,14 @@ namespace Pandaros.Settlers.Jobs
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".SettlerManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
         {
-            if (p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Knights), 0f) == 1f)
+            if (p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(GeneralResearch.Knights), 0f) == 1f)
                 GivePlayerPatrolTool(p);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerRespawn, GameLoader.NAMESPACE + ".Jobs.PatrolTool.OnPlayerRespawn")]
         public static void OnPlayerRespawn(Players.Player p)
         {
-            if (p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(PandaResearch.Knights), 0f) == 1f)
+            if (p.GetTempValues(true).GetOrDefault(PandaResearch.GetResearchKey(GeneralResearch.Knights), 0f) == 1f)
                 GivePlayerPatrolTool(p);
         }
 
