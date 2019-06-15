@@ -27,8 +27,9 @@ namespace Pandaros.Settlers.Research
             if (pandaResearch.Conditions != null && pandaResearch.Conditions.Count > 0)
                 Conditions.AddRange(pandaResearch.Conditions);
 
-            AddCraftingCondition(pandaResearch.RequiredItems.ToDictionary(k => k.Key.Id, v => v.Value), currentLevel);
             Initialize(currentLevel, pandaResearch.name, pandaResearch.BaseValue, pandaResearch.IconDirectory, pandaResearch.Dependancies, pandaResearch.BaseIterationCount, pandaResearch.AddLevelToName);
+            AddCraftingCondition(pandaResearch.RequiredItems.ToDictionary(k => k.Key.Id, v => v.Value), currentLevel);
+            Register(currentLevel, pandaResearch.name);
         }
 
         public PandaResearch(Dictionary<ItemId, int> requiredItems,
@@ -53,8 +54,24 @@ namespace Pandaros.Settlers.Research
                          int baseIterationCount = 10,
                          bool addLevelToName = true)
         {
-            AddCraftingCondition(requiredItems, currentLevel);
+
             Initialize(currentLevel, name, baseValue, iconPath, dependancies, baseIterationCount, addLevelToName);
+            AddCraftingCondition(requiredItems, currentLevel);
+            Register(currentLevel, name);
+        }
+
+        public PandaResearch(List<IResearchableCondition> conditions,
+                         int currentLevel,
+                         string name,
+                         float baseValue,
+                         string iconPath,
+                         List<string> dependancies = null,
+                         int baseIterationCount = 10,
+                         bool addLevelToName = true)
+        {
+            Initialize(currentLevel, name, baseValue, iconPath, dependancies, baseIterationCount, addLevelToName);
+            Conditions.AddRange(conditions);
+            Register(currentLevel, name);
         }
 
         public void AddCraftingCondition(Dictionary<ushort, int> requiredItems, int currentLevel)
@@ -76,45 +93,6 @@ namespace Pandaros.Settlers.Research
             }
 
             Conditions.Add(new ScientistCyclesCondition() { CycleCount = IterationCount, ItemsPerCycle = iterationItems });
-        }
-
-        public PandaResearch(List<IResearchableCondition> conditions,
-                         int currentLevel,
-                         string name,
-                         float baseValue,
-                         string iconPath,
-                         List<string> dependancies = null,
-                         int baseIterationCount = 10,
-                         bool addLevelToName = true)
-        {
-            Conditions.AddRange(conditions);
-            Initialize(currentLevel, name, baseValue, iconPath, dependancies, baseIterationCount, addLevelToName);
-        }
-
-        private void Initialize(int currentLevel, string name, float baseValue, string iconPath, List<string> dependancies, int baseIterationCount, bool addLevelToName)
-        {
-            BaseValue = baseValue;
-            Value = baseValue * currentLevel;
-            Level = currentLevel;
-            TmpValueKey = GetResearchKey(name);
-            LevelKey = GetLevelKey(name);
-
-            Key = TmpValueKey + currentLevel;
-            Icon = iconPath + name + currentLevel + ".png";
-
-            if (!addLevelToName)
-                Icon = iconPath + name + ".png";
-
-            IterationCount = baseIterationCount + 2 * currentLevel;
-
-            if (currentLevel != 1)
-                Dependantcies.Add(TmpValueKey + (currentLevel - 1));
-
-            if (dependancies != null)
-                foreach (var dep in dependancies)
-                    Dependantcies.Add(dep);
-
-            PandaLogger.LogToFile($"PandaResearch Added: {name} Level {currentLevel}");
         }
 
         public override void OnResearchComplete(ColonyScienceState manager, EResearchCompletionReason reason)
@@ -168,5 +146,37 @@ namespace Pandaros.Settlers.Research
         {
             return GameLoader.NAMESPACE + "." + researchName;
         }
+
+
+        private void Initialize(int currentLevel, string name, float baseValue, string iconPath, List<string> dependancies, int baseIterationCount, bool addLevelToName)
+        {
+            BaseValue = baseValue;
+            Value = baseValue * currentLevel;
+            Level = currentLevel;
+            TmpValueKey = GetResearchKey(name);
+            LevelKey = GetLevelKey(name);
+
+            Key = TmpValueKey + currentLevel;
+            Icon = iconPath + name + currentLevel + ".png";
+
+            if (!addLevelToName)
+                Icon = iconPath + name + ".png";
+
+            IterationCount = baseIterationCount + 2 * currentLevel;
+
+            if (currentLevel != 1)
+                Dependantcies.Add(TmpValueKey + (currentLevel - 1));
+
+            if (dependancies != null)
+                foreach (var dep in dependancies)
+                    Dependantcies.Add(dep);
+        }
+
+        private void Register(int currentLevel, string name)
+        {
+            ServerManager.ScienceManager.RegisterResearchable(this);
+            PandaLogger.LogToFile($"PandaResearch Added: {name} Level {currentLevel}");
+        }
+
     }
 }
