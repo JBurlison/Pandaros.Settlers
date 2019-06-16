@@ -18,12 +18,12 @@ namespace Pandaros.Settlers.Items
         public static void Register()
         {
             var aether = new InventoryItem(Aether.Item.ItemIndex, 1);
-            var copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 400);
-            var iron   = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONORE.Name, 200);
-            var tin    = new InventoryItem(ColonyBuiltIn.ItemTypes.TIN.Name, 400);
-            var gold   = new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDORE.Name, 100);
-            var silver = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENASILVER.Name, 50);
-            var lead   = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENALEAD.Name, 50);
+            var copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 40);
+            var iron   = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONORE.Name, 20);
+            var tin    = new InventoryItem(ColonyBuiltIn.ItemTypes.TIN.Name, 40);
+            var gold   = new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDORE.Name, 10);
+            var silver = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENASILVER.Name, 20);
+            var lead   = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENALEAD.Name, 20);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, copper, iron, tin, gold, silver, lead},
