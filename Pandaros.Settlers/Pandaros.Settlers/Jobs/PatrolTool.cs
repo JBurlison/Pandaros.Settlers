@@ -28,6 +28,7 @@ namespace Pandaros.Settlers.Jobs
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.PatrolTool.RegisterPatrolTool")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterPatrolTool()
         {
             var planks = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 2);

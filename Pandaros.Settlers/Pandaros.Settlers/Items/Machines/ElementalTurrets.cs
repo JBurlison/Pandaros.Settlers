@@ -23,6 +23,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.RegisterTurret")]
         [ModLoader.ModCallbackProvidesFor(GameLoader.NAMESPACE + ".Items.Machines.Turret.RegisterTurret")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterTurret()
         {
             var planks     = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 50);

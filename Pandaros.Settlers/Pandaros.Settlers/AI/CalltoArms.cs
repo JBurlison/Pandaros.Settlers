@@ -66,6 +66,7 @@ namespace Pandaros.Settlers.AI
         public Vector3Int Position { get; set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".CalltoArms.Init")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Init()
         {
             NPCType.AddSettings(_callToArmsNPCSettings);

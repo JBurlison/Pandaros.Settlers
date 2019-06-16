@@ -18,6 +18,7 @@ namespace Pandaros.Settlers.Jobs
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterJobs()
         {
             NPCType.AddSettings(new NPCTypeStandardSettings

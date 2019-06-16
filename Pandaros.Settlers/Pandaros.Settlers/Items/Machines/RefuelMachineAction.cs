@@ -12,6 +12,7 @@ namespace Pandaros.Settlers.Items.Machines
         public static Dictionary<ItemId, float> FuelValues = new Dictionary<ItemId, float>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Managers.RoamingJobManager.SetFuelValues")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void SetFuelValues()
         {
             FuelValues[ColonyBuiltIn.ItemTypes.COALORE] = .20f;

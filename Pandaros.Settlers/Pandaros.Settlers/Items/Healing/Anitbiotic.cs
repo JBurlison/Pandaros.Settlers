@@ -12,6 +12,7 @@ namespace Pandaros.Settlers.Items.Healing
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Anitbiotic.Register")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var herbs  = new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Name, 2);

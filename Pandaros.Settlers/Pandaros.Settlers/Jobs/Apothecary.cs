@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Jobs
                 1,
                 new List<RecipeUnlock>()
                 {
-                    new RecipeUnlock(ApothecaryRegister.JOB_RECIPE, ERecipeUnlockType.Recipe)
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.APOTHECARYTABLE, ERecipeUnlockType.Recipe)
                 }
             }
         };
@@ -161,9 +161,10 @@ namespace Pandaros.Settlers.Jobs
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Apothecary";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".ApothecaryTable";
-        public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
+        public static string JOB_RECIPE = JOB_ITEM_KEY;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterJobs()
         {
             NPCType.AddSettings(new NPCTypeStandardSettings

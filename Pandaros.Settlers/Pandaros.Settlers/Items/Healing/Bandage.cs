@@ -20,6 +20,7 @@ namespace Pandaros.Settlers.Items.Healing
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.Bandage.Register")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var oil   = new InventoryItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 1);

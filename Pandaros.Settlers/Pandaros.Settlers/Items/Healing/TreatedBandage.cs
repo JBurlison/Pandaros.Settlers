@@ -19,6 +19,7 @@ namespace Pandaros.Settlers.Items.Healing
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Healing.TreatedBandage.Register")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var bandage     = new InventoryItem(Bandage.Item.ItemIndex, 1);

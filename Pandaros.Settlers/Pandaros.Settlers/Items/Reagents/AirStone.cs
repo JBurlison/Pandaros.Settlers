@@ -13,6 +13,7 @@ namespace Pandaros.Settlers.Items
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.AirStone.Register")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var aether = new InventoryItem(Elementium.Item.ItemIndex, 2);

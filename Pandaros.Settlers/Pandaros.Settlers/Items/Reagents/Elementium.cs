@@ -14,6 +14,7 @@ namespace Pandaros.Settlers.Items
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Elementium.Register")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var aether = new InventoryItem(Aether.Item.ItemIndex, 1);

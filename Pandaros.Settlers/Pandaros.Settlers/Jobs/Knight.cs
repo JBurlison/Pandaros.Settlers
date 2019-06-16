@@ -78,6 +78,7 @@ namespace Pandaros.Settlers.Jobs
     public class Knight : IJob
     {
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.Knight.Init")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Init()
         {
             NPCType.AddSettings(_knightNPCSettings);

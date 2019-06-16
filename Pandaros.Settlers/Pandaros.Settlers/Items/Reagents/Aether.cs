@@ -12,6 +12,7 @@ namespace Pandaros.Settlers.Items
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Aether.Register")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
             var mana     = new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 1);

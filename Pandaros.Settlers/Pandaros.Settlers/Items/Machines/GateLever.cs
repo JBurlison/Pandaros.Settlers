@@ -380,6 +380,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,
             GameLoader.NAMESPACE + ".Items.Machines.GateLever.RegisterGateLever")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterGateLever()
         {
             var rivets      = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);

@@ -296,6 +296,7 @@ namespace Pandaros.Settlers.Items.Armor
 
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Armor.RegisterRecipes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);

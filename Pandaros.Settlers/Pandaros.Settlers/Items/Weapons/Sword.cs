@@ -10,6 +10,7 @@ namespace Pandaros.Settlers.Items.Weapons
     public static class Sword
     {
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,  GameLoader.NAMESPACE + ".Sword.RegisterRecipes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void RegisterRecipes()
         {
             var coppertools = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
