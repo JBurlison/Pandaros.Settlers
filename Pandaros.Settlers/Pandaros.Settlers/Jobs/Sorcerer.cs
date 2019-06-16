@@ -7,6 +7,7 @@ using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
 using Science;
+using Shared;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,29 +15,63 @@ namespace Pandaros.Settlers.Jobs
 {
     public class SorcererResearch : IPandaResearch
     {
-        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
+        public Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
         {
-            { ItemId.GetItemId(Items.Reagents.Adamantine.NAME), 1 },
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY, 1 },
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 3 },
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 }
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(Items.Reagents.Adamantine.NAME),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 3),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
+                }
+            }
         };
-        public List<IResearchableCondition> Conditions => null;
+        public Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new HappinessCondition() { Threshold = 150 },
+                    new ColonistCountCondition() { Threshold = 250 }
+                }
+            }
+        };
         public int NumberOfLevels => 1;
         public float BaseValue => 0.05f;
-        public List<string> Dependancies => new List<string>()
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
             {
-                PandaResearch.GetResearchKey(GeneralResearch.ArmorSmithing + 4),
-                PandaResearch.GetResearchKey(GeneralResearch.SwordSmithing + 4),
-                PandaResearch.GetResearchKey(GeneralResearch.Elementium + 1),
-                ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
-                ColonyBuiltIn.Research.SCIENCEBAGCOLONY
-            };
+                0,
+                new List<string>()
+                {
+                    GameLoader.NAMESPACE + ".ArmorSmithing" + 4,
+                    GameLoader.NAMESPACE + ".SwordSmithing" + 4,
+                    GameLoader.NAMESPACE + ".Elementium" + 1,
+                    ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
+                    ColonyBuiltIn.Research.SCIENCEBAGCOLONY
+                }
+            }
+        };
 
         public int BaseIterationCount => 300;
-        public bool AddLevelToName => false;
-        public string name => "Sorcerer";
+        public bool AddLevelToName => true;
+        public string name => GameLoader.NAMESPACE + ".Sorcerer";
         public string IconDirectory => GameLoader.ICON_PATH;
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.SORCERER, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
+
         public void OnRegister()
         {
 
@@ -44,7 +79,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(SorcererRegister.JOB_NAME));
+            
         }
     }
 
@@ -97,11 +132,11 @@ namespace Pandaros.Settlers.Jobs
             requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 6));
             requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 6));
             requires.Add(new RecipeItem(Items.Reagents.Adamantine.NAME, 2));
-            results.Add(new RecipeItem(SorcererRegister.JOB_ITEM_KEY, 1));
+            results.Add(new RecipeResult(SorcererRegister.JOB_ITEM_KEY, 1));
         }
 
         public List<RecipeItem> requires { get; private set; } = new List<RecipeItem>();
-        public List<RecipeItem> results { get; private set; } = new List<RecipeItem>();
+        public List<RecipeResult> results { get; private set; } = new List<RecipeResult>();
         public CraftPriority defaultPriority => CraftPriority.Medium;
         public bool isOptional => true;
         public int defaultLimit => 5;

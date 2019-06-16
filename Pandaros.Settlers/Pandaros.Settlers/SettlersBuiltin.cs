@@ -103,7 +103,7 @@ namespace Pandaros.Settlers
           public const string SKILLEDLABORER7 = "Pandaros.Settlers.SkilledLaborer7";
           public const string SKILLEDLABORER8 = "Pandaros.Settlers.SkilledLaborer8";
           public const string SKILLEDLABORER9 = "Pandaros.Settlers.SkilledLaborer9";
-          public const string SORCERER1 = "Pandaros.Settlers.Sorcerer1";
+          public const string SORCERER = "Pandaros.Settlers.Sorcerer1";
           public const string SWORDSMITHING1 = "Pandaros.Settlers.SwordSmithing1";
           public const string SWORDSMITHING2 = "Pandaros.Settlers.SwordSmithing2";
           public const string SWORDSMITHING3 = "Pandaros.Settlers.SwordSmithing3";
@@ -114,7 +114,6 @@ namespace Pandaros.Settlers
           public const string TIMEBETWEEN3 = "Pandaros.Settlers.TimeBetween3";
           public const string TIMEBETWEEN4 = "Pandaros.Settlers.TimeBetween4";
           public const string TIMEBETWEEN5 = "Pandaros.Settlers.TimeBetween5";
-          public const string PIPLIZ = "Pandaros.Settlers.pipliz";
           public const string BAKER1 = "Pandaros.Settlers.pipliz.baker1";
           public const string BAKER2 = "Pandaros.Settlers.pipliz.baker2";
           public const string BAKER3 = "Pandaros.Settlers.pipliz.baker3";

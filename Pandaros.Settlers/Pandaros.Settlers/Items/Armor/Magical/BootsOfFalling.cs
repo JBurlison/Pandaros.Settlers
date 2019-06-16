@@ -2,6 +2,7 @@
 using Pandaros.Settlers.Items.Reagents;
 using Pandaros.Settlers.Models;
 using Pipliz;
+using Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,18 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public List<RecipeItem> requires { get; set; } = new List<RecipeItem>()
         {
-            { new RecipeItem(Adamantine.NAME, 20) },
-            { new RecipeItem(Elementium.Item.name, 30) },
-            { new RecipeItem(AirStone.Item.name, 30) },
-            { new RecipeItem(EarthStone.Item.name, 30) },
-            { new RecipeItem(WaterStone.Item.name, 30) },
-            { new RecipeItem(Esper.Item.name, 1) },
-            { new RecipeItem(Mana.Item.name, 50) }
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Name, 20) },
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.EARTHSTONE.Name, 30) },
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.FIRESTONE.Name, 30) },
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.WATERSTONE.Name, 30) },
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.AIRSTONE.Name, 30) },
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.ESPER.Name, 1) },
+            { new RecipeItem(SettlersBuiltIn.ItemTypes.MANA.Name, 50) }
         };
 
-        public List<RecipeItem> results { get; set; } = new List<RecipeItem>()
+        public List<RecipeResult> results { get; set; } = new List<RecipeResult>()
         {
-            { new RecipeItem(BootsOfFalling.NAME, 1) }
+            { new RecipeResult(BootsOfFalling.NAME, 1) }
         };
 
         public CraftPriority defaultPriority { get; set; } = CraftPriority.Medium;

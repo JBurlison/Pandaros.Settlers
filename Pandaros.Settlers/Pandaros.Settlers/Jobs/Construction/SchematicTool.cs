@@ -39,32 +39,57 @@ namespace Pandaros.Settlers.Jobs.Construction
         public override StaticItems.StaticItem StaticItemSettings => new StaticItems.StaticItem()
         {
             Name = GameLoader.NAMESPACE + ".SchematicTool",
-            RequiredScience = PandaResearch.GetResearchKey("Architect") + 1
+            RequiredScience = SettlersBuiltIn.Research.ARCHITECT1
         };
     }
 
     public class SchematicToolResearch : IPandaResearch
     {
-        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
+        public Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
         {
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY, 1 },
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 3 },
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED, 1 }
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 3),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
+                }
+            }
         };
-        public List<IResearchableCondition> Conditions => null;
+        public Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new HappinessCondition() { Threshold = 150 },
+                    new ColonistCountCondition() { Threshold = 250 }
+                }
+            }
+        };
         public int NumberOfLevels => 1;
         public float BaseValue => 0.05f;
-        public List<string> Dependancies => new List<string>()
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
             {
-                ColonyBuiltIn.Research.CONSTRUCTIONBUILDER,
-                ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
-                ColonyBuiltIn.Research.SCIENCEBAGCOLONY
-            };
+                0,
+                new List<string>()
+                {
+                    ColonyBuiltIn.Research.CONSTRUCTIONBUILDER,
+                    ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
+                    ColonyBuiltIn.Research.SCIENCEBAGCOLONY
+                }
+            }
+        };
 
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
         public string name => "Architect";
         public string IconDirectory => GameLoader.ICON_PATH;
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
+
         public void OnRegister()
         {
 

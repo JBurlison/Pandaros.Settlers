@@ -18,25 +18,31 @@ namespace Pandaros.Settlers.Items
 {
     public class BackpackResearch : IPandaResearch
     {
-        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
-        {
-            { ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC, 1 },
-        };
+        public Dictionary<int, List<InventoryItem>> RequiredItems => null;
 
         public int NumberOfLevels => 1;
         public float BaseValue => 0.05f;
-        public List<string> Dependancies => new List<string>()
-            {
-                ColonyBuiltIn.Research.SCIENCEBAGBASIC
-            };
+        public Dictionary<int, List<string>> Dependancies => null;
 
         public int BaseIterationCount => 50;
         public bool AddLevelToName => true;
-        public string name => "Backpack";
+        public string name => GameLoader.NAMESPACE + ".Backpack";
 
         public string IconDirectory => GameLoader.ICON_PATH;
 
-        public List<IResearchableCondition> Conditions => null;
+        public Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new HappinessCondition() { Threshold = 50 },
+                    new ColonistCountCondition() { Threshold = 50 }
+                }
+            }
+        };
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
 
         public void OnRegister()
         {

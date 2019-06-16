@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCCraftedRecipe, GameLoader.NAMESPACE + ".Items.Esper.OnNPCCraftedRecipe")]
         public static void OnNPCCraftedRecipe(IJob job, Recipe recipe, List<RecipeResult> results)
         {
-            if (recipe.Name == Mana.Item.name && job.NPC != null)
+            if (recipe.Name == SettlersBuiltIn.ItemTypes.MANA && job.NPC != null)
             {
                 var inv    = SettlerInventory.GetSettlerInventory(job.NPC);
                 var chance = 0.03f + inv.GetSkillModifier();

@@ -4,9 +4,11 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
+using Science;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +16,68 @@ using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Items.Machines
 {
+    public class TeleportationResearch : PandaResearch
+    {
+        public override string IconDirectory => GameLoader.ICON_PATH;
+        public override string name => GameLoader.NAMESPACE + ".Teleportation";
+
+        public override Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+        {
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 10)
+                }
+            }
+        };
+
+        public override Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new HappinessCondition() { Threshold = 50 }
+                }
+            }
+        };
+
+        public override Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.MANA1,
+                    SettlersBuiltIn.Research.MACHINES1
+                }
+            }
+        };
+
+        public override Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.TELEPORTPAD, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
+
+        public override int NumberOfLevels => 1;
+
+        public override int BaseIterationCount => 50;
+
+        public override bool AddLevelToName => false;
+    }
+
     public class TeleportPadRegister : IRoamingJobObjective
     {
         public string name => nameof(TeleportPad);
@@ -166,7 +230,7 @@ namespace Pandaros.Settlers.Items.Machines
 
                 var stockpile = colony.Stockpile;
 
-                while (stockpile.TryRemove(Mana.Item.ItemIndex) &&
+                while (stockpile.TryRemove(SettlersBuiltIn.ItemTypes.MANA) &&
                        machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
                 {
                     machineState.AddToActionEmergy(MachineConstants.REFUEL, 0.20f);
@@ -176,7 +240,7 @@ namespace Pandaros.Settlers.Items.Machines
                 }
 
                 if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
-                    return ItemId.GetItemId(Mana.Item.ItemIndex);
+                    return SettlersBuiltIn.ItemTypes.MANA;
             }
 
             return ItemId.GetItemId(GameLoader.NAMESPACE + ".Refuel");
@@ -211,7 +275,7 @@ namespace Pandaros.Settlers.Items.Machines
             var sba     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 20);
             var crystal = new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 5);
             var stone   = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 50);
-            var mana    = new InventoryItem(Mana.Item.ItemIndex, 100);
+            var mana    = new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 100);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {crystal, steel, rivets, sbb, sbc, sba, crystal, stone},

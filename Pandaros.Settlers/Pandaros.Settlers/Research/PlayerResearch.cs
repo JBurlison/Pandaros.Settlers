@@ -1,6 +1,7 @@
 ﻿using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Models;
 using Science;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +12,43 @@ namespace Pandaros.Settlers.Research
 {
     public class MaxMagicItems : IPandaResearch
     {
-        public Dictionary<ItemId, int> RequiredItems => new Dictionary<ItemId, int>()
+        public Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
         {
-            {  ItemId.GetItemId("Pandaros.Settlers.Healthbooster"), 1 }
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem("Pandaros.Settlers.Healthbooster")
+                }
+            }
         };
-        public List<IResearchableCondition> Conditions => null;
+
         public int NumberOfLevels => 2;
 
         public float BaseValue => 1;
 
-        public List<string> Dependancies => new List<string>()
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
         {
-            Jobs.SorcererRegister.JOB_NAME + "1"
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.SORCERER
+                }
+            }
         };
 
         public int BaseIterationCount => 20;
 
         public bool AddLevelToName => true;
 
-        public string name =>  "MaxMagicItems";
+        public string name =>  GameLoader.NAMESPACE + ".MaxMagicItems";
         public string IconDirectory => GameLoader.ICON_PATH;
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
+
+        public Dictionary<int, List<IResearchableCondition>> Conditions => null;
+
         public void OnRegister()
         {
             

@@ -8,8 +8,10 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Weapons;
 using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.Collections;
+using Science;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,60 @@ using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Jobs
 {
+    public class KnightResearch : IPandaResearch
+    {
+        public string IconDirectory => GameLoader.ICON_PATH;
+
+        public Dictionary<int, List<InventoryItem>> RequiredItems => null;
+
+        public Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new ColonistCountCondition() { Threshold = 50 },
+                    new HappinessCondition() { Threshold = 50 }
+                }
+            }
+        };
+
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.SWORDSMITHING1,
+                    SettlersBuiltIn.Research.ARMORSMITHING1
+                }
+            }
+        };
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
+
+        public int NumberOfLevels => 1;
+
+        public float BaseValue => 1f;
+
+        public int BaseIterationCount => 10;
+
+        public bool AddLevelToName => true;
+
+        public string name => GameLoader.NAMESPACE + ".Knights";
+
+        public void OnRegister()
+        {
+
+        }
+
+        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            e.Manager.Colony.ForEachOwner(o => PatrolTool.GivePlayerPatrolTool(o));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(PatrolTool.PatrolFlag.name));
+        }
+    }
+
     [ModLoader.ModManager]
     public class Knight : IJob
     {

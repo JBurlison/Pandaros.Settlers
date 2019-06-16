@@ -120,12 +120,12 @@ namespace Pandaros.Settlers
             if (job == null || !job.IsValid)
                 return;
 
-            job.Owner.TemporaryData.TryGetAs(PandaResearch.GetResearchKey(JobResearch.MasterOfAll), out float masterOfAll);
+            job.Owner.TemporaryData.TryGetAs(GameLoader.NAMESPACE + ".MasterOfAll", out float masterOfAll);
 
             if (job.TryGetNPCGuardSettings(out var guardSettings) && job.TryGetNPCGuardDefaultSettings(out var defaultGuardSettings))
             {
                 var key = guardSettings.NPCTypeKey.Replace("day", "").Replace("night", "");
-                job.Owner.TemporaryData.TryGetAs(PandaResearch.GetResearchKey(key), out float cooldownReduction);
+                job.Owner.TemporaryData.TryGetAs(key, out float cooldownReduction);
                 var total = masterOfAll + cooldownReduction;
                 
                 if (total != 0)
@@ -133,7 +133,7 @@ namespace Pandaros.Settlers
             }
             else if (job.TryGetNPCCraftSettings(out var craftSettings) && job.TryGetNPCCraftDefaultSettings(out var craftingJobDefaultSettings))
             {
-                job.Owner.TemporaryData.TryGetAs(PandaResearch.GetResearchKey(craftSettings.NPCTypeKey), out float cooldownReduction);
+                job.Owner.TemporaryData.TryGetAs(craftSettings.NPCTypeKey, out float cooldownReduction);
                 var total = masterOfAll + cooldownReduction;
 
                 if (total != 0)

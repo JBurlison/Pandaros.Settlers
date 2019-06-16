@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Models;
+using Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Pandaros.Settlers.Items
     public interface ICSRecipe : INameable
     {
         List<RecipeItem> requires { get; }
-        List<RecipeItem> results { get; }
+        List<RecipeResult> results { get; }
         CraftPriority defaultPriority { get; }
         bool isOptional { get; }
         int defaultLimit { get; }

@@ -45,9 +45,9 @@ namespace Pandaros.Settlers.Items.Machines
             new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEPICKAXE.Name, 2)
         };
 
-        public List<RecipeItem> results => new List<RecipeItem>()
+        public List<RecipeResult> results => new List<RecipeResult>()
         {
-            new RecipeItem(GameLoader.NAMESPACE + ".Miner")
+            new RecipeResult(SettlersBuiltIn.ItemTypes.MINER.Name)
         };
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string Job => AdvancedCrafterRegister.JOB_NAME;
 
-        public string name => GameLoader.NAMESPACE + ".Miner";
+        public string name => SettlersBuiltIn.ItemTypes.MINER;
     }
 
     public class MinerRegister : IRoamingJobObjective

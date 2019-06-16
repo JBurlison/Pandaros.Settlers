@@ -149,7 +149,7 @@ namespace Pandaros.Settlers
                 foreach (var node in JSON.Deserialize(MOD_FOLDER + "/localization/en-US/science/en-US.json")["sentences"]["Pandaros"]["Settlers"].LoopObject())
                         sr.WriteLine($"          public const string {node.Key.ToUpper()} = \"{GameLoader.NAMESPACE}.{node.Key}\";");
 
-                foreach (var node in JSON.Deserialize(MOD_FOLDER + "/localization/en-US/science/en-US.json")["sentences"]["Pandaros"]["Settlers"]["pipliz"].LoopObject())
+                foreach (var node in JSON.Deserialize(MOD_FOLDER + "/localization/en-US/science/en-US.json")["sentences"]["pipliz"].LoopObject())
                         sr.WriteLine($"          public const string {node.Key.ToUpper()} = \"{GameLoader.NAMESPACE}.pipliz.{node.Key}\";");
 
                 sr.WriteLine("      }");

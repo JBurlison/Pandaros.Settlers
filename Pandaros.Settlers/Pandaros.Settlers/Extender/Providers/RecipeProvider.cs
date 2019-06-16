@@ -33,8 +33,7 @@ namespace Pandaros.Settlers.Extender.Providers
                             requirements.Add(new InventoryItem(itemIndex, ri.amount));
 
                     foreach (var ri in recipe.results)
-                        if (ItemTypes.IndexLookup.TryGetIndex(ri.type, out var itemIndex))
-                            results.Add(new RecipeResult(itemIndex, ri.amount));
+                            results.Add(ri);
 
                     var newRecipe = new Recipe(recipe.name, requirements, results, recipe.defaultLimit, 0, (int)recipe.defaultPriority);
 

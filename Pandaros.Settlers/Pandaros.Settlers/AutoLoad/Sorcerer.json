@@ -32,7 +32,7 @@
     ],
     "results": [
       {
-        "type": "Pandaros.Settlers.SkilledSword",
+        "type": "Pandaros.Settlers.SkilledSword2",
         "isOptional": true,
         "amount": 1
       }
@@ -75,7 +75,7 @@
     ],
     "results": [
       {
-        "type": "Pandaros.Settlers.SkilledSword",
+        "type": "Pandaros.Settlers.SkilledSword1",
         "isOptional": true,
         "amount": 1
       }

@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.Items
         public static void Register()
         {
             var aether = new InventoryItem(Elementium.Item.ItemIndex, 2);
-            var torch  = new InventoryItem(Mana.Item.ItemIndex, 1);
+            var torch  = new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 1);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, torch},

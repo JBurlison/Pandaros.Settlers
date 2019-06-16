@@ -49,8 +49,8 @@ namespace Pandaros.Settlers.Entities
                 var max = SettlerManager.MIN_PERSPAWN;
 
                 if (ColonyRef != null && ColonyRef.FollowerCount >= SettlerManager.MAX_BUYABLE)
-                    max += Pipliz.Random.Next((int)ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(GeneralResearch.MinSettlers), 0f),
-                                                SettlerManager.ABSOLUTE_MAX_PERSPAWN + (int)ColonyRef.TemporaryData.GetAsOrDefault(PandaResearch.GetResearchKey(GeneralResearch.MaxSettlers), 0f));
+                    max += Pipliz.Random.Next((int)ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".MinSettlers", 0f),
+                                                SettlerManager.ABSOLUTE_MAX_PERSPAWN + (int)ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".MaxSettlers", 0f));
 
                 return max;
             }

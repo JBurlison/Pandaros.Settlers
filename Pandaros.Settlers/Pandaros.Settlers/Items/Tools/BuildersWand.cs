@@ -1,15 +1,134 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
+using Science;
 using Shared;
 using System;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items
 {
+    public class BuildersWandResearch : PandaResearch
+    {
+        public override string IconDirectory => GameLoader.ICON_PATH;
+        public override string name => GameLoader.NAMESPACE + ".BuildersWand";
+
+        public override Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+        {
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDINGOT.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SILVERINGOT.Id, 10),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.AETHER.Id, 2)
+                }
+            }
+        };
+
+        public override Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new ColonistCountCondition() { Threshold = 150 },
+                    new HappinessCondition() { Threshold = 50 }
+                }
+            }
+        };
+
+        public override Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.ELEMENTIUM1
+                }
+            }
+        };
+
+        public override Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.BUILDERSWAND, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
+
+        public override int NumberOfLevels => 1;
+
+        public override int BaseIterationCount => 50;
+    }
+
+    public class BetterBuildersWandResearch : PandaResearch
+    {
+        public override string IconDirectory => GameLoader.ICON_PATH;
+        public override string name => GameLoader.NAMESPACE + ".BetterBuildersWand";
+
+        public override Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+        {
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDINGOT.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SILVERINGOT.Id, 10),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.AETHER.Id, 2)
+                }
+            }
+        };
+
+        public override Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new ColonistCountCondition() { Threshold = 150 },
+                    new HappinessCondition() { Threshold = 50 }
+                }
+            }
+        };
+
+        public override Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.BUILDERSWAND1
+                }
+            }
+        };
+
+        public override Dictionary<int, List<RecipeUnlock>> Unlocks => null;
+
+        public override int NumberOfLevels => 5;
+
+        public override int BaseIterationCount => 50;
+
+        public override void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            foreach (var p in e.Manager.Colony.Owners)
+            {
+                var ps = PlayerState.GetPlayerState(p);
+                ps.BuildersWandMaxCharge = (int)e.Research.Value;
+                ps.BuildersWandCharge += ps.BuildersWandMaxCharge;
+            }
+        }
+    }
+
     [ModLoader.ModManager]
     public static class BuildersWand
     {

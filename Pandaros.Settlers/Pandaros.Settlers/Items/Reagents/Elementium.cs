@@ -1,7 +1,9 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
+using Science;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items
@@ -51,5 +53,76 @@ namespace Pandaros.Settlers.Items
             Item = new ItemTypesServer.ItemTypeRaw(name, node);
             items.Add(name, Item);
         }
+    }
+
+    public class ElementiumResearch : PandaResearch
+    {
+        public override string IconDirectory => GameLoader.ICON_PATH;
+        public override string name => GameLoader.NAMESPACE + ".Elementium";
+
+        public override Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+        {
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.IRONORE.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.TIN.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDORE.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GALENASILVER.Id, 20),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.GALENALEAD.Id, 20),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.AETHER.Id, 1)
+                }
+            }
+        };
+
+        public override Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new ColonistCountCondition() { Threshold = 150 },
+                    new HappinessCondition() { Threshold = 50 }
+                }
+            }
+        };
+
+        public override Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.MANA1
+                }
+            }
+        };
+
+        public override Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.ELEMENTIUM, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.EARTHSTONE, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.FIRESTONE, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.WATERSTONE, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.AIRSTONE, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.AIRTURRET, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.FIRETURRET, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.EARTHTURRET, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.WATERTURRET, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.VOIDTURRET, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
+
+        public override int NumberOfLevels => 1;
+
+        public override int BaseIterationCount => 50;
+
     }
 }

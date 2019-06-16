@@ -3,14 +3,159 @@ using Jobs;
 using NPC;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
+using Science;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
 {
+    public class ApothecaryResearch : IPandaResearch
+    {
+        public string IconDirectory => GameLoader.ICON_PATH;
+
+        public Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+        {
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 4),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 2)
+                }
+            }
+        };
+
+        public Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new HappinessCondition() { Threshold = 75 }
+                }
+            }
+        };
+
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    ColonyBuiltIn.Research.HERBFARMING,
+                    ColonyBuiltIn.Research.FLAXFARMING
+                }
+            }
+        };
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(ApothecaryRegister.JOB_RECIPE, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
+
+        public int NumberOfLevels => 1;
+
+        public float BaseValue => 1f;
+
+        public int BaseIterationCount => 10;
+
+        public bool AddLevelToName => true;
+
+        public string name => GameLoader.NAMESPACE + ".Apothecaries";
+
+        public void OnRegister()
+        {
+
+        }
+
+        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            //e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE));
+        }
+    }
+
+    public class AdvancedApothecaryResearch : IPandaResearch
+    {
+        public string IconDirectory => GameLoader.ICON_PATH;
+
+        public Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+        {
+            {
+                0,
+                new List<InventoryItem>()
+                {
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 4),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 2)
+                }
+            }
+        };
+
+        public Dictionary<int, List<IResearchableCondition>> Conditions => new Dictionary<int, List<IResearchableCondition>>()
+        {
+            {
+                0,
+                new List<IResearchableCondition>()
+                {
+                    new HappinessCondition() { Threshold = 75 }
+                }
+            }
+        };
+
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+        {
+            {
+                0,
+                new List<string>()
+                {
+                    SettlersBuiltIn.Research.APOTHECARIES1
+                }
+            }
+        };
+
+        public Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                0,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.ANITBIOTIC, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.TREATEDBANDAGE, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
+
+        public int NumberOfLevels => 1;
+
+        public float BaseValue => 1f;
+
+        public int BaseIterationCount => 10;
+
+        public bool AddLevelToName => true;
+
+        public string name => GameLoader.NAMESPACE + ".AdvancedApothecary";
+
+        public void OnRegister()
+        {
+
+        }
+
+        public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            //e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(Anitbiotic.Item.name));
+            //e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(TreatedBandage.Item.name));
+        }
+    }
+
     [ModLoader.ModManager]
     public static class ApothecaryRegister
     {
@@ -58,11 +203,11 @@ namespace Pandaros.Settlers.Jobs
             requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2));
             requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
             requires.Add(new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4));
-            results.Add(new RecipeItem(ApothecaryRegister.JOB_ITEM_KEY, 1));
+            results.Add(new RecipeResult(ApothecaryRegister.JOB_ITEM_KEY, 1));
         }
 
         public List<RecipeItem> requires { get; private set; } = new List<RecipeItem>();
-        public List<RecipeItem> results { get; private set; } = new List<RecipeItem>();
+        public List<RecipeResult> results { get; private set; } = new List<RecipeResult>();
         public CraftPriority defaultPriority => CraftPriority.Medium;
         public bool isOptional => true;
         public int defaultLimit => 5;

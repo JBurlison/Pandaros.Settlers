@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Aether.Register")]
         public static void Register()
         {
-            var mana     = new InventoryItem(Mana.Item.ItemIndex, 1);
+            var mana     = new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 1);
             var cryastal = new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 3);
 
             var recipe = new Recipe(Item.name,

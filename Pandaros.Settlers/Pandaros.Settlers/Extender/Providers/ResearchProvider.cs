@@ -23,13 +23,13 @@ namespace Pandaros.Settlers.Extender.Providers
                 if (Activator.CreateInstance(s) is IPandaResearch pandaResearch &&
                     !string.IsNullOrEmpty(pandaResearch.name))
                 {
-                    var research = new PandaResearch(pandaResearch, 1);
+                    var research = new PandaResearchable(pandaResearch, 1);
                     research.ResearchComplete += pandaResearch.ResearchComplete;
 
                     if (pandaResearch.NumberOfLevels > 1)
                         for (var l = 2; l <= pandaResearch.NumberOfLevels; l++)
                         {
-                            research = new PandaResearch(pandaResearch, l);
+                            research = new PandaResearchable(pandaResearch, l);
                             research.ResearchComplete += pandaResearch.ResearchComplete;
                         }
 

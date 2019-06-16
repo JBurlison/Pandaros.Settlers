@@ -5,13 +5,13 @@ namespace Pandaros.Settlers.Research
 {
     public class ResearchCompleteEventArgs : EventArgs
     {
-        public ResearchCompleteEventArgs(PandaResearch research, ColonyScienceState player)
+        public ResearchCompleteEventArgs(PandaResearchable research, ColonyScienceState player)
         {
             Research = research;
             Manager = player;
         }
 
-        public PandaResearch Research { get; }
+        public PandaResearchable Research { get; }
 
         public ColonyScienceState Manager { get; }
     }

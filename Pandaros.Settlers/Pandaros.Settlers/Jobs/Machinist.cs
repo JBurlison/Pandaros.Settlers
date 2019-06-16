@@ -5,6 +5,7 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Models;
 using Pipliz;
+using Recipes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -204,9 +205,9 @@ namespace Pandaros.Settlers.Jobs
             { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 4) }
         };
 
-        public List<RecipeItem> results => new List<RecipeItem>()
+        public List<RecipeResult> results => new List<RecipeResult>()
         {
-            { new RecipeItem(MachinistNight.JOB_ITEM_KEY, 1) }
+            { new RecipeResult(MachinistNight.JOB_ITEM_KEY, 1) }
         };
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
@@ -227,9 +228,9 @@ namespace Pandaros.Settlers.Jobs
             { new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 4) }
         };
 
-        public List<RecipeItem> results => new List<RecipeItem>()
+        public List<RecipeResult> results => new List<RecipeResult>()
         {
-            { new RecipeItem(MachinistDay.JOB_ITEM_KEY, 1) }
+            { new RecipeResult(MachinistDay.JOB_ITEM_KEY, 1) }
         };
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
