@@ -55,18 +55,18 @@ namespace Pandaros.Settlers.Items
             {
                 if (onTryChangeBlockData.TypeNew.Name != ColonyBuiltIn.ItemTypes.AIR &&
                     TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, out var newBlock))
-                    World.TryChangeBlock(onTryChangeBlockData.Position, ItemId.GetItemId(newBlock.name), new BlockChangeRequestOrigin(onTryChangeBlockData.RequestOrigin.AsPlayer));
+                    ServerManager.TryChangeBlock(onTryChangeBlockData.Position, ItemId.GetItemId(newBlock.name));
 
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(1, 0, 0), onTryChangeBlockData.RequestOrigin.AsPlayer, connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(-1, 0, 0), onTryChangeBlockData.RequestOrigin.AsPlayer, connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 1, 0), onTryChangeBlockData.RequestOrigin.AsPlayer, connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, -1, 0), onTryChangeBlockData.RequestOrigin.AsPlayer, connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 0, 1), onTryChangeBlockData.RequestOrigin.AsPlayer, connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 0, -1), onTryChangeBlockData.RequestOrigin.AsPlayer, connectedBlock.ConnectedBlock.BlockType);
+                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(1, 0, 0), connectedBlock.ConnectedBlock.BlockType);
+                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(-1, 0, 0), connectedBlock.ConnectedBlock.BlockType);
+                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 1, 0), connectedBlock.ConnectedBlock.BlockType);
+                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, -1, 0), connectedBlock.ConnectedBlock.BlockType);
+                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 0, 1), connectedBlock.ConnectedBlock.BlockType);
+                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 0, -1), connectedBlock.ConnectedBlock.BlockType);
             }
         }
 
-        public static void ChangeBlocksForPos(Vector3Int pos, Players.Player player, string blockType = null)
+        public static void ChangeBlocksForPos(Vector3Int pos, string blockType = null)
         {
             if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && itemTypeAtPos.Name != ColonyBuiltIn.ItemTypes.AIR)
             {
@@ -75,7 +75,7 @@ namespace Pandaros.Settlers.Items
                     blockType = connectedBlockAtPos.ConnectedBlock.BlockType;
 
                 if (TryGetChangedBlockTypeAtPosition(pos, blockType, out var newBlock))
-                    PandaLogger.Log("Change block at {0} To: {1} Result: {2}", pos, newBlock.name, World.TryChangeBlock(pos, ItemId.GetItemId(newBlock.name), new BlockChangeRequestOrigin(player)));
+                     ServerManager.TryChangeBlock(pos, ItemId.GetItemId(newBlock.name));
             }
         }
 
