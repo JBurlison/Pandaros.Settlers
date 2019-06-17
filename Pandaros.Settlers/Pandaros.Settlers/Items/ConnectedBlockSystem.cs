@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Items
 
         public static void ChangeBlocksForPos(Vector3Int pos, string blockType = null)
         {
-            if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && itemTypeAtPos.Name != ColonyBuiltIn.ItemTypes.AIR)
+            if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && _blockLookup.ContainsKey(itemTypeAtPos.Name))
             {
                 if (blockType == null &&
                     _blockLookup.TryGetValue(itemTypeAtPos.Name, out var connectedBlockAtPos))
