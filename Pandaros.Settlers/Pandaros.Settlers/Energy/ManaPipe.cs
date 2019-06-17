@@ -25,7 +25,7 @@ namespace Pandaros.Settlers.Energy
         public override string onPlaceAudio { get; set; } = "Pandaros.Settlers.Metal";
         public override string onRemoveAudio { get; set; } = "Pandaros.Settlers.MetalRemove";
         public override int? maxStackSize { get; set; } = 300;
-        public override int? destructionTime { get; set; } = 5000;
+        public override int? destructionTime { get; set; } = 500;
         public override List<OnRemove> onRemove { get; set; } = new List<OnRemove>()
         {
             new OnRemove(1, 1, MANA_PIPE)
@@ -44,8 +44,8 @@ namespace Pandaros.Settlers.Energy
         public override string icon { get; set; } = Path.Combine(GameLoader.ICON_PATH, "Pipe.png");
         public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe.obj");
         public override bool? isRotatable { get; set; } = true;
-        public override string rotatablexn { get; set; } = ManaPipeYp.MANA_PIPEY;
-        public override string rotatablexp { get; set; } = ManaPipeYp.MANA_PIPEY;
+        public override string rotatablexn { get; set; } = ManaPipeXp.MANA_PIPEX;
+        public override string rotatablexp { get; set; } = ManaPipeXp.MANA_PIPEX;
         public override string rotatablezn { get; set; } = MANA_PIPE;
         public override string rotatablezp { get; set; } = MANA_PIPE;
         public override List<string> categories { get; set; } = new List<string>()
@@ -54,9 +54,18 @@ namespace Pandaros.Settlers.Energy
             "Energy",
             "Machine"
         };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
+        };
     }
 
-    public class ManaPipeXp : ManaPipeBase
+    public class ManaPipeYp : ManaPipeBase
     {
         public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeXp";
         public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe.obj");
@@ -64,16 +73,34 @@ namespace Pandaros.Settlers.Energy
         {
             x = 90
         };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Yn,
+                Models.BlockSides.Yp
+            }
+        };
     }
 
-    public class ManaPipeYp : ManaPipeBase
+    public class ManaPipeXp : ManaPipeBase
     {
-        public const string MANA_PIPEY = GameLoader.NAMESPACE + ".ManaPipeYp";
-        public override string name { get; set; } = MANA_PIPEY;
+        public const string MANA_PIPEX = GameLoader.NAMESPACE + ".ManaPipeXp";
+        public override string name { get; set; } = MANA_PIPEX;
         public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe.obj");
         public override MeshRotationEuler meshRotationEuler { get; set; } = new MeshRotationEuler()
         {
             y = 90
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xn,
+                Models.BlockSides.Xp
+            }
         };
     }
 
@@ -81,6 +108,16 @@ namespace Pandaros.Settlers.Energy
     {
         public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeThreeWay";
         public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_3way.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Yp,
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
+        };
     }
 
     public class ManaPipeThreeWayXp : ManaPipeBase
@@ -90,6 +127,16 @@ namespace Pandaros.Settlers.Energy
         public override MeshRotationEuler meshRotationEuler { get; set; } = new MeshRotationEuler()
         {
             x = 90
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Yn,
+                Models.BlockSides.Yp,
+                Models.BlockSides.Zp
+            }
         };
     }
 
@@ -101,6 +148,16 @@ namespace Pandaros.Settlers.Energy
         {
             x = 180
         };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Yn,
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
+        };
     }
 
     public class ManaPipeThreeWayXppp : ManaPipeBase
@@ -111,6 +168,16 @@ namespace Pandaros.Settlers.Energy
         {
             x = 270
         };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Yn,
+                Models.BlockSides.Yp,
+                Models.BlockSides.Zn
+            }
+        };
     }
 
     public class ManaPipeThreeWayYp : ManaPipeBase
@@ -120,6 +187,16 @@ namespace Pandaros.Settlers.Energy
         public override MeshRotationEuler meshRotationEuler { get; set; } = new MeshRotationEuler()
         {
             y = 90
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xn,
+                Models.BlockSides.Xp,
+                Models.BlockSides.Yp
+            }
         };
     }
 
@@ -132,6 +209,16 @@ namespace Pandaros.Settlers.Energy
             y = 90,
             x = 90
         };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xp,
+                Models.BlockSides.Yn,
+                Models.BlockSides.Yp
+            }
+        };
     }
 
     public class ManaPipeThreeWayYpXpp : ManaPipeBase
@@ -143,6 +230,16 @@ namespace Pandaros.Settlers.Energy
             y = 90,
             x = 180
         };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xn,
+                Models.BlockSides.Xp,
+                Models.BlockSides.Yn
+            }
+        };
     }
 
     public class ManaPipeThreeWayYpXppp : ManaPipeBase
@@ -153,6 +250,76 @@ namespace Pandaros.Settlers.Energy
         {
             y = 90,
             x = 270
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xn,
+                Models.BlockSides.Yn,
+                Models.BlockSides.Yp
+            }
+        };
+    }
+
+    public class ManaPipeThreeWayZp : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeThreeWayZp";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_3way.obj");
+        public override MeshRotationEuler meshRotationEuler { get; set; } = new MeshRotationEuler()
+        {
+            z = 90
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xn,
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
+        };
+    }
+
+    public class ManaPipeThreeWayZpp : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeThreeWayZpp";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_3way.obj");
+        public override MeshRotationEuler meshRotationEuler { get; set; } = new MeshRotationEuler()
+        {
+            z = 180
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Yn,
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
+        };
+    }
+
+    public class ManaPipeThreeWayZppp : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeThreeWayZppp";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_3way.obj");
+        public override MeshRotationEuler meshRotationEuler { get; set; } = new MeshRotationEuler()
+        {
+            z = 270
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xp,
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
         };
     }
 }

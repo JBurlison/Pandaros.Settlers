@@ -11,6 +11,5 @@ namespace Pandaros.Settlers.Items
     {
         public string BlockType { get; set; }
         public List<BlockSides> Connections { get; set; }
-        public BlockConnectionType ConnectionType { get; set; }
     }
 }

@@ -29,11 +29,24 @@ namespace Pandaros.Settlers.Energy
         public override string onPlaceAudio { get; set; } = "Pandaros.Settlers.Metal";
         public override string onRemoveAudio { get; set; } = "Pandaros.Settlers.MetalRemove";
         public override int? maxStackSize { get; set; } = 300;
-        public override int? destructionTime { get; set; } = 5000;
+        public override int? destructionTime { get; set; } = 500;
         public override string sideall { get; set; } = GameLoader.NAMESPACE + ".Tank";
         public override List<OnRemove> onRemove { get; set; } = new List<OnRemove>()
         {
             new OnRemove(1, 1, GameLoader.NAMESPACE + ".TankEmpty")
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSides>()
+            {
+                Models.BlockSides.Xn,
+                Models.BlockSides.Xp,
+                Models.BlockSides.Yn,
+                Models.BlockSides.Yp,
+                Models.BlockSides.Zn,
+                Models.BlockSides.Zp
+            }
         };
     }
 

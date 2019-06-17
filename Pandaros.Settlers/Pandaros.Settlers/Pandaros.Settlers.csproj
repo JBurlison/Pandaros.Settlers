@@ -179,6 +179,7 @@
     <Compile Include="Items\Weapons\MagicWeapon.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="JSONExtentionMethods.cs" />
+    <Compile Include="ListComparer.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
     <Compile Include="Models\BlockConnectionType.cs" />
     <Compile Include="Models\BlockSides.cs" />

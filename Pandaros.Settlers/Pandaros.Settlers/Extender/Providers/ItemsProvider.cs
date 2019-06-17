@@ -93,6 +93,7 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var itemType in loadedItems.Values)
             {
+                ConnectedBlockSystem.AddConnectedBlock(itemType);
                 var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.name, itemType.JsonSerialize());
 
                 if (itemTypes.ContainsKey(itemType.name))

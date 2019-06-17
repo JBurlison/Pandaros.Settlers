@@ -33,11 +33,24 @@ namespace Pandaros.Settlers.Energy
             onPlaceAudio = "Pandaros.Settlers.Metal",
             onRemoveAudio = "Pandaros.Settlers.MetalRemove",
             maxStackSize  = 300,
-            destructionTime = 5000,
+            destructionTime = 500,
             sideall = GameLoader.NAMESPACE + ".Pump",
             meshRotationEuler = new MeshRotationEuler()
             {
                 y = 90
+            },
+            ConnectedBlock = new ConnectedBlock()
+            {
+                BlockType = "ManaPipe",
+                Connections = new List<Models.BlockSides>()
+                {
+                    Models.BlockSides.Xn,
+                    Models.BlockSides.Xp,
+                    Models.BlockSides.Yn,
+                    Models.BlockSides.Yp,
+                    Models.BlockSides.Zn,
+                    Models.BlockSides.Zp
+                }
             }
         };
     }
