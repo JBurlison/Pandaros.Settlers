@@ -358,8 +358,8 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(MusicEnabled), out bool music))
                     _playerStates[p].MusicEnabled = music;
 
-                if (stateNode.TryGetAs(nameof(JoinDate), out string joindate))
-                    _playerStates[p].JoinDate = DateTime.Parse(joindate);
+                if (stateNode.TryGetAs(nameof(JoinDate), out string joindate) && DateTime.TryParse(joindate, out var parsedJoinDate))
+                    _playerStates[p].JoinDate = parsedJoinDate;
 
                 _playerStates[p].BuildersWandPreview.Clear();
 
