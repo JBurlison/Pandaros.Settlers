@@ -277,6 +277,16 @@
           "Added Magic Items",
           "Added Sorcerer Job - creates magic items",
           "Added Colony management too to manage your colonists Jobs.",
+          "Added Mana system. System includes, pipes, pumps tanks and magical mana consuming blocks",
+          "Mana tanks reflect how much mana then have in them visually",
+          "Added Connected block system. This is similar to Minecrafts fence, stair, redstone, etc.. system where bocks change based on blocks placed next to them",
+          "Added train system",
+          "Added new monster types. These have elemental resitances",
+          "Added Happiness cause that will lower happiness when beds are too close",
+          "Added Happiness cause that will lower happiness for a duration based on difficulty when a colonist dies/leaves the colony",
+          "Added Happiness cause that will lower happiness when there are not enough beds for colonists",
+          "Added Happiness cause that will lower happiness when there are not enough jobs for colonists",
+          "Added Happiness cause that will make guards attack slower if happiness is too low",
           "Added Stats for each colonists in the Colony management tool",
           "Added serveral new ore layers including new magical ores from layers 40-42",
           "Added antigrief for players who are not in your colony.",
@@ -289,10 +299,10 @@
           "Slabs, Fence, Iron bar and doors now have proper colliders",
           "Call to arms will use equipt swords now",
           "Colonists will now puch zombies when they come close to them. Its configured as ColonistPunchDamage and defaults to 30 damage",
-          "Swords will auto equit to colonists now but always leave at least 4 in the stockpile. This is similar to armor.",
+          "Swords will auto equit to colonists now but always leave at least 4 in the stockpile. This is similar to armor",
           "Added serveral new ores that generate in the map: Adamantine, Emerald, Ruby, Saphire",
-          "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them.",
-          "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation"
+          "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them",
+          "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation, Connected Blocks, Monsters, Machines, Magical Blocks"
         ]
       },
       {

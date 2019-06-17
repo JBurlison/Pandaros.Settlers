@@ -145,6 +145,7 @@
     <Compile Include="ColonyManagement\ColonyArchive.cs" />
     <Compile Include="ColonyManagement\ColonyTool.cs" />
     <Compile Include="ColonyManagement\JobSettingsExtention.cs" />
+    <Compile Include="ColonyManagement\NotEnoughJobs.cs" />
     <Compile Include="ColonyManagement\Permission.cs" />
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\Armor\MagicArmor.cs" />
     <Compile Include="Items\ConnectedBlock.cs" />
+    <Compile Include="Items\ConnectedBlockSystem.cs" />
     <Compile Include="Items\CSGenerateType.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
     <Compile Include="Items\IGenerateType.cs" />
@@ -178,6 +180,8 @@
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="JSONExtentionMethods.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
+    <Compile Include="Models\BlockConnectionType.cs" />
+    <Compile Include="Models\BlockSides.cs" />
     <Compile Include="Research\ArmorSmithingResearch.cs" />
     <Compile Include="Research\MachineResearch.cs" />
     <Compile Include="Research\GuardResearch.cs" />

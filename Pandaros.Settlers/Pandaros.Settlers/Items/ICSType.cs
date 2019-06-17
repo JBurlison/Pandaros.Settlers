@@ -71,5 +71,6 @@ namespace Pandaros.Settlers.Items
         ItemRarity Rarity { get; set; }
         StaticItem StaticItemSettings { get; set; }
         OpenMenuSettings OpensMenuSettings { get; set; }
+        ConnectedBlock ConnectedBlock { get; set; }
     }
 }

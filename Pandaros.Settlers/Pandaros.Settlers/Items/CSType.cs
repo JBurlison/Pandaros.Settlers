@@ -67,5 +67,6 @@ namespace Pandaros.Settlers.Items
         public virtual ItemRarity Rarity { get; set; } = ItemRarity.Common;
         public virtual StaticItem StaticItemSettings { get; set; }
         public virtual OpenMenuSettings OpensMenuSettings { get; set; }
+        public virtual ConnectedBlock ConnectedBlock { get; set; }
     }
 }

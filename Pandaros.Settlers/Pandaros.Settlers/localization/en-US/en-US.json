@@ -434,10 +434,11 @@
           "NewSettlers": " settlers would like to join your colony!"
         },
         "Happiness": {
-          "BedsClose": "Confined Living Space",
+          "BedsClose": "Beds too Close",
           "ColonistDied": "Colonist Died",
           "SlowGuards": "Guard shooting rate reduced by",
-          "NotEnoughBeds": "Not Enough Beds"
+          "NotEnoughBeds": "Not Enough Beds",
+          "NotEnoughJobs":  "Not Enough Jobs"
         }
       }
     }
