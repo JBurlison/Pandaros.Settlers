@@ -221,7 +221,7 @@
         "name": "Oven Training V",
         "description": "Decreases time to craft for Oven by 25%."
       },
-      "woodcutter": {
+      "woodcutter1": {
         "name": "Woodcutter Training I",
         "description": "Decreases time to craft for Woodcutter by 5%."
       },

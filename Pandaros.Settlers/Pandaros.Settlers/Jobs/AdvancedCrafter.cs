@@ -14,7 +14,7 @@ namespace Pandaros.Settlers.Jobs
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".AdvancedCrafter";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".AdvancedCraftingTable";
-        public static string JOB_RECIPE = JOB_ITEM_KEY + ".recipe";
+        public static string JOB_RECIPE = JOB_ITEM_KEY;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]

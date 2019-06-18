@@ -407,8 +407,8 @@
   },
   "Pandaros.Settlers.AutoLoad.ironbar": {
     "icon": "./icons/ironbar.png",
-    "onPlaceAudio": "metalPlace",
-    "onRemoveAudio": "metalPlace",
+    "onPlaceAudio": "Pandaros.Settlers.Metal",
+    "onRemoveAudio": "Pandaros.Settlers.MetalRemove",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -472,8 +472,8 @@
   },
   "Pandaros.Settlers.AutoLoad.ironbarcorner": {
     "icon": "./icons/ironbarcorner.png",
-    "onPlaceAudio": "metalPlace",
-    "onRemoveAudio": "metalPlace",
+    "onPlaceAudio": "Pandaros.Settlers.Metal",
+    "onRemoveAudio": "Pandaros.Settlers.MetalRemove",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,
@@ -552,9 +552,9 @@
     }
   },
   "Pandaros.Settlers.AutoLoad.irondoor": {
-    "onPlaceAudio": "metalPlace",
+    "onPlaceAudio": "Pandaros.Settlers.Metal",
     "icon": "./icons/irondoor.png",
-    "onRemoveAudio": "metalPlace",
+    "onRemoveAudio": "Pandaros.Settlers.MetalRemove",
     "sideall": "SELF",
     "npcLimit": 0,
     "maxStackSize": 600,

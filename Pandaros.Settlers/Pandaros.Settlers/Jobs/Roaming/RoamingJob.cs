@@ -3,6 +3,7 @@ using NPC;
 using Pandaros.Settlers.Models;
 using Pipliz;
 using Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -86,62 +87,69 @@ namespace Pandaros.Settlers.Jobs.Roaming
             var cooldown      = COOLDOWN;
             var allActionsComplete = false;
 
-            if (TargetObjective != null && NPC != null)
+            try
             {
-                NPC.LookAt(TargetObjective.Position.Vector);
-                bool actionFound = false;
+                if (TargetObjective != null && NPC != null)
+                {
+                    NPC.LookAt(TargetObjective.Position.Vector);
+                    bool actionFound = false;
 
-                foreach (var action in new Dictionary<string, float>(TargetObjective.ActionEnergy))
-                    if (action.Value < .5f)
+                    foreach (var action in new Dictionary<string, float>(TargetObjective.ActionEnergy))
+                        if (action.Value < .5f)
+                        {
+                            status = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].PreformAction(Owner, TargetObjective);
+                            cooldown = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].TimeToPreformAction;
+                            AudioManager.SendAudio(TargetObjective.Position.Vector, TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].AudioKey);
+                            actionFound = true;
+                        }
+
+                    if (!actionFound)
                     {
-                        status   = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].PreformAction(Owner, TargetObjective);
-                        cooldown = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].TimeToPreformAction;
-                        AudioManager.SendAudio(TargetObjective.Position.Vector, TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].AudioKey);
-                        actionFound = true;
+                        PreviousObjective = null;
+                        TargetObjective.JobRef = null;
+                        TargetObjective = null;
+                        allActionsComplete = true;
                     }
-
-                if (!actionFound)
-                {
-                    PreviousObjective = null;
-                    TargetObjective.JobRef = null;
-                    TargetObjective = null;
-                    allActionsComplete = true;
                 }
-            }
 
-            // if the objective is gone, Abort.
-            CheckIfValidObjective();
+                // if the objective is gone, Abort.
+                CheckIfValidObjective();
 
-            if (OkStatus.Contains(status))
-            {
-                ActionsPreformed++;
-                _stuckCount = 0;
-            }
-            else if (status != 0)
-                _stuckCount++;
-
-            if (_stuckCount > 5 || TargetObjective == null)
-            {
-                state.JobIsDone = true;
-                status          = ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
-
-                if (allActionsComplete)
-                    cooldown = 0.5f;
-
-                if (_stuckCount > 5)
+                if (OkStatus.Contains(status))
                 {
-                    PreviousObjective         = TargetObjective;
-                    TargetObjective.JobRef    = null;
-                    TargetObjective           = null;
+                    ActionsPreformed++;
+                    _stuckCount = 0;
                 }
-            }
+                else if (status != 0)
+                    _stuckCount++;
 
-            if (OkStatus.Contains(status))
-                state.SetIndicator(new IndicatorState(cooldown, status.Id));
-            else if (status != 0)
-                state.SetIndicator(new IndicatorState(cooldown, status.Id, true));
-            else
-                state.SetIndicator(new IndicatorState(cooldown, ColonyBuiltIn.ItemTypes.MISSINGERROR.Name));
+                if (_stuckCount > 5 || TargetObjective == null)
+                {
+                    state.JobIsDone = true;
+                    status = ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
+
+                    if (allActionsComplete)
+                        cooldown = 0.5f;
+
+                    if (_stuckCount > 5)
+                    {
+                        PreviousObjective = TargetObjective;
+                        TargetObjective.JobRef = null;
+                        TargetObjective = null;
+                    }
+                }
+
+                if (OkStatus.Contains(status))
+                    state.SetIndicator(new IndicatorState(cooldown, status.Id));
+                else if (status != 0)
+                    state.SetIndicator(new IndicatorState(cooldown, status.Id, true));
+                else
+                    state.SetIndicator(new IndicatorState(cooldown, ColonyBuiltIn.ItemTypes.MISSINGERROR.Name));
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
 
             state.SetCooldown(cooldown);
         }
