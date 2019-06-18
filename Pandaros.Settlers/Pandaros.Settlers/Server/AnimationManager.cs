@@ -17,10 +17,10 @@ namespace Pandaros.Settlers.Server
 
         static AnimationManager()
         {
-            AnimatedObjects[SLINGBULLET] = new AnimatedObject(SLINGBULLET, GameLoader.MESH_PATH + "slingbullet.ply", "projectile");
-            AnimatedObjects[ARROW] = new AnimatedObject(ARROW, GameLoader.MESH_PATH + "arrow.ply", "projectile");
-            AnimatedObjects[CROSSBOWBOLT] = new AnimatedObject(CROSSBOWBOLT, GameLoader.MESH_PATH + "crossbowbolt.ply", "projectile");
-            AnimatedObjects[LEADBULLET] = new AnimatedObject(LEADBULLET, GameLoader.MESH_PATH + "leadbullet.ply", "projectile");
+            AnimatedObjects[SLINGBULLET] = new AnimatedObject(SLINGBULLET, GameLoader.MESH_PATH + "slingbullet.ply");
+            AnimatedObjects[ARROW] = new AnimatedObject(ARROW, GameLoader.MESH_PATH + "arrow.ply");
+            AnimatedObjects[CROSSBOWBOLT] = new AnimatedObject(CROSSBOWBOLT, GameLoader.MESH_PATH + "crossbowbolt.ply");
+            AnimatedObjects[LEADBULLET] = new AnimatedObject(LEADBULLET, GameLoader.MESH_PATH + "leadbullet.ply");
         }
 
         public static Dictionary<string, AnimatedObject> AnimatedObjects { get; } = new Dictionary<string, AnimatedObject>(StringComparer.OrdinalIgnoreCase);
@@ -34,11 +34,11 @@ namespace Pandaros.Settlers.Server
 
         public class AnimatedObject
         {
-            public AnimatedObject(string key, string meshPath, string textureMapping)
+            public AnimatedObject(string key, string meshPath, string textureMapping = "neutral")
             {
-                ObjSettings = new MeshedObjectTypeSettings(key, meshPath, textureMapping);
-                ObjType     = MeshedObjectType.Register(ObjSettings);
                 string mesh = IOHelper.SimplifyRelativeDirectory(meshPath, "");
+                ObjSettings = new MeshedObjectTypeSettings(key, mesh, textureMapping);
+                ObjType     = MeshedObjectType.Register(ObjSettings);
                 FileTable.Register(mesh, ECachedFileType.Mesh);
             }
 
