@@ -85,7 +85,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public int BaseIterationCount => 300;
         public bool AddLevelToName => false;
-        public string name => "Architect";
+        public string name => GameLoader.NAMESPACE + ".Architect";
         public string IconDirectory => GameLoader.ICON_PATH;
 
         public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
