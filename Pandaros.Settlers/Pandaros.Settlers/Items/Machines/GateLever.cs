@@ -81,7 +81,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         private const double GateLeverCooldown = 4;
         private const string DoorOpen = "DoorOpen";
-        private const float TravelTime = 4.0f;
+        private const float TravelTime = 6.0f;
 
         private static readonly AnimationManager.AnimatedObject _gateXMinusItemObjSettings = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".GateXMinusAnimated", GameLoader.MESH_PATH + "gatex-.obj", GameLoader.NAMESPACE + ".Gate");
         private static readonly AnimationManager.AnimatedObject _gateXPlusItemObjSettings = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".GateXPlusAnimated", GameLoader.MESH_PATH + "gatex+.obj", GameLoader.NAMESPACE + ".Gate");

@@ -46,14 +46,15 @@ namespace Pandaros.Settlers.Server
             public MeshedObjectType ObjType { get; }
             public MeshedObjectTypeSettings ObjSettings { get; }
 
-            public ClientMeshedObject SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = 1f)
+            public ClientMeshedObject SendMoveToInterpolated(Vector3 start, Vector3 end, float deltaTime = .2f)
             {
                 var obj = new ClientMeshedObject(ObjType);
-                obj.SendMoveToInterpolated(start, new Quaternion(end.x, end.y, end.z, 0), deltaTime, ObjSettings);
-                
+                obj.SendMoveToInterpolated(start, Quaternion.identity, deltaTime, ObjSettings);
+                obj.SendMoveToInterpolated(end, Quaternion.identity, deltaTime, ObjSettings);
+
                 Task.Run(() =>
                 {
-                    System.Threading.Thread.Sleep((int)(deltaTime * 1001));
+                    System.Threading.Thread.Sleep((int)(deltaTime * 1000) + 500);
                     obj.SendRemoval(end, ObjSettings);
                 });
 
