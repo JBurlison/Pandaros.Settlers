@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             set => killedBefore = value;
         }
 
-        public string AnnouncementAudio => GameLoader.NAMESPACE + "ZombieAudio";
+        public string AnnouncementAudio => GameLoader.NAMESPACE + ".ZombieAudio";
 
         public float ZombieMultiplier => 1.0f;
         public float MissChance => 0.05f;
