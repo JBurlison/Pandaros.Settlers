@@ -52,13 +52,13 @@ namespace Pandaros.Settlers.Items.Machines
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
 
-        public bool isOptional => true;
+        public bool isOptional => false;
 
         public int defaultLimit => 5;
 
         public string Job => AdvancedCrafterRegister.JOB_NAME;
 
-        public string name => SettlersBuiltIn.ItemTypes.MINER;
+        public string name => SettlersBuiltIn.ItemTypes.MINER.Name;
     }
 
     public class MinerRegister : IRoamingJobObjective
