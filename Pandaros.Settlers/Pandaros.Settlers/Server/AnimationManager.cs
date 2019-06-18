@@ -15,10 +15,10 @@ namespace Pandaros.Settlers.Server
 
         static AnimationManager()
         {
-            AnimatedObjects[SLINGBULLET] = new AnimatedObject(SLINGBULLET, GameLoader.GAMEDATA_FOLDER + "meshes/slingbullet.ply", "projectile");
-            AnimatedObjects[ARROW] = new AnimatedObject(ARROW, GameLoader.GAMEDATA_FOLDER + "meshes/arrow.ply", "projectile");
-            AnimatedObjects[CROSSBOWBOLT] = new AnimatedObject(CROSSBOWBOLT, GameLoader.GAMEDATA_FOLDER + "meshes/crossbowbolt.ply", "projectile");
-            AnimatedObjects[LEADBULLET] = new AnimatedObject(LEADBULLET, GameLoader.GAMEDATA_FOLDER + "meshes/leadbullet.ply", "projectile");
+            AnimatedObjects[SLINGBULLET] = new AnimatedObject(SLINGBULLET, GameLoader.MESH_PATH + "slingbullet.ply", "projectile");
+            AnimatedObjects[ARROW] = new AnimatedObject(ARROW, GameLoader.MESH_PATH + "arrow.ply", "projectile");
+            AnimatedObjects[CROSSBOWBOLT] = new AnimatedObject(CROSSBOWBOLT, GameLoader.MESH_PATH + "crossbowbolt.ply", "projectile");
+            AnimatedObjects[LEADBULLET] = new AnimatedObject(LEADBULLET, GameLoader.MESH_PATH + "leadbullet.ply", "projectile");
         }
 
         public static Dictionary<string, AnimatedObject> AnimatedObjects { get; } = new Dictionary<string, AnimatedObject>(StringComparer.OrdinalIgnoreCase);

@@ -95,6 +95,8 @@ namespace Pandaros.Settlers.Jobs
     public class MachinistSettingsNight : MachinistSettingsDay
     {
         public override bool ToSleep => TimeCycle.IsDay;
+        public override float NPCShopGameHourMinimum { get { return TimeCycle.Settings.SleepTimeEnd; } }
+        public override float NPCShopGameHourMaximum { get { return TimeCycle.Settings.SleepTimeStart; } }
 
         public override ItemTypes.ItemType[] BlockTypes => new[]
         {

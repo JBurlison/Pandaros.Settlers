@@ -51,31 +51,38 @@ namespace Pandaros.Settlers.Jobs.Roaming
         {
             var pos = OriginalPosition;
 
-            if (TargetObjective == null)
+            try
             {
-                if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic))
-                    foreach (var objective in roamingJobObjectiveDic.Values.Where(m => m.CanBeWorked(ObjectiveCategories)))
-                        if (objective != PreviousObjective && objective.PositionIsValid())
-                        {
-                            var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
-
-                            if (dis <= 21)
+                if (TargetObjective == null)
+                {
+                    if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic))
+                        foreach (var objective in roamingJobObjectiveDic.Values.Where(m => m.CanBeWorked(ObjectiveCategories)))
+                            if (objective != PreviousObjective && objective.PositionIsValid())
                             {
-                                var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
-                                if (action.Key != null)
-                                {
-                                    TargetObjective = objective;
-                                    TargetObjective.JobRef = this;
+                                var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
 
-                                    pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
-                                    break;
+                                if (dis <= 21)
+                                {
+                                    var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
+                                    if (action.Key != null)
+                                    {
+                                        TargetObjective = objective;
+                                        TargetObjective.JobRef = this;
+
+                                        pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
+                                        break;
+                                    }
                                 }
                             }
-                        }
+                }
+                else
+                {
+                    pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
+                PandaLogger.LogError(ex);
             }
 
             return pos;
@@ -86,13 +93,13 @@ namespace Pandaros.Settlers.Jobs.Roaming
             var status        = ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting");
             var cooldown      = COOLDOWN;
             var allActionsComplete = false;
+            bool actionFound = false;
 
             try
             {
                 if (TargetObjective != null && NPC != null)
                 {
                     NPC.LookAt(TargetObjective.Position.Vector);
-                    bool actionFound = false;
 
                     foreach (var action in new Dictionary<string, float>(TargetObjective.ActionEnergy))
                         if (action.Value < .5f)
@@ -117,7 +124,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
                 if (OkStatus.Contains(status))
                 {
-                    ActionsPreformed++;
+                    if (actionFound)
+                        ActionsPreformed++;
+
                     _stuckCount = 0;
                 }
                 else if (status != 0)

@@ -22,7 +22,7 @@ namespace Pandaros.Settlers
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
-        public static string MESH_PATH = "gamedata/mods/Pandaros/Settlers/meshes/";
+        public static string MESH_PATH = "gamedata/mods/Pandaros/Settlers/Meshes/";
         public static string AUDIO_PATH = "gamedata/mods/Pandaros/Settlers/Audio/";
         public static string ICON_PATH = "gamedata/mods/Pandaros/Settlers/icons/";
         public static string BLOCKS_ALBEDO_PATH = "Textures/albedo/";
