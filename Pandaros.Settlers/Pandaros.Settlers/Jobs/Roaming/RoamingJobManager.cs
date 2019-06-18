@@ -192,7 +192,8 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 if (!Objectives.ContainsKey(colony))
                     Objectives.Add(colony, new Dictionary<Vector3Int, RoamingJobState>());
 
-                Objectives[colony][state.Position] = state;
+                if (state.Position != Vector3Int.invalidPos)
+                    Objectives[colony][state.Position] = state;
             }
         }
 
