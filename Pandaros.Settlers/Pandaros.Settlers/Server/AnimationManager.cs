@@ -1,4 +1,6 @@
 ﻿using MeshedObjects;
+using Pipliz.Helpers;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -36,6 +38,8 @@ namespace Pandaros.Settlers.Server
             {
                 ObjSettings = new MeshedObjectTypeSettings(key, meshPath, textureMapping);
                 ObjType     = MeshedObjectType.Register(ObjSettings);
+                string mesh = IOHelper.SimplifyRelativeDirectory(meshPath, "");
+                FileTable.Register(mesh, ECachedFileType.Mesh);
             }
 
             public string Name { get; private set; }

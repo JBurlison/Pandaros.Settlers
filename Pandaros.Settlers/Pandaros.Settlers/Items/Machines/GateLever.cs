@@ -464,8 +464,8 @@ namespace Pandaros.Settlers.Items.Machines
             GateNode["icon"]        = new JSONNode(GameLoader.ICON_PATH + "Gate.png");
             GateNode["isPlaceable"] = new JSONNode(true);
             GateNode.SetAs("onRemoveAmount", 0);
-            GateNode.SetAs("onPlaceAudio", GameLoader.NAMESPACE + "Metal");
-            GateNode.SetAs("onRemoveAudio", GameLoader.NAMESPACE + "MetalRemove");
+            GateNode.SetAs("onPlaceAudio", GameLoader.NAMESPACE + ".Metal");
+            GateNode.SetAs("onRemoveAudio", GameLoader.NAMESPACE + ".MetalRemove");
             GateNode.SetAs("isSolid", true);
             GateNode.SetAs("sideall", GameLoader.NAMESPACE + ".Gate");
 
