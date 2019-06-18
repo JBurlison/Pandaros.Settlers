@@ -48,7 +48,7 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = MachinistDay.JOB_NAME,
-                printName = "Machinist",
+                printName = "Machinist Day",
                 maskColor1 = new Color32(242, 132, 29, 255),
                 type = NPCTypeID.GetNextID(),
                 inventoryCapacity = 1f
@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Jobs
             ItemTypes.GetType(MachinistDay.JOB_ITEM_KEY)
         };
 
-        public NPCType NPCType => _Settings;
+        public virtual NPCType NPCType => _Settings;
 
         public virtual InventoryItem RecruitmentItem => new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name);
 
@@ -94,6 +94,7 @@ namespace Pandaros.Settlers.Jobs
 
     public class MachinistSettingsNight : MachinistSettingsDay
     {
+        static NPCType _Settings;
         public override bool ToSleep => TimeCycle.IsDay;
         public override float NPCShopGameHourMinimum { get { return TimeCycle.Settings.SleepTimeEnd; } }
         public override float NPCShopGameHourMaximum { get { return TimeCycle.Settings.SleepTimeStart; } }
@@ -102,6 +103,23 @@ namespace Pandaros.Settlers.Jobs
         {
             ItemTypes.GetType(MachinistNight.JOB_ITEM_KEY)
         };
+
+        static MachinistSettingsNight()
+        {
+            NPCType.AddSettings(new NPCTypeStandardSettings
+            {
+                keyName = MachinistNight.JOB_NAME,
+                printName = "Machinist Night",
+                maskColor1 = new Color32(127, 74, 24, 255),
+                type = NPCTypeID.GetNextID(),
+                inventoryCapacity = 1f
+            });
+
+            _Settings = NPCType.GetByKeyNameOrDefault(MachinistNight.JOB_NAME);
+        }
+
+        public override NPCType NPCType => _Settings;
+
     }
 
     public class MachinistDay : RoamingJob
