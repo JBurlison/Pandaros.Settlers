@@ -47,6 +47,12 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public virtual List<string> ObjectiveCategories => new List<string>();
         public virtual int ActionsPreformed { get; set; }
 
+        public override void OnNPCCouldNotPathToGoal()
+        {
+            NPC.SetPosition(OriginalPosition);
+            NPC.SendPositionUpdate();
+        }
+
         public override Vector3Int GetJobLocation()
         {
             var pos = OriginalPosition;
@@ -64,6 +70,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                 if (dis <= 21)
                                 {
                                     var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
+
                                     if (action.Key != null)
                                     {
                                         TargetObjective = objective;

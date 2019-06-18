@@ -141,10 +141,10 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public bool PositionIsValid()
         {
-            if (Position != null && World.TryGetTypeAt(Position, out ushort objType))
+            if (Position != null && Position != Vector3Int.invalidPos && World.TryGetTypeAt(Position, out ushort objType))
                 return objType == RoamingJobSettings.ItemIndex;
 
-            return Position != null;
+            return Position != null && Position != Vector3Int.invalidPos;
         }
 
         public bool CanBeWorked(List<string> catagories)
