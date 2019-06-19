@@ -140,7 +140,7 @@ namespace Pandaros.Settlers.Entities
                     _colonyStates[c].SettlersToggledTimes = stt;
 
                 if (stateNode.TryGetAs(nameof(CreationDate), out string joindate) && DateTime.TryParse(joindate, out var parsedJoinDate))
-                    _colonyStates[c].JoinDate = parsedJoinDate;
+                    _colonyStates[c].CreationDate = parsedJoinDate;
             }
         }
 
