@@ -15,20 +15,20 @@ namespace Pandaros.Settlers.ColonyManagement
             var name = "";
             var cs = Entities.ColonyState.GetColonyState(colony);
 
-            if (colony.HappinessData.CachedHappiness < 0)
+            if (colony.HappinessData.CachedHappiness < 20)
             {
                 float percent = 0.05f;
 
-                if (colony.HappinessData.CachedHappiness < -20)
+                if (colony.HappinessData.CachedHappiness < 15)
                     percent = 0.10f;
 
-                if (colony.HappinessData.CachedHappiness < -50)
+                if (colony.HappinessData.CachedHappiness < 10)
                     percent = 0.15f;
 
-                if (colony.HappinessData.CachedHappiness < -70)
+                if (colony.HappinessData.CachedHappiness < 5)
                     percent = 0.20f;
 
-                if (colony.HappinessData.CachedHappiness < -100)
+                if (colony.HappinessData.CachedHappiness < 0)
                     percent = 0.25f;
 
                 percent = percent * cs.Difficulty.UnhappyGuardsMultiplyRate;
