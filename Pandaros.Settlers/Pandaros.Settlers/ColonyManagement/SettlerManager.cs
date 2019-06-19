@@ -203,7 +203,7 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            _baseFoodPerHour = ServerManager.ServerSettings.NPCs.MaxFoodCarriedHours;
+            _baseFoodPerHour = 1;
             IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
             BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
             LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
@@ -440,14 +440,14 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             //if (ServerManager.TerrainGenerator != null)
             //{
-            //    var food   = _baseFoodPerHour;
+            //    var food = _baseFoodPerHour;
 
             //    if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
             //    {
             //        var multiplier = .4 - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
             //        multiplier = (multiplier + state.Difficulty.FoodMultiplier);
 
-            //        food -= (float) ((_baseFoodPerHour * multiplier));
+            //        food -= (float)((_baseFoodPerHour * multiplier));
             //    }
 
             //    if (state.ColonyRef.InSiegeMode)

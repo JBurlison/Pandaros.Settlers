@@ -25,6 +25,11 @@ namespace Pandaros.Settlers.Entities
         public double NextGenTime { get; set; }
         public int SettlersToggledTimes { get; set; }
         public float FoodPerHour { get; set; }
+        public Dictionary<ushort, int> ItemsPlaced { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
+        public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
+        public DateTime CreationDate { get; set; } = DateTime.Now;
         public string DifficultyStr
         {
             get
@@ -97,6 +102,22 @@ namespace Pandaros.Settlers.Entities
 
             if (n.TryGetChild(GameLoader.NAMESPACE + ".ColonyState", out var stateNode))
             {
+                if (stateNode.TryGetAs(nameof(ItemsPlaced), out JSONNode ItemsPlacedNode))
+                    foreach (var aNode in ItemsPlacedNode.LoopObject())
+                        _colonyStates[c].ItemsPlaced.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
+                if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode))
+                    foreach (var aNode in ItemsRemovedNode.LoopObject())
+                        _colonyStates[c].ItemsRemoved.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
+                if (stateNode.TryGetAs(nameof(ItemsInWorld), out JSONNode ItemsInWorldNode))
+                    foreach (var aNode in ItemsInWorldNode.LoopObject())
+                        _colonyStates[c].ItemsInWorld.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
+
+                if (stateNode.TryGetAs(nameof(Stats), out JSONNode itterations))
+                    foreach (var skill in itterations.LoopObject())
+                        _colonyStates[c].Stats[skill.Key] = skill.Value.GetAs<double>();
+
                 if (stateNode.TryGetAs("Difficulty", out string diff))
                     _colonyStates[c].DifficultyStr = diff;
 
@@ -117,6 +138,9 @@ namespace Pandaros.Settlers.Entities
 
                 if (stateNode.TryGetAs(nameof(SettlersToggledTimes), out int stt))
                     _colonyStates[c].SettlersToggledTimes = stt;
+
+                if (stateNode.TryGetAs(nameof(CreationDate), out string joindate) && DateTime.TryParse(joindate, out var parsedJoinDate))
+                    _colonyStates[c].JoinDate = parsedJoinDate;
             }
         }
 
@@ -125,6 +149,9 @@ namespace Pandaros.Settlers.Entities
         {
             if (_colonyStates.ContainsKey(c))
             {
+                var ItemsPlacedNode = new JSONNode();
+                var ItemsRemovedNode = new JSONNode();
+                var ItemsInWorldNode = new JSONNode();
                 var node = new JSONNode();
 
                 node.SetAs("Difficulty", _colonyStates[c].DifficultyStr);
@@ -133,6 +160,26 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(HighestColonistCount), _colonyStates[c].HighestColonistCount);
                 node.SetAs(nameof(SettlersToggledTimes), _colonyStates[c].SettlersToggledTimes);
                 node.SetAs(nameof(NotifySettlers), _colonyStates[c].NotifySettlers);
+
+                foreach (var kvp in _colonyStates[c].ItemsPlaced)
+                    ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                foreach (var kvp in _colonyStates[c].ItemsRemoved)
+                    ItemsRemovedNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                foreach (var kvp in _colonyStates[c].ItemsInWorld)
+                    ItemsInWorldNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                var statsNode = new JSONNode();
+
+                foreach (var job in _colonyStates[c].Stats)
+                    statsNode[job.Key] = new JSONNode(job.Value);
+
+                node.SetAs(nameof(Stats), statsNode);
+                node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
+                node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
+                node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
+                node.SetAs(nameof(CreationDate), _colonyStates[c].CreationDate);
 
                 n.SetAs(GameLoader.NAMESPACE + ".ColonyState", node);
             }

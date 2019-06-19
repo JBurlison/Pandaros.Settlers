@@ -20,6 +20,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 return;
 
             var ps = PlayerState.GetPlayerState(data.player);
+            var cs = ColonyState.GetColonyState(ps.Player.ActiveColony);
 
             if (ps != null)
             {
@@ -27,9 +28,21 @@ namespace Pandaros.Settlers.ColonyManagement
                 {
                     ushort itemId = GetParentId(data.hoverItem, item);
 
-                    BuildPlaceableMenu(data, itemId, ps, ps.ItemsPlaced, "NumberPlaced");
-                    BuildPlaceableMenu(data, itemId, ps, ps.ItemsRemoved, "NumberRemoved");
-                    BuildPlaceableMenu(data, itemId, ps, ps.ItemsInWorld, "NumberInWorld");
+                    BuildPlaceableMenu(data, itemId, ps.ItemsPlaced, "PlayerNumberPlaced");
+                    BuildPlaceableMenu(data, itemId, ps.ItemsRemoved, "PlayerNumberRemoved");
+                    BuildPlaceableMenu(data, itemId, ps.ItemsInWorld, "PlayerNumberInWorld");
+                }
+            }
+
+            if (cs != null)
+            {
+                if (item.IsPlaceable)
+                {
+                    ushort itemId = GetParentId(data.hoverItem, item);
+
+                    BuildPlaceableMenu(data, itemId, cs.ItemsPlaced, "ColonyNumberPlaced");
+                    BuildPlaceableMenu(data, itemId, cs.ItemsRemoved, "ColonyNumberRemoved");
+                    BuildPlaceableMenu(data, itemId, cs.ItemsInWorld, "ColonyNumberInWorld");
                 }
             }
         }
@@ -43,37 +56,44 @@ namespace Pandaros.Settlers.ColonyManagement
                 return;
 
             var ps = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
+            var cs = ColonyState.GetColonyState(ps.Player.ActiveColony);
 
             if (ps != null)
+                AddToCount(d, ps.ItemsPlaced, ps.ItemsInWorld, ps.ItemsRemoved);
+
+            if (cs != null)
+                AddToCount(d, cs.ItemsPlaced, cs.ItemsInWorld, cs.ItemsRemoved);
+        }
+
+        private static void AddToCount(ModLoader.OnTryChangeBlockData d, Dictionary<ushort, int> ItemsPlaced, Dictionary<ushort, int> ItemsInWorld, Dictionary<ushort, int> ItemsRemoved)
+        {
+            if (d.TypeNew.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && ItemTypes.TryGetType(d.TypeNew.ItemIndex, out var item))
             {
-                if (d.TypeNew.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && ItemTypes.TryGetType(d.TypeNew.ItemIndex, out var item))
-                {
-                    ushort itemId = GetParentId(d.TypeNew.ItemIndex, item);
+                ushort itemId = GetParentId(d.TypeNew.ItemIndex, item);
 
-                    if (!ps.ItemsPlaced.ContainsKey(itemId))
-                        ps.ItemsPlaced.Add(itemId, 0);
+                if (!ItemsPlaced.ContainsKey(itemId))
+                    ItemsPlaced.Add(itemId, 0);
 
-                    if (!ps.ItemsInWorld.ContainsKey(itemId))
-                        ps.ItemsInWorld.Add(itemId, 0);
+                if (!ItemsInWorld.ContainsKey(itemId))
+                    ItemsInWorld.Add(itemId, 0);
 
-                    ps.ItemsPlaced[itemId]++;
-                    ps.ItemsInWorld[itemId]++;
-                }
+                ItemsPlaced[itemId]++;
+                ItemsInWorld[itemId]++;
+            }
 
-                if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id && d.TypeOld.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && ItemTypes.TryGetType(d.TypeOld.ItemIndex, out var itemOld))
-                {
-                    ushort itemId = GetParentId(d.TypeOld.ItemIndex, itemOld);
+            if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id && d.TypeOld.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id && ItemTypes.TryGetType(d.TypeOld.ItemIndex, out var itemOld))
+            {
+                ushort itemId = GetParentId(d.TypeOld.ItemIndex, itemOld);
 
-                    if (!ps.ItemsRemoved.ContainsKey(itemId))
-                        ps.ItemsRemoved.Add(itemId, 0);
+                if (!ItemsRemoved.ContainsKey(itemId))
+                    ItemsRemoved.Add(itemId, 0);
 
-                    if (!ps.ItemsInWorld.ContainsKey(itemId))
-                        ps.ItemsInWorld.Add(itemId, 0);
-                    else
-                        ps.ItemsInWorld[itemId]--;
+                if (!ItemsInWorld.ContainsKey(itemId))
+                    ItemsInWorld.Add(itemId, 0);
+                else
+                    ItemsInWorld[itemId]--;
 
-                    ps.ItemsRemoved[itemId]++;
-                }
+                ItemsRemoved[itemId]++;
             }
         }
 
@@ -88,7 +108,7 @@ namespace Pandaros.Settlers.ColonyManagement
             return itemId;
         }
 
-        private static void BuildPlaceableMenu(ConstructTooltipUIData data, ushort item, PlayerState ps, Dictionary<ushort, int> dict, string sentenceKey)
+        private static void BuildPlaceableMenu(ConstructTooltipUIData data, ushort item, Dictionary<ushort, int> dict, string sentenceKey)
         {
             if (!dict.ContainsKey(item))
                 dict.Add(item, 0);
