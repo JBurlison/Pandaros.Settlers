@@ -1,4 +1,6 @@
-﻿using Pandaros.Settlers.ColonyManagement;
+﻿using NetworkUI;
+using NetworkUI.Items;
+using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using System;
@@ -65,6 +67,18 @@ namespace Pandaros.Settlers.Entities
         public ColonyState(Colony c)
         {
             ColonyRef = c;
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".Entities.ColonyState.OnConstructInventoryManageColonyUI")]
+        public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        {
+            var cs = GetColonyState(player.ActiveColony);
+
+            if (cs != null)
+            {
+                networkMenu.Items.Add(new HorizontalSplit(new Label(new LabelData(GameLoader.NAMESPACE + ".inventory.ColonyCreationDate", UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Sentence)),
+                                                    new Label(new LabelData(cs.CreationDate.ToString())), 30, 0.75f));
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.ColonyState.OnUpdate")]

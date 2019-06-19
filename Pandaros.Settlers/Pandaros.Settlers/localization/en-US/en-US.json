@@ -421,12 +421,13 @@
       "Settlers": {
         "Apothecary": "Apothecary",
         "inventory": {
-          "PlayerNumberPlaced": "Total Placed by Player",
-          "PlayerNumberRemoved": "Total Removed by Player",
-          "PlayerNumberInWorld": "Current in World by Player",
-          "ColonyNumberPlaced": "Total Placed in Colony",
-          "ColonyNumberRemoved": "Total Removed in Colony",
-          "ColonyNumberInWorld": "Current in Colony"
+          "PlayerNumberPlaced": "Placed by you",
+          "PlayerNumberRemoved": "Removed by you",
+          "PlayerNumberInWorld": "In World by you",
+          "ColonyNumberPlaced": "Placed in Colony",
+          "ColonyNumberRemoved": "Removed in Colony",
+          "ColonyNumberInWorld": "In Colony",
+          "ColonyCreationDate": "Colony Creation Date"
         },
         "Permission": {
           "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: "
