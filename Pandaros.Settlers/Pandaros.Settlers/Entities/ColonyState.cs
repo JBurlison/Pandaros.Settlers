@@ -24,6 +24,7 @@ namespace Pandaros.Settlers.Entities
         public int HighestColonistCount { get; set; }
         public double NextGenTime { get; set; }
         public int SettlersToggledTimes { get; set; }
+        public float FoodPerHour { get; set; }
         public string DifficultyStr
         {
             get

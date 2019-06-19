@@ -8,8 +8,6 @@ namespace Pandaros.Settlers.AI
 {
     public static class SettlerEvaluation
     {
-        private static readonly double _minFoodHours = TimeSpan.FromDays(3).TotalHours;
-
         public static float SpawnChance(ColonyState state)
         {
             var chance        = .3f;
@@ -22,11 +20,6 @@ namespace Pandaros.Settlers.AI
                 chance += 0.3f;
             else if (remainingBeds > SettlerManager.MIN_PERSPAWN)
                 chance += 0.15f;
-
-            var hoursofFood = state.ColonyRef.Stockpile.TotalFood / state.ColonyRef.FoodUsePerHour;
-
-            if (hoursofFood > _minFoodHours)
-                chance += 0.2f;
 
             var jobCount = state.ColonyRef.JobFinder.OpenJobCount;
 

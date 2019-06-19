@@ -55,7 +55,7 @@ namespace Pandaros.Settlers.Research
 
         public int NumberOfLevels => 5;
 
-        public float BaseValue => 0.001f;
+        public float BaseValue => 0.05f;
 
         public int BaseIterationCount => 10;
 

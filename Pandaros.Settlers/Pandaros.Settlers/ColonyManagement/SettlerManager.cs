@@ -203,7 +203,7 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            _baseFoodPerHour = ServerManager.ServerSettings.NPCs.FoodUsePerHour;
+            _baseFoodPerHour = ServerManager.ServerSettings.NPCs.MaxFoodCarriedHours;
             IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
             BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
             LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
@@ -271,6 +271,8 @@ namespace Pandaros.Settlers.ColonyManagement
                     return;
 
                 var ps = ColonyState.GetColonyState(npc.Colony);
+
+                npc.FoodHoursCarried = ps.FoodPerHour;
 
                 if (ps.SettlersEnabled)
                 {
@@ -436,28 +438,29 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public static void UpdateFoodUse(ColonyState state)
         {
-            if (ServerManager.TerrainGenerator != null)
-            {
-                var food   = _baseFoodPerHour;
+            //if (ServerManager.TerrainGenerator != null)
+            //{
+            //    var food   = _baseFoodPerHour;
 
-                if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
-                {
-                    var multiplier = .7 / state.ColonyRef.FollowerCount -
-                                     state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
+            //    if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
+            //    {
+            //        var multiplier = .4 - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
+            //        multiplier = (multiplier + state.Difficulty.FoodMultiplier);
 
-                    food += (float) (_baseFoodPerHour * multiplier);
-                    food *= state.Difficulty.FoodMultiplier;
-                }
+            //        food -= (float) ((_baseFoodPerHour * multiplier));
+            //    }
 
-                if (state.ColonyRef.InSiegeMode)
-                    food = food * ServerManager.ServerSettings.NPCs.FoodUseMultiplierSiegeMode;
+            //    if (state.ColonyRef.InSiegeMode)
+            //        food -= food * .4f;
 
-                if (food < _baseFoodPerHour)
-                    food = _baseFoodPerHour;
 
-                state.ColonyRef.FoodUsePerHour = food;
-                state.ColonyRef.SendCommonData();
-            }
+            //    state.FoodPerHour = food;
+
+            //    foreach (var npc in state.ColonyRef.Followers)
+            //        npc.FoodHoursCarried = food;
+
+            //    state.ColonyRef.SendCommonData();
+            //}
         }
 
         public static bool EvaluateSettlers(ColonyState state)
