@@ -163,6 +163,7 @@
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\Armor\MagicArmor.cs" />
     <Compile Include="Items\ConnectedBlock.cs" />
+    <Compile Include="Items\ConnectedBlockCalculator.cs" />
     <Compile Include="Items\ConnectedBlockSystem.cs" />
     <Compile Include="Items\CSGenerateType.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />

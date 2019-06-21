@@ -272,37 +272,37 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 var ps = ColonyState.GetColonyState(npc.Colony);
 
-                npc.FoodHoursCarried = ps.FoodPerHour;
+                npc.FoodHoursCarried = ServerManager.ServerSettings.NPCs.InitialFoodCarriedHours;
 
                 if (ps.SettlersEnabled)
                 {
                     if (SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
                     {
-                        if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
-                        {
-                            var cost = SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", 2) * ps.ColonistsBought;
-                            var num = 0f;
+                        //if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
+                        //{
+                        //    var cost = SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", .25) * ps.ColonistsBought;
+                        //    var num = 0f;
 
-                            if (cost < 1)
-                                cost = 1;
+                        //    if (cost < 1)
+                        //        cost = 1;
 
-                            if (npc.Colony.Stockpile.TotalFood < cost ||
-                                !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
-                            {
-                                PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
-                                npc.Colony.HappinessData.RecruitmentCostCalculator.GetCost(npc.Colony.HappinessData.CachedHappiness, npc.Colony, out float foodCost);
+                        //    if (npc.Colony.Stockpile.TotalFood < cost ||
+                        //        !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
+                        //    {
+                        //        PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
+                        //        npc.Colony.HappinessData.RecruitmentCostCalculator.GetCost(npc.Colony.HappinessData.CachedHappiness, npc.Colony, out float foodCost);
 
-                                if (ItemTypes.TryGetType(ColonyBuiltIn.ItemTypes.BREAD.Name, out var bread))
-                                    npc.Colony.Stockpile.Add(ColonyBuiltIn.ItemTypes.BREAD, (int)Math.Floor(foodCost / bread.FoodValue));
+                        //        if (ItemTypes.TryGetType(ColonyBuiltIn.ItemTypes.BREAD.Name, out var bread))
+                        //            npc.Colony.Stockpile.Add(ColonyBuiltIn.ItemTypes.BREAD, (int)Math.Floor(foodCost / bread.FoodValue));
 
-                                npc.health = 0;
-                                npc.Update();
-                                return;
-                            }
+                        //        npc.health = 0;
+                        //        npc.Update();
+                        //        return;
+                        //    }
 
-                            ps.ColonistsBought++;
-                            ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours + 24;
-                        }
+                        //    ps.ColonistsBought++;
+                        //    ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours + 24;
+                        //}
 
                         SettlerInventory.GetSettlerInventory(npc);
                         UpdateFoodUse(ps);
@@ -310,6 +310,8 @@ namespace Pandaros.Settlers.ColonyManagement
                     else
                     {
                         PandaChat.Send(npc.Colony, "The server administrator has disabled recruitment of colonists while settlers are enabled.");
+                        npc.health = 0;
+                        npc.Update();
                     }
                 }
             }
@@ -365,6 +367,7 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             if (job != null && job.NPC != null && results != null && results.Count > 0)
             {
+                IncrimentSkill(job.NPC);
                 var inv = SettlerInventory.GetSettlerInventory(job.NPC);
                
                 foreach (var item in results)

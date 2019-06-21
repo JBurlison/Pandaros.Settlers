@@ -186,6 +186,7 @@ namespace Pandaros.Settlers.ColonyManagement
                             else
                             {
                                 var newGuy = new NPCBase(data.Player.ActiveColony, data.Player.ActiveColony.GetClosestBanner(new Vector3Int(data.Player.Position)).Position);
+                                newGuy.FoodHoursCarried = ServerManager.ServerSettings.NPCs.InitialFoodCarriedHours;
                                 data.Player.ActiveColony.RegisterNPC(newGuy);
                                 SettlerInventory.GetSettlerInventory(newGuy);
                                 NPCTracker.Add(newGuy);
