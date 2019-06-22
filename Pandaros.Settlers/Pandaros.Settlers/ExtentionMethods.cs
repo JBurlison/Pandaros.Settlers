@@ -3,6 +3,7 @@ using Jobs;
 using Newtonsoft.Json;
 using NPC;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
@@ -208,6 +209,67 @@ namespace Pandaros.Settlers
         public static T JsonDeerialize<T>(this JSONNode node)
         {
             return JsonConvert.DeserializeObject<T>(node.ToString(), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+        }
+
+        public static Vector3Int GetBlockOffset(this Vector3Int vector, BlockSides blockSide)
+        {
+            switch (blockSide)
+            {
+                case BlockSides.XpZpYp:
+                    return vector.Add(1, 1, 1);
+                case BlockSides.XpYp:
+                    return vector.Add(1, 1, 0);
+                case BlockSides.XpZnYp:
+                    return vector.Add(1, 1, -1);
+                case BlockSides.ZpYp:
+                    return vector.Add(0, 1, 1);
+                case BlockSides.Yp:
+                    return vector.Add(0, 1, 0);
+                case BlockSides.ZnYp:
+                    return vector.Add(0, 1, -1);
+                case BlockSides.XnZpYp:
+                    return vector.Add(-1, 1, 1);
+                case BlockSides.XnYp:
+                    return vector.Add(-1, 1, 0);
+                case BlockSides.XnZnYp:
+                    return vector.Add(-1, 1, -1);
+                case BlockSides.XpZp:
+                    return vector.Add(1, 0 ,1);
+                case BlockSides.Xp:
+                    return vector.Add(1, 0, 0);
+                case BlockSides.XpZn:
+                    return vector.Add(1, 0, -1);
+                case BlockSides.Zp:
+                    return vector.Add(0, 0, 1);
+                case BlockSides.Zn:
+                    return vector.Add(0, 0, -1);
+                case BlockSides.XnZp:
+                    return vector.Add(-1, 0, 1);
+                case BlockSides.Xn:
+                    return vector.Add(-1, 0, 0);
+                case BlockSides.XnZn:
+                    return vector.Add(-1, 0, -1);
+                case BlockSides.XpZpYn:
+                    return vector.Add(1, -1, 1);
+                case BlockSides.XpYn:
+                    return vector.Add(1, -1, 0);
+                case BlockSides.XpZnYn:
+                    return vector.Add(1, -1, 1);
+                case BlockSides.ZpYn:
+                    return vector.Add(0, -1, 1);
+                case BlockSides.Yn:
+                    return vector.Add(0, -1, 0);
+                case BlockSides.ZnYn:
+                    return vector.Add(0, -1, -1);
+                case BlockSides.XnZpYn:
+                    return vector.Add(-1, -1, 1);
+                case BlockSides.XnYn:
+                    return vector.Add(-1, -1, 0);
+                case BlockSides.XnZnYn:
+                    return vector.Add(-1, -1, -1);
+                default:
+                    return vector;
+            }
         }
     }
 }

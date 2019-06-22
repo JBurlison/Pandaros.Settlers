@@ -127,9 +127,15 @@ namespace Pandaros.Settlers
                 var key = guardSettings.NPCTypeKey.Replace("day", "").Replace("night", "");
                 job.Owner.TemporaryData.TryGetAs(key, out float cooldownReduction);
                 var total = masterOfAll + cooldownReduction;
-                
+
                 if (total != 0)
-                    guardSettings.CooldownShot = defaultGuardSettings.CooldownShot - defaultGuardSettings.CooldownShot * total;
+                {
+                    guardSettings.CooldownShot = defaultGuardSettings.CooldownShot - (defaultGuardSettings.CooldownShot * total);
+                    var maxCooldown = defaultGuardSettings.CooldownShot / 2;
+
+                    if (guardSettings.CooldownShot < maxCooldown)
+                        guardSettings.CooldownShot = maxCooldown;
+                }
             }
             else if (job.TryGetNPCCraftSettings(out var craftSettings) && job.TryGetNPCCraftDefaultSettings(out var craftingJobDefaultSettings))
             {
@@ -137,7 +143,13 @@ namespace Pandaros.Settlers
                 var total = masterOfAll + cooldownReduction;
 
                 if (total != 0)
-                    craftSettings.CraftingCooldown = craftingJobDefaultSettings.CraftingCooldown - craftingJobDefaultSettings.CraftingCooldown * total;
+                {
+                    craftSettings.CraftingCooldown = craftingJobDefaultSettings.CraftingCooldown - (craftingJobDefaultSettings.CraftingCooldown * total);
+                    var maxCooldown = craftingJobDefaultSettings.CraftingCooldown / 2;
+
+                    if (craftSettings.CraftingCooldown < maxCooldown)
+                        craftSettings.CraftingCooldown = maxCooldown;
+                }
             }
         }
     }

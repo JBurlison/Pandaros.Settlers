@@ -16,7 +16,6 @@ namespace Pandaros.Settlers.Items
 
     public class CalculateRotations
     {
-        public int NumberofSides { get; set; }
-        public bool IsFlat { get; set; }
+        public string CalculationType { get; set; }
     }
 }

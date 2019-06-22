@@ -158,6 +158,7 @@
     <Compile Include="Extender\Providers\GenerateTypesProvider.cs" />
     <Compile Include="Extender\Providers\HappinessCausesProvider.cs" />
     <Compile Include="Extender\Providers\HappinessEffectProvider.cs" />
+    <Compile Include="Extender\Providers\ConnectedBlockCalculationTypeProvider.cs" />
     <Compile Include="Extender\SettlersExtender.cs" />
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Items\ConnectedBlockSystem.cs" />
     <Compile Include="Items\CSGenerateType.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
+    <Compile Include="Items\IConnectedBlockCalculationType.cs" />
     <Compile Include="Items\IGenerateType.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
     <Compile Include="Items\MeshOffset.cs" />

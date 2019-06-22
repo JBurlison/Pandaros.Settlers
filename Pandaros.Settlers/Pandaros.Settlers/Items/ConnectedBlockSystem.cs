@@ -13,6 +13,7 @@ namespace Pandaros.Settlers.Items
     {
         private static Dictionary<string, Dictionary<List<BlockSides>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSides>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
         private static Dictionary<string, ICSType> _blockLookup = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
+        private static BlockSides[] _blockTypes = (BlockSides[])Enum.GetValues(typeof(BlockSides));
 
         public static void AddConnectedBlock(ICSType cSType)
         {
@@ -57,12 +58,8 @@ namespace Pandaros.Settlers.Items
                     TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, out var newBlock))
                     ServerManager.TryChangeBlock(onTryChangeBlockData.Position, ItemId.GetItemId(newBlock.name));
 
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(1, 0, 0), connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(-1, 0, 0), connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 1, 0), connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, -1, 0), connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 0, 1), connectedBlock.ConnectedBlock.BlockType);
-                ChangeBlocksForPos(onTryChangeBlockData.Position.Add(0, 0, -1), connectedBlock.ConnectedBlock.BlockType);
+                foreach (var block in _blockTypes)
+                    ChangeBlocksForPos(onTryChangeBlockData.Position.GetBlockOffset(block), connectedBlock.ConnectedBlock.BlockType);
             }
         }
 
@@ -89,39 +86,21 @@ namespace Pandaros.Settlers.Items
         {
             List<BlockSides> connectedBlocks = new List<BlockSides>();
 
-            if (World.TryGetTypeAt(centerBlock.Add(-1, 0, 0), out ItemTypes.ItemType xnBlock) &&
-                _blockLookup.TryGetValue(xnBlock.Name, out var xnBlockType) &&
-                string.Equals(xnBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(BlockSides.Xn);
-
-            if (World.TryGetTypeAt(centerBlock.Add(1, 0, 0), out ItemTypes.ItemType xpBlock) &&
-                _blockLookup.TryGetValue(xpBlock.Name, out var xpBlockType) &&
-                string.Equals(xpBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(BlockSides.Xp);
-
-            if (World.TryGetTypeAt(centerBlock.Add(0, -1, 0), out ItemTypes.ItemType ynBlock) &&
-                _blockLookup.TryGetValue(ynBlock.Name, out var ynBlockType) &&
-                string.Equals(ynBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(BlockSides.Yn);
-
-            if (World.TryGetTypeAt(centerBlock.Add(0, 1, 0), out ItemTypes.ItemType ypBlock) &&
-                _blockLookup.TryGetValue(ypBlock.Name, out var ypBlockType) &&
-                string.Equals(ypBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(BlockSides.Yp);
-
-            if (World.TryGetTypeAt(centerBlock.Add(0, 0, -1), out ItemTypes.ItemType znBlock) &&
-                _blockLookup.TryGetValue(znBlock.Name, out var znBlockType) &&
-                string.Equals(znBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(BlockSides.Zn);
-
-            if (World.TryGetTypeAt(centerBlock.Add(0, 0, 1), out ItemTypes.ItemType zpBlock) &&
-                _blockLookup.TryGetValue(zpBlock.Name, out var zpBlockType) &&
-                string.Equals(zpBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(BlockSides.Zp);
+            foreach (var block in _blockTypes)
+                SetBlock(centerBlock, blockType, block, connectedBlocks);
 
             connectedBlocks.Sort();
 
             return connectedBlocks;
         }
+
+        private static void SetBlock(Vector3Int centerBlock, string blockType, BlockSides blockSide, List<BlockSides> connectedBlocks)
+        {
+            if (World.TryGetTypeAt(centerBlock.GetBlockOffset(blockSide), out ItemTypes.ItemType blockAtLocation) &&
+                _blockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
+                string.Equals(existingBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
+                connectedBlocks.Add(blockSide);
+        }
+
     }
 }
