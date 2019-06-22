@@ -27,6 +27,7 @@ namespace Pandaros.Settlers.Items
 
                 _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
 
+                // Edge case for one connection.
                 if (cSType.ConnectedBlock.Connections.Count == 2 &&
                     ((cSType.ConnectedBlock.Connections.Contains(BlockSides.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSides.Xp)) ||
                     (cSType.ConnectedBlock.Connections.Contains(BlockSides.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSides.Yp)) ||
