@@ -10,6 +10,7 @@ namespace Pandaros.Settlers.Items
     public static class ConnectedBlockCalculator
     {
         public static Dictionary<string, IConnectedBlockCalculationType> CalculationTypes { get; } = new Dictionary<string, IConnectedBlockCalculationType>(StringComparer.InvariantCultureIgnoreCase);
+        public static Dictionary<List<BlockSides>, List<MeshRotationEuler>> BlockRotations { get; } = new Dictionary<List<BlockSides>, List<MeshRotationEuler>>(new ListComparer<BlockSides>());
 
         private static List<int> _rotations = new List<int>()
         {
