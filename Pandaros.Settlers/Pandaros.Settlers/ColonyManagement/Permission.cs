@@ -20,6 +20,8 @@ namespace Pandaros.Settlers.ColonyManagement
                 if (userData.RequestOrigin.Type == BlockChangeRequestOrigin.EType.Player && !existingBanner.Colony.Owners.Contains(userData.RequestOrigin.AsPlayer))
                 {
                     PandaChat.SendThrottle(userData.RequestOrigin.AsPlayer, _LocalizationHelper.LocalizeOrDefault("NotYourColony",userData.RequestOrigin.AsPlayer) + string.Join(", ", existingBanner.Colony.Owners.Select(o => o.Name)) , ChatColor.red);
+                    userData.PlayerClickedData.ConsumedType = Shared.PlayerClickedData.EConsumedType.InvalidBuild;
+                    userData.InventoryItemResults.Clear();
                     userData.CallbackState = ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled;
                     userData.CallbackConsumedResult = EServerChangeBlockResult.CancelledByCallback;
                 }
