@@ -42,14 +42,14 @@ namespace Pandaros.Settlers.Energy
             ConnectedBlock = new ConnectedBlock()
             {
                 BlockType = "ManaPipe",
-                Connections = new List<Models.BlockSides>()
+                Connections = new List<Models.BlockSide>()
                 {
-                    Models.BlockSides.Xn,
-                    Models.BlockSides.Xp,
-                    Models.BlockSides.Yn,
-                    Models.BlockSides.Yp,
-                    Models.BlockSides.Zn,
-                    Models.BlockSides.Zp
+                    Models.BlockSide.Xn,
+                    Models.BlockSide.Xp,
+                    Models.BlockSide.Yn,
+                    Models.BlockSide.Yp,
+                    Models.BlockSide.Zn,
+                    Models.BlockSide.Zp
                 }
             }
         };

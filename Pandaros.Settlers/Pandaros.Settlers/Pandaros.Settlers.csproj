@@ -163,6 +163,7 @@
     <Compile Include="Items\Armor\ArmorMetadata.cs" />
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\Armor\MagicArmor.cs" />
+    <Compile Include="Items\BlockSideValuesAttribute.cs" />
     <Compile Include="Items\ConnectedBlock.cs" />
     <Compile Include="Items\ConnectedBlockCalculator.cs" />
     <Compile Include="Items\ConnectedBlockSystem.cs" />
@@ -185,7 +186,9 @@
     <Compile Include="ListComparer.cs" />
     <Compile Include="localization\LocalizationHelper.cs" />
     <Compile Include="Models\BlockConnectionType.cs" />
+    <Compile Include="Models\BlockRotationDegrees.cs" />
     <Compile Include="Models\BlockSides.cs" />
+    <Compile Include="Models\RotationAxis.cs" />
     <Compile Include="Research\ArmorSmithingResearch.cs" />
     <Compile Include="Research\MachineResearch.cs" />
     <Compile Include="Research\GuardResearch.cs" />

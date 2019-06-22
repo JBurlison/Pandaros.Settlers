@@ -11,9 +11,9 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public static class ConnectedBlockSystem
     {
-        private static Dictionary<string, Dictionary<List<BlockSides>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSides>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
+        private static Dictionary<string, Dictionary<List<BlockSide>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSide>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
         private static Dictionary<string, ICSType> _blockLookup = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
-        private static BlockSides[] _blockTypes = (BlockSides[])Enum.GetValues(typeof(BlockSides));
+        private static BlockSide[] _blockTypes = (BlockSide[])Enum.GetValues(typeof(BlockSide));
 
         public static void AddConnectedBlock(ICSType cSType)
         {
@@ -23,24 +23,24 @@ namespace Pandaros.Settlers.Items
                 _blockLookup[cSType.name] = cSType;
 
                 if (!_connectedBlockLookup.ContainsKey(cSType.ConnectedBlock.BlockType))
-                    _connectedBlockLookup.Add(cSType.ConnectedBlock.BlockType, new Dictionary<List<BlockSides>, ICSType>(new ListComparer<BlockSides>()));
+                    _connectedBlockLookup.Add(cSType.ConnectedBlock.BlockType, new Dictionary<List<BlockSide>, ICSType>(new ListComparer<BlockSide>()));
 
                 _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
 
                 // Edge case for one connection.
                 if (cSType.ConnectedBlock.Connections.Count == 2 &&
-                    ((cSType.ConnectedBlock.Connections.Contains(BlockSides.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSides.Xp)) ||
-                    (cSType.ConnectedBlock.Connections.Contains(BlockSides.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSides.Yp)) ||
-                    (cSType.ConnectedBlock.Connections.Contains(BlockSides.Zn) && cSType.ConnectedBlock.Connections.Contains(BlockSides.Zp))))
+                    ((cSType.ConnectedBlock.Connections.Contains(BlockSide.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Xp)) ||
+                    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Yp)) ||
+                    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Zn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Zp))))
                     foreach (var side in cSType.ConnectedBlock.Connections)
                     {
-                        var newBlockList = new List<BlockSides>() { side };
+                        var newBlockList = new List<BlockSide>() { side };
                         _connectedBlockLookup[cSType.ConnectedBlock.BlockType][newBlockList] = cSType;
                     }
             }
         }
 
-        public static bool TryGetConnectingBlock(string blockType, List<BlockSides> neededSides, out ICSType connectedBlock)
+        public static bool TryGetConnectingBlock(string blockType, List<BlockSide> neededSides, out ICSType connectedBlock)
         {
             connectedBlock = null;
             return _connectedBlockLookup.ContainsKey(blockType) && _connectedBlockLookup[blockType].TryGetValue(neededSides, out connectedBlock);
@@ -79,13 +79,13 @@ namespace Pandaros.Settlers.Items
 
         public static bool TryGetChangedBlockTypeAtPosition(Vector3Int centerBlock, string blockType, out ICSType newBlock)
         {
-            List<BlockSides> connectedBlocks = GetConnectedBlocks(centerBlock, blockType);
+            List<BlockSide> connectedBlocks = GetConnectedBlocks(centerBlock, blockType);
             return TryGetConnectingBlock(blockType, connectedBlocks, out newBlock);
         }
 
-        public static List<BlockSides> GetConnectedBlocks(Vector3Int centerBlock, string blockType)
+        public static List<BlockSide> GetConnectedBlocks(Vector3Int centerBlock, string blockType)
         {
-            List<BlockSides> connectedBlocks = new List<BlockSides>();
+            List<BlockSide> connectedBlocks = new List<BlockSide>();
 
             foreach (var block in _blockTypes)
                 SetBlock(centerBlock, blockType, block, connectedBlocks);
@@ -95,7 +95,7 @@ namespace Pandaros.Settlers.Items
             return connectedBlocks;
         }
 
-        private static void SetBlock(Vector3Int centerBlock, string blockType, BlockSides blockSide, List<BlockSides> connectedBlocks)
+        private static void SetBlock(Vector3Int centerBlock, string blockType, BlockSide blockSide, List<BlockSide> connectedBlocks)
         {
             if (World.TryGetTypeAt(centerBlock.GetBlockOffset(blockSide), out ItemTypes.ItemType blockAtLocation) &&
                 _blockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&

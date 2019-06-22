@@ -9,6 +9,6 @@ namespace Pandaros.Settlers.Items
 {
     public interface IConnectedBlockCalculationType : INameable
     {
-        List<BlockSides> AvailableBlockSides { get; }
+        List<BlockSide> AvailableBlockSides { get; }
     }
 }

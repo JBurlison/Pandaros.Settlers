@@ -211,64 +211,36 @@ namespace Pandaros.Settlers
             return JsonConvert.DeserializeObject<T>(node.ToString(), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
         }
 
-        public static Vector3Int GetBlockOffset(this Vector3Int vector, BlockSides blockSide)
+        public static IEnumerable<IEnumerable<T>> GetPermutations<T>(this IEnumerable<T> list, int length)
         {
-            switch (blockSide)
+            if (length == 1) return list.Select(t => new T[] { t });
+
+            return GetPermutations(list, length - 1)
+                .SelectMany(t => list.Where(e => !t.Contains(e)),
+                    (t1, t2) => t1.Concat(new T[] { t2 }));
+        }
+
+        public static TAttribute GetAttribute<TAttribute>(this Enum value) where TAttribute : Attribute
+        {
+            var type = value.GetType();
+            var name = Enum.GetName(type, value);
+
+            return type.GetField(name)
+                .GetCustomAttributes(false)
+                .OfType<TAttribute>()
+                .SingleOrDefault();
+        }
+
+        public static Vector3Int GetBlockOffset(this Vector3Int vector, BlockSide blockSide)
+        {
+            var vectorValues = blockSide.GetAttribute<BlockSideVectorValuesAttribute>();
+
+            if (vectorValues != null)
+                return vector.Add(vectorValues.X, vectorValues.Y, vectorValues.Z);
+            else
             {
-                case BlockSides.XpZpYp:
-                    return vector.Add(1, 1, 1);
-                case BlockSides.XpYp:
-                    return vector.Add(1, 1, 0);
-                case BlockSides.XpZnYp:
-                    return vector.Add(1, 1, -1);
-                case BlockSides.ZpYp:
-                    return vector.Add(0, 1, 1);
-                case BlockSides.Yp:
-                    return vector.Add(0, 1, 0);
-                case BlockSides.ZnYp:
-                    return vector.Add(0, 1, -1);
-                case BlockSides.XnZpYp:
-                    return vector.Add(-1, 1, 1);
-                case BlockSides.XnYp:
-                    return vector.Add(-1, 1, 0);
-                case BlockSides.XnZnYp:
-                    return vector.Add(-1, 1, -1);
-                case BlockSides.XpZp:
-                    return vector.Add(1, 0 ,1);
-                case BlockSides.Xp:
-                    return vector.Add(1, 0, 0);
-                case BlockSides.XpZn:
-                    return vector.Add(1, 0, -1);
-                case BlockSides.Zp:
-                    return vector.Add(0, 0, 1);
-                case BlockSides.Zn:
-                    return vector.Add(0, 0, -1);
-                case BlockSides.XnZp:
-                    return vector.Add(-1, 0, 1);
-                case BlockSides.Xn:
-                    return vector.Add(-1, 0, 0);
-                case BlockSides.XnZn:
-                    return vector.Add(-1, 0, -1);
-                case BlockSides.XpZpYn:
-                    return vector.Add(1, -1, 1);
-                case BlockSides.XpYn:
-                    return vector.Add(1, -1, 0);
-                case BlockSides.XpZnYn:
-                    return vector.Add(1, -1, 1);
-                case BlockSides.ZpYn:
-                    return vector.Add(0, -1, 1);
-                case BlockSides.Yn:
-                    return vector.Add(0, -1, 0);
-                case BlockSides.ZnYn:
-                    return vector.Add(0, -1, -1);
-                case BlockSides.XnZpYn:
-                    return vector.Add(-1, -1, 1);
-                case BlockSides.XnYn:
-                    return vector.Add(-1, -1, 0);
-                case BlockSides.XnZnYn:
-                    return vector.Add(-1, -1, -1);
-                default:
-                    return vector;
+                PandaLogger.Log(ChatColor.yellow, "Unable to find BlockSideVectorValuesAttribute for {0}", blockSide.ToString());
+                return vector;
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Items
     public class ConnectedBlock
     {
         public string BlockType { get; set; }
-        public List<BlockSides> Connections { get; set; }
+        public List<BlockSide> Connections { get; set; }
         public CalculateRotations CalculateRotations { get; set; }
     }
 

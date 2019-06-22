@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Items
 {
+    [ModLoader.ModManager]
     public static class ConnectedBlockCalculator
     {
         public static Dictionary<string, IConnectedBlockCalculationType> CalculationTypes { get; } = new Dictionary<string, IConnectedBlockCalculationType>(StringComparer.InvariantCultureIgnoreCase);
-        public static Dictionary<List<BlockSides>, List<MeshRotationEuler>> BlockRotations { get; } = new Dictionary<List<BlockSides>, List<MeshRotationEuler>>(new ListComparer<BlockSides>());
+        public static Dictionary<List<BlockSide>, List<MeshRotationEuler>> BlockRotations { get; } = new Dictionary<List<BlockSide>, List<MeshRotationEuler>>(new ListComparer<BlockSide>());
 
-        private static List<int> _rotations = new List<int>()
-        {
-            90,
-            180,
-            270
-        };
-
-        private static BlockSides[] _blockTypes = (BlockSides[])Enum.GetValues(typeof(BlockSides));
+        private static BlockSide[] _blockTypes = (BlockSide[])Enum.GetValues(typeof(BlockSide));
 
         public static List<ICSType> GetPermutations(ICSType baseBlock)
         {
@@ -34,5 +28,6 @@ namespace Pandaros.Settlers.Items
 
             return cSTypes;
         }
+
     }
 }
