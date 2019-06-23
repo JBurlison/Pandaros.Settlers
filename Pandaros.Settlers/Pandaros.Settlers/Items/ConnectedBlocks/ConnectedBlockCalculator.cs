@@ -1,6 +1,8 @@
-﻿using Pandaros.Settlers.Models;
+﻿using Newtonsoft.Json;
+using Pandaros.Settlers.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,9 @@ namespace Pandaros.Settlers.Items
 
         public static void Initialize()
         {
+            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
+            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
+
             foreach (var kvp in CalculationTypes)
             {
                 List<List<BlockSide>> blockSides = new List<List<BlockSide>>();
@@ -73,7 +78,7 @@ namespace Pandaros.Settlers.Items
                                 }
                         }
 
-                        if (!BlockRotations[kvp.Key].ContainsKey(rotatedList))
+                        if (rotatedList.Count != 0 && !BlockRotations[kvp.Key].ContainsKey(rotatedList))
                             BlockRotations[kvp.Key][rotatedList] = rotationEuler;
                     }
                 }
@@ -84,15 +89,42 @@ namespace Pandaros.Settlers.Items
         {
             List<ICSType> cSTypes = new List<ICSType>();
 
-            if (string.IsNullOrWhiteSpace(baseBlock.ConnectedBlock.CalculationType))
+            if (baseBlock.ConnectedBlock != null &&
+                !string.IsNullOrWhiteSpace(baseBlock.ConnectedBlock.CalculationType) && 
+                baseBlock.ConnectedBlock.Connections != null &&
+                baseBlock.ConnectedBlock.Connections.Count > 0 &&
+                BlockRotations.TryGetValue(baseBlock.ConnectedBlock.CalculationType, out var rotationDic))
             {
+                var permutations = baseBlock.ConnectedBlock.Connections.GetPermutations(baseBlock.ConnectedBlock.Connections.Count);
+                var itemJson = JsonConvert.SerializeObject(baseBlock);
 
+                foreach (var permutaion in permutations)
+                {
+                    var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+
+                    newItem.ConnectedBlock = new ConnectedBlock()
+                    {
+                        BlockType = baseBlock.ConnectedBlock.BlockType,
+                        CalculationType = baseBlock.ConnectedBlock.CalculationType,
+                        Connections = permutaion.ToList()
+                    };
+
+                    newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+                }
             }
-            else
-                cSTypes.Add(baseBlock);
 
             return cSTypes;
         }
 
+
+        private static string GetItemName(List<BlockSide> sides)
+        {
+            StringBuilder nameBuilder = new StringBuilder();
+
+            foreach (var side in sides)
+                nameBuilder.Append(side.ToString());
+
+            return nameBuilder.ToString();
+        }
     }
 }
