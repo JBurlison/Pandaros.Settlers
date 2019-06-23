@@ -25,8 +25,8 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterModsLoaded")]
         public static void Initialize(List<ModLoader.ModDescription> list)
         {
-            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
-            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
+            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
+            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
 
             foreach (var kvp in CalculationTypes)
             {
@@ -79,13 +79,40 @@ namespace Pandaros.Settlers.Items
                                 }
                             }
 
-
                             if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invlaid) && !BlockRotations[kvp.Key].ContainsKey(rotatedList))
                                 BlockRotations[kvp.Key][rotatedList] = rotationEuler;
                         }
-                  
-           
             }
+        }
+
+        private static bool TryGetRotationAndAxis(BlockSide side,
+                                                  List<Tuple<RotationAxis, BlockRotationDegrees>> rotationAxesBlacklist,
+                                                  out RotationAxis rotationAxis, 
+                                                  out BlockRotationDegrees blockRotationDegrees)
+        {
+            rotationAxis = default(RotationAxis);
+            blockRotationDegrees = default(BlockRotationDegrees);
+
+            foreach (var initalBlocksideKvp in _blocksideRotations)
+            {
+                foreach (var axisKvp in initalBlocksideKvp.Value)
+                {
+                    foreach (var rotationKvp in axisKvp.Value)
+                    {
+                        if (rotationAxesBlacklist.Contains(Tuple.Create(axisKvp.Key, rotationKvp.Key)))
+                            continue;
+
+                        if (rotationKvp.Value == side)
+                        {
+                            blockRotationDegrees = rotationKvp.Key;
+                            rotationAxis = axisKvp.Key;
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         public static List<ICSType> GetPermutations(ICSType baseBlock)

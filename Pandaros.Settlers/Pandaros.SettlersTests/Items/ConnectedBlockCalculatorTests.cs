@@ -20,7 +20,7 @@ namespace Pandaros.SettlersTests.Items
             ConnectedBlockCalculator.CalculationTypes.Add("Pipe", new PipeCalculationType());
             ConnectedBlockCalculator.CalculationTypes.Add("Track", new TrackCalculationType());
 
-            ConnectedBlockCalculator.Initialize();
+            ConnectedBlockCalculator.Initialize(new List<ModLoader.ModDescription>());
         }
     }
 }
