@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Items
     public static class ConnectedBlockCalculator
     {
         public static Dictionary<string, IConnectedBlockCalculationType> CalculationTypes { get; } = new Dictionary<string, IConnectedBlockCalculationType>(StringComparer.InvariantCultureIgnoreCase);
-        public static Dictionary<string, Dictionary<List<BlockSide>, MeshRotationEuler>> BlockRotations { get; } = new Dictionary<string, Dictionary<List<BlockSide>, MeshRotationEuler>>();
+        public static Dictionary<string, Dictionary<List<BlockSide>, MeshRotationEuler>> BlockRotations { get; } = new Dictionary<string, Dictionary<List<BlockSide>, MeshRotationEuler>>(StringComparer.InvariantCultureIgnoreCase);
 
         private static Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>> _blocksideRotations = new Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>();
 
@@ -21,11 +21,12 @@ namespace Pandaros.Settlers.Items
         private static BlockRotationDegrees[] _blockRotationDegrees = (BlockRotationDegrees[])Enum.GetValues(typeof(BlockRotationDegrees));
         private static ListComparer<BlockSide> _blockSideCompare = new ListComparer<BlockSide>();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Items.ConnectedBlockCalculator.Initialize")]
-        public static void Initialize()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, GameLoader.NAMESPACE + ".Items.ConnectedBlockCalculator.Initialize")]
+        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterModsLoaded")]
+        public static void Initialize(List<ModLoader.ModDescription> list)
         {
-            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
-            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
+            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
+            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
 
             foreach (var kvp in CalculationTypes)
             {

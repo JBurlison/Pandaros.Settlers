@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class ConnectedBlockCalculationTypeProvider : IAfterItemTypesDefined
+    public class ConnectedBlockCalculationTypeProvider : IAfterModsLoaded
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(IConnectedBlockCalculationType);
         public Type ClassType => null;
 
-        public void AfterItemTypesDefined()
+        public void AfterModsLoaded(List<ModLoader.ModDescription> list)
         {
             StringBuilder sb = new StringBuilder();
             PandaLogger.Log(ChatColor.lime, "-------------------Connected Block CalculationType Loaded----------------------");

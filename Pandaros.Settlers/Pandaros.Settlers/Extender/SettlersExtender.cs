@@ -78,6 +78,16 @@ namespace Pandaros.Settlers.Extender
         {
             LoadExtenstions(list);
             LoadImplementation(list);
+
+            foreach (var extension in _settlersExtensions.Where(s => s as IAfterModsLoaded != null).Select(ex => ex as IAfterModsLoaded))
+                try
+                {
+                    extension.AfterModsLoaded(list);
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterItemTypesDefined")]

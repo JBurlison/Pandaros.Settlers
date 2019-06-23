@@ -152,6 +152,7 @@
     <Compile Include="Energy\ManaPipe.cs" />
     <Compile Include="Energy\ManaPump.cs" />
     <Compile Include="Energy\ManaTank.cs" />
+    <Compile Include="Extender\IAfterModsLoaded.cs" />
     <Compile Include="Extender\IOnColonyCreated.cs" />
     <Compile Include="Extender\IOnLoadingColony.cs" />
     <Compile Include="Extender\IOnTimedUpdate.cs" />

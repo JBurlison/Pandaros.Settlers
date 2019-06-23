@@ -9,6 +9,7 @@ namespace Pandaros.Settlers.Models
 {
     public enum BlockSide
     {
+        [BlockSideVectorValues(0, 0, 0)]
         Invlaid,
         [BlockSideVectorValues(1, 1, 0)]
         XpYp,
