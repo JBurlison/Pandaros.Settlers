@@ -99,20 +99,27 @@ namespace Pandaros.Settlers.Items
                 BlockRotations.TryGetValue(baseBlock.ConnectedBlock.CalculationType, out var rotationDic))
             {
                 var permutations = baseBlock.ConnectedBlock.Connections.GetPermutations(baseBlock.ConnectedBlock.Connections.Count);
-                var itemJson = JsonConvert.SerializeObject(baseBlock);
+                var itemJson = JsonConvert.SerializeObject(baseBlock, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.None });
 
                 foreach (var permutaion in permutations)
                 {
-                    var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+                    var permutionList = permutaion.ToList();
+                    permutionList.Sort();
 
-                    newItem.ConnectedBlock = new ConnectedBlock()
+                    if (rotationDic.TryGetValue(permutionList, out var meshRotationEuler))
                     {
-                        BlockType = baseBlock.ConnectedBlock.BlockType,
-                        CalculationType = baseBlock.ConnectedBlock.CalculationType,
-                        Connections = permutaion.ToList()
-                    };
+                        var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+                        newItem.meshRotationEuler = meshRotationEuler;
+                        newItem.ConnectedBlock = new ConnectedBlock()
+                        {
+                            BlockType = baseBlock.ConnectedBlock.BlockType,
+                            CalculationType = baseBlock.ConnectedBlock.CalculationType,
+                            Connections = permutaion.ToList()
+                        };
 
-                    newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+                        newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+                        cSTypes.Add(newItem);
+                    }
                 }
             }
 

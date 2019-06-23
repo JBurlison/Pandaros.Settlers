@@ -13,7 +13,12 @@ namespace Pandaros.Settlers.Items
     {
         private static Dictionary<string, Dictionary<List<BlockSide>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSide>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
         private static Dictionary<string, ICSType> _blockLookup = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
-        private static BlockSide[] _blockTypes = (BlockSide[])Enum.GetValues(typeof(BlockSide));
+        private static List<BlockSide> _blockTypes = ((BlockSide[])Enum.GetValues(typeof(BlockSide))).ToList();
+
+        static ConnectedBlockSystem()
+        {
+            _blockTypes.Remove(BlockSide.Invlaid);
+        }
 
         public static void AddConnectedBlock(ICSType cSType)
         {

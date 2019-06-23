@@ -36,7 +36,12 @@ namespace Pandaros.Settlers.Extender.Providers
                     if (Activator.CreateInstance(item) is ICSType itemType &&
                         !string.IsNullOrEmpty(itemType.name))
                     {
-                        loadedItems[itemType.name] = itemType;            
+                        loadedItems[itemType.name] = itemType;
+
+                        var permutations = ConnectedBlockCalculator.GetPermutations(itemType);
+
+                        foreach (var permutation in permutations)
+                            loadedItems[permutation.name] = permutation;
                     }
                 }
                 catch (Exception ex)
@@ -81,6 +86,10 @@ namespace Pandaros.Settlers.Extender.Providers
                                 {
                                     var newItem = item.Value.JsonDeerialize<CSType>();
                                     loadedItems[newItem.name] = newItem;
+                                    var permutations = ConnectedBlockCalculator.GetPermutations(newItem);
+
+                                    foreach (var permutation in permutations)
+                                        loadedItems[permutation.name] = permutation;
                                 }
                             }
                     }
@@ -93,11 +102,7 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var itemType in loadedItems.Values)
             {
-                var permutations = ConnectedBlockCalculator.GetPermutations(itemType);
                 ConnectedBlockSystem.AddConnectedBlock(itemType);
-
-                foreach (var newItem in permutations)
-                    ConnectedBlockSystem.AddConnectedBlock(newItem);
 
                 var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.name, itemType.JsonSerialize());
 

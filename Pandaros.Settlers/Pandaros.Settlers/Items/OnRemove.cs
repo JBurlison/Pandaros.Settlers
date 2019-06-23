@@ -8,9 +8,9 @@ namespace Pandaros.Settlers.Items
 {
     public class OnRemove
     {
-        public int amount { get; private set; }
-        public float chance { get; private set; }
-        public string type { get; private set; }
+        public int amount { get; set; }
+        public float chance { get; set; }
+        public string type { get; set; }
 
         public OnRemove() { }
 
