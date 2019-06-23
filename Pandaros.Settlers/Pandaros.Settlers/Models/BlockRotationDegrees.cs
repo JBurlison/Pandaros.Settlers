@@ -8,6 +8,7 @@ namespace Pandaros.Settlers.Models
 {
     public enum BlockRotationDegrees
     {
+        Zero = 0,
         Ninty = 90,
         OneEighty = 180,
         TwoSeventy = 270

@@ -164,12 +164,15 @@
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\Armor\MagicArmor.cs" />
     <Compile Include="Items\BlockSideValuesAttribute.cs" />
-    <Compile Include="Items\ConnectedBlock.cs" />
-    <Compile Include="Items\ConnectedBlockCalculator.cs" />
-    <Compile Include="Items\ConnectedBlockSystem.cs" />
+    <Compile Include="Items\ConnectedBlocks\ConnectedBlock.cs" />
+    <Compile Include="Items\ConnectedBlocks\ConnectedBlockCalculator.cs" />
+    <Compile Include="Items\ConnectedBlocks\ConnectedBlockSystem.cs" />
+    <Compile Include="Items\ConnectedBlocks\TrackCalculationType.cs" />
+    <Compile Include="Items\ConnectedBlocks\FenceCalculationType.cs" />
+    <Compile Include="Items\ConnectedBlocks\PipeCalculationType.cs" />
     <Compile Include="Items\CSGenerateType.cs" />
     <Compile Include="Items\EquiptmentManager.cs" />
-    <Compile Include="Items\IConnectedBlockCalculationType.cs" />
+    <Compile Include="Items\ConnectedBlocks\IConnectedBlockCalculationType.cs" />
     <Compile Include="Items\IGenerateType.cs" />
     <Compile Include="Items\MagicItemsCache.cs" />
     <Compile Include="Items\MeshOffset.cs" />
@@ -316,6 +319,7 @@
     <None Include="AutoLoad\Sorcerer.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="BlockRotations.json" />
     <None Include="Help\Menus\DamageMatrix.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

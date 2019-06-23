@@ -11,11 +11,6 @@ namespace Pandaros.Settlers.Items
     {
         public string BlockType { get; set; }
         public List<BlockSide> Connections { get; set; }
-        public CalculateRotations CalculateRotations { get; set; }
-    }
-
-    public class CalculateRotations
-    {
         public string CalculationType { get; set; }
     }
 }
