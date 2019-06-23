@@ -24,12 +24,13 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Items.ConnectedBlockCalculator.Initialize")]
         public static void Initialize()
         {
-            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
-            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
+            //_blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
+            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine("./BlockRotations.json")));
 
             foreach (var kvp in CalculationTypes)
             {
                 List<List<BlockSide>> blockSides = new List<List<BlockSide>>();
+                BlockRotations[kvp.Key] = new Dictionary<List<BlockSide>, MeshRotationEuler>(_blockSideCompare);
 
                 for (int i = 1; i <= kvp.Value.MaxConnections; i++)
                 {
@@ -40,49 +41,49 @@ namespace Pandaros.Settlers.Items
                         var per = permutation.ToList();
                         per.Sort();
 
-                        if (!blockSides.Contains(per, _blockSideCompare))
+                        if (!per.Contains(BlockSide.Invlaid) && !blockSides.Contains(per, _blockSideCompare))
                             blockSides.Add(per);
                     }
                 }
 
-                foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
-                {
-                    foreach (var blockSidePermutationList in blockSides.Where(bs => !bs.Contains(BlockSide.Invlaid)))
-                    {
-                        BlockRotations[kvp.Key] = new Dictionary<List<BlockSide>, MeshRotationEuler>(_blockSideCompare);
-                        var rotationEuler = new MeshRotationEuler();
-                        var rotatedList = new List<BlockSide>();
-
-                        foreach (var side in blockSidePermutationList)
+                foreach (var blockSidePermutationList in blockSides)
+                    foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
+                        foreach (RotationAxis axis in _blockRotations)
                         {
-                            foreach (RotationAxis axis in _blockRotations)
+                            var rotationEuler = new MeshRotationEuler();
+                            var rotatedList = new List<BlockSide>();
+
+                            switch (axis)
+                            {
+                                case RotationAxis.X:
+                                    rotationEuler.x = (int)rotationDegrees;
+                                    break;
+
+                                case RotationAxis.Y:
+                                    rotationEuler.y = (int)rotationDegrees;
+                                    break;
+
+                                case RotationAxis.Z:
+                                    rotationEuler.z = (int)rotationDegrees;
+                                    break;
+                            }
+
+                            foreach (var side in blockSidePermutationList)
+                            {
                                 if (_blocksideRotations.TryGetValue(side, out var axisDic) &&
                                     axisDic.TryGetValue(axis, out var rotationDic) &&
                                     rotationDic.TryGetValue(rotationDegrees, out var newBlockSide))
                                 {
                                     rotatedList.Add(newBlockSide);
-
-                                    switch (axis)
-                                    {
-                                        case RotationAxis.X:
-                                            rotationEuler.x = (int)rotationDegrees;
-                                            break;
-
-                                        case RotationAxis.Y:
-                                            rotationEuler.y = (int)rotationDegrees;
-                                            break;
-
-                                        case RotationAxis.Z:
-                                            rotationEuler.z = (int)rotationDegrees;
-                                            break;
-                                    }
                                 }
-                        }
+                            }
 
-                        if (rotatedList.Count != 0 && !BlockRotations[kvp.Key].ContainsKey(rotatedList))
-                            BlockRotations[kvp.Key][rotatedList] = rotationEuler;
-                    }
-                }
+
+                            if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invlaid) && !BlockRotations[kvp.Key].ContainsKey(rotatedList))
+                                BlockRotations[kvp.Key][rotatedList] = rotationEuler;
+                        }
+                  
+           
             }
         }
 
@@ -116,7 +117,6 @@ namespace Pandaros.Settlers.Items
 
             return cSTypes;
         }
-
 
         private static string GetItemName(List<BlockSide> sides)
         {
