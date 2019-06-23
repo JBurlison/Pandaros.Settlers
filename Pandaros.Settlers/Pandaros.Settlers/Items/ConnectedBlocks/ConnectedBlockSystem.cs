@@ -27,16 +27,16 @@ namespace Pandaros.Settlers.Items
 
                 _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
 
-                // Edge case for one connection.
-                if (cSType.ConnectedBlock.Connections.Count == 2 &&
-                    ((cSType.ConnectedBlock.Connections.Contains(BlockSide.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Xp)) ||
-                    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Yp)) ||
-                    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Zn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Zp))))
-                    foreach (var side in cSType.ConnectedBlock.Connections)
-                    {
-                        var newBlockList = new List<BlockSide>() { side };
-                        _connectedBlockLookup[cSType.ConnectedBlock.BlockType][newBlockList] = cSType;
-                    }
+                //// Edge case for one connection.
+                //if (cSType.ConnectedBlock.Connections.Count == 2 &&
+                //    ((cSType.ConnectedBlock.Connections.Contains(BlockSide.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Xp)) ||
+                //    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Yp)) ||
+                //    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Zn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Zp))))
+                //    foreach (var side in cSType.ConnectedBlock.Connections)
+                //    {
+                //        var newBlockList = new List<BlockSide>() { side };
+                //        _connectedBlockLookup[cSType.ConnectedBlock.BlockType][newBlockList] = cSType;
+                //    }
             }
         }
 

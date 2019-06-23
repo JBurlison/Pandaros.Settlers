@@ -93,7 +93,12 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var itemType in loadedItems.Values)
             {
+                var permutations = ConnectedBlockCalculator.GetPermutations(itemType);
                 ConnectedBlockSystem.AddConnectedBlock(itemType);
+
+                foreach (var newItem in permutations)
+                    ConnectedBlockSystem.AddConnectedBlock(newItem);
+
                 var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.name, itemType.JsonSerialize());
 
                 if (itemTypes.ContainsKey(itemType.name))

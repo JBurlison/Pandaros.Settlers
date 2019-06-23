@@ -73,8 +73,9 @@ namespace Pandaros.Settlers.Jobs
                                     new List<InventoryItem> {iron, tools, planks},
                                     new RecipeResult(ItemTypes.IndexLookup.StringLookupTable[JOB_ITEM_KEY], 1), 2);
 
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
             ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
+            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
+            
         }
     }
 }

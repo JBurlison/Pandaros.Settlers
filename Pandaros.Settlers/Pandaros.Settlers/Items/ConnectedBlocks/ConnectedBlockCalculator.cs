@@ -21,6 +21,7 @@ namespace Pandaros.Settlers.Items
         private static BlockRotationDegrees[] _blockRotationDegrees = (BlockRotationDegrees[])Enum.GetValues(typeof(BlockRotationDegrees));
         private static ListComparer<BlockSide> _blockSideCompare = new ListComparer<BlockSide>();
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, GameLoader.NAMESPACE + ".Items.ConnectedBlockCalculator.Initialize")]
         public static void Initialize()
         {
             _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
@@ -46,7 +47,7 @@ namespace Pandaros.Settlers.Items
 
                 foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
                 {
-                    foreach (var blockSidePermutationList in blockSides)
+                    foreach (var blockSidePermutationList in blockSides.Where(bs => !bs.Contains(BlockSide.Invlaid)))
                     {
                         BlockRotations[kvp.Key] = new Dictionary<List<BlockSide>, MeshRotationEuler>(_blockSideCompare);
                         var rotationEuler = new MeshRotationEuler();
