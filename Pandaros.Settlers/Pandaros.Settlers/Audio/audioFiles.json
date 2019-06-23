@@ -263,15 +263,5 @@
         "path": "./Reloading3.ogg"
       }
     ]
-  },
-  {
-    "clipCollectionName": "Pandaros.Settlers.Environment",
-    "fileList": [
-      {
-        "audioGroup": "AmbientLoop",
-        "isThreeD": false,
-        "path": "./Environment.ogg"
-      }
-    ]
   }
 ]

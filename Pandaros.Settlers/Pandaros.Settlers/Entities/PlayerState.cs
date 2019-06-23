@@ -40,7 +40,6 @@ namespace Pandaros.Settlers.Entities
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
-        public bool MusicEnabled { get; set; } = true;
         public ItemState Weapon { get; set; } = new ItemState();
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
@@ -242,19 +241,6 @@ namespace Pandaros.Settlers.Entities
                 {
                     var ps = GetPlayerState(p);
 
-                    try
-                    {
-                        if (ps.Connected && ps.MusicEnabled && Time.MillisecondsSinceStart > ps.NextMusicTime)
-                        {
-                            AudioManager.SendAudio(p, GameLoader.NAMESPACE + ".Environment");
-                            ps.NextMusicTime = 178700 + Time.MillisecondsSinceStart;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        PandaLogger.LogError(ex);
-                    }
-
                     if (MagicItemUpdateTime < Time.SecondsSinceStartDouble)
                     {
                         foreach (var a in ps.Armor.Select(kvp => ArmorFactory.ArmorLookup.TryGetValue(kvp.Value.Id, out var arm) ? arm : null).Where(armor => armor != null))
@@ -355,9 +341,6 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(BuildersWandTarget), out ushort wandTarget))
                     _playerStates[p].BuildersWandTarget = wandTarget;
 
-                if (stateNode.TryGetAs(nameof(MusicEnabled), out bool music))
-                    _playerStates[p].MusicEnabled = music;
-
                 if (stateNode.TryGetAs(nameof(JoinDate), out string joindate) && DateTime.TryParse(joindate, out var parsedJoinDate))
                     _playerStates[p].JoinDate = parsedJoinDate;
 
@@ -443,48 +426,10 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
                 node.SetAs(nameof(Backpack), backpackNode);
-                node.SetAs(nameof(MusicEnabled), _playerStates[p].MusicEnabled);
                 node.SetAs(nameof(MagicItems), equiptMagicItems);
                 node.SetAs(nameof(JoinDate), _playerStates[p].JoinDate);
 
                 n.SetAs(GameLoader.NAMESPACE + ".PlayerState", node);
-            }
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Entities.PlayerState.AddSetting")]
-        public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
-        {
-            menu.Items.Add(new NetworkUI.Items.DropDown("Music", _Enviorment, new List<string>() { "Disabled", "Enabled" }));
-            var ps = PlayerState.GetPlayerState(player);
-
-            if (ps != null)
-                menu.LocalStorage.SetAs(_Enviorment, Convert.ToInt32(ps.MusicEnabled));
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerChangedNetworkUIStorage, GameLoader.NAMESPACE + "Entities.PlayerState.ChangedSetting")]
-        public static void ChangedSetting(ValueTuple<Players.Player, JSONNode, string> data)
-        {
-            switch (data.Item3)
-            {
-                case "server_popup":
-                    var ps = PlayerState.GetPlayerState(data.Item1);
-
-                    if (ps != null)
-                    {
-                        var def = Convert.ToInt32(ps.MusicEnabled);
-                        var enabled = data.Item2.GetAsOrDefault(_Enviorment, def);
-
-                        if (def != enabled)
-                        {
-                            ps.MusicEnabled = enabled != 0;
-                            PandaChat.Send(data.Item1, "Music is now " + (ps.MusicEnabled ? "on" : "off"), ChatColor.green);
-
-                            if (!ps.MusicEnabled)
-                                PandaChat.Send(data.Item1, "Music can take up to 3 minutes to turn off.", ChatColor.green);
-                        }
-                    }
-
-                    break;
             }
         }
     }
