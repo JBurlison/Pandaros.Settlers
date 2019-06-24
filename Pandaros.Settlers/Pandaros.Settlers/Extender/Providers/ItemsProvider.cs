@@ -38,10 +38,10 @@ namespace Pandaros.Settlers.Extender.Providers
                     {
                         loadedItems[itemType.name] = itemType;
 
-                        //var permutations = ConnectedBlockCalculator.GetPermutations(itemType);
+                        var permutations = ConnectedBlockCalculator.GetPermutations(itemType);
 
-                        //foreach (var permutation in permutations)
-                        //    loadedItems[permutation.name] = permutation;
+                        foreach (var permutation in permutations)
+                            loadedItems[permutation.name] = permutation;
                     }
                 }
                 catch (Exception ex)
@@ -86,10 +86,10 @@ namespace Pandaros.Settlers.Extender.Providers
                                 {
                                     var newItem = item.Value.JsonDeerialize<CSType>();
                                     loadedItems[newItem.name] = newItem;
-                                    //var permutations = ConnectedBlockCalculator.GetPermutations(newItem);
+                                    var permutations = ConnectedBlockCalculator.GetPermutations(newItem);
 
-                                    //foreach (var permutation in permutations)
-                                    //    loadedItems[permutation.name] = permutation;
+                                    foreach (var permutation in permutations)
+                                        loadedItems[permutation.name] = permutation;
                                 }
                             }
                     }
