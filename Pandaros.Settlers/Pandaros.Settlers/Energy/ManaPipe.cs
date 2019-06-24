@@ -71,7 +71,7 @@ namespace Pandaros.Settlers.Energy
             Connections = new List<Models.BlockSide>()
             {
                 Models.BlockSide.Zp,
-                Models.BlockSide.Xn
+                Models.BlockSide.Xp
             },
             CalculationType = "Pipe"
         };

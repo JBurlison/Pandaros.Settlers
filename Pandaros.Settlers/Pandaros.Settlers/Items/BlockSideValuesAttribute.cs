@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Items
         public int Y { get; private set; }
         public int Z { get; private set; }
 
-        public BlockSideVectorValuesAttribute(int x, int z, int y)
+        public BlockSideVectorValuesAttribute(int x, int y, int z)
         {
             X = x;
             Y = y;

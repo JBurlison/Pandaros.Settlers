@@ -12,6 +12,6 @@ namespace Pandaros.Settlers.Items
         public string BlockType { get; set; }
         public List<BlockSide> Connections { get; set; }
         public string CalculationType { get; set; }
-        public bool AutoChange { get; set; }
+        public bool AutoChange { get; set; } = true;
     }
 }

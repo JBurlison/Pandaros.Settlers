@@ -13,12 +13,6 @@ namespace Pandaros.Settlers.Items
     {
         private static Dictionary<string, Dictionary<List<BlockSide>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSide>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
         private static Dictionary<string, ICSType> _blockLookup = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
-        private static List<BlockSide> _blockTypes = ((BlockSide[])Enum.GetValues(typeof(BlockSide))).ToList();
-
-        static ConnectedBlockSystem()
-        {
-            _blockTypes.Remove(BlockSide.Invlaid);
-        }
 
         public static void AddConnectedBlock(ICSType cSType)
         {
@@ -45,58 +39,63 @@ namespace Pandaros.Settlers.Items
         {
             var connectedBlock = default(ICSType);
 
-            if (onTryChangeBlockData.RequestOrigin.Type == BlockChangeRequestOrigin.EType.Player && 
+            if (onTryChangeBlockData.RequestOrigin.Type == BlockChangeRequestOrigin.EType.Player &&
                 (_blockLookup.TryGetValue(onTryChangeBlockData.TypeNew.Name, out connectedBlock) ||
-                _blockLookup.TryGetValue(onTryChangeBlockData.TypeOld.Name, out connectedBlock)))
+                _blockLookup.TryGetValue(onTryChangeBlockData.TypeOld.Name, out connectedBlock)) &&
+                ConnectedBlockCalculator.CalculationTypes.TryGetValue(connectedBlock.ConnectedBlock.CalculationType, out var connectedBlockCalculationType))
             {
                 if (onTryChangeBlockData.TypeNew.Name != ColonyBuiltIn.ItemTypes.AIR &&
-                    TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, out var newBlock) && 
+                    TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, connectedBlockCalculationType, out var newBlock) &&
                     newBlock.ConnectedBlock.AutoChange)
                     ServerManager.TryChangeBlock(onTryChangeBlockData.Position, ItemId.GetItemId(newBlock.name));
 
-                foreach (var block in _blockTypes)
+                foreach (var block in connectedBlockCalculationType.AvailableBlockSides)
                     ChangeBlocksForPos(onTryChangeBlockData.Position.GetBlockOffset(block), connectedBlock.ConnectedBlock.BlockType);
             }
         }
 
-        public static void ChangeBlocksForPos(Vector3Int pos, string blockType = null)
+        public static void ChangeBlocksForPos(Vector3Int pos, string blockType = null, IConnectedBlockCalculationType calculationType = null)
         {
             if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && _blockLookup.ContainsKey(itemTypeAtPos.Name))
             {
                 if (blockType == null &&
                     _blockLookup.TryGetValue(itemTypeAtPos.Name, out var connectedBlockAtPos))
+                {
                     blockType = connectedBlockAtPos.ConnectedBlock.BlockType;
 
-                if (TryGetChangedBlockTypeAtPosition(pos, blockType, out var newBlock) && newBlock.ConnectedBlock.AutoChange)
+                    if (ConnectedBlockCalculator.CalculationTypes.TryGetValue(connectedBlockAtPos.ConnectedBlock.CalculationType, out var connectedBlockCalculationType))
+                        calculationType = connectedBlockCalculationType;
+                    else
+                        return;
+                }
+
+                if (calculationType != null && TryGetChangedBlockTypeAtPosition(pos, blockType, calculationType, out var newBlock) && newBlock.ConnectedBlock.AutoChange)
                      ServerManager.TryChangeBlock(pos, ItemId.GetItemId(newBlock.name));
             }
         }
 
-        public static bool TryGetChangedBlockTypeAtPosition(Vector3Int centerBlock, string blockType, out ICSType newBlock)
+        public static bool TryGetChangedBlockTypeAtPosition(Vector3Int centerBlock, string blockType, IConnectedBlockCalculationType calculationType, out ICSType newBlock)
         {
-            List<BlockSide> connectedBlocks = GetConnectedBlocks(centerBlock, blockType);
+            List<BlockSide> connectedBlocks = GetConnectedBlocks(centerBlock, blockType, calculationType);
             return TryGetConnectingBlock(blockType, connectedBlocks, out newBlock);
         }
 
-        public static List<BlockSide> GetConnectedBlocks(Vector3Int centerBlock, string blockType)
+        public static List<BlockSide> GetConnectedBlocks(Vector3Int centerBlock, string blockType, IConnectedBlockCalculationType calculationType)
         {
             List<BlockSide> connectedBlocks = new List<BlockSide>();
 
-            foreach (var block in _blockTypes)
-                SetBlock(centerBlock, blockType, block, connectedBlocks);
+            foreach(var block in calculationType.AvailableBlockSides)
+                if (World.TryGetTypeAt(centerBlock.GetBlockOffset(block), out ItemTypes.ItemType blockAtLocation) &&
+                    _blockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
+                    string.Equals(existingBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
+                        connectedBlocks.Add(block);
 
             connectedBlocks.Sort();
 
             return connectedBlocks;
         }
 
-        private static void SetBlock(Vector3Int centerBlock, string blockType, BlockSide blockSide, List<BlockSide> connectedBlocks)
-        {
-            if (World.TryGetTypeAt(centerBlock.GetBlockOffset(blockSide), out ItemTypes.ItemType blockAtLocation) &&
-                _blockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
-                string.Equals(existingBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
-                connectedBlocks.Add(blockSide);
-        }
+
 
     }
 }
