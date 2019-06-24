@@ -31,17 +31,6 @@ namespace Pandaros.Settlers.Items
                     _connectedBlockLookup.Add(cSType.ConnectedBlock.BlockType, new Dictionary<List<BlockSide>, ICSType>(new ListComparer<BlockSide>()));
 
                 _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
-
-                //// Edge case for one connection.
-                //if (cSType.ConnectedBlock.Connections.Count == 2 &&
-                //    ((cSType.ConnectedBlock.Connections.Contains(BlockSide.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Xp)) ||
-                //    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Yp)) ||
-                //    (cSType.ConnectedBlock.Connections.Contains(BlockSide.Zn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Zp))))
-                //    foreach (var side in cSType.ConnectedBlock.Connections)
-                //    {
-                //        var newBlockList = new List<BlockSide>() { side };
-                //        _connectedBlockLookup[cSType.ConnectedBlock.BlockType][newBlockList] = cSType;
-                //    }
             }
         }
 
@@ -61,7 +50,8 @@ namespace Pandaros.Settlers.Items
                 _blockLookup.TryGetValue(onTryChangeBlockData.TypeOld.Name, out connectedBlock)))
             {
                 if (onTryChangeBlockData.TypeNew.Name != ColonyBuiltIn.ItemTypes.AIR &&
-                    TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, out var newBlock))
+                    TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, out var newBlock) && 
+                    newBlock.ConnectedBlock.AutoChange)
                     ServerManager.TryChangeBlock(onTryChangeBlockData.Position, ItemId.GetItemId(newBlock.name));
 
                 foreach (var block in _blockTypes)
@@ -77,7 +67,7 @@ namespace Pandaros.Settlers.Items
                     _blockLookup.TryGetValue(itemTypeAtPos.Name, out var connectedBlockAtPos))
                     blockType = connectedBlockAtPos.ConnectedBlock.BlockType;
 
-                if (TryGetChangedBlockTypeAtPosition(pos, blockType, out var newBlock))
+                if (TryGetChangedBlockTypeAtPosition(pos, blockType, out var newBlock) && newBlock.ConnectedBlock.AutoChange)
                      ServerManager.TryChangeBlock(pos, ItemId.GetItemId(newBlock.name));
             }
         }

@@ -50,7 +50,8 @@ namespace Pandaros.Settlers.Energy
                     Models.BlockSide.Yp,
                     Models.BlockSide.Zn,
                     Models.BlockSide.Zp
-                }
+                },
+                AutoChange = false
             }
         };
     }

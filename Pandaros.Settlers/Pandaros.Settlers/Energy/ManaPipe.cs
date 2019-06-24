@@ -61,6 +61,22 @@ namespace Pandaros.Settlers.Energy
         };
     }
 
+    public class ManaPipeElbow : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeElbow";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_Elbow.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSide>()
+            {
+                Models.BlockSide.Zp,
+                Models.BlockSide.Xn
+            },
+            CalculationType = "Pipe"
+        };
+    }
+
     public class ManaPipeThreeWay : ManaPipeBase
     {
         public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeThreeWay";
@@ -73,6 +89,80 @@ namespace Pandaros.Settlers.Energy
                 Models.BlockSide.Yp,
                 Models.BlockSide.Zn,
                 Models.BlockSide.Zp
+            },
+            CalculationType = "Pipe"
+        };
+    }
+
+    public class ManaPipeThreeCorner : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeThreeCorner";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_3way_Corner.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSide>()
+            {
+                Models.BlockSide.Yn,
+                Models.BlockSide.Zn,
+                Models.BlockSide.Xp
+            },
+            CalculationType = "Pipe"
+        };
+    }
+
+    public class ManaPipeFourWay : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeFourWay";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_4way.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSide>()
+            {
+                Models.BlockSide.Zp,
+                Models.BlockSide.Zn,
+                Models.BlockSide.Xp,
+                Models.BlockSide.Xn
+            },
+            CalculationType = "Pipe"
+        };
+    }
+
+    public class ManaPipeFiveWay : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeFiveWay";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_5way.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSide>()
+            {
+                Models.BlockSide.Zp,
+                Models.BlockSide.Zn,
+                Models.BlockSide.Xp,
+                Models.BlockSide.Xn,
+                Models.BlockSide.Yp
+            },
+            CalculationType = "Pipe"
+        };
+    }
+
+    public class ManaPipeSixWay : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeSixWay";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_6way.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSide>()
+            {
+                Models.BlockSide.Zp,
+                Models.BlockSide.Zn,
+                Models.BlockSide.Xp,
+                Models.BlockSide.Xn,
+                Models.BlockSide.Yp,
+                Models.BlockSide.Yn
             },
             CalculationType = "Pipe"
         };
