@@ -129,6 +129,24 @@ namespace Pandaros.Settlers.Energy
         };
     }
 
+    public class ManaPipeFourWayCorner : ManaPipeBase
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeFourWayCorner";
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe_4way_potrude.obj");
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            Connections = new List<Models.BlockSide>()
+            {
+                Models.BlockSide.Zp,
+                Models.BlockSide.Zn,
+                Models.BlockSide.Xp,
+                Models.BlockSide.Yp
+            },
+            CalculationType = "Pipe"
+        };
+    }
+
     public class ManaPipeFiveWay : ManaPipeBase
     {
         public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPipeFiveWay";
