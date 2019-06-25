@@ -244,21 +244,24 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static List<List<T>> GetAllCombos<T>(this List<T> list)
+        public static IEnumerable<IEnumerable<T>> GetAllCombos<T>(this IEnumerable<T> items)
         {
-            int comboCount = (int)System.Math.Pow(2, list.Count) - 1;
-            List<List<T>> result = new List<List<T>>();
-            for (int i = 1; i < comboCount + 1; i++)
+            foreach (var item in items)
             {
-                // make each combo here
-                result.Add(new List<T>());
-                for (int j = 0; j < list.Count; j++)
+                var itemAsEnumerable = Enumerable.Repeat(item, 1);
+                var subSet = items.Except(itemAsEnumerable);
+                if (!subSet.Any())
                 {
-                    if ((i >> j) % 2 != 0)
-                        result.Last().Add(list[j]);
+                    yield return itemAsEnumerable;
+                }
+                else
+                {
+                    foreach (var sub in items.Except(itemAsEnumerable).GetAllCombos())
+                    {
+                        yield return itemAsEnumerable.Union(sub);
+                    }
                 }
             }
-            return result;
         }
     }
 }
