@@ -13,5 +13,8 @@ namespace Pandaros.Settlers.Items
         public List<BlockSide> Connections { get; set; }
         public string CalculationType { get; set; }
         public bool AutoChange { get; set; } = true;
+        public List<BlockSide> Origin { get; set; }
+        public RotationAxis RotationAxis { get; set; }
+        public BlockRotationDegrees BlockRotationDegrees { get; set; }
     }
 }

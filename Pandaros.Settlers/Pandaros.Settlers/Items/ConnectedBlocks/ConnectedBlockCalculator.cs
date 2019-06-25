@@ -76,28 +76,32 @@ namespace Pandaros.Settlers.Items
                         }
                     }
 
-                    StoreItem(baseBlock, cSTypes, itemJson, rotationEuler, rotatedList);
+                    bool moreRotations = !cSTypes.ContainsKey(rotatedList);
+
+                    rotatedList.Sort();
+
+                    if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
+                    {
+                        var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+                        newItem.meshRotationEuler = rotationEuler;
+                        newItem.ConnectedBlock = new ConnectedBlock()
+                        {
+                            BlockType = baseBlock.ConnectedBlock.BlockType,
+                            CalculationType = baseBlock.ConnectedBlock.CalculationType,
+                            Connections = rotatedList,
+                            Origin = connections,
+                            BlockRotationDegrees = rotationDegrees,
+                            RotationAxis = axis
+                        };
+
+                        newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+                        cSTypes[newItem.ConnectedBlock.Connections] = newItem;
+                    }
+
+                    if (moreRotations)
+                        foreach (var connection in rotatedList.GetAllCombos())
+                            PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
                 }
-        }
-
-        private static void StoreItem(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, MeshRotationEuler rotationEuler, List<BlockSide> rotatedList)
-        {
-            rotatedList.Sort();
-
-            if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
-            {
-                var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
-                newItem.meshRotationEuler = rotationEuler;
-                newItem.ConnectedBlock = new ConnectedBlock()
-                {
-                    BlockType = baseBlock.ConnectedBlock.BlockType,
-                    CalculationType = baseBlock.ConnectedBlock.CalculationType,
-                    Connections = rotatedList
-                };
-
-                newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
-                cSTypes[newItem.ConnectedBlock.Connections] = newItem;
-            }
         }
 
         private static string GetItemName(List<BlockSide> sides)
