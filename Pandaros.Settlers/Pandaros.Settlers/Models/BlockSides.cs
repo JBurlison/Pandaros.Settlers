@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Models
     public enum BlockSide
     {
         [BlockSideVectorValues(0, 0, 0)]
-        Invlaid,
+        Invalid,
         [BlockSideVectorValues(1, 1, 0)]
         XpYp,
         [BlockSideVectorValues(0, 1, 1)]

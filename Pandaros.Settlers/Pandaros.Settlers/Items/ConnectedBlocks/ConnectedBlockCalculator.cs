@@ -66,7 +66,7 @@ namespace Pandaros.Settlers.Items
                             }
                         }
 
-                        if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invlaid))
+                        if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invalid))
                         {
                             var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
                             newItem.meshRotationEuler = rotationEuler;

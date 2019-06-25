@@ -2,9 +2,9 @@
   "XpYp": {
     "X": {
       "0": "XpYp",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "XpYn",
-      "270": "Invlaid"
+      "270": "Invalid"
     },
     "Y": {
       "0": "XpYp",
@@ -34,9 +34,9 @@
     },
     "Z": {
       "0": "ZpYp",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "ZnYn",
-      "270": "Invlaid"
+      "270": "Invalid"
     }
   },
   "Yp": {
@@ -74,17 +74,17 @@
     },
     "Z": {
       "0": "ZnYp",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "ZnYn",
-      "270": "Invlaid"
+      "270": "Invalid"
     }
   },
   "XnYp": {
     "X": {
       "0": "XnYp",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "XnYn",
-      "270": "Invlaid"
+      "270": "Invalid"
     },
     "Y": {
       "0": "XnYp",
@@ -182,9 +182,9 @@
   "XpYn": {
     "X": {
       "0": "XpYn",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "XpYp",
-      "270": "Invlaid"
+      "270": "Invalid"
     },
     "Y": {
       "0": "XpYn",
@@ -214,9 +214,9 @@
     },
     "Z": {
       "0": "ZpYn",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "ZnYp",
-      "270": "Invlaid"
+      "270": "Invalid"
     }
   },
   "Yn": {
@@ -254,17 +254,17 @@
     },
     "Z": {
       "0": "ZnYn",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "ZnYp",
-      "270": "Invlaid"
+      "270": "Invalid"
     }
   },
   "XnYn": {
     "X": {
       "0": "XnYn",
-      "90": "Invlaid",
+      "90": "Invalid",
       "180": "XnYp",
-      "270": "Invlaid"
+      "270": "Invalid"
     },
     "Y": {
       "0": "XnYn",
