@@ -41,8 +41,8 @@ namespace Pandaros.Settlers.Items.ConnectedBlocks
                 ConnectedBlockSystem.BlockLookup.TryGetValue(ItemId.GetItemId(playerClickData.GetVoxelHit().TypeHit), out var cSType))
             {
                 PandaChat.Send(player, "Side Hit: " + playerClickData.GetVoxelHit().SideHit);
-                PandaChat.Send(player, "Origin Sides: " + string.Join(", ", cSType.ConnectedBlock.Origin.Select(c => c.ToString()).ToArray()));
-                PandaChat.Send(player, "BlockRotationDegrees: " + cSType.ConnectedBlock.BlockRotationDegrees.ToString());
+                PandaChat.Send(player, "Connected Sides: " + string.Join(", ", cSType.ConnectedBlock.Connections.Select(c => c.ToString()).ToArray()));
+                PandaChat.Send(player, "Origin Sides: " + string.Join(", ", cSType.ConnectedBlock.Origin.Select(c => c.ToString()).ToArray()));                PandaChat.Send(player, "BlockRotationDegrees: " + cSType.ConnectedBlock.BlockRotationDegrees.ToString());
                 PandaChat.Send(player, "RotationAxis: " + cSType.ConnectedBlock.RotationAxis.ToString());
             }
         }
