@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items
                 PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
 
                 foreach (var connection in baseBlock.ConnectedBlock.Connections.GetAllCombos())
-                    PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
+                    PermutateItems(baseBlock, cSTypes, itemJson, connection);
             }
 
             return cSTypes.Values.ToList();
@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Items
 
                     rotatedList.Sort();
 
-                    if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
+                    if (rotatedList.Count != 0 && rotatedList.All(r => r == rotatedList.First()) && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
                     {
                         var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
                         newItem.meshRotationEuler = rotationEuler;
