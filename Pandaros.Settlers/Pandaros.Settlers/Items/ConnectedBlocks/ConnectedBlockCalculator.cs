@@ -76,11 +76,17 @@ namespace Pandaros.Settlers.Items
                         }
                     }
 
-                    bool moreRotations = !cSTypes.ContainsKey(rotatedList) && !rotatedList.All(r => r == rotatedList.First());
+                    bool moreRotations = rotatedList.Count != 0 && 
+                                        !rotatedList.Contains(BlockSide.Invalid) && 
+                                        !cSTypes.ContainsKey(rotatedList) && 
+                                        !rotatedList.All(r => r == rotatedList.First());
 
                     rotatedList.Sort();
 
-                    if (rotatedList.Count != 0 && !rotatedList.All(r => r == rotatedList.First()) && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
+                    if (rotatedList.Count == 2 && rotatedList.Contains(BlockSide.Xn) && rotatedList.Contains(BlockSide.Yn))
+                        PandaLogger.Log(ChatColor.red, "XnYn " + moreRotations);
+
+                    if (moreRotations)
                     {
                         var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
                         newItem.meshRotationEuler = rotationEuler;
@@ -96,11 +102,10 @@ namespace Pandaros.Settlers.Items
 
                         newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
                         cSTypes[newItem.ConnectedBlock.Connections] = newItem;
-                    }
 
-                    if (moreRotations)
                         foreach (var connection in rotatedList.GetAllCombos())
                             PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
+                    }
                 }
         }
 
