@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items
                 PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
 
                 foreach (var connection in baseBlock.ConnectedBlock.Connections.GetAllCombos())
-                PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
+                    PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
             }
 
             return cSTypes.Values.ToList();
