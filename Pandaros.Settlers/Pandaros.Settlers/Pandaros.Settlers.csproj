@@ -168,6 +168,7 @@
     <Compile Include="Items\ConnectedBlocks\ConnectedBlock.cs" />
     <Compile Include="Items\ConnectedBlocks\ConnectedBlockCalculator.cs" />
     <Compile Include="Items\ConnectedBlocks\ConnectedBlockSystem.cs" />
+    <Compile Include="Items\ConnectedBlocks\ConnectedBlockTool.cs" />
     <Compile Include="Items\ConnectedBlocks\TrackCalculationType.cs" />
     <Compile Include="Items\ConnectedBlocks\FenceCalculationType.cs" />
     <Compile Include="Items\ConnectedBlocks\PipeCalculationType.cs" />
@@ -371,6 +372,9 @@
     <None Include="Meshes\Pipe_3way.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Meshes\Pipe_3wayflat.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Meshes\Pipe_3way_Corner.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -383,10 +387,16 @@
     <None Include="Meshes\Pipe_5way.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Meshes\Pipe_5wayYp.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Meshes\Pipe_6way.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\Pipe_Elbow.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\Pipe_Elbowyp.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\slingbullet.ply">
@@ -1143,6 +1153,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\ArcArchitect..png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ConnectedBlockTool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Pandaros.Settlers.Architect.png">

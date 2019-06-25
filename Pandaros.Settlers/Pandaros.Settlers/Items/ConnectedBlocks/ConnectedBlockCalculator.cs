@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Items
 
         public static List<ICSType> GetPermutations(ICSType baseBlock)
         {
-            List<ICSType> cSTypes = new List<ICSType>();
+            Dictionary<List<BlockSide>, ICSType> cSTypes = new Dictionary<List<BlockSide>, ICSType>(new ListComparer<BlockSide>());
 
             if (baseBlock.ConnectedBlock != null &&
                 !string.IsNullOrWhiteSpace(baseBlock.ConnectedBlock.CalculationType) && 
@@ -34,56 +34,70 @@ namespace Pandaros.Settlers.Items
                 baseBlock.ConnectedBlock.Connections.Count > 0)
             {
                 var itemJson = JsonConvert.SerializeObject(baseBlock, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.None });
+                PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
 
-                foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
-                    foreach (RotationAxis axis in _blockRotations)
-                    {
-                        var rotationEuler = new MeshRotationEuler();
-                        var rotatedList = new List<BlockSide>();
-
-                        switch (axis)
-                        {
-                            case RotationAxis.X:
-                                rotationEuler.x = (int)rotationDegrees;
-                                break;
-
-                            case RotationAxis.Y:
-                                rotationEuler.y = (int)rotationDegrees;
-                                break;
-
-                            case RotationAxis.Z:
-                                rotationEuler.z = (int)rotationDegrees;
-                                break;
-                        }
-
-                        foreach (var side in baseBlock.ConnectedBlock.Connections)
-                        {
-                            if (_blocksideRotations.TryGetValue(side, out var axisDic) &&
-                                axisDic.TryGetValue(axis, out var rotationDic) &&
-                                rotationDic.TryGetValue(rotationDegrees, out var newBlockSide))
-                            {
-                                rotatedList.Add(newBlockSide);
-                            }
-                        }
-
-                        if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invalid))
-                        {
-                            var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
-                            newItem.meshRotationEuler = rotationEuler;
-                            newItem.ConnectedBlock = new ConnectedBlock()
-                            {
-                                BlockType = baseBlock.ConnectedBlock.BlockType,
-                                CalculationType = baseBlock.ConnectedBlock.CalculationType,
-                                Connections = rotatedList.ToList()
-                            };
-                            newItem.ConnectedBlock.Connections.Sort();
-                            newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
-                            cSTypes.Add(newItem);
-                        }
-                    }
+                foreach (var connection in baseBlock.ConnectedBlock.Connections.GetAllCombos())
+                PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
             }
 
-            return cSTypes;
+            return cSTypes.Values.ToList();
+        }
+
+        private static void PermutateItems(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, List<BlockSide> connections)
+        {
+            foreach (RotationAxis axis in _blockRotations)
+                foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
+                {
+                    var rotationEuler = new MeshRotationEuler();
+                    var rotatedList = new List<BlockSide>();
+
+                    switch (axis)
+                    {
+                        case RotationAxis.X:
+                            rotationEuler.x = (int)rotationDegrees;
+                            break;
+
+                        case RotationAxis.Y:
+                            rotationEuler.y = (int)rotationDegrees;
+                            break;
+
+                        case RotationAxis.Z:
+                            rotationEuler.z = (int)rotationDegrees;
+                            break;
+                    }
+
+                    foreach (var side in connections)
+                    {
+                        if (_blocksideRotations.TryGetValue(side, out var axisDic) &&
+                            axisDic.TryGetValue(axis, out var rotationDic) &&
+                            rotationDic.TryGetValue(rotationDegrees, out var newBlockSide))
+                        {
+                            rotatedList.Add(newBlockSide);
+                        }
+                    }
+
+                    StoreItem(baseBlock, cSTypes, itemJson, rotationEuler, rotatedList);
+                }
+        }
+
+        private static void StoreItem(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, MeshRotationEuler rotationEuler, List<BlockSide> rotatedList)
+        {
+            rotatedList.Sort();
+
+            if (rotatedList.Count != 0 && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
+            {
+                var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+                newItem.meshRotationEuler = rotationEuler;
+                newItem.ConnectedBlock = new ConnectedBlock()
+                {
+                    BlockType = baseBlock.ConnectedBlock.BlockType,
+                    CalculationType = baseBlock.ConnectedBlock.CalculationType,
+                    Connections = rotatedList
+                };
+
+                newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+                cSTypes[newItem.ConnectedBlock.Connections] = newItem;
+            }
         }
 
         private static string GetItemName(List<BlockSide> sides)

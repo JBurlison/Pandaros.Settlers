@@ -12,14 +12,14 @@ namespace Pandaros.Settlers.Items
     public static class ConnectedBlockSystem
     {
         private static Dictionary<string, Dictionary<List<BlockSide>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSide>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
-        private static Dictionary<string, ICSType> _blockLookup = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
+        public static Dictionary<string, ICSType> BlockLookup { get; private set; } = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
 
         public static void AddConnectedBlock(ICSType cSType)
         {
             if (cSType.ConnectedBlock != null && !string.IsNullOrEmpty(cSType.ConnectedBlock.BlockType))
             {
                 cSType.ConnectedBlock.Connections.Sort();
-                _blockLookup[cSType.name] = cSType;
+                BlockLookup[cSType.name] = cSType;
 
                 if (!_connectedBlockLookup.ContainsKey(cSType.ConnectedBlock.BlockType))
                     _connectedBlockLookup.Add(cSType.ConnectedBlock.BlockType, new Dictionary<List<BlockSide>, ICSType>(new ListComparer<BlockSide>()));
@@ -50,8 +50,8 @@ namespace Pandaros.Settlers.Items
             var connectedBlock = default(ICSType);
 
             if (onTryChangeBlockData.RequestOrigin.Type == BlockChangeRequestOrigin.EType.Player &&
-                (_blockLookup.TryGetValue(onTryChangeBlockData.TypeNew.Name, out connectedBlock) ||
-                _blockLookup.TryGetValue(onTryChangeBlockData.TypeOld.Name, out connectedBlock)) &&
+                (BlockLookup.TryGetValue(onTryChangeBlockData.TypeNew.Name, out connectedBlock) ||
+                BlockLookup.TryGetValue(onTryChangeBlockData.TypeOld.Name, out connectedBlock)) &&
                 ConnectedBlockCalculator.CalculationTypes.TryGetValue(connectedBlock.ConnectedBlock.CalculationType, out var connectedBlockCalculationType))
             {
                 ChangeBlocksForPos(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, connectedBlockCalculationType);
@@ -63,10 +63,10 @@ namespace Pandaros.Settlers.Items
 
         public static void ChangeBlocksForPos(Vector3Int pos, string blockType = null, IConnectedBlockCalculationType calculationType = null)
         {
-            if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && _blockLookup.ContainsKey(itemTypeAtPos.Name))
+            if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && BlockLookup.ContainsKey(itemTypeAtPos.Name))
             {
                 if (blockType == null &&
-                    _blockLookup.TryGetValue(itemTypeAtPos.Name, out var connectedBlockAtPos))
+                    BlockLookup.TryGetValue(itemTypeAtPos.Name, out var connectedBlockAtPos))
                 {
                     blockType = connectedBlockAtPos.ConnectedBlock.BlockType;
 
@@ -93,7 +93,7 @@ namespace Pandaros.Settlers.Items
 
             foreach(var block in calculationType.AvailableBlockSides)
                 if (World.TryGetTypeAt(centerBlock.GetBlockOffset(block), out ItemTypes.ItemType blockAtLocation) &&
-                    _blockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
+                    BlockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
                     string.Equals(existingBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
                         connectedBlocks.Add(block);
 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Pandaros.Settlers.Items.StaticItems;
 
 // pipe fill color: 1058c7
 namespace Pandaros.Settlers.Energy
@@ -93,6 +94,7 @@ namespace Pandaros.Settlers.Energy
             CalculationType = "Pipe"
         };
     }
+
 
     public class ManaPipeThreeCorner : ManaPipeBase
     {
