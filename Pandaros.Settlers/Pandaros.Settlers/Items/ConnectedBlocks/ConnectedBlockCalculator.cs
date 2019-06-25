@@ -76,11 +76,11 @@ namespace Pandaros.Settlers.Items
                         }
                     }
 
-                    bool moreRotations = !cSTypes.ContainsKey(rotatedList);
+                    bool moreRotations = !cSTypes.ContainsKey(rotatedList) && !rotatedList.All(r => r == rotatedList.First());
 
                     rotatedList.Sort();
 
-                    if (rotatedList.Count != 0 && rotatedList.All(r => r == rotatedList.First()) && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
+                    if (rotatedList.Count != 0 && !rotatedList.All(r => r == rotatedList.First()) && !rotatedList.Contains(BlockSide.Invalid) && !cSTypes.ContainsKey(rotatedList))
                     {
                         var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
                         newItem.meshRotationEuler = rotationEuler;
