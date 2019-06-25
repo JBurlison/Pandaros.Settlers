@@ -25,6 +25,16 @@ namespace Pandaros.Settlers.Items
                     _connectedBlockLookup.Add(cSType.ConnectedBlock.BlockType, new Dictionary<List<BlockSide>, ICSType>(new ListComparer<BlockSide>()));
 
                 _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
+
+                if (cSType.ConnectedBlock.Connections.Count == 2 &&
+                   ((cSType.ConnectedBlock.Connections.Contains(BlockSide.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Xp)) ||
+                   (cSType.ConnectedBlock.Connections.Contains(BlockSide.Yn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Yp)) ||
+                   (cSType.ConnectedBlock.Connections.Contains(BlockSide.Zn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Zp))))
+                    foreach (var side in cSType.ConnectedBlock.Connections)
+                    {
+                        var newBlockList = new List<BlockSide>() { side };
+                        _connectedBlockLookup[cSType.ConnectedBlock.BlockType][newBlockList] = cSType;
+                    }
             }
         }
 
@@ -44,13 +54,10 @@ namespace Pandaros.Settlers.Items
                 _blockLookup.TryGetValue(onTryChangeBlockData.TypeOld.Name, out connectedBlock)) &&
                 ConnectedBlockCalculator.CalculationTypes.TryGetValue(connectedBlock.ConnectedBlock.CalculationType, out var connectedBlockCalculationType))
             {
-                if (onTryChangeBlockData.TypeNew.Name != ColonyBuiltIn.ItemTypes.AIR &&
-                    TryGetChangedBlockTypeAtPosition(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, connectedBlockCalculationType, out var newBlock) &&
-                    newBlock.ConnectedBlock.AutoChange)
-                    ServerManager.TryChangeBlock(onTryChangeBlockData.Position, ItemId.GetItemId(newBlock.name));
+                ChangeBlocksForPos(onTryChangeBlockData.Position, connectedBlock.ConnectedBlock.BlockType, connectedBlockCalculationType);
 
                 foreach (var block in connectedBlockCalculationType.AvailableBlockSides)
-                    ChangeBlocksForPos(onTryChangeBlockData.Position.GetBlockOffset(block), connectedBlock.ConnectedBlock.BlockType);
+                    ChangeBlocksForPos(onTryChangeBlockData.Position.GetBlockOffset(block), connectedBlock.ConnectedBlock.BlockType, connectedBlockCalculationType);
             }
         }
 
