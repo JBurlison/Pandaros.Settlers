@@ -252,15 +252,20 @@ namespace Pandaros.Settlers
             }
         }
 
+        public static bool ApproxEqual(this float x, float y, float epsilon = 0.02f)
+        {
+            return System.Math.Abs(x - y) < epsilon;
+        }
+
         public static BlockSide GetBlocksideFromVector(this UnityEngine.Vector3 vector3)
         {
             foreach (var side in _blockSides)
             {
                 var vectorValues = side.GetAttribute<BlockSideVectorValuesAttribute>();
 
-                if (vector3.x == vectorValues.X &&
-                    vector3.y == vectorValues.Y &&
-                    vector3.z == vectorValues.Z)
+                if (vector3.normalized.x.ApproxEqual(vectorValues.X) &&
+                    vector3.normalized.y.ApproxEqual(vectorValues.Y) &&
+                    vector3.normalized.z.ApproxEqual(vectorValues.Z))
                     return side;
             }
 

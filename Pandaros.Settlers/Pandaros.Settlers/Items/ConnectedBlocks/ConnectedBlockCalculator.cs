@@ -84,7 +84,7 @@ namespace Pandaros.Settlers.Items
                         {
                             Vector3 connectionPoint = side.GetVector();
                             Vector3 eulerRotation = new Vector3(rotationEuler.x, rotationEuler.y, rotationEuler.z);
-
+                            
                             Vector3 rotatedConnectionPoint = Quaternion.Euler(eulerRotation) * connectionPoint;
 
                             if (rotatedConnectionPoint == Vector3.zero)
@@ -108,14 +108,13 @@ namespace Pandaros.Settlers.Items
                             BlockType = baseBlock.ConnectedBlock.BlockType,
                             CalculationType = baseBlock.ConnectedBlock.CalculationType,
                             Connections = rotatedList,
-                            Origin = connections,
                             BlockRotationDegrees = currentRotation,
                             RotationAxis = axis
                         };
 
                         newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
                         cSTypes[newItem.ConnectedBlock.Connections] = newItem;
-                        PermutateItems(newItem, cSTypes, itemJson, newItem.ConnectedBlock.Connections);
+                        PermutateItems(newItem, cSTypes, itemJson, connections);
                     }
                 }
         }

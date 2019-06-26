@@ -161,8 +161,8 @@ namespace Pandaros.Settlers.Energy
                 Models.BlockSide.Zp,
                 Models.BlockSide.Zn,
                 Models.BlockSide.Xp,
-                Models.BlockSide.Xn,
-                Models.BlockSide.Yp
+                Models.BlockSide.Yp,
+                Models.BlockSide.Yn
             },
             CalculationType = "Pipe"
         };
