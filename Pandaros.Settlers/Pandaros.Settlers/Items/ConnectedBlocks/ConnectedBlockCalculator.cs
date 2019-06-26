@@ -13,17 +13,9 @@ namespace Pandaros.Settlers.Items
     public static class ConnectedBlockCalculator
     {
         public static Dictionary<string, IConnectedBlockCalculationType> CalculationTypes { get; } = new Dictionary<string, IConnectedBlockCalculationType>(StringComparer.InvariantCultureIgnoreCase);
-        private static Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>> _blocksideRotations = new Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>();
 
         private static RotationAxis[] _blockRotations = (RotationAxis[])Enum.GetValues(typeof(RotationAxis));
         private static BlockRotationDegrees[] _blockRotationDegrees = (BlockRotationDegrees[])Enum.GetValues(typeof(BlockRotationDegrees));
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, GameLoader.NAMESPACE + ".Items.ConnectedBlockCalculator.Initialize")]
-        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".Extender.SettlersExtender.AfterModsLoaded")]
-        public static void Initialize(List<ModLoader.ModDescription> list)
-        {
-            _blocksideRotations = JsonConvert.DeserializeObject<Dictionary<BlockSide, Dictionary<RotationAxis, Dictionary<BlockRotationDegrees, BlockSide>>>>(File.ReadAllText(Path.Combine(GameLoader.MOD_FOLDER, "BlockRotations.json")));
-        }
 
         public static List<ICSType> GetPermutations(ICSType baseBlock)
         {
@@ -91,12 +83,12 @@ namespace Pandaros.Settlers.Items
                     if (connections.Count() == connections.Distinct().Count())
                         foreach (var side in connections)
                         {
-                            if (_blocksideRotations.TryGetValue(side, out var axisDic) &&
-                                axisDic.TryGetValue(axis, out var rotationDic) &&
-                                rotationDic.TryGetValue(currentRotation, out var newBlockSide))
-                            {
-                                rotatedList.Add(newBlockSide);
-                            }
+                            Vector3 connectionPoint = side.GetVector();
+                            Vector3 eulerRotation = new Vector3(rotationEuler.x, rotationEuler.y, rotationEuler.z);
+
+                            Vector3 rotatedConnectionPoint = Quaternion.Euler(eulerRotation) * connectionPoint;
+
+                            rotatedList.Add(rotatedConnectionPoint.GetBlocksideFromVector());
                         }
 
                     rotatedList.Sort();
@@ -135,6 +127,5 @@ namespace Pandaros.Settlers.Items
 
             return nameBuilder.ToString();
         }
-
     }
 }

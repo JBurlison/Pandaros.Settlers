@@ -18,6 +18,8 @@ namespace Pandaros.Settlers
 {
     public static class ExtentionMethods
     {
+        private static BlockSide[] _blockSides = (BlockSide[])Enum.GetValues(typeof(BlockSide));
+
         public static bool IsConnected(this Players.Player p)
         {
             return p.ConnectionState == Players.EConnectionState.Connected || p.ConnectionState == Players.EConnectionState.Connecting;
@@ -231,6 +233,12 @@ namespace Pandaros.Settlers
                 .SingleOrDefault();
         }
 
+        public static UnityEngine.Vector3 GetVector(this BlockSide blockSide)
+        {
+            var vectorValues = blockSide.GetAttribute<BlockSideVectorValuesAttribute>();
+            return new UnityEngine.Vector3(vectorValues.X, vectorValues.Y, vectorValues.Z);
+        }
+
         public static Vector3Int GetBlockOffset(this Vector3Int vector, BlockSide blockSide)
         {
             var vectorValues = blockSide.GetAttribute<BlockSideVectorValuesAttribute>();
@@ -244,23 +252,19 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static IEnumerable<IEnumerable<T>> GetAllCombos<T>(this IEnumerable<T> items)
+        public static BlockSide GetBlocksideFromVector(this UnityEngine.Vector3 vector3)
         {
-            int i = 0;
-            int count = items.Count();
-
-            foreach (var item in items)
+            foreach (var side in _blockSides)
             {
-                if (count == 1)
-                    yield return new T[] { item };
-                else
-                {
-                    foreach (var result in GetPermutations(items.Skip(i + 1), count - 1))
-                        yield return new T[] { item }.Concat(result);
-                }
+                var vectorValues = side.GetAttribute<BlockSideVectorValuesAttribute>();
 
-                ++i;
+                if (vector3.x == vectorValues.X &&
+                    vector3.y == vectorValues.Y &&
+                    vector3.z == vectorValues.Z)
+                    return side;
             }
+
+            return BlockSide.Invalid;
         }
     }
 }
