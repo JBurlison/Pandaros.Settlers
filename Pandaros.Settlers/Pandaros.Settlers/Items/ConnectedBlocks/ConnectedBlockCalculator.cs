@@ -35,7 +35,6 @@ namespace Pandaros.Settlers.Items
 
         private static void PermutateItems(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, List<BlockSide> connections)
         {
-            
             foreach (RotationAxis axis in _blockRotations)
                 foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
                 {
@@ -87,6 +86,9 @@ namespace Pandaros.Settlers.Items
                             Vector3 eulerRotation = new Vector3(rotationEuler.x, rotationEuler.y, rotationEuler.z);
 
                             Vector3 rotatedConnectionPoint = Quaternion.Euler(eulerRotation) * connectionPoint;
+
+                            if (rotatedConnectionPoint == Vector3.zero)
+                                rotatedConnectionPoint = connectionPoint;
 
                             rotatedList.Add(rotatedConnectionPoint.GetBlocksideFromVector());
                         }
