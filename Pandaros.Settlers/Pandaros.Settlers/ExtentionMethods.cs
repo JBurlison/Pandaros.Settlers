@@ -246,21 +246,20 @@ namespace Pandaros.Settlers
 
         public static IEnumerable<IEnumerable<T>> GetAllCombos<T>(this IEnumerable<T> items)
         {
+            int i = 0;
+            int count = items.Count();
+
             foreach (var item in items)
             {
-                var itemAsEnumerable = Enumerable.Repeat(item, 1);
-                var subSet = items.Except(itemAsEnumerable);
-                if (!subSet.Any())
-                {
-                    yield return itemAsEnumerable;
-                }
+                if (count == 1)
+                    yield return new T[] { item };
                 else
                 {
-                    foreach (var sub in items.Except(itemAsEnumerable).GetAllCombos())
-                    {
-                        yield return itemAsEnumerable.Union(sub);
-                    }
+                    foreach (var result in GetPermutations(items.Skip(i + 1), count - 1))
+                        yield return new T[] { item }.Concat(result);
                 }
+
+                ++i;
             }
         }
     }

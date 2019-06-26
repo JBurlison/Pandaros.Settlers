@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Pandaros.Settlers.Items
 {
@@ -35,9 +36,6 @@ namespace Pandaros.Settlers.Items
             {
                 var itemJson = JsonConvert.SerializeObject(baseBlock, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.None });
                 PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
-
-                foreach (var connection in baseBlock.ConnectedBlock.Connections.GetAllCombos())
-                    PermutateItems(baseBlock, cSTypes, itemJson, connection.ToList());
             }
 
             return cSTypes.Values.ToList();
@@ -45,48 +43,69 @@ namespace Pandaros.Settlers.Items
 
         private static void PermutateItems(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, List<BlockSide> connections)
         {
+            
             foreach (RotationAxis axis in _blockRotations)
                 foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
                 {
                     var rotationEuler = new MeshRotationEuler();
                     var rotatedList = new List<BlockSide>();
+                    var currentRotation = rotationDegrees;
+
+                    if (baseBlock.meshRotationEuler != null)
+                    {
+                        rotationEuler.x = baseBlock.meshRotationEuler.x;
+                        rotationEuler.y = baseBlock.meshRotationEuler.y;
+                        rotationEuler.z = baseBlock.meshRotationEuler.z;
+                    }
 
                     switch (axis)
                     {
                         case RotationAxis.X:
-                            rotationEuler.x = (int)rotationDegrees;
+                            rotationEuler.x += (int)rotationDegrees;
+
+                            if (rotationEuler.x > (int)BlockRotationDegrees.TwoSeventy)
+                                rotationEuler.x -= 360;
+
+                            currentRotation = (BlockRotationDegrees)rotationEuler.x;
                             break;
 
                         case RotationAxis.Y:
-                            rotationEuler.y = (int)rotationDegrees;
+                            rotationEuler.y += (int)rotationDegrees;
+
+                            if (rotationEuler.y > (int)BlockRotationDegrees.TwoSeventy)
+                                rotationEuler.y -= 360;
+
+                            currentRotation = (BlockRotationDegrees)rotationEuler.x;
                             break;
 
                         case RotationAxis.Z:
-                            rotationEuler.z = (int)rotationDegrees;
+                            rotationEuler.z += (int)rotationDegrees;
+
+                            if (rotationEuler.z > (int)BlockRotationDegrees.TwoSeventy)
+                                rotationEuler.z -= 360;
+
+                            currentRotation = (BlockRotationDegrees)rotationEuler.x;
                             break;
                     }
 
-                    foreach (var side in connections)
-                    {
-                        if (_blocksideRotations.TryGetValue(side, out var axisDic) &&
-                            axisDic.TryGetValue(axis, out var rotationDic) &&
-                            rotationDic.TryGetValue(rotationDegrees, out var newBlockSide))
+                    if (connections.Count() == connections.Distinct().Count())
+                        foreach (var side in connections)
                         {
-                            rotatedList.Add(newBlockSide);
+                            if (_blocksideRotations.TryGetValue(side, out var axisDic) &&
+                                axisDic.TryGetValue(axis, out var rotationDic) &&
+                                rotationDic.TryGetValue(currentRotation, out var newBlockSide))
+                            {
+                                rotatedList.Add(newBlockSide);
+                            }
                         }
-                    }
-
-                    bool moreRotations = rotatedList.Count != 0 && 
-                                        !rotatedList.Contains(BlockSide.Invalid) && 
-                                        !cSTypes.ContainsKey(rotatedList) && 
-                                        !rotatedList.All(r => r == rotatedList.First());
 
                     rotatedList.Sort();
 
-                    if (rotatedList.Count == 2 && rotatedList.Contains(BlockSide.Xn) && rotatedList.Contains(BlockSide.Yn))
-                        PandaLogger.Log(ChatColor.red, "XnYn " + moreRotations);
-
-                    if (moreRotations)
+                    if (rotatedList.Count != 0 &&
+                        !rotatedList.Contains(BlockSide.Invalid) &&
+                        rotatedList.Count == rotatedList.Distinct().Count() &&
+                        !cSTypes.ContainsKey(rotatedList) &&
+                        !rotatedList.All(r => r == rotatedList.First()))
                     {
                         var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
                         newItem.meshRotationEuler = rotationEuler;
@@ -96,15 +115,13 @@ namespace Pandaros.Settlers.Items
                             CalculationType = baseBlock.ConnectedBlock.CalculationType,
                             Connections = rotatedList,
                             Origin = connections,
-                            BlockRotationDegrees = rotationDegrees,
+                            BlockRotationDegrees = currentRotation,
                             RotationAxis = axis
                         };
 
                         newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
                         cSTypes[newItem.ConnectedBlock.Connections] = newItem;
-
-                        foreach (var connection in rotatedList.GetAllCombos())
-                            PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
+                        PermutateItems(newItem, cSTypes, itemJson, newItem.ConnectedBlock.Connections);
                     }
                 }
         }
@@ -118,5 +135,6 @@ namespace Pandaros.Settlers.Items
 
             return nameBuilder.ToString();
         }
+
     }
 }
