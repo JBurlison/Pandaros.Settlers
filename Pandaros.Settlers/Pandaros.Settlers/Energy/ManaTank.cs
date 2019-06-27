@@ -35,20 +35,6 @@ namespace Pandaros.Settlers.Energy
         {
             new OnRemove(1, 1, GameLoader.NAMESPACE + ".TankEmpty")
         };
-        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
-        {
-            BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
-            {
-                Models.BlockSide.Xn,
-                Models.BlockSide.Xp,
-                Models.BlockSide.Yn,
-                Models.BlockSide.Yp,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Zp
-            },
-            AutoChange = false
-        };
     }
 
 

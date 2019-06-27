@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Items
 
         public static void AddConnectedBlock(ICSType cSType)
         {
-            if (cSType.ConnectedBlock != null && !string.IsNullOrEmpty(cSType.ConnectedBlock.BlockType))
+            if (cSType.ConnectedBlock != null && !string.IsNullOrEmpty(cSType.ConnectedBlock.BlockType) && cSType.ConnectedBlock.AutoChange)
             {
                 cSType.ConnectedBlock.Connections.Sort();
                 BlockLookup[cSType.name] = cSType;
