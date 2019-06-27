@@ -130,11 +130,13 @@ namespace Pandaros.Settlers
 
                 if (total != 0)
                 {
-                    guardSettings.CooldownShot = defaultGuardSettings.CooldownShot - (defaultGuardSettings.CooldownShot * total);
+                    var cooldown = defaultGuardSettings.CooldownShot - (defaultGuardSettings.CooldownShot * total);
                     var maxCooldown = defaultGuardSettings.CooldownShot / 2;
 
-                    if (guardSettings.CooldownShot < maxCooldown)
-                        guardSettings.CooldownShot = maxCooldown;
+                    if (cooldown < maxCooldown)
+                        cooldown = maxCooldown;
+
+                    guardSettings.CooldownShot = cooldown;
                 }
             }
             else if (job.TryGetNPCCraftSettings(out var craftSettings) && job.TryGetNPCCraftDefaultSettings(out var craftingJobDefaultSettings))

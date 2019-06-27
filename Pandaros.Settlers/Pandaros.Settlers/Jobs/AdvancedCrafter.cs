@@ -14,7 +14,6 @@ namespace Pandaros.Settlers.Jobs
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".AdvancedCrafter";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".AdvancedCraftingTable";
-        public static string JOB_RECIPE = JOB_ITEM_KEY;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".AdvancedCrafterRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("create_savemanager")]
@@ -69,7 +68,7 @@ namespace Pandaros.Settlers.Jobs
             var tools  = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
             var planks = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
 
-            var recipe = new Recipe(JOB_RECIPE,
+            var recipe = new Recipe(JOB_ITEM_KEY,
                                     new List<InventoryItem> {iron, tools, planks},
                                     new RecipeResult(ItemTypes.IndexLookup.StringLookupTable[JOB_ITEM_KEY], 1), 2);
 

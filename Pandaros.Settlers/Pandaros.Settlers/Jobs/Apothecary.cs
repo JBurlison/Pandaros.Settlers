@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Jobs
                 1,
                 new List<RecipeUnlock>()
                 {
-                    new RecipeUnlock(ApothecaryRegister.JOB_RECIPE, ERecipeUnlockType.Recipe)
+                    new RecipeUnlock(ApothecaryRegister.JOB_ITEM_KEY, ERecipeUnlockType.Recipe)
                 }
             }
         };
@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            //e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE));
+            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE));
         }
     }
 

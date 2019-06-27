@@ -69,7 +69,7 @@ namespace Pandaros.Settlers.Research
                         new RecipeUnlock(SettlersBuiltIn.ItemTypes.CROSSBOWTURRET, ERecipeUnlockType.Recipe),
                         new RecipeUnlock(SettlersBuiltIn.ItemTypes.STONETURRET, ERecipeUnlockType.Recipe),
                         new RecipeUnlock(SettlersBuiltIn.ItemTypes.MATCHLOCKTURRET, ERecipeUnlockType.Recipe),
-                        new RecipeUnlock(SettlersBuiltIn.ItemTypes.ADVANCEDCRAFTINGTABLE, ERecipeUnlockType.Recipe)
+                        new RecipeUnlock(AdvancedCrafterRegister.JOB_ITEM_KEY, ERecipeUnlockType.Recipe)
                     }
                 }
             };

@@ -31,12 +31,6 @@ namespace Pandaros.Settlers.Energy
         {
             new OnRemove(1, 1, MANA_PIPE)
         };
-        public override List<string> categories { get; set; } = new List<string>()
-        {
-            "Mana",
-            "Energy",
-            "Machine"
-        };
     }
 
     public class ManaPipe : ManaPipeBase
