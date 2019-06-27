@@ -20,7 +20,11 @@ namespace Pandaros.Settlers.Items.Reagents
         {
             new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Id),
             new RecipeItem(ColonyBuiltIn.ItemTypes.SAND.Id),
-            new RecipeItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id, 2)
+            new RecipeItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id, 2),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.MANA.Id),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDEMERALD.Id),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDRUBY.Id),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id)
         };
 
         public List<RecipeResult> results => new List<RecipeResult>()

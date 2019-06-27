@@ -57,8 +57,6 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public override string icon { get; set; } = GameLoader.ICON_PATH + "BootsOfFalling.png";
 
-        
-
         public float MovementSpeed { get; set; }
 
         public float JumpPower { get; set; }

@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Items.Machines
 
         public CraftPriority defaultPriority => CraftPriority.Medium;
 
-        public bool isOptional => false;
+        public bool isOptional => true;
 
         public int defaultLimit => 5;
 

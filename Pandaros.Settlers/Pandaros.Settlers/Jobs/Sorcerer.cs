@@ -141,6 +141,6 @@ namespace Pandaros.Settlers.Jobs
         public bool isOptional => true;
         public int defaultLimit => 5;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
-        public string name => SorcererRegister.JOB_NAME;
+        public string name => SorcererRegister.JOB_ITEM_KEY;
     }
 }

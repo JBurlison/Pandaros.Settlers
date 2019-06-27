@@ -60,21 +60,30 @@ namespace Pandaros.Settlers.Jobs
 
             itemTypes.Add(JOB_ITEM_KEY, new ItemTypesServer.ItemTypeRaw(JOB_ITEM_KEY, item));
         }
+    }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad,  GameLoader.NAMESPACE + ".AdvancedCrafterRegister.AfterWorldLoad")]
-        public static void AfterWorldLoad()
+    public class AdvancedCraftingTableRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
         {
-            var iron   = new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Name, 2);
-            var tools  = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1);
-            var planks = new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 4);
+            new RecipeItem(ColonyBuiltIn.ItemTypes.BRONZEINGOT.Id, 2),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Id, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Id, 4)
+        };
 
-            var recipe = new Recipe(JOB_ITEM_KEY,
-                                    new List<InventoryItem> {iron, tools, planks},
-                                    new RecipeResult(ItemTypes.IndexLookup.StringLookupTable[JOB_ITEM_KEY], 1), 2);
+        public List<RecipeResult> results => new List<RecipeResult>()
+        {
+            new RecipeResult(SettlersBuiltIn.ItemTypes.ADVANCEDCRAFTINGTABLE.Id)
+        };
 
-            ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
-            
-        }
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 1;
+
+        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
+
+        public string name => SettlersBuiltIn.ItemTypes.ADVANCEDCRAFTINGTABLE;
     }
 }

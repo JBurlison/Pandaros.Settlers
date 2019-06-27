@@ -15,8 +15,8 @@ namespace Pandaros.Settlers.Items
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
         public static void Register()
         {
-            var aether = new InventoryItem(Elementium.Item.ItemIndex, 2);
-            var torch  = new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 1);
+            var aether = new InventoryItem(Elementium.Item.ItemIndex, 1);
+            var torch  = new InventoryItem(ColonyBuiltIn.ItemTypes.BUCKETWATER.Id, 2);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, torch},

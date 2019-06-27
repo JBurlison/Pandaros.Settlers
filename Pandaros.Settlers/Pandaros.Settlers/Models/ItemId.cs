@@ -46,12 +46,20 @@ namespace Pandaros.Settlers.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(_name))
+                try
                 {
-                    if (ItemTypes.IndexLookup.IndexLookupTable.TryGetValue(_id, out string name))
-                        _name = name;
-                    else
-                        throw new ArgumentException($"Id {_id} is not registered as an item type yet. Unable to create ItemId object.");
+                    if (string.IsNullOrEmpty(_name))
+                    {
+                        if (ItemTypes.IndexLookup.IndexLookupTable.TryGetValue(_id, out string name))
+                            _name = name;
+                        else
+                            throw new ArgumentException($"Id {_id} is not registered as an item type yet. Unable to create ItemId object.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                    throw new ArgumentException($"Id {_id} is not registered as an item type yet. Unable to create ItemId object.");
                 }
 
                 return _name;
@@ -66,12 +74,20 @@ namespace Pandaros.Settlers.Models
         {
             get
             {
-                if (_id == default(ushort))
+                try
                 {
-                    if (ItemTypes.IndexLookup.StringLookupTable.TryGetValue(_name, out var id))
-                        _id = id;
-                    else
-                        throw new ArgumentException($"name {_name} is not registered as an item type yet. Unable to create ItemId object.");
+                    if (_id == default(ushort))
+                    {
+                        if (ItemTypes.IndexLookup.StringLookupTable.TryGetValue(_name, out var id))
+                            _id = id;
+                        else
+                            throw new ArgumentException($"Name {_name} is not registered as an item type yet. Unable to create ItemId object.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                    throw new ArgumentException($"Name {_name} is not registered as an item type yet. Unable to create ItemId object.");
                 }
 
                 return _id;

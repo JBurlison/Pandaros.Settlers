@@ -24,16 +24,17 @@ namespace Pandaros.Settlers.Items
     {
         public List<RecipeItem> requires => new List<RecipeItem>()
         {
-            new RecipeItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Name, 5),
-            new RecipeItem(ColonyBuiltIn.ItemTypes.ALKANET.Name, 5),
-            new RecipeItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 5),
-            new RecipeItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Name, 5)
+            new RecipeItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Name, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.ALKANET.Name, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Name, 1),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id)
         };
 
         public List<RecipeResult> results => new List<RecipeResult>()
         {
-            new RecipeResult(SettlersBuiltIn.ItemTypes.MANA.Name),
-            new RecipeResult(SettlersBuiltIn.ItemTypes.ESPER.Name, 1, 0.03f)
+            new RecipeResult(SettlersBuiltIn.ItemTypes.MANA.Name, 2),
+            new RecipeResult(SettlersBuiltIn.ItemTypes.ESPER.Name, 1, 0.05f)
         };
 
         public CraftPriority defaultPriority => CraftPriority.Medium;

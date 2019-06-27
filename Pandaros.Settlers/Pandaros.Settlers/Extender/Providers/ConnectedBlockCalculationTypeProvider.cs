@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterModsLoaded(List<ModLoader.ModDescription> list)
         {
             StringBuilder sb = new StringBuilder();
-            PandaLogger.Log(ChatColor.lime, "-------------------Connected Block CalculationType Loaded----------------------");
+            PandaLogger.LogToFile("-------------------Connected Block CalculationType Loaded----------------------");
             var i = 0;
 
             foreach (var s in LoadedAssembalies)
@@ -30,16 +30,14 @@ namespace Pandaros.Settlers.Extender.Providers
 
                     if (i > 5)
                     {
-                        sb.Append("</color>");
                         i = 0;
                         sb.AppendLine();
-                        sb.Append("<color=lime>");
                     }
                 }
             }
 
-            PandaLogger.Log(ChatColor.lime, sb.ToString());
-            PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+            PandaLogger.LogToFile(sb.ToString());
+            PandaLogger.LogToFile("---------------------------------------------------------");
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Items.Machines
             var airStone   = new InventoryItem(AirStone.Item.ItemIndex, 2);
             var fireStone  = new InventoryItem(FireStone.Item.ItemIndex, 2);
             var waterStone = new InventoryItem(WaterStone.Item.ItemIndex, 2);
-            var earthStone = new InventoryItem(EarthStone.Item.ItemIndex, 2);
+            var earthStone = new InventoryItem(SettlersBuiltIn.ItemTypes.EARTHSTONE.Id, 2);
             var voidStone  = new InventoryItem(Void.Item.ItemIndex, 1);
 
             AddAirTurretTurretSettings();
@@ -384,7 +384,7 @@ namespace Pandaros.Settlers.Items.Machines
             var turretSettings = new Turret.TurretSetting
             {
                 TurretItem          = Turret.TurretTypes[EARTHTURRET],
-                Ammo                = new List<InventoryItem> {new InventoryItem(EarthStone.Item.ItemIndex)},
+                Ammo                = new List<InventoryItem> {new InventoryItem(SettlersBuiltIn.ItemTypes.EARTHSTONE.Id) },
                 AmmoValue           = 0.02f,
                 AmmoReloadValue     = 0.5f,
                 DurabilityPerDoWork = 0.008f,

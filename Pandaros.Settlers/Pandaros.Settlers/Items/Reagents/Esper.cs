@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Items
             if (recipe.Name == SettlersBuiltIn.ItemTypes.MANA && job.NPC != null)
             {
                 var inv    = SettlerInventory.GetSettlerInventory(job.NPC);
-                var chance = 0.03f + inv.GetSkillModifier();
+                var chance = 0.05f + inv.GetSkillModifier();
 
                 if (Random.NextFloat() <= chance)
                 {

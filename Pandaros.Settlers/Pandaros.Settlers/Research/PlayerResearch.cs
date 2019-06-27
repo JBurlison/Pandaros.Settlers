@@ -33,7 +33,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<string>()
                 {
-                    SettlersBuiltIn.Research.SORCERER
+                    SettlersBuiltIn.Research.SORCERER1
                 }
             }
         };

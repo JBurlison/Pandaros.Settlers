@@ -22,17 +22,18 @@ namespace Pandaros.Settlers.Items
 
             if (baseBlock.ConnectedBlock != null &&
                 !string.IsNullOrWhiteSpace(baseBlock.ConnectedBlock.CalculationType) && 
+                CalculationTypes.TryGetValue(baseBlock.ConnectedBlock.CalculationType, out var connectedBlockCalculationType) &&
                 baseBlock.ConnectedBlock.Connections != null &&
                 baseBlock.ConnectedBlock.Connections.Count > 0)
             {
                 var itemJson = JsonConvert.SerializeObject(baseBlock, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.None });
-                PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections);
+                PermutateItems(baseBlock, cSTypes, itemJson, baseBlock.ConnectedBlock.Connections, connectedBlockCalculationType);
             }
 
             return cSTypes.Values.ToList();
         }
 
-        private static void PermutateItems(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, List<BlockSide> connections)
+        private static void PermutateItems(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, List<BlockSide> connections, IConnectedBlockCalculationType connectedBlockCalculationType)
         {
             foreach (RotationAxis axis in _blockRotations)
                 foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
@@ -100,6 +101,12 @@ namespace Pandaros.Settlers.Items
                         !cSTypes.ContainsKey(rotatedList) &&
                         !rotatedList.All(r => r == rotatedList.First()))
                     {
+                        bool hasCalculationTypes = rotatedList.Count <= connectedBlockCalculationType.MaxConnections;
+
+                        foreach (var side in rotatedList)
+                            if (!connectedBlockCalculationType.AvailableBlockSides.Contains(side))
+                                hasCalculationTypes = false;
+
                         var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
                         newItem.meshRotationEuler = rotationEuler;
                         newItem.ConnectedBlock = new ConnectedBlock()
@@ -112,8 +119,11 @@ namespace Pandaros.Settlers.Items
                         };
 
                         newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
-                        cSTypes[newItem.ConnectedBlock.Connections] = newItem;
-                        PermutateItems(newItem, cSTypes, itemJson, connections);
+
+                        if (hasCalculationTypes)
+                            cSTypes[newItem.ConnectedBlock.Connections] = newItem;
+
+                        PermutateItems(newItem, cSTypes, itemJson, connections, connectedBlockCalculationType);
                     }
                 }
         }

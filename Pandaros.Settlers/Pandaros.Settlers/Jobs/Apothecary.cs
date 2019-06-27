@@ -80,7 +80,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE));
+            //e.Manager.Colony.RecipeData.UnlockedOptionalRecipes.Add(new Recipes.RecipeKey(ApothecaryRegister.JOB_RECIPE));
         }
     }
 
@@ -161,7 +161,6 @@ namespace Pandaros.Settlers.Jobs
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".Apothecary";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".ApothecaryTable";
-        public static string JOB_RECIPE = JOB_ITEM_KEY;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Jobs.ApothecaryRegister.RegisterJobs")]
         [ModLoader.ModCallbackProvidesFor("pipliz.server.loadresearchables")]
@@ -213,6 +212,6 @@ namespace Pandaros.Settlers.Jobs
         public bool isOptional => true;
         public int defaultLimit => 5;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
-        public string name => ApothecaryRegister.JOB_RECIPE;
+        public string name => ApothecaryRegister.JOB_ITEM_KEY;
     }
 }

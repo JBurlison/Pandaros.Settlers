@@ -6,45 +6,40 @@ using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items
 {
-    [ModLoader.ModManager]
-    public static class EarthStone
+    public class EarthStone : CSType
     {
-        public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.EarthStone.Register")]
-        public static void Register()
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".EarthStone";
+        public override string icon { get; set; } = GameLoader.ICON_PATH + "Earthstone.png";
+        public override bool? isPlaceable { get; set; } = false;
+        public override List<string> categories { get; set; } = new List<string>()
         {
-            var aether = new InventoryItem(Elementium.Item.ItemIndex, 2);
-            var torch  = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 50);
+            "ingredient",
+            "magic",
+            "stone"
+        };
+    }
 
-            var recipe = new Recipe(Item.name,
-                                    new List<InventoryItem> {aether, torch},
-                                    new RecipeResult(Item.ItemIndex, 1),
-                                    6);
-
-            ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
-        }
-
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes,
-            GameLoader.NAMESPACE + ".Items.EarthStone.Add")]
-        [ModLoader.ModCallbackDependsOn("pipliz.server.applymoditempatches")]
-        public static void Add(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
+    public class EarthStoneRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
         {
-            var name = GameLoader.NAMESPACE + ".EarthStone";
-            var node = new JSONNode();
-            node["icon"]        = new JSONNode(GameLoader.ICON_PATH + "Earthstone.png");
-            node["isPlaceable"] = new JSONNode(false);
+            new RecipeItem(Elementium.Item.ItemIndex, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 50)
+        };
 
-            var categories = new JSONNode(NodeType.Array);
-            categories.AddToArray(new JSONNode("ingredient"));
-            categories.AddToArray(new JSONNode("magic"));
-            categories.AddToArray(new JSONNode("stone"));
-            node.SetAs("categories", categories);
+        public List<RecipeResult> results => new List<RecipeResult>()
+        {
+            new RecipeResult(SettlersBuiltIn.ItemTypes.EARTHSTONE.Id, 1)
+        };
 
-            Item = new ItemTypesServer.ItemTypeRaw(name, node);
-            items.Add(name, Item);
-        }
+        public CraftPriority defaultPriority =>  CraftPriority.Medium;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 6;
+
+        public string Job => ApothecaryRegister.JOB_NAME;
+
+        public string name => SettlersBuiltIn.ItemTypes.EARTHSTONE;
     }
 }

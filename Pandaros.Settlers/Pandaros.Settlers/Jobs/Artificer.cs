@@ -42,9 +42,11 @@ namespace Pandaros.Settlers.Jobs
                     new List<InventoryItem>()
                     {
                         new InventoryItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id, 3),
-                        new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 5),
-                        new InventoryItem(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 5),
-                        new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDINGOT.Id, 2)
+                        new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 2),
+                        new InventoryItem(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 3),
+                        new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDEMERALD.Id, 3),
+                        new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDRUBY.Id, 3),
+                        new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id, 3)
                     }
                 }
             };
@@ -55,10 +57,25 @@ namespace Pandaros.Settlers.Jobs
                     0,
                     new List<string>()
                     {
-                        SettlersBuiltIn.Research.SORCERER
+                        SettlersBuiltIn.Research.SORCERER1
                     }
                 }
             };
+
+        public override Dictionary<int, List<RecipeUnlock>> Unlocks => new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.ARTIFICERBENCH, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.MANAPIPE, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.MANAPUMP, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.MANATANK, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.MAGICWAND, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
 
         public override int NumberOfLevels => 1;
 
@@ -99,7 +116,10 @@ namespace Pandaros.Settlers.Jobs
         {
             new RecipeItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id, 6),
             new RecipeItem(SettlersBuiltIn.ItemTypes.MANA.Id, 20),
-            new RecipeItem(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 10)
+            new RecipeItem(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 10),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDEMERALD.Id, 3),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDRUBY.Id, 3),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id, 3)
         };
 
         public List<RecipeResult> results => new List<RecipeResult>()
@@ -145,11 +165,9 @@ namespace Pandaros.Settlers.Jobs
     }
 
 
-    public class ArtificerSettings : IBlockJobSettings
+    public class ArtificerSettings : CraftingJobSettings, IBlockJobSettings
     {
         static NPCType _Settings;
-        public virtual float NPCShopGameHourMinimum { get { return TimeCycle.Settings.SleepTimeEnd; } }
-        public virtual float NPCShopGameHourMaximum { get { return TimeCycle.Settings.SleepTimeStart; } }
 
         static ArtificerSettings()
         {
@@ -165,38 +183,34 @@ namespace Pandaros.Settlers.Jobs
             _Settings = NPCType.GetByKeyNameOrDefault(Artificer.JOB_NAME);
         }
 
-        public virtual ItemTypes.ItemType[] BlockTypes => new[]
+        public override ItemTypes.ItemType[] BlockTypes => new[]
         {
             ItemTypes.GetType(Artificer.JOB_ITEM_KEY)
         };
 
-        public virtual NPCType NPCType => _Settings;
+        public override NPCType NPCType => _Settings;
 
-        public virtual InventoryItem RecruitmentItem => new InventoryItem(GameLoader.NAMESPACE + ".MagicWand");
+        public override InventoryItem RecruitmentItem => new InventoryItem(GameLoader.NAMESPACE + ".MagicWand");
 
-        public virtual bool ToSleep => !TimeCycle.IsDay;
-
-        public Pipliz.Vector3Int GetJobLocation(BlockJobInstance instance)
+        public override Pipliz.Vector3Int GetJobLocation(BlockJobInstance instance)
         {
             if (instance is RoamingJob roamingJob)
+            {
                 return roamingJob.OriginalPosition;
+            }
 
             return Pipliz.Vector3Int.invalidPos;
         }
 
-        public void OnGoalChanged(BlockJobInstance instance, NPCBase.NPCGoal goalOld, NPCBase.NPCGoal goalNew)
+        public override void OnNPCAtJob(BlockJobInstance instance, ref NPCBase.NPCState state)
         {
+            if (instance is RoamingJob roamingJob && roamingJob.TargetObjective == null)
+            {
+                base.OnNPCAtJob(instance, ref state);
+                return;
+            }
 
-        }
-
-        public void OnNPCAtJob(BlockJobInstance instance, ref NPCBase.NPCState state)
-        {
             instance.OnNPCAtJob(ref state);
-        }
-
-        public void OnNPCAtStockpile(BlockJobInstance instance, ref NPCBase.NPCState state)
-        {
-
         }
     }
     

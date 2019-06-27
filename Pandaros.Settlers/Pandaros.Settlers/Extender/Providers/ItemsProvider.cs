@@ -128,10 +128,8 @@ namespace Pandaros.Settlers.Extender.Providers
 
                 if (i > 5)
                 {
-                    _sb.Append("</color>");
                     i = 0;
                     _sb.AppendLine();
-                    _sb.Append("<color=lime>");
                 }
             }
 
@@ -139,9 +137,9 @@ namespace Pandaros.Settlers.Extender.Providers
 
         public void AfterWorldLoad()
         {
-            PandaLogger.Log(ChatColor.lime, "-------------------Items Loaded----------------------");
-            PandaLogger.Log(ChatColor.lime, _sb.ToString());
-            PandaLogger.Log(ChatColor.lime, "------------------------------------------------------"); 
+            PandaLogger.LogToFile("-------------------Items Loaded----------------------");
+            PandaLogger.LogToFile(_sb.ToString());
+            PandaLogger.LogToFile("------------------------------------------------------"); 
         }
     }
 }

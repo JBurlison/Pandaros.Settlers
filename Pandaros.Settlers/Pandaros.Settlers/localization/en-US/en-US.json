@@ -1,7 +1,10 @@
 {
   "types": {
+    "Pandaros.Settlers.ManaPump": "Mana Pump",
+    "Pandaros.Settlers.ManaPipe": "Mana Pipe",
+    "Pandaros.Settlers.ManaTank": "Mana Tank",
     "Pandaros.Settlers.MagicWand": "Magic Wand",
-    "Pandaros.Settlers.ServerManagementTool": "Server Management Tool",
+    "Pandaros.Settlers.ArtificerBench": "Artificer Bench",
     "Pandaros.Settlers.ServerManagementTool": "Server Management Tool",
     "Pandaros.Settlers.Backpack": "Backpack",
     "Pandaros.Settlers.CopperHelm": "Copper Helm",

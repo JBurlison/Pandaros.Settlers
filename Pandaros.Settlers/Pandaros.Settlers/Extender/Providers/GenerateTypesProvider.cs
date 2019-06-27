@@ -19,7 +19,7 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AfterSelectedWorld()
         {
             StringBuilder sb = new StringBuilder();
-            PandaLogger.Log(ChatColor.lime, "-------------------Generate Type Loaded----------------------");
+            PandaLogger.LogToFile("-------------------Generate Type Loaded----------------------");
             var i = 0;
             List<ICSGenerateType> json = new List<ICSGenerateType>();
 
@@ -35,10 +35,8 @@ namespace Pandaros.Settlers.Extender.Providers
 
                     if (i > 5)
                     {
-                        sb.Append("</color>");
                         i = 0;
                         sb.AppendLine();
-                        sb.Append("<color=lime>");
                     }
                 }
             }
@@ -50,8 +48,8 @@ namespace Pandaros.Settlers.Extender.Providers
                 ItemTypesServer.BlockRotator.Patches.AddPatch(new ItemTypesServer.BlockRotator.BlockGeneratePatch(GameLoader.MOD_FOLDER, -99999, JSON.DeserializeString(strValue)));
             }
 
-            PandaLogger.Log(ChatColor.lime, sb.ToString());
-            PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+            PandaLogger.LogToFile(sb.ToString());
+            PandaLogger.LogToFile("---------------------------------------------------------");
         }
     }
 }

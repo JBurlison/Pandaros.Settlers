@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Items;
+using Recipes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,9 +11,38 @@ using static Pandaros.Settlers.Items.StaticItems;
 // pipe fill color: 1058c7
 namespace Pandaros.Settlers.Energy
 {
+    public class ManaPipeRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
+        {
+            new RecipeItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id, 2),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.MANA.Id, 1),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.SAND.Id, 3),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 1),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDEMERALD.Id, 1),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDRUBY.Id, 1),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id, 1)
+        };
+
+        public List<RecipeResult> results => new List<RecipeResult>()
+        {
+            new RecipeResult(GameLoader.NAMESPACE + ".ManaPipe")
+        };
+
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 5;
+
+        public string Job => GameLoader.NAMESPACE + ".Artificer";
+
+        public string name => GameLoader.NAMESPACE + ".ManaPipe";
+    }
+
     public class ManaPipeTextureMapping : CSTextureMapping
     {
-        public override string name => GameLoader.NAMESPACE + ".Pipe";
+        public override string name => GameLoader.NAMESPACE + ".ManaPipe";
         public override string albedo => Path.Combine(GameLoader.BLOCKS_ALBEDO_PATH, "Pipe_Albedo.png");
         public override string emissive => Path.Combine(GameLoader.BLOCKS_EMISSIVE_PATH, "Pipe_Emissive.png");
         public override string normal => Path.Combine(GameLoader.BLOCKS_NORMAL_PATH, "Pipe_Normal.png");
@@ -22,7 +52,7 @@ namespace Pandaros.Settlers.Energy
     public class ManaPipeBase : CSType
     {
         public const string MANA_PIPE = GameLoader.NAMESPACE + ".ManaPipe";
-        public override string sideall { get; set; } = GameLoader.NAMESPACE + ".Pipe";
+        public override string sideall { get; set; } = GameLoader.NAMESPACE + ".ManaPipe";
         public override string onPlaceAudio { get; set; } = "Pandaros.Settlers.Metal";
         public override string onRemoveAudio { get; set; } = "Pandaros.Settlers.MetalRemove";
         public override int? maxStackSize { get; set; } = 300;

@@ -13,6 +13,7 @@ namespace Pandaros.Settlers
           public const string ARMORSMITHING2 = "Pandaros.Settlers.ArmorSmithing2";
           public const string ARMORSMITHING3 = "Pandaros.Settlers.ArmorSmithing3";
           public const string ARMORSMITHING4 = "Pandaros.Settlers.ArmorSmithing4";
+          public const string ARTIFICER1 = "Pandaros.Settlers.Artificer1";
           public const string BACKPACK1 = "Pandaros.Settlers.Backpack1";
           public const string BETTERBUILDERSWAND1 = "Pandaros.Settlers.BetterBuildersWand1";
           public const string BETTERBUILDERSWAND2 = "Pandaros.Settlers.BetterBuildersWand2";
@@ -103,7 +104,7 @@ namespace Pandaros.Settlers
           public const string SKILLEDLABORER7 = "Pandaros.Settlers.SkilledLaborer7";
           public const string SKILLEDLABORER8 = "Pandaros.Settlers.SkilledLaborer8";
           public const string SKILLEDLABORER9 = "Pandaros.Settlers.SkilledLaborer9";
-          public const string SORCERER = "Pandaros.Settlers.Sorcerer1";
+          public const string SORCERER1 = "Pandaros.Settlers.Sorcerer1";
           public const string SWORDSMITHING1 = "Pandaros.Settlers.SwordSmithing1";
           public const string SWORDSMITHING2 = "Pandaros.Settlers.SwordSmithing2";
           public const string SWORDSMITHING3 = "Pandaros.Settlers.SwordSmithing3";
@@ -194,7 +195,7 @@ namespace Pandaros.Settlers
           public const string TAILOR3 = "Pandaros.Settlers.pipliz.tailor3";
           public const string TAILOR4 = "Pandaros.Settlers.pipliz.tailor4";
           public const string TAILOR5 = "Pandaros.Settlers.pipliz.tailor5";
-          public const string WOODCUTTER = "Pandaros.Settlers.pipliz.woodcutter";
+          public const string WOODCUTTER1 = "Pandaros.Settlers.pipliz.woodcutter1";
           public const string WOODCUTTER2 = "Pandaros.Settlers.pipliz.woodcutter2";
           public const string WOODCUTTER3 = "Pandaros.Settlers.pipliz.woodcutter3";
           public const string WOODCUTTER4 = "Pandaros.Settlers.pipliz.woodcutter4";
@@ -211,6 +212,7 @@ namespace Pandaros.Settlers
           public static readonly ItemId ANTIDOTE = ItemId.GetItemId("Pandaros.Settlers.Antidote");
           public static readonly ItemId APOTHECARY = ItemId.GetItemId("Pandaros.Settlers.Apothecary");
           public static readonly ItemId APOTHECARYTABLE = ItemId.GetItemId("Pandaros.Settlers.ApothecaryTable");
+          public static readonly ItemId ARTIFICERBENCH = ItemId.GetItemId("Pandaros.Settlers.ArtificerBench");
           public static readonly ItemId ADAMANTINE = ItemId.GetItemId("Pandaros.Settlers.AutoLoad.Adamantine");
           public static readonly ItemId ADAMANTINENUGGET = ItemId.GetItemId("Pandaros.Settlers.AutoLoad.AdamantineNugget");
           public static readonly ItemId FLOWERS1 = ItemId.GetItemId("Pandaros.Settlers.AutoLoad.Flowers1");
@@ -421,12 +423,15 @@ namespace Pandaros.Settlers
           public static readonly ItemId IRONSHIELD = ItemId.GetItemId("Pandaros.Settlers.IronShield");
           public static readonly ItemId IRONSWORD = ItemId.GetItemId("Pandaros.Settlers.IronSword");
           public static readonly ItemId MACHINISTBENCH = ItemId.GetItemId("Pandaros.Settlers.MachinistBench");
+          public static readonly ItemId MAGICWAND = ItemId.GetItemId("Pandaros.Settlers.MagicWand");
           public static readonly ItemId MANA = ItemId.GetItemId("Pandaros.Settlers.Mana");
           public static readonly ItemId MATCHLOCKTURRET = ItemId.GetItemId("Pandaros.Settlers.MatchlockTurret");
           public static readonly ItemId MINER = ItemId.GetItemId("Pandaros.Settlers.Miner");
           public static readonly ItemId NIGHTMACHINISTBENCH = ItemId.GetItemId("Pandaros.Settlers.NightMachinistBench");
           public static readonly ItemId PATROLFLAG = ItemId.GetItemId("Pandaros.Settlers.PatrolFlag");
           public static readonly ItemId PATROLTOOL = ItemId.GetItemId("Pandaros.Settlers.PatrolTool");
+          public static readonly ItemId MANAPIPE = ItemId.GetItemId("Pandaros.Settlers.ManaPipe");
+          public static readonly ItemId MANAPUMP = ItemId.GetItemId("Pandaros.Settlers.ManaPump");
           public static readonly ItemId SCHEMATICTOOL = ItemId.GetItemId("Pandaros.Settlers.SchematicTool");
           public static readonly ItemId SERVERMANAGEMENTTOOL = ItemId.GetItemId("Pandaros.Settlers.ServerManagementTool");
           public static readonly ItemId SKILLEDBOOTS = ItemId.GetItemId("Pandaros.Settlers.SkilledBoots");
@@ -460,6 +465,7 @@ namespace Pandaros.Settlers
           public static readonly ItemId STEELSHIELD = ItemId.GetItemId("Pandaros.Settlers.SteelShield");
           public static readonly ItemId STEELSWORD = ItemId.GetItemId("Pandaros.Settlers.SteelSword");
           public static readonly ItemId STONETURRET = ItemId.GetItemId("Pandaros.Settlers.StoneTurret");
+          public static readonly ItemId MANATANK = ItemId.GetItemId("Pandaros.Settlers.ManaTank");
           public static readonly ItemId TELEPORTPAD = ItemId.GetItemId("Pandaros.Settlers.TeleportPad");
           public static readonly ItemId TREATEDBANDAGE = ItemId.GetItemId("Pandaros.Settlers.TreatedBandage");
           public static readonly ItemId VOID = ItemId.GetItemId("Pandaros.Settlers.Void");

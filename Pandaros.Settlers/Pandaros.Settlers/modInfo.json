@@ -154,6 +154,15 @@
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/Artificer.json",
+        "npcType": "Pandaros.Settlers.Artificer",
+        "index": -99999,
+        "limitsUIMapping": [
+          "Pandaros.Settlers.ArtificerBench"
+        ]
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/AdvancedCrafter.json",
         "npcType": "Pandaros.Settlers.AdvancedCrafter",
         "index": -99999,
@@ -291,18 +300,29 @@
           "Added serveral new ore layers including new magical ores from layers 40-42",
           "Added antigrief for players who are not in your colony.",
           "Added prompt to accept or reject new settlers. Settlers no longer auto join your colony.",
+          "Added setting for prompt of settlers, Auto Accept, Prompt, Disabled",
+          "Added Connected block system expandable by JSON for modders. This is similar to the way minecraft auto connects stairs, pipes and track.",
+          "Added Artificer. Creates Mana Tanks, Pipes, Pumps along with some magical machines! Artificer Also Maintains these machines similar to Machinists",
+          "Added Train System. You can add stops to the trains. These trains run on mana from the Artificer job. The trains automatically go round and each stop must be worked by a colonist.",
+          "Added Mana Machine that Increases Guard damage (10%)",
+          "Added Mana Machine that Monster AoE Damage 10 per 5/sec, 4 block each direction (advanced)",
+          "Added Mana Machine that Invisible wall (5x2) rotatable (normal blocks, just invisible)",
+          "Added Mana Machine that +2% Luck 4 blocks each direction (Luck in settlers is used for crit chance and bonus item procs (bonus items are rare items sometimes crafted with settlers items)",
+          "Added Mana Machine that Happiness Generator (Colonists are hypnotized by its beauty) +10 happiness while running. (Advanced)",
+          "Added Elemental zombies that spawn, these will spawn as your colony grows in addition to the normal zombies.",
+          "Added Loot tables",
           "Bosses now start randomly spawning after 100 colonists. Up from 15.",
           "Machinists now have a day and night job.",
           "Knights now have a wait mode that will wait for monsters to come to them while patrolling",
           "Knights now sleep durning the day",
-          "Bosses now only spawn during the day",
+          "Bosses now only spawn during the Night",
           "Slabs, Fence, Iron bar and doors now have proper colliders",
           "Call to arms will use equipt swords now",
           "Colonists will now puch zombies when they come close to them. Its configured as ColonistPunchDamage and defaults to 30 damage",
           "Swords will auto equit to colonists now but always leave at least 4 in the stockpile. This is similar to armor",
           "Added serveral new ores that generate in the map: Adamantine, Emerald, Ruby, Saphire",
           "GREATLY expanded settlers extentions, allowing other mod makers to use the settlers systems and adding to them",
-          "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation, Connected Blocks, Monsters, Machines, Magical Blocks"
+          "Things that can be extended: Bosses, Armor, Weapons, Magic Items, Recipes, Texture Mapping, Multi-Tier Science, Help Menu, Roaming Job, Ore Generation, Connected Blocks, Monsters, Machines, Magical Blocks, Connected blocks"
         ]
       },
       {

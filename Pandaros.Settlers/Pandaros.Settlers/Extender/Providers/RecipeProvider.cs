@@ -6,17 +6,17 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class RecipeProvider : IAfterWorldLoad
+    public class RecipeProvider : IAfterItemTypesDefined
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 
         public string InterfaceName => nameof(ICSRecipe);
         public Type ClassType => null;
 
-        public void AfterWorldLoad()
+        public void AfterItemTypesDefined()
         {
             StringBuilder sb = new StringBuilder();
-            PandaLogger.Log(ChatColor.lime, "-------------------Recipes Loaded----------------------");
+            PandaLogger.LogToFile("-------------------Recipes Loaded----------------------");
             var i = 0;
 
             foreach (var item in LoadedAssembalies)
@@ -47,16 +47,14 @@ namespace Pandaros.Settlers.Extender.Providers
 
                     if (i > 5)
                     {
-                        sb.Append("</color>");
                         i = 0;
                         sb.AppendLine();
-                        sb.Append("<color=lime>");
                     }
                 }
             }
 
-            PandaLogger.Log(ChatColor.lime, sb.ToString());
-            PandaLogger.Log(ChatColor.lime, "---------------------------------------------------------");
+            PandaLogger.LogToFile(sb.ToString());
+            PandaLogger.LogToFile("---------------------------------------------------------");
         }
     }
 }
