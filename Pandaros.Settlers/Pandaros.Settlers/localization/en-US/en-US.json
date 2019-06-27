@@ -1,5 +1,7 @@
 {
   "types": {
+    "Pandaros.Settlers.MagicWand": "Magic Wand",
+    "Pandaros.Settlers.ServerManagementTool": "Server Management Tool",
     "Pandaros.Settlers.ServerManagementTool": "Server Management Tool",
     "Pandaros.Settlers.Backpack": "Backpack",
     "Pandaros.Settlers.CopperHelm": "Copper Helm",
@@ -410,6 +412,7 @@
       "limits": {
         "Pandaros": {
           "Settlers": {
+            "Artificer": "Artificer",
             "Sorcerer": "Sorcerer",
             "Apothecary": "Apothecary Table",
             "AdvancedCrafter": "Advanced Crafting Table"

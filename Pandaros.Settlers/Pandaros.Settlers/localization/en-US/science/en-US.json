@@ -344,6 +344,10 @@
     },
     "Pandaros": {
       "Settlers": {
+        "Artificer1": {
+          "name": "Artificer",
+          "description": "Artificer open up magical machines that run on mana and the Artificer job to maintain them!"
+        },
         "Backpack1": {
           "name": "Backpack",
           "description": "Gives you a backpack that you can carry items in."

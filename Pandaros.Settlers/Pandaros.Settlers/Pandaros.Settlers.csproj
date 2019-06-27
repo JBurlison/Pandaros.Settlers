@@ -184,8 +184,10 @@
     <Compile Include="Items\PlayerMagicItem.cs" />
     <Compile Include="Items\DoorManager.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
+    <Compile Include="Items\Reagents\MagicWand.cs" />
     <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Items\Weapons\MagicWeapon.cs" />
+    <Compile Include="Jobs\Artificer.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
     <Compile Include="JSONExtentionMethods.cs" />
     <Compile Include="ListComparer.cs" />
@@ -1155,7 +1157,19 @@
     <Content Include="icons\ArcArchitect..png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\Pandaros.Settlers.Artificer1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Artificer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\ConnectedBlockTool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\MagicWand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ManaPipe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Pandaros.Settlers.Architect.png">
@@ -2608,6 +2622,9 @@
     <Content Include="System.Xml.Linq.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\ArtificerTable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\basket.png" />
     <Content Include="Textures\albedo\infiniteAdamantine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2660,6 +2677,9 @@
     <Content Include="Textures\albedo\Tank_Albedo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\emissive\Artificer_emissive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\emissive\Manapump_Emissive.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2667,6 +2687,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\emissive\Tank_Emissive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\Artificer_height.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\height\infiniteAdamantine.png">
@@ -2688,6 +2711,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\height\stoneSquares.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\Artificer_normal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\infiniteAdamantine.png">

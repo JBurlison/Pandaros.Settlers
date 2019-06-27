@@ -36,7 +36,7 @@ namespace Pandaros.Settlers.Energy
     public class ManaPipe : ManaPipeBase
     {
         public override string name { get; set; } = MANA_PIPE;
-        public override string icon { get; set; } = Path.Combine(GameLoader.ICON_PATH, "Pipe.png");
+        public override string icon { get; set; } = Path.Combine(GameLoader.ICON_PATH, "ManaPipe.png");
         public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Pipe.obj");
         public override List<string> categories { get; set; } = new List<string>()
         {
