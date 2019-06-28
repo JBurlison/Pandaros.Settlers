@@ -1,4 +1,6 @@
 ﻿using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Jobs.Roaming;
+using Pandaros.Settlers.Models;
 using Recipes;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,30 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Energy
 {
+    public class ManaTankObjective : IRoamingJobObjective
+    {
+        public float WorkTime => 6;
+
+        public ItemId ItemIndex => SettlersBuiltIn.ItemTypes.MANATANK;
+
+        public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks => new Dictionary<string, IRoamingJobObjectiveAction>()
+        {
+            {
+                GameLoader.NAMESPACE + ".ManaMachineRepair",
+                new ManaMachineRepairingAction()
+            }
+        };
+
+        public string ObjectiveCategory => "Mana";
+
+        public string name => SettlersBuiltIn.ItemTypes.MANATANK;
+
+        public void DoWork(Colony colony, RoamingJobState state)
+        {
+            
+        }
+    }
+
     public class ManaTankRecipe : ICSRecipe
     {
         public List<RecipeItem> requires => new List<RecipeItem>()

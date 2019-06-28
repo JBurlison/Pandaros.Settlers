@@ -13,6 +13,7 @@ namespace Pandaros.Settlers.Items
     {
         private static Dictionary<string, Dictionary<List<BlockSide>, ICSType>> _connectedBlockLookup = new Dictionary<string, Dictionary<List<BlockSide>, ICSType>>(StringComparer.InvariantCultureIgnoreCase);
         public static Dictionary<string, ICSType> BlockLookup { get; private set; } = new Dictionary<string, ICSType>(StringComparer.InvariantCultureIgnoreCase);
+        private static BlockSideComparer _blockSideComparer = new BlockSideComparer();
 
         public static void AddConnectedBlock(ICSType cSType)
         {
@@ -41,7 +42,23 @@ namespace Pandaros.Settlers.Items
         public static bool TryGetConnectingBlock(string blockType, List<BlockSide> neededSides, out ICSType connectedBlock)
         {
             connectedBlock = null;
-            return _connectedBlockLookup.ContainsKey(blockType) && _connectedBlockLookup[blockType].TryGetValue(neededSides, out connectedBlock);
+
+            if (_connectedBlockLookup.ContainsKey(blockType))
+            {
+                if (!_connectedBlockLookup[blockType].TryGetValue(neededSides, out connectedBlock))
+                    foreach (var kvp in _connectedBlockLookup[blockType])
+                    {
+                        if (_blockSideComparer.Equals(kvp.Key, neededSides))
+                        {
+                            connectedBlock = kvp.Value;
+                            break;
+                        }
+                    }
+
+                return connectedBlock != null;
+            }
+
+            return false;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnChangedBlock, GameLoader.NAMESPACE + ".Items.ConnectedBlockSystem.OnChangedBlock")]

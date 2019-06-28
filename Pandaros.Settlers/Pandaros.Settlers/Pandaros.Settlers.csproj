@@ -149,6 +149,7 @@
     <Compile Include="ColonyManagement\Permission.cs" />
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
+    <Compile Include="Energy\ManaMachineRepairingAction.cs" />
     <Compile Include="Energy\ManaPipe.cs" />
     <Compile Include="Energy\ManaPump.cs" />
     <Compile Include="Energy\ManaTank.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
     <Compile Include="Items\Armor\MagicArmor.cs" />
     <Compile Include="Items\BlockSideValuesAttribute.cs" />
+    <Compile Include="Items\ConnectedBlocks\BlockSideComparer.cs" />
     <Compile Include="Items\ConnectedBlocks\ConnectedBlock.cs" />
     <Compile Include="Items\ConnectedBlocks\ConnectedBlockCalculator.cs" />
     <Compile Include="Items\ConnectedBlocks\ConnectedBlockSystem.cs" />
@@ -318,6 +320,18 @@
     <Compile Include="WorldGen\GeneratedStructure.cs" />
     <Compile Include="WorldGen\Ore.cs" />
     <None Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\ManaPour.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\ManaPump.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\SpellRepair1.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Audio\SpellRepair2.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="AutoLoad\Artificer.json">

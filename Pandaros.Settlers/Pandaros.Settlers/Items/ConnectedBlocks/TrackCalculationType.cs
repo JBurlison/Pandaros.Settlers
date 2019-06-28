@@ -9,7 +9,13 @@ namespace Pandaros.Settlers.Items.ConnectedBlocks
 {
     public class TrackCalculationType : IConnectedBlockCalculationType
     {
-        public List<BlockSide> AvailableBlockSides => new List<BlockSide>((BlockSide[])Enum.GetValues(typeof(BlockSide)));
+        public TrackCalculationType()
+        {
+            AvailableBlockSides = new List<BlockSide>((BlockSide[])Enum.GetValues(typeof(BlockSide)));
+            AvailableBlockSides.Remove(BlockSide.Invalid);
+        }
+
+        public List<BlockSide> AvailableBlockSides { get; }
 
         public string name => "Track";
 

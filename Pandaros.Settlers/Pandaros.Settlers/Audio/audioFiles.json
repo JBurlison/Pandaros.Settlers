@@ -9,6 +9,37 @@
     ]
   },
   {
+    "clipCollectionName": "Pandaros.Settlers.ManaPump",
+    "fileList": [
+      {
+        "audioGroup": "Effects",
+        "path": "./ManaPump.ogg"
+      }
+    ]
+  },
+  {
+    "clipCollectionName": "Pandaros.Settlers.ManaPour",
+    "fileList": [
+      {
+        "audioGroup": "Effects",
+        "path": "./ManaPour.ogg"
+      }
+    ]
+  },
+  {
+    "clipCollectionName": "Pandaros.Settlers.SpellRepair",
+    "fileList": [
+      {
+        "audioGroup": "Effects",
+        "path": "./SpellRepair1.ogg"
+      },
+      {
+        "audioGroup": "Effects",
+        "path": "./SpellRepair2.ogg"
+      }
+    ]
+  },
+  {
     "clipCollectionName": "Pandaros.Settlers.TalkingAudio",
     "fileList": [
       {
