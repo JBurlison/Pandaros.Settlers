@@ -47,7 +47,7 @@ namespace Pandaros.Settlers.Transportation
 
         public static TrainTransport CreateTrain(Vector3 spawnPosition, MeshedVehicleDescription vehicle)
         {
-            TrainTransport trainTransport = new TrainTransport(vehicle, AnimatedObject);
+            TrainTransport trainTransport = new TrainTransport(spawnPosition, vehicle, AnimatedObject);
             TransportManager.RegisterTransport(trainTransport);
             return trainTransport;
         }
