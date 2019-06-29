@@ -1,6 +1,7 @@
 ﻿using MeshedObjects;
 using Newtonsoft.Json.Linq;
 using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.Collections;
 using Pipliz.Helpers;
@@ -19,23 +20,18 @@ namespace Pandaros.Settlers.Transportation
     [ModLoader.ModManager]
     public static class Train
     {
-        private static MeshedObjectType TrainMeshType;
+        private static AnimationManager.AnimatedObject AnimatedObject;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Transportation.Train.Initialize")]
         private static void Initialize()
         {
-            string str = IOHelper.SimplifyRelativeDirectory(Path.Combine(GameLoader.MESH_PATH, "PropulsionPlatform.obj"), "");
-            FileTable.Register(str, ECachedFileType.Mesh);
-            TrainMeshType = MeshedObjectType.Register(new MeshedObjectTypeSettings(GameLoader.NAMESPACE + ".PropulsionPlatform", str, GameLoader.NAMESPACE + ".PropulsionPlatform")
-            {
-                colliders = new List<RotatedBounds>() { new RotatedBounds(Vector3.zero, new Vector3(3, 2, 3), Quaternion.identity) },
-                InterpolationLooseness = 1.5f,
-                sendUpdateRadius = 500
-            });
+            AnimatedObject = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".PropulsionPlatform", Path.Combine(GameLoader.MESH_PATH, "PropulsionPlatform.obj"), GameLoader.NAMESPACE + ".PropulsionPlatform");
+            AnimatedObject.ObjSettings.colliders = new List<RotatedBounds>() { new RotatedBounds(Vector3.zero, new Vector3(3, 2, 3), Quaternion.identity) };
+            AnimatedObject.ObjSettings.InterpolationLooseness = 1.5f;
+            AnimatedObject.ObjSettings.sendUpdateRadius = 500;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, "clicked_glider")]
-        [ModLoader.ModCallbackProvidesFor("clicked_transport")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Transportation.Train.OnPlayerClicked")]
         private static void OnClicked(Players.Player sender, PlayerClickedData data)
         {
             if (data.ConsumedType != PlayerClickedData.EConsumedType.Not ||
@@ -44,25 +40,16 @@ namespace Pandaros.Settlers.Transportation
                 (data.HitType != PlayerClickedData.EHitType.Block ||
                 data.TypeSelected != ItemId.GetItemId(GameLoader.NAMESPACE + ".PropulsionPlatform").Id || !sender.Inventory.TryRemove(data.TypeSelected, 1, -1, true)))
                 return;
+
             data.ConsumedType = PlayerClickedData.EConsumedType.UsedAsTool;
-            CreateTrain(data.GetExactHitPositionWorld(), Quaternion.identity, Glider.CreateVehicleDescription(MeshedObjectID.GetNew()), null);
+            CreateTrain(data.GetExactHitPositionWorld(), new MeshedVehicleDescription(new ClientMeshedObject(AnimatedObject.ObjType), new Vector3(0.0f, 1.25f, 0.0f), false));
         }
 
-        public static TrainTransport CreateTrain(Vector3 spawnPosition, Quaternion rotation, MeshedVehicleDescription vehicle, Players.Player playerInside)
+        public static TrainTransport CreateTrain(Vector3 spawnPosition, MeshedVehicleDescription vehicle)
         {
-            TrainMovement trainMovement = new TrainMovement(spawnPosition, rotation, playerInside);
-            TrainTransport trainTransport = new TrainTransport(trainMovement, vehicle, new InventoryItem(ItemId.GetItemId(GameLoader.NAMESPACE + ".PropulsionPlatform").Id));
-            trainMovement.SetParent(trainTransport);
-            CollisionChecker.RegisterSource(trainMovement);
+            TrainTransport trainTransport = new TrainTransport(vehicle, AnimatedObject);
             TransportManager.RegisterTransport(trainTransport);
             return trainTransport;
-        }
-
-        private static Transform SpawnRootBox(TransportManager.RigidBodySettings settings)
-        {
-            Transform transform = new GameObject(GameLoader.NAMESPACE + ".PropulsionPlatform", Glider.GliderMovement.RigidBodyList).transform;
-            transform.SetParent(TransportManager.TransportRootTransform);
-            return transform;
         }
     }
 }

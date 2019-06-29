@@ -5,81 +5,55 @@ using System.Text;
 using System.Threading.Tasks;
 using MeshedObjects;
 using Newtonsoft.Json.Linq;
+using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Server;
+using Pipliz.Collections;
+using Shared;
 using Transport;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Transportation
 {
-    public class TrainTransport : TransportManager.GenericTransport
+    public class TrainTransport : TransportManager.ITransportVehicle
     {
-        public TrainTransport(TransportManager.ITransportMovement mover, MeshedVehicleDescription description, InventoryItem refundItems) :
-            base(mover, description, refundItems)
+        MeshedVehicleDescription _meshedVehicleDescription;
+        AnimationManager.AnimatedObject _animatedObject;
+        ItemId _trainId = ItemId.GetItemId(GameLoader.NAMESPACE + ".PropulsionPlatform");
+
+        public TrainTransport(MeshedVehicleDescription vehicle, AnimationManager.AnimatedObject animatedObject)
         {
+            _meshedVehicleDescription = vehicle;
+            _animatedObject = animatedObject;
         }
 
-        public override JObject Save()
+        public int GetDelayMillisecondsToNextUpdate()
         {
-            if (Mover == null)
-                return null;
+            return 200;
+        }
 
-            Vector3 position = Mover.Position;
-            Vector3 eulerAngles = Mover.Rotation.eulerAngles;
-            JObject jobject = new JObject()
-            {
-              {
-                "type",
-                (JToken) GameLoader.NAMESPACE + ".PropulsionPlatform"
-              },
-              {
-                "position",
-                (JToken) new JObject()
-                {
-                  {
-                    "x",
-                    (JToken) position.x
-                  },
-                  {
-                    "y",
-                    (JToken) position.y
-                  },
-                  {
-                    "z",
-                    (JToken) position.z
-                  }
-                }
-              },
-              {
-                "rotation",
-                (JToken) new JObject()
-                {
-                  {
-                    "x",
-                    (JToken) eulerAngles.x
-                  },
-                  {
-                    "y",
-                    (JToken) eulerAngles.y
-                  },
-                  {
-                    "z",
-                    (JToken) eulerAngles.z
-                  }
-                }
-              },
-              {
-                "meshid",
-                (JToken) this.VehicleDescription.Object.ObjectID.ID
-              }
-            };
+        public bool MatchesMeshID(int id)
+        {
+            return _meshedVehicleDescription.Object.ObjectID.ID == id;
+        }
 
-            TrainMovement mover = Mover as TrainMovement;
-            MeshedVehicleDescription description;
+        public void OnClicked(Players.Player sender, PlayerClickedData click)
+        {
+            
+        }
 
-            if (mover.LastInputPlayer != null && MeshedObjectManager.TryGetVehicle(mover.LastInputPlayer, out description) && 
-                VehicleDescription.Object.ObjectID.ID == description.Object.ObjectID.ID)
-                jobject["player"] = (JToken)mover.LastInputPlayer.ID.ToString();
+        public void ProcessInputs(Players.Player player, Pipliz.Collections.SortedList<EInputKey, float> keyTimes, float deltaTime)
+        {
+            throw new NotImplementedException();
+        }
 
-            return jobject;
+        public JObject Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public TransportManager.ETransportUpdateResult Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

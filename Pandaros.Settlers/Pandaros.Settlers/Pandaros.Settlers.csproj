@@ -231,7 +231,6 @@
     <Compile Include="StatusIcons\Waiting.cs" />
     <Compile Include="Transportation\TrainTransport.cs" />
     <Compile Include="Transportation\Train.cs" />
-    <Compile Include="Transportation\TrainMovement.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
     <Compile Include="NBT\BlockMapping.cs" />
