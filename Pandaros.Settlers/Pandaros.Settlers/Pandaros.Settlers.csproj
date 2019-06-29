@@ -1171,6 +1171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jobs\Energy\" />
+    <Folder Include="Transportation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons\Adamantine.png">
