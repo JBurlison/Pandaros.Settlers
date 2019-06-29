@@ -127,6 +127,10 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyserver_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\colonyclient_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
@@ -199,6 +203,7 @@
     <Compile Include="Models\BlockConnectionType.cs" />
     <Compile Include="Models\BlockRotationDegrees.cs" />
     <Compile Include="Models\BlockSides.cs" />
+    <Compile Include="Models\SerializableVector3.cs" />
     <Compile Include="Models\RotationAxis.cs" />
     <Compile Include="Research\ArmorSmithingResearch.cs" />
     <Compile Include="Research\MachineResearch.cs" />
@@ -224,6 +229,9 @@
     <Compile Include="StatusIcons\Reload.cs" />
     <Compile Include="StatusIcons\Repairing.cs" />
     <Compile Include="StatusIcons\Waiting.cs" />
+    <Compile Include="Transportation\TrainTransport.cs" />
+    <Compile Include="Transportation\Train.cs" />
+    <Compile Include="Transportation\TrainMovement.cs" />
     <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
     <Compile Include="NBT\BlockMapping.cs" />
@@ -1171,7 +1179,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jobs\Energy\" />
-    <Folder Include="Transportation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons\Adamantine.png">

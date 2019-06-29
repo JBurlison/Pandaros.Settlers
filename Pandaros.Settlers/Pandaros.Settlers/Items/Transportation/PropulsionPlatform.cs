@@ -56,6 +56,7 @@ namespace Pandaros.Settlers.Items.Transportation
         public override int? destructionTime { get; set; } = 500;
         public override string icon { get; set; } = Path.Combine(GameLoader.ICON_PATH, "PropulsionPlatform.png");
         public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "PropulsionPlatform.obj");
+        public override bool? isPlaceable { get; set; } = false;
         public override List<string> categories { get; set; } = new List<string>()
             {
                 "Mana",
