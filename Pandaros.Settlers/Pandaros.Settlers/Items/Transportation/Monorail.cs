@@ -112,5 +112,9 @@ namespace Pandaros.Settlers.Items.Transportation
             },
             CalculationType = "Track"
         };
+        public override Colliders colliders { get; set; } = new Colliders(true, true, new List<Colliders.Boxes>()
+        {
+            new Colliders.Boxes(new List<float>() { -.5f, -5f, -.5f }, new List<float>() { .5f, 1f, -.5f })
+        });
     }
 }

@@ -107,27 +107,25 @@ namespace Pandaros.Settlers.Items
                             if (!connectedBlockCalculationType.AvailableBlockSides.Contains(side))
                                 hasCalculationTypes = false;
 
-                        if (hasCalculationTypes)
+                        var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+                        newItem.meshRotationEuler = rotationEuler;
+                        newItem.ConnectedBlock = new ConnectedBlock()
                         {
-                            var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
-                            newItem.meshRotationEuler = rotationEuler;
-                            newItem.ConnectedBlock = new ConnectedBlock()
-                            {
-                                BlockType = baseBlock.ConnectedBlock.BlockType,
-                                CalculationType = baseBlock.ConnectedBlock.CalculationType,
-                                Connections = rotatedList,
-                                BlockRotationDegrees = currentRotation,
-                                RotationAxis = axis
-                            };
+                            BlockType = baseBlock.ConnectedBlock.BlockType,
+                            CalculationType = baseBlock.ConnectedBlock.CalculationType,
+                            Connections = rotatedList,
+                            BlockRotationDegrees = currentRotation,
+                            RotationAxis = axis
+                        };
 
-                            newItem.categories = null;
-                            newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+                        newItem.categories = null;
+                        newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
 
-
+                        if (hasCalculationTypes)
                             cSTypes[newItem.ConnectedBlock.Connections] = newItem;
 
-                            PermutateItems(newItem, cSTypes, itemJson, connections, connectedBlockCalculationType);
-                        }
+                        PermutateItems(newItem, cSTypes, itemJson, connections, connectedBlockCalculationType);
+
                     }
                 }
         }

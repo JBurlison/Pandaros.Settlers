@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers
 {
-    class ListComparer<T> : IEqualityComparer<List<T>>
+    public class ListComparer<T> : IEqualityComparer<List<T>>
     {
         public bool Equals(List<T> x, List<T> y)
         {

@@ -25,7 +25,8 @@ namespace Pandaros.Settlers.Items
                 if (!_connectedBlockLookup.ContainsKey(cSType.ConnectedBlock.BlockType))
                     _connectedBlockLookup.Add(cSType.ConnectedBlock.BlockType, new Dictionary<List<BlockSide>, ICSType>(new ListComparer<BlockSide>()));
 
-                _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
+                if (!_connectedBlockLookup[cSType.ConnectedBlock.BlockType].ContainsKey(cSType.ConnectedBlock.Connections))
+                    _connectedBlockLookup[cSType.ConnectedBlock.BlockType][cSType.ConnectedBlock.Connections] = cSType;
 
                 if (cSType.ConnectedBlock.Connections.Count == 2 &&
                    ((cSType.ConnectedBlock.Connections.Contains(BlockSide.Xn) && cSType.ConnectedBlock.Connections.Contains(BlockSide.Xp)) ||
@@ -46,7 +47,16 @@ namespace Pandaros.Settlers.Items
             if (_connectedBlockLookup.ContainsKey(blockType))
             {
                 if (!_connectedBlockLookup[blockType].TryGetValue(neededSides, out connectedBlock))
-                    foreach (var kvp in _connectedBlockLookup[blockType])
+                {
+                    IEnumerable<KeyValuePair<List<BlockSide>, ICSType>> lookup = _connectedBlockLookup[blockType];
+
+                    if (neededSides.Contains(BlockSide.XpYp) ||
+                        neededSides.Contains(BlockSide.XnYp) ||
+                        neededSides.Contains(BlockSide.ZpYp) ||
+                        neededSides.Contains(BlockSide.ZnYp))
+                        lookup = lookup.Reverse();
+
+                    foreach (var kvp in lookup)
                     {
                         if (_blockSideComparer.Equals(kvp.Key, neededSides))
                         {
@@ -54,6 +64,7 @@ namespace Pandaros.Settlers.Items
                             break;
                         }
                     }
+                }
 
                 return connectedBlock != null;
             }
@@ -78,21 +89,12 @@ namespace Pandaros.Settlers.Items
             }
         }
 
-        public static void ChangeBlocksForPos(Vector3Int pos, string blockType = null, IConnectedBlockCalculationType calculationType = null)
+        public static void ChangeBlocksForPos(Vector3Int pos, string blockType, IConnectedBlockCalculationType calculationType)
         {
-            if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && BlockLookup.ContainsKey(itemTypeAtPos.Name))
+            if (World.TryGetTypeAt(pos, out ItemTypes.ItemType itemTypeAtPos) && 
+                BlockLookup.TryGetValue(itemTypeAtPos.Name, out var existingBlock) && 
+                existingBlock.ConnectedBlock.BlockType == blockType)
             {
-                if (blockType == null &&
-                    BlockLookup.TryGetValue(itemTypeAtPos.Name, out var connectedBlockAtPos))
-                {
-                    blockType = connectedBlockAtPos.ConnectedBlock.BlockType;
-
-                    if (ConnectedBlockCalculator.CalculationTypes.TryGetValue(connectedBlockAtPos.ConnectedBlock.CalculationType, out var connectedBlockCalculationType))
-                        calculationType = connectedBlockCalculationType;
-                    else
-                        return;
-                }
-
                 if (calculationType != null && TryGetChangedBlockTypeAtPosition(pos, blockType, calculationType, out var newBlock) && newBlock.ConnectedBlock.AutoChange)
                      ServerManager.TryChangeBlock(pos, ItemId.GetItemId(newBlock.name));
             }

@@ -252,7 +252,7 @@ namespace Pandaros.Settlers
             }
         }
 
-        public static bool ApproxEqual(this float x, float y, float epsilon = 0.02f)
+        public static bool ApproxEqual(this float x, float y, float epsilon = 0.5f)
         {
             return System.Math.Abs(x - y) < epsilon;
         }
