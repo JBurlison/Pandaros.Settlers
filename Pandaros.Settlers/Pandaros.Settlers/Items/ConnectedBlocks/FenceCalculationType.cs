@@ -20,5 +20,10 @@ namespace Pandaros.Settlers.Items.ConnectedBlocks
         public string name => "Fence";
 
         public int MaxConnections => 2;
+
+        public List<RotationAxis> AxisRotations => new List<RotationAxis>()
+        {
+            RotationAxis.Y
+        };
     }
 }

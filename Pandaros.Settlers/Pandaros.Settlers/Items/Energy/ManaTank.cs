@@ -1,6 +1,7 @@
 ﻿using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Research;
 using Recipes;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,45 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Energy
 {
+    public class AddImprovedManaCapacity : PandaResearch
+    {
+        public override string name => GameLoader.NAMESPACE + ".ImprovedManaCapacity";
+
+        public override string IconDirectory => GameLoader.ICON_PATH;
+
+        public override float BaseValue => 0.1f;
+
+        public override int BaseIterationCount => 50;
+
+        public override Dictionary<int, List<InventoryItem>> RequiredItems => new Dictionary<int, List<InventoryItem>>()
+            {
+                {
+                    0,
+                    new List<InventoryItem>()
+                    {
+                        new InventoryItem(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id),
+                        new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 3)
+                    }
+                }
+            };
+
+        public override Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
+            {
+                {
+                    0,
+                    new List<string>()
+                    {
+                        SettlersBuiltIn.Research.ARTIFICER1
+                    }
+                }
+            };
+
+        public override void ResearchComplete(object sender, ResearchCompleteEventArgs e)
+        {
+            RoamingJobState.SetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", e.Manager.Colony, "ManaPipe", RoamingJobState.DEFAULT_MAX + (RoamingJobState.DEFAULT_MAX * e.Research.Value));
+        }
+    }
+
     public class ManaTankObjective : IRoamingJobObjective
     {
         public float WorkTime => 6;
@@ -22,16 +62,78 @@ namespace Pandaros.Settlers.Energy
             {
                 GameLoader.NAMESPACE + ".ManaMachineRepair",
                 new ManaMachineRepairingAction()
+            },
+            {
+                GameLoader.NAMESPACE + ".ManaTankRefill",
+                new ManaTankRefill()
             }
         };
 
-        public string ObjectiveCategory => "Mana";
+        public string ObjectiveCategory => "ManaMachine";
 
         public string name => SettlersBuiltIn.ItemTypes.MANATANK;
 
         public void DoWork(Colony colony, RoamingJobState state)
         {
-            
+            if (!state.ActionEnergy.ContainsKey(GameLoader.NAMESPACE + ".ManaTankRefill"))
+                state.ActionEnergy.Add(GameLoader.NAMESPACE + ".ManaTankRefill", 0);
+        }
+    }
+
+    public class ManaTankRefill : IRoamingJobObjectiveAction
+    {
+        public float TimeToPreformAction => 15;
+
+        public string AudioKey => "Pandaros.Settlers.ManaPour";
+
+        public ItemId ObjectiveLoadEmptyIcon => SettlersBuiltIn.ItemTypes.MANA;
+
+        public string name => GameLoader.NAMESPACE + ".ManaTankRefill";
+
+        public ItemId PreformAction(Colony colony, RoamingJobState state)
+        {
+            var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Refuel");
+
+            if (state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill") < .70f)
+            {
+                var requiredForFix = new List<InventoryItem>();
+                var stockpile = colony.Stockpile;
+                var energy = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+                var maxMana = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", colony, state.RoamingJobSettings.ObjectiveCategory);
+
+                var manaCost = (int)Math.Round((maxMana - energy) / .02, 0);
+
+                requiredForFix.Add(new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, manaCost));
+
+                if (stockpile.TryRemove(requiredForFix))
+                {
+                    state.ResetActionToMaxLoad(GameLoader.NAMESPACE + ".ManaTankRefill");
+                }
+                else
+                {
+                    foreach (var item in requiredForFix)
+                        if (!stockpile.Contains(item))
+                        {
+                            retval = ItemId.GetItemId(item.Type);
+                            break;
+                        }
+                }
+
+                energy = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+
+                if (energy > .90)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
+                else if (energy > .75)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
+                else if (energy > .50)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
+                else if (energy > .25)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
+                else
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
+            }
+
+            return retval;
         }
     }
 
@@ -60,7 +162,7 @@ namespace Pandaros.Settlers.Energy
 
         public int defaultLimit => 1;
 
-        public string Job => GameLoader.NAMESPACE + ".Artificer";
+        public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".ManaTank";
     }

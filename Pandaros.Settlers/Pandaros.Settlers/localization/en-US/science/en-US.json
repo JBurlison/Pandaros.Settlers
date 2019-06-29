@@ -344,9 +344,29 @@
     },
     "Pandaros": {
       "Settlers": {
+        "ImprovedManaCapacity1": {
+          "name": "Improved Mana Capacity I",
+          "description": "Increases Mana Tank capacity by 10%. Mana Tanks will need their mana filled less often."
+        },
+        "ImprovedManaCapacity2": {
+          "name": "Improved Mana Capacity II",
+          "description": "Increases Mana Tank capacity by 20%. Mana Tanks will need their mana filled less often."
+        },
+        "ImprovedManaCapacity3": {
+          "name": "Improved Mana Capacity III",
+          "description": "Increases Mana Tank capacity by 30%. Mana Tanks will need their mana filled less often."
+        },
+        "ImprovedManaCapacity4": {
+          "name": "Improved Mana Capacity IV",
+          "description": "Increases Mana Tank capacity by 40%. Mana Tanks will need their mana filled less often."
+        },
+        "ImprovedManaCapacity5": {
+          "name": "Improved Mana Capacity V",
+          "description": "Increases Mana Tank capacity by 50%. Mana Tanks will need their mana filled less often."
+        },
         "Artificer1": {
           "name": "Artificer",
-          "description": "Artificer open up magical machines that run on mana and the Artificer job to maintain them!"
+          "description": "Artificers opens up magical machines that run on mana and the Artificer job to maintain them! Machines are crafted in the advanced crafter."
         },
         "Backpack1": {
           "name": "Backpack",

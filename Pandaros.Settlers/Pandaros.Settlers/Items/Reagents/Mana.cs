@@ -73,7 +73,7 @@ namespace Pandaros.Settlers.Items
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 100 }
+                    new HappinessCondition() { Threshold = 60 }
                 }
             }
         };

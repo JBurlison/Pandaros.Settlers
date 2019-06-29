@@ -13,7 +13,14 @@ namespace Pandaros.Settlers.Items.ConnectedBlocks
         {
             AvailableBlockSides = new List<BlockSide>((BlockSide[])Enum.GetValues(typeof(BlockSide)));
             AvailableBlockSides.Remove(BlockSide.Invalid);
+            AvailableBlockSides.Remove(BlockSide.Yp);
+            AvailableBlockSides.Remove(BlockSide.Yn);
         }
+
+        public List<RotationAxis> AxisRotations => new List<RotationAxis>()
+        {
+            RotationAxis.Y
+        };
 
         public List<BlockSide> AvailableBlockSides { get; }
 

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Items
     public interface IConnectedBlockCalculationType : INameable
     {
         List<BlockSide> AvailableBlockSides { get; }
-
+        List<RotationAxis> AxisRotations { get; }
         int MaxConnections { get; }
     }
 }

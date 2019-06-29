@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.Energy
         {
             var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-            if (state.GetActionEnergy("MANA_MACHINE_REPAIR") < .50f)
+            if (state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair") < .50f)
             {
                 var repaired = false;
                 var requiredForFix = new List<InventoryItem>();
@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Energy
                 }
 
                 if (repaired)
-                    state.ResetActionToMaxLoad("MANA_MACHINE_REPAIR");
+                    state.ResetActionToMaxLoad(GameLoader.NAMESPACE + ".ManaMachineRepair");
             }
 
             return retval;

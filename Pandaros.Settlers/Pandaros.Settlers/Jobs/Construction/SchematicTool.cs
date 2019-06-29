@@ -63,7 +63,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 150 },
+                    new HappinessCondition() { Threshold = 80 },
                     new ColonistCountCondition() { Threshold = 250 }
                 }
             }

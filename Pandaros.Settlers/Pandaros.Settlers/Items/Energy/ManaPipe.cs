@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Energy
 
         public int defaultLimit => 5;
 
-        public string Job => GameLoader.NAMESPACE + ".Artificer";
+        public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".ManaPipe";
     }

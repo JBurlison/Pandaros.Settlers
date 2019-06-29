@@ -12,6 +12,12 @@ namespace Pandaros.Settlers.Items.Reagents
         public override string name { get; set; } = GameLoader.NAMESPACE + ".MagicWand";
         public override bool? isPlaceable { get; set; } = false;
         public override string icon { get; set; } = GameLoader.ICON_PATH + "MagicWand.png";
+        public override List<string> categories { get; set; } = new List<string>()
+        {
+            "Mana",
+            "Reagent",
+            GameLoader.NAMESPACE
+        };
     }
 
     public class MagicWandRecipe : ICSRecipe

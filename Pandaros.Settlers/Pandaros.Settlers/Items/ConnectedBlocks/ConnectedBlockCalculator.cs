@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Items
 
         private static void PermutateItems(ICSType baseBlock, Dictionary<List<BlockSide>, ICSType> cSTypes, string itemJson, List<BlockSide> connections, IConnectedBlockCalculationType connectedBlockCalculationType)
         {
-            foreach (RotationAxis axis in _blockRotations)
+            foreach (RotationAxis axis in connectedBlockCalculationType.AxisRotations)
                 foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
                 {
                     var rotationEuler = new MeshRotationEuler();
@@ -107,23 +107,27 @@ namespace Pandaros.Settlers.Items
                             if (!connectedBlockCalculationType.AvailableBlockSides.Contains(side))
                                 hasCalculationTypes = false;
 
-                        var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
-                        newItem.meshRotationEuler = rotationEuler;
-                        newItem.ConnectedBlock = new ConnectedBlock()
-                        {
-                            BlockType = baseBlock.ConnectedBlock.BlockType,
-                            CalculationType = baseBlock.ConnectedBlock.CalculationType,
-                            Connections = rotatedList,
-                            BlockRotationDegrees = currentRotation,
-                            RotationAxis = axis
-                        };
-
-                        newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
-
                         if (hasCalculationTypes)
+                        {
+                            var newItem = JsonConvert.DeserializeObject<CSType>(itemJson);
+                            newItem.meshRotationEuler = rotationEuler;
+                            newItem.ConnectedBlock = new ConnectedBlock()
+                            {
+                                BlockType = baseBlock.ConnectedBlock.BlockType,
+                                CalculationType = baseBlock.ConnectedBlock.CalculationType,
+                                Connections = rotatedList,
+                                BlockRotationDegrees = currentRotation,
+                                RotationAxis = axis
+                            };
+
+                            newItem.categories = null;
+                            newItem.name = string.Concat(newItem.name, ".", GetItemName(newItem.ConnectedBlock.Connections));
+
+
                             cSTypes[newItem.ConnectedBlock.Connections] = newItem;
 
-                        PermutateItems(newItem, cSTypes, itemJson, connections, connectedBlockCalculationType);
+                            PermutateItems(newItem, cSTypes, itemJson, connections, connectedBlockCalculationType);
+                        }
                     }
                 }
         }

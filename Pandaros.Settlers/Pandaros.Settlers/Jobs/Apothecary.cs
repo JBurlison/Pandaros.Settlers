@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 75 }
+                    new HappinessCondition() { Threshold = 50 }
                 }
             }
         };
@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 75 }
+                    new HappinessCondition() { Threshold = 60 }
                 }
             }
         };

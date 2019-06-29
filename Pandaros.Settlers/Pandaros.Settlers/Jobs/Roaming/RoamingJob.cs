@@ -61,8 +61,10 @@ namespace Pandaros.Settlers.Jobs.Roaming
             {
                 if (TargetObjective == null)
                 {
-                    if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic))
-                        foreach (var objective in roamingJobObjectiveDic.Values.Where(m => m.CanBeWorked(ObjectiveCategories)))
+                    foreach (var cat in ObjectiveCategories)
+                    if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic) && 
+                        roamingJobObjectiveDic.TryGetValue(cat, out var states))
+                        foreach (var objective in states.Values)
                             if (objective != PreviousObjective && objective.PositionIsValid())
                             {
                                 var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
@@ -111,10 +113,17 @@ namespace Pandaros.Settlers.Jobs.Roaming
                     foreach (var action in new Dictionary<string, float>(TargetObjective.ActionEnergy))
                         if (action.Value < .5f)
                         {
-                            status = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].PreformAction(Owner, TargetObjective);
-                            cooldown = TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].TimeToPreformAction;
-                            AudioManager.SendAudio(TargetObjective.Position.Vector, TargetObjective.RoamingJobSettings.ActionCallbacks[action.Key].AudioKey);
-                            actionFound = true;
+                            if (TargetObjective.RoamingJobSettings.ActionCallbacks.TryGetValue(action.Key, out var roamingJobObjective))
+                            {
+                                status = roamingJobObjective.PreformAction(Owner, TargetObjective);
+                                cooldown = roamingJobObjective.TimeToPreformAction;
+                                AudioManager.SendAudio(TargetObjective.Position.Vector, roamingJobObjective.AudioKey);
+                                actionFound = true;
+                            }
+                            else
+                                PandaLogger.Log(ChatColor.red, "TargetObjective.RoamingJobSettings.ActionCallbacks does not contain key {0}", action.Key);
+
+                            
                         }
 
                     if (!actionFound)

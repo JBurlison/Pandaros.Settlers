@@ -154,15 +154,6 @@
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
-        "relativePath": "AutoLoad/Artificer.json",
-        "npcType": "Pandaros.Settlers.Artificer",
-        "index": -99999,
-        "limitsUIMapping": [
-          "Pandaros.Settlers.ArtificerBench"
-        ]
-      },
-      {
-        "fileType": "addOrReplaceNPCRecipes",
         "relativePath": "AutoLoad/AdvancedCrafter.json",
         "npcType": "Pandaros.Settlers.AdvancedCrafter",
         "index": -99999,

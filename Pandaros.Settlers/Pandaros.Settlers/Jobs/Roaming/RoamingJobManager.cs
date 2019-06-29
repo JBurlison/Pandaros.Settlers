@@ -23,9 +23,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         private static double _nextUpdate;
 
-        public static Dictionary<Colony, Dictionary<Vector3Int, RoamingJobState>> Objectives { get; } = new Dictionary<Colony, Dictionary<Vector3Int, RoamingJobState>>();
+        public static Dictionary<Colony, Dictionary<string, Dictionary<Vector3Int, RoamingJobState>>> Objectives { get; } = new Dictionary<Colony, Dictionary<string, Dictionary<Vector3Int, RoamingJobState>>>();
 
-        public static event EventHandler ObjectiveRemoved;
+        public static event EventHandler<RoamingJobState> ObjectiveRemoved;
 
         public static void RegisterObjectiveType(IRoamingJobObjective objective)
         {
@@ -50,18 +50,19 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 lock (Objectives)
                 {
                     foreach (var machine in Objectives)
-                        if (!machine.Key.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || machine.Key.OwnerIsOnline())
-                            foreach (var state in machine.Value)
+                        foreach (var category in machine.Value)
+                            foreach (var state in category.Value)
                                 try
                                 {
                                     state.Value.RoamingJobSettings.DoWork(machine.Key, state.Value);
 
                                     foreach (var objectiveLoad in state.Value.ActionEnergy)
                                     {
-                                        if (objectiveLoad.Value <= 0)
+                                        if (objectiveLoad.Value <= 0 && 
+                                            state.Value.RoamingJobSettings.ActionCallbacks.TryGetValue(objectiveLoad.Key, out var objectiveAction))
                                             Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, 
                                                                             new IndicatorState(OBJECTIVE_REFRESH,
-                                                                            state.Value.RoamingJobSettings.ActionCallbacks[objectiveLoad.Key].ObjectiveLoadEmptyIcon.Id, 
+                                                                            objectiveAction.ObjectiveLoadEmptyIcon.Id, 
                                                                             true,
                                                                             false));
                                     }
@@ -138,7 +139,8 @@ namespace Pandaros.Settlers.Jobs.Roaming
                         var objectiveNode = new JSONNode(NodeType.Array);
 
                         foreach (var node in Objectives[c])
-                            objectiveNode.AddToArray(node.Value.ToJsonNode());
+                            foreach (var catNode in node.Value)
+                            objectiveNode.AddToArray(catNode.Value.ToJsonNode());
 
                         n[GameLoader.NAMESPACE + ".Objectives"] = objectiveNode;
                     }
@@ -171,17 +173,18 @@ namespace Pandaros.Settlers.Jobs.Roaming
             lock (Objectives)
             {
                 if (!Objectives.ContainsKey(c))
-                    Objectives.Add(c, new Dictionary<Vector3Int, RoamingJobState>());
+                    Objectives.Add(c, new Dictionary<string, Dictionary<Vector3Int, RoamingJobState>>());
 
-                if (Objectives[c].ContainsKey(pos))
-                {
-                    var mach = Objectives[c][pos];
+                foreach (var item in Objectives[c])
+                    if (item.Value.TryGetValue(pos, out var state))
+                    {
+                        item.Value.Remove(pos);
 
-                    Objectives[c].Remove(pos);
+                        if (throwEvent && ObjectiveRemoved != null)
+                            ObjectiveRemoved(null, state);
 
-                    if (throwEvent && ObjectiveRemoved != null)
-                        ObjectiveRemoved(mach, new EventArgs());
-                }
+                        break;
+                    }
             }
         }
 
@@ -190,10 +193,13 @@ namespace Pandaros.Settlers.Jobs.Roaming
             lock (Objectives)
             {
                 if (!Objectives.ContainsKey(colony))
-                    Objectives.Add(colony, new Dictionary<Vector3Int, RoamingJobState>());
+                    Objectives.Add(colony, new Dictionary<string, Dictionary<Vector3Int, RoamingJobState>>());
+
+                if (!Objectives[colony].ContainsKey(state.RoamingJobSettings.ObjectiveCategory))
+                    Objectives[colony].Add(state.RoamingJobSettings.ObjectiveCategory, new Dictionary<Vector3Int, RoamingJobState>());
 
                 if (state.Position != Vector3Int.invalidPos)
-                    Objectives[colony][state.Position] = state;
+                    Objectives[colony][state.RoamingJobSettings.ObjectiveCategory][state.Position] = state;
             }
         }
 
@@ -202,13 +208,14 @@ namespace Pandaros.Settlers.Jobs.Roaming
             var closest = int.MaxValue;
             var retVal  = new List<Vector3Int>();
 
-            foreach (var machine in Objectives[owner].Where(o => o.Value.RoamingJobSettings.ObjectiveCategory == category))
-            {
-                var dis = Math.RoundToInt(UnityEngine.Vector3.Distance(machine.Key.Vector, position.Vector));
+            if (Objectives.ContainsKey(owner) && Objectives[owner].ContainsKey(category))
+                foreach (var machine in Objectives[owner][category])
+                {
+                    var dis = Math.RoundToInt(UnityEngine.Vector3.Distance(machine.Key.Vector, position.Vector));
 
-                if (dis <= maxDistance && dis <= closest)
-                    retVal.Add(machine.Key);
-            }
+                    if (dis <= maxDistance && dis <= closest)
+                        retVal.Add(machine.Key);
+                }
 
             return retVal;
         }

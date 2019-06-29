@@ -19,6 +19,13 @@ namespace Pandaros.Settlers.Items.ConnectedBlocks
             BlockSide.Yn
         };
 
+        public List<RotationAxis> AxisRotations => new List<RotationAxis>()
+        {
+            RotationAxis.X,
+            RotationAxis.Y,
+            RotationAxis.Z
+        };
+
         public string name => "Pipe";
 
         public int MaxConnections => 6;

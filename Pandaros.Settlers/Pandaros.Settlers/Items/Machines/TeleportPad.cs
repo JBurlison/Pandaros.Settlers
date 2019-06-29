@@ -361,13 +361,14 @@ namespace Pandaros.Settlers.Items.Machines
                 if (pos != null)
                     lock (RoamingJobManager.Objectives)
                     {
-                        foreach (var p in RoamingJobManager.Objectives)
-                            if (p.Value.ContainsKey(pos))
-                                if (p.Value[pos].RoamObjective == nameof(TeleportPad))
-                                {
-                                    state = p.Value[pos];
-                                    return true;
-                                }
+                        foreach (var kvp in RoamingJobManager.Objectives)
+                            foreach (var p in kvp.Value)
+                                if (p.Value.ContainsKey(pos))
+                                    if (p.Value[pos].RoamObjective == nameof(TeleportPad))
+                                    {
+                                        state = p.Value[pos];
+                                        return true;
+                                    }
                     }
             }
             catch (Exception ex)

@@ -149,10 +149,10 @@
     <Compile Include="ColonyManagement\Permission.cs" />
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
-    <Compile Include="Energy\ManaMachineRepairingAction.cs" />
-    <Compile Include="Energy\ManaPipe.cs" />
-    <Compile Include="Energy\ManaPump.cs" />
-    <Compile Include="Energy\ManaTank.cs" />
+    <Compile Include="Items\Energy\ManaMachineRepairingAction.cs" />
+    <Compile Include="Items\Energy\ManaPipe.cs" />
+    <Compile Include="Items\Energy\ManaPump.cs" />
+    <Compile Include="Items\Energy\ManaTank.cs" />
     <Compile Include="Extender\IAfterModsLoaded.cs" />
     <Compile Include="Extender\IOnColonyCreated.cs" />
     <Compile Include="Extender\IOnLoadingColony.cs" />
@@ -188,6 +188,8 @@
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\Reagents\MagicWand.cs" />
     <Compile Include="Items\StaticItems.cs" />
+    <Compile Include="Items\Transportation\Monorail.cs" />
+    <Compile Include="Items\Transportation\PropulsionPlatform.cs" />
     <Compile Include="Items\Weapons\MagicWeapon.cs" />
     <Compile Include="Jobs\Artificer.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
@@ -334,9 +336,6 @@
     <None Include="Audio\SpellRepair2.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="AutoLoad\Artificer.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="AutoLoad\Sorcerer.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -380,6 +379,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\Manapump.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\Monorail_Ramp.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\Monorail_Straight.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\Monorail_Turn.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\Pipe.obj">
@@ -431,6 +439,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\Tank_quarter.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Meshes\PropulsionPlatform.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="science.json">
@@ -1171,6 +1182,12 @@
     <Content Include="icons\ArcArchitect..png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\ManaPump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\ManaTank.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\Pandaros.Settlers.Artificer1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1193,6 +1210,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\BootsOfFalling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedManaCapacity1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedManaCapacity2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedManaCapacity3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedManaCapacity4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedManaCapacity5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="icons\Pandaros.Settlers.Machines.png">
@@ -2682,7 +2714,13 @@
     <Content Include="Textures\albedo\Manapump_Albedo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\albedo\Monorail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\Pipe_Albedo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\albedo\PropulsionPlatform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\SorcererTableTop.png">
@@ -2697,7 +2735,13 @@
     <Content Include="Textures\emissive\Manapump_Emissive.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\emissive\Monorail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\emissive\Pipe_Emissive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\emissive\PropulsionPlatform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\emissive\Tank_Emissive.png">
@@ -2715,10 +2759,16 @@
     <Content Include="Textures\height\marblebricks.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\height\Monorail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\height\oreRuby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\height\Pipe_height.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\PropulsionPlatform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\height\SorcererTableTop.png">
@@ -2742,10 +2792,16 @@
     <Content Include="Textures\normal\marblebricks.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\normal\Monorail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\normal\oreRuby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\Pipe_Normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\PropulsionPlatform.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\SorcererTableTop.png">
