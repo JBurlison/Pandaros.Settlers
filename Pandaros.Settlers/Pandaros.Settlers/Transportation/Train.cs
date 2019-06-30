@@ -1,5 +1,6 @@
 ﻿using MeshedObjects;
 using Newtonsoft.Json.Linq;
+using Pandaros.Settlers.Items.Transportation;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Server;
 using Pipliz;
@@ -47,7 +48,7 @@ namespace Pandaros.Settlers.Transportation
 
         public static TrainTransport CreateTrain(Vector3 spawnPosition, MeshedVehicleDescription vehicle)
         {
-            TrainTransport trainTransport = new TrainTransport(spawnPosition, vehicle, AnimatedObject);
+            TrainTransport trainTransport = new TrainTransport(spawnPosition, vehicle, AnimatedObject, new PropulsionPlatform());
             TransportManager.RegisterTransport(trainTransport);
             return trainTransport;
         }

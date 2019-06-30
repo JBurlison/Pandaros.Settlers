@@ -67,5 +67,9 @@ namespace Pandaros.Settlers.Items.Transportation
         {
             new Colliders.Boxes(new List<float>() { -2f, -1f, -2f }, new List<float>() { 2, .5f, 2 })
         });
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "Monorail"
+        };
     }
 }

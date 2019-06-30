@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MeshedObjects;
 using Newtonsoft.Json.Linq;
+using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Items.ConnectedBlocks;
+using Pandaros.Settlers.Items.Transportation;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Server;
 using Pipliz.Collections;
@@ -18,19 +21,26 @@ namespace Pandaros.Settlers.Transportation
     {
         MeshedVehicleDescription _meshedVehicleDescription;
         AnimationManager.AnimatedObject _animatedObject;
-        ItemId _trainId = ItemId.GetItemId(GameLoader.NAMESPACE + ".PropulsionPlatform");
+        ICSType _cSType;
         Vector3 _position;
+        ItemId _trainId;
+        Pipliz.Vector3Int _trackPosition = Pipliz.Vector3Int.zero;
+        int _delay = 1000;
+        TrackCalculationType _trackCalculationType = new TrackCalculationType();
+        int _idealHeightFromTrack = 3;
 
-        public TrainTransport(Vector3 position, MeshedVehicleDescription vehicle, AnimationManager.AnimatedObject animatedObject)
+        public TrainTransport(Vector3 position, MeshedVehicleDescription vehicle, AnimationManager.AnimatedObject animatedObject, ICSType trainType)
         {
             _meshedVehicleDescription = vehicle;
             _animatedObject = animatedObject;
             _position = position;
+            _cSType = trainType;
+            _trainId = ItemId.GetItemId(trainType.name);
         }
 
         public int GetDelayMillisecondsToNextUpdate()
         {
-            return 200;
+            return _delay;
         }
 
         public bool MatchesMeshID(int id)
@@ -42,15 +52,18 @@ namespace Pandaros.Settlers.Transportation
         {
             int countConnected = Players.CountConnected;
             Players.Player player = null;
+
             for (int index = 0; index < countConnected; ++index)
             {
                 Players.Player connectedByIndex = Players.GetConnectedByIndex(index);
                 MeshedVehicleDescription description;
+
                 if (connectedByIndex != null && 
                     MeshedObjectManager.TryGetVehicle(connectedByIndex, out description) && 
                     description.Object.ObjectID.ID == _meshedVehicleDescription.Object.ObjectID.ID)
                     player = connectedByIndex;
             }
+
             if (click.ClickType == PlayerClickedData.EClickType.Right)
             {
                 if (player == null)
@@ -60,7 +73,8 @@ namespace Pandaros.Settlers.Transportation
             }
             else
             {
-                if (click.ClickType != PlayerClickedData.EClickType.Left || player != null || 
+                if (click.ClickType != PlayerClickedData.EClickType.Left ||
+                    player != null || 
                     !sender.Inventory.TryAdd(_trainId, 1, -1, true))
                     return;
 
@@ -75,12 +89,54 @@ namespace Pandaros.Settlers.Transportation
 
         public JObject Save()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public TransportManager.ETransportUpdateResult Update()
         {
-            throw new NotImplementedException();
+            var vectorInt = new Pipliz.Vector3Int(_position);
+            var heightFromTrack = _idealHeightFromTrack;
+
+            if (_trackPosition == Pipliz.Vector3Int.zero)
+                for(int i = -1; i > _idealHeightFromTrack * -1; i--)
+                {
+                    var trackPos = vectorInt.Add(0, i, 0);
+                    if (World.TryGetTypeAt(trackPos, out ItemTypes.ItemType possibleTrack) &&
+                        ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
+                        track.ConnectedBlock.CalculationType == "Track" && _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
+                    {
+                        heightFromTrack = i * -1;
+                        _trackPosition = trackPos;
+                        break; 
+                    }
+                }
+
+            if (heightFromTrack != _idealHeightFromTrack)
+            {
+                _position = vectorInt.Add(0, heightFromTrack, 0).Vector;
+                _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, GetDelayMillisecondsToNextUpdate(), _animatedObject.ObjSettings);
+            }
+            else if (_trackPosition != Pipliz.Vector3Int.zero)
+            {
+                foreach (var side in _trackCalculationType.AvailableBlockSides)
+                {
+                    var searchSide = _trackPosition.GetBlockOffset(side);
+
+                    if (World.TryGetTypeAt(searchSide, out ItemTypes.ItemType possibleTrack) &&
+                        ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
+                        track.ConnectedBlock.CalculationType == "Track" && _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
+                    {
+                        _trackPosition = searchSide;
+                        _position = vectorInt.GetBlockOffset(side).Vector;
+                        _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, GetDelayMillisecondsToNextUpdate(), _animatedObject.ObjSettings);
+                        break;
+                    }
+                }
+            }
+            else
+                return TransportManager.ETransportUpdateResult.Remove;
+
+            return TransportManager.ETransportUpdateResult.KeepUpdating;
         }
     }
 }
