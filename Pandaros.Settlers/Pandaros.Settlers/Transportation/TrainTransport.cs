@@ -23,6 +23,7 @@ namespace Pandaros.Settlers.Transportation
         AnimationManager.AnimatedObject _animatedObject;
         ICSType _cSType;
         Vector3 _position;
+        Vector3 _prevPosition;
         ItemId _trainId;
         int _delay = 1000;
         int _idealHeightFromTrack = 3;
@@ -123,12 +124,15 @@ namespace Pandaros.Settlers.Transportation
                 foreach (var side in _trackCalculationType.AvailableBlockSides)
                 {
                     var searchSide = _trackPosition.GetBlockOffset(side);
+                    var proposePos = currentPositionInt.GetBlockOffset(side).Vector;
 
                     if (World.TryGetTypeAt(searchSide, out ItemTypes.ItemType possibleTrack) &&
                         ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
                         track.ConnectedBlock.CalculationType == _trackCalculationType.name && 
-                        _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
+                        _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType &&
+                        proposePos != _prevPosition)
                     {
+                        _prevPosition = _position;
                         _trackPosition = searchSide;
                         _position = currentPositionInt.GetBlockOffset(side).Vector;
                         _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, GetDelayMillisecondsToNextUpdate(), _animatedObject.ObjSettings);
