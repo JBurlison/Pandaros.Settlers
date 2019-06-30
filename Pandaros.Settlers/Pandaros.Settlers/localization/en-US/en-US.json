@@ -1,5 +1,8 @@
 {
   "types": {
+    "Pandaros.Settlers.TrainStation": "Train Station",
+    "Pandaros.Settlers.Monorail": "Monorail",
+    "Pandaros.Settlers.PropulsionPlatform": "Propulsion Platform",
     "Pandaros.Settlers.ManaPump": "Mana Pump",
     "Pandaros.Settlers.ManaPipe": "Mana Pipe",
     "Pandaros.Settlers.ManaTank": "Mana Tank",
@@ -281,6 +284,9 @@
     "Pandaros.Settlers.AutoLoad.Flowers1": "Morning Glory"
   },
   "typeuses": {
+    "Pandaros.Settlers.TrainStation": "Place next to monorail. Must be powered by mana pipes.",
+    "Pandaros.Settlers.Monorail": "Monorail",
+    "Pandaros.Settlers.PropulsionPlatform": "Propulsion Platform",
     "Pandaros.Settlers.ManaPump": "Mana Pump! Connect a pipe to the front and let it flow! Needs Mana tanks next to, behind or on top of it.",
     "Pandaros.Settlers.ManaPipe": "Mana Pipe! Connect to a mana pump and add plumbing to mana machines! Mana machines need to be connected to pipes that are connected to a pump!",
     "Pandaros.Settlers.ManaTank": "Mana Tank! Place next to, on top of or behind a mana pump. Cannot deliver mana with pipes alone. Needs a pump to operate.",

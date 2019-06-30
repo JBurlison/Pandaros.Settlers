@@ -13,5 +13,6 @@ namespace Pandaros.Settlers.Models
         public bool AllowPlayerToEditBlocksWhileRiding { get; set; }
         public int IdealHeightFromTrack { get; set; }
         public int MoveTimePerBlockMs { get; set; }
+        public float ManaCostPerBlock { get; set; }
     }
 }

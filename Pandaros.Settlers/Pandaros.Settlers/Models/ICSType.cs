@@ -74,5 +74,6 @@ namespace Pandaros.Settlers.Models
         OpenMenuSettings OpensMenuSettings { get; set; }
         ConnectedBlock ConnectedBlock { get; set; }
         TrainConfiguration TrainConfiguration { get; set; }
+        TrainStationSettings TrainStationSettings { get; set; }
     }
 }

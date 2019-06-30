@@ -18,5 +18,6 @@ namespace Pandaros.Settlers.Models
         public string type { get; set; }
         public string BlockType { get; set; }
         public string itemName { get; set; }
+        public float energy { get; set; }
     }
 }

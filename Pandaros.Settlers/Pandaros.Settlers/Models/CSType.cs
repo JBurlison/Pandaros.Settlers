@@ -69,6 +69,7 @@ namespace Pandaros.Settlers.Models
         public virtual OpenMenuSettings OpensMenuSettings { get; set; }
         public virtual ConnectedBlock ConnectedBlock { get; set; }
         public virtual TrainConfiguration TrainConfiguration { get; set; }
+        public virtual TrainStationSettings TrainStationSettings { get; set; }
 
         public override string ToString()
         {

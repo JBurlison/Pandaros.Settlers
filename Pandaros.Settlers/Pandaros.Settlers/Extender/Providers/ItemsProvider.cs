@@ -28,7 +28,6 @@ namespace Pandaros.Settlers.Extender.Providers
         public void AddItemTypes(Dictionary<string, ItemTypesServer.ItemTypeRaw> itemTypes)
         {
             var i = 0;
-            Dictionary<string, ICSType> loadedItems = new Dictionary<string, ICSType>();
 
             foreach (var item in LoadedAssembalies)
             {
@@ -37,12 +36,12 @@ namespace Pandaros.Settlers.Extender.Providers
                     if (Activator.CreateInstance(item) is ICSType itemType &&
                         !string.IsNullOrEmpty(itemType.name))
                     {
-                        loadedItems[itemType.name] = itemType;
+                        ItemCache.CSItems[itemType.name] = itemType;
 
                         var permutations = ConnectedBlockCalculator.GetPermutations(itemType);
 
                         foreach (var permutation in permutations)
-                            loadedItems[permutation.name] = permutation;
+                            ItemCache.CSItems[permutation.name] = permutation;
                     }
                 }
                 catch (Exception ex)
@@ -71,27 +70,27 @@ namespace Pandaros.Settlers.Extender.Providers
                                 if (item.Value.TryGetAs("Durability", out int durability))
                                 {
                                     var ma = item.Value.JsonDeerialize<MagicArmor>();
-                                    loadedItems[ma.name] = ma;
+                                    ItemCache.CSItems[ma.name] = ma;
                                 }
                                 else if (item.Value.TryGetAs("WepDurability", out bool wepDurability))
                                 {
                                     var mw = item.Value.JsonDeerialize<MagicWeapon>();
-                                    loadedItems[mw.name] = mw;
+                                    ItemCache.CSItems[mw.name] = mw;
                                 }
                                 else if (item.Value.TryGetAs("IsMagical", out bool isMagic))
                                 {
                                     var mi = item.Value.JsonDeerialize<PlayerMagicItem>();
-                                    loadedItems[mi.name] = mi;
+                                    ItemCache.CSItems[mi.name] = mi;
                                 }
                                 else
                                 {
                                     var newItem = item.Value.JsonDeerialize<CSType>();
-                                    loadedItems[newItem.name] = newItem;
+                                    ItemCache.CSItems[newItem.name] = newItem;
 
                                     var permutations = ConnectedBlockCalculator.GetPermutations(newItem);
 
                                     foreach (var permutation in permutations)
-                                        loadedItems[permutation.name] = permutation;
+                                        ItemCache.CSItems[permutation.name] = permutation;
                                 }
                             }
                     }
@@ -102,7 +101,7 @@ namespace Pandaros.Settlers.Extender.Providers
                 }
             }
 
-            foreach (var itemType in loadedItems.Values)
+            foreach (var itemType in ItemCache.CSItems.Values)
             {
                 if (itemType.TrainConfiguration != null && itemType.TrainConfiguration.playerSeatOffset != null)
                     Transportation.Train.TrainTypes[itemType.name] = itemType;

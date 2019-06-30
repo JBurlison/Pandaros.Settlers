@@ -73,7 +73,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                 {
                                     var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
 
-                                    if (action.Key != null)
+                                    if (action.Key != null && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(action.Key))
                                     {
                                         TargetObjective = objective;
                                         TargetObjective.JobRef = this;

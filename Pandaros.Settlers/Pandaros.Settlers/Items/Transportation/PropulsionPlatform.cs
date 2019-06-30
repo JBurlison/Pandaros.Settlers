@@ -78,7 +78,8 @@ namespace Pandaros.Settlers.Items.Transportation
             playerSeatOffset = new SerializableVector3(0, 2, 0),
             TrainBounds = new SerializableVector3(3, 2, 3),
             IdealHeightFromTrack = 3,
-            MoveTimePerBlockMs = 700
+            MoveTimePerBlockMs = 700,
+            ManaCostPerBlock = 0.001f
         };
     }
 }
