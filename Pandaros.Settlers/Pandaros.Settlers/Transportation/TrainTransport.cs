@@ -94,13 +94,13 @@ namespace Pandaros.Settlers.Transportation
 
         public TransportManager.ETransportUpdateResult Update()
         {
-            var vectorInt = new Pipliz.Vector3Int(_position);
+            var currentPositionInt = new Pipliz.Vector3Int(_position);
             var heightFromTrack = _idealHeightFromTrack;
 
             if (_trackPosition == Pipliz.Vector3Int.zero)
                 for(int i = -1; i > _idealHeightFromTrack * -1; i--)
                 {
-                    var trackPos = vectorInt.Add(0, i, 0);
+                    var trackPos = currentPositionInt.Add(0, i, 0);
                     if (World.TryGetTypeAt(trackPos, out ItemTypes.ItemType possibleTrack) &&
                         ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
                         track.ConnectedBlock.CalculationType == "Track" && _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
@@ -113,7 +113,7 @@ namespace Pandaros.Settlers.Transportation
 
             if (heightFromTrack != _idealHeightFromTrack)
             {
-                _position = vectorInt.Add(0, heightFromTrack, 0).Vector;
+                _position = currentPositionInt.Add(0, heightFromTrack, 0).Vector;
                 _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, GetDelayMillisecondsToNextUpdate(), _animatedObject.ObjSettings);
             }
             else if (_trackPosition != Pipliz.Vector3Int.zero)
@@ -127,7 +127,7 @@ namespace Pandaros.Settlers.Transportation
                         track.ConnectedBlock.CalculationType == "Track" && _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
                     {
                         _trackPosition = searchSide;
-                        _position = vectorInt.GetBlockOffset(side).Vector;
+                        _position = currentPositionInt.GetBlockOffset(side).Vector;
                         _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, GetDelayMillisecondsToNextUpdate(), _animatedObject.ObjSettings);
                         break;
                     }
