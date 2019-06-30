@@ -115,7 +115,7 @@ namespace Pandaros.Settlers.Items
 
             foreach(var block in calculationType.AvailableBlockSides)
                 if (World.TryGetTypeAt(centerBlock.GetBlockOffset(block), out ItemTypes.ItemType blockAtLocation) &&
-                    BlockLookup.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
+                    ItemCache.CSItems.TryGetValue(blockAtLocation.Name, out var existingBlockType) &&
                     string.Equals(existingBlockType.ConnectedBlock.BlockType, blockType, StringComparison.InvariantCultureIgnoreCase))
                         connectedBlocks.Add(block);
 

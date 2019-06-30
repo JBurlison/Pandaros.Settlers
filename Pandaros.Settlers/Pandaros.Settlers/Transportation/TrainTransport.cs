@@ -191,45 +191,48 @@ namespace Pandaros.Settlers.Transportation
                 bool moved = false;
                 ICSType trainStation = null;
 
-                if (_trainMoveTime < TimeCycle.TotalHours)
-                    foreach (var stationSide in _trackCalculationType.AvailableBlockSides)
+                if (_trainMoveTime > TimeCycle.TotalHours)
+                    return TransportManager.ETransportUpdateResult.KeepUpdating;
+
+                foreach (var stationSide in _trackCalculationType.AvailableBlockSides)
+                {
+                    var stationCheck = _trackPosition.GetBlockOffset(stationSide);
+
+                    if (World.TryGetTypeAt(stationCheck, out ItemTypes.ItemType possibleStation) &&
+                        ItemCache.CSItems.TryGetValue(possibleStation.Name, out var station) &&
+                        station.TrainStationSettings != null &&
+                        station.TrainStationSettings.BlockType == _cSType.ConnectedBlock.BlockType)
                     {
-                        var stationCheck = _trackPosition.GetBlockOffset(stationSide);
+                        trainStation = station;
 
-                        if (World.TryGetTypeAt(stationCheck, out ItemTypes.ItemType possibleStation) &&
-                            ItemCache.CSItems.TryGetValue(possibleStation.Name, out var station) &&
-                            station.TrainStationSettings != null &&
-                            station.TrainStationSettings.BlockType == _cSType.ConnectedBlock.BlockType)
+                        foreach (var kvp in RoamingJobManager.Objectives.Values)
                         {
-                            trainStation = station;
-
-                            foreach (var kvp in RoamingJobManager.Objectives.Values)
+                            if (kvp.TryGetValue(trainStation.TrainStationSettings.ObjectiveCategory, out var locDic) &&
+                                locDic.TryGetValue(stationCheck, out var roamingJobState))
                             {
-                                if (kvp.TryGetValue(trainStation.TrainStationSettings.ObjectiveCategory, out var locDic) &&
-                                    locDic.TryGetValue(stationCheck, out var roamingJobState))
+                                var manaNeeded = RoamingJobState.DEFAULT_MAX - _energy;
+
+                                var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+
+                                if (existing >= manaNeeded)
                                 {
-                                    var manaNeeded = RoamingJobState.DEFAULT_MAX - _energy;
-
-                                    var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-
-                                    if (existing >= manaNeeded)
-                                    {
-                                        roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", manaNeeded);
-                                        _energy = RoamingJobState.DEFAULT_MAX;
-                                    }
-                                    else
-                                    {
-                                        roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existing);
-                                        _energy += existing;
-                                    }
-
-                                    break;
+                                    roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", manaNeeded);
+                                    _energy = RoamingJobState.DEFAULT_MAX;
                                 }
+                                else
+                                {
+                                    roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existing);
+                                    _energy += existing;
+                                }
+
+                                _trainMoveTime = TimeCycle.TotalHours + 1;
+                                break;
                             }
                         }
                     }
+                }
 
-                if (trainStation == null && _trainMoveTime < TimeCycle.TotalHours && _energy > 0)
+                if (trainStation == null && _energy > 0)
                     foreach (var side in _trackCalculationType.AvailableBlockSides)
                     {
                         var searchSide = _trackPosition.GetBlockOffset(side);
