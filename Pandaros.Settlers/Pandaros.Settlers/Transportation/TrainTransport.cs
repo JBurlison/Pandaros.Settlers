@@ -24,10 +24,11 @@ namespace Pandaros.Settlers.Transportation
         ICSType _cSType;
         Vector3 _position;
         ItemId _trainId;
-        Pipliz.Vector3Int _trackPosition = Pipliz.Vector3Int.zero;
         int _delay = 1000;
-        TrackCalculationType _trackCalculationType = new TrackCalculationType();
         int _idealHeightFromTrack = 3;
+        Pipliz.Vector3Int _trackPosition = Pipliz.Vector3Int.zero;
+        TrackCalculationType _trackCalculationType = new TrackCalculationType();
+       
 
         public TrainTransport(Vector3 position, MeshedVehicleDescription vehicle, AnimationManager.AnimatedObject animatedObject, ICSType trainType)
         {
@@ -103,7 +104,8 @@ namespace Pandaros.Settlers.Transportation
                     var trackPos = currentPositionInt.Add(0, i, 0);
                     if (World.TryGetTypeAt(trackPos, out ItemTypes.ItemType possibleTrack) &&
                         ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
-                        track.ConnectedBlock.CalculationType == "Track" && _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
+                        track.ConnectedBlock.CalculationType == _trackCalculationType.name && 
+                        _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
                     {
                         heightFromTrack = i * -1;
                         _trackPosition = trackPos;
@@ -124,7 +126,8 @@ namespace Pandaros.Settlers.Transportation
 
                     if (World.TryGetTypeAt(searchSide, out ItemTypes.ItemType possibleTrack) &&
                         ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
-                        track.ConnectedBlock.CalculationType == "Track" && _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
+                        track.ConnectedBlock.CalculationType == _trackCalculationType.name && 
+                        _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
                     {
                         _trackPosition = searchSide;
                         _position = currentPositionInt.GetBlockOffset(side).Vector;

@@ -5,6 +5,11 @@
       "Items": [
         {
           "type": "label",
+          "text": "Pandaros.Settlers.Wiki.MainMenu.Credits",
+          "alignement": "MiddleCenter"
+        },
+        {
+          "type": "label",
           "text": "Pandaros.Settlers.Wiki.MainMenu.JobsHeader",
           "alignement": "MiddleCenter",
           "fontsize": 32
