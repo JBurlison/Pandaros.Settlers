@@ -2,6 +2,7 @@
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Items.Weapons;
+using Pandaros.Settlers.Models;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -86,6 +87,7 @@ namespace Pandaros.Settlers.Extender.Providers
                                 {
                                     var newItem = item.Value.JsonDeerialize<CSType>();
                                     loadedItems[newItem.name] = newItem;
+
                                     var permutations = ConnectedBlockCalculator.GetPermutations(newItem);
 
                                     foreach (var permutation in permutations)
@@ -102,6 +104,9 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var itemType in loadedItems.Values)
             {
+                if (itemType.TrainConfiguration != null && itemType.TrainConfiguration.playerSeatOffset != null)
+                    Transportation.Train.TrainTypes[itemType.name] = itemType;
+
                 ConnectedBlockSystem.AddConnectedBlock(itemType);
 
                 var rawItem = new ItemTypesServer.ItemTypeRaw(itemType.name, itemType.JsonSerialize());

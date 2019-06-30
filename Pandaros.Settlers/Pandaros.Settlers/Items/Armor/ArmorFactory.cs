@@ -2,6 +2,7 @@
 using Chatting;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;

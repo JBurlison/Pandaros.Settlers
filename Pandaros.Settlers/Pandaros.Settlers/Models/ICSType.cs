@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using Pandaros.Settlers.Items;
 using Pipliz.JSON;
 using UnityEngine;
 using static Pandaros.Settlers.Items.StaticItems;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public enum ItemRarity
     {
@@ -33,9 +34,9 @@ namespace Pandaros.Settlers.Items
         int? maxStackSize { get; set; }
         float? luxuryHours { get; set; }
         string mesh { get; set; }
-        MeshRotationEuler meshRotationEuler { get; set; }
-        MeshOffset meshOffset { get; set; }
-        MeshScale meshScale { get; set; }
+        SerializableVector3 meshRotationEuler { get; set; }
+        SerializableVector3 meshOffset { get; set; }
+        SerializableVector3 meshScale { get; set; }
         bool? needsBase { get; set; }
         float? foodValue { get; set; }
         float? happiness { get; set; }
@@ -72,5 +73,6 @@ namespace Pandaros.Settlers.Items
         StaticItem StaticItemSettings { get; set; }
         OpenMenuSettings OpensMenuSettings { get; set; }
         ConnectedBlock ConnectedBlock { get; set; }
+        TrainConfiguration TrainConfiguration { get; set; }
     }
 }

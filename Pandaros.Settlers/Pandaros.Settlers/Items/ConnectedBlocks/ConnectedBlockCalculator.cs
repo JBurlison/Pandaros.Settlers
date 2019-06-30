@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Items
             foreach (RotationAxis axis in connectedBlockCalculationType.AxisRotations)
                 foreach (BlockRotationDegrees rotationDegrees in _blockRotationDegrees)
                 {
-                    var rotationEuler = new MeshRotationEuler();
+                    var rotationEuler = new SerializableVector3();
                     var rotatedList = new List<BlockSide>();
                     var currentRotation = rotationDegrees;
 

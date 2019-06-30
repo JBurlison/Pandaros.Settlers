@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Models
 {
-    public class ItemId : IEquatable<ItemId>
+    public class ItemId : IEquatable<ItemId>, IEqualityComparer<ItemId>
     {
         static Dictionary<string, ItemId> _cacheString = new Dictionary<string, ItemId>();
         static Dictionary<ushort, ItemId> _cacheUshort = new Dictionary<ushort, ItemId>();
@@ -152,6 +152,16 @@ namespace Pandaros.Settlers.Models
                 return (ushort)obj == Id;
 
             return base.Equals(obj);
+        }
+
+        public bool Equals(ItemId x, ItemId y)
+        {
+            return x.Id == y.Id;
+        }
+
+        public int GetHashCode(ItemId obj)
+        {
+            return obj.Id.GetHashCode();
         }
     }
 }

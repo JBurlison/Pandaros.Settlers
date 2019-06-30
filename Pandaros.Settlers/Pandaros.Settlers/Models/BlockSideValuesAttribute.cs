@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public class BlockSideVectorValuesAttribute : Attribute
     {

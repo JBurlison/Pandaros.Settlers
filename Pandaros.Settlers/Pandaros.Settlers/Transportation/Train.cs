@@ -15,21 +15,28 @@ using System.Text;
 using System.Threading.Tasks;
 using Transport;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Pandaros.Settlers.Transportation
 {
     [ModLoader.ModManager]
     public static class Train
     {
-        private static AnimationManager.AnimatedObject AnimatedObject;
+        public static Dictionary<ItemId, ICSType> TrainTypes { get; set; } = new Dictionary<ItemId, ICSType>();
+        public static Dictionary<ItemId, AnimationManager.AnimatedObject> TrainAnimations { get; set; } = new Dictionary<ItemId, AnimationManager.AnimatedObject>();
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Transportation.Train.Initialize")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Transportation.Train.Initialize", 5000)]
         private static void Initialize()
         {
-            AnimatedObject = AnimationManager.RegisterNewAnimatedObject(GameLoader.NAMESPACE + ".PropulsionPlatform", Path.Combine(GameLoader.MESH_PATH, "PropulsionPlatform.obj"), GameLoader.NAMESPACE + ".PropulsionPlatform");
-            AnimatedObject.ObjSettings.colliders = new List<RotatedBounds>() { new RotatedBounds(Vector3.zero, new Vector3(3, 2, 3), Quaternion.identity) };
-            AnimatedObject.ObjSettings.InterpolationLooseness = 1.5f;
-            AnimatedObject.ObjSettings.sendUpdateRadius = 500;
+            foreach (var train in TrainTypes.Values)
+            {
+                var animatedObject = AnimationManager.RegisterNewAnimatedObject(train.name, train.mesh, train.sideall);
+                animatedObject.ObjSettings.colliders = new List<RotatedBounds>() { new RotatedBounds(Vector3.zero, train.TrainConfiguration.TrainBounds, Quaternion.identity) };
+                animatedObject.ObjSettings.InterpolationLooseness = 1.5f;
+                animatedObject.ObjSettings.sendUpdateRadius = 500;
+
+                TrainAnimations[train.name] = animatedObject;
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Transportation.Train.OnPlayerClicked")]
@@ -39,16 +46,34 @@ namespace Pandaros.Settlers.Transportation
                 data.IsHoldingButton ||
                 (data.ClickType != PlayerClickedData.EClickType.Right || data.OnBuildCooldown) ||
                 (data.HitType != PlayerClickedData.EHitType.Block ||
-                data.TypeSelected != ItemId.GetItemId(GameLoader.NAMESPACE + ".PropulsionPlatform").Id || !sender.Inventory.TryRemove(data.TypeSelected, 1, -1, true)))
+                !TrainTypes.TryGetValue(data.TypeSelected, out var cSType) || !sender.Inventory.TryRemove(data.TypeSelected, 1, -1, true)))
                 return;
 
             data.ConsumedType = PlayerClickedData.EConsumedType.UsedAsTool;
-            CreateTrain(data.GetExactHitPositionWorld(), new MeshedVehicleDescription(new ClientMeshedObject(AnimatedObject.ObjType), new Vector3(0.0f, 1.25f, 0.0f), false));
+            CreateTrain(cSType, data.GetExactHitPositionWorld());
         }
 
-        public static TrainTransport CreateTrain(Vector3 spawnPosition, MeshedVehicleDescription vehicle)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadWorldMisc, GameLoader.NAMESPACE + ".Transportation.Train.OnLoadWorldMisc")]
+        private static void OnLoadWorldMisc(JObject rootObj)
         {
-            TrainTransport trainTransport = new TrainTransport(spawnPosition, vehicle, AnimatedObject, new PropulsionPlatform());
+            if (rootObj.TryGetValue("transports", out JToken transports))
+            {
+                if (transports.Type != JTokenType.Array)
+                    return;
+
+                List<TransportSave> trainSaves = transports.ToObject<List<TransportSave>>();
+
+                foreach (var save in trainSaves)
+                {
+                    if (TrainTransport.TryCreateFromSave(save, out var trainTransport))
+                        TransportManager.RegisterTransport(trainTransport);
+                }
+            }
+        }
+
+        public static TrainTransport CreateTrain(ICSType cSType, Vector3 spawnPosition)
+        {
+            TrainTransport trainTransport = new TrainTransport(spawnPosition, TrainAnimations[cSType.name], cSType);
             TransportManager.RegisterTransport(trainTransport);
             return trainTransport;
         }

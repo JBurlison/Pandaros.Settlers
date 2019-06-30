@@ -5,7 +5,7 @@ using System.Text;
 using Pipliz.JSON;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public class Colliders
     {

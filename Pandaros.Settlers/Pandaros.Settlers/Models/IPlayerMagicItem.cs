@@ -2,7 +2,7 @@
 using NPC;
 using Pandaros.Settlers.Extender;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public interface IPlayerMagicItem : ICSType, IMagicEffect
     {

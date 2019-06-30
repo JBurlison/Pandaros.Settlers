@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Shared;
 using System.Collections.Generic;

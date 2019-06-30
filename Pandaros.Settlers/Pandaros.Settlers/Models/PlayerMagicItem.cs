@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public class PlayerMagicItem : CSType, IPlayerMagicItem
     {

@@ -8,7 +8,7 @@ using System.Text;
 using UnityEngine;
 using static Pandaros.Settlers.Items.StaticItems;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public class CSType : ICSType
     {
@@ -25,9 +25,9 @@ namespace Pandaros.Settlers.Items
         public virtual float? happiness { get; set; }
         public virtual float? dailyFoodFractionOptimal { get; set; }
         public virtual string mesh { get; set; }
-        public virtual MeshRotationEuler meshRotationEuler { get; set; }
-        public virtual MeshOffset meshOffset { get; set; }
-        public virtual MeshScale meshScale { get; set; }
+        public virtual SerializableVector3 meshRotationEuler { get; set; }
+        public virtual SerializableVector3 meshOffset { get; set; }
+        public virtual SerializableVector3 meshScale { get; set; }
         public virtual float? luxuryHours { get; set; }
         public virtual string icon { get; set; }
         public virtual string onRemoveAudio { get; set; }
@@ -68,6 +68,7 @@ namespace Pandaros.Settlers.Items
         public virtual StaticItem StaticItemSettings { get; set; }
         public virtual OpenMenuSettings OpensMenuSettings { get; set; }
         public virtual ConnectedBlock ConnectedBlock { get; set; }
+        public virtual TrainConfiguration TrainConfiguration { get; set; }
 
         public override string ToString()
         {

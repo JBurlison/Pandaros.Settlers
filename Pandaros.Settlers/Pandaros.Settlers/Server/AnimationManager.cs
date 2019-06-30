@@ -36,12 +36,16 @@ namespace Pandaros.Settlers.Server
         {
             public AnimatedObject(string key, string meshPath, string textureMapping = "neutral")
             {
+                Key = key;
+                Mesh = meshPath;
                 string mesh = IOHelper.SimplifyRelativeDirectory(meshPath, "");
                 ObjSettings = new MeshedObjectTypeSettings(key, mesh, textureMapping);
                 ObjType     = MeshedObjectType.Register(ObjSettings);
                 FileTable.Register(mesh, ECachedFileType.Mesh);
             }
 
+            public string Key { get; private set; }
+            public string Mesh { get; private set; }
             public string Name { get; private set; }
             public MeshedObjectType ObjType { get; }
             public MeshedObjectTypeSettings ObjSettings { get; }

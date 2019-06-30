@@ -1,16 +1,12 @@
-﻿using Pipliz.JSON;
+﻿using Pandaros.Settlers.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Items
 {
-    public interface ILootTable : INameable
-    {
-        List<LootPoolEntry> LootPoolList { get; }
-
-        Dictionary<ushort, int> GetDrops(double luckModifier);
-    }
-
     public class LootTable : ILootTable
     {
         public virtual string name { get; private set; }
@@ -35,27 +31,6 @@ namespace Pandaros.Settlers.Items
             }
 
             return dic;
-        }
-    }
-
-    public class LootPoolEntry
-    {
-        public string Item { get; private set; }
-
-        public double Weight { get; private set; }
-
-        public int MinCount { get; private set; }
-
-        public int MaxCount { get; private set; }
-
-        public LootPoolEntry() { }
-
-        public LootPoolEntry(string item, int min, int max, double weight = 0)
-        {
-            Item = item;
-            Weight = weight;
-            MinCount = min;
-            MaxCount = max;
         }
     }
 }

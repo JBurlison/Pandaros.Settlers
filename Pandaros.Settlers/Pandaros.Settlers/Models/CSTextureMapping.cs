@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Pipliz.JSON;
 
-namespace Pandaros.Settlers.Items
+namespace Pandaros.Settlers.Models
 {
     public class CSTextureMapping : ICSTextureMapping
     {

@@ -1,5 +1,6 @@
 ﻿using Pandaros.Settlers.Extender;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 
 namespace Pandaros.Settlers
 {

@@ -186,7 +186,7 @@ namespace Pandaros.Settlers.Energy
             maxStackSize  = 300,
             destructionTime = 500,
             sideall = GameLoader.NAMESPACE + ".ManaPump",
-            meshRotationEuler = new MeshRotationEuler()
+            meshRotationEuler = new SerializableVector3()
             {
                 y = 90
             },

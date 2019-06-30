@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;

@@ -4,6 +4,7 @@ using NPC;
 using Pandaros.Settlers.AI;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
+using Pandaros.Settlers.Models;
 using Pipliz.JSON;
 
 namespace Pandaros.Settlers.Entities

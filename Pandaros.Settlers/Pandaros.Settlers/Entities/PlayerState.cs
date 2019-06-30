@@ -1,6 +1,7 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 using Shared.Networking;

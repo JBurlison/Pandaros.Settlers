@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pandaros.Settlers.Models;
 using Recipes;
 
 namespace Pandaros.Settlers.Items.Reagents

@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Recipes;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,6 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Jobs;
+using Pandaros.Settlers.Models;
 using Pipliz.JSON;
 using Recipes;
 using System.Collections.Generic;

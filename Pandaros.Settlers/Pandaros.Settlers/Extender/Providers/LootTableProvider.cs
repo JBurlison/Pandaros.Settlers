@@ -1,5 +1,6 @@
 ﻿using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
+using Pandaros.Settlers.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

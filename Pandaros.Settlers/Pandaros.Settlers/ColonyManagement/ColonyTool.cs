@@ -4,6 +4,7 @@ using NetworkUI.Items;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Items;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Shared;
 using System;
