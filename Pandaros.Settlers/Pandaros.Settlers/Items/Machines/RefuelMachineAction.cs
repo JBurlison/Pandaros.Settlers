@@ -32,25 +32,22 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ItemId PreformAction(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
+            if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
             {
-                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < .75f)
-                {
-                    var stockpile = colony.Stockpile;
+                var stockpile = colony.Stockpile;
 
-                    foreach (var item in FuelValues)
-                        while ((stockpile.AmountContained(item.Key) > 100 ||
-                                item.Key == ColonyBuiltIn.ItemTypes.FIREWOOD ||
-                                item.Key == ColonyBuiltIn.ItemTypes.COALORE) &&
-                                machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
-                        {
-                            stockpile.TryRemove(item.Key);
-                            machineState.AddToActionEmergy(MachineConstants.REFUEL, item.Value);
-                        }
+                foreach (var item in FuelValues)
+                    while ((stockpile.AmountContained(item.Key) > 100 ||
+                            item.Key == ColonyBuiltIn.ItemTypes.FIREWOOD ||
+                            item.Key == ColonyBuiltIn.ItemTypes.COALORE) &&
+                            machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
+                    {
+                        stockpile.TryRemove(item.Key);
+                        machineState.AddToActionEmergy(MachineConstants.REFUEL, item.Value);
+                    }
 
-                    if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
-                        return FuelValues.First().Key;
-                }
+                if (machineState.GetActionEnergy(MachineConstants.REFUEL) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.REFUEL, colony, MachineConstants.MECHANICAL))
+                    return FuelValues.First().Key;
             }
 
             return ObjectiveLoadEmptyIcon;

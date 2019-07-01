@@ -157,7 +157,6 @@ namespace Pandaros.Settlers.Items.Machines
 
         public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.RELOAD) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&

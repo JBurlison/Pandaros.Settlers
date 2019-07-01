@@ -208,11 +208,6 @@ namespace Pandaros.Settlers.ColonyManagement
                         NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
                     }
             }
-            else if (data.ButtonIdentifier.Contains(".CallToArms"))
-            {
-                AI.CalltoArms.ProcesssCallToArms(data.Player, data.Player.ActiveColony);
-                NetworkMenuManager.SendServerPopup(data.Player, BuildMenu(data.Player, jobCounts, false, string.Empty, 0));
-            }
         }
 
         public static int GetCountValue(int countIndex)
@@ -262,11 +257,6 @@ namespace Pandaros.Settlers.ColonyManagement
                     menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.GetLocalizationKey("RecruitmentCost"), UnityEngine.Color.black)),
                                                        new Label(new LabelData((cost + num).ToString(), UnityEngine.Color.black))));
                 }
-
-                if(ps.CallToArmsEnabled)
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".CallToArms", new LabelData(_localizationHelper.GetLocalizationKey("DeactivateCallToArms"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-                else
-                    menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".CallToArms", new LabelData(_localizationHelper.GetLocalizationKey("ActivateCallToArms"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
 
 

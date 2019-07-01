@@ -15,7 +15,6 @@ namespace Pandaros.Settlers.Entities
 
         public Colony ColonyRef { get; set; }
         public int FaiedBossSpawns { get; set; }
-        public bool CallToArmsEnabled { get; set; }
         public GameDifficulty Difficulty { get; set; } = SettlersConfiguration.DefaultDifficulty;
         public bool BossesEnabled { get; set; } = true;
         public bool SettlersEnabled { get; set; } = true;

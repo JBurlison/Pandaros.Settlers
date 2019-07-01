@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.Items.Transportation
 
         public bool isOptional => true;
 
-        public int defaultLimit => 1;
+        public int defaultLimit => 50;
 
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 

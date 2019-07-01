@@ -47,12 +47,6 @@ namespace Pandaros.Settlers
             private set => SetValue(nameof(DifficutlyCanBeChanged), value);
         }
 
-        public static bool OfflineColonies
-        {
-            get => GetorDefault(nameof(OfflineColonies), true);
-            private set => SetValue(nameof(OfflineColonies), value);
-        }
-
         public static bool TeleportPadsRequireMachinists
         {
             get => GetorDefault(nameof(TeleportPadsRequireMachinists), false);

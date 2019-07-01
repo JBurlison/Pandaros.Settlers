@@ -251,18 +251,17 @@ namespace Pandaros.Settlers.Items.Machines
             if (!SettlersConfiguration.TeleportPadsRequireMachinists)
                 return;
 
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
-                if (_paired.ContainsKey(machineState.Position) &&
-                    GetPadAt(_paired[machineState.Position], out var ms) &&
-                    machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
-                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
-                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
-                {
-                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.01f);
-                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
+            if (_paired.ContainsKey(machineState.Position) &&
+                GetPadAt(_paired[machineState.Position], out var ms) &&
+                machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
+                machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+            {
+                machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.01f);
+                machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
 
-                    machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
-                }
+                machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Items.Machines.TeleportPad.RegisterTeleportPad")]

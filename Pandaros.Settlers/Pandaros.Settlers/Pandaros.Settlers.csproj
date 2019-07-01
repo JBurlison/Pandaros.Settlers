@@ -139,14 +139,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\CalltoArms.cs" />
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManagement\BlockTracker.cs" />
     <Compile Include="ColonyManagement\NotEnoughBeds.cs" />
     <Compile Include="ColonyManagement\CloseBeds.cs" />
     <Compile Include="ColonyManagement\ColonistDied.cs" />
-    <Compile Include="ColonyManagement\ColonyArchive.cs" />
     <Compile Include="ColonyManagement\ColonyTool.cs" />
     <Compile Include="ColonyManagement\JobSettingsExtention.cs" />
     <Compile Include="ColonyManagement\NotEnoughJobs.cs" />
@@ -543,7 +541,6 @@
     <Compile Include="Research\PandaResearchable.cs" />
     <Compile Include="ColonyManagement\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ColonyManagement\ColonyArchiver.cs" />
     <Compile Include="ColonyManagement\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
     <None Include="Schematics\ambiyafinal.schematic">

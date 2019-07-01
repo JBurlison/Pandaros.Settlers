@@ -94,46 +94,45 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
-                try
+            try
+            {
+                if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
                 {
-                    if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .75f && TurretSettings.ContainsKey(machineState.RoamObjective))
-                    {
-                        var repaired       = false;
-                        var requiredForFix = new List<InventoryItem>();
-                        var stockpile      = colony.Stockpile;
+                    var repaired       = false;
+                    var requiredForFix = new List<InventoryItem>();
+                    var stockpile      = colony.Stockpile;
 
-                        foreach (var durability in TurretSettings[machineState.RoamObjective]
-                                                  .RequiredForFix.OrderByDescending(s => s.Key))
-                            if (machineState.GetActionEnergy(MachineConstants.REPAIR) < durability.Key)
+                    foreach (var durability in TurretSettings[machineState.RoamObjective]
+                                                .RequiredForFix.OrderByDescending(s => s.Key))
+                        if (machineState.GetActionEnergy(MachineConstants.REPAIR) < durability.Key)
+                        {
+                            requiredForFix = durability.Value;
+                            break;
+                        }
+
+                    if (stockpile.Contains(requiredForFix))
+                    {
+                        stockpile.TryRemove(requiredForFix);
+                        repaired = true;
+                    }
+                    else
+                    {
+                        foreach (var item in requiredForFix)
+                            if (!stockpile.Contains(item) && item.Type != 0)
                             {
-                                requiredForFix = durability.Value;
+                                retval = ItemId.GetItemId(item.Type);
                                 break;
                             }
-
-                        if (stockpile.Contains(requiredForFix))
-                        {
-                            stockpile.TryRemove(requiredForFix);
-                            repaired = true;
-                        }
-                        else
-                        {
-                            foreach (var item in requiredForFix)
-                                if (!stockpile.Contains(item) && item.Type != 0)
-                                {
-                                    retval = ItemId.GetItemId(item.Type);
-                                    break;
-                                }
-                        }
-
-                        if (repaired)
-                            machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
                     }
+
+                    if (repaired)
+                        machineState.ResetActionToMaxLoad(MachineConstants.REPAIR);
                 }
-                catch (Exception ex)
-                {
-                    PandaLogger.LogError(ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
 
             return retval;
         }
@@ -142,115 +141,113 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Reload");
 
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
-                try
+            try
+            {
+                if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.GetActionEnergy(MachineConstants.RELOAD) < .75f)
                 {
-                    if (TurretSettings.ContainsKey(machineState.RoamObjective) && machineState.GetActionEnergy(MachineConstants.RELOAD) < .75f)
-                    {
-                        var stockpile = colony.Stockpile;
+                    var stockpile = colony.Stockpile;
 
-                        while (stockpile.Contains(TurretSettings[machineState.RoamObjective].Ammo) &&
-                               machineState.GetActionEnergy(MachineConstants.RELOAD) <= RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
-                            if (stockpile.TryRemove(TurretSettings[machineState.RoamObjective].Ammo))
-                            {
-                                machineState.AddToActionEmergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoReloadValue);
+                    while (stockpile.Contains(TurretSettings[machineState.RoamObjective].Ammo) &&
+                            machineState.GetActionEnergy(MachineConstants.RELOAD) <= RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
+                        if (stockpile.TryRemove(TurretSettings[machineState.RoamObjective].Ammo))
+                        {
+                            machineState.AddToActionEmergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoReloadValue);
 
-                                if (TurretSettings[machineState.RoamObjective].Ammo.Any(itm => itm.Type == ColonyBuiltIn.ItemTypes.GUNPOWDERPOUCH))
-                                    stockpile.Add(ColonyBuiltIn.ItemTypes.LINENPOUCH);
-                            }
+                            if (TurretSettings[machineState.RoamObjective].Ammo.Any(itm => itm.Type == ColonyBuiltIn.ItemTypes.GUNPOWDERPOUCH))
+                                stockpile.Add(ColonyBuiltIn.ItemTypes.LINENPOUCH);
+                        }
 
-                        if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
-                            retval = ItemId.GetItemId(TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type);
-                    }
+                    if (machineState.GetActionEnergy(MachineConstants.RELOAD) < RoamingJobState.GetActionsMaxEnergy(MachineConstants.RELOAD, colony, MachineConstants.MECHANICAL))
+                        retval = ItemId.GetItemId(TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault(ammo => !stockpile.Contains(ammo)).Type);
                 }
-                catch (Exception ex)
-                {
-                    PandaLogger.LogError(ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex);
+            }
 
             return retval;
         }
 
         public static void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
-                try
+            try
+            {
+                if (TurretSettings.ContainsKey(machineState.RoamObjective) &&
+                    machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
+                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
                 {
-                    if (TurretSettings.ContainsKey(machineState.RoamObjective) &&
-                        machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
-                        machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
-                        machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+                    var stockpile = colony.Stockpile;
+
+                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, TurretSettings[machineState.RoamObjective].DurabilityPerDoWork);
+                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, TurretSettings[machineState.RoamObjective].FuelPerDoWork);
+
+                    if (machineState.GetActionEnergy(MachineConstants.RELOAD) > 0)
                     {
-                        var stockpile = colony.Stockpile;
+                        var totalDamage = TurretSettings[machineState.RoamObjective].TotalDamage;
 
-                        machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, TurretSettings[machineState.RoamObjective].DurabilityPerDoWork);
-                        machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, TurretSettings[machineState.RoamObjective].FuelPerDoWork);
+                        var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0),
+                                                            TurretSettings[machineState.RoamObjective].Range,
+                                                            totalDamage);
 
-                        if (machineState.GetActionEnergy(MachineConstants.RELOAD) > 0)
+                        if (monster == null)
+                            monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0),
+                                                            TurretSettings[machineState.RoamObjective].Range,
+                                                            totalDamage);
+
+                        if (monster == null)
+                            monster = MonsterTracker.Find(machineState.Position.Add(-1, 0, 0),
+                                                            TurretSettings[machineState.RoamObjective].Range,
+                                                            totalDamage);
+
+                        if (monster == null)
+                            monster = MonsterTracker.Find(machineState.Position.Add(0, -1, 0),
+                                                            TurretSettings[machineState.RoamObjective].Range,
+                                                            totalDamage);
+
+                        if (monster == null)
+                            monster = MonsterTracker.Find(machineState.Position.Add(0, 0, 1),
+                                                            TurretSettings[machineState.RoamObjective].Range,
+                                                            totalDamage);
+
+                        if (monster == null)
+                            monster = MonsterTracker.Find(machineState.Position.Add(0, 0, -1),
+                                                            TurretSettings[machineState.RoamObjective].Range,
+                                                            totalDamage);
+
+                        if (monster != null)
                         {
-                            var totalDamage = TurretSettings[machineState.RoamObjective].TotalDamage;
+                            machineState.SubtractFromActionEnergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoValue);
 
-                            var monster = MonsterTracker.Find(machineState.Position.Add(0, 1, 0),
-                                                              TurretSettings[machineState.RoamObjective].Range,
-                                                              totalDamage);
+                            if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out ushort above) && above == ColonyBuiltIn.ItemTypes.AIR.Id)
+                                Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
+                                                                new IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
+                                                                                    TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault().Type));
 
-                            if (monster == null)
-                                monster = MonsterTracker.Find(machineState.Position.Add(1, 0, 0),
-                                                              TurretSettings[machineState.RoamObjective].Range,
-                                                              totalDamage);
+                            if (TurretSettings[machineState.RoamObjective].OnShootAudio != null)
+                                AudioManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.RoamObjective].OnShootAudio);
 
-                            if (monster == null)
-                                monster = MonsterTracker.Find(machineState.Position.Add(-1, 0, 0),
-                                                              TurretSettings[machineState.RoamObjective].Range,
-                                                              totalDamage);
+                            if (TurretSettings[machineState.RoamObjective].OnHitAudio != null)
+                                AudioManager.SendAudio(monster.PositionToAimFor,TurretSettings[machineState.RoamObjective].OnHitAudio);
 
-                            if (monster == null)
-                                monster = MonsterTracker.Find(machineState.Position.Add(0, -1, 0),
-                                                              TurretSettings[machineState.RoamObjective].Range,
-                                                              totalDamage);
+                            TurretSettings[machineState.RoamObjective]
+                                .ProjectileAnimation
+                                .SendMoveToInterpolated(machineState.Position.Vector, monster.PositionToAimFor);
 
-                            if (monster == null)
-                                monster = MonsterTracker.Find(machineState.Position.Add(0, 0, 1),
-                                                              TurretSettings[machineState.RoamObjective].Range,
-                                                              totalDamage);
-
-                            if (monster == null)
-                                monster = MonsterTracker.Find(machineState.Position.Add(0, 0, -1),
-                                                              TurretSettings[machineState.RoamObjective].Range,
-                                                              totalDamage);
-
-                            if (monster != null)
-                            {
-                                machineState.SubtractFromActionEnergy(MachineConstants.RELOAD, TurretSettings[machineState.RoamObjective].AmmoValue);
-
-                                if (World.TryGetTypeAt(machineState.Position.Add(0, 1, 0), out ushort above) && above == ColonyBuiltIn.ItemTypes.AIR.Id)
-                                    Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector,
-                                                                    new IndicatorState(TurretSettings[machineState.RoamObjective].WorkTime,
-                                                                                       TurretSettings[machineState.RoamObjective].Ammo.FirstOrDefault().Type));
-
-                                if (TurretSettings[machineState.RoamObjective].OnShootAudio != null)
-                                    AudioManager.SendAudio(machineState.Position.Vector, TurretSettings[machineState.RoamObjective].OnShootAudio);
-
-                                if (TurretSettings[machineState.RoamObjective].OnHitAudio != null)
-                                    AudioManager.SendAudio(monster.PositionToAimFor,TurretSettings[machineState.RoamObjective].OnHitAudio);
-
-                                TurretSettings[machineState.RoamObjective]
-                                   .ProjectileAnimation
-                                   .SendMoveToInterpolated(machineState.Position.Vector, monster.PositionToAimFor);
-
-                                ServerManager.SendParticleTrail(machineState.Position.Vector, monster.PositionToAimFor, 2);
-                                monster.OnHit(totalDamage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);
-                            }
+                            ServerManager.SendParticleTrail(machineState.Position.Vector, monster.PositionToAimFor, 2);
+                            monster.OnHit(totalDamage, machineState, ModLoader.OnHitData.EHitSourceType.Misc);
                         }
-
-                        machineState.NextTimeForWork =
-                            machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                     }
+
+                    machineState.NextTimeForWork =
+                        machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                 }
-                catch (Exception ex)
-                {
-                    PandaLogger.LogError(ex, $"Turret shoot for {machineState.RoamObjective}");
-                }
+            }
+            catch (Exception ex)
+            {
+                PandaLogger.LogError(ex, $"Turret shoot for {machineState.RoamObjective}");
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined,

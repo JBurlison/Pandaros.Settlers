@@ -77,7 +77,6 @@ namespace Pandaros.Settlers.Items.Machines
 
         public void DoWork(Colony colony, RoamingJobState machineState)
         {
-            if ((!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies) || colony.OwnerIsOnline())
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
                     machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
                     machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
@@ -134,56 +133,53 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var retval = ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");
 
-            if (!colony.OwnerIsOnline() && SettlersConfiguration.OfflineColonies || colony.OwnerIsOnline())
+            if (state.GetActionEnergy(MachineConstants.REPAIR) < .75f)
             {
-                if (state.GetActionEnergy(MachineConstants.REPAIR) < .75f)
+                var repaired = false;
+                var requiredForFix = new List<InventoryItem>();
+                var stockpile = colony.Stockpile;
+
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1));
+                requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1));
+
+                if (state.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
-                    var repaired = false;
-                    var requiredForFix = new List<InventoryItem>();
-                    var stockpile = colony.Stockpile;
-
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Name, 1));
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Name, 1));
-
-                    if (state.GetActionEnergy(MachineConstants.REPAIR) < .10f)
-                    {
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4));
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 1));
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
-                    }
-                    else if (state.GetActionEnergy(MachineConstants.REPAIR) < .30f)
-                    {
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2));
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
-                    }
-                    else if (state.GetActionEnergy(MachineConstants.REPAIR) < .50f)
-                    {
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1));
-                        requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
-                    }
-
-                    if (stockpile.Contains(requiredForFix))
-                    {
-                        stockpile.TryRemove(requiredForFix);
-                        repaired = true;
-                    }
-                    else
-                    {
-                        foreach (var item in requiredForFix)
-                            if (!stockpile.Contains(item))
-                            {
-                                retval = ItemId.GetItemId(item.Type);
-                                break;
-                            }
-                    }
-
-                    if (repaired)
-                        state.ResetActionToMaxLoad(MachineConstants.REPAIR);
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 4));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
                 }
-            }
+                else if (state.GetActionEnergy(MachineConstants.REPAIR) < .30f)
+                {
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONWROUGHT.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
+                }
+                else if (state.GetActionEnergy(MachineConstants.REPAIR) < .50f)
+                {
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Name, 1));
+                }
 
+                if (stockpile.Contains(requiredForFix))
+                {
+                    stockpile.TryRemove(requiredForFix);
+                    repaired = true;
+                }
+                else
+                {
+                    foreach (var item in requiredForFix)
+                        if (!stockpile.Contains(item))
+                        {
+                            retval = ItemId.GetItemId(item.Type);
+                            break;
+                        }
+                }
+
+                if (repaired)
+                    state.ResetActionToMaxLoad(MachineConstants.REPAIR);
+            }
+            
             return retval;
         }
     }

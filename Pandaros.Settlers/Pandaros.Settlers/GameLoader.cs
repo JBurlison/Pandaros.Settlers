@@ -279,10 +279,8 @@ namespace Pandaros.Settlers
         {
             RUNNING = true;
             CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-            CommandManager.RegisterCommand(new CalltoArms());
             CommandManager.RegisterCommand(new ArmorCommand());
             CommandManager.RegisterCommand(new VersionChatCommand());
-            CommandManager.RegisterCommand(new ColonyArchiver());
             CommandManager.RegisterCommand(new ConfigurationChatCommand());
             CommandManager.RegisterCommand(new BossesChatCommand());
             CommandManager.RegisterCommand(new SettlersChatCommand());
