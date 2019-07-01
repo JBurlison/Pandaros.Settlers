@@ -26,7 +26,8 @@ namespace Pandaros.Settlers
                 TimeUnhappyAfterColonistDeathSeconds     = 0f,
                 UnhappinessPerColonistDeath              = 0f,
                 UnhappyGuardsMultiplyRate                = 0f,
-                MonsterHPPerColonist                     = 0f
+                MonsterHPPerColonist                     = 0f,
+                UnhappyColonistsBought                   = 0f
             };
 
             Easy = new GameDifficulty("Easy", 1.0f, 1f, 0.10f, 10f)
@@ -39,7 +40,8 @@ namespace Pandaros.Settlers
                 TimeUnhappyAfterColonistDeathSeconds     = 300,
                 UnhappinessPerColonistDeath              = 1,
                 UnhappyGuardsMultiplyRate                = 0.5f,
-                MonsterHPPerColonist                     = .5f
+                MonsterHPPerColonist                     = .5f,
+                UnhappyColonistsBought                   = -1f
             };
 
             Medium = new GameDifficulty("Medium", 1.25f, 0f, 0.35f, 50f)
@@ -53,7 +55,8 @@ namespace Pandaros.Settlers
                 UnhappinessPerColonistDeath              = 2,
                 UnhappyGuardsMultiplyRate                = 1,
                 MonsterHPPerColonist                     = 1f,
-                FoodMultiplier                           = .1f
+                FoodMultiplier                           = .1f,
+                UnhappyColonistsBought                   = -2f
             };
 
             Hard = new GameDifficulty("Hard", 1.50f, -0.1f, 0.60f, 70f)
@@ -67,7 +70,8 @@ namespace Pandaros.Settlers
                 UnhappinessPerColonistDeath              = 3,
                 UnhappyGuardsMultiplyRate                = 1.5f,
                 MonsterHPPerColonist                     = 3f,
-                FoodMultiplier                           = .2f
+                FoodMultiplier                           = .2f,
+                UnhappyColonistsBought                   = -3f
             };
 
             new GameDifficulty("Insane", 2f, -0.2f, .80f, 80f)
@@ -80,8 +84,9 @@ namespace Pandaros.Settlers
                 TimeUnhappyAfterColonistDeathSeconds     = 1800,
                 UnhappinessPerColonistDeath              = 4,
                 UnhappyGuardsMultiplyRate                = 2,
-                MonsterHPPerColonist                     = 10f,
-                FoodMultiplier                           = .3f
+                MonsterHPPerColonist                     = 5f,
+                FoodMultiplier                           = .3f,
+                UnhappyColonistsBought                   = -5f
             };
         }
 
@@ -123,7 +128,8 @@ namespace Pandaros.Settlers
         public float MonsterHPPerColonist { get; set; } = 1;
         public double UnhappinessPerColonistDeath { get; set; } = 2;
         public double TimeUnhappyAfterColonistDeathSeconds { get; set; } = 900;
-        public float UnhappyGuardsMultiplyRate = 1;
+        public float UnhappyGuardsMultiplyRate { get; set; } = 1;
+        public float UnhappyColonistsBought { get; set; } = -1;
 
         public void Print(Players.Player player)
         {

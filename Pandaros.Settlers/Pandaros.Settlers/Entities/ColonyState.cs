@@ -1,6 +1,7 @@
 ﻿using NetworkUI;
 using NetworkUI.Items;
 using Pandaros.Settlers.ColonyManagement;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using System;
@@ -17,8 +18,7 @@ namespace Pandaros.Settlers.Entities
         public int FaiedBossSpawns { get; set; }
         public GameDifficulty Difficulty { get; set; } = SettlersConfiguration.DefaultDifficulty;
         public bool BossesEnabled { get; set; } = true;
-        public bool SettlersEnabled { get; set; } = true;
-        public bool NotifySettlers { get; set; } = true;
+        public SettlersState SettlersEnabled { get; set; }
         public int ColonistsBought { get; set; }
         public double NextColonistBuyTime { get; set; }
         public double NeedsABed { get; set; }
@@ -137,10 +137,7 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(BossesEnabled), out bool bosses))
                     _colonyStates[c].BossesEnabled = bosses;
 
-                if (stateNode.TryGetAs(nameof(NotifySettlers), out bool settlers))
-                    _colonyStates[c].NotifySettlers = settlers;
-
-                if (stateNode.TryGetAs(nameof(SettlersEnabled), out bool notify))
+                if (stateNode.TryGetAs(nameof(SettlersEnabled), out SettlersState notify))
                     _colonyStates[c].SettlersEnabled = notify;
 
                 if (stateNode.TryGetAs(nameof(HighestColonistCount), out int hsc))
@@ -172,7 +169,6 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(SettlersEnabled), _colonyStates[c].SettlersEnabled);
                 node.SetAs(nameof(HighestColonistCount), _colonyStates[c].HighestColonistCount);
                 node.SetAs(nameof(SettlersToggledTimes), _colonyStates[c].SettlersToggledTimes);
-                node.SetAs(nameof(NotifySettlers), _colonyStates[c].NotifySettlers);
 
                 foreach (var kvp in _colonyStates[c].ItemsPlaced)
                     ItemsPlacedNode.SetAs(kvp.Key.ToString(), kvp.Value);

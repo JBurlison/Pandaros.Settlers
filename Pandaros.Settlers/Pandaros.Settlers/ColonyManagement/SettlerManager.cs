@@ -184,7 +184,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                     var cs = ColonyState.GetColonyState(colony);
 
-                    if (cs.SettlersEnabled)
+                    if (cs.SettlersEnabled != Models.SettlersState.Disabled)
                         if (EvaluateSettlers(cs) ||
                             EvaluateLaborers(cs) ||
                             EvaluateBeds(cs))
@@ -228,7 +228,7 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 var cs = ColonyState.GetColonyState(p.ActiveColony);
 
-                if (cs.SettlersEnabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
+                if (cs.SettlersEnabled != Models.SettlersState.Disabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
                     PandaChat.Send(p,
                                    string
                                       .Format("Recruiting over {0} colonists will cost the base food cost plus a compounding {1} food. This compounding value resets once per in game day. If you build it... they will come.",
@@ -238,7 +238,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 if (cs.SettlersToggledTimes < SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4))
                 {
-                    var settlers = cs.SettlersEnabled ? "on" : "off";
+                    var settlers = cs.SettlersEnabled.ToString();
 
                     if (SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4) > 0)
                         PandaChat.Send(p,
@@ -274,35 +274,15 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 npc.FoodHoursCarried = ServerManager.ServerSettings.NPCs.InitialFoodCarriedHours;
 
-                if (ps.SettlersEnabled)
+                if (ps.SettlersEnabled != Models.SettlersState.Disabled)
                 {
                     if (SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
                     {
-                        //if (ps.SettlersEnabled && npc.Colony.FollowerCount > MAX_BUYABLE)
-                        //{
-                        //    var cost = SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", .25) * ps.ColonistsBought;
-                        //    var num = 0f;
-
-                        //    if (cost < 1)
-                        //        cost = 1;
-
-                        //    if (npc.Colony.Stockpile.TotalFood < cost ||
-                        //        !npc.Colony.Stockpile.TryRemoveFood(ref num, cost))
-                        //    {
-                        //        PandaChat.Send(npc.Colony, $"Could not recruit a new colonist; not enough food in stockpile. {cost + ServerManager.ServerSettings.NPCs.RecruitmentCost} food required.", ChatColor.red);
-                        //        npc.Colony.HappinessData.RecruitmentCostCalculator.GetCost(npc.Colony.HappinessData.CachedHappiness, npc.Colony, out float foodCost);
-
-                        //        if (ItemTypes.TryGetType(ColonyBuiltIn.ItemTypes.BREAD.Name, out var bread))
-                        //            npc.Colony.Stockpile.Add(ColonyBuiltIn.ItemTypes.BREAD, (int)Math.Floor(foodCost / bread.FoodValue));
-
-                        //        npc.health = 0;
-                        //        npc.Update();
-                        //        return;
-                        //    }
-
-                        //    ps.ColonistsBought++;
-                        //    ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours + 24;
-                        //}
+                        if (npc.Colony.FollowerCount > MAX_BUYABLE)
+                        {
+                            ps.ColonistsBought++;
+                            ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours + 24;
+                        }
 
                         SettlerInventory.GetSettlerInventory(npc);
                         UpdateFoodUse(ps);
@@ -520,7 +500,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                 if (addCount > 30)
                                     addCount = 30;
 
-                                if (!state.NotifySettlers)
+                                if (state.SettlersEnabled == Models.SettlersState.AlwaysAccept)
                                     AddNewSettlers(addCount, numbSkilled, state);
                                 else
                                     foreach (var p in state.ColonyRef.Owners)

@@ -63,7 +63,6 @@ namespace Pandaros.Settlers.Items.Machines
 
     public class MinerRegister : IRoamingJobObjective
     {
-        public string name => "Miner";
         public float WorkTime => 4;
         public ItemId ItemIndex => ItemId.GetItemId(GameLoader.NAMESPACE + ".Miner");
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()

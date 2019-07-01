@@ -114,7 +114,7 @@ namespace Pandaros.Settlers.Energy
                                                     existingEnergyDeficit = existingEnergyDeficit - energy;
                                                 }
 
-                                                state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
+                                                state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .001f);
                                                 energy = tank.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
 
                                                 if (energy > .90)

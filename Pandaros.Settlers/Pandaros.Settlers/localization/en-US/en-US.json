@@ -459,7 +459,8 @@
           "ColonistDied": "Colonist Died",
           "SlowGuards": "Guard shooting rate reduced by",
           "NotEnoughBeds": "Not Enough Beds",
-          "NotEnoughJobs":  "Not Enough Jobs"
+          "NotEnoughJobs": "Not Enough Jobs",
+          "ColonistsBought":  "Slaves Bought"
         }
       }
     }

@@ -21,9 +21,9 @@ namespace Pandaros.Settlers.Extender.Providers
             foreach (var s in LoadedAssembalies)
             {
                 if (Activator.CreateInstance(s) is IRoamingJobObjective roamingJobObjective &&
-                    !string.IsNullOrEmpty(roamingJobObjective.name))
+                    !string.IsNullOrEmpty(roamingJobObjective.ItemIndex))
                 {
-                    sb.Append($"{roamingJobObjective.name}, ");
+                    sb.Append($"{roamingJobObjective.ItemIndex}, ");
                     RoamingJobManager.RegisterObjectiveType(roamingJobObjective);
                     i++;
 

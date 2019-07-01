@@ -9,12 +9,6 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class ElementalTurrets
     {
-        public const string AIRTURRET = "Air Turret";
-        public const string EARTHTURRET = "Earth Turret";
-        public const string FIRETURRET = "Fire Turret";
-        public const string WATERTURRET = "Water Turret";
-        public const string VOIDTURRET = "Void Turret";
-
         public static readonly string AIRTURRET_NAMESPACE = GameLoader.NAMESPACE + ".AirTurret";
         public static readonly string EARTHTURRET_NAMESPACE = GameLoader.NAMESPACE + ".EarthTurret";
         public static readonly string FIRETURRET_NAMESPACE = GameLoader.NAMESPACE + ".FireTurret";
@@ -47,7 +41,7 @@ namespace Pandaros.Settlers.Items.Machines
 
             var airRecipe = new Recipe(AIRTURRET_NAMESPACE,
                                        new List<InventoryItem> {planks, elemen, mana, tools, stone, airStone, esper},
-                                       new RecipeResult(Turret.TurretSettings[AIRTURRET].TurretItem.ItemIndex),
+                                       new RecipeResult(Turret.TurretSettings[AIRTURRET_NAMESPACE].TurretItem.ItemIndex),
                                        5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
@@ -64,7 +58,7 @@ namespace Pandaros.Settlers.Items.Machines
                                              earthStone,
                                              esper
                                          },
-                                         new RecipeResult(Turret.TurretSettings[EARTHTURRET].TurretItem.ItemIndex),
+                                         new RecipeResult(Turret.TurretSettings[EARTHTURRET_NAMESPACE].TurretItem.ItemIndex),
                                          5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
@@ -72,7 +66,7 @@ namespace Pandaros.Settlers.Items.Machines
 
             var fireRecipe = new Recipe(FIRETURRET_NAMESPACE,
                                         new List<InventoryItem> {planks, elemen, mana, tools, stone, fireStone, esper},
-                                        new RecipeResult(Turret.TurretSettings[FIRETURRET].TurretItem.ItemIndex),
+                                        new RecipeResult(Turret.TurretSettings[FIRETURRET_NAMESPACE].TurretItem.ItemIndex),
                                         5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
@@ -89,7 +83,7 @@ namespace Pandaros.Settlers.Items.Machines
                                              waterStone,
                                              esper
                                          },
-                                         new RecipeResult(Turret.TurretSettings[WATERTURRET].TurretItem.ItemIndex),
+                                         new RecipeResult(Turret.TurretSettings[WATERTURRET_NAMESPACE].TurretItem.ItemIndex),
                                          5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
@@ -106,7 +100,7 @@ namespace Pandaros.Settlers.Items.Machines
                                             voidStone,
                                             esperMax
                                         },
-                                        new RecipeResult(Turret.TurretSettings[VOIDTURRET].TurretItem.ItemIndex),
+                                        new RecipeResult(Turret.TurretSettings[VOIDTURRET_NAMESPACE].TurretItem.ItemIndex),
                                         5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
@@ -169,13 +163,13 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretSettings = new Turret.TurretSetting
             {
-                TurretItem          = Turret.TurretTypes[VOIDTURRET],
+                TurretItem          = Turret.TurretTypes[VOIDTURRET_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(Void.Item.ItemIndex)},
                 AmmoValue           = 0.04f,
                 AmmoReloadValue     = 1f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork       = 0.02f,
-                Name                = VOIDTURRET,
+                Name                = VOIDTURRET_NAMESPACE,
                 OnShootAudio        = VOIDTURRET_NAMESPACE,
                 OnHitAudio          = VOIDTURRET_NAMESPACE,
                 Range               = 25,
@@ -236,20 +230,20 @@ namespace Pandaros.Settlers.Items.Machines
             turretSettings.Damage[DamageType.Void]     = 400;
             turretSettings.Damage[DamageType.Physical] = 100;
 
-            Turret.TurretSettings[VOIDTURRET] = turretSettings;
+            Turret.TurretSettings[VOIDTURRET_NAMESPACE] = turretSettings;
         }
 
         private static void AddFireTurretTurretSettings()
         {
             var turretSettings = new Turret.TurretSetting
             {
-                TurretItem          = Turret.TurretTypes[FIRETURRET],
+                TurretItem          = Turret.TurretTypes[FIRETURRET_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(FireStone.Item.ItemIndex)},
                 AmmoValue           = 0.02f,
                 AmmoReloadValue     = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork       = 0.02f,
-                Name                = FIRETURRET,
+                Name                = FIRETURRET_NAMESPACE,
                 OnShootAudio        = FIRETURRET_NAMESPACE,
                 OnHitAudio          = FIRETURRET_NAMESPACE,
                 Range               = 25,
@@ -306,20 +300,20 @@ namespace Pandaros.Settlers.Items.Machines
             turretSettings.Damage[DamageType.Fire]     = 400;
             turretSettings.Damage[DamageType.Physical] = 100;
 
-            Turret.TurretSettings[FIRETURRET] = turretSettings;
+            Turret.TurretSettings[FIRETURRET_NAMESPACE] = turretSettings;
         }
 
         private static void AddWaterTurretTurretSettings()
         {
             var turretSettings = new Turret.TurretSetting
             {
-                TurretItem          = Turret.TurretTypes[WATERTURRET],
+                TurretItem          = Turret.TurretTypes[WATERTURRET_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(WaterStone.Item.ItemIndex)},
                 AmmoValue           = 0.02f,
                 AmmoReloadValue     = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork       = 0.02f,
-                Name                = WATERTURRET,
+                Name                = WATERTURRET_NAMESPACE,
                 OnShootAudio        = WATERTURRET_NAMESPACE,
                 OnHitAudio          = WATERTURRET_NAMESPACE,
                 Range               = 25,
@@ -376,20 +370,20 @@ namespace Pandaros.Settlers.Items.Machines
             turretSettings.Damage[DamageType.Water]    = 400;
             turretSettings.Damage[DamageType.Physical] = 100;
 
-            Turret.TurretSettings[WATERTURRET] = turretSettings;
+            Turret.TurretSettings[WATERTURRET_NAMESPACE] = turretSettings;
         }
 
         private static void AddEarthTurretTurretSettings()
         {
             var turretSettings = new Turret.TurretSetting
             {
-                TurretItem          = Turret.TurretTypes[EARTHTURRET],
+                TurretItem          = Turret.TurretTypes[EARTHTURRET_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(SettlersBuiltIn.ItemTypes.EARTHSTONE.Id) },
                 AmmoValue           = 0.02f,
                 AmmoReloadValue     = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork       = 0.02f,
-                Name                = EARTHTURRET,
+                Name                = EARTHTURRET_NAMESPACE,
                 OnShootAudio        = EARTHTURRET_NAMESPACE,
                 OnHitAudio          = EARTHTURRET_NAMESPACE,
                 Range               = 25,
@@ -446,20 +440,20 @@ namespace Pandaros.Settlers.Items.Machines
             turretSettings.Damage[DamageType.Earth]    = 400;
             turretSettings.Damage[DamageType.Physical] = 100;
 
-            Turret.TurretSettings[EARTHTURRET] = turretSettings;
+            Turret.TurretSettings[EARTHTURRET_NAMESPACE] = turretSettings;
         }
 
         private static void AddAirTurretTurretSettings()
         {
             var turretSettings = new Turret.TurretSetting
             {
-                TurretItem          = Turret.TurretTypes[AIRTURRET],
+                TurretItem          = Turret.TurretTypes[AIRTURRET_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(AirStone.Item.ItemIndex)},
                 AmmoValue           = 0.02f,
                 AmmoReloadValue     = 0.5f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork       = 0.02f,
-                Name                = AIRTURRET,
+                Name                = AIRTURRET_NAMESPACE,
                 OnShootAudio        = AIRTURRET_NAMESPACE,
                 OnHitAudio          = AIRTURRET_NAMESPACE,
                 Range               = 25,
@@ -516,7 +510,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretSettings.Damage[DamageType.Air]      = 400;
             turretSettings.Damage[DamageType.Physical] = 100;
 
-            Turret.TurretSettings[AIRTURRET] = turretSettings;
+            Turret.TurretSettings[AIRTURRET_NAMESPACE] = turretSettings;
         }
 
         private static void AddVoidTurret(Dictionary<string, ItemTypesServer.ItemTypeRaw> items)
@@ -543,7 +537,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            Turret.TurretTypes[VOIDTURRET] = item;
+            Turret.TurretTypes[VOIDTURRET_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -571,7 +565,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            Turret.TurretTypes[WATERTURRET] = item;
+            Turret.TurretTypes[WATERTURRET_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -599,7 +593,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            Turret.TurretTypes[EARTHTURRET] = item;
+            Turret.TurretTypes[EARTHTURRET_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -627,7 +621,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            Turret.TurretTypes[FIRETURRET] = item;
+            Turret.TurretTypes[FIRETURRET_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -655,7 +649,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            Turret.TurretTypes[AIRTURRET] = item;
+            Turret.TurretTypes[AIRTURRET_NAMESPACE] = item;
             items.Add(turretName, item);
         }
     }

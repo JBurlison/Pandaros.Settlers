@@ -17,7 +17,6 @@ namespace Pandaros.Settlers.Items.Machines
 {
     public class GateLeverRegister : IRoamingJobObjective
     {
-        public string name => nameof(GateLever);
         public float WorkTime => 4;
         public ItemId ItemIndex => ItemId.GetItemId(GateLever.Item.ItemIndex);
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()

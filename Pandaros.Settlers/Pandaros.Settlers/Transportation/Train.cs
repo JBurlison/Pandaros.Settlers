@@ -24,6 +24,7 @@ namespace Pandaros.Settlers.Transportation
     {
         public static Dictionary<string, ICSType> TrainTypes { get; set; } = new Dictionary<string, ICSType>();
         public static Dictionary<string, AnimationManager.AnimatedObject> TrainAnimations { get; set; } = new Dictionary<string, AnimationManager.AnimatedObject>();
+        public static Dictionary<string, List<TrainTransport>> TrainTransports { get; set; } = new Dictionary<string, List<TrainTransport>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Transportation.Train.Initialize", 5000)]
         private static void Initialize()
@@ -78,6 +79,15 @@ namespace Pandaros.Settlers.Transportation
         {
             TrainTransport trainTransport = new TrainTransport(spawnPosition, TrainAnimations[cSType.name], cSType);
             TransportManager.RegisterTransport(trainTransport);
+
+            if (!string.IsNullOrEmpty(cSType.ConnectedBlock?.BlockType))
+            {
+                if (!TrainTransports.ContainsKey(cSType.ConnectedBlock.BlockType))
+                    TrainTransports.Add(cSType.ConnectedBlock.BlockType, new List<TrainTransport>());
+
+                TrainTransports[cSType.ConnectedBlock.BlockType].Add(trainTransport);
+            }
+
             return trainTransport;
         }
     }

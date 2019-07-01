@@ -76,11 +76,6 @@ namespace Pandaros.Settlers.Items.Machines
     [ModLoader.ModManager]
     public static class Turret
     {
-        public const string STONE = "Stone Turret";
-        public const string BRONZEARROW = "Bronze Arrow Turret";
-        public const string CROSSBOW = "Crossbow Turret";
-        public const string MATCHLOCK = "Matchlock Turret";
-
         public static Dictionary<string, TurretSetting> TurretSettings = new Dictionary<string, TurretSetting>();
 
         public static Dictionary<string, ItemTypesServer.ItemTypeRaw> TurretTypes = new Dictionary<string, ItemTypesServer.ItemTypeRaw>();
@@ -296,7 +291,7 @@ namespace Pandaros.Settlers.Items.Machines
                                              sling,
                                              stoneAmmo
                                          },
-                                         new RecipeResult(TurretSettings[STONE].TurretItem.ItemIndex),
+                                         new RecipeResult(TurretSettings[STONE_NAMESPACE].TurretItem.ItemIndex),
                                          5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
@@ -314,7 +309,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                    arrow,
                                                    bow
                                                },
-                                               new RecipeResult(TurretSettings[BRONZEARROW].TurretItem.ItemIndex),
+                                               new RecipeResult(TurretSettings[BRONZEARROW_NAMESPACE].TurretItem.ItemIndex),
                                                5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
@@ -332,7 +327,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                 bolt,
                                                 crossbow
                                             },
-                                            new RecipeResult(TurretSettings[CROSSBOW].TurretItem.ItemIndex),
+                                            new RecipeResult(TurretSettings[CROSSBOW_NAMESPACE].TurretItem.ItemIndex),
                                             5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
@@ -351,7 +346,7 @@ namespace Pandaros.Settlers.Items.Machines
                                                  gunpowder,
                                                  matchlock
                                              },
-                                             new RecipeResult(TurretSettings[MATCHLOCK].TurretItem.ItemIndex),
+                                             new RecipeResult(TurretSettings[MATCHLOCK_NAMESPACE].TurretItem.ItemIndex),
                                              5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
@@ -366,12 +361,12 @@ namespace Pandaros.Settlers.Items.Machines
         {
             var turretSettings = new TurretSetting
             {
-                TurretItem          = TurretTypes[STONE],
+                TurretItem          = TurretTypes[STONE_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(ColonyBuiltIn.ItemTypes.SLINGBULLET.Name)},
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.005f,
                 FuelPerDoWork       = 0.003f,
-                Name                = STONE,
+                Name                = STONE_NAMESPACE,
                 OnShootAudio        = "sling",
                 OnHitAudio          = "fleshHit",
                 Range               = 10,
@@ -427,19 +422,19 @@ namespace Pandaros.Settlers.Items.Machines
 
             turretSettings.Damage[DamageType.Physical] = 50;
 
-            TurretSettings[STONE] = turretSettings;
+            TurretSettings[STONE_NAMESPACE] = turretSettings;
         }
 
         private static void AddBronzeArrowTurretSettings()
         {
             var turretSettings = new TurretSetting
             {
-                TurretItem          = TurretTypes[BRONZEARROW],
+                TurretItem          = TurretTypes[BRONZEARROW_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZEARROW.Name)},
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.003f,
                 FuelPerDoWork       = 0.01f,
-                Name                = BRONZEARROW,
+                Name                = BRONZEARROW_NAMESPACE,
                 OnShootAudio        = "bowShoot",
                 OnHitAudio          = "fleshHit",
                 Range               = 15,
@@ -495,19 +490,19 @@ namespace Pandaros.Settlers.Items.Machines
 
             turretSettings.Damage[DamageType.Physical] = 100;
 
-            TurretSettings[BRONZEARROW] = turretSettings;
+            TurretSettings[BRONZEARROW_NAMESPACE] = turretSettings;
         }
 
         private static void AddCrossBowTurretSettings()
         {
             var turretSettings = new TurretSetting
             {
-                TurretItem          = TurretTypes[CROSSBOW],
+                TurretItem          = TurretTypes[CROSSBOW_NAMESPACE],
                 Ammo                = new List<InventoryItem> {new InventoryItem(ColonyBuiltIn.ItemTypes.CROSSBOWBOLT.Name)},
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.005f,
                 FuelPerDoWork       = 0.02f,
-                Name                = CROSSBOW,
+                Name                = CROSSBOW_NAMESPACE,
                 OnShootAudio        = "bowShoot",
                 OnHitAudio          = "fleshHit",
                 Range               = 20,
@@ -563,14 +558,14 @@ namespace Pandaros.Settlers.Items.Machines
 
             turretSettings.Damage[DamageType.Physical] = 300;
 
-            TurretSettings[CROSSBOW] = turretSettings;
+            TurretSettings[CROSSBOW_NAMESPACE] = turretSettings;
         }
 
         private static void AddMatchlockTurretSettings()
         {
             var turretSettings = new TurretSetting
             {
-                TurretItem = TurretTypes[MATCHLOCK],
+                TurretItem = TurretTypes[MATCHLOCK_NAMESPACE],
                 Ammo = new List<InventoryItem>
                 {
                     new InventoryItem(ColonyBuiltIn.ItemTypes.LEADBULLET.Name),
@@ -579,7 +574,7 @@ namespace Pandaros.Settlers.Items.Machines
                 AmmoValue           = 0.04f,
                 DurabilityPerDoWork = 0.008f,
                 FuelPerDoWork       = 0.02f,
-                Name                = MATCHLOCK,
+                Name                = MATCHLOCK_NAMESPACE,
                 OnShootAudio        = "matchlock",
                 OnHitAudio          = "fleshHit",
                 Range               = 25,
@@ -635,7 +630,7 @@ namespace Pandaros.Settlers.Items.Machines
 
             turretSettings.Damage[DamageType.Physical] = 500;
 
-            TurretSettings[MATCHLOCK] = turretSettings;
+            TurretSettings[MATCHLOCK_NAMESPACE] = turretSettings;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld,
@@ -708,7 +703,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            TurretTypes[STONE] = item;
+            TurretTypes[STONE_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -737,7 +732,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            TurretTypes[BRONZEARROW] = item;
+            TurretTypes[BRONZEARROW_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -766,7 +761,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            TurretTypes[CROSSBOW] = item;
+            TurretTypes[CROSSBOW_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 
@@ -795,7 +790,7 @@ namespace Pandaros.Settlers.Items.Machines
             turretNode.SetAs("categories", categories);
 
             var item = new ItemTypesServer.ItemTypeRaw(turretName, turretNode);
-            TurretTypes[MATCHLOCK] = item;
+            TurretTypes[MATCHLOCK_NAMESPACE] = item;
             items.Add(turretName, item);
         }
 

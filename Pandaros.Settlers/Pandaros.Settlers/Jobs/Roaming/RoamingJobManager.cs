@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public static void RegisterObjectiveType(IRoamingJobObjective objective)
         {
-            ObjectiveCallbacks[objective.name] = objective;
+            ObjectiveCallbacks[objective.ItemIndex] = objective;
         }
 
         public static IRoamingJobObjective GetCallbacks(string objectiveName)
@@ -165,8 +165,13 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
             if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
                 RemoveObjective(d.RequestOrigin.AsPlayer.ActiveColony, d.Position);
-            else if (ItemTypes.TryGetType(d.TypeNew.ItemIndex, out ItemTypes.ItemType item) && (ObjectiveCallbacks.TryGetValue(item.Name, out roamingJobObjective) || ObjectiveCallbacks.TryGetValue(item.ParentType, out roamingJobObjective)))
-                RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.name));
+            else if (ItemTypes.TryGetType(d.TypeNew.ItemIndex, out ItemTypes.ItemType item))
+            {
+                if (ObjectiveCallbacks.TryGetValue(item.Name, out roamingJobObjective))
+                    RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.ItemIndex));
+                else if (!string.IsNullOrEmpty(item.ParentType) && ObjectiveCallbacks.TryGetValue(item.ParentType, out roamingJobObjective))
+                    RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.ItemIndex));
+            }
         }
 
         public static void RemoveObjective(Colony c, Vector3Int pos, bool throwEvent = true)

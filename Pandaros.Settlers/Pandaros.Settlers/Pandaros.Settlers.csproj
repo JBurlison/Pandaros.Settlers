@@ -142,6 +142,7 @@
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManagement\BlockTracker.cs" />
+    <Compile Include="ColonyManagement\ColonistsBought.cs" />
     <Compile Include="ColonyManagement\NotEnoughBeds.cs" />
     <Compile Include="ColonyManagement\CloseBeds.cs" />
     <Compile Include="ColonyManagement\ColonistDied.cs" />
@@ -204,11 +205,13 @@
     <Compile Include="Models\BlockSides.cs" />
     <Compile Include="Models\SerializableVector3.cs" />
     <Compile Include="Models\RotationAxis.cs" />
+    <Compile Include="Models\SettlersState.cs" />
     <Compile Include="Models\TrainConfiguration.cs" />
     <Compile Include="Models\TrainStationSettlings.cs" />
     <Compile Include="Research\ArmorSmithingResearch.cs" />
     <Compile Include="Research\MachineResearch.cs" />
     <Compile Include="Research\GuardResearch.cs" />
+    <Compile Include="Research\MonorailResearch.cs" />
     <Compile Include="Research\PandaResearch.cs" />
     <Compile Include="Research\ResearchCompleteEventArgs.cs" />
     <Compile Include="Research\SettlerResearch.cs" />
@@ -1181,6 +1184,36 @@
     <Folder Include="Jobs\Energy\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainDistance1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainDistance2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainDistance3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainDistance4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainDistance5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainSpeed1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainSpeed2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainSpeed3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainSpeed4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainSpeed5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\TrainStation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -494,7 +494,7 @@ namespace Pandaros.Settlers.Items.Machines
             if (d.TypeNew.ItemIndex == Item.ItemIndex && d.TypeOld.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
             {
                 var ps = PlayerState.GetPlayerState(d.RequestOrigin.AsPlayer);
-                var ms = new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, nameof(TeleportPad));
+                var ms = new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, Item.name);
 
                 if (ps.TeleporterPlaced == Vector3Int.invalidPos)
                 {

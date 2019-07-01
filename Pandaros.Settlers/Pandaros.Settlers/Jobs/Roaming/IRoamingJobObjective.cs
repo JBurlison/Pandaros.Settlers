@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Jobs.Roaming
 {
-    public interface IRoamingJobObjective : INameable
+    public interface IRoamingJobObjective
     {
         float WorkTime { get; }
         ItemId ItemIndex { get; }

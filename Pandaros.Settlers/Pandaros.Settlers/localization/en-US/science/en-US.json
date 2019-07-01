@@ -344,25 +344,65 @@
     },
     "Pandaros": {
       "Settlers": {
+        "ImprovedMonorailTrainSpeed1": {
+          "name": "Improved Propulsion Platform Speed I",
+          "description": "Increases speed a monorail's Propulsion Platform 10%!"
+        },
+        "ImprovedMonorailTrainSpeed2": {
+          "name": "Improved Propulsion Platform Speed II",
+          "description": "Increases speed a monorail's Propulsion Platform 20%!"
+        },
+        "ImprovedMonorailTrainSpeed3": {
+          "name": "Improved Propulsion Platform Speed III",
+          "description": "Increases speed a monorail's Propulsion Platform 30%!"
+        },
+        "ImprovedMonorailTrainSpeed4": {
+          "name": "Improved Propulsion Platform Speed IV",
+          "description": "Increases speed a monorail's Propulsion Platform 40%!"
+        },
+        "ImprovedMonorailTrainSpeed5": {
+          "name": "Improved Propulsion Platform Speed V",
+          "description": "Increases speed a monorail's Propulsion Platform 50%!"
+        },
+        "ImprovedMonorailTrainDistance1": {
+          "name": "Improved Monorail Train Distance I",
+          "description": "Increases range a monorail's Propulsion Platform can travel to 1500 blocks on a single tank of mana!"
+        },
+        "ImprovedMonorailTrainDistance2": {
+          "name": "Improved Monorail Train Distance II",
+          "description": "Increases range a monorail's Propulsion Platform can travel to 2000 blocks on a single tank of mana!"
+        },
+        "ImprovedMonorailTrainDistance3": {
+          "name": "Improved Monorail Train Distance III",
+          "description": "Increases range a monorail's Propulsion Platform can travel to 2500 blocks on a single tank of mana!"
+        },
+        "ImprovedMonorailTrainDistance4": {
+          "name": "Improved Monorail Train Distance IV",
+          "description": "Increases range a monorail's Propulsion Platform can travel to 3000 blocks on a single tank of mana!"
+        },
+        "ImprovedMonorailTrainDistance5": {
+          "name": "Improved Monorail Train Distance V",
+          "description": "Increases range a monorail's Propulsion Platform can travel to 3500 blocks on a single tank of mana!"
+        },
         "ImprovedManaCapacity1": {
           "name": "Improved Mana Capacity I",
-          "description": "Increases Mana Tank capacity by 10%. Mana Tanks will need their mana filled less often."
+          "description": "Increases Mana Tank capacity by 100%. Mana Tanks will need their mana filled less often. Effects mana machines and mana tanks."
         },
         "ImprovedManaCapacity2": {
           "name": "Improved Mana Capacity II",
-          "description": "Increases Mana Tank capacity by 20%. Mana Tanks will need their mana filled less often."
+          "description": "Increases Mana Tank capacity by 200%. Mana Tanks will need their mana filled less often. Effects mana machines and mana tanks."
         },
         "ImprovedManaCapacity3": {
           "name": "Improved Mana Capacity III",
-          "description": "Increases Mana Tank capacity by 30%. Mana Tanks will need their mana filled less often."
+          "description": "Increases Mana Tank capacity by 300%. Mana Tanks will need their mana filled less often. Effects mana machines and mana tanks."
         },
         "ImprovedManaCapacity4": {
           "name": "Improved Mana Capacity IV",
-          "description": "Increases Mana Tank capacity by 40%. Mana Tanks will need their mana filled less often."
+          "description": "Increases Mana Tank capacity by 400%. Mana Tanks will need their mana filled less often. Effects mana machines and mana tanks."
         },
         "ImprovedManaCapacity5": {
           "name": "Improved Mana Capacity V",
-          "description": "Increases Mana Tank capacity by 50%. Mana Tanks will need their mana filled less often."
+          "description": "Increases Mana Tank capacity by 500%. Mana Tanks will need their mana filled less often. Effects mana machines and mana tanks."
         },
         "Artificer1": {
           "name": "Artificer",

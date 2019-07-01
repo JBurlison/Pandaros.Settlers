@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Energy
 
         public override string IconDirectory => GameLoader.ICON_PATH;
 
-        public override float BaseValue => 0.1f;
+        public override float BaseValue => 1f;
 
         public override int BaseIterationCount => 50;
 

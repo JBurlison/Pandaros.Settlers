@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     colonist.ApplyJobResearch();
 
                     if (colonist.Job != null && colonist.Job.IsValid && colonist.TryGetNPCGuardSettings(out var guardJobSettings))
-                        guardJobSettings.CooldownShot = guardJobSettings.CooldownShot - (guardJobSettings.CooldownShot * percent);
+                        guardJobSettings.CooldownShot = guardJobSettings.CooldownShot + (guardJobSettings.CooldownShot * percent);
                 }
                 
                 name = localizationHelper.LocalizeOrDefault("SlowGuards", player) + " " + Math.Round((percent * 100), 2) + "%";
