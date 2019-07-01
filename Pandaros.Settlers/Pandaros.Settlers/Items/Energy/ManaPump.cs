@@ -21,7 +21,8 @@ namespace Pandaros.Settlers.Energy
             BlockSide.Xn,
             BlockSide.Zn,
             BlockSide.Zp,
-            BlockSide.Yp
+            BlockSide.Yp,
+            BlockSide.Yn
         };
 
         public float WorkTime => 6;
@@ -49,8 +50,9 @@ namespace Pandaros.Settlers.Energy
                 AudioManager.SendAudio(state.Position.Vector, "Pandaros.Settlers.ManaPump");
                 state.TempValues.Set("SoundUpdate", Time.SecondsSinceStartDouble + 16);
             }
-
-            if (state.NextTimeForWork < TimeCycle.TotalTime.Value.TotalHours &&
+            
+            if (state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair") > 0 &&
+                state.NextTimeForWork < TimeCycle.TotalTime.Value.TotalMinutes &&
                 RoamingJobManager.Objectives.TryGetValue(colony, out var catDic) &&
                 catDic.TryGetValue(state.RoamingJobSettings.ObjectiveCategory, out var locDic))
             {
@@ -61,70 +63,79 @@ namespace Pandaros.Settlers.Energy
                 {
                     var offset = state.Position.GetBlockOffset(side);
 
-                    if (locDic.TryGetValue(offset, out var roamingJobState) && state.RoamingJobSettings.ItemIndex == SettlersBuiltIn.ItemTypes.MANATANK)
-                            manaTanks.Add(roamingJobState);
+                    if (locDic.TryGetValue(offset, out var roamingJobState) && roamingJobState.RoamingJobSettings.ItemIndex.Name == SettlersBuiltIn.ItemTypes.MANATANK)
+                        manaTanks.Add(roamingJobState);
                 }
 
-                foreach (var side in _applicableBlockSides)
-                {
-                    var offset = state.Position.GetBlockOffset(side);
-                    Queue<Vector3Int> explore = new Queue<Vector3Int>();
-                    explore.Enqueue(offset);
-
-                    // walk mana pipes and find machines
-                    while (explore.Count > 0)
+                if (manaTanks.Count > 0)
+                    foreach (var side in _applicableBlockSides)
                     {
-                        foreach (var exploreSide in _applicableBlockSides)
+                        var offset = state.Position.GetBlockOffset(side);
+                        Queue<Vector3Int> explore = new Queue<Vector3Int>();
+                        explore.Enqueue(offset);
+                        var maxMana = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", colony, state.RoamingJobSettings.ObjectiveCategory);
+
+                        // walk mana pipes and find machines
+                        while (explore.Count > 0)
                         {
-                            var exploreOffset = offset.GetBlockOffset(exploreSide);
+                            offset = explore.Dequeue();
 
-                            if (!exploredPos.Contains(exploreOffset) &&
-                                locDic.TryGetValue(exploreOffset, out var exploredJobState) &&
-                                World.TryGetTypeAt(exploreOffset, out ItemTypes.ItemType exploredItem) &&
-                                ConnectedBlockSystem.BlockLookup.TryGetValue(exploredItem.Name, out var csExploredItem) &&
-                                csExploredItem.ConnectedBlock.BlockType == "ManaPipe")
+                            foreach (var exploreSide in _applicableBlockSides)
                             {
-                                explore.Enqueue(exploreOffset);
-                                exploredPos.Add(exploreOffset);
-                                var maxMana = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", colony, state.RoamingJobSettings.ObjectiveCategory);
-                                var existingEnergyDeficit = maxMana - exploredJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+                                var exploreOffset = offset.GetBlockOffset(exploreSide);
 
-                                foreach (var tank in manaTanks)
+                                if (!exploredPos.Contains(exploreOffset) &&
+                                    World.TryGetTypeAt(exploreOffset, out ItemTypes.ItemType exploredItem))
                                 {
-                                    var energy = tank.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-
-                                    if (energy >= existingEnergyDeficit)
+                                    if (ItemCache.CSItems.TryGetValue(exploredItem.Name, out var csExploredItem) &&
+                                        csExploredItem.ConnectedBlock != null &&
+                                        csExploredItem.ConnectedBlock.BlockType == "ManaPipe")
                                     {
-                                        tank.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existingEnergyDeficit);
-                                        exploredJobState.ResetActionToMaxLoad(GameLoader.NAMESPACE + ".ManaTankRefill");
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        tank.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", energy);
-                                        existingEnergyDeficit = existingEnergyDeficit - energy;
-                                    }
+                                        explore.Enqueue(exploreOffset);
+                                        exploredPos.Add(exploreOffset);
 
-                                    state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
-                                    energy = tank.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+                                        if (locDic.TryGetValue(exploreOffset, out var exploredJobState))
+                                        {
+                                            var existingEnergyDeficit = maxMana - exploredJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
 
-                                    if (energy > .90)
-                                        ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
-                                    else if (energy > .75)
-                                        ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
-                                    else if (energy > .50)
-                                        ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
-                                    else if (energy > .25)
-                                        ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
-                                    else
-                                        ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
+                                            foreach (var tank in manaTanks)
+                                            {
+                                                var energy = tank.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+
+                                                if (energy >= existingEnergyDeficit)
+                                                {
+                                                    tank.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existingEnergyDeficit);
+                                                    exploredJobState.ResetActionToMaxLoad(GameLoader.NAMESPACE + ".ManaTankRefill");
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    tank.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", energy);
+                                                    existingEnergyDeficit = existingEnergyDeficit - energy;
+                                                }
+
+                                                state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
+                                                energy = tank.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+
+                                                if (energy > .90)
+                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
+                                                else if (energy > .75)
+                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
+                                                else if (energy > .50)
+                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
+                                                else if (energy > .25)
+                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
+                                                else
+                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                state.NextTimeForWork = TimeCycle.TotalTime.Value.TotalHours + 4;
+                state.NextTimeForWork = TimeCycle.TotalTime.Value.TotalMinutes + 10;
             }
         }
     }

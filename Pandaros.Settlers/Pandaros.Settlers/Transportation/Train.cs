@@ -37,6 +37,27 @@ namespace Pandaros.Settlers.Transportation
 
                 TrainAnimations[train.name] = animatedObject;
             }
+
+            var worldFile = Path.Combine(GameLoader.SAVE_LOC, "world.json");
+
+            if (File.Exists(worldFile))
+            {
+                JObject rootObj = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(worldFile));
+
+                if (rootObj.TryGetValue("transports", out JToken transports))
+                {
+                    if (transports.Type != JTokenType.Array)
+                        return;
+
+                    List<TransportSave> trainSaves = transports.ToObject<List<TransportSave>>();
+
+                    foreach (var save in trainSaves)
+                    {
+                        if (TrainTransport.TryCreateFromSave(save, out var trainTransport))
+                            TransportManager.RegisterTransport(trainTransport);
+                    }
+                }
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Transportation.Train.OnPlayerClicked")]
@@ -51,24 +72,6 @@ namespace Pandaros.Settlers.Transportation
 
             data.ConsumedType = PlayerClickedData.EConsumedType.UsedAsTool;
             CreateTrain(cSType, data.GetExactHitPositionWorld());
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadWorldMisc, GameLoader.NAMESPACE + ".Transportation.Train.OnLoadWorldMisc")]
-        private static void OnLoadWorldMisc(JObject rootObj)
-        {
-            if (rootObj.TryGetValue("transports", out JToken transports))
-            {
-                if (transports.Type != JTokenType.Array)
-                    return;
-
-                List<TransportSave> trainSaves = transports.ToObject<List<TransportSave>>();
-
-                foreach (var save in trainSaves)
-                {
-                    if (TrainTransport.TryCreateFromSave(save, out var trainTransport))
-                        TransportManager.RegisterTransport(trainTransport);
-                }
-            }
         }
 
         public static TrainTransport CreateTrain(ICSType cSType, Vector3 spawnPosition)

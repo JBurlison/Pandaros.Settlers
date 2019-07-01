@@ -1,5 +1,6 @@
 ﻿using BlockTypes;
 using Pandaros.Settlers.Items.Machines;
+using Pandaros.Settlers.Models;
 using Pipliz;
 using Pipliz.JSON;
 using Shared;
@@ -18,7 +19,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public static string MACHINE_JSON = "";
 
         public static Dictionary<string, IRoamingJobObjective> ObjectiveCallbacks = new Dictionary<string, IRoamingJobObjective>(StringComparer.OrdinalIgnoreCase);
-        public static Dictionary<ushort, IRoamingJobObjective> ObjectiveCallbacksIndex = new Dictionary<ushort, IRoamingJobObjective>();
 
 
         private static double _nextUpdate;
@@ -30,7 +30,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public static void RegisterObjectiveType(IRoamingJobObjective objective)
         {
             ObjectiveCallbacks[objective.name] = objective;
-            ObjectiveCallbacksIndex[objective.ItemIndex] = objective;
         }
 
         public static IRoamingJobObjective GetCallbacks(string objectiveName)
@@ -162,10 +161,12 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 d.RequestOrigin.AsPlayer.ActiveColony == null)
                     return;
 
+            IRoamingJobObjective roamingJobObjective = null;
+
             if (d.TypeNew.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
                 RemoveObjective(d.RequestOrigin.AsPlayer.ActiveColony, d.Position);
-            else if (ObjectiveCallbacksIndex.TryGetValue(d.TypeNew.ItemIndex, out var objective))
-                RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, objective.name));
+            else if (ItemTypes.TryGetType(d.TypeNew.ItemIndex, out ItemTypes.ItemType item) && (ObjectiveCallbacks.TryGetValue(item.Name, out roamingJobObjective) || ObjectiveCallbacks.TryGetValue(item.ParentType, out roamingJobObjective)))
+                RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.name));
         }
 
         public static void RemoveObjective(Colony c, Vector3Int pos, bool throwEvent = true)
@@ -190,17 +191,18 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public static void RegisterRoamingJobState(Colony colony, RoamingJobState state)
         {
-            lock (Objectives)
-            {
-                if (!Objectives.ContainsKey(colony))
-                    Objectives.Add(colony, new Dictionary<string, Dictionary<Vector3Int, RoamingJobState>>());
+            if (colony != null && state != null)
+                lock (Objectives)
+                {
+                    if (!Objectives.ContainsKey(colony))
+                        Objectives.Add(colony, new Dictionary<string, Dictionary<Vector3Int, RoamingJobState>>());
 
-                if (!Objectives[colony].ContainsKey(state.RoamingJobSettings.ObjectiveCategory))
-                    Objectives[colony].Add(state.RoamingJobSettings.ObjectiveCategory, new Dictionary<Vector3Int, RoamingJobState>());
+                    if (!Objectives[colony].ContainsKey(state.RoamingJobSettings.ObjectiveCategory))
+                        Objectives[colony].Add(state.RoamingJobSettings.ObjectiveCategory, new Dictionary<Vector3Int, RoamingJobState>());
 
-                if (state.Position != Vector3Int.invalidPos)
-                    Objectives[colony][state.RoamingJobSettings.ObjectiveCategory][state.Position] = state;
-            }
+                    if (state.Position != Vector3Int.invalidPos)
+                        Objectives[colony][state.RoamingJobSettings.ObjectiveCategory][state.Position] = state;
+                }
         }
 
         public static List<Vector3Int> GetClosestObjective(Vector3Int position, Colony owner, int maxDistance, string category)

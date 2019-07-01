@@ -79,7 +79,7 @@ namespace Pandaros.Settlers.Items.Transportation
             TrainBounds = new SerializableVector3(3, 2, 3),
             IdealHeightFromTrack = 3,
             MoveTimePerBlockMs = 500,
-            ManaCostPerBlock = 0.001f
+            ManaCostPerBlock = 0.005f
         };
     }
 }

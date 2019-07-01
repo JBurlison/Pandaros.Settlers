@@ -36,6 +36,8 @@ namespace Pandaros.Settlers.Transportation
         static TrackCalculationType _trackCalculationType = new TrackCalculationType();
         float _energy = 1f;
         double _trainMoveTime;
+        double _minStopNextTime;
+        bool _removed;
 
         public static bool TryCreateFromSave(TransportSave transportSave, out TrainTransport trainTransport)
         {
@@ -133,8 +135,9 @@ namespace Pandaros.Settlers.Transportation
                     player != null)
                     return;
 
-                sender.Inventory.TryAdd(_trainId, 1, -1, true);
+                _removed = true;
                 _meshedVehicleDescription.Object.SendRemoval(_position, _animatedObject.ObjSettings);
+                sender.Inventory.TryAdd(_trainId, 1, -1, true);
             }
         }
 
@@ -163,6 +166,9 @@ namespace Pandaros.Settlers.Transportation
 
         public TransportManager.ETransportUpdateResult Update()
         {
+            if (_removed)
+                return TransportManager.ETransportUpdateResult.Remove;
+
             var currentPositionInt = new Pipliz.Vector3Int(_position);
             var heightFromTrack = _idealHeightFromTrack;
 
@@ -191,79 +197,95 @@ namespace Pandaros.Settlers.Transportation
                 bool moved = false;
                 ICSType trainStation = null;
 
-                if (_trainMoveTime > TimeCycle.TotalHours)
-                    return TransportManager.ETransportUpdateResult.KeepUpdating;
-
-                foreach (var stationSide in _trackCalculationType.AvailableBlockSides)
+                if (_trainMoveTime < TimeCycle.TotalHours)
                 {
-                    var stationCheck = _trackPosition.GetBlockOffset(stationSide);
-
-                    if (World.TryGetTypeAt(stationCheck, out ItemTypes.ItemType possibleStation) &&
-                        ItemCache.CSItems.TryGetValue(possibleStation.Name, out var station) &&
-                        station.TrainStationSettings != null &&
-                        station.TrainStationSettings.BlockType == _cSType.ConnectedBlock.BlockType)
-                    {
-                        trainStation = station;
-
-                        foreach (var kvp in RoamingJobManager.Objectives.Values)
+                    if (_minStopNextTime < TimeCycle.TotalHours)
+                        foreach (var stationSide in _trackCalculationType.AvailableBlockSides)
                         {
-                            if (kvp.TryGetValue(trainStation.TrainStationSettings.ObjectiveCategory, out var locDic) &&
-                                locDic.TryGetValue(stationCheck, out var roamingJobState))
+                            var stationCheck = _trackPosition.GetBlockOffset(stationSide);
+
+                            if (World.TryGetTypeAt(stationCheck, out ItemTypes.ItemType possibleStation) &&
+                                ItemCache.CSItems.TryGetValue(possibleStation.Name, out var station) &&
+                                station.TrainStationSettings != null &&
+                                station.TrainStationSettings.BlockType == _cSType.ConnectedBlock.BlockType)
                             {
-                                var manaNeeded = RoamingJobState.DEFAULT_MAX - _energy;
+                                trainStation = station;
 
-                                var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-
-                                if (existing >= manaNeeded)
+                                foreach (var kvp in RoamingJobManager.Objectives.Values)
                                 {
-                                    roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", manaNeeded);
-                                    _energy = RoamingJobState.DEFAULT_MAX;
-                                }
-                                else
-                                {
-                                    roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existing);
-                                    _energy += existing;
-                                }
+                                    if (kvp.TryGetValue(trainStation.TrainStationSettings.ObjectiveCategory, out var locDic) &&
+                                        locDic.TryGetValue(stationCheck, out var roamingJobState))
+                                    {
+                                        var manaNeeded = RoamingJobState.DEFAULT_MAX - _energy;
 
-                                _trainMoveTime = TimeCycle.TotalHours + 1;
+                                        var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+
+                                        if (existing > 0)
+                                        {
+                                            if (existing >= manaNeeded)
+                                            {
+                                                roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", manaNeeded);
+                                                _energy = RoamingJobState.DEFAULT_MAX;
+                                            }
+                                            else
+                                            {
+                                                roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existing);
+                                                _energy += existing;
+                                            }
+
+                                            Indicator.SendIconIndicatorNear(stationCheck.Add(0, 1, 0).Vector, new IndicatorState(10, SettlersBuiltIn.ItemTypes.MANA.Name));
+                                            _minStopNextTime = TimeCycle.TotalHours + 2;
+                                            _trainMoveTime = TimeCycle.TotalHours + 1;
+                                            existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+                                        }
+                                        else
+                                        {
+                                            Indicator.SendIconIndicatorNear(stationCheck.Add(0, 1, 0).Vector, new IndicatorState(10, SettlersBuiltIn.ItemTypes.MANA.Name, true, false));
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                    if (trainStation == null && _energy > 0)
+                        foreach (var side in _trackCalculationType.AvailableBlockSides)
+                        {
+                            var searchSide = _trackPosition.GetBlockOffset(side);
+                            var proposePos = currentPositionInt.GetBlockOffset(side).Vector;
+
+                            if (World.TryGetTypeAt(searchSide, out ItemTypes.ItemType possibleTrack) &&
+                                ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
+                                track.ConnectedBlock.CalculationType == _trackCalculationType.name &&
+                                _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType &&
+                                proposePos != _prevPosition)
+                            {
+                                _prevPosition = _position;
+                                _trackPosition = searchSide;
+                                _position = currentPositionInt.GetBlockOffset(side).Vector;
+                                _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
+                                _energy -= ManaCostPerBlock;
+
+                                if (_energy < 0)
+                                    _energy = 0;
+
+                                moved = true;
                                 break;
                             }
                         }
-                    }
                 }
-
-                if (trainStation == null && _energy > 0)
-                    foreach (var side in _trackCalculationType.AvailableBlockSides)
-                    {
-                        var searchSide = _trackPosition.GetBlockOffset(side);
-                        var proposePos = currentPositionInt.GetBlockOffset(side).Vector;
-
-                        if (World.TryGetTypeAt(searchSide, out ItemTypes.ItemType possibleTrack) &&
-                            ConnectedBlockSystem.BlockLookup.TryGetValue(possibleTrack.Name, out var track) &&
-                            track.ConnectedBlock.CalculationType == _trackCalculationType.name &&
-                            _cSType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType &&
-                            proposePos != _prevPosition)
-                        {
-                            _prevPosition = _position;
-                            _trackPosition = searchSide;
-                            _position = currentPositionInt.GetBlockOffset(side).Vector;
-                            _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
-                            _energy -= ManaCostPerBlock;
-
-                            if (_energy < 0)
-                                _energy = 0;
-
-                            moved = true;
-                            break;
-                        }
-                    }
                 
+                if (!moved)
+                    _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
 
                 if (!moved && _energy > 0)
                     _prevPosition = Vector3.zero;
 
                 if (!moved && _energy <= 0)
+                {
                     _trainMoveTime = 0;
+                    Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_position).Add(0, 2, 0).Vector, new IndicatorState((float)GetDelayMillisecondsToNextUpdate() / 1000f, SettlersBuiltIn.ItemTypes.MANA.Name, true, false));
+                }
             }
 
             return TransportManager.ETransportUpdateResult.KeepUpdating;
