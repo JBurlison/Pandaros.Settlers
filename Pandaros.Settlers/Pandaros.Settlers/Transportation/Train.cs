@@ -22,8 +22,8 @@ namespace Pandaros.Settlers.Transportation
     [ModLoader.ModManager]
     public static class Train
     {
-        public static Dictionary<ItemId, ICSType> TrainTypes { get; set; } = new Dictionary<ItemId, ICSType>();
-        public static Dictionary<ItemId, AnimationManager.AnimatedObject> TrainAnimations { get; set; } = new Dictionary<ItemId, AnimationManager.AnimatedObject>();
+        public static Dictionary<string, ICSType> TrainTypes { get; set; } = new Dictionary<string, ICSType>();
+        public static Dictionary<string, AnimationManager.AnimatedObject> TrainAnimations { get; set; } = new Dictionary<string, AnimationManager.AnimatedObject>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Transportation.Train.Initialize", 5000)]
         private static void Initialize()
@@ -67,7 +67,7 @@ namespace Pandaros.Settlers.Transportation
                 data.IsHoldingButton ||
                 (data.ClickType != PlayerClickedData.EClickType.Right || data.OnBuildCooldown) ||
                 (data.HitType != PlayerClickedData.EHitType.Block ||
-                !TrainTypes.TryGetValue(data.TypeSelected, out var cSType) || !sender.Inventory.TryRemove(data.TypeSelected, 1, -1, true)))
+                !TrainTypes.TryGetValue(ItemId.GetItemId(data.TypeSelected), out var cSType) || !sender.Inventory.TryRemove(data.TypeSelected, 1, -1, true)))
                 return;
 
             data.ConsumedType = PlayerClickedData.EConsumedType.UsedAsTool;
