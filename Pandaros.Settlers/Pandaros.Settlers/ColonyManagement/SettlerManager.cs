@@ -645,7 +645,7 @@ namespace Pandaros.Settlers.ColonyManagement
                             RecruitmentItem = settings.RecruitmentItem
                         };
                 }
-
+                
                 data.Item1?.ApplyJobResearch();
             }
             catch (Exception ex)

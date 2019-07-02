@@ -1180,9 +1180,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Jobs\Energy\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="icons\Pandaros.Settlers.ImprovedMonorailTrainDistance1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

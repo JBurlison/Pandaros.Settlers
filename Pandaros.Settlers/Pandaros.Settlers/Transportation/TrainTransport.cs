@@ -24,15 +24,15 @@ namespace Pandaros.Settlers.Transportation
         public int Delay { get; set; } = 1000;
         public float ManaCostPerBlock { get; set; } = .001f;
         public ICSType TrainType { get; set; }
+        public Vector3 Position { get; set; }
+        public Pipliz.Vector3Int TrackPosition { get; set; } = Pipliz.Vector3Int.zero;
 
         MeshedVehicleDescription _meshedVehicleDescription;
         AnimationManager.AnimatedObject _animatedObject;
         Players.Player _player;
-        Vector3 _position;
         Vector3 _prevPosition;
         ItemId _trainId;
         int _idealHeightFromTrack = 3;
-        Pipliz.Vector3Int _trackPosition = Pipliz.Vector3Int.zero;
         static TrackCalculationType _trackCalculationType = new TrackCalculationType();
         float _energy = 1f;
         double _trainMoveTime;
@@ -58,10 +58,10 @@ namespace Pandaros.Settlers.Transportation
         {
             if (transportSave.type == _trackCalculationType.name)
             {
-                _position = transportSave.position;
+                Position = transportSave.position;
                 _prevPosition = transportSave.prevPos;
                 _trainId = transportSave.itemName;
-                _trackPosition = transportSave.trackPos;
+                TrackPosition = transportSave.trackPos;
                 TrainType = Train.TrainTypes[transportSave.itemName];
                 _animatedObject = Train.TrainAnimations[transportSave.itemName];
                 _meshedVehicleDescription = new MeshedVehicleDescription(new ClientMeshedObject(_animatedObject.ObjType, new MeshedObjectID(transportSave.meshid)), TrainType.TrainConfiguration.playerSeatOffset, TrainType.TrainConfiguration.AllowPlayerToEditBlocksWhileRiding);
@@ -82,7 +82,7 @@ namespace Pandaros.Settlers.Transportation
         {
             _meshedVehicleDescription = new MeshedVehicleDescription(new ClientMeshedObject(animatedObject.ObjType), trainType.TrainConfiguration.playerSeatOffset, trainType.TrainConfiguration.AllowPlayerToEditBlocksWhileRiding);
             _animatedObject = animatedObject;
-            _position = position;
+            Position = position;
             TrainType = trainType;
             _trainId = ItemId.GetItemId(trainType.name);
             _idealHeightFromTrack = TrainType.TrainConfiguration.IdealHeightFromTrack;
@@ -139,7 +139,7 @@ namespace Pandaros.Settlers.Transportation
                     trainTransportsList.Remove(this);
 
                 _removed = true;
-                _meshedVehicleDescription.Object.SendRemoval(_position, _animatedObject.ObjSettings);
+                _meshedVehicleDescription.Object.SendRemoval(Position, _animatedObject.ObjSettings);
                 sender.Inventory.TryAdd(_trainId, 1, -1, true);
             }
         }
@@ -155,9 +155,9 @@ namespace Pandaros.Settlers.Transportation
             transportSave.meshid = _meshedVehicleDescription.Object.ObjectID.ID;
             transportSave.type = _trackCalculationType.name;
             transportSave.BlockType = TrainType.ConnectedBlock.BlockType;
-            transportSave.position = new SerializableVector3(_position);
+            transportSave.position = new SerializableVector3(Position);
             transportSave.prevPos = new SerializableVector3(_prevPosition);
-            transportSave.trackPos = new SerializableVector3(_trackPosition);
+            transportSave.trackPos = new SerializableVector3(TrackPosition);
             transportSave.itemName = _trainId.Name;
             transportSave.energy = _energy;
 
@@ -172,10 +172,10 @@ namespace Pandaros.Settlers.Transportation
             if (_removed)
                 return TransportManager.ETransportUpdateResult.Remove;
 
-            var currentPositionInt = new Pipliz.Vector3Int(_position);
+            var currentPositionInt = new Pipliz.Vector3Int(Position);
             var heightFromTrack = _idealHeightFromTrack;
 
-            if (_trackPosition == Pipliz.Vector3Int.zero)
+            if (TrackPosition == Pipliz.Vector3Int.zero)
                 for(int i = -1; i > _idealHeightFromTrack * -1; i--)
                 {
                     var trackPos = currentPositionInt.Add(0, i, 0);
@@ -185,17 +185,17 @@ namespace Pandaros.Settlers.Transportation
                         TrainType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType)
                     {
                         heightFromTrack = i * -1;
-                        _trackPosition = trackPos;
+                        TrackPosition = trackPos;
                         break; 
                     }
                 }
 
             if (heightFromTrack != _idealHeightFromTrack)
             {
-                _position = currentPositionInt.Add(0, heightFromTrack, 0).Vector;
-                _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
+                Position = currentPositionInt.Add(0, heightFromTrack, 0).Vector;
+                _meshedVehicleDescription.Object.SendMoveToInterpolated(Position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
             }
-            else if (_trackPosition != Pipliz.Vector3Int.zero)
+            else if (TrackPosition != Pipliz.Vector3Int.zero)
             {
                 bool moved = false;
                 ICSType trainStation = null;
@@ -205,7 +205,7 @@ namespace Pandaros.Settlers.Transportation
                     if (_minStopNextTime < TimeCycle.TotalHours)
                         foreach (var stationSide in _trackCalculationType.AvailableBlockSides)
                         {
-                            var stationCheck = _trackPosition.GetBlockOffset(stationSide);
+                            var stationCheck = TrackPosition.GetBlockOffset(stationSide);
 
                             if (World.TryGetTypeAt(stationCheck, out ItemTypes.ItemType possibleStation) &&
                                 ItemCache.CSItems.TryGetValue(possibleStation.Name, out var station) &&
@@ -254,7 +254,7 @@ namespace Pandaros.Settlers.Transportation
                     if (trainStation == null && _energy > 0)
                         foreach (var side in _trackCalculationType.AvailableBlockSides)
                         {
-                            var searchSide = _trackPosition.GetBlockOffset(side);
+                            var searchSide = TrackPosition.GetBlockOffset(side);
                             var proposePos = currentPositionInt.GetBlockOffset(side).Vector;
 
                             if (World.TryGetTypeAt(searchSide, out ItemTypes.ItemType possibleTrack) &&
@@ -263,15 +263,16 @@ namespace Pandaros.Settlers.Transportation
                                 TrainType.ConnectedBlock.BlockType == track.ConnectedBlock.BlockType &&
                                 proposePos != _prevPosition)
                             {
-                                _prevPosition = _position;
-                                _trackPosition = searchSide;
-                                _position = currentPositionInt.GetBlockOffset(side).Vector;
-                                _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
+                                _prevPosition = Position;
+                                TrackPosition = searchSide;
+                                Position = currentPositionInt.GetBlockOffset(side).Vector;
+                                _meshedVehicleDescription.Object.SendMoveToInterpolated(Position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
                                 _energy -= ManaCostPerBlock;
 
                                 if (_energy < 0)
                                     _energy = 0;
 
+                                ChunkQueue.QueuePlayerSurrounding(TrackPosition);
                                 moved = true;
                                 break;
                             }
@@ -279,7 +280,7 @@ namespace Pandaros.Settlers.Transportation
                 }
                 
                 if (!moved)
-                    _meshedVehicleDescription.Object.SendMoveToInterpolated(_position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
+                    _meshedVehicleDescription.Object.SendMoveToInterpolated(Position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
 
                 if (!moved && _energy > 0)
                     _prevPosition = Vector3.zero;
@@ -287,7 +288,7 @@ namespace Pandaros.Settlers.Transportation
                 if (!moved && _energy <= 0)
                 {
                     _trainMoveTime = 0;
-                    Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(_position).Add(0, 2, 0).Vector, new IndicatorState((float)GetDelayMillisecondsToNextUpdate() / 1000f, SettlersBuiltIn.ItemTypes.MANA.Name, true, false));
+                    Indicator.SendIconIndicatorNear(new Pipliz.Vector3Int(Position).Add(0, 2, 0).Vector, new IndicatorState((float)GetDelayMillisecondsToNextUpdate() / 1000f, SettlersBuiltIn.ItemTypes.MANA.Name, true, false));
                 }
             }
 

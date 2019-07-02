@@ -26,6 +26,18 @@ namespace Pandaros.Settlers.Transportation
         public static Dictionary<string, AnimationManager.AnimatedObject> TrainAnimations { get; set; } = new Dictionary<string, AnimationManager.AnimatedObject>();
         public static Dictionary<string, List<TrainTransport>> TrainTransports { get; set; } = new Dictionary<string, List<TrainTransport>>();
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnShouldKeepChunkLoaded, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicBuilder.OnShouldKeepChunkLoaded")]
+        public static void OnShouldKeepChunkLoaded(ChunkUpdating.KeepChunkLoadedData data)
+        {
+            foreach (var list in TrainTransports.Values)
+                foreach (var iterator in list)
+                {
+                    if (iterator.TrackPosition.IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
+                        data.Result = true;
+                }
+        }
+
+
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Transportation.Train.Initialize", 5000)]
         private static void Initialize()
         {

@@ -3,6 +3,7 @@
     "Pandaros": {
       "Settlers": {
         "colonytool": {
+          "SettlersColonyTool": "Settlers Colony Tool!",
           "RecruitmentCost": "Recruitment Cost: ",
           "ResetPlayer": "Reset Player",
           "MagicItemLabel": "Magic Item",

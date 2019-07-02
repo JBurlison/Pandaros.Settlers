@@ -13,6 +13,7 @@ namespace Pandaros.Settlers.Entities
     public class ColonyState
     {
         private static readonly Dictionary<Colony, ColonyState> _colonyStates = new Dictionary<Colony, ColonyState>();
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
 
         public Colony ColonyRef { get; set; }
         public int FaiedBossSpawns { get; set; }
