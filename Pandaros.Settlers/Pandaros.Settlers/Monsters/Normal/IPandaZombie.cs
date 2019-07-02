@@ -1,4 +1,6 @@
-﻿using Monsters;
+﻿using AI;
+using Monsters;
+using Pandaros.Settlers.Monsters.Bosses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,7 @@ namespace Pandaros.Settlers.Monsters.Normal
     {
         float ZombieHPBonus { get; }
         string MosterType { get; }
+
+        IPandaZombie GetNewInstance(Path path, Colony c);
     }
 }

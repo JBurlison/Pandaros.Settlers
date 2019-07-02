@@ -152,6 +152,7 @@
     <Compile Include="ColonyManagement\Permission.cs" />
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
+    <Compile Include="Extender\Providers\PandaZombieProvider.cs" />
     <Compile Include="Items\Energy\ManaMachineRepairingAction.cs" />
     <Compile Include="Items\Energy\ManaPipe.cs" />
     <Compile Include="Items\Energy\ManaPump.cs" />

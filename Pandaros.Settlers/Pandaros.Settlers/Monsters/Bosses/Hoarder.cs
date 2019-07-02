@@ -2,6 +2,7 @@
 using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Monsters.Normal;
 using Pipliz.JSON;
 using System.Collections.Generic;
 
@@ -29,7 +30,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             CurrentHealth = _totalHealth;
         }
 
-        public IPandaBoss GetNewBoss(Path path, Colony p)
+        public IPandaZombie GetNewInstance(Path path, Colony p)
         {
             return new Hoarder(path, p);
         }

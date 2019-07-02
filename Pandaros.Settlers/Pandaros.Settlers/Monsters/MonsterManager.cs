@@ -102,7 +102,7 @@ namespace Pandaros.Settlers.Monsters
                                 case MonsterSpawner.ESpawnResult.Success:
                                     if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
                                     {
-                                        var pandaboss = CurrentPandaBoss.GetNewBoss(path, colony);
+                                        var pandaboss = (IPandaBoss)CurrentPandaBoss.GetNewInstance(path, colony);
                                         _pandaBossesSpawnQueue.Enqueue(pandaboss);
                                         SpawnedBosses.Add(cs, pandaboss);
                                     }

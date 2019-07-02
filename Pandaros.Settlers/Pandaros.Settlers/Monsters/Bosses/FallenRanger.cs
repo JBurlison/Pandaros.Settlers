@@ -3,6 +3,7 @@ using Monsters;
 using NPC;
 using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Models;
+using Pandaros.Settlers.Monsters.Normal;
 using Pipliz;
 using Pipliz.JSON;
 using Shared;
@@ -33,7 +34,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
             CurrentHealth = _totalHealth;
         }
 
-        public IPandaBoss GetNewBoss(Path path, Colony p)
+        public IPandaZombie GetNewInstance(Path path, Colony p)
         {
             return new FallenRanger(path, p);
         }

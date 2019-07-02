@@ -11,6 +11,5 @@ namespace Pandaros.Settlers.Monsters.Bosses
         string AnnouncementAudio { get; }
         float ZombieMultiplier { get; }
         bool KilledBefore { get; set; }
-        IPandaBoss GetNewBoss(Path path, Colony c);
     }
 }
