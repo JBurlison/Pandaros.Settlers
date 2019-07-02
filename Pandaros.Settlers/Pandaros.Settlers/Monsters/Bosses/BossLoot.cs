@@ -17,6 +17,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public BossLoot()
         {
             LootPoolList.Add(new LootPoolEntry(SettlersBuiltIn.ItemTypes.MANA, 1, 20));
+            MonsterTypes.Add("Boss");
         }
     }
 

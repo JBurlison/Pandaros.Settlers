@@ -295,7 +295,7 @@
           "Added Connected block system expandable by JSON for modders. This is similar to the way minecraft auto connects stairs, pipes and track.",
           "Added Artificer. Creates Mana Tanks, Pipes, Pumps along with some magical machines! Artificer Also Maintains these machines similar to Machinists",
           "Added Train System. You can add stops to the trains. These trains run on mana from the Artificer job. The trains automatically go round and each stop must be worked by a colonist.",
-          "Added Mana Machine that Increases Guard damage (10%)",
+          "Added Mana Machine that Increases Guard damage (10%), 6 blocks in each direction",
           "Added Mana Machine that Monster AoE Damage 10 per 5/sec, 4 block each direction (advanced)",
           "Added Mana Machine that Invisible wall (5x2) rotatable (normal blocks, just invisible)",
           "Added Mana Machine that +2% Luck 4 blocks each direction (Luck in settlers is used for crit chance and bonus item procs (bonus items are rare items sometimes crafted with settlers items)",

@@ -67,8 +67,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public DamageType ElementalArmor => DamageType.Water;
 
         public Dictionary<DamageType, float> AdditionalResistance { get; } = new Dictionary<DamageType, float>();
-
-        public string LootTableName => BossLoot.LootTableName;
+        public string MosterType => "Boss";
 
         public override bool Update()
         {

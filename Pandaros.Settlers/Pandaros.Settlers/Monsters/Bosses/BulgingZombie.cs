@@ -51,7 +51,6 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public float ZombieMultiplier => 1f;
         public float ZombieHPBonus => 20;
-        public string LootTableName => BossLoot.LootTableName;
 
         public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
         {
@@ -67,6 +66,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
         };
 
         public float MissChance => 0.05f;
+
+        public string MosterType => "Boss";
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Monsters.Bosses.Bulging.OnUpdate")]
         public void OnUpdate()

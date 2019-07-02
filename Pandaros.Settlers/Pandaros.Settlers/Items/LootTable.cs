@@ -10,8 +10,8 @@ namespace Pandaros.Settlers.Items
     public class LootTable : ILootTable
     {
         public virtual string name { get; private set; }
-
         public virtual List<LootPoolEntry> LootPoolList { get; private set; } = new List<LootPoolEntry>();
+        public virtual List<string> MonsterTypes { get; set; } = new List<string>();
 
         public Dictionary<ushort, int> GetDrops(double luckModifier = 0)
         {

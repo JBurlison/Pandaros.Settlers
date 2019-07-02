@@ -22,10 +22,16 @@ namespace Pandaros.Settlers.Extender.Providers
 
             foreach (var item in LoadedAssembalies)
             {
-                if (Activator.CreateInstance(item) is ILootTable lootTable &&
-                    !string.IsNullOrEmpty(lootTable.name))
+                if (Activator.CreateInstance(item) is ILootTable lootTable)
                 {
-                    LootTables.Lookup[lootTable.name] = lootTable;
+                    foreach (var table in lootTable.MonsterTypes)
+                    {
+                        if (LootTables.Lookup.TryGetValue(table, out var existingTable))
+                            existingTable.LootPoolList.AddRange(existingTable.LootPoolList);
+                        else
+                            LootTables.Lookup[table] =lootTable;
+                    }
+
                     sb.Append($"{lootTable.name}, ");
                     i++;
 

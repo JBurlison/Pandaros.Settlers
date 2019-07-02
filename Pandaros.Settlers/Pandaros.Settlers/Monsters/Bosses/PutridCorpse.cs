@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
 
         public float ZombieMultiplier => 1f;
         public float ZombieHPBonus => 20;
-        public string LootTableName => BossLoot.LootTableName;
+        public string MosterType => "Boss";
 
         public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
         {

@@ -8,6 +8,7 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Monsters;
 using Pandaros.Settlers.Monsters.Bosses;
+using Pandaros.Settlers.Monsters.Normal;
 using Pipliz;
 using Shared;
 using System;
@@ -324,13 +325,16 @@ namespace Pandaros.Settlers.Monsters
 
             if (d.ResultDamage >= monster.CurrentHealth)
             {
-                var rewardMonster = monster as IKillReward;
+                var rewardMonster = monster as IPandaZombie;
+                string monsterType = "zombie";
 
-                if (rewardMonster != null && monster.OriginalGoal.OwnerIsOnline())
+                if (rewardMonster != null)
+                    monsterType = rewardMonster.MosterType;
+
+                if (monster.OriginalGoal.OwnerIsOnline())
                 {
-                    var stockpile = monster.OriginalGoal.Stockpile;
-                    if (!string.IsNullOrEmpty(rewardMonster.LootTableName) &&
-                        Items.LootTables.Lookup.TryGetValue(rewardMonster.LootTableName, out var lootTable))
+                    if (!string.IsNullOrEmpty(monsterType) &&
+                        LootTables.Lookup.TryGetValue(monsterType, out var lootTable))
                     {
                         float luck = 0;
 
