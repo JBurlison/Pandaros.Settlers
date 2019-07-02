@@ -222,7 +222,8 @@ namespace Pandaros.Settlers.Transportation
                                         var manaNeeded = RoamingJobState.DEFAULT_MAX - _energy;
 
                                         var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-
+                                        roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
+                                        
                                         if (existing > 0)
                                         {
                                             if (existing >= manaNeeded)
