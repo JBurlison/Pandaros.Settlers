@@ -10,6 +10,6 @@ namespace Pandaros.Settlers.Models
 
         List<LootPoolEntry> LootPoolList { get; }
 
-        Dictionary<ushort, int> GetDrops(double luckModifier);
+        Dictionary<ushort, int> GetDrops(float luckModifier);
     }
 }

@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Models
     {
         public string Item { get; private set; }
 
-        public double Weight { get; private set; }
+        public float Weight { get; private set; }
 
         public int MinCount { get; private set; }
 
@@ -18,7 +18,7 @@ namespace Pandaros.Settlers.Models
 
         public LootPoolEntry() { }
 
-        public LootPoolEntry(string item, int min, int max, double weight = 0)
+        public LootPoolEntry(string item, int min, int max, float weight = 0)
         {
             Item = item;
             Weight = weight;

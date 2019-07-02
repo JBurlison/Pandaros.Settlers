@@ -13,12 +13,12 @@ namespace Pandaros.Settlers.Items
         public virtual List<LootPoolEntry> LootPoolList { get; private set; } = new List<LootPoolEntry>();
         public virtual List<string> MonsterTypes { get; set; } = new List<string>();
 
-        public Dictionary<ushort, int> GetDrops(double luckModifier = 0)
+        public Dictionary<ushort, int> GetDrops(float luckModifier = 0)
         {
             var dic = new Dictionary<ushort, int>();
 
-            double weightSum = 0;
-            double roll = Pipliz.Random.Next() + luckModifier;
+            float weightSum = 0;
+            float roll = Pipliz.Random.NextFloat() + luckModifier;
 
             foreach (LootPoolEntry drop in LootPoolList)
             {
