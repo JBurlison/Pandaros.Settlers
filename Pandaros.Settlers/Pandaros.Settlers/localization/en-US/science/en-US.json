@@ -413,12 +413,12 @@
           "description": "Gives you a backpack that you can carry items in."
         },
         "SkillEquiptmentResearch1": {
-          "name": "+1 Skill Equiptment",
-          "description": "Allows you to craft +1 skill equiptment."
+          "name": "+1 Skill Equipment",
+          "description": "Allows you to craft +1 skill equipment."
         },
         "SkillEquiptmentResearch2": {
-          "name": "+2 Skill Equiptment",
-          "description": "Allows you to craft +2 skill equiptment."
+          "name": "+2 Skill Equipment",
+          "description": "Allows you to craft +2 skill equipment."
         },
         "MaxMagicItems1": {
           "name": "Max Magic Items",
