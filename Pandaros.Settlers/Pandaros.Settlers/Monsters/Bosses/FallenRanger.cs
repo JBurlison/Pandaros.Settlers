@@ -43,7 +43,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string DeathText => "Looks like I have to work on my aim.";
         public string name => "Fallen Ranger";
         public override float TotalHealth => _totalHealth;
-
+        public int MinColonists => 100;
         public bool KilledBefore
         {
             get => false;

@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string DeathText => "UGH Help me you useless bags of meat......";
 
         public string name => "ZombieKing";
-
+        public int MinColonists => 100;
         public override float TotalHealth => _totalHealth;
 
         public bool KilledBefore

@@ -10,6 +10,14 @@ using System.Reflection;
 using static AI.PathingManager;
 using static AI.PathingManager.PathFinder;
 
+/*
+* Jogger (runs pretty fast)
+* Elusive Zombie (40% miss chance for attacks)
+* Bahemoth (Double hp)
+* Rock thrower (throws rocks that deal 50 damage)
+* Ooze Zombie (killing this zombie will make 2 more zombies appear each with 1/2 the life of the original, happens once)
+* Elemental Zombies (Air, Fire, Earth, Water, Void) 
+    */
 namespace Pandaros.Settlers.Monsters
 {
     [ModLoader.ModManager]
@@ -17,7 +25,6 @@ namespace Pandaros.Settlers.Monsters
     {
         public static List<IPandaZombie> PandaZombies { get; set; } = new List<IPandaZombie>();
         private static Queue<IPandaZombie> _spawnQueue = new Queue<IPandaZombie>();
-        private static Queue<IPandaZombie> _pathingQueue = new Queue<IPandaZombie>();
         private static PandaMonsterSpawner _pandaPathing = new PandaMonsterSpawner();
         private static double _updateTime = 0;
 
@@ -45,51 +52,53 @@ namespace Pandaros.Settlers.Monsters
 
             while (_spawnQueue.Count > 0)
             {
-
+                var pandaZombie = _spawnQueue.Dequeue();
+                var cs = ColonyState.GetColonyState(pandaZombie.OriginalGoal);
+                ModLoader.Callbacks.OnMonsterSpawned.Invoke(pandaZombie);
+                MonsterTracker.Add(pandaZombie);
+                cs.ColonyRef.OnZombieSpawn(true);
             }
 
-            foreach(var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
+            if (_updateTime < Time.SecondsSinceStartDouble)
             {
-                if (colony.DifficultySetting.ShouldSpawnZombies(colony))
-                {
-                    
-                }
+                ServerManager.PathingManager.QueueAction(_pandaPathing);
+                _updateTime = Time.SecondsSinceStartDouble + Pipliz.Random.NextDouble(6, 10);
             }
-
         }
 
         public void PathingThreadAction(PathingContext context)
         {
-            List<IPandaZombie> zombiesToSpawn = new List<IPandaZombie>();
-
-            lock(_pathingQueue)
-                while (_pathingQueue.Count > 0)
-                    zombiesToSpawn.Add(_pathingQueue.Dequeue());
-
             foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
             {
-                var bannerGoal = colony.Banners.ToList().GetRandomItem();
-                var cs = ColonyState.GetColonyState(colony);
+                List<IPandaZombie> canSpawn = PandaZombies.Where(p => p.MinColonists < colony.FollowerCount).ToList();
 
-                if (cs.ColonyRef.OwnerIsOnline())
+                if (colony.DifficultySetting.ShouldSpawnZombies(colony))
                 {
-                    Vector3Int positionFinal;
-                    switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
+                    var bannerGoal = colony.Banners.ToList().GetRandomItem();
+                    var cs = ColonyState.GetColonyState(colony);
+
+                    if (cs.ColonyRef.OwnerIsOnline())
                     {
-                        case MonsterSpawner.ESpawnResult.Success:
-                            if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
+                        Vector3Int positionFinal;
+
+                        foreach (var zombie in PandaZombies.Where(z => z.MinColonists < colony.FollowerCount))
+                            switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
                             {
+                                case MonsterSpawner.ESpawnResult.Success:
+                                    if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
+                                    {
+                                        _spawnQueue.Enqueue(zombie.GetNewInstance(path, colony));
+                                    }
 
+                                    break;
+                                case MonsterSpawner.ESpawnResult.NotLoaded:
+                                case MonsterSpawner.ESpawnResult.Impossible:
+                                    colony.OnZombieSpawn(true);
+                                    break;
+                                case MonsterSpawner.ESpawnResult.Fail:
+                                    colony.OnZombieSpawn(false);
+                                    break;
                             }
-
-                            break;
-                        case MonsterSpawner.ESpawnResult.NotLoaded:
-                        case MonsterSpawner.ESpawnResult.Impossible:
-                            colony.OnZombieSpawn(true);
-                            break;
-                        case MonsterSpawner.ESpawnResult.Fail:
-
-                            break;
                     }
                 }
             }

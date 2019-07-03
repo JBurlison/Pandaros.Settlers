@@ -39,7 +39,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string DeathText => "Boom.";
 
         public string name => "Bulging";
-
+        public int MinColonists => 100;
         public override float TotalHealth => _totalHealth;
 
         public bool KilledBefore
