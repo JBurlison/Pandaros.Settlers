@@ -2,6 +2,7 @@
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
+using Pipliz;
 using Recipes;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,24 @@ namespace Pandaros.Settlers.Energy
         {
             if (!state.ActionEnergy.ContainsKey(GameLoader.NAMESPACE + ".ManaTankRefill"))
                 state.ActionEnergy.Add(GameLoader.NAMESPACE + ".ManaTankRefill", 0);
+
+            if (state.NextTimeForWork < Time.SecondsSinceStartDouble)
+            {
+                var energy = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+
+                if (energy > .90)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
+                else if (energy > .75)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
+                else if (energy > .50)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
+                else if (energy > .25)
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
+                else
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
+
+                state.NextTimeForWork = Time.SecondsSinceStartDouble + 10;
+            }
         }
     }
 
@@ -101,7 +120,7 @@ namespace Pandaros.Settlers.Energy
                 var energy = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
                 var maxMana = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", colony, state.RoamingJobSettings.ObjectiveCategory);
 
-                var manaCost = (int)Math.Round((maxMana - energy) / .02, 0);
+                var manaCost = (int)System.Math.Round((maxMana - energy) / .02, 0);
 
                 requiredForFix.Add(new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, manaCost));
 
@@ -118,19 +137,6 @@ namespace Pandaros.Settlers.Energy
                             break;
                         }
                 }
-
-                energy = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-
-                if (energy > .90)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
-                else if (energy > .75)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
-                else if (energy > .50)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
-                else if (energy > .25)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
-                else
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
             }
 
             return retval;

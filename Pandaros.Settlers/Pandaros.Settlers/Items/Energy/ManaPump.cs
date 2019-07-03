@@ -115,18 +115,6 @@ namespace Pandaros.Settlers.Energy
                                                 }
 
                                                 state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .001f);
-                                                energy = tank.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-
-                                                if (energy > .90)
-                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
-                                                else if (energy > .75)
-                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
-                                                else if (energy > .50)
-                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
-                                                else if (energy > .25)
-                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
-                                                else
-                                                    ServerManager.TryChangeBlock(tank.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
                                             }
                                         }
                                     }

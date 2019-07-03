@@ -131,8 +131,7 @@ namespace Pandaros.Settlers.Transportation
             }
             else
             {
-                if (click.ClickType != PlayerClickedData.EClickType.Left ||
-                    player != null)
+                if (click.ClickType != PlayerClickedData.EClickType.Left || player != null)
                     return;
 
                 if (Train.TrainTransports.TryGetValue(TrainType.ConnectedBlock.BlockType, out var trainTransportsList) && trainTransportsList.Contains(this))
@@ -225,9 +224,9 @@ namespace Pandaros.Settlers.Transportation
                                         roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
                                         bool isWorked = true;
 
-                                        foreach (var job in roamingJobState.Colony.JobFinder.JobsData.OpenJobs)
+                                        foreach (var job in roamingJobState?.Colony?.JobFinder?.JobsData?.OpenJobs)
                                         {
-                                            if (job.GetJobLocation() == stationCheck)
+                                            if (job != null && job.GetJobLocation() == stationCheck)
                                             {
                                                 isWorked = false;
                                                 break;
