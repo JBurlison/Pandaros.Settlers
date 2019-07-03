@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Monsters
             if (_updateTime < Time.SecondsSinceStartDouble)
             {
                 ServerManager.PathingManager.QueueAction(_pandaPathing);
-                _updateTime = Time.SecondsSinceStartDouble + Pipliz.Random.NextDouble(6, 10);
+                _updateTime = Time.SecondsSinceStartDouble + Pipliz.Random.NextDouble(25, 30);
             }
         }
 
@@ -76,8 +76,14 @@ namespace Pandaros.Settlers.Monsters
                     if (cs.ColonyRef.OwnerIsOnline())
                     {
                         Vector3Int positionFinal;
+                        var max = Math.RoundToInt(colony.FollowerCount / 100);
 
-                        foreach (var zombie in PandaZombies.Where(z => z.MinColonists < colony.FollowerCount))
+                        if (max == 0)
+                            max = 1;
+
+                        foreach (var zombie in canSpawn.Where(z => z.MinColonists < colony.FollowerCount))
+                        {
+                            for (int i = 0; i < max; i++)
                             switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
                             {
                                 case MonsterSpawner.ESpawnResult.Success:
@@ -95,6 +101,7 @@ namespace Pandaros.Settlers.Monsters
                                     colony.OnZombieSpawn(false);
                                     break;
                             }
+                        }
                     }
                 }
             }
