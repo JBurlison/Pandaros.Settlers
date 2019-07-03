@@ -209,6 +209,7 @@
     <Compile Include="Models\SettlersState.cs" />
     <Compile Include="Models\TrainConfiguration.cs" />
     <Compile Include="Models\TrainStationSettlings.cs" />
+    <Compile Include="Monsters\Normal\RockThrowerZombie.cs" />
     <Compile Include="Research\ArmorSmithingResearch.cs" />
     <Compile Include="Research\MachineResearch.cs" />
     <Compile Include="Research\GuardResearch.cs" />
