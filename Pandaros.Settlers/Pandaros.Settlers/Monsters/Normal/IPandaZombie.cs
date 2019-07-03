@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Monsters.Normal
     {
         float ZombieHPBonus { get; }
         string MosterType { get; }
-
+        int MinColonists { get; }
         IPandaZombie GetNewInstance(Path path, Colony c);
     }
 }

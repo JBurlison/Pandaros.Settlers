@@ -223,8 +223,22 @@ namespace Pandaros.Settlers.Transportation
 
                                         var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
                                         roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
-                                        
-                                        if (existing > 0)
+                                        bool isWorked = true;
+
+                                        foreach (var job in roamingJobState.Colony.JobFinder.JobsData.OpenJobs)
+                                        {
+                                            if (job.GetJobLocation() == stationCheck)
+                                            {
+                                                isWorked = false;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!isWorked)
+                                        {
+                                            Indicator.SendIconIndicatorNear(stationCheck.Add(0, 1, 0).Vector, new IndicatorState(10, "npcicon", true, false));
+                                        }
+                                        else if (existing > 0)
                                         {
                                             if (existing >= manaNeeded)
                                             {

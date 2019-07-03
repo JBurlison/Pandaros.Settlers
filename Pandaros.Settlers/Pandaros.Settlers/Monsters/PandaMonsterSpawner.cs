@@ -16,6 +16,10 @@ namespace Pandaros.Settlers.Monsters
     public class PandaMonsterSpawner : IPathingThreadAction
     {
         public static List<IPandaZombie> PandaZombies { get; set; } = new List<IPandaZombie>();
+        private static Queue<IPandaZombie> _spawnQueue = new Queue<IPandaZombie>();
+        private static Queue<IPandaZombie> _pathingQueue = new Queue<IPandaZombie>();
+        private static PandaMonsterSpawner _pandaPathing = new PandaMonsterSpawner();
+        private static double _updateTime = 0;
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterSpawned, GameLoader.NAMESPACE + ".Monsters.PandaMonsterSpawner.OnMonsterSpawned")]
         public static void OnMonsterSpawned(IMonster monster)
@@ -33,8 +37,35 @@ namespace Pandaros.Settlers.Monsters
             monster.TotalHealth = monster.CurrentHealth + hpBonus;
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Managers.MonsterManager.Update")]
+        public static void OnUpdate()
+        {
+            if (!World.Initialized)
+                return;
+
+            while (_spawnQueue.Count > 0)
+            {
+
+            }
+
+            foreach(var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
+            {
+                if (colony.DifficultySetting.ShouldSpawnZombies(colony))
+                {
+                    
+                }
+            }
+
+        }
+
         public void PathingThreadAction(PathingContext context)
         {
+            List<IPandaZombie> zombiesToSpawn = new List<IPandaZombie>();
+
+            lock(_pathingQueue)
+                while (_pathingQueue.Count > 0)
+                    zombiesToSpawn.Add(_pathingQueue.Dequeue());
+
             foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
             {
                 var bannerGoal = colony.Banners.ToList().GetRandomItem();
