@@ -28,8 +28,6 @@ namespace Pandaros.Settlers.Monsters.Normal
         public RockThrowerZombie(Path path, Colony originalGoal) :
             base(NPCType.GetByKeyNameOrDefault(Key), path, originalGoal)
         {
-            var ps = ColonyState.GetColonyState(originalGoal);
-            _totalHealth = originalGoal.FollowerCount * ps.Difficulty.BossHPPerColonist;
             TotalHealth = _totalHealth;
             CurrentHealth = _totalHealth;
         }
@@ -114,10 +112,10 @@ namespace Pandaros.Settlers.Monsters.Normal
                     .SetAs("albedo", GameLoader.BLOCKS_NPC_PATH + "FallenRanger.png")
                     .SetAs("normal", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_normal.png")
                     .SetAs("emissive", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_emissive.png")
-                    .SetAs("initialHealth", 4000)
+                    .SetAs("initialHealth", 500)
                     .SetAs("movementSpeed", 1.25f)
                     .SetAs("punchCooldownMS", 2000)
-                    .SetAs("punchDamage", 100);
+                    .SetAs("punchDamage", 50);
 
             m.SetAs("data", ms);
             _mts = new NPCTypeMonsterSettings(m);

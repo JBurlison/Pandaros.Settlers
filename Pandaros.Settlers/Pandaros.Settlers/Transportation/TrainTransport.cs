@@ -224,13 +224,30 @@ namespace Pandaros.Settlers.Transportation
                                         roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
                                         bool isWorked = true;
 
-                                        foreach (var job in roamingJobState?.Colony?.JobFinder?.JobsData?.OpenJobs)
+                                        try
                                         {
-                                            if (job != null && job.GetJobLocation() == stationCheck)
-                                            {
-                                                isWorked = false;
-                                                break;
-                                            }
+                                            if (roamingJobState.Colony.JobFinder.JobsData != null)
+                                                foreach (var job in roamingJobState.Colony.JobFinder.JobsData.OpenJobs)
+                                                {
+                                                    if (job != null && job.GetJobLocation() == stationCheck)
+                                                    {
+                                                        isWorked = false;
+                                                        break;
+                                                    }
+                                                }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            if (roamingJobState.Colony.JobFinder == null)
+                                                PandaLogger.Log("roamingJobState.Colony.JobFinder == null");
+
+                                            if (roamingJobState.Colony.JobFinder.JobsData == null)
+                                                PandaLogger.Log("roamingJobState.Colony.JobFinder.JobsData == null");
+
+                                            if (roamingJobState.Colony.JobFinder.JobsData.OpenJobs == null)
+                                                PandaLogger.Log("roamingJobState.Colony.JobFinder.JobsData.OpenJobs == null");
+
+                                            PandaLogger.LogError(ex);
                                         }
 
                                         if (!isWorked)
