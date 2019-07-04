@@ -80,7 +80,11 @@ namespace Pandaros.Settlers.Monsters
             {
                 foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                 {
-                    var bannerGoal = colony.Banners.ToList().GetRandomItem();
+                    var bannerGoal = colony.Banners.FirstOrDefault();
+
+                    if (bannerGoal == null)
+                        continue;
+
                     var cs = ColonyState.GetColonyState(colony);
 
                     if (cs.BossesEnabled &&
