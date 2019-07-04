@@ -29,7 +29,10 @@ namespace Pandaros.Settlers.Items
             new RecipeItem(ColonyBuiltIn.ItemTypes.ALKANET.Name, 1),
             new RecipeItem(ColonyBuiltIn.ItemTypes.OLIVEOIL.Name, 1),
             new RecipeItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Name, 1),
-            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id)
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDEMERALD.Id),
+            new RecipeItem(SettlersBuiltIn.ItemTypes.REFINEDRUBY.Id),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.GYPSUM.Id)
         };
 
         public List<RecipeResult> results => new List<RecipeResult>()
@@ -63,6 +66,8 @@ namespace Pandaros.Settlers.Items
                     new InventoryItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Id, 10),
                     new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id, 10),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDRUBY.Id, 10),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDEMERALD.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.GYPSUM.Id, 10)
                 }
             }
