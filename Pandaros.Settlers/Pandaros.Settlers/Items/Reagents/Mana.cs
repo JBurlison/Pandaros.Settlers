@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Items
                     new InventoryItem(ColonyBuiltIn.ItemTypes.ALKANET.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Id, 10),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 10),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.REFINEDSAPPHIRE.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.GYPSUM.Id, 10)
                 }
             }

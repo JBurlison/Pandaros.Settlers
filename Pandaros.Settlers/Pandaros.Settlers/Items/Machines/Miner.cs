@@ -76,9 +76,9 @@ namespace Pandaros.Settlers.Items.Machines
 
         public void DoWork(Colony colony, RoamingJobState machineState)
         {
-                if (machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
-                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0 &&
-                    machineState.NextTimeForWork < Time.SecondsSinceStartDouble)
+                if (machineState.NextTimeForWork < Time.SecondsSinceStartDouble &&
+                    machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0)
                 {
                     machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
                     machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
