@@ -70,7 +70,11 @@ namespace Pandaros.Settlers.Monsters
 
                 if (colony.DifficultySetting.ShouldSpawnZombies(colony))
                 {
-                    var bannerGoal = colony.Banners.ToList().GetRandomItem();
+                    var bannerGoal = colony?.Banners?.FirstOrDefault();
+
+                    if (bannerGoal == null)
+                        continue;
+
                     var cs = ColonyState.GetColonyState(colony);
 
                     if (cs.ColonyRef.OwnerIsOnline())
