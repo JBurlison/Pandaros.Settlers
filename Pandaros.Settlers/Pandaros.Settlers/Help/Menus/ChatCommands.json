@@ -73,50 +73,6 @@
                 "col_width": 200,
                 "width": 190,
                 "label": {
-                  "text": "Pandaros.Settlers.Wiki.ChatCommands.archive.Command",
-                  "alignement": "MiddleCenter"
-                }
-              },
-              {
-                "type": "label",
-                "text": "Pandaros.Settlers.Wiki.ChatCommands.archive.Permission",
-                "col_width": 250
-              },
-              {
-                "type": "label",
-                "text": "Pandaros.Settlers.Wiki.ChatCommands.archive.Description",
-                "col_width": 500
-              }
-            ],
-            [
-              {
-                "type": "link",
-                "url": "Wiki.Apothecary",
-                "col_width": 200,
-                "width": 190,
-                "label": {
-                  "text": "Pandaros.Settlers.Wiki.ChatCommands.cta.Command",
-                  "alignement": "MiddleCenter"
-                }
-              },
-              {
-                "type": "label",
-                "text": "Pandaros.Settlers.Wiki.ChatCommands.cta.Permission",
-                "col_width": 250
-              },
-              {
-                "type": "label",
-                "text": "Pandaros.Settlers.Wiki.ChatCommands.cta.Description",
-                "col_width": 500
-              }
-            ],
-            [
-              {
-                "type": "link",
-                "url": "Wiki.Apothecary",
-                "col_width": 200,
-                "width": 190,
-                "label": {
                   "text": "Pandaros.Settlers.Wiki.ChatCommands.armor.Command",
                   "alignement": "MiddleCenter"
                 }

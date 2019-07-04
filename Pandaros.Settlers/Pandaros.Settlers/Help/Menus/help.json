@@ -79,6 +79,17 @@
             "text": "Pandaros.Settlers.Wiki.MainMenu.Machines",
             "alignement": "MiddleCenter"
           }
+        },
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.MainMenu.About",
+          "alignement": "MiddleCenter",
+          "fontsize": 32
+        },
+        {
+          "type": "label",
+          "text": "Pandaros.Settlers.Wiki.MainMenu.ModDetails",
+          "alignement": "MiddleCenter"
         }
       ]
     }

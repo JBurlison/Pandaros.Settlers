@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using static Pandaros.Settlers.Entities.SettlerInventory;
 
 namespace Pandaros.Settlers.Items.Armor
@@ -112,56 +113,69 @@ namespace Pandaros.Settlers.Items.Armor
         {
             if (_nextUpdate < DateTime.Now && World.Initialized)
             {
-                foreach (var p in Players.PlayerDatabase.Values.Where(c => c.ActiveColony != null))
+                Task.Run(() =>
                 {
-                    var colony = p.ActiveColony;
-                    var state = PlayerState.GetPlayerState(p);
-                    var stockpile = colony.Stockpile;
-
-                    /// Load up player first.
-                    foreach (ArmorSlot slot in ArmorSlotEnum)
+                    foreach (var p in Players.PlayerDatabase.Values.Where(c => c.ActiveColony != null))
                     {
-                        if (!state.Armor[slot].IsEmpty() && ArmorLookup.TryGetValue(state.Armor[slot].Id, out var existingArmor) && existingArmor.IsMagical)
-                            continue;
+                        var colony = p.ActiveColony;
+                        var state = PlayerState.GetPlayerState(p);
+                        var stockpile = colony.Stockpile;
 
-                        var bestArmor = GetBestArmorFromStockpile(stockpile, slot, 0);
-
-                        if (bestArmor != default(ushort))
+                        /// Load up player first.
+                        foreach (ArmorSlot slot in ArmorSlotEnum)
                         {
-                            if (!state.Armor.ContainsKey(slot))
-                                state.Armor.Add(slot, new ItemState());
+                            if (!state.Armor[slot].IsEmpty() && ArmorLookup.TryGetValue(state.Armor[slot].Id, out var existingArmor) && existingArmor.IsMagical)
+                                continue;
 
-                            // Check if we need one or if there is an upgrade.
-                            if (state.Armor[slot].IsEmpty())
-                            {
-                                stockpile.TryRemove(bestArmor);
-                                state.Armor[slot].Id = bestArmor;
-                                state.Armor[slot].Durability = ArmorLookup[bestArmor].Durability;
-                            }
-                            else
-                            {
-                                var currentArmor = ArmorLookup[state.Armor[slot].Id];
-                                var stockpileArmor = ArmorLookup[bestArmor];
+                            var bestArmor = GetBestArmorFromStockpile(stockpile, slot, 0);
 
-                                if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
+                            if (bestArmor != default(ushort))
+                            {
+                                if (!state.Armor.ContainsKey(slot))
+                                    state.Armor.Add(slot, new ItemState());
+
+                                // Check if we need one or if there is an upgrade.
+                                if (state.Armor[slot].IsEmpty())
                                 {
-                                    // Upgrade armor.
                                     stockpile.TryRemove(bestArmor);
-                                    stockpile.Add(state.Armor[slot].Id);
                                     state.Armor[slot].Id = bestArmor;
-                                    state.Armor[slot].Durability = stockpileArmor.Durability;
+                                    state.Armor[slot].Durability = ArmorLookup[bestArmor].Durability;
+                                }
+                                else
+                                {
+                                    var currentArmor = ArmorLookup[state.Armor[slot].Id];
+                                    var stockpileArmor = ArmorLookup[bestArmor];
+
+                                    if (stockpileArmor.ArmorRating > currentArmor.ArmorRating)
+                                    {
+                                        // Upgrade armor.
+                                        stockpile.TryRemove(bestArmor);
+                                        stockpile.Add(state.Armor[slot].Id);
+                                        state.Armor[slot].Id = bestArmor;
+                                        state.Armor[slot].Durability = stockpileArmor.Durability;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    foreach (var npc in colony.Followers)
-                    {
-                        var inv = GetSettlerInventory(npc);
-                        GetBestArmorForNPC(stockpile, npc, inv, 4);
-                        Weapons.WeaponFactory.GetBestWeapon(npc, 4);
+                        foreach (var npc in colony.Followers)
+                        {
+                            if (npc.TryGetNPCGuardSettings(out var guardJobSettings))
+                            {
+                                var inv = GetSettlerInventory(npc);
+                                GetBestArmorForNPC(stockpile, npc, inv, 2);
+                                Weapons.WeaponFactory.GetBestWeapon(npc, 2);
+                            }
+                        }
+
+                        foreach (var npc in colony.Followers)
+                        {
+                            var inv = GetSettlerInventory(npc);
+                            GetBestArmorForNPC(stockpile, npc, inv, 4);
+                            Weapons.WeaponFactory.GetBestWeapon(npc, 4);
+                        }
                     }
-                }
+                });
 
                 _nextUpdate = DateTime.Now + TimeSpan.FromSeconds(30);
             }
