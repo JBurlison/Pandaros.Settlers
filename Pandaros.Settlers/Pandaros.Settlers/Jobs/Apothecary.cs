@@ -58,7 +58,8 @@ namespace Pandaros.Settlers.Jobs
                 1,
                 new List<RecipeUnlock>()
                 {
-                    new RecipeUnlock(ApothecaryRegister.JOB_ITEM_KEY, ERecipeUnlockType.Recipe)
+                    new RecipeUnlock(ApothecaryRegister.JOB_ITEM_KEY, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.BANDAGE, ERecipeUnlockType.Recipe)
                 }
             }
         };
