@@ -76,7 +76,9 @@ namespace Pandaros.Settlers.Transportation
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Transportation.Train.OnPlayerClicked")]
         private static void OnClicked(Players.Player sender, PlayerClickedData data)
         {
-            if (data.ConsumedType != PlayerClickedData.EConsumedType.Not ||
+            if (data == null ||
+                data.TypeSelected == default(ushort) ||
+                data.ConsumedType != PlayerClickedData.EConsumedType.Not ||
                 data.IsHoldingButton ||
                 (data.ClickType != PlayerClickedData.EClickType.Right || data.OnBuildCooldown) ||
                 (data.HitType != PlayerClickedData.EHitType.Block ||

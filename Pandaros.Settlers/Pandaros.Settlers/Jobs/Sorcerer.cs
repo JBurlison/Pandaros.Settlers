@@ -47,9 +47,9 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<string>()
                 {
-                    GameLoader.NAMESPACE + ".ArmorSmithing" + 4,
-                    GameLoader.NAMESPACE + ".SwordSmithing" + 4,
-                    GameLoader.NAMESPACE + ".Elementium" + 1,
+                    SettlersBuiltIn.Research.ARMORSMITHING4,
+                    SettlersBuiltIn.Research.SWORDSMITHING4,
+                    SettlersBuiltIn.Research.ELEMENTIUM1,
                     ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
                     ColonyBuiltIn.Research.SCIENCEBAGCOLONY
                 }
