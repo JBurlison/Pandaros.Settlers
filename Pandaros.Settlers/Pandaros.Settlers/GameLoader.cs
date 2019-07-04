@@ -44,7 +44,7 @@ namespace Pandaros.Settlers
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
         public static JSONNode ModInfo { get; private set; }
-        public static Dictionary<string, JSONNode> AllModInfos { get; private set; } = new Dictionary<string, JSONNode>();
+        public static Dictionary<string, JSONNode> AllModInfos { get; private set; } = new Dictionary<string, JSONNode>(StringComparer.InvariantCultureIgnoreCase);
         public static bool FileWasCopied { get; set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, NAMESPACE + ".AfterSelectedWorld")]

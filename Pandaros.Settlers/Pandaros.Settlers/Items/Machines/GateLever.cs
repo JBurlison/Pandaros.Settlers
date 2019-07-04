@@ -400,7 +400,7 @@ namespace Pandaros.Settlers.Items.Machines
                                         planks
                                     },
                                     new RecipeResult(Item.ItemIndex),
-                                    5);
+                                    5, 0, -100);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
             ServerManager.RecipeStorage.AddScienceRequirement(recipe);
@@ -408,7 +408,7 @@ namespace Pandaros.Settlers.Items.Machines
             var gate = new Recipe(GateItem.name,
                                   new List<InventoryItem> {iron, rivets, tools},
                                   new RecipeResult(GateItem.ItemIndex),
-                                  24);
+                                  24, 0, -100);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
             ServerManager.RecipeStorage.AddScienceRequirement(gate);

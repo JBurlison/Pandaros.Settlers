@@ -230,7 +230,7 @@ namespace Pandaros.Settlers.Jobs
             { new RecipeResult(MachinistNight.JOB_ITEM_KEY, 1) }
         };
 
-        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public CraftPriority defaultPriority => CraftPriority.High;
         public bool isOptional => false;
         public int defaultLimit => 2;
         public string Job => AdvancedCrafterRegister.JOB_NAME;
@@ -253,7 +253,7 @@ namespace Pandaros.Settlers.Jobs
             { new RecipeResult(MachinistDay.JOB_ITEM_KEY, 1) }
         };
 
-        public CraftPriority defaultPriority => CraftPriority.Medium;
+        public CraftPriority defaultPriority => CraftPriority.High;
         public bool isOptional => false;
         public int defaultLimit => 2;
         public string Job => AdvancedCrafterRegister.JOB_NAME;

@@ -43,6 +43,14 @@
         "relativePath": "Help/Menus/DamageMatrix.json"
       },
       {
+        "fileType": "Pandaros.Settlers.MenuFile",
+        "relativePath": "Help/Menus/armor.json"
+      },
+      {
+        "fileType": "Pandaros.Settlers.MenuFile",
+        "relativePath": "Help/Menus/patchNotes.json"
+      },
+      {
         "fileType": "Pandaros.Settlers.OreLayers",
         "relativePath": "WorldGen/OreSettings.json"
       }
@@ -106,6 +114,16 @@
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/help/DamageMatrix/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/Armor/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/help/PatchNotes/en-US.json",
         "index": -99999
       },
       {

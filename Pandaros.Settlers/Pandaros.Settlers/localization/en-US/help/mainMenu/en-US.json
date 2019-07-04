@@ -15,7 +15,9 @@
             "ChatCommands": "Chat Commands",
             "DamageMatrix": "Damage Matrix",
             "About": "About",
-            "ModDetails": "The settlers mod is a mod that introduces a large verity of new features to the game. In addition to the ones listed above, settlers also provides:/r/n    * Placable block item stats by hovering over items in the stockpile /r/n    * Colony founding time in the colony menu /r/n",
+            "Armor": "Armor",
+            "PatchNotes": "Patch Notes",
+            "ModDetails": "The settlers mod is a mod that introduces a large verity of new features to the game. In addition to the ones listed above, settlers also provides:\r\n    * Placable block item stats by hovering over items in the stockpile \r\n    * Colony founding time in the colony menu /r/n",
             "ItemDetails": {
               "Pandaros": {
                 "Settlers": {

@@ -12,6 +12,7 @@ using Shared;
 using Pandaros.Settlers.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace Pandaros.Settlers.Help
 {
@@ -140,6 +141,46 @@ namespace Pandaros.Settlers.Help
 
             switch(itemType)
             {
+                case "patchnotes":
+                    if (item.TryGetAsOrDefault<string>("mod", out string mod, ""))
+                    {
+                        var info = default(JSONNode);
+
+                        foreach (var modJson in GameLoader.AllModInfos.Values)
+                        {
+                            if (modJson.TryGetAs("name", out string modName) && string.Equals(mod, modName, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                info = modJson;
+                                break;
+                            }
+                        }
+
+                        if (info.TryGetAs<JSONNode>("patchnotes", out var patchNotesJson))
+                        {
+                            int i = 0;
+                            menuItem = new List<IItem>();
+
+                            foreach (var node in patchNotesJson.LoopArray())
+                            {
+                                i++;
+
+                                node.TryGetAsOrDefault("version", out string version, "Undefined");
+                                menuItem.Add(new Label(new LabelData("Version " + version, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24, LabelData.ELocalizationType.None)));
+
+                                if (node.TryGetAs<JSONNode>("notes", out var versionNotesJson))
+                                    foreach (var note in versionNotesJson.LoopArray())
+                                        menuItem.Add(new Label(new LabelData("    * " + note.ToString().Replace("\"", ""), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 14, LabelData.ELocalizationType.None)));
+
+                                if (i > 10)
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                        PandaLogger.Log(ChatColor.red, "found patchnotes wiki item but mod property was not found");
+
+                    found = true;
+                    break;
                 case "label":
                     {
                         menuItem = new List<IItem>() { new Label(GetLabelData(item)).ApplyPosition(item) };
