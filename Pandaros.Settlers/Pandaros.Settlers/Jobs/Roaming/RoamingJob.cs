@@ -196,6 +196,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
         public override void OnNPCAtStockpile(ref NPCBase.NPCState state)
         {
             ActionsPreformed = 0;
+            state.SetCooldown(5);
             base.OnNPCAtStockpile(ref state);
         }
 
