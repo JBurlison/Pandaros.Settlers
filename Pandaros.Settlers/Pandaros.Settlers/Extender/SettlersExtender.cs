@@ -1,4 +1,5 @@
-﻿using Pipliz.JSON;
+﻿using Pipliz;
+using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,10 @@ namespace Pandaros.Settlers.Extender
             foreach (var extension in _timedUpdate)
                 try
                 {
-                    if (extension.NextUpdateTime < TimeCycle.TotalTime.Value.TotalSeconds)
+                    if (extension.NextUpdateTime < Time.SecondsSinceStartDouble)
                     {
                         extension.OnTimedUpdate();
-                        extension.NextUpdateTime = TimeCycle.TotalTime.Value.TotalSeconds + Pipliz.Random.NextDouble(extension.NextUpdateTimeMin, extension.NextUpdateTimeMax);
+                        extension.NextUpdateTime = Time.SecondsSinceStartDouble + Pipliz.Random.NextDouble(extension.NextUpdateTimeMin, extension.NextUpdateTimeMax);
                     }
                 }
                 catch (Exception ex)

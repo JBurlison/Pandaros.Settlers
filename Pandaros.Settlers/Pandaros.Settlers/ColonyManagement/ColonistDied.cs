@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using static ItemTypesServer;
 using Pandaros.Settlers.Extender;
 using Pandaros.Settlers.Entities;
+using Pipliz;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
@@ -30,7 +31,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 foreach(var time in colonyKvp.Value)
                 {
-                    if (TimeCycle.TotalTime.Value.TotalSeconds > time)
+                    if (Time.SecondsSinceStartDouble > time)
                         remove.Add(time);
                 }
 
@@ -55,7 +56,7 @@ namespace Pandaros.Settlers.ColonyManagement
             if (!DieCount.ContainsKey(nPC.Colony))
                 DieCount.Add(nPC.Colony, new List<double>());
 
-            DieCount[nPC.Colony].Add(TimeCycle.TotalTime.Value.TotalSeconds + cs.Difficulty.TimeUnhappyAfterColonistDeathSeconds);
+            DieCount[nPC.Colony].Add(Time.SecondsSinceStartDouble + cs.Difficulty.TimeUnhappyAfterColonistDeathSeconds);
         }
 
         public float Evaluate(Colony colony)
