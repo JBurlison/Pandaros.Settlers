@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Monsters.Normal
 
         public string name => "JoggerZombie";
         public override float TotalHealth => _totalHealth;
-        public int MinColonists => 100;
+        public int MinColonists => 150;
         public bool KilledBefore
         {
             get => false;

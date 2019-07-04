@@ -43,7 +43,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string name => "Putrid Corpse";
 
         public override float TotalHealth => _totalHealth;
-        public int MinColonists => 100;
+        public int MinColonists => 150;
         public bool KilledBefore
         {
             get => killedBefore;

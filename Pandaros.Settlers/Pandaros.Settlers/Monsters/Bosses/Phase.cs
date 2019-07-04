@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string DeathText => "I just wanted to stay out of sight.";
         public string name => "Phase";
         public override float TotalHealth => _totalHealth;
-        public int MinColonists => 100;
+        public int MinColonists => 150;
         public bool KilledBefore
         {
             get => false;

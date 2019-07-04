@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Monsters.Normal
 
         public string name => "RockThrowerZombie";
         public override float TotalHealth => _totalHealth;
-        public int MinColonists => 100;
+        public int MinColonists => 150;
         public bool KilledBefore
         {
             get => false;
@@ -72,20 +72,20 @@ namespace Pandaros.Settlers.Monsters.Normal
                     VoxelPhysics.CanSee(Position, p.Position))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
-                                                    new IndicatorState(2, ColonyBuiltIn.ItemTypes.SLINGBULLET.Name));
+                                                    new IndicatorState(10, ColonyBuiltIn.ItemTypes.SLINGBULLET.Name));
 
                     AudioManager.SendAudio(Position, "sling");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
                     Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, p.Position);
                     ServerManager.SendParticleTrail(Position, p.Position, 2);
                     AudioManager.SendAudio(p.Position, "fleshHit");
-                    _cooldown = Time.SecondsSinceStartDouble + 4;
+                    _cooldown = Time.SecondsSinceStartDouble + 10;
                 }
                 else if (NPCTracker.TryGetNear(Position, 30, out var npc) &&
                          VoxelPhysics.CanSee(Position, npc.Position.Vector))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
-                                                    new IndicatorState(2, ColonyBuiltIn.ItemTypes.SLINGBULLET.Name));
+                                                    new IndicatorState(10, ColonyBuiltIn.ItemTypes.SLINGBULLET.Name));
 
                     Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, npc.Position.Vector);
                     ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);

@@ -70,7 +70,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public Dictionary<DamageType, float> AdditionalResistance { get; } = new Dictionary<DamageType, float>();
         public string MosterType => "Boss";
 
-        public int MinColonists => 100;
+        public int MinColonists => 150;
 
         public override bool Update()
         {

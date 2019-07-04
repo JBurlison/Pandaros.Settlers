@@ -43,7 +43,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         public string DeathText => "Looks like I have to work on my aim.";
         public string name => "Fallen Ranger";
         public override float TotalHealth => _totalHealth;
-        public int MinColonists => 100;
+        public int MinColonists => 150;
         public bool KilledBefore
         {
             get => false;
@@ -85,20 +85,20 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     VoxelPhysics.CanSee(Position, p.Position))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
-                                                    new IndicatorState(2, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
+                                                    new IndicatorState(10, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
 
                     Server.AnimationManager.AnimatedObjects[Server.AnimationManager.ARROW].SendMoveToInterpolated(Position, p.Position);
                     ServerManager.SendParticleTrail(Position, p.Position, 2);
                     AudioManager.SendAudio(Position, "bowShoot");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
                     AudioManager.SendAudio(p.Position, "fleshHit");
-                    _cooldown = Time.SecondsSinceStartDouble + 4;
+                    _cooldown = Time.SecondsSinceStartDouble + 10;
                 }
                 else if (NPCTracker.TryGetNear(Position, 30, out var npc) &&
                          VoxelPhysics.CanSee(Position, npc.Position.Vector))
                 {
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
-                                                    new IndicatorState(2, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
+                                                    new IndicatorState(10, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
 
                     AudioManager.SendAudio(Position, "bowShoot");
                     Server.AnimationManager.AnimatedObjects[Server.AnimationManager.ARROW].SendMoveToInterpolated(Position, npc.Position.Vector);
