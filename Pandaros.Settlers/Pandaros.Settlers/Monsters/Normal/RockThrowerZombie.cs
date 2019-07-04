@@ -76,6 +76,8 @@ namespace Pandaros.Settlers.Monsters.Normal
 
                     AudioManager.SendAudio(Position, "sling");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
+                    Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, p.Position);
+                    ServerManager.SendParticleTrail(Position, p.Position, 2);
                     AudioManager.SendAudio(p.Position, "fleshHit");
                     _cooldown = Time.SecondsSinceStartDouble + 4;
                 }
@@ -85,6 +87,8 @@ namespace Pandaros.Settlers.Monsters.Normal
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(2, ColonyBuiltIn.ItemTypes.SLINGBULLET.Name));
 
+                    Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, npc.Position.Vector);
+                    ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);
                     AudioManager.SendAudio(Position, "sling");
 
                     npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this,

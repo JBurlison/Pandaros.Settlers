@@ -87,6 +87,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(2, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
 
+                    Server.AnimationManager.AnimatedObjects[Server.AnimationManager.ARROW].SendMoveToInterpolated(Position, p.Position);
+                    ServerManager.SendParticleTrail(Position, p.Position, 2);
                     AudioManager.SendAudio(Position, "bowShoot");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
                     AudioManager.SendAudio(p.Position, "fleshHit");
@@ -99,7 +101,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
                                                     new IndicatorState(2, ItemId.GetItemId(GameLoader.NAMESPACE + ".BowIcon").Id));
 
                     AudioManager.SendAudio(Position, "bowShoot");
-
+                    Server.AnimationManager.AnimatedObjects[Server.AnimationManager.ARROW].SendMoveToInterpolated(Position, npc.Position.Vector);
+                    ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);
                     npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this,
                               ModLoader.OnHitData.EHitSourceType.Monster);
 
