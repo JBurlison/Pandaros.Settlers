@@ -67,7 +67,8 @@ namespace Pandaros.Settlers.Jobs
                 1,
                 new List<RecipeUnlock>()
                 {
-                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.SORCERERTABLE, ERecipeUnlockType.Recipe)
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.SORCERERTABLE, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.ADAMANTINE, ERecipeUnlockType.Recipe)
                 }
             }
         };

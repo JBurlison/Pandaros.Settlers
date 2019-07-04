@@ -81,6 +81,16 @@
           }
         },
         {
+          "type": "link",
+          "url": "Wiki.Armor",
+          "col_width": 200,
+          "width": 190,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.ChatCommands.armor.Command",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
           "type": "label",
           "text": "Pandaros.Settlers.Wiki.MainMenu.About",
           "alignement": "MiddleCenter",

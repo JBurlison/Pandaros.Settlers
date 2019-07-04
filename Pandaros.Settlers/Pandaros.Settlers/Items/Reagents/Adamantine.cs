@@ -1,4 +1,5 @@
 ﻿using Pandaros.Settlers.Models;
+using Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,29 @@ namespace Pandaros.Settlers.Items.Reagents
             "ingredient",
             "Adamantine"
         };
+    }
+
+    public class AdamantineRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
+        {
+            new RecipeItem(SettlersBuiltIn.ItemTypes.ADAMANTINENUGGET.Id, 6),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.CHARCOAL.Id, 5)
+        };
+
+        public List<RecipeResult> results => new List<RecipeResult>()
+        {
+            new RecipeResult(SettlersBuiltIn.ItemTypes.ADAMANTINE.Id)
+        };
+
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 50;
+
+        public string Job => ColonyBuiltIn.NpcTypes.SMELTER;
+
+        public string name => SettlersBuiltIn.ItemTypes.ADAMANTINE;
     }
 }

@@ -46,14 +46,9 @@
             ],
             [
               {
-                "type": "link",
-                "url": "Wiki.Apothecary",
-                "col_width": 200,
-                "width": 190,
-                "label": {
-                  "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersversion.Command",
-                  "alignement": "MiddleCenter"
-                }
+                "type": "label",
+                "text": "Pandaros.Settlers.Wiki.ChatCommands.settlersversion.Command",
+                "col_width": 250
               },
               {
                 "type": "label",
@@ -69,7 +64,7 @@
             [
               {
                 "type": "link",
-                "url": "Wiki.Apothecary",
+                "url": "Wiki.Armor",
                 "col_width": 200,
                 "width": 190,
                 "label": {

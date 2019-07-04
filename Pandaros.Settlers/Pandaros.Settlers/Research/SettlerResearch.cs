@@ -35,7 +35,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 250 }
+                    new ColonistCountCondition() { Threshold = 150 }
                 }
             }
         };
@@ -46,7 +46,8 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<string>()
                 {
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE
+                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
+                    ColonyBuiltIn.Research.BRONZEMINTING
                 }
             }
         };
@@ -98,7 +99,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 300 },
+                    new ColonistCountCondition() { Threshold = 100 },
                     new HappinessCondition() { Threshold = 50 }
                 }
             }
@@ -110,7 +111,8 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<string>()
                 {
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE
+                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
+                    ColonyBuiltIn.Research.BRONZEMINTING
                 }
             }
         };
@@ -168,7 +170,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 300 },
+                    new ColonistCountCondition() { Threshold = 150 },
                     new HappinessCondition() { Threshold = 50 }
                 }
             }
@@ -182,7 +184,8 @@ namespace Pandaros.Settlers.Research
                 {
                     SettlersBuiltIn.Research.SETTLERCHANCE1,
                     ColonyBuiltIn.Research.SCIENCEBAGLIFE,
-                    ColonyBuiltIn.Research.BRONZEMINTING
+                    ColonyBuiltIn.Research.BRONZEMINTING,
+                    ColonyBuiltIn.Research.FINERYFORGE
                 }
             }
         };
@@ -235,7 +238,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 300 },
+                    new ColonistCountCondition() { Threshold = 150 },
                     new HappinessCondition() { Threshold = 50 }
                 }
             }
@@ -368,7 +371,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 500 },
+                    new ColonistCountCondition() { Threshold = 200 },
                     new HappinessCondition() { Threshold = 70 }
                 }
             }
@@ -439,7 +442,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 500 },
+                    new ColonistCountCondition() { Threshold = 150 },
                     new HappinessCondition() { Threshold = 70 }
                 }
             }
