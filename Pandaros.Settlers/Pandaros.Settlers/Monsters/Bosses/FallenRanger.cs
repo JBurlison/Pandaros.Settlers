@@ -107,7 +107,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                               ModLoader.OnHitData.EHitSourceType.Monster);
 
                     AudioManager.SendAudio(npc.Position.Vector, "fleshHit");
-                    _cooldown = Time.SecondsSinceStartDouble + 4;
+                    _cooldown = Time.SecondsSinceStartDouble + 10;
                 }
             }
 

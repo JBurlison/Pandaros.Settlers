@@ -91,11 +91,10 @@ namespace Pandaros.Settlers.Monsters.Normal
                     ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);
                     AudioManager.SendAudio(Position, "sling");
 
-                    npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this,
-                              ModLoader.OnHitData.EHitSourceType.Monster);
+                    npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this, ModLoader.OnHitData.EHitSourceType.Monster);
 
                     AudioManager.SendAudio(npc.Position.Vector, "fleshHit");
-                    _cooldown = Time.SecondsSinceStartDouble + 4;
+                    _cooldown = Time.SecondsSinceStartDouble + 10;
                 }
             }
 
