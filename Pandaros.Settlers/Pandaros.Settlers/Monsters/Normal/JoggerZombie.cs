@@ -78,7 +78,7 @@ namespace Pandaros.Settlers.Monsters.Normal
                     .SetAs("normal", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_normal.png")
                     .SetAs("emissive", GameLoader.BLOCKS_NPC_PATH + "ZombieQueen_emissive.png")
                     .SetAs("initialHealth", 500)
-                    .SetAs("movementSpeed", 1.6f)
+                    .SetAs("movementSpeed", 2f)
                     .SetAs("punchCooldownMS", 2000)
                     .SetAs("punchDamage", 50);
 

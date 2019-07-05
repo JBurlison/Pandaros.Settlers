@@ -69,43 +69,57 @@ namespace Pandaros.Settlers.Items.Machines
         {
             { MachineConstants.REFUEL, new RefuelMachineAction() },
             { MachineConstants.REPAIR, new RepairMiner() },
-            { MachineConstants.RELOAD, new ReloadMiner() }
+            { MachineConstants.RELOAD, new ReloadMiner() },
+            { MachineConstants.INVENTORY, new UnloadMiner() }
         };
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
         public void DoWork(Colony colony, RoamingJobState machineState)
         {
-                if (machineState.NextTimeForWork < Time.SecondsSinceStartDouble &&
-                    machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
-                    machineState.GetActionEnergy(MachineConstants.REFUEL) > 0)
+            if (machineState.NextTimeForWork < Time.SecondsSinceStartDouble &&
+                machineState.GetActionEnergy(MachineConstants.REPAIR) > 0 &&
+                machineState.GetActionEnergy(MachineConstants.REFUEL) > 0)
+            {
+                machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
+                machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
+
+                if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow) &&
+                    itemBelow.CustomDataNode != null &&
+                    itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
+                    minable)
                 {
-                    machineState.SubtractFromActionEnergy(MachineConstants.REPAIR, 0.02f);
-                    machineState.SubtractFromActionEnergy(MachineConstants.REFUEL, 0.05f);
+                    var itemList = itemBelow.OnRemoveItems;
 
-                    if (World.TryGetTypeAt(machineState.Position.Add(0, -1, 0), out ItemTypes.ItemType itemBelow) &&
-                        itemBelow.CustomDataNode != null &&
-                        itemBelow.CustomDataNode.TryGetAs("minerIsMineable", out bool minable) &&
-                        minable)
+                    if (itemList != null && itemList.Count > 0)
                     {
-                        var itemList = itemBelow.OnRemoveItems;
+                        var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
+                        machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
+                        var items = machineState.TempValues.GetOrDefault<List<InventoryItem>>("MinedItems", new List<InventoryItem>());
+                        int remainingItems = Math.RoundToInt(machineState.GetActionEnergy(MachineConstants.INVENTORY) / .1f) - items.Count;
 
-                        if (itemList != null && itemList.Count > 0)
-                        {
-                            var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
-                            machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
-
+                        if (remainingItems != 0)
                             for (var i = 0; i < itemList.Count; i++)
                                 if (Random.NextDouble() <= itemList[i].chance)
-                                    colony.Stockpile.Add(itemList[i].item);
+                                {
+                                    if (remainingItems != 0)
+                                    {
+                                        items.Add(itemList[i].item);
+                                        remainingItems--;
+                                        machineState.SubtractFromActionEnergy(MachineConstants.INVENTORY, .1f);
+                                    }
+                                }
 
+                        machineState.TempValues.Set("MinedItems", items);
+
+                        if (remainingItems != 0)
+                        {
                             AudioManager.SendAudio(machineState.Position.Vector, GameLoader.NAMESPACE + ".MiningMachineAudio");
                             Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, itemList.FirstOrDefault().item.Type));
                         }
                         else
                         {
-                            machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
-                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                            Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, GameLoader.NAMESPACE + ".Inventory", true, false));
                         }
                     }
                     else
@@ -113,8 +127,14 @@ namespace Pandaros.Settlers.Items.Machines
                         machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
                         Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     }
-
                 }
+                else
+                {
+                    machineState.NextTimeForWork = machineState.RoamingJobSettings.WorkTime + Time.SecondsSinceStartDouble;
+                    Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(machineState.RoamingJobSettings.WorkTime, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                }
+
+            }
         }
     }
 
@@ -180,6 +200,31 @@ namespace Pandaros.Settlers.Items.Machines
             }
             
             return retval;
+        }
+    }
+
+    public class UnloadMiner : IRoamingJobObjectiveAction
+    {
+        public string name => MachineConstants.INVENTORY;
+
+        public float TimeToPreformAction => 5;
+
+        public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
+
+        public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Inventory");
+
+        public ItemId PreformAction(Colony player, RoamingJobState state)
+        {
+            var items = state.TempValues.GetOrDefault<List<InventoryItem>>("MinedItems", new List<InventoryItem>());
+
+            foreach (var item in items)
+                player.Stockpile.Add(item);
+
+            items.Clear();
+            state.ResetActionToMaxLoad(MachineConstants.INVENTORY);
+            state.TempValues.Set("MinedItems", items);
+
+            return ItemId.GetItemId(GameLoader.NAMESPACE + ".Inventory");
         }
     }
 

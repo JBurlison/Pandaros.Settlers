@@ -6,5 +6,6 @@
         public const string REFUEL = "MACHINE_REFUEL";
         public const string RELOAD = "MACHINE_RELOAD";
         public const string REPAIR = "MACHINE_REPAIR";
+        public const string INVENTORY = "MACHINE_INVENTORY";
     }
 }

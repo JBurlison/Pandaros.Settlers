@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.Monsters.Normal
 
         public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
         {
-            {DamageType.Physical, 50f}
+            {DamageType.Physical, 10f}
         };
 
         public DamageType ElementalArmor => DamageType.Physical;
@@ -118,7 +118,7 @@ namespace Pandaros.Settlers.Monsters.Normal
                     .SetAs("initialHealth", 500)
                     .SetAs("movementSpeed", 1.25f)
                     .SetAs("punchCooldownMS", 2000)
-                    .SetAs("punchDamage", 50);
+                    .SetAs("punchDamage", 15);
 
             m.SetAs("data", ms);
             _mts = new NPCTypeMonsterSettings(m);

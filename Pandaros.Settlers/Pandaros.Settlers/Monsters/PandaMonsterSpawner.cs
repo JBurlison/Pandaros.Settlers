@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Monsters
             if (_updateTime < Time.SecondsSinceStartDouble)
             {
                 ServerManager.PathingManager.QueueAction(_pandaPathing);
-                _updateTime = Time.SecondsSinceStartDouble + Pipliz.Random.NextDouble(45, 60);
+                _updateTime = Time.SecondsSinceStartDouble + Pipliz.Random.NextDouble(30, 45);
             }
         }
 
@@ -87,24 +87,24 @@ namespace Pandaros.Settlers.Monsters
 
                         foreach (var zombie in canSpawn.Where(z => z.MinColonists < colony.FollowerCount))
                         {
-                            //for (int i = 0; i < max; i++)
-                            switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
-                            {
-                                case MonsterSpawner.ESpawnResult.Success:
-                                    if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
-                                    {
-                                        _spawnQueue.Enqueue(zombie.GetNewInstance(path, colony));
-                                    }
+                            for (int i = 0; i < max; i++)
+                                switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
+                                {
+                                    case MonsterSpawner.ESpawnResult.Success:
+                                        if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
+                                        {
+                                            _spawnQueue.Enqueue(zombie.GetNewInstance(path, colony));
+                                        }
 
-                                    break;
-                                case MonsterSpawner.ESpawnResult.NotLoaded:
-                                case MonsterSpawner.ESpawnResult.Impossible:
-                                    colony.OnZombieSpawn(true);
-                                    break;
-                                case MonsterSpawner.ESpawnResult.Fail:
-                                    colony.OnZombieSpawn(false);
-                                    break;
-                            }
+                                        break;
+                                    case MonsterSpawner.ESpawnResult.NotLoaded:
+                                    case MonsterSpawner.ESpawnResult.Impossible:
+                                        colony.OnZombieSpawn(true);
+                                        break;
+                                    case MonsterSpawner.ESpawnResult.Fail:
+                                        colony.OnZombieSpawn(false);
+                                        break;
+                                }
                         }
                     }
                 }

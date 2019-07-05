@@ -59,7 +59,10 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public IRoamingJobObjective RoamingJobSettings { get; }
 
-        public BoxedDictionary TempValues { get; } = new BoxedDictionary();
+        public BoxedDictionary TempValues { get; } = new BoxedDictionary()
+        {
+            BaseDictionary = new Dictionary<string, object>()
+        };
 
         private void Initialize()
         {
