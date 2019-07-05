@@ -344,6 +344,26 @@
     },
     "Pandaros": {
       "Settlers": {
+        "InventoryUpgrade1": {
+          "name": "Mining Machine Inventory Upgrade I",
+          "description": "Increases inventory space of the mining machine to 15!"
+        },
+        "InventoryUpgrade2": {
+          "name": "Mining Machine Inventory Upgrade II",
+          "description": "Increases inventory space of the mining machine to 20!"
+        },
+        "InventoryUpgrade3": {
+          "name": "Mining Machine Inventory Upgrade III",
+          "description": "Increases inventory space of the mining machine to 25!"
+        },
+        "InventoryUpgrade4": {
+          "name": "Mining Machine Inventory Upgrade IV",
+          "description": "Increases inventory space of the mining machine to 30!"
+        },
+        "InventoryUpgrade5": {
+          "name": "Mining Machine Inventory Upgrade V",
+          "description": "Increases inventory space of the mining machine to 35!"
+        },
         "ImprovedMonorailTrainSpeed1": {
           "name": "Improved Propulsion Platform Speed I",
           "description": "Increases speed a monorail's Propulsion Platform 10%!"

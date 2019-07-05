@@ -320,7 +320,7 @@
           "Added Mana Machine that Happiness Generator (Colonists are hypnotized by its beauty) +10 happiness while running. (Advanced)",
           "Added special zombies that spawn, these will spawn as your colony grows in addition to the normal zombies.",
           "Added Loot tables",
-          "Added Inventories to mining machines, they have to be unloaded by macninists. There is research to upgrade the capacity. Initially its 10. Through research it can increase to 25.",
+          "Added Inventories to mining machines, they have to be unloaded by macninists. There is research to upgrade the capacity. Initially its 10. Through research it can increase to 35.",
           "Bosses now start randomly spawning after 100 colonists. Up from 15.",
           "Machinists now have a day and night job.",
           "Knights now have a wait mode that will wait for monsters to come to them while patrolling",
