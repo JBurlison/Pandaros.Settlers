@@ -90,8 +90,9 @@ namespace Pandaros.Settlers.Monsters.Normal
                     Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, npc.Position.Vector);
                     ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);
                     AudioManager.SendAudio(Position, "sling");
-
-                    npc.OnHit(Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value)), this, ModLoader.OnHitData.EHitSourceType.Monster);
+                    var dmg = Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
+                    PandaLogger.Log("Rock Thrower Damage: {0}", dmg);
+                    npc.OnHit(dmg, this, ModLoader.OnHitData.EHitSourceType.Monster);
 
                     AudioManager.SendAudio(npc.Position.Vector, "fleshHit");
                     _cooldown = Time.SecondsSinceStartDouble + 10;
