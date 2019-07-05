@@ -91,7 +91,6 @@ namespace Pandaros.Settlers.Monsters.Normal
                     ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);
                     AudioManager.SendAudio(Position, "sling");
                     var dmg = Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
-                    PandaLogger.Log("Rock Thrower Damage: {0}", dmg);
                     npc.OnHit(dmg, this, ModLoader.OnHitData.EHitSourceType.Monster);
 
                     AudioManager.SendAudio(npc.Position.Vector, "fleshHit");
