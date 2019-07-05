@@ -5,6 +5,7 @@ using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
 using Pipliz;
+using Recipes;
 using Science;
 using Shared;
 using System;
@@ -42,7 +43,16 @@ namespace Pandaros.Settlers.Items
             }
         };
 
-        public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
+        public Dictionary<int, List<RecipeUnlock>> Unlocks =>  new Dictionary<int, List<RecipeUnlock>>()
+        {
+            {
+                1,
+                new List<RecipeUnlock>()
+                {
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.BACKPACK, ERecipeUnlockType.Recipe)
+                }
+            }
+        };
 
         public void OnRegister()
         {
@@ -56,6 +66,29 @@ namespace Pandaros.Settlers.Items
         }
     }
 
+    public class BackpackRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
+        {
+            new RecipeItem(ColonyBuiltIn.ItemTypes.LINEN.Id, 6)
+        };
+
+        public List<RecipeResult> results => new List<RecipeResult>()
+        {
+            new RecipeResult(SettlersBuiltIn.ItemTypes.BACKPACK.Id)
+        };
+
+        public CraftPriority defaultPriority => CraftPriority.Low;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 1;
+
+        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
+
+        public string name => SettlersBuiltIn.ItemTypes.BACKPACK;
+    }
+
     public class Backpack : CSType
     {
         public static string NAME = GameLoader.NAMESPACE + ".Backpack";
@@ -67,12 +100,6 @@ namespace Pandaros.Settlers.Items
         {
             "essential",
             "aaa"
-        };
-
-        public override StaticItem StaticItemSettings => new StaticItem()
-        {
-            Name = NAME,
-            RequiredScience = NAME + 1
         };
     }
 
