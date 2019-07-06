@@ -209,14 +209,21 @@ namespace Pandaros.Settlers.Jobs.Roaming
             else if (sleepAtNight && !TimeCycle.IsDay)
             {
                 nPCGoal = NPCBase.NPCGoal.Bed;
-                TargetObjective.JobRef = null;
-                TargetObjective = null;
+
+                if (TargetObjective != null)
+                {
+                    TargetObjective.JobRef = null;
+                    TargetObjective = null;
+                }
             }
             else if (TimeCycle.IsDay && !sleepAtNight)
             {
                 nPCGoal = NPCBase.NPCGoal.Bed;
-                TargetObjective.JobRef = null;
-                TargetObjective = null;
+                if (TargetObjective != null)
+                {
+                    TargetObjective.JobRef = null;
+                    TargetObjective = null;
+                }
             }
 
             if (nPCGoal != LastNPCGoal)
