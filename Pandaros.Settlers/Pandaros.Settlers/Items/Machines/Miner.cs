@@ -96,7 +96,7 @@ namespace Pandaros.Settlers.Items.Machines
                         var mineTime = itemBelow.CustomDataNode.GetAsOrDefault("minerMiningTime", machineState.RoamingJobSettings.WorkTime);
                         machineState.NextTimeForWork = mineTime + Time.SecondsSinceStartDouble;
                         var items = machineState.TempValues.GetOrDefault<List<InventoryItem>>("MinedItems", new List<InventoryItem>());
-                        int remainingItems = Math.RoundToInt(machineState.GetActionEnergy(MachineConstants.INVENTORY) / .1f) - items.Count;
+                        int remainingItems = Math.RoundToInt(machineState.GetActionEnergy(MachineConstants.INVENTORY) / .05f) - items.Count;
 
                         if (remainingItems != 0)
                             for (var i = 0; i < itemList.Count; i++)
@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Items.Machines
                                     {
                                         items.Add(itemList[i].item);
                                         remainingItems--;
-                                        machineState.SubtractFromActionEnergy(MachineConstants.INVENTORY, .1f);
+                                        machineState.SubtractFromActionEnergy(MachineConstants.INVENTORY, .05f);
                                     }
                                 }
 
