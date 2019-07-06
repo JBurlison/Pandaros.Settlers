@@ -65,7 +65,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                     if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic) && 
                         roamingJobObjectiveDic.TryGetValue(cat, out var states))
                         foreach (var objective in states.Values)
-                            if (objective != PreviousObjective && objective.PositionIsValid())
+                            if (objective != PreviousObjective && objective.PositionIsValid() && objective.JobRef == null)
                             {
                                 var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
 
