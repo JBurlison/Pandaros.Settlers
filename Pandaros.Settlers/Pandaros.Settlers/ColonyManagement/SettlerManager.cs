@@ -508,7 +508,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                         if (p.IsConnected())
                                         {
                                             NetworkMenu menu = new NetworkMenu();
-                                            menu.LocalStorage.SetAs("header", addCount + _localizationHelper.LocalizeOrDefault("NewSettlers", p));
+                                            menu.LocalStorage.SetAs("header", state.ColonyRef.Name + ": " + addCount + _localizationHelper.LocalizeOrDefault("NewSettlers", p));
                                             menu.Width = 600;
                                             menu.Height = 300;
 

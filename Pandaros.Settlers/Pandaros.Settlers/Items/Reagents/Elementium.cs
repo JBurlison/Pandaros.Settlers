@@ -19,11 +19,11 @@ namespace Pandaros.Settlers.Items
         {
             var aether = new InventoryItem(Aether.Item.ItemIndex, 1);
             var copper = new InventoryItem(ColonyBuiltIn.ItemTypes.COPPER.Name, 40);
-            var iron   = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONORE.Name, 20);
+            var iron   = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONORE.Name, 30);
             var tin    = new InventoryItem(ColonyBuiltIn.ItemTypes.TIN.Name, 40);
-            var gold   = new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDORE.Name, 10);
-            var silver = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENASILVER.Name, 20);
-            var lead   = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENALEAD.Name, 20);
+            var gold   = new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDORE.Name, 20);
+            var silver = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENASILVER.Name, 3);
+            var lead   = new InventoryItem(ColonyBuiltIn.ItemTypes.GALENALEAD.Name, 25);
 
             var recipe = new Recipe(Item.name,
                                     new List<InventoryItem> {aether, copper, iron, tin, gold, silver, lead},
@@ -31,6 +31,7 @@ namespace Pandaros.Settlers.Items
                                     10);
 
             recipe.Results.Add(new RecipeResult(Void.Item.ItemIndex, 1, 0.03f));
+            recipe.Results.Add(new RecipeResult(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 1, 0.05f));
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
             ServerManager.RecipeStorage.AddScienceRequirement(recipe);
