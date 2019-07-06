@@ -250,7 +250,7 @@ namespace Pandaros.Settlers.Monsters
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnPlayerHit")]
         public static void OnPlayerHit(Players.Player player, ModLoader.OnHitData d)
         {
-            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster && player.ActiveColony != null)
+            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster && player.ActiveColony != null && !(d.HitSourceObject is IPandaZombie))
             {
                 var state = ColonyState.GetColonyState(player.ActiveColony);
                 d.ResultDamage += state.Difficulty.MonsterDamage;
@@ -260,7 +260,7 @@ namespace Pandaros.Settlers.Monsters
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnNPCHit")]
         public static void OnNPCHit(NPCBase npc, ModLoader.OnHitData d)
         {
-            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster)
+            if (d.ResultDamage > 0 && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.Monster && !(d.HitSourceObject is IPandaZombie))
             {
                 var state = ColonyState.GetColonyState(npc.Colony);
                 d.ResultDamage += state.Difficulty.MonsterDamage;

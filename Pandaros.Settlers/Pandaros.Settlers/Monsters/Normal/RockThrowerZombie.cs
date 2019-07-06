@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.Monsters.Normal
 
         public Dictionary<DamageType, float> AdditionalResistance { get; } = new Dictionary<DamageType, float>
         {
-            {DamageType.Physical, 0.15f}
+            {DamageType.Physical, 20f}
         };
 
         public override bool Update()

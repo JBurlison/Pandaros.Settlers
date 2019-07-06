@@ -154,12 +154,10 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.PLASTERBLOCK.Id, 5),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.IRONINGOT.Id, 5),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.BED.Id, 5),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.TORCH.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.BERRY.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 5)
                 }
             }
         };
@@ -170,25 +168,12 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 150 },
-                    new HappinessCondition() { Threshold = 50 }
+                    new HappinessCondition() { Threshold = 20 }
                 }
             }
         };
 
-        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
-        {
-            {
-                0,
-                new List<string>()
-                {
-                    SettlersBuiltIn.Research.SETTLERCHANCE1,
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
-                    ColonyBuiltIn.Research.BRONZEMINTING,
-                    ColonyBuiltIn.Research.FINERYFORGE
-                }
-            }
-        };
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>();
 
         public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
 
@@ -222,12 +207,10 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.BRICKS.Id, 5),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.COATEDPLANKS.Id, 5),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.BED.Id, 5),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.TORCH.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.BERRY.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Id, 5)
                 }
             }
         };
@@ -238,24 +221,12 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 150 },
-                    new HappinessCondition() { Threshold = 50 }
+                    new HappinessCondition() { Threshold = 20 }
                 }
             }
         };
 
-        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
-        {
-            {
-                0,
-                new List<string>()
-                {
-                    SettlersBuiltIn.Research.SETTLERCHANCE1,
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
-                    ColonyBuiltIn.Research.BRONZEMINTING
-                }
-            }
-        };
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>();
 
         public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
 
@@ -289,12 +260,11 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.TORCH.Id, 5),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 20),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.BED.Id, 5),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.TORCH.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.BERRY.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.PLANKS.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 5)
                 }
             }
         };
@@ -305,24 +275,12 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 100 },
-                    new HappinessCondition() { Threshold = 50 }
+                    new HappinessCondition() { Threshold = 20 }
                 }
             }
         };
 
-        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>()
-        {
-            {
-                0,
-                new List<string>()
-                {
-                    ColonyBuiltIn.Research.BANNERRADIUS2,
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
-                    ColonyBuiltIn.Research.BRONZEMINTING
-                }
-            }
-        };
+        public Dictionary<int, List<string>> Dependancies => new Dictionary<int, List<string>>();
 
         public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
 
