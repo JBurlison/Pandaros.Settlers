@@ -95,6 +95,12 @@ namespace Pandaros.Settlers.Monsters.Normal
 
                     AudioManager.SendAudio(npc.Position.Vector, "fleshHit");
                     _cooldown = Time.SecondsSinceStartDouble + 10;
+
+                    if (!npc.IsValid)
+                    {
+                        KilledBefore = true;
+                        OnRagdoll();
+                    }
                 }
             }
 
