@@ -207,9 +207,17 @@ namespace Pandaros.Settlers.Jobs.Roaming
             if (ActionsPreformed > 6)
                 nPCGoal = NPCBase.NPCGoal.Stockpile;
             else if (sleepAtNight && !TimeCycle.IsDay)
+            {
                 nPCGoal = NPCBase.NPCGoal.Bed;
+                TargetObjective.JobRef = null;
+                TargetObjective = null;
+            }
             else if (TimeCycle.IsDay && !sleepAtNight)
+            {
                 nPCGoal = NPCBase.NPCGoal.Bed;
+                TargetObjective.JobRef = null;
+                TargetObjective = null;
+            }
 
             if (nPCGoal != LastNPCGoal)
             {
