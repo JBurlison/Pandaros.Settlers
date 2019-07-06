@@ -209,7 +209,7 @@ namespace Pandaros.Settlers.Items.Weapons
                 var tmpDmg = dt.Key.CalcDamage(pandaArmor.ElementalArmor, dt.Value);
 
                 if (pandaArmor.AdditionalResistance.TryGetValue(dt.Key, out var flatResist))
-                    tmpDmg = tmpDmg - tmpDmg * flatResist;
+                    tmpDmg = tmpDmg - (tmpDmg * flatResist);
 
                 damage += tmpDmg;
             }
