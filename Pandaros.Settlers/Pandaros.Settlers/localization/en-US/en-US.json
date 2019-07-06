@@ -456,11 +456,11 @@
         },
         "Happiness": {
           "BedsClose": "Beds too Close",
-          "ColonistDied": "Colonist Died",
+          "ColonistDied": "Colonist Died ({0}h Remain)",
           "SlowGuards": "Guard shooting rate reduced by",
           "NotEnoughBeds": "Not Enough Beds",
           "NotEnoughJobs": "Not Enough Jobs",
-          "ColonistsBought":  "Slaves Bought"
+          "ColonistsBought": "Slaves Bought ({0}h Remain)"
         }
       }
     }

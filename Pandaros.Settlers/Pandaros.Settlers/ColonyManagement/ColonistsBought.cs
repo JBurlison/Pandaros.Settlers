@@ -20,7 +20,9 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public string GetDescription(Colony colony, Players.Player player)
         {
-            return LocalizationHelper.LocalizeOrDefault("ColonistsBought", player);
+            var cs = ColonyState.GetColonyState(colony);
+
+            return string.Format(LocalizationHelper.LocalizeOrDefault("ColonistsBought", player), cs.NextColonistBuyTime - TimeCycle.TotalTime.Value.Hours);
         }
     }
 }

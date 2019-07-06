@@ -329,6 +329,7 @@
           "Slabs, Fence, Iron bar and doors now have proper colliders",
           "Call to arms has been removed",
           "Offline colonies has been removed",
+          "Settler research is now available at the start of a colony",
           "Colonists will now puch zombies when they come close to them. Its configured as ColonistPunchDamage and defaults to 30 damage",
           "Swords will auto equit to colonists now but always leave at least 4 in the stockpile. This is similar to armor",
           "Added serveral new ores that generate in the map: Adamantine, Emerald, Ruby, Saphire",

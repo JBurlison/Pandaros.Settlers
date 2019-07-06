@@ -23,7 +23,6 @@ namespace Pandaros.Settlers
                 BossHPPerColonist                        = 50,
                 ZombieQueenTargetTeleportCooldownSeconds = 30,
                 AdditionalChance                         = 0f,
-                TimeUnhappyAfterColonistDeathSeconds     = 0f,
                 UnhappinessPerColonistDeath              = 0f,
                 UnhappyGuardsMultiplyRate                = 0f,
                 MonsterHPPerColonist                     = 0f,
@@ -37,7 +36,6 @@ namespace Pandaros.Settlers
                 BossHPPerColonist                        = 50,
                 ZombieQueenTargetTeleportCooldownSeconds = 3,
                 AdditionalChance                         = 0.4f,
-                TimeUnhappyAfterColonistDeathSeconds     = 300,
                 UnhappinessPerColonistDeath              = 1,
                 UnhappyGuardsMultiplyRate                = 0.5f,
                 MonsterHPPerColonist                     = .5f,
@@ -51,7 +49,6 @@ namespace Pandaros.Settlers
                 BossHPPerColonist                        = 70,
                 ZombieQueenTargetTeleportCooldownSeconds = 15,
                 AdditionalChance                         = 0f,
-                TimeUnhappyAfterColonistDeathSeconds     = 900,
                 UnhappinessPerColonistDeath              = 2,
                 UnhappyGuardsMultiplyRate                = 1,
                 MonsterHPPerColonist                     = 1f,
@@ -66,7 +63,6 @@ namespace Pandaros.Settlers
                 BossHPPerColonist                        = 80,
                 ZombieQueenTargetTeleportCooldownSeconds = 10,
                 AdditionalChance                         = -0.2f,
-                TimeUnhappyAfterColonistDeathSeconds     = 900,
                 UnhappinessPerColonistDeath              = 3,
                 UnhappyGuardsMultiplyRate                = 1.5f,
                 MonsterHPPerColonist                     = 3f,
@@ -81,7 +77,6 @@ namespace Pandaros.Settlers
                 BossHPPerColonist                        = 100,
                 ZombieQueenTargetTeleportCooldownSeconds = 5,
                 AdditionalChance                         = -0.4f,
-                TimeUnhappyAfterColonistDeathSeconds     = 1800,
                 UnhappinessPerColonistDeath              = 4,
                 UnhappyGuardsMultiplyRate                = 2,
                 MonsterHPPerColonist                     = 5f,
@@ -127,7 +122,6 @@ namespace Pandaros.Settlers
         public float BossHPPerColonist { get; set; } = 30;
         public float MonsterHPPerColonist { get; set; } = 1;
         public double UnhappinessPerColonistDeath { get; set; } = 2;
-        public double TimeUnhappyAfterColonistDeathSeconds { get; set; } = 900;
         public float UnhappyGuardsMultiplyRate { get; set; } = 1;
         public float UnhappyColonistsBought { get; set; } = -1;
 

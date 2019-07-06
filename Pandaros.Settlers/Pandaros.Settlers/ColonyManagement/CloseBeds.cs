@@ -73,23 +73,30 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 foreach (var bed in bso.Beds)
                 {
-                    var bedEnd = bed.Value.Add(-1, 0, 0);
+                    try
+                    {
+                        var bedEnd = bed.Value.Add(-1, 0, 0);
 
-                    if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDXP)
-                    {
-                        bedEnd = bed.Value.Add(1, 0, 0);
-                    }
-                    else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZN)
-                    {
-                        bedEnd = bed.Value.Add(0, 0, -1);
-                    }
-                    else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZP)
-                    {
-                        bedEnd = bed.Value.Add(0, 0, 1);
-                    }
+                        if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDXP)
+                        {
+                            bedEnd = bed.Value.Add(1, 0, 0);
+                        }
+                        else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZN)
+                        {
+                            bedEnd = bed.Value.Add(0, 0, -1);
+                        }
+                        else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZP)
+                        {
+                            bedEnd = bed.Value.Add(0, 0, 1);
+                        }
 
-                    if (!IsHappy(bed.Value, bedEnd))
-                        happiness -= 1;
+                        if (!IsHappy(bed.Value, bedEnd))
+                            happiness -= 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        PandaLogger.LogError(ex);
+                    }
                 }
 
                 CachedHappiness[colony] = happiness;

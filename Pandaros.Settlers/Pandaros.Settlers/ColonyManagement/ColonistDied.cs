@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 foreach(var time in colonyKvp.Value)
                 {
-                    if (Time.SecondsSinceStartDouble > time)
+                    if (TimeCycle.TotalTime.Value.Hours > time)
                         remove.Add(time);
                 }
 
@@ -56,7 +56,7 @@ namespace Pandaros.Settlers.ColonyManagement
             if (!DieCount.ContainsKey(nPC.Colony))
                 DieCount.Add(nPC.Colony, new List<double>());
 
-            DieCount[nPC.Colony].Add(Time.SecondsSinceStartDouble + cs.Difficulty.TimeUnhappyAfterColonistDeathSeconds);
+            DieCount[nPC.Colony].Add(TimeCycle.TotalTime.Value.Hours + 24);
         }
 
         public float Evaluate(Colony colony)
@@ -71,7 +71,13 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public string GetDescription(Colony colony, Players.Player player)
         {
-            return LocalizationHelper.LocalizeOrDefault("ColonistDied", player);
+            if (ColonistDied.DieCount.TryGetValue(colony, out var times))
+            {
+                var time = times.LastOrDefault();
+
+                return string.Format(LocalizationHelper.LocalizeOrDefault("ColonistDied", player), time - TimeCycle.TotalTime.Value.Hours);
+            }
+            return "";
         }
     }
 
