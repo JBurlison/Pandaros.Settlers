@@ -20,8 +20,6 @@ namespace Pandaros.Settlers.Entities
         public GameDifficulty Difficulty { get; set; } = SettlersConfiguration.DefaultDifficulty;
         public bool BossesEnabled { get; set; } = true;
         public SettlersState SettlersEnabled { get; set; }
-        public int ColonistsBought { get; set; }
-        public double NextColonistBuyTime { get; set; }
         public double NeedsABed { get; set; }
         public int HighestColonistCount { get; set; }
         public double NextGenTime { get; set; }
@@ -78,33 +76,6 @@ namespace Pandaros.Settlers.Entities
             {
                 networkMenu.Items.Add(new HorizontalSplit(new Label(new LabelData(GameLoader.NAMESPACE + ".inventory.ColonyCreationDate", UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Sentence)),
                                                     new Label(new LabelData(cs.CreationDate.ToString())), 30, 0.75f));
-            }
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Entities.ColonyState.OnUpdate")]
-        public static void OnUpdate()
-        {
-            if (ServerManager.ColonyTracker != null)
-            foreach (var c in ServerManager.ColonyTracker.ColoniesByID.Values)
-            {
-                if (c.OwnerIsOnline())
-                {
-                    try
-                    {
-                        var ps = GetColonyState(c);
-
-                        if (ps.NextColonistBuyTime != 0 && TimeCycle.TotalTime.Value.Hours > ps.NextColonistBuyTime)
-                        {
-                            PandaChat.Send(c, "The compounding cost of buying colonists has been reset.", ChatColor.orange);
-                            ps.NextColonistBuyTime = 0;
-                            ps.ColonistsBought = 0;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        PandaLogger.LogError(ex);
-                    }
-                }
             }
         }
 

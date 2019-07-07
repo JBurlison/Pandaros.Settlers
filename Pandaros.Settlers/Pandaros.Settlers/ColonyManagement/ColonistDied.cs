@@ -31,7 +31,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 foreach(var time in colonyKvp.Value)
                 {
-                    if (TimeCycle.TotalTime.Value.Hours > time)
+                    if (TimeCycle.TotalHours > time)
                         remove.Add(time);
                 }
 
@@ -56,7 +56,7 @@ namespace Pandaros.Settlers.ColonyManagement
             if (!DieCount.ContainsKey(nPC.Colony))
                 DieCount.Add(nPC.Colony, new List<double>());
 
-            DieCount[nPC.Colony].Add(TimeCycle.TotalTime.Value.Hours + 24);
+            DieCount[nPC.Colony].Add(TimeCycle.TotalHours + 24);
         }
 
         public float Evaluate(Colony colony)

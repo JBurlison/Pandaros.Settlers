@@ -280,8 +280,10 @@ namespace Pandaros.Settlers.ColonyManagement
                     {
                         if (npc.Colony.FollowerCount > MAX_BUYABLE)
                         {
-                            ps.ColonistsBought++;
-                            ps.NextColonistBuyTime = TimeCycle.TotalTime.Value.Hours + 24;
+                            if (!ColonistsBought.BoughtCount.ContainsKey(npc.Colony))
+                                ColonistsBought.BoughtCount.Add(npc.Colony, new List<double>());
+
+                            ColonistsBought.BoughtCount[npc.Colony].Add(TimeCycle.TotalHours + 24);
                         }
 
                         SettlerInventory.GetSettlerInventory(npc);
