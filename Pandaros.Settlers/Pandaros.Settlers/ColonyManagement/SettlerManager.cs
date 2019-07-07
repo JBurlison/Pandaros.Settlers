@@ -39,15 +39,14 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public const int _NUMBEROFCRAFTSPERPERCENT = 200;
         public const int _UPDATE_TIME = 10;
-        public static double IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
-        public static double BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
-        public static double COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
-        public static double HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
+        public static double BED_LEAVE_HOURS = 5;
+        public static double COLD_LEAVE_HOURS = 5;
+        public static double HOT_LEAVE_HOURS = 6;
         public static float _baseFoodPerHour;
         public static double _updateTime;
-        public static double _magicUpdateTime = Time.SecondsSinceStartDouble + Random.Next(2, 5);
-        public static double _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(2, 6);
-        public static double _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(1, 2);
+        public static double _magicUpdateTime = TimeCycle.TotalHours + Random.Next(2, 5);
+        public static double _nextLaborerTime = TimeCycle.TotalHours + Random.Next(2, 6);
+        public static double _nextbedTime = TimeCycle.TotalHours + Random.Next(1, 2);
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
         private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("SettlerManager");
@@ -101,13 +100,13 @@ namespace Pandaros.Settlers.ColonyManagement
             if (ServerManager.ColonyTracker != null)
                 foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                 {
-                    if (_magicUpdateTime < Time.SecondsSinceStartDouble)
+                    if (_magicUpdateTime < TimeCycle.TotalHours)
                     {
                         foreach (var follower in colony.Followers)
                         {
                             var inv = SettlerInventory.GetSettlerInventory(follower);
 
-                            if (inv.MagicItemUpdateTime < Time.SecondsSinceStartDouble)
+                            if (inv.MagicItemUpdateTime < TimeCycle.TotalHours)
                             {
                                 foreach (var item in inv.Armor)
                                     if (item.Value.Id != 0 && ArmorFactory.ArmorLookup.TryGetValue(item.Value.Id, out var armor))
@@ -164,7 +163,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     }
 
 
-                    if (_updateTime < Time.SecondsSinceStartDouble && colony.OwnerIsOnline())
+                    if (_updateTime < TimeCycle.TotalHours && colony.OwnerIsOnline())
                     {
                         NPCBase lastNPC = null;
 
@@ -192,21 +191,17 @@ namespace Pandaros.Settlers.ColonyManagement
                     UpdateFoodUse(cs);
                 }
 
-            if (_magicUpdateTime < Time.SecondsSinceStartDouble)
-                _magicUpdateTime = Time.SecondsSinceStartDouble + 1;
+            if (_magicUpdateTime < TimeCycle.TotalHours)
+                _magicUpdateTime = TimeCycle.TotalHours + 1;
 
-            if (_updateTime < Time.SecondsSinceStartDouble && TimeCycle.IsDay)
-                _updateTime = Time.SecondsSinceStartDouble + _UPDATE_TIME;
+            if (_updateTime < TimeCycle.TotalHours && TimeCycle.IsDay)
+                _updateTime = TimeCycle.TotalHours + _UPDATE_TIME;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
             _baseFoodPerHour = 1;
-            IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
-            BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
-            COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
-            HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
 
             foreach (var p in ServerManager.ColonyTracker.ColoniesByID.Values)
                 UpdateFoodUse(ColonyState.GetColonyState(p));
@@ -453,9 +448,9 @@ namespace Pandaros.Settlers.ColonyManagement
             if (state.ColonyRef.OwnerIsOnline())
             {
                 if (state.NextGenTime == 0)
-                    state.NextGenTime = Time.SecondsSinceStartDouble + Random.Next(8, 16) * IN_GAME_HOUR_IN_SECONDS;
+                    state.NextGenTime = TimeCycle.TotalHours + Random.Next(8, 16);
 
-                if (Time.SecondsSinceStartDouble > state.NextGenTime && state.ColonyRef.FollowerCount >= MAX_BUYABLE)
+                if (TimeCycle.TotalHours > state.NextGenTime && state.ColonyRef.FollowerCount >= MAX_BUYABLE)
                 {
                     var chance =
                         state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".SettlerChance", 0f) +
@@ -538,7 +533,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     }
 
 
-                    state.NextGenTime = Time.SecondsSinceStartDouble + Random.Next(8, 16) * IN_GAME_HOUR_IN_SECONDS;
+                    state.NextGenTime = TimeCycle.TotalHours + Random.Next(8, 16);
 
                     state.ColonyRef.SendCommonData();
                 }
@@ -664,7 +659,7 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             var update = false;
 
-            if (TimeCycle.IsDay && Time.SecondsSinceStartDouble > _nextLaborerTime)
+            if (TimeCycle.IsDay && TimeCycle.TotalHours > _nextLaborerTime)
             {
                 var unTrack = new List<NPCBase>();
                 var left    = 0;
@@ -694,7 +689,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 state.ColonyRef.SendCommonData();
                 
 
-                _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * IN_GAME_HOUR_IN_SECONDS * 24;
+                _nextLaborerTime = TimeCycle.TotalHours + Random.Next(4, 6);
             }
 
             return update;
@@ -750,11 +745,10 @@ namespace Pandaros.Settlers.ColonyManagement
 
             try
             {
-                if (!TimeCycle.IsDay && Time.SecondsSinceStartDouble > _nextbedTime)
+                if (!TimeCycle.IsDay && TimeCycle.TotalHours > _nextbedTime)
                 {
-                        // TODO Fix bed count
-                        var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(state.ColonyRef) - state.ColonyRef.FollowerCount;
-                        var left          = 0;
+                    var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(state.ColonyRef) - state.ColonyRef.FollowerCount;
+                    var left          = 0;
 
                     if (remainingBeds >= 0)
                     {
@@ -790,7 +784,7 @@ namespace Pandaros.Settlers.ColonyManagement
                         state.ColonyRef.SendCommonData();
                     }
 
-                    _nextbedTime = Time.SecondsSinceStartDouble + Random.Next(5, 8) * IN_GAME_HOUR_IN_SECONDS * 24;
+                    _nextbedTime = TimeCycle.TotalHours + Random.Next(5, 8);
                 }
             }
             catch (Exception ex)

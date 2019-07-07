@@ -16,7 +16,6 @@ namespace Pandaros.Settlers.Entities
     public class PlayerState
     {
         private static readonly Dictionary<Players.Player, PlayerState> _playerStates = new Dictionary<Players.Player, PlayerState>();
-        private static string _Enviorment = GameLoader.NAMESPACE + ".Enviorment";
         private static double MagicItemUpdateTime = Time.SecondsSinceStartDouble;
 
         public PlayerState(Players.Player p)

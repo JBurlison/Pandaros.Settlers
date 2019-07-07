@@ -160,6 +160,9 @@ namespace Pandaros.Settlers.Entities
         {
             SettlerInventory inv = null;
 
+            if (npc == null)
+                return inv;
+
             if (npc.CustomData == null)
                 npc.CustomData = new JSONNode();
 

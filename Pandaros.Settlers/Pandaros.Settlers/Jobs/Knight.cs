@@ -383,7 +383,7 @@ namespace Pandaros.Settlers.Jobs
         {
             UsedNPC = npc;
             _inv = SettlerInventory.GetSettlerInventory(npc);
-            _stock = npc.Colony.Stockpile;
+            _stock = npc?.Colony?.Stockpile;
         }
 
         public void OnNPCCouldNotPathToGoal()
