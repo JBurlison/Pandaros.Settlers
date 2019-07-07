@@ -312,7 +312,7 @@ namespace Pandaros.Settlers.ColonyManagement
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
                 npc.CustomData.SetAs(GameLoader.SETTLER_INV, new SettlerInventory(invNode, npc));
 
-            if (node.TryGetAs<double>(LEAVETIME_JOB, out var leaveTime))
+            if (node.TryGetAs<double>(LEAVETIME_JOB, out var leaveTime) && leaveTime > 0)
                 npc.CustomData.SetAs(LEAVETIME_JOB, leaveTime);
 
             if (node.TryGetAs<float>(GameLoader.ALL_SKILLS, out var skills))
@@ -327,7 +327,7 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
 
-            if (npc.NPCType.IsLaborer && npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leave))
+            if (npc.NPCType.IsLaborer && npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leave) && leave > 0)
                 node.SetAs(LEAVETIME_JOB, leave);
 
             if (npc.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
@@ -599,7 +599,7 @@ namespace Pandaros.Settlers.ColonyManagement
             try
             {
                 if (data.Item1 != null && !data.Item1.NPCType.IsLaborer)
-                    data.Item1.CustomData.SetAs(LEAVETIME_JOB, 0);
+                    data.Item1.CustomData.RemoveChild(LEAVETIME_JOB);
 
                 if (data.Item3 is GuardJobInstance guardJob)
                 {

@@ -50,26 +50,38 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 {
                     foreach (var machine in Objectives)
                         foreach (var category in machine.Value)
+                        {
+                            var invalidKeys = new List<Vector3Int>();
+
                             foreach (var state in category.Value)
                                 try
                                 {
-                                    state.Value.RoamingJobSettings.DoWork(machine.Key, state.Value);
-
-                                    foreach (var objectiveLoad in state.Value.ActionEnergy)
+                                    if (!state.Value.PositionIsValid())
+                                        invalidKeys.Add(state.Key);
+                                    else
                                     {
-                                        if (objectiveLoad.Value <= 0 && 
-                                            state.Value.RoamingJobSettings.ActionCallbacks.TryGetValue(objectiveLoad.Key, out var objectiveAction))
-                                            Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector, 
-                                                                            new IndicatorState(OBJECTIVE_REFRESH,
-                                                                            objectiveAction.ObjectiveLoadEmptyIcon.Id, 
-                                                                            true,
-                                                                            false));
+                                        state.Value.RoamingJobSettings.DoWork(machine.Key, state.Value);
+
+                                        foreach (var objectiveLoad in state.Value.ActionEnergy)
+                                        {
+                                            if (objectiveLoad.Value <= 0 &&
+                                                state.Value.RoamingJobSettings.ActionCallbacks.TryGetValue(objectiveLoad.Key, out var objectiveAction))
+                                                Indicator.SendIconIndicatorNear(state.Value.Position.Add(0, 1, 0).Vector,
+                                                                                new IndicatorState(OBJECTIVE_REFRESH,
+                                                                                objectiveAction.ObjectiveLoadEmptyIcon.Id,
+                                                                                true,
+                                                                                false));
+                                        }
                                     }
                                 }
                                 catch (Exception ex)
                                 {
                                     PandaLogger.LogError(ex);
                                 }
+
+                            foreach (var key in invalidKeys)
+                                category.Value.Remove(key);
+                        }
                 }
 
                 _nextUpdate = Time.SecondsSinceStartDouble + OBJECTIVE_REFRESH;
