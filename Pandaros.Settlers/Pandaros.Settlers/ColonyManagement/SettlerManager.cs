@@ -41,7 +41,6 @@ namespace Pandaros.Settlers.ColonyManagement
         public const int _UPDATE_TIME = 10;
         public static double IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
         public static double BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
-        public static double LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
         public static double COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
         public static double HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
         public static float _baseFoodPerHour;
@@ -206,7 +205,6 @@ namespace Pandaros.Settlers.ColonyManagement
             _baseFoodPerHour = 1;
             IN_GAME_HOUR_IN_SECONDS = 3600 / TimeCycle.Settings.GameTimeScale;
             BED_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
-            LOABOROR_LEAVE_HOURS = TimeSpan.FromDays(7).TotalHours * IN_GAME_HOUR_IN_SECONDS;
             COLD_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 5;
             HOT_LEAVE_HOURS = IN_GAME_HOUR_IN_SECONDS * 6;
 
@@ -668,35 +666,33 @@ namespace Pandaros.Settlers.ColonyManagement
 
             if (TimeCycle.IsDay && Time.SecondsSinceStartDouble > _nextLaborerTime)
             {
-                if (state.ColonyRef.OwnerIsOnline())
+                var unTrack = new List<NPCBase>();
+                var left    = 0;
+
+                for (var i = 0; i < state.ColonyRef.LaborerCount; i++)
                 {
-                    var unTrack = new List<NPCBase>();
-                    var left    = 0;
+                    var npc     = state.ColonyRef.FindLaborer(i);
 
-                    for (var i = 0; i < state.ColonyRef.LaborerCount; i++)
+                    if (!npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leaveTime))
                     {
-                        var npc     = state.ColonyRef.FindLaborer(i);
-
-                        if (!npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leaveTime))
-                        {
-                            npc.CustomData.SetAs(LEAVETIME_JOB, Time.SecondsSinceStartDouble + LOABOROR_LEAVE_HOURS);
-                        }
-                        else if (leaveTime < Time.SecondsSinceStartDouble)
-                        {
-                            left++;
-                            NPCLeaving(npc);
-                        }
+                        npc.CustomData.SetAs(LEAVETIME_JOB, TimeCycle.TotalHours + 48);
                     }
-
-                    if (left > 0)
-                        PandaChat.Send(state.ColonyRef,
-                                       string.Concat(SettlerReasoning.GetNoJobReason(),
-                                                     string.Format(" {0} colonists have left your colony.", left)),
-                                       ChatColor.red);
-
-                    update = unTrack.Count != 0;
-                    state.ColonyRef.SendCommonData();
+                    else if (leaveTime < TimeCycle.TotalHours)
+                    {
+                        left++;
+                        NPCLeaving(npc);
+                    }
                 }
+
+                if (left > 0)
+                    PandaChat.Send(state.ColonyRef,
+                                    string.Concat(SettlerReasoning.GetNoJobReason(),
+                                                    string.Format(" {0} colonists have left your colony.", left)),
+                                    ChatColor.red);
+
+                update = unTrack.Count != 0;
+                state.ColonyRef.SendCommonData();
+                
 
                 _nextLaborerTime = Time.SecondsSinceStartDouble + Random.Next(4, 6) * IN_GAME_HOUR_IN_SECONDS * 24;
             }
@@ -756,42 +752,40 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 if (!TimeCycle.IsDay && Time.SecondsSinceStartDouble > _nextbedTime)
                 {
-                    if (state.ColonyRef.OwnerIsOnline())
-                    {
                         // TODO Fix bed count
                         var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(state.ColonyRef) - state.ColonyRef.FollowerCount;
                         var left          = 0;
 
-                        if (remainingBeds >= 0)
+                    if (remainingBeds >= 0)
+                    {
+                        state.NeedsABed = 0;
+                    }
+                    else
+                    {
+                        if (state.NeedsABed == 0)
                         {
+                            state.NeedsABed = TimeCycle.TotalHours + 24;
+                            PandaChat.Send(state.ColonyRef, SettlerReasoning.GetNeedBed(), ChatColor.grey);
+                        }
+
+                        if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalHours)
+                        {
+                            foreach (var follower in state.ColonyRef.Followers)
+                                if (follower.UsedBed == null)
+                                {
+                                    left++;
+                                    NPCLeaving(follower);
+                                }
+
                             state.NeedsABed = 0;
                         }
-                        else
+
+                        if (left > 0)
                         {
-                            if (state.NeedsABed == 0)
-                            {
-                                state.NeedsABed = Time.SecondsSinceStartDouble + LOABOROR_LEAVE_HOURS;
-                                PandaChat.Send(state.ColonyRef, SettlerReasoning.GetNeedBed(), ChatColor.grey);
-                            }
-
-                            if (state.NeedsABed != 0 && state.NeedsABed < Time.SecondsSinceStartDouble)
-                            {
-                                foreach (var follower in state.ColonyRef.Followers)
-                                    if (follower.UsedBed == null)
-                                    {
-                                        left++;
-                                        NPCLeaving(follower);
-                                    }
-
-                                state.NeedsABed = 0;
-                            }
-
-                            if (left > 0)
-                            {
-                                PandaChat.Send(state.ColonyRef, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
-                                update = true;
-                            }
+                            PandaChat.Send(state.ColonyRef, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
+                            update = true;
                         }
+
 
                         state.ColonyRef.SendCommonData();
                     }
