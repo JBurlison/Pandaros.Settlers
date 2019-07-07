@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(Items.Reagents.Adamantine.NAME),
+                    new InventoryItem(SettlersBuiltIn.ItemTypes.ADAMANTINENUGGET.Id, 4),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 3),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
