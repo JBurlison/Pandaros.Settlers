@@ -4828,7 +4828,28 @@
     "meta": 0,
     "name": "Nether Wart",
     "text_type": "nether_wart",
-    "cs_type": ""
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 115,
+    "meta": 1,
+    "name": "Nether Wart",
+    "text_type": "nether_wart",
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 115,
+    "meta": 2,
+    "name": "Nether Wart",
+    "text_type": "nether_wart",
+    "cs_type": "carpetred"
+  },
+  {
+    "type": 115,
+    "meta": 3,
+    "name": "Nether Wart",
+    "text_type": "nether_wart",
+    "cs_type": "carpetred"
   },
   {
     "type": 116,

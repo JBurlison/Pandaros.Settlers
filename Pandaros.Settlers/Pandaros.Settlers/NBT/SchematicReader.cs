@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.NBT
         {
             try
             {
-                if (TryGetScematicFilePath(name + METADATA_FILEEXT, colonyId, out string savePath))
+                if (TryGetScematicMetadataFilePath(name + METADATA_FILEEXT, colonyId, out string savePath))
                 {
                     var json = JSON.Deserialize(savePath);
                     metadata = JsonConvert.DeserializeObject<SchematicMetadata>(json.ToString());
@@ -58,6 +58,21 @@ namespace Pandaros.Settlers.NBT
                 size = null;
 
             return size != null;
+        }
+
+        public static bool TryGetScematicMetadataFilePath(string name, int colonyId, out string colonySaves)
+        {
+            colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
+
+            if (!Directory.Exists(colonySaves))
+                Directory.CreateDirectory(colonySaves);
+
+            if (File.Exists(colonySaves + name))
+                colonySaves = colonySaves + name;
+            else
+                colonySaves = null;
+
+            return !string.IsNullOrWhiteSpace(colonySaves);
         }
 
         public static bool TryGetScematicFilePath(string name, int colonyId, out string colonySaves)
@@ -105,7 +120,12 @@ namespace Pandaros.Settlers.NBT
         {
             if (TryGetScematicFilePath(name, colonyId, out string path))
             {
-                var metadataPath = path + METADATA_FILEEXT;
+                var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
+
+                if (!Directory.Exists(colonySaves))
+                    Directory.CreateDirectory(colonySaves);
+
+                var metadataPath = path + name + METADATA_FILEEXT;
                 var metadata = new SchematicMetadata();
                 metadata.Name = name.Substring(0, name.LastIndexOf('.'));
                 Schematic schematic = LoadSchematic(new NbtFile(path), Vector3Int.invalidPos);
@@ -123,9 +143,8 @@ namespace Pandaros.Settlers.NBT
                                 var buildType = ItemTypes.GetType(block.CSIndex);
                                 var index = block.CSIndex;
 
-                                if (!string.IsNullOrWhiteSpace(buildType.ParentType))
+                                if (!string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.Name.Contains("grass") && !buildType.Name.Contains("leaves"))
                                     index = ItemTypes.GetType(buildType.ParentType).ItemIndex;
-
 
                                 if (metadata.Blocks.TryGetValue(index, out var blockMeta))
                                 {

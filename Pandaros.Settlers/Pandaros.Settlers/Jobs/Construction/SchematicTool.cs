@@ -224,7 +224,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
                             {
                                 NetworkMenu menu = new NetworkMenu();
-                                menu.Width = 600;
+                                menu.Width = 800;
                                 menu.Height = 600;
                                 menu.LocalStorage.SetAs("header", selectedSchematic.Name.Replace(".schematic","") + " " + _localizationHelper.LocalizeOrDefault("Details", data.Player));
 
@@ -233,15 +233,36 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 menu.Items.Add(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Length", data.Player) + ": " + schematicMetadata.MaxX, UnityEngine.Color.black)));
                                 menu.LocalStorage.SetAs(Selected_Schematic, selectedSchematic.Name);
 
+                                List<ValueTuple<IItem, int>> headerItems = new List<ValueTuple<IItem, int>>();
+                                headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData("  ", UnityEngine.Color.black)), 200));
+                                headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Item", data.Player), UnityEngine.Color.black)), 200));
+                                headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Required", data.Player), UnityEngine.Color.black)), 200));
+                                headerItems.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("InStockpile", data.Player), UnityEngine.Color.black)), 200));
+                                menu.Items.Add(new HorizontalRow(headerItems));
+
                                 foreach (var kvp in schematicMetadata.Blocks)
                                 {
-                                    var item = ItemTypes.GetType(kvp.Key);
+                                    try
+                                    {
+                                        if (ItemTypes.TryGetType(kvp.Key, out ItemTypes.ItemType item))
+                                        {
+                                            var stockpileCount = 0;
+                                            data.Player.ActiveColony.Stockpile.Items.TryGetValue(item.ItemIndex, out stockpileCount);
 
-                                    List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
-                                    items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(kvp.Key), 200));
-                                    items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 200));
-                                    items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)), 200));
-                                    menu.Items.Add(new HorizontalRow(items));
+                                            List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
+                                            items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(kvp.Key), 200));
+                                            items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(item.Name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 200));
+                                            items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(" x " + kvp.Value.Count, UnityEngine.Color.black)), 200));
+                                            items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(" x " + stockpileCount, UnityEngine.Color.black)), 200));
+                                            menu.Items.Add(new HorizontalRow(items));
+                                        }
+                                        else
+                                            PandaLogger.Log(ChatColor.orange, "Unknown item for schematic: {0}", kvp.Key);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        PandaLogger.LogError(ex);
+                                    }
                                 }
 
                                 menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Rotation"), UnityEngine.Color.black), Selected_Schematic + ".Rotation", _rotation.Select(r => r.ToString()).ToList()));

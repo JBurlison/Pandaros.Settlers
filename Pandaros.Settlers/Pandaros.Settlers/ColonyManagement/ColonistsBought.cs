@@ -45,7 +45,7 @@ namespace Pandaros.Settlers.ColonyManagement
             var cs = ColonyState.GetColonyState(colony);
 
             if (BoughtCount.TryGetValue(colony, out var count))
-                return (float)(count.Count * cs.Difficulty.UnhappyColonistsBought) * -1f;
+                return (float)(count.Count * cs.Difficulty.UnhappyColonistsBought);
 
             return 0;
         }
