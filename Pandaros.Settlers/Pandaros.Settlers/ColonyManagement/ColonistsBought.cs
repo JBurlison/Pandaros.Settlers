@@ -56,7 +56,7 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 var time = times.LastOrDefault();
 
-                return string.Format(LocalizationHelper.LocalizeOrDefault("ColonistsBought", player), time - TimeCycle.TotalTime.Value.Hours);
+                return string.Format(LocalizationHelper.LocalizeOrDefault("ColonistsBought", player), time - TimeCycle.TotalHours);
             }
             return "";
         }
