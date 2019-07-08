@@ -88,8 +88,11 @@ namespace Pandaros.Settlers.Jobs.Construction
                     {
                        var parentType = ItemTypes.GetType(buildType.ParentType);
 
-                        if (!ok && ownerStockPile.Contains(parentType.ItemIndex))
+                        if (ownerStockPile.Contains(parentType.ItemIndex))
+                        {
                             ok = true;
+                            buildType = parentType;
+                        }
                     }
 
                     if (ok)
@@ -120,7 +123,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                             if (!_needsChunkLoaded.Contains(bpi))
                                 _needsChunkLoaded.Add(bpi);
 
-                            state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
+                            state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name));
                             ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
                             return;
                         }
@@ -131,8 +134,11 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (!_needsChunkLoaded.Contains(bpi))
                         _needsChunkLoaded.Add(bpi);
 
-                    state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
+
+                    if (areaJob.Owner.Stockpile.Contains(buildType.ItemIndex) && buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
+                        state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name));
+                    
                     return;
                 }
 

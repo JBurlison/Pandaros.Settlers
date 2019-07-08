@@ -180,9 +180,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
             else if (ItemTypes.TryGetType(d.TypeNew.ItemIndex, out ItemTypes.ItemType item))
             {
                 if (ObjectiveCallbacks.TryGetValue(item.Name, out roamingJobObjective))
-                    RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.ItemIndex));
+                    RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.ItemIndex, roamingJobObjective));
                 else if (!string.IsNullOrEmpty(item.ParentType) && ObjectiveCallbacks.TryGetValue(item.ParentType, out roamingJobObjective))
-                    RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.ItemIndex));
+                    RegisterRoamingJobState(d.RequestOrigin.AsPlayer.ActiveColony, new RoamingJobState(d.Position, d.RequestOrigin.AsPlayer.ActiveColony, roamingJobObjective.ItemIndex, roamingJobObjective));
             }
         }
 

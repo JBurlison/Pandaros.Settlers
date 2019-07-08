@@ -311,7 +311,6 @@
     <Compile Include="Items\Healing\TreatedBandage.cs" />
     <Compile Include="Items\Weapons\IWeapon.cs" />
     <Compile Include="Items\Weapons\WeaponFactory.cs" />
-    <Compile Include="Jobs\Construction\Architect.cs" />
     <Compile Include="Jobs\Construction\SchematicBuilder.cs" />
     <Compile Include="Jobs\Construction\SchematicBuilderLoader.cs" />
     <Compile Include="Jobs\Construction\SchematicIterator.cs" />

@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.Monsters.Normal
 
         public Dictionary<DamageType, float> Damage { get; } = new Dictionary<DamageType, float>
         {
-            {DamageType.Physical, 10f}
+            {DamageType.Physical, 30f}
         };
 
         public DamageType ElementalArmor => DamageType.Physical;

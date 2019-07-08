@@ -362,8 +362,8 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         foreach (var kvp in RoamingJobManager.Objectives)
                             foreach (var p in kvp.Value)
-                                if (p.Value.ContainsKey(pos))
-                                    if (p.Value[pos].RoamObjective == nameof(TeleportPad))
+                                if (p.Value.TryGetValue(pos, out var roamingJobState))
+                                    if (roamingJobState.RoamObjective == SettlersBuiltIn.ItemTypes.TELEPORTPAD)
                                     {
                                         state = p.Value[pos];
                                         return true;
@@ -528,7 +528,7 @@ namespace Pandaros.Settlers.Items.Machines
             var machineState = sender as RoamingJobState;
 
             if (machineState != null &&
-                machineState.RoamObjective == nameof(TeleportPad))
+                machineState.RoamObjective == SettlersBuiltIn.ItemTypes.TELEPORTPAD)
             {
                 if (_paired.ContainsKey(machineState.Position) &&
                     GetPadAt(_paired[machineState.Position], out var paired))

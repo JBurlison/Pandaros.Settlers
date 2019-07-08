@@ -18,7 +18,7 @@ namespace Pandaros.Settlers
         {
             if (player.ActiveColony != null)
             {
-                menu.Items.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Prompt", "AlwaysAccept", "Disabled" }));
+                menu.Items.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Prompt", "Always Accept", "Disabled" }));
                 var ps = ColonyState.GetColonyState(player.ActiveColony);
                 menu.LocalStorage.SetAs(_Setters, Convert.ToInt32(ps.SettlersEnabled));
             }
@@ -40,7 +40,7 @@ namespace Pandaros.Settlers
                                 PandaChat.Send(data.Item1, "The server administrator had disabled the changing of Settlers.", ChatColor.red);
                             else if (!HasToggeledMaxTimes(maxToggleTimes, cs, data.Item1))
                             {
-                                var def = Convert.ToInt32(cs.SettlersEnabled);
+                                var def = (int)cs.SettlersEnabled;
                                 var enabled = data.Item2.GetAsOrDefault(_Setters, def);
 
                                 if (def != enabled)
