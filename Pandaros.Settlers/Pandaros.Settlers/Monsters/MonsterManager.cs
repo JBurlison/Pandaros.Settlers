@@ -275,6 +275,12 @@ namespace Pandaros.Settlers.Monsters
             var pamdaDamage     = d.HitSourceObject as IPandaDamage;
             var skilled = 0f;
 
+            if (pandaArmor != null && Random.NextFloat() <= pandaArmor.MissChance)
+            {
+                d.ResultDamage = 0;
+                return;
+            }
+
             if (pamdaDamage == null && d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
             {
                 var npc = d.HitSourceObject as NPCBase;
@@ -284,12 +290,6 @@ namespace Pandaros.Settlers.Monsters
 
                 if (inv.Weapon != null && Items.Weapons.WeaponFactory.WeaponLookup.TryGetValue(inv.Weapon.Id, out var wep))
                     pamdaDamage = wep;
-            }
-
-            if (pandaArmor != null && Random.NextFloat() <= pandaArmor.MissChance)
-            {
-                d.ResultDamage = 0;
-                return;
             }
 
             if (pandaArmor != null && pamdaDamage != null)
@@ -323,6 +323,7 @@ namespace Pandaros.Settlers.Monsters
 
             if (d.ResultDamage >= monster.CurrentHealth)
             {
+                monster.OnRagdoll();
                 var rewardMonster = monster as IPandaZombie;
                 string monsterType = "zombie";
 
