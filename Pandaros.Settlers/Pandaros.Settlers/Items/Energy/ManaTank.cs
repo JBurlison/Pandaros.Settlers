@@ -76,8 +76,7 @@ namespace Pandaros.Settlers.Energy
 
         public void DoWork(Colony colony, RoamingJobState state)
         {
-            if (!state.ActionEnergy.ContainsKey(GameLoader.NAMESPACE + ".ManaTankRefill"))
-                state.ActionEnergy.Add(GameLoader.NAMESPACE + ".ManaTankRefill", 0);
+            state.InitializeActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", 0);
 
             if (state.NextTimeForWork < Time.SecondsSinceStartDouble)
             {

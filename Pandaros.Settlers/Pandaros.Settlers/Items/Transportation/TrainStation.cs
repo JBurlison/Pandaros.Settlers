@@ -54,8 +54,8 @@ namespace Pandaros.Settlers.Items.Transportation
 
         public void DoWork(Colony colony, RoamingJobState state)
         {
-            if (!state.ActionEnergy.ContainsKey(GameLoader.NAMESPACE + ".ManaTankRefill"))
-                state.ActionEnergy.Add(GameLoader.NAMESPACE + ".ManaTankRefill", 0);
+            state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
+            state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair");
         }
     }
 

@@ -84,14 +84,14 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (!ok && ownerStockPile.Contains(buildType.ItemIndex))
                         ok = true;
 
-                    if (!ok && !string.IsNullOrWhiteSpace(buildType.ParentType))
+                    if (!ok && !string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.ParentType.Contains("grass") && !buildType.ParentType.Contains("leaves"))
                     {
-                       var parentType = ItemTypes.GetType(buildType.ParentType);
+                        var parentType = ItemTypes.GetType(buildType.ParentType);
+                        buildType = parentType;
 
                         if (ownerStockPile.Contains(parentType.ItemIndex))
                         {
                             ok = true;
-                            buildType = parentType;
                         }
                     }
 
@@ -128,6 +128,16 @@ namespace Pandaros.Settlers.Jobs.Construction
                             return;
                         }
                     }
+                    else
+                    {
+                        if (!areaJob.Owner.Stockpile.Contains(buildType.ItemIndex) && buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
+                            state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name, true, false));
+
+                        if (buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
+                            continue;
+                        else
+                            return;
+                    }
                 }
                 else
                 {
@@ -135,10 +145,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         _needsChunkLoaded.Add(bpi);
 
                     ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
-
-                    if (areaJob.Owner.Stockpile.Contains(buildType.ItemIndex) && buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
-                        state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name));
-                    
+                    state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     return;
                 }
 

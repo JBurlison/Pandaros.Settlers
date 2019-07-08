@@ -75,12 +75,17 @@ namespace Pandaros.Settlers.Jobs.Roaming
             SetActionEnergy(action, GetActionsMaxEnergy(action, Colony, RoamingJobSettings.ObjectiveCategory));
         }
 
-        public float GetActionEnergy(string action)
+        public float InitializeActionEnergy(string action, float valueIfNotInitialized)
         {
             if (!ActionEnergy.ContainsKey(action))
-                ActionEnergy.Add(action, GetActionsMaxEnergy(action, Colony, RoamingJobSettings.ObjectiveCategory));
+                ActionEnergy.Add(action, valueIfNotInitialized);
 
             return ActionEnergy[action];
+        }
+
+        public float GetActionEnergy(string action)
+        {
+            return InitializeActionEnergy(action, GetActionsMaxEnergy(action, Colony, RoamingJobSettings.ObjectiveCategory));
         }
 
         public void SetActionEnergy(string action, float value)
