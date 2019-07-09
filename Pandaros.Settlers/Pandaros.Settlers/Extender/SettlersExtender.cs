@@ -180,7 +180,7 @@ namespace Pandaros.Settlers.Extender
 
                                 if (constructor != null && Activator.CreateInstance(type) is IOnTimedUpdate onUpdateCallback)
                                 {
-                                    PandaLogger.Log(ChatColor.lime, "OnTimedUpdateLoaded: {0}", onUpdateCallback.GetType().Name);
+                                    PandaLogger.LogToFile("OnTimedUpdateLoaded: {0}", onUpdateCallback.GetType().Name);
                                     _timedUpdate.Add(onUpdateCallback);
                                 }
                             }

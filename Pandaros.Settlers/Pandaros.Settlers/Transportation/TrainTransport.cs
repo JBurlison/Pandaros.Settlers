@@ -229,11 +229,15 @@ namespace Pandaros.Settlers.Transportation
                                             if (roamingJobState.Colony.JobFinder.JobsData != null)
                                                 foreach (var job in roamingJobState.Colony.JobFinder.JobsData.OpenJobs)
                                                 {
-                                                    if (job != null && job.GetJobLocation() == stationCheck)
+                                                    try
                                                     {
-                                                        isWorked = false;
-                                                        break;
+                                                        if (job != null && job.GetJobLocation() == stationCheck)
+                                                        {
+                                                            isWorked = false;
+                                                            break;
+                                                        }
                                                     }
+                                                    catch { }
                                                 }
                                         }
                                         catch (Exception ex)

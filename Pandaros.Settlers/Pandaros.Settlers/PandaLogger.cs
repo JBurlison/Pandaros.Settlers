@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using System.Threading;
 using Pipliz;
@@ -238,6 +239,9 @@ namespace Pandaros.Settlers
         private void RotateLogs()
         {
             if (!File.Exists(_logFile)) return;
+
+            foreach (var fi in new DirectoryInfo(LOG_DIR).GetFiles().OrderByDescending(x => x.LastWriteTime).Skip(20))
+                fi.Delete();
 
             FileInfo fix = new FileInfo(_logFile);
             long fixedSize = fix.Length / 1024L; 

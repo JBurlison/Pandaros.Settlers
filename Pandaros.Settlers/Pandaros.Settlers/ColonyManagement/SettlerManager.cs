@@ -598,13 +598,11 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             try
             {
-                if (data.Item1 != null && !data.Item1.NPCType.IsLaborer)
+                if (data.Item1 != null)
                     data.Item1.CustomData.RemoveChild(LEAVETIME_JOB);
 
-                if (data.Item3 is GuardJobInstance guardJob)
+                if (data.Item3 is GuardJobInstance guardJob && data.Item3.TryGetNPCGuardDefaultSettings(out var settings))
                 {
-                    var settings = (GuardJobSettings)guardJob.Settings;
-
                     if (settings != null)
                         guardJob.Settings = new GuardJobSettings()
                         {
@@ -624,20 +622,18 @@ namespace Pandaros.Settlers.ColonyManagement
                             SleepType = settings.SleepType
                         };
                 }
-                else if (data.Item3 is CraftingJobInstance craftingJob)
+                else if (data.Item3 is CraftingJobInstance craftingJob &&  data.Item3.TryGetNPCCraftDefaultSettings(out var craftSettings))
                 {
-                    var settings = (CraftingJobSettings)craftingJob.Settings;
-
-                    if (settings != null)
+                    if (craftSettings != null)
                         craftingJob.Settings = new CraftingJobSettings()
                         {
-                            BlockTypes = settings.BlockTypes,
-                            CraftingCooldown = settings.CraftingCooldown,
-                            MaxCraftsPerHaul = settings.MaxCraftsPerHaul,
-                            NPCType = settings.NPCType,
-                            NPCTypeKey = settings.NPCTypeKey,
-                            OnCraftedAudio = settings.OnCraftedAudio,
-                            RecruitmentItem = settings.RecruitmentItem
+                            BlockTypes = craftSettings.BlockTypes,
+                            CraftingCooldown = craftSettings.CraftingCooldown,
+                            MaxCraftsPerHaul = craftSettings.MaxCraftsPerHaul,
+                            NPCType = craftSettings.NPCType,
+                            NPCTypeKey = craftSettings.NPCTypeKey,
+                            OnCraftedAudio = craftSettings.OnCraftedAudio,
+                            RecruitmentItem = craftSettings.RecruitmentItem
                         };
                 }
                 
@@ -663,6 +659,7 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 var unTrack = new List<NPCBase>();
                 var left    = 0;
+                List<NPCBase> leavingNPCs = new List<NPCBase>();
 
                 for (var i = 0; i < state.ColonyRef.LaborerCount; i++)
                 {
@@ -675,9 +672,12 @@ namespace Pandaros.Settlers.ColonyManagement
                     else if (leaveTime < TimeCycle.TotalHours)
                     {
                         left++;
-                        NPCLeaving(npc);
+                        leavingNPCs.Add(npc);
                     }
                 }
+
+                foreach (var npc in leavingNPCs)
+                    NPCLeaving(npc);
 
                 if (left > 0)
                     PandaChat.Send(state.ColonyRef,
@@ -764,15 +764,22 @@ namespace Pandaros.Settlers.ColonyManagement
 
                         if (state.NeedsABed != 0 && state.NeedsABed < TimeCycle.TotalHours)
                         {
+                            List<NPCBase> leaving = new List<NPCBase>();
+
                             foreach (var follower in state.ColonyRef.Followers)
                                 if (follower.UsedBed == null)
                                 {
                                     left++;
-                                    NPCLeaving(follower);
+                                    leaving.Add(follower);
                                 }
 
                             state.NeedsABed = 0;
+
+                            foreach (var npc in leaving)
+                                NPCLeaving(npc);
                         }
+
+
 
                         if (left > 0)
                         {

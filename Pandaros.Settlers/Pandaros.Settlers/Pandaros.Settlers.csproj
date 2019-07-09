@@ -221,6 +221,7 @@
     <Compile Include="Research\ResearchCompleteEventArgs.cs" />
     <Compile Include="Research\SettlerResearch.cs" />
     <Compile Include="Research\SwordSmithingResearch.cs" />
+    <Compile Include="Server\ChatHistory.cs" />
     <Compile Include="Server\ServerManagement.cs" />
     <Compile Include="Models\TrackedPosition.cs" />
     <Compile Include="Monsters\IMonsterNPCType.cs" />

@@ -126,12 +126,12 @@ namespace Pandaros.Settlers.Jobs.Roaming
                             }
 
                         if (Objectives.ContainsKey(c))
-                            PandaLogger.Log(ChatColor.lime, $"{countLoaded} of {Objectives[c].Count} objectives loaded from save for {c.ColonyID}!");
+                            PandaLogger.LogToFile($"{countLoaded} of {Objectives[c].Count} objectives loaded from save for {c.ColonyID}!");
                         else
-                            PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
+                            PandaLogger.LogToFile($"No objectives found in save for {c.ColonyID}.");
                     }
                 else
-                    PandaLogger.Log(ChatColor.lime, $"No objectives found in save for {c.ColonyID}.");
+                    PandaLogger.LogToFile($"No objectives found in save for {c.ColonyID}.");
             }
         }
 
