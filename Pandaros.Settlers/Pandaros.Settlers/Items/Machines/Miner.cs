@@ -119,6 +119,7 @@ namespace Pandaros.Settlers.Items.Machines
                         }
                         else
                         {
+                            machineState.SetActionEnergy(MachineConstants.INVENTORY, 0);
                             Indicator.SendIconIndicatorNear(machineState.Position.Add(0, 1, 0).Vector, new IndicatorState(mineTime, GameLoader.NAMESPACE + ".Inventory", true, false));
                         }
                     }
