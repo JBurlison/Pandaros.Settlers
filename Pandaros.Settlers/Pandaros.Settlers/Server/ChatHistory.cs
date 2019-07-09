@@ -62,13 +62,13 @@ namespace Pandaros.Settlers.Server
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".Server.ChatHistory.OnConstructInventoryManageColonyUI")]
         public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu)
         {
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ChatHistory", new LabelData(_localizationHelper.GetLocalizationKey("ChatHistory"), UnityEngine.Color.black), 50));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ChatHistory", new LabelData(_localizationHelper.GetLocalizationKey("ChatHistory"), UnityEngine.Color.black), 200));
         }
 
         public bool TryDoCommand(Players.Player player, string chat, List<string> splits)
         {
             if (player != null)
-                File.AppendAllText(Path.Combine(GameLoader.SAVE_LOC, "ChatLog.log"), string.Format("[{0}] {1}: {2}", DateTime.Now, player.Name, chat));
+                File.AppendAllText(Path.Combine(GameLoader.SAVE_LOC, "ChatLog.log"), string.Format("[{0}] {1}: {2}", DateTime.Now, player.Name, chat) + Environment.NewLine);
 
             return false;
         }

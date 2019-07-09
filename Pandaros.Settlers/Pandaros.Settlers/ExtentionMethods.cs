@@ -80,8 +80,6 @@ namespace Pandaros.Settlers
 
                 if (nPC.health > nPC.Colony.NPCHealthMax)
                     nPC.health = nPC.Colony.NPCHealthMax;
-
-                nPC.Update();
             }
         }
 
