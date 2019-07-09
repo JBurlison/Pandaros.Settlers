@@ -166,35 +166,33 @@ namespace Pandaros.Settlers.Energy
         public string name => GameLoader.NAMESPACE + ".ManaPump";
     }
 
-    public class ManaPumpGenerate : CSGenerateType
+    public class ManaPumpGenerate : CSType
     {
-        public override string generateType { get; set; } = "rotateBlock";
-        public override string typeName { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
-        public override ICSType baseType { get; set; } = new CSType()
-        {
-            categories = new List<string>()
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
+        public override List<string> categories { get; set; } = new List<string>()
             {
                 "Mana",
                 "Energy",
                 "Machine"
-            },
-            mesh = Path.Combine(GameLoader.MESH_PATH, "Manapump.obj"),
-            icon = Path.Combine(GameLoader.ICON_PATH, "ManaPump.png"),
-            onPlaceAudio = "Pandaros.Settlers.Metal",
-            onRemoveAudio = "Pandaros.Settlers.MetalRemove",
-            maxStackSize  = 300,
-            destructionTime = 500,
-            sideall = GameLoader.NAMESPACE + ".ManaPump",
-            meshRotationEuler = new SerializableVector3()
-            {
-                y = 90
-            },
-            ConnectedBlock = new ConnectedBlock()
-            {
-                BlockType = "ManaPipe",
-                AutoChange = false,
-                CalculationType = "Pipe",
-                Connections = new List<BlockSide>()
+            };
+        public override string mesh { get; set; } = Path.Combine(GameLoader.MESH_PATH, "Manapump.obj");
+        public override string icon { get; set; } = Path.Combine(GameLoader.ICON_PATH, "ManaPump.png");
+        public override string onPlaceAudio { get; set; } = "Pandaros.Settlers.Metal";
+        public override string onRemoveAudio { get; set; } = "Pandaros.Settlers.MetalRemove";
+        public override int? maxStackSize { get; set; } = 300;
+        public override int? destructionTime { get; set; } = 500;
+        public override string sideall { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
+        public override string rotatablexn { get; set; } = GameLoader.NAMESPACE + ".ManaPumpXn";
+        public override string rotatablexp { get; set; } = GameLoader.NAMESPACE + ".ManaPumpXp";
+        public override string rotatablezn { get; set; } = GameLoader.NAMESPACE + ".ManaPumpZn";
+        public override string rotatablezp { get; set; } = GameLoader.NAMESPACE + ".ManaPumpZp";
+        public override bool? isRotatable { get; set; } = true;
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            AutoChange = false,
+            CalculationType = "Pipe",
+            Connections = new List<BlockSide>()
                 {
                     BlockSide.Xn,
                     BlockSide.Xp,
@@ -203,7 +201,106 @@ namespace Pandaros.Settlers.Energy
                     BlockSide.Yn,
                     BlockSide.Yp
                 }
-            }
+        };
+    }
+
+    public class ManaPumpGenerateXp : CSType
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPumpXp";
+        public override string parentType { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
+        public override SerializableVector3 meshRotationEuler { get; set; } = new SerializableVector3()
+        {
+            y = 90
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            AutoChange = false,
+            CalculationType = "Pipe",
+            Connections = new List<BlockSide>()
+                {
+                    BlockSide.Xn,
+                    BlockSide.Xp,
+                    BlockSide.Zn,
+                    BlockSide.Zp,
+                    BlockSide.Yn,
+                    BlockSide.Yp
+                }
+        };
+    }
+
+    public class ManaPumpGenerateZn : CSType
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPumpZn";
+        public override string parentType { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
+        public override SerializableVector3 meshRotationEuler { get; set; } = new SerializableVector3()
+        {
+            y = 180
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            AutoChange = false,
+            CalculationType = "Pipe",
+            Connections = new List<BlockSide>()
+                {
+                    BlockSide.Xn,
+                    BlockSide.Xp,
+                    BlockSide.Zn,
+                    BlockSide.Zp,
+                    BlockSide.Yn,
+                    BlockSide.Yp
+                }
+        };
+    }
+
+    public class ManaPumpGenerateXn : CSType
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPumpXn";
+        public override string parentType { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
+        public override SerializableVector3 meshRotationEuler { get; set; } = new SerializableVector3()
+        {
+            y = 270
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            AutoChange = false,
+            CalculationType = "Pipe",
+            Connections = new List<BlockSide>()
+                {
+                    BlockSide.Xn,
+                    BlockSide.Xp,
+                    BlockSide.Zn,
+                    BlockSide.Zp,
+                    BlockSide.Yn,
+                    BlockSide.Yp
+                }
+        };
+    }
+
+    public class ManaPumpGenerateZp : CSType
+    {
+        public override string name { get; set; } = GameLoader.NAMESPACE + ".ManaPumpZp";
+        public override string parentType { get; set; } = GameLoader.NAMESPACE + ".ManaPump";
+        public override SerializableVector3 meshRotationEuler { get; set; } = new SerializableVector3()
+        {
+            y = 0
+        };
+        public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
+        {
+            BlockType = "ManaPipe",
+            AutoChange = false,
+            CalculationType = "Pipe",
+            Connections = new List<BlockSide>()
+                {
+                    BlockSide.Xn,
+                    BlockSide.Xp,
+                    BlockSide.Zn,
+                    BlockSide.Zp,
+                    BlockSide.Yn,
+                    BlockSide.Yp
+                }
         };
     }
 }

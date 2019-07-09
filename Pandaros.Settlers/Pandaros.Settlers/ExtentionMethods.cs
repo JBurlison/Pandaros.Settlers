@@ -45,7 +45,7 @@ namespace Pandaros.Settlers
         {
             var pos = currentPosition;
 
-            if (PathingManager.TryCanStandNear(goalPosition, out var canStand, out pos) && !canStand)
+            if (!PathingManager.TryCanStandNear(goalPosition, out var canStand, out pos) || !canStand)
             {
                 var y    = -1;
                 var negY = minMaxY * -1;
