@@ -5,6 +5,7 @@ using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Jobs.Roaming;
 using Pandaros.Settlers.Monsters;
+using Pandaros.Settlers.Server;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -278,12 +279,13 @@ namespace Pandaros.Settlers
         public static void AfterStartup()
         {
             RUNNING = true;
+            CommandManager.RegisterCommand(new ChatHistory());
             CommandManager.RegisterCommand(new GameDifficultyChatCommand());
             CommandManager.RegisterCommand(new ArmorCommand());
             CommandManager.RegisterCommand(new VersionChatCommand());
             CommandManager.RegisterCommand(new ConfigurationChatCommand());
             CommandManager.RegisterCommand(new BossesChatCommand());
-            CommandManager.RegisterCommand(new SettlersChatCommand());
+            CommandManager.RegisterCommand(new SettlersChatCommand());           
             VersionChecker.WriteVersionsToConsole();
 #if Debug
             ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());

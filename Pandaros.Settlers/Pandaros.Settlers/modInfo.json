@@ -288,6 +288,7 @@
           "Fixed stone slab name",
           "Fixed bug where colonists would be hurt after researching colonist health",
           "Mining machines no longer mine faster. They are still more efficient than manual as you can have 4-5 mining machines per Machinist",
+          "Added Chat History. Button in colony UI tab.",
           "Added the ability to build minecraft schematics with the schematic tool",
           "Added schematic tool research, requires builders.",
           "Added the ability so save schematics. they save on a per colony and player basis.",

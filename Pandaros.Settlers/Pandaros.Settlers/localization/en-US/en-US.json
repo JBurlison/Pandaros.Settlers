@@ -449,6 +449,9 @@
         "Permission": {
           "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: "
         },
+        "System": {
+          "ChatHistory": "Chat History"
+        },
         "SettlerManager": {
           "Accept": "Accept",
           "Decline": "Decline",
