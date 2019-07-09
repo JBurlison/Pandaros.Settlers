@@ -312,9 +312,6 @@ namespace Pandaros.Settlers.ColonyManagement
             if (node.TryGetAs<JSONNode>(GameLoader.SETTLER_INV, out var invNode))
                 npc.CustomData.SetAs(GameLoader.SETTLER_INV, new SettlerInventory(invNode, npc));
 
-            if (node.TryGetAs<double>(LEAVETIME_JOB, out var leaveTime) && leaveTime > 0)
-                npc.CustomData.SetAs(LEAVETIME_JOB, leaveTime);
-
             if (node.TryGetAs<float>(GameLoader.ALL_SKILLS, out var skills))
                 npc.CustomData.SetAs(GameLoader.ALL_SKILLS, skills);
 
@@ -327,14 +324,9 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             node.SetAs(GameLoader.SETTLER_INV, SettlerInventory.GetSettlerInventory(npc).ToJsonNode());
 
-            if (npc.NPCType.IsLaborer && npc.CustomData.TryGetAs(LEAVETIME_JOB, out double leave) && leave > 0)
-                node.SetAs(LEAVETIME_JOB, leave);
-
             if (npc.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
                 node.SetAs(GameLoader.ALL_SKILLS, allSkill);
 
-            if (npc.CustomData.TryGetAs(KNOWN_ITTERATIONS, out int itt))
-                node.SetAs(KNOWN_ITTERATIONS, itt);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCGathered, GameLoader.NAMESPACE + ".SettlerManager.OnNPCGathered")]
