@@ -100,13 +100,13 @@ namespace Pandaros.Settlers.ColonyManagement
             if (ServerManager.ColonyTracker != null)
                 foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
                 {
-                    if (_magicUpdateTime < TimeCycle.TotalHours)
+                    if (_magicUpdateTime < Time.SecondsSinceStartDouble)
                     {
                         foreach (var follower in colony.Followers)
                         {
                             var inv = SettlerInventory.GetSettlerInventory(follower);
 
-                            if (inv.MagicItemUpdateTime < TimeCycle.TotalHours)
+                            if (inv.MagicItemUpdateTime < Time.SecondsSinceStartDouble)
                             {
                                 foreach (var item in inv.Armor)
                                     if (item.Value.Id != 0 && ArmorFactory.ArmorLookup.TryGetValue(item.Value.Id, out var armor))
@@ -157,7 +157,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                 }
 
 
-                                inv.MagicItemUpdateTime += 5000;
+                                inv.MagicItemUpdateTime = Time.SecondsSinceStartDouble + 5;
                             }
                         }
                     }
@@ -191,8 +191,8 @@ namespace Pandaros.Settlers.ColonyManagement
                     UpdateFoodUse(cs);
                 }
 
-            if (_magicUpdateTime < TimeCycle.TotalHours)
-                _magicUpdateTime = TimeCycle.TotalHours + 1;
+            if (_magicUpdateTime < Time.SecondsSinceStartDouble)
+                _magicUpdateTime = Time.SecondsSinceStartDouble + 5;
 
             if (_updateTime < TimeCycle.TotalHours && TimeCycle.IsDay)
                 _updateTime = TimeCycle.TotalHours + _UPDATE_TIME;
