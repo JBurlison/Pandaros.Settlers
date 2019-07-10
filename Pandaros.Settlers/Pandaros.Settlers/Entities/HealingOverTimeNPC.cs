@@ -69,12 +69,19 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var healing in _instances)
                 {
-                    healing.Target.SetIndicatorState(new IndicatorState(1, healing.Indicator));
+                    try
+                    {
+                        healing.Target.SetIndicatorState(new IndicatorState(1, healing.Indicator));
 
-                    healing.Tick?.Invoke(healing, null);
+                        healing.Tick?.Invoke(healing, null);
 
-                    if (healing.TicksLeft <= 0)
+                        if (healing.TicksLeft <= 0)
+                            _toRemove.Add(healing);
+                    }
+                    catch (Exception)
+                    {
                         _toRemove.Add(healing);
+                    }
                 }
 
                 foreach (var remove in _toRemove)
