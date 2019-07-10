@@ -32,6 +32,8 @@ namespace Pandaros.Settlers.Entities
             Tick += HealingOverTimeNPC_Tick;
         }
 
+        public bool Invalid { get; set; }
+
         public NPCBase Target { get; }
 
         public float TotalHoTTime { get; }
@@ -53,10 +55,18 @@ namespace Pandaros.Settlers.Entities
         private void HealingOverTimeNPC_Tick(object sender, EventArgs e)
         {
             TicksLeft--;
-            Target.Heal(HealPerTic);
 
-            if (TicksLeft <= 0 && Complete != null)
-                Complete(this, null);
+            try
+            {
+                Target.Heal(HealPerTic);
+
+                if (TicksLeft <= 0 && Complete != null)
+                    Complete(this, null);
+            }
+            catch
+            {
+                Invalid = true;
+            }
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate,
@@ -75,7 +85,7 @@ namespace Pandaros.Settlers.Entities
 
                         healing.Tick?.Invoke(healing, null);
 
-                        if (healing.TicksLeft <= 0)
+                        if (healing.TicksLeft <= 0 || healing.Invalid)
                             _toRemove.Add(healing);
                     }
                     catch (Exception)
