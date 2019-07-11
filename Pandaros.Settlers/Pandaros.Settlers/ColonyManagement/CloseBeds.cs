@@ -68,8 +68,7 @@ namespace Pandaros.Settlers.ColonyManagement
             bso.Colony = colony;
             colony.BedTracker.ForeachBedInstance(ForEachAction, ref bso);
 
-            Task.Run(() =>
-            {
+
                 int happiness = 0;
 
                 foreach (var bed in bso.Beds)
@@ -101,7 +100,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 }
 
                 CachedHappiness[colony] = happiness;
-            });
+
         }
 
         private static bool IsHappy(Vector3Int currentPos, Vector3Int ignorePos)

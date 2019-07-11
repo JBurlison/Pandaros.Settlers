@@ -253,6 +253,7 @@ namespace Pandaros.Settlers.Jobs
 
         public void OnNPCAtJob(ref NPCBase.NPCState state)
         {
+            state.SetCooldown(5);
             if (CheckTime() && UsedNPC != null)
             {
                 if (_inv == null)
@@ -297,6 +298,7 @@ namespace Pandaros.Settlers.Jobs
         public void OnNPCAtStockpile(ref NPCBase.NPCState state)
         {
             var hasItem = GetBestWeapon();
+            state.SetCooldown(5);
 
             if (!hasItem)
                 state.SetIndicator(new IndicatorState(COOLDOWN, WeaponFactory.WeaponLookup.FirstOrDefault().Key, true));
