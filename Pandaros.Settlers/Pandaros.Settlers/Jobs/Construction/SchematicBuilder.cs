@@ -124,7 +124,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 _needsChunkLoaded.Add(bpi);
 
                             state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name));
-                            ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
+                            ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition.ToChunk());
                             return;
                         }
                     }
@@ -144,7 +144,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (!_needsChunkLoaded.Contains(bpi))
                         _needsChunkLoaded.Add(bpi);
 
-                    ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition);
+                    ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition.ToChunk());
                     state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                     return;
                 }

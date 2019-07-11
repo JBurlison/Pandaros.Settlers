@@ -307,7 +307,7 @@ namespace Pandaros.Settlers.Transportation
                                 if (_energy < 0)
                                     _energy = 0;
 
-                                ChunkQueue.QueuePlayerSurrounding(TrackPosition);
+                                ChunkQueue.QueuePlayerSurrounding(TrackPosition.ToChunk());
                                 moved = true;
                                 break;
                             }
