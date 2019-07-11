@@ -120,10 +120,6 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                 AudioManager.SendAudio(TargetObjective.Position.Vector, roamingJobObjective.AudioKey);
                                 actionFound = true;
                             }
-                            else
-                                PandaLogger.Log(ChatColor.red, "TargetObjective.RoamingJobSettings.ActionCallbacks does not contain key {0}", action.Key);
-
-                            
                         }
 
                     if (!actionFound)
