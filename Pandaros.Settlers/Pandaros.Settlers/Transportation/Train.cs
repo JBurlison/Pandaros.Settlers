@@ -32,7 +32,9 @@ namespace Pandaros.Settlers.Transportation
             foreach (var list in TrainTransports.Values)
                 foreach (var iterator in list)
                 {
-                    if (iterator.TrackPosition.IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
+                    var bounds = new Pipliz.BoundsInt(iterator.TrackPosition.Add(-30, -30, -30), iterator.TrackPosition.Add(30, 30, 30));
+                    
+                    if (Pipliz.BoundsInt.Intersects(bounds, data.CheckedChunk.Bounds))
                         data.Result = true;
                 }
         }
