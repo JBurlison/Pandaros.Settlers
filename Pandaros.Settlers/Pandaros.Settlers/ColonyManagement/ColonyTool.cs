@@ -52,6 +52,12 @@ namespace Pandaros.Settlers.ColonyManagement
             "Max"
         };
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OnConstructInventoryManageColonyUI")]
+        public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu)
+        {
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyManagement", new LabelData(_localizationHelper.LocalizeOrDefault("ColonyManagement", player), UnityEngine.Color.black), 200));
+        }
+
         static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OpenMenu")]

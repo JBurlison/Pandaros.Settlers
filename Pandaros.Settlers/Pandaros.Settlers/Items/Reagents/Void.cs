@@ -43,10 +43,6 @@ namespace Pandaros.Settlers.Items
                 {
                     inv.AddBonusProc(Item.ItemIndex);
                     results.Add(new RecipeResult(Item.ItemIndex));
-
-                    PandaChat.Send(job.NPC.Colony,
-                                   $"{inv.SettlerName} the Apothecary has discovered a Void Stone while crafting Elementium!",
-                                   ChatColor.orange);
                 }
             }
         }

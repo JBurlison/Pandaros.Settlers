@@ -218,10 +218,10 @@ namespace Pandaros.Settlers.Transportation
                                     if (kvp.TryGetValue(trainStation.TrainStationSettings.ObjectiveCategory, out var locDic) &&
                                         locDic.TryGetValue(stationCheck, out var roamingJobState))
                                     {
-                                        var manaNeeded = RoamingJobState.DEFAULT_MAX - _energy;
+                                        var manaNeeded = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", roamingJobState.Colony, "ManaMachine") - _energy;
 
                                         var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-                                        roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
+                                        roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .01f);
                                         bool isWorked = true;
 
                                         try
@@ -263,7 +263,7 @@ namespace Pandaros.Settlers.Transportation
                                             if (existing >= manaNeeded)
                                             {
                                                 roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", manaNeeded);
-                                                _energy = RoamingJobState.DEFAULT_MAX;
+                                                _energy = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", roamingJobState.Colony, "ManaMachine");
                                             }
                                             else
                                             {
