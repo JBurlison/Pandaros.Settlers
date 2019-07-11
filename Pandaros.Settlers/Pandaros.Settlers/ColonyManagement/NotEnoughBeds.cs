@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public float Evaluate(Colony colony)
         {
-            var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(colony) - colony.FollowerCount;
+            var remainingBeds = colony.BedTracker.CalculateTotalBedCount() - colony.FollowerCount;
             if (remainingBeds <= 0)
                 return remainingBeds;
             else

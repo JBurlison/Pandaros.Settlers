@@ -739,7 +739,7 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 if (!TimeCycle.IsDay && TimeCycle.TotalHours > _nextbedTime)
                 {
-                    var remainingBeds = ServerManager.BlockEntityTracker.BedTracker.CalculateBedCount(state.ColonyRef) - state.ColonyRef.FollowerCount;
+                    var remainingBeds = state.ColonyRef.BedTracker.CalculateTotalBedCount() - state.ColonyRef.FollowerCount;
                     var left          = 0;
 
                     if (remainingBeds >= 0)
