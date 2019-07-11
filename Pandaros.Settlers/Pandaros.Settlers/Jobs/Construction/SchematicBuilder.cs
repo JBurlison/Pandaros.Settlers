@@ -21,7 +21,9 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             foreach (var iterator in _needsChunkLoaded)
             {
-                if (iterator.CurrentPosition.IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
+                if (iterator != null && 
+                    iterator.CurrentPosition != null && 
+                    iterator.CurrentPosition.IsWithinBounds(data.CheckedChunk.Position, data.CheckedChunk.Bounds))
                     data.Result = true;
             }
         }
