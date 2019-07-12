@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.NBT
         {
             try
             {
-                if (TryGetScematicMetadataFilePath(name + METADATA_FILEEXT, colonyId, out string savePath))
+                if (TryGetScematicMetadataFilePath(name + METADATA_FILEEXT, out string savePath))
                 {
                     var json = JSON.Deserialize(savePath);
                     metadata = JsonConvert.DeserializeObject<SchematicMetadata>(json.ToString());
@@ -60,9 +60,9 @@ namespace Pandaros.Settlers.NBT
             return size != null;
         }
 
-        public static bool TryGetScematicMetadataFilePath(string name, int colonyId, out string colonySaves)
+        public static bool TryGetScematicMetadataFilePath(string name, out string colonySaves)
         {
-            colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
+            colonySaves = GameLoader.Schematic_SAVE_LOC;
 
             if (!Directory.Exists(colonySaves))
                 Directory.CreateDirectory(colonySaves);
@@ -118,14 +118,14 @@ namespace Pandaros.Settlers.NBT
 
         public static SchematicMetadata GenerateMetaData(string name, int colonyId)
         {
-            if (TryGetScematicFilePath(name, colonyId, out string path))
+            if (TryGetScematicFilePath(name, colonyId, out string path) && TryGetScematicMetadataFilePath(name + METADATA_FILEEXT, out string metaPath))
             {
                 var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
 
                 if (!Directory.Exists(colonySaves))
                     Directory.CreateDirectory(colonySaves);
 
-                var metadataPath = path + name + METADATA_FILEEXT;
+                var metadataPath = metaPath + name + METADATA_FILEEXT;
                 var metadata = new SchematicMetadata();
                 metadata.Name = name.Substring(0, name.LastIndexOf('.'));
                 Schematic schematic = LoadSchematic(new NbtFile(path), Vector3Int.invalidPos);

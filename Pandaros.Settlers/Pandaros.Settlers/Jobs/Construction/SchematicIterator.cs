@@ -24,7 +24,6 @@ namespace Pandaros.Settlers.Jobs.Construction
             positionMin = area.Minimum;
             positionMax = area.Maximum;
 
-            //iterationChunkLocation = new Vector3Int(positionMin.x & -16, positionMin.y & -16, positionMin.z & -16);
             iterationChunkLocation = positionMin;
             cursor = positionMin;
             iterationIndex = -1;

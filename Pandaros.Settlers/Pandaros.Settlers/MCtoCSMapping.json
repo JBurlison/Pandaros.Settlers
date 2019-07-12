@@ -854,6 +854,41 @@
     "cs_type": "stonebricks"
   },
   {
+    "type": 23,
+    "meta": 6,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 7,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 8,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 9,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
+    "type": 23,
+    "meta": 10,
+    "name": "Dispenser",
+    "text_type": "dispenser",
+    "cs_type": "stonebricks"
+  },
+  {
     "type": 24,
     "meta": 0,
     "name": "Sandstone",
@@ -1736,6 +1771,34 @@
     "cs_type": "air"
   },
   {
+    "type": 37,
+    "meta": 1,
+    "name": "Dandelion",
+    "text_type": "yellow_flower",
+    "cs_type": "air"
+  },
+  {
+    "type": 37,
+    "meta": 2,
+    "name": "Dandelion",
+    "text_type": "yellow_flower",
+    "cs_type": "air"
+  },
+  {
+    "type": 37,
+    "meta": 3,
+    "name": "Dandelion",
+    "text_type": "yellow_flower",
+    "cs_type": "air"
+  },
+  {
+    "type": 37,
+    "meta": 4,
+    "name": "Dandelion",
+    "text_type": "yellow_flower",
+    "cs_type": "air"
+  },
+  {
     "type": 38,
     "meta": 0,
     "name": "Poppy",
@@ -1801,6 +1864,34 @@
   {
     "type": 39,
     "meta": 0,
+    "name": "Brown Mushroom",
+    "text_type": "brown_mushroom",
+    "cs_type": "air"
+  },
+  {
+    "type": 39,
+    "meta": 1,
+    "name": "Brown Mushroom",
+    "text_type": "brown_mushroom",
+    "cs_type": "air"
+  },
+  {
+    "type": 39,
+    "meta": 2,
+    "name": "Brown Mushroom",
+    "text_type": "brown_mushroom",
+    "cs_type": "air"
+  },
+  {
+    "type": 39,
+    "meta": 3,
+    "name": "Brown Mushroom",
+    "text_type": "brown_mushroom",
+    "cs_type": "air"
+  },
+  {
+    "type": 39,
+    "meta": 4,
     "name": "Brown Mushroom",
     "text_type": "brown_mushroom",
     "cs_type": "air"
@@ -2252,7 +2343,112 @@
     "meta": 0,
     "name": "Monster Spawner",
     "text_type": "mob_spawner",
-    "cs_type": ""
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 1,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 2,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 3,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 4,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 5,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 6,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 7,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 8,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 9,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 10,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 11,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 12,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 13,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 14,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
+  },
+  {
+    "type": 52,
+    "meta": 15,
+    "name": "Monster Spawner",
+    "text_type": "mob_spawner",
+    "cs_type": "air"
   },
   {
     "type": 53,

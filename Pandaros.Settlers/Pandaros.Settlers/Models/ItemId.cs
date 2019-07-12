@@ -39,7 +39,7 @@ namespace Pandaros.Settlers.Models
             return item;
         }
 
-        ushort _id;
+        ushort _id = ushort.MaxValue;
         string _name;
 
         public string Name
@@ -76,7 +76,7 @@ namespace Pandaros.Settlers.Models
             {
                 try
                 {
-                    if (_id == default(ushort))
+                    if (_id == ushort.MaxValue)
                     {
                         if (ItemTypes.IndexLookup.StringLookupTable.TryGetValue(_name, out var id))
                             _id = id;

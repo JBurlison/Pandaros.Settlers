@@ -81,23 +81,23 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     Stockpile ownerStockPile = areaJob.Owner.Stockpile;
 
-                    bool ok = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id;
+                    bool stockpileContainsBuildItem = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id;
 
-                    if (!ok && ownerStockPile.Contains(buildType.ItemIndex))
-                        ok = true;
+                    if (!stockpileContainsBuildItem && ownerStockPile.Contains(buildType.ItemIndex))
+                        stockpileContainsBuildItem = true;
 
-                    if (!ok && !string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.ParentType.Contains("grass") && !buildType.ParentType.Contains("leaves"))
+                    if (!stockpileContainsBuildItem && !string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.ParentType.Contains("grass") && !buildType.ParentType.Contains("leaves"))
                     {
                         var parentType = ItemTypes.GetType(buildType.ParentType);
                         buildType = parentType;
 
                         if (ownerStockPile.Contains(parentType.ItemIndex))
                         {
-                            ok = true;
+                            stockpileContainsBuildItem = true;
                         }
                     }
 
-                    if (ok)
+                    if (stockpileContainsBuildItem)
                     {
                         if (foundTypeIndex != ColonyBuiltIn.ItemTypes.AIR.Id && foundTypeIndex != ColonyBuiltIn.ItemTypes.WATER.Id)
                         {
@@ -107,7 +107,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
 
-                        if (ServerManager.TryChangeBlock(iterationType.CurrentPosition, foundTypeIndex, buildType.ItemIndex, areaJob.Owner, ESetBlockFlags.DefaultAudio) == EServerChangeBlockResult.Success)
+                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+
+                        if (changeResult == EServerChangeBlockResult.Success)
                         {
                             if (buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                             {
@@ -120,7 +122,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 ownerStockPile.TryRemove(buildType.ItemIndex);
                             }
                         }
-                        else
+                        else if (changeResult != EServerChangeBlockResult.CancelledByCallback)
                         {
                             if (!_needsChunkLoaded.Contains(bpi))
                                 _needsChunkLoaded.Add(bpi);
@@ -132,13 +134,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                     }
                     else
                     {
-                        if (!areaJob.Owner.Stockpile.Contains(buildType.ItemIndex) && buildType.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
-                            state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name, true, false));
-
-                        if (buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id)
-                            continue;
-                        else
-                            return;
+                        state.SetIndicator(new Shared.IndicatorState(5f, buildType.Name, true, false));
+                        return;
                     }
                 }
                 else
