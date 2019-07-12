@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MeshedObjects;
+using Monsters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pandaros.Settlers.Items;
@@ -307,13 +308,14 @@ namespace Pandaros.Settlers.Transportation
                                 if (_energy < 0)
                                     _energy = 0;
 
-                                ChunkQueue.QueuePlayerSurrounding(TrackPosition.ToChunk());
+                                ChunkQueue.QueueBannerBox(TrackPosition.Add(-30, -30, -30).ToChunk(), TrackPosition.Add(30, 30, 30).ToChunk());
+
                                 moved = true;
                                 break;
                             }
                         }
                 }
-                
+
                 if (!moved)
                     _meshedVehicleDescription.Object.SendMoveToInterpolated(Position, Quaternion.identity, (float)GetDelayMillisecondsToNextUpdate() / 1000f, _animatedObject.ObjSettings);
 

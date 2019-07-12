@@ -591,7 +591,12 @@ namespace Pandaros.Settlers.ColonyManagement
             try
             {
                 if (data.Item1 != null)
+                {
+                    if (data.Item1.CustomData == null)
+                        data.Item1.CustomData = new JSONNode();
+
                     data.Item1.CustomData.RemoveChild(LEAVETIME_JOB);
+                }
 
                 if (data.Item3 is GuardJobInstance guardJob && data.Item3.TryGetNPCGuardDefaultSettings(out var settings))
                 {
