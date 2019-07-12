@@ -118,14 +118,14 @@ namespace Pandaros.Settlers.NBT
 
         public static SchematicMetadata GenerateMetaData(string name, int colonyId)
         {
-            if (TryGetScematicFilePath(name, colonyId, out string path) && TryGetScematicMetadataFilePath(name + METADATA_FILEEXT, out string metaPath))
+            if (TryGetScematicFilePath(name, colonyId, out string path))
             {
                 var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colonyId}\\";
 
                 if (!Directory.Exists(colonySaves))
                     Directory.CreateDirectory(colonySaves);
 
-                var metadataPath = metaPath + name + METADATA_FILEEXT;
+                var metadataPath = Path.Combine(GameLoader.Schematic_SAVE_LOC, name + METADATA_FILEEXT);
                 var metadata = new SchematicMetadata();
                 metadata.Name = name.Substring(0, name.LastIndexOf('.'));
                 Schematic schematic = LoadSchematic(new NbtFile(path), Vector3Int.invalidPos);
@@ -293,24 +293,6 @@ namespace Pandaros.Settlers.NBT
             }
             return list;
         }
-
-        //private static TileEntity[,,] GetTileEntities(NbtTag tileEntitiesList, TileEntity[,,] list)
-        //{
-        //    NbtList TileEntities = tileEntitiesList as NbtList;
-        //    if (TileEntities != null)
-        //    {
-        //        foreach (NbtCompound compTag in TileEntities)
-        //        {
-        //            NbtTag xTag = compTag["x"];
-        //            NbtTag yTag = compTag["y"];
-        //            NbtTag zTag = compTag["z"];
-        //            NbtTag idTag = compTag["id"];
-        //            TileEntity entity = new TileEntity(xTag.IntValue, yTag.IntValue, zTag.IntValue, idTag.StringValue);
-        //            list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = entity;
-        //        }
-        //    }
-        //    return list;
-        //}
 
         public static SchematicBlock[,,] GetBlocks(RawSchematic rawSchematic)
         {
