@@ -1,4 +1,5 @@
-﻿using Pipliz;
+﻿using NetworkUI;
+using Pipliz;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace Pandaros.Settlers.Extender
             LoadExtenstions(list);
             LoadImplementation(list);
 
-            foreach (var extension in _settlersExtensions.Where(s => s as IAfterModsLoaded != null).Select(ex => ex as IAfterModsLoaded))
+            foreach (var extension in _settlersExtensions.Where(s => s as IAfterModsLoadedExtention != null).Select(ex => ex as IAfterModsLoadedExtention))
                 try
                 {
                     extension.AfterModsLoaded(list);
@@ -150,6 +151,20 @@ namespace Pandaros.Settlers.Extender
                 }
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".Extender.SettlersExtender.OnConstructInventoryManageColonyUI")]
+        public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        {
+            foreach (var extension in _settlersExtensions.Where(s => s as IOnConstructInventoryManageColonyUIExtender != null).Select(ex => ex as IOnConstructInventoryManageColonyUIExtender))
+                try
+                {
+                    extension.OnConstructInventoryManageColonyUI(player, networkMenu);
+                }
+                catch (Exception ex)
+                {
+                    PandaLogger.LogError(ex);
+                }
+        }
+
         private static void LoadImplementation(List<ModLoader.ModDescription> list)
         {
             foreach (var mod in list.Where(m => m.HasAssembly && !string.IsNullOrEmpty(m.assemblyPath) && !m.assemblyPath.Contains("Pipliz\\modInfo.json")))
@@ -162,7 +177,7 @@ namespace Pandaros.Settlers.Extender
                     foreach (var type in typeArray)
                     {
                         var ifaces = type.GetInterfaces();
-
+                       
                         foreach (var iface in ifaces)
                         {
                             foreach (var e in _settlersExtensions)
@@ -172,6 +187,8 @@ namespace Pandaros.Settlers.Extender
 
                                     if (constructor != null)
                                         e.LoadedAssembalies.Add(type);
+                                    else
+                                        PandaLogger.LogToFile("Warning: No empty constructor for " + type.Name);
                                 }
 
                             if (!string.IsNullOrEmpty(iface.Name) && nameof(IOnTimedUpdate) == iface.Name && !type.IsInterface)

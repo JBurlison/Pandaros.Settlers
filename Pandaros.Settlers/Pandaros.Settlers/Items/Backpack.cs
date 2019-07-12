@@ -156,11 +156,19 @@ namespace Pandaros.Settlers.Items
             }
             else if (data.ButtonIdentifier == "Backpack.SelectNoneInBackpackMain")
             {
-                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, false, true));
+                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, false, false));
             }
             else if (data.ButtonIdentifier == "Backpack.SelectAllInBackpackMain")
             {
-                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, false, false));
+                NetworkMenuManager.SendServerPopup(data.Player, MainMenu(data.Player, false, true));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectNoneInBackpackToolbar")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, ToolbarMenu(data, false, false));
+            }
+            else if (data.ButtonIdentifier == "Backpack.SelectAllInBackpackToolbar")
+            {
+                NetworkMenuManager.SendServerPopup(data.Player, ToolbarMenu(data, false, true));
             }
             else if (data.ButtonIdentifier == "Backpack.MoveItemsToStockpile")
             {

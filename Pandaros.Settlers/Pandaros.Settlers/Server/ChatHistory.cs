@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 using Chatting;
 using NetworkUI;
 using NetworkUI.Items;
+using Pandaros.Settlers.Extender;
 using Pipliz;
 
 namespace Pandaros.Settlers.Server
 {
     [ModLoader.ModManager]
-    public class ChatHistory : IChatCommand, Extender.IOnTimedUpdate
+    public class ChatHistory : IChatCommand, IOnTimedUpdate, IOnConstructInventoryManageColonyUI
     {
+        public ChatHistory() { }
+
         private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("System");
 
         public double NextUpdateTimeMin => 30;
@@ -59,8 +62,7 @@ namespace Pandaros.Settlers.Server
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".Server.ChatHistory.OnConstructInventoryManageColonyUI")]
-        public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu)
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu)
         {
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ChatHistory", new LabelData(_localizationHelper.GetLocalizationKey("ChatHistory"), UnityEngine.Color.black), 200));
         }

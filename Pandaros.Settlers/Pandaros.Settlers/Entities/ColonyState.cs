@@ -1,6 +1,7 @@
 ﻿using NetworkUI;
 using NetworkUI.Items;
 using Pandaros.Settlers.ColonyManagement;
+using Pandaros.Settlers.Extender;
 using Pandaros.Settlers.Models;
 using Pandaros.Settlers.Research;
 using Pipliz.JSON;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 namespace Pandaros.Settlers.Entities
 {
     [ModLoader.ModManager]
-    public class ColonyState
+    public class ColonyState : IOnConstructInventoryManageColonyUI
     {
         private static readonly Dictionary<Colony, ColonyState> _colonyStates = new Dictionary<Colony, ColonyState>();
         static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
@@ -62,13 +63,14 @@ namespace Pandaros.Settlers.Entities
             }
         }
 
+        public ColonyState() { }
+
         public ColonyState(Colony c)
         {
             ColonyRef = c;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".Entities.ColonyState.OnConstructInventoryManageColonyUI")]
-        public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
         {
             var cs = GetColonyState(player.ActiveColony);
 

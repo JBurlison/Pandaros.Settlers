@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Pandaros.Settlers.Extender.Providers
 {
-    public class ConnectedBlockCalculationTypeProvider : IAfterModsLoaded
+    public class ConnectedBlockCalculationTypeProvider : IAfterModsLoadedExtention
     {
         public List<Type> LoadedAssembalies { get; } = new List<Type>();
 

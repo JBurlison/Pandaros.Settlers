@@ -111,6 +111,7 @@ namespace Pandaros.Settlers.Help
         public static void SendMenu(Players.Player player, JSONNode json)
         {
             NetworkMenu menu = new NetworkMenu();
+            menu.ForceClosePopups = true;
 
             json.TryGetAsOrDefault("header", out string header, "Title");
             menu.LocalStorage.SetAs("header", header);

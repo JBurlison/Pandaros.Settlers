@@ -3,6 +3,7 @@ using NetworkUI;
 using NetworkUI.Items;
 using NPC;
 using Pandaros.Settlers.Entities;
+using Pandaros.Settlers.Extender;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Models;
 using Pipliz;
@@ -42,7 +43,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
 
     [ModLoader.ModManager]
-    public class ColonyTool
+    public class ColonyTool : IOnConstructInventoryManageColonyUI
     {
         public static List<string> _recruitCount = new List<string>()
         {
@@ -52,10 +53,10 @@ namespace Pandaros.Settlers.ColonyManagement
             "Max"
         };
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructInventoryManageColonyUI, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OnConstructInventoryManageColonyUI")]
-        public static void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu)
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu)
         {
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyManagement", new LabelData(_localizationHelper.LocalizeOrDefault("ColonyManagement", player), UnityEngine.Color.black), 200));
+            if (player.ActiveColony != null)
+                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData(_localizationHelper.LocalizeOrDefault("ColonyManagement", player), UnityEngine.Color.black), 200));
         }
 
         static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
@@ -233,6 +234,7 @@ namespace Pandaros.Settlers.ColonyManagement
             menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("ColonyManagement", player));
             menu.Width = 1000;
             menu.Height = 600;
+            menu.ForceClosePopups = true;
 
             if (fired)
             {

@@ -464,6 +464,16 @@
           "NotEnoughBeds": "Not Enough Beds",
           "NotEnoughJobs": "Not Enough Jobs",
           "ColonistsBought": "Slaves Bought ({0}h Remain)"
+        },
+        "Beds": {
+          "BedLocations": "Bed Information",
+          "Position": "Position",
+          "Occupied": "Occupied",
+          "Placement": "Placement",
+          "Bad": "Bad",
+          "Good": "Good",
+          "Yes": "Yes",
+          "No":  "No"
         }
       }
     }
