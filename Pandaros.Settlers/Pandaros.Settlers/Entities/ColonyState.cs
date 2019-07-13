@@ -117,9 +117,6 @@ namespace Pandaros.Settlers.Entities
                 if (stateNode.TryGetAs(nameof(HighestColonistCount), out int hsc))
                     _colonyStates[c].HighestColonistCount = hsc;
 
-                if (stateNode.TryGetAs(nameof(NeedsABed), out int nb))
-                    _colonyStates[c].NeedsABed = nb;
-
                 if (stateNode.TryGetAs(nameof(SettlersToggledTimes), out int stt))
                     _colonyStates[c].SettlersToggledTimes = stt;
 

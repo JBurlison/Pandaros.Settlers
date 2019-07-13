@@ -54,6 +54,8 @@ namespace Pandaros.Settlers.Entities
 
         public string SettlerName { get; set; }
 
+        public double UnemployedLeaveTime { get; set; }
+
         public Dictionary<ushort, long> BonusProcs { get; set; } = new Dictionary<ushort, long>();
 
         public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
