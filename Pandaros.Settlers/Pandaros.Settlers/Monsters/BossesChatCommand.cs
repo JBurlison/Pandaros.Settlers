@@ -11,6 +11,7 @@ namespace Pandaros.Settlers.Monsters
     public class BossesChatCommand : IChatCommand
     {
         private static string _Bosses = GameLoader.NAMESPACE + ".Bosses";
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Bosses");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Bosses.AddSetting")]
         public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
@@ -36,11 +37,11 @@ namespace Pandaros.Settlers.Monsters
                         if (ps != null && data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != Convert.ToInt32(ps.BossesEnabled))
                         {
                             if (!SettlersConfiguration.GetorDefault("BossesCanBeDisabled", true))
-                                PandaChat.Send(data.Item1, "The server administrator had disabled the changing of bosses.", ChatColor.red);
+                                PandaChat.Send(data.Item1, _localizationHelper, "AdminDisabledBosses", ChatColor.red);
                             else
                                 ps.BossesEnabled = data.Item2.GetAsOrDefault(_Bosses, Convert.ToInt32(ps.BossesEnabled)) != 0;
 
-                            PandaChat.Send(data.Item1, "Settlers! Mod Bosses are now " + (ps.BossesEnabled ? "on" : "off"), ChatColor.green);
+                            PandaChat.Send(data.Item1, _localizationHelper, "BossesToggled", ChatColor.green, ps.BossesEnabled ? _localizationHelper.LocalizeOrDefault("on", data.Item1) : _localizationHelper.LocalizeOrDefault("off", data.Item1));
                         }
 
                         break;
@@ -57,7 +58,7 @@ namespace Pandaros.Settlers.Monsters
 
 
             if (player.ActiveColony == null)
-                PandaChat.Send(player, "You must be near a colony to set its difficulty", ChatColor.red);
+                PandaChat.Send(player, _localizationHelper, "NoColony", ChatColor.red);
 
             var array = new List<string>();
             CommandManager.SplitCommand(chat, array);
@@ -65,30 +66,23 @@ namespace Pandaros.Settlers.Monsters
 
             if (array.Count == 1)
             {
-                PandaChat.Send(player, "Settlers! Bosses are {0}.", ChatColor.green,
-                               state.BossesEnabled ? "on" : "off");
-
+                PandaChat.Send(player, _localizationHelper, "BossesToggled", ChatColor.green, state.BossesEnabled ? _localizationHelper.LocalizeOrDefault("on", player) : _localizationHelper.LocalizeOrDefault("off", player));
                 return true;
             }
 
             if (array.Count == 2 && SettlersConfiguration.GetorDefault("BossesCanBeDisabled", true))
             {
                 if (array[1].ToLower().Trim() == "on" || array[1].ToLower().Trim() == "true")
-                {
                     state.BossesEnabled = true;
-                    PandaChat.Send(player, "Settlers! Mod Bosses are now on.", ChatColor.green);
-                }
                 else
-                {
                     state.BossesEnabled = false;
-                    PandaChat.Send(player, "Settlers! Mod Bosses are now off.", ChatColor.green);
-                }
+
+                PandaChat.Send(player, _localizationHelper, "BossesToggled", ChatColor.green, state.BossesEnabled ? _localizationHelper.LocalizeOrDefault("on", player) : _localizationHelper.LocalizeOrDefault("off", player));
             }
 
             NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
             if (!SettlersConfiguration.GetorDefault("BossesCanBeDisabled", true))
-                PandaChat.Send(player, "The server administrator had disabled the changing of bosses.",
-                                ChatColor.red);
+                PandaChat.Send(player, _localizationHelper, "AdminDisabledBosses", ChatColor.red);
             
 
             return true;

@@ -30,7 +30,7 @@ namespace Pandaros.Settlers.Monsters
         private static int _nextBossUpdateTime = int.MaxValue;
         private static MonsterManager _monsterManager = new MonsterManager();
         private static Queue<IPandaBoss> _pandaBossesSpawnQueue = new Queue<IPandaBoss>();
-
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Monsters");
         public static Dictionary<ColonyState, IPandaBoss> SpawnedBosses { get; private set; } = new Dictionary<ColonyState, IPandaBoss>();
 
         private static readonly List<IPandaBoss> _bossList = new List<IPandaBoss>();
@@ -172,7 +172,7 @@ namespace Pandaros.Settlers.Monsters
                         MonsterTracker.Add(pandaboss);
                         cs.ColonyRef.OnZombieSpawn(true);
                         cs.FaiedBossSpawns = 0;
-                        PandaChat.Send(cs, $"[{pandaboss.name}] {pandaboss.AnnouncementText}", ChatColor.red);
+                        PandaChat.Send(cs, _localizationHelper, $"[{pandaboss.name}] {pandaboss.AnnouncementText}", ChatColor.red);
 
                         if (!string.IsNullOrEmpty(pandaboss.AnnouncementAudio))
                             cs.ColonyRef.ForEachOwner(o => AudioManager.SendAudio(o.Position, pandaboss.AnnouncementAudio));
@@ -214,7 +214,7 @@ namespace Pandaros.Settlers.Monsters
                             {
                                 PandaLogger.Log(ChatColor.yellow, $"All bosses cleared!");
                                 var boss = SpawnedBosses.FirstOrDefault().Value;
-                                PandaChat.SendToAll($"[{boss.name}] {boss.DeathText}", ChatColor.red);
+                                PandaChat.SendToAll($"[{boss.name}] {boss.DeathText}", _localizationHelper, ChatColor.red);
                             }
 
                             BossActive = false;
@@ -231,7 +231,7 @@ namespace Pandaros.Settlers.Monsters
             cs.FaiedBossSpawns++;
 
             if (cs.FaiedBossSpawns > 10)
-                PandaChat.SendThrottle(cs, $"WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f) * 100 + "%"} food.", ChatColor.red);
+                PandaChat.SendThrottle(cs, _localizationHelper, "NoBanner", ChatColor.red, SettlerManager.PenalizeFood(cs.ColonyRef, 0.15f) * 100 + "%");
 
             cs.ColonyRef.OnZombieSpawn(false);
         }

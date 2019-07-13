@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.ColonyManagement
     [ModLoader.ModManager]
     public class SettlerManagerUIPromopt : Extender.IOnConstructInventoryManageColonyUI
     {
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, GameLoader.NAMESPACE, "colonytool");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "colonytool");
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
         {
@@ -275,10 +275,10 @@ namespace Pandaros.Settlers.ColonyManagement
                 var cs = ColonyState.GetColonyState(p.ActiveColony);
 
                 if (cs.SettlersEnabled != Models.SettlersState.Disabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
-                    PandaChat.Send(p, string.Format(_localizationHelper.LocalizeOrDefault("BuyingColonists", p), MAX_BUYABLE, cs.Difficulty.UnhappyColonistsBought), ChatColor.orange);
+                    PandaChat.Send(p, _localizationHelper, "BuyingColonists", ChatColor.orange, MAX_BUYABLE.ToString(), cs.Difficulty.UnhappyColonistsBought.ToString());
 
                 if (cs.SettlersToggledTimes < SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4))
-                    PandaChat.Send(p, string.Format(_localizationHelper.LocalizeOrDefault("SettlersEnabled", p), cs.SettlersEnabled.ToString()), ChatColor.orange);
+                    PandaChat.Send(p, _localizationHelper, "SettlersEnabled", ChatColor.orange, cs.SettlersEnabled.ToString());
             }
 
             foreach (Colony c in p.Colonies)
@@ -320,7 +320,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     }
                     else
                     {
-                        PandaChat.Send(npc.Colony, "AdminDisabled", _localizationHelper, ChatColor.red);
+                        PandaChat.Send(npc.Colony, _localizationHelper, "AdminDisabled", ChatColor.red);
                         npc.health = 0;
                         npc.Update();
                     }
@@ -606,7 +606,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 else
                     reason += string.Format(" {0} of them are skilled!", numbSkilled);
 
-            PandaChat.Send(state.ColonyRef, reason, ChatColor.magenta);
+            PandaChat.Send(state.ColonyRef, _localizationHelper, reason, ChatColor.magenta);
 
             for (var i = 0; i < addCount; i++)
             {
@@ -718,7 +718,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     NPCLeaving(npc);
 
                 if (left > 0)
-                    PandaChat.Send(state.ColonyRef, "ColonistsLeft", _localizationHelper, ChatColor.red);
+                    PandaChat.Send(state.ColonyRef, _localizationHelper, "ColonistsLeft", ChatColor.red);
 
                 update = unTrack.Count != 0;
                 state.ColonyRef.SendCommonData();
@@ -735,7 +735,7 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 float cost = PenalizeFood(npc.Colony, 0.05f);
 
-                PandaChat.Send(npc.Colony, "TakenFood", _localizationHelper, ChatColor.red);
+                PandaChat.Send(npc.Colony, _localizationHelper, "TakenFood", ChatColor.red);
             }
             else
             {
@@ -751,11 +751,11 @@ namespace Pandaros.Settlers.ColonyManagement
                         var leaveTax = Pipliz.Math.RoundToInt(item.Amount * .10);
                         npc.Colony.Stockpile.TryRemove(item.Type, leaveTax);
                         
-                        PandaChat.Send(npc.Colony, $"A leaving colonist has taken {leaveTax} {Models.ItemId.GetItemId(item.Type).Name}", ChatColor.red);
+                        PandaChat.Send(npc.Colony, _localizationHelper, "LeavingTakingItems", ChatColor.red, leaveTax.ToString(), Models.ItemId.GetItemId(item.Type).Name);
                     }
                 }
 
-                PandaChat.Send(npc.Colony, $"A colonist has left your colony taking 10% of {numberOfItems} items from your stockpile.", ChatColor.red);
+                PandaChat.Send(npc.Colony, _localizationHelper, "LeavingNumberOfItems", ChatColor.red, numberOfItems.ToString());
             }
 
             npc.health = 0;
@@ -794,7 +794,7 @@ namespace Pandaros.Settlers.ColonyManagement
                         if (state.NeedsABed == 0)
                         {
                             state.NeedsABed = TimeCycle.TotalHours + 24;
-                            PandaChat.Send(state.ColonyRef, SettlerReasoning.GetNeedBed(), ChatColor.grey);
+                            PandaChat.Send(state.ColonyRef, _localizationHelper, SettlerReasoning.GetNeedBed(), ChatColor.grey);
                         }
                         else if (state.NeedsABed <= TimeCycle.TotalHours)
                         {
@@ -815,7 +815,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                         if (left > 0)
                         {
-                            PandaChat.Send(state.ColonyRef, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
+                            PandaChat.Send(state.ColonyRef, _localizationHelper, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
                             update = true;
                         }
 

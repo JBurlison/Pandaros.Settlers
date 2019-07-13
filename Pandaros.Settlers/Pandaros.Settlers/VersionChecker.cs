@@ -17,6 +17,8 @@ namespace Pandaros.Settlers
         public const SslProtocols _Tls12 = (SslProtocols)0x00000C00;
         public const SecurityProtocolType Tls12 = (SecurityProtocolType)_Tls12;
         internal static bool NewVer;
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Version");
+
 
         static VersionChecker()
         {
@@ -176,11 +178,8 @@ namespace Pandaros.Settlers
 
                                 if (!error)
                                 {
-                                    PandaLogger.Log(ChatColor.green,
-                                                    $"Settlers! update {gitVer} installed. Restart to update!");
-
-                                    PandaChat.SendToAll($"Settlers! update {gitVer} installed. Restart server to update!",
-                                                        ChatColor.maroon, ChatStyle.bolditalic);
+                                    PandaLogger.Log(ChatColor.green, $"Settlers! update {gitVer} installed. Restart to update!");
+                                    PandaChat.SendToAll("UpdateInstalled", _localizationHelper, gitVer.ToString());
                                 }
                             }
                             catch (Exception)
@@ -204,6 +203,7 @@ namespace Pandaros.Settlers
 
     public class VersionChatCommand : IChatCommand
     {
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Version");
 
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
@@ -215,22 +215,20 @@ namespace Pandaros.Settlers
             var gitVer = VersionChecker.GetGitVerion();
             var versionCompare = GameLoader.MOD_VER.Major.CompareTo(gitVer.Major);
 
-            PandaChat.Send(player, "Settlers! Mod version: {0}.", ChatColor.green, GameLoader.MOD_VER.ToString());
-            PandaChat.Send(player, "Settlers! Git version: {0}.", ChatColor.green, gitVer.ToString());
+            PandaChat.Send(player, _localizationHelper, "ModVersion", ChatColor.green, GameLoader.MOD_VER.ToString());
+            PandaChat.Send(player, _localizationHelper, "GitVersion", ChatColor.green, gitVer.ToString());
 
             if (versionCompare < 0)
             {
                 if (!VersionChecker.NewVer)
                 {
-                    PandaChat.Send(player, "Settlers! version is out of date. The mod will automatically update now.",
-                                   ChatColor.red);
+                    PandaChat.Send(player, _localizationHelper, "VersionOutOfDate", ChatColor.red);
 
                     VersionChecker.WriteVersionsToConsole();
                 }
                 else
                 {
-                    PandaChat.Send(player, "Settlers! Has been updated. Restart the server/game to apply.",
-                                   ChatColor.red);
+                    PandaChat.Send(player, _localizationHelper, "RestartRequired", ChatColor.red);
                 }
             }
 

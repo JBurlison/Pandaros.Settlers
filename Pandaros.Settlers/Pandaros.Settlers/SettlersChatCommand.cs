@@ -12,6 +12,7 @@ namespace Pandaros.Settlers
     public class SettlersChatCommand : IChatCommand
     {
         private static string _Setters = GameLoader.NAMESPACE + ".Settlers";
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Settlers");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Settlers.AddSetting")]
         public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
@@ -37,7 +38,7 @@ namespace Pandaros.Settlers
                         if (cs != null)
                         {
                             if (!SettlersConfiguration.GetorDefault("SettlersEnabled", true))
-                                PandaChat.Send(data.Item1, "The server administrator had disabled the changing of Settlers.", ChatColor.red);
+                                PandaChat.Send(data.Item1, _localizationHelper, "AdminDisabledSettlers", ChatColor.red);
                             else if (!HasToggeledMaxTimes(maxToggleTimes, cs, data.Item1))
                             {
                                 var def = (int)cs.SettlersEnabled;
@@ -46,7 +47,7 @@ namespace Pandaros.Settlers
                                 if (def != enabled)
                                 {
                                     TurnSettlersOn(data.Item1, cs, maxToggleTimes, (SettlersState)enabled);
-                                    PandaChat.Send(data.Item1, "Settlers! Mod Settlers are now " + cs.SettlersEnabled.ToString(), ChatColor.green);
+                                    PandaChat.Send(data.Item1, _localizationHelper, "SettlersState", ChatColor.green, cs.SettlersEnabled.ToString());
                                 }
                             }
                         }
@@ -70,8 +71,7 @@ namespace Pandaros.Settlers
 
             if (maxToggleTimes == 0 && !SettlersConfiguration.GetorDefault("SettlersEnabled", true))
             {
-                PandaChat.Send(player, "The server administrator had disabled the changing of Settlers.",
-                               ChatColor.red);
+                PandaChat.Send(player, _localizationHelper, "AdminDisabledSettlers.", ChatColor.red);
 
                 return true;
             }
@@ -81,10 +81,13 @@ namespace Pandaros.Settlers
 
             if (array.Count == 1)
             {
-                PandaChat.Send(player, "Settlers! Settlers are {0}. You have toggled this {1} out of {2} times.",
-                               ChatColor.green, state.SettlersEnabled.ToString(),
-                               state.SettlersToggledTimes.ToString(), maxToggleTimes.ToString());
-
+                PandaChat.Send(player,
+                               _localizationHelper,
+                               "SettlersToggleTime",
+                               ChatColor.green, 
+                               state.SettlersEnabled.ToString(),
+                               state.SettlersToggledTimes.ToString(),
+                               maxToggleTimes.ToString());
                 return true;
             }
 
@@ -100,9 +103,7 @@ namespace Pandaros.Settlers
         {
             if (state.SettlersToggledTimes >= maxToggleTimes)
             {
-                PandaChat.Send(player,
-                               $"To limit abuse of the /settlers command you can no longer toggle settlers on or off. You have used your alloted {maxToggleTimes} times.",
-                               ChatColor.red);
+                PandaChat.Send(player, _localizationHelper, "AbuseWarning", ChatColor.red, maxToggleTimes.ToString());
 
                 return true;
             }
@@ -118,8 +119,12 @@ namespace Pandaros.Settlers
             state.SettlersEnabled = enabled;
 
             PandaChat.Send(player,
-                           $"Settlers! Mod Settlers are now on. You have toggled this {state.SettlersToggledTimes} out of {maxToggleTimes} times.",
-                           ChatColor.green);
+                            _localizationHelper,
+                            "SettlersToggleTime",
+                            ChatColor.green,
+                            state.SettlersEnabled.ToString(),
+                            state.SettlersToggledTimes.ToString(),
+                            maxToggleTimes.ToString());
 
             NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
         }

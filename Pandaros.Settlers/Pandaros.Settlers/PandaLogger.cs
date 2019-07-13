@@ -143,17 +143,17 @@ namespace Pandaros.Settlers
         public void Log(ChatColor color, string message, params object[] args)
         {
             if (args != null && args.Length != 0)
-                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args)), color), LogType.Log));
+                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessageNoLocal(GetFormattedMessage(string.Format(message, args)), color), LogType.Log));
             else
-                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(message), color), LogType.Log));
+                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessageNoLocal(GetFormattedMessage(message), color), LogType.Log));
         }
 
         public void Log(string message, params object[] args)
         {
             if (args != null && args.Length != 0)
-                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args))), LogType.Log));
+                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessageNoLocal(GetFormattedMessage(string.Format(message, args))), LogType.Log));
             else
-                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessage(GetFormattedMessage(message)), LogType.Log));
+                ServerLog.LogAsyncMessage(new LogMessage(PandaChat.BuildMessageNoLocal(GetFormattedMessage(message)), LogType.Log));
         }
 
         public void Log(string message)
@@ -163,7 +163,7 @@ namespace Pandaros.Settlers
 
         public void LogError(Exception e, string message)
         {
-            ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(message), ChatColor.red), e));
+            ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessageNoLocal(GetFormattedMessage(message), ChatColor.red), e));
 
             LogError(e);
 
@@ -173,7 +173,7 @@ namespace Pandaros.Settlers
 
         public void LogError(Exception e, string message, params object[] args)
         {
-            ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage(GetFormattedMessage(string.Format(message, args)), ChatColor.red), e));
+            ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessageNoLocal(GetFormattedMessage(string.Format(message, args)), ChatColor.red), e));
 
             if (e.InnerException != null)
                 LogError(e.InnerException);
@@ -181,7 +181,7 @@ namespace Pandaros.Settlers
 
         public void LogError(Exception e)
         {
-            ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessage("Exception", ChatColor.red), e));
+            ServerLog.LogAsyncExceptionMessage(new LogExceptionMessage(PandaChat.BuildMessageNoLocal("Exception", ChatColor.red), e));
 
             lock (_logQueue)
             {

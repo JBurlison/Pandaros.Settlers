@@ -23,6 +23,7 @@ namespace Pandaros.Settlers.Jobs
     public static class PatrolTool
     {
         private static readonly Dictionary<Colony, List<KnightState>> _loadedKnights = new Dictionary<Colony, List<KnightState>>();
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Knights");
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
@@ -225,16 +226,13 @@ namespace Pandaros.Settlers.Jobs
 
                         if (!hasFlags)
                         {
-                            PandaChat.Send(player, "You have no patrol flags in your stockpile or inventory.", ChatColor.orange);
+                            PandaChat.Send(player, _localizationHelper, "NoFlags", ChatColor.orange);
                         }
                         else
                         {
                             state.FlagsPlaced.Add(flagPoint);
                             ServerManager.TryChangeBlock(flagPoint, PatrolFlag.ItemIndex);
-
-                            PandaChat.Send(player,
-                                           $"Patrol Point number {state.FlagsPlaced.Count} Registered! Right click to create Job.",
-                                           ChatColor.orange);
+                            PandaChat.Send(player,_localizationHelper, "CreateJob", ChatColor.orange, state.FlagsPlaced.Count.ToString());
                         }
                     }
                 }
@@ -266,7 +264,7 @@ namespace Pandaros.Settlers.Jobs
                                 knight.PatrolType = PatrolType.RoundRobin;
                             }
 
-                            PandaChat.Send(player, $"Patrol type set to {knight.PatrolType}!", ChatColor.orange);
+                            PandaChat.Send(player, $"Patrol type set to {}!", ChatColor.orange, knight.PatrolType.ToString());
                             PandaChat.Send(player, patrol, ChatColor.orange);
                             break;
                         }
@@ -341,9 +339,7 @@ namespace Pandaros.Settlers.Jobs
 
                     if (toRemove != default(Knight))
                     {
-                        PandaChat.Send(d.RequestOrigin.AsPlayer,
-                                       $"Patrol with {toRemove.PatrolPoints.Count} patrol points no longer active.",
-                                       ChatColor.orange);
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, _localizationHelper, "PatrolsNotActive", ChatColor.orange, toRemove.PatrolPoints.Count.ToString());
 
                         Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony].Remove(toRemove);
                         d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Remove(toRemove);

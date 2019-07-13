@@ -12,6 +12,8 @@ namespace Pandaros.Settlers
     [ModLoader.ModManager]
     public class GameDifficulty
     {
+        static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "GameDifficulty");
+
         static GameDifficulty()
         {
             GameDifficulties = new Dictionary<string, GameDifficulty>(StringComparer.OrdinalIgnoreCase);
@@ -127,9 +129,9 @@ namespace Pandaros.Settlers
 
         public void Print(Players.Player player)
         {
-            PandaChat.Send(player, $"FoodMultiplier: {FoodMultiplier}", ChatColor.green);
-            PandaChat.Send(player, $"MonsterDamage: {MonsterDamage}", ChatColor.green);
-            PandaChat.Send(player, $"MonsterDamageReduction: {MonsterDamageReduction}", ChatColor.green);
+            PandaChat.Send(player, _localizationHelper, "FoodMultiplier", ChatColor.green, FoodMultiplier.ToString());
+            PandaChat.Send(player, _localizationHelper, "MonsterDamage", ChatColor.green, MonsterDamage.ToString());
+            PandaChat.Send(player, _localizationHelper, "MonsterDamageReduction", ChatColor.green, MonsterDamageReduction.ToString());
         }
 
         public JSONNode ToJson()
@@ -159,6 +161,7 @@ namespace Pandaros.Settlers
     public class GameDifficultyChatCommand : IChatCommand
     {
         private static string _Difficulty = GameLoader.NAMESPACE + ".Difficulty";
+        static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "GameDifficulty");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Difficulty.AddSetting")]
         public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
@@ -208,7 +211,7 @@ namespace Pandaros.Settlers
 
             if (array.Count == 1)
             {
-                PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green, state.Difficulty.Name);
+                PandaChat.Send(player, _localizationHelper, "CurrentDifficulty", ChatColor.green, state.Difficulty.Name);
                 return true;
             }
 
@@ -226,8 +229,7 @@ namespace Pandaros.Settlers
             }
 
             if (!SettlersConfiguration.DifficutlyCanBeChanged)
-                PandaChat.Send(player, "The server administrator had disabled the changing of game difficulty.",
-                               ChatColor.green);
+                PandaChat.Send(player, _localizationHelper, "DifficultyChangeDisabled", ChatColor.green);
 
             return true;
         }
@@ -250,16 +252,14 @@ namespace Pandaros.Settlers
                     SettlerManager.UpdateFoodUse(state);
                     state.Difficulty.Print(player);
 
-                    PandaChat.Send(player, "Settlers! Mod difficulty set to {0}.", ChatColor.green,
-                                   state.Difficulty.Name);
+                    PandaChat.Send(player, _localizationHelper, "CurrentDifficulty", ChatColor.green, state.Difficulty.Name);
 
                     NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
                     return true;
                 }
 
                 NetworkUI.NetworkMenuManager.SendColonySettingsUI(player);
-                PandaChat.Send(player, "The server administrator had disabled setting your difficulty below {0}.",
-                               ChatColor.green, SettlersConfiguration.MinDifficulty.Name);
+                PandaChat.Send(player, _localizationHelper, "DisabledBelow", ChatColor.green, SettlersConfiguration.MinDifficulty.Name);
             }
 
             return true;
@@ -267,7 +267,7 @@ namespace Pandaros.Settlers
 
         private static void UnknownCommand(Players.Player player, string command)
         {
-            PandaChat.Send(player, "Unknown command {0}", ChatColor.white, command);
+            PandaChat.Send(player, _localizationHelper, "UnknownCommand", ChatColor.white, command);
             PossibleCommands(player, ChatColor.white);
         }
 
@@ -275,15 +275,15 @@ namespace Pandaros.Settlers
         {
             if (player.ActiveColony != null)
             {
-                PandaChat.Send(player, "Current Difficulty: " + ColonyState.GetColonyState(player.ActiveColony).Difficulty.Name, color);
-                PandaChat.Send(player, "Possible commands:", color);
+                PandaChat.Send(player, _localizationHelper, "CurrentDifficulty", color, ColonyState.GetColonyState(player.ActiveColony).Difficulty.Name);
+                PandaChat.Send(player, _localizationHelper, "PossibleCommands", color);
 
                 var diffs = string.Empty;
 
                 foreach (var diff in GameDifficulty.GameDifficulties)
                     diffs += diff.Key + " | ";
 
-                PandaChat.Send(player, "/difficulty " + diffs.Substring(0, diffs.Length - 2), color);
+                PandaChat.Send(player, _localizationHelper, "/difficulty " + diffs.Substring(0, diffs.Length - 2), color);
             }
         }
     }

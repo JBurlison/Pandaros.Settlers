@@ -289,7 +289,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                             PandaChat.Send(data.Player, _localizationHelper, "invlaidSchematic", ChatColor.red);
                         {
                             _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);
-                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("instructions", data.Player));
+                            PandaChat.Send(data.Player, _localizationHelper, "instructions");
                             NetworkMenuManager.CloseServerPopup(data.Player);
                         }
                     }

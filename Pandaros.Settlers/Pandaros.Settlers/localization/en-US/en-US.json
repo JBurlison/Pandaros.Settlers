@@ -446,11 +446,38 @@
           "ColonyNumberInWorld": "In Colony",
           "ColonyCreationDate": "Colony Creation Date"
         },
+        "GameDifficulty": {
+          "FoodMultiplier": "FoodMultiplier: ",
+          "MonsterDamage": "MonsterDamage: ",
+          "MonsterDamageReduction": "MonsterDamageReduction: ",
+          "CurrentDifficulty": "Settlers! Mod difficulty set to {0}.",
+          "DifficultyChangeDisabled": "The server administrator had disabled the changing of game difficulty.",
+          "DisabledBelow": "The server administrator had disabled setting your difficulty below {0}.",
+          "UnknownCommand": "Unknown command {0}",
+          "PossibleCommands": "Possible commands: "
+        },
         "Permission": {
           "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: "
         },
         "System": {
           "ChatHistory": "Chat History"
+        },
+        "Monsters": {
+          "NoBanner": "WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {0} food."
+        },
+        "Bosses": {
+          "AdminDisabledBosses": "The server administrator had disabled the changing of bosses.",
+          "BossesToggled": "Settlers! Mod Bosses are now ",
+          "on": "on",
+          "off": "off",
+          "NoColony": "You must be near a colony to set its difficulty"
+        },
+        "Version": {
+          "UpdateInstalled": "Settlers! update {0} installed. Restart server to update!",
+          "RestartRequired": "Settlers! Has been updated. Restart the server/game to apply.",
+          "VersionOutOfDate": "Settlers! version is out of date. The mod will automatically update now.",
+          "GitVersion": "Settlers! Git version: {0}.",
+          "ModVersion": "Settlers! Mod version: {0}."
         },
         "SettlerManager": {
           "Accept": "Accept",
@@ -460,7 +487,27 @@
           "SettlersEnabled": "Random Settlers are currently {0}!",
           "AdminDisabled": "The server administrator has disabled recruitment of colonists while settlers are enabled.",
           "ColonistsLeft": " {0} colonists have left your colony.",
-          "FoodTaken": "A colonist has left your colony taking {0} food."
+          "FoodTaken": "A colonist has left your colony taking {0} food.",
+          "LeavingTakingItems": "A leaving colonist has taken {0} {1}",
+          "LeavingNumberOfItems": "A colonist has left your colony taking 10% of {0} items from your stockpile."
+        },
+        "Settlers": {
+          "AdminDisabledSettlers": "The server administrator had disabled the changing of Settlers.",
+          "Prompt": "Prompt",
+          "AlwaysAccept": "Always Accept",
+          "Disabled": "Disabled",
+          "SettlersState": "Settlers! Mod Settlers are now ",
+          "SettlersToggleTime": "Settlers! Settlers are {0}. You have toggled this {1} out of {2} times.",
+          "AbuseWarning": "To limit abuse of the /settlers command you can no longer toggle settlers on or off. You have used your alloted {0} times."
+        },
+        "Knights": {
+          "NoFlags": "You have no patrol flags in your stockpile or inventory.",
+          "CreateJob": "Patrol Point number {0} Registered! Right click to create Job.",
+          "RoundRobin": "Round Robin",
+          "Zipper": "Zipper",
+          "WaitRoundRobin": "Waiting Round Robin",
+          "WaitZipper": "Waiting Zipper",
+          "PatrolsNotActive": "Patrol with {0} patrol points no longer active."
         },
         "Happiness": {
           "BedsClose": "Beds too Close",
@@ -478,7 +525,7 @@
           "Bad": "Bad",
           "Good": "Good",
           "Yes": "Yes",
-          "No":  "No"
+          "No": "No"
         }
       }
     }

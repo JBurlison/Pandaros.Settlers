@@ -17,6 +17,8 @@ namespace Pandaros.Settlers.Items.Armor
 {
     public class ArmorCommand : IChatCommand
     {
+        localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Armor");
+
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             if (!chat.StartsWith("/armor", StringComparison.OrdinalIgnoreCase))
@@ -53,7 +55,7 @@ namespace Pandaros.Settlers.Items.Armor
                 else
                     psb.Append($" {armor.Key}: {ArmorFactory.ArmorLookup[armor.Value.Id].name} | ");
 
-            PandaChat.Send(player, psb.ToString());
+            PandaChat.Send(player, _localizationHelper, psb.ToString());
 
             foreach (var type in counts)
             {
@@ -61,7 +63,7 @@ namespace Pandaros.Settlers.Items.Armor
                 sb.Append($"{type.Key} =>");
                 foreach (var slot in type.Value) sb.Append($" {slot.Key}: {slot.Value} |");
 
-                PandaChat.Send(player, sb.ToString());
+                PandaChat.Send(player, _localizationHelper, sb.ToString());
             }
 
             return true;

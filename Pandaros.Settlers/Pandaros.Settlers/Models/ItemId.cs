@@ -98,6 +98,11 @@ namespace Pandaros.Settlers.Models
             }
         }
 
+        public string LocalizedName(Players.Player player)
+        {
+            return Localization.GetType(player.LastKnownLocale, ItemTypes.GetType(Id));
+        }
+
         private ItemId(ushort id)
         {
             _id = id;
