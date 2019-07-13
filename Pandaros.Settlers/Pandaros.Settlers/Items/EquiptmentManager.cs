@@ -11,9 +11,15 @@ using System.Linq;
 namespace Pandaros.Settlers.Items
 {
     [ModLoader.ModManager]
-    public class EquiptmentManager
+    public class EquiptmentManager : Extender.IOnConstructInventoryManageColonyUI
     {
         static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+
+
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        {
+            networkMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlayerDetails", new LabelData(_localizationHelper.GetLocalizationKey("PlayerDetails"), UnityEngine.Color.black), 200));
+        }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Items.EquiptmentManager.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
@@ -34,19 +40,17 @@ namespace Pandaros.Settlers.Items
                 {
                     var id = data.ButtonIdentifier.Replace("AddPlayerEquiptmentButton", "");
                     
-                    foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
+                    foreach (var magicItemName in MagicItemsCache.PlayerMagicItems.Keys)
                     {
-                        if (kvp.Value > 0 && 
-                            ItemTypes.TryGetType(kvp.Key, out var itemType) && 
-                            MagicItemsCache.PlayerMagicItems.TryGetValue(itemType.Name, out var magicItem) &&
-                            !Armor.ArmorFactory.ArmorLookup.ContainsKey(kvp.Key) &&
-                            !Weapons.WeaponFactory.WeaponLookup.ContainsKey(kvp.Key))
+                        if (data.Player.ActiveColony.Stockpile.Contains(ItemId.GetItemId(magicItemName)) && 
+                            ItemTypes.TryGetType(magicItemName, out var itemType) && 
+                            MagicItemsCache.PlayerMagicItems.TryGetValue(itemType.Name, out var magicItem))
                         {
                             List<ValueTuple<IItem, int>> items = new List<ValueTuple<IItem, int>>();
-                            items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(kvp.Key), 250));
+                            items.Add(ValueTuple.Create<IItem, int>(new ItemIcon(itemType.ItemIndex), 250));
                             items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(magicItem.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 250));
-                            items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + kvp.Value.ToString(), UnityEngine.Color.black)), 250));
-                            items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(id + kvp.Key + ".AddPlayerSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 250));
+                            items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("Stockpile", data.Player) + ": " + data.Player.ActiveColony.Stockpile.Items[itemType.ItemIndex].ToString(), UnityEngine.Color.black)), 250));
+                            items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(id + itemType.ItemIndex + ".AddPlayerSelectedEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Select"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 250));
                             menu.Items.Add(new HorizontalRow(items));
                         }
                     }
@@ -99,8 +103,9 @@ namespace Pandaros.Settlers.Items
                 {
                     foreach (var kvp in data.Player.ActiveColony.Stockpile.Items)
                     {
+                        var equalname = data.ButtonIdentifier.Replace(".AddPlayerSelectedEquiptmentButton", "");
                         if (Armor.ArmorFactory.ArmorLookup.TryGetValue(kvp.Key, out var armItem) &&
-                            data.ButtonIdentifier.Contains(kvp.Key + ".") &&
+                            equalname == kvp.Key.ToString() &&
                             data.Player.ActiveColony.Stockpile.TryRemove(kvp.Key))
                         {
                             var ps = PlayerState.GetPlayerState(data.Player);
@@ -368,12 +373,9 @@ namespace Pandaros.Settlers.Items
             menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("PlayerDetails", data.Player));
             menu.Width = 1000;
             menu.Height = 600;
+            menu.ForceClosePopups = true;
 
             var ps = PlayerState.GetPlayerState(data.Player);
-
-            menu.Items.Add(new Line(UnityEngine.Color.black));
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData(_localizationHelper.GetLocalizationKey("Back"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
-            menu.Items.Add(new Line(UnityEngine.Color.black));
 
             menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Stats"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 24)));
             menu.Items.Add(new HorizontalSplit(new Label(new LabelData(_localizationHelper.LocalizeOrDefault("JoinDate", data.Player) + ":", UnityEngine.Color.black)),

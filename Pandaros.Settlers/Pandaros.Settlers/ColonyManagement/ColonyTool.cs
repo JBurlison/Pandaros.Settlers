@@ -245,8 +245,6 @@ namespace Pandaros.Settlers.ColonyManagement
 
                 menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".KillFired", new LabelData($"{_localizationHelper.LocalizeOrDefault("Kill", player)} {count} {_localizationHelper.LocalizeOrDefault("Fired", player)} {firedName}", UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             }
-            else
-                menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".PlayerDetails", new LabelData(_localizationHelper.GetLocalizationKey("PlayerDetails"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             menu.Items.Add(new Line());
 

@@ -499,7 +499,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                             menu.Width = 600;
                                             menu.Height = 300;
 
-                                            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Accept." + addCount + "." + numbSkilled,
+                                            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers." + state.ColonyRef.ColonyID + ".Accept." + addCount + "." + numbSkilled,
                                                                               new LabelData(_localizationHelper.GetLocalizationKey("Accept"),
                                                                               UnityEngine.Color.black,
                                                                               UnityEngine.TextAnchor.MiddleCenter)));
@@ -537,21 +537,24 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
-            if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Accept.") &&
-                !data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
+            if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers") ||
+                data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
                 return;
 
-            foreach (var p in data.Player.ActiveColony.Owners)
-                if (p.IsConnected())
-                    NetworkMenuManager.CloseServerPopup(p);
+            var replaceOne = data.ButtonIdentifier.Replace(GameLoader.NAMESPACE + ".NewSettlers.", "");
+            var val = replaceOne.Substring(0, replaceOne.IndexOf('.'));
 
-            if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Accept."))
+            if (int.TryParse(val, out int colonyId) && ServerManager.ColonyTracker.ColoniesByID.TryGetValue(colonyId, out var colony))
             {
-                var recruitmentInfoStr = data.ButtonIdentifier.Replace(GameLoader.NAMESPACE + ".NewSettlers.Accept.", "");
+                foreach (var p in colony.Owners)
+                    if (p.IsConnected())
+                        NetworkMenuManager.CloseServerPopup(p);
+
+                var recruitmentInfoStr = replaceOne.Substring(val.Length).Replace(".Accept.", "");
                 var unparsedString = recruitmentInfoStr.Split('.');
                 var addCount = int.Parse(unparsedString[0]);
                 var numbSkilled = int.Parse(unparsedString[1]);
-                var state = ColonyState.GetColonyState(data.Player.ActiveColony);
+                var state = ColonyState.GetColonyState(colony);
 
                 AddNewSettlers(addCount, numbSkilled, state);
             }

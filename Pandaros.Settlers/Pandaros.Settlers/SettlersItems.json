@@ -8,7 +8,7 @@
     "Luck": 0.03,
     "Skilled": 0.03,
     "Damage": { "Physical": 500.0 },
-    "IsMagical": true,
+
     "Rarity": 0
   },
   "Pandaros.Settlers.SkilledSword1": {
@@ -20,7 +20,7 @@
     "Luck": 0.02,
     "Skilled": 0.02,
     "Damage": { "Physical": 500.0 },
-    "IsMagical": true,
+
     "Rarity": 0
   },
   "Pandaros.Settlers.SkilledSword": {
@@ -32,7 +32,7 @@
     "Luck": 0.01,
     "Skilled": 0.01,
     "Damage": { "Physical": 500.0 },
-    "IsMagical": true,
+
     "Rarity": 0
   },
   "Pandaros.Settlers.Healthbooster": {
@@ -40,7 +40,7 @@
     "isPlaceable": false,
     "categories": [ "MagicItem" ],
     "icon": "./icons/HealthBooster.png",
-    "IsMagical": true,
+    "IsMagical":  true,
     "HPTickRegen": 5.0,
     "ElementalArmor": 0,
     "Rarity": 0
@@ -50,7 +50,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledBoots2.png",
-    "IsMagical": true,
+
     "Skilled": 0.03,
     "ArmorRating": 0.07,
     "Durability": 750,
@@ -62,7 +62,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledBoots1.png",
-    "IsMagical": true,
+
     "Skilled": 0.02,
     "ArmorRating": 0.07,
     "Durability": 500,
@@ -74,7 +74,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledChest2.png",
-    "IsMagical": true,
+
     "Skilled": 0.03,
     "ArmorRating": 0.3,
     "Durability": 750,
@@ -86,7 +86,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledChest1.png",
-    "IsMagical": true,
+
     "Skilled": 0.02,
     "ArmorRating": 0.3,
     "Durability": 500,
@@ -98,7 +98,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledGloves2.png",
-    "IsMagical": true,
+
     "Skilled": 0.03,
     "ArmorRating": 0.07,
     "Durability": 750,
@@ -110,7 +110,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledGloves1.png",
-    "IsMagical": true,
+
     "Skilled": 0.02,
     "ArmorRating": 0.07,
     "Durability": 500,
@@ -122,7 +122,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledHelm2.png",
-    "IsMagical": true,
+
     "Skilled": 0.03,
     "ArmorRating": 0.11,
     "Durability": 750,
@@ -134,7 +134,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledHelm1.png",
-    "IsMagical": true,
+
     "Skilled": 0.02,
     "ArmorRating": 0.11,
     "Durability": 500,
@@ -146,7 +146,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledLegs2.png",
-    "IsMagical": true,
+
     "Skilled": 0.03,
     "ArmorRating": 0.13,
     "Durability": 750,
@@ -158,7 +158,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledLegs1.png",
-    "IsMagical": true,
+
     "Skilled": 0.02,
     "ArmorRating": 0.13,
     "Durability": 500,
@@ -170,7 +170,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledShield2.png",
-    "IsMagical": true,
+
     "Skilled": 0.03,
     "ArmorRating": 0.13,
     "Durability": 750,
@@ -182,7 +182,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledShield1.png",
-    "IsMagical": true,
+
     "Skilled": 0.02,
     "ArmorRating": 0.13,
     "Durability": 500,
@@ -194,7 +194,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledShield.png",
-    "IsMagical": true,
+
     "Skilled": 0.01,
     "ArmorRating": 0.13,
     "Durability": 250,
@@ -206,7 +206,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledLegs.png",
-    "IsMagical": true,
+
     "Skilled": 0.01,
     "ArmorRating": 0.13,
     "Durability": 250,
@@ -218,7 +218,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledHelm.png",
-    "IsMagical": true,
+
     "Skilled": 0.01,
     "ArmorRating": 0.11,
     "Durability": 250,
@@ -230,7 +230,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledGloves.png",
-    "IsMagical": true,
+
     "Skilled": 0.01,
     "ArmorRating": 0.07,
     "Durability": 250,
@@ -242,7 +242,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledChest.png",
-    "IsMagical": true,
+
     "Skilled": 0.01,
     "ArmorRating": 0.3,
     "Durability": 250,
@@ -254,7 +254,7 @@
     "isPlaceable": false,
     "categories": [ "armor", "MagicItem" ],
     "icon": "./icons/SkilledBoots.png",
-    "IsMagical": true,
+
     "Skilled": 0.01,
     "ArmorRating": 0.07,
     "Durability": 250,

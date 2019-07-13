@@ -90,6 +90,9 @@ namespace Pandaros.Settlers.Jobs.Roaming
 
         public void SetActionEnergy(string action, float value)
         {
+            if (string.IsNullOrEmpty(action))
+                return;
+
             ActionEnergy[action] = value;
 
             if (ActionEnergy[action] < 0)

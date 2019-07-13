@@ -267,7 +267,7 @@ namespace Pandaros.Settlers.Entities
                                 p.Heal(mi.HPTickRegen);
                         }
 
-                        MagicItemUpdateTime += 5000;
+                        MagicItemUpdateTime = Time.SecondsSinceStartDouble + 5;
                     }
                 }
             }

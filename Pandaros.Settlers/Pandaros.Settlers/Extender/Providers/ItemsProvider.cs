@@ -121,7 +121,11 @@ namespace Pandaros.Settlers.Extender.Providers
                 if (itemType.StaticItemSettings != null && !string.IsNullOrWhiteSpace(itemType.StaticItemSettings.Name))
                     StaticItems.List.Add(itemType.StaticItemSettings);
 
-                if (itemType is IPlayerMagicItem pmi)
+                if (itemType is IArmor ma && ma.Durability > 0)
+                    ArmorFactory.ArmorLookup.Add(rawItem.ItemIndex, ma);
+                else if (itemType is IWeapon wep && wep.WepDurability > 0)
+                    WeaponFactory.WeaponLookup.Add(rawItem.ItemIndex, wep);
+                else if (itemType is IPlayerMagicItem pmi && pmi.IsMagical == true)
                     MagicItemsCache.PlayerMagicItems[pmi.name] = pmi;
 
                 if (itemType.OpensMenuSettings != null && !string.IsNullOrEmpty(itemType.OpensMenuSettings.ItemName))
