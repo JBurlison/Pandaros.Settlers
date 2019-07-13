@@ -40,7 +40,7 @@ namespace Pandaros.Settlers
                 AdditionalChance                         = 0.4f,
                 UnhappinessPerColonistDeath              = 1,
                 UnhappyGuardsMultiplyRate                = 0.5f,
-                MonsterHPPerColonist                     = .5f,
+                MonsterHPPerColonist                     = .2f,
                 UnhappyColonistsBought                   = -1f
             };
 
@@ -53,7 +53,7 @@ namespace Pandaros.Settlers
                 AdditionalChance                         = 0f,
                 UnhappinessPerColonistDeath              = 2,
                 UnhappyGuardsMultiplyRate                = 1,
-                MonsterHPPerColonist                     = 1f,
+                MonsterHPPerColonist                     = .5f,
                 FoodMultiplier                           = .1f,
                 UnhappyColonistsBought                   = -2f
             };
@@ -67,7 +67,7 @@ namespace Pandaros.Settlers
                 AdditionalChance                         = -0.2f,
                 UnhappinessPerColonistDeath              = 3,
                 UnhappyGuardsMultiplyRate                = 1.5f,
-                MonsterHPPerColonist                     = 3f,
+                MonsterHPPerColonist                     = 1f,
                 FoodMultiplier                           = .2f,
                 UnhappyColonistsBought                   = -3f
             };
@@ -81,7 +81,7 @@ namespace Pandaros.Settlers
                 AdditionalChance                         = -0.4f,
                 UnhappinessPerColonistDeath              = 4,
                 UnhappyGuardsMultiplyRate                = 2,
-                MonsterHPPerColonist                     = 5f,
+                MonsterHPPerColonist                     = 2f,
                 FoodMultiplier                           = .3f,
                 UnhappyColonistsBought                   = -5f
             };
