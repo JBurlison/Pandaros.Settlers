@@ -13,7 +13,7 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public class EquiptmentManager : Extender.IOnConstructInventoryManageColonyUI
     {
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "colonytool");
 
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
@@ -423,13 +423,19 @@ namespace Pandaros.Settlers.Items
                 if (Armor.ArmorFactory.ArmorLookup.TryGetValue(armor.Value.Id, out var arm))
                 {
                     items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData(arm.name, UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleLeft, 18, LabelData.ELocalizationType.Type)), 200));
-                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Swap"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 200));
-                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(armor.Key + ".RemovePlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Remove"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 200));
+
+                    if (ps.Player.IsConnected())
+                    {
+                        items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Swap"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 200));
+                        items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(armor.Key + ".RemovePlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Remove"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 200));
+                    }
                 }
                 else
                 {
                     items.Add(ValueTuple.Create<IItem, int>(new Label(new LabelData("", UnityEngine.Color.black)), 200));
-                    items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Add"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 200));
+
+                    if (ps.Player.IsConnected())
+                        items.Add(ValueTuple.Create<IItem, int>(new ButtonCallback(armor.Key + ".AddPlayerEquiptmentButton", new LabelData(_localizationHelper.GetLocalizationKey("Add"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)), 200));
                 }
 
                 menu.Items.Add(new HorizontalRow(items));

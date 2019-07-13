@@ -17,7 +17,7 @@ namespace Pandaros.Settlers.Server
     {
         public ChatHistory() { }
 
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("System");
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "System");
 
         public double NextUpdateTimeMin => 30;
 

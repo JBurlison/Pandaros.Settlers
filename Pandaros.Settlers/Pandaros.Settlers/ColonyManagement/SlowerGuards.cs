@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.ColonyManagement
     {
         public string GetDescription(Colony colony, Players.Player player)
         {
-            var localizationHelper = new localization.LocalizationHelper("Happiness");
+            var localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
             var name = "";
             var cs = Entities.ColonyState.GetColonyState(colony);
 

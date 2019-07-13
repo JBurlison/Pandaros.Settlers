@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.ColonyManagement
     public class ColonistsBought : IHappinessCause
     {
         public static Dictionary<Colony, List<double>> BoughtCount { get; set; } = new Dictionary<Colony, List<double>>();
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper("Happiness");
+        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
 
         public float Evaluate(Colony colony)
         {

@@ -9,10 +9,12 @@ namespace Pandaros.Settlers.localization
     public class LocalizationHelper
     {
         public string Prefix { get; set; }
+        public string Namespace { get; set; }
 
-        public LocalizationHelper(string prefix)
+        public LocalizationHelper(string modNamespace, string prefix)
         {
             Prefix = prefix;
+            Namespace = modNamespace;
         }
 
         public string LocalizeOrDefault(string key, Players.Player p)
@@ -28,7 +30,7 @@ namespace Pandaros.Settlers.localization
 
         public string GetLocalizationKey(string key)
         {
-            return string.Concat(GameLoader.NAMESPACE, ".", Prefix, ".", key);
+            return string.Concat(Namespace, ".", Prefix, ".", key);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Help
             UIUrl = "Wiki.MainMenu"
         };
 
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("Wiki");
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Wiki");
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
         {

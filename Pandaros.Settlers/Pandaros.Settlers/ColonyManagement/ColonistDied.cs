@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.ColonyManagement
     public class ColonistDied : IHappinessCause
     {
         public static Dictionary<Colony, List<double>> DieCount { get; set; } = new Dictionary<Colony, List<double>>();
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper("Happiness");
+        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".ColonyManager.ColonistDied.OnNPCDied")]
         public static void OnNPCDied(NPC.NPCBase nPC)

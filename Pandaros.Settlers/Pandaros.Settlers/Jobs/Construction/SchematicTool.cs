@@ -114,7 +114,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         };
 
         private static readonly string Selected_Schematic = GameLoader.NAMESPACE + ".SelectedSchematic";
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("buildertool");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "buildertool");
         private static Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
@@ -125,7 +125,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             {
                 if (player.ActiveColony == null)
                 {
-                    PandaChat.Send(player, _localizationHelper.LocalizeOrDefault("ErrorOpening", player), ChatColor.red);
+                    PandaChat.Send(player, _localizationHelper, "ErrorOpening", ChatColor.red);
                     return;
                 }
 
@@ -221,7 +221,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (SchematicReader.TryGetSchematicMetadata(selectedSchematic.Name, data.Player.ActiveColony.ColonyID, out SchematicMetadata schematicMetadata))
                         {
                             if (schematicMetadata.Blocks.Count == 1 && schematicMetadata.Blocks.ContainsKey(ColonyBuiltIn.ItemTypes.AIR.Id))
-                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper, "invlaidSchematic", ChatColor.red);
                             {
                                 NetworkMenu menu = new NetworkMenu();
                                 menu.Width = 800;
@@ -286,7 +286,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {
                         if (metadata.Blocks.Count == 1 && metadata.Blocks.ContainsKey(ColonyBuiltIn.ItemTypes.AIR.Id))
-                            PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("invlaidSchematic", data.Player), ChatColor.red);
+                            PandaChat.Send(data.Player, _localizationHelper, "invlaidSchematic", ChatColor.red);
                         {
                             _awaitingClick[data.Player] = Tuple.Create(SchematicClickType.Build, scem, _rotation[rotation]);
                             PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("instructions", data.Player));

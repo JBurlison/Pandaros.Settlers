@@ -30,9 +30,9 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         public static Dictionary<Colony, int> CachedHappiness { get; set; } = new Dictionary<Colony, int>();
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper("Happiness");
+        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
         public static Dictionary<Colony, BedStateObject> BedCache { get; private set; } = new Dictionary<Colony, BedStateObject>();
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("Beds");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Beds");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnPlayerConnectedSuperLate")]
         public static void OnPlayerConnectedSuperLate(Players.Player p)

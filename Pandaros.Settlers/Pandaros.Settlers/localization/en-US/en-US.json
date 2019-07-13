@@ -455,7 +455,12 @@
         "SettlerManager": {
           "Accept": "Accept",
           "Decline": "Decline",
-          "NewSettlers": " settlers would like to join your colony!"
+          "NewSettlers": " settlers would like to join your colony!",
+          "BuyingColonists": "Recruiting after {0} colonists will result in {1} happiness debuff per colonists recruited. If you build it... they will come.",
+          "SettlersEnabled": "Random Settlers are currently {0}!",
+          "AdminDisabled": "The server administrator has disabled recruitment of colonists while settlers are enabled.",
+          "ColonistsLeft": " {0} colonists have left your colony.",
+          "FoodTaken": "A colonist has left your colony taking {0} food."
         },
         "Happiness": {
           "BedsClose": "Beds too Close",

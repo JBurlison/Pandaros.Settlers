@@ -59,7 +59,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ColonyToolMainMenu", new LabelData(_localizationHelper.LocalizeOrDefault("ColonyManagement", player), UnityEngine.Color.black), 200));
         }
 
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "colonytool");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".ColonyManager.ColonyTool.OpenMenu")]
         public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)

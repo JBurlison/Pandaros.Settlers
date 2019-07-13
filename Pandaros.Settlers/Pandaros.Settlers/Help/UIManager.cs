@@ -20,7 +20,7 @@ namespace Pandaros.Settlers.Help
     public static class UIManager
     {
         public static JSONNode LoadedMenus { get; private set; } = new JSONNode();
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("Wiki");
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Wiki");
         public static List<OpenMenuSettings> OpenMenuItems { get; private set; } = new List<OpenMenuSettings>();
         public static Dictionary<ushort, Recipes.Recipe> ItemRecipe = new Dictionary<ushort, Recipes.Recipe>();
 

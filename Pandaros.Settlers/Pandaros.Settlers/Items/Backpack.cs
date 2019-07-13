@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public class BackpackCallbacks
     {
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("backpack");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "backpack");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Backpack.OpenMenu")]
         public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)

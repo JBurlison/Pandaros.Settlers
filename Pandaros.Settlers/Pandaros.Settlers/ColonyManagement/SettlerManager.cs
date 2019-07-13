@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.ColonyManagement
     [ModLoader.ModManager]
     public class SettlerManagerUIPromopt : Extender.IOnConstructInventoryManageColonyUI
     {
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("colonytool");
+        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, GameLoader.NAMESPACE, "colonytool");
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
         {
@@ -93,7 +93,7 @@ namespace Pandaros.Settlers.ColonyManagement
         public static double _nextbedTime = 0;
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper("SettlerManager");
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "SettlerManager");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Managers.SettlerManager.AfterSelectedWorld.Healing")]
         public static void Healing()
@@ -275,27 +275,10 @@ namespace Pandaros.Settlers.ColonyManagement
                 var cs = ColonyState.GetColonyState(p.ActiveColony);
 
                 if (cs.SettlersEnabled != Models.SettlersState.Disabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
-                    PandaChat.Send(p,
-                                   string
-                                      .Format("Recruiting over {0} colonists will cost the base food cost plus a compounding {1} food. This compounding value resets once per in game day. If you build it... they will come.",
-                                              MAX_BUYABLE,
-                                              SettlersConfiguration.GetorDefault("CompoundingFoodRecruitmentCost", 2)),
-                                   ChatColor.orange);
+                    PandaChat.Send(p, string.Format(_localizationHelper.LocalizeOrDefault("BuyingColonists", p), MAX_BUYABLE, cs.Difficulty.UnhappyColonistsBought), ChatColor.orange);
 
                 if (cs.SettlersToggledTimes < SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4))
-                {
-                    var settlers = cs.SettlersEnabled.ToString();
-
-                    if (SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4) > 0)
-                        PandaChat.Send(p,
-                                       $"To disable/enable gaining random settlers type '/settlers off' Note: this can only be used {SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4)} times.",
-                                       ChatColor.orange);
-                    else
-                        PandaChat.Send(p, $"To disable/enable gaining random settlers type '/settlers off'",
-                                       ChatColor.orange);
-
-                    PandaChat.Send(p, $"Random Settlers are currently {settlers}!", ChatColor.orange);
-                }
+                    PandaChat.Send(p, string.Format(_localizationHelper.LocalizeOrDefault("SettlersEnabled", p), cs.SettlersEnabled.ToString()), ChatColor.orange);
             }
 
             foreach (Colony c in p.Colonies)
@@ -337,7 +320,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     }
                     else
                     {
-                        PandaChat.Send(npc.Colony, "The server administrator has disabled recruitment of colonists while settlers are enabled.");
+                        PandaChat.Send(npc.Colony, "AdminDisabled", _localizationHelper, ChatColor.red);
                         npc.health = 0;
                         npc.Update();
                     }
@@ -735,10 +718,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     NPCLeaving(npc);
 
                 if (left > 0)
-                    PandaChat.Send(state.ColonyRef,
-                                    string.Concat(SettlerReasoning.GetNoJobReason(),
-                                                    string.Format(" {0} colonists have left your colony.", left)),
-                                    ChatColor.red);
+                    PandaChat.Send(state.ColonyRef, "ColonistsLeft", _localizationHelper, ChatColor.red);
 
                 update = unTrack.Count != 0;
                 state.ColonyRef.SendCommonData();
@@ -754,7 +734,8 @@ namespace Pandaros.Settlers.ColonyManagement
             if (Random.NextFloat() > .49f)
             {
                 float cost = PenalizeFood(npc.Colony, 0.05f);
-                PandaChat.Send(npc.Colony, $"A colonist has left your colony taking {cost} food.", ChatColor.red);
+
+                PandaChat.Send(npc.Colony, "TakenFood", _localizationHelper, ChatColor.red);
             }
             else
             {

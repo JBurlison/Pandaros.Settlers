@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.ColonyManagement
     [ModLoader.ModManager]
     public class Permission
     {
-        static localization.LocalizationHelper _LocalizationHelper = new localization.LocalizationHelper("Permission");
+        static localization.LocalizationHelper _LocalizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Permission");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".ColonyManager.Permission.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)

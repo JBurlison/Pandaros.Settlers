@@ -11,7 +11,7 @@ namespace Pandaros.Settlers.ColonyManagement
 {
     public class NotEnoughBeds : IHappinessCause
     {
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper("Happiness");
+        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
 
         public float Evaluate(Colony colony)
         {
