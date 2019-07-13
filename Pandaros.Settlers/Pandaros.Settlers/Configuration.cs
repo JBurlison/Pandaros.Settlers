@@ -167,6 +167,9 @@ namespace Pandaros.Settlers
 
     public class ConfigurationChatCommand : IChatCommand
     {
+
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Configuration");
+
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {
             if (!chat.StartsWith("/settlersconfig", StringComparison.OrdinalIgnoreCase))
@@ -193,7 +196,7 @@ namespace Pandaros.Settlers
                     }
                     else
                     {
-                        PandaChat.Send(player, $"The configuration {array[1]} does not exist.", ChatColor.red);
+                        PandaChat.Send(player, _localizationHelper, "UnknownConfiguration", ChatColor.red, array[1]);
                     }
                 }
                 else

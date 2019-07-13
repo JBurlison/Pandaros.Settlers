@@ -132,6 +132,8 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public static class BuildersWand
     {
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "BuildersWand");
+
         public enum WandMode
         {
             Horizontal = 0,
@@ -222,10 +224,7 @@ namespace Pandaros.Settlers.Items
                 else
                 {
                     ps.BuildersWandMode = ps.BuildersWandMode.Next();
-
-                    PandaChat.Send(player,
-                                   $"Wand mode set to {ps.BuildersWandMode}. Charge Left: {ps.BuildersWandCharge}",
-                                   ChatColor.green);
+                    PandaChat.Send(player, _localizationHelper, "WandMode", ChatColor.green, ps.BuildersWandMode.ToString(), ps.BuildersWandCharge.ToString());
                 }
             }
             else
@@ -253,10 +252,7 @@ namespace Pandaros.Settlers.Items
                         var inv = player.Inventory;
                         inv.TryRemove(Item.ItemIndex);
                         ps.BuildersWandCharge = DURABILITY + ps.BuildersWandMaxCharge;
-
-                        PandaChat.Send(player,
-                                       "Your Builders wand has Run out of energy and turns to dust in your hands.",
-                                       ChatColor.red);
+                        PandaChat.Send(player,_localizationHelper, "OutOfEnergy", ChatColor.red);
                     }
                 }
                 else
@@ -330,11 +326,7 @@ namespace Pandaros.Settlers.Items
                                     break;
 
                                 default:
-
-                                    PandaChat.Send(player,
-                                                   $"Building on top or bottom of a block not valid for wand mode: {ps.BuildersWandMode}.",
-                                                   ChatColor.red);
-
+                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, ps.BuildersWandMode.ToString());
                                     break;
                             }
 
@@ -375,11 +367,7 @@ namespace Pandaros.Settlers.Items
                                     break;
 
                                 default:
-
-                                    PandaChat.Send(player,
-                                                   $"Building on top or bottom of a block not valid for wand mode: {ps.BuildersWandMode}.",
-                                                   ChatColor.red);
-
+                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, ps.BuildersWandMode.ToString());
                                     break;
                             }
 
@@ -420,11 +408,7 @@ namespace Pandaros.Settlers.Items
                                     break;
 
                                 default:
-
-                                    PandaChat.Send(player,
-                                                   $"Building on top or bottom of a block not valid for wand mode: {ps.BuildersWandMode}.",
-                                                   ChatColor.red);
-
+                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, ps.BuildersWandMode.ToString());
                                     break;
                             }
 

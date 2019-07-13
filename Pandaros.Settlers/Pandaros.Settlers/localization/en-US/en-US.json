@@ -460,7 +460,14 @@
           "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: "
         },
         "System": {
-          "ChatHistory": "Chat History"
+          "ChatHistory": "Chat History",
+          "RestartNeeded": "For settlers mod auto update to work, the Colony Survival surver needs to be restarted."
+        },
+        "TeleportPad": {
+          "NeedsRepair": "This teleporter is in need of repair. Make sure a machinist is near by to maintain it!",
+          "NeedsMana": "This teleporter is in need of mana. Make sure a machinist is near by to maintain it!",
+          "PlaceAnotherTeleporter": "Place one more teleportation pad to link to.",
+          "TeleportersLinked": "Teleportation pads linked!"
         },
         "Monsters": {
           "NoBanner": "WARNING: Unable to spawn boss. Please ensure you have a path to your banner. You have been penalized {0} food."
@@ -496,8 +503,8 @@
           "Prompt": "Prompt",
           "AlwaysAccept": "Always Accept",
           "Disabled": "Disabled",
-          "SettlersState": "Settlers! Mod Settlers are now ",
-          "SettlersToggleTime": "Settlers! Settlers are {0}. You have toggled this {1} out of {2} times.",
+          "SettlersState": "Settlers! Mod Settlers are set to ",
+          "SettlersToggleTime": "Settlers! Settlers are set to {0}. You have toggled this {1} out of {2} times.",
           "AbuseWarning": "To limit abuse of the /settlers command you can no longer toggle settlers on or off. You have used your alloted {0} times."
         },
         "Knights": {
@@ -507,7 +514,29 @@
           "Zipper": "Zipper",
           "WaitRoundRobin": "Waiting Round Robin",
           "WaitZipper": "Waiting Zipper",
-          "PatrolsNotActive": "Patrol with {0} patrol points no longer active."
+          "PatrolsNotActive": "Patrol with {0} patrol points no longer active.",
+          "RoundRobinDescription": "The knight will patrol from the first to last point, start over at the first point. Good for circles.",
+          "ZipperDescription": "The knight will patrol from the first to last point, then, work its way backwords to the first. Good for patrolling a secion of a wall",
+          "WaitRoundRobinDescription": "The knight will patrol from the first to last point, then, work its way backwords to the first.  The knight will wait for monsters to come to them. Good for patrolling a secion of a wall",
+          "WaitZipperDescription": "The knight will patrol from the first to last point, start over at the first point. Good for circles. The knight will wait for monsters to come to them.",
+          "PatrolTypeSet": "Patrol type set to {0}!",
+          "MustPlaceFlag": "You must place patrol flags using left click before setting the patrol.",
+          "Active": "Patrol Active! To stop the patrol pick up any of the patrol flags in the patrol."
+        },
+        "BuildersWand": {
+          "Horizontal": "Horizontal",
+          "Vertical": "Vertical",
+          "TopAndBottomX": "Top and Bottom X",
+          "TopAndBottomZ": "Top and Bottom Z",
+          "WandMode": "Wand mode set to {0}. Charge Left: {1}",
+          "OutOfEnergy": "Your Builders wand has Run out of energy and turns to dust in your hands.",
+          "NotValidTopOrBottom": "Building on top or bottom of a block not valid for wand mode: {0}."
+        },
+        "Configuration": {
+          "UnknownConfiguration": "The configuration {0} does not exist."
+        },
+        "Weapon": {
+          "Broke": "Your {0} has broke!"
         },
         "Happiness": {
           "BedsClose": "Beds too Close",

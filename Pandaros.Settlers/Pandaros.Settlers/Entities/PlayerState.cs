@@ -17,6 +17,7 @@ namespace Pandaros.Settlers.Entities
     {
         private static readonly Dictionary<Players.Player, PlayerState> _playerStates = new Dictionary<Players.Player, PlayerState>();
         private static double MagicItemUpdateTime = Time.SecondsSinceStartDouble;
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "System");
 
         public PlayerState(Players.Player p)
         {
@@ -289,7 +290,7 @@ namespace Pandaros.Settlers.Entities
             _playerStates[p].RecaclculateMagicItems();
 
             if (GameLoader.FileWasCopied)
-                PandaChat.Send(p, "For settlers mod auto update to work, the Colony Survival surver needs to be restarted.", ChatColor.red);
+                PandaChat.Send(p, _localizationHelper, "RestartNeeded", ChatColor.red);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnLoadingPlayer, GameLoader.NAMESPACE + ".Entities.PlayerState.OnLoadingPlayer")]

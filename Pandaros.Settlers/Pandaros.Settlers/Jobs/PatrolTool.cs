@@ -245,27 +245,27 @@ namespace Pandaros.Settlers.Jobs
 
                             if (knight.PatrolType == PatrolType.RoundRobin)
                             {
-                                patrol = "The knight will patrol from the first to last point, start over at the first point. The knight will wait for monsters to come to them. Good for circles";
+                                patrol = "RoundRobinDescription";
                                 knight.PatrolType = PatrolType.WaitRoundRobin;
                             }
                             if (knight.PatrolType == PatrolType.WaitRoundRobin)
                             {
-                                patrol = "The knight will patrol from the first to last point, then, work its way backwords to the first. Good for patrolling a secion of a wall";
+                                patrol = "ZipperDescription";
                                 knight.PatrolType = PatrolType.Zipper;
                             }
                             if (knight.PatrolType == PatrolType.Zipper)
                             {
-                                patrol = "The knight will patrol from the first to last point, then, work its way backwords to the first.  The knight will wait for monsters to come to them. Good for patrolling a secion of a wall";
+                                patrol = "WaitRoundRobinDescription";
                                 knight.PatrolType = PatrolType.WaitZipper;
                             }
                             else
                             {
-                                patrol = "The knight will patrol from the first to last point, start over at the first point. Good for circles";
+                                patrol = "WaitZipperDescription";
                                 knight.PatrolType = PatrolType.RoundRobin;
                             }
 
-                            PandaChat.Send(player, $"Patrol type set to {}!", ChatColor.orange, knight.PatrolType.ToString());
-                            PandaChat.Send(player, patrol, ChatColor.orange);
+                            PandaChat.Send(player, _localizationHelper, "PatrolTypeSet", ChatColor.orange, knight.PatrolType.ToString());
+                            PandaChat.Send(player, _localizationHelper, patrol, ChatColor.orange);
                             break;
                         }
                 }
@@ -275,8 +275,7 @@ namespace Pandaros.Settlers.Jobs
             {
                 if (state.FlagsPlaced.Count == 0)
                 {
-                    PandaChat.Send(player, "You must place patrol flags using left click before setting the patrol.",
-                                   ChatColor.orange);
+                    PandaChat.Send(player, _localizationHelper, "MustPlaceFlag", ChatColor.orange);
                 }
                 else
                 {
@@ -284,9 +283,7 @@ namespace Pandaros.Settlers.Jobs
                     state.FlagsPlaced.Clear();
                     player.ActiveColony.JobFinder.Add(knight);
 
-                    PandaChat.Send(player,
-                                   "Patrol Active! To stop the patrol pick up any of the patrol flags in the patrol.",
-                                   ChatColor.orange);
+                    PandaChat.Send(player, _localizationHelper, "Active", ChatColor.orange);
 
                     player.ActiveColony.JobFinder.Update();
                     player.ActiveColony.SendCommonData();

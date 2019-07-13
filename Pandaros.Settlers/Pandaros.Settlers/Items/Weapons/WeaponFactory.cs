@@ -14,6 +14,7 @@ namespace Pandaros.Settlers.Items.Weapons
     public static class WeaponFactory
     {
         public static Dictionary<ushort, IWeapon> WeaponLookup { get; } =  new Dictionary<ushort, IWeapon>();
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Weapon");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Items.Weapons.WeaponFactory.CheckIfMonstersNearby")]
         public static void CheckIfMonstersNearby()
@@ -107,8 +108,10 @@ namespace Pandaros.Settlers.Items.Weapons
                     player.TakeItemFromInventory(click.TypeSelected);
 
                     PandaChat.Send(player,
-                                   $"Your {WeaponLookup[click.TypeSelected].name} has broke!",
-                                   ChatColor.orange);
+                                   _localizationHelper,
+                                   "Broke",
+                                   ChatColor.orange,
+                                   ItemId.GetItemId(click.TypeSelected).LocalizedName(player));
                 }
             }
         }

@@ -152,6 +152,7 @@ namespace Pandaros.Settlers.Items.Machines
     {
         private static readonly Dictionary<Vector3Int, Vector3Int> _paired = new Dictionary<Vector3Int, Vector3Int>();
         private static readonly Dictionary<Players.Player, int> _cooldown = new Dictionary<Players.Player, int>();
+        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "TeleportPad");
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
 
@@ -462,13 +463,13 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         if (machineState.GetActionEnergy(MachineConstants.REPAIR) <= 0)
                         {
-                            PandaChat.Send(p, "This teleporter is in need of repair. Make sure a machinist is near by to maintain it!", ChatColor.red);
+                            PandaChat.Send(p, _localizationHelper, "NeedsRepair", ChatColor.red);
                             return;
                         }
 
                         if (machineState.GetActionEnergy(MachineConstants.REFUEL) <= 0)
                         {
-                            PandaChat.Send(p, "This teleporter is in need of mana. Make sure a machinist is near by to maintain it!", ChatColor.red);
+                            PandaChat.Send(p, _localizationHelper, "", ChatColor.red);
                             return;
                         }
 
@@ -500,7 +501,7 @@ namespace Pandaros.Settlers.Items.Machines
                 {
                     ps.TeleporterPlaced = d.Position;
 
-                    PandaChat.Send(d.RequestOrigin.AsPlayer, $"Place one more teleportation pad to link to.",
+                    PandaChat.Send(d.RequestOrigin.AsPlayer, _localizationHelper, "PlaceAnotherTeleporter",
                                    ChatColor.orange);
                 }
                 else
@@ -509,15 +510,14 @@ namespace Pandaros.Settlers.Items.Machines
                     {
                         _paired[ms.Position]           = machineState.Position;
                         _paired[machineState.Position] = ms.Position;
-                        PandaChat.Send(d.RequestOrigin.AsPlayer, $"Teleportation pads linked!", ChatColor.orange);
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, _localizationHelper, "TeleportersLinked", ChatColor.orange);
                         ps.TeleporterPlaced = Vector3Int.invalidPos;
                     }
                     else
                     {
                         ps.TeleporterPlaced = d.Position;
 
-                        PandaChat.Send(d.RequestOrigin.AsPlayer, $"Place one more teleportation pad to link to.",
-                                       ChatColor.orange);
+                        PandaChat.Send(d.RequestOrigin.AsPlayer, _localizationHelper, "PlaceAnotherTeleporter", ChatColor.orange);
                     }
                 }
             }

@@ -188,7 +188,7 @@ namespace Pandaros.Settlers.ColonyManagement
                             if (data.Player.ActiveColony.Stockpile.TotalFood < foodCost ||
                                 !data.Player.ActiveColony.Stockpile.TryRemoveFood(ref num, foodCost))
                             {
-                                PandaChat.Send(data.Player, _localizationHelper.LocalizeOrDefault("Notenoughfood", data.Player), ChatColor.red);
+                                PandaChat.Send(data.Player, _localizationHelper, "Notenoughfood", ChatColor.red);
                                 break;
                             }
                             else
