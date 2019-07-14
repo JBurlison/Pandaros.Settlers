@@ -51,5 +51,38 @@ namespace Pandaros.Settlers.Help
         {
             playerState.Tutorials[tutorialName] = run;
         }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Help.TutorialManager.OnUpdate")]
+        public static void OnUpdate()
+        {
+            if (ServerManager.ColonyTracker != null && ServerManager.ColonyTracker.ColoniesByID != null)
+                foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.ValsRaw)
+                {
+                    var cs = ColonyState.GetColonyState(colony);
+
+                    if (cs.BossesEnabled)
+                    {
+                        foreach (var p in colony.Owners)
+                        {
+                            var ps = PlayerState.GetPlayerState(p);
+
+                            if (colony.FollowerCount > 125 && !TutorialRun(ps, "CloseToBosses"))
+                            {
+                                NetworkMenu menu = new NetworkMenu();
+                                menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("CloseToBossesHeader", p));
+                                menu.Width = 800;
+                                menu.Height = 600;
+                                menu.ForceClosePopups = true;
+
+                                menu.Items.Add(new Label(new LabelData(string.Format(_localizationHelper.GetLocalizationKey("CloseToBosses"), colony.Name), UnityEngine.Color.black)));
+
+                                SetTutorialRun(ps, "CloseToBosses");
+                                NetworkMenuManager.SendServerPopup(p, menu);
+
+                            }
+                        }
+                    }
+                }
+        }
     }
 }
