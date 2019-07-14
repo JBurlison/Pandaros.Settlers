@@ -144,9 +144,14 @@ namespace Pandaros.Settlers.ColonyManagement
                 {
                     var cs = ColonyState.GetColonyState(colony);
                     EvaluateSettlers(cs);
-                    EvaluateLaborers(cs);
-                    EvaluateBeds(cs);
-                    UpdateFoodUse(cs);
+
+                    if (cs.Difficulty.Name != GameDifficulty.Normal.Name)
+                    {
+                        EvaluateLaborers(cs);
+                        EvaluateBeds(cs);
+                        UpdateFoodUse(cs);
+                    }
+
                     UpdateMagicItemms(cs);
 
                     colony.SendCommonData();
