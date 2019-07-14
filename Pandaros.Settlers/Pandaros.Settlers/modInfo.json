@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.2.54",
+    "version": "0.8.2.55",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -289,6 +289,7 @@
           "Fixed bug where colonists would be hurt after researching colonist health",
           "Mining machines no longer mine faster. They are still more efficient than manual as you can have 4-5 mining machines per Machinist",
           "Added Chat History. Button in colony UI tab.",
+          "Added Tutorials",
           "Added the ability to build minecraft schematics with the schematic tool",
           "Added schematic tool research, requires builders.",
           "Added the ability so save schematics. they save on a per colony and player basis.",
