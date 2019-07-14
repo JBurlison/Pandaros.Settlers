@@ -41,6 +41,23 @@
     "onRemoveAudio": "grassDelete",
     "sideall": "neutral"
   },
+  "Pandaros.Settlers.AutoLoad.infinatemarble": {
+    "sideall": "Pandaros.Settlers.AutoLoad.rawmarble",
+    "npcLimit": 0,
+    "maxStackSize": 600,
+    "onPlaceAudio": "stonePlace",
+    "onRemoveType": "Pandaros.Settlers.AutoLoad.rawmarble",
+    "onRemoveAudio": "stoneDelete",
+    "destructionTime": 2000,
+    "icon": "./icons/rawMarble.png",
+    "customData": {
+      "minerIsMineable": true,
+      "minerMiningTime": 5
+    },
+    "categories": [
+      "ore"
+    ]
+  },
   "Pandaros.Settlers.AutoLoad.rawmarble": {
     "sideall": "SELF",
     "npcLimit": 0,

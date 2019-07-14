@@ -49,8 +49,10 @@ namespace Pandaros.Settlers.WorldGen
                         {
                             var item = ItemTypes.GetType(type);
 
+                            ore.TryGetAsOrDefault("ScienceBiome", out string scienceBiome, null);
+
                             if (item != null && item.ItemIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
-                                oreGen.AddLayer(new TerrainGenerator.Settings.OreLayer() { Depth = depth, Type = item.Name, Chance = chance });
+                                oreGen.AddLayer(new TerrainGenerator.Settings.OreLayer() { Depth = depth, Type = item.Name, Chance = chance, ScienceBiome = scienceBiome });
                             else
                                 PandaLogger.Log(ChatColor.yellow, "Unable to find item {0}", type);
                         }

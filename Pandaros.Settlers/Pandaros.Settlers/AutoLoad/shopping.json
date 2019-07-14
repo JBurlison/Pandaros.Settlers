@@ -1,43 +1,9 @@
 [
   {
-    "name": "Pandaros.Settlers.AutoLoad.infiniteemerald",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.infiniteemerald",
-        "amount": 1
-      }
-    ],
-    "requires": [
-      {
-        "type": "goldcoin",
-        "amount": 1000
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
     "name": "Pandaros.Settlers.AutoLoad.limestone",
     "results": [
       {
         "type": "Pandaros.Settlers.AutoLoad.limestone",
-        "amount": 4
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedemerald",
-        "amount": 2
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.rawmarble",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.rawmarble",
         "amount": 4
       }
     ],
@@ -79,40 +45,6 @@
       {
         "type": "Pandaros.Settlers.AutoLoad.refinedemerald",
         "amount": 2
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.infiniteruby",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.infiniteruby",
-        "amount": 1
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedemerald",
-        "amount": 2000
-      }
-    ],
-    "defaultLimit": 0,
-    "defaultPriority": -100
-  },
-  {
-    "name": "Pandaros.Settlers.AutoLoad.infinitesapphire",
-    "results": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.infinitesapphire",
-        "amount": 1
-      }
-    ],
-    "requires": [
-      {
-        "type": "Pandaros.Settlers.AutoLoad.refinedruby",
-        "amount": 3000
       }
     ],
     "defaultLimit": 0,
