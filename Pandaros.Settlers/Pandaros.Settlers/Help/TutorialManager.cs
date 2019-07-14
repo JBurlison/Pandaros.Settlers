@@ -38,6 +38,7 @@ namespace Pandaros.Settlers.Help
                 menu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("Intro"), UnityEngine.Color.black)));
 
                 SetTutorialRun(ps, "FirstRunTutorial");
+                NetworkMenuManager.SendServerPopup(p, menu);
             }
         }
 
