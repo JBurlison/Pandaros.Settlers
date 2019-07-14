@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.ColonyManagement
             if (data.ButtonIdentifier == GameLoader.NAMESPACE + ".UnemployedLength" && data.Player.ActiveColony != null)
             {
                 NetworkMenu menu = new NetworkMenu();
-                menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("BedLocations", data.Player));
+                menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("UnemployedLength", data.Player));
                 menu.Width = 800;
                 menu.Height = 600;
                 menu.ForceClosePopups = true;
@@ -293,8 +293,12 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             try
             {
+                var npcInv = Entities.SettlerInventory.GetSettlerInventory(npc);
                 if (npc.CustomData == null)
                     npc.CustomData = new JSONNode();
+
+                if (npc.NPCType.IsLaborer)
+                    npcInv.UnemployedLeaveTime = TimeCycle.TotalHours + 48;
 
                 if (npc.CustomData.TryGetAs(ISSETTLER, out bool settler) && settler)
                     return;
@@ -635,7 +639,11 @@ namespace Pandaros.Settlers.ColonyManagement
                         data.Item1.CustomData = new JSONNode();
 
                     var inv = SettlerInventory.GetSettlerInventory(data.Item1);
-                    inv.UnemployedLeaveTime = 0;
+
+                    if (data.Item1.NPCType.IsLaborer)
+                        inv.UnemployedLeaveTime = TimeCycle.TotalHours + 48;
+                    else
+                        inv.UnemployedLeaveTime = 0;
                 }
 
                 if (data.Item3 is GuardJobInstance guardJob && data.Item3.TryGetNPCGuardDefaultSettings(out var settings))
@@ -698,21 +706,21 @@ namespace Pandaros.Settlers.ColonyManagement
                 var left    = 0;
                 List<NPCBase> leavingNPCs = new List<NPCBase>();
 
-                for (var i = 0; i < state.ColonyRef.LaborerCount; i++)
-                {
-                    var npc     = state.ColonyRef.FindLaborer(i);
-                    var inv = SettlerInventory.GetSettlerInventory(npc);
+                foreach (var npc in state.ColonyRef.Followers)
+                    if (npc.NPCType.IsLaborer)
+                    {
+                        var inv = SettlerInventory.GetSettlerInventory(npc);
 
-                    if (inv.UnemployedLeaveTime == 0)
-                    {
-                        inv.UnemployedLeaveTime = TimeCycle.TotalHours + 48;
+                        if (inv.UnemployedLeaveTime == 0)
+                        {
+                            inv.UnemployedLeaveTime = TimeCycle.TotalHours + 48;
+                        }
+                        else if (inv.UnemployedLeaveTime < TimeCycle.TotalHours)
+                        {
+                            left++;
+                            leavingNPCs.Add(npc);
+                        }
                     }
-                    else if (inv.UnemployedLeaveTime < TimeCycle.TotalHours)
-                    {
-                        left++;
-                        leavingNPCs.Add(npc);
-                    }
-                }
 
                 foreach (var npc in leavingNPCs)
                     NPCLeaving(npc);
