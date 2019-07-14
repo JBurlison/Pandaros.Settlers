@@ -217,7 +217,6 @@
     <Compile Include="Models\SettlersState.cs" />
     <Compile Include="Models\TrainConfiguration.cs" />
     <Compile Include="Models\TrainStationSettlings.cs" />
-    <Compile Include="Monsters\Normal\VoidZombie.cs" />
     <Compile Include="Monsters\Normal\WaterZombie.cs" />
     <Compile Include="Monsters\Normal\FireZombie.cs" />
     <Compile Include="Monsters\Normal\EarthZombie.cs" />
