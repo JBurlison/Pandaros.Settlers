@@ -15,7 +15,7 @@ namespace Pandaros.Settlers.ColonyManagement
             var name = "";
             var cs = Entities.ColonyState.GetColonyState(colony);
 
-            if (colony.HappinessData.CachedHappiness < 20)
+            if (colony.DifficultySetting.EnabledHappiness && colony.HappinessData.CachedHappiness < 20)
             {
                 float percent = 0.05f;
 
