@@ -2,6 +2,7 @@
 using Happiness;
 using NetworkUI;
 using NetworkUI.Items;
+using Pandaros.Settlers.Entities;
 using Pandaros.Settlers.Extender;
 using Pipliz;
 using System;
@@ -63,7 +64,9 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public float Evaluate(Colony colony)
         {
-            if (CachedHappiness.TryGetValue(colony, out var value))
+            var cs = ColonyState.GetColonyState(colony);
+
+            if (cs.Difficulty.Name != GameDifficulty.Normal.Name && CachedHappiness.TryGetValue(colony, out var value))
                 return value;
             else
                 return 0;
@@ -76,45 +79,50 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public static void CalculateBeds(Colony colony)
         {
-            BedStateObject bso = new BedStateObject();
-            bso.Colony = colony;
-            colony.BedTracker.ForeachBedInstance(ForEachAction, ref bso);
+            var cs = ColonyState.GetColonyState(colony);
 
-            int happiness = 0;
-
-            foreach (var bed in bso.Beds)
+            if (cs.Difficulty.Name != GameDifficulty.Normal.Name)
             {
-                try
+                BedStateObject bso = new BedStateObject();
+                bso.Colony = colony;
+                colony.BedTracker.ForeachBedInstance(ForEachAction, ref bso);
+
+                int happiness = 0;
+
+                foreach (var bed in bso.Beds)
                 {
-                    var bedEnd = bed.Value.Position.Add(-1, 0, 0);
+                    try
+                    {
+                        var bedEnd = bed.Value.Position.Add(-1, 0, 0);
 
-                    if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDXP)
-                    {
-                        bedEnd = bed.Value.Position.Add(1, 0, 0);
-                    }
-                    else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZN)
-                    {
-                        bedEnd = bed.Value.Position.Add(0, 0, -1);
-                    }
-                    else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZP)
-                    {
-                        bedEnd = bed.Value.Position.Add(0, 0, 1);
-                    }
+                        if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDXP)
+                        {
+                            bedEnd = bed.Value.Position.Add(1, 0, 0);
+                        }
+                        else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZN)
+                        {
+                            bedEnd = bed.Value.Position.Add(0, 0, -1);
+                        }
+                        else if (bed.Key.BedType == ColonyBuiltIn.ItemTypes.BEDZP)
+                        {
+                            bedEnd = bed.Value.Position.Add(0, 0, 1);
+                        }
 
-                    if (!IsHappy(bed.Value.Position, bedEnd))
+                        if (!IsHappy(bed.Value.Position, bedEnd))
+                        {
+                            happiness -= 1;
+                            bed.Value.IsHappy = false;
+                        }
+                    }
+                    catch (Exception ex)
                     {
-                        happiness -= 1;
-                        bed.Value.IsHappy = false;
+                        PandaLogger.LogError(ex);
                     }
                 }
-                catch (Exception ex)
-                {
-                    PandaLogger.LogError(ex);
-                }
+
+                CachedHappiness[colony] = happiness;
+                BedCache[colony] = bso;
             }
-
-            CachedHappiness[colony] = happiness;
-            BedCache[colony] = bso;
         }
 
         private static bool IsHappy(Vector3Int currentPos, Vector3Int ignorePos)

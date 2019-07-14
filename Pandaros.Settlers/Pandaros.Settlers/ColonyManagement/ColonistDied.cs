@@ -53,7 +53,7 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             var cs = ColonyState.GetColonyState(nPC.Colony);
 
-            if (!DieCount.ContainsKey(nPC.Colony))
+            if (cs.Difficulty.Name != GameDifficulty.Normal.Name && !DieCount.ContainsKey(nPC.Colony))
                 DieCount.Add(nPC.Colony, new List<double>());
 
             DieCount[nPC.Colony].Add(TimeCycle.TotalHours + 24);
@@ -63,7 +63,7 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             var cs = ColonyState.GetColonyState(colony);
 
-            if (DieCount.TryGetValue(colony, out var count))
+            if (cs.Difficulty.Name != GameDifficulty.Normal.Name && DieCount.TryGetValue(colony, out var count))
                 return (float)(count.Count * cs.Difficulty.UnhappinessPerColonistDeath) * -1f;
 
             return 0;
