@@ -161,6 +161,7 @@
     <Compile Include="Extender\Providers\AfterModsLoadedProvider.cs" />
     <Compile Include="Extender\Providers\OnConstructInventoryManageColonyUIProvider.cs" />
     <Compile Include="Extender\Providers\PandaZombieProvider.cs" />
+    <Compile Include="Help\TutorialManager.cs" />
     <Compile Include="Items\Energy\ManaMachineRepairingAction.cs" />
     <Compile Include="Items\Energy\ManaPipe.cs" />
     <Compile Include="Items\Energy\ManaPump.cs" />

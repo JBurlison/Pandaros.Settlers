@@ -10,10 +10,6 @@ using System.Reflection;
 using static AI.PathingManager;
 using static AI.PathingManager.PathFinder;
 
-/*
-* Ooze Zombie (killing this zombie will make 2 more zombies appear each with 1/2 the life of the original, happens once)
-* Elemental Zombies (Air, Fire, Earth, Water, Void) 
-    */
 namespace Pandaros.Settlers.Monsters
 {
     [ModLoader.ModManager]

@@ -1799,6 +1799,13 @@
     "cs_type": "air"
   },
   {
+    "type": 37,
+    "meta": 5,
+    "name": "Dandelion",
+    "text_type": "yellow_flower",
+    "cs_type": "air"
+  },
+  {
     "type": 38,
     "meta": 0,
     "name": "Poppy",

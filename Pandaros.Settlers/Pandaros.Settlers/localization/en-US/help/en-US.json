@@ -2,6 +2,10 @@
   "sentences": {
     "Pandaros": {
       "Settlers": {
+        "Tutorial": {
+          "TipsHeader": "Welcome to the Settlers Mod!",
+          "Intro": "Welcome to the settlers mod! This mod a A LOT of content, so to get you started here are some high level things to keep in mind while playing the mod.\r\n * Monsters HP scales with your colony population.\r\n * Settlers start coming after you have recruited 10 colonists.\r\n * It is reccomended that you wall off/ dig a 2 deep trench around your banner in the green zone before you start recruiting (Preping your first colony is key to curing the difficulty of the mod)\r\n * The difficulty of the mod can be adjusted in the colony settings menu. This inclused turing off all difficulty and making the mod like vanilla without the difficulty tweaks.\r\n * Happiness plays a huge role in this mod and effects your colonists in a lot of different ways.\r\n * Settlers DO NOT like being out of work, if you have colonists unemployed more than 48 in game hours, they will leave.\r\n * Settlers like to sleep in beds! if you have colonists without beds for longer than 24 hours, they will leave your colony. \r\n * At 150 colonists settlers zombies and bosses will start spawning. It is reccomneded that you have turrets ready. \r\n * There is a help menu in the colony menu that has all the finer details of settlers. Use it!\r\n * Have fun!"
+        },
         "Wiki": {
           "title": "Settlers! Mod Help",
           "Requirements": "Requirements:",

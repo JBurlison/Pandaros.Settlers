@@ -607,7 +607,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
         private static void AddNewSettlers(double addCount, int numbSkilled, ColonyState state)
         {
-            var reason = state.ColonyRef.Name + ": " + string.Format(SettlerReasoning.GetSettleReason(), addCount);
+            var reason = string.Format(SettlerReasoning.GetSettleReason(), addCount);
 
             if (numbSkilled > 0)
                 if (numbSkilled == 1)

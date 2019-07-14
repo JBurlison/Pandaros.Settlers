@@ -15,7 +15,7 @@
           "Item": "Item",
           "Required": "Required",
           "InStockpile": "In Stockpile",
-          "instructions": "Right click on the top of a block to place the scematic. This will be the front left corner."
+          "instructions": "Right click on the top of a block to place the scematic. This will be the front left corner.",
         }
       }
     }

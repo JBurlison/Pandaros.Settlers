@@ -41,6 +41,7 @@ namespace Pandaros.Settlers.Entities
         public Dictionary<ushort, int> ItemsRemoved { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<ushort, int> ItemsInWorld { get; set; } = new Dictionary<ushort, int>();
         public Dictionary<string, double> Stats { get; set; } = new Dictionary<string, double>();
+        public Dictionary<string, bool> Tutorials { get; set; } = new Dictionary<string, bool>();
         public ItemState Weapon { get; set; } = new ItemState();
         public BuildersWand.WandMode BuildersWandMode { get; set; }
         public int BuildersWandCharge { get; set; } = BuildersWand.DURABILITY;
@@ -305,6 +306,10 @@ namespace Pandaros.Settlers.Entities
                     foreach (var aNode in ItemsPlacedNode.LoopObject())
                         _playerStates[p].ItemsPlaced.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
 
+                if (stateNode.TryGetAs(nameof(Tutorials), out JSONNode tutorials))
+                    foreach (var aNode in tutorials.LoopObject())
+                        _playerStates[p].Tutorials.Add(aNode.Key, aNode.Value.GetAs<bool>());
+
                 if (stateNode.TryGetAs(nameof(ItemsRemoved), out JSONNode ItemsRemovedNode))
                     foreach (var aNode in ItemsRemovedNode.LoopObject())
                         _playerStates[p].ItemsRemoved.Add(ushort.Parse(aNode.Key), aNode.Value.GetAs<int>());
@@ -379,6 +384,7 @@ namespace Pandaros.Settlers.Entities
                 var ItemsRemovedNode    = new JSONNode();
                 var ItemsInWorldNode    = new JSONNode();
                 var backpackNode        = new JSONNode();
+                var tutorialsNode = new JSONNode();
                 var flagsPlaced         = new JSONNode(NodeType.Array);
                 var buildersWandPreview = new JSONNode(NodeType.Array);
                 var equiptMagicItems    = new JSONNode(NodeType.Array);
@@ -398,6 +404,9 @@ namespace Pandaros.Settlers.Entities
 
                 foreach (var kvp in _playerStates[p].Backpack)
                     backpackNode.SetAs(kvp.Key.ToString(), kvp.Value);
+
+                foreach (var tutorial in _playerStates[p].Tutorials)
+                    tutorialsNode.SetAs(tutorial.Key.ToString(), tutorial.Value);
 
                 foreach (var armor in _playerStates[p].Armor)
                     armorNode.SetAs(armor.Key.ToString(), armor.Value.ToJsonNode());
@@ -426,6 +435,7 @@ namespace Pandaros.Settlers.Entities
                 node.SetAs(nameof(ItemsPlaced), ItemsPlacedNode);
                 node.SetAs(nameof(ItemsRemoved), ItemsRemovedNode);
                 node.SetAs(nameof(ItemsInWorld), ItemsInWorldNode);
+                node.SetAs(nameof(Tutorials), tutorialsNode);
                 node.SetAs(nameof(Backpack), backpackNode);
                 node.SetAs(nameof(MagicItems), equiptMagicItems);
                 node.SetAs(nameof(JoinDate), _playerStates[p].JoinDate);
