@@ -68,7 +68,7 @@ namespace Pandaros.Settlers.Monsters
             {
                 List<IPandaZombie> canSpawn = PandaZombies.Where(p => p.MinColonists < colony.FollowerCount).ToList();
 
-                if (colony.DifficultySetting.ShouldSpawnZombies(colony))
+                if (canSpawn.Count > 0 && colony.DifficultySetting.ShouldSpawnZombies(colony))
                 {
                     var bannerGoal = colony?.Banners?.FirstOrDefault();
 
