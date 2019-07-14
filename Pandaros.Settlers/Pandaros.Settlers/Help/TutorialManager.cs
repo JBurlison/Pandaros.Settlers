@@ -58,15 +58,21 @@ namespace Pandaros.Settlers.Help
             if (ServerManager.ColonyTracker != null && ServerManager.ColonyTracker.ColoniesByID != null)
                 foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.ValsRaw)
                 {
+                    if (colony == null || colony.FollowerCount < 125)
+                        return;
+
                     var cs = ColonyState.GetColonyState(colony);
 
-                    if (cs.BossesEnabled)
+                    if (cs.BossesEnabled && colony.Owners != null &&  colony.Owners.Length > 0)
                     {
                         foreach (var p in colony.Owners)
                         {
+                            if (!p.IsConnected())
+                                continue;
+
                             var ps = PlayerState.GetPlayerState(p);
 
-                            if (colony.FollowerCount > 125 && !TutorialRun(ps, "CloseToBosses"))
+                            if (!TutorialRun(ps, "CloseToBosses"))
                             {
                                 NetworkMenu menu = new NetworkMenu();
                                 menu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("CloseToBossesHeader", p));

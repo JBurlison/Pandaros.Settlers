@@ -19,6 +19,9 @@ namespace Pandaros.Settlers.localization
 
         public string LocalizeOrDefault(string key, Players.Player p)
         {
+            if (p.ConnectionState != Players.EConnectionState.Connected)
+                return key;
+
             string fullKey = GetLocalizationKey(key);
             var newVal = Localization.GetSentence(p.LastKnownLocale, fullKey);
 
