@@ -22,6 +22,9 @@ namespace Pandaros.Settlers.Entities
         public bool BossesEnabled { get; set; } = true;
         public SettlersState SettlersEnabled { get; set; }
         public double NeedsABed { get; set; }
+        public double NextLaborerTime { get; set; }
+        public double MagicUpdateTime { get; set; }
+        public double NextBedTime { get; set; }
         public int HighestColonistCount { get; set; }
         public double NextGenTime { get; set; }
         public int SettlersToggledTimes { get; set; }

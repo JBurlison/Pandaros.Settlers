@@ -47,7 +47,7 @@ namespace Pandaros.Settlers
             if (!_nextSendTime.ContainsKey(p))
                 _nextSendTime.Add(p, 0);
 
-            return Time.SecondsSinceStartDouble > _nextSendTime[p];
+            return p.IsConnected() && Time.SecondsSinceStartDouble > _nextSendTime[p];
         }
 
         public static void SendThrottle(Players.Player  player, localization.LocalizationHelper localizationHelper, string message, ChatColor color = ChatColor.white,
@@ -99,14 +99,20 @@ namespace Pandaros.Settlers
 
         public static void Send(Players.Player player, localization.LocalizationHelper localizationHelper, string message, ChatColor color = ChatColor.white, params string[] args)
         {
-            var messageBuilt = BuildMessage(string.Format(localizationHelper.LocalizeOrDefault(message, player), LocalizeArgs(player, localizationHelper, args)), player, localizationHelper, color);
-            Chat.Send(player, messageBuilt);
+            if (player.IsConnected())
+            {
+                var messageBuilt = BuildMessage(string.Format(localizationHelper.LocalizeOrDefault(message, player), LocalizeArgs(player, localizationHelper, args)), player, localizationHelper, color);
+                Chat.Send(player, messageBuilt);
+            }
         }
 
         public static void Send(Players.Player player, localization.LocalizationHelper localizationHelper, string message, params string[] args)
         {
-            var messageBuilt = BuildMessage(string.Format(localizationHelper.LocalizeOrDefault(message, player), LocalizeArgs(player, localizationHelper, args)), player, localizationHelper);
-            Chat.Send(player, messageBuilt);
+            if (player.IsConnected())
+            {
+                var messageBuilt = BuildMessage(string.Format(localizationHelper.LocalizeOrDefault(message, player), LocalizeArgs(player, localizationHelper, args)), player, localizationHelper);
+                Chat.Send(player, messageBuilt);
+            }
         }
 
         public static void Send(Players.Player player, localization.LocalizationHelper localizationHelper,
@@ -115,8 +121,11 @@ namespace Pandaros.Settlers
                                 ChatStyle      style = ChatStyle.normal, 
                                 EChatSendOptions sender = EChatSendOptions.Default)
         {
-            var messageBuilt = BuildMessage(message, player, localizationHelper, color, style);
-            Chat.Send(player, messageBuilt, sender);
+            if (player.IsConnected())
+            {
+                var messageBuilt = BuildMessage(message, player, localizationHelper, color, style);
+                Chat.Send(player, messageBuilt, sender);
+            }
         }
 
         public static void Send(Colony colony, 
@@ -126,8 +135,11 @@ namespace Pandaros.Settlers
         {
             colony.ForEachOwner(o =>
             {
-                var messageBuilt = BuildMessage(colony.Name + ": " + string.Format(localizationHelper.LocalizeOrDefault(message, o), LocalizeArgs(o, localizationHelper, args)), o, localizationHelper, color);
-                Chat.Send(o, messageBuilt);
+                if (o.IsConnected())
+                {
+                    var messageBuilt = BuildMessage(colony.Name + ": " + string.Format(localizationHelper.LocalizeOrDefault(message, o), LocalizeArgs(o, localizationHelper, args)), o, localizationHelper, color);
+                    Chat.Send(o, messageBuilt);
+                }
             });
         }
 
@@ -138,8 +150,11 @@ namespace Pandaros.Settlers
         {
             colony.ForEachOwner(o =>
             {
-                var messageBuilt = BuildMessage(colony.Name + ": " + string.Format(localizationHelper.LocalizeOrDefault(message, o), LocalizeArgs(o, localizationHelper, args)), o, localizationHelper);
-                Chat.Send(o, messageBuilt);
+                if (o.IsConnected())
+                {
+                    var messageBuilt = BuildMessage(colony.Name + ": " + string.Format(localizationHelper.LocalizeOrDefault(message, o), LocalizeArgs(o, localizationHelper, args)), o, localizationHelper);
+                    Chat.Send(o, messageBuilt);
+                }
             });
         }
 
@@ -151,8 +166,11 @@ namespace Pandaros.Settlers
         {
             colony.ForEachOwner(o =>
             {
-                var messageBuilt = BuildMessage(colony.Name + ": " + localizationHelper.LocalizeOrDefault(message, o), o, localizationHelper, color, style);
-                Chat.Send(o, messageBuilt, sender);
+                if (o.IsConnected())
+                {
+                    var messageBuilt = BuildMessage(colony.Name + ": " + localizationHelper.LocalizeOrDefault(message, o), o, localizationHelper, color, style);
+                    Chat.Send(o, messageBuilt, sender);
+                }
             });
         }
 
@@ -164,8 +182,11 @@ namespace Pandaros.Settlers
         {
             colony.ColonyRef.ForEachOwner(o =>
             {
-                var messageBuilt = BuildMessage(colony.ColonyRef.Name + ": " + string.Format(localizationHelper.LocalizeOrDefault(message, o), LocalizeArgs(o, localizationHelper, args)), o, localizationHelper, color);
-                Chat.Send(o, messageBuilt);
+                if (o.IsConnected())
+                {
+                    var messageBuilt = BuildMessage(colony.ColonyRef.Name + ": " + string.Format(localizationHelper.LocalizeOrDefault(message, o), LocalizeArgs(o, localizationHelper, args)), o, localizationHelper, color);
+                    Chat.Send(o, messageBuilt);
+                }
             });
         }
 
@@ -175,9 +196,12 @@ namespace Pandaros.Settlers
                                 ChatColor color = ChatColor.white,
                                 ChatStyle style = ChatStyle.normal, EChatSendOptions sender = EChatSendOptions.Default)
         {
-            colony.ColonyRef.ForEachOwner(p => { 
-                var messageBuilt = BuildMessage(colony.ColonyRef.Name + ": " + localizationHelper.LocalizeOrDefault(message, p), p, localizationHelper, color, style);
-                Chat.Send(p, messageBuilt, sender);
+            colony.ColonyRef.ForEachOwner(p => {
+                if (p.IsConnected())
+                {
+                    var messageBuilt = BuildMessage(colony.ColonyRef.Name + ": " + localizationHelper.LocalizeOrDefault(message, p), p, localizationHelper, color, style);
+                    Chat.Send(p, messageBuilt, sender);
+                }
             });
         }
 
