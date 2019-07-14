@@ -311,6 +311,9 @@ namespace Pandaros.Settlers.Monsters
 
             d.ResultDamage = d.ResultDamage - d.ResultDamage * cs.Difficulty.MonsterDamageReduction;
 
+            if (d.ResultDamage < 0)
+                d.ResultDamage = 0;
+
             if (d.HitSourceType == ModLoader.OnHitData.EHitSourceType.NPC)
             {
                 var npc = d.HitSourceObject as NPCBase;

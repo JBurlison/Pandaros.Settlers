@@ -45,6 +45,56 @@
           }
         },
         {
+          "type": "link",
+          "url": "Wiki.Conductor",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Conductor",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.AdvancedCrafter",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.AdvancedCrafter",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Artificer",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Artificer",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Sorcerer",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Sorcerer",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Architect",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Architect",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
           "type": "label",
           "text": "Pandaros.Settlers.Wiki.MainMenu.FeaturesHeader",
           "alignement": "MiddleCenter",
@@ -87,6 +137,126 @@
           "position": 150,
           "label": {
             "text": "Pandaros.Settlers.Wiki.MainMenu.Armor",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Research",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Research",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Settlers",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Settlers",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Difficulties",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Difficulties",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.BuildersWand",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.BuildersWand",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Bosses",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Bosses",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Weapons",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Weapons",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Food",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Food",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Trains",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Trains",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.PlayerMagicItems",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.PlayerMagicItems",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.ManaMachines",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.ManaMachines",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Ores",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Ores",
+            "alignement": "MiddleCenter"
+          }
+        },
+        {
+          "type": "link",
+          "url": "Wiki.Happiness",
+          "width": 700,
+          "position": 150,
+          "label": {
+            "text": "Pandaros.Settlers.Wiki.MainMenu.Happiness",
             "alignement": "MiddleCenter"
           }
         },
