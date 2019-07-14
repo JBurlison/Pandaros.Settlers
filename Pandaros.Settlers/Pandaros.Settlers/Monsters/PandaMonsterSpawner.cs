@@ -80,31 +80,32 @@ namespace Pandaros.Settlers.Monsters
                     if (cs.ColonyRef.OwnerIsOnline())
                     {
                         Vector3Int positionFinal;
-                        var max = Math.RoundToInt(colony.FollowerCount / 100);
+                        var max = Math.RoundToInt(colony.FollowerCount / 100) + 1;
 
                         if (max == 0)
                             max = 1;
 
-                        foreach (var zombie in canSpawn.Where(z => z.MinColonists < colony.FollowerCount))
+                        for (int i = 0; i < max; i++)
                         {
-                            for (int i = 0; i < max; i++)
-                                switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
-                                {
-                                    case MonsterSpawner.ESpawnResult.Success:
-                                        if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
-                                        {
-                                            _spawnQueue.Enqueue(zombie.GetNewInstance(path, colony));
-                                        }
+                            var zombie = canSpawn.GetRandomItem();
 
-                                        break;
-                                    case MonsterSpawner.ESpawnResult.NotLoaded:
-                                    case MonsterSpawner.ESpawnResult.Impossible:
-                                        colony.OnZombieSpawn(true);
-                                        break;
-                                    case MonsterSpawner.ESpawnResult.Fail:
-                                        colony.OnZombieSpawn(false);
-                                        break;
-                                }
+                            switch (((MonsterSpawner)MonsterTracker.MonsterSpawner).TryGetSpawnLocation(context, bannerGoal.Position, bannerGoal.SafeRadius, 200, 500f, out positionFinal))
+                            {
+                                case MonsterSpawner.ESpawnResult.Success:
+                                    if (context.Pathing.TryFindPath(positionFinal, bannerGoal.Position, out var path, 2000000000) == EPathFindingResult.Success)
+                                    {
+                                        _spawnQueue.Enqueue(zombie.GetNewInstance(path, colony));
+                                    }
+
+                                    break;
+                                case MonsterSpawner.ESpawnResult.NotLoaded:
+                                case MonsterSpawner.ESpawnResult.Impossible:
+                                    colony.OnZombieSpawn(true);
+                                    break;
+                                case MonsterSpawner.ESpawnResult.Fail:
+                                    colony.OnZombieSpawn(false);
+                                    break;
+                            }
                         }
                     }
                 }

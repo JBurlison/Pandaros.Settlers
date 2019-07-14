@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NPC;
 using Pandaros.Settlers.AI;
+using Pandaros.Settlers.ColonyManagement;
 using Pandaros.Settlers.Items;
 using Pandaros.Settlers.Items.Armor;
 using Pandaros.Settlers.Models;
@@ -90,7 +91,7 @@ namespace Pandaros.Settlers.Entities
 
         public float GetSkillModifier()
         {
-            var totalSkill = 0f;
+            var totalSkill = SkillChance.GetSkillChance(NPC.Colony);
 
             if (NPC.CustomData.TryGetAs(GameLoader.ALL_SKILLS, out float allSkill))
                 totalSkill = allSkill;

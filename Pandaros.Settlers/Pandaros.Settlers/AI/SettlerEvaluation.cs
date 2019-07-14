@@ -30,14 +30,7 @@ namespace Pandaros.Settlers.AI
             else
                 chance -= 0.2f;
 
-            if (state.ColonyRef.HappinessData.CachedHappiness > 100)
-                chance += 0.4f;
-            else if (state.ColonyRef.HappinessData.CachedHappiness > 50)
-                chance += 0.2f;
-            else if (state.ColonyRef.HappinessData.CachedHappiness < -50)
-                chance -= 0.4f;
-            else if (state.ColonyRef.HappinessData.CachedHappiness < 0)
-                chance -= 0.2f;
+            chance += SettlerChance.GetSettlerChance(state.ColonyRef);
 
             if (state.Difficulty != GameDifficulty.Easy && state.Difficulty != GameDifficulty.Normal)
                 if (state.ColonyRef.InSiegeMode ||

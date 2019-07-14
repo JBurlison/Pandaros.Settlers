@@ -150,6 +150,9 @@
     <Compile Include="ColonyManagement\JobSettingsExtention.cs" />
     <Compile Include="ColonyManagement\NotEnoughJobs.cs" />
     <Compile Include="ColonyManagement\Permission.cs" />
+    <Compile Include="ColonyManagement\SkilledSettlerChance.cs" />
+    <Compile Include="ColonyManagement\SettlerChance.cs" />
+    <Compile Include="ColonyManagement\SkillChance.cs" />
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Database\PandaContext.cs" />
     <Compile Include="Extender\IAfterModsLoaded.cs" />

@@ -269,5 +269,15 @@ namespace Pandaros.Settlers
 
             return BlockSide.Invalid;
         }
+
+        public static T RandomElement<T>(this IList<T> list)
+        {
+            return list[Pipliz.Random.Next(list.Count)];
+        }
+
+        public static T RandomElement<T>(this T[] array)
+        {
+            return array[Pipliz.Random.Next(array.Length)];
+        }
     }
 }

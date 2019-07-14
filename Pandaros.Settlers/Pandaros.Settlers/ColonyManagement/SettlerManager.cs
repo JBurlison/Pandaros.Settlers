@@ -501,7 +501,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                         try
                         {
-                            var skillChance = state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".SkilledLaborer", 0f);
+                            var skillChance = state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".SkilledLaborer", 0f) + SkilledSettlerChance.GetSkilledSettlerChance(state.ColonyRef);
                             var numbSkilled = 0;
                             rand = Random.NextFloat();
 
@@ -618,7 +618,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 newGuy.CustomData.SetAs(ISSETTLER, true);
 
                 if (i <= numbSkilled)
-                    newGuy.CustomData.SetAs(GameLoader.ALL_SKILLS, Random.Next(1, 10) * 0.002f);
+                    newGuy.CustomData.SetAs(GameLoader.ALL_SKILLS, Random.Next(5, 10) * 0.005f);
 
                 ModLoader.Callbacks.OnNPCRecruited.Invoke(newGuy);
             }
