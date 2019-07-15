@@ -222,7 +222,6 @@ namespace Pandaros.Settlers.Transportation
                                         var manaNeeded = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", roamingJobState.Colony, "ManaMachine") - _energy;
 
                                         var existing = roamingJobState.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
-                                        roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .01f);
                                         bool isWorked = true;
 
                                         try
@@ -265,11 +264,13 @@ namespace Pandaros.Settlers.Transportation
                                             {
                                                 roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", manaNeeded);
                                                 _energy = RoamingJobState.GetActionsMaxEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", roamingJobState.Colony, "ManaMachine");
+                                                roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .01f);
                                             }
                                             else
                                             {
                                                 roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", existing);
                                                 _energy += existing;
+                                                roamingJobState.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .01f);
                                             }
 
                                             Indicator.SendIconIndicatorNear(stationCheck.Add(0, 1, 0).Vector, new IndicatorState(10, SettlersBuiltIn.ItemTypes.MANA.Name));
