@@ -12,7 +12,7 @@ namespace Pandaros.Settlers.Energy
     public class ManaMachineRepairingAction : IRoamingJobObjectiveAction
     {
         public float TimeToPreformAction => 10;
-
+        public float ActionEnergyMinForFix => .5f;
         public string AudioKey => GameLoader.NAMESPACE + ".SpellRepair";
 
         public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing");

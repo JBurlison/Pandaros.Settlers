@@ -181,6 +181,9 @@
     <Compile Include="Items\LootTable.cs" />
     <Compile Include="Items\ItemCache.cs" />
     <Compile Include="Items\Transportation\TrainStation.cs" />
+    <Compile Include="Jobs\Construction\ArchitectBuilder.cs" />
+    <Compile Include="Jobs\Construction\ArchitectIterator.cs" />
+    <Compile Include="Jobs\Construction\ArchitectLoader.cs" />
     <Compile Include="Models\BlockSideValuesAttribute.cs" />
     <Compile Include="Items\ConnectedBlocks\BlockSideComparer.cs" />
     <Compile Include="Models\ConnectedBlock.cs" />

@@ -205,7 +205,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                     NetworkMenuManager.CloseServerPopup(data.Player);
                     //AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
                     //{
-                        
+                    //    AreaType = GameLoader.NAMESPACE + ".Architect",
+                    //    LocaleEntry = data.Player.LastKnownLocale
                     //});
 
                     break;

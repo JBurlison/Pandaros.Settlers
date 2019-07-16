@@ -26,7 +26,7 @@ namespace Pandaros.Settlers.Energy
         };
 
         public float WorkTime => 6;
-
+        public float WatchArea => 21;
         public ItemId ItemIndex => SettlersBuiltIn.ItemTypes.MANAPUMP;
 
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks => new Dictionary<string, IRoamingJobObjectiveAction>()

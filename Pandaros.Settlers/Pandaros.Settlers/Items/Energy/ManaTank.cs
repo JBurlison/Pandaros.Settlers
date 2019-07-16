@@ -55,6 +55,7 @@ namespace Pandaros.Settlers.Energy
     public class ManaTankObjective : IRoamingJobObjective
     {
         public float WorkTime => 6;
+        public float WatchArea => 21;
 
         public ItemId ItemIndex => SettlersBuiltIn.ItemTypes.MANATANK;
 
@@ -103,7 +104,7 @@ namespace Pandaros.Settlers.Energy
         public float TimeToPreformAction => 15;
 
         public string AudioKey => "Pandaros.Settlers.ManaPour";
-
+        public float ActionEnergyMinForFix => .5f;
         public ItemId ObjectiveLoadEmptyIcon => SettlersBuiltIn.ItemTypes.MANA;
 
         public string name => GameLoader.NAMESPACE + ".ManaTankRefill";

@@ -35,6 +35,8 @@ namespace Pandaros.Settlers.Items.Machines
 
         public string ObjectiveCategory => MachineConstants.MECHANICAL;
 
+        public float WatchArea => 21;
+
         public void DoWork(Colony c, RoamingJobState state)
         {
             Turret.DoWork(c, state);
@@ -44,7 +46,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class RepairTurret : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.REPAIR;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 10;
 
         public string AudioKey => GameLoader.NAMESPACE + ".HammerAudio";
@@ -60,7 +62,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class ReloadTurret : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.RELOAD;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 5;
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";

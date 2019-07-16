@@ -18,9 +18,15 @@ using Pandaros.Settlers.Entities;
 namespace Pandaros.Settlers.Help
 {
     [ModLoader.ModManager]
-    public class TutorialManager
+    public class TutorialManager : Extender.IOnTimedUpdate
     {
         static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Tutorial");
+
+        public double NextUpdateTimeMin => 5;
+
+        public double NextUpdateTimeMax => 10;
+
+        public double NextUpdateTime { get; set; }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Help.TutorialManager.OnPlayerConnectedLate")]
         public static void OnPlayerConnectedLate(Players.Player p)
@@ -52,8 +58,7 @@ namespace Pandaros.Settlers.Help
             playerState.Tutorials[tutorialName] = run;
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Help.TutorialManager.OnUpdate")]
-        public static void OnUpdate()
+        public void OnTimedUpdate()
         {
             if (ServerManager.ColonyTracker != null && ServerManager.ColonyTracker.ColoniesByID != null)
                 foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.ValsRaw)

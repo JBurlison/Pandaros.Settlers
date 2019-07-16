@@ -82,6 +82,7 @@ namespace Pandaros.Settlers.Items.Machines
     {
         public string name => nameof(TeleportPad);
         public float WorkTime => 10;
+        public float WatchArea => 21;
         public ItemId ItemIndex => ItemId.GetItemId(TeleportPad.Item.ItemIndex);
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
         {
@@ -101,7 +102,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class RepairTeleportPad : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.REPAIR;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 10;
 
         public string AudioKey => GameLoader.NAMESPACE + ".HammerAudio";
@@ -117,7 +118,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class ReloadTeleportPad : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.RELOAD;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 5;
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";
@@ -133,7 +134,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class RefuelTeleportPad : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.REFUEL;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 4;
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";

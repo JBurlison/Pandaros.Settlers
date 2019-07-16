@@ -37,7 +37,7 @@ namespace Pandaros.Settlers.Items.Transportation
     public class TrainStationObjective : IRoamingJobObjective
     {
         public float WorkTime => 6;
-
+        public float WatchArea => 21;
         public ItemId ItemIndex => GameLoader.NAMESPACE + ".TrainStation";
 
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks => new Dictionary<string, IRoamingJobObjectiveAction>()

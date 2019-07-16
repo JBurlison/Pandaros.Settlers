@@ -23,7 +23,7 @@ namespace Pandaros.Settlers.Items.Machines
         }
 
         public string name => MachineConstants.REFUEL;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 4;
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";

@@ -64,6 +64,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class MinerRegister : IRoamingJobObjective
     {
         public float WorkTime => 4;
+        public float WatchArea => 21;
         public ItemId ItemIndex => ItemId.GetItemId(GameLoader.NAMESPACE + ".Miner");
         public Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; } = new Dictionary<string, IRoamingJobObjectiveAction>()
         {
@@ -142,7 +143,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class RepairMiner : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.REPAIR;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 10;
 
         public string AudioKey => GameLoader.NAMESPACE + ".HammerAudio";
@@ -214,6 +215,8 @@ namespace Pandaros.Settlers.Items.Machines
 
         public ItemId ObjectiveLoadEmptyIcon => ItemId.GetItemId(GameLoader.NAMESPACE + ".Inventory");
 
+        public float ActionEnergyMinForFix => .5f;
+
         public ItemId PreformAction(Colony player, RoamingJobState state)
         {
             var items = state.TempValues.GetOrDefault<List<InventoryItem>>("MinedItems", new List<InventoryItem>());
@@ -232,7 +235,7 @@ namespace Pandaros.Settlers.Items.Machines
     public class ReloadMiner : IRoamingJobObjectiveAction
     {
         public string name => MachineConstants.RELOAD;
-
+        public float ActionEnergyMinForFix => .5f;
         public float TimeToPreformAction => 5;
 
         public string AudioKey => GameLoader.NAMESPACE + ".ReloadingAudio";

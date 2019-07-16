@@ -11,12 +11,13 @@ namespace Pandaros.Settlers.Jobs.Roaming
         ItemId ItemIndex { get; }
         Dictionary<string, IRoamingJobObjectiveAction> ActionCallbacks { get; }
         string ObjectiveCategory { get; }
-
+        float WatchArea { get; }
         void DoWork(Colony colony, RoamingJobState state);
     }
 
     public interface IRoamingJobObjectiveAction : INameable
     {
+        float ActionEnergyMinForFix { get; }
         float TimeToPreformAction { get; }
         string AudioKey { get; }
         ItemId ObjectiveLoadEmptyIcon { get; }

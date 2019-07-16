@@ -73,11 +73,19 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                     {
                                         var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
 
-                                        if (dis < distance && dis <= 21)
+                                        if (dis < distance && dis <= objective.RoamingJobSettings.WatchArea)
                                         {
-                                            var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
+                                            string actionName = string.Empty;
 
-                                            if (action.Key != null && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(action.Key))
+                                            foreach (var actionKvp in objective.ActionEnergy)
+                                                if (objective.RoamingJobSettings.ActionCallbacks.TryGetValue(actionKvp.Key, out var objectiveAction) &&
+                                                    actionKvp.Value < objectiveAction.ActionEnergyMinForFix)
+                                                {
+                                                    actionName = actionKvp.Key;
+                                                    break;
+                                                }
+
+                                            if (string.IsNullOrEmpty(actionName) && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(actionName))
                                             {
                                                 closest = objective;
                                                 distance = dis;
