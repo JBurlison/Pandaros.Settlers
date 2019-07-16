@@ -3067,6 +3067,34 @@
     "cs_type": "air"
   },
   {
+    "type": 64,
+    "meta": 12,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 13,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 14,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
+    "type": 64,
+    "meta": 15,
+    "name": "Oak Door Block",
+    "text_type": "wooden_door",
+    "cs_type": "air"
+  },
+  {
     "type": 65,
     "meta": 0,
     "name": "Ladder",

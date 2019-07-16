@@ -2,17 +2,17 @@
   {
     "Chance": 7,
     "Depth": 26,
-    "type": "Pandaros.Settlers.AutoLoad.infinatemarble"
+    "Type": "Pandaros.Settlers.AutoLoad.infinatemarble"
   },
   {
     "Chance": 7,
     "Depth": 27,
-    "type": "Pandaros.Settlers.AutoLoad.infinatemarble"
+    "Type": "Pandaros.Settlers.AutoLoad.infinatemarble"
   },
   {
     "Chance": 7,
     "Depth": 28,
-    "type": "Pandaros.Settlers.AutoLoad.infinatemarble"
+    "Type": "Pandaros.Settlers.AutoLoad.infinatemarble"
   },
   {
     "Chance": 1,

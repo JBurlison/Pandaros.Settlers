@@ -128,7 +128,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     PandaChat.Send(player, _localizationHelper, "ErrorOpening", ChatColor.red);
                     return;
                 }
-
+                
                 if (!_awaitingClick.ContainsKey(player))
                 {
                     SendMainMenu(player);
@@ -182,7 +182,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Schematic"), UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
-           // menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            //menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
@@ -203,11 +203,11 @@ namespace Pandaros.Settlers.Jobs.Construction
             {
                 case GameLoader.NAMESPACE + ".SetArchitectArea":
                     NetworkMenuManager.CloseServerPopup(data.Player);
-                    //AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
-                    //{
-                    //    AreaType = GameLoader.NAMESPACE + ".Architect",
-                    //    LocaleEntry = data.Player.LastKnownLocale
-                    //});
+                    AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
+                    {
+                        AreaType = GameLoader.NAMESPACE + ".Architect",
+                        LocaleEntry = data.Player.LastKnownLocale
+                    });
 
                     break;
 
