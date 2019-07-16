@@ -62,28 +62,36 @@ namespace Pandaros.Settlers.Jobs.Roaming
                 {
                     if (TargetObjective == null)
                     {
+                        RoamingJobState closest = null;
+                        float distance = float.MaxValue;
+
                         foreach (var cat in ObjectiveCategories)
-                        if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic) && 
-                            roamingJobObjectiveDic.TryGetValue(cat, out var states))
-                            foreach (var objective in states.Values)
-                                if (objective != null && objective != PreviousObjective && objective.PositionIsValid() && objective.JobRef == null)
-                                {
-                                    var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
-
-                                    if (dis <= 21)
+                            if (RoamingJobManager.Objectives.TryGetValue(Owner, out var roamingJobObjectiveDic) && 
+                                roamingJobObjectiveDic.TryGetValue(cat, out var states))
+                                foreach (var objective in states.Values)
+                                    if (objective != null && objective != PreviousObjective && objective.PositionIsValid() && objective.JobRef == null)
                                     {
-                                        var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
+                                        var dis = UnityEngine.Vector3.Distance(objective.Position.Vector, pos.Vector);
 
-                                        if (action.Key != null && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(action.Key))
+                                        if (dis < distance && dis <= 21)
                                         {
-                                            TargetObjective = objective;
-                                            TargetObjective.JobRef = this;
+                                            var action = objective.ActionEnergy.FirstOrDefault(a => a.Value < .5f);
 
-                                            pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
-                                            break;
+                                            if (action.Key != null && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(action.Key))
+                                            {
+                                                closest = objective;
+                                                distance = dis;
+                                            }
                                         }
                                     }
-                                }
+
+                        if (closest != null)
+                        {
+                            TargetObjective = closest;
+                            TargetObjective.JobRef = this;
+
+                            pos = TargetObjective.Position.GetClosestPositionWithinY(NPC.Position, 5);
+                        }
                     }
                     else
                     {

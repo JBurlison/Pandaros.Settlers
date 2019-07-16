@@ -53,7 +53,10 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             var cs = ColonyState.GetColonyState(nPC.Colony);
 
-            if (cs.Difficulty.Name != GameDifficulty.Normal.Name && !DieCount.ContainsKey(nPC.Colony))
+            if (cs.Difficulty.Name == GameDifficulty.Normal.Name)
+                return;
+
+            if (!DieCount.ContainsKey(nPC.Colony))
                 DieCount.Add(nPC.Colony, new List<double>());
 
             DieCount[nPC.Colony].Add(TimeCycle.TotalHours + 24);
