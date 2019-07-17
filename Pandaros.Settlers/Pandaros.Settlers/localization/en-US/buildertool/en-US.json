@@ -19,7 +19,8 @@
           "SaveSchematic": "Save Schematic",
           "SaveInstructions": "To override an existing schematic, use the same name, otherwise type in a new name. Once applied, set the area. The schematic will save as the construction workers record the blocks. To have a completed schematic, wait until the workers have completed the recording and the area job auto removes itself.",
           "Start": "Save",
-          "Cancel": "Cancel"
+          "Cancel": "Cancel",
+          "Architect": "Architect Area"
         }
       }
     }

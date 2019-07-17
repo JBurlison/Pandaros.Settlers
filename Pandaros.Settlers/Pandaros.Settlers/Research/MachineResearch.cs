@@ -51,7 +51,7 @@ namespace Pandaros.Settlers.Research
                     0,
                     new List<string>()
                     {
-                        ColonyBuiltIn.Research.BLOOMERY
+                        ColonyBuiltIn.Research.IRONSMELTING
                     }
                 }
             };

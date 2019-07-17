@@ -210,6 +210,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                     saveMenu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("SaveInstructions"), UnityEngine.Color.black)));
                     saveMenu.Items.Add(new InputField("Construction.SetArchitectArea"));
                     saveMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData(_localizationHelper.GetLocalizationKey("Start"), UnityEngine.Color.black)));
+
+                    NetworkMenuManager.SendServerPopup(data.Player, saveMenu);
                     break;
 
                 case GameLoader.NAMESPACE + ".SetArchitectArea":
@@ -219,7 +221,15 @@ namespace Pandaros.Settlers.Jobs.Construction
                         AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
                         {
                             AreaType = GameLoader.NAMESPACE + ".Architect",
-                            LocaleEntry = data.Player.LastKnownLocale
+                            LocaleEntry = _localizationHelper.LocalizeOrDefault("Architect", data.Player),
+                            JSONData = new JSONNode().SetAs(ArchitectLoader.NAME + ".SchematicName", schematicName),
+                            OneAreaOnly = true,
+                            Maximum3DBlockCount = int.MaxValue,
+                            Maximum2DBlockCount = int.MaxValue,
+                            MaximumHeight = int.MaxValue,
+                            MinimumHeight = 1,
+                            Minimum2DBlockCount = 1,
+                            Minimum3DBlockCount = 1
                         });
                     }
 

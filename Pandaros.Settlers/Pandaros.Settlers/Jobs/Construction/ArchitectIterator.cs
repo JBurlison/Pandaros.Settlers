@@ -46,7 +46,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         }
 
         public Vector3Int CurrentPosition { get { return cursor; } }
-        public Vector3Int PreviousPosition { get; set; }
+        public Vector3Int PreviousPosition { get; set; } = Vector3Int.invalidPos;
 
         public bool IsInBounds(Vector3Int location)
         {

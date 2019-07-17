@@ -21,10 +21,13 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (node == null)
                 return;
 
-            if (node.TryGetAs(NAME + ".SchematicName", out string schematic) && node.TryGetAs<JSONNode>(NAME + "PreviousPosition", out var jSONNodePos))
+            if (node.TryGetAs(NAME + ".SchematicName", out string schematic))
             {
                 area.IterationType = new ArchitectIterator(area, schematic);
-                ((ArchitectIterator)area.IterationType).PreviousPosition = (Vector3Int)jSONNodePos;
+
+                if (node.TryGetAs<JSONNode>(NAME + "PreviousPosition", out var jSONNodePos))
+                    ((ArchitectIterator)area.IterationType).PreviousPosition = (Vector3Int)jSONNodePos;
+
                 area.ConstructionType = new ArchitectBuilder();
             }
         }

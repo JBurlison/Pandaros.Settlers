@@ -63,7 +63,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                 var prvY = bpi.PreviousPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var prvZ = bpi.PreviousPosition.z - bpi.BuilderSchematic.StartPos.z;
 
-                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                if (bpi.PreviousPosition != Pipliz.Vector3Int.invalidPos)
+                    ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+
                 var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, SettlersBuiltIn.ItemTypes.SELECTOR, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
 
                 if (changeResult != EServerChangeBlockResult.CancelledByCallback)
@@ -76,11 +78,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     return;
                 }
 
-                if (bpi.MoveNext())
-                {
-
-                }
-                else
+                if (!bpi.MoveNext())
                 {
                     if (_needsChunkLoaded.Contains(bpi))
                         _needsChunkLoaded.Remove(bpi);
@@ -88,7 +86,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                     // failed to find next position to do job at, self-destruct
                     SchematicReader.SaveSchematic(areaJob.Owner, bpi.BuilderSchematic);
                     AreaJobTracker.RemoveJob(areaJob);
-                    return;
                 }
             }
             else
@@ -98,7 +95,6 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                 ChunkQueue.QueuePlayerSurrounding(iterationType.CurrentPosition.ToChunk());
                 state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
-                return;
             }
         }
 
