@@ -6,7 +6,7 @@
           "ErrorOpening": "Cannot open Schematic tool when not in range of a colony.",
           "Schematic": "Schematic",
           "Details": "Details",
-          "Save": "Save Schematic",
+          "Save": "Save area as Schematic",
           "invlaidSchematic": "Unable to validate schematic. Schematic is all air. Cannot place area.",
           "Height": "Height",
           "Width": "Width",
@@ -16,6 +16,10 @@
           "Required": "Required",
           "InStockpile": "In Stockpile",
           "instructions": "Right click on the top of a block to place the scematic. This will be the front left corner.",
+          "SaveSchematic": "Save Schematic",
+          "SaveInstructions": "To override an existing schematic, use the same name, otherwise type in a new name. Once applied, set the area. The schematic will save as the construction workers record the blocks. To have a completed schematic, wait until the workers have completed the recording and the area job auto removes itself.",
+          "Start": "Save",
+          "Cancel": "Cancel"
         }
       }
     }

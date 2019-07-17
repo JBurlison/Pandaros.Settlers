@@ -714,21 +714,27 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 var unTrack = new List<NPCBase>();
                 var left    = 0;
+                var leaving = 0;
                 List<NPCBase> leavingNPCs = new List<NPCBase>();
 
                 foreach (var npc in state.ColonyRef.Followers)
                     if (npc.NPCType.IsLaborer)
                     {
-                        var inv = SettlerInventory.GetSettlerInventory(npc);
+                        leaving++;
 
-                        if (inv.UnemployedLeaveTime == 0)
+                        if (leaving > 10)
                         {
-                            inv.UnemployedLeaveTime = TimeCycle.TotalHours + 48;
-                        }
-                        else if (inv.UnemployedLeaveTime < TimeCycle.TotalHours)
-                        {
-                            left++;
-                            leavingNPCs.Add(npc);
+                            var inv = SettlerInventory.GetSettlerInventory(npc);
+
+                            if (inv.UnemployedLeaveTime == 0)
+                            {
+                                inv.UnemployedLeaveTime = TimeCycle.TotalHours + 48;
+                            }
+                            else if (inv.UnemployedLeaveTime < TimeCycle.TotalHours)
+                            {
+                                left++;
+                                leavingNPCs.Add(npc);
+                            }
                         }
                     }
 

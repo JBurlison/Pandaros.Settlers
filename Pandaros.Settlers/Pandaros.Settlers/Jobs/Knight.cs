@@ -111,7 +111,6 @@ namespace Pandaros.Settlers.Jobs
         private int _currentPatrolPos;
         private bool _forward = true;
         private SettlerInventory _inv;
-        private Stockpile _stock;
         private IMonster _target;
         private int _timeAtPatrol;
         private double _timeJob;
@@ -243,7 +242,7 @@ namespace Pandaros.Settlers.Jobs
                             flagType == PatrolTool.PatrolFlag.ItemIndex)
                         {
                             ServerManager.TryChangeBlock(flagPoint, ColonyBuiltIn.ItemTypes.AIR.Id);
-                            _stock.Add(PatrolTool.PatrolFlag.ItemIndex);
+                            UsedNPC.Colony.Stockpile.Add(PatrolTool.PatrolFlag.ItemIndex);
                         }
                 }
             }
@@ -259,10 +258,7 @@ namespace Pandaros.Settlers.Jobs
                 if (_inv == null)
                     _inv = SettlerInventory.GetSettlerInventory(UsedNPC);
 
-                if (_stock == null)
-                    _stock = UsedNPC.Colony.Stockpile;
-
-                ArmorFactory.GetBestArmorForNPC(_stock, UsedNPC, _inv, 0);
+                ArmorFactory.GetBestArmorForNPC(UsedNPC.Colony.Stockpile, UsedNPC, _inv, 0);
 
                 try
                 {
@@ -327,9 +323,6 @@ namespace Pandaros.Settlers.Jobs
                     if (_inv == null)
                         _inv = SettlerInventory.GetSettlerInventory(UsedNPC);
 
-                    if (_stock == null)
-                        _stock = UsedNPC.Colony.Stockpile;
-
                     hasItem = !_inv.Weapon.IsEmpty();
                     IWeapon bestWeapon = null;
 
@@ -337,8 +330,8 @@ namespace Pandaros.Settlers.Jobs
                         bestWeapon = WeaponFactory.WeaponLookup[_inv.Weapon.Id];
 
                     foreach (var wep in WeaponFactory.WeaponLookup.Values.Where(w => w as IPlayerMagicItem == null && w is WeaponMetadata weaponMetadata && weaponMetadata.ItemType != null).Cast<WeaponMetadata>())
-                        if (_stock.Contains(wep.ItemType.ItemIndex) && bestWeapon == null ||
-                            _stock.Contains(wep.ItemType.ItemIndex) && bestWeapon != null &&
+                        if (UsedNPC.Colony.Stockpile.Contains(wep.ItemType.ItemIndex) && bestWeapon == null ||
+                            UsedNPC.Colony.Stockpile.Contains(wep.ItemType.ItemIndex) && bestWeapon != null &&
                             bestWeapon.Damage.TotalDamage() < wep.Damage.TotalDamage())
                             bestWeapon = wep;
 
@@ -348,10 +341,10 @@ namespace Pandaros.Settlers.Jobs
                         if (hasItem && _inv.Weapon.Id != wepId || !hasItem)
                         {
                             hasItem = true;
-                            _stock.TryRemove(wepId);
+                            UsedNPC.Colony.Stockpile.TryRemove(wepId);
 
                             if (!_inv.Weapon.IsEmpty())
-                                _stock.Add(_inv.Weapon.Id);
+                                UsedNPC.Colony.Stockpile.Add(_inv.Weapon.Id);
 
                             _inv.Weapon = new ItemState
                             {
@@ -385,7 +378,6 @@ namespace Pandaros.Settlers.Jobs
         {
             UsedNPC = npc;
             _inv = SettlerInventory.GetSettlerInventory(npc);
-            _stock = npc?.Colony?.Stockpile;
         }
 
         public void OnNPCCouldNotPathToGoal()

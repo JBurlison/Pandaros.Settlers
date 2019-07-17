@@ -110,6 +110,49 @@ namespace Pandaros.Settlers.NBT
             return options.OrderBy(f => f.Name).ToList();
         }
 
+        public static void SaveSchematic(Colony colony, Schematic schematic)
+        {
+            var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{colony.ColonyID}\\";
+
+            if (!Directory.Exists(colonySaves))
+                Directory.CreateDirectory(colonySaves);
+
+            List<NbtTag> tags = new List<NbtTag>();
+
+            tags.Add(new NbtInt("Width", schematic.XMax));
+            tags.Add(new NbtInt("Height", schematic.YMax));
+            tags.Add(new NbtInt("Length", schematic.ZMax));
+
+            List<NbtTag> blocks = new List<NbtTag>();
+
+            for (int Y = 0; Y < schematic.YMax; Y++)
+            {
+                for (int Z = 0; Z < schematic.ZMax; Z++)
+                {
+                    for (int X = 0; X < schematic.XMax; X++)
+                    {
+                        NbtCompound compTag = new NbtCompound();
+                        compTag.Add(new NbtInt("x", X));
+                        compTag.Add(new NbtInt("y", Y));
+                        compTag.Add(new NbtInt("z", Z));
+                        compTag.Add(new NbtString("id", schematic.Blocks[X,Y,Z].BlockID));
+                        blocks.Add(compTag);
+                    }
+                }
+            }
+
+            NbtList nbtList = new NbtList("CSBlocks", blocks);
+            tags.Add(nbtList);
+
+            NbtFile nbtFile = new NbtFile(new NbtCompound(tags));
+            var fileSave = Path.Combine(colonySaves, schematic.Name + ".schematic");
+
+            if (File.Exists(fileSave))
+                File.Delete(fileSave);
+
+            nbtFile.SaveToFile(fileSave, NbtCompression.GZip);
+        }
+
         public static Schematic LoadSchematic(string path, Vector3Int startPos)
         {
             NbtFile file = new NbtFile(path);
@@ -226,13 +269,13 @@ namespace Pandaros.Settlers.NBT
                 switch (tag.Name)
                 {
                     case "Width": //Short
-                        raw.XMax = tag.ShortValue;
+                        raw.XMax = tag.IntValue;
                         break;
                     case "Height": //Short
-                        raw.YMax = tag.ShortValue;
+                        raw.YMax = tag.IntValue;
                         break;
                     case "Length": //Short
-                        raw.ZMax = tag.ShortValue;
+                        raw.ZMax = tag.IntValue;
                         break;
                     case "Materials": //String
                         raw.Materials = tag.StringValue;

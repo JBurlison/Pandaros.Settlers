@@ -182,7 +182,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Schematic"), UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
-            //menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetScemanticName", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
@@ -201,13 +201,27 @@ namespace Pandaros.Settlers.Jobs.Construction
         {
             switch (data.ButtonIdentifier)
             {
+                case GameLoader.NAMESPACE + ".SetScemanticName":
+                    NetworkMenu saveMenu = new NetworkMenu();
+                    saveMenu.LocalStorage.SetAs("header", _localizationHelper.LocalizeOrDefault("SaveSchematic", data.Player));
+                    saveMenu.Width = 600;
+                    saveMenu.Height = 300;
+                    saveMenu.ForceClosePopups = true;
+                    saveMenu.Items.Add(new Label(new LabelData(_localizationHelper.GetLocalizationKey("SaveInstructions"), UnityEngine.Color.black)));
+                    saveMenu.Items.Add(new InputField("Construction.SetArchitectArea"));
+                    saveMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetArchitectArea", new LabelData(_localizationHelper.GetLocalizationKey("Start"), UnityEngine.Color.black)));
+                    break;
+
                 case GameLoader.NAMESPACE + ".SetArchitectArea":
                     NetworkMenuManager.CloseServerPopup(data.Player);
-                    AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
+                    if (data.Storage.TryGetAs("Construction.SetArchitectArea", out string schematicName))
                     {
-                        AreaType = GameLoader.NAMESPACE + ".Architect",
-                        LocaleEntry = data.Player.LastKnownLocale
-                    });
+                        AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
+                        {
+                            AreaType = GameLoader.NAMESPACE + ".Architect",
+                            LocaleEntry = data.Player.LastKnownLocale
+                        });
+                    }
 
                     break;
 
