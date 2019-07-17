@@ -220,9 +220,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                     {
                         AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
                         {
-                            AreaType = GameLoader.NAMESPACE + ".Architect",
+                            AreaType = "pipliz.constructionarea",
                             LocaleEntry = _localizationHelper.LocalizeOrDefault("Architect", data.Player),
-                            JSONData = new JSONNode().SetAs(ArchitectLoader.NAME + ".SchematicName", schematicName),
+                            JSONData = new JSONNode().SetAs(ArchitectLoader.NAME + ".ArchitectSchematicName", schematicName).SetAs("constructionType", GameLoader.NAMESPACE + ".Architect"),
                             OneAreaOnly = true,
                             Maximum3DBlockCount = int.MaxValue,
                             Maximum2DBlockCount = int.MaxValue,

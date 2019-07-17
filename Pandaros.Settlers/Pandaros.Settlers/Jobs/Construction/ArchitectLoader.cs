@@ -21,7 +21,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (node == null)
                 return;
 
-            if (node.TryGetAs(NAME + ".SchematicName", out string schematic))
+            if (node.TryGetAs(NAME + ".ArchitectSchematicName", out string schematic))
             {
                 area.IterationType = new ArchitectIterator(area, schematic);
 
@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             if (itt != null)
             {
-                node.SetAs(NAME + ".SchematicName", itt.SchematicName);
+                node.SetAs(NAME + ".ArchitectSchematicName", itt.SchematicName);
                 node.SetAs(NAME + "PreviousPosition", (JSONNode)((ArchitectIterator)area.IterationType).PreviousPosition);
                 SchematicReader.SaveSchematic(area.Owner, itt.BuilderSchematic);
             }

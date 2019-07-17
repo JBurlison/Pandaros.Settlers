@@ -86,7 +86,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (!stockpileContainsBuildItem && ownerStockPile.Contains(buildType.ItemIndex))
                         stockpileContainsBuildItem = true;
 
-                    if (!stockpileContainsBuildItem && !string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.ParentType.Contains("grass") && !buildType.ParentType.Contains("leaves"))
+                    if (!stockpileContainsBuildItem && 
+                        !string.IsNullOrWhiteSpace(buildType.ParentType) && 
+                        !buildType.ParentType.Contains("grass") && 
+                        !buildType.ParentType.Contains("leaves"))
                     {
                         var parentType = ItemTypes.GetType(buildType.ParentType);
                         buildType = parentType;

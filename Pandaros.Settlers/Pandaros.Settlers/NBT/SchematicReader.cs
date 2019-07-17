@@ -144,7 +144,7 @@ namespace Pandaros.Settlers.NBT
             NbtList nbtList = new NbtList("CSBlocks", blocks);
             tags.Add(nbtList);
 
-            NbtFile nbtFile = new NbtFile(new NbtCompound(tags));
+            NbtFile nbtFile = new NbtFile(new NbtCompound("CompoundTag", tags));
             var fileSave = Path.Combine(colonySaves, schematic.Name + ".schematic");
 
             if (File.Exists(fileSave))

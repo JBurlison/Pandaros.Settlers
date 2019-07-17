@@ -41,8 +41,28 @@ namespace Pandaros.Settlers.Jobs.Construction
             {
                 var calcSize = area.Maximum - area.Minimum;
                 BuilderSchematic = new Schematic(SchematicName, calcSize.x, calcSize.y, calcSize.z);
-                BuilderSchematic.Blocks = new SchematicBlock[calcSize.x, calcSize.y, calcSize.z];
+                BuilderSchematic.Blocks = new SchematicBlock[calcSize.x + 1, calcSize.y + 1, calcSize.z + 1];
+
+                for (int Y = 0; Y < BuilderSchematic.YMax; Y++)
+                {
+                    for (int Z = 0; Z < BuilderSchematic.ZMax; Z++)
+                    {
+                        for (int X = 0; X < BuilderSchematic.XMax; X++)
+                        {
+                            BuilderSchematic.Blocks[X, Y, Z] = new SchematicBlock()
+                            {
+                                CSBlock = true,
+                                X = X,
+                                Y = Y,
+                                Z = Z,
+                                BlockID = ColonyBuiltIn.ItemTypes.AIR
+                            };
+                        }
+                    }
+                }
             }
+
+            BuilderSchematic.StartPos = positionMin;
         }
 
         public Vector3Int CurrentPosition { get { return cursor; } }
