@@ -125,11 +125,11 @@ namespace Pandaros.Settlers.NBT
 
             List<NbtTag> blocks = new List<NbtTag>();
 
-            for (int Y = 0; Y < schematic.YMax; Y++)
+            for (int Y = 0; Y <= schematic.YMax; Y++)
             {
-                for (int Z = 0; Z < schematic.ZMax; Z++)
+                for (int Z = 0; Z <= schematic.ZMax; Z++)
                 {
-                    for (int X = 0; X < schematic.XMax; X++)
+                    for (int X = 0; X <= schematic.XMax; X++)
                     {
                         NbtCompound compTag = new NbtCompound();
                         compTag.Add(new NbtInt("x", X));
@@ -173,11 +173,11 @@ namespace Pandaros.Settlers.NBT
                 metadata.Name = name.Substring(0, name.LastIndexOf('.'));
                 Schematic schematic = LoadSchematic(new NbtFile(path), Vector3Int.invalidPos);
 
-                for (int Y = 0; Y < schematic.YMax; Y++)
+                for (int Y = 0; Y <= schematic.YMax; Y++)
                 {
-                    for (int Z = 0; Z < schematic.ZMax; Z++)
+                    for (int Z = 0; Z <= schematic.ZMax; Z++)
                     {
-                        for (int X = 0; X < schematic.XMax; X++)
+                        for (int X = 0; X <= schematic.XMax; X++)
                         {
                             var block = schematic.Blocks[X, Y, Z].MappedBlock;
 
@@ -244,13 +244,13 @@ namespace Pandaros.Settlers.NBT
                 switch (tag.Name)
                 {
                     case "Width": //Short
-                        raw.XMax = tag.ShortValue;
+                        raw.XMax = tag.IntValue;
                         break;
                     case "Height": //Short
-                        raw.YMax = tag.ShortValue;
+                        raw.YMax = tag.IntValue;
                         break;
                     case "Length": //Short
-                        raw.ZMax = tag.ShortValue;
+                        raw.ZMax = tag.IntValue;
                         break;
                     default:
                         break;
@@ -288,14 +288,10 @@ namespace Pandaros.Settlers.NBT
                         break;
                     case "Entities": //List
                         break; //Ignore
-                    //case "TileEntities": //List
-                    //    TileEntity[,,] tileEntities = new TileEntity[raw.XMax, raw.YMax, raw.ZMax];
-                    //    raw.TileEntities = GetTileEntities(tag, tileEntities);
-                    //    break;
                     case "Icon": //Compound
                         break; //Ignore
                     case "CSBlocks":
-                        raw.CSBlocks = GetCSBlocks(tag, new SchematicBlock[raw.XMax, raw.YMax, raw.ZMax]);
+                        raw.CSBlocks = GetCSBlocks(tag, new SchematicBlock[raw.XMax + 1, raw.YMax + 1, raw.ZMax + 1]);
                         break;
                     case "SchematicaMapping": //Compound
                         tag.ToString();
@@ -340,12 +336,12 @@ namespace Pandaros.Settlers.NBT
         public static SchematicBlock[,,] GetBlocks(RawSchematic rawSchematic)
         {
             //Sorted by height (bottom to top) then length then width -- the index of the block at X,Y,Z is (Y×length + Z)×width + X.
-            SchematicBlock[,,] blocks = new SchematicBlock[rawSchematic.XMax,rawSchematic.YMax,rawSchematic.ZMax];
-            for (int Y = 0; Y < rawSchematic.YMax; Y++)
+            SchematicBlock[,,] blocks = new SchematicBlock[rawSchematic.XMax + 1,rawSchematic.YMax + 1,rawSchematic.ZMax + 1];
+            for (int Y = 0; Y <= rawSchematic.YMax; Y++)
             {
-                for (int Z = 0; Z < rawSchematic.ZMax; Z++)
+                for (int Z = 0; Z <= rawSchematic.ZMax; Z++)
                 {
-                    for (int X = 0; X < rawSchematic.XMax; X++)
+                    for (int X = 0; X <= rawSchematic.XMax; X++)
                     {
                         int index = (Y * rawSchematic.ZMax + Z) * rawSchematic.XMax + X;
                         SchematicBlock block = new SchematicBlock();

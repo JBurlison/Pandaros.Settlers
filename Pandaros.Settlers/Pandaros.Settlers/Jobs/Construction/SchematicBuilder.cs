@@ -81,7 +81,8 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     Stockpile ownerStockPile = areaJob.Owner.Stockpile;
 
-                    bool stockpileContainsBuildItem = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id;
+                    bool stockpileContainsBuildItem = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id || 
+                                                      buildType.Name.Contains("bedend");
 
                     if (!stockpileContainsBuildItem && ownerStockPile.Contains(buildType.ItemIndex))
                         stockpileContainsBuildItem = true;

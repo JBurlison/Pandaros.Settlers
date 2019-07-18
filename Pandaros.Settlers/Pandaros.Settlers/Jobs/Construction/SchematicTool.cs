@@ -182,7 +182,7 @@ namespace Pandaros.Settlers.Jobs.Construction
             menu.Items.Add(new DropDown(new LabelData(_localizationHelper.GetLocalizationKey("Schematic"), UnityEngine.Color.black), Selected_Schematic, options.Select(fi => fi.Name.Replace(".schematic", "")).ToList()));
             menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ShowBuildDetails", new LabelData(_localizationHelper.GetLocalizationKey("Details"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
             menu.LocalStorage.SetAs(Selected_Schematic, 0);
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetScemanticName", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
+            //menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".SetScemanticName", new LabelData(_localizationHelper.GetLocalizationKey("Save"), UnityEngine.Color.black, UnityEngine.TextAnchor.MiddleCenter)));
 
             NetworkMenuManager.SendServerPopup(player, menu);
         }
@@ -218,6 +218,16 @@ namespace Pandaros.Settlers.Jobs.Construction
                     NetworkMenuManager.CloseServerPopup(data.Player);
                     if (data.Storage.TryGetAs("Construction.SetArchitectArea", out string schematicName))
                     {
+                        var colonySaves = GameLoader.Schematic_SAVE_LOC + $"\\{data.Player.ActiveColony.ColonyID}\\";
+
+                        if (!Directory.Exists(colonySaves))
+                            Directory.CreateDirectory(colonySaves);
+
+                        var schematicFile = Path.Combine(colonySaves, schematicName + ".schematic");
+
+                        if (File.Exists(schematicFile))
+                            File.Delete(schematicFile);
+
                         AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
                         {
                             AreaType = "pipliz.constructionarea",
