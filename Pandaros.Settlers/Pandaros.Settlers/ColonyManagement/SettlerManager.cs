@@ -588,7 +588,7 @@ namespace Pandaros.Settlers.ColonyManagement
         public static void PressButton(ButtonPressCallbackData data)
         {
             if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers") ||
-                data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
+                !data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
                 return;
 
             var replaceOne = data.ButtonIdentifier.Replace(GameLoader.NAMESPACE + ".NewSettlers.", "");
@@ -599,6 +599,9 @@ namespace Pandaros.Settlers.ColonyManagement
                 foreach (var p in colony.Owners)
                     if (p.IsConnected())
                         NetworkMenuManager.CloseServerPopup(p);
+
+                if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
+                    return;
 
                 var recruitmentInfoStr = replaceOne.Substring(val.Length).Replace(".Accept.", "");
                 var unparsedString = recruitmentInfoStr.Split('.');

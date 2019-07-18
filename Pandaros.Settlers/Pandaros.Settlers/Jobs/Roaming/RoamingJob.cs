@@ -85,7 +85,7 @@ namespace Pandaros.Settlers.Jobs.Roaming
                                                     break;
                                                 }
 
-                                            if (string.IsNullOrEmpty(actionName) && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(actionName))
+                                            if (!string.IsNullOrEmpty(actionName) && objective.RoamingJobSettings.ActionCallbacks.ContainsKey(actionName))
                                             {
                                                 closest = objective;
                                                 distance = dis;

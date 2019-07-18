@@ -40,7 +40,7 @@ namespace Pandaros.Settlers
         public static string SAVE_LOC = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
-        public static readonly Version MOD_VER = new Version(0, 8, 2, 58);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 59);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
