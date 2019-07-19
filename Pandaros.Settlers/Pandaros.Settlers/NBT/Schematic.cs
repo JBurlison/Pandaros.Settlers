@@ -72,24 +72,22 @@ namespace Pandaros.Settlers.NBT
                         int newX = z;
                         int newZ = ZMax - (x + 1);
 
-                        if (Blocks[z, y, x].CSBlock && Blocks[z, y, x].ItemID.Contains("bed"))
-                            switch (Blocks[z, y, x].ItemID)
+                        if (Blocks[z, y, x].CSBlock)
+                            if (Blocks[z, y, x].ItemID.Contains("z+"))
+                            { 
+                                Blocks[z, y, x].BlockID.Replace("z+", "x+");
+                            }
+                            else if (Blocks[z, y, x].ItemID.Contains("z-"))
                             {
-                                case "bedz+":
-                                    Blocks[z, y, x].BlockID = "bedx+";
-                                    break;
-
-                                case "bedz-":
-                                    Blocks[z, y, x].BlockID = "bedx-";
-                                    break;
-
-                                case "bedx+":
-                                    Blocks[z, y, x].BlockID = "bedz-";
-                                    break;
-
-                                case "bedx-":
-                                    Blocks[z, y, x].BlockID = "bedz+";
-                                    break;
+                                Blocks[z, y, x].BlockID.Replace("z-", "x-");
+                            }
+                            else if (Blocks[z, y, x].ItemID.Contains("x+"))
+                            {
+                                Blocks[z, y, x].BlockID.Replace("x+", "z-");
+                            }
+                            else if (Blocks[z, y, x].ItemID.Contains("x-"))
+                            {
+                                Blocks[z, y, x].BlockID.Replace("x-", "z+");
                             }
 
                         newBlocks[newZ, y, newX] = Blocks[z, y, x];

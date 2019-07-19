@@ -44,8 +44,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                 return;
             }
 
-            Players.Player onlinePlayer = areaJob.Owner.Owners.FirstOrDefault(o => o.IsConnected() && o.ID.type != NetworkID.IDType.Server);
-
             while (true) // This is to move past air.
             {
                 if (i > 4000)
@@ -94,17 +92,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                         stockpileContainsBuildItem = true;
 
                     if (!stockpileContainsBuildItem && 
-                        !string.IsNullOrWhiteSpace(buildType.ParentType) && 
-                        !buildType.ParentType.Contains("grass") && 
-                        !buildType.ParentType.Contains("leaves"))
+                        !string.IsNullOrWhiteSpace(buildType.ParentType) &&
+                        ownerStockPile.Contains(buildType.ParentItemType.ItemIndex))
                     {
-                        var parentType = ItemTypes.GetType(buildType.ParentType);
-                        buildType = parentType;
-
-                        if (ownerStockPile.Contains(parentType.ItemIndex))
-                        {
-                            stockpileContainsBuildItem = true;
-                        }
+                        stockpileContainsBuildItem = true;
                     }
 
                     if (stockpileContainsBuildItem)
@@ -117,7 +108,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
 
-                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(onlinePlayer), ESetBlockFlags.DefaultAudio);
+                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
 
                         if (changeResult == EServerChangeBlockResult.Success)
                         {
