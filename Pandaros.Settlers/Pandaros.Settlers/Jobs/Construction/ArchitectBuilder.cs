@@ -53,6 +53,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                 var adjX = iterationType.CurrentPosition.x - bpi.BuilderSchematic.StartPos.x;
                 var adjY = iterationType.CurrentPosition.y - bpi.BuilderSchematic.StartPos.y;
                 var adjZ = iterationType.CurrentPosition.z - bpi.BuilderSchematic.StartPos.z;
+                var prvX = bpi.PreviousPosition.x - bpi.BuilderSchematic.StartPos.x;
+                var prvY = bpi.PreviousPosition.y - bpi.BuilderSchematic.StartPos.y;
+                var prvZ = bpi.PreviousPosition.z - bpi.BuilderSchematic.StartPos.z;
 
                 if (World.TryGetTypeAt(iterationType.CurrentPosition, out ItemTypes.ItemType foundType))
                 {
@@ -62,11 +65,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                     if (foundType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR ||
                         foundType.Name == ColonyBuiltIn.ItemTypes.BANNER)
                     {
-                        if (!bpi.MoveNext())
-                        {
-                            CleanupJob(iterationType, areaJob, job, bpi, foundType);
+                        if (!MoveNext(iterationType, areaJob, job, bpi, prvX, prvY, prvZ))
                             return;
-                        }
 
                         continue;
                     }
@@ -79,12 +79,12 @@ namespace Pandaros.Settlers.Jobs.Construction
                     {
                         PandaLogger.Log(ChatColor.red, $"Index out of range on ArchitectBuilder {adjX}, {adjY}, {adjZ} to a max of {bpi.BuilderSchematic.Blocks.GetLength(0)}, {bpi.BuilderSchematic.Blocks.GetLength(1)}, {bpi.BuilderSchematic.Blocks.GetLength(2)}.");
 
-                        CleanupJob(iterationType, areaJob, job, bpi, foundType);
+                        CleanupJob(iterationType, areaJob, job, bpi, prvX, prvY, prvZ);
                         break;
                     }
 
-                    if (!bpi.MoveNext())
-                        CleanupJob(iterationType, areaJob, job, bpi, foundType);
+                    ServerManager.TryChangeBlock(iterationType.CurrentPosition, SettlersBuiltIn.ItemTypes.SELECTOR, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                    MoveNext(iterationType, areaJob, job, bpi, prvX, prvY, prvZ);
                 }
                 else
                 {
@@ -99,12 +99,34 @@ namespace Pandaros.Settlers.Jobs.Construction
             }
         }
 
-        private static void CleanupJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ArchitectIterator bpi, ItemTypes.ItemType foundType)
+        private static bool MoveNext(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ArchitectIterator bpi, int prvX, int prvY, int prvZ)
+        {
+            if (bpi.PreviousPosition != Pipliz.Vector3Int.invalidPos &&
+                prvX <= bpi.BuilderSchematic.XMax &&
+                prvY <= bpi.BuilderSchematic.YMax &&
+                prvZ <= bpi.BuilderSchematic.ZMax)
+                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+
+            if (!bpi.MoveNext())
+            {
+                CleanupJob(iterationType, areaJob, job, bpi, prvX, prvY, prvZ);
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void CleanupJob(IIterationType iterationType, IAreaJob areaJob, ConstructionJobInstance job, ArchitectIterator bpi, int prvX, int prvY, int prvZ)
         {
             if (_needsChunkLoaded.Contains(bpi))
                 _needsChunkLoaded.Remove(bpi);
 
-            // failed to find next position to do job at, self-destruct
+            if (bpi.PreviousPosition != Pipliz.Vector3Int.invalidPos &&
+               prvX <= bpi.BuilderSchematic.XMax &&
+               prvY <= bpi.BuilderSchematic.YMax &&
+               prvZ <= bpi.BuilderSchematic.ZMax)
+                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+
             SchematicReader.SaveSchematic(areaJob.Owner, bpi.BuilderSchematic);
             AreaJobTracker.RemoveJob(areaJob);
         }

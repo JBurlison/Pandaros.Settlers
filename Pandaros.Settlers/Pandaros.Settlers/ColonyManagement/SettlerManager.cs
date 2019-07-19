@@ -587,7 +587,7 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".ColonyManagement.SettlerManager.PressButton")]
         public static void PressButton(ButtonPressCallbackData data)
         {
-            if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers") ||
+            if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers") &&
                 !data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
                 return;
 
