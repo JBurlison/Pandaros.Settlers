@@ -65,34 +65,31 @@ namespace Pandaros.Settlers.NBT
 
             for (int y = 0; y < YMax; y++)
             {
-                for (int x = 0; x < ZMax; x++)
+                for (int z = 0; z < ZMax; z++)
                 {
-                    for (int z = 0; z < XMax; z++)
+                    for (int x = 0; x < XMax; x++)
                     {
-                        int newX = z;
-                        int newZ = ZMax - (x + 1);
+                        int newX = x;
+                        int newZ = ZMax - (z + 1);
 
-                        if (Blocks[z, y, x].CSBlock)
-                            if (Blocks[z, y, x].ItemID.Contains("z+"))
-                            { 
-                                Blocks[z, y, x].BlockID.Replace("z+", "x+");
-                            }
-                            else if (Blocks[z, y, x].ItemID.Contains("z-"))
-                            {
-                                Blocks[z, y, x].BlockID.Replace("z-", "x-");
-                            }
-                            else if (Blocks[z, y, x].ItemID.Contains("x+"))
-                            {
-                                Blocks[z, y, x].BlockID.Replace("x+", "z-");
-                            }
-                            else if (Blocks[z, y, x].ItemID.Contains("x-"))
-                            {
-                                Blocks[z, y, x].BlockID.Replace("x-", "z+");
-                            }
+                        if (Blocks[x, y, z].ItemID.Contains("z+"))
+                        {
+                            Blocks[x, y, z].BlockID = Blocks[x, y, z].BlockID.Replace("z+", "x-");
+                        }
+                        else if (Blocks[x, y, z].ItemID.Contains("z-"))
+                        {
+                            Blocks[x, y, z].BlockID = Blocks[x, y, z].BlockID.Replace("z-", "x+");
+                        }
+                        else if (Blocks[x, y, z].ItemID.Contains("x+"))
+                        {
+                            Blocks[x, y, z].BlockID = Blocks[x, y, z].BlockID.Replace("x+", "z+");
+                        }
+                        else if (Blocks[x, y, z].ItemID.Contains("x-"))
+                        {
+                            Blocks[x, y, z].BlockID = Blocks[x, y, z].BlockID.Replace("x-", "z-");
+                        }
 
-                        newBlocks[newZ, y, newX] = Blocks[z, y, x];
-
-                       
+                        newBlocks[newZ, y, newX] = Blocks[x, y, z];
                     }
                 }
             }
