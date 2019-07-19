@@ -1,6 +1,7 @@
 ﻿using BlockTypes;
 using Jobs;
 using NPC;
+using Pandaros.Settlers.Models;
 using Pandaros.Settlers.NBT;
 using Pipliz;
 using Pipliz.Mods.BaseGame.Construction;
@@ -66,7 +67,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 {
                     i++;
 
-                    if (foundTypeIndex == buildType.ItemIndex) // check if the blocks are the same, if they are, move past. Most of the time this will be air.
+                    if (foundTypeIndex == buildType.ItemIndex || buildType.Name.Contains("bedend")) // check if the blocks are the same, if they are, move past. Most of the time this will be air.
                         if (iterationType.MoveNext())
                             continue;
                         else
@@ -81,10 +82,12 @@ namespace Pandaros.Settlers.Jobs.Construction
 
                     Stockpile ownerStockPile = areaJob.Owner.Stockpile;
 
-                    bool stockpileContainsBuildItem = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id || 
-                                                      buildType.Name.Contains("bedend");
+                    bool stockpileContainsBuildItem = buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR.Id;
 
                     if (!stockpileContainsBuildItem && ownerStockPile.Contains(buildType.ItemIndex))
+                        stockpileContainsBuildItem = true;
+
+                    if (!stockpileContainsBuildItem && buildType.Name.Contains("bed") && ownerStockPile.Contains(ItemId.GetItemId("bed")))
                         stockpileContainsBuildItem = true;
 
                     if (!stockpileContainsBuildItem && 
@@ -111,7 +114,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
 
-                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(job.Owner.Owners.FirstOrDefault()), ESetBlockFlags.DefaultAudio);
 
                         if (changeResult == EServerChangeBlockResult.Success)
                         {
@@ -124,6 +127,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 }
 
                                 ownerStockPile.TryRemove(buildType.ItemIndex);
+
+                                if (buildType.Name.Contains("bed"))
+                                    ownerStockPile.TryRemove(ItemId.GetItemId("bed"));
                             }
                         }
                         else if (changeResult != EServerChangeBlockResult.CancelledByCallback)

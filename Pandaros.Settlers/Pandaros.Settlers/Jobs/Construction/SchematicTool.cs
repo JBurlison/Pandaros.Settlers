@@ -158,7 +158,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 if (tuple.Item3 >= Schematic.Rotation.Left)
                                     schematic.Rotate();
 
-                                var maxSize = location.Add(schematic.XMax, schematic.YMax, schematic.ZMax);
+                                var maxSize = location.Add(schematic.XMax - 1, schematic.YMax - 1, schematic.ZMax - 1);
                                 AreaJobTracker.CreateNewAreaJob("pipliz.constructionarea", args, player.ActiveColony, location, maxSize);
                                 AreaJobTracker.SendData(player);
                             }

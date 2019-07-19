@@ -199,31 +199,35 @@ namespace Pandaros.Settlers.NBT
                         if (block.CSIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                         {
                             var buildType = ItemTypes.GetType(block.CSIndex);
-                            var index = block.CSIndex;
 
-                            if (!string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.Name.Contains("grass") && !buildType.Name.Contains("leaves"))
-                                index = ItemTypes.GetType(buildType.ParentType).ItemIndex;
-
-                            if (metadata.Blocks.TryGetValue(index, out var blockMeta))
+                            if (!buildType.Name.Contains("bedend"))
                             {
-                                blockMeta.Count++;
-                            }
-                            else
-                            {
-                                blockMeta = new SchematicBlockMetadata();
-                                blockMeta.Count++;
-                                blockMeta.ItemId = index;
+                                var index = block.CSIndex;
 
-                                metadata.Blocks.Add(blockMeta.ItemId, blockMeta);
+                                if (!string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.Name.Contains("grass") && !buildType.Name.Contains("leaves"))
+                                    index = ItemTypes.GetType(buildType.ParentType).ItemIndex;
+
+                                if (metadata.Blocks.TryGetValue(index, out var blockMeta))
+                                {
+                                    blockMeta.Count++;
+                                }
+                                else
+                                {
+                                    blockMeta = new SchematicBlockMetadata();
+                                    blockMeta.Count++;
+                                    blockMeta.ItemId = index;
+
+                                    metadata.Blocks.Add(blockMeta.ItemId, blockMeta);
+                                }
                             }
                         }
                     }
                 }
             }
 
-            metadata.MaxX = schematic.XMax + 1;
-            metadata.MaxY = schematic.YMax + 1;
-            metadata.MaxZ = schematic.ZMax + 1;
+            metadata.MaxX = schematic.XMax;
+            metadata.MaxY = schematic.YMax;
+            metadata.MaxZ = schematic.ZMax;
 
             JSON.Serialize(metadataPath, metadata.JsonSerialize());
 
@@ -281,13 +285,13 @@ namespace Pandaros.Settlers.NBT
                 switch (tag.Name)
                 {
                     case "Width": //Short
-                        raw.XMax = tag.IntValue;
+                        raw.XMax = tag.IntValue + 1;
                         break;
                     case "Height": //Short
-                        raw.YMax = tag.IntValue;
+                        raw.YMax = tag.IntValue + 1;
                         break;
                     case "Length": //Short
-                        raw.ZMax = tag.IntValue;
+                        raw.ZMax = tag.IntValue + 1;
                         break;
                     case "Materials": //String
                         raw.Materials = tag.StringValue;

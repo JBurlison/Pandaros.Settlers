@@ -83,7 +83,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                         break;
                     }
 
-                    ServerManager.TryChangeBlock(iterationType.CurrentPosition, SettlersBuiltIn.ItemTypes.SELECTOR, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                    if (!foundType.Name.Contains("bedend"))
+                        ServerManager.TryChangeBlock(iterationType.CurrentPosition, SettlersBuiltIn.ItemTypes.SELECTOR, new BlockChangeRequestOrigin(job.Owner.Owners.FirstOrDefault()), ESetBlockFlags.DefaultAudio);
+
                     MoveNext(iterationType, areaJob, job, bpi, prvX, prvY, prvZ);
                 }
                 else
@@ -104,8 +106,9 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (bpi.PreviousPosition != Pipliz.Vector3Int.invalidPos &&
                 prvX <= bpi.BuilderSchematic.XMax &&
                 prvY <= bpi.BuilderSchematic.YMax &&
-                prvZ <= bpi.BuilderSchematic.ZMax)
-                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                prvZ <= bpi.BuilderSchematic.ZMax &&
+               !bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID.Contains("bedend"))
+                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner.Owners.FirstOrDefault()), ESetBlockFlags.DefaultAudio);
 
             if (!bpi.MoveNext())
             {
@@ -124,8 +127,9 @@ namespace Pandaros.Settlers.Jobs.Construction
             if (bpi.PreviousPosition != Pipliz.Vector3Int.invalidPos &&
                prvX <= bpi.BuilderSchematic.XMax &&
                prvY <= bpi.BuilderSchematic.YMax &&
-               prvZ <= bpi.BuilderSchematic.ZMax)
-                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+               prvZ <= bpi.BuilderSchematic.ZMax &&
+               !bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID.Contains("bedend"))
+                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner.Owners.FirstOrDefault()), ESetBlockFlags.DefaultAudio);
 
             SchematicReader.SaveSchematic(areaJob.Owner, bpi.BuilderSchematic);
             AreaJobTracker.RemoveJob(areaJob);
