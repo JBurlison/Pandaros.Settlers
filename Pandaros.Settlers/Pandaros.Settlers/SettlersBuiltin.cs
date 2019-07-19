@@ -229,7 +229,6 @@ namespace Pandaros.Settlers
           public static readonly ItemId AIRSTONE = ItemId.GetItemId("Pandaros.Settlers.AirStone");
           public static readonly ItemId AIRTURRET = ItemId.GetItemId("Pandaros.Settlers.AirTurret");
           public static readonly ItemId ANITBIOTIC = ItemId.GetItemId("Pandaros.Settlers.Anitbiotic");
-          public static readonly ItemId APOTHECARY = ItemId.GetItemId("Pandaros.Settlers.Apothecary");
           public static readonly ItemId APOTHECARYTABLE = ItemId.GetItemId("Pandaros.Settlers.ApothecaryTable");
           public static readonly ItemId ARTIFICERBENCH = ItemId.GetItemId("Pandaros.Settlers.ArtificerBench");
           public static readonly ItemId ADAMANTINE = ItemId.GetItemId("Pandaros.Settlers.AutoLoad.Adamantine");

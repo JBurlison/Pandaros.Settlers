@@ -44,6 +44,8 @@ namespace Pandaros.Settlers.Jobs.Construction
                 return;
             }
 
+            Players.Player onlinePlayer = areaJob.Owner.Owners.FirstOrDefault(o => o.IsConnected() && o.ID.type != NetworkID.IDType.Server);
+
             while (true) // This is to move past air.
             {
                 if (i > 4000)
@@ -66,8 +68,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                 if (World.TryGetTypeAt(iterationType.CurrentPosition, out ushort foundTypeIndex))
                 {
                     i++;
+                    var founditemId = ItemId.GetItemId(foundTypeIndex);
 
-                    if (foundTypeIndex == buildType.ItemIndex || buildType.Name.Contains("bedend")) // check if the blocks are the same, if they are, move past. Most of the time this will be air.
+                    if (foundTypeIndex == buildType.ItemIndex || buildType.Name.Contains("bedend") || (founditemId.Name.Contains("bedend") && buildType.ItemIndex == ColonyBuiltIn.ItemTypes.AIR)) // check if the blocks are the same, if they are, move past. Most of the time this will be air.
                         if (iterationType.MoveNext())
                             continue;
                         else
@@ -114,7 +117,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                                 ownerStockPile.Add(foundItem.OnRemoveItems.Select(itm => itm.item).ToList());
                         }
 
-                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(job.Owner.Owners.FirstOrDefault()), ESetBlockFlags.DefaultAudio);
+                        var changeResult = ServerManager.TryChangeBlock(iterationType.CurrentPosition, buildType.ItemIndex, new BlockChangeRequestOrigin(onlinePlayer), ESetBlockFlags.DefaultAudio);
 
                         if (changeResult == EServerChangeBlockResult.Success)
                         {

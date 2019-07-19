@@ -554,7 +554,7 @@ namespace Pandaros.Settlers.ColonyManagement
                                                                               UnityEngine.Color.black,
                                                                               UnityEngine.TextAnchor.MiddleCenter)));
 
-                                            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers.Decline",
+                                            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".NewSettlers." + state.ColonyRef.ColonyID + ".Decline",
                                                                               new LabelData(_localizationHelper.GetLocalizationKey("Decline"),
                                                                               UnityEngine.Color.black,
                                                                               UnityEngine.TextAnchor.MiddleCenter)));
@@ -588,7 +588,7 @@ namespace Pandaros.Settlers.ColonyManagement
         public static void PressButton(ButtonPressCallbackData data)
         {
             if (!data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers") &&
-                !data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
+                !data.ButtonIdentifier.Contains("Decline"))
                 return;
 
             var replaceOne = data.ButtonIdentifier.Replace(GameLoader.NAMESPACE + ".NewSettlers.", "");
@@ -600,7 +600,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     if (p.IsConnected())
                         NetworkMenuManager.CloseServerPopup(p);
 
-                if (data.ButtonIdentifier.Contains(GameLoader.NAMESPACE + ".NewSettlers.Decline"))
+                if (data.ButtonIdentifier.Contains(".Decline"))
                     return;
 
                 var recruitmentInfoStr = replaceOne.Substring(val.Length).Replace(".Accept.", "");

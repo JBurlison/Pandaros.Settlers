@@ -194,30 +194,36 @@ namespace Pandaros.Settlers.NBT
                 {
                     for (int X = 0; X <= schematic.XMax; X++)
                     {
-                        var block = schematic.Blocks[X, Y, Z].MappedBlock;
-
-                        if (block.CSIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
+                        if (schematic.Blocks.GetLength(0) > X &&
+                            schematic.Blocks.GetLength(1) > Y &&
+                            schematic.Blocks.GetLength(2) > Z &&
+                            schematic.Blocks[X, Y, Z] != null)
                         {
-                            var buildType = ItemTypes.GetType(block.CSIndex);
+                            var block = schematic.Blocks[X, Y, Z].MappedBlock;
 
-                            if (!buildType.Name.Contains("bedend"))
+                            if (block.CSIndex != ColonyBuiltIn.ItemTypes.AIR.Id)
                             {
-                                var index = block.CSIndex;
+                                var buildType = ItemTypes.GetType(block.CSIndex);
 
-                                if (!string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.Name.Contains("grass") && !buildType.Name.Contains("leaves"))
-                                    index = ItemTypes.GetType(buildType.ParentType).ItemIndex;
-
-                                if (metadata.Blocks.TryGetValue(index, out var blockMeta))
+                                if (!buildType.Name.Contains("bedend"))
                                 {
-                                    blockMeta.Count++;
-                                }
-                                else
-                                {
-                                    blockMeta = new SchematicBlockMetadata();
-                                    blockMeta.Count++;
-                                    blockMeta.ItemId = index;
+                                    var index = block.CSIndex;
 
-                                    metadata.Blocks.Add(blockMeta.ItemId, blockMeta);
+                                    if (!string.IsNullOrWhiteSpace(buildType.ParentType) && !buildType.Name.Contains("grass") && !buildType.Name.Contains("leaves"))
+                                        index = ItemTypes.GetType(buildType.ParentType).ItemIndex;
+
+                                    if (metadata.Blocks.TryGetValue(index, out var blockMeta))
+                                    {
+                                        blockMeta.Count++;
+                                    }
+                                    else
+                                    {
+                                        blockMeta = new SchematicBlockMetadata();
+                                        blockMeta.Count++;
+                                        blockMeta.ItemId = index;
+
+                                        metadata.Blocks.Add(blockMeta.ItemId, blockMeta);
+                                    }
                                 }
                             }
                         }
@@ -285,13 +291,22 @@ namespace Pandaros.Settlers.NBT
                 switch (tag.Name)
                 {
                     case "Width": //Short
-                        raw.XMax = tag.IntValue + 1;
+                        if (rootTag.Contains("CSBlocks"))
+                            raw.XMax = tag.IntValue + 1;
+                        else
+                            raw.XMax = tag.IntValue;
                         break;
                     case "Height": //Short
-                        raw.YMax = tag.IntValue + 1;
+                        if (rootTag.Contains("CSBlocks"))
+                            raw.YMax = tag.IntValue + 1;
+                        else
+                            raw.YMax = tag.IntValue;
                         break;
                     case "Length": //Short
-                        raw.ZMax = tag.IntValue + 1;
+                        if (rootTag.Contains("CSBlocks"))
+                            raw.ZMax = tag.IntValue + 1;
+                        else
+                            raw.ZMax = tag.IntValue;
                         break;
                     case "Materials": //String
                         raw.Materials = tag.StringValue;
@@ -307,7 +322,7 @@ namespace Pandaros.Settlers.NBT
                     case "Icon": //Compound
                         break; //Ignore
                     case "CSBlocks":
-                        raw.CSBlocks = GetCSBlocks(tag, new SchematicBlock[raw.XMax + 1, raw.YMax + 1, raw.ZMax + 1]);
+                        raw.CSBlocks = GetCSBlocks(raw, tag, new SchematicBlock[raw.XMax + 1, raw.YMax + 1, raw.ZMax + 1]);
                         break;
                     case "SchematicaMapping": //Compound
                         tag.ToString();
@@ -319,7 +334,7 @@ namespace Pandaros.Settlers.NBT
             return raw;
         }
 
-        public static SchematicBlock[,,] GetCSBlocks(NbtTag csBlockTag, SchematicBlock[,,] list)
+        public static SchematicBlock[,,] GetCSBlocks(RawSchematic raw, NbtTag csBlockTag, SchematicBlock[,,] list)
         {
             NbtList csBlocks = csBlockTag as NbtList;
 
@@ -346,18 +361,38 @@ namespace Pandaros.Settlers.NBT
                     list[xTag.IntValue, yTag.IntValue, zTag.IntValue] = block;
                 }
             }
+
+            for (int Y = 0; Y <= raw.YMax; Y++)
+            {
+                for (int Z = 0; Z <= raw.ZMax; Z++)
+                {
+                    for (int X = 0; X <= raw.XMax; X++)
+                    {
+                        if (list[X, Y, Z] == null)
+                            list[X, Y, Z] = new SchematicBlock()
+                            {
+                                X = X,
+                                Y = Y,
+                                Z = Z,
+                                BlockID = ColonyBuiltIn.ItemTypes.AIR,
+                                CSBlock = true
+                            };
+                    }
+                }
+            }
+
             return list;
         }
 
         public static SchematicBlock[,,] GetBlocks(RawSchematic rawSchematic)
         {
             //Sorted by height (bottom to top) then length then width -- the index of the block at X,Y,Z is (Y×length + Z)×width + X.
-            SchematicBlock[,,] blocks = new SchematicBlock[rawSchematic.XMax + 1,rawSchematic.YMax + 1,rawSchematic.ZMax + 1];
-            for (int Y = 0; Y <= rawSchematic.YMax; Y++)
+            SchematicBlock[,,] blocks = new SchematicBlock[rawSchematic.XMax,rawSchematic.YMax,rawSchematic.ZMax];
+            for (int Y = 0; Y < rawSchematic.YMax; Y++)
             {
-                for (int Z = 0; Z <= rawSchematic.ZMax; Z++)
+                for (int Z = 0; Z < rawSchematic.ZMax; Z++)
                 {
-                    for (int X = 0; X <= rawSchematic.XMax; X++)
+                    for (int X = 0; X < rawSchematic.XMax; X++)
                     {
                         int index = (Y * rawSchematic.ZMax + Z) * rawSchematic.XMax + X;
                         SchematicBlock block = new SchematicBlock();
