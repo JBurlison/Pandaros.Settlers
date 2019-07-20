@@ -186,7 +186,7 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             try
             {
-                if (state.MagicUpdateTime < Time.SecondsSinceStartDouble)
+                if (state.HealingUpdateTime < Time.SecondsSinceStartDouble)
                 {
                     var colony = state.ColonyRef;
 
@@ -194,7 +194,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     {
                         var inv = ColonistInventory.Get(follower);
 
-                        if (inv.MagicItemUpdateTime < Time.SecondsSinceStartDouble)
+                        if (inv.HealingItemUpdateTime < Time.SecondsSinceStartDouble)
                         {
                             var hasBandages = colony.Stockpile.Contains(TreatedBandage.Item.ItemIndex) ||
                                   colony.Stockpile.Contains(Bandage.Item.ItemIndex);
@@ -228,11 +228,11 @@ namespace Pandaros.Settlers.ColonyManagement
                             }
 
 
-                            inv.MagicItemUpdateTime = Time.SecondsSinceStartDouble + Random.Next(3, 5);
+                            inv.HealingItemUpdateTime = Time.SecondsSinceStartDouble + Random.Next(3, 5);
                         }
                     }
 
-                    state.MagicUpdateTime = Time.SecondsSinceStartDouble + 5;
+                    state.HealingUpdateTime = Time.SecondsSinceStartDouble + 5;
                 }
             }
             catch (Exception ex)
