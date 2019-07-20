@@ -1,11 +1,10 @@
 ﻿using Happiness;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Extender;
-using System;
+using Pandaros.API.Entities;
+using Pandaros.API.Extender;
+using Pandaros.API.localization;
+using Pandaros.API.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
@@ -38,13 +37,13 @@ namespace Pandaros.Settlers.ColonyManagement
     public class ColonistsBought : IHappinessCause
     {
         public static Dictionary<Colony, List<double>> BoughtCount { get; set; } = new Dictionary<Colony, List<double>>();
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
+        public static LocalizationHelper LocalizationHelper { get; private set; } = new LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
 
         public float Evaluate(Colony colony)
         {
             var cs = ColonyState.GetColonyState(colony);
 
-            if (cs.SettlersEnabled != Models.SettlersState.Disabled && BoughtCount.TryGetValue(colony, out var count))
+            if (cs.SettlersEnabled != SettlersState.Disabled && BoughtCount.TryGetValue(colony, out var count))
                 return (float)(count.Count * cs.Difficulty.UnhappyColonistsBought);
 
             return 0;

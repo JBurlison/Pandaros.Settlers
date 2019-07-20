@@ -1,4 +1,6 @@
 ﻿using BlockTypes;
+using Pandaros.API;
+using Pandaros.API.Items.Weapons;
 using Pipliz.JSON;
 using Recipes;
 using System.Collections.Generic;

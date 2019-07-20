@@ -1,22 +1,20 @@
 ﻿using BlockEntities.Implementations;
-using System;
-using System.Collections.Generic;
+using Pandaros.API;
+using Pandaros.API.localization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
     [ModLoader.ModManager]
     public class Permission
     {
-        static localization.LocalizationHelper _LocalizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Permission");
+        static LocalizationHelper _LocalizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Permission");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, GameLoader.NAMESPACE + ".ColonyManager.Permission.OnTryChangeBlockUser")]
         public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
         {
             if (SettlersConfiguration.GetorDefault("AntigriefEnabled", true) && 
-                ServerManager.BlockEntityTracker.BannerTracker.TryGetClosest(userData.Position, out BannerTracker.Banner existingBanner, ServerManager.ServerSettings.Colony.ExclusiveRadius * 2))
+                ServerManager.BlockEntityTracker.BannerTracker.TryGetClosest(userData.Position, out BannerTracker.Banner existingBanner, ServerManager.ServerSettings.Colony.ExclusiveRadius))
             {
                 if (userData.RequestOrigin.Type == BlockChangeRequestOrigin.EType.Player && 
                     !PermissionsManager.HasPermission(userData.RequestOrigin.AsPlayer, new PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Antigrief")) &&

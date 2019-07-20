@@ -1,14 +1,10 @@
 ﻿using AI;
 using Monsters;
 using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Monsters.Normal;
-using Pipliz;
+using Pandaros.API;
+using Pandaros.API.Monsters;
 using Pipliz.JSON;
-using Shared;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Pandaros.Settlers.Monsters.Normal
 {

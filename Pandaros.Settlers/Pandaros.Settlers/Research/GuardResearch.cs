@@ -1,14 +1,8 @@
-﻿using Pandaros.Settlers.ColonyManagement;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Items.Armor;
-using Pandaros.Settlers.Items.Healing;
-using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Jobs;
-using Pandaros.Settlers.Jobs.Roaming;
-using Science;
+﻿using Pandaros.API;
+using Pandaros.API.ColonyManagement;
+using Pandaros.API.Research;
+using Pandaros.Settlers.ColonyManagement;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace Pandaros.Settlers.Research
@@ -35,7 +29,7 @@ namespace Pandaros.Settlers.Research
 
         public override void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+            ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
     }
 
@@ -72,7 +66,7 @@ namespace Pandaros.Settlers.Research
 
         public override void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+            ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
     }
 
@@ -109,7 +103,7 @@ namespace Pandaros.Settlers.Research
 
         public override void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+            ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
     }
 
@@ -147,7 +141,7 @@ namespace Pandaros.Settlers.Research
 
         public override void ResearchComplete(object sender, ResearchCompleteEventArgs e)
         {
-            SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+            ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
         }
     }
 }

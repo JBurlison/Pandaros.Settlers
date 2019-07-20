@@ -1,7 +1,7 @@
-﻿using Pandaros.Settlers.ColonyManagement;
-using Pandaros.Settlers.Models;
+﻿using Pandaros.API;
+using Pandaros.API.ColonyManagement;
+using Pandaros.API.Research;
 using Science;
-using Shared;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -58,7 +58,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -155,7 +155,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -203,7 +203,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -252,7 +252,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -299,7 +299,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -348,7 +348,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -397,7 +397,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -445,7 +445,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -492,7 +492,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -540,7 +540,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -588,7 +588,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
         public class WorkBenchTrainingResearch : IPandaResearch
@@ -635,7 +635,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
 
@@ -707,7 +707,7 @@ namespace Pandaros.Settlers.Research
 
             public void ResearchComplete(object sender, ResearchCompleteEventArgs e)
             {
-                SettlerManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
+                ColonistManager.ApplyJobCooldownsToNPCs(e.Manager.Colony);
             }
         }
     }

@@ -1,11 +1,9 @@
-﻿using Pandaros.Settlers.Models;
+﻿using Pandaros.API;
+using Pandaros.API.Items;
+using Pandaros.API.Models;
 using Recipes;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Items.Transportation
 {
@@ -74,10 +72,10 @@ namespace Pandaros.Settlers.Items.Transportation
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "Monorail",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zn,
-                Models.BlockSide.Zp
+                BlockSide.Zn,
+                BlockSide.Zp
             },
             CalculationType = "Track"
         };
@@ -90,10 +88,10 @@ namespace Pandaros.Settlers.Items.Transportation
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "Monorail",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zn,
-                Models.BlockSide.Xn
+                BlockSide.Zn,
+                BlockSide.Xn
             },
             CalculationType = "Track"
         };
@@ -106,10 +104,10 @@ namespace Pandaros.Settlers.Items.Transportation
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "Monorail",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.ZpYp,
-                Models.BlockSide.ZnYn
+                BlockSide.ZpYp,
+                BlockSide.ZnYn
             },
             CalculationType = "Track"
         };

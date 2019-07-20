@@ -1,6 +1,6 @@
-﻿using BlockTypes;
-using NPC;
-using Pandaros.Settlers.Entities;
+﻿using NPC;
+using Pandaros.API;
+using Pandaros.API.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;
 using Pipliz.JSON;

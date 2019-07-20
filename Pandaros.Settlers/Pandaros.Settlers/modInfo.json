@@ -9,49 +9,49 @@
     "compatibleversions": [
       "0.7.0"
     ],
-    "Pandaros.Settlers.jsonFiles": [
+    "Pandaros.API.jsonFiles": [
       {
-        "fileType": "Pandaros.Settlers.CSItems",
+        "fileType": "Pandaros.API.CSItems",
         "relativePath": "SettlersItems.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/help.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/Apothecary.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/Knights.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/Machinists.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/Machines.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/ChatCommands.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/DamageMatrix.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/armor.json"
       },
       {
-        "fileType": "Pandaros.Settlers.MenuFile",
+        "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/patchNotes.json"
       },
       {
-        "fileType": "Pandaros.Settlers.OreLayers",
+        "fileType": "Pandaros.API.OreLayers",
         "relativePath": "WorldGen/OreSettings.json"
       }
     ],
@@ -134,11 +134,6 @@
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/buildertool/en-US.json",
-        "index": -99999
-      },
-      {
-        "fileType": "addOrOverrideLocalization",
-        "relativePath": "localization/en-US/colonytool/en-US.json",
         "index": -99999
       },
       {

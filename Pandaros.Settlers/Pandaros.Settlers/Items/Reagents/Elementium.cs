@@ -1,6 +1,6 @@
-﻿using BlockTypes;
+﻿using Pandaros.API;
+using Pandaros.API.Research;
 using Pandaros.Settlers.Jobs;
-using Pandaros.Settlers.Research;
 using Pipliz.JSON;
 using Recipes;
 using Science;

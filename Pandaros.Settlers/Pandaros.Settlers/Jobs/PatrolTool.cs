@@ -1,7 +1,6 @@
-﻿using BlockTypes;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Research;
+﻿using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.localization;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
@@ -23,7 +22,7 @@ namespace Pandaros.Settlers.Jobs
     public static class PatrolTool
     {
         private static readonly Dictionary<Colony, List<KnightState>> _loadedKnights = new Dictionary<Colony, List<KnightState>>();
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Knights");
+        private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Knights");
 
         public static ItemTypesServer.ItemTypeRaw Item { get; private set; }
         public static ItemTypesServer.ItemTypeRaw PatrolFlag { get; private set; }
@@ -191,7 +190,7 @@ namespace Pandaros.Settlers.Jobs
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
         }
 
@@ -331,7 +330,7 @@ namespace Pandaros.Settlers.Jobs
                         }
                         catch (Exception ex)
                         {
-                            PandaLogger.LogError(ex);
+                            SettlersLogger.LogError(ex);
                         }
 
                     if (toRemove != default(Knight))
@@ -355,7 +354,7 @@ namespace Pandaros.Settlers.Jobs
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
         }
 

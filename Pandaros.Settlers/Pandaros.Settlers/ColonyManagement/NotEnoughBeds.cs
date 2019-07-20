@@ -1,17 +1,11 @@
 ﻿using Happiness;
-using Pipliz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static BlockEntities.Implementations.BedTracker;
+using Pandaros.API.localization;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
     public class NotEnoughBeds : IHappinessCause
     {
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
+        public static LocalizationHelper LocalizationHelper { get; private set; } = new LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
 
         public float Evaluate(Colony colony)
         {

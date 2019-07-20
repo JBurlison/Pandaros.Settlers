@@ -1,15 +1,11 @@
 ﻿using Happiness;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pandaros.API.localization;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
     public class SettlerChance : IHappinessEffect
     {
-        static localization.LocalizationHelper _localization = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Settlers");
+        static LocalizationHelper _localization = new LocalizationHelper(GameLoader.NAMESPACE, "Settlers");
 
         public string GetDescription(Colony colony, Players.Player player)
         {

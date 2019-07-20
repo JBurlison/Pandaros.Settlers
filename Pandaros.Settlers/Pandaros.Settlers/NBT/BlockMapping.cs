@@ -1,4 +1,4 @@
-﻿using BlockTypes;
+﻿using Pandaros.API;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -29,13 +29,13 @@ namespace Pandaros.Settlers.NBT
                             newType = index;
                         else
                         {
-                            PandaLogger.Log(ChatColor.yellow, "Unable to find CSType {0} from the itemType table for block {1} from mapping the file. This item will be mapped to air.", CSType, Name);
+                            SettlersLogger.Log(ChatColor.yellow, "Unable to find CSType {0} from the itemType table for block {1} from mapping the file. This item will be mapped to air.", CSType, Name);
                             _index = ColonyBuiltIn.ItemTypes.AIR.Id;
                         }
                     }
                     else
                     { 
-                        PandaLogger.Log(ChatColor.yellow, "Item {0} from mapping file has a blank cstype. This item will be mapped to air.", Name);
+                        SettlersLogger.Log(ChatColor.yellow, "Item {0} from mapping file has a blank cstype. This item will be mapped to air.", Name);
                         _index = ColonyBuiltIn.ItemTypes.AIR.Id;
                     }
 
@@ -95,7 +95,7 @@ namespace Pandaros.Settlers.NBT
                                 CStoMCMappings[csType].Add(newBlock);
                             }
                             else
-                                PandaLogger.Log(ChatColor.yellow, "Unable to load item {0} from mapping file. This item will be mapped to air.", name);
+                                SettlersLogger.Log(ChatColor.yellow, "Unable to load item {0} from mapping file. This item will be mapped to air.", name);
 
                             if (newBlock.Meta > 0)
                                 MCtoCSMappings[string.Format("{0}:{1}", newBlock.Type, newBlock.Meta)] = newBlock;
@@ -104,12 +104,12 @@ namespace Pandaros.Settlers.NBT
                         }
                     }
                     else
-                        PandaLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
+                        SettlersLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
                 }
                 catch (Exception ex)
                 {
-                    PandaLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
-                    PandaLogger.LogError(ex);
+                    SettlersLogger.Log(ChatColor.red, ERROR_MESSAGE, file);
+                    SettlersLogger.LogError(ex);
                 }
             }
         }

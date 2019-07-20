@@ -1,17 +1,10 @@
 ﻿using Happiness;
-using Newtonsoft.Json;
-using Pandaros.Settlers.Items;
-using Pipliz.JSON;
-using System;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Extender;
+using Pandaros.API.localization;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static ItemTypesServer;
-using Pandaros.Settlers.Extender;
-using Pandaros.Settlers.Entities;
-using Pipliz;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
@@ -46,7 +39,7 @@ namespace Pandaros.Settlers.ColonyManagement
     public class ColonistDied : IHappinessCause
     {
         public static Dictionary<Colony, List<double>> DieCount { get; set; } = new Dictionary<Colony, List<double>>();
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
+        public static LocalizationHelper LocalizationHelper { get; private set; } = new LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCDied, GameLoader.NAMESPACE + ".ColonyManager.ColonistDied.OnNPCDied")]
         public static void OnNPCDied(NPC.NPCBase nPC)

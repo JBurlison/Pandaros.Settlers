@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Chatting;
+using NetworkUI;
+using NetworkUI.Items;
+using Pandaros.API.Extender;
+using Pandaros.API.localization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Chatting;
-using NetworkUI;
-using NetworkUI.Items;
-using Pandaros.Settlers.Extender;
-using Pipliz;
 
 namespace Pandaros.Settlers.Server
 {
@@ -17,7 +15,7 @@ namespace Pandaros.Settlers.Server
     {
         public ChatHistory() { }
 
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "System");
+        private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "System");
 
         public double NextUpdateTimeMin => 30;
 
@@ -45,7 +43,7 @@ namespace Pandaros.Settlers.Server
         {
             if (data.ButtonIdentifier == GameLoader.NAMESPACE + ".ChatHistory")
             {
-                PandaLogger.Log(data.ButtonIdentifier);
+                SettlersLogger.Log(data.ButtonIdentifier);
 
                 NetworkMenu menu = new NetworkMenu();
                 var file = Path.Combine(GameLoader.SAVE_LOC, "ChatLog.log");

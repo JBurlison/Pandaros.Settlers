@@ -1,12 +1,9 @@
-﻿using BlockTypes;
-using Jobs;
+﻿using Jobs;
 using NPC;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.NBT;
+using Pandaros.API;
+using Pandaros.API.Models;
 using Pipliz;
 using Pipliz.Mods.BaseGame.Construction;
-using Recipes;
-using Shared;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,7 +35,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             if (bpi == null)
             {
-                PandaLogger.Log(ChatColor.yellow, "iterationType must be of type SchematicIterator for the SchematicBuilder.");
+                SettlersLogger.Log(ChatColor.yellow, "iterationType must be of type SchematicIterator for the SchematicBuilder.");
                 state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
                 return;
@@ -187,7 +184,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 // failed to find next position to do job at, self-destruct
                 state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
-                PandaLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", iterationType.CurrentPosition);
+                SettlersLogger.Log(ChatColor.yellow, "Failed to MoveNext after while. Iterator position: {0}.", iterationType.CurrentPosition);
                 return;
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Pandaros.API;
+using System.Linq;
 
 namespace Pandaros.Settlers.NBT
 {
@@ -55,11 +56,11 @@ namespace Pandaros.Settlers.NBT
                     else if (BlockMapping.MCtoCSMappings.TryGetValue(ItemID, out var mapping))
                         return mapping;
                     else
-                        PandaLogger.Log(ChatColor.yellow, "1) Unable to find mapping for block {0}", ToString());
+                        SettlersLogger.Log(ChatColor.yellow, "1) Unable to find mapping for block {0}", ToString());
                 }
                 catch (System.Exception)
                 {
-                    PandaLogger.Log(ChatColor.yellow, "2) Unable to find mapping for block {0}", ToString());
+                    SettlersLogger.Log(ChatColor.yellow, "2) Unable to find mapping for block {0}", ToString());
                 }
 
                 return BlockMapping.MCtoCSMappings[ColonyBuiltIn.ItemTypes.AIR.Id.ToString()];

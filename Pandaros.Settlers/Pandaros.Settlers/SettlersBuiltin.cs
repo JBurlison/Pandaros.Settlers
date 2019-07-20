@@ -1,8 +1,8 @@
-using Pandaros.Settlers.Models;
+using Pandaros.API.Models;
 
 namespace Pandaros.Settlers
 {
-  public static class SettlersBuiltIn
+    public static class SettlersBuiltIn
   {
       public static class Research
       {

@@ -1,9 +1,9 @@
 ﻿using AI;
 using Monsters;
 using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Monsters.Normal;
+using Pandaros.API;
+using Pandaros.API.Monsters;
+using Pandaros.API.Server;
 using Pipliz;
 using Pipliz.JSON;
 using Shared;
@@ -76,7 +76,7 @@ namespace Pandaros.Settlers.Monsters.Normal
 
                     AudioManager.SendAudio(Position, "sling");
                     p.Health -= Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));
-                    Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, p.Position);
+                    AnimationManager.AnimatedObjects[AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, p.Position);
                     ServerManager.SendParticleTrail(Position, p.Position, 2);
                     AudioManager.SendAudio(p.Position, "fleshHit");
                     _cooldown = Time.SecondsSinceStartDouble + 10;
@@ -87,7 +87,7 @@ namespace Pandaros.Settlers.Monsters.Normal
                     Indicator.SendIconIndicatorNear(new Vector3Int(Position), ID,
                                                     new IndicatorState(10, ColonyBuiltIn.ItemTypes.SLINGBULLET.Name));
 
-                    Server.AnimationManager.AnimatedObjects[Server.AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, npc.Position.Vector);
+                    AnimationManager.AnimatedObjects[AnimationManager.SLINGBULLET].SendMoveToInterpolated(Position, npc.Position.Vector);
                     ServerManager.SendParticleTrail(Position, npc.Position.Vector, 2);
                     AudioManager.SendAudio(Position, "sling");
                     var dmg = Damage.Sum(kvp => kvp.Key.CalcDamage(DamageType.Physical, kvp.Value));

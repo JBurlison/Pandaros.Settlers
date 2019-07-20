@@ -112,7 +112,6 @@
     "Pandaros.Settlers.VoidTurret": "Void Turret",
     "Pandaros.Settlers.HelpMenu": "Settlers! Mod Help",
     "Pandaros.Settlers.SchematicTool": "Settlers! Schematic Tool",
-    "Pandaros.Settlers.ColonyManagementTool": "Colony Management Tool",
     "Pandaros.Settlers.Sorcerer": "Sorcerer",
     "Pandaros.Settlers.Healthbooster": "Health Booster",
     "Pandaros.Settlers.BootsOfFalling": "Boots Of Falling",
@@ -370,7 +369,6 @@
     "Pandaros.Settlers.VoidTurret": "Void Turret  deals 400 void damage and 100 physical damage per shot. Same range as matchlock colonist.",
     "Pandaros.Settlers.HelpMenu": "To use: place it on your toolbar and right click. This will bring up the help menu for the Settlers! mod.",
     "Pandaros.Settlers.SchematicTool": "To use: place it on your toolbar and right click. This will bring up a menu that can create builder areas that can build and save schematics.",
-    "Pandaros.Settlers.ColonyManagementTool": "To use: place it on your toolbar and right click. The management tool is used to help recruit colonists and assign them directly to the jobs you want. It also shows job stats.",
     "Pandaros.Settlers.ServerManagementTool": "To use: place it on your toolbar and right click. The server management tool allows you to manage the players on your server!",
     "Pandaros.Settlers.Sorcerer": "Sorcerer crafts magical items for players and colonists.",
     "Pandaros.Settlers.Healthbooster": "Heals player for 5 health every 5 seconds. The effect stacks. Makes you feel slightly more invincible.",
@@ -436,14 +434,11 @@
     "Pandaros": {
       "Settlers": {
         "Apothecary": "Apothecary",
-        "inventory": {
-          "PlayerNumberPlaced": "Placed by you",
-          "PlayerNumberRemoved": "Removed by you",
-          "PlayerNumberInWorld": "In World by you",
-          "ColonyNumberPlaced": "Placed in Colony",
-          "ColonyNumberRemoved": "Removed in Colony",
-          "ColonyNumberInWorld": "In Colony",
-          "ColonyCreationDate": "Colony Creation Date"
+        "colonytool": {
+          "Amount": "Amount",
+          "Colonist": "Colonist",
+          "TimeToLeave": "Time To Leave",
+          "UnemployedLength": "Unemployment Length"
         },
         "GameDifficulty": {
           "FoodMultiplier": "FoodMultiplier: ",

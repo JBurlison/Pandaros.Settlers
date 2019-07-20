@@ -1,9 +1,7 @@
-﻿using Science;
-using System;
+﻿using Pandaros.API;
+using Pandaros.API.Research;
+using Science;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Research
 {

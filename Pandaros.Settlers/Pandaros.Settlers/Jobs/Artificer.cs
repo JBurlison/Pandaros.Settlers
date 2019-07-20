@@ -1,17 +1,14 @@
 ﻿using Jobs;
 using NPC;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Research;
+using Pandaros.API;
+using Pandaros.API.Items;
+using Pandaros.API.Jobs.Roaming;
+using Pandaros.API.Models;
+using Pandaros.API.Research;
 using Pipliz;
 using Recipes;
 using Science;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Pandaros.Settlers.Jobs
@@ -164,7 +161,7 @@ namespace Pandaros.Settlers.Jobs
             {
                 ItemId.GetItemId(GameLoader.NAMESPACE + ".Refuel"),
                 ItemId.GetItemId(GameLoader.NAMESPACE + ".Repairing"),
-                ItemId.GetItemId(GameLoader.NAMESPACE + ".Waiting")
+                ItemId.GetItemId("Pandaros.API.Waiting")
             };
     }
 

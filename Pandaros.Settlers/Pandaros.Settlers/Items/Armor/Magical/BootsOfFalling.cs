@@ -1,14 +1,11 @@
-﻿using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Items.Reagents;
-using Pandaros.Settlers.Models;
-using Pipliz;
+﻿using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Items;
+using Pandaros.API.Items.Armor;
+using Pandaros.API.Models;
 using Recipes;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Pandaros.Settlers.Items.Armor.ArmorFactory;
+using static Pandaros.API.Items.Armor.ArmorFactory;
 
 namespace Pandaros.Settlers.Items.Armor.Magical
 {

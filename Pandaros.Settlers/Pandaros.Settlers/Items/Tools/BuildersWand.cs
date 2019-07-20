@@ -1,5 +1,8 @@
 ﻿using BlockTypes;
-using Pandaros.Settlers.Entities;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.localization;
+using Pandaros.API.Research;
 using Pandaros.Settlers.Jobs;
 using Pandaros.Settlers.Research;
 using Pipliz;
@@ -132,7 +135,8 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public static class BuildersWand
     {
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "BuildersWand");
+        private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "BuildersWand");
+        private static Dictionary<PlayerState, WandMode> _WandModes = new Dictionary<PlayerState, WandMode>();
 
         public enum WandMode
         {
@@ -199,8 +203,7 @@ namespace Pandaros.Settlers.Items
             items.Add(seclectorName, Selector);
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked,
-            GameLoader.NAMESPACE + ".Items.BuildersWand.PlayerClicked")]
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.BuildersWand.PlayerClicked")]
         public static void PlayerClicked(Players.Player player, PlayerClickedData playerClickData)
         {
             if (playerClickData.IsConsumed || playerClickData.TypeSelected != Item.ItemIndex)
@@ -210,21 +213,24 @@ namespace Pandaros.Settlers.Items
             var rayCastHit = click.GetVoxelHit();
             var ps         = PlayerState.GetPlayerState(player);
 
+            if (!_WandModes.ContainsKey(ps))
+                _WandModes.Add(ps, WandMode.Horizontal);
+
             if (click.ClickType != PlayerClickedData.EClickType.Right)
             {
                 if (ps.BuildersWandPreview.Count != 0)
                 {
                     foreach (var pos in ps.BuildersWandPreview)
                         if (World.TryGetTypeAt(pos, out ushort objType) && objType == Selector.ItemIndex)
-                            ServerManager.TryChangeBlock(pos, ColonyBuiltIn.ItemTypes.AIR.Id);
+                            ServerManager.TryChangeBlock(pos, ColonyBuiltIn.ItemTypes.AIR.Id, new BlockChangeRequestOrigin(player));
 
                     ps.BuildersWandPreview.Clear();
                     ps.BuildersWandTarget = ColonyBuiltIn.ItemTypes.AIR.Id;
                 }
                 else
                 {
-                    ps.BuildersWandMode = ps.BuildersWandMode.Next();
-                    PandaChat.Send(player, _localizationHelper, "WandMode", ChatColor.green, ps.BuildersWandMode.ToString(), ps.BuildersWandCharge.ToString());
+                    _WandModes[ps] = _WandModes[ps].Next();
+                    PandaChat.Send(player, _localizationHelper, "WandMode", ChatColor.green, _WandModes[ps].ToString(), ps.BuildersWandCharge.ToString());
                 }
             }
             else
@@ -237,11 +243,11 @@ namespace Pandaros.Settlers.Items
                         if (stockpile.TryRemove(ps.BuildersWandTarget))
                         {
                             ps.BuildersWandCharge--;
-                            ServerManager.TryChangeBlock(pos, ps.BuildersWandTarget);
+                            ServerManager.TryChangeBlock(pos, ps.BuildersWandTarget, new BlockChangeRequestOrigin(player));
                         }
                         else
                         {
-                            ServerManager.TryChangeBlock(pos, ColonyBuiltIn.ItemTypes.AIR.Id);
+                            ServerManager.TryChangeBlock(pos, ColonyBuiltIn.ItemTypes.AIR.Id, new BlockChangeRequestOrigin(player));
                         }
 
                     ps.BuildersWandPreview.Clear();
@@ -260,7 +266,7 @@ namespace Pandaros.Settlers.Items
                     var startingPos = rayCastHit.BlockHit;
                     ps.BuildersWandTarget = rayCastHit.TypeHit;
 
-                    switch (ps.BuildersWandMode)
+                    switch (_WandModes[ps])
                     {
                         case WandMode.Horizontal:
 
@@ -326,7 +332,7 @@ namespace Pandaros.Settlers.Items
                                     break;
 
                                 default:
-                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, ps.BuildersWandMode.ToString());
+                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, _WandModes[ps].ToString());
                                     break;
                             }
 
@@ -367,7 +373,7 @@ namespace Pandaros.Settlers.Items
                                     break;
 
                                 default:
-                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, ps.BuildersWandMode.ToString());
+                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, _WandModes[ps].ToString());
                                     break;
                             }
 
@@ -408,7 +414,7 @@ namespace Pandaros.Settlers.Items
                                     break;
 
                                 default:
-                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, ps.BuildersWandMode.ToString());
+                                    PandaChat.Send(player, _localizationHelper, "NotValidTopOrBottom", ChatColor.red, _WandModes[ps].ToString());
                                     break;
                             }
 
@@ -557,7 +563,7 @@ namespace Pandaros.Settlers.Items
             if (World.TryGetTypeAt(potentialPos.Add(x, y, z), out ushort itemBehind) && itemBehind != ColonyBuiltIn.ItemTypes.AIR.Id &&
                 World.TryGetTypeAt(potentialPos, out ushort itemInPotentialPos) && itemInPotentialPos == ColonyBuiltIn.ItemTypes.AIR.Id)
             {
-                ServerManager.TryChangeBlock(potentialPos, Selector.ItemIndex);
+                ServerManager.TryChangeBlock(potentialPos, Selector.ItemIndex, new BlockChangeRequestOrigin(ps.Player));
                 ps.BuildersWandPreview.Add(potentialPos);
             }
             else

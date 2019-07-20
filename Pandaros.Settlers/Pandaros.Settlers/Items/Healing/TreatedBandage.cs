@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using NPC;
-using Pandaros.Settlers.Entities;
+﻿using NPC;
+using Pandaros.API.Entities;
 using Pandaros.Settlers.Jobs;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
 using Shared;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items.Healing
 {

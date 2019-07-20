@@ -1,10 +1,6 @@
-﻿using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Transportation;
-using System;
+﻿using Pandaros.API.Research;
+using Pandaros.API.Transportation;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Research
 {
@@ -46,7 +42,7 @@ namespace Pandaros.Settlers.Research
             if (Train.TrainTransports.TryGetValue("Monorail", out var trainTransports))
                 foreach (var t in trainTransports)
                 {
-                    t.ManaCostPerBlock = t.TrainType.TrainConfiguration.ManaCostPerBlock / (e.Research.Value + 1);
+                    t.ManaCostPerBlock = t.TrainType.TrainConfiguration.EnergyCostPerBlock / (e.Research.Value + 1);
                 }
         }
     }

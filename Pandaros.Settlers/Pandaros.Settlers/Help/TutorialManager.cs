@@ -1,26 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using Pipliz;
-using Pipliz.JSON;
-using NetworkUI;
+﻿using NetworkUI;
 using NetworkUI.Items;
-using Pandaros.Settlers.Help;
-using Pandaros.Settlers.Items;
-using Shared;
-using Pandaros.Settlers.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text;
-using Pandaros.Settlers.Entities;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.localization;
 
 namespace Pandaros.Settlers.Help
 {
     [ModLoader.ModManager]
-    public class TutorialManager : Extender.IOnTimedUpdate
+    public class TutorialManager : API.Extender.IOnTimedUpdate
     {
-        static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Tutorial");
+        static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Tutorial");
 
         public double NextUpdateTimeMin => 5;
 

@@ -1,13 +1,11 @@
 ﻿using Jobs;
 using NPC;
-using Pandaros.Settlers.Models;
+using Pandaros.API;
+using Pandaros.API.Models;
 using Pandaros.Settlers.NBT;
 using Pipliz.Mods.BaseGame.Construction;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -37,7 +35,7 @@ namespace Pandaros.Settlers.Jobs.Construction
 
             if (bpi == null)
             {
-                PandaLogger.Log(ChatColor.yellow, "iterationType must be of type ArchitectIterator for the ArchitectBuilder.");
+                SettlersLogger.Log(ChatColor.yellow, "iterationType must be of type ArchitectIterator for the ArchitectBuilder.");
                 state.SetIndicator(new Shared.IndicatorState(5f, ColonyBuiltIn.ItemTypes.ERRORIDLE.Name));
                 AreaJobTracker.RemoveJob(areaJob);
                 return;
@@ -77,7 +75,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     }
                     catch (IndexOutOfRangeException)
                     {
-                        PandaLogger.Log(ChatColor.red, $"Index out of range on ArchitectBuilder {adjX}, {adjY}, {adjZ} to a max of {bpi.BuilderSchematic.Blocks.GetLength(0)}, {bpi.BuilderSchematic.Blocks.GetLength(1)}, {bpi.BuilderSchematic.Blocks.GetLength(2)}.");
+                        SettlersLogger.Log(ChatColor.red, $"Index out of range on ArchitectBuilder {adjX}, {adjY}, {adjZ} to a max of {bpi.BuilderSchematic.Blocks.GetLength(0)}, {bpi.BuilderSchematic.Blocks.GetLength(1)}, {bpi.BuilderSchematic.Blocks.GetLength(2)}.");
 
                         CleanupJob(iterationType, areaJob, job, bpi, prvX, prvY, prvZ);
                         break;

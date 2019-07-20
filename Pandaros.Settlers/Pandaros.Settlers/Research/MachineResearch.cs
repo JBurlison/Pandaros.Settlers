@@ -1,6 +1,8 @@
-﻿using Pandaros.Settlers.Items.Machines;
+﻿using Pandaros.API;
+using Pandaros.API.Jobs.Roaming;
+using Pandaros.API.Research;
+using Pandaros.Settlers.Items.Machines;
 using Pandaros.Settlers.Jobs;
-using Pandaros.Settlers.Jobs.Roaming;
 using Science;
 using System.Collections.Generic;
 

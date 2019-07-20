@@ -1,6 +1,9 @@
 ﻿using Chatting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.localization;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -31,12 +34,12 @@ namespace Pandaros.Settlers
         {
             get
             {
-                var diffStr = GetorDefault(nameof(DefaultDifficulty), GameDifficulty.Medium.Name);
+                var diffStr = GetorDefault(nameof(DefaultDifficulty), GameDifficulty.Normal.Name);
 
                 if (GameDifficulty.GameDifficulties.ContainsKey(diffStr))
                     return GameDifficulty.GameDifficulties[diffStr];
 
-                return GameDifficulty.Medium;
+                return GameDifficulty.Normal;
             }
             private set => SetValue(nameof(DefaultDifficulty), value);
         }
@@ -76,7 +79,7 @@ namespace Pandaros.Settlers
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
         }
 
@@ -116,59 +119,25 @@ namespace Pandaros.Settlers
         {
             _configuration.SetValue(key, val);
         }
-    }
 
-
-    public class CSModConfiguration
-    {
-        public string SaveFile { get; }
-        public JSONNode SettingsRoot { get; set; }
-
-        public CSModConfiguration(string configurationFileName)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".GameDifficulty.AfterWorldLoad")]
+        public static void AfterWorldLoad()
         {
-            SaveFile = $"{GameLoader.SAVE_LOC}/{configurationFileName}.json";
+            foreach (var colony in ServerManager.ColonyTracker.ColoniesByID.Values)
+            {
+                var cs = ColonyState.GetColonyState(colony);
 
-            if (File.Exists(SaveFile))
-                SettingsRoot = JSON.Deserialize(SaveFile);
-            else
-                SettingsRoot = new JSONNode();
-        }
-
-        public void Reload()
-        {
-            if (File.Exists(SaveFile) && JSON.Deserialize(SaveFile, out var config))
-                SettingsRoot = config;
-        }
-
-        public void Save()
-        {
-            JSON.Serialize(SaveFile, SettingsRoot);
-        }
-
-        public bool HasSetting(string setting)
-        {
-            return SettingsRoot.HasChild(setting);
-        }
-
-        public T GetorDefault<T>(string key, T defaultVal)
-        {
-            if (!SettingsRoot.HasChild(key))
-                SetValue(key, defaultVal);
-
-            return SettingsRoot.GetAs<T>(key);
-        }
-
-        public void SetValue<T>(string key, T val)
-        {
-            SettingsRoot.SetAs<T>(key, val);
-            Save();
+                if (cs != null && cs.Difficulty.Rank < SettlersConfiguration.MinDifficulty.Rank)
+                    cs.Difficulty = SettlersConfiguration.MinDifficulty;
+            }
         }
     }
+
 
     public class ConfigurationChatCommand : IChatCommand
     {
 
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Configuration");
+        private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Configuration");
 
         public bool TryDoCommand(Players.Player player, string chat, List<string> split)
         {

@@ -1,11 +1,7 @@
-﻿using Pandaros.Settlers.Items.Machines;
-using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Models;
-using System;
+﻿using Pandaros.API;
+using Pandaros.API.Jobs.Roaming;
+using Pandaros.API.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Energy
 {

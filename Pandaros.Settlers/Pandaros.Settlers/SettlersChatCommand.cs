@@ -1,7 +1,8 @@
 ﻿using Chatting;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Models;
-using Pipliz;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.localization;
+using Pandaros.API.Models;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Pandaros.Settlers
     public class SettlersChatCommand : IChatCommand
     {
         private static string _Setters = GameLoader.NAMESPACE + ".Settlers";
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Settlers");
+        private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Settlers");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Settlers.AddSetting")]
         public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)

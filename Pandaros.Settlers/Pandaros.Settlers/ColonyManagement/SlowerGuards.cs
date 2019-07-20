@@ -1,9 +1,7 @@
 ﻿using Happiness;
+using Pandaros.API;
+using Pandaros.API.localization;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.ColonyManagement
 {
@@ -11,9 +9,9 @@ namespace Pandaros.Settlers.ColonyManagement
     {
         public string GetDescription(Colony colony, Players.Player player)
         {
-            var localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
+            var localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
             var name = "";
-            var cs = Entities.ColonyState.GetColonyState(colony);
+            var cs = API.Entities.ColonyState.GetColonyState(colony);
 
             if (colony.DifficultySetting.EnabledHappiness && colony.HappinessData.CachedHappiness < 20)
             {

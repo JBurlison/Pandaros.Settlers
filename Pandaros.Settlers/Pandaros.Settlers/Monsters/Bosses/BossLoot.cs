@@ -1,10 +1,5 @@
-﻿using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pandaros.API.Items;
+using Pandaros.API.Models;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -20,6 +15,4 @@ namespace Pandaros.Settlers.Monsters.Bosses
             MonsterTypes.Add("Boss");
         }
     }
-
-   
 }

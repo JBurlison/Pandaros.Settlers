@@ -1,6 +1,6 @@
-﻿using BlockTypes;
-using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Models;
+﻿using Pandaros.API;
+using Pandaros.API.Jobs.Roaming;
+using Pandaros.API.Models;
 using System.Collections.Generic;
 using System.Linq;
 

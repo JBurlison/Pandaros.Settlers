@@ -1,19 +1,16 @@
-﻿using BlockTypes;
-using NetworkUI;
+﻿using NetworkUI;
 using NetworkUI.Items;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Research;
-using Pipliz;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Items;
+using Pandaros.API.localization;
+using Pandaros.API.Models;
+using Pandaros.API.Research;
 using Recipes;
 using Science;
 using Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Pandaros.Settlers.Items.StaticItems;
 
 namespace Pandaros.Settlers.Items
 {
@@ -106,7 +103,7 @@ namespace Pandaros.Settlers.Items
     [ModLoader.ModManager]
     public class BackpackCallbacks
     {
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "backpack");
+        static readonly LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "backpack");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Items.Backpack.OpenMenu")]
         public static void OpenMenu(Players.Player player, PlayerClickedData playerClickData)
@@ -365,7 +362,7 @@ namespace Pandaros.Settlers.Items
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return menu;
@@ -432,7 +429,7 @@ namespace Pandaros.Settlers.Items
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return menu;

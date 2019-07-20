@@ -1,13 +1,10 @@
-﻿using BlockTypes;
-using Jobs;
+﻿using Jobs;
 using NPC;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Research;
-using Pipliz.JSON;
+using Pandaros.API;
+using Pandaros.API.Models;
+using Pandaros.API.Research;
 using Recipes;
 using Science;
-using Shared;
 using System.Collections.Generic;
 using UnityEngine;
 

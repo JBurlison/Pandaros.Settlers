@@ -1,7 +1,7 @@
-﻿using BlockTypes;
-using Jobs;
+﻿using Jobs;
 using NPC;
-using Pandaros.Settlers.Items;
+using Pandaros.API;
+using Pandaros.API.Models;
 using Pipliz.JSON;
 using Recipes;
 using System.Collections.Generic;

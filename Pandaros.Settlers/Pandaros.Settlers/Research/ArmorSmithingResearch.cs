@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Pandaros.Settlers.Items.Armor;
+﻿using Pandaros.API;
+using Pandaros.API.Research;
 using Science;
+using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
 {

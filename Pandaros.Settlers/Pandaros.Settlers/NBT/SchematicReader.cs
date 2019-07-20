@@ -1,14 +1,12 @@
-﻿using BlockTypes;
-using fNbt;
+﻿using fNbt;
 using Newtonsoft.Json;
+using Pandaros.API;
 using Pipliz;
 using Pipliz.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.NBT
 {
@@ -34,7 +32,7 @@ namespace Pandaros.Settlers.NBT
             catch (Exception ex)
             {
                 metadata = null;
-                PandaLogger.LogError(ex, "error getting metadata for schematic {0}", name);
+                SettlersLogger.LogError(ex, "error getting metadata for schematic {0}", name);
             }
 
             return metadata != null;

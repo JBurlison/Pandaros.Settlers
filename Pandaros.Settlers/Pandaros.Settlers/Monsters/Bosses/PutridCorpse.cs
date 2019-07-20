@@ -1,12 +1,13 @@
 ﻿using AI;
 using Monsters;
 using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Monsters.Normal;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Monsters;
+using Pipliz;
 using Pipliz.JSON;
 using System.Collections.Generic;
 using UnityEngine;
-using Time = Pipliz.Time;
 
 namespace Pandaros.Settlers.Monsters.Bosses
 {
@@ -79,7 +80,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnUpdate, GameLoader.NAMESPACE + ".Monsters.Bosses.PutridCorpse.OnUpdate")]
         public void OnUpdate()
         {
-            if (_nextBossUpdateTime < Time.SecondsSinceStartInt)
+            if (_nextBossUpdateTime < Pipliz.Time.SecondsSinceStartInt)
             {
                 foreach (var follower in originalGoal.Followers)
                 {
@@ -95,7 +96,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                         Players.TakeHit(o, 10, true);
                 });
 
-                _nextBossUpdateTime = Time.SecondsSinceStartInt + 5;
+                _nextBossUpdateTime = Pipliz.Time.SecondsSinceStartInt + 5;
             }
 
 

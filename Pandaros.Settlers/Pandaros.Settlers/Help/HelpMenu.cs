@@ -1,12 +1,12 @@
-﻿using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Extender;
-using Pipliz;
+﻿using NetworkUI;
+using NetworkUI.Items;
+using Pandaros.API.Extender;
+using Pandaros.API.Help;
+using Pandaros.API.localization;
+using Pandaros.API.Models;
 using Shared;
 using System.Collections.Generic;
-using static Pandaros.Settlers.Items.StaticItems;
-using NetworkUI;
-using NetworkUI.Items;
+using static Pandaros.API.Items.StaticItems;
 
 namespace Pandaros.Settlers.Help
 {
@@ -38,7 +38,7 @@ namespace Pandaros.Settlers.Help
             UIUrl = "Wiki.MainMenu"
         };
 
-        private static localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Wiki");
+        private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Wiki");
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
         {

@@ -1,10 +1,4 @@
-﻿using Pandaros.Settlers.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Pandaros.Settlers.Models;
-using System.Threading.Tasks;
+﻿using Pandaros.API.Models;
 
 namespace Pandaros.Settlers.StatusIcons
 {

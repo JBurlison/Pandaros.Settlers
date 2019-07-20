@@ -1,19 +1,20 @@
-﻿using BlockTypes;
-using NetworkUI;
+﻿using NetworkUI;
 using NetworkUI.Items;
+using Pandaros.API;
+using Pandaros.API.Items;
+using Pandaros.API.localization;
+using Pandaros.API.Models;
+using Pandaros.API.Research;
 using Pandaros.Settlers.NBT;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Research;
 using Pipliz;
 using Pipliz.JSON;
+using Science;
 using Shared;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static AreaJobTracker;
-using Pandaros.Settlers.Models;
-using Science;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -114,7 +115,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         };
 
         private static readonly string Selected_Schematic = GameLoader.NAMESPACE + ".SelectedSchematic";
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "buildertool");
+        static readonly LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "buildertool");
         private static Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>> _awaitingClick = new Dictionary<Players.Player, Tuple<SchematicClickType, string, Schematic.Rotation>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerClicked, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OpenMenu")]
@@ -301,11 +302,11 @@ namespace Pandaros.Settlers.Jobs.Construction
                                             menu.Items.Add(new HorizontalRow(items));
                                         }
                                         else
-                                            PandaLogger.Log(ChatColor.orange, "Unknown item for schematic: {0}", kvp.Key);
+                                            SettlersLogger.Log(ChatColor.orange, "Unknown item for schematic: {0}", kvp.Key);
                                     }
                                     catch (Exception ex)
                                     {
-                                        PandaLogger.LogError(ex);
+                                        SettlersLogger.LogError(ex);
                                     }
                                 }
 
@@ -325,7 +326,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     var scem = data.Storage.GetAs<string>(Selected_Schematic);
                     var rotation = data.Storage.GetAs<int>(Selected_Schematic + ".Rotation");
 
-                    PandaLogger.Log("Schematic: {0}", scem);
+                    SettlersLogger.Log("Schematic: {0}", scem);
 
                     if (SchematicReader.TryGetSchematicMetadata(scem, data.Player.ActiveColony.ColonyID, out SchematicMetadata metadata))
                     {

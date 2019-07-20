@@ -1,9 +1,9 @@
 ﻿using AI;
 using Monsters;
 using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Monsters.Normal;
-using Pipliz;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Monsters;
 using Pipliz.JSON;
 using System.Collections.Generic;
 using System.Reflection;
@@ -83,7 +83,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
         {
             killedBefore = false;
 
-            if (_updateTime < Time.SecondsSinceStartDouble)
+            if (_updateTime < Pipliz.Time.SecondsSinceStartDouble)
             {
                 var alreadyTeleported = new List<IMonster>();
                 var ps = ColonyState.GetColonyState(OriginalGoal);
@@ -127,7 +127,7 @@ namespace Pandaros.Settlers.Monsters.Bosses
                     }
                 }
 
-                _updateTime = Time.SecondsSinceStartDouble + cooldown;
+                _updateTime = Pipliz.Time.SecondsSinceStartDouble + cooldown;
             }
         }
 

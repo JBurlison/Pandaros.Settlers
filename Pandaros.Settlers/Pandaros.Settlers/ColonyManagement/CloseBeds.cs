@@ -2,14 +2,13 @@
 using Happiness;
 using NetworkUI;
 using NetworkUI.Items;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Extender;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Extender;
+using Pandaros.API.localization;
 using Pipliz;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static BlockEntities.Implementations.BedTracker;
 
 namespace Pandaros.Settlers.ColonyManagement
@@ -31,9 +30,9 @@ namespace Pandaros.Settlers.ColonyManagement
         }
 
         public static Dictionary<Colony, int> CachedHappiness { get; set; } = new Dictionary<Colony, int>();
-        public static localization.LocalizationHelper LocalizationHelper { get; private set; } = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
+        public static LocalizationHelper LocalizationHelper { get; private set; } = new LocalizationHelper(GameLoader.NAMESPACE, "Happiness");
         public static Dictionary<Colony, BedStateObject> BedCache { get; private set; } = new Dictionary<Colony, BedStateObject>();
-        static readonly Pandaros.Settlers.localization.LocalizationHelper _localizationHelper = new localization.LocalizationHelper(GameLoader.NAMESPACE, "Beds");
+        static readonly LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Beds");
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, GameLoader.NAMESPACE + ".Entities.PlayerState.OnPlayerConnectedSuperLate")]
         public static void OnPlayerConnectedSuperLate(Players.Player p)
@@ -116,7 +115,7 @@ namespace Pandaros.Settlers.ColonyManagement
                     }
                     catch (Exception ex)
                     {
-                        PandaLogger.LogError(ex);
+                        SettlersLogger.LogError(ex);
                     }
                 }
 

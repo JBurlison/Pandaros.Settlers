@@ -1,10 +1,5 @@
 ﻿using Chatting;
-using Pandaros.Settlers.AI;
-using Pandaros.Settlers.ColonyManagement;
-using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Items.Armor;
-using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Monsters;
+using Pandaros.API;
 using Pandaros.Settlers.Server;
 using Pipliz.JSON;
 using System;
@@ -38,9 +33,10 @@ namespace Pandaros.Settlers
         public static string GAMEDATA_FOLDER = @"";
         public static string GAME_ROOT = @"";
         public static string SAVE_LOC = "";
+        public static string MACHINE_JSON = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
-        public static readonly Version MOD_VER = new Version(0, 8, 2, 61);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 62);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
@@ -53,14 +49,11 @@ namespace Pandaros.Settlers
         {
             WorldLoaded                 = true;
             SAVE_LOC                    = GAMEDATA_FOLDER + "savegames/" + ServerManager.WorldName + "/";
-            RoamingJobManager.MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
+            MACHINE_JSON = $"{SAVE_LOC}/{NAMESPACE}.Machines.json";
             Schematic_SAVE_LOC = $"{SAVE_LOC}/Schematics/";
 
             if (!Directory.Exists(Schematic_SAVE_LOC))
                 Directory.CreateDirectory(Schematic_SAVE_LOC);
-
-            if (!File.Exists(SAVE_LOC + "pandaros.settlers.sqlite"))
-                File.Copy(MOD_FOLDER + "/pandaros.settlers.sqlite", SAVE_LOC + "pandaros.settlers.sqlite");
 
             StubColony = Colony.CreateStub(-99998);
         }
@@ -74,7 +67,7 @@ namespace Pandaros.Settlers
             if (!Directory.Exists(Schematic_DEFAULT_LOC))
                 Directory.CreateDirectory(Schematic_DEFAULT_LOC);
 
-            PandaLogger.Log("Found mod in {0}", MOD_FOLDER);
+            SettlersLogger.Log("Found mod in {0}", MOD_FOLDER);
 
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("/", "/");
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("/", "/") + "/";
@@ -101,7 +94,7 @@ namespace Pandaros.Settlers
 
                 if (modJson.TryGetAs("enabled", out bool isEnabled) && isEnabled)
                 {
-                    PandaLogger.Log("ModInfo Found: {0}", info);
+                    SettlersLogger.Log("ModInfo Found: {0}", info);
                     AllModInfos[new FileInfo(info).Directory.FullName] = modJson;
                 }
             }
@@ -123,11 +116,10 @@ namespace Pandaros.Settlers
                 }
             }
 
-            GenerateBuiltinBlocks();
             GenerateSettlersBuiltin();
 
             if (FileWasCopied)
-                PandaLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
+                SettlersLogger.Log(ChatColor.red, "For settlers mod to fully be installed the Colony Survival surver needs to be restarted.");
         }
 
         private static void GenerateSettlersBuiltin()
@@ -168,64 +160,9 @@ namespace Pandaros.Settlers
             }
         }
 
-        private static void GenerateBuiltinBlocks()
-        {
-            if (File.Exists(MOD_FOLDER + "/ColonyBuiltin.cs"))
-                File.Delete(MOD_FOLDER + "/ColonyBuiltin.cs");
-
-            using (var fs = File.OpenWrite(MOD_FOLDER + "/ColonyBuiltin.cs"))
-            using (var sr = new StreamWriter(fs))
-            {
-                sr.WriteLine("using Pandaros.Settlers.Models;");
-                sr.WriteLine();
-                sr.WriteLine("namespace Pandaros.Settlers");
-                sr.WriteLine("{");
-                sr.WriteLine("  public static class ColonyBuiltIn");
-                sr.WriteLine("  {");
-                sr.WriteLine("      public static class Research");
-                sr.WriteLine("      {");
-
-                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "science.json").LoopArray())
-                    if (node.TryGetAs("key", out string scienceKey))
-                        sr.WriteLine($"          public const string {scienceKey.Substring(scienceKey.LastIndexOf('.') + 1).ToUpper()} = \"{scienceKey}\";");
-
-                sr.WriteLine("      }");
-                sr.WriteLine();
-
-                sr.WriteLine("      public static class NpcTypes");
-                sr.WriteLine("      {");
-
-                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "npcTypes.json").LoopArray())
-                    if (node.TryGetAs("keyName", out string npcType))
-                        sr.WriteLine($"          public const string {npcType.Substring(npcType.LastIndexOf('.') + 1).ToUpper()} = \"{npcType}\";");
-
-                sr.WriteLine("      }");
-                sr.WriteLine();
-
-                sr.WriteLine("      public static class ItemTypes");
-                sr.WriteLine("      {");
-
-                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "generateblocks.json").LoopArray())
-                    if (node.TryGetAs("generateType", out string genType) && genType == "rotateBlock" && node.TryGetAs("typeName", out string itemName))
-                    {
-                        sr.WriteLine($"          public static readonly ItemId {itemName.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{itemName}\");");
-
-                        foreach (var rotation in BLOCK_ROTATIONS)
-                            sr.WriteLine($"          public static readonly ItemId {(itemName + rotation).Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{(itemName + rotation)}\");");
-                    }
-
-                foreach (var node in JSON.Deserialize(GAMEDATA_FOLDER + "types.json").LoopObject())
-                        sr.WriteLine($"          public static readonly ItemId {node.Key.Replace('+', 'p').Replace('-', 'n').ToUpper()} = ItemId.GetItemId(\"{node.Key}\");");
-
-                sr.WriteLine("      }");
-                sr.WriteLine("  }");
-                sr.WriteLine("}");
-            }
-        }
-
         private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            PandaLogger.Log(args.Name);
+            SettlersLogger.Log(args.Name);
             try
             {
                 if (args.Name.Contains("System.Xml.Linq"))
@@ -251,7 +188,7 @@ namespace Pandaros.Settlers
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return null;
@@ -280,11 +217,8 @@ namespace Pandaros.Settlers
         {
             RUNNING = true;
             CommandManager.RegisterCommand(new ChatHistory());
-            CommandManager.RegisterCommand(new GameDifficultyChatCommand());
-            CommandManager.RegisterCommand(new ArmorCommand());
             CommandManager.RegisterCommand(new VersionChatCommand());
             CommandManager.RegisterCommand(new ConfigurationChatCommand());
-            CommandManager.RegisterCommand(new BossesChatCommand());
             CommandManager.RegisterCommand(new SettlersChatCommand());           
             VersionChecker.WriteVersionsToConsole();
 #if Debug
@@ -377,19 +311,19 @@ namespace Pandaros.Settlers
                                         retval.Add(info.Key, new List<JSONNode>());
 
                                     retval[info.Key].Add(jsonNode);
-                                    PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, info.Key);
+                                    SettlersLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, info.Key);
                                 }
                             }
                             else
                             {
-                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", info.Value);
+                                SettlersLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", info.Value);
                             }
                         }
                     }
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return retval;
@@ -415,23 +349,23 @@ namespace Pandaros.Settlers
                                             retval.Add(info.Key, new List<string>());
 
                                         retval[info.Key].Add(itemsPath);
-                                        PandaLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, info.Key);
+                                        SettlersLogger.LogToFile("Getting json configurations {0} from file {1}", fileType, info.Key);
                                     }
                                     else
                                     {
-                                        PandaLogger.Log(ChatColor.red, "Unable to read relativePath for fileType {0} from file {1}", itemsPath, info.Key);
+                                        SettlersLogger.Log(ChatColor.red, "Unable to read relativePath for fileType {0} from file {1}", itemsPath, info.Key);
                                     }
                             }
                             else
                             {
-                                PandaLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", info.Key);
+                                SettlersLogger.Log(ChatColor.red, "Unable to read fileType from file {0}", info.Key);
                             }
                         }
                     }
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return retval;

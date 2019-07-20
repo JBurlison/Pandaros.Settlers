@@ -1,13 +1,9 @@
-﻿using Pandaros.Settlers.Items;
-using Pandaros.Settlers.Models;
+﻿using Pandaros.API;
+using Pandaros.API.Items;
+using Pandaros.API.Models;
 using Recipes;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Pandaros.Settlers.Items.StaticItems;
 
 // pipe fill color: 1058c7
 namespace Pandaros.Settlers.Energy
@@ -78,10 +74,10 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zn,
-                Models.BlockSide.Zp
+                BlockSide.Zn,
+                BlockSide.Zp
             },
             CalculationType = "Pipe"
         };
@@ -94,10 +90,10 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zp,
-                Models.BlockSide.Xp
+                BlockSide.Zp,
+                BlockSide.Xp
             },
             CalculationType = "Pipe"
         };
@@ -110,11 +106,11 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Yp,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Zp
+                BlockSide.Yp,
+                BlockSide.Zn,
+                BlockSide.Zp
             },
             CalculationType = "Pipe"
         };
@@ -128,11 +124,11 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Yn,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Xp
+                BlockSide.Yn,
+                BlockSide.Zn,
+                BlockSide.Xp
             },
             CalculationType = "Pipe"
         };
@@ -145,12 +141,12 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zp,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Yp,
-                Models.BlockSide.Yn
+                BlockSide.Zp,
+                BlockSide.Zn,
+                BlockSide.Yp,
+                BlockSide.Yn
             },
             CalculationType = "Pipe"
         };
@@ -163,12 +159,12 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zp,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Xp,
-                Models.BlockSide.Yp
+                BlockSide.Zp,
+                BlockSide.Zn,
+                BlockSide.Xp,
+                BlockSide.Yp
             },
             CalculationType = "Pipe"
         };
@@ -181,13 +177,13 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zp,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Xp,
-                Models.BlockSide.Yp,
-                Models.BlockSide.Yn
+                BlockSide.Zp,
+                BlockSide.Zn,
+                BlockSide.Xp,
+                BlockSide.Yp,
+                BlockSide.Yn
             },
             CalculationType = "Pipe"
         };
@@ -200,14 +196,14 @@ namespace Pandaros.Settlers.Energy
         public override ConnectedBlock ConnectedBlock { get; set; } = new ConnectedBlock()
         {
             BlockType = "ManaPipe",
-            Connections = new List<Models.BlockSide>()
+            Connections = new List<BlockSide>()
             {
-                Models.BlockSide.Zp,
-                Models.BlockSide.Zn,
-                Models.BlockSide.Xp,
-                Models.BlockSide.Xn,
-                Models.BlockSide.Yp,
-                Models.BlockSide.Yn
+                BlockSide.Zp,
+                BlockSide.Zn,
+                BlockSide.Xp,
+                BlockSide.Xn,
+                BlockSide.Yp,
+                BlockSide.Yn
             },
             CalculationType = "Pipe"
         };

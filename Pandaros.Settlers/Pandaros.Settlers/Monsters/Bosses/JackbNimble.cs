@@ -1,8 +1,9 @@
 ﻿using AI;
 using Monsters;
 using NPC;
-using Pandaros.Settlers.Entities;
-using Pandaros.Settlers.Monsters.Normal;
+using Pandaros.API;
+using Pandaros.API.Entities;
+using Pandaros.API.Monsters;
 using Pipliz.JSON;
 using System.Collections.Generic;
 

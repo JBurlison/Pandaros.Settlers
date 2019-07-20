@@ -1,11 +1,8 @@
-﻿using Pandaros.Settlers.Models;
+﻿using Pandaros.API;
+using Pandaros.API.Models;
 using Recipes;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pandaros.Settlers.Items.Transportation
 {
@@ -79,7 +76,11 @@ namespace Pandaros.Settlers.Items.Transportation
             TrainBounds = new SerializableVector3(3, 2, 3),
             IdealHeightFromTrack = 3,
             MoveTimePerBlockMs = 75,
-            ManaCostPerBlock = 0.0001f
+            EnergyCostPerBlock = 0.0001f,
+            EnergyActionEnergyName = GameLoader.NAMESPACE + ".ManaTankRefill",
+            DurabilityActionEnergyName = GameLoader.NAMESPACE + ".ManaMachineRepair",
+            RoamingJobCategory = "ManaMachine",
+            EnergyType = "Pandaros.Settlers.Mana"
         };
     }
 }

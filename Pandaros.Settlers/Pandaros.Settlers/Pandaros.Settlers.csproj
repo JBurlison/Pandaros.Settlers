@@ -32,7 +32,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>c:\Program Files %28x86%29\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\Settlers\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -90,6 +91,10 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Pandaros.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Colony Survival\gamedata\mods\Pandaros\API\Pandaros.API.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.CodeFirst.1.5.1.25\lib\net45\SQLite.CodeFirst.dll</HintPath>
     </Reference>
@@ -141,86 +146,33 @@
   <ItemGroup>
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
-    <Compile Include="ColonyManagement\BlockTracker.cs" />
     <Compile Include="ColonyManagement\ColonistsBought.cs" />
     <Compile Include="ColonyManagement\NotEnoughBeds.cs" />
     <Compile Include="ColonyManagement\CloseBeds.cs" />
     <Compile Include="ColonyManagement\ColonistDied.cs" />
-    <Compile Include="ColonyManagement\ColonyTool.cs" />
-    <Compile Include="ColonyManagement\JobSettingsExtention.cs" />
     <Compile Include="ColonyManagement\NotEnoughJobs.cs" />
     <Compile Include="ColonyManagement\Permission.cs" />
     <Compile Include="ColonyManagement\SkilledSettlerChance.cs" />
     <Compile Include="ColonyManagement\SettlerChance.cs" />
-    <Compile Include="ColonyManagement\SkillChance.cs" />
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
-    <Compile Include="Database\PandaContext.cs" />
-    <Compile Include="Extender\IAfterModsLoaded.cs" />
-    <Compile Include="Extender\IOnConstructInventoryManageColonyUIExtender.cs" />
-    <Compile Include="Extender\IOnConstructInventoryManageColonyUI.cs" />
-    <Compile Include="Extender\Providers\AfterModsLoadedProvider.cs" />
-    <Compile Include="Extender\Providers\OnConstructInventoryManageColonyUIProvider.cs" />
-    <Compile Include="Extender\Providers\PandaZombieProvider.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Help\TutorialManager.cs" />
     <Compile Include="Items\Energy\ManaMachineRepairingAction.cs" />
     <Compile Include="Items\Energy\ManaPipe.cs" />
     <Compile Include="Items\Energy\ManaPump.cs" />
     <Compile Include="Items\Energy\ManaTank.cs" />
-    <Compile Include="Extender\IAfterModsLoadedExtention.cs" />
-    <Compile Include="Extender\IOnColonyCreated.cs" />
-    <Compile Include="Extender\IOnLoadingColony.cs" />
-    <Compile Include="Extender\IOnTimedUpdate.cs" />
-    <Compile Include="Extender\Providers\GenerateTypesProvider.cs" />
-    <Compile Include="Extender\Providers\HappinessCausesProvider.cs" />
-    <Compile Include="Extender\Providers\HappinessEffectProvider.cs" />
-    <Compile Include="Extender\Providers\ConnectedBlockCalculationTypeProvider.cs" />
-    <Compile Include="Extender\SettlersExtender.cs" />
-    <Compile Include="Items\Armor\ArmorMetadata.cs" />
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
-    <Compile Include="Items\Armor\MagicArmor.cs" />
-    <Compile Include="Items\LootTable.cs" />
     <Compile Include="Items\ItemCache.cs" />
     <Compile Include="Items\Transportation\TrainStation.cs" />
     <Compile Include="Jobs\Construction\ArchitectBuilder.cs" />
     <Compile Include="Jobs\Construction\ArchitectIterator.cs" />
     <Compile Include="Jobs\Construction\ArchitectLoader.cs" />
-    <Compile Include="Models\BlockSideValuesAttribute.cs" />
-    <Compile Include="Items\ConnectedBlocks\BlockSideComparer.cs" />
-    <Compile Include="Models\ConnectedBlock.cs" />
-    <Compile Include="Items\ConnectedBlocks\ConnectedBlockCalculator.cs" />
-    <Compile Include="Items\ConnectedBlocks\ConnectedBlockSystem.cs" />
-    <Compile Include="Items\ConnectedBlocks\ConnectedBlockTool.cs" />
-    <Compile Include="Items\ConnectedBlocks\TrackCalculationType.cs" />
-    <Compile Include="Items\ConnectedBlocks\FenceCalculationType.cs" />
-    <Compile Include="Items\ConnectedBlocks\PipeCalculationType.cs" />
-    <Compile Include="Models\CSGenerateType.cs" />
-    <Compile Include="Items\EquiptmentManager.cs" />
-    <Compile Include="Items\ConnectedBlocks\IConnectedBlockCalculationType.cs" />
-    <Compile Include="Models\IGenerateType.cs" />
-    <Compile Include="Items\MagicItemsCache.cs" />
-    <Compile Include="Models\LootPoolEntry.cs" />
-    <Compile Include="Models\OpenMenuSettings.cs" />
-    <Compile Include="Models\PlayerMagicItem.cs" />
-    <Compile Include="Items\DoorManager.cs" />
     <Compile Include="Items\Reagents\Adamantine.cs" />
     <Compile Include="Items\Reagents\MagicWand.cs" />
-    <Compile Include="Items\StaticItems.cs" />
     <Compile Include="Items\Transportation\Monorail.cs" />
     <Compile Include="Items\Transportation\PropulsionPlatform.cs" />
-    <Compile Include="Items\Weapons\MagicWeapon.cs" />
     <Compile Include="Jobs\Artificer.cs" />
     <Compile Include="Jobs\Sorcerer.cs" />
-    <Compile Include="JSONExtentionMethods.cs" />
-    <Compile Include="ListComparer.cs" />
-    <Compile Include="localization\LocalizationHelper.cs" />
-    <Compile Include="Models\BlockConnectionType.cs" />
-    <Compile Include="Models\BlockRotationDegrees.cs" />
-    <Compile Include="Models\BlockSides.cs" />
-    <Compile Include="Models\SerializableVector3.cs" />
-    <Compile Include="Models\RotationAxis.cs" />
-    <Compile Include="Models\SettlersState.cs" />
-    <Compile Include="Models\TrainConfiguration.cs" />
-    <Compile Include="Models\TrainStationSettlings.cs" />
     <Compile Include="Monsters\Normal\WaterZombie.cs" />
     <Compile Include="Monsters\Normal\FireZombie.cs" />
     <Compile Include="Monsters\Normal\EarthZombie.cs" />
@@ -229,20 +181,14 @@
     <Compile Include="Monsters\Normal\AirZombie.cs" />
     <Compile Include="Monsters\Normal\JoggerZombie.cs" />
     <Compile Include="Monsters\Normal\RockThrowerZombie.cs" />
+    <Compile Include="PandaLogger.cs" />
     <Compile Include="Research\ArmorSmithingResearch.cs" />
     <Compile Include="Research\MachineResearch.cs" />
     <Compile Include="Research\GuardResearch.cs" />
     <Compile Include="Research\MonorailResearch.cs" />
-    <Compile Include="Research\PandaResearch.cs" />
-    <Compile Include="Research\ResearchCompleteEventArgs.cs" />
     <Compile Include="Research\SettlerResearch.cs" />
     <Compile Include="Research\SwordSmithingResearch.cs" />
     <Compile Include="Server\ChatHistory.cs" />
-    <Compile Include="Server\ServerManagement.cs" />
-    <Compile Include="Models\TrackedPosition.cs" />
-    <Compile Include="Monsters\IMonsterNPCType.cs" />
-    <Compile Include="Monsters\MonsterNPCData.cs" />
-    <Compile Include="Monsters\Normal\IPandaZombie.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="SettlersBuiltin.cs" />
     <Compile Include="StatusIcons\BlowIcon.cs" />
@@ -256,10 +202,6 @@
     <Compile Include="StatusIcons\Reload.cs" />
     <Compile Include="StatusIcons\Repairing.cs" />
     <Compile Include="StatusIcons\Waiting.cs" />
-    <Compile Include="Models\TransportSave.cs" />
-    <Compile Include="Transportation\TrainTransport.cs" />
-    <Compile Include="Transportation\Train.cs" />
-    <Compile Include="WorldGen\ColonyFactory.cs" />
     <Compile Include="NBT\Block.cs" />
     <Compile Include="NBT\BlockMapping.cs" />
     <Compile Include="NBT\RawSchematic.cs" />
@@ -267,50 +209,11 @@
     <Compile Include="NBT\SchematicMetadata.cs" />
     <Compile Include="NBT\SchematicReader.cs" />
     <Compile Include="NBT\TileEntity.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="DamageType.cs" />
-    <Compile Include="Entities\ColonyState.cs" />
-    <Compile Include="Entities\HealingOverTimePC.cs" />
-    <Compile Include="Entities\HealingOverTimeNPC.cs" />
-    <Compile Include="EventedDictionary.cs" />
-    <Compile Include="Extender\IAddItemTypes.cs" />
-    <Compile Include="Extender\IAfterItemTypesDefined.cs" />
-    <Compile Include="Extender\IAfterSelectedWorld.cs" />
-    <Compile Include="Extender\IAfterWorldLoad.cs" />
-    <Compile Include="Extender\IOnAddResearchables.cs" />
     <Compile Include="Items\Backpack.cs" />
-    <Compile Include="Models\Colliders.cs" />
-    <Compile Include="Models\CSType.cs" />
-    <Compile Include="Models\ICSRecipe.cs" />
-    <Compile Include="Models\CSTextureMapping.cs" />
-    <Compile Include="Models\ICSTextureMapping.cs" />
-    <Compile Include="Models\ICSType.cs" />
-    <Compile Include="INameable.cs" />
-    <Compile Include="Models\ILucky.cs" />
-    <Compile Include="Models\OnRemove.cs" />
-    <Compile Include="Extender\Providers\LootTableProvider.cs" />
-    <Compile Include="Extender\Providers\WeaponProvider.cs" />
-    <Compile Include="Extender\Providers\RecipeProvider.cs" />
-    <Compile Include="Extender\Providers\ItemsProvider.cs" />
-    <Compile Include="Extender\Providers\ResearchProvider.cs" />
-    <Compile Include="Extender\Providers\TextureMappingProvider.cs" />
-    <Compile Include="Extender\Providers\RoamingJobObjectiveProvider.cs" />
-    <Compile Include="Extender\Providers\ArmorProvider.cs" />
-    <Compile Include="Extender\Providers\BossesProvider.cs" />
-    <Compile Include="GameDifficulty.cs" />
     <Compile Include="Help\HelpMenu.cs" />
-    <Compile Include="IMagicEffect.cs" />
-    <Compile Include="IPandaArmor.cs" />
-    <Compile Include="IPandaDamage.cs" />
-    <Compile Include="IKillReward.cs" />
-    <Compile Include="Extender\ISettlersExtension.cs" />
     <Compile Include="Items\Reagents\AirStone.cs" />
-    <Compile Include="Items\Armor\ArmorFactory.cs" />
-    <Compile Include="Items\Armor\IArmor.cs" />
+    <Compile Include="Items\Armor\ArmorRegister.cs" />
     <Compile Include="Items\Reagents\EarthStone.cs" />
-    <Compile Include="Models\ILootTable.cs" />
-    <Compile Include="Models\IPlayerMagicItem.cs" />
-    <Compile Include="Models\ItemState.cs" />
     <Compile Include="Items\Machines\MachineConstants.cs" />
     <Compile Include="Items\Machines\RefuelMachineAction.cs" />
     <Compile Include="Items\Reagents\Void.cs" />
@@ -326,35 +229,20 @@
     <Compile Include="Items\Healing\Anitbiotic.cs" />
     <Compile Include="Items\Healing\Bandage.cs" />
     <Compile Include="Items\Healing\TreatedBandage.cs" />
-    <Compile Include="Items\Weapons\IWeapon.cs" />
-    <Compile Include="Items\Weapons\WeaponFactory.cs" />
     <Compile Include="Jobs\Construction\SchematicBuilder.cs" />
     <Compile Include="Jobs\Construction\SchematicBuilderLoader.cs" />
     <Compile Include="Jobs\Construction\SchematicIterator.cs" />
     <Compile Include="Jobs\Construction\SchematicTool.cs" />
     <Compile Include="Jobs\Machinist.cs" />
-    <Compile Include="Jobs\Roaming\RoamingJobState.cs" />
     <Compile Include="Items\Machines\GateLever.cs" />
     <Compile Include="Jobs\Apothecary.cs" />
-    <Compile Include="Jobs\Roaming\IRoamingJobObjective.cs" />
-    <Compile Include="Jobs\Roaming\RoamingJobManager.cs" />
     <Compile Include="Items\Machines\Turret.cs" />
     <Compile Include="Items\Machines\Miner.cs" />
-    <Compile Include="Server\AnimationManager.cs" />
     <Compile Include="Items\Weapons\Sword.cs" />
-    <Compile Include="Items\Weapons\WeaponMetadata.cs" />
     <Compile Include="Jobs\AdvancedCrafter.cs" />
     <Compile Include="Jobs\Knight.cs" />
-    <Compile Include="Jobs\Roaming\RoamingJob.cs" />
     <Compile Include="Jobs\PatrolTool.cs" />
-    <Compile Include="AI\NameGenerator.cs" />
-    <Compile Include="Entities\PlayerState.cs" />
-    <Compile Include="Entities\SettlerInventory.cs" />
-    <Compile Include="ExtentionMethods.cs" />
     <Compile Include="GameLoader.cs" />
-    <Compile Include="Monsters\MonsterManager.cs" />
-    <Compile Include="WorldGen\GeneratedStructure.cs" />
-    <Compile Include="WorldGen\Ore.cs" />
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -520,40 +408,13 @@
     <None Include="localization\en-US\backpack\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="localization\en-US\colonytool\en-US.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="localization\en-US\buildertool\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meshes\basket.ply">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="pandaros.settlers.sqlite">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Schematics\Mountan-Top-Castle.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\exampleton-basic.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\flying-city.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\large-town.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\medieval-forest.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\medieval-village.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\nice-medieval-village.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="WorldGen\Buildings\npc-village-makeover.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Help\Menus\Apothecary.json">
@@ -571,35 +432,20 @@
     <None Include="MCtoCSMapping.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="Help\UIManager.cs" />
-    <Compile Include="MethodUtil.cs" />
-    <Compile Include="Models\ItemId.cs" />
     <Compile Include="Monsters\Bosses\BossLoot.cs" />
     <Compile Include="Monsters\Bosses\FallenRanger.cs" />
     <Compile Include="Monsters\Bosses\Phase.cs" />
     <Compile Include="Monsters\Bosses\JackbNimble.cs" />
-    <Compile Include="Items\LootTables.cs" />
-    <Compile Include="QueueFactory.cs" />
-    <Compile Include="Research\IPandaResearch.cs" />
     <Compile Include="SettlersChatCommand.cs" />
-    <Compile Include="Monsters\BossesChatCommand.cs" />
     <Compile Include="Monsters\Bosses\PutridCorpse.cs" />
     <Compile Include="Monsters\Bosses\BulgingZombie.cs" />
     <Compile Include="Monsters\Bosses\ZombieKing.cs" />
     <Compile Include="Monsters\Bosses\Juggernaut.cs" />
     <Compile Include="Monsters\Bosses\ZombieQueen.cs" />
-    <Compile Include="Monsters\Bosses\IPandaBoss.cs" />
-    <Compile Include="Monsters\BossSpawnedEvent.cs" />
-    <Compile Include="Monsters\PandaMonsterSpawner.cs" />
     <Compile Include="Monsters\Bosses\Hoarder.cs" />
-    <Compile Include="PandaChat.cs" />
-    <Compile Include="PandaLogger.cs" />
-    <Compile Include="ColonyBuiltIn.cs" />
     <Compile Include="Research\JobResearch.cs" />
-    <Compile Include="Research\PandaResearchable.cs" />
     <Compile Include="ColonyManagement\SettlerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ColonyManagement\StatsCache.cs" />
     <Compile Include="VersionChecker.cs" />
     <None Include="Schematics\ambiyafinal.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -697,23 +543,11 @@
     <None Include="Schematics\wizard-tower.schematic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="WorldGen\Buildings\riverwood-skyrim.schematic">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="WorldGen\OreSettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ZipSupport\OreSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AI\FirstNames.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="AI\LastNames.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Audio\audioFiles.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1235,7 +1069,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="icons\inventory.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

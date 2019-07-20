@@ -1,8 +1,9 @@
 ﻿using Monsters;
+using Pandaros.API;
+using Pandaros.API.Jobs.Roaming;
+using Pandaros.API.Models;
+using Pandaros.API.Server;
 using Pandaros.Settlers.Jobs;
-using Pandaros.Settlers.Jobs.Roaming;
-using Pandaros.Settlers.Models;
-using Pandaros.Settlers.Server;
 using Pipliz;
 using Pipliz.JSON;
 using Recipes;
@@ -128,7 +129,7 @@ namespace Pandaros.Settlers.Items.Machines
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return retval;
@@ -160,7 +161,7 @@ namespace Pandaros.Settlers.Items.Machines
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex);
+                SettlersLogger.LogError(ex);
             }
 
             return retval;
@@ -243,7 +244,7 @@ namespace Pandaros.Settlers.Items.Machines
             }
             catch (Exception ex)
             {
-                PandaLogger.LogError(ex, $"Turret shoot for {machineState.RoamObjective}");
+                SettlersLogger.LogError(ex, $"Turret shoot for {machineState.RoamObjective}");
             }
         }
 
