@@ -30,5 +30,12 @@ namespace Pandaros.Settlers.AI
                 _nextUpdateTime = secondsSinceStartDouble + 5;
             }
         }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Managers.MonsterManager.OnMonsterHit")]
+        public static void OnMonsterHit(IMonster monster, ModLoader.OnHitData d)
+        {
+            if (Pipliz.Random.NextFloat() > .5f)
+                AudioManager.SendAudio(monster.Position, GameLoader.NAMESPACE + ".ZombieAudio");
+        }
     }
 }
