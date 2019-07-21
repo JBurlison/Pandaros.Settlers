@@ -17,6 +17,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 ServerManager.BlockEntityTracker.BannerTracker.TryGetClosest(userData.Position, out BannerTracker.Banner existingBanner, ServerManager.ServerSettings.Colony.ExclusiveRadius))
             {
                 if (userData.RequestOrigin.Type == BlockChangeRequestOrigin.EType.Player && 
+                    userData.RequestOrigin.AsPlayer.ID.type == NetworkID.IDType.Steam &&
                     !PermissionsManager.HasPermission(userData.RequestOrigin.AsPlayer, new PermissionsManager.Permission(GameLoader.NAMESPACE + ".Permissions.Antigrief")) &&
                     !PermissionsManager.HasPermission(userData.RequestOrigin.AsPlayer, new PermissionsManager.Permission("god")) &&
                     !existingBanner.Colony.Owners.Contains(userData.RequestOrigin.AsPlayer))
