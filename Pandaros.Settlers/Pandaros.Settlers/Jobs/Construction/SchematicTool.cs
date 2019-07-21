@@ -8,6 +8,7 @@ using Pandaros.API.Research;
 using Pandaros.Settlers.NBT;
 using Pipliz;
 using Pipliz.JSON;
+using Recipes;
 using Science;
 using Shared;
 using System;
@@ -101,6 +102,31 @@ namespace Pandaros.Settlers.Jobs.Construction
             foreach (var p in e.Manager.Colony.Owners)
                 StaticItems.AddStaticItemToStockpile(p);
         }
+    }
+
+    public class SchematicToolRecipe : ICSRecipe
+    {
+        public List<RecipeItem> requires => new List<RecipeItem>()
+        {
+            new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Id),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
+            new RecipeItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
+        };
+
+        public List<RecipeResult> results => new List<RecipeResult>()
+        {
+            new RecipeResult(GameLoader.NAMESPACE + ".SchematicTool")
+        };
+
+        public CraftPriority defaultPriority => CraftPriority.Medium;
+
+        public bool isOptional => true;
+
+        public int defaultLimit => 1;
+
+        public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
+
+        public string name => GameLoader.NAMESPACE + ".SchematicTool";
     }
 
     [ModLoader.ModManager]
