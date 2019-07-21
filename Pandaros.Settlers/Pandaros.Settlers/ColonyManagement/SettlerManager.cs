@@ -178,16 +178,16 @@ namespace Pandaros.Settlers.ColonyManagement
                         }
                     }
 
-                    if (FOOD_TIME < TimeCycle.TotalHours && cs.Difficulty.Name != GameDifficulty.Normal.Name)
-                    {
-                        if (cs.ColonyRef.FollowerCount > 10)
-                        {
-                            float currentFood = 0;
+                    //if (FOOD_TIME < TimeCycle.TotalHours && cs.Difficulty.Name != GameDifficulty.Normal.Name)
+                    //{
+                    //    if (cs.ColonyRef.FollowerCount > 10)
+                    //    {
+                    //        float currentFood = 0;
 
-                            for(int i =0; i < cs.ColonyRef.FollowerCount; i++)
-                                cs.ColonyRef.Stockpile.TryRemoveFood(ref currentFood, cs.FoodPerHour);
-                        }
-                    }
+                    //        for(int i =0; i < cs.ColonyRef.FollowerCount; i++)
+                    //            cs.ColonyRef.Stockpile.TryRemoveFood(ref currentFood, cs.FoodPerHour);
+                    //    }
+                    //}
                 }
 
             if (FOOD_TIME < TimeCycle.TotalHours)
