@@ -278,7 +278,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 var cs = ColonyState.GetColonyState(p.ActiveColony);
 
                 if (cs.SettlersEnabled != SettlersState.Disabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
-                    PandaChat.Send(p, _localizationHelper, "BuyingColonists", ChatColor.orange, MAX_BUYABLE.ToString(), cs.Difficulty.UnhappyColonistsBought.ToString());
+                    PandaChat.Send(p, _localizationHelper, "BuyingColonists", ChatColor.orange, MAX_BUYABLE.ToString(), cs.Difficulty.GetorDefault("UnhappyColonistsBought", 1).ToString());
 
                 if (cs.SettlersToggledTimes < SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4))
                     PandaChat.Send(p, _localizationHelper, "SettlersEnabled", ChatColor.orange, cs.SettlersEnabled.ToString());
@@ -355,7 +355,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
                 {
                     var multiplier = .4 - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
-                    multiplier = (multiplier + state.Difficulty.FoodMultiplier);
+                    multiplier = (multiplier + state.Difficulty.GetorDefault("FoodMultiplier", .4));
 
                     food += (float)((_baseFoodPerHour * multiplier));
                 }
@@ -381,7 +381,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 {
                     var chance =
                         state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".SettlerChance", 0f) +
-                        state.Difficulty.AdditionalChance;
+                        state.Difficulty.GetorDefault("AdditionalChance", 0);
 
                     chance += SettlerEvaluation.SpawnChance(state);
 

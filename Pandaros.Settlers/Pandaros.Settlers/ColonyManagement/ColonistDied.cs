@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.ColonyManagement
             var cs = ColonyState.GetColonyState(colony);
 
             if (cs.Difficulty.Name != GameDifficulty.Normal.Name && DieCount.TryGetValue(colony, out var count))
-                return (float)(count.Count * cs.Difficulty.UnhappinessPerColonistDeath) * -1f;
+                return (float)(count.Count * cs.Difficulty.GetorDefault("UnhappinessPerColonistDeath", 1)) * -1f;
 
             return 0;
         }

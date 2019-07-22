@@ -44,7 +44,7 @@ namespace Pandaros.Settlers.ColonyManagement
             var cs = ColonyState.GetColonyState(colony);
 
             if (cs.SettlersEnabled != SettlersState.Disabled && BoughtCount.TryGetValue(colony, out var count))
-                return (float)(count.Count * cs.Difficulty.UnhappyColonistsBought);
+                return (float)(count.Count * cs.Difficulty.GetorDefault("UnhappyColonistsBought", -1));
 
             return 0;
         }

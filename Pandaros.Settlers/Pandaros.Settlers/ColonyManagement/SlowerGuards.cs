@@ -29,7 +29,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 if (colony.HappinessData.CachedHappiness < 0)
                     percent = 0.25f;
 
-                percent = percent * cs.Difficulty.UnhappyGuardsMultiplyRate;
+                percent = percent * cs.Difficulty.GetorDefault("UnhappyGuardsMultiplyRate", 0);
 
                 foreach (var colonist in colony.Followers)
                 {

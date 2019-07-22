@@ -88,8 +88,8 @@ namespace Pandaros.Settlers.Monsters.Bosses
                 var alreadyTeleported = new List<IMonster>();
                 var ps = ColonyState.GetColonyState(OriginalGoal);
                 var rank = ps.Difficulty.Rank;
-                var teleportHP = ps.Difficulty.ZombieQueenTargetTeleportHp;
-                var cooldown = ps.Difficulty.ZombieQueenTargetTeleportCooldownSeconds;
+                var teleportHP = ps.Difficulty.GetorDefault("ZombieQueenTargetTeleportHp", 100);
+                var cooldown = ps.Difficulty.GetorDefault("ZombieQueenTargetTeleportCooldownSeconds", 5);
 
 
                 for (var i = 0; i < rank - 1; i++)
