@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.2.67",
+    "version": "0.8.2.68",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -41,6 +41,10 @@
       {
         "fileType": "Pandaros.API.MenuFile",
         "relativePath": "Help/Menus/DamageMatrix.json"
+      },
+      {
+        "fileType": "Pandaros.API.MenuFile",
+        "relativePath": "Help/Menus/Conductor.json"
       },
       {
         "fileType": "Pandaros.API.MenuFile",
@@ -139,6 +143,11 @@
       {
         "fileType": "addOrOverrideLocalization",
         "relativePath": "localization/en-US/backpack/en-US.json",
+        "index": -99999
+      },
+      {
+        "fileType": "addOrOverrideLocalization",
+        "relativePath": "localization/en-US/Conductor/en-US.json",
         "index": -99999
       },
       {

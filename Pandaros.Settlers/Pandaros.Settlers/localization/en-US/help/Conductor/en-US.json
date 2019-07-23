@@ -1,0 +1,15 @@
+{
+  "sentences": {
+    "Pandaros": {
+      "Settlers": {
+        "Wiki": {
+          "Conductor": {
+            "Description": "Conductor refuels the Propulsion Platforms as they stop at stations. The platform will stop at the station for one in game hour then move on to the next. The train station must be connected to a mana pipe fed by a mana pump.",
+            "Title": "Conductor",
+            "TrainItems": "Listed below are the items required to have a properly working Propulsion Platform."
+          }
+        }
+      }
+    }
+  }
+}
