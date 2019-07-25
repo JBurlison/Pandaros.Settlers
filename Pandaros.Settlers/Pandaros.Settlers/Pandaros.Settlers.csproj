@@ -148,6 +148,7 @@
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManagement\ColonistsBought.cs" />
+    <Compile Include="ColonyManagement\DecorHappiness.cs" />
     <Compile Include="ColonyManagement\NotEnoughBeds.cs" />
     <Compile Include="ColonyManagement\CloseBeds.cs" />
     <Compile Include="ColonyManagement\ColonistDied.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Items\Energy\ManaPump.cs" />
     <Compile Include="Items\Energy\ManaTank.cs" />
     <Compile Include="Items\Armor\Magical\BootsOfFalling.cs" />
+    <Compile Include="Items\Energy\GoldenLamp.cs" />
     <Compile Include="Items\ItemCache.cs" />
     <Compile Include="Items\Transportation\TrainStation.cs" />
     <Compile Include="Jobs\Construction\ArchitectBuilder.cs" />
@@ -1077,6 +1079,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icons\GoldCube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\inventory.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2633,6 +2638,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\basket.png" />
+    <Content Include="Textures\albedo\GoldCube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\albedo\infiniteAdamantine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2694,6 +2702,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\emissive\Artificer_emissive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\emissive\GoldCube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\emissive\Manapump_Emissive.png">
@@ -2763,6 +2774,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\height\furnaceUnlitTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\height\GoldCube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\height\grassGeneric.png">
@@ -2958,6 +2972,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\furnaceUnlitTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\normal\GoldCube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\normal\grassGeneric.png">

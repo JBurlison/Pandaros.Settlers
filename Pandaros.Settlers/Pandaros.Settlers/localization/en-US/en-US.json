@@ -1,5 +1,6 @@
 {
   "types": {
+    "Pandaros.Settlers.GoldCube": "Golden Lamp",
     "Pandaros.Settlers.TrainStation": "Train Station",
     "Pandaros.Settlers.Monorail": "Monorail",
     "Pandaros.Settlers.PropulsionPlatform": "Propulsion Platform",
@@ -123,9 +124,6 @@
     "Pandaros.Settlers.AutoLoad.rawemerald": "Raw Emerald",
     "Pandaros.Settlers.AutoLoad.refinedemerald": "Cut Emerald",
     "Pandaros.Settlers.AutoLoad.infiniteemerald": "Emerald Ore",
-    "Pandaros.Settlers.AutoLoad.egg": "Egg",
-    "Pandaros.Settlers.AutoLoad.milk": "Milk",
-    "Pandaros.Settlers.AutoLoad.cake": "Cake",
     "Pandaros.Settlers.AutoLoad.lamp": "Lamp",
     "Pandaros.Settlers.AutoLoad.ironbar": "Iron Bar",
     "Pandaros.Settlers.AutoLoad.ironbarcorner": "Iron Bar Corner",
@@ -191,9 +189,6 @@
     "Pandaros.Settlers.AutoLoad.notwater": "Water",
     "Pandaros.Settlers.AutoLoad.marblebricks": "Marble Bricks",
     "Pandaros.Settlers.AutoLoad.sledgehammer": "Sledge Hammer",
-    "Pandaros.Settlers.AutoLoad.beef": "Beef",
-    "Pandaros.Settlers.AutoLoad.cheese": "Cheese",
-    "Pandaros.Settlers.AutoLoad.carrot": "Carrot",
     "Pandaros.Settlers.AutoLoad.hammer": "Hammer",
     "Pandaros.Settlers.AutoLoad.saw": "Saw",
     "Pandaros.Settlers.AutoLoad.carpenter": "Carpenter",
@@ -274,14 +269,9 @@
     "Pandaros.Settlers.AutoLoad.berrybushslab": "Berry Bush Slab",
     "Pandaros.Settlers.AutoLoad.lava": "Lava",
     "Pandaros.Settlers.AutoLoad.lavaslab": "Lava Slab",
-    "Pandaros.Settlers.AutoLoad.aloe": "Aloe",
-    "Pandaros.Settlers.AutoLoad.tulip": "Tulip",
-    "Pandaros.Settlers.AutoLoad.daisy": "Daisy",
-    "Pandaros.Settlers.AutoLoad.Sunflower": "Sunflower",
-    "Pandaros.Settlers.AutoLoad.rose": "Rose",
-    "Pandaros.Settlers.AutoLoad.Flowers1": "Morning Glory"
   },
   "typeuses": {
+    "Pandaros.Settlers.GoldCube": "Needs Mana! Connect a mana pipe to it! Colonists love its glow! Provides +10 happiness while running!",
     "Pandaros.Settlers.TrainStation": "Place next to monorail. Must be powered by mana pipes. Adds a stop for Propulsion Platform to refuel.",
     "Pandaros.Settlers.Monorail": "Rails for Propulsion Platform. Must have at least 1 station to power the Propulsion Platform.",
     "Pandaros.Settlers.PropulsionPlatform": "Place on monorial. Right click to ride and get off! Stops at stations to refuel. May have more than one per railsystem.",
@@ -541,7 +531,8 @@
           "SlowGuards": "Guard shooting rate reduced by",
           "NotEnoughBeds": "Not Enough Beds",
           "NotEnoughJobs": "Not Enough Jobs",
-          "ColonistsBought": "Slaves Bought ({0}h Remain)"
+          "ColonistsBought": "Slaves Bought ({0}h Remain)",
+          "Decor": "Great Decor!"
         },
         "Beds": {
           "BedLocations": "Bed Information",
