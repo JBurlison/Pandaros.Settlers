@@ -73,7 +73,8 @@ namespace Pandaros.Settlers.Jobs
                     new RecipeUnlock(SettlersBuiltIn.ItemTypes.MAGICWAND, ERecipeUnlockType.Recipe),
                     new RecipeUnlock(SettlersBuiltIn.ItemTypes.TRAINSTATION, ERecipeUnlockType.Recipe),
                     new RecipeUnlock(SettlersBuiltIn.ItemTypes.MONORAIL, ERecipeUnlockType.Recipe),
-                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.PROPULSIONPLATFORM, ERecipeUnlockType.Recipe)
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.PROPULSIONPLATFORM, ERecipeUnlockType.Recipe),
+                    new RecipeUnlock(SettlersBuiltIn.ItemTypes.GOLDCUBE, ERecipeUnlockType.Recipe)
                 }
             }
         };
