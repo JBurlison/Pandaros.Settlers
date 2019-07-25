@@ -77,15 +77,14 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public const int _NUMBEROFCRAFTSPERPERCENT = 200;
         public const int _UPDATE_TIME = 10;
-        public static double FOOD_TIME { get; set; } = 0;
         public static double BED_LEAVE_HOURS = 5;
         public static double COLD_LEAVE_HOURS = 5;
         public static double HOT_LEAVE_HOURS = 6;
-        public static float _baseFoodPerHour;
         public static double _updateTime;
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
         private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "SettlerManager");
+        private static float _settlersBuffer = 0;
 
         public static int MaxPerSpawn(Colony ColonyRef)
         {
@@ -178,20 +177,22 @@ namespace Pandaros.Settlers.ColonyManagement
                         }
                     }
 
-                    //if (FOOD_TIME < TimeCycle.TotalHours && cs.Difficulty.Name != GameDifficulty.Normal.Name)
-                    //{
-                    //    if (cs.ColonyRef.FollowerCount > 10)
-                    //    {
-                    //        float currentFood = 0;
+                    if (cs.ColonyRef.FollowerCount > 10)
+                    {
+                        float foodConsumedPerSecondPerColonist = (cs.FoodPerHour * TimeCycle.GameTimeScale) / 3600;
+                        float secondsTick = (float)Time.SecondsLastFrame;
+                        float foodToConsume = foodConsumedPerSecondPerColonist * colony.FollowerCount * secondsTick;
+                        float diff = Math.Min(foodToConsume, _settlersBuffer);
+                        foodToConsume -= diff;
+                        _settlersBuffer -= diff;
 
-                    //        for(int i =0; i < cs.ColonyRef.FollowerCount; i++)
-                    //            cs.ColonyRef.Stockpile.TryRemoveFood(ref currentFood, cs.FoodPerHour);
-                    //    }
-                    //}
+                        if (foodToConsume > 0.0001f)
+                        {
+                            colony.Stockpile.TryRemoveFood(ref _settlersBuffer, foodToConsume);
+                        }
+                    }
                 }
 
-            if (FOOD_TIME < TimeCycle.TotalHours)
-                FOOD_TIME = TimeCycle.TotalHours + 1;
 
             if (_updateTime < Time.SecondsLastFrame && TimeCycle.IsDay)
                 _updateTime = Time.SecondsLastFrame + _UPDATE_TIME;
@@ -259,8 +260,6 @@ namespace Pandaros.Settlers.ColonyManagement
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".SettlerManager.AfterWorldLoad")]
         public static void AfterWorldLoad()
         {
-            _baseFoodPerHour = 160;
-
             foreach (var p in ServerManager.ColonyTracker.ColoniesByID.Values)
                 UpdateFoodUse(ColonyState.GetColonyState(p));
         }
@@ -350,21 +349,12 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             if (ServerManager.TerrainGenerator != null && state.Difficulty.Name != GameDifficulty.Normal.Name)
             {
-                var food = _baseFoodPerHour;
-
                 if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
                 {
-                    var multiplier = .4 - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
-                    multiplier = (multiplier + state.Difficulty.GetorDefault("FoodMultiplier", .4));
-
-                    food += (float)((_baseFoodPerHour * multiplier));
+                    float multiplier = .01f - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
+                    multiplier += (multiplier * (float)state.Difficulty.GetorDefault("FoodMultiplier", .4));
+                    state.FoodPerHour = multiplier;
                 }
-
-                if (state.ColonyRef.InSiegeMode)
-                    food += food * .4f;
-
-
-                state.FoodPerHour = food;
             }
         }
 
