@@ -212,8 +212,8 @@ namespace Pandaros.Settlers
             }
         }
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, NAMESPACE + ".AfterStartup")]
-        public static void AfterStartup()
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterModsLoaded, NAMESPACE + ".AfterStartup")]
+        public static void AfterStartup(List<ModLoader.ModDescription> modDescriptions)
         {
             RUNNING = true;
             CommandManager.RegisterCommand(new ChatHistory());

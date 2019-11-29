@@ -13,7 +13,6 @@ namespace Pandaros.Settlers.Monsters.Normal
     {
         public static string Key = GameLoader.NAMESPACE + ".Monsters.Bosses.JoggerZombie";
         private static NPCTypeMonsterSettings _mts;
-        private double _cooldown = 2;
         private float _totalHealth = 500;
 
         public JoggerZombie() :

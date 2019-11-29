@@ -1,7 +1,7 @@
-﻿using Pandaros.Settlers.NBT;
+﻿using Jobs.Implementations.Construction;
+using Pandaros.Settlers.NBT;
 using Pipliz;
 using Pipliz.JSON;
-using Pipliz.Mods.BaseGame.Construction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
