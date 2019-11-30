@@ -18,17 +18,17 @@ namespace Pandaros.Settlers
         public const string NAMESPACE = "Pandaros.Settlers";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
-        public static string MESH_PATH = "gamedata/mods/Pandaros/Settlers/Meshes/";
-        public static string AUDIO_PATH = "gamedata/mods/Pandaros/Settlers/Audio/";
-        public static string ICON_PATH = "gamedata/mods/Pandaros/Settlers/icons/";
+        public static string MESH_PATH = "Meshes/";
+        public static string AUDIO_PATH = "Audio/";
+        public static string ICON_PATH = "icons/";
         public static string BLOCKS_ALBEDO_PATH = "Textures/albedo/";
         public static string BLOCKS_EMISSIVE_PATH = "Textures/emissive/";
         public static string BLOCKS_HEIGHT_PATH = "Textures/height/";
         public static string BLOCKS_NORMAL_PATH = "Textures/normal/";
-        public static string BLOCKS_NPC_PATH = "gamedata/mods/Pandaros/Settlers/Textures/npc/";
+        public static string BLOCKS_NPC_PATH = "Textures/npc/";
         public static string TEXTURE_FOLDER_PANDA = "Textures";
-        public static string NPC_PATH = "gamedata/textures/materials/npc/";
-        public static string MOD_FOLDER = @"gamedata/mods/Pandaros/Settlers";
+        public static string NPC_PATH = "materials/npc/";
+        public static string MOD_FOLDER = @"";
         public static string MODS_FOLDER = @"";
         public static string GAMEDATA_FOLDER = @"";
         public static string GAME_ROOT = @"";
@@ -36,7 +36,7 @@ namespace Pandaros.Settlers
         public static string MACHINE_JSON = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
-        public static readonly Version MOD_VER = new Version(0, 8, 2, 68);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 70);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
@@ -72,7 +72,7 @@ namespace Pandaros.Settlers
             GAME_ROOT = path.Substring(0, path.IndexOf("gamedata")).Replace("/", "/");
             GAMEDATA_FOLDER = path.Substring(0, path.IndexOf("gamedata") + "gamedata".Length).Replace("/", "/") + "/";
 
-            MODS_FOLDER = GAMEDATA_FOLDER + "mods/";
+            MODS_FOLDER = @"../../" + GAMEDATA_FOLDER;
             ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
             MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
             AUDIO_PATH = Path.Combine(MOD_FOLDER, "Audio").Replace("\\", "/") + "/";
