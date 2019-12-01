@@ -36,7 +36,7 @@ namespace Pandaros.Settlers
         public static string MACHINE_JSON = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
-        public static readonly Version MOD_VER = new Version(0, 8, 2, 71);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 72);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
@@ -61,21 +61,16 @@ namespace Pandaros.Settlers
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
         public static void OnAssemblyLoaded(string path)
         {
-            MOD_FOLDER = Path.GetDirectoryName(path);
+            MOD_FOLDER = Path.GetDirectoryName(path).Replace("\\", "/");
             Schematic_DEFAULT_LOC = $"{MOD_FOLDER}/Schematics/";
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             if (!Directory.Exists(Schematic_DEFAULT_LOC))
                 Directory.CreateDirectory(Schematic_DEFAULT_LOC);
 
-            SettlersLogger.Log("Found mod in {0}", MOD_FOLDER);
-
-            GAME_ROOT = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            SettlersLogger.Log("GAME_ROOT in {0}", GAME_ROOT);
-            GAMEDATA_FOLDER = Path.Combine(GAME_ROOT, "gamedata").Replace("\\", "/") + "/";
-            SettlersLogger.Log("GAMEDATA_FOLDER in {0}", GAMEDATA_FOLDER);
-            MODS_FOLDER = @"../../" + MOD_FOLDER;
-            SettlersLogger.Log("MODS_FOLDER in {0}", MODS_FOLDER);
+            GAME_ROOT = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location) + @"/../../";
+            GAMEDATA_FOLDER = Path.Combine(GAME_ROOT, "gamedata").Replace("\\", "/") + "/";      
+            MODS_FOLDER = MOD_FOLDER + @"/../../";
 
             ICON_PATH = Path.Combine(MOD_FOLDER, "icons").Replace("\\", "/") + "/";
             MESH_PATH = Path.Combine(MOD_FOLDER, "Meshes").Replace("\\", "/") + "/";
@@ -88,6 +83,11 @@ namespace Pandaros.Settlers
             BLOCKS_NPC_PATH = Path.Combine(TEXTURE_FOLDER_PANDA, "npc").Replace("\\", "/") + "/";
 
             ModInfo = JSON.Deserialize(MOD_FOLDER + "/modInfo.json")[0];
+
+            SettlersLogger.Log("Found mod in {0}", MOD_FOLDER);
+            SettlersLogger.Log("GAME_ROOT in {0}", GAME_ROOT);
+            SettlersLogger.Log("GAMEDATA_FOLDER in {0}", GAMEDATA_FOLDER);
+            SettlersLogger.Log("MODS_FOLDER in {0}", MODS_FOLDER);
 
             List<string> allinfos = new List<string>();
             DirSearch(MODS_FOLDER, "*modInfo.json", allinfos);
