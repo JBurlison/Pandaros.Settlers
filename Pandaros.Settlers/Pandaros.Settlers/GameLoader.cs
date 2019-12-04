@@ -36,7 +36,7 @@ namespace Pandaros.Settlers
         public static string MACHINE_JSON = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
-        public static readonly Version MOD_VER = new Version(0, 8, 2, 72);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 73);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
@@ -56,6 +56,14 @@ namespace Pandaros.Settlers
                 Directory.CreateDirectory(Schematic_SAVE_LOC);
 
             StubColony = Colony.CreateStub(-99998);
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnCreatedColony, NAMESPACE + ".OnAssemblyLoaded")]
+        [ModLoader.ModCallbackDependsOn(GameInitializer.NAMESPACE + ".Entities.ColonyState.OnLoadingColony")]
+        public static void OnCreatedColony(Colony c)
+        {
+            var state = Pandaros.API.Entities.ColonyState.GetColonyState(c);
+            state.Difficulty = GameDifficulty.Medium;
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnAssemblyLoaded, NAMESPACE + ".OnAssemblyLoaded")]
