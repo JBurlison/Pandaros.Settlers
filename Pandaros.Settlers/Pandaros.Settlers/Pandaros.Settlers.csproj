@@ -3353,7 +3353,7 @@
     <Content Include="Textures\albedo\oreSaphire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\albedo\oreSapphire.png">
+    <Content Include="Textures\albedo\oresapphire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\albedo\pad.png">

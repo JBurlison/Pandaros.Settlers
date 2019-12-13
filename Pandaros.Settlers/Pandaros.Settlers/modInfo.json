@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.2.73",
+    "version": "0.8.2.74",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -62,7 +62,7 @@
     "jsonFiles": [
       {
         "fileType": "addOrReplaceAudio",
-        "relativePath": "audio/audioFiles.json",
+        "relativePath": "Audio/audioFiles.json",
         "index": -99999
       },
       {
@@ -286,6 +286,13 @@
     "website": "http://www.settlersmod.com/",
     "about": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.2.74-BETA",
+        "notes": [
+          "Fixed some linux pathing",
+          "Fixed schematic tool not appearing after research complete."
+        ]
+      },
       {
         "version": "0.8.2.73-BETA",
         "notes": [

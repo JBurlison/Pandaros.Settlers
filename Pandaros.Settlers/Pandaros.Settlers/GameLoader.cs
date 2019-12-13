@@ -36,7 +36,7 @@ namespace Pandaros.Settlers
         public static string MACHINE_JSON = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
-        public static readonly Version MOD_VER = new Version(0, 8, 2, 73);
+        public static readonly Version MOD_VER = new Version(0, 8, 2, 74);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
         public static Colony StubColony { get; private set; }
@@ -115,17 +115,6 @@ namespace Pandaros.Settlers
             {
                 File.Copy(MOD_FOLDER + "/App.config", GAME_ROOT + "/colonyserver.exe.config");
                 FileWasCopied = true;
-            }
-
-            foreach (var file in Directory.GetFiles(MOD_FOLDER + "/ZipSupport"))
-            {
-                var destFile = GAME_ROOT + "colonyserver_Data/Managed/" + new FileInfo(file).Name;
-
-                if (!File.Exists(destFile))
-                {
-                    FileWasCopied = true;
-                    File.Copy(file, destFile);
-                }
             }
 
             GenerateSettlersBuiltin();
