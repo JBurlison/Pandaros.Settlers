@@ -63,11 +63,11 @@ namespace Pandaros.Settlers.NBT
         {
             SchematicBlock[,,] newBlocks = new SchematicBlock[ZMax, YMax, XMax];
 
-            for (int y = 0; y < YMax; y++)
+            for (int y = 0; y <= YMax; y++)
             {
-                for (int z = 0; z < ZMax; z++)
+                for (int z = 0; z <= ZMax; z++)
                 {
-                    for (int x = 0; x < XMax; x++)
+                    for (int x = 0; x <= XMax; x++)
                     {
                         int newX = x;
                         int newZ = ZMax - (z + 1);
