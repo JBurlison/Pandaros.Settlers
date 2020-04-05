@@ -48,6 +48,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 }
                 else
                 {
+                    _warnedPlayers.Add(p);
                     NetworkMenu menu = new NetworkMenu();
                     menu.LocalStorage.SetAs("header", _LocalizationHelper.LocalizeOrDefault("warning", p));
                     menu.Width = 800;
