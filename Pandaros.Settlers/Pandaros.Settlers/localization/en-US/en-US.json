@@ -441,7 +441,9 @@
           "PossibleCommands": "Possible commands: "
         },
         "Permission": {
-          "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: "
+          "NotYourColony": "You may not build near this colony. Maybe you can ask one of the owners for an invite! The owners are: ",
+          "KillingColonists": "WARNING: Killing colonists that do not belong to you will result in a kick. This is your first and ONLY warning.",
+          "warning": "Warning"
         },
         "System": {
           "ChatHistory": "Chat History",
