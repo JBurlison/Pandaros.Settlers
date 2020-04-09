@@ -498,7 +498,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 else
                     reason += string.Format(" {0} of them are skilled!", numbSkilled);
 
-            PandaChat.Send(state.ColonyRef, _localizationHelper, reason, ChatColor.magenta);
+            PandaChat.Send(state.ColonyRef, _localizationHelper, reason, ChatColor.green);
 
             for (var i = 0; i < addCount; i++)
             {
