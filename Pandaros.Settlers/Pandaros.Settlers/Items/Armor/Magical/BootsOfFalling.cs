@@ -62,10 +62,6 @@ namespace Pandaros.Settlers.Items.Armor.Magical
 
         public float MoveSpeed { get; set; }
 
-        public float LightRange { get; set; }
-
-        public string LightColor { get; set; }
-
         public float FallDamage { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamageBaseDamage") * -1;
 
         public float FallDamagePerUnit { get; set; } = PlayerState.GetPlayerVariables().GetAs<float>("FallDamagePerUnit") * -1;
@@ -94,6 +90,8 @@ namespace Pandaros.Settlers.Items.Armor.Magical
         public ItemTypesServer.ItemTypeRaw ItemType { get; }
 
         public ArmorSlot Slot { get; } = ArmorSlot.Boots;
+
+        public float Gravity { get; set; }
 
         public void Update()
         {
