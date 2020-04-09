@@ -347,15 +347,15 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public static void UpdateFoodUse(ColonyState state)
         {
-            if (ServerManager.TerrainGenerator != null && state.Difficulty.Name != GameDifficulty.Normal.Name)
-            {
-                if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
-                {
-                    float multiplier = .01f - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
-                    multiplier += (multiplier * (float)state.Difficulty.GetorDefault("FoodMultiplier", .4));
-                    state.FoodPerHour = multiplier;
-                }
-            }
+            //if (ServerManager.TerrainGenerator != null && state.Difficulty.Name != GameDifficulty.Normal.Name)
+            //{
+            //    if (state.Difficulty != GameDifficulty.Normal && state.ColonyRef.FollowerCount > 10)
+            //    {
+            //        float multiplier = .01f - state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".ReducedWaste", 0f);
+            //        multiplier += (multiplier * (float)state.Difficulty.GetorDefault("FoodMultiplier", .4));
+            //        state.FoodPerHour = multiplier;
+            //    }
+            //}
         }
 
         public static bool EvaluateSettlers(ColonyState state)

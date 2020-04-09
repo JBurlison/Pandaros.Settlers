@@ -166,7 +166,8 @@
     <Compile Include="Server\ChatHistory.cs" />
     <Compile Include="Research\PlayerResearch.cs" />
     <Compile Include="SettlersBuiltin.cs" />
-    <Compile Include="Stats\DailyMonsterReport.cs" />
+    <Compile Include="Stats\DailyReport.cs" />
+    <Compile Include="Stats\DailyReportFactory.cs" />
     <Compile Include="StatusIcons\BlowIcon.cs" />
     <Compile Include="StatusIcons\Broken.cs" />
     <Compile Include="StatusIcons\Empty.cs" />
