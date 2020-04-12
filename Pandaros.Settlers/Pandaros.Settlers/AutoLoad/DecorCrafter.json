@@ -1,0 +1,10 @@
+[
+  {
+    "data": {
+      "maskColor1": "#000000"
+    },
+    "keyName": "Pandaros.Settlers.DecorBuilder",
+    "npcType": "worker",
+    "printName": "DecorBuilder"
+  }
+]

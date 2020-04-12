@@ -16,9 +16,9 @@ using System;
 namespace Pandaros.Settlers.Decorative
 {
     [ModLoader.ModManager]
-    public class GenerateBlocks 
+    public class GenerateBlocks
     {
-        static Dictionary<string, List<string>> _loadedItems = new Dictionary<string, List<string>>();
+        static Dictionary<string, List<Tuple<string, string, string>>> _loadedItems = new Dictionary<string, List<Tuple<string, string, string>>>();
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Pandaros.Settlers.Decorative.GenerateBlocks", float.MaxValue)]
         public static void generateTypes(Dictionary<string, ItemTypeRaw> types)
@@ -57,15 +57,17 @@ namespace Pandaros.Settlers.Decorative
 
                     try
                     {
-                        List<string> blockTypes = new List<string>();
+                        List<Tuple<string, string, string>> blockTypes = new List<Tuple<string, string, string>>();
 
                         foreach (var blockType in CollederStorage.Colliders_Dict)
                         {
                             var overlayIcon = GameLoader.ICON_PATH + blockType.Key + GameLoader.ICONTYPE;
                             var newIcon = generatedIconDir + itemType.name + "." + blockType.Key + GameLoader.ICONTYPE;
                             var newType = new DecorTypeBase();
-                            var typeName = GameLoader.NAMESPACE + "." + blockType.Key + "." + itemType.name;
-                            blockTypes.Add(typeName);
+                            var typeName = itemType.name + " " + blockType.Key;
+
+                            blockTypes.Add(Tuple.Create(typeName, itemType.name, blockType.Key));
+                            
 
                             if (!File.Exists(newIcon))
                             {
@@ -92,6 +94,7 @@ namespace Pandaros.Settlers.Decorative
                             newType.categories.Add(itemType.name);
                             newType.categories.Add(blockType.Key);
                             newType.categories.Add("decorative");
+                            newType.categories.Add(GameLoader.NAMESPACE);
                             newType.sideall = itemType.SideAll;
                             newType.mesh = GameLoader.MESH_PATH + blockType.Key + GameLoader.MESHTYPE;
                             newType.colliders.boxes = blockType.Value;
@@ -102,9 +105,9 @@ namespace Pandaros.Settlers.Decorative
                         }
 
                         _loadedItems.Add(itemType.name, blockTypes);
-                     
+
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         SettlersLogger.LogError(ex);
                     }
@@ -149,7 +152,6 @@ namespace Pandaros.Settlers.Decorative
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".Pandaros.Settlers.Decorative.GenerateRecipes")]
-        [ModLoader.ModCallbackDependsOn(GameLoader.NAMESPACE + ".DecorBuilderRegister.RegisterJobs")]
         public static void GenerateRecipes()
         {
             List<string> recipesAdded = new List<string>();
@@ -168,7 +170,7 @@ namespace Pandaros.Settlers.Decorative
                     recipe.Job = Jobs.DecorBuilderRegister.JOB_NAME;
 
                     foreach (var i in item.Value)
-                        recipe.results.Add(new RecipeResult(i));
+                        recipe.results.Add(new RecipeResult(i.Item1));
 
                     var requirements = new List<InventoryItem>();
                     var results = new List<RecipeResult>();
@@ -188,16 +190,31 @@ namespace Pandaros.Settlers.Decorative
                     foreach (var ri in recipe.results)
                         results.Add(ri);
 
-                    var newRecipe = new Recipe(recipe.name, requirements, results, recipe.defaultLimit, 0, (int)recipe.defaultPriority);
+                    var newRecipe = new Recipe(recipe.name, requirements, results, 0, 0, (int)recipe.defaultPriority);
 
                     ServerManager.RecipeStorage.AddLimitTypeRecipe(recipe.Job, newRecipe);
                 }
 
             }
 
-            _loadedItems.Clear();
+            
         }
 
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Pandaros.Settlers.Decorative.AfterWorldLoad")]
+        [ModLoader.ModCallbackDependsOn("pipliz.server.localization.convert")]
+        public static void AfterWorldLoad()
+        {
+            foreach (var item in _loadedItems)
+                foreach (var newItem in item.Value)
+                {
+                    if (Localization.TryGetType("en-US", newItem.Item2, out string readableString))
+                        Localization.LocaleTexts["en-US"]["types"][newItem.Item1] = new JSONNode(readableString + " " + newItem.Item3);
+                    else
+                        Localization.LocaleTexts["en-US"]["types"][newItem.Item1] = new JSONNode(newItem.Item2 + " " + newItem.Item3);
+                }
+
+            _loadedItems.Clear();
+        }
 
     }
 

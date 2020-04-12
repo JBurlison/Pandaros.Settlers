@@ -15,28 +15,6 @@ namespace Pandaros.Settlers.Jobs
     {
         public static string JOB_NAME = GameLoader.NAMESPACE + ".DecorBuilder";
         public static string JOB_ITEM_KEY = GameLoader.NAMESPACE + ".DecorBuilderTable";
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, GameLoader.NAMESPACE + ".DecorBuilderRegister.RegisterJobs")]
-        [ModLoader.ModCallbackProvidesFor("create_savemanager")]
-        public static void RegisterJobs()
-        {
-            NPCType.AddSettings(new NPCTypeStandardSettings
-            {
-                keyName = JOB_NAME,
-                printName = "DecorBuilder",
-                maskColor1 = new Color32(9, 0, 115, 255),
-                type = NPCTypeID.GetNextID()
-            });
-
-            ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));
-        }
-    }
-
-    public class DecorBuilderTexture : CSTextureMapping
-    {
-        public override string name => GameLoader.NAMESPACE + ".DecorBuilderTableTop";
-        public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "DecorBuilderTableTop.png";
-        public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "DecorBuilderTableTop.png";
     }
 
     public class DecorBuilderJobItem : CSType
@@ -48,6 +26,13 @@ namespace Pandaros.Settlers.Jobs
         public override string sideyp => GameLoader.NAMESPACE + ".DecorBuilderTableTop";
         public override List<string> categories => new List<string>() { "job", GameLoader.NAMESPACE };
         public override string name => DecorBuilderRegister.JOB_ITEM_KEY;
+    }
+
+    public class DecorBuilderTexture : CSTextureMapping
+    {
+        public override string name => GameLoader.NAMESPACE + ".DecorBuilderTableTop";
+        public override string albedo => GameLoader.BLOCKS_ALBEDO_PATH + "DecorBuilderTableTop.png";
+        public override string normal => GameLoader.BLOCKS_NORMAL_PATH + "DecorBuilderTableTop.png";
     }
 
     public class DecorBuilderRecipe : ICSRecipe

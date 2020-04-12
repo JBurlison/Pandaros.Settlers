@@ -1,0 +1,9 @@
+[
+  {
+    "blockType": "Pandaros.Settlers.DecorBuilderTable",
+    "cooldown": 1,
+    "jobType": "craftingblock",
+    "maxCraftsPerHaul": 15,
+    "npcType": "Pandaros.Settlers.DecorBuilder"
+  }
+]

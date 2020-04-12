@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.2.78",
+    "version": "0.8.3.0",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -67,6 +67,16 @@
       }
     ],
     "jsonFiles": [
+      {
+        "fileType": "addBlockJobs",
+        "index": 18000,
+        "relativePath": "Autoload/DecorCrafterJob.json"
+      },
+      {
+        "fileType": "addOrReplaceNPCTypes",
+        "index": 18000,
+        "relativePath": "Autoload/DecorCrafter.json"
+      },
       {
         "fileType": "addOrReplaceAudio",
         "relativePath": "Audio/audioFiles.json",
@@ -171,6 +181,15 @@
         "fileType": "addScience",
         "index": -99999,
         "relativePath": "science.json"
+      },
+      {
+        "fileType": "addOrReplaceNPCRecipes",
+        "relativePath": "AutoLoad/DecorRecipes.json",
+        "npcType": "Pandaros.Settlers.DecorBuilder",
+        "index": -99999,
+        "limitsUIMapping": [
+          "Pandaros.Settlers.DecorBuilderTable"
+        ]
       },
       {
         "fileType": "addOrReplaceNPCRecipes",
@@ -293,6 +312,13 @@
     "website": "http://www.settlersmod.com/",
     "description": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.3.0",
+        "notes": [
+          "Added block generation for decoretive blocks!",
+          "Added Decor Builder"
+        ]
+      },
       {
         "version": "0.8.2.78",
         "notes": [

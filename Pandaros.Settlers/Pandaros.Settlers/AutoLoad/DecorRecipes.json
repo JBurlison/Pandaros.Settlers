@@ -1,0 +1,231 @@
+[
+  {
+    "name": "Pandaros.Settlers.AutoLoad.fence",
+    "results": [
+      {
+        "amount": 4,
+        "type": "Pandaros.Settlers.AutoLoad.fence"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 3
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.fencecorner",
+    "results": [
+      {
+        "amount": 2,
+        "type": "Pandaros.Settlers.AutoLoad.fencecorner"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 3
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.window",
+    "results": [
+      {
+        "amount": 2,
+        "type": "Pandaros.Settlers.AutoLoad.window"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AutoLoad.glass",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.doublewindow",
+    "results": [
+      {
+        "amount": 1,
+        "type": "Pandaros.Settlers.AutoLoad.doublewindow"
+      }
+    ],
+    "requires": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.window",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.woodsupport",
+    "results": [
+      {
+        "amount": 4,
+        "type": "Pandaros.Settlers.AutoLoad.woodsupport"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.woodsupportud",
+    "results": [
+      {
+        "amount": 4,
+        "type": "Pandaros.Settlers.AutoLoad.woodsupportud"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.woodsupportcube",
+    "results": [
+      {
+        "amount": 2,
+        "type": "Pandaros.Settlers.AutoLoad.woodsupportcube"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 2
+      },
+      {
+        "type": "Pandaros.Settlers.AutoLoad.saw",
+        "amount": 1
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.simplechair",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.simplechair",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 1
+      },
+      {
+        "type": "straw",
+        "amount": 1
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.simpletable",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.simpletable"
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 4
+      },
+      {
+        "type": "straw",
+        "amount": 2
+      }
+    ],
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.woodencatwalk",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.woodencatwalk",
+        "amount": 2
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 4
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.woodbarrel",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.woodbarrel",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  },
+  {
+    "name": "Pandaros.Settlers.AutoLoad.cratestack",
+    "results": [
+      {
+        "type": "Pandaros.Settlers.AutoLoad.cratestack",
+        "amount": 1
+      }
+    ],
+    "requires": [
+      {
+        "type": "planks",
+        "amount": 2
+      }
+    ],
+    "npcCraftable": true,
+    "defaultLimit": 0,
+    "defaultPriority": -100
+  }
+]

@@ -1,5 +1,6 @@
 {
   "types": {
+    "Pandaros.Settlers.DecorBuilderTable": "Pandaros' Decor Builder",
     "Pandaros.Settlers.GoldCube": "Golden Lamp",
     "Pandaros.Settlers.TrainStation": "Train Station",
     "Pandaros.Settlers.Monorail": "Monorail",
@@ -359,6 +360,7 @@
       "limits": {
         "Pandaros": {
           "Settlers": {
+            "DecorBuilder": "Decor Builder",
             "Artificer": "Artificer",
             "Sorcerer": "Sorcerer",
             "Apothecary": "Apothecary Table",

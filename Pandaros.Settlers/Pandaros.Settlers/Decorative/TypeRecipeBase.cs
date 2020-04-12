@@ -16,7 +16,7 @@ namespace Pandaros.Settlers.Decorative
 
         public List<RecipeResult> results { get; set; } = new List<RecipeResult>();
 
-        public CraftPriority defaultPriority { get; set; } = CraftPriority.Medium;
+        public CraftPriority defaultPriority { get; set; } = CraftPriority.Low;
 
         public bool isOptional { get; set; } = false;
 
