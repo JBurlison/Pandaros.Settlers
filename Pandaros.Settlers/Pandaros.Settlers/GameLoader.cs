@@ -15,7 +15,10 @@ namespace Pandaros.Settlers
     {
         public static readonly ReadOnlyCollection<string> BLOCK_ROTATIONS = new ReadOnlyCollection<string>(new List<string>() { "x+", "x-", "z+", "z-" });
 
+        public const string MESHTYPE = ".obj";
+        public const string ICONTYPE = ".png";
         public const string NAMESPACE = "Pandaros.Settlers";
+        public const string TYPEPREFIX = NAMESPACE + ".Types.";
         public const string SETTLER_INV = "Pandaros.Settlers.Inventory";
         public const string ALL_SKILLS = "Pandaros.Settlers.ALLSKILLS";
         public static string MESH_PATH = "Meshes/";
@@ -36,6 +39,7 @@ namespace Pandaros.Settlers
         public static string MACHINE_JSON = "";
         public static string Schematic_SAVE_LOC = "";
         public static string Schematic_DEFAULT_LOC = "";
+        
         public static readonly Version MOD_VER = new Version(0, 8, 2, 78);
         public static bool RUNNING { get; private set; }
         public static bool WorldLoaded { get; private set; }
@@ -186,6 +190,9 @@ namespace Pandaros.Settlers
 
                 if (args.Name.Contains("System.Data"))
                     return Assembly.LoadFile(MOD_FOLDER + "/System.Data.dll");
+
+                if (args.Name.Contains("System.Drawing"))
+                    return Assembly.LoadFile(MOD_FOLDER + "/System.Drawing.Common.dll");
             }
             catch (Exception ex)
             {
@@ -230,60 +237,6 @@ namespace Pandaros.Settlers
         {
             RUNNING     = false;
             WorldLoaded = false;
-        }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTryChangeBlock, NAMESPACE + ".GameLoader.trychangeblock")]
-        public static void OnTryChangeBlockUser(ModLoader.OnTryChangeBlockData userData)
-        {
-            if (userData.CallbackState == ModLoader.OnTryChangeBlockData.ECallbackState.Cancelled)
-                return;
-
-            var suffix = "bottom";
-            var newType = userData.TypeNew;
-
-            if (userData.CallbackOrigin == ModLoader.OnTryChangeBlockData.ECallbackOrigin.ClientPlayerManual)
-            {
-                var side    = userData.PlayerClickedData.GetVoxelHit().SideHit;
-
-                switch (side)
-                {
-                    case VoxelSide.xPlus:
-                        suffix = "right";
-                        break;
-
-                    case VoxelSide.xMin:
-                        suffix = "left";
-                        break;
-
-                    case VoxelSide.yPlus:
-                        suffix = "bottom";
-                        break;
-
-                    case VoxelSide.yMin:
-                        suffix = "top";
-                        break;
-
-                    case VoxelSide.zPlus:
-                        suffix = "front";
-                        break;
-
-                    case VoxelSide.zMin:
-                        suffix = "back";
-                        break;
-                }
-
-                
-            }
-
-            if (newType != userData.TypeOld && ItemTypes.IndexLookup.TryGetName(newType.ItemIndex, out var typename))
-            {
-                var otherTypename = typename + suffix;
-
-                if (ItemTypes.IndexLookup.TryGetIndex(otherTypename, out var otherIndex))
-                {
-                    userData.TypeNew = ItemTypes.GetType(otherIndex);
-                }
-            }
         }
 
         public static string GetUpdatableBlocksJSONPath()
