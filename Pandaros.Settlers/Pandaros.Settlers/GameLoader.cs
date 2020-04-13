@@ -226,7 +226,8 @@ namespace Pandaros.Settlers
             RUNNING = true;
             CommandManager.RegisterCommand(new ChatHistory());
             CommandManager.RegisterCommand(new ConfigurationChatCommand());
-            CommandManager.RegisterCommand(new SettlersChatCommand());           
+            CommandManager.RegisterCommand(new SettlersChatCommand());
+            CommandManager.RegisterCommand(new UnknownItemCleanup());
 #if Debug
             ChatCommands.CommandManager.RegisterCommand(new Research.PandaResearchCommand());
 #endif

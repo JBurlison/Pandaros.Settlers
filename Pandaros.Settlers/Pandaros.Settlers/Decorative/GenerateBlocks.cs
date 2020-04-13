@@ -55,6 +55,12 @@ namespace Pandaros.Settlers.Decorative
                         !string.IsNullOrEmpty(itemType.RotatedZPlus))
                         continue;
 
+                    if (!itemType.IsPlaceable)
+                        continue;
+
+                    if (string.IsNullOrEmpty(itemType.SideAll))
+                        continue;
+
                     try
                     {
                         List<Tuple<string, string, string>> blockTypes = new List<Tuple<string, string, string>>();
@@ -201,18 +207,25 @@ namespace Pandaros.Settlers.Decorative
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, GameLoader.NAMESPACE + ".Pandaros.Settlers.Decorative.AfterWorldLoad")]
-        [ModLoader.ModCallbackDependsOn("pipliz.server.localization.convert")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.server.localization.convert")]
         public static void AfterWorldLoad()
         {
+            var patch = new Localization.LocalePatch();
+            patch.Locale = "en-US";
+            patch.Data = new JSONNode();
+            patch.Data["types"] = new JSONNode();
+
             foreach (var item in _loadedItems)
                 foreach (var newItem in item.Value)
                 {
-                    if (Localization.TryGetType("en-US", newItem.Item2, out string readableString))
-                        Localization.LocaleTexts["en-US"]["types"][newItem.Item1] = new JSONNode(readableString + " " + newItem.Item3);
+                    
+                    if (Localization.TryGetType("en-US", newItem.Item1, out string readableString))
+                        patch.Data["types"][newItem.Item1] = new JSONNode(readableString + " " + newItem.Item3);
                     else
-                        Localization.LocaleTexts["en-US"]["types"][newItem.Item1] = new JSONNode(newItem.Item2 + " " + newItem.Item3);
+                        patch.Data["types"][newItem.Item1] = new JSONNode(newItem.Item2 + " " + newItem.Item3);
                 }
 
+            Localization.QueueLocalePatch(patch);
             _loadedItems.Clear();
         }
 

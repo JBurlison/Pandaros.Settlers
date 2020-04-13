@@ -136,9 +136,7 @@
     <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Decorative\ColliderStorage.cs" />
-    <Compile Include="Decorative\DecorGenerateTypeBase.cs" />
     <Compile Include="Decorative\DecorTypeBase.cs" />
-    <Compile Include="Decorative\DecorTypes.cs" />
     <Compile Include="Decorative\GenerateBlocks.cs" />
     <Compile Include="Decorative\TypeRecipeBase.cs" />
     <Compile Include="Help\TutorialManager.cs" />
@@ -232,6 +230,7 @@
     <Compile Include="Jobs\Knight.cs" />
     <Compile Include="Jobs\PatrolTool.cs" />
     <Compile Include="GameLoader.cs" />
+    <Compile Include="UnknownItemCleanup.cs" />
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
