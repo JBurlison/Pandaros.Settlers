@@ -12,6 +12,7 @@ using Science;
 using Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandaros.Settlers.Items
 {
@@ -237,10 +238,12 @@ namespace Pandaros.Settlers.Items
             {
                 if (ps.BuildersWandPreview.Count != 0)
                 {
-                    var stockpile = player.ActiveColony.Stockpile;
-
+                    var stockpile = player?.ActiveColony?.Stockpile;
+                    var item = ItemTypes.GetType(ps.BuildersWandTarget);
+                    var removeItem = item.OnRemoveItems.FirstOrDefault();
                     foreach (var pos in ps.BuildersWandPreview)
-                        if (stockpile.TryRemove(ps.BuildersWandTarget))
+                        if ((stockpile != null && stockpile.TryRemove(ps.BuildersWandTarget)) || player.Inventory.TryRemove(ps.BuildersWandTarget) ||
+                            (removeItem.Type != 0 && stockpile != null && stockpile.TryRemove(removeItem.Type)) || (removeItem.Type != 0 && player.Inventory.TryRemove(removeItem.Type)))
                         {
                             ps.BuildersWandCharge--;
                             ServerManager.TryChangeBlock(pos, ps.BuildersWandTarget, new BlockChangeRequestOrigin(player));

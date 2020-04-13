@@ -104,7 +104,7 @@ namespace Pandaros.Settlers.Decorative
                             newType.sideall = itemType.SideAll;
                             newType.mesh = GameLoader.MESH_PATH + blockType.Key + GameLoader.MESHTYPE;
                             newType.colliders.boxes = blockType.Value;
-
+                            
                             var itemJson = JsonConvert.SerializeObject(newType, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
                             var rawItem = new ItemTypeRaw(typeName, JSON.DeserializeString(itemJson));
                             mi.Invoke(null, new object[] { newItemsDic, new BlockRotator.RotatorSettings(rawItem, null, null, null, null), null });

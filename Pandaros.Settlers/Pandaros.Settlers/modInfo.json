@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.3.0",
+    "version": "0.8.3.1",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
@@ -312,6 +312,13 @@
     "website": "http://www.settlersmod.com/",
     "description": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.3.1",
+        "notes": [
+          "Fixed some use cases for generated blocks",
+          "fixed builders wand to work when outside your colony, uses your inventory."
+        ]
+      },
       {
         "version": "0.8.3.0",
         "notes": [
