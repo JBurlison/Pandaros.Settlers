@@ -104,7 +104,17 @@ namespace Pandaros.Settlers.Decorative
                             newType.sideall = itemType.SideAll;
                             newType.mesh = GameLoader.MESH_PATH + blockType.Key + GameLoader.MESHTYPE;
                             newType.colliders.boxes = blockType.Value;
+
+                            if (itemType.CustomDataNode != null)
+                                newType.customData = JObject.Parse(itemType.CustomDataNode.ToString());
+                            else
+                                newType.customData = new JObject();
+
+                            newType.customData["useNormalMap"] = true;
+                            newType.customData["useHeightMap"] = true;
                             
+                            newType.color = ColorUtility.ToHtmlStringRGBA(itemType.Color);
+
                             var itemJson = JsonConvert.SerializeObject(newType, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
                             var rawItem = new ItemTypeRaw(typeName, JSON.DeserializeString(itemJson));
                             mi.Invoke(null, new object[] { newItemsDic, new BlockRotator.RotatorSettings(rawItem, null, null, null, null), null });
