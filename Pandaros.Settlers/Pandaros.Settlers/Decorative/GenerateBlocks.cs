@@ -113,9 +113,13 @@ namespace Pandaros.Settlers.Decorative
                             newType.customData["useNormalMap"] = true;
                             newType.customData["useHeightMap"] = true;
                             
-                            newType.color = ColorUtility.ToHtmlStringRGBA(itemType.Color);
+                            newType.color = "#" + ColorUtility.ToHtmlStringRGB(itemType.Color);
 
                             var itemJson = JsonConvert.SerializeObject(newType, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+
+                            if (newType.name.Contains("lantern"))
+                                SettlersLogger.Log(itemJson);
+
                             var rawItem = new ItemTypeRaw(typeName, JSON.DeserializeString(itemJson));
                             mi.Invoke(null, new object[] { newItemsDic, new BlockRotator.RotatorSettings(rawItem, null, null, null, null), null });
                         }
