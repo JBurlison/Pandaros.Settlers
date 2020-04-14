@@ -28,7 +28,7 @@ namespace Pandaros.Settlers.Stats
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnMonsterHit, GameLoader.NAMESPACE + ".Stats.DailyReport.MonsterHit")]
         public void MonsterHit(IMonster monster, OnHitData hitData)
         {
-
+            
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnNPCHit, GameLoader.NAMESPACE + ".Stats.DailyReport.OnNPCHit")]

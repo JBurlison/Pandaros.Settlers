@@ -120,10 +120,6 @@ namespace Pandaros.Settlers.Decorative
 
                             var itemJson = JsonConvert.SerializeObject(newType, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
                             var rawItem = new ItemTypeRaw(typeName, JSON.DeserializeString(itemJson));
-
-                            if (newType.name.Contains("CornerBlock"))
-                                SettlersLogger.Log(rawItem.description.ToString());
-
                             mi.Invoke(null, new object[] { newItemsDic, new BlockRotator.RotatorSettings(rawItem, null, null, null, null), null });
                         }
 
