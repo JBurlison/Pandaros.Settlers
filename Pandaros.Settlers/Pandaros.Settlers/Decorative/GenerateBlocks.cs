@@ -46,9 +46,6 @@ namespace Pandaros.Settlers.Decorative
                     if (itemType.Mesh != null && !string.IsNullOrEmpty(itemType.Mesh.MeshPath))
                         continue;
 
-                    if (!string.IsNullOrEmpty(itemType.ParentType))
-                        continue;
-
                     if (!string.IsNullOrEmpty(itemType.RotatedXMinus) ||
                         !string.IsNullOrEmpty(itemType.RotatedXPlus) ||
                         !string.IsNullOrEmpty(itemType.RotatedZMinus) ||
@@ -103,6 +100,10 @@ namespace Pandaros.Settlers.Decorative
                             newType.categories.Add(GameLoader.NAMESPACE);
                             newType.sideall = itemType.SideAll;
                             newType.mesh = GameLoader.MESH_PATH + blockType.Key + GameLoader.MESHTYPE;
+
+                            if (File.Exists(GameLoader.MESH_PATH + blockType.Key + ".ply"))
+                                newType.mesh = newType.mesh = GameLoader.MESH_PATH + blockType.Key + ".ply";
+
                             newType.colliders.boxes = blockType.Value;
 
                             if (itemType.CustomDataNode != null)
@@ -110,13 +111,19 @@ namespace Pandaros.Settlers.Decorative
                             else
                                 newType.customData = new JObject();
 
+                            var color = "#" + ColorUtility.ToHtmlStringRGB(((UnityEngine.Color)itemType.Color).gamma);
                             newType.customData["useNormalMap"] = true;
                             newType.customData["useHeightMap"] = true;
+                            newType.customData["colors"] = new JArray(new string[] { "#ffffff->" + color });
+
                             
-                            newType.color = "#" + ColorUtility.ToHtmlStringRGB(itemType.Color);
 
                             var itemJson = JsonConvert.SerializeObject(newType, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
                             var rawItem = new ItemTypeRaw(typeName, JSON.DeserializeString(itemJson));
+
+                            if (newType.name.Contains("CornerBlock"))
+                                SettlersLogger.Log(rawItem.description.ToString());
+
                             mi.Invoke(null, new object[] { newItemsDic, new BlockRotator.RotatorSettings(rawItem, null, null, null, null), null });
                         }
 

@@ -3,18 +3,12 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.3.3",
+    "version": "0.8.3.4",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
       "0.7.2",
       "0.7.1"
-    ],
-    "dependencies": [
-      {
-        "name": "Pandaros.API",
-        "minversion": "0.1.8.5"
-      }
     ],
     "Pandaros.API.jsonFiles": [
       {
@@ -312,6 +306,12 @@
     "website": "http://www.settlersmod.com/",
     "description": "The Settlers mod adds over 100 new researchables, 100's of new blocks, Weapons, Armor, Knights, Machines, teleporters, builders wand, magic items, new jobs and of course Settlers!",
     "patchnotes": [
+      {
+        "version": "0.8.3.4",
+        "notes": [
+          "Added more shapes!"
+        ]
+      },
       {
         "version": "0.8.3.3",
         "notes": [
