@@ -39,7 +39,8 @@
     "needsBase": true,
     "onPlaceAudio": "woodPlace",
     "onRemoveAudio": "grassDelete",
-    "sideall": "neutral"
+    "sideall": "neutral",
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.infinatemarble": {
     "sideall": "Pandaros.Settlers.AutoLoad.rawmarble",
@@ -437,7 +438,8 @@
     "categories": [
       "decorative",
       "iron"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.ironbarx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbar",
@@ -502,7 +504,8 @@
     "categories": [
       "decorative",
       "iron"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.ironbarcornerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.ironbarcorner",
@@ -584,7 +587,8 @@
       "decorative",
       "iron",
       "door"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.irondoorx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.irondoor",
@@ -773,7 +777,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodfencex+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fence",
@@ -838,7 +843,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodfencecornerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.fencecorner",
@@ -919,7 +925,8 @@
     "categories": [
       "decorative",
       "glass"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.windowx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.window",
@@ -952,7 +959,8 @@
     "categories": [
       "decorative",
       "glass"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.doublewindowx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.doublewindow",
@@ -985,7 +993,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodsupportx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupport",
@@ -1018,7 +1027,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodsupportudx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodsupportud",
@@ -1047,7 +1057,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.hangingbanner": {
     "icon": "./icons/hangingbanner.png",
@@ -1064,7 +1075,8 @@
     "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerz-",
     "categories": [
       "decorative"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbanner",
@@ -1097,7 +1109,8 @@
     "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerrwz-",
     "categories": [
       "decorative"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerrwx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerrw",
@@ -1130,7 +1143,8 @@
     "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannerbwz-",
     "categories": [
       "decorative"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.hangingbannerbwx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannerbw",
@@ -1163,7 +1177,8 @@
     "rotatablez-": "Pandaros.Settlers.AutoLoad.hangingbannercbz-",
     "categories": [
       "decorative"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.hangingbannercbx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.hangingbannercb",
@@ -1230,7 +1245,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.simplechairx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.simplechair",
@@ -1259,7 +1275,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodencatwalk": {
     "icon": "./icons/woodencatwalk.png",
@@ -1276,7 +1293,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodencatwalkx": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodencatwalk",
@@ -1301,7 +1319,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.woodbarrelx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.woodbarrel",
@@ -1334,7 +1353,8 @@
     "categories": [
       "decorative",
       "wood"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.cratestackx+": {
     "parentType": "Pandaros.Settlers.AutoLoad.cratestack",
@@ -1372,7 +1392,8 @@
     "categories": [
       "decorative",
       "water"
-    ]
+    ],
+    "lightingTransparency": 255
   },
   "Pandaros.Settlers.AutoLoad.infiniteAdamantine": {
     "icon": "./icons/infiniteAdamantine.png",
