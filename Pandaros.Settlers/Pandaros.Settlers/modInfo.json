@@ -3,7 +3,7 @@
     "dllpath": "Pandaros.Settlers.dll",
     "name": "Pandaros.Settlers",
     "namepretty": "Pandaros' Settlers!",
-    "version": "0.8.3.4",
+    "version": "0.8.3.5",
     "enabled": true,
     "marksgamemodded": true,
     "compatibleversions": [
