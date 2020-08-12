@@ -42,7 +42,7 @@ namespace Pandaros.Settlers.Help
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu, (Table, Table) table)
         {
-            networkMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".Wiki.Help", new LabelData(_localizationHelper.GetLocalizationKey("title"), UnityEngine.Color.black), 200));
+            table.Item1.Rows.Add(new ButtonCallback(GameLoader.NAMESPACE + ".Wiki.Help", new LabelData(_localizationHelper.GetLocalizationKey("title")), 200));
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerPushedNetworkUIButton, GameLoader.NAMESPACE + ".Help.HelpMenuActivator.OnPlayerPushedNetworkUIButton")]

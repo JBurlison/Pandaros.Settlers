@@ -23,7 +23,7 @@ namespace Pandaros.Settlers
         {
             if (player.ActiveColony != null)
             {
-                networkMenu.Items.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Prompt", "Always Accept", "Disabled" }));
+                table.Item1.Rows.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Prompt", "Always Accept", "Disabled" }));
                 var ps = ColonyState.GetColonyState(player.ActiveColony);
                 networkMenu.LocalStorage.SetAs(_Setters, Convert.ToInt32(ps.SettlersEnabled));
             }

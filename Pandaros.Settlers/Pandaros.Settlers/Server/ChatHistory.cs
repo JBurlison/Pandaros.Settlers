@@ -62,7 +62,7 @@ namespace Pandaros.Settlers.Server
 
         public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu menu, (Table, Table) table)
         {
-            menu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ChatHistory", new LabelData(_localizationHelper.GetLocalizationKey("ChatHistory"), UnityEngine.Color.black), 200));
+            table.Item1.Rows.Add(new ButtonCallback(GameLoader.NAMESPACE + ".ChatHistory", new LabelData(_localizationHelper.GetLocalizationKey("ChatHistory")), 200));
         }
 
         public bool TryDoCommand(Players.Player player, string chat, List<string> splits)
