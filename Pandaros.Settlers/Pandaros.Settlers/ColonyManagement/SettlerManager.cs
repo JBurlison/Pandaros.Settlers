@@ -24,7 +24,7 @@ namespace Pandaros.Settlers.ColonyManagement
     {
         static readonly LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "colonytool");
 
-        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu, (Table, Table) table)
         {
             if (player.ActiveColony != null)
                 networkMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".UnemployedLength", new LabelData(_localizationHelper.GetLocalizationKey("UnemployedLength"), UnityEngine.Color.black), 200));

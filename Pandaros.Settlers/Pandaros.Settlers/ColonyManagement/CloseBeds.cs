@@ -184,7 +184,7 @@ namespace Pandaros.Settlers.ColonyManagement
                 stateObject.Beds.Add(bed, new CachedBedState() { Position = position, Taken = bedIsUsed });
         }
 
-        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu, (Table, Table) table)
         {
             if (player.ActiveColony != null)
                 networkMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".BedLocations", new LabelData(_localizationHelper.GetLocalizationKey("BedLocations"), UnityEngine.Color.black), 200));

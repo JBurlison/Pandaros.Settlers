@@ -1,6 +1,9 @@
 ﻿using Chatting;
+using NetworkUI;
+using NetworkUI.Items;
 using Pandaros.API;
 using Pandaros.API.Entities;
+using Pandaros.API.Extender;
 using Pandaros.API.localization;
 using Pandaros.API.Models;
 using Pipliz.JSON;
@@ -10,19 +13,19 @@ using System.Collections.Generic;
 namespace Pandaros.Settlers
 {
     [ModLoader.ModManager]
-    public class SettlersChatCommand : IChatCommand
+    public class SettlersChatCommand : IChatCommand, IOnConstructInventoryManageColonyUI
     {
         private static string _Setters = GameLoader.NAMESPACE + ".Settlers";
         private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Settlers");
 
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructWorldSettingsUI, GameLoader.NAMESPACE + "Settlers.AddSetting")]
-        public static void AddSetting(Players.Player player, NetworkUI.NetworkMenu menu)
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnConstructManageColoniesSelectionUI, GameLoader.NAMESPACE + "Settlers.AddSetting")]
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu, (Table, Table) table)
         {
             if (player.ActiveColony != null)
             {
-                menu.Items.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Prompt", "Always Accept", "Disabled" }));
+                networkMenu.Items.Add(new NetworkUI.Items.DropDown("Random Settlers", _Setters, new List<string>() { "Prompt", "Always Accept", "Disabled" }));
                 var ps = ColonyState.GetColonyState(player.ActiveColony);
-                menu.LocalStorage.SetAs(_Setters, Convert.ToInt32(ps.SettlersEnabled));
+                networkMenu.LocalStorage.SetAs(_Setters, Convert.ToInt32(ps.SettlersEnabled));
             }
         }
 

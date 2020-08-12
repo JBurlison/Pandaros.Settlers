@@ -40,7 +40,7 @@ namespace Pandaros.Settlers.Help
 
         private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "Wiki");
 
-        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu)
+        public void OnConstructInventoryManageColonyUI(Players.Player player, NetworkMenu networkMenu, (Table, Table) table)
         {
             networkMenu.Items.Add(new ButtonCallback(GameLoader.NAMESPACE + ".Wiki.Help", new LabelData(_localizationHelper.GetLocalizationKey("title"), UnityEngine.Color.black), 200));
         }
