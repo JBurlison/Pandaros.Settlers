@@ -5,6 +5,7 @@ using Pandaros.API.Research;
 using Pandaros.Settlers.Jobs;
 using Recipes;
 using Science;
+using Shared;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Items
@@ -50,6 +51,8 @@ namespace Pandaros.Settlers.Items
         public string Job => ApothecaryRegister.JOB_NAME;
 
         public string name => SettlersBuiltIn.ItemTypes.MANA.Name;
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class ManaResearch : IPandaResearch
@@ -116,6 +119,13 @@ namespace Pandaros.Settlers.Items
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".Mana";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
 
         public void OnRegister()
         {

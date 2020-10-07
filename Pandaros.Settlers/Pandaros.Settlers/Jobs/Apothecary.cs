@@ -6,6 +6,7 @@ using Pandaros.API.Models;
 using Pandaros.API.Research;
 using Recipes;
 using Science;
+using Shared;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,6 +72,13 @@ namespace Pandaros.Settlers.Jobs
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".Apothecaries";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
 
         public void OnRegister()
         {
@@ -144,6 +152,13 @@ namespace Pandaros.Settlers.Jobs
 
         public string name => GameLoader.NAMESPACE + ".AdvancedApothecary";
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -213,5 +228,9 @@ namespace Pandaros.Settlers.Jobs
         public int defaultLimit => 5;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
         public string name => ApothecaryRegister.JOB_ITEM_KEY;
+        public List<string> JobBlock => new List<string>()
+        {
+            ColonyBuiltIn.ItemTypes.WORKBENCH
+        };
     }
 }

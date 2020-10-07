@@ -1,6 +1,7 @@
 ﻿using NetworkUI;
 using NetworkUI.Items;
 using NPC;
+using ModLoaderInterfaces;
 using Pandaros.API;
 using Pandaros.API.ColonyManagement;
 using Pandaros.API.Entities;
@@ -600,58 +601,58 @@ namespace Pandaros.Settlers.ColonyManagement
         {
             var update = false;
 
-            try
-            {
-                if (!TimeCycle.IsDay && TimeCycle.TotalHours > state.NextBedTime)
-                {
-                    var remainingBeds = state.ColonyRef.BedTracker.CalculateTotalBedCount() - state.ColonyRef.FollowerCount;
-                    var left          = 0;
+            //try
+            //{
+            //    if (!TimeCycle.IsDay && TimeCycle.TotalHours > state.NextBedTime)
+            //    {
+            //        var remainingBeds = state.ColonyRef.BedTracker.CalculateTotalBedCount() - state.ColonyRef.FollowerCount;
+            //        var left          = 0;
 
-                    if (remainingBeds >= 0)
-                    {
-                        state.NeedsABed = 0;
-                    }
-                    else
-                    {
-                        if (state.NeedsABed == 0)
-                        {
-                            state.NeedsABed = TimeCycle.TotalHours + 24;
-                            PandaChat.Send(state.ColonyRef, _localizationHelper, SettlerReasoning.GetNeedBed(), ChatColor.grey);
-                        }
-                        else if (state.NeedsABed <= TimeCycle.TotalHours)
-                        {
-                            List<NPCBase> leaving = new List<NPCBase>();
+            //        if (remainingBeds >= 0)
+            //        {
+            //            state.NeedsABed = 0;
+            //        }
+            //        else
+            //        {
+            //            if (state.NeedsABed == 0)
+            //            {
+            //                state.NeedsABed = TimeCycle.TotalHours + 24;
+            //                PandaChat.Send(state.ColonyRef, _localizationHelper, SettlerReasoning.GetNeedBed(), ChatColor.grey);
+            //            }
+            //            else if (state.NeedsABed <= TimeCycle.TotalHours)
+            //            {
+            //                List<NPCBase> leaving = new List<NPCBase>();
 
-                            foreach (var follower in state.ColonyRef.Followers)
-                                if (follower.UsedBed == null)
-                                {
-                                    left++;
-                                    leaving.Add(follower);
-                                }
+            //                foreach (var follower in state.ColonyRef.Followers)
+            //                    if (follower.UsedBed == null)
+            //                    {
+            //                        left++;
+            //                        leaving.Add(follower);
+            //                    }
 
-                            state.NeedsABed = 0;
+            //                state.NeedsABed = 0;
 
-                            foreach (var npc in leaving)
-                                NPCLeaving(npc);
-                        }
+            //                foreach (var npc in leaving)
+            //                    NPCLeaving(npc);
+            //            }
 
-                        if (left > 0)
-                        {
-                            PandaChat.Send(state.ColonyRef, _localizationHelper, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
-                            update = true;
-                        }
+            //            if (left > 0)
+            //            {
+            //                PandaChat.Send(state.ColonyRef, _localizationHelper, string.Concat(SettlerReasoning.GetNoBed(), string.Format(" {0} colonists have left your colony.", left)), ChatColor.red);
+            //                update = true;
+            //            }
 
 
-                        state.ColonyRef.SendCommonData();
-                    }
+            //            state.ColonyRef.SendCommonData();
+            //        }
 
-                    state.NextBedTime = TimeCycle.TotalHours + Random.Next(5, 8);
-                }
-            }
-            catch (Exception ex)
-            {
-                SettlersLogger.LogError(ex, "EvaluateBeds");
-            }
+            //        state.NextBedTime = TimeCycle.TotalHours + Random.Next(5, 8);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    SettlersLogger.LogError(ex, "EvaluateBeds");
+            //}
 
             return update;
         }

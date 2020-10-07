@@ -3,6 +3,7 @@ using Pandaros.API.Entities;
 using Pandaros.API.Research;
 using Pandaros.Settlers.ColonyManagement;
 using Science;
+using Shared;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -60,6 +61,13 @@ namespace Pandaros.Settlers.Research
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".ReducedWaste";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
 
         public void OnRegister()
         {
@@ -126,6 +134,13 @@ namespace Pandaros.Settlers.Research
 
         public string name => GameLoader.NAMESPACE + ".ColonistHealth";
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -184,6 +199,13 @@ namespace Pandaros.Settlers.Research
 
         public string name => GameLoader.NAMESPACE + ".MaxSettlers";
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -236,6 +258,13 @@ namespace Pandaros.Settlers.Research
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".MinSettlers";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
 
         public void OnRegister()
         {
@@ -290,6 +319,13 @@ namespace Pandaros.Settlers.Research
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".SettlerChance";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
 
         public void OnRegister()
         {
@@ -359,6 +395,13 @@ namespace Pandaros.Settlers.Research
 
         public string name => GameLoader.NAMESPACE + ".SkilledLaborer";
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -425,6 +468,13 @@ namespace Pandaros.Settlers.Research
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".NumberSkilledLaborer";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
 
         public void OnRegister()
         {

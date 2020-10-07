@@ -10,11 +10,11 @@ namespace Pandaros.Settlers.ColonyManagement
 {
     public class ColonistDiedTracker : IOnTimedUpdate
     {
-        public double NextUpdateTimeMin => 10;
+        public int NextUpdateTimeMinMs => 10000;
 
-        public double NextUpdateTimeMax => 15;
+        public int NextUpdateTimeMaxMs => 15000;
 
-        public double NextUpdateTime { get; set; }
+        ServerTimeStamp IOnTimedUpdate.NextUpdateTime { get; set; }
 
         public void OnTimedUpdate()
         {

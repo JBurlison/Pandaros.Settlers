@@ -33,6 +33,8 @@ namespace Pandaros.Settlers.Items.Transportation
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".PropulsionPlatform";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class PropulsionTextureMapping : CSTextureMapping

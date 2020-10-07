@@ -35,6 +35,8 @@ namespace Pandaros.Settlers.Energy
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".ManaPipe";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class ManaPipeTextureMapping : CSTextureMapping

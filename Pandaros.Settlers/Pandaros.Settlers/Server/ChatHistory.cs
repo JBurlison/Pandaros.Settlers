@@ -1,4 +1,5 @@
 ﻿using Chatting;
+using ModLoaderInterfaces;
 using NetworkUI;
 using NetworkUI.Items;
 using Pandaros.API.Extender;
@@ -17,11 +18,12 @@ namespace Pandaros.Settlers.Server
 
         private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "System");
 
-        public double NextUpdateTimeMin => 30;
 
-        public double NextUpdateTimeMax => 30;
+        public int NextUpdateTimeMinMs => 30000;
 
-        public double NextUpdateTime { get; set; }
+        public int NextUpdateTimeMaxMs => 30000;
+
+        ServerTimeStamp IOnTimedUpdate.NextUpdateTime { get; set; }
 
         public void OnTimedUpdate()
         {

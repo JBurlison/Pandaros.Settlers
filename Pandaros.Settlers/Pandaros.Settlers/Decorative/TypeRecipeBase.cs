@@ -23,6 +23,7 @@ namespace Pandaros.Settlers.Decorative
         public int defaultLimit { get; set; } = 0;
 
         public string Job { get; set; } = Jobs.DecorBuilderRegister.JOB_NAME;
-   
+
+        public List<string> JobBlock => new List<string>();
     }
 }

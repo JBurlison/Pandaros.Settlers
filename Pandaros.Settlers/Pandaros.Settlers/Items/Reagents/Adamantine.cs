@@ -42,5 +42,7 @@ namespace Pandaros.Settlers.Items.Reagents
         public string Job => ColonyBuiltIn.NpcTypes.SMELTER;
 
         public string name => SettlersBuiltIn.ItemTypes.ADAMANTINE;
+
+        public List<string> JobBlock => new List<string>();
     }
 }

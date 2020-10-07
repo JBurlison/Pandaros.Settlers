@@ -34,6 +34,8 @@ namespace Pandaros.Settlers.Items.Transportation
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".Monorail";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class MonorailTextureMapping : CSTextureMapping

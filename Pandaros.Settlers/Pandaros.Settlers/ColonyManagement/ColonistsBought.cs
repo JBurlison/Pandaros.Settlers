@@ -10,11 +10,12 @@ namespace Pandaros.Settlers.ColonyManagement
 {
     public class ColonistBoughtTracker : IOnTimedUpdate
     {
-        public double NextUpdateTimeMin => 10;
 
-        public double NextUpdateTimeMax => 15;
+        public int NextUpdateTimeMinMs => 10000;
 
-        public double NextUpdateTime { get; set; }
+        public int NextUpdateTimeMaxMs => 15000;
+
+        ServerTimeStamp IOnTimedUpdate.NextUpdateTime { get; set; }
 
         public void OnTimedUpdate()
         {

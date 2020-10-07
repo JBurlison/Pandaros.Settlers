@@ -1,6 +1,7 @@
 ﻿using Pandaros.API;
 using Pandaros.API.Research;
 using Science;
+using Shared;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -126,6 +127,13 @@ namespace Pandaros.Settlers.Research
         public bool AddLevelToName => true;
 
         public string name => GameLoader.NAMESPACE + ".SwordSmithing";
+
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+
+        }
 
         public void OnRegister()
         {

@@ -52,5 +52,7 @@ namespace Pandaros.Settlers.Jobs
         public int defaultLimit => 5;
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
         public string name => DecorBuilderRegister.JOB_ITEM_KEY;
+
+        public List<string> JobBlock => new List<string>();
     }
 }

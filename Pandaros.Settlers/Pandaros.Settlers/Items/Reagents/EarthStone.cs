@@ -41,5 +41,7 @@ namespace Pandaros.Settlers.Items
         public string Job => ApothecaryRegister.JOB_NAME;
 
         public string name => SettlersBuiltIn.ItemTypes.EARTHSTONE;
+
+        public List<string> JobBlock => new List<string>();
     }
 }

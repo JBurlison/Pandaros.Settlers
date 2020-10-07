@@ -84,6 +84,8 @@ namespace Pandaros.Settlers.Items.Transportation
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".TrainStation";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class TrainStationTextureMapping : CSTextureMapping

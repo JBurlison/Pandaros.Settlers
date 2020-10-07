@@ -2,6 +2,7 @@
 using Pandaros.API.ColonyManagement;
 using Pandaros.API.Research;
 using Science;
+using Shared;
 using System.Collections.Generic;
 
 namespace Pandaros.Settlers.Research
@@ -50,6 +51,13 @@ namespace Pandaros.Settlers.Research
             public string IconDirectory => GameLoader.ICON_PATH;
 
             public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
 
             public void OnRegister()
             {
@@ -99,6 +107,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.TAILOR;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -148,6 +163,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.BLOOMERYJOB;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -196,6 +218,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.FINERYFORGEJOB;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -245,6 +274,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.SMELTER;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -292,6 +328,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.GRINDER;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -341,6 +384,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.GUNSMITHJOB;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -390,6 +440,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.KILNJOB;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -438,6 +495,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.METALSMITHJOB;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -485,6 +549,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.MINTER;
             public string IconDirectory => GameLoader.ICON_PATH;
+
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
             public void OnRegister()
             {
                 
@@ -533,6 +604,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.BAKER;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -581,6 +659,13 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.WOODCUTTER;
             public string IconDirectory => GameLoader.ICON_PATH;
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
+
             public void OnRegister()
             {
                 
@@ -628,6 +713,14 @@ namespace Pandaros.Settlers.Research
 
             public string name => ColonyBuiltIn.NpcTypes.CRAFTER;
             public string IconDirectory => GameLoader.ICON_PATH;
+
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+                
+            }
+
             public void OnRegister()
             {
                 
@@ -699,6 +792,13 @@ namespace Pandaros.Settlers.Research
             public bool AddLevelToName => true;
 
             public string name => GameLoader.NAMESPACE + ".MasterOfAll";
+
+            public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+            public void BeforeRegister()
+            {
+
+            }
 
             public void OnRegister()
             {

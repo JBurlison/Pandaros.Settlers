@@ -1,4 +1,5 @@
 ﻿using NetworkUI;
+using NetworkUI.AreaJobs;
 using NetworkUI.Items;
 using Pandaros.API;
 using Pandaros.API.Items;
@@ -15,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static AreaJobTracker;
 
 namespace Pandaros.Settlers.Jobs.Construction
 {
@@ -92,6 +92,13 @@ namespace Pandaros.Settlers.Jobs.Construction
 
         public Dictionary<int, List<RecipeUnlock>> Unlocks => null;
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -127,6 +134,8 @@ namespace Pandaros.Settlers.Jobs.Construction
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
 
         public string name => GameLoader.NAMESPACE + ".SchematicTool";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     [ModLoader.ModManager]
@@ -215,7 +224,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnSendAreaHighlights, GameLoader.NAMESPACE + ".Jobs.Construction.SchematicMenu.OnSendAreaHighlights")]
-        static void OnSendAreaHighlights(Players.Player goal, List<AreaHighlight> list, List<ushort> showWhileHoldingTypes)
+        static void OnSendAreaHighlights(Players.Player goal, List<AreaJobTracker.AreaHighlight> list, List<ushort> showWhileHoldingTypes)
         {
             showWhileHoldingTypes.Add(ColonyBuiltIn.ItemTypes.BED.Id);
 
@@ -260,10 +269,10 @@ namespace Pandaros.Settlers.Jobs.Construction
                         if (File.Exists(metaDataSave))
                             File.Delete(metaDataSave);
 
-                        AreaJobTracker.StartCommandToolSelection(data.Player, new CommandToolTypeData()
+                        AreaJobTracker.StartCommandToolSelection(data.Player, new GenericCommandToolSettings()
                         {
-                            AreaType = "pipliz.constructionarea",
-                            LocaleEntry = _localizationHelper.LocalizeOrDefault("Architect", data.Player),
+                            Key = "pipliz.constructionarea",
+                            TranslationKey = _localizationHelper.LocalizeOrDefault("Architect", data.Player),
                             JSONData = new JSONNode().SetAs(ArchitectLoader.NAME + ".ArchitectSchematicName", schematicName).SetAs("constructionType", GameLoader.NAMESPACE + ".Architect"),
                             OneAreaOnly = true,
                             Maximum3DBlockCount = int.MaxValue,

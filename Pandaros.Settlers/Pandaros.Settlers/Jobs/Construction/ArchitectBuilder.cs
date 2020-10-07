@@ -82,7 +82,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                     }
 
                     if (!foundType.Name.Contains("bedend"))
-                        ServerManager.TryChangeBlock(iterationType.CurrentPosition, SettlersBuiltIn.ItemTypes.SELECTOR, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                        ServerManager.TryChangeBlock(iterationType.CurrentPosition, SettlersBuiltIn.ItemTypes.SELECTOR.Id, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
 
                     MoveNext(iterationType, areaJob, job, bpi, prvX, prvY, prvZ);
                 }
@@ -106,7 +106,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 prvY <= bpi.BuilderSchematic.YMax &&
                 prvZ <= bpi.BuilderSchematic.ZMax &&
                !bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID.Contains("bedend"))
-                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID).Id, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
 
             if (!bpi.MoveNext())
             {
@@ -127,7 +127,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                prvY <= bpi.BuilderSchematic.YMax &&
                prvZ <= bpi.BuilderSchematic.ZMax &&
                !bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID.Contains("bedend"))
-                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID), new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
+                ServerManager.TryChangeBlock(bpi.PreviousPosition, ItemId.GetItemId(bpi.BuilderSchematic.Blocks[prvX, prvY, prvZ].BlockID).Id, new BlockChangeRequestOrigin(job.Owner), ESetBlockFlags.DefaultAudio);
 
             SchematicReader.SaveSchematic(areaJob.Owner, bpi.BuilderSchematic);
             AreaJobTracker.RemoveJob(areaJob);

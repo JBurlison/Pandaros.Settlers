@@ -85,5 +85,9 @@ namespace Pandaros.Settlers.Jobs
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
 
         public string name => SettlersBuiltIn.ItemTypes.ADVANCEDCRAFTINGTABLE;
+        public List<string> JobBlock => new List<string>()
+        {
+            ColonyBuiltIn.ItemTypes.WORKBENCH
+        };
     }
 }

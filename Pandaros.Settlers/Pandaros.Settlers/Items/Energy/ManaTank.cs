@@ -81,15 +81,15 @@ namespace Pandaros.Settlers.Energy
                 var energy = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
 
                 if (energy > .90)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull"));
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankFull").Id);
                 else if (energy > .75)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter"));
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankThreeQuarter").Id);
                 else if (energy > .50)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf"));
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankHalf").Id);
                 else if (energy > .25)
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter"));
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".TankQuarter").Id);
                 else
-                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank"));
+                    ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".ManaTank").Id);
 
                 state.NextTimeForWork = Time.SecondsSinceStartDouble + 10;
             }
@@ -168,6 +168,8 @@ namespace Pandaros.Settlers.Energy
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".ManaTank";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class ManaTankTextureMapping : CSTextureMapping

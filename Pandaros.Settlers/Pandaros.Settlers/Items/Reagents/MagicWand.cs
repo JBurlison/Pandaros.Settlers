@@ -45,5 +45,7 @@ namespace Pandaros.Settlers.Items.Reagents
         public string Job => GameLoader.NAMESPACE + ".Sorcerer";
 
         public string name => GameLoader.NAMESPACE + ".MagicWand";
+
+        public List<string> JobBlock => new List<string>();
     }
 }

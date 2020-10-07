@@ -138,6 +138,11 @@ namespace Pandaros.Settlers.Jobs
         public string Job => SorcererRegister.JOB_NAME;
 
         public string name => GameLoader.NAMESPACE + ".ArtificerBench";
+
+        public List<string> JobBlock => new List<string>()
+        {
+            SettlersBuiltIn.ItemTypes.ARTIFICERBENCH
+        };
     }
 
     public class Artificer : RoamingJob
@@ -215,12 +220,12 @@ namespace Pandaros.Settlers.Jobs
                  roamingJob.OnNPCAtJob(ref state);
         }
 
-        public void OnGoalChanged(BlockJobInstance instanceBlock, NPCBase.NPCGoal oldGoal, NPCBase.NPCGoal newGoal)
+        public void OnNPCAtStockpile(BlockJobInstance instance, ref NPCBase.NPCState state)
         {
             
         }
 
-        public void OnNPCAtStockpile(BlockJobInstance instance, ref NPCBase.NPCState state)
+        public void OnGoalChanged(BlockJobInstance instance, INPCGoal goalOld, INPCGoal goalNew)
         {
             
         }

@@ -51,6 +51,13 @@ namespace Pandaros.Settlers.Items
             }
         };
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -84,6 +91,8 @@ namespace Pandaros.Settlers.Items
         public string Job => ColonyBuiltIn.NpcTypes.CRAFTER;
 
         public string name => SettlersBuiltIn.ItemTypes.BACKPACK;
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class Backpack : CSType

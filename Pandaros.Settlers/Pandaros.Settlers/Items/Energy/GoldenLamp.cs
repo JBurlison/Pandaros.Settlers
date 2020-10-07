@@ -52,7 +52,7 @@ namespace Pandaros.Settlers.Items.Transportation
                     state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
 
                     if (World.TryGetTypeAt(state.Position, out ItemTypes.ItemType itemType) && itemType.Name == GameLoader.NAMESPACE + ".GoldCubeUnlit")
-                        ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".GoldCube"));
+                        ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".GoldCube").Id);
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace Pandaros.Settlers.Items.Transportation
                         ColonyManagement.DecorHappiness.DecorBonuses[colony].Remove(nameof(GoldCube));
 
                     if (World.TryGetTypeAt(state.Position, out ItemTypes.ItemType itemType) && itemType.Name == GameLoader.NAMESPACE + ".GoldCube")
-                        ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".GoldCubeUnlit"));
+                        ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".GoldCubeUnlit").Id);
                 }
 
                 _nextWorkTime = TimeCycle.TotalHours + 1;
@@ -95,6 +95,8 @@ namespace Pandaros.Settlers.Items.Transportation
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".GoldCube";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class GoldCubeTextureMapping : CSTextureMapping

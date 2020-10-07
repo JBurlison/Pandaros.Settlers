@@ -60,6 +60,8 @@ namespace Pandaros.Settlers.Items.Machines
         public string Job => AdvancedCrafterRegister.JOB_NAME;
 
         public string name => SettlersBuiltIn.ItemTypes.MINER.Name;
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class MinerRegister : IRoamingJobObjective

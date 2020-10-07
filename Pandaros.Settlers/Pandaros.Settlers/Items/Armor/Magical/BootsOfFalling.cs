@@ -38,6 +38,7 @@ namespace Pandaros.Settlers.Items.Armor.Magical
         public string Job { get; set; } = Jobs.SorcererRegister.JOB_NAME;
 
         public string name => NAME;
+        public List<string> JobBlock => new List<string>();
     }
 
     public class BootsOfFalling : CSType, IArmor, IPlayerMagicItem

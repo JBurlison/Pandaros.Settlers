@@ -60,6 +60,13 @@ namespace Pandaros.Settlers.Jobs
 
         public string name => GameLoader.NAMESPACE + ".Knights";
 
+        public Dictionary<int, List<(string, RecipeUnlockClient.EType)>> AdditionalUnlocks => new Dictionary<int, List<(string, RecipeUnlockClient.EType)>>();
+
+        public void BeforeRegister()
+        {
+            
+        }
+
         public void OnRegister()
         {
 
@@ -144,16 +151,6 @@ namespace Pandaros.Settlers.Jobs
         {
             get => UsedNPC;
             set => UsedNPC = value;
-        }
-        
-        public NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
-        {
-            var inv = ColonistInventory.Get(UsedNPC);
-
-            if (!inv.Weapon.IsEmpty())
-                return NPCBase.NPCGoal.Job;
-
-            return NPCBase.NPCGoal.Stockpile;
         }
 
         public Vector3Int GetJobLocation()
@@ -381,6 +378,11 @@ namespace Pandaros.Settlers.Jobs
         public void OnNPCCouldNotPathToGoal()
         {
             
+        }
+
+        public void OnNPCUpdate(NPCBase npc)
+        {
+            throw new NotImplementedException();
         }
     }
 }

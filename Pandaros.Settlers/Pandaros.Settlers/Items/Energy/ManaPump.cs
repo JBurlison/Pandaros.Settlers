@@ -160,6 +160,8 @@ namespace Pandaros.Settlers.Energy
         public string Job => GameLoader.NAMESPACE + ".AdvancedCrafter";
 
         public string name => GameLoader.NAMESPACE + ".ManaPump";
+
+        public List<string> JobBlock => new List<string>();
     }
 
     public class ManaPumpGenerate : CSType

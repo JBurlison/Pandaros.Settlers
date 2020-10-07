@@ -75,11 +75,6 @@ namespace Pandaros.Settlers.Jobs
             return Pipliz.Vector3Int.invalidPos;
         }
 
-        public void OnGoalChanged(BlockJobInstance instance, NPCBase.NPCGoal goalOld, NPCBase.NPCGoal goalNew)
-        {
-            
-        }
-
         public void OnNPCAtJob(BlockJobInstance instance, ref NPCBase.NPCState state)
         {
             instance.OnNPCAtJob(ref state);
@@ -88,6 +83,11 @@ namespace Pandaros.Settlers.Jobs
         public void OnNPCAtStockpile(BlockJobInstance instance, ref NPCBase.NPCState state)
         {
             
+        }
+
+        public void OnGoalChanged(BlockJobInstance instance, INPCGoal goalOld, INPCGoal goalNew)
+        {
+           
         }
     }
 
@@ -166,11 +166,6 @@ namespace Pandaros.Settlers.Jobs
             base(settings, position, type, colony)
         {
         }
-
-        public override NPCBase.NPCGoal CalculateGoal(ref NPCBase.NPCState state)
-        {
-            return base.CalculateGoal(ref state, false);
-        }
     }
 
     public class MachinistTexture : CSTextureMapping
@@ -233,6 +228,7 @@ namespace Pandaros.Settlers.Jobs
         public bool isOptional => false;
         public int defaultLimit => 2;
         public string Job => AdvancedCrafterRegister.JOB_NAME;
+        public List<string> JobBlock => new List<string>();
     }
 
     public class MachinistRecipe : ICSRecipe
@@ -256,5 +252,6 @@ namespace Pandaros.Settlers.Jobs
         public bool isOptional => false;
         public int defaultLimit => 2;
         public string Job => AdvancedCrafterRegister.JOB_NAME;
+        public List<string> JobBlock => new List<string>();
     }
 }
