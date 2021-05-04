@@ -20,9 +20,7 @@ namespace Pandaros.Settlers.Jobs
                 new List<InventoryItem>()
                 {
                     new InventoryItem(SettlersBuiltIn.ItemTypes.ADAMANTINENUGGET.Id, 4),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 3),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 3)
                 }
             }
         };
@@ -32,7 +30,6 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 90 },
                     new ColonistCountCondition() { Threshold = 250 }
                 }
             }
@@ -47,9 +44,7 @@ namespace Pandaros.Settlers.Jobs
                 {
                     SettlersBuiltIn.Research.ARMORSMITHING4,
                     SettlersBuiltIn.Research.SWORDSMITHING4,
-                    SettlersBuiltIn.Research.ELEMENTIUM1,
-                    ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
-                    ColonyBuiltIn.Research.SCIENCEBAGCOLONY
+                    SettlersBuiltIn.Research.ELEMENTIUM1
                 }
             }
         };
@@ -102,9 +97,8 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = JOB_NAME,
-                printName = "Sorcerer",
                 maskColor1 = new Color32(9, 0, 115, 255),
-                type = NPCTypeID.GetNextID()
+                Type = NPCTypeID.GetID(JOB_NAME)
             });
 
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));

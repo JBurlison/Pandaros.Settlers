@@ -19,7 +19,6 @@ namespace Pandaros.Settlers.Research
                 new List<InventoryItem>()
                 {
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.BERRY.Id, 2),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.BREAD.Id, 2),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10)
@@ -44,7 +43,6 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<string>()
                 {
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
                     ColonyBuiltIn.Research.BRONZEMINTING
                 }
             }
@@ -91,7 +89,6 @@ namespace Pandaros.Settlers.Research
                 new List<InventoryItem>()
                 {
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 2),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 1),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.LINEN.Id, 5),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZECOIN.Id, 10)
                 }
@@ -104,8 +101,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 100 },
-                    new HappinessCondition() { Threshold = 50 }
+                    new ColonistCountCondition() { Threshold = 100 }
                 }
             }
         };
@@ -116,7 +112,6 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<string>()
                 {
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE,
                     ColonyBuiltIn.Research.BRONZEMINTING
                 }
             }
@@ -180,7 +175,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 20 }
+                    
                 }
             }
         };
@@ -240,7 +235,6 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 20 }
                 }
             }
         };
@@ -301,7 +295,6 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 20 }
                 }
             }
         };
@@ -348,7 +341,6 @@ namespace Pandaros.Settlers.Research
                 new List<InventoryItem>()
                 {
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 10),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERTOOLS.Id, 20),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.IRONBLOCK.Id, 2),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 30)
@@ -362,8 +354,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 200 },
-                    new HappinessCondition() { Threshold = 70 }
+                    new ColonistCountCondition() { Threshold = 200 }
                 }
             }
         };
@@ -374,8 +365,6 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<string>()
                 {
-                    ColonyBuiltIn.Research.BANNERRADIUS5,
-                    ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
                     ColonyBuiltIn.Research.FINERYFORGE,
                     SettlersBuiltIn.Research.SETTLERCHANCE2,
                     SettlersBuiltIn.Research.REDUCEDWASTE2
@@ -423,8 +412,6 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id, 10),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERPARTS.Id, 20),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.COPPERNAILS.Id, 30),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.TIN.Id, 10),
@@ -440,8 +427,7 @@ namespace Pandaros.Settlers.Research
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 150 },
-                    new HappinessCondition() { Threshold = 70 }
+                    new ColonistCountCondition() { Threshold = 150 }
                 }
             }
         };

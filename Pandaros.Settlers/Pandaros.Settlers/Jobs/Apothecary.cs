@@ -22,7 +22,10 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 4)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 4),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.ALKANET.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Id, 5)
                 }
             }
         };
@@ -33,7 +36,6 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 50 }
                 }
             }
         };
@@ -45,8 +47,7 @@ namespace Pandaros.Settlers.Jobs
                 new List<string>()
                 {
                     ColonyBuiltIn.Research.HERBFARMING,
-                    ColonyBuiltIn.Research.FLAXFARMING,
-                    ColonyBuiltIn.Research.SCIENCEBAGLIFE
+                    ColonyBuiltIn.Research.FLAXFARMING
                 }
             }
         };
@@ -101,8 +102,10 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGLIFE.Id, 4),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 2)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 4),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.WOLFSBANE.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.ALKANET.Id, 5),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.HOLLYHOCK.Id, 5)
                 }
             }
         };
@@ -113,7 +116,6 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 60 }
                 }
             }
         };
@@ -124,8 +126,7 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<string>()
                 {
-                    SettlersBuiltIn.Research.APOTHECARIES1,
-                    ColonyBuiltIn.Research.SCIENCEBAGADVANCED
+                    SettlersBuiltIn.Research.APOTHECARIES1
                 }
             }
         };
@@ -184,9 +185,8 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = JOB_NAME,
-                printName = "Apothecary",
                 maskColor1 = new Color32(101, 121, 123, 255),
-                type = NPCTypeID.GetNextID()
+                Type = NPCTypeID.GetID(JOB_NAME)
             });
 
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));

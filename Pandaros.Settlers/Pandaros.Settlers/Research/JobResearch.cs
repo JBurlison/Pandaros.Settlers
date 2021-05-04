@@ -10,7 +10,7 @@ namespace Pandaros.Settlers.Research
 
     public class JobResearch
     {
-        private const string SCIENCEBAGREQ = ColonyBuiltIn.Research.SCIENCEBAGBASIC;
+        private const string SCIENCEBAGREQ = ColonyBuiltIn.Research.TECHNOLOGISTTABLE;
 
         public class MerchantTrainingResearch : IPandaResearch
         {
@@ -741,8 +741,6 @@ namespace Pandaros.Settlers.Research
                     new List<InventoryItem>()
                     {
                         new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id),
-                        new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id),
-                        new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
                         new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGMILITARY.Id),
                         new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 10),
                         new InventoryItem(ColonyBuiltIn.ItemTypes.BRONZECOIN.Id, 10)
@@ -755,7 +753,6 @@ namespace Pandaros.Settlers.Research
                     0,
                     new List<IResearchableCondition>()
                     {
-                        new HappinessCondition() { Threshold = 150 },
                         new ColonistCountCondition() { Threshold = 1000 }
                     }
                 }

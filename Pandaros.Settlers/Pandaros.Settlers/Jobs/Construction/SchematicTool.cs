@@ -53,9 +53,9 @@ namespace Pandaros.Settlers.Jobs.Construction
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Id),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 3),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Id)
                 }
             }
         };
@@ -65,7 +65,6 @@ namespace Pandaros.Settlers.Jobs.Construction
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 80 },
                     new ColonistCountCondition() { Threshold = 150 }
                 }
             }
@@ -79,8 +78,7 @@ namespace Pandaros.Settlers.Jobs.Construction
                 new List<string>()
                 {
                     ColonyBuiltIn.Research.CONSTRUCTIONBUILDER,
-                    ColonyBuiltIn.Research.SCIENCEBAGADVANCED,
-                    ColonyBuiltIn.Research.SCIENCEBAGCOLONY
+                    ColonyBuiltIn.Research.TECHNOLOGISTTABLE
                 }
             }
         };
@@ -116,8 +114,7 @@ namespace Pandaros.Settlers.Jobs.Construction
         public List<RecipeItem> requires => new List<RecipeItem>()
         {
             new RecipeItem(ColonyBuiltIn.ItemTypes.PLANKS.Id),
-            new RecipeItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id),
-            new RecipeItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id)
+            new RecipeItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id)
         };
 
         public List<RecipeResult> results => new List<RecipeResult>()

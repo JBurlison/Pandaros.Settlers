@@ -155,7 +155,7 @@ namespace Pandaros.Settlers.Jobs
             {
                 var knight = new Knight(kp.PatrolPoints, k.Key);
                 knight.PatrolType = kp.patrolType;
-                k.Key.JobFinder.Add(knight);
+                k.Key.JobFinder.RegisterJobAdded(knight);
             }
         }
 
@@ -280,7 +280,7 @@ namespace Pandaros.Settlers.Jobs
                 {
                     var knight = new Knight(new List<Vector3Int>(state.FlagsPlaced), player.ActiveColony);
                     state.FlagsPlaced.Clear();
-                    player.ActiveColony.JobFinder.Add(knight);
+                    player.ActiveColony.JobFinder.RegisterJobAdded(knight);
 
                     PandaChat.Send(player, _localizationHelper, "Active", ChatColor.orange);
 
@@ -338,7 +338,7 @@ namespace Pandaros.Settlers.Jobs
                         PandaChat.Send(d.RequestOrigin.AsPlayer, _localizationHelper, "PatrolsNotActive", ChatColor.orange, toRemove.PatrolPoints.Count.ToString());
 
                         Knight.Knights[d.RequestOrigin.AsPlayer.ActiveColony].Remove(toRemove);
-                        d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Remove(toRemove);
+                        d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.UnregisterJob(toRemove);
                         d.RequestOrigin.AsPlayer.ActiveColony.JobFinder.Update();
                     }
 

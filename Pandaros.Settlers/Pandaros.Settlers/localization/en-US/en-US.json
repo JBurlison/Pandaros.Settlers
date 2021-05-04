@@ -369,6 +369,20 @@
         }
       }
     },
+    "npcs": {
+      "Pandaros": {
+        "Settlers": {
+          "Artificer": "Artificer",
+          "Machinist": "Machinist Day",
+          "NightMachinist": "Machinist Night",
+          "Conductor": "Conductor",
+          "AdvancedCrafter": "Advanced Crafter",
+          "Sorcerer": "Sorcerer",
+          "Knight": "Knight",
+          "Apothecaries": "Apothecaries"
+        }
+      }
+    },
     "Pandaros": {
       "Settlers": {
         "Apothecary": "Apothecary",
@@ -440,9 +454,11 @@
           "SettlersState": "Settlers! Mod Settlers are set to ",
           "SettlersToggleTime": "Settlers! Settlers are set to {0}. You have toggled this {1} out of {2} times.",
           "AbuseWarning": "To limit abuse of the /settlers command you can no longer toggle settlers on or off. You have used your alloted {0} times.",
-          "SettlerChance": "Additional chance to get settlers: {0}%",
           "SkillChance": "Additional Skill chance: {0}%",
-          "SkilledSettlerChance": "Additional Skilled Settler Chance {0}%"
+          "SettlerChance": "Settler Chance",
+          "SettlerChancepct": "Additional Chance for Settlers {0}%",
+          "SkilledSettlerChance": "Skilled Settler Chance",
+          "SkilledSettlerChancepct": "Additional Chance for Skilled Settlers {0}%"
         },
         "Knights": {
           "NoFlags": "You have no patrol flags in your stockpile or inventory.",

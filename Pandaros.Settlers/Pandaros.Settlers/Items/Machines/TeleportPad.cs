@@ -28,8 +28,8 @@ namespace Pandaros.Settlers.Items.Machines
                 0,
                 new List<InventoryItem>()
                 {
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Id, 10),
-                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Id, 10),
+                    new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Id, 10),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Id, 20),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 20),
                     new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDCOIN.Id, 20),
@@ -44,7 +44,6 @@ namespace Pandaros.Settlers.Items.Machines
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new HappinessCondition() { Threshold = 50 }
                 }
             }
         };
@@ -173,19 +172,19 @@ namespace Pandaros.Settlers.Items.Machines
 
                 if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .10f)
                 {
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 2));
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 2));
                     requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 2));
                 }
                 else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .30f)
                 {
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 1));
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 2));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 2));
                     requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 2));
                 }
                 else if (machineState.GetActionEnergy(MachineConstants.REPAIR) < .50f)
                 {
-                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 1));
+                    requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 1));
                     requiredForFix.Add(new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 1));
                 }
 
@@ -274,8 +273,8 @@ namespace Pandaros.Settlers.Items.Machines
             var rivets  = new InventoryItem(ColonyBuiltIn.ItemTypes.IRONRIVET.Name, 6);
             var steel   = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELINGOT.Name, 5);
             var sbb     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGBASIC.Name, 20);
-            var sbc     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGCOLONY.Name, 20);
-            var sba     = new InventoryItem(ColonyBuiltIn.ItemTypes.SCIENCEBAGADVANCED.Name, 20);
+            var sbc     = new InventoryItem(ColonyBuiltIn.ItemTypes.GOLDINGOT.Name, 20);
+            var sba     = new InventoryItem(ColonyBuiltIn.ItemTypes.STEELPARTS.Name, 20);
             var crystal = new InventoryItem(ColonyBuiltIn.ItemTypes.CRYSTAL.Name, 5);
             var stone   = new InventoryItem(ColonyBuiltIn.ItemTypes.STONEBRICKS.Name, 50);
             var mana    = new InventoryItem(SettlersBuiltIn.ItemTypes.MANA.Id, 100);

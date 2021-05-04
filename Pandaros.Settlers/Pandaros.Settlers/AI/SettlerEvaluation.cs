@@ -3,6 +3,7 @@ using Pandaros.API.Entities;
 using Pandaros.Settlers.ColonyManagement;
 using Pipliz;
 using System;
+using System.Linq;
 
 namespace Pandaros.Settlers.AI
 {
@@ -21,7 +22,7 @@ namespace Pandaros.Settlers.AI
             else if (remainingBeds > SettlerManager.MIN_PERSPAWN)
                 chance += 0.15f;
 
-            var jobCount = state.ColonyRef.JobFinder.OpenJobCount;
+            var jobCount = state.ColonyRef.GetJobCounts().Select(kvp => kvp.Value.AvailableCount).Sum();
 
             if (jobCount > SettlerManager.MaxPerSpawn(state.ColonyRef))
                 chance += 0.4f;

@@ -47,9 +47,8 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = MachinistDay.JOB_NAME,
-                printName = "Machinist Day",
                 maskColor1 = new Color32(242, 132, 29, 255),
-                type = NPCTypeID.GetNextID(),
+                Type = NPCTypeID.GetID(MachinistDay.JOB_NAME),
                 inventoryCapacity = 1f
             });
 
@@ -108,9 +107,8 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = MachinistNight.JOB_NAME,
-                printName = "Machinist Night",
                 maskColor1 = new Color32(127, 74, 24, 255),
-                type = NPCTypeID.GetNextID(),
+                Type = NPCTypeID.GetID(MachinistNight.JOB_NAME),
                 inventoryCapacity = 1f
             });
 

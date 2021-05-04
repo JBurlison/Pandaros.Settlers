@@ -23,9 +23,8 @@ namespace Pandaros.Settlers.Items.Transportation
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = GameLoader.NAMESPACE + ".Conductor",
-                printName = "Conductor",
                 maskColor1 = new Color32(245, 123, 66, 255),
-                type = NPCTypeID.GetNextID()
+                Type = NPCTypeID.GetID(GameLoader.NAMESPACE + ".Conductor")
             });
 
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(GameLoader.NAMESPACE + ".TrainStation", GameLoader.NAMESPACE + ".Conductor")));

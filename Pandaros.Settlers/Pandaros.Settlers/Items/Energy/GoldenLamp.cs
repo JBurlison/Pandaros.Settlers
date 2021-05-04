@@ -41,12 +41,8 @@ namespace Pandaros.Settlers.Items.Transportation
                 var fuel = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill");
                 var durability = state.GetActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair");
 
-                if (!ColonyManagement.DecorHappiness.DecorBonuses.ContainsKey(colony))
-                    ColonyManagement.DecorHappiness.DecorBonuses.Add(colony, new Dictionary<string, float>());
-
                 if (fuel > 0 && durability > 0)
                 {
-                    ColonyManagement.DecorHappiness.DecorBonuses[colony][nameof(GoldCube)] = 10f;
 
                     state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaTankRefill", .2f);
                     state.SubtractFromActionEnergy(GameLoader.NAMESPACE + ".ManaMachineRepair", .05f);
@@ -56,9 +52,6 @@ namespace Pandaros.Settlers.Items.Transportation
                 }
                 else
                 {
-                    if (ColonyManagement.DecorHappiness.DecorBonuses[colony].ContainsKey(nameof(GoldCube)))
-                        ColonyManagement.DecorHappiness.DecorBonuses[colony].Remove(nameof(GoldCube));
-
                     if (World.TryGetTypeAt(state.Position, out ItemTypes.ItemType itemType) && itemType.Name == GameLoader.NAMESPACE + ".GoldCube")
                         ServerManager.TryChangeBlock(state.Position, ItemId.GetItemId(GameLoader.NAMESPACE + ".GoldCubeUnlit").Id);
                 }

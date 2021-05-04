@@ -128,15 +128,9 @@
     <Compile Include="AI\SettlerEvaluation.cs" />
     <Compile Include="AI\SettlerReasoning.cs" />
     <Compile Include="ColonyManagement\ColonistsBought.cs" />
-    <Compile Include="ColonyManagement\DecorHappiness.cs" />
-    <Compile Include="ColonyManagement\NotEnoughBeds.cs" />
-    <Compile Include="ColonyManagement\CloseBeds.cs" />
-    <Compile Include="ColonyManagement\ColonistDied.cs" />
-    <Compile Include="ColonyManagement\NotEnoughJobs.cs" />
     <Compile Include="ColonyManagement\Permission.cs" />
     <Compile Include="ColonyManagement\SkilledSettlerChance.cs" />
     <Compile Include="ColonyManagement\SettlerChance.cs" />
-    <Compile Include="ColonyManagement\SlowerGuards.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Decorative\ColliderStorage.cs" />
     <Compile Include="Decorative\DecorTypeBase.cs" />

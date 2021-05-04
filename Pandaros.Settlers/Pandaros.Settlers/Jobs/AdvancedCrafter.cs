@@ -23,9 +23,8 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = JOB_NAME,
-                printName = "Advanced Crafter",
                 maskColor1 = new Color32(101, 121, 123, 255),
-                type = NPCTypeID.GetNextID()
+                Type = NPCTypeID.GetID(JOB_NAME)
             });
 
             ServerManager.BlockEntityCallbacks.RegisterEntityManager(new BlockJobManager<CraftingJobInstance>(new CraftingJobSettings(JOB_ITEM_KEY, JOB_NAME)));

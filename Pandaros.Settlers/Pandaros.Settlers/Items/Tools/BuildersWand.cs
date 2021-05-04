@@ -41,8 +41,7 @@ namespace Pandaros.Settlers.Items
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 150 },
-                    new HappinessCondition() { Threshold = 50 }
+                    new ColonistCountCondition() { Threshold = 150 }
                 }
             }
         };
@@ -99,8 +98,7 @@ namespace Pandaros.Settlers.Items
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 150 },
-                    new HappinessCondition() { Threshold = 50 }
+                    new ColonistCountCondition() { Threshold = 150 }
                 }
             }
         };

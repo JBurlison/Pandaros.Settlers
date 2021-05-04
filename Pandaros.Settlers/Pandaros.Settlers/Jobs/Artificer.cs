@@ -180,9 +180,8 @@ namespace Pandaros.Settlers.Jobs
             NPCType.AddSettings(new NPCTypeStandardSettings
             {
                 keyName = Artificer.JOB_NAME,
-                printName = "Artificer",
                 maskColor1 = new Color32(81, 55, 102, 255),
-                type = NPCTypeID.GetNextID(),
+                Type = NPCTypeID.GetID(Artificer.JOB_NAME),
                 inventoryCapacity = 1f
             });
 

@@ -85,7 +85,6 @@ namespace Pandaros.Settlers.ColonyManagement
 
         public static List<HealingOverTimeNPC> HealingSpells { get; } = new List<HealingOverTimeNPC>();
         private static LocalizationHelper _localizationHelper = new LocalizationHelper(GameLoader.NAMESPACE, "SettlerManager");
-        private static float _settlersBuffer = 0;
 
         public static int MaxPerSpawn(Colony ColonyRef)
         {
@@ -177,21 +176,6 @@ namespace Pandaros.Settlers.ColonyManagement
                                 }
                         }
                     }
-
-                    if (cs.ColonyRef.FollowerCount > 10)
-                    {
-                        float foodConsumedPerSecondPerColonist = (cs.FoodPerHour * TimeCycle.GameTimeScale) / 3600;
-                        float secondsTick = (float)Time.SecondsLastFrame;
-                        float foodToConsume = foodConsumedPerSecondPerColonist * colony.FollowerCount * secondsTick;
-                        float diff = Math.Min(foodToConsume, _settlersBuffer);
-                        foodToConsume -= diff;
-                        _settlersBuffer -= diff;
-
-                        if (foodToConsume > 0.0001f)
-                        {
-                            colony.Stockpile.TryRemoveFood(ref _settlersBuffer, foodToConsume);
-                        }
-                    }
                 }
 
 
@@ -277,9 +261,6 @@ namespace Pandaros.Settlers.ColonyManagement
             {
                 var cs = ColonyState.GetColonyState(p.ActiveColony);
 
-                if (cs.SettlersEnabled != SettlersState.Disabled && SettlersConfiguration.GetorDefault("ColonistsRecruitment", true))
-                    PandaChat.Send(p, _localizationHelper, "BuyingColonists", ChatColor.orange, MAX_BUYABLE.ToString(), cs.Difficulty.GetorDefault("UnhappyColonistsBought", 1).ToString());
-
                 if (cs.SettlersToggledTimes < SettlersConfiguration.GetorDefault("MaxSettlersToggle", 4))
                     PandaChat.Send(p, _localizationHelper, "SettlersEnabled", ChatColor.orange, cs.SettlersEnabled.ToString());
             }
@@ -307,8 +288,6 @@ namespace Pandaros.Settlers.ColonyManagement
                     return;
 
                 var ps = ColonyState.GetColonyState(npc.Colony);
-
-                npc.FoodHoursCarried = ServerManager.ServerSettings.NPCs.InitialFoodCarriedHours;
 
                 if (ps.SettlersEnabled != API.Models.SettlersState.Disabled)
                 {
@@ -391,7 +370,7 @@ namespace Pandaros.Settlers.ColonyManagement
 
                         try
                         {
-                            var skillChance = state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".SkilledLaborer", 0f) + SkilledSettlerChance.GetSkilledSettlerChance(state.ColonyRef);
+                            var skillChance = state.ColonyRef.TemporaryData.GetAsOrDefault(GameLoader.NAMESPACE + ".SkilledLaborer", 0f) + SkilledSettlerChance.GetSettlerChance(state.ColonyRef);
                             var numbSkilled = 0;
                             rand = Random.NextFloat();
 

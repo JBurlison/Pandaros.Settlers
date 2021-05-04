@@ -30,8 +30,7 @@ namespace Pandaros.Settlers.Jobs
                 0,
                 new List<IResearchableCondition>()
                 {
-                    new ColonistCountCondition() { Threshold = 25 },
-                    new HappinessCondition() { Threshold = 30 }
+                    new ColonistCountCondition() { Threshold = 25 }
                 }
             }
         };
@@ -106,9 +105,8 @@ namespace Pandaros.Settlers.Jobs
 
         private static readonly NPCTypeStandardSettings _knightNPCSettings = new NPCTypeStandardSettings
         {
-            type       = NPCTypeID.GetNextID(),
+            Type       = NPCTypeID.GetID(GameLoader.NAMESPACE + ".Knight"),
             keyName    = GameLoader.NAMESPACE + ".Knight",
-            printName  = "Knight",
             maskColor0 = UnityEngine.Color.blue,
             maskColor1 = UnityEngine.Color.black
         };
@@ -230,7 +228,7 @@ namespace Pandaros.Settlers.Jobs
                 {
                     UsedNPC.ClearJob();
                     Knights[Owner].Remove(this);
-                    Owner.JobFinder.Remove(this);
+                    Owner.JobFinder.UnregisterJob(this);
 
                     foreach (var flagPoint in PatrolPoints)
                         if (World.TryGetTypeAt(flagPoint, out ushort flagType) &&
