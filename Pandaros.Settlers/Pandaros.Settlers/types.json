@@ -3,19 +3,15 @@
     "Name": "Pandaros.Settlers.BerryPancakes",
     "icon": "./icons/BerryPancakes.png",
     "isPlaceable": false,
-    "foodValue": 0.4,
-    "happiness": 15.0,
-    "dailyFoodFractionOptimal": 0.5,
-    "categories": [ "food" ]
+    "colonyPointsMeal": 30,
+    "categories": [ "food", "edible", "meal" ]
   },
   "Pandaros.Settlers.BerryPie": {
     "Name": "Pandaros.Settlers.BerryPie",
     "icon": "./icons/BerryPie.png",
     "isPlaceable": false,
-    "foodValue": 0.6,
-    "happiness": 18.0,
-    "dailyFoodFractionOptimal": 0.5,
-    "categories": [ "food" ]
+    "colonyPointsMeal": 35,
+    "categories": [ "food", "edible", "meal" ]
   },
   "Pandaros.Settlers.AutoLoad.sappling": {
     "categories": [
