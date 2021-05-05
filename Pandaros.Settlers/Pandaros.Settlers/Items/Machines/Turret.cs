@@ -298,7 +298,6 @@ namespace Pandaros.Settlers.Items.Machines
                                          5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, stonerecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(stonerecipe);
 
             var bronzeArrowrecipe = new Recipe(BRONZEARROW_NAMESPACE,
                                                new List<InventoryItem>
@@ -316,7 +315,6 @@ namespace Pandaros.Settlers.Items.Machines
                                                5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, bronzeArrowrecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(bronzeArrowrecipe);
 
             var crossbowrecipe = new Recipe(CROSSBOW_NAMESPACE,
                                             new List<InventoryItem>
@@ -334,7 +332,6 @@ namespace Pandaros.Settlers.Items.Machines
                                             5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, crossbowrecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(crossbowrecipe);
 
             var matchlockrecipe = new Recipe(MATCHLOCK_NAMESPACE,
                                              new List<InventoryItem>
@@ -353,7 +350,6 @@ namespace Pandaros.Settlers.Items.Machines
                                              5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, matchlockrecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(matchlockrecipe);
 
             foreach (var turret in TurretSettings)
                 RoamingJobManager.RegisterObjectiveType(new TurretRegister(turret.Value));

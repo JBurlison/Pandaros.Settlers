@@ -46,7 +46,6 @@ namespace Pandaros.Settlers.Items.Machines
                                        5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, airRecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(airRecipe);
 
             var earthRecipe = new Recipe(EARTHTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -63,7 +62,6 @@ namespace Pandaros.Settlers.Items.Machines
                                          5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, earthRecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(earthRecipe);
 
             var fireRecipe = new Recipe(FIRETURRET_NAMESPACE,
                                         new List<InventoryItem> {planks, elemen, mana, tools, stone, fireStone, esper},
@@ -71,7 +69,6 @@ namespace Pandaros.Settlers.Items.Machines
                                         5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, fireRecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(fireRecipe);
 
             var waterRecipe = new Recipe(WATERTURRET_NAMESPACE,
                                          new List<InventoryItem>
@@ -88,7 +85,6 @@ namespace Pandaros.Settlers.Items.Machines
                                          5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, waterRecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(waterRecipe);
 
             var voidRecipe = new Recipe(VOIDTURRET_NAMESPACE,
                                         new List<InventoryItem>
@@ -105,7 +101,6 @@ namespace Pandaros.Settlers.Items.Machines
                                         5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, voidRecipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(voidRecipe);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AddItemTypes, GameLoader.NAMESPACE + ".Items.Machines.ElementalTurrets.AddTurret")]
