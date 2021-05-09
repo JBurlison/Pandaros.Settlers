@@ -404,7 +404,6 @@ namespace Pandaros.Settlers.Items.Machines
                                     5, 0, -100);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
 
             var gate = new Recipe(GateItem.name,
                                   new List<InventoryItem> {iron, rivets, tools},
@@ -412,7 +411,6 @@ namespace Pandaros.Settlers.Items.Machines
                                   24, 0, -100);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(AdvancedCrafterRegister.JOB_NAME, gate);
-            ServerManager.RecipeStorage.AddScienceRequirement(gate);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterSelectedWorld, GameLoader.NAMESPACE + ".Items.Machines.GateLever.AddTextures")]

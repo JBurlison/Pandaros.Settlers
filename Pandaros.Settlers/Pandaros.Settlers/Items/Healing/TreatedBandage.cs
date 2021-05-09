@@ -31,7 +31,6 @@ namespace Pandaros.Settlers.Items.Healing
                                     50);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

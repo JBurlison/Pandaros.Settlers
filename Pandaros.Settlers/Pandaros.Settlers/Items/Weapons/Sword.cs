@@ -86,7 +86,6 @@ namespace Pandaros.Settlers.Items.Weapons
                 var recipe  = new Recipe(metadata.ItemType.name, items, invItem, 5);
 
                 ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.METALSMITHJOB, recipe);
-                ServerManager.RecipeStorage.AddScienceRequirement(recipe);
             }
         }
 

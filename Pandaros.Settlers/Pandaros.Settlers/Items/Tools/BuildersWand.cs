@@ -169,7 +169,6 @@ namespace Pandaros.Settlers.Items
                                     5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(SorcererRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

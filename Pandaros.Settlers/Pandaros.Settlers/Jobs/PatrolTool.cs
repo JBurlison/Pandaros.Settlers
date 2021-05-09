@@ -40,7 +40,6 @@ namespace Pandaros.Settlers.Jobs
                                     5);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(ColonyBuiltIn.NpcTypes.CRAFTER, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

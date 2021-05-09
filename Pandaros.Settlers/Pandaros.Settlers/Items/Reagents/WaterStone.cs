@@ -25,7 +25,6 @@ namespace Pandaros.Settlers.Items
                                     6);
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 

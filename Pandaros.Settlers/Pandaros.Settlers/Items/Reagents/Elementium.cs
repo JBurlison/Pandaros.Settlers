@@ -34,7 +34,6 @@ namespace Pandaros.Settlers.Items
             recipe.Results.Add(new RecipeResult(ColonyBuiltIn.ItemTypes.CRYSTAL.Id, 1, 0.05f));
 
             ServerManager.RecipeStorage.AddLimitTypeRecipe(ApothecaryRegister.JOB_NAME, recipe);
-            ServerManager.RecipeStorage.AddScienceRequirement(recipe);
         }
 
 
